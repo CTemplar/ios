@@ -15,6 +15,13 @@ class LoginInteractor {
     var presenter       : LoginPresenter?
     var apiService      : APIService?
     
+    let keychainService = KeychainService()
+    
+    func saveToken(token: String)
+    {
+        keychainService.saveToken(token: token)
+    }
+    
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         apiService?.authenticateUser(userName: userName, password: password, completionHandler: completionHandler)
@@ -58,8 +65,10 @@ class LoginInteractor {
         for dictionary in response {
             
             switch dictionary.key {
-                case APIResponse.token.rawValue :
-                    print("token:", dictionary.value)
+                case APIResponse.token.rawValue :                    
+                    if let token = dictionary.value as? String {
+                        saveToken(token: token)
+                    }
                     break
                 case APIResponse.username.rawValue :
                     let message = extractErrorTextFrom(value: dictionary.value)

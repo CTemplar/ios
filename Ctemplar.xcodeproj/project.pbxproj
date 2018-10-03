@@ -26,6 +26,7 @@
 		843E97392163700900147CBE /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E97382163700900147CBE /* LoginRouter.swift */; };
 		843E973B2163701B00147CBE /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973A2163701B00147CBE /* LoginInteractor.swift */; };
 		843E973D2163703100147CBE /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973C2163703100147CBE /* LoginPresenter.swift */; };
+		843FC3822164C2CC000CFEA9 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3812164C2CC000CFEA9 /* KeychainService.swift */; };
 		8895AB178CEFEFB8A9DCD62B /* Pods_Ctemplar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B8DB58A9BFE099948CF3E1 /* Pods_Ctemplar.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,8 @@
 		843E97382163700900147CBE /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		843E973A2163701B00147CBE /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
 		843E973C2163703100147CBE /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		843FC3812164C2CC000CFEA9 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		843FC3832164C320000CFEA9 /* Ctemplar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ctemplar.entitlements; sourceTree = "<group>"; };
 		8C75257603640BC3576C9BB5 /* Pods-Ctemplar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ctemplar/Pods-Ctemplar.debug.xcconfig"; sourceTree = "<group>"; };
 		A9B8DB58A9BFE099948CF3E1 /* Pods_Ctemplar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6F0F7014DAB1A09E4C0F5D2 /* Pods-Ctemplar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ctemplar/Pods-Ctemplar.release.xcconfig"; sourceTree = "<group>"; };
@@ -99,6 +102,7 @@
 		8433FF18216201A300C57DC8 /* Ctemplar */ = {
 			isa = PBXGroup;
 			children = (
+				843FC3832164C320000CFEA9 /* Ctemplar.entitlements */,
 				8433FF4F2162106200C57DC8 /* AplicationLayer */,
 				8433FF4E2162105A00C57DC8 /* Models */,
 				8433FF512162108B00C57DC8 /* Presentation */,
@@ -141,6 +145,7 @@
 				8433FF522162128200C57DC8 /* APIService.swift */,
 				8433FF5B216246DC00C57DC8 /* PGPService.swift */,
 				8433FF542162129800C57DC8 /* RestAPIService.swift */,
+				843FC3812164C2CC000CFEA9 /* KeychainService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -240,6 +245,11 @@
 				TargetAttributes = {
 					8433FF15216201A300C57DC8 = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -289,6 +299,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Ctemplar/Pods-Ctemplar-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlertHelperKit/AlertHelperKit.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
 				"${PODS_ROOT}/ObjectivePGP/Frameworks/ios/ObjectivePGP.framework",
 				"${PODS_ROOT}/ObjectivePGP/Frameworks/ios/ObjectivePGP.framework.dSYM",
 				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
@@ -299,6 +310,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlertHelperKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectivePGP.framework",
 				"${DWARF_DSYM_FOLDER_PATH}/ObjectivePGP.framework.dSYM",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
@@ -348,6 +360,7 @@
 				843E973D2163703100147CBE /* LoginPresenter.swift in Sources */,
 				843E973B2163701B00147CBE /* LoginInteractor.swift in Sources */,
 				843E97392163700900147CBE /* LoginRouter.swift in Sources */,
+				843FC3822164C2CC000CFEA9 /* KeychainService.swift in Sources */,
 				843E973721636FF200147CBE /* LoginConfigurator.swift in Sources */,
 				8433FF5A2162181E00C57DC8 /* Constants.swift in Sources */,
 			);
@@ -496,7 +509,9 @@
 			baseConfigurationReference = 8C75257603640BC3576C9BB5 /* Pods-Ctemplar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TL9R53MN93;
 				INFOPLIST_FILE = Ctemplar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -515,7 +530,9 @@
 			baseConfigurationReference = F6F0F7014DAB1A09E4C0F5D2 /* Pods-Ctemplar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TL9R53MN93;
 				INFOPLIST_FILE = Ctemplar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (

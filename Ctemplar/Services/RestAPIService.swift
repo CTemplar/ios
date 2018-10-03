@@ -32,7 +32,7 @@ class RestAPIService {
         case emailCount = "email_count"
         case paymentType = "payment_type"
     }
-    
+        
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [

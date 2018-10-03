@@ -10,6 +10,7 @@ target 'Ctemplar' do
 	pod 'Alamofire'
     	pod 'PKHUD', '~> 5.0'
 	pod 'AlertHelperKit', :git => 'https://github.com/keygx/AlertHelperKit'
+	pod 'KeychainSwift'
     
     post_install do |installer|
         installer.pods_project.targets.each do |target|
