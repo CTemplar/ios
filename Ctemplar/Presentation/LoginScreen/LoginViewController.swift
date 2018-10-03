@@ -49,7 +49,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func createAccountButtonPressed(_ sender: AnyObject) {
         
-        
+        self.presenter?.buttonCreateAccountPressed()
     }
     
     @IBAction func userEmailTyped(_ sender: UITextField) {

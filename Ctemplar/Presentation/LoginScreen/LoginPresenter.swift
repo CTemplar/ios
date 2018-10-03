@@ -48,6 +48,11 @@ class LoginPresenter {
         }
     }
     
+    func buttonCreateAccountPressed() {
+        
+        viewController?.router?.showSignUpViewController()
+    }
+    
     func authenticateUser(userEmail: String, password: String) {
         
         HUD.show(.progress)

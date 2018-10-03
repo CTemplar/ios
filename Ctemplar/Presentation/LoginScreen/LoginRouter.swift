@@ -13,7 +13,7 @@ class LoginRouter {
     
     var viewController: LoginViewController?
     
-    func showLoginViewController() {
+    func showSignUpViewController() {
         
         DispatchQueue.main.async {
             let storyboard: UIStoryboard = UIStoryboard(name: k_SignUpStoryboardName, bundle: nil)
