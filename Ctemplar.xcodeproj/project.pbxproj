@@ -1,0 +1,556 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8433FF1A216201A300C57DC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF19216201A300C57DC8 /* AppDelegate.swift */; };
+		8433FF1C216201A300C57DC8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF1B216201A300C57DC8 /* ViewController.swift */; };
+		8433FF1F216201A300C57DC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF1D216201A300C57DC8 /* Main.storyboard */; };
+		8433FF21216201A500C57DC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF20216201A500C57DC8 /* Assets.xcassets */; };
+		8433FF24216201A500C57DC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF22216201A500C57DC8 /* LaunchScreen.storyboard */; };
+		8433FF4C21620DBD00C57DC8 /* MainiPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF4B21620DBD00C57DC8 /* MainiPad.storyboard */; };
+		8433FF532162128200C57DC8 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF522162128200C57DC8 /* APIService.swift */; };
+		8433FF552162129800C57DC8 /* RestAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF542162129800C57DC8 /* RestAPIService.swift */; };
+		8433FF57216212D500C57DC8 /* AplicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF56216212D500C57DC8 /* AplicationManager.swift */; };
+		8433FF5A2162181E00C57DC8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF592162181E00C57DC8 /* Constants.swift */; };
+		8433FF5C216246DC00C57DC8 /* PGPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF5B216246DC00C57DC8 /* PGPService.swift */; };
+		8433FF5E21626D0600C57DC8 /* LaunchScreeniPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF5D21626D0600C57DC8 /* LaunchScreeniPad.storyboard */; };
+		843E972F21634E7900147CBE /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E972E21634E7800147CBE /* LaunchScreenViewController.swift */; };
+		843E973221635BEB00147CBE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973121635BEB00147CBE /* LoginViewController.swift */; };
+		843E973421635C3B00147CBE /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843E973321635C3B00147CBE /* Login.storyboard */; };
+		843E973721636FF200147CBE /* LoginConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973621636FF200147CBE /* LoginConfigurator.swift */; };
+		843E97392163700900147CBE /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E97382163700900147CBE /* LoginRouter.swift */; };
+		843E973B2163701B00147CBE /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973A2163701B00147CBE /* LoginInteractor.swift */; };
+		843E973D2163703100147CBE /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973C2163703100147CBE /* LoginPresenter.swift */; };
+		8895AB178CEFEFB8A9DCD62B /* Pods_Ctemplar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B8DB58A9BFE099948CF3E1 /* Pods_Ctemplar.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8433FF16216201A300C57DC8 /* Ctemplar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ctemplar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8433FF19216201A300C57DC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8433FF1B216201A300C57DC8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8433FF1E216201A300C57DC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8433FF20216201A500C57DC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8433FF23216201A500C57DC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8433FF25216201A500C57DC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8433FF4B21620DBD00C57DC8 /* MainiPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainiPad.storyboard; sourceTree = "<group>"; };
+		8433FF522162128200C57DC8 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		8433FF542162129800C57DC8 /* RestAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPIService.swift; sourceTree = "<group>"; };
+		8433FF56216212D500C57DC8 /* AplicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AplicationManager.swift; sourceTree = "<group>"; };
+		8433FF592162181E00C57DC8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8433FF5B216246DC00C57DC8 /* PGPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PGPService.swift; sourceTree = "<group>"; };
+		8433FF5D21626D0600C57DC8 /* LaunchScreeniPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreeniPad.storyboard; sourceTree = "<group>"; };
+		843E972C2163494400147CBE /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		843E972E21634E7800147CBE /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		843E973121635BEB00147CBE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		843E973321635C3B00147CBE /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		843E973521635F6D00147CBE /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		843E973621636FF200147CBE /* LoginConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConfigurator.swift; sourceTree = "<group>"; };
+		843E97382163700900147CBE /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
+		843E973A2163701B00147CBE /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
+		843E973C2163703100147CBE /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		8C75257603640BC3576C9BB5 /* Pods-Ctemplar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ctemplar/Pods-Ctemplar.debug.xcconfig"; sourceTree = "<group>"; };
+		A9B8DB58A9BFE099948CF3E1 /* Pods_Ctemplar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6F0F7014DAB1A09E4C0F5D2 /* Pods-Ctemplar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ctemplar/Pods-Ctemplar.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8433FF13216201A300C57DC8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8895AB178CEFEFB8A9DCD62B /* Pods_Ctemplar.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6B9D5D9669D4ECC4B64F115A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A9B8DB58A9BFE099948CF3E1 /* Pods_Ctemplar.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8433FF0D216201A300C57DC8 = {
+			isa = PBXGroup;
+			children = (
+				8433FF18216201A300C57DC8 /* Ctemplar */,
+				8433FF17216201A300C57DC8 /* Products */,
+				ACB141FEC80B2ECB5851B667 /* Pods */,
+				6B9D5D9669D4ECC4B64F115A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8433FF17216201A300C57DC8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8433FF16216201A300C57DC8 /* Ctemplar.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8433FF18216201A300C57DC8 /* Ctemplar */ = {
+			isa = PBXGroup;
+			children = (
+				8433FF4F2162106200C57DC8 /* AplicationLayer */,
+				8433FF4E2162105A00C57DC8 /* Models */,
+				8433FF512162108B00C57DC8 /* Presentation */,
+				8433FF502162106C00C57DC8 /* Services */,
+				8433FF4D21620DC500C57DC8 /* Storyboards */,
+				8433FF58216217DC00C57DC8 /* Resources */,
+				8433FF25216201A500C57DC8 /* Info.plist */,
+			);
+			path = Ctemplar;
+			sourceTree = "<group>";
+		};
+		8433FF4D21620DC500C57DC8 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				8433FF1D216201A300C57DC8 /* Main.storyboard */,
+				8433FF4B21620DBD00C57DC8 /* MainiPad.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		8433FF4E2162105A00C57DC8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8433FF4F2162106200C57DC8 /* AplicationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				8433FF19216201A300C57DC8 /* AppDelegate.swift */,
+				8433FF56216212D500C57DC8 /* AplicationManager.swift */,
+			);
+			path = AplicationLayer;
+			sourceTree = "<group>";
+		};
+		8433FF502162106C00C57DC8 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8433FF522162128200C57DC8 /* APIService.swift */,
+				8433FF5B216246DC00C57DC8 /* PGPService.swift */,
+				8433FF542162129800C57DC8 /* RestAPIService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		8433FF512162108B00C57DC8 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				843E972D21634E4800147CBE /* LaunchScreen */,
+				843E973021635BC700147CBE /* LoginScreen */,
+				8433FF1B216201A300C57DC8 /* ViewController.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		8433FF58216217DC00C57DC8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				843E972B2163493800147CBE /* Fonts */,
+				8433FF20216201A500C57DC8 /* Assets.xcassets */,
+				8433FF592162181E00C57DC8 /* Constants.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		843E972B2163493800147CBE /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				843E972C2163494400147CBE /* Lato-Regular.ttf */,
+				843E973521635F6D00147CBE /* Roboto-Bold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		843E972D21634E4800147CBE /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8433FF22216201A500C57DC8 /* LaunchScreen.storyboard */,
+				8433FF5D21626D0600C57DC8 /* LaunchScreeniPad.storyboard */,
+				843E972E21634E7800147CBE /* LaunchScreenViewController.swift */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		843E973021635BC700147CBE /* LoginScreen */ = {
+			isa = PBXGroup;
+			children = (
+				843E973121635BEB00147CBE /* LoginViewController.swift */,
+				843E973621636FF200147CBE /* LoginConfigurator.swift */,
+				843E97382163700900147CBE /* LoginRouter.swift */,
+				843E973C2163703100147CBE /* LoginPresenter.swift */,
+				843E973A2163701B00147CBE /* LoginInteractor.swift */,
+				843E973321635C3B00147CBE /* Login.storyboard */,
+			);
+			path = LoginScreen;
+			sourceTree = "<group>";
+		};
+		ACB141FEC80B2ECB5851B667 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8C75257603640BC3576C9BB5 /* Pods-Ctemplar.debug.xcconfig */,
+				F6F0F7014DAB1A09E4C0F5D2 /* Pods-Ctemplar.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8433FF15216201A300C57DC8 /* Ctemplar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8433FF28216201A500C57DC8 /* Build configuration list for PBXNativeTarget "Ctemplar" */;
+			buildPhases = (
+				E5597037CAA107E8BD1A2772 /* [CP] Check Pods Manifest.lock */,
+				8433FF12216201A300C57DC8 /* Sources */,
+				8433FF13216201A300C57DC8 /* Frameworks */,
+				8433FF14216201A300C57DC8 /* Resources */,
+				1B9415C320226EBF1E9E13BE /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Ctemplar;
+			productName = Ctemplar;
+			productReference = 8433FF16216201A300C57DC8 /* Ctemplar.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8433FF0E216201A300C57DC8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1000;
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = ComeOnSoftware;
+				TargetAttributes = {
+					8433FF15216201A300C57DC8 = {
+						CreatedOnToolsVersion = 10.0;
+					};
+				};
+			};
+			buildConfigurationList = 8433FF11216201A300C57DC8 /* Build configuration list for PBXProject "Ctemplar" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8433FF0D216201A300C57DC8;
+			productRefGroup = 8433FF17216201A300C57DC8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8433FF15216201A300C57DC8 /* Ctemplar */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8433FF14216201A300C57DC8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8433FF24216201A500C57DC8 /* LaunchScreen.storyboard in Resources */,
+				8433FF4C21620DBD00C57DC8 /* MainiPad.storyboard in Resources */,
+				843E973421635C3B00147CBE /* Login.storyboard in Resources */,
+				8433FF21216201A500C57DC8 /* Assets.xcassets in Resources */,
+				8433FF5E21626D0600C57DC8 /* LaunchScreeniPad.storyboard in Resources */,
+				8433FF1F216201A300C57DC8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1B9415C320226EBF1E9E13BE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Ctemplar/Pods-Ctemplar-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlertHelperKit/AlertHelperKit.framework",
+				"${PODS_ROOT}/ObjectivePGP/Frameworks/ios/ObjectivePGP.framework",
+				"${PODS_ROOT}/ObjectivePGP/Frameworks/ios/ObjectivePGP.framework.dSYM",
+				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlertHelperKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectivePGP.framework",
+				"${DWARF_DSYM_FOLDER_PATH}/ObjectivePGP.framework.dSYM",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ctemplar/Pods-Ctemplar-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E5597037CAA107E8BD1A2772 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Ctemplar-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8433FF12216201A300C57DC8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				843E973221635BEB00147CBE /* LoginViewController.swift in Sources */,
+				8433FF552162129800C57DC8 /* RestAPIService.swift in Sources */,
+				8433FF5C216246DC00C57DC8 /* PGPService.swift in Sources */,
+				843E972F21634E7900147CBE /* LaunchScreenViewController.swift in Sources */,
+				8433FF57216212D500C57DC8 /* AplicationManager.swift in Sources */,
+				8433FF1C216201A300C57DC8 /* ViewController.swift in Sources */,
+				8433FF532162128200C57DC8 /* APIService.swift in Sources */,
+				8433FF1A216201A300C57DC8 /* AppDelegate.swift in Sources */,
+				843E973D2163703100147CBE /* LoginPresenter.swift in Sources */,
+				843E973B2163701B00147CBE /* LoginInteractor.swift in Sources */,
+				843E97392163700900147CBE /* LoginRouter.swift in Sources */,
+				843E973721636FF200147CBE /* LoginConfigurator.swift in Sources */,
+				8433FF5A2162181E00C57DC8 /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8433FF1D216201A300C57DC8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8433FF1E216201A300C57DC8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8433FF22216201A500C57DC8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8433FF23216201A500C57DC8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8433FF26216201A500C57DC8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8433FF27216201A500C57DC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8433FF29216201A500C57DC8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C75257603640BC3576C9BB5 /* Pods-Ctemplar.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Ctemplar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ComeOnSoftware.Ctemplar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8433FF2A216201A500C57DC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F6F0F7014DAB1A09E4C0F5D2 /* Pods-Ctemplar.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Ctemplar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ComeOnSoftware.Ctemplar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8433FF11216201A300C57DC8 /* Build configuration list for PBXProject "Ctemplar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8433FF26216201A500C57DC8 /* Debug */,
+				8433FF27216201A500C57DC8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8433FF28216201A500C57DC8 /* Build configuration list for PBXNativeTarget "Ctemplar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8433FF29216201A500C57DC8 /* Debug */,
+				8433FF2A216201A500C57DC8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8433FF0E216201A300C57DC8 /* Project object */;
+}

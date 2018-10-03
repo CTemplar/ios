@@ -1,0 +1,23 @@
+{
+  "name": "AlertHelperKit",
+  "version": "1.7.0",
+  "summary": "UIAlertController helper library in Swift",
+  "homepage": "https://github.com/keygx/AlertHelperKit",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "keygx": "y.kagiyama@gmail.com"
+  },
+  "social_media_url": "http://twitter.com/keygx",
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source": {
+    "git": "https://github.com/keygx/AlertHelperKit.git",
+    "tag": "1.7.0"
+  },
+  "source_files": "AlertHelperKitSample/AlertHelperKit/**/*",
+  "requires_arc": true
+}
