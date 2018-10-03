@@ -27,12 +27,12 @@ class SignUpPresenter {
     
     func configurePageControl() {
         
-        self.viewController?.pageControl = UIPageControl(frame: CGRect(x: 0,y: UIScreen.main.bounds.maxY - 50,width: UIScreen.main.bounds.width,height: 50))
-        self.viewController?.pageControl.numberOfPages = (self.viewController?.orderedViewControllers.count)! - 1
+        self.viewController?.pageControl = UIPageControl(frame: CGRect(x: 0, y: UIScreen.main.bounds.maxY - 50, width: UIScreen.main.bounds.width, height: 50))
+        self.viewController?.pageControl.numberOfPages = (self.viewController?.orderedViewControllers.count)!
         self.viewController?.pageControl.currentPage = 0
-        self.viewController?.pageControl.tintColor = UIColor.black
-        self.viewController?.pageControl.pageIndicatorTintColor = UIColor.white
-        self.viewController?.pageControl.currentPageIndicatorTintColor = UIColor.black
+        self.viewController?.pageControl.tintColor = UIColor.clear
+        self.viewController?.pageControl.pageIndicatorTintColor = k_lightRedColor
+        self.viewController?.pageControl.currentPageIndicatorTintColor = k_redColor        
         self.viewController?.view.addSubview((self.viewController?.pageControl)!)
     }
     
@@ -76,6 +76,5 @@ class SignUpPresenter {
         
         return UIStoryboard(name: k_SignUpStoryboardName, bundle: nil).instantiateViewController(withIdentifier: viewController)
     }
-    
 
 }

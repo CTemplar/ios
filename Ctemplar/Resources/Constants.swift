@@ -6,7 +6,7 @@
 //  Copyright © 2018 ComeOnSoftware. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 // view controllers ID
 
@@ -21,3 +21,8 @@ let k_SignUpPageEmailViewControllerID       = "SignUpPageEmailViewController"
 
 let k_LoginStoryboardName                  = "Login"
 let k_SignUpStoryboardName                 = "SignUp"
+
+// colors
+
+let k_lightRedColor: UIColor = UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 0.2)
+let k_redColor: UIColor = UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 1.0)

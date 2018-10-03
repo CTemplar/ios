@@ -13,7 +13,7 @@
         <!--Sign Up Page View Controller-->
         <scene sceneID="7tN-5h-4g6">
             <objects>
-                <pageViewController storyboardIdentifier="SignUpPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="4h0-Bg-AMG" customClass="SignUpPageViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="SignUpPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="4h0-Bg-AMG" customClass="SignUpPageViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wq4-aj-uxG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="101" y="-76"/>
@@ -25,7 +25,7 @@
                     <view key="view" contentMode="scaleToFill" id="XE6-P7-c6G">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="mSv-mx-NkB"/>
                     </view>
                 </viewController>
@@ -40,7 +40,7 @@
                     <view key="view" contentMode="scaleToFill" id="mNc-sb-Tvh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="S1p-CI-CxW"/>
                     </view>
                 </viewController>
@@ -55,7 +55,7 @@
                     <view key="view" contentMode="scaleToFill" id="Tqj-9C-zUz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="8hG-7P-Dzh"/>
                     </view>
                 </viewController>

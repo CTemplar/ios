@@ -15,6 +15,7 @@ class SignUpPageViewController: UIPageViewController, UIPageViewControllerDataSo
     var router      : SignUpRouter?
     
     var pageControl = UIPageControl()
+    //@IBOutlet var pageControl        : UIPageControl!
     
     lazy var orderedViewControllers: [UIViewController] = {
         return [self.presenter?.addPageContent(viewController: k_SignUpPageNameViewControllerID),
