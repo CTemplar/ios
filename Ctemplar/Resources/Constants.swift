@@ -26,3 +26,8 @@ let k_SignUpStoryboardName                 = "SignUp"
 
 let k_lightRedColor: UIColor = UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 0.2)
 let k_redColor: UIColor = UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 1.0)
+
+//size constants
+
+let k_pageControlBottomOffset       = 30.0
+let k_pageControlDotSize            = 8.0

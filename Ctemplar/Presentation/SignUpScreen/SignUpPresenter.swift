@@ -27,7 +27,9 @@ class SignUpPresenter {
     
     func configurePageControl() {
         
-        self.viewController?.pageControl = UIPageControl(frame: CGRect(x: 0, y: UIScreen.main.bounds.maxY - 50, width: UIScreen.main.bounds.width, height: 50))
+        let bottomOffset : Double = Double(UIScreen.main.bounds.maxY) - k_pageControlBottomOffset
+        
+        self.viewController?.pageControl = UIPageControl(frame: CGRect(x: 0.0, y: bottomOffset, width: Double(UIScreen.main.bounds.width), height:  k_pageControlDotSize))
         self.viewController?.pageControl.numberOfPages = (self.viewController?.orderedViewControllers.count)!
         self.viewController?.pageControl.currentPage = 0
         self.viewController?.pageControl.tintColor = UIColor.clear
