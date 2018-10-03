@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import PKHUD
 
 class ViewController: UIViewController { //Temp Main Controller
     
@@ -17,6 +18,9 @@ class ViewController: UIViewController { //Temp Main Controller
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        PKHUD.sharedHUD.dimsBackground = true
+        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
         
         
         showLoginViewController()

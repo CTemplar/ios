@@ -14,6 +14,13 @@ enum APIResult<T>
     case failure(Error)
 }
 
+enum APIResponse: String {
+    case password         = "password"
+    case username         = "username"
+    case non_field_errors = "non_field_errors"
+    case token            = "token"
+}
+
 class APIService {
     
     let restAPIService = RestAPIService()
