@@ -12,4 +12,13 @@ import UIKit
 class LoginRouter {
     
     var viewController: LoginViewController?
+    
+    func showLoginViewController() {
+        
+        DispatchQueue.main.async {
+            let storyboard: UIStoryboard = UIStoryboard(name: k_SignUpStoryboardName, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: k_SignUpPageViewControllerID) as! SignUpPageViewController
+            self.viewController?.show(vc, sender: self)
+        }
+    }
 }

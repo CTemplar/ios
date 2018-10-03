@@ -67,7 +67,8 @@ class LoginInteractor {
             switch dictionary.key {
                 case APIResponse.token.rawValue :                    
                     if let token = dictionary.value as? String {
-                        saveToken(token: token)
+                        saveToken(token: token)                        
+                        viewController?.router?.showLoginViewController()
                     }
                     break
                 case APIResponse.username.rawValue :

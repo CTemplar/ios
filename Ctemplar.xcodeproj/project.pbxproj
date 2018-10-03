@@ -27,6 +27,15 @@
 		843E973B2163701B00147CBE /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973A2163701B00147CBE /* LoginInteractor.swift */; };
 		843E973D2163703100147CBE /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973C2163703100147CBE /* LoginPresenter.swift */; };
 		843FC3822164C2CC000CFEA9 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3812164C2CC000CFEA9 /* KeychainService.swift */; };
+		843FC3862164C9EE000CFEA9 /* SignUpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3852164C9EE000CFEA9 /* SignUpPageViewController.swift */; };
+		843FC3882164CA0D000CFEA9 /* SignUpConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3872164CA0D000CFEA9 /* SignUpConfigurator.swift */; };
+		843FC38A2164CA1A000CFEA9 /* SignUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3892164CA1A000CFEA9 /* SignUpRouter.swift */; };
+		843FC38C2164CA27000CFEA9 /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC38B2164CA27000CFEA9 /* SignUpPresenter.swift */; };
+		843FC38E2164CA35000CFEA9 /* SignUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC38D2164CA35000CFEA9 /* SignUpInteractor.swift */; };
+		843FC3902164CBFA000CFEA9 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843FC38F2164CBFA000CFEA9 /* SignUp.storyboard */; };
+		843FC3932164D1B2000CFEA9 /* SignUpPageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3922164D1B2000CFEA9 /* SignUpPageName.swift */; };
+		843FC3952164D1E3000CFEA9 /* SignUpPagePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3942164D1E3000CFEA9 /* SignUpPagePassword.swift */; };
+		843FC3972164D20E000CFEA9 /* SignUpPageEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3962164D20E000CFEA9 /* SignUpPageEmail.swift */; };
 		8895AB178CEFEFB8A9DCD62B /* Pods_Ctemplar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B8DB58A9BFE099948CF3E1 /* Pods_Ctemplar.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +65,15 @@
 		843E973C2163703100147CBE /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		843FC3812164C2CC000CFEA9 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		843FC3832164C320000CFEA9 /* Ctemplar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ctemplar.entitlements; sourceTree = "<group>"; };
+		843FC3852164C9EE000CFEA9 /* SignUpPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageViewController.swift; sourceTree = "<group>"; };
+		843FC3872164CA0D000CFEA9 /* SignUpConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpConfigurator.swift; sourceTree = "<group>"; };
+		843FC3892164CA1A000CFEA9 /* SignUpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRouter.swift; sourceTree = "<group>"; };
+		843FC38B2164CA27000CFEA9 /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
+		843FC38D2164CA35000CFEA9 /* SignUpInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInteractor.swift; sourceTree = "<group>"; };
+		843FC38F2164CBFA000CFEA9 /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
+		843FC3922164D1B2000CFEA9 /* SignUpPageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageName.swift; sourceTree = "<group>"; };
+		843FC3942164D1E3000CFEA9 /* SignUpPagePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPagePassword.swift; sourceTree = "<group>"; };
+		843FC3962164D20E000CFEA9 /* SignUpPageEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageEmail.swift; sourceTree = "<group>"; };
 		8C75257603640BC3576C9BB5 /* Pods-Ctemplar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ctemplar/Pods-Ctemplar.debug.xcconfig"; sourceTree = "<group>"; };
 		A9B8DB58A9BFE099948CF3E1 /* Pods_Ctemplar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6F0F7014DAB1A09E4C0F5D2 /* Pods-Ctemplar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ctemplar/Pods-Ctemplar.release.xcconfig"; sourceTree = "<group>"; };
@@ -155,6 +173,7 @@
 			children = (
 				843E972D21634E4800147CBE /* LaunchScreen */,
 				843E973021635BC700147CBE /* LoginScreen */,
+				843FC3842164C9CC000CFEA9 /* SignUpScreen */,
 				8433FF1B216201A300C57DC8 /* ViewController.swift */,
 			);
 			path = Presentation;
@@ -200,6 +219,30 @@
 				843E973321635C3B00147CBE /* Login.storyboard */,
 			);
 			path = LoginScreen;
+			sourceTree = "<group>";
+		};
+		843FC3842164C9CC000CFEA9 /* SignUpScreen */ = {
+			isa = PBXGroup;
+			children = (
+				843FC3912164D093000CFEA9 /* SignUpScreenPages */,
+				843FC3852164C9EE000CFEA9 /* SignUpPageViewController.swift */,
+				843FC3872164CA0D000CFEA9 /* SignUpConfigurator.swift */,
+				843FC3892164CA1A000CFEA9 /* SignUpRouter.swift */,
+				843FC38B2164CA27000CFEA9 /* SignUpPresenter.swift */,
+				843FC38D2164CA35000CFEA9 /* SignUpInteractor.swift */,
+				843FC38F2164CBFA000CFEA9 /* SignUp.storyboard */,
+			);
+			path = SignUpScreen;
+			sourceTree = "<group>";
+		};
+		843FC3912164D093000CFEA9 /* SignUpScreenPages */ = {
+			isa = PBXGroup;
+			children = (
+				843FC3922164D1B2000CFEA9 /* SignUpPageName.swift */,
+				843FC3942164D1E3000CFEA9 /* SignUpPagePassword.swift */,
+				843FC3962164D20E000CFEA9 /* SignUpPageEmail.swift */,
+			);
+			path = SignUpScreenPages;
 			sourceTree = "<group>";
 		};
 		ACB141FEC80B2ECB5851B667 /* Pods */ = {
@@ -279,6 +322,7 @@
 				8433FF24216201A500C57DC8 /* LaunchScreen.storyboard in Resources */,
 				8433FF4C21620DBD00C57DC8 /* MainiPad.storyboard in Resources */,
 				843E973421635C3B00147CBE /* Login.storyboard in Resources */,
+				843FC3902164CBFA000CFEA9 /* SignUp.storyboard in Resources */,
 				8433FF21216201A500C57DC8 /* Assets.xcassets in Resources */,
 				8433FF5E21626D0600C57DC8 /* LaunchScreeniPad.storyboard in Resources */,
 				8433FF1F216201A300C57DC8 /* Main.storyboard in Resources */,
@@ -349,20 +393,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				843FC38E2164CA35000CFEA9 /* SignUpInteractor.swift in Sources */,
+				843FC38C2164CA27000CFEA9 /* SignUpPresenter.swift in Sources */,
 				843E973221635BEB00147CBE /* LoginViewController.swift in Sources */,
 				8433FF552162129800C57DC8 /* RestAPIService.swift in Sources */,
 				8433FF5C216246DC00C57DC8 /* PGPService.swift in Sources */,
 				843E972F21634E7900147CBE /* LaunchScreenViewController.swift in Sources */,
 				8433FF57216212D500C57DC8 /* AplicationManager.swift in Sources */,
 				8433FF1C216201A300C57DC8 /* ViewController.swift in Sources */,
+				843FC38A2164CA1A000CFEA9 /* SignUpRouter.swift in Sources */,
 				8433FF532162128200C57DC8 /* APIService.swift in Sources */,
 				8433FF1A216201A300C57DC8 /* AppDelegate.swift in Sources */,
 				843E973D2163703100147CBE /* LoginPresenter.swift in Sources */,
+				843FC3862164C9EE000CFEA9 /* SignUpPageViewController.swift in Sources */,
 				843E973B2163701B00147CBE /* LoginInteractor.swift in Sources */,
 				843E97392163700900147CBE /* LoginRouter.swift in Sources */,
+				843FC3952164D1E3000CFEA9 /* SignUpPagePassword.swift in Sources */,
+				843FC3932164D1B2000CFEA9 /* SignUpPageName.swift in Sources */,
+				843FC3882164CA0D000CFEA9 /* SignUpConfigurator.swift in Sources */,
 				843FC3822164C2CC000CFEA9 /* KeychainService.swift in Sources */,
 				843E973721636FF200147CBE /* LoginConfigurator.swift in Sources */,
 				8433FF5A2162181E00C57DC8 /* Constants.swift in Sources */,
+				843FC3972164D20E000CFEA9 /* SignUpPageEmail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
