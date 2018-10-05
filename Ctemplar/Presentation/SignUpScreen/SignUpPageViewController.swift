@@ -35,6 +35,8 @@ class SignUpPageViewController: UIPageViewController, UIPageViewControllerDataSo
         self.presenter?.setViewControllers()
         self.presenter?.configurePageControl()
         
+        self.view.backgroundColor = UIColor.lightGray
+        
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
