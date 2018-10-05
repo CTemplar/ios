@@ -431,15 +431,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M1L-gg-erv">
                                         <rect key="frame" x="32" y="323" width="311" height="38"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roundDark" translatesAutoresizingMaskIntoConstraints="NO" id="PYO-0j-vfX">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OIN-xv-ils">
                                                 <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="22" id="ZUr-dN-ezq"/>
-                                                    <constraint firstAttribute="width" secondItem="PYO-0j-vfX" secondAttribute="height" multiplier="1:1" id="sC9-zM-HHK"/>
-                                                    <constraint firstAttribute="width" constant="22" id="yJt-8c-AcN"/>
+                                                    <constraint firstAttribute="height" constant="22" id="wPT-8c-fFb"/>
+                                                    <constraint firstAttribute="width" constant="22" id="wvJ-Pl-VZR"/>
                                                 </constraints>
-                                            </imageView>
+                                                <state key="normal" backgroundImage="roundDark"/>
+                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="AFF-cR-sAe">
                                                 <rect key="frame" x="34" y="0.0" width="276" height="33.5"/>
                                                 <attributedString key="attributedText">
@@ -457,10 +456,10 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="AFF-cR-sAe" firstAttribute="top" secondItem="M1L-gg-erv" secondAttribute="top" id="4LF-lL-MUa"/>
-                                            <constraint firstItem="PYO-0j-vfX" firstAttribute="leading" secondItem="M1L-gg-erv" secondAttribute="leading" id="9oL-TC-vwh"/>
+                                            <constraint firstItem="OIN-xv-ils" firstAttribute="top" secondItem="M1L-gg-erv" secondAttribute="top" id="9Cj-sb-5MF"/>
+                                            <constraint firstItem="OIN-xv-ils" firstAttribute="leading" secondItem="M1L-gg-erv" secondAttribute="leading" id="DBW-eF-3oO"/>
                                             <constraint firstAttribute="bottom" secondItem="AFF-cR-sAe" secondAttribute="bottom" constant="4.5" id="Uzg-e7-O6k"/>
-                                            <constraint firstItem="PYO-0j-vfX" firstAttribute="top" secondItem="M1L-gg-erv" secondAttribute="top" id="kRh-Vb-Xd8"/>
-                                            <constraint firstItem="AFF-cR-sAe" firstAttribute="leading" secondItem="PYO-0j-vfX" secondAttribute="trailing" constant="12" id="n8p-ey-429"/>
+                                            <constraint firstItem="AFF-cR-sAe" firstAttribute="leading" secondItem="OIN-xv-ils" secondAttribute="trailing" constant="12" id="ma1-0b-Wqg"/>
                                             <constraint firstAttribute="trailing" secondItem="AFF-cR-sAe" secondAttribute="trailing" constant="1" id="pLM-fX-gos"/>
                                         </constraints>
                                     </view>
