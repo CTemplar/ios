@@ -24,6 +24,7 @@ class LoginConfigurator {
         interactor.presenter = presenter
         interactor.viewController = viewController
         interactor.apiService = appDelegate.applicationManager.apiService
+        interactor.keychainService = appDelegate.applicationManager.keychainService
         
         presenter.interactor = interactor
         

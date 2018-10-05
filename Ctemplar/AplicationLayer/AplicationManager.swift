@@ -25,4 +25,12 @@ class ApplicationManager
         return service
         
     }()
+    
+    lazy var keychainService: KeychainService = {
+        
+        let service = KeychainService()
+        
+        return service
+        
+    }()
 }

@@ -14,12 +14,11 @@ class LoginInteractor {
     var viewController  : LoginViewController?
     var presenter       : LoginPresenter?
     var apiService      : APIService?
+    var keychainService : KeychainService?
     
-    let keychainService = KeychainService()
-    
-    func saveToken(token: String)
-    {
-        keychainService.saveToken(token: token)
+    func saveToken(token: String) {
+        
+        keychainService?.saveToken(token: token)
     }
     
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
