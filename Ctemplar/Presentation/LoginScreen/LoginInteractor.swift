@@ -20,36 +20,4 @@ class LoginInteractor {
 
         apiService?.authenticateUser(userName: userName, password: password, viewController: self.viewController!)
     }
-    
-    func validateNameFormat(enteredName: String) -> Bool {
-        
-        let nameFormat = "[A-Z0-9a-z._%+-]{2,64}"
-        let namePredicate = NSPredicate(format:"SELF MATCHES %@", nameFormat)
-        return namePredicate.evaluate(with: enteredName)
-    }
-    
-    func validateNameLench(enteredName: String) -> Bool {
-        
-        if (enteredName.count > 0)  {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    func validatePasswordLench(enteredPassword: String) -> Bool {
-        
-        if (enteredPassword.count > 0)  {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    func validatePasswordFormat(enteredPassword: String) -> Bool {
-        
-        let passwordFormat = "[A-Z0-9a-z._%+-]{2,}"//"^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()\\-_=+{}|?>.<,:;~`’]{8,}$"
-        let passwordPredicate = NSPredicate(format:"SELF MATCHES %@", passwordFormat)
-        return passwordPredicate.evaluate(with: enteredPassword)
-    }
 }

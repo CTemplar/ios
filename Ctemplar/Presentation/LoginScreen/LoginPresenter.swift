@@ -12,12 +12,13 @@ import PKHUD
 
 class LoginPresenter {
     
-    var viewController  : LoginViewController?
-    var interactor      : LoginInteractor?
+    var viewController   : LoginViewController?
+    var interactor       : LoginInteractor?
+    var formatterService : FormatterService?
     
     func setupEmailTextFieldsAndHintLabel(userEmail: String) {
         
-        if (interactor?.validateNameLench(enteredName: userEmail))! {
+        if (formatterService?.validateNameLench(enteredName: userEmail))! {
             viewController!.emailHintLabel.isHidden = false
         } else {
             viewController!.emailHintLabel.isHidden = true
@@ -26,7 +27,7 @@ class LoginPresenter {
     
     func setupPasswordTextFieldsAndHintLabel(password: String) {
         
-        if (interactor?.validatePasswordLench(enteredPassword: password))! {
+        if (formatterService?.validatePasswordLench(enteredPassword: password))! {
             viewController!.passwordHintLabel.isHidden = false
         } else {
             viewController!.passwordHintLabel.isHidden = true
@@ -37,8 +38,8 @@ class LoginPresenter {
     
     func buttonLoginPressed(userEmail: String, password: String) {
         
-        if (interactor?.validateNameFormat(enteredName: userEmail))! {
-            if (interactor?.validatePasswordFormat(enteredPassword: password))! {
+        if (formatterService?.validateNameFormat(enteredName: userEmail))! {
+            if (formatterService?.validatePasswordFormat(enteredPassword: password))! {
                 authenticateUser(userEmail: userEmail, password: password)
             } else {
                 AlertHelperKit().showAlert(self.viewController!, title: "", message: "Entered Password is not valid", button: "Close")

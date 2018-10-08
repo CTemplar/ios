@@ -19,6 +19,7 @@ class LoginConfigurator {
         
         let presenter = LoginPresenter()
         presenter.viewController = viewController
+        presenter.formatterService = appDelegate.applicationManager.formatterService
         
         let interactor = LoginInteractor()
         interactor.presenter = presenter

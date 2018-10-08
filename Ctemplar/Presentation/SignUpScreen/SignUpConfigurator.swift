@@ -19,6 +19,7 @@ class SignUpConfigurator {
         
         let presenter = SignUpPresenter()
         presenter.viewController = viewController
+        presenter.formatterService = appDelegate.applicationManager.formatterService
         
         let interactor = SignUpInteractor()
         interactor.presenter = presenter

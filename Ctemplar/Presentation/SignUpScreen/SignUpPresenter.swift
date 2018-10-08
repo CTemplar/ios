@@ -12,8 +12,9 @@ import PKHUD
 
 class SignUpPresenter {
     
-    var viewController  : SignUpPageViewController?
-    var interactor      : SignUpInteractor?
+    var viewController   : SignUpPageViewController?
+    var interactor       : SignUpInteractor?
+    var formatterService : FormatterService?
     
     func setViewControllers() {
         
@@ -83,13 +84,13 @@ class SignUpPresenter {
     
     func setupNameTextFieldAndHintLabel(childViewController: SignUpPageNameViewController) {
         
-        if (interactor?.validateNameLench(enteredName: (viewController?.userName)!))! {
+        if (formatterService?.validateNameLench(enteredName: (viewController?.userName)!))! {
             childViewController.userNameHintLabel.isHidden = false
         } else {
             childViewController.userNameHintLabel.isHidden = true
         }
         
-        if (interactor?.validateNameFormat(enteredName: (viewController?.userName)!))! {
+        if (formatterService?.validateNameFormat(enteredName: (viewController?.userName)!))! {
             
         } else {
             print("wrong Name format")
@@ -109,19 +110,19 @@ class SignUpPresenter {
             print("unknown textfield")
         }
         
-        if (interactor?.validatePasswordLench(enteredPassword: childViewController.choosedPassword!))! {
+        if (formatterService?.validatePasswordLench(enteredPassword: childViewController.choosedPassword!))! {
             childViewController.choosePasswordHintLabel.isHidden = false
         } else {
             childViewController.choosePasswordHintLabel.isHidden = true
         }
         
-        if (interactor?.validatePasswordLench(enteredPassword: childViewController.confirmedPassword!))! {
+        if (formatterService?.validatePasswordLench(enteredPassword: childViewController.confirmedPassword!))! {
             childViewController.confirmPasswordHintLabel.isHidden = false
         } else {
             childViewController.confirmPasswordHintLabel.isHidden = true
         }
         
-        if ((interactor?.passwordsMatched(choosedPassword: childViewController.choosedPassword! , confirmedPassword: childViewController.confirmedPassword!))!) {
+        if ((formatterService?.passwordsMatched(choosedPassword: childViewController.choosedPassword! , confirmedPassword: childViewController.confirmedPassword!))!) {
             print("passwords matched")
             viewController?.password = childViewController.choosedPassword
         } else {
@@ -132,13 +133,13 @@ class SignUpPresenter {
     
     func setupRecoveryEmailTextFieldAndHintLabel(childViewController: SignUpPageEmailViewController) {
         
-        if (interactor?.validateNameLench(enteredName: (viewController?.recoveryEmail)!))! {
+        if (formatterService?.validateNameLench(enteredName: (viewController?.recoveryEmail)!))! {
             childViewController.recoveryEmailHintLabel.isHidden = false
         } else {
             childViewController.recoveryEmailHintLabel.isHidden = true
         }
         
-        if (interactor?.validateEmailFormat(enteredEmail:(viewController?.recoveryEmail)!))! {
+        if (formatterService?.validateEmailFormat(enteredEmail:(viewController?.recoveryEmail)!))! {
             
         } else {
             print("wrong Email format")

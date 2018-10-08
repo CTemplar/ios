@@ -19,9 +19,17 @@ class ApplicationManager
         
     }()
     
-    lazy var restAPIService: RestAPIService = {
+    lazy var formatterService: FormatterService = {
         
-        let service = RestAPIService()
+        let service = FormatterService()
+        
+        return service
+        
+    }()
+    
+    lazy var keychainService: KeychainService = {
+        
+        let service = KeychainService()
         
         return service
         
@@ -35,9 +43,9 @@ class ApplicationManager
         
     }()
     
-    lazy var keychainService: KeychainService = {
+    lazy var restAPIService: RestAPIService = {
         
-        let service = KeychainService()
+        let service = RestAPIService()
         
         return service
         

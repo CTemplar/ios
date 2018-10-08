@@ -26,6 +26,7 @@
 		843E97392163700900147CBE /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E97382163700900147CBE /* LoginRouter.swift */; };
 		843E973B2163701B00147CBE /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973A2163701B00147CBE /* LoginInteractor.swift */; };
 		843E973D2163703100147CBE /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973C2163703100147CBE /* LoginPresenter.swift */; };
+		843FA928216BA39C00355849 /* FormatterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FA927216BA39C00355849 /* FormatterService.swift */; };
 		843FC3822164C2CC000CFEA9 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3812164C2CC000CFEA9 /* KeychainService.swift */; };
 		843FC3862164C9EE000CFEA9 /* SignUpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3852164C9EE000CFEA9 /* SignUpPageViewController.swift */; };
 		843FC3882164CA0D000CFEA9 /* SignUpConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3872164CA0D000CFEA9 /* SignUpConfigurator.swift */; };
@@ -64,6 +65,7 @@
 		843E97382163700900147CBE /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		843E973A2163701B00147CBE /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
 		843E973C2163703100147CBE /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		843FA927216BA39C00355849 /* FormatterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterService.swift; sourceTree = "<group>"; };
 		843FC3812164C2CC000CFEA9 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		843FC3832164C320000CFEA9 /* Ctemplar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ctemplar.entitlements; sourceTree = "<group>"; };
 		843FC3852164C9EE000CFEA9 /* SignUpPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				8433FF522162128200C57DC8 /* APIService.swift */,
+				843FA927216BA39C00355849 /* FormatterService.swift */,
 				843FC3812164C2CC000CFEA9 /* KeychainService.swift */,
 				8433FF5B216246DC00C57DC8 /* PGPService.swift */,
 				8433FF542162129800C57DC8 /* RestAPIService.swift */,
@@ -418,6 +421,7 @@
 				8433FF552162129800C57DC8 /* RestAPIService.swift in Sources */,
 				8433FF5C216246DC00C57DC8 /* PGPService.swift in Sources */,
 				843E972F21634E7900147CBE /* LaunchScreenViewController.swift in Sources */,
+				843FA928216BA39C00355849 /* FormatterService.swift in Sources */,
 				8433FF57216212D500C57DC8 /* AplicationManager.swift in Sources */,
 				8433FF1C216201A300C57DC8 /* MainViewController.swift in Sources */,
 				843FC38A2164CA1A000CFEA9 /* SignUpRouter.swift in Sources */,
