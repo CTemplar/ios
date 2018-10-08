@@ -36,6 +36,7 @@
 		843FC3932164D1B2000CFEA9 /* SignUpPageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3922164D1B2000CFEA9 /* SignUpPageName.swift */; };
 		843FC3952164D1E3000CFEA9 /* SignUpPagePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3942164D1E3000CFEA9 /* SignUpPagePassword.swift */; };
 		843FC3972164D20E000CFEA9 /* SignUpPageEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3962164D20E000CFEA9 /* SignUpPageEmail.swift */; };
+		844F4B5A216B3A380057C758 /* UserPGPKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F4B59216B3A380057C758 /* UserPGPKey.swift */; };
 		8895AB178CEFEFB8A9DCD62B /* Pods_Ctemplar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B8DB58A9BFE099948CF3E1 /* Pods_Ctemplar.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 		843FC3922164D1B2000CFEA9 /* SignUpPageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageName.swift; sourceTree = "<group>"; };
 		843FC3942164D1E3000CFEA9 /* SignUpPagePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPagePassword.swift; sourceTree = "<group>"; };
 		843FC3962164D20E000CFEA9 /* SignUpPageEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageEmail.swift; sourceTree = "<group>"; };
+		844F4B59216B3A380057C758 /* UserPGPKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPGPKey.swift; sourceTree = "<group>"; };
 		8C75257603640BC3576C9BB5 /* Pods-Ctemplar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ctemplar/Pods-Ctemplar.debug.xcconfig"; sourceTree = "<group>"; };
 		A9B8DB58A9BFE099948CF3E1 /* Pods_Ctemplar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6F0F7014DAB1A09E4C0F5D2 /* Pods-Ctemplar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ctemplar/Pods-Ctemplar.release.xcconfig"; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 		8433FF4E2162105A00C57DC8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				844F4B5B216B3A830057C758 /* Local Models */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -251,6 +254,14 @@
 				8433FF1B216201A300C57DC8 /* MainViewController.swift */,
 			);
 			path = MainViewController;
+			sourceTree = "<group>";
+		};
+		844F4B5B216B3A830057C758 /* Local Models */ = {
+			isa = PBXGroup;
+			children = (
+				844F4B59216B3A380057C758 /* UserPGPKey.swift */,
+			);
+			path = "Local Models";
 			sourceTree = "<group>";
 		};
 		ACB141FEC80B2ECB5851B667 /* Pods */ = {
@@ -412,6 +423,7 @@
 				843FC38A2164CA1A000CFEA9 /* SignUpRouter.swift in Sources */,
 				8433FF532162128200C57DC8 /* APIService.swift in Sources */,
 				8433FF1A216201A300C57DC8 /* AppDelegate.swift in Sources */,
+				844F4B5A216B3A380057C758 /* UserPGPKey.swift in Sources */,
 				843E973D2163703100147CBE /* LoginPresenter.swift in Sources */,
 				843FC3862164C9EE000CFEA9 /* SignUpPageViewController.swift in Sources */,
 				843E973B2163701B00147CBE /* LoginInteractor.swift in Sources */,

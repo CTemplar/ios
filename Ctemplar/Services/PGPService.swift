@@ -16,6 +16,8 @@ let key2 = KeyGenerator().generate(for: "fran@krzyzanowskim.com", passphrase: ni
 
 class PGPService {
     
+    let keyring = Keyring()
+    
     func encrypt(data: Data) -> Data? {
         
         let encryptedBin = try! ObjectivePGP.encrypt(data, addSignature: false, using: [key1, key2])
@@ -36,5 +38,79 @@ class PGPService {
         let decryptedData = try! ObjectivePGP.decrypt(encryptedData, andVerifySignature: false, using: [key1])
         
         return decryptedData
+    }
+    
+    //MARK: - Keys
+    
+    func generateUserPGPKeys(userName: String) -> UserPGPKey {
+        
+        let mainPgpKey = self.generatePGPKey(userName: userName)
+        
+        self.savePGPKey(pgpKey: mainPgpKey)
+        
+        let userPGPKey = UserPGPKey.init(pgpService: self, pgpKey: mainPgpKey)
+        
+        return userPGPKey
+    }
+    
+    func generatePGPKey(userName: String) -> Key {
+        
+        let pgpKey = KeyGenerator().generate(for: userName, passphrase: nil)
+        // <PGPKey: 0x600002ae0800>, publicKey: DAF8551361A84672, secretKey: DAF8551361A84672
+        //print("generate publicKey:", pgpKey)
+        print("generate keyID:", pgpKey.publicKey?.keyID as Any)
+        print("generate fingerprint:", pgpKey.publicKey?.fingerprint as Any)
+        
+        return pgpKey
+    }
+    
+    func generateArmoredPrivateKey(pgpKey: Key) -> String? {
+        
+        guard let privateKey = try? pgpKey.export(keyType: .public) else {return nil}
+        let armoredPrivateKey = Armor.armored(privateKey, as: .secretKey)
+        
+        print("armoredPrivateKey:", armoredPrivateKey)
+        
+        return armoredPrivateKey
+    }
+    
+    func generateArmoredPublicKey(pgpKey: Key) -> String? {
+        
+        guard let publicKey = try? pgpKey.export(keyType: .public) else {return nil}
+        let armoredPublicKey = Armor.armored(publicKey, as: .publicKey)
+        
+        print("armoredPublicKey:", armoredPublicKey)
+        
+        return armoredPublicKey
+    }
+    
+    func fingerprintForKey(pgpKey: Key) -> String? {
+        
+        if let fingerprint = pgpKey.publicKey?.fingerprint.description() {
+            return fingerprint
+        }
+        
+        return nil
+    }
+    
+    func savePGPKey(pgpKey: Key) {
+        
+        keyring.import(keys: [pgpKey])
+        
+        let keyRingFileUrl = getDocumentsDirectory().appendingPathComponent("keyring.gpg")
+        
+        do {
+            try keyring.export().write(to: keyRingFileUrl)
+        }  catch {
+            print("save privateKey Error")
+        }
+        
+        print("save privateKey:", pgpKey)
+        
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
     }
 }
