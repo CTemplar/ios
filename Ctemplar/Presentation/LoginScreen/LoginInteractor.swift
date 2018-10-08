@@ -21,11 +21,11 @@ class LoginInteractor {
         apiService?.authenticateUser(userName: userName, password: password, viewController: self.viewController!)
     }
     
-    func validateEmailFormat(enteredEmail: String) -> Bool {
+    func validateNameFormat(enteredName: String) -> Bool {
         
-        let emailFormat = "[A-Z0-9a-z._%+-]{2,64}"
-        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
-        return emailPredicate.evaluate(with: enteredEmail)
+        let nameFormat = "[A-Z0-9a-z._%+-]{2,64}"
+        let namePredicate = NSPredicate(format:"SELF MATCHES %@", nameFormat)
+        return namePredicate.evaluate(with: enteredName)
     }
     
     func validateNameLench(enteredName: String) -> Bool {

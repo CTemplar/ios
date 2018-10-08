@@ -37,7 +37,7 @@ class LoginPresenter {
     
     func buttonLoginPressed(userEmail: String, password: String) {
         
-        if (interactor?.validateEmailFormat(enteredEmail: userEmail))! {
+        if (interactor?.validateNameFormat(enteredName: userEmail))! {
             if (interactor?.validatePasswordFormat(enteredPassword: password))! {
                 authenticateUser(userEmail: userEmail, password: password)
             } else {

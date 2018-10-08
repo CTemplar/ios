@@ -83,20 +83,20 @@ class SignUpPresenter {
     
     func setupNameTextFieldAndHintLabel(childViewController: SignUpPageNameViewController) {
         
-        if (interactor?.validateNameLench(enteredName: childViewController.userName!))! {
+        if (interactor?.validateNameLench(enteredName: (viewController?.userName)!))! {
             childViewController.userNameHintLabel.isHidden = false
         } else {
             childViewController.userNameHintLabel.isHidden = true
         }
+        
+        if (interactor?.validateNameFormat(enteredName: (viewController?.userName)!))! {
+            
+        } else {
+            print("wrong Name format")
+        }
     }
     
     func setupPasswordTextFieldsAndHintLabels(childViewController: SignUpPagePasswordViewController, sender: UITextField) {
-        /*
-        if (interactor?.validateNameLench(enteredName: childViewController.userName!))! {
-            childViewController.userNameHintLabel.isHidden = false
-        } else {
-            childViewController.userNameHintLabel.isHidden = true
-        }*/
         
         switch sender {
         case (childViewController.choosePasswordTextField)!:
@@ -123,8 +123,25 @@ class SignUpPresenter {
         
         if ((interactor?.passwordsMatched(choosedPassword: childViewController.choosedPassword! , confirmedPassword: childViewController.confirmedPassword!))!) {
             print("passwords matched")
+            viewController?.password = childViewController.choosedPassword
         } else {
-            print("passwords non matched!!!")
+            viewController?.password = ""
+            print("passwords not matched!!!")
+        }
+    }
+    
+    func setupRecoveryEmailTextFieldAndHintLabel(childViewController: SignUpPageEmailViewController) {
+        
+        if (interactor?.validateNameLench(enteredName: (viewController?.recoveryEmail)!))! {
+            childViewController.recoveryEmailHintLabel.isHidden = false
+        } else {
+            childViewController.recoveryEmailHintLabel.isHidden = true
+        }
+        
+        if (interactor?.validateEmailFormat(enteredEmail:(viewController?.recoveryEmail)!))! {
+            
+        } else {
+            print("wrong Email format")
         }
     }
 
@@ -132,9 +149,33 @@ class SignUpPresenter {
         
         guard let nextViewController = self.viewController?.dataSource?.pageViewController(self.viewController!, viewControllerAfter: childViewController ) else { return }
         
+        guard let viewControllerIndex = self.viewController?.orderedViewControllers.index(of: childViewController) else {
+            return
+        }
+        
+        let nextIndex = viewControllerIndex + 1
+        let orderedViewControllersCount = self.viewController?.orderedViewControllers.count
+        
+        if nextIndex == orderedViewControllersCount {
+            return
+        }
+        
+        self.viewController?.pageControl.currentPage = nextIndex
+        
+         /*
+        guard let nextViewController = self.viewController?.orderedViewControllers[nextIndex] else { return }
+        */
+        
         self.viewController?.setViewControllers([nextViewController],
                                                 direction: .forward,
                                                 animated: true,
                                                 completion: nil)
+    }
+    
+    func createUserAccount() {
+        
+        //self.interactor?.signUpUser(userName: (self.viewController?.userName)!, password: (self.viewController?.password)!, recoveryEmail: (self.viewController?.recoveryEmail)!)
+        
+        self.interactor?.signUpUser(userName: "test", password: "test123", recoveryEmail: "test@test.com")
     }
 }

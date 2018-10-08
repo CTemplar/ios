@@ -15,11 +15,23 @@ class SignUpInteractor {
     var presenter       : SignUpPresenter?
     var apiService      : APIService?
     
-    func validateEmailFormat(enteredEmail: String) -> Bool {
+    func signUpUser(userName: String, password: String, recoveryEmail: String) {
         
-        let emailFormat = "[A-Z0-9a-z._%+-]{2,64}"
+        apiService?.signUpUser(userName: userName, password: password, recoveryEmail: recoveryEmail, viewController: self.viewController!)
+    }
+    
+    func validateEmailFormat(enteredEmail:String) -> Bool {
+        
+        let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
         return emailPredicate.evaluate(with: enteredEmail)
+    }
+    
+    func validateNameFormat(enteredName: String) -> Bool {
+        
+        let nameFormat = "[A-Z0-9a-z._%+-]{2,64}"
+        let namePredicate = NSPredicate(format:"SELF MATCHES %@", nameFormat)
+        return namePredicate.evaluate(with: enteredName)
     }
     
     func validateNameLench(enteredName: String) -> Bool {

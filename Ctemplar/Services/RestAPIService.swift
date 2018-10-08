@@ -20,8 +20,8 @@ class RestAPIService {
     enum JSONKey: String {
         case userName = "username"
         case password = "password"
-        case privateKey = "privateKey"
-        case publicKey = "publicKey"
+        case privateKey = "private_key"
+        case publicKey = "public_key"
         case fingerprint = "fingerprint"
         case recaptcha = "recaptcha"
         case recoveryEmail = "recovery_email"
@@ -69,7 +69,8 @@ class RestAPIService {
             JSONKey.password.rawValue: password,
             JSONKey.privateKey.rawValue: privateKey,
             JSONKey.publicKey.rawValue: publicKey,
-            JSONKey.fingerprint.rawValue: fingerprint
+            //JSONKey.fingerprint.rawValue: fingerprint,
+            JSONKey.recaptcha.rawValue: recaptcha
         ]
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.signUp.rawValue

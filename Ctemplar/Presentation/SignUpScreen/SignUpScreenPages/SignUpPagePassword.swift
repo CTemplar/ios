@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpPagePasswordViewController: UIViewController {
+class SignUpPagePasswordViewController: UIViewController, UITextFieldDelegate {
     
     var parentSignUpPageViewController : SignUpPageViewController?
     

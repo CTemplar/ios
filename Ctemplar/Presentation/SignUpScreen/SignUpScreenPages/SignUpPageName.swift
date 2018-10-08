@@ -12,7 +12,7 @@ class SignUpPageNameViewController: UIViewController, UITextFieldDelegate {
     
     var parentSignUpPageViewController : SignUpPageViewController?
     
-    var userName    : String? = ""
+    //var userName    : String? = ""
     
     @IBOutlet var userNameTextField : UITextField!
     @IBOutlet var userNameHintLabel : UILabel!
@@ -41,7 +41,7 @@ class SignUpPageNameViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func userNameTyped(_ sender: UITextField) {
         
-        userName = sender.text
+        parentSignUpPageViewController?.userName = sender.text
     
         parentSignUpPageViewController?.presenter?.setupNameTextFieldAndHintLabel(childViewController: self)
     }

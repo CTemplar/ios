@@ -24,7 +24,7 @@ struct UserPGPKey {
         
         self.privateKey = pgpService.generateArmoredPrivateKey(pgpKey: pgpKey)
         self.publicKey = pgpService.generateArmoredPublicKey(pgpKey: pgpKey)
-        self.privateKey = pgpService.fingerprintForKey(pgpKey: pgpKey)
+        self.fingerprint = pgpService.fingerprintForKey(pgpKey: pgpKey)
         
     }
 }

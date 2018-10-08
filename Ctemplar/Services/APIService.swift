@@ -25,6 +25,8 @@ enum APIResponse: String {
     case passwordError    = "password"
     case usernameError    = "username"
     case nonFieldError    = "non_field_errors"
+    case recaptchaError   = "recaptcha"
+    case fingerprintError = "fingerprint"
 }
 
 class APIService {
@@ -107,6 +109,11 @@ class APIService {
         
         //let userPGPKey = UserPGPKey.init(pgpService: pgpService!, pgpKey: mainPgpKey!)
         
+        
+        print("userName:", userName)
+        print("password:", password)
+        print("recoveryEmail:", recoveryEmail)
+        
         let userPGPKey = pgpService?.generateUserPGPKeys(userName: userName)
         
         if userPGPKey?.privateKey == nil {
@@ -183,8 +190,10 @@ class APIService {
                 message = extractErrorTextFrom(value: dictionary.value)
                 break
             default:
-                print("unknown APIResponce format")
-                message = "unknown APIResponce format"
+                print("APIResponce key:", dictionary.key, "value:", dictionary.value)
+                if let errorMessage = dictionary.value as? String {
+                    message = "APIResponce key:" + dictionary.key + "value:" + errorMessage
+                }
             }
         }
         
