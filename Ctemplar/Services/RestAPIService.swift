@@ -69,7 +69,7 @@ class RestAPIService {
             JSONKey.password.rawValue: password,
             JSONKey.privateKey.rawValue: privateKey,
             JSONKey.publicKey.rawValue: publicKey,
-            //JSONKey.fingerprint.rawValue: fingerprint,
+            JSONKey.fingerprint.rawValue: fingerprint,
             JSONKey.recaptcha.rawValue: recaptcha
         ]
         

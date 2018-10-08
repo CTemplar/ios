@@ -12,6 +12,8 @@ class SignUpPageEmailViewController: UIViewController, UITextFieldDelegate {
     
     var parentSignUpPageViewController : SignUpPageViewController?
     
+    var termsBoxChecked : Bool = false
+    
     @IBOutlet var recoveryEmailTextField : UITextField!
     @IBOutlet var recoveryEmailHintLabel : UILabel!
     @IBOutlet var createAccountButton    : UIButton!
@@ -22,6 +24,7 @@ class SignUpPageEmailViewController: UIViewController, UITextFieldDelegate {
         
         parentSignUpPageViewController = self.parent as? SignUpPageViewController
         parentSignUpPageViewController?.presenter?.setupRecoveryEmailTextFieldAndHintLabel(childViewController: self)
+        //parentSignUpPageViewController?.presenter?.pressedCheckBoxButton(childViewController: self)
         
         adddNotificationObserver()
         
@@ -41,6 +44,7 @@ class SignUpPageEmailViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func checkBoxButtonPressed(_ sender: AnyObject) {
         
+        parentSignUpPageViewController?.presenter?.pressedCheckBoxButton(childViewController: self)
     }
     
     @IBAction func recoveryEmailTyped(_ sender: UITextField) {

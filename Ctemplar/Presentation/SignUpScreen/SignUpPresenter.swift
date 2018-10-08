@@ -144,6 +144,21 @@ class SignUpPresenter {
             print("wrong Email format")
         }
     }
+    
+    func pressedCheckBoxButton(childViewController: SignUpPageEmailViewController) {
+        
+        childViewController.termsBoxChecked = !childViewController.termsBoxChecked
+        
+        var checkBoxImage: UIImage?
+        
+        if childViewController.termsBoxChecked {
+            checkBoxImage = UIImage.init(named: k_checkBoxSelectedImageName)
+        } else {
+            checkBoxImage = UIImage.init(named: k_checkBoxUncheckedImageName)
+        }
+        
+        childViewController.checkBoxButton.setBackgroundImage(checkBoxImage, for: .normal)
+    }
 
     func nextViewController(childViewController: UIViewController) {
         
@@ -174,8 +189,8 @@ class SignUpPresenter {
     
     func createUserAccount() {
         
-        //self.interactor?.signUpUser(userName: (self.viewController?.userName)!, password: (self.viewController?.password)!, recoveryEmail: (self.viewController?.recoveryEmail)!)
+        self.interactor?.signUpUser(userName: (self.viewController?.userName)!, password: (self.viewController?.password)!, recoveryEmail: (self.viewController?.recoveryEmail)!)
         
-        self.interactor?.signUpUser(userName: "test", password: "test123", recoveryEmail: "test@test.com")
+        //self.interactor?.signUpUser(userName: "test", password: "test123", recoveryEmail: "test@test.com")
     }
 }

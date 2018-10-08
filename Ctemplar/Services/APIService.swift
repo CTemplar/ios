@@ -177,13 +177,13 @@ class APIService {
                 }
                 break
             case APIResponse.usernameError.rawValue :
-                if let text = extractErrorTextFrom(value: dictionary.value) {
-                    message = "Username field.\n" + text
+                if let errorMessage = extractErrorTextFrom(value: dictionary.value) {
+                    message = "Username field.\n" + errorMessage
                 }
                 break
             case APIResponse.passwordError.rawValue :
-                if let text = extractErrorTextFrom(value: dictionary.value) {
-                    message = "Password field.\n" + text
+                if let errorMessage = extractErrorTextFrom(value: dictionary.value) {
+                    message = "Password field.\n" + errorMessage
                 }
                 break
             case APIResponse.nonFieldError.rawValue :
@@ -191,8 +191,8 @@ class APIService {
                 break
             default:
                 print("APIResponce key:", dictionary.key, "value:", dictionary.value)
-                if let errorMessage = dictionary.value as? String {
-                    message = "APIResponce key:" + dictionary.key + "value:" + errorMessage
+                if let errorMessage = extractErrorTextFrom(value: dictionary.value) {
+                    message = dictionary.key + ": " + errorMessage
                 }
             }
         }
