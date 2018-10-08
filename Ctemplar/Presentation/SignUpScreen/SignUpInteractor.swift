@@ -46,4 +46,18 @@ class SignUpInteractor {
         let passwordPredicate = NSPredicate(format:"SELF MATCHES %@", passwordFormat)
         return passwordPredicate.evaluate(with: enteredPassword)
     }
+    
+    func passwordsMatched(choosedPassword: String, confirmedPassword: String) -> Bool {
+        
+        if (choosedPassword.count > 0 && confirmedPassword.count > 0) {
+            
+            if choosedPassword == confirmedPassword {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
+    }
 }

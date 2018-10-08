@@ -31,3 +31,4 @@ let k_redColor: UIColor = UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.
 
 let k_pageControlBottomOffset       = 30.0
 let k_pageControlDotSize            = 8.0
+let k_signUpPageNameKeyboardHeight  = 128.0

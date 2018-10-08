@@ -185,6 +185,7 @@
                         <viewLayoutGuide key="safeArea" id="mSv-mx-NkB"/>
                     </view>
                     <connections>
+                        <outlet property="nextButton" destination="Vlv-wg-4W9" id="JiU-bc-2Lo"/>
                         <outlet property="userNameHintLabel" destination="OsM-e8-4OG" id="CIm-nq-D63"/>
                         <outlet property="userNameTextField" destination="34f-jb-yd7" id="nIc-wJ-bSR"/>
                     </connections>
@@ -210,6 +211,9 @@
                                     <constraint firstAttribute="width" secondItem="eIS-VD-Xl9" secondAttribute="height" multiplier="1:1" id="Yiv-gf-ia4"/>
                                 </constraints>
                                 <state key="normal" image="BackArrowDark"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="pfw-hU-Z5O" eventType="touchUpInside" id="NzX-ro-4av"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H48-lb-VCB">
                                 <rect key="frame" x="114" y="72" width="147" height="30"/>
@@ -284,6 +288,11 @@
                                         <color key="value" red="0.090196078431372548" green="0.19607843137254902" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="passwordTyped:" destination="pfw-hU-Z5O" eventType="editingChanged" id="MZ2-Cv-Vh8"/>
+                                    <action selector="passwordTyped:" destination="pfw-hU-Z5O" eventType="editingDidEndOnExit" id="uay-wm-ZnR"/>
+                                    <outlet property="delegate" destination="pfw-hU-Z5O" id="h5T-Xf-QqD"/>
+                                </connections>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DarkEyeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="OtI-ir-aRa">
                                 <rect key="frame" x="323" y="275" width="19" height="23.5"/>
@@ -320,6 +329,11 @@
                                         <color key="value" red="0.090196078430000007" green="0.1960784314" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="passwordTyped:" destination="pfw-hU-Z5O" eventType="editingChanged" id="APm-HA-sP4"/>
+                                    <action selector="passwordTyped:" destination="pfw-hU-Z5O" eventType="editingDidEndOnExit" id="vd3-3b-LxC"/>
+                                    <outlet property="delegate" destination="pfw-hU-Z5O" id="WCt-Ph-a40"/>
+                                </connections>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DarkEyeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="pGI-Ln-Vv2">
                                 <rect key="frame" x="323" y="343.5" width="19" height="23.5"/>
@@ -345,6 +359,9 @@
                                 <state key="normal" title="Next">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="nextButtonPressed:" destination="pfw-hU-Z5O" eventType="touchUpInside" id="prJ-sL-W8K"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -389,6 +406,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="S1p-CI-CxW"/>
                     </view>
+                    <connections>
+                        <outlet property="choosePasswordHintLabel" destination="jh0-a0-aSH" id="hLe-Na-jxA"/>
+                        <outlet property="choosePasswordTextField" destination="Hgi-0p-C0l" id="aF6-2O-dIa"/>
+                        <outlet property="confirmPasswordHintLabel" destination="01M-Wz-des" id="ovJ-kh-tqb"/>
+                        <outlet property="confirmPasswordTextField" destination="96Z-Yk-gjz" id="Cwf-hP-0b4"/>
+                        <outlet property="nextButton" destination="eIS-VD-Xl9" id="JiN-Fj-szP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10F-cO-xAN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

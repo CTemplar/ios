@@ -81,12 +81,50 @@ class SignUpPresenter {
     
     //MARK: - Child View Controllers functional
     
-    func setupNameTextFieldsAndHintLabel(childViewController: SignUpPageNameViewController) {
+    func setupNameTextFieldAndHintLabel(childViewController: SignUpPageNameViewController) {
         
         if (interactor?.validateNameLench(enteredName: childViewController.userName!))! {
             childViewController.userNameHintLabel.isHidden = false
         } else {
             childViewController.userNameHintLabel.isHidden = true
+        }
+    }
+    
+    func setupPasswordTextFieldsAndHintLabels(childViewController: SignUpPagePasswordViewController, sender: UITextField) {
+        /*
+        if (interactor?.validateNameLench(enteredName: childViewController.userName!))! {
+            childViewController.userNameHintLabel.isHidden = false
+        } else {
+            childViewController.userNameHintLabel.isHidden = true
+        }*/
+        
+        switch sender {
+        case (childViewController.choosePasswordTextField)!:
+            print("choosePasswordTextField typed:", sender.text!)
+            childViewController.choosedPassword = sender.text
+        case (childViewController.confirmPasswordTextField)!:
+            print("confirmPasswordTextField typed:", sender.text!)
+            childViewController.confirmedPassword = sender.text
+        default:
+            print("unknown textfield")
+        }
+        
+        if (interactor?.validatePasswordLench(enteredPassword: childViewController.choosedPassword!))! {
+            childViewController.choosePasswordHintLabel.isHidden = false
+        } else {
+            childViewController.choosePasswordHintLabel.isHidden = true
+        }
+        
+        if (interactor?.validatePasswordLench(enteredPassword: childViewController.confirmedPassword!))! {
+            childViewController.confirmPasswordHintLabel.isHidden = false
+        } else {
+            childViewController.confirmPasswordHintLabel.isHidden = true
+        }
+        
+        if ((interactor?.passwordsMatched(choosedPassword: childViewController.choosedPassword! , confirmedPassword: childViewController.confirmedPassword!))!) {
+            print("passwords matched")
+        } else {
+            print("passwords non matched!!!")
         }
     }
 
