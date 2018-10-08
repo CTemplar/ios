@@ -13,6 +13,15 @@ class ApplicationManager
     lazy var apiService: APIService = {
         
         let service = APIService()
+        service.initialize()
+        
+        return service
+        
+    }()
+    
+    lazy var restAPIService: RestAPIService = {
+        
+        let service = RestAPIService()
         
         return service
         

@@ -55,28 +55,6 @@ class LoginPresenter {
     
     func authenticateUser(userEmail: String, password: String) {
         
-        HUD.show(.progress)
-        
-        interactor?.authenticateUser(userName: userEmail, password: password) {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                print("success:", value)
-                
-                if let response = value as? Dictionary<String, Any> {
-                    self.interactor?.parseServerResponse(response:response)
-                } else {
-                    print("error: responce have unknown format")
-                    AlertHelperKit().showAlert(self.viewController!, title: "Error", message: "Responce have unknown format", button: "Close")
-                }
-                
-            case .failure(let error):
-                print("error:", error.localizedDescription)
-                AlertHelperKit().showAlert(self.viewController!, title: "Error", message: error.localizedDescription, button: "Close")
-            }
-            
-            HUD.hide()
-        }
+        interactor?.authenticateUser(userName: userEmail, password: password)
     }
 }

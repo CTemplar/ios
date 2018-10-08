@@ -16,14 +16,9 @@ class LoginInteractor {
     var apiService      : APIService?
     var keychainService : KeychainService?
     
-    func saveToken(token: String) {
-        
-        keychainService?.saveToken(token: token)
-    }
-    
-    func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
-        
-        apiService?.authenticateUser(userName: userName, password: password, completionHandler: completionHandler)
+    func authenticateUser(userName: String, password: String) {
+
+        apiService?.authenticateUser(userName: userName, password: password, viewController: self.viewController!)
     }
     
     func validateEmailFormat(enteredEmail: String) -> Bool {
@@ -56,50 +51,5 @@ class LoginInteractor {
         let passwordFormat = "[A-Z0-9a-z._%+-]{2,}"//"^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()\\-_=+{}|?>.<,:;~`’]{8,}$"
         let passwordPredicate = NSPredicate(format:"SELF MATCHES %@", passwordFormat)
         return passwordPredicate.evaluate(with: enteredPassword)
-    }
-    
-    //temp 
-    func parseServerResponse(response: Dictionary<String, Any>) {
-        
-        for dictionary in response {
-            
-            switch dictionary.key {
-                case APIResponse.token.rawValue :                    
-                    if let token = dictionary.value as? String {
-                        saveToken(token: token)
-                    }
-                    break
-                case APIResponse.username.rawValue :
-                    let message = extractErrorTextFrom(value: dictionary.value)
-                    AlertHelperKit().showAlert(self.viewController!, title: "Error", message: message, button: "Close")
-                    break
-                case APIResponse.password.rawValue :
-                    let message = extractErrorTextFrom(value: dictionary.value)
-                    AlertHelperKit().showAlert(self.viewController!, title: "Error", message: message, button: "Close")
-                    break
-                case APIResponse.non_field_errors.rawValue :                    
-                    let message = extractErrorTextFrom(value: dictionary.value)
-                    AlertHelperKit().showAlert(self.viewController!, title: "Error", message: message, button: "Close")
-                    break
-            default:
-                print("unknown APIResponce")
-            }
-        }        
-    }
-    
-    func extractErrorTextFrom(value: Any) -> String? {
-
-        if let texts = value as? Array<Any> {
-            for text in texts {
-                var string : String = ""
-                if let oneString = text as? String {
-                    string = string + oneString
-                    print("string:", string)
-                }
-                return string
-            }
-        }
-        
-        return ""
     }
 }
