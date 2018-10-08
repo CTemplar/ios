@@ -17,10 +17,14 @@ enum APIResult<T>
 }
 
 enum APIResponse: String {
-    case password         = "password"
-    case username         = "username"
-    case non_field_errors = "non_field_errors"
+
+    //sucess
     case token            = "token"
+    
+    //errors
+    case passwordError    = "password"
+    case usernameError    = "username"
+    case nonFieldError    = "non_field_errors"
 }
 
 class APIService {
@@ -113,17 +117,22 @@ class APIService {
                     saveToken(token: token)
                 }
                 break
-            case APIResponse.username.rawValue :
-                message = extractErrorTextFrom(value: dictionary.value)
+            case APIResponse.usernameError.rawValue :
+                if let text = extractErrorTextFrom(value: dictionary.value) {
+                    message = "Username field.\n" + text
+                }
                 break
-            case APIResponse.password.rawValue :
-                message = extractErrorTextFrom(value: dictionary.value)
+            case APIResponse.passwordError.rawValue :
+                if let text = extractErrorTextFrom(value: dictionary.value) {
+                    message = "Password field.\n" + text
+                }
                 break
-            case APIResponse.non_field_errors.rawValue :
+            case APIResponse.nonFieldError.rawValue :
                 message = extractErrorTextFrom(value: dictionary.value)
                 break
             default:
-                print("unknown APIResponce")
+                print("unknown APIResponce format")
+                message = "unknown APIResponce format"
             }
         }
         
