@@ -78,5 +78,25 @@ class SignUpPresenter {
         
         return UIStoryboard(name: k_SignUpStoryboardName, bundle: nil).instantiateViewController(withIdentifier: viewController)
     }
+    
+    //MARK: - Child View Controllers functional
+    
+    func setupNameTextFieldsAndHintLabel(childViewController: SignUpPageNameViewController) {
+        
+        if (interactor?.validateNameLench(enteredName: childViewController.userName!))! {
+            childViewController.userNameHintLabel.isHidden = false
+        } else {
+            childViewController.userNameHintLabel.isHidden = true
+        }
+    }
 
+    func nextViewController(childViewController: UIViewController) {
+        
+        guard let nextViewController = self.viewController?.dataSource?.pageViewController(self.viewController!, viewControllerAfter: childViewController ) else { return }
+        
+        self.viewController?.setViewControllers([nextViewController],
+                                                direction: .forward,
+                                                animated: true,
+                                                completion: nil)
+    }
 }

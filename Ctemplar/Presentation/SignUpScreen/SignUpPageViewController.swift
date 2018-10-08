@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class SignUpPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, UITextFieldDelegate {
+class SignUpPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
    
     var presenter   : SignUpPresenter?
     var router      : SignUpRouter?

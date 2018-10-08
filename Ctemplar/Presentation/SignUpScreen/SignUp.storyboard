@@ -43,6 +43,9 @@
                                     <constraint firstAttribute="width" secondItem="23y-Sy-DbR" secondAttribute="height" multiplier="1:1" id="l2H-YB-TPF"/>
                                 </constraints>
                                 <state key="normal" image="BackArrowDark"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="6rv-tf-Wv0" eventType="touchUpInside" id="wpT-xV-HUp"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="80S-kp-hQd">
                                 <rect key="frame" x="114" y="72" width="147" height="30"/>
@@ -76,7 +79,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username and domain" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PdD-B8-1sp">
-                                <rect key="frame" x="73.5" y="134" width="228" height="28.5"/>
+                                <rect key="frame" x="75.5" y="134" width="224" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="PdD-B8-1sp" secondAttribute="height" multiplier="8:1" id="Rn6-P0-sdg"/>
                                 </constraints>
@@ -85,7 +88,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This will be your new Ctemplar email address." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeD-1q-rRA">
-                                <rect key="frame" x="48" y="168.5" width="279" height="24"/>
+                                <rect key="frame" x="44" y="168" width="287.5" height="24.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="aeD-1q-rRA" secondAttribute="height" multiplier="139:12" constant="1" id="QQy-M0-fNO"/>
                                 </constraints>
@@ -104,13 +107,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@ctemplar.com" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pz-K4-c4J">
-                                <rect key="frame" x="187.5" y="266" width="155" height="17"/>
+                                <rect key="frame" x="187.5" y="265" width="155" height="17"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                 <color key="textColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="34f-jb-yd7">
-                                <rect key="frame" x="32.5" y="264" width="155" height="20"/>
+                                <rect key="frame" x="32.5" y="264" width="155" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="155" id="NLQ-PE-kZs"/>
                                 </constraints>
@@ -122,16 +125,21 @@
                                         <color key="value" red="0.090196078431372548" green="0.19607843137254902" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="userNameTyped:" destination="6rv-tf-Wv0" eventType="editingDidEndOnExit" id="1ag-Fq-myr"/>
+                                    <action selector="userNameTyped:" destination="6rv-tf-Wv0" eventType="editingChanged" id="3RP-os-DZm"/>
+                                    <outlet property="delegate" destination="6rv-tf-Wv0" id="Xrc-Gl-DWl"/>
+                                </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u84-gM-cSA">
-                                <rect key="frame" x="32.5" y="291" width="310" height="2"/>
+                                <rect key="frame" x="32.5" y="290" width="310" height="2"/>
                                 <color key="backgroundColor" red="0.035294117647058823" green="0.12156862745098039" blue="0.20784313725490194" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="h8O-Vz-Juv"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vlv-wg-4W9">
-                                <rect key="frame" x="32.5" y="343" width="310" height="48"/>
+                                <rect key="frame" x="32.5" y="342" width="310" height="48"/>
                                 <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Vlv-wg-4W9" secondAttribute="height" multiplier="155:24" id="dWE-i1-7ds"/>
@@ -140,6 +148,9 @@
                                 <state key="normal" title="Next">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="nextButtonPressed:" destination="6rv-tf-Wv0" eventType="touchUpInside" id="TPU-jg-RRS"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -173,6 +184,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mSv-mx-NkB"/>
                     </view>
+                    <connections>
+                        <outlet property="userNameHintLabel" destination="OsM-e8-4OG" id="CIm-nq-D63"/>
+                        <outlet property="userNameTextField" destination="34f-jb-yd7" id="nIc-wJ-bSR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QJF-br-qk2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
