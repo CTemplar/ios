@@ -14,8 +14,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     var presenter   : LoginPresenter?
     var router      : LoginRouter?
     
-    var userEmail   : String? = "nitish"
-    var password    : String? = "admin1234"
+    var userEmail   : String? = ""
+    var password    : String? = ""
     
     @IBOutlet var userNameTextField     : UITextField!
     @IBOutlet var passwordTextField     : UITextField!

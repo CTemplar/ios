@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import PKHUD
 
-class ViewController: UIViewController { //Temp Main Controller
+class MainViewController: UIViewController { 
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var apiService      : APIService?
@@ -19,60 +19,17 @@ class ViewController: UIViewController { //Temp Main Controller
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        PKHUD.sharedHUD.dimsBackground = true
-        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
-        
-        
+        configurePKHUD()
         showLoginViewController()
 
-        /*
-        apiService = appDelegate.applicationManager.apiService
-        
-        authenticateUser(userName: "nitish", password: "admin1234") {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                print("success:", value) //token value
-                
-                if let response = value as? Dictionary<String, Any> {
-                    for dictionary in response {
-                        //print("dictionary key:", dictionary.key, "/ value:", dictionary.value)
-                        
-                        if dictionary.key == "token" {
-                            print("token:", dictionary.value)
-                        }
-                    }
-                }
-         
-            case .failure(let error):
-                print("error:", error.localizedDescription)
-            }
-        }*/
-        
-        /*
-         password =     (
-            "This field may not be blank."
-         );
-         username =     (
-            "This field may not be blank."
-         );
-         
-         "non_field_errors" =     (
-            "Unable to log in with provided credentials."
-         );
-         
-         {
-         token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmlnX2lhdCI6MTUzODQ3MTIwOSwidXNlcm5hbWUiOiJuaXRpc2giLCJ1c2VyX2lkIjoxLCJleHAiOjE1Mzg0ODIwMDl9.K95PlIwkeS1-gl4iWaDo579jNPyYKzbb4ZefZa1FneU";
-         }
- */
     }
     
-    func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func configurePKHUD() {
         
-        apiService?.authenticateUser(userName: userName, password: password, completionHandler: completionHandler)
+        PKHUD.sharedHUD.dimsBackground = true
+        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
     }
-
+    
     func showLoginViewController() {
         
         DispatchQueue.main.async {
