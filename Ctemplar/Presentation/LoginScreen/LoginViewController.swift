@@ -11,6 +11,8 @@ import Foundation
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
+    var passwordTextFieldSecure   : Bool = true
+    
     var presenter   : LoginPresenter?
     var router      : LoginRouter?
     
@@ -56,6 +58,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         userEmail = sender.text
         presenter!.setupEmailTextFieldsAndHintLabel(userEmail: userEmail!)
+    }
+    
+    @IBAction func passwordEyeButtonPressed(_ sender: AnyObject) {
+        
+        passwordTextFieldSecure = !passwordTextFieldSecure
+        passwordTextField.isSecureTextEntry = passwordTextFieldSecure
     }
     
     @IBAction func passwordTyped(_ sender: UITextField) {

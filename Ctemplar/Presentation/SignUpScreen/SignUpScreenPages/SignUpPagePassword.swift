@@ -12,8 +12,11 @@ class SignUpPagePasswordViewController: UIViewController, UITextFieldDelegate {
     
     var parentSignUpPageViewController : SignUpPageViewController?
     
-    var choosedPassword       : String? = ""
-    var confirmedPassword     : String? = ""
+    var choosePasswordTextFieldSecure   : Bool = true
+    var confirmPasswordTextFieldSecure  : Bool = true
+    
+    var choosedPassword                 : String? = ""
+    var confirmedPassword               : String? = ""
     
     @IBOutlet var choosePasswordTextField   : UITextField!
     @IBOutlet var confirmPasswordTextField  : UITextField!
@@ -43,6 +46,18 @@ class SignUpPagePasswordViewController: UIViewController, UITextFieldDelegate {
     @IBAction func backButtonPressed(_ sender: AnyObject) {
         
         parentSignUpPageViewController?.presenter?.previousViewController(childViewController: self)
+    }
+    
+    @IBAction func choosePasswordEyeButtonPressed(_ sender: AnyObject) {
+        
+        choosePasswordTextFieldSecure = !choosePasswordTextFieldSecure
+        choosePasswordTextField.isSecureTextEntry = choosePasswordTextFieldSecure
+    }
+    
+    @IBAction func confirmPasswordEyeButtonPressed(_ sender: AnyObject) {
+        
+        confirmPasswordTextFieldSecure = !confirmPasswordTextFieldSecure
+        confirmPasswordTextField.isSecureTextEntry = confirmPasswordTextFieldSecure
     }
     
     @IBAction func passwordTyped(_ sender: UITextField) {
