@@ -61,6 +61,8 @@ class APIService {
                 if let response = value as? Dictionary<String, Any> {
                     if let message = self.parseServerResponse(response:response) {
                         AlertHelperKit().showAlert(viewController, title: "Error", message: message, button: "Close")
+                    } else { //temp
+                        viewController.dismiss(animated: true, completion: nil)
                     }
                 } else {
                     AlertHelperKit().showAlert(viewController, title: "SignIn Error", message: "Responce have unknown format", button: "Close")
@@ -157,11 +159,72 @@ class APIService {
         }
     }
     
+    //MARK: - Mail
+    
+    func messagesList(viewController: UIViewController, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+       // var emailMessage : EmailMessage? = nil
+        
+        if let token = getToken() {
+            restAPIService?.messagesList(token: token) {(result) in
+                
+                switch(result) {
+                    
+                case .success(let value):
+                    
+                    print("messagesList success:", value)
+                    
+                    if let response = value as? Dictionary<String, Any> {
+                        /*
+                        if let message = self.parseServerResponse(response:response) {
+                            //AlertHelperKit().showAlert(viewController, title: "Error", message: message, button: "Close")
+                            print("message:", message)
+                            let error = NSError(domain:"", code:401, userInfo:[NSLocalizedDescriptionKey: message])
+                            completionHandler(APIResult.failure(error))
+                        }*/
+                        
+                        let message = EmailMessage(dictionary: response)
+                        completionHandler(APIResult.success(message))
+                       
+                        //let email = EmailMessage(dictionary: response)
+                        //print("email.next", email.next)
+                        //print("email.pageConut", email.pageConut)
+                        //print("email.results", email.results)
+                        
+                        //print("email.messageResultsList", email.messageResultsList)
+                        /*
+                        for result in email.messageResultsList! {
+                            //print("result", result)
+                            print("content", result.content)
+                        }
+                        */
+                    } else {
+                        AlertHelperKit().showAlert(viewController, title: "Messages Error", message: "Responce have unknown format", button: "Close")
+                        let error = NSError(domain:"", code:401, userInfo:[NSLocalizedDescriptionKey: "Messages Error"])
+                        completionHandler(APIResult.failure(error))
+                    }
+                    
+                case .failure(let error):
+                    AlertHelperKit().showAlert(viewController, title: "Messages Error", message: error.localizedDescription, button: "Close")
+                    let error = NSError(domain:"", code:401, userInfo:[NSLocalizedDescriptionKey: "Messages Error"])
+                    completionHandler(APIResult.failure(error))
+                }
+                
+                HUD.hide()
+            }
+        }
+    }
+    
     //Mark: - local services
     
     func saveToken(token: String) {
         
         keychainService?.saveToken(token: token)
+    }
+    
+    func getToken() -> String? {
+        
+        return keychainService?.getToken()
     }
     
     func parseServerResponse(response: Dictionary<String, Any>) -> String? {

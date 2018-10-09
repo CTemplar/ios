@@ -20,8 +20,35 @@ class MainViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         configurePKHUD()
-        showLoginViewController()
-
+        //showLoginViewController()
+        
+        apiService = appDelegate.applicationManager.apiService
+        apiService?.messagesList(viewController: self) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                //print("value:", value)
+                
+                let emailMessage = value as! EmailMessage
+                
+                for result in emailMessage.messageResultsList! {
+                    //print("result", result)
+                    print("content:", result.content)
+                }
+                
+            case .failure(let error):
+                print("error:", error)
+            }
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        DispatchQueue.main.async {
+        //    self.apiService?.messagesList(viewController: self)
+        }
     }
     
     func configurePKHUD() {
