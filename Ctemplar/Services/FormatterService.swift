@@ -7,9 +7,47 @@
 //
 
 import Foundation
+import BCryptSwift
 
 class FormatterService
 {
+    
+    //MARK: - Hash password
+    
+    func generateSaltFrom(userName: String) -> String {
+
+        let userNameLench = userName.count
+        
+        var salt : String
+        var rounds = 0
+
+        if userNameLench < k_numberOfRounds {
+            let newUserName = userName + userName
+         //   salt = generateSaltFrom(userName: newUserName)
+            rounds = userNameLench
+        } else {
+            rounds = k_numberOfRounds
+        }
+        
+        rounds = 5
+        
+        salt = BCryptSwift.generateSaltWithNumberOfRounds(UInt(rounds))
+        
+        return salt
+    }
+    
+    func hash(password: String, salt: String) -> String {
+        
+        var hashedPassword : String
+        
+        hashedPassword = BCryptSwift.hashPassword(password, withSalt: salt) ?? ""
+        /*
+        if BCryptSwift.verifyPassword(password, matchesHash: hashedPassword)! {
+            print("matched!")
+        }*/
+        
+        return hashedPassword
+    }
     
     //MARK: - Input String format validation
     

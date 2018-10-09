@@ -11,6 +11,7 @@ target 'Ctemplar' do
     	pod 'PKHUD', '~> 5.0'
 	pod 'AlertHelperKit', :git => 'https://github.com/keygx/AlertHelperKit'
 	pod 'KeychainSwift'
+	pod "BCryptSwift"
     
     post_install do |installer|
         installer.pods_project.targets.each do |target|

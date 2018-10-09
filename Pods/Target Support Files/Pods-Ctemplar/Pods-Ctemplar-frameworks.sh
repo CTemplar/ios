@@ -145,6 +145,7 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AlertHelperKit/AlertHelperKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BCryptSwift/BCryptSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework"
   install_framework "${PODS_ROOT}/ObjectivePGP/Frameworks/ios/ObjectivePGP.framework"
   install_dsym "${PODS_ROOT}/ObjectivePGP/Frameworks/ios/ObjectivePGP.framework.dSYM"
@@ -153,6 +154,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AlertHelperKit/AlertHelperKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BCryptSwift/BCryptSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework"
   install_framework "${PODS_ROOT}/ObjectivePGP/Frameworks/ios/ObjectivePGP.framework"
   install_dsym "${PODS_ROOT}/ObjectivePGP/Frameworks/ios/ObjectivePGP.framework.dSYM"

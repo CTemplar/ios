@@ -32,8 +32,6 @@ class LoginPresenter {
         } else {
             viewController!.passwordHintLabel.isHidden = true
         }
-        
-        //viewController!.passwordTextField.isSecureTextEntry = true
     }
     
     func buttonLoginPressed(userEmail: String, password: String) {

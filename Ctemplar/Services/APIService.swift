@@ -36,6 +36,7 @@ class APIService {
     var restAPIService  : RestAPIService?
     var keychainService : KeychainService?
     var pgpService      : PGPService?
+    var formatterService: FormatterService?
     
     
     func initialize() {
@@ -43,16 +44,34 @@ class APIService {
         self.restAPIService = appDelegate.applicationManager.restAPIService
         self.keychainService = appDelegate.applicationManager.keychainService
         self.pgpService = appDelegate.applicationManager.pgpService
-        
+        self.formatterService = appDelegate.applicationManager.formatterService
     }
     
     //MARK: - authentication
     
     func authenticateUser(userName: String, password: String, viewController: UIViewController) {
         
+        var hashedPassword: String?
+        
+        if let salt = formatterService?.generateSaltFrom(userName: userName) {
+            print("salt:", salt)
+            hashedPassword = formatterService?.hash(password: password, salt: salt)
+            print("hashedPassword:", hashedPassword)
+        }
+        
+        if hashedPassword == nil {
+            print("hashedPassword is nil")
+            return
+        }
+        
+        if (hashedPassword?.count)! < 1 {
+            print("hashedPassword is short")
+            return
+        }
+        
         HUD.show(.progress)
         
-        restAPIService?.authenticateUser(userName: userName, password: password) {(result) in
+        restAPIService?.authenticateUser(userName: userName, password: hashedPassword!) {(result) in
             
             switch(result) {
                 
@@ -75,40 +94,6 @@ class APIService {
     }
     
     func signUpUser(userName: String, password: String, recoveryEmail: String, viewController: UIViewController) {
-        /*
-        let mainPgpKey = pgpService?.generatePGPKey(userName: userName)
-        
-        if mainPgpKey == nil {
-            print("pgpKey is nil")
-            return
-        }
-        
-        pgpService?.savePGPKey(pgpKey: mainPgpKey!)
-        
-        
-        let privateKey = pgpService?.generateArmoredPrivateKey(pgpKey: mainPgpKey!)
-        
-        if privateKey == nil {
-            print("privateKey is nil")
-            return
-        }
-        
-        let publicKey = pgpService?.generateArmoredPublicKey(pgpKey: mainPgpKey!)
-        
-        if publicKey == nil {
-            print("publicKey is nil")
-            return
-        }
-        
-        let fingerprint = pgpService?.fingerprintForKey(pgpKey: mainPgpKey!)
-        
-        if fingerprint == nil {
-            print("fingerprint is nil")
-            return
-        }*/
-        
-        //let userPGPKey = UserPGPKey.init(pgpService: pgpService!, pgpKey: mainPgpKey!)
-        
         
         print("userName:", userName)
         print("password:", password)
@@ -131,9 +116,30 @@ class APIService {
             return
         }
         
+        var hashedPassword: String?
+        
+        if let salt = formatterService?.generateSaltFrom(userName: userName) {
+            print("generated salt:", salt)
+            hashedPassword = formatterService?.hash(password: password, salt: salt)
+            print("hashedPassword:", hashedPassword!)
+        }
+        
+        if hashedPassword == nil {
+            print("hashedPassword is nil")
+            return
+        }
+        
+        if (hashedPassword?.count)! < 1 {
+            print("hashedPassword is short")
+            return
+        }
+        //newuser10 test1234
+        //generated salt: $2a$09$2NW4DFeSNny4eo8kk40bR.
+        //hashedPassword: $2a$09$2NW4DFeSNny4eo8kk40bR.wIefOclSt1iZkwHNOqcFfvMnKk.snGy
+        
         HUD.show(.progress)
         
-        restAPIService?.signUp(userName: userName, password: password, privateKey: (userPGPKey?.privateKey)!, publicKey: (userPGPKey?.publicKey)!, fingerprint: (userPGPKey?.fingerprint)!, recaptcha: "1", recoveryEmail: recoveryEmail, fromAddress: "", redeemCode: "", stripeToken: "", memory: "", emailCount: "", paymentType: "") {(result) in
+        restAPIService?.signUp(userName: userName, password: hashedPassword!, privateKey: (userPGPKey?.privateKey)!, publicKey: (userPGPKey?.publicKey)!, fingerprint: (userPGPKey?.fingerprint)!, recaptcha: "1", recoveryEmail: recoveryEmail, fromAddress: "", redeemCode: "", stripeToken: "", memory: "", emailCount: "", paymentType: "") {(result) in
             
             switch(result) {
                 
