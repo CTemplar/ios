@@ -10,6 +10,9 @@ import Foundation
 
 class FormatterService
 {
+    
+    //MARK: - Input String format validation
+    
     func validateEmailFormat(enteredEmail:String) -> Bool {
         
         let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -19,7 +22,7 @@ class FormatterService
     
     func validateNameFormat(enteredName: String) -> Bool {
         
-        let nameFormat = "[A-Z0-9a-z._%+-]{2,64}"
+        let nameFormat = "[A-Z0-9a-z._%+-]{4,64}"
         let namePredicate = NSPredicate(format:"SELF MATCHES %@", nameFormat)
         return namePredicate.evaluate(with: enteredName)
     }
@@ -44,7 +47,7 @@ class FormatterService
     
     func validatePasswordFormat(enteredPassword: String) -> Bool {
         
-        let passwordFormat = "[A-Z0-9a-z._%+-]{2,}"//"^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()\\-_=+{}|?>.<,:;~`’]{8,}$"
+        let passwordFormat = "[A-Z0-9a-z._%+-]{8,64}"//"^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()\\-_=+{}|?>.<,:;~`’]{8,64}$"
         let passwordPredicate = NSPredicate(format:"SELF MATCHES %@", passwordFormat)
         return passwordPredicate.evaluate(with: enteredPassword)
     }

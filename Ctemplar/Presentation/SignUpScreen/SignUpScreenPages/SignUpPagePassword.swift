@@ -42,7 +42,7 @@ class SignUpPagePasswordViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func backButtonPressed(_ sender: AnyObject) {
         
-        self.dismiss(animated: true, completion: nil)
+        parentSignUpPageViewController?.presenter?.previousViewController(childViewController: self)
     }
     
     @IBAction func passwordTyped(_ sender: UITextField) {

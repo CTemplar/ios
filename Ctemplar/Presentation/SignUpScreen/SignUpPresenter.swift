@@ -188,6 +188,33 @@ class SignUpPresenter {
                                                 completion: nil)
     }
     
+    func previousViewController(childViewController: UIViewController) {
+        
+        guard let previousViewController = self.viewController?.dataSource?.pageViewController(self.viewController!, viewControllerBefore: childViewController ) else { return }
+        
+        guard let viewControllerIndex = self.viewController?.orderedViewControllers.index(of: childViewController) else {
+            return
+        }
+        
+        let previousIndex = viewControllerIndex - 1
+        
+        guard previousIndex >= 0 else {
+            
+            return
+        }
+        
+        self.viewController?.pageControl.currentPage = previousIndex
+        
+        /*
+         guard let previousViewController = self.viewController?.orderedViewControllers[previousIndex] else { return }
+         */
+        
+        self.viewController?.setViewControllers([previousViewController],
+                                                direction: .reverse,
+                                                animated: true,
+                                                completion: nil)
+    }
+    
     func createUserAccount() {
         
         self.interactor?.signUpUser(userName: (self.viewController?.userName)!, password: (self.viewController?.password)!, recoveryEmail: (self.viewController?.recoveryEmail)!)
