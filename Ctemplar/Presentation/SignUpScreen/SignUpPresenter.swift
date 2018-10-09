@@ -91,9 +91,9 @@ class SignUpPresenter {
         }
         
         if (formatterService?.validateNameFormat(enteredName: (viewController?.userName)!))! {
-            
+            changeButtonState(button: childViewController.nextButton, disabled: false)
         } else {
-            print("wrong Name format")
+            changeButtonState(button: childViewController.nextButton, disabled: true)
         }
     }
     
@@ -125,9 +125,17 @@ class SignUpPresenter {
         if ((formatterService?.passwordsMatched(choosedPassword: childViewController.choosedPassword! , confirmedPassword: childViewController.confirmedPassword!))!) {
             print("passwords matched")
             viewController?.password = childViewController.choosedPassword
+            
+            if ((formatterService?.validatePasswordFormat(enteredPassword: (viewController?.password)!))!) {
+                changeButtonState(button: childViewController.nextButton, disabled: false)
+            } else {
+                print("password wrong format")
+                changeButtonState(button: childViewController.nextButton, disabled: true)
+            }
         } else {
-            viewController?.password = ""
             print("passwords not matched!!!")
+            viewController?.password = ""
+            changeButtonState(button: childViewController.nextButton, disabled: true)
         }
     }
     
@@ -140,9 +148,25 @@ class SignUpPresenter {
         }
         
         if (formatterService?.validateEmailFormat(enteredEmail:(viewController?.recoveryEmail)!))! {
-            
+            if childViewController.termsBoxChecked {
+                changeButtonState(button: childViewController.createAccountButton, disabled: false)
+            } else {
+                changeButtonState(button: childViewController.createAccountButton, disabled: true)
+            }
         } else {
             print("wrong Email format")
+            changeButtonState(button: childViewController.createAccountButton, disabled: true)
+        }
+    }
+    
+    func changeButtonState(button: UIButton, disabled: Bool) {
+        
+        if disabled {
+            button.isEnabled = false
+            button.alpha = 0.6
+        } else {
+            button.isEnabled = true
+            button.alpha = 1.0
         }
     }
     
@@ -159,11 +183,13 @@ class SignUpPresenter {
         }
         
         childViewController.checkBoxButton.setBackgroundImage(checkBoxImage, for: .normal)
+        
+        setupRecoveryEmailTextFieldAndHintLabel(childViewController: childViewController)
     }
 
     func nextViewController(childViewController: UIViewController) {
         
-        guard let nextViewController = self.viewController?.dataSource?.pageViewController(self.viewController!, viewControllerAfter: childViewController ) else { return }
+       // guard let nextViewController = self.viewController?.dataSource?.pageViewController(self.viewController!, viewControllerAfter: childViewController ) else { return }
         
         guard let viewControllerIndex = self.viewController?.orderedViewControllers.index(of: childViewController) else {
             return
@@ -178,9 +204,8 @@ class SignUpPresenter {
         
         self.viewController?.pageControl.currentPage = nextIndex
         
-         /*
         guard let nextViewController = self.viewController?.orderedViewControllers[nextIndex] else { return }
-        */
+        
         
         self.viewController?.setViewControllers([nextViewController],
                                                 direction: .forward,
@@ -190,7 +215,7 @@ class SignUpPresenter {
     
     func previousViewController(childViewController: UIViewController) {
         
-        guard let previousViewController = self.viewController?.dataSource?.pageViewController(self.viewController!, viewControllerBefore: childViewController ) else { return }
+       // guard let previousViewController = self.viewController?.dataSource?.pageViewController(self.viewController!, viewControllerBefore: childViewController ) else { return }
         
         guard let viewControllerIndex = self.viewController?.orderedViewControllers.index(of: childViewController) else {
             return
@@ -205,9 +230,8 @@ class SignUpPresenter {
         
         self.viewController?.pageControl.currentPage = previousIndex
         
-        /*
-         guard let previousViewController = self.viewController?.orderedViewControllers[previousIndex] else { return }
-         */
+        guard let previousViewController = self.viewController?.orderedViewControllers[previousIndex] else { return }
+ 
         
         self.viewController?.setViewControllers([previousViewController],
                                                 direction: .reverse,

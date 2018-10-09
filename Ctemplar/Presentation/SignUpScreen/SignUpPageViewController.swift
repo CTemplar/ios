@@ -34,7 +34,7 @@ class SignUpPageViewController: UIPageViewController, UIPageViewControllerDataSo
         let configurator = SignUpConfigurator()
         configurator.configure(viewController: self)
         
-        self.dataSource = self
+        self.dataSource = nil//self
         self.delegate = self
         self.presenter?.setViewControllers()
         self.presenter?.configurePageControl()
