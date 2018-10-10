@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="crL-9n-FIz">
-    <device id="ipad9_7" orientation="portrait">
+    <device id="ipad12_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,29 +20,33 @@
             <objects>
                 <viewController id="crL-9n-FIz" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oZW-9M-g09">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="O0N-Dr-qAE">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppTitle" translatesAutoresizingMaskIntoConstraints="NO" id="hrl-Km-QUt">
-                                <rect key="frame" x="279" y="530" width="210" height="28"/>
+                                <rect key="frame" x="407" y="731" width="210" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="6Yg-Dm-zRg"/>
                                     <constraint firstAttribute="width" secondItem="hrl-Km-QUt" secondAttribute="height" multiplier="210:28" id="qAX-xj-QmJ"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="f5f-x2-VPN">
-                                <rect key="frame" x="281" y="270" width="206" height="204"/>
+                                <rect key="frame" x="409" y="471" width="206" height="204"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="204" id="Nkx-KB-RdG"/>
                                     <constraint firstAttribute="width" secondItem="f5f-x2-VPN" secondAttribute="height" multiplier="206:204" id="so4-xI-IF1"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTk-39-QA6">
-                                <rect key="frame" x="309.5" y="900.5" width="149" height="43.5"/>
-                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="dTk-39-QA6">
+                                <rect key="frame" x="452.5" y="1277" width="119" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dTk-39-QA6" secondAttribute="height" multiplier="119:24" id="UPq-Dc-b7R"/>
+                                    <constraint firstAttribute="width" constant="119" id="wQx-Ql-068"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="19"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -50,14 +55,14 @@
                         <constraints>
                             <constraint firstItem="O0N-Dr-qAE" firstAttribute="centerX" secondItem="dTk-39-QA6" secondAttribute="centerX" id="Fro-k2-Ejn"/>
                             <constraint firstAttribute="centerX" secondItem="f5f-x2-VPN" secondAttribute="centerX" id="K89-Dv-Zim"/>
-                            <constraint firstItem="Xcv-JM-Bfb" firstAttribute="bottom" secondItem="dTk-39-QA6" secondAttribute="bottom" constant="80" id="N4T-S1-8Ni"/>
+                            <constraint firstItem="Xcv-JM-Bfb" firstAttribute="bottom" secondItem="dTk-39-QA6" secondAttribute="bottom" constant="65" id="N4T-S1-8Ni"/>
                             <constraint firstItem="O0N-Dr-qAE" firstAttribute="top" secondItem="oZW-9M-g09" secondAttribute="top" id="NEX-el-Kj4"/>
                             <constraint firstAttribute="centerX" secondItem="hrl-Km-QUt" secondAttribute="centerX" id="SGo-IF-R3p"/>
                             <constraint firstItem="hrl-Km-QUt" firstAttribute="top" secondItem="f5f-x2-VPN" secondAttribute="bottom" constant="56" id="Sjo-lO-m50"/>
                             <constraint firstItem="O0N-Dr-qAE" firstAttribute="bottom" secondItem="Xcv-JM-Bfb" secondAttribute="bottom" id="Ttl-1v-SaQ"/>
                             <constraint firstItem="O0N-Dr-qAE" firstAttribute="leading" secondItem="oZW-9M-g09" secondAttribute="leading" id="cYR-kU-Rdo"/>
                             <constraint firstAttribute="trailing" secondItem="O0N-Dr-qAE" secondAttribute="trailing" id="gjS-AJ-dpe"/>
-                            <constraint firstItem="f5f-x2-VPN" firstAttribute="centerY" secondItem="oZW-9M-g09" secondAttribute="centerY" constant="-140" id="oRr-qO-SLN"/>
+                            <constraint firstItem="f5f-x2-VPN" firstAttribute="centerY" secondItem="oZW-9M-g09" secondAttribute="centerY" constant="-110" id="oRr-qO-SLN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Xcv-JM-Bfb"/>
                     </view>
