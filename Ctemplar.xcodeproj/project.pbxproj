@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8407AD92216CC61600AF2E7B /* EmailMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407AD91216CC61600AF2E7B /* EmailMessage.swift */; };
+		8407AD94216CC98900AF2E7B /* EmailMessageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407AD93216CC98900AF2E7B /* EmailMessageResult.swift */; };
 		8433FF1A216201A300C57DC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF19216201A300C57DC8 /* AppDelegate.swift */; };
 		8433FF1C216201A300C57DC8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF1B216201A300C57DC8 /* MainViewController.swift */; };
 		8433FF1F216201A300C57DC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF1D216201A300C57DC8 /* Main.storyboard */; };
@@ -42,6 +44,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8407AD91216CC61600AF2E7B /* EmailMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailMessage.swift; sourceTree = "<group>"; };
+		8407AD93216CC98900AF2E7B /* EmailMessageResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailMessageResult.swift; sourceTree = "<group>"; };
 		8433FF16216201A300C57DC8 /* Ctemplar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ctemplar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8433FF19216201A300C57DC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8433FF1B216201A300C57DC8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +107,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8407AD90216CC5C400AF2E7B /* Network Models */ = {
+			isa = PBXGroup;
+			children = (
+				8407AD91216CC61600AF2E7B /* EmailMessage.swift */,
+				8407AD93216CC98900AF2E7B /* EmailMessageResult.swift */,
+			);
+			path = "Network Models";
+			sourceTree = "<group>";
+		};
 		8433FF0D216201A300C57DC8 = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				844F4B5B216B3A830057C758 /* Local Models */,
+				8407AD90216CC5C400AF2E7B /* Network Models */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -417,12 +431,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8407AD92216CC61600AF2E7B /* EmailMessage.swift in Sources */,
 				843FC38E2164CA35000CFEA9 /* SignUpInteractor.swift in Sources */,
 				843FC38C2164CA27000CFEA9 /* SignUpPresenter.swift in Sources */,
 				843E973221635BEB00147CBE /* LoginViewController.swift in Sources */,
 				8433FF552162129800C57DC8 /* RestAPIService.swift in Sources */,
 				8433FF5C216246DC00C57DC8 /* PGPService.swift in Sources */,
 				843E972F21634E7900147CBE /* LaunchScreenViewController.swift in Sources */,
+				8407AD94216CC98900AF2E7B /* EmailMessageResult.swift in Sources */,
 				843FA928216BA39C00355849 /* FormatterService.swift in Sources */,
 				8433FF57216212D500C57DC8 /* AplicationManager.swift in Sources */,
 				8433FF1C216201A300C57DC8 /* MainViewController.swift in Sources */,

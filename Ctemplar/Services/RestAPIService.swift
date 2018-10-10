@@ -15,6 +15,7 @@ class RestAPIService {
         case baseUrl = "https://devapi.ctemplar.com/"
         case signIn = "auth/sign-in/"
         case signUp = "auth/sign-up/"
+        case messages = "emails/messages/"
     }
     
     enum JSONKey: String {
@@ -89,5 +90,37 @@ class RestAPIService {
                 completionHandler(APIResult.failure(error))
             }
         }        
+    }
+    
+    //MARK: - Mail
+    
+    func messagesList(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        /*
+         let parameters: Parameters = [
+         JSONKey.userName.rawValue: userName,
+         JSONKey.password.rawValue: password
+         ]*/
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue
+        
+        //print("messagesList parameters:", parameters)
+        print("messagesList url:", url)
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+            
+            //print("messagesList responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
     }
 }

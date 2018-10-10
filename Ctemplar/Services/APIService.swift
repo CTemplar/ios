@@ -21,12 +21,16 @@ enum APIResponse: String {
     //sucess
     case token            = "token"
     
-    //errors
+    //auth errors
     case passwordError    = "password"
     case usernameError    = "username"
     case nonFieldError    = "non_field_errors"
     case recaptchaError   = "recaptcha"
     case fingerprintError = "fingerprint"
+    
+    //email messages
+    case pageConut        = "page_count"
+    case results          = "results"
 }
 
 class APIService {
@@ -49,14 +53,14 @@ class APIService {
     
     //MARK: - authentication
     
-    func authenticateUser(userName: String, password: String, viewController: UIViewController) {
+    func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         var hashedPassword: String?
         
         if let salt = formatterService?.generateSaltFrom(userName: userName) {
             print("salt:", salt)
             hashedPassword = formatterService?.hash(password: password, salt: salt)
-            print("hashedPassword:", hashedPassword)
+            print("hashedPassword:", hashedPassword as Any)
         }
         
         if hashedPassword == nil {
@@ -83,22 +87,28 @@ class APIService {
                 
                 if let response = value as? Dictionary<String, Any> {
                     if let message = self.parseServerResponse(response:response) {
-                        AlertHelperKit().showAlert(viewController, title: "Error", message: message, button: "Close")
+                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                        completionHandler(APIResult.failure(error))
+                    } else {                       
+                        completionHandler(APIResult.success("success"))
                     }
                 } else {
-                    AlertHelperKit().showAlert(viewController, title: "SignIn Error", message: "Responce have unknown format", button: "Close")
+                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                    completionHandler(APIResult.failure(error))
                 }
                 
             case .failure(let error):
-                AlertHelperKit().showAlert(viewController, title: "SignIn Error", message: error.localizedDescription, button: "Close")
+                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                completionHandler(APIResult.failure(error))
             }
             
             HUD.hide()
         }
     }
     
-    func signUpUser(userName: String, password: String, recoveryEmail: String, viewController: UIViewController) {
-        
+    func signUpUser(userName: String, password: String, recoveryEmail: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+                
+
         print("userName:", userName)
         print("password:", password)
         print("recoveryEmail:", recoveryEmail)
@@ -149,22 +159,65 @@ class APIService {
             switch(result) {
                 
             case .success(let value):
-                print("signUpUser success:", value)
+               // print("signUpUser success:", value)
                 
                 if let response = value as? Dictionary<String, Any> {
                     if let message = self.parseServerResponse(response:response) {
-                        AlertHelperKit().showAlert(viewController, title: "Error", message: message, button: "Close")
+                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                        completionHandler(APIResult.failure(error))
+                    } else {
+                        completionHandler(APIResult.success("success"))
                     }
                 } else {
-                    AlertHelperKit().showAlert(viewController, title: "SignUp Error", message: "Responce have unknown format", button: "Close")
+                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                    completionHandler(APIResult.failure(error))
                 }
                 
             case .failure(let error):
                 print("signUpUser error:", error.localizedDescription)
-                AlertHelperKit().showAlert(viewController, title: "SignUp Error", message: error.localizedDescription, button: "Close")
+                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                completionHandler(APIResult.failure(error))
             }
             
             HUD.hide()
+        }
+    }
+    
+    //MARK: - Mail
+    
+    func messagesList(completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        if let token = getToken() {
+            restAPIService?.messagesList(token: token) {(result) in
+                
+                switch(result) {
+                    
+                case .success(let value):
+                    
+                    print("messagesList success:", value)
+                    
+                    if let response = value as? Dictionary<String, Any> {
+                        
+                        if let message = self.parseServerResponse(response:response) {
+                            print("messagesList message:", message)
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                            completionHandler(APIResult.failure(error))
+                        } else {
+                            let emailMessage = EmailMessage(dictionary: response)
+                            completionHandler(APIResult.success(emailMessage))
+                        }
+                    } else {
+                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                        completionHandler(APIResult.failure(error))
+                    }
+                    
+                case .failure(let error):
+                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                    completionHandler(APIResult.failure(error))
+                }
+                
+                HUD.hide()
+            }
         }
     }
     
@@ -173,6 +226,11 @@ class APIService {
     func saveToken(token: String) {
         
         keychainService?.saveToken(token: token)
+    }
+    
+    func getToken() -> String? {
+        
+        return keychainService?.getToken()
     }
     
     func parseServerResponse(response: Dictionary<String, Any>) -> String? {
@@ -200,6 +258,12 @@ class APIService {
             case APIResponse.nonFieldError.rawValue :
                 message = extractErrorTextFrom(value: dictionary.value)
                 break
+            case APIResponse.pageConut.rawValue :
+                //do nothing
+                break
+            case APIResponse.results.rawValue :
+                //do nothing
+                break
             default:
                 print("APIResponce key:", dictionary.key, "value:", dictionary.value)
                 if let errorMessage = extractErrorTextFrom(value: dictionary.value) {
@@ -222,6 +286,8 @@ class APIService {
                 }
                 return string
             }
+        } else {
+            return value as? String
         }
         
         return ""
