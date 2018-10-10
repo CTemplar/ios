@@ -9,6 +9,7 @@
 import UIKit
 import Foundation
 import PKHUD
+import AlertHelperKit
 
 class MainViewController: UIViewController { 
     
@@ -23,7 +24,7 @@ class MainViewController: UIViewController {
         //showLoginViewController()
         
         apiService = appDelegate.applicationManager.apiService
-        apiService?.messagesList(viewController: self) {(result) in
+        apiService?.messagesList() {(result) in
             
             switch(result) {
                 
@@ -34,11 +35,12 @@ class MainViewController: UIViewController {
                 
                 for result in emailMessage.messageResultsList! {
                     //print("result", result)
-                    print("content:", result.content)
+                    print("content:", result.content as Any)
                 }
                 
             case .failure(let error):
                 print("error:", error)
+                AlertHelperKit().showAlert(self, title: "Messages Error", message: error.localizedDescription, button: "Close")
             }
         }
     }

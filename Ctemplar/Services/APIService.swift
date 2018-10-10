@@ -21,12 +21,16 @@ enum APIResponse: String {
     //sucess
     case token            = "token"
     
-    //errors
+    //auth errors
     case passwordError    = "password"
     case usernameError    = "username"
     case nonFieldError    = "non_field_errors"
     case recaptchaError   = "recaptcha"
     case fingerprintError = "fingerprint"
+    
+    //email messages
+    case pageConut        = "page_count"
+    case results          = "results"
 }
 
 class APIService {
@@ -161,9 +165,7 @@ class APIService {
     
     //MARK: - Mail
     
-    func messagesList(viewController: UIViewController, completionHandler: @escaping (APIResult<Any>) -> Void) {
-        
-       // var emailMessage : EmailMessage? = nil
+    func messagesList(completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         if let token = getToken() {
             restAPIService?.messagesList(token: token) {(result) in
@@ -175,38 +177,22 @@ class APIService {
                     print("messagesList success:", value)
                     
                     if let response = value as? Dictionary<String, Any> {
-                        /*
+                        
                         if let message = self.parseServerResponse(response:response) {
-                            //AlertHelperKit().showAlert(viewController, title: "Error", message: message, button: "Close")
-                            print("message:", message)
-                            let error = NSError(domain:"", code:401, userInfo:[NSLocalizedDescriptionKey: message])
+                            print("messagesList message:", message)
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
                             completionHandler(APIResult.failure(error))
-                        }*/
-                        
-                        let message = EmailMessage(dictionary: response)
-                        completionHandler(APIResult.success(message))
-                       
-                        //let email = EmailMessage(dictionary: response)
-                        //print("email.next", email.next)
-                        //print("email.pageConut", email.pageConut)
-                        //print("email.results", email.results)
-                        
-                        //print("email.messageResultsList", email.messageResultsList)
-                        /*
-                        for result in email.messageResultsList! {
-                            //print("result", result)
-                            print("content", result.content)
+                        } else {
+                            let emailMessage = EmailMessage(dictionary: response)
+                            completionHandler(APIResult.success(emailMessage))
                         }
-                        */
                     } else {
-                        AlertHelperKit().showAlert(viewController, title: "Messages Error", message: "Responce have unknown format", button: "Close")
-                        let error = NSError(domain:"", code:401, userInfo:[NSLocalizedDescriptionKey: "Messages Error"])
+                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
                         completionHandler(APIResult.failure(error))
                     }
                     
                 case .failure(let error):
-                    AlertHelperKit().showAlert(viewController, title: "Messages Error", message: error.localizedDescription, button: "Close")
-                    let error = NSError(domain:"", code:401, userInfo:[NSLocalizedDescriptionKey: "Messages Error"])
+                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                     completionHandler(APIResult.failure(error))
                 }
                 
@@ -252,6 +238,12 @@ class APIService {
             case APIResponse.nonFieldError.rawValue :
                 message = extractErrorTextFrom(value: dictionary.value)
                 break
+            case APIResponse.pageConut.rawValue :
+                //do nothing
+                break
+            case APIResponse.results.rawValue :
+                //do nothing
+                break
             default:
                 print("APIResponce key:", dictionary.key, "value:", dictionary.value)
                 if let errorMessage = extractErrorTextFrom(value: dictionary.value) {
@@ -274,6 +266,8 @@ class APIService {
                 }
                 return string
             }
+        } else {
+            return value as? String
         }
         
         return ""
