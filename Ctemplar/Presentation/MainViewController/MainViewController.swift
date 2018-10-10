@@ -20,29 +20,14 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        configurePKHUD()
-        showLoginViewController()
-        /*
         apiService = appDelegate.applicationManager.apiService
-        apiService?.messagesList() {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                //print("value:", value)
-                
-                let emailMessage = value as! EmailMessage
-                
-                for result in emailMessage.messageResultsList! {
-                    //print("result", result)
-                    print("content:", result.content as Any)
-                }
-                
-            case .failure(let error):
-                print("error:", error)
-                AlertHelperKit().showAlert(self, title: "Messages Error", message: error.localizedDescription, button: "Close")
-            }
-        }*/
+        
+        configurePKHUD()
+        
+        //showLoginViewController()
+        //messagesList()
+        mailboxesList()
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -65,6 +50,53 @@ class MainViewController: UIViewController {
             let storyboard: UIStoryboard = UIStoryboard(name: k_LoginStoryboardName, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: k_LoginViewControllerID) as! LoginViewController
             self.show(vc, sender: self)
+        }
+    }
+    
+    func messagesList() {
+        
+        apiService?.messagesList() {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                //print("value:", value)
+                
+                let emailMessage = value as! EmailMessage
+                
+                for result in emailMessage.messageResultsList! {
+                    //print("result", result)
+                    print("content:", result.content as Any)
+                }
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self, title: "Messages Error", message: error.localizedDescription, button: "Close")
+            }
+        }
+    }
+    
+    func mailboxesList() {
+        
+        apiService?.mailboxesList() {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("Mailboxes value:", value)
+                
+                let mailbox = value as! Mailbox
+                
+                for result in mailbox.mailboxesResultsList! {
+                    //print("result", result)
+                    print("privateKey:", result.privateKey as Any)
+                    print("publicKey:", result.publicKey as Any)
+                }
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self, title: "Mailboxes Error", message: error.localizedDescription, button: "Close")
+            }
         }
     }
 }
