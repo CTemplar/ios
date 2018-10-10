@@ -25,8 +25,8 @@ class MainViewController: UIViewController {
         configurePKHUD()
         
         //showLoginViewController()
-        //messagesList()
-        mailboxesList()
+        messagesList()
+        //mailboxesList()
 
     }
     
@@ -66,7 +66,11 @@ class MainViewController: UIViewController {
                 
                 for result in emailMessage.messageResultsList! {
                     //print("result", result)
-                    print("content:", result.content as Any)
+                    
+                    if let content = result.content {
+                        print("content:", content)
+                        self.decryptMessage(encryptedContet: content)
+                    }
                 }
                 
             case .failure(let error):
@@ -96,6 +100,18 @@ class MainViewController: UIViewController {
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self, title: "Mailboxes Error", message: error.localizedDescription, button: "Close")
+            }
+        }
+    }
+    
+    func decryptMessage(encryptedContet: String) {
+        
+        let pgpService = appDelegate.applicationManager.pgpService
+        
+        if let contentData = encryptedContet.data(using: .ascii) {
+            if let decodedData = pgpService.decrypt(encryptedData: contentData) {
+                let decryptedMessage = pgpService.decodeData(decryptedData: decodedData)
+                print("decryptedMessage:", decryptedMessage)
             }
         }
     }

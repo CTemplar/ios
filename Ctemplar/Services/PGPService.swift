@@ -35,9 +35,27 @@ class PGPService {
     
     func decrypt(encryptedData: Data) -> Data? {
         
-        let decryptedData = try! ObjectivePGP.decrypt(encryptedData, andVerifySignature: false, using: [key1])
+        if Armor.isArmoredData(encryptedData)  {
+            print("encryptedData is armored")
+        }
         
-        return decryptedData
+        //print("encryptedData Array: \(Array(encryptedData))")
+
+        if let keys = getStoredPGPKey() {
+            
+            guard let decryptedData = try? ObjectivePGP.decrypt(encryptedData, andVerifySignature: true, using: keys, passphraseForKey: {(key) -> String? in
+                return "test1234"
+            }) else {return nil}
+            
+            return decryptedData
+        }
+        
+        return nil
+    }
+    
+    func decodeData(decryptedData: Data) -> String {
+        
+        return String(decoding: decryptedData, as: UTF8.self)
     }
     
     //MARK: - Keys
@@ -97,16 +115,25 @@ class PGPService {
         
         keyring.import(keys: [pgpKey])
         
-        let keyRingFileUrl = getDocumentsDirectory().appendingPathComponent("keyring.gpg")
+        let keyRingFileUrl = getDocumentsDirectory().appendingPathComponent(k_keyringFileName)
         
         do {
             try keyring.export().write(to: keyRingFileUrl)
         }  catch {
-            print("save privateKey Error")
+            print("save PGP Key Error")
         }
         
-        print("save privateKey:", pgpKey)
+        print("save PGP Key:", pgpKey)
+    }
+    
+    func getStoredPGPKey() -> [Key]? {
         
+        let keyRingFileUrl = getDocumentsDirectory().appendingPathComponent(k_keyringFileName)
+        
+        let key = try! ObjectivePGP.readKeys(fromPath: keyRingFileUrl.path)
+        print("get stored PGP key:", key)
+        
+        return key
     }
     
     func getDocumentsDirectory() -> URL {

@@ -40,3 +40,5 @@ let k_checkBoxSelectedImageName     = "checkedBoxDark"
 
 // other
 let k_numberOfRounds               = 29
+
+let k_keyringFileName              = "keyring.gpg"
