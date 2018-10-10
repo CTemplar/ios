@@ -15,6 +15,26 @@ struct EmailMessageResult {
     var cc: Array<Any>? = nil
     var content : String? = nil
     var createdAt : String? = nil
+    var deadManDuration : String? = nil
+    var delayedDelivery : String? = nil
+    var destructDay : String? = nil
+    var encryption : String? = nil
+    var folder : String? = nil
+    var hasChildren : String? = nil
+    var hash : String? = nil
+    var resultID : String? = nil
+    var isEncrypted : String? = nil
+    var isProtected : String? = nil
+    var mailbox : String? = nil
+    var parent : String? = nil
+    var read : String? = nil
+    var receiver : Array<Any>? = nil
+    var send : String? = nil
+    var sender : String? = nil
+    var sentAt : String? = nil
+    var starred : String? = nil
+    var subject : String? = nil
+    var updated : String? = nil
     
     init() {
         
@@ -27,31 +47,25 @@ struct EmailMessageResult {
         self.cc = dictionary["cc"] as? Array<Any>
         self.content = dictionary["content"] as? String
         self.createdAt = dictionary["created_at"] as? String
+        self.deadManDuration = dictionary["dead_man_duration"] as? String
+        self.delayedDelivery = dictionary["delayed_delivery"] as? String
+        self.destructDay = dictionary["destruct_date"] as? String
+        self.encryption = dictionary["encryption"] as? String
+        self.folder = dictionary["folder"] as? String
+        self.hasChildren = dictionary["has_children"] as? String
+        self.hash = dictionary["hash"] as? String
+        self.resultID = dictionary["id"] as? String
+        self.isEncrypted = dictionary["is_encrypted"] as? String
+        self.isProtected = dictionary["is_protected"] as? String
+        self.mailbox = dictionary["mailbox"] as? String        
+        self.parent = dictionary["parent"] as? String
+        self.read = dictionary["read"] as? String
+        self.receiver = dictionary["receiver"] as? Array<Any>
+        self.send = dictionary["send"] as? String
+        self.sender = dictionary["sender"] as? String
+        self.sentAt = dictionary["sent_at"] as? String
+        self.starred = dictionary["starred"] as? String
+        self.subject = dictionary["subject"] as? String
+        self.updated = dictionary["updated"] as? String
     }
 }
-
-/*
- "created_at" = "2018-10-04T15:47:47.228191Z";
- "dead_man_duration" = "<null>";
- "delayed_delivery" = "<null>";
- "destruct_date" = "<null>";
- encryption = "<null>";
- folder = inbox;
- "has_children" = 0;
- hash = a7b6f6d378c549dbb8222f4598ce0789;
- id = 658;
- "is_encrypted" = 0;
- "is_protected" = 1;
- mailbox = 49;
- parent = "<null>";
- read = 0;
- receiver =     (
- "newuser5@dev.ctemplar.com"
- );
- send = 0;
- sender = "dmitry3@dev.ctemplar.com";
- "sent_at" = "<null>";
- starred = 0;
- subject = "Test subj";
- updated = "2018-10-04T15:47:47.228217Z";
- */
