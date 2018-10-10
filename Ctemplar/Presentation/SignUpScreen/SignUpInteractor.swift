@@ -16,7 +16,24 @@ class SignUpInteractor {
     var apiService      : APIService?
     
     func signUpUser(userName: String, password: String, recoveryEmail: String) {
-        
-        apiService?.signUpUser(userName: userName, password: password, recoveryEmail: recoveryEmail, viewController: self.viewController!)
+    
+        apiService?.signUpUser(userName: userName, password: password, recoveryEmail: recoveryEmail) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("signup success value:", value)
+                
+                let currentPresentingViewController = self.viewController?.presentingViewController as? LoginViewController
+                
+                self.viewController?.dismiss(animated: true) {
+                    currentPresentingViewController?.dismiss(animated: false, completion: nil) //hide Login View Controller
+                }
+                
+            case .failure(let error):
+                print("signup error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "SignUp Error", message: error.localizedDescription, button: "Close")
+            }
+        }
     }
 }

@@ -46,8 +46,7 @@ class APIService {
        
         self.restAPIService = appDelegate.applicationManager.restAPIService
         self.keychainService = appDelegate.applicationManager.keychainService
-        self.pgpService = appDelegate.applicationManager.pgpService
-        
+        self.pgpService = appDelegate.applicationManager.pgpService        
     }
     
     //MARK: - authentication
@@ -67,7 +66,7 @@ class APIService {
                         let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
                         completionHandler(APIResult.failure(error))
                     } else {                       
-                        completionHandler(APIResult.success(""))
+                        completionHandler(APIResult.success("success"))
                     }
                 } else {
                     let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
@@ -83,42 +82,8 @@ class APIService {
         }
     }
     
-    func signUpUser(userName: String, password: String, recoveryEmail: String, viewController: UIViewController) {
-        /*
-        let mainPgpKey = pgpService?.generatePGPKey(userName: userName)
-        
-        if mainPgpKey == nil {
-            print("pgpKey is nil")
-            return
-        }
-        
-        pgpService?.savePGPKey(pgpKey: mainPgpKey!)
-        
-        
-        let privateKey = pgpService?.generateArmoredPrivateKey(pgpKey: mainPgpKey!)
-        
-        if privateKey == nil {
-            print("privateKey is nil")
-            return
-        }
-        
-        let publicKey = pgpService?.generateArmoredPublicKey(pgpKey: mainPgpKey!)
-        
-        if publicKey == nil {
-            print("publicKey is nil")
-            return
-        }
-        
-        let fingerprint = pgpService?.fingerprintForKey(pgpKey: mainPgpKey!)
-        
-        if fingerprint == nil {
-            print("fingerprint is nil")
-            return
-        }*/
-        
-        //let userPGPKey = UserPGPKey.init(pgpService: pgpService!, pgpKey: mainPgpKey!)
-        
-        
+    func signUpUser(userName: String, password: String, recoveryEmail: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+                
         print("userName:", userName)
         print("password:", password)
         print("recoveryEmail:", recoveryEmail)
@@ -147,19 +112,24 @@ class APIService {
             switch(result) {
                 
             case .success(let value):
-                print("signUpUser success:", value)
+               // print("signUpUser success:", value)
                 
                 if let response = value as? Dictionary<String, Any> {
                     if let message = self.parseServerResponse(response:response) {
-                        AlertHelperKit().showAlert(viewController, title: "Error", message: message, button: "Close")
+                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                        completionHandler(APIResult.failure(error))
+                    } else {
+                        completionHandler(APIResult.success("success"))
                     }
                 } else {
-                    AlertHelperKit().showAlert(viewController, title: "SignUp Error", message: "Responce have unknown format", button: "Close")
+                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                    completionHandler(APIResult.failure(error))
                 }
                 
             case .failure(let error):
                 print("signUpUser error:", error.localizedDescription)
-                AlertHelperKit().showAlert(viewController, title: "SignUp Error", message: error.localizedDescription, button: "Close")
+                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                completionHandler(APIResult.failure(error))
             }
             
             HUD.hide()
