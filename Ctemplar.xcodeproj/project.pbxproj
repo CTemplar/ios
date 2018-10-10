@@ -31,6 +31,8 @@
 		843FA928216BA39C00355849 /* FormatterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FA927216BA39C00355849 /* FormatterService.swift */; };
 		843FBF13216DEFBD00148FC1 /* Mailbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FBF12216DEFBD00148FC1 /* Mailbox.swift */; };
 		843FBF15216DF0A000148FC1 /* MailboxResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FBF14216DF0A000148FC1 /* MailboxResult.swift */; };
+		843FBF17216E3D2400148FC1 /* Login-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843FBF16216E3D2400148FC1 /* Login-iPad.storyboard */; };
+		843FBF19216E4FE500148FC1 /* DeviceScreenConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FBF18216E4FE500148FC1 /* DeviceScreenConstants.swift */; };
 		843FC3822164C2CC000CFEA9 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3812164C2CC000CFEA9 /* KeychainService.swift */; };
 		843FC3862164C9EE000CFEA9 /* SignUpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3852164C9EE000CFEA9 /* SignUpPageViewController.swift */; };
 		843FC3882164CA0D000CFEA9 /* SignUpConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3872164CA0D000CFEA9 /* SignUpConfigurator.swift */; };
@@ -74,6 +76,8 @@
 		843FA927216BA39C00355849 /* FormatterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterService.swift; sourceTree = "<group>"; };
 		843FBF12216DEFBD00148FC1 /* Mailbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mailbox.swift; sourceTree = "<group>"; };
 		843FBF14216DF0A000148FC1 /* MailboxResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailboxResult.swift; sourceTree = "<group>"; };
+		843FBF16216E3D2400148FC1 /* Login-iPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Login-iPad.storyboard"; sourceTree = "<group>"; };
+		843FBF18216E4FE500148FC1 /* DeviceScreenConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceScreenConstants.swift; sourceTree = "<group>"; };
 		843FC3812164C2CC000CFEA9 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		843FC3832164C320000CFEA9 /* Ctemplar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ctemplar.entitlements; sourceTree = "<group>"; };
 		843FC3852164C9EE000CFEA9 /* SignUpPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +215,7 @@
 				843E972B2163493800147CBE /* Fonts */,
 				8433FF20216201A500C57DC8 /* Assets.xcassets */,
 				8433FF592162181E00C57DC8 /* Constants.swift */,
+				843FBF18216E4FE500148FC1 /* DeviceScreenConstants.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -243,6 +248,7 @@
 				843E973C2163703100147CBE /* LoginPresenter.swift */,
 				843E973A2163701B00147CBE /* LoginInteractor.swift */,
 				843E973321635C3B00147CBE /* Login.storyboard */,
+				843FBF16216E3D2400148FC1 /* Login-iPad.storyboard */,
 			);
 			path = LoginScreen;
 			sourceTree = "<group>";
@@ -361,6 +367,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				843FBF17216E3D2400148FC1 /* Login-iPad.storyboard in Resources */,
 				8433FF24216201A500C57DC8 /* LaunchScreen.storyboard in Resources */,
 				8433FF4C21620DBD00C57DC8 /* MainiPad.storyboard in Resources */,
 				843E973421635C3B00147CBE /* Login.storyboard in Resources */,
@@ -455,6 +462,7 @@
 				843E973D2163703100147CBE /* LoginPresenter.swift in Sources */,
 				843FC3862164C9EE000CFEA9 /* SignUpPageViewController.swift in Sources */,
 				843FBF15216DF0A000148FC1 /* MailboxResult.swift in Sources */,
+				843FBF19216E4FE500148FC1 /* DeviceScreenConstants.swift in Sources */,
 				843E973B2163701B00147CBE /* LoginInteractor.swift in Sources */,
 				843E97392163700900147CBE /* LoginRouter.swift in Sources */,
 				843FC3952164D1E3000CFEA9 /* SignUpPagePassword.swift in Sources */,

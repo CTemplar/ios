@@ -24,8 +24,8 @@ class MainViewController: UIViewController {
         
         configurePKHUD()
         
-        //showLoginViewController()
-        messagesList()
+        showLoginViewController()
+        //messagesList()
         //mailboxesList()
 
     }
@@ -47,7 +47,14 @@ class MainViewController: UIViewController {
     func showLoginViewController() {
         
         DispatchQueue.main.async {
-            let storyboard: UIStoryboard = UIStoryboard(name: k_LoginStoryboardName, bundle: nil)
+            
+            var storyboardName : String? = k_LoginStoryboardName
+            
+            if (Device.IS_IPAD) {
+                storyboardName = k_LoginStoryboardName_iPad
+            }
+            
+            let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: k_LoginViewControllerID) as! LoginViewController
             self.show(vc, sender: self)
         }

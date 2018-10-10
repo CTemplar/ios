@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 // view controllers ID
 
@@ -21,6 +22,9 @@ let k_SignUpPageEmailViewControllerID       = "SignUpPageEmailViewController"
 
 let k_LoginStoryboardName                  = "Login"
 let k_SignUpStoryboardName                 = "SignUp"
+
+let k_LoginStoryboardName_iPad             = "Login-iPad"
+
 
 // colors
 
