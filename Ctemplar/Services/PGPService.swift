@@ -42,9 +42,9 @@ class PGPService {
     
     //MARK: - Keys
     
-    func generateUserPGPKeys(userName: String) -> UserPGPKey {
+    func generateUserPGPKeys(userName: String, password: String) -> UserPGPKey {
         
-        let mainPgpKey = self.generatePGPKey(userName: userName)
+        let mainPgpKey = self.generatePGPKey(userName: userName, password: password)
         
         self.savePGPKey(pgpKey: mainPgpKey)
         
@@ -53,9 +53,9 @@ class PGPService {
         return userPGPKey
     }
     
-    func generatePGPKey(userName: String) -> Key {
+    func generatePGPKey(userName: String, password: String) -> Key {
         
-        let pgpKey = KeyGenerator().generate(for: userName, passphrase: nil)
+        let pgpKey = KeyGenerator().generate(for: userName, passphrase: password)
         // <PGPKey: 0x600002ae0800>, publicKey: DAF8551361A84672, secretKey: DAF8551361A84672
         //print("generate publicKey:", pgpKey)
         print("generate keyID:", pgpKey.publicKey?.keyID as Any)

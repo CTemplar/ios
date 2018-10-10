@@ -113,7 +113,7 @@ class APIService {
         print("password:", password)
         print("recoveryEmail:", recoveryEmail)
         
-        let userPGPKey = pgpService?.generateUserPGPKeys(userName: userName)
+        let userPGPKey = pgpService?.generateUserPGPKeys(userName: userName, password: password)
         
         if userPGPKey?.privateKey == nil {
             print("publicKey is nil")
