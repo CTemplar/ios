@@ -18,6 +18,17 @@ class LoginInteractor {
     
     func authenticateUser(userName: String, password: String) {
 
-        apiService?.authenticateUser(userName: userName, password: password, viewController: self.viewController!)
+        apiService?.authenticateUser(userName: userName, password: password) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("login success value:", value)
+                self.viewController?.dismiss(animated: true, completion: nil)
+            case .failure(let error):
+                print("login error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Login Error", message: error.localizedDescription, button: "Close")
+            }
+        }
     }
 }

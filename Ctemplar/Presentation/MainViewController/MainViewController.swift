@@ -21,8 +21,8 @@ class MainViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         configurePKHUD()
-        //showLoginViewController()
-        
+        showLoginViewController()
+        /*
         apiService = appDelegate.applicationManager.apiService
         apiService?.messagesList() {(result) in
             
@@ -42,7 +42,7 @@ class MainViewController: UIViewController {
                 print("error:", error)
                 AlertHelperKit().showAlert(self, title: "Messages Error", message: error.localizedDescription, button: "Close")
             }
-        }
+        }*/
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -52,7 +52,7 @@ class APIService {
     
     //MARK: - authentication
     
-    func authenticateUser(userName: String, password: String, viewController: UIViewController) {
+    func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         HUD.show(.progress)
         
@@ -64,16 +64,19 @@ class APIService {
                 
                 if let response = value as? Dictionary<String, Any> {
                     if let message = self.parseServerResponse(response:response) {
-                        AlertHelperKit().showAlert(viewController, title: "Error", message: message, button: "Close")
-                    } else { //temp
-                        viewController.dismiss(animated: true, completion: nil)
+                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                        completionHandler(APIResult.failure(error))
+                    } else {                       
+                        completionHandler(APIResult.success(""))
                     }
                 } else {
-                    AlertHelperKit().showAlert(viewController, title: "SignIn Error", message: "Responce have unknown format", button: "Close")
+                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                    completionHandler(APIResult.failure(error))
                 }
                 
             case .failure(let error):
-                AlertHelperKit().showAlert(viewController, title: "SignIn Error", message: error.localizedDescription, button: "Close")
+                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                completionHandler(APIResult.failure(error))
             }
             
             HUD.hide()
