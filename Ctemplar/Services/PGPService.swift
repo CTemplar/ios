@@ -40,11 +40,13 @@ class PGPService {
         }
         
         //print("encryptedData Array: \(Array(encryptedData))")
+        
+        let password : String = "test1234" //"admin1234"//"test1234" //temp
 
-        if let keys = getStoredPGPKey() {
+        if let keys = getStoredPGPKeys() {
             
             guard let decryptedData = try? ObjectivePGP.decrypt(encryptedData, andVerifySignature: true, using: keys, passphraseForKey: {(key) -> String? in
-                return "test1234"
+                return password
             }) else {return nil}
             
             return decryptedData
@@ -84,7 +86,7 @@ class PGPService {
     
     func generateArmoredPrivateKey(pgpKey: Key) -> String? {
         
-        guard let privateKey = try? pgpKey.export(keyType: .public) else {return nil}
+        guard let privateKey = try? pgpKey.export(keyType: .secret) else {return nil}
         let armoredPrivateKey = Armor.armored(privateKey, as: .secretKey)
         
         print("armoredPrivateKey:", armoredPrivateKey)
@@ -126,14 +128,25 @@ class PGPService {
         print("save PGP Key:", pgpKey)
     }
     
-    func getStoredPGPKey() -> [Key]? {
+    func getStoredPGPKeys() -> [Key]? {
         
         let keyRingFileUrl = getDocumentsDirectory().appendingPathComponent(k_keyringFileName)
         
-        let key = try! ObjectivePGP.readKeys(fromPath: keyRingFileUrl.path)
-        print("get stored PGP key:", key)
+        guard let keys = try? ObjectivePGP.readKeys(fromPath: keyRingFileUrl.path) else {return nil}
+        print("get stored PGP key:", keys)
         
-        return key
+        return keys
+    }
+    
+    func readPGPKeysFromString(key : String) -> [Key]? {
+        
+        guard let encryptedData = try? Armor.readArmored(key) else {return nil}
+        //print("read encryptedData", encryptedData)
+        
+        guard let keys = try? ObjectivePGP.readKeys(from: encryptedData) else {return nil}
+        print("read keys from string", keys)
+        
+        return keys
     }
     
     func getDocumentsDirectory() -> URL {

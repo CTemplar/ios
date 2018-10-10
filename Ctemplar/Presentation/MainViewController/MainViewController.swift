@@ -95,6 +95,9 @@ class MainViewController: UIViewController {
                     //print("result", result)
                     print("privateKey:", result.privateKey as Any)
                     print("publicKey:", result.publicKey as Any)
+                    
+                    self.getPGPKeyFromString(key: result.privateKey!)
+                    self.getPGPKeyFromString(key: result.publicKey!)
                 }
                 
             case .failure(let error):
@@ -112,8 +115,25 @@ class MainViewController: UIViewController {
             if let decodedData = pgpService.decrypt(encryptedData: contentData) {
                 let decryptedMessage = pgpService.decodeData(decryptedData: decodedData)
                 print("decryptedMessage:", decryptedMessage)
+            } else {
+                print("decrypting failed")
             }
         }
+    }
+    
+    func getPGPKeyFromString(key: String) {
+        
+        let pgpService = appDelegate.applicationManager.pgpService
+        
+        if let pgpKeys = pgpService.readPGPKeysFromString(key: key) {            
+            for pgpKey in pgpKeys {
+                pgpService.savePGPKey(pgpKey: pgpKey)
+            }
+        }
+        /*
+        if let storedKey = pgpService.getStoredPGPKey() {
+            print("stored key", storedKey)
+        }*/
     }
 }
 
