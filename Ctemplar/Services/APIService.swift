@@ -69,6 +69,10 @@ class APIService {
             return
         }
         
+        //==temp avoid login with hashed password problem
+        hashedPassword = password
+        //========================
+        
         HUD.show(.progress)
         
         restAPIService?.authenticateUser(userName: userName, password: hashedPassword!) {(result) in
@@ -133,9 +137,10 @@ class APIService {
             print("hashedPassword is short")
             return
         }
-        //newuser10 test1234
-        //generated salt: $2a$09$2NW4DFeSNny4eo8kk40bR.
-        //hashedPassword: $2a$09$2NW4DFeSNny4eo8kk40bR.wIefOclSt1iZkwHNOqcFfvMnKk.snGy
+
+        //==temp avoid login with hashed password problem
+        hashedPassword = password
+        //========================
         
         HUD.show(.progress)
         
