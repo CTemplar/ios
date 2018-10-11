@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="crL-9n-FIz">
-    <device id="ipad12_9" orientation="portrait">
+    <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -20,28 +20,28 @@
             <objects>
                 <viewController id="crL-9n-FIz" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oZW-9M-g09">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="O0N-Dr-qAE">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppTitle" translatesAutoresizingMaskIntoConstraints="NO" id="hrl-Km-QUt">
-                                <rect key="frame" x="407" y="731" width="210" height="28"/>
+                                <rect key="frame" x="279" y="560" width="210" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="6Yg-Dm-zRg"/>
                                     <constraint firstAttribute="width" secondItem="hrl-Km-QUt" secondAttribute="height" multiplier="210:28" id="qAX-xj-QmJ"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="f5f-x2-VPN">
-                                <rect key="frame" x="409" y="471" width="206" height="204"/>
+                                <rect key="frame" x="281" y="300" width="206" height="204"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="204" id="Nkx-KB-RdG"/>
                                     <constraint firstAttribute="width" secondItem="f5f-x2-VPN" secondAttribute="height" multiplier="206:204" id="so4-xI-IF1"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="dTk-39-QA6">
-                                <rect key="frame" x="452.5" y="1277" width="119" height="24"/>
+                                <rect key="frame" x="324.5" y="935" width="119" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dTk-39-QA6" secondAttribute="height" multiplier="119:24" id="UPq-Dc-b7R"/>
                                     <constraint firstAttribute="width" constant="119" id="wQx-Ql-068"/>
