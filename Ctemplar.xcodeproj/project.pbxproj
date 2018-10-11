@@ -241,11 +241,11 @@
 			isa = PBXGroup;
 			children = (
 				84356858216F2736002101D3 /* InboxNavigationController.swift */,
+				8435685C216F2DB3002101D3 /* InboxViewController.swift */,
 				84356860216F2DE3002101D3 /* InboxConfigurator.swift */,
 				84356862216F2DFE002101D3 /* InboxRouter.swift */,
 				84356864216F2E0D002101D3 /* InboxPresenter.swift */,
 				84356866216F2E20002101D3 /* InboxInteractor.swift */,
-				8435685C216F2DB3002101D3 /* InboxViewController.swift */,
 				8435685E216F2DCD002101D3 /* InboxDataSource.swift */,
 				8435685A216F2748002101D3 /* Inbox.storyboard */,
 			);
