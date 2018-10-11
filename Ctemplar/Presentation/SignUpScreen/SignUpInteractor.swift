@@ -36,4 +36,21 @@ class SignUpInteractor {
             }
         }
     }
+    
+    func checkUser(userName: String, childViewController: UIViewController) {
+        
+        apiService?.checkUser(userName: userName) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("checkUser success value:", value)
+                self.presenter?.showNextViewController(childViewController: childViewController)
+                
+            case .failure(let error):
+                print("checkUser error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "User Name Error", message: error.localizedDescription, button: "Close")
+            }
+        }
+    }
 }

@@ -17,6 +17,7 @@ class RestAPIService {
         case signUp = "auth/sign-up/"
         case messages = "emails/messages/"
         case mailboxes = "emails/mailboxes/"
+        case checkUsername = "auth/check-username/"
     }
     
     enum JSONKey: String {
@@ -58,6 +59,34 @@ class RestAPIService {
             switch(response.result) {
             case .success(let value):
                 completionHandler(APIResult.success(value))                
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func checkUser(name: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.userName.rawValue: name
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.checkUsername.rawValue
+        
+        print("checkUser parameters:", parameters)
+        print("checkUser url:", url)
+        
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("checkUser responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
             case .failure(let error):
                 completionHandler(APIResult.failure(error))
             }

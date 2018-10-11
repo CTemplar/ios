@@ -31,7 +31,8 @@ class SignUpPageNameViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func nextButtonPressed(_ sender: AnyObject) {
         
-         parentSignUpPageViewController?.presenter?.nextViewController(childViewController: self)
+         //parentSignUpPageViewController?.presenter?.nextViewController(childViewController: self)
+        parentSignUpPageViewController?.presenter?.pressedNextButton(childViewController: self)
     }
     
     @IBAction func backButtonPressed(_ sender: AnyObject) {

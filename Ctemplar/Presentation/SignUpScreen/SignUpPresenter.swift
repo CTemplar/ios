@@ -187,7 +187,7 @@ class SignUpPresenter {
         setupRecoveryEmailTextFieldAndHintLabel(childViewController: childViewController)
     }
 
-    func nextViewController(childViewController: UIViewController) {
+    func showNextViewController(childViewController: UIViewController) {
         
        // guard let nextViewController = self.viewController?.dataSource?.pageViewController(self.viewController!, viewControllerAfter: childViewController ) else { return }
         
@@ -213,7 +213,7 @@ class SignUpPresenter {
                                                 completion: nil)
     }
     
-    func previousViewController(childViewController: UIViewController) {
+    func showPreviousViewController(childViewController: UIViewController) {
         
        // guard let previousViewController = self.viewController?.dataSource?.pageViewController(self.viewController!, viewControllerBefore: childViewController ) else { return }
         
@@ -244,5 +244,12 @@ class SignUpPresenter {
         self.interactor?.signUpUser(userName: (self.viewController?.userName)!, password: (self.viewController?.password)!, recoveryEmail: (self.viewController?.recoveryEmail)!)
         
         //self.interactor?.signUpUser(userName: "test", password: "test123", recoveryEmail: "test@test.com")
+    }
+    
+    func pressedNextButton(childViewController: UIViewController) {
+        
+        if let userName = self.viewController?.userName {
+            self.interactor?.checkUser(userName: userName, childViewController: childViewController)
+        }
     }
 }

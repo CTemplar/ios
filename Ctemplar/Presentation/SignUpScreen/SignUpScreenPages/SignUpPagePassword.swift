@@ -40,12 +40,12 @@ class SignUpPagePasswordViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func nextButtonPressed(_ sender: AnyObject) {
         
-        parentSignUpPageViewController?.presenter?.nextViewController(childViewController: self)
+        parentSignUpPageViewController?.presenter?.showNextViewController(childViewController: self)
     }
     
     @IBAction func backButtonPressed(_ sender: AnyObject) {
         
-        parentSignUpPageViewController?.presenter?.previousViewController(childViewController: self)
+        parentSignUpPageViewController?.presenter?.showPreviousViewController(childViewController: self)
     }
     
     @IBAction func choosePasswordEyeButtonPressed(_ sender: AnyObject) {
