@@ -39,7 +39,7 @@ class SignUpPageEmailViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func backButtonPressed(_ sender: AnyObject) {
         
-        parentSignUpPageViewController?.presenter?.previousViewController(childViewController: self)
+        parentSignUpPageViewController?.presenter?.showPreviousViewController(childViewController: self)
     }
     
     @IBAction func checkBoxButtonPressed(_ sender: AnyObject) {

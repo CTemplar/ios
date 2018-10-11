@@ -27,6 +27,7 @@ enum APIResponse: String {
     case nonFieldError    = "non_field_errors"
     case recaptchaError   = "recaptcha"
     case fingerprintError = "fingerprint"
+    case userExists        = "exists"
     
     //email messages
     case pageConut        = "page_count"
@@ -90,6 +91,38 @@ class APIService {
                         let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
                         completionHandler(APIResult.failure(error))
                     } else {                       
+                        completionHandler(APIResult.success("success"))
+                    }
+                } else {
+                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                    completionHandler(APIResult.failure(error))
+                }
+                
+            case .failure(let error):
+                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                completionHandler(APIResult.failure(error))
+            }
+            
+            HUD.hide()
+        }
+    }
+    
+    func checkUser(userName: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        HUD.show(.progress)
+        
+        restAPIService?.checkUser(name: userName) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                
+                if let response = value as? Dictionary<String, Any> {
+                    print("checkUser response", response)
+                    if let message = self.parseServerResponse(response:response) {
+                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                        completionHandler(APIResult.failure(error))
+                    } else {
                         completionHandler(APIResult.success("success"))
                     }
                 } else {
@@ -285,6 +318,8 @@ class APIService {
             case APIResponse.token.rawValue :
                 if let token = dictionary.value as? String {
                     saveToken(token: token)
+                } else {
+                    message = "Unknown Error"
                 }
                 break
             case APIResponse.usernameError.rawValue :
@@ -299,6 +334,15 @@ class APIService {
                 break
             case APIResponse.nonFieldError.rawValue :
                 message = extractErrorTextFrom(value: dictionary.value)
+                break
+            case APIResponse.userExists.rawValue :
+                if let userExists = dictionary.value as? Int {
+                    if userExists == 1 {
+                        message = "This name already exists!"
+                    }
+                } else {
+                    message = "Unknown Error"
+                }
                 break
             case APIResponse.pageConut.rawValue :
                 //do nothing
