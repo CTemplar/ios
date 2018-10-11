@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Inbox-->
         <scene sceneID="zej-22-fgI">
@@ -54,20 +59,68 @@
                                     <constraint firstAttribute="height" constant="83" id="VH6-R0-X7R"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Kev-ma-6ds">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eDd-Iw-BQd">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyInboxIcon" translatesAutoresizingMaskIntoConstraints="NO" id="sCN-au-kGO">
+                                        <rect key="frame" x="137.5" y="220" width="100" height="74"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="74" id="ZjH-nZ-Nze"/>
+                                            <constraint firstAttribute="width" secondItem="sCN-au-kGO" secondAttribute="height" multiplier="50:37" id="rC5-jE-eFo"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have no Inbox messages" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="aXO-qW-NOt">
+                                        <rect key="frame" x="87.5" y="339" width="200" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="por-Ew-ivU"/>
+                                            <constraint firstAttribute="width" secondItem="aXO-qW-NOt" secondAttribute="height" multiplier="100:9" id="rnD-gF-6bD"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="sCN-au-kGO" firstAttribute="top" secondItem="eDd-Iw-BQd" secondAttribute="centerY" constant="-57" id="D46-GG-o5O"/>
+                                    <constraint firstItem="sCN-au-kGO" firstAttribute="centerX" secondItem="eDd-Iw-BQd" secondAttribute="centerX" id="DB8-B7-hNM"/>
+                                    <constraint firstItem="aXO-qW-NOt" firstAttribute="centerX" secondItem="eDd-Iw-BQd" secondAttribute="centerX" id="IIf-ZH-6O6"/>
+                                    <constraint firstItem="aXO-qW-NOt" firstAttribute="top" secondItem="sCN-au-kGO" secondAttribute="bottom" constant="45" id="yEz-nZ-vcQ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="eDd-Iw-BQd" firstAttribute="trailing" secondItem="Smu-NJ-VbE" secondAttribute="trailing" id="5Ik-ri-dRL"/>
                             <constraint firstItem="OxM-zC-5gC" firstAttribute="trailing" secondItem="Smu-NJ-VbE" secondAttribute="trailing" id="6RI-N4-Ecu"/>
+                            <constraint firstItem="Kev-ma-6ds" firstAttribute="trailing" secondItem="Smu-NJ-VbE" secondAttribute="trailing" id="D3H-fW-SML"/>
+                            <constraint firstItem="eDd-Iw-BQd" firstAttribute="top" secondItem="Smu-NJ-VbE" secondAttribute="top" id="J1g-sz-jT0"/>
+                            <constraint firstItem="Kev-ma-6ds" firstAttribute="top" secondItem="Smu-NJ-VbE" secondAttribute="top" id="bm4-gg-FF8"/>
                             <constraint firstItem="OxM-zC-5gC" firstAttribute="leading" secondItem="Smu-NJ-VbE" secondAttribute="leading" id="d9P-uS-nPd"/>
+                            <constraint firstItem="OxM-zC-5gC" firstAttribute="top" secondItem="Kev-ma-6ds" secondAttribute="bottom" id="dCx-w2-OEL"/>
+                            <constraint firstItem="eDd-Iw-BQd" firstAttribute="leading" secondItem="Smu-NJ-VbE" secondAttribute="leading" id="duI-VU-Efl"/>
                             <constraint firstItem="OxM-zC-5gC" firstAttribute="bottom" secondItem="Smu-NJ-VbE" secondAttribute="bottom" constant="34" id="noj-LC-XAW"/>
+                            <constraint firstItem="OxM-zC-5gC" firstAttribute="top" secondItem="eDd-Iw-BQd" secondAttribute="bottom" id="rLd-ke-oRd"/>
+                            <constraint firstItem="Kev-ma-6ds" firstAttribute="leading" secondItem="Smu-NJ-VbE" secondAttribute="leading" id="w6S-rj-daK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Smu-NJ-VbE"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Inbox" id="Ec2-qa-iIZ"/>
+                    <navigationItem key="navigationItem" title="Inbox" id="Ec2-qa-iIZ">
+                        <barButtonItem key="leftBarButtonItem" image="MenuButton" id="R5E-6J-cXY">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="SearchButton" id="xtH-pi-9Ib">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qxW-YN-NUB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-162.40000000000001" y="202.46305418719211"/>
+            <point key="canvasLocation" x="-162.40000000000001" y="201.94902548725639"/>
         </scene>
         <!--Inbox Navigation Controller-->
         <scene sceneID="pjb-dd-LEv">
@@ -86,4 +139,9 @@
             <point key="canvasLocation" x="-1037" y="203"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="EmptyInboxIcon" width="50" height="37"/>
+        <image name="MenuButton" width="20" height="14"/>
+        <image name="SearchButton" width="22" height="30"/>
+    </resources>
 </document>
