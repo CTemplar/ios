@@ -27,7 +27,8 @@ enum APIResponse: String {
     case nonFieldError    = "non_field_errors"
     case recaptchaError   = "recaptcha"
     case fingerprintError = "fingerprint"
-    case userExists        = "exists"
+    case userExists       = "exists"
+    case tokenExpired     = "details"
     
     //email messages
     case pageConut        = "page_count"
@@ -322,6 +323,10 @@ class APIService {
                     message = "Unknown Error"
                 }
                 break
+            case APIResponse.tokenExpired.rawValue :
+                print("tokenExpired APIResponce key:", dictionary.key, "value:", dictionary.value)
+                self.showLoginViewController()
+                break
             case APIResponse.usernameError.rawValue :
                 if let errorMessage = extractErrorTextFrom(value: dictionary.value) {
                     message = "Username field.\n" + errorMessage
@@ -377,5 +382,22 @@ class APIService {
         }
         
         return ""
+    }
+    
+    func showLoginViewController() {
+        
+        if let topController = UIApplication.topViewController() {
+            
+            var storyboardName : String? = k_LoginStoryboardName
+            
+            if (Device.IS_IPAD) {
+                storyboardName = k_LoginStoryboardName_iPad
+            }
+            
+            let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: k_LoginViewControllerID) as! LoginViewController
+            ///topController.show(vc, sender: self)
+            topController.present(vc, animated: true, completion: nil)
+        }
     }
 }
