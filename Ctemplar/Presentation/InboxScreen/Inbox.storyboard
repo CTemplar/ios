@@ -256,6 +256,9 @@
                             <color key="tintColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="0.86550946299999998" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="inboxTableView" destination="Kev-ma-6ds" id="ZVw-5J-3DK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qxW-YN-NUB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

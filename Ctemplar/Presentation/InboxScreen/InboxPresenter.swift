@@ -7,3 +7,12 @@
 //
 
 import Foundation
+import AlertHelperKit
+import PKHUD
+
+class InboxPresenter {
+    
+    var viewController   : InboxViewController?
+    var interactor       : InboxInteractor?
+    
+}

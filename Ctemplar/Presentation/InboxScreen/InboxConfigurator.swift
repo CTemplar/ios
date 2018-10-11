@@ -7,3 +7,31 @@
 //
 
 import Foundation
+import UIKit
+
+class InboxConfigurator {
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    func configure(viewController : InboxViewController) {
+        
+        let router = InboxRouter()
+        router.viewController = viewController
+        
+        let presenter = InboxPresenter()
+        presenter.viewController = viewController
+        
+        let interactor = InboxInteractor()
+        interactor.presenter = presenter
+        interactor.viewController = viewController
+        interactor.apiService = appDelegate.applicationManager.apiService
+        
+        presenter.interactor = interactor
+        
+        viewController.presenter = presenter
+        viewController.router = router
+        
+        let dataSource = InboxDataSource()
+        viewController.dataSource = dataSource
+    }
+}

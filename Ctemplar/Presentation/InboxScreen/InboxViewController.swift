@@ -11,8 +11,21 @@ import UIKit
 
 class InboxViewController: UIViewController {
     
+    var presenter   : InboxPresenter?
+    var router      : InboxRouter?
+    var dataSource  : InboxDataSource?
+    
+    var messagedList: Array<Any> = []
+    
+    @IBOutlet var inboxTableView        : UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let configurator = InboxConfigurator()
+        configurator.configure(viewController: self)
+        
+        dataSource?.initWith(parent: self, tableView: inboxTableView, array: messagedList)
         
     }    
 }

@@ -7,3 +7,12 @@
 //
 
 import Foundation
+import AlertHelperKit
+
+class InboxInteractor {
+    
+    var viewController  : InboxViewController?
+    var presenter       : InboxPresenter?
+    var apiService      : APIService?
+
+}

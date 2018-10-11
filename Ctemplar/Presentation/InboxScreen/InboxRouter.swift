@@ -7,3 +7,10 @@
 //
 
 import Foundation
+import UIKit
+
+class InboxRouter {
+    
+    var viewController: InboxViewController?
+
+}
