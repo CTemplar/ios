@@ -15,13 +15,17 @@ class InboxInteractor {
     var presenter       : InboxPresenter?
     var apiService      : APIService?
 
-    func setInboxData(array: Array<EmailMessage>) {
+    func setInboxData(messages: EmailMessagesList) {
         
-        self.viewController?.messagesList = array
-        self.viewController?.dataSource?.messagesArray = array
-        self.viewController?.dataSource?.tableView.reloadData()//temp
+        if let emailsArray = messages.messagesList {
+            //self.viewController?.messagesList = emailsArray
+            self.viewController?.dataSource?.messagesArray = emailsArray
+            self.viewController?.dataSource?.reloadData()
+        }
         
-        self.viewController?.setupUI()
+        if let totalEmailsCount = messages.totalCount {
+            self.presenter?.setupUI(emailsCount: totalEmailsCount, unreadEmails: 0)
+        }
     }
     
     func messagesList() {
@@ -33,6 +37,9 @@ class InboxInteractor {
             case .success(let value):
                 //print("value:", value)
                 
+                let emailMessages = value as! EmailMessagesList
+                self.setInboxData(messages: emailMessages)
+                /*
                 var messagesArray : Array<EmailMessage> = []
                 
                 let emailMessages = value as! EmailMessagesList
@@ -43,7 +50,7 @@ class InboxInteractor {
                 }
                 
                 self.setInboxData(array: messagesArray)
-                
+                */
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "Close")

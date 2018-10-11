@@ -43,35 +43,9 @@ class InboxViewController: UIViewController {
         
         presenter?.loadMessages()
         
-        setupUI()
+        presenter?.setupUI(emailsCount: 0, unreadEmails: 0)
     }
-    
-    func setupUI() {
-        
-        if messagesList.count > 0 {
-            emptyInbox.isHidden = true
-            advancedToolBar.isHidden = false
-        } else {
-            emptyInbox.isHidden = false
-            advancedToolBar.isHidden = true
-        }
-        
-        var composeImage: UIImage?
-        
-        
-        if Device.IS_IPHONE_X_OR_ABOVE {
-            grayBorder.isHidden = true
-            composeImage = UIImage.init(named: k_composeRedImageName)
-            rightComposeButton.backgroundColor = UIColor.white
-        } else {
-            grayBorder.isHidden = false
-            composeImage = UIImage.init(named: k_composeImageName)
-            rightComposeButton.backgroundColor = k_redColor
-        }
-        
-        rightComposeButton.setImage(composeImage, for: .normal)
-    }
-    
+       
     //MARK: - IBActions
     
     @IBAction func menuButtonPressed(_ sender: AnyObject) {
