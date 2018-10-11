@@ -45,6 +45,9 @@ let k_signUpPageNameKeyboardHeight  = 128.0
 let k_checkBoxUncheckedImageName    = "roundDark"
 let k_checkBoxSelectedImageName     = "checkedBoxDark"
 
+let k_composeImageName              = "ComposeButton"
+let k_composeRedImageName           = "ComposeRedButton"
+
 // other
 let k_numberOfRounds               = 29
 

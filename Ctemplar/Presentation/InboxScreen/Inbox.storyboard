@@ -33,10 +33,6 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="VfR-xx-wVB" id="a9C-5H-wTp"/>
-                            <outlet property="delegate" destination="VfR-xx-wVB" id="ifC-qD-FHu"/>
-                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Inbox" id="bn7-NE-ElE"/>
                 </tableViewController>
@@ -55,6 +51,16 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Kev-ma-6ds">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellIdentifier" id="fdg-6n-Iwn">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fdg-6n-Iwn" id="ELO-QA-UqO">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="0.0"/>
@@ -119,6 +125,9 @@
                                         <state key="normal" title="Compose" image="ComposeButton">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="composeButtonPressed:" destination="NhN-bs-dS3" eventType="touchUpInside" id="OEf-bC-JqO"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ls5-Br-YTX">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
@@ -141,6 +150,9 @@
                                                         <color key="value" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="filterButtonPressed:" destination="NhN-bs-dS3" eventType="touchUpInside" id="ubM-5c-rHv"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PWU-yj-LpB">
                                                 <rect key="frame" x="50" y="0.0" width="1" height="49"/>
@@ -181,6 +193,9 @@
                                                         <real key="value" value="0.0"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="composeButtonPressed:" destination="NhN-bs-dS3" eventType="touchUpInside" id="bg7-pT-pYK"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -251,13 +266,26 @@
                     <navigationItem key="navigationItem" title="Inbox" id="Ec2-qa-iIZ">
                         <barButtonItem key="leftBarButtonItem" image="MenuButton" id="R5E-6J-cXY">
                             <color key="tintColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="0.86550946299999998" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="menuButtonPressed:" destination="NhN-bs-dS3" id="m9w-nf-lBl"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="SearchButton" id="xtH-pi-9Ib">
                             <color key="tintColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="0.86550946299999998" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="searchButtonPressed:" destination="NhN-bs-dS3" id="XYC-yn-ru8"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="advancedToolBar" destination="ls5-Br-YTX" id="Z4K-XN-Hgj"/>
+                        <outlet property="baseToolBar" destination="OxM-zC-5gC" id="4gF-Tv-dWI"/>
+                        <outlet property="emptyInbox" destination="eDd-Iw-BQd" id="eF2-hW-EuV"/>
+                        <outlet property="grayBorder" destination="PWU-yj-LpB" id="C0t-d0-w5p"/>
                         <outlet property="inboxTableView" destination="Kev-ma-6ds" id="ZVw-5J-3DK"/>
+                        <outlet property="messagesLabel" destination="hVo-vt-x7f" id="hqb-QV-S6i"/>
+                        <outlet property="rightComposeButton" destination="qKu-C8-Tfv" id="3hJ-uy-AGO"/>
+                        <outlet property="unreadMessagesLabel" destination="hcY-8h-Jxh" id="mT1-e9-wfc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qxW-YN-NUB" userLabel="First Responder" sceneMemberID="firstResponder"/>
