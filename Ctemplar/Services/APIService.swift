@@ -239,8 +239,8 @@ class APIService {
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
                             completionHandler(APIResult.failure(error))
                         } else {
-                            let emailMessage = EmailMessage(dictionary: response)
-                            completionHandler(APIResult.success(emailMessage))
+                            let emailMessages = EmailMessagesList(dictionary: response)
+                            completionHandler(APIResult.success(emailMessages))
                         }
                     } else {
                         let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])

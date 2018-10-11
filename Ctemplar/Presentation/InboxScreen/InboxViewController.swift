@@ -15,7 +15,7 @@ class InboxViewController: UIViewController {
     var router      : InboxRouter?
     var dataSource  : InboxDataSource?
     
-    var messagesList: Array<EmailMessageResult> = []
+    var messagesList: Array<EmailMessage> = []
     
     @IBOutlet var inboxTableView        : UITableView!
     

@@ -11,11 +11,11 @@ import UIKit
 
 class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
-    var messagesArray           : Array<EmailMessageResult> = []
+    var messagesArray           : Array<EmailMessage> = []
     var tableView               : UITableView!
     var parentViewController    : InboxViewController!
     
-    func initWith(parent: InboxViewController, tableView: UITableView, array: Array<EmailMessageResult>) {
+    func initWith(parent: InboxViewController, tableView: UITableView, array: Array<EmailMessage>) {
         
         self.parentViewController = parent
         self.tableView = tableView

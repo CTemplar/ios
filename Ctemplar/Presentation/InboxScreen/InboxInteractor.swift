@@ -15,7 +15,7 @@ class InboxInteractor {
     var presenter       : InboxPresenter?
     var apiService      : APIService?
 
-    func setInboxData(array: Array<EmailMessageResult>) {
+    func setInboxData(array: Array<EmailMessage>) {
         
         self.viewController?.messagesList = array
         self.viewController?.dataSource?.messagesArray = array
@@ -33,11 +33,11 @@ class InboxInteractor {
             case .success(let value):
                 //print("value:", value)
                 
-                var messagesArray : Array<EmailMessageResult> = []
+                var messagesArray : Array<EmailMessage> = []
                 
-                let emailMessage = value as! EmailMessage
+                let emailMessages = value as! EmailMessagesList
                 
-                for result in emailMessage.messageResultsList! {
+                for result in emailMessages.messagesList! {
                     //print("result", result)
                     messagesArray.append(result)
                 }

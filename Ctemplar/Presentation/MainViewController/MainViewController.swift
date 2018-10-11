@@ -80,9 +80,9 @@ class MainViewController: UIViewController {
             case .success(let value):
                 //print("value:", value)
                 
-                let emailMessage = value as! EmailMessage
+                let emailMessages = value as! EmailMessagesList
                 
-                for result in emailMessage.messageResultsList! {
+                for result in emailMessages.messagesList! {
                     //print("result", result)
                     
                     if let content = result.content {
