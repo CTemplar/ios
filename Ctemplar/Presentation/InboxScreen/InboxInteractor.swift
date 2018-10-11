@@ -17,15 +17,35 @@ class InboxInteractor {
 
     func setInboxData(messages: EmailMessagesList) {
         
+        var readEmails = 0
+        
         if let emailsArray = messages.messagesList {
             //self.viewController?.messagesList = emailsArray
             self.viewController?.dataSource?.messagesArray = emailsArray
             self.viewController?.dataSource?.reloadData()
+            readEmails = calculateReadEmails(array: emailsArray)
         }
         
         if let totalEmailsCount = messages.totalCount {
-            self.presenter?.setupUI(emailsCount: totalEmailsCount, unreadEmails: 0)
+            var unreadEmails = 0
+            unreadEmails = totalEmailsCount - readEmails
+            self.presenter?.setupUI(emailsCount: totalEmailsCount, unreadEmails: unreadEmails)
         }
+    }
+    
+    func calculateReadEmails(array: Array<EmailMessage>) -> Int {
+        
+        var readEmails = 0
+        
+        for email in array {
+            if let read = email.read {
+                if read == true {
+                    readEmails = readEmails + 1
+                }
+            }
+        }
+        
+        return readEmails
     }
     
     func messagesList() {

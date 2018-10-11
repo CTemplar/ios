@@ -27,7 +27,7 @@ struct EmailMessage {
     var isProtected : String? = nil
     var mailbox : String? = nil
     var parent : String? = nil
-    var read : String? = nil
+    var read : Bool? = nil
     var receiver : Array<Any>? = nil
     var send : String? = nil
     var sender : String? = nil
@@ -59,7 +59,7 @@ struct EmailMessage {
         self.isProtected = dictionary["is_protected"] as? String
         self.mailbox = dictionary["mailbox"] as? String        
         self.parent = dictionary["parent"] as? String
-        self.read = dictionary["read"] as? String
+        self.read = dictionary["read"] as? Bool
         self.receiver = dictionary["receiver"] as? Array<Any>
         self.send = dictionary["send"] as? String
         self.sender = dictionary["sender"] as? String
