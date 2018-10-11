@@ -15,7 +15,7 @@ class InboxViewController: UIViewController {
     var router      : InboxRouter?
     var dataSource  : InboxDataSource?
     
-    var messagedList: Array<Any> = []
+    var messagesList: Array<EmailMessageResult> = []
     
     @IBOutlet var inboxTableView        : UITableView!
     
@@ -39,14 +39,16 @@ class InboxViewController: UIViewController {
         let configurator = InboxConfigurator()
         configurator.configure(viewController: self)
         
-        dataSource?.initWith(parent: self, tableView: inboxTableView, array: messagedList)
+        dataSource?.initWith(parent: self, tableView: inboxTableView, array: messagesList)
+        
+        presenter?.loadMessages()
         
         setupUI()
     }
     
     func setupUI() {
         
-        if messagedList.count > 0 {
+        if messagesList.count > 0 {
             emptyInbox.isHidden = true
             advancedToolBar.isHidden = false
         } else {

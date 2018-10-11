@@ -222,7 +222,7 @@ class APIService {
         
         if let token = getToken() {
             
-            //HUD.show(.progress)
+            HUD.show(.progress)
             
             restAPIService?.messagesList(token: token) {(result) in
                 

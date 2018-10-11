@@ -15,4 +15,8 @@ class InboxPresenter {
     var viewController   : InboxViewController?
     var interactor       : InboxInteractor?
     
+    func loadMessages() {
+        
+        self.interactor?.messagesList()
+    }
 }
