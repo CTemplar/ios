@@ -16,12 +16,15 @@ let k_SignUpPageViewControllerID            = "SignUpPageViewController"
 let k_SignUpPageNameViewControllerID        = "SignUpPageNameViewController"
 let k_SignUpPagePasswordViewControllerID    = "SignUpPagePasswordViewController"
 let k_SignUpPageEmailViewControllerID       = "SignUpPageEmailViewController"
-
+let k_InboxNavigationControllerID           = "InboxNavigationController"
 
 // view controllers storyboards name
 
 let k_LoginStoryboardName                  = "Login"
 let k_SignUpStoryboardName                 = "SignUp"
+let k_InboxStoryboardName                  = "Inbox"
+
+// view controllers iPad storyboards name
 
 let k_LoginStoryboardName_iPad             = "Login-iPad"
 

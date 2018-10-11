@@ -24,7 +24,8 @@ class MainViewController: UIViewController {
         
         configurePKHUD()
         
-        showLoginViewController()
+        //showLoginViewController()
+        showInboxNavigationController()
         //messagesList()
         //mailboxesList()
 
@@ -56,6 +57,16 @@ class MainViewController: UIViewController {
             
             let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: k_LoginViewControllerID) as! LoginViewController
+            self.show(vc, sender: self)
+        }
+    }
+    
+    func showInboxNavigationController() {
+        
+        DispatchQueue.main.async {
+            
+            let storyboard: UIStoryboard = UIStoryboard(name: k_InboxStoryboardName, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: k_InboxNavigationControllerID) as! InboxNavigationController
             self.show(vc, sender: self)
         }
     }
