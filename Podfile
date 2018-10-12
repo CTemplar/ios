@@ -12,6 +12,7 @@ target 'Ctemplar' do
 	pod 'AlertHelperKit', :git => 'https://github.com/keygx/AlertHelperKit'
 	pod 'KeychainSwift'
 	pod "BCryptSwift"
+	pod 'SideMenu', '~> 4.0.0'
     
     post_install do |installer|
         installer.pods_project.targets.each do |target|

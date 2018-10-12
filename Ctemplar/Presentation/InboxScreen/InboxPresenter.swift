@@ -9,16 +9,21 @@
 import Foundation
 import AlertHelperKit
 import PKHUD
+import SideMenu
 
 class InboxPresenter {
     
     var viewController   : InboxViewController?
     var interactor       : InboxInteractor?
     
+    //MARK: - API Requests
+    
     func loadMessages() {
         
         self.interactor?.messagesList()
     }
+    
+    //MARK: - setup UI
     
     func setupUI(emailsCount: Int, unreadEmails: Int) {
         
@@ -47,6 +52,26 @@ class InboxPresenter {
         
         viewController?.rightComposeButton.setImage(composeImage, for: .normal)
     }
+    
+    //MARK: - Side Menu
+    
+    func initAndSetupInboxSideMenuController() {
+        
+        let vc : InboxSideMenuController = InboxSideMenuController()
+        
+        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: vc)
+        
+        SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
+        SideMenuManager.default.menuFadeStatusBar = false
+        SideMenuManager.default.menuAnimationFadeStrength = 0.5
+        SideMenuManager.default.menuAnimationBackgroundColor = k_sideMenuFadeColor
+        
+        SideMenuManager.default.menuPresentMode = .viewSlideInOut
+        let frame = self.viewController?.view.frame
+        SideMenuManager.default.menuWidth = max(round(min((frame!.width), (frame!.height)) * 0.67), 240)
+    }
+        
+    //MARK: - formatting
     
     func formatEmailsCountText(emailsCount: Int) -> String {
         

@@ -39,6 +39,8 @@ class InboxViewController: UIViewController {
         let configurator = InboxConfigurator()
         configurator.configure(viewController: self)
         
+        presenter?.initAndSetupInboxSideMenuController()
+        
         dataSource?.initWith(parent: self, tableView: inboxTableView, array: messagesList)
         
         presenter?.setupUI(emailsCount: 0, unreadEmails: 0)
@@ -54,6 +56,7 @@ class InboxViewController: UIViewController {
     
     @IBAction func menuButtonPressed(_ sender: AnyObject) {
   
+        router?.showInboxSideMenu()
     }
     
     @IBAction func searchButtonPressed(_ sender: AnyObject) {

@@ -5,6 +5,7 @@ PODS:
   - KeychainSwift (12.0.0)
   - ObjectivePGP (0.12.2)
   - PKHUD (5.1.0)
+  - SideMenu (4.0.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - KeychainSwift
   - ObjectivePGP
   - PKHUD (~> 5.0)
+  - SideMenu (~> 4.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -21,6 +23,7 @@ SPEC REPOS:
     - KeychainSwift
     - ObjectivePGP
     - PKHUD
+    - SideMenu
 
 EXTERNAL SOURCES:
   AlertHelperKit:
@@ -38,7 +41,8 @@ SPEC CHECKSUMS:
   KeychainSwift: d5e776578587ee5958ce36601df22f168f65138a
   ObjectivePGP: 9b8112c8d1be0fa4af1117d81f35a9df99303858
   PKHUD: 62ea46a1e88c4def1da784878d199bb54c841e3c
+  SideMenu: 70ee5657df63ec3382660ec4ef470bf1cf5db07d
 
-PODFILE CHECKSUM: ae1d82e217eb9a70310a812450c9e7d289fdf830
+PODFILE CHECKSUM: 8331427b8ce09c468fd81c3c608281f0b9545ed5
 
 COCOAPODS: 1.5.3

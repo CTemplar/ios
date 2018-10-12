@@ -8,9 +8,14 @@
 
 import Foundation
 import UIKit
+import SideMenu
 
 class InboxRouter {
     
     var viewController: InboxViewController?
-
+    
+    func showInboxSideMenu() {
+        
+        viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+    }
 }
