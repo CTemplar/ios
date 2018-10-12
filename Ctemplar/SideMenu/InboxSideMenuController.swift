@@ -16,7 +16,10 @@ class InboxSideMenuController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.view.backgroundColor = k_sideMenuColor
+        //let dollarSign = "\u{24}"        // $,  Unicode scalar U+0024
+        //U+25BD white triangle and  U+25B3  // \u{25BD}
+        
+        //self.view.backgroundColor = k_sideMenuColor
         
         self.navigationController?.navigationBar.isHidden = true
         
