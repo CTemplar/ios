@@ -57,6 +57,7 @@
 		845E643E2170A46C008612FE /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E643D2170A46C008612FE /* ComposeViewController.swift */; };
 		845E64402170A4A2008612FE /* Compose.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845E643F2170A4A2008612FE /* Compose.storyboard */; };
 		845E64432170BD21008612FE /* AboutAs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845E64422170BD21008612FE /* AboutAs.storyboard */; };
+		845E64462170C5A4008612FE /* AboutAsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E64452170C5A4008612FE /* AboutAsViewController.swift */; };
 		8895AB178CEFEFB8A9DCD62B /* Pods_Ctemplar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B8DB58A9BFE099948CF3E1 /* Pods_Ctemplar.framework */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +118,7 @@
 		845E643F2170A4A2008612FE /* Compose.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Compose.storyboard; sourceTree = "<group>"; };
 		845E64422170BD21008612FE /* AboutAs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutAs.storyboard; sourceTree = "<group>"; };
 		845E64442170BF8F008612FE /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
+		845E64452170C5A4008612FE /* AboutAsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAsViewController.swift; sourceTree = "<group>"; };
 		8C75257603640BC3576C9BB5 /* Pods-Ctemplar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ctemplar/Pods-Ctemplar.debug.xcconfig"; sourceTree = "<group>"; };
 		A9B8DB58A9BFE099948CF3E1 /* Pods_Ctemplar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6F0F7014DAB1A09E4C0F5D2 /* Pods-Ctemplar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ctemplar/Pods-Ctemplar.release.xcconfig"; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 		845E64412170BD08008612FE /* AboutAsScreen */ = {
 			isa = PBXGroup;
 			children = (
+				845E64452170C5A4008612FE /* AboutAsViewController.swift */,
 				845E64422170BD21008612FE /* AboutAs.storyboard */,
 			);
 			path = AboutAsScreen;
@@ -557,6 +560,7 @@
 				84356859216F2736002101D3 /* InboxNavigationController.swift in Sources */,
 				843E973721636FF200147CBE /* LoginConfigurator.swift in Sources */,
 				8435685F216F2DCD002101D3 /* InboxDataSource.swift in Sources */,
+				845E64462170C5A4008612FE /* AboutAsViewController.swift in Sources */,
 				8433FF5A2162181E00C57DC8 /* Constants.swift in Sources */,
 				8435685D216F2DB3002101D3 /* InboxViewController.swift in Sources */,
 				843FC3972164D20E000CFEA9 /* SignUpPageEmail.swift in Sources */,

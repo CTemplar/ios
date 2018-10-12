@@ -21,10 +21,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--About As View Controller-->
         <scene sceneID="3Iq-Vb-RLJ">
             <objects>
-                <viewController id="wsN-BH-Ykk" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AboutAsViewController" id="wsN-BH-Ykk" customClass="AboutAsViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zwi-YN-9pa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,6 +96,9 @@ with Encrypted Communication</string>
                                 <state key="normal" title="GO TO WEB VERSION">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="goToWebButtonPressed:" destination="wsN-BH-Ykk" eventType="touchUpInside" id="KFK-sq-zpd"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -19,6 +19,7 @@ let k_SignUpPageEmailViewControllerID       = "SignUpPageEmailViewController"
 let k_InboxNavigationControllerID           = "InboxNavigationController"
 let k_InboxSideMenuControllerID             = "InboxSideMenuController"
 let k_ComposeViewControllerID               = "ComposeViewController"
+let k_AboutAsViewControllerID               = "AboutAsViewController"
 
 // view controllers storyboards name
 
@@ -27,6 +28,7 @@ let k_SignUpStoryboardName                 = "SignUp"
 let k_InboxStoryboardName                  = "Inbox"
 let k_InboxSideMenuStoryboardName          = "InboxSideMenu"
 let k_ComposeStoryboardName                = "Compose"
+let k_AboutAsStoryboardName                = "AboutAs"
 
 // view controllers iPad storyboards name
 
