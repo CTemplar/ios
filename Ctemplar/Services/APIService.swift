@@ -28,7 +28,7 @@ enum APIResponse: String {
     case recaptchaError   = "recaptcha"
     case fingerprintError = "fingerprint"
     case userExists       = "exists"
-    case tokenExpired     = "details"
+    case tokenExpired     = "detail"
     
     //email messages
     case pageConut        = "page_count"
@@ -325,7 +325,7 @@ class APIService {
                 break
             case APIResponse.tokenExpired.rawValue :
                 print("tokenExpired APIResponce key:", dictionary.key, "value:", dictionary.value)
-                self.showLoginViewController()
+                //self.showLoginViewController()
                 break
             case APIResponse.usernameError.rawValue :
                 if let errorMessage = extractErrorTextFrom(value: dictionary.value) {
@@ -383,7 +383,7 @@ class APIService {
         
         return ""
     }
-    
+    /*
     func showLoginViewController() {
         
         if let topController = UIApplication.topViewController() {
@@ -399,5 +399,5 @@ class APIService {
             ///topController.show(vc, sender: self)
             topController.present(vc, animated: true, completion: nil)
         }
-    }
+    }*/
 }
