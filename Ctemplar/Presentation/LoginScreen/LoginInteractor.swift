@@ -26,9 +26,6 @@ class LoginInteractor {
                 print("login success value:", value)
                 self.keychainService?.saveUserCredentials(userName: userName, password: password)
                 
-                //print("read saved user:", self.keychainService?.getUserName())
-                //print("read saved pass:", self.keychainService?.getPassword())
-                
                 self.viewController?.dismiss(animated: true, completion: nil)
             case .failure(let error):
                 print("login error:", error)

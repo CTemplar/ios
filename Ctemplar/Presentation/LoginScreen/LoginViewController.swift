@@ -46,7 +46,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func forgotPasswordButtonPressed(_ sender: AnyObject) {
         
-        
+        //self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func createAccountButtonPressed(_ sender: AnyObject) {

@@ -41,9 +41,13 @@ class InboxViewController: UIViewController {
         
         dataSource?.initWith(parent: self, tableView: inboxTableView, array: messagesList)
         
-        presenter?.loadMessages()
-        
         presenter?.setupUI(emailsCount: 0, unreadEmails: 0)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        presenter?.loadMessages()        
     }
        
     //MARK: - IBActions

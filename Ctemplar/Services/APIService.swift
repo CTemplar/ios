@@ -22,17 +22,19 @@ enum APIResponse: String {
     case token            = "token"
     
     //auth errors
-    case passwordError    = "password"
-    case usernameError    = "username"
-    case nonFieldError    = "non_field_errors"
-    case recaptchaError   = "recaptcha"
-    case fingerprintError = "fingerprint"
-    case userExists       = "exists"
-    case tokenExpired     = "detail"
+    case passwordError     = "password"
+    case usernameError     = "username"
+    case nonFieldError     = "non_field_errors"
+    case recaptchaError    = "recaptcha"
+    case fingerprintError  = "fingerprint"
+    case userExists        = "exists"
+    case tokenExpired      = "detail"
+    case tokenExpiredValue = "Signature has expired."
+    case noCredentials     = "Invalid Authorization header. No credentials provided."
     
     //email messages
-    case pageConut        = "page_count"
-    case results          = "results"
+    case pageConut         = "page_count"
+    case results           = "results"
 }
 
 class APIService {
@@ -325,7 +327,11 @@ class APIService {
                 break
             case APIResponse.tokenExpired.rawValue :
                 print("tokenExpired APIResponce key:", dictionary.key, "value:", dictionary.value)
-                //self.showLoginViewController()
+                if let value = dictionary.value as? String { //temp
+                    if value == APIResponse.tokenExpiredValue.rawValue || value == APIResponse.noCredentials.rawValue {
+                        self.autologinWhenTokenExpired()
+                    }
+                }
                 break
             case APIResponse.usernameError.rawValue :
                 if let errorMessage = extractErrorTextFrom(value: dictionary.value) {
@@ -383,10 +389,39 @@ class APIService {
         
         return ""
     }
-    /*
+
+    func autologinWhenTokenExpired() {
+        
+        let storedUserName = keychainService?.getUserName()
+        let storedPassword = keychainService?.getPassword()
+        
+        if (storedUserName?.count)! < 1 || (storedPassword?.count)! < 1 {
+            print("wrong stored credentials!")
+            showLoginViewController()
+            return
+        }
+        
+        self.authenticateUser(userName: storedUserName!, password: storedPassword!) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("autologin success value:", value)
+                //need repeat request
+              
+            case .failure(let error):
+                print("autologin error:", error)
+                
+                if let topViewController = UIApplication.topViewController() {
+                    AlertHelperKit().showAlert(topViewController, title: "Autologin Error", message: error.localizedDescription, button: "Close")
+                }
+            }
+        }
+    }
+    
     func showLoginViewController() {
         
-        if let topController = UIApplication.topViewController() {
+        if let topViewController = UIApplication.topViewController() {
             
             var storyboardName : String? = k_LoginStoryboardName
             
@@ -396,8 +431,7 @@ class APIService {
             
             let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: k_LoginViewControllerID) as! LoginViewController
-            ///topController.show(vc, sender: self)
-            topController.present(vc, animated: true, completion: nil)
+            topViewController.present(vc, animated: true, completion: nil)
         }
-    }*/
+    }
 }
