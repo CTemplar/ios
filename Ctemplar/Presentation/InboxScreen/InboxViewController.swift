@@ -65,6 +65,7 @@ class InboxViewController: UIViewController {
     
     @IBAction func composeButtonPressed(_ sender: AnyObject) {
         
+        router?.showComposeViewController()
     }
     
     @IBAction func filterButtonPressed(_ sender: AnyObject) {

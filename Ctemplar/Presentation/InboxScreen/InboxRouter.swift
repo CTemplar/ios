@@ -18,4 +18,11 @@ class InboxRouter {
         
         viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
+    
+    func showComposeViewController() {
+ 
+        let storyboard: UIStoryboard = UIStoryboard(name: k_ComposeStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_ComposeViewControllerID) as! ComposeViewController
+        self.viewController?.show(vc, sender: self)   
+    }
 }
