@@ -13,6 +13,8 @@ class KeychainService
 {
     enum Consts: String {
         case token = "token"
+        case username = "username"
+        case password = "password"
     }
     
     let keychain = KeychainSwift()
@@ -29,6 +31,40 @@ class KeychainService
         }
         
         return token
+    }
+    
+    func saveUsername(name: String) {
+        
+        keychain.set(name, forKey: Consts.username.rawValue)
+    }
+    
+    func getUserName() -> String {
+        
+        guard let token = keychain.get(Consts.username.rawValue) else {
+            return ""
+        }
+        
+        return token
+    }
+    
+    func savePassword(password: String) {
+        
+        keychain.set(password, forKey: Consts.password.rawValue)
+    }
+    
+    func getPassword() -> String {
+        
+        guard let token = keychain.get(Consts.password.rawValue) else {
+            return ""
+        }
+        
+        return token
+    }
+    
+    func saveUserCredentials(userName: String, password: String) {
+        
+        saveUsername(name: userName)
+        savePassword(password: password)
     }
 }
 

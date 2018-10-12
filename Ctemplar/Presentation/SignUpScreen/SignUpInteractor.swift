@@ -14,6 +14,7 @@ class SignUpInteractor {
     var viewController  : SignUpPageViewController?
     var presenter       : SignUpPresenter?
     var apiService      : APIService?
+    var keychainService : KeychainService?
     
     func signUpUser(userName: String, password: String, recoveryEmail: String) {
     
@@ -23,6 +24,8 @@ class SignUpInteractor {
                 
             case .success(let value):
                 print("signup success value:", value)
+                
+                self.keychainService?.saveUserCredentials(userName: userName, password: password)
                 
                 let currentPresentingViewController = self.viewController?.presentingViewController as? LoginViewController
                 
