@@ -46,6 +46,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Lato-Regular.ttf</string>
+		<string>Lato-Black.ttf</string>
 		<string>Roboto-Bold.ttf</string>
 	</array>
 </dict>

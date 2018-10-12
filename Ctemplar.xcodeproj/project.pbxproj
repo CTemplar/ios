@@ -56,6 +56,7 @@
 		845E643B21709330008612FE /* InboxSideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845E643A21709330008612FE /* InboxSideMenu.storyboard */; };
 		845E643E2170A46C008612FE /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E643D2170A46C008612FE /* ComposeViewController.swift */; };
 		845E64402170A4A2008612FE /* Compose.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845E643F2170A4A2008612FE /* Compose.storyboard */; };
+		845E64432170BD21008612FE /* AboutAs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845E64422170BD21008612FE /* AboutAs.storyboard */; };
 		8895AB178CEFEFB8A9DCD62B /* Pods_Ctemplar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B8DB58A9BFE099948CF3E1 /* Pods_Ctemplar.framework */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +115,8 @@
 		845E643A21709330008612FE /* InboxSideMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InboxSideMenu.storyboard; sourceTree = "<group>"; };
 		845E643D2170A46C008612FE /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		845E643F2170A4A2008612FE /* Compose.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Compose.storyboard; sourceTree = "<group>"; };
+		845E64422170BD21008612FE /* AboutAs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutAs.storyboard; sourceTree = "<group>"; };
+		845E64442170BF8F008612FE /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
 		8C75257603640BC3576C9BB5 /* Pods-Ctemplar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ctemplar/Pods-Ctemplar.debug.xcconfig"; sourceTree = "<group>"; };
 		A9B8DB58A9BFE099948CF3E1 /* Pods_Ctemplar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6F0F7014DAB1A09E4C0F5D2 /* Pods-Ctemplar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ctemplar/Pods-Ctemplar.release.xcconfig"; sourceTree = "<group>"; };
@@ -177,6 +180,7 @@
 				8433FF512162108B00C57DC8 /* Presentation */,
 				845E643C2170A440008612FE /* ComposeScreen */,
 				845E643721708453008612FE /* SideMenu */,
+				845E64412170BD08008612FE /* AboutAsScreen */,
 				8433FF502162106C00C57DC8 /* Services */,
 				8433FF4D21620DC500C57DC8 /* Storyboards */,
 				8433FF58216217DC00C57DC8 /* Resources */,
@@ -265,6 +269,7 @@
 		843E972B2163493800147CBE /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				845E64442170BF8F008612FE /* Lato-Black.ttf */,
 				843E972C2163494400147CBE /* Lato-Regular.ttf */,
 				843E973521635F6D00147CBE /* Roboto-Bold.ttf */,
 			);
@@ -353,6 +358,14 @@
 			path = ComposeScreen;
 			sourceTree = "<group>";
 		};
+		845E64412170BD08008612FE /* AboutAsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				845E64422170BD21008612FE /* AboutAs.storyboard */,
+			);
+			path = AboutAsScreen;
+			sourceTree = "<group>";
+		};
 		ACB141FEC80B2ECB5851B667 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -427,6 +440,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				845E64432170BD21008612FE /* AboutAs.storyboard in Resources */,
 				843FBF17216E3D2400148FC1 /* Login-iPad.storyboard in Resources */,
 				845E643B21709330008612FE /* InboxSideMenu.storyboard in Resources */,
 				845E64402170A4A2008612FE /* Compose.storyboard in Resources */,
