@@ -58,6 +58,9 @@
 		845E64402170A4A2008612FE /* Compose.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845E643F2170A4A2008612FE /* Compose.storyboard */; };
 		845E64432170BD21008612FE /* AboutAs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845E64422170BD21008612FE /* AboutAs.storyboard */; };
 		845E64462170C5A4008612FE /* AboutAsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E64452170C5A4008612FE /* AboutAsViewController.swift */; };
+		845E64472170CA6F008612FE /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 843E972C2163494400147CBE /* Lato-Regular.ttf */; };
+		845E64482170CAEF008612FE /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 845E64442170BF8F008612FE /* Lato-Black.ttf */; };
+		845E64492170CAF2008612FE /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 843E973521635F6D00147CBE /* Roboto-Bold.ttf */; };
 		8895AB178CEFEFB8A9DCD62B /* Pods_Ctemplar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B8DB58A9BFE099948CF3E1 /* Pods_Ctemplar.framework */; };
 /* End PBXBuildFile section */
 
@@ -443,7 +446,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				845E64482170CAEF008612FE /* Lato-Black.ttf in Resources */,
 				845E64432170BD21008612FE /* AboutAs.storyboard in Resources */,
+				845E64492170CAF2008612FE /* Roboto-Bold.ttf in Resources */,
 				843FBF17216E3D2400148FC1 /* Login-iPad.storyboard in Resources */,
 				845E643B21709330008612FE /* InboxSideMenu.storyboard in Resources */,
 				845E64402170A4A2008612FE /* Compose.storyboard in Resources */,
@@ -453,6 +458,7 @@
 				843E973421635C3B00147CBE /* Login.storyboard in Resources */,
 				843FC3902164CBFA000CFEA9 /* SignUp.storyboard in Resources */,
 				8433FF21216201A500C57DC8 /* Assets.xcassets in Resources */,
+				845E64472170CA6F008612FE /* Lato-Regular.ttf in Resources */,
 				8433FF5E21626D0600C57DC8 /* LaunchScreen-iPad.storyboard in Resources */,
 				8433FF1F216201A300C57DC8 /* Main.storyboard in Resources */,
 			);
