@@ -48,6 +48,8 @@ let k_sideMenuFadeColor: UIColor = UIColor(red: 2.0/255.0, green: 13.0/255.0, bl
 let k_urlColor: UIColor = UIColor(red: 74.0 / 255.0, green: 144.0 / 255.0, blue: 226.0 / 255.0, alpha: 1.0)
 let k_lightGrayColor: UIColor = UIColor(white: 0.0, alpha: 0.54)
 
+let k_whiteColor: UIColor = UIColor(red: 250.0 / 255.0, green: 251.0 / 255.0, blue: 251.0 / 255.0, alpha: 1.0)
+
 //size constants
 
 let k_pageControlBottomOffset       = 30.0

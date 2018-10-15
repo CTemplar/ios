@@ -44,12 +44,14 @@ class InboxViewController: UIViewController {
         dataSource?.initWith(parent: self, tableView: inboxTableView, array: messagesList)
         
         presenter?.setupUI(emailsCount: 0, unreadEmails: 0)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        presenter?.loadMessages()        
+        presenter?.loadMessages()
+        navigationController?.navigationBar.backgroundColor = k_whiteColor
     }
        
     //MARK: - IBActions
