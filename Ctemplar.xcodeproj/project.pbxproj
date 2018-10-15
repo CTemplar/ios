@@ -32,6 +32,7 @@
 		8437103D217465A700DAE4BA /* ForgotPasswordNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437103C217465A700DAE4BA /* ForgotPasswordNavigationController.swift */; };
 		8437103F217465DD00DAE4BA /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437103E217465DD00DAE4BA /* ForgotPasswordViewController.swift */; };
 		843710412174661000DAE4BA /* ForgotPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843710402174661000DAE4BA /* ForgotPassword.storyboard */; };
+		84371043217491F100DAE4BA /* ConfirmResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84371042217491F100DAE4BA /* ConfirmResetPasswordViewController.swift */; };
 		843E972F21634E7900147CBE /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E972E21634E7800147CBE /* LaunchScreenViewController.swift */; };
 		843E973221635BEB00147CBE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973121635BEB00147CBE /* LoginViewController.swift */; };
 		843E973421635C3B00147CBE /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843E973321635C3B00147CBE /* Login.storyboard */; };
@@ -95,6 +96,7 @@
 		8437103C217465A700DAE4BA /* ForgotPasswordNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordNavigationController.swift; sourceTree = "<group>"; };
 		8437103E217465DD00DAE4BA /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		843710402174661000DAE4BA /* ForgotPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ForgotPassword.storyboard; sourceTree = "<group>"; };
+		84371042217491F100DAE4BA /* ConfirmResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmResetPasswordViewController.swift; sourceTree = "<group>"; };
 		843E972C2163494400147CBE /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		843E972E21634E7800147CBE /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		843E973121635BEB00147CBE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 			children = (
 				8437103C217465A700DAE4BA /* ForgotPasswordNavigationController.swift */,
 				8437103E217465DD00DAE4BA /* ForgotPasswordViewController.swift */,
+				84371042217491F100DAE4BA /* ConfirmResetPasswordViewController.swift */,
 				843710402174661000DAE4BA /* ForgotPassword.storyboard */,
 			);
 			path = ForgotPasswordsScreens;
@@ -550,6 +553,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84371043217491F100DAE4BA /* ConfirmResetPasswordViewController.swift in Sources */,
 				8407AD92216CC61600AF2E7B /* EmailMessagesList.swift in Sources */,
 				843FC38E2164CA35000CFEA9 /* SignUpInteractor.swift in Sources */,
 				843FC38C2164CA27000CFEA9 /* SignUpPresenter.swift in Sources */,
