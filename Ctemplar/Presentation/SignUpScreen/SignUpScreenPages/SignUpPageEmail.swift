@@ -37,20 +37,18 @@ class SignUpPageEmailViewController: UIViewController, UITextFieldDelegate {
     func setupAttributesToString() {
         
         let attributedString = NSMutableAttributedString(string: "Please check this box if you agree to abide by our Terms and Conditions", attributes: [
-            .font: UIFont(name: "Lato-Regular", size: 14.0)!,
-            .foregroundColor: UIColor(white: 0.0, alpha: 0.54),
+            .font: UIFont(name: k_latoRegularFontName, size: 14.0)!,
+            .foregroundColor: k_lightGrayColor,
             .kern: 0.0
             ])
                 
-        _ = attributedString.setAsLink(textToFind: "Terms and Conditions", linkURL: "http://google.com")
-        
-        attributedString.addAttribute(.foregroundColor, value: UIColor(red: 74.0 / 255.0, green: 144.0 / 255.0, blue: 226.0 / 255.0, alpha: 1.0), range: NSRange(location: 51, length: 20))
-        
-        termsTextView.contentInset = UIEdgeInsets(top: -8, left: -2, bottom: -8, right: -8)
+        _ = attributedString.setAsLink(textToFind: "Terms and Conditions", linkURL: k_termsURL)
+        _ = attributedString.setForgroundColor(textToFind: "Terms and Conditions", color: k_urlColor)
         
         termsTextView.attributedText = attributedString
         
-        termsTextView.updateTextFont()       
+        termsTextView.disableTextPadding()
+        termsTextView.autosizeTextFont()       
     }
     
     //MARK: - IBActions

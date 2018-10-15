@@ -110,8 +110,20 @@ extension NSMutableAttributedString {
     public func setAsLink(textToFind:String, linkURL:String) -> Bool {
         
         let foundRange = self.mutableString.range(of: textToFind)
+        
         if foundRange.location != NSNotFound {
             self.addAttribute(.link, value: linkURL, range: foundRange)
+            return true
+        }
+        return false
+    }
+    
+    public func setForgroundColor(textToFind:String, color: UIColor) -> Bool {
+        
+        let foundRange = self.mutableString.range(of: textToFind)
+        
+        if foundRange.location != NSNotFound {            
+            self.addAttribute(.foregroundColor, value: color, range: foundRange)
             return true
         }
         return false
@@ -119,7 +131,8 @@ extension NSMutableAttributedString {
 }
 
 extension UITextView {
-    func updateTextFont() {
+    
+    func autosizeTextFont() {
         
         if (self.text.isEmpty || self.bounds.size.equalTo(CGSize.zero)) {
             return;
@@ -129,7 +142,6 @@ extension UITextView {
         let fixedWidth = textViewSize.width;
         let expectSize = self.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat(MAXFLOAT)))
         
-        
         var expectFont = self.font
         
         if (expectSize.height > textViewSize.height) {
@@ -138,24 +150,20 @@ extension UITextView {
                 expectFont = self.font!.withSize(self.font!.pointSize - 1)
                 self.font = expectFont
             }
-        }
-        else {
+        } else {
+            
             while (self.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat(MAXFLOAT))).height < textViewSize.height) {
                 expectFont = self.font
                 self.font = self.font!.withSize(self.font!.pointSize + 1)
             }
+            
             self.font = expectFont
         }
     }
+    
+    func disableTextPadding() {
+        
+        self.contentInset = UIEdgeInsets(top: -8, left: -2, bottom: -8, right: -8)
+    }
 }
 
-@IBDesignable class UITextViewFixed: UITextView {
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        setup()
-    }
-    func setup() {
-        textContainerInset = UIEdgeInsets.zero
-        textContainer.lineFragmentPadding = 0
-    }
-}
