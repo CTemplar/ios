@@ -11,11 +11,15 @@ import UIKit
 
 class ConfirmResetPasswordViewController: UIViewController {
     
+    var configurator: ForgotPasswordConfigurator?
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.configurator = ForgotPasswordConfigurator()
+        self.configurator?.configure(viewController: self)
     }
     
     //MARK: - IBActions
@@ -27,10 +31,7 @@ class ConfirmResetPasswordViewController: UIViewController {
     
     @IBAction func confirmButtonPressed(_ sender: AnyObject) {
         
-        //temp
-        let storyboard: UIStoryboard = UIStoryboard(name: k_ForgotPasswordStoryboardName, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: k_ResetPasswordViewControllerID) as! ResetPasswordViewController
-        self.present(vc, animated: true, completion: nil)
+        self.configurator?.router?.showResetPasswordViewController()
        
     }
 }

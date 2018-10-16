@@ -11,11 +11,15 @@ import UIKit
 
 class ResetPasswordViewController: UIViewController {
     
+    var configurator: ForgotPasswordConfigurator?
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.configurator = ForgotPasswordConfigurator()
+        self.configurator?.configure(viewController: self)
     }
     
     //MARK: - IBActions

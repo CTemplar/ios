@@ -11,10 +11,15 @@ import UIKit
 
 class NewPasswordViewController: UIViewController {
     
+    var configurator: ForgotPasswordConfigurator?
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.configurator = ForgotPasswordConfigurator()
+        self.configurator?.configure(viewController: self)
         
     }
     
