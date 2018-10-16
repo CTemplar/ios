@@ -24,4 +24,13 @@ class ConfirmResetPasswordViewController: UIViewController {
         
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func confirmButtonPressed(_ sender: AnyObject) {
+        
+        //temp
+        let storyboard: UIStoryboard = UIStoryboard(name: k_ForgotPasswordStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_ResetPasswordViewControllerID) as! ResetPasswordViewController
+        self.present(vc, animated: true, completion: nil)
+       
+    }
 }
