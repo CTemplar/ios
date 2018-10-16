@@ -17,10 +17,6 @@ class ForgotPasswordRouter {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_ForgotPasswordStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_ConfirmResetPasswordViewControllerID) as! ConfirmResetPasswordViewController
-        
-        //let currentViewController = self.viewController as! ForgotPasswordViewController
-        //vc.configurator = currentViewController.configurator
-        
         self.viewController?.present(vc, animated: true, completion: nil)
     }
     
@@ -28,10 +24,6 @@ class ForgotPasswordRouter {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_ForgotPasswordStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_ForgorUsernameViewControllerID) as! ForgotUsernameViewController
-        
-        //let currentViewController = self.viewController as! ForgotPasswordViewController
-        //vc.configurator = currentViewController.configurator
-        
         self.viewController?.present(vc, animated: true, completion: nil)
     }
     
@@ -39,10 +31,13 @@ class ForgotPasswordRouter {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_ForgotPasswordStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_ResetPasswordViewControllerID) as! ResetPasswordViewController
+        self.viewController?.present(vc, animated: true, completion: nil)
+    }
+    
+    func showNewPasswordViewController() {
         
-        //let currentViewController = self.viewController as! ForgotPasswordViewController
-       //vc.configurator = currentViewController.configurator
-        
+        let storyboard: UIStoryboard = UIStoryboard(name: k_ForgotPasswordStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_NewPasswordViewControllerID) as! NewPasswordViewController
         self.viewController?.present(vc, animated: true, completion: nil)
     }
 }

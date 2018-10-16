@@ -52,4 +52,25 @@ class ForgotPasswordPresenter {
             AlertHelperKit().showAlert(self.viewController!, title: "", message: "Entered Username is not valid", button: "Close")
         }
     }
+    
+    func setupResetCodeTextFieldsAndHintLabel(resetCode: String) {
+        
+        let currentViewController = viewController as? ResetPasswordViewController
+        
+        if (formatterService?.validateNameLench(enteredName: resetCode))! {
+            currentViewController?.resetCodeHintLabel.isHidden = false
+        } else {
+            currentViewController?.resetCodeHintLabel.isHidden = true
+        }
+    }
+    
+    func buttonResetPasswordPressed(resetCode: String) {
+        
+        if (formatterService?.validateNameLench(enteredName: resetCode))! {
+            //temp
+            self.router?.showNewPasswordViewController()
+        } else {
+            AlertHelperKit().showAlert(self.viewController!, title: "", message: "Entered Reset Code is not valid", button: "Close")
+        }
+    }
 }

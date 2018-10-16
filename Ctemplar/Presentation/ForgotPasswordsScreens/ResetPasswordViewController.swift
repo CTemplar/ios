@@ -9,9 +9,15 @@
 import Foundation
 import UIKit
 
-class ResetPasswordViewController: UIViewController {
+class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     
     var configurator: ForgotPasswordConfigurator?
+    
+    var resetCode   : String? = ""
+    
+    @IBOutlet var recoveryEmailTextView  : UITextView!    
+    @IBOutlet var resetCodeTextField     : UITextField!
+    @IBOutlet var resetCodeHintLabel     : UILabel!
     
     //MARK: - Lifecycle
     
@@ -20,6 +26,33 @@ class ResetPasswordViewController: UIViewController {
         
         self.configurator = ForgotPasswordConfigurator()
         self.configurator?.configure(viewController: self)
+        
+        self.configurator?.presenter?.setupResetCodeTextFieldsAndHintLabel(resetCode: resetCode!)
+        
+        setupAttributesForTextView()
+    }
+    
+    func setupAttributesForTextView() {
+        
+        let style = NSMutableParagraphStyle()
+        style.alignment = NSTextAlignment.center
+        
+        let attributedString = NSMutableAttributedString(string: "We have sent a reset code to your\nrecovery email to reset your password. ", attributes: [
+            .font: UIFont(name: k_latoRegularFontName, size: 14.0)!,
+            .foregroundColor: k_lightGrayColor,
+            .paragraphStyle: style,
+            .kern: 0.0
+            ])
+        
+        _ = attributedString.setUnderline(textToFind: "recovery email ")
+        
+        _ = attributedString.setForgroundColor(textToFind: "recovery email ", color: k_urlColor)
+
+        
+        recoveryEmailTextView.attributedText = attributedString
+        
+        recoveryEmailTextView.disableTextPadding()
+        recoveryEmailTextView.autosizeTextFont()
     }
     
     //MARK: - IBActions
@@ -31,10 +64,18 @@ class ResetPasswordViewController: UIViewController {
     
     @IBAction func resetPasswordButtonPressed(_ sender: AnyObject) {
         
-        //temp
-        let storyboard: UIStoryboard = UIStoryboard(name: k_ForgotPasswordStoryboardName, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: k_NewPasswordViewControllerID) as! NewPasswordViewController
-        self.present(vc, animated: true, completion: nil)
+        self.configurator?.presenter?.buttonResetPasswordPressed(resetCode: resetCode!)
         
+        /*
+        //temp
+        self.configurator?.router?.showNewPasswordViewController()
+         */
+ 
+    }
+    
+    @IBAction func resetCodeTyped(_ sender: UITextField) {
+        
+        resetCode = sender.text
+        self.configurator?.presenter?.setupResetCodeTextFieldsAndHintLabel(resetCode: resetCode!)
     }
 }
