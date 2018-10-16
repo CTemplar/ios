@@ -36,6 +36,10 @@ class ForgotPasswordViewController: UIViewController {
     
     @IBAction func forgotUsernameButtonPressed(_ sender: AnyObject) {
         
+        //temp
+        let storyboard: UIStoryboard = UIStoryboard(name: k_ForgotPasswordStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_ForgorUsernameViewControllerID) as! ForgotUsernameViewController
+        self.present(vc, animated: true, completion: nil)
         
     }
 }
