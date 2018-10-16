@@ -40,11 +40,11 @@ class ForgotPasswordPresenter {
         }
     }
     
-    func buttonResetPasswordPressed(userName: String, recoveryPassword: String) {
+    func buttonResetPasswordPressed(userName: String, recoveryEmail: String) {
         
         if (formatterService?.validateNameFormat(enteredName: userName))! {
-            if (formatterService?.validateEmailFormat(enteredEmail: recoveryPassword))! {
-                self.router?.showConfirmResetPasswordViewController()
+            if (formatterService?.validateEmailFormat(enteredEmail: recoveryEmail))! {
+                self.router?.showConfirmResetPasswordViewController(userName: userName, recoveryEmail: recoveryEmail)
             } else {
                 AlertHelperKit().showAlert(self.viewController!, title: "", message: "Entered Email is not valid", button: "Close")
             }

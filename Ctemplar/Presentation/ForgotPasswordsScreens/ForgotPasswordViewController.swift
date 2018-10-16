@@ -43,8 +43,8 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func resetButtonPressed(_ sender: AnyObject) {
         
-        //self.configurator?.router?.showConfirmResetPasswordViewController()
-        self.configurator?.presenter?.buttonResetPasswordPressed(userName: userName!, recoveryPassword: recoveryEmail!)
+        //self.configurator?.router?.showConfirmResetPasswordViewController(userName: userName!, recoveryEmail: recoveryEmail!)
+        self.configurator?.presenter?.buttonResetPasswordPressed(userName: userName!, recoveryEmail: recoveryEmail!)
     }
     
     @IBAction func forgotUsernameButtonPressed(_ sender: AnyObject) {

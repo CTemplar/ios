@@ -219,6 +219,39 @@ class APIService {
         }
     }
     
+    func recoveryPasswordCode(userName: String, recoveryEmail: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        HUD.show(.progress)
+        
+        restAPIService?.recoveryPasswordCode(userName: userName, recoveryEmail: recoveryEmail) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                
+                if let response = value as? Dictionary<String, Any> {
+                    print("recoveryPasswordCode response", response)
+                    if let message = self.parseServerResponse(response:response) {
+                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                        completionHandler(APIResult.failure(error))
+                    } else {
+                        completionHandler(APIResult.success("success"))
+                    }
+                } else {
+                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                    completionHandler(APIResult.failure(error))
+                }
+                
+            case .failure(let error):
+                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                completionHandler(APIResult.failure(error))
+            }
+            
+            HUD.hide()
+        }
+    }
+    
+    
     //MARK: - Mail
     
     func messagesList(completionHandler: @escaping (APIResult<Any>) -> Void) {

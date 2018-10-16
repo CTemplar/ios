@@ -13,6 +13,9 @@ class ConfirmResetPasswordViewController: UIViewController {
     
     var configurator: ForgotPasswordConfigurator?
     
+    var userName        : String? = ""
+    var recoveryEmail   : String? = ""
+    
     @IBOutlet var confirmTextView          : UITextView!
     
     //MARK: - Lifecycle
@@ -62,6 +65,6 @@ class ConfirmResetPasswordViewController: UIViewController {
     
     @IBAction func confirmButtonPressed(_ sender: AnyObject) {
         
-        self.configurator?.router?.showResetPasswordViewController()       
+        self.configurator?.router?.showResetPasswordViewController(userName: userName!, recoveryEmail: recoveryEmail!)
     }
 }

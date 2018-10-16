@@ -13,10 +13,12 @@ class ForgotPasswordRouter {
     
     var viewController: UIViewController?
     
-    func showConfirmResetPasswordViewController() {
+    func showConfirmResetPasswordViewController(userName: String, recoveryEmail: String) {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_ForgotPasswordStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_ConfirmResetPasswordViewControllerID) as! ConfirmResetPasswordViewController
+        vc.userName = userName
+        vc.recoveryEmail = recoveryEmail
         self.viewController?.present(vc, animated: true, completion: nil)
     }
     
@@ -27,10 +29,12 @@ class ForgotPasswordRouter {
         self.viewController?.present(vc, animated: true, completion: nil)
     }
     
-    func showResetPasswordViewController() {
+    func showResetPasswordViewController(userName: String, recoveryEmail: String) {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_ForgotPasswordStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_ResetPasswordViewControllerID) as! ResetPasswordViewController
+        vc.userName = userName
+        vc.recoveryEmail = recoveryEmail
         self.viewController?.present(vc, animated: true, completion: nil)
     }
     

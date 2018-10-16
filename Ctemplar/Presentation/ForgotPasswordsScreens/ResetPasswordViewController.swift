@@ -13,7 +13,9 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     
     var configurator: ForgotPasswordConfigurator?
     
-    var resetCode   : String? = ""
+    var resetCode       : String? = ""
+    var userName        : String? = ""
+    var recoveryEmail   : String? = ""
     
     @IBOutlet var recoveryEmailTextView  : UITextView!    
     @IBOutlet var resetCodeTextField     : UITextField!
@@ -29,7 +31,13 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         
         self.configurator?.presenter?.setupResetCodeTextFieldsAndHintLabel(resetCode: resetCode!)
         
-        setupAttributesForTextView()
+        setupAttributesForTextView()        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.configurator?.presenter?.interactor?.recoveryPasswordCode(userName: userName!, recoveryEmail: recoveryEmail!)
     }
     
     func setupAttributesForTextView() {

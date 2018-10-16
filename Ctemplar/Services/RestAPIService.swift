@@ -15,9 +15,10 @@ class RestAPIService {
         case baseUrl = "https://devapi.ctemplar.com/"
         case signIn = "auth/sign-in/"
         case signUp = "auth/sign-up/"
+        case checkUsername = "auth/check-username/"
+        case recoveryCode = "auth/recover/"
         case messages = "emails/messages/"
         case mailboxes = "emails/mailboxes/"
-        case checkUsername = "auth/check-username/"
     }
     
     enum JSONKey: String {
@@ -120,6 +121,35 @@ class RestAPIService {
                 completionHandler(APIResult.failure(error))
             }
         }        
+    }
+    
+    func recoveryPasswordCode(userName: String, recoveryEmail: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.userName.rawValue: userName,
+            JSONKey.recoveryEmail.rawValue: recoveryEmail
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.recoveryCode.rawValue
+        
+        print("recoveryPasswordCode parameters:", parameters)
+        print("recoveryPasswordCode url:", url)
+        
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+            
+            print("recoveryPasswordCode responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
     }
     
     //MARK: - Mail

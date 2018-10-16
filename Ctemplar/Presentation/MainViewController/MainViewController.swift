@@ -24,8 +24,8 @@ class MainViewController: UIViewController {
         
         configurePKHUD()
         
-        showLoginViewController()
-        //showInboxNavigationController()
+        //showLoginViewController()
+        showInboxNavigationController()
         //messagesList()
         //mailboxesList()
 
