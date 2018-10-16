@@ -9,9 +9,18 @@
 import Foundation
 import UIKit
 
-class ForgotPasswordViewController: UIViewController {
+class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     
     var configurator: ForgotPasswordConfigurator?
+    
+    var userName        : String? = ""
+    var recoveryEmail   : String? = ""
+    
+    @IBOutlet var userNameTextField          : UITextField!
+    @IBOutlet var recoveryEmailTextField     : UITextField!
+    
+    @IBOutlet var userNameHintLabel          : UILabel!
+    @IBOutlet var recoveryEmailHintLabel     : UILabel!
     
     //MARK: - Lifecycle
     
@@ -20,6 +29,9 @@ class ForgotPasswordViewController: UIViewController {
         
         self.configurator = ForgotPasswordConfigurator()
         self.configurator?.configure(viewController: self)
+        
+        self.configurator?.presenter?.setupUserNameTextFieldsAndHintLabel(userName: userName!)
+        self.configurator?.presenter?.setupRecoveryTextFieldsAndHintLabel(email: recoveryEmail!)
     }
     
     //MARK: - IBActions
@@ -31,11 +43,24 @@ class ForgotPasswordViewController: UIViewController {
     
     @IBAction func resetButtonPressed(_ sender: AnyObject) {
         
-        self.configurator?.router?.showConfirmResetPasswordViewController()        
+        //self.configurator?.router?.showConfirmResetPasswordViewController()
+        self.configurator?.presenter?.buttonResetPasswordPressed(userName: userName!, recoveryPassword: recoveryEmail!)
     }
     
     @IBAction func forgotUsernameButtonPressed(_ sender: AnyObject) {
         
         self.configurator?.router?.showForgotUsernameViewController()
+    }
+    
+    @IBAction func userNameTyped(_ sender: UITextField) {
+        
+        userName = sender.text
+        self.configurator?.presenter?.setupUserNameTextFieldsAndHintLabel(userName: userName!)
+    }
+    
+    @IBAction func recoveryEmailTyped(_ sender: UITextField) {
+        
+        recoveryEmail = sender.text
+        self.configurator?.presenter?.setupRecoveryTextFieldsAndHintLabel(email: recoveryEmail!)
     }
 }

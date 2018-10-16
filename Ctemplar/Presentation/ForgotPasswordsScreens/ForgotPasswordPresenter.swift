@@ -13,7 +13,43 @@ import PKHUD
 class ForgotPasswordPresenter {
     
     var viewController   : UIViewController?
+    var router           : ForgotPasswordRouter?
     var interactor       : ForgotPasswordInteractor?
     var formatterService : FormatterService?
 
+    
+    func setupUserNameTextFieldsAndHintLabel(userName: String) {
+        
+        let currentViewController = viewController as? ForgotPasswordViewController
+        
+        if (formatterService?.validateNameLench(enteredName: userName))! {
+            currentViewController?.userNameHintLabel.isHidden = false
+        } else {
+            currentViewController?.userNameHintLabel.isHidden = true
+        }
+    }
+    
+    func setupRecoveryTextFieldsAndHintLabel(email: String) {
+        
+        let currentViewController = viewController as? ForgotPasswordViewController
+        
+        if (formatterService?.validateEmailFormat(enteredEmail: email))! {
+            currentViewController?.recoveryEmailHintLabel.isHidden = false
+        } else {
+            currentViewController?.recoveryEmailHintLabel.isHidden = true
+        }
+    }
+    
+    func buttonResetPasswordPressed(userName: String, recoveryPassword: String) {
+        
+        if (formatterService?.validateNameFormat(enteredName: userName))! {
+            if (formatterService?.validateEmailFormat(enteredEmail: recoveryPassword))! {
+                self.router?.showConfirmResetPasswordViewController()
+            } else {
+                AlertHelperKit().showAlert(self.viewController!, title: "", message: "Entered Email is not valid", button: "Close")
+            }
+        } else {
+            AlertHelperKit().showAlert(self.viewController!, title: "", message: "Entered Username is not valid", button: "Close")
+        }
+    }
 }

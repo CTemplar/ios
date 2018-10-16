@@ -31,6 +31,7 @@ class ForgotPasswordConfigurator {
         interactor.keychainService = appDelegate.applicationManager.keychainService
         
         presenter.interactor = interactor
+        presenter.router = router
         
         self.presenter = presenter
         self.router = router
