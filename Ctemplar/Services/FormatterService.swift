@@ -113,6 +113,20 @@ extension NSMutableAttributedString {
         
         if foundRange.location != NSNotFound {
             self.addAttribute(.link, value: linkURL, range: foundRange)
+            let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
+            self.addAttributes(underlineAttribute, range: foundRange)
+            return true
+        }
+        return false
+    }
+    
+    public func setUnderline(textToFind:String) -> Bool {
+        
+        let foundRange = self.mutableString.range(of: textToFind)
+        
+        if foundRange.location != NSNotFound {            
+            let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
+            self.addAttributes(underlineAttribute, range: foundRange)
             return true
         }
         return false

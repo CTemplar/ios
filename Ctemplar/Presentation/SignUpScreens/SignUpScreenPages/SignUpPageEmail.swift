@@ -28,13 +28,13 @@ class SignUpPageEmailViewController: UIViewController, UITextFieldDelegate {
         parentSignUpPageViewController?.presenter?.setupRecoveryEmailTextFieldAndHintLabel(childViewController: self)
         //parentSignUpPageViewController?.presenter?.pressedCheckBoxButton(childViewController: self)
         
-        setupAttributesToString() 
+        setupAttributesForTextView() 
         
         adddNotificationObserver()
         
     }
     
-    func setupAttributesToString() {
+    func setupAttributesForTextView() {
         
         let attributedString = NSMutableAttributedString(string: "Please check this box if you agree to abide by our Terms and Conditions", attributes: [
             .font: UIFont(name: k_latoRegularFontName, size: 14.0)!,
