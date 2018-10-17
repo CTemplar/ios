@@ -28,19 +28,50 @@ class ViewInboxEmailViewController: UIViewController {
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.tintColor = UIColor.darkGray
         
-        //let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         
-        let garbage = UIBarButtonItem(image: UIImage(named: k_garbageImageName), style: .plain, target: self, action: nil)
-        let spam = UIBarButtonItem(image: UIImage(named: k_spamImageName), style: .plain, target: self, action: nil)
-        let move = UIBarButtonItem(image: UIImage(named: k_moveImageName), style: .plain, target: self, action: nil)
-        let more = UIBarButtonItem(image: UIImage(named: k_moreImageName), style: .plain, target: self, action: nil)
+        let buttonWidth = 32.0
         
-        garbage.width = 32
-        spam.width = 32
-        move.width = 32
-        more.width = 32
+        let garbageButton : UIButton = UIButton.init(type: .custom)
+        garbageButton.setImage(UIImage(named: k_garbageImageName), for: .normal)
+        garbageButton.addTarget(self, action: #selector(garbageButtonPresed), for: .touchUpInside)
+        garbageButton.frame = CGRect(x: 0, y: 0, width: buttonWidth, height: buttonWidth)
+        let garbageItem = UIBarButtonItem(customView: garbageButton)
         
-        self.navigationItem.rightBarButtonItems = [more, move, spam, garbage]
+        let spamButton : UIButton = UIButton.init(type: .custom)
+        spamButton.setImage(UIImage(named: k_spamImageName), for: .normal)
+        spamButton.addTarget(self, action: #selector(spamButtonPresed), for: .touchUpInside)
+        spamButton.frame = CGRect(x: 0, y: 0, width: buttonWidth, height: buttonWidth)
+        let spamItem = UIBarButtonItem(customView: spamButton)
+        
+        let moveButton : UIButton = UIButton.init(type: .custom)
+        moveButton.setImage(UIImage(named: k_moveImageName), for: .normal)
+        moveButton.addTarget(self, action: #selector(moveButtonPresed), for: .touchUpInside)
+        moveButton.frame = CGRect(x: 0, y: 0, width: buttonWidth, height: buttonWidth)
+        let moveItem = UIBarButtonItem(customView: moveButton)
+        
+        let moreButton : UIButton = UIButton.init(type: .custom)
+        moreButton.setImage(UIImage(named: k_moreImageName), for: .normal)
+        moreButton.addTarget(self, action: #selector(moreButtonPresed), for: .touchUpInside)
+        moreButton.frame = CGRect(x: 0, y: 0, width: buttonWidth, height: buttonWidth)
+        let moreItem = UIBarButtonItem(customView: moreButton)
+        
+        self.navigationItem.rightBarButtonItems = [moreItem, moveItem, spamItem, garbageItem]
+    }
+    
+    @objc func garbageButtonPresed() {
+        
+    }
+    
+    @objc func spamButtonPresed() {
+        
+    }
+    
+    @objc func moveButtonPresed() {
+        
+    }
+    
+    @objc func moreButtonPresed() {
+        
     }
 }
 
