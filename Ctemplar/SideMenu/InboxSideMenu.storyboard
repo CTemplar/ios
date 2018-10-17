@@ -28,6 +28,9 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OL7-g1-Osu">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                        <connections>
+                                            <action selector="userProfilePressed:" destination="bU2-mJ-O3l" eventType="touchUpInside" id="ijp-cC-qRs"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adam Green" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mww-En-Egy">
                                         <rect key="frame" x="16" y="26" width="343" height="16"/>
@@ -47,9 +50,8 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Inc-0p-mNk">
-                                        <rect key="frame" x="365" y="50.5" width="5" height="5"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downTriangle" translatesAutoresizingMaskIntoConstraints="NO" id="Inc-0p-mNk">
+                                        <rect key="frame" x="140" y="52.5" width="5" height="5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="5" id="6Ip-3c-WSZ"/>
                                             <constraint firstAttribute="width" constant="5" id="c7E-fQ-GWr"/>
@@ -70,13 +72,12 @@
                                     <constraint firstAttribute="trailing" secondItem="OL7-g1-Osu" secondAttribute="trailing" id="2Pa-DI-Kfu"/>
                                     <constraint firstItem="Mww-En-Egy" firstAttribute="top" secondItem="S8d-bO-mE2" secondAttribute="top" constant="26" id="4Cn-Hf-VNs"/>
                                     <constraint firstAttribute="bottom" secondItem="OL7-g1-Osu" secondAttribute="bottom" id="78c-iL-wTt"/>
-                                    <constraint firstItem="Inc-0p-mNk" firstAttribute="centerY" secondItem="KJS-vw-tOp" secondAttribute="centerY" id="KtP-AG-qEo"/>
+                                    <constraint firstItem="Inc-0p-mNk" firstAttribute="centerY" secondItem="KJS-vw-tOp" secondAttribute="centerY" constant="2" id="KtP-AG-qEo"/>
                                     <constraint firstAttribute="height" constant="80" id="YWS-An-aSb"/>
                                     <constraint firstAttribute="trailing" secondItem="Mww-En-Egy" secondAttribute="trailing" constant="16" id="bjl-3f-8e5"/>
                                     <constraint firstAttribute="bottom" secondItem="tY1-dK-j12" secondAttribute="bottom" id="ePz-84-jbx"/>
                                     <constraint firstItem="KJS-vw-tOp" firstAttribute="leading" secondItem="S8d-bO-mE2" secondAttribute="leading" constant="16" id="g21-zj-UDY"/>
-                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Inc-0p-mNk" secondAttribute="trailing" constant="238" id="kd2-3B-CnW"/>
-                                    <constraint firstItem="Inc-0p-mNk" firstAttribute="leading" secondItem="KJS-vw-tOp" secondAttribute="trailing" constant="6" id="oeA-7d-Ugo"/>
+                                    <constraint firstAttribute="trailing" secondItem="Inc-0p-mNk" secondAttribute="trailing" constant="230" id="kd2-3B-CnW"/>
                                     <constraint firstItem="Mww-En-Egy" firstAttribute="leading" secondItem="S8d-bO-mE2" secondAttribute="leading" constant="16" id="pBu-dR-H7W"/>
                                     <constraint firstItem="OL7-g1-Osu" firstAttribute="leading" secondItem="S8d-bO-mE2" secondAttribute="leading" id="wbR-IT-QOi"/>
                                     <constraint firstItem="OL7-g1-Osu" firstAttribute="top" secondItem="S8d-bO-mE2" secondAttribute="top" id="wxR-Ew-7wG"/>
@@ -143,10 +144,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DCq-14-Ly9"/>
                     </view>
+                    <connections>
+                        <outlet property="emailLabel" destination="KJS-vw-tOp" id="Pz8-rX-DGy"/>
+                        <outlet property="triangle" destination="Inc-0p-mNk" id="VLW-XH-nFW"/>
+                        <outlet property="triangleTrailingConstraint" destination="kd2-3B-CnW" id="UVM-BW-6Kg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="me0-H4-qXw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="53.600000000000001" y="231.63418290854574"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="downTriangle" width="3" height="2"/>
+    </resources>
 </document>

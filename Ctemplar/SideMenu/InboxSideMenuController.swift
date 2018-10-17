@@ -12,16 +12,49 @@ import UIKit
 
 class InboxSideMenuController: UIViewController {
     
+    @IBOutlet var emailLabel : UILabel!
+    @IBOutlet var triangle   : UIImageView!
+    
+    @IBOutlet var triangleTrailingConstraint : NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        //let dollarSign = "\u{24}"        // $,  Unicode scalar U+0024
-        //U+25BD white triangle and  U+25B3  // \u{25BD}
+ 
         
         //self.view.backgroundColor = k_sideMenuColor
         
         self.navigationController?.navigationBar.isHidden = true
         
+        //emailLabel.text = "xx@xx.com"
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setupUserProfileBar()
+    }
+    
+    func setupUserProfileBar() {
+        
+        let emailTextWidth = emailLabel.text?.widthOfString(usingFont: emailLabel.font)
+        
+        let triangleTrailingConstraintWidth = self.view.frame.width - emailTextWidth! - CGFloat(k_triangleOffset)
+        updateTriangleTrailingConstraint(value: triangleTrailingConstraintWidth )
+    }
+    
+    func updateTriangleTrailingConstraint(value: CGFloat) {
+        
+        DispatchQueue.main.async {
+            self.triangleTrailingConstraint.constant = value
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    //MARK: - IBActions
+    
+    @IBAction func userProfilePressed(_ sender: AnyObject) {
+        
+    }
+    
 }
