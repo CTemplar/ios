@@ -136,26 +136,26 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                             <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z5N-8m-C3L">
                                 <rect key="frame" x="0.0" y="618" width="375" height="49"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2m-Xp-8JM">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2m-Xp-8JM">
                                         <rect key="frame" x="48" y="6" width="46" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="b2m-Xp-8JM" secondAttribute="height" multiplier="46:35" id="2uE-MU-BKl"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" image="replyButton"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1u4-Uf-KqQ">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1u4-Uf-KqQ">
                                         <rect key="frame" x="164.5" y="7" width="46" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="1u4-Uf-KqQ" secondAttribute="height" multiplier="46:35" id="dqe-6i-Z1l"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="Button" image="replyAllButton"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ya-OR-KPO">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ya-OR-KPO">
                                         <rect key="frame" x="281" y="7" width="46" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="9Ya-OR-KPO" secondAttribute="height" multiplier="46:35" id="C9E-4o-szj"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="Button" image="forwardButton"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -218,5 +218,8 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
     <resources>
         <image name="SecureIcon" width="16" height="16"/>
         <image name="StarIcon" width="16" height="16"/>
+        <image name="forwardButton" width="44" height="31"/>
+        <image name="replyAllButton" width="44" height="31"/>
+        <image name="replyButton" width="44" height="31"/>
     </resources>
 </document>
