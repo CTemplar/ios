@@ -11,6 +11,8 @@ import UIKit
 
 class ViewInboxEmailViewController: UIViewController {
     
+    @IBOutlet var secureImageTrailingConstraint : NSLayoutConstraint!
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {

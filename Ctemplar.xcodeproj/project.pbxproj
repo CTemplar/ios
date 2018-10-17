@@ -57,6 +57,8 @@
 		843FC3972164D20E000CFEA9 /* SignUpPageEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3962164D20E000CFEA9 /* SignUpPageEmail.swift */; };
 		8441098E2177238A00F0BE18 /* ViewInboxEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441098D2177238A00F0BE18 /* ViewInboxEmailViewController.swift */; };
 		84410990217723CE00F0BE18 /* ViewInboxEmail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8441098F217723CE00F0BE18 /* ViewInboxEmail.storyboard */; };
+		8441099221776B5100F0BE18 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8441099121776B4C00F0BE18 /* Lato-Bold.ttf */; };
+		8441099421776B6400F0BE18 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8441099321776B6400F0BE18 /* README.md */; };
 		844F4B5A216B3A380057C758 /* UserPGPKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F4B59216B3A380057C758 /* UserPGPKey.swift */; };
 		845E64392170849C008612FE /* InboxSideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E64382170849C008612FE /* InboxSideMenuController.swift */; };
 		845E643B21709330008612FE /* InboxSideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845E643A21709330008612FE /* InboxSideMenu.storyboard */; };
@@ -133,6 +135,8 @@
 		843FC3962164D20E000CFEA9 /* SignUpPageEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageEmail.swift; sourceTree = "<group>"; };
 		8441098D2177238A00F0BE18 /* ViewInboxEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewInboxEmailViewController.swift; sourceTree = "<group>"; };
 		8441098F217723CE00F0BE18 /* ViewInboxEmail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ViewInboxEmail.storyboard; sourceTree = "<group>"; };
+		8441099121776B4C00F0BE18 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
+		8441099321776B6400F0BE18 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		844F4B59216B3A380057C758 /* UserPGPKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPGPKey.swift; sourceTree = "<group>"; };
 		845E64382170849C008612FE /* InboxSideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuController.swift; sourceTree = "<group>"; };
 		845E643A21709330008612FE /* InboxSideMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InboxSideMenu.storyboard; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 		8433FF18216201A300C57DC8 /* Ctemplar */ = {
 			isa = PBXGroup;
 			children = (
+				8441099321776B6400F0BE18 /* README.md */,
 				843FC3832164C320000CFEA9 /* Ctemplar.entitlements */,
 				8433FF4F2162106200C57DC8 /* AplicationLayer */,
 				8433FF4E2162105A00C57DC8 /* Models */,
@@ -321,6 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				845E64442170BF8F008612FE /* Lato-Black.ttf */,
+				8441099121776B4C00F0BE18 /* Lato-Bold.ttf */,
 				843E972C2163494400147CBE /* Lato-Regular.ttf */,
 				843E973521635F6D00147CBE /* Roboto-Bold.ttf */,
 			);
@@ -508,11 +514,13 @@
 				843FBF17216E3D2400148FC1 /* Login-iPad.storyboard in Resources */,
 				843710412174661000DAE4BA /* ForgotPassword.storyboard in Resources */,
 				845E643B21709330008612FE /* InboxSideMenu.storyboard in Resources */,
+				8441099221776B5100F0BE18 /* Lato-Bold.ttf in Resources */,
 				845E64402170A4A2008612FE /* Compose.storyboard in Resources */,
 				8433FF24216201A500C57DC8 /* LaunchScreen.storyboard in Resources */,
 				8435685B216F2748002101D3 /* Inbox.storyboard in Resources */,
 				8433FF4C21620DBD00C57DC8 /* Main-iPad.storyboard in Resources */,
 				843E973421635C3B00147CBE /* Login.storyboard in Resources */,
+				8441099421776B6400F0BE18 /* README.md in Resources */,
 				843FC3902164CBFA000CFEA9 /* SignUp.storyboard in Resources */,
 				8433FF21216201A500C57DC8 /* Assets.xcassets in Resources */,
 				845E64472170CA6F008612FE /* Lato-Regular.ttf in Resources */,
