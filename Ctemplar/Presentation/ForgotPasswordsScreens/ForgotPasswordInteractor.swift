@@ -32,9 +32,9 @@ class ForgotPasswordInteractor {
         }
     }
     
-    func resetPassword(userName: String, password: String, resetPasswordCode: String) {
+    func resetPassword(userName: String, password: String, resetPasswordCode: String, recoveryEmail: String) {
         
-        apiService?.resetPassword(resetPasswordCode: resetPasswordCode, userName: userName, password: password) {(result) in
+        apiService?.resetPassword(resetPasswordCode: resetPasswordCode, userName: userName, password: password, recoveryEmail: recoveryEmail) {(result) in
             
             switch(result) {
                 

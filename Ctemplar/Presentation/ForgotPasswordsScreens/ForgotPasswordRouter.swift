@@ -38,10 +38,13 @@ class ForgotPasswordRouter {
         self.viewController?.present(vc, animated: true, completion: nil)
     }
     
-    func showNewPasswordViewController() {
+    func showNewPasswordViewController(userName: String, resetPasswordCode: String, recoveryEmail: String) {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_ForgotPasswordStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_NewPasswordViewControllerID) as! NewPasswordViewController
+        vc.userName = userName
+        vc.resetCode = resetPasswordCode
+        vc.recoveryEmail = recoveryEmail
         self.viewController?.present(vc, animated: true, completion: nil)
     }
 }

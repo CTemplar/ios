@@ -64,13 +64,66 @@ class ForgotPasswordPresenter {
         }
     }
     
-    func buttonResetPasswordPressed(resetCode: String) {
+    func buttonResetPasswordPressed(userName: String, resetCode: String, recoveryEmail: String) {
         
         if (formatterService?.validateNameLench(enteredName: resetCode))! {
             //temp
-            self.router?.showNewPasswordViewController()
+            self.router?.showNewPasswordViewController(userName: userName, resetPasswordCode: resetCode, recoveryEmail: recoveryEmail)
         } else {
             AlertHelperKit().showAlert(self.viewController!, title: "", message: "Entered Reset Code is not valid", button: "Close")
+        }
+    }
+    
+    func setupPasswordTextFieldsAndHintLabels(childViewController: NewPasswordViewController, sender: UITextField) {
+        
+        switch sender {
+        case (childViewController.newPasswordTextField)!:
+            print("choosePasswordTextField typed:", sender.text!)
+            childViewController.newPassword = sender.text
+        case (childViewController.confirmPasswordTextField)!:
+            print("confirmPasswordTextField typed:", sender.text!)
+            childViewController.confirmedPassword = sender.text
+        default:
+            print("unknown textfield")
+        }
+        
+        if (formatterService?.validatePasswordLench(enteredPassword: childViewController.newPassword!))! {
+            childViewController.newPasswordHintLabel.isHidden = false
+        } else {
+            childViewController.newPasswordHintLabel.isHidden = true
+        }
+        
+        if (formatterService?.validatePasswordLench(enteredPassword: childViewController.confirmedPassword!))! {
+            childViewController.confirmPasswordHintLabel.isHidden = false
+        } else {
+            childViewController.confirmPasswordHintLabel.isHidden = true
+        }
+        
+        if ((formatterService?.passwordsMatched(choosedPassword: childViewController.newPassword! , confirmedPassword: childViewController.confirmedPassword!))!) {
+            print("passwords matched")
+            childViewController.password = childViewController.newPassword
+            
+            if ((formatterService?.validatePasswordFormat(enteredPassword: (childViewController.password)!))!) {
+                changeButtonState(button: childViewController.resetPasswordButton, disabled: false)
+            } else {
+                print("password wrong format")
+                changeButtonState(button: childViewController.resetPasswordButton, disabled: true)
+            }
+        } else {
+            print("passwords not matched!!!")
+            childViewController.password = ""
+            changeButtonState(button: childViewController.resetPasswordButton, disabled: true)
+        }
+    }
+    
+    func changeButtonState(button: UIButton, disabled: Bool) {
+        
+        if disabled {
+            button.isEnabled = false
+            button.alpha = 0.6
+        } else {
+            button.isEnabled = true
+            button.alpha = 1.0
         }
     }
 }

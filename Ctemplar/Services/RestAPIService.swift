@@ -154,7 +154,7 @@ class RestAPIService {
         }
     }
     
-    func resetPassword(resetPasswordCode: String, userName: String, password: String, privateKey: String, publicKey: String, fingerprint: String,completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func resetPassword(resetPasswordCode: String, userName: String, password: String, privateKey: String, publicKey: String, fingerprint: String, recoveryEmail: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Accept": "application/json"
@@ -166,8 +166,8 @@ class RestAPIService {
             JSONKey.password.rawValue: password,
             JSONKey.privateKey.rawValue: privateKey,
             JSONKey.publicKey.rawValue: publicKey,
-            JSONKey.fingerprint.rawValue: fingerprint
-            //JSONKey.recaptcha.rawValue: recaptcha
+            JSONKey.fingerprint.rawValue: fingerprint,
+            JSONKey.recoveryEmail.rawValue : recoveryEmail            
         ]
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.recoveryCode.rawValue

@@ -250,11 +250,12 @@ class APIService {
         }
     }
     
-    func resetPassword(resetPasswordCode: String, userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func resetPassword(resetPasswordCode: String, userName: String, password: String, recoveryEmail: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         print("userName:", userName)
         print("password:", password)
-        print("recoveryPasswordCode:", recoveryPasswordCode)
+        print("resetPasswordCode:", resetPasswordCode)
+        print("recoveryEmail:", recoveryEmail)
         
         let userPGPKey = pgpService?.generateUserPGPKeys(userName: userName, password: password)
         
@@ -297,7 +298,7 @@ class APIService {
         
         HUD.show(.progress)
         
-        restAPIService?.resetPassword(resetPasswordCode: resetPasswordCode, userName: userName, password: hashedPassword!, privateKey: (userPGPKey?.privateKey)!, publicKey: (userPGPKey?.publicKey)!, fingerprint: (userPGPKey?.fingerprint)!) {(result) in
+        restAPIService?.resetPassword(resetPasswordCode: resetPasswordCode, userName: userName, password: hashedPassword!, privateKey: (userPGPKey?.privateKey)!, publicKey: (userPGPKey?.publicKey)!, fingerprint: (userPGPKey?.fingerprint)!, recoveryEmail: recoveryEmail) {(result) in
             
             switch(result) {
                 
