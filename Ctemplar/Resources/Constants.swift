@@ -24,6 +24,7 @@ let k_NewPasswordViewControllerID           = "NewPasswordViewController"
 let k_ForgorUsernameViewControllerID        = "ForgotUsernameViewController"
 let k_InboxNavigationControllerID           = "InboxNavigationController"
 let k_InboxSideMenuControllerID             = "InboxSideMenuController"
+let k_ViewInboxEmailViewControllerID        = "ViewInboxEmailViewController"
 let k_ComposeViewControllerID               = "ComposeViewController"
 let k_AboutAsViewControllerID               = "AboutAsViewController"
 
@@ -36,6 +37,7 @@ let k_InboxStoryboardName                  = "Inbox"
 let k_InboxSideMenuStoryboardName          = "InboxSideMenu"
 let k_ComposeStoryboardName                = "Compose"
 let k_AboutAsStoryboardName                = "AboutAs"
+let k_ViewInboxEmailStoryboardName         = "ViewInboxEmail"
 
 // view controllers iPad storyboards name
 
@@ -69,6 +71,13 @@ let k_checkBoxSelectedImageName     = "checkedBoxDark"
 
 let k_composeImageName              = "ComposeButton"
 let k_composeRedImageName           = "ComposeRedButton"
+
+let k_darkBackArrowImageName        = "BackArrowDark"
+
+let k_garbageImageName              = "GarbageButton"
+let k_spamImageName                 = "SpamButton"
+let k_moveImageName                 = "MoveBatton"
+let k_moreImageName                 = "MoreButton"
 
 // fonts
 

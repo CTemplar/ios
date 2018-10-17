@@ -25,4 +25,13 @@ class InboxRouter {
         let vc = storyboard.instantiateViewController(withIdentifier: k_ComposeViewControllerID) as! ComposeViewController
         self.viewController?.show(vc, sender: self)   
     }
+    
+    func showViewInboxEmailViewController() {
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: k_ViewInboxEmailStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_ViewInboxEmailViewControllerID) as! ViewInboxEmailViewController
+        //self.viewController?.show(vc, sender: self)
+        //self.viewController?.present(vc, animated: true, completion: nil)
+        self.viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
 }

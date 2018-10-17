@@ -55,6 +55,8 @@
 		843FC3932164D1B2000CFEA9 /* SignUpPageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3922164D1B2000CFEA9 /* SignUpPageName.swift */; };
 		843FC3952164D1E3000CFEA9 /* SignUpPagePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3942164D1E3000CFEA9 /* SignUpPagePassword.swift */; };
 		843FC3972164D20E000CFEA9 /* SignUpPageEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3962164D20E000CFEA9 /* SignUpPageEmail.swift */; };
+		8441098E2177238A00F0BE18 /* ViewInboxEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441098D2177238A00F0BE18 /* ViewInboxEmailViewController.swift */; };
+		84410990217723CE00F0BE18 /* ViewInboxEmail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8441098F217723CE00F0BE18 /* ViewInboxEmail.storyboard */; };
 		844F4B5A216B3A380057C758 /* UserPGPKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F4B59216B3A380057C758 /* UserPGPKey.swift */; };
 		845E64392170849C008612FE /* InboxSideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E64382170849C008612FE /* InboxSideMenuController.swift */; };
 		845E643B21709330008612FE /* InboxSideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845E643A21709330008612FE /* InboxSideMenu.storyboard */; };
@@ -129,6 +131,8 @@
 		843FC3922164D1B2000CFEA9 /* SignUpPageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageName.swift; sourceTree = "<group>"; };
 		843FC3942164D1E3000CFEA9 /* SignUpPagePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPagePassword.swift; sourceTree = "<group>"; };
 		843FC3962164D20E000CFEA9 /* SignUpPageEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageEmail.swift; sourceTree = "<group>"; };
+		8441098D2177238A00F0BE18 /* ViewInboxEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewInboxEmailViewController.swift; sourceTree = "<group>"; };
+		8441098F217723CE00F0BE18 /* ViewInboxEmail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ViewInboxEmail.storyboard; sourceTree = "<group>"; };
 		844F4B59216B3A380057C758 /* UserPGPKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPGPKey.swift; sourceTree = "<group>"; };
 		845E64382170849C008612FE /* InboxSideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuController.swift; sourceTree = "<group>"; };
 		845E643A21709330008612FE /* InboxSideMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InboxSideMenu.storyboard; sourceTree = "<group>"; };
@@ -205,9 +209,6 @@
 				8433FF4F2162106200C57DC8 /* AplicationLayer */,
 				8433FF4E2162105A00C57DC8 /* Models */,
 				8433FF512162108B00C57DC8 /* Presentation */,
-				845E643C2170A440008612FE /* ComposeScreen */,
-				845E643721708453008612FE /* SideMenu */,
-				845E64412170BD08008612FE /* AboutAsScreen */,
 				8433FF502162106C00C57DC8 /* Services */,
 				8433FF4D21620DC500C57DC8 /* Storyboards */,
 				8433FF58216217DC00C57DC8 /* Resources */,
@@ -264,6 +265,10 @@
 				8437103B217464B600DAE4BA /* ForgotPasswordsScreens */,
 				844F4B58216B330E0057C758 /* MainViewController */,
 				84356857216F2702002101D3 /* InboxScreen */,
+				845E643C2170A440008612FE /* ComposeScreen */,
+				8441098C2177233800F0BE18 /* ViewInboxEmailScreen */,
+				845E643721708453008612FE /* SideMenu */,
+				845E64412170BD08008612FE /* AboutAsScreen */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -368,6 +373,15 @@
 				843FC3962164D20E000CFEA9 /* SignUpPageEmail.swift */,
 			);
 			path = SignUpScreenPages;
+			sourceTree = "<group>";
+		};
+		8441098C2177233800F0BE18 /* ViewInboxEmailScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8441098D2177238A00F0BE18 /* ViewInboxEmailViewController.swift */,
+				8441098F217723CE00F0BE18 /* ViewInboxEmail.storyboard */,
+			);
+			path = ViewInboxEmailScreen;
 			sourceTree = "<group>";
 		};
 		844F4B58216B330E0057C758 /* MainViewController */ = {
@@ -487,6 +501,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84410990217723CE00F0BE18 /* ViewInboxEmail.storyboard in Resources */,
 				845E64482170CAEF008612FE /* Lato-Black.ttf in Resources */,
 				845E64432170BD21008612FE /* AboutAs.storyboard in Resources */,
 				845E64492170CAF2008612FE /* Roboto-Bold.ttf in Resources */,
@@ -619,6 +634,7 @@
 				84A62E4B2175C3CF009C38E5 /* NewPasswordViewController.swift in Sources */,
 				8437103D217465A700DAE4BA /* ForgotPasswordNavigationController.swift in Sources */,
 				8433FF5A2162181E00C57DC8 /* Constants.swift in Sources */,
+				8441098E2177238A00F0BE18 /* ViewInboxEmailViewController.swift in Sources */,
 				8435685D216F2DB3002101D3 /* InboxViewController.swift in Sources */,
 				843FC3972164D20E000CFEA9 /* SignUpPageEmail.swift in Sources */,
 				84A62E512175CD40009C38E5 /* ForgotPasswordRouter.swift in Sources */,
