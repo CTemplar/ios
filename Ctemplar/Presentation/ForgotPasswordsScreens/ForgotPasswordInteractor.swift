@@ -31,4 +31,22 @@ class ForgotPasswordInteractor {
             }
         }
     }
+    
+    func resetPassword(userName: String, password: String, resetPasswordCode: String) {
+        
+        apiService?.resetPassword(resetPasswordCode: resetPasswordCode, userName: userName, password: password) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("resetPassword success value:", value)
+                
+                //self.keychainService?.saveUserCredentials(userName: userName, password: password)
+                
+            case .failure(let error):
+                print("resetPassword error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Reset Password Error", message: error.localizedDescription, button: "Close")
+            }
+        }
+    }
 }

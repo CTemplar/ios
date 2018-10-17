@@ -143,8 +143,7 @@ class APIService {
     }
     
     func signUpUser(userName: String, password: String, recoveryEmail: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
-                
-
+        
         print("userName:", userName)
         print("password:", password)
         print("recoveryEmail:", recoveryEmail)
@@ -231,6 +230,81 @@ class APIService {
                 
                 if let response = value as? Dictionary<String, Any> {
                     print("recoveryPasswordCode response", response)
+                    if let message = self.parseServerResponse(response:response) {
+                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                        completionHandler(APIResult.failure(error))
+                    } else {
+                        completionHandler(APIResult.success("success"))
+                    }
+                } else {
+                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                    completionHandler(APIResult.failure(error))
+                }
+                
+            case .failure(let error):
+                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                completionHandler(APIResult.failure(error))
+            }
+            
+            HUD.hide()
+        }
+    }
+    
+    func resetPassword(resetPasswordCode: String, userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        print("userName:", userName)
+        print("password:", password)
+        print("recoveryPasswordCode:", recoveryPasswordCode)
+        
+        let userPGPKey = pgpService?.generateUserPGPKeys(userName: userName, password: password)
+        
+        if userPGPKey?.privateKey == nil {
+            print("publicKey is nil")
+            return
+        }
+        
+        if userPGPKey?.publicKey == nil {
+            print("publicKey is nil")
+            return
+        }
+        
+        if userPGPKey?.fingerprint == nil {
+            print("fingerprint is nil")
+            return
+        }
+        
+        var hashedPassword: String?
+        
+        if let salt = formatterService?.generateSaltFrom(userName: userName) {
+            print("generated salt:", salt)
+            hashedPassword = formatterService?.hash(password: password, salt: salt)
+            print("hashedPassword:", hashedPassword!)
+        }
+        
+        if hashedPassword == nil {
+            print("hashedPassword is nil")
+            return
+        }
+        
+        if (hashedPassword?.count)! < 1 {
+            print("hashedPassword is short")
+            return
+        }
+        
+        //==temp avoid login with hashed password problem
+        hashedPassword = password
+        //========================
+        
+        HUD.show(.progress)
+        
+        restAPIService?.resetPassword(resetPasswordCode: resetPasswordCode, userName: userName, password: hashedPassword!, privateKey: (userPGPKey?.privateKey)!, publicKey: (userPGPKey?.publicKey)!, fingerprint: (userPGPKey?.fingerprint)!) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                
+                if let response = value as? Dictionary<String, Any> {
+                    print("resetPassword response", response)
                     if let message = self.parseServerResponse(response:response) {
                         let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
                         completionHandler(APIResult.failure(error))

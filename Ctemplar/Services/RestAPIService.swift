@@ -17,6 +17,7 @@ class RestAPIService {
         case signUp = "auth/sign-up/"
         case checkUsername = "auth/check-username/"
         case recoveryCode = "auth/recover/"
+        case resetPassword = "auth/reset/"
         case messages = "emails/messages/"
         case mailboxes = "emails/mailboxes/"
     }
@@ -35,6 +36,7 @@ class RestAPIService {
         case memory = "memory"
         case emailCount = "email_count"
         case paymentType = "payment_type"
+        case resetPasswordCode = "code"
     }
         
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -142,6 +144,40 @@ class RestAPIService {
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
             
             print("recoveryPasswordCode responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func resetPassword(resetPasswordCode: String, userName: String, password: String, privateKey: String, publicKey: String, fingerprint: String,completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.resetPasswordCode.rawValue: resetPasswordCode,
+            JSONKey.userName.rawValue: userName,
+            JSONKey.password.rawValue: password,
+            JSONKey.privateKey.rawValue: privateKey,
+            JSONKey.publicKey.rawValue: publicKey,
+            JSONKey.fingerprint.rawValue: fingerprint
+            //JSONKey.recaptcha.rawValue: recaptcha
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.recoveryCode.rawValue
+        
+        print("resetPassword parameters:", parameters)
+        print("resetPassword url:", url)
+        
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+            
+            print("resetPassword responce:", response)
             
             switch(response.result) {
             case .success(let value):

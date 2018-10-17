@@ -13,6 +13,10 @@ class NewPasswordViewController: UIViewController {
     
     var configurator: ForgotPasswordConfigurator?
     
+    var resetCode       : String? = ""
+    var userName        : String? = ""
+    var pasword         : String? = ""
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -32,6 +36,6 @@ class NewPasswordViewController: UIViewController {
     
     @IBAction func resetPasswordButtonPressed(_ sender: AnyObject) {
         
-        
+        self.configurator?.presenter?.interactor?.resetPassword(userName: userName!, password: pasword!, resetPasswordCode: resetCode!)
     }
 }
