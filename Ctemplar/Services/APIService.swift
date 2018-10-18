@@ -47,6 +47,7 @@ class APIService {
     var formatterService: FormatterService?
     
     
+    
     func initialize() {
        
         self.restAPIService = appDelegate.applicationManager.restAPIService
@@ -59,11 +60,13 @@ class APIService {
     
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
+        HUD.show(.progress)
+        
         var hashedPassword: String?
         
-        if let salt = formatterService?.generateSaltFrom(userName: userName) {
+        if let salt = formatterService?.generateSaltFrom(userName: userName) {  
             print("salt:", salt)
-            hashedPassword = formatterService?.hash(password: password, salt: salt)
+            hashedPassword = self.formatterService?.hash(password: password, salt: salt)           
             print("hashedPassword:", hashedPassword as Any)
         }
         
@@ -81,7 +84,7 @@ class APIService {
         //hashedPassword = password
         //========================
         
-        HUD.show(.progress)
+       // HUD.show(.progress)
         
         restAPIService?.authenticateUser(userName: userName, password: hashedPassword!) {(result) in
             
@@ -293,7 +296,7 @@ class APIService {
         }
         
         //==temp avoid login with hashed password problem
-        hashedPassword = password
+        //hashedPassword = password
         //========================
         
         HUD.show(.progress)

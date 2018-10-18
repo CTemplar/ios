@@ -15,25 +15,29 @@ class FormatterService
     //MARK: - Hash password
     
     func generateSaltFrom(userName: String) -> String {
-
-        let userNameLench = userName.count
         
-        var salt : String
-        var rounds = 0
-
-        if userNameLench < k_numberOfRounds {
-            let newUserName = userName + userName
-         //   salt = generateSaltFrom(userName: newUserName)
-            rounds = userNameLench
-        } else {
-            rounds = k_numberOfRounds
+        var newUserName = userName.lowercased()
+        
+        var newSalt : String = k_saltPrefix
+        
+        let rounds = k_numberOfRounds/newUserName.count + 1
+        
+        //print("rounds:", rounds)
+        
+        for _ in 0..<rounds {
+            newUserName = newUserName + userName
         }
         
-        rounds = 5
+        //print("newUserName:", newUserName)
         
-        salt = BCryptSwift.generateSaltWithNumberOfRounds(UInt(rounds))
+        newSalt = newSalt + newUserName
         
-        return salt
+        let index = newSalt.index(newSalt.startIndex, offsetBy: k_numberOfRounds)
+        newSalt = String(newSalt.prefix(upTo: index))
+        
+        //print("newSalt subs:", newSalt, "cnt:",  newSalt.count)
+        
+        return newSalt
     }
     
     func hash(password: String, salt: String) -> String {
