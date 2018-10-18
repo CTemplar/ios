@@ -46,7 +46,9 @@ class APIService {
     var pgpService      : PGPService?
     var formatterService: FormatterService?
     
-    
+    let dispatchGroup = DispatchGroup()
+    let dispatchQueue = DispatchQueue(label: "taskQueue")
+    let dispatchSemaphore = DispatchSemaphore(value: 0)
     
     func initialize() {
        
@@ -64,52 +66,62 @@ class APIService {
         
         var hashedPassword: String?
         
-        if let salt = formatterService?.generateSaltFrom(userName: userName) {  
-            print("salt:", salt)
-            hashedPassword = self.formatterService?.hash(password: password, salt: salt)           
-            print("hashedPassword:", hashedPassword as Any)
-        }
-        
-        if hashedPassword == nil {
-            print("hashedPassword is nil")
-            return
-        }
-        
-        if (hashedPassword?.count)! < 1 {
-            print("hashedPassword is short")
-            return
-        }
-        
-        //==temp avoid login with hashed password problem
-        //hashedPassword = password
-        //========================
-        
-       // HUD.show(.progress)
-        
-        restAPIService?.authenticateUser(userName: userName, password: hashedPassword!) {(result) in
+        dispatchQueue.async {
             
-            switch(result) {
+            self.dispatchGroup.enter()
+            
+            if let salt = self.formatterService?.generateSaltFrom(userName: userName) {
+                print("salt:", salt)
+                hashedPassword = self.formatterService?.hash(password: password, salt: salt)
+                print("hashedPassword:", hashedPassword as Any)
+                self.dispatchSemaphore.signal()
+                self.dispatchGroup.leave()
+            }
+            
+            self.dispatchSemaphore.wait()
+        }
+        
+        self.dispatchGroup.notify(queue: .main) {
+            
+            //==temp avoid login with hashed password problem
+            //hashedPassword = password
+            //========================
+            
+            if hashedPassword == nil {
+                print("hashedPassword is nil")
+                return
+            }
+            
+            if (hashedPassword?.count)! < 1 {
+                print("hashedPassword is short")
+                return
+            }
+        
+            self.restAPIService?.authenticateUser(userName: userName, password: hashedPassword!) {(result) in
                 
-            case .success(let value):
-                
-                if let response = value as? Dictionary<String, Any> {
-                    if let message = self.parseServerResponse(response:response) {
-                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                switch(result) {
+                    
+                case .success(let value):
+                    
+                    if let response = value as? Dictionary<String, Any> {
+                        if let message = self.parseServerResponse(response:response) {
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                            completionHandler(APIResult.failure(error))
+                        } else {                       
+                            completionHandler(APIResult.success("success"))
+                        }
+                    } else {
+                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
                         completionHandler(APIResult.failure(error))
-                    } else {                       
-                        completionHandler(APIResult.success("success"))
                     }
-                } else {
-                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                    
+                case .failure(let error):
+                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                     completionHandler(APIResult.failure(error))
                 }
                 
-            case .failure(let error):
-                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
-                completionHandler(APIResult.failure(error))
+                HUD.hide()
             }
-            
-            HUD.hide()
         }
     }
     
@@ -147,6 +159,8 @@ class APIService {
     
     func signUpUser(userName: String, password: String, recoveryEmail: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
+        HUD.show(.progress)
+        
         print("userName:", userName)
         print("password:", password)
         print("recoveryEmail:", recoveryEmail)
@@ -170,54 +184,64 @@ class APIService {
         
         var hashedPassword: String?
         
-        if let salt = formatterService?.generateSaltFrom(userName: userName) {
-            print("generated salt:", salt)
-            hashedPassword = formatterService?.hash(password: password, salt: salt)
-            print("hashedPassword:", hashedPassword!)
-        }
-        
-        if hashedPassword == nil {
-            print("hashedPassword is nil")
-            return
-        }
-        
-        if (hashedPassword?.count)! < 1 {
-            print("hashedPassword is short")
-            return
-        }
-
-        //==temp avoid login with hashed password problem
-        //hashedPassword = password
-        //========================
-        
-        HUD.show(.progress)
-        
-        restAPIService?.signUp(userName: userName, password: hashedPassword!, privateKey: (userPGPKey?.privateKey)!, publicKey: (userPGPKey?.publicKey)!, fingerprint: (userPGPKey?.fingerprint)!, recaptcha: "1", recoveryEmail: recoveryEmail, fromAddress: "", redeemCode: "", stripeToken: "", memory: "", emailCount: "", paymentType: "") {(result) in
+        dispatchQueue.async {
             
-            switch(result) {
+            self.dispatchGroup.enter()
+        
+            if let salt = self.formatterService?.generateSaltFrom(userName: userName) {
+                print("generated salt:", salt)
+                hashedPassword = self.formatterService?.hash(password: password, salt: salt)
+                print("hashedPassword:", hashedPassword!)
+                self.dispatchSemaphore.signal()
+                self.dispatchGroup.leave()
+            }
+            
+            self.dispatchSemaphore.wait()
+        }
+        
+        self.dispatchGroup.notify(queue: .main) {
+            
+            //==temp avoid login with hashed password problem
+            //hashedPassword = password
+            //========================
+        
+            if hashedPassword == nil {
+                print("hashedPassword is nil")
+                return
+            }
+            
+            if (hashedPassword?.count)! < 1 {
+                print("hashedPassword is short")
+                return
+            }
+            
+            self.restAPIService?.signUp(userName: userName, password: hashedPassword!, privateKey: (userPGPKey?.privateKey)!, publicKey: (userPGPKey?.publicKey)!, fingerprint: (userPGPKey?.fingerprint)!, recaptcha: "1", recoveryEmail: recoveryEmail, fromAddress: "", redeemCode: "", stripeToken: "", memory: "", emailCount: "", paymentType: "") {(result) in
                 
-            case .success(let value):
-               // print("signUpUser success:", value)
-                
-                if let response = value as? Dictionary<String, Any> {
-                    if let message = self.parseServerResponse(response:response) {
-                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
-                        completionHandler(APIResult.failure(error))
+                switch(result) {
+                    
+                case .success(let value):
+                   // print("signUpUser success:", value)
+                    
+                    if let response = value as? Dictionary<String, Any> {
+                        if let message = self.parseServerResponse(response:response) {
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                            completionHandler(APIResult.failure(error))
+                        } else {
+                            completionHandler(APIResult.success("success"))
+                        }
                     } else {
-                        completionHandler(APIResult.success("success"))
+                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                        completionHandler(APIResult.failure(error))
                     }
-                } else {
-                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                    
+                case .failure(let error):
+                    print("signUpUser error:", error.localizedDescription)
+                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                     completionHandler(APIResult.failure(error))
                 }
                 
-            case .failure(let error):
-                print("signUpUser error:", error.localizedDescription)
-                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
-                completionHandler(APIResult.failure(error))
+                HUD.hide()
             }
-            
-            HUD.hide()
         }
     }
     
@@ -255,6 +279,8 @@ class APIService {
     
     func resetPassword(resetPasswordCode: String, userName: String, password: String, recoveryEmail: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
+        HUD.show(.progress)
+        
         print("userName:", userName)
         print("password:", password)
         print("resetPasswordCode:", resetPasswordCode)
@@ -279,53 +305,63 @@ class APIService {
         
         var hashedPassword: String?
         
-        if let salt = formatterService?.generateSaltFrom(userName: userName) {
-            print("generated salt:", salt)
-            hashedPassword = formatterService?.hash(password: password, salt: salt)
-            print("hashedPassword:", hashedPassword!)
-        }
-        
-        if hashedPassword == nil {
-            print("hashedPassword is nil")
-            return
-        }
-        
-        if (hashedPassword?.count)! < 1 {
-            print("hashedPassword is short")
-            return
-        }
-        
-        //==temp avoid login with hashed password problem
-        //hashedPassword = password
-        //========================
-        
-        HUD.show(.progress)
-        
-        restAPIService?.resetPassword(resetPasswordCode: resetPasswordCode, userName: userName, password: hashedPassword!, privateKey: (userPGPKey?.privateKey)!, publicKey: (userPGPKey?.publicKey)!, fingerprint: (userPGPKey?.fingerprint)!, recoveryEmail: recoveryEmail) {(result) in
+        dispatchQueue.async {
             
-            switch(result) {
+            self.dispatchGroup.enter()
+            
+            if let salt = self.formatterService?.generateSaltFrom(userName: userName) {
+                print("generated salt:", salt)
+                hashedPassword = self.formatterService?.hash(password: password, salt: salt)
+                print("hashedPassword:", hashedPassword!)
+                self.dispatchSemaphore.signal()
+                self.dispatchGroup.leave()
+            }
+            
+            self.dispatchSemaphore.wait()
+        }
+        
+        self.dispatchGroup.notify(queue: .main) {
                 
-            case .success(let value):
+            //==temp avoid login with hashed password problem
+            //hashedPassword = password
+            //========================
                 
-                if let response = value as? Dictionary<String, Any> {
-                    print("resetPassword response", response)
-                    if let message = self.parseServerResponse(response:response) {
-                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
-                        completionHandler(APIResult.failure(error))
+            if hashedPassword == nil {
+                print("hashedPassword is nil")
+                return
+            }
+                
+            if (hashedPassword?.count)! < 1 {
+                print("hashedPassword is short")
+                return
+            }
+            
+            self.restAPIService?.resetPassword(resetPasswordCode: resetPasswordCode, userName: userName, password: hashedPassword!, privateKey: (userPGPKey?.privateKey)!, publicKey: (userPGPKey?.publicKey)!, fingerprint: (userPGPKey?.fingerprint)!, recoveryEmail: recoveryEmail) {(result) in
+                
+                switch(result) {
+                    
+                case .success(let value):
+                    
+                    if let response = value as? Dictionary<String, Any> {
+                        print("resetPassword response", response)
+                        if let message = self.parseServerResponse(response:response) {
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                            completionHandler(APIResult.failure(error))
+                        } else {
+                            completionHandler(APIResult.success("success"))
+                        }
                     } else {
-                        completionHandler(APIResult.success("success"))
+                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                        completionHandler(APIResult.failure(error))
                     }
-                } else {
-                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                    
+                case .failure(let error):
+                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                     completionHandler(APIResult.failure(error))
                 }
                 
-            case .failure(let error):
-                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
-                completionHandler(APIResult.failure(error))
+                HUD.hide()
             }
-            
-            HUD.hide()
         }
     }
     
