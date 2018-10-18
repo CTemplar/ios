@@ -78,7 +78,7 @@ class APIService {
         }
         
         //==temp avoid login with hashed password problem
-        hashedPassword = password
+        //hashedPassword = password
         //========================
         
         HUD.show(.progress)
@@ -184,7 +184,7 @@ class APIService {
         }
 
         //==temp avoid login with hashed password problem
-        hashedPassword = password
+        //hashedPassword = password
         //========================
         
         HUD.show(.progress)
