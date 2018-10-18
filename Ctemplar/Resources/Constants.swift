@@ -39,6 +39,12 @@ let k_ComposeStoryboardName                = "Compose"
 let k_AboutAsStoryboardName                = "AboutAs"
 let k_ViewInboxEmailStoryboardName         = "ViewInboxEmail"
 
+let k_InboxMessageTableViewCellXibName     = "InboxMessageTableViewCell"
+
+// cell identifier
+
+let k_InboxMessageTableViewCellIdentifier  = "inboxMessageTableViewCellIdentifier"
+
 // view controllers iPad storyboards name
 
 let k_LoginStoryboardName_iPad             = "Login-iPad"

@@ -19,7 +19,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="05r-7M-Vpj">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="inboxMessageTableViewCellIdentifier" id="05r-7M-Vpj" customClass="InboxMessageTableViewCell" customModule="Ctemplar" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="05r-7M-Vpj" id="8au-y8-0Qc">
@@ -36,8 +36,8 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQA-43-osU">
                         <rect key="frame" x="47" y="13" width="288" height="64"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CTemplar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCp-iz-PG3">
-                                <rect key="frame" x="0.0" y="0.0" width="67.5" height="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CTemplar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="XCp-iz-PG3">
+                                <rect key="frame" x="0.0" y="0.0" width="107.5" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="Xe5-Ad-9fW"/>
                                 </constraints>
@@ -46,9 +46,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Klj-j6-FcD">
-                                <rect key="frame" x="73.5" y="0.0" width="136.5" height="18"/>
+                                <rect key="frame" x="113.5" y="0.0" width="122.5" height="18"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l2J-V0-Jrv">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l2J-V0-Jrv">
                                         <rect key="frame" x="0.0" y="6" width="6" height="6"/>
                                         <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -60,7 +60,7 @@
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="3"/>
+                                                <real key="value" value="6"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="1"/>
@@ -70,9 +70,12 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hre-l6-zHW">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hre-l6-zHW">
                                         <rect key="frame" x="12" y="0.0" width="28" height="18"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="hre-l6-zHW" secondAttribute="height" multiplier="14:9" id="8yh-mS-oJd"/>
+                                            <constraint firstAttribute="width" constant="28" id="fUC-I9-MHF"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.37942891725352113" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -88,55 +91,19 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLh-Ex-4Na">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLh-Ex-4Na">
                                         <rect key="frame" x="46" y="0.0" width="72" height="18"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="0.66666666666666663" blue="0.054901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="VLh-Ex-4Na" secondAttribute="height" multiplier="4:1" id="9hK-Ej-lkI"/>
+                                            <constraint firstAttribute="width" constant="72" id="j9g-Mj-DHd"/>
+                                        </constraints>
                                         <attributedString key="attributedText">
                                             <fragment content="Delete in 5:25">
                                                 <attributes>
                                                     <color key="NSColor" red="0.33333000000000002" green="0.30196000000000001" blue="0.33724999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <font key="NSFont" size="9" name="Lato-Regular"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                        <tabStops>
-                                                            <textTab alignment="left" location="28">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="56">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="84">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="112">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="140">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="168">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="196">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="224">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="252">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="280">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="308">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="336">
-                                                                <options/>
-                                                            </textTab>
-                                                        </tabStops>
-                                                    </paragraphStyle>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                 </attributes>
                                             </fragment>
                                         </attributedString>
@@ -157,11 +124,28 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="l2J-V0-Jrv" secondAttribute="bottom" constant="6" id="0Zz-ef-tAf"/>
+                                    <constraint firstItem="VLh-Ex-4Na" firstAttribute="leading" secondItem="hre-l6-zHW" secondAttribute="trailing" constant="6" id="5FV-jV-Kg9"/>
+                                    <constraint firstItem="hre-l6-zHW" firstAttribute="top" secondItem="Klj-j6-FcD" secondAttribute="top" id="ABq-GE-QMa"/>
+                                    <constraint firstAttribute="bottom" secondItem="hre-l6-zHW" secondAttribute="bottom" id="AFk-kJ-rCg"/>
                                     <constraint firstAttribute="height" constant="18" id="Jtr-Fm-hdz"/>
                                     <constraint firstItem="l2J-V0-Jrv" firstAttribute="top" secondItem="Klj-j6-FcD" secondAttribute="top" constant="6" id="P1H-iB-ddO"/>
                                     <constraint firstItem="l2J-V0-Jrv" firstAttribute="leading" secondItem="Klj-j6-FcD" secondAttribute="leading" id="QCH-zZ-2Jq"/>
+                                    <constraint firstItem="VLh-Ex-4Na" firstAttribute="top" secondItem="Klj-j6-FcD" secondAttribute="top" id="aN8-Jt-qyi"/>
+                                    <constraint firstAttribute="width" constant="122.5" id="bzy-Z0-rvk"/>
+                                    <constraint firstAttribute="bottom" secondItem="VLh-Ex-4Na" secondAttribute="bottom" id="iDC-Km-Y82"/>
+                                    <constraint firstItem="hre-l6-zHW" firstAttribute="leading" secondItem="l2J-V0-Jrv" secondAttribute="trailing" constant="6" id="jHw-tb-UiZ"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yesterday" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="ojL-O5-Vff">
+                                <rect key="frame" x="240" y="0.0" width="48" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="BVe-I6-kgd"/>
+                                    <constraint firstAttribute="width" secondItem="ojL-O5-Vff" secondAttribute="height" multiplier="48:16" id="cUX-0U-P4z"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.37942891725352113" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to CTemplar!  " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7N-NB-U2F">
                                 <rect key="frame" x="0.0" y="23" width="288" height="22"/>
                                 <constraints>
@@ -180,21 +164,11 @@
                                 <color key="textColor" red="0.57647058823529407" green="0.56862745098039214" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8:46 AM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ojL-O5-Vff">
-                                <rect key="frame" x="210" y="0.0" width="78" height="16"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="78" id="BVe-I6-kgd"/>
-                                    <constraint firstAttribute="width" secondItem="ojL-O5-Vff" secondAttribute="height" multiplier="39:8" id="cUX-0U-P4z"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.37942891725352113" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="XCp-iz-PG3" firstAttribute="top" secondItem="gQA-43-osU" secondAttribute="top" id="0Bw-ld-mmU"/>
-                            <constraint firstItem="ojL-O5-Vff" firstAttribute="leading" secondItem="Klj-j6-FcD" secondAttribute="trailing" id="4VE-RD-FxO"/>
+                            <constraint firstItem="ojL-O5-Vff" firstAttribute="leading" secondItem="Klj-j6-FcD" secondAttribute="trailing" constant="4" id="4VE-RD-FxO"/>
                             <constraint firstItem="XCp-iz-PG3" firstAttribute="leading" secondItem="gQA-43-osU" secondAttribute="leading" id="4ii-df-juk"/>
                             <constraint firstAttribute="trailing" secondItem="aj7-qF-XOj" secondAttribute="trailing" id="D80-Ea-v5L"/>
                             <constraint firstItem="x7N-NB-U2F" firstAttribute="leading" secondItem="gQA-43-osU" secondAttribute="leading" id="F1e-qu-mew"/>
@@ -247,7 +221,20 @@
                     <constraint firstItem="ri0-gV-UDM" firstAttribute="top" secondItem="OGH-zi-U9d" secondAttribute="bottom" constant="9" id="wNs-z2-Xvg"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="40" y="47"/>
+            <connections>
+                <outlet property="countLabel" destination="hre-l6-zHW" id="JhO-GN-5Do"/>
+                <outlet property="deleteLabel" destination="VLh-Ex-4Na" id="Q7j-pD-Wcf"/>
+                <outlet property="hasAttachmentImageView" destination="ri0-gV-UDM" id="3Y9-N6-P37"/>
+                <outlet property="headMessageLabel" destination="aj7-qF-XOj" id="LHf-og-y7n"/>
+                <outlet property="isReadLabel" destination="l2J-V0-Jrv" id="mez-L6-map"/>
+                <outlet property="isSecuredImageView" destination="1oJ-nU-efR" id="Ue0-Bh-956"/>
+                <outlet property="isSelectedImageView" destination="ZVU-xo-7UT" id="upl-eG-4Zt"/>
+                <outlet property="isStaredImageView" destination="OGH-zi-U9d" id="MzC-SY-cTU"/>
+                <outlet property="senderLabel" destination="XCp-iz-PG3" id="8b3-wf-cqG"/>
+                <outlet property="subjectLabel" destination="x7N-NB-U2F" id="bSZ-kY-cbU"/>
+                <outlet property="timeLabel" destination="ojL-O5-Vff" id="BU1-Zs-uKd"/>
+            </connections>
+            <point key="canvasLocation" x="39.200000000000003" y="46.776611694152926"/>
         </tableViewCell>
     </objects>
     <resources>

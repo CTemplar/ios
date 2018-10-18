@@ -30,7 +30,7 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func registerTableViewCell() {
         
-        //self.tableView.register(UINib(nibName: k_leaderBoardCellXibName, bundle: nil), forCellReuseIdentifier: k_leaderBoardCellIdentifier)
+       self.tableView.register(UINib(nibName: k_InboxMessageTableViewCellXibName, bundle: nil), forCellReuseIdentifier: k_InboxMessageTableViewCellIdentifier)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -44,13 +44,19 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        /*
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellIdentifier")!
         
         let message = self.messagesArray[indexPath.row]
         
         cell.textLabel?.text = message.sender
-        cell.detailTextLabel?.text = message.subject
+        cell.detailTextLabel?.text = message.subject*/
+        
+        let cell : InboxMessageTableViewCell = tableView.dequeueReusableCell(withIdentifier: k_InboxMessageTableViewCellIdentifier)! as! InboxMessageTableViewCell
+        
+        cell.setupCellWithData(message: messagesArray[indexPath.row])
+        
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         
         return cell
     }

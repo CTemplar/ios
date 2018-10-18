@@ -23,8 +23,8 @@ struct EmailMessage {
     var hasChildren : String? = nil
     var hash : String? = nil
     var resultID : String? = nil
-    var isEncrypted : String? = nil
-    var isProtected : String? = nil
+    var isEncrypted : Bool? = nil
+    var isProtected : Bool? = nil
     var mailbox : String? = nil
     var parent : String? = nil
     var read : Bool? = nil
@@ -32,7 +32,7 @@ struct EmailMessage {
     var send : String? = nil
     var sender : String? = nil
     var sentAt : String? = nil
-    var starred : String? = nil
+    var starred : Bool? = nil
     var subject : String? = nil
     var updated : String? = nil
     
@@ -55,8 +55,8 @@ struct EmailMessage {
         self.hasChildren = dictionary["has_children"] as? String
         self.hash = dictionary["hash"] as? String
         self.resultID = dictionary["id"] as? String
-        self.isEncrypted = dictionary["is_encrypted"] as? String
-        self.isProtected = dictionary["is_protected"] as? String
+        self.isEncrypted = dictionary["is_encrypted"] as? Bool
+        self.isProtected = dictionary["is_protected"] as? Bool
         self.mailbox = dictionary["mailbox"] as? String        
         self.parent = dictionary["parent"] as? String
         self.read = dictionary["read"] as? Bool
@@ -64,7 +64,7 @@ struct EmailMessage {
         self.send = dictionary["send"] as? String
         self.sender = dictionary["sender"] as? String
         self.sentAt = dictionary["sent_at"] as? String
-        self.starred = dictionary["starred"] as? String
+        self.starred = dictionary["starred"] as? Bool
         self.subject = dictionary["subject"] as? String
         self.updated = dictionary["updated"] as? String
     }
