@@ -46,7 +46,20 @@ class APIService {
     var pgpService      : PGPService?
     var formatterService: FormatterService?
     
+    var hashedPassword: String?
     
+    @objc func getHashedPassword(userName: String, password: String, completion:@escaping (Bool) -> () ) {
+        
+        DispatchQueue.main.async {
+            if let salt = self.formatterService?.generateSaltFrom(userName: userName) {
+                print("salt:", salt)
+                self.hashedPassword = self.formatterService?.hash(password: password, salt: salt)
+                print("hashedPassword:", self.hashedPassword as Any)
+            }
+            completion(true)
+        }
+        
+    }
     
     func initialize() {
        
@@ -62,54 +75,34 @@ class APIService {
         
         HUD.show(.progress)
         
-        var hashedPassword: String?
-        
-        if let salt = formatterService?.generateSaltFrom(userName: userName) {  
-            print("salt:", salt)
-            hashedPassword = self.formatterService?.hash(password: password, salt: salt)           
-            print("hashedPassword:", hashedPassword as Any)
-        }
-        
-        if hashedPassword == nil {
-            print("hashedPassword is nil")
-            return
-        }
-        
-        if (hashedPassword?.count)! < 1 {
-            print("hashedPassword is short")
-            return
-        }
-        
-        //==temp avoid login with hashed password problem
-        //hashedPassword = password
-        //========================
-        
-       // HUD.show(.progress)
-        
-        restAPIService?.authenticateUser(userName: userName, password: hashedPassword!) {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                
-                if let response = value as? Dictionary<String, Any> {
-                    if let message = self.parseServerResponse(response:response) {
-                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+        getHashedPassword(userName: userName, password: password) { (complete) in
+            if complete {
+                self.restAPIService?.authenticateUser(userName: userName, password: self.hashedPassword!) {(result) in
+                    
+                    switch(result) {
+                        
+                    case .success(let value):
+                        
+                        if let response = value as? Dictionary<String, Any> {
+                            if let message = self.parseServerResponse(response:response) {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                completionHandler(APIResult.failure(error))
+                            } else {
+                                completionHandler(APIResult.success("success"))
+                            }
+                        } else {
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                            completionHandler(APIResult.failure(error))
+                        }
+                        
+                    case .failure(let error):
+                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                         completionHandler(APIResult.failure(error))
-                    } else {                       
-                        completionHandler(APIResult.success("success"))
                     }
-                } else {
-                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
-                    completionHandler(APIResult.failure(error))
+                    
+                    HUD.hide()
                 }
-                
-            case .failure(let error):
-                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
-                completionHandler(APIResult.failure(error))
             }
-            
-            HUD.hide()
         }
     }
     
@@ -167,7 +160,7 @@ class APIService {
             print("fingerprint is nil")
             return
         }
-        
+        /*
         var hashedPassword: String?
         
         if let salt = formatterService?.generateSaltFrom(userName: userName) {
@@ -191,33 +184,40 @@ class APIService {
         //========================
         
         HUD.show(.progress)
+        */
         
-        restAPIService?.signUp(userName: userName, password: hashedPassword!, privateKey: (userPGPKey?.privateKey)!, publicKey: (userPGPKey?.publicKey)!, fingerprint: (userPGPKey?.fingerprint)!, recaptcha: "1", recoveryEmail: recoveryEmail, fromAddress: "", redeemCode: "", stripeToken: "", memory: "", emailCount: "", paymentType: "") {(result) in
-            
-            switch(result) {
+        HUD.show(.progress)
+        
+        getHashedPassword(userName: userName, password: password) { (complete) in
+            if complete {
+                self.restAPIService?.signUp(userName: userName, password: self.hashedPassword!, privateKey: (userPGPKey?.privateKey)!, publicKey: (userPGPKey?.publicKey)!, fingerprint: (userPGPKey?.fingerprint)!, recaptcha: "1", recoveryEmail: recoveryEmail, fromAddress: "", redeemCode: "", stripeToken: "", memory: "", emailCount: "", paymentType: "") {(result) in
                 
-            case .success(let value):
-               // print("signUpUser success:", value)
-                
-                if let response = value as? Dictionary<String, Any> {
-                    if let message = self.parseServerResponse(response:response) {
-                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                    switch(result) {
+                        
+                    case .success(let value):
+                       // print("signUpUser success:", value)
+                        
+                        if let response = value as? Dictionary<String, Any> {
+                            if let message = self.parseServerResponse(response:response) {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                completionHandler(APIResult.failure(error))
+                            } else {
+                                completionHandler(APIResult.success("success"))
+                            }
+                        } else {
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                            completionHandler(APIResult.failure(error))
+                        }
+                        
+                    case .failure(let error):
+                        print("signUpUser error:", error.localizedDescription)
+                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                         completionHandler(APIResult.failure(error))
-                    } else {
-                        completionHandler(APIResult.success("success"))
                     }
-                } else {
-                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
-                    completionHandler(APIResult.failure(error))
+                    
+                    HUD.hide()
                 }
-                
-            case .failure(let error):
-                print("signUpUser error:", error.localizedDescription)
-                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
-                completionHandler(APIResult.failure(error))
             }
-            
-            HUD.hide()
         }
     }
     
@@ -276,7 +276,7 @@ class APIService {
             print("fingerprint is nil")
             return
         }
-        
+        /*
         var hashedPassword: String?
         
         if let salt = formatterService?.generateSaltFrom(userName: userName) {
@@ -299,33 +299,40 @@ class APIService {
         //hashedPassword = password
         //========================
         
+        HUD.show(.progress)*/
+        
         HUD.show(.progress)
         
-        restAPIService?.resetPassword(resetPasswordCode: resetPasswordCode, userName: userName, password: hashedPassword!, privateKey: (userPGPKey?.privateKey)!, publicKey: (userPGPKey?.publicKey)!, fingerprint: (userPGPKey?.fingerprint)!, recoveryEmail: recoveryEmail) {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                
-                if let response = value as? Dictionary<String, Any> {
-                    print("resetPassword response", response)
-                    if let message = self.parseServerResponse(response:response) {
-                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+        getHashedPassword(userName: userName, password: password) { (complete) in
+            if complete {
+        
+                self.restAPIService?.resetPassword(resetPasswordCode: resetPasswordCode, userName: userName, password: self.hashedPassword!, privateKey: (userPGPKey?.privateKey)!, publicKey: (userPGPKey?.publicKey)!, fingerprint: (userPGPKey?.fingerprint)!, recoveryEmail: recoveryEmail) {(result) in
+                    
+                    switch(result) {
+                        
+                    case .success(let value):
+                        
+                        if let response = value as? Dictionary<String, Any> {
+                            print("resetPassword response", response)
+                            if let message = self.parseServerResponse(response:response) {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                completionHandler(APIResult.failure(error))
+                            } else {
+                                completionHandler(APIResult.success("success"))
+                            }
+                        } else {
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                            completionHandler(APIResult.failure(error))
+                        }
+                        
+                    case .failure(let error):
+                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                         completionHandler(APIResult.failure(error))
-                    } else {
-                        completionHandler(APIResult.success("success"))
                     }
-                } else {
-                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
-                    completionHandler(APIResult.failure(error))
+                    
+                    HUD.hide()
                 }
-                
-            case .failure(let error):
-                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
-                completionHandler(APIResult.failure(error))
             }
-            
-            HUD.hide()
         }
     }
     
