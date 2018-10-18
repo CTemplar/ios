@@ -105,21 +105,24 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pMK-H7-dDA">
                                 <rect key="frame" x="0.0" y="214" width="375" height="404"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="b4M-gt-tDd">
-                                        <rect key="frame" x="16" y="20" width="343" height="364"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
+                                    <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ies-qD-5qy">
+                                        <rect key="frame" x="16" y="20" width="343" height="368"/>
+                                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="368" id="otj-Af-FZh"/>
+                                        </constraints>
+                                        <wkWebViewConfiguration key="configuration">
+                                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                            <wkPreferences key="preferences"/>
+                                        </wkWebViewConfiguration>
+                                    </wkWebView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="b4M-gt-tDd" firstAttribute="centerX" secondItem="pMK-H7-dDA" secondAttribute="centerX" id="Avm-XD-LBY"/>
-                                    <constraint firstAttribute="trailing" secondItem="b4M-gt-tDd" secondAttribute="trailing" constant="16" id="OBU-CK-Hzs"/>
-                                    <constraint firstItem="b4M-gt-tDd" firstAttribute="top" secondItem="pMK-H7-dDA" secondAttribute="top" constant="20" id="ThR-aD-4vY"/>
-                                    <constraint firstItem="b4M-gt-tDd" firstAttribute="centerY" secondItem="pMK-H7-dDA" secondAttribute="centerY" id="blx-GZ-vEG"/>
-                                    <constraint firstItem="b4M-gt-tDd" firstAttribute="leading" secondItem="pMK-H7-dDA" secondAttribute="leading" constant="16" id="nQt-VM-x2h"/>
-                                    <constraint firstAttribute="bottom" secondItem="b4M-gt-tDd" secondAttribute="bottom" constant="20" id="x3c-hT-GQ9"/>
+                                    <constraint firstAttribute="trailing" secondItem="ies-qD-5qy" secondAttribute="trailing" constant="16" id="0Ad-GY-fRg"/>
+                                    <constraint firstItem="ies-qD-5qy" firstAttribute="centerX" secondItem="pMK-H7-dDA" secondAttribute="centerX" id="MFY-jT-qQd"/>
+                                    <constraint firstItem="ies-qD-5qy" firstAttribute="leading" secondItem="pMK-H7-dDA" secondAttribute="leading" constant="16" id="grR-Fr-c17"/>
+                                    <constraint firstItem="ies-qD-5qy" firstAttribute="top" secondItem="pMK-H7-dDA" secondAttribute="top" constant="20" id="iSu-g2-O7y"/>
+                                    <constraint firstAttribute="bottom" secondItem="ies-qD-5qy" secondAttribute="bottom" constant="16" id="uBi-Qc-0Rh"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -142,6 +145,9 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                                             <constraint firstAttribute="width" secondItem="b2m-Xp-8JM" secondAttribute="height" multiplier="46:35" id="2uE-MU-BKl"/>
                                         </constraints>
                                         <state key="normal" image="replyButton"/>
+                                        <connections>
+                                            <action selector="replyButtonPressed:" destination="eXb-8R-FAT" eventType="touchUpInside" id="a0u-t9-Cks"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1u4-Uf-KqQ">
                                         <rect key="frame" x="164.5" y="7" width="46" height="35"/>
@@ -149,6 +155,9 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                                             <constraint firstAttribute="width" secondItem="1u4-Uf-KqQ" secondAttribute="height" multiplier="46:35" id="dqe-6i-Z1l"/>
                                         </constraints>
                                         <state key="normal" title="Button" image="replyAllButton"/>
+                                        <connections>
+                                            <action selector="replyAllButtonPressed:" destination="eXb-8R-FAT" eventType="touchUpInside" id="PIg-hk-sJO"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ya-OR-KPO">
                                         <rect key="frame" x="281" y="7" width="46" height="35"/>
@@ -156,6 +165,9 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                                             <constraint firstAttribute="width" secondItem="9Ya-OR-KPO" secondAttribute="height" multiplier="46:35" id="C9E-4o-szj"/>
                                         </constraints>
                                         <state key="normal" title="Button" image="forwardButton"/>
+                                        <connections>
+                                            <action selector="forwardButtonPressed:" destination="eXb-8R-FAT" eventType="touchUpInside" id="ORI-u4-esL"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

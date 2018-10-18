@@ -63,6 +63,7 @@ let k_pageControlBottomOffset       = 30.0
 let k_pageControlDotSize            = 8.0
 let k_signUpPageNameKeyboardHeight  = 128.0
 let k_triangleOffset                = 16.0 + 5.0 + 5.0
+let k_navBarButtonSize              = 32.0
 
 //images
 
