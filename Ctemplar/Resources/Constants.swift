@@ -63,6 +63,8 @@ let k_lightGrayColor: UIColor = UIColor(white: 0.0, alpha: 0.54)
 
 let k_whiteColor: UIColor = UIColor(red: 250.0 / 255.0, green: 251.0 / 255.0, blue: 251.0 / 255.0, alpha: 1.0)
 
+let k_unreadMessageColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 0.02)
+
 //size constants
 
 let k_pageControlBottomOffset       = 30.0
@@ -85,6 +87,11 @@ let k_garbageImageName              = "GarbageButton"
 let k_spamImageName                 = "SpamButton"
 let k_moveImageName                 = "MoveBatton"
 let k_moreImageName                 = "MoreButton"
+
+let k_starOnImageName                 = "StarOn"
+let k_starOffImageName                = "StarOff"
+let k_secureOnImageName               = "SecureOn"
+let k_secureOffImageName              = "SecureOff"
 
 // fonts
 

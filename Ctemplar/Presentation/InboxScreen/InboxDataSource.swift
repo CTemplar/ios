@@ -54,7 +54,7 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         
         let cell : InboxMessageTableViewCell = tableView.dequeueReusableCell(withIdentifier: k_InboxMessageTableViewCellIdentifier)! as! InboxMessageTableViewCell
         
-        cell.setupCellWithData(message: messagesArray[indexPath.row])
+        cell.setupCellWithData(message: messagesArray[indexPath.row], isSelectionMode: false, isSelected: false)
         
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         
