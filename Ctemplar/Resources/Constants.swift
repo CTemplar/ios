@@ -73,6 +73,19 @@ let k_signUpPageNameKeyboardHeight  = 128.0
 let k_triangleOffset                = 16.0 + 5.0 + 5.0
 let k_navBarButtonSize              = 32.0
 
+let k_rightSideWidth            : CGFloat = 120.0
+
+let k_isSelectedImageTrailing   : CGFloat = 12.0
+let k_isSelectedImageWidth      : CGFloat = 22.0
+
+let k_countLabelWidth           : CGFloat = 28.0
+let k_countLabelTrailing        : CGFloat = 6.0
+
+let k_dotImageWidth             : CGFloat = 6.0
+let k_dotImageTrailing          : CGFloat = 6.0
+
+let k_deleteLabelWidth          : CGFloat = 72.0
+
 //images
 
 let k_checkBoxUncheckedImageName    = "roundDark"

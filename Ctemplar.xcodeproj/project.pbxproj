@@ -207,8 +207,8 @@
 		8432070F21785E7500F18E5A /* InboxCells */ = {
 			isa = PBXGroup;
 			children = (
-				8432071221785F8400F18E5A /* InboxMessageTableViewCell.xib */,
 				843207142178C75000F18E5A /* InboxMessageTablelViewCell.swift */,
+				8432071221785F8400F18E5A /* InboxMessageTableViewCell.xib */,
 			);
 			path = InboxCells;
 			sourceTree = "<group>";

@@ -9,9 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Lato-Bold.ttf">
-            <string>Lato-Bold</string>
-        </array>
         <array key="Lato-Regular.ttf">
             <string>Lato-Regular</string>
         </array>
@@ -36,17 +33,25 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQA-43-osU">
                         <rect key="frame" x="47" y="13" width="288" height="64"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CTemplar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="XCp-iz-PG3">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCp-iz-PG3">
                                 <rect key="frame" x="0.0" y="0.0" width="107.5" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="Xe5-Ad-9fW"/>
+                                    <constraint firstAttribute="width" constant="107.5" id="xY5-Q2-hWG"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="16"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.865509463028169" colorSpace="calibratedRGB"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="CTemplar">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="0.865509463028169" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="16" name="Lato-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Klj-j6-FcD">
-                                <rect key="frame" x="113.5" y="0.0" width="122.5" height="18"/>
+                                <rect key="frame" x="113.5" y="0.0" width="120.5" height="18"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedDot" translatesAutoresizingMaskIntoConstraints="NO" id="sdQ-tS-sOY">
                                         <rect key="frame" x="0.0" y="6" width="6" height="6"/>
@@ -105,7 +110,6 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="sdQ-tS-sOY" firstAttribute="top" secondItem="Klj-j6-FcD" secondAttribute="top" constant="6" id="08o-Yd-4UT"/>
                                     <constraint firstItem="VLh-Ex-4Na" firstAttribute="leading" secondItem="hre-l6-zHW" secondAttribute="trailing" constant="6" id="5FV-jV-Kg9"/>
@@ -115,16 +119,16 @@
                                     <constraint firstItem="sdQ-tS-sOY" firstAttribute="leading" secondItem="Klj-j6-FcD" secondAttribute="leading" id="StU-Tz-J5z"/>
                                     <constraint firstAttribute="bottom" secondItem="sdQ-tS-sOY" secondAttribute="bottom" constant="6" id="Y9m-z4-mJk"/>
                                     <constraint firstItem="VLh-Ex-4Na" firstAttribute="top" secondItem="Klj-j6-FcD" secondAttribute="top" id="aN8-Jt-qyi"/>
-                                    <constraint firstAttribute="width" constant="122.5" id="bzy-Z0-rvk"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="126.5" id="bzy-Z0-rvk"/>
                                     <constraint firstAttribute="bottom" secondItem="VLh-Ex-4Na" secondAttribute="bottom" id="iDC-Km-Y82"/>
                                     <constraint firstItem="hre-l6-zHW" firstAttribute="leading" secondItem="sdQ-tS-sOY" secondAttribute="trailing" constant="6" id="zkf-o1-vCS"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yesterday" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="ojL-O5-Vff">
-                                <rect key="frame" x="240" y="0.0" width="48" height="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yesterday" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="ojL-O5-Vff">
+                                <rect key="frame" x="234" y="0.0" width="54" height="16"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="BVe-I6-kgd"/>
-                                    <constraint firstAttribute="width" secondItem="ojL-O5-Vff" secondAttribute="height" multiplier="48:16" id="cUX-0U-P4z"/>
+                                    <constraint firstAttribute="width" constant="54" id="BVe-I6-kgd"/>
+                                    <constraint firstAttribute="width" secondItem="ojL-O5-Vff" secondAttribute="height" multiplier="54:16" id="cUX-0U-P4z"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.37942891725352113" colorSpace="calibratedRGB"/>
@@ -152,7 +156,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="XCp-iz-PG3" firstAttribute="top" secondItem="gQA-43-osU" secondAttribute="top" id="0Bw-ld-mmU"/>
-                            <constraint firstItem="ojL-O5-Vff" firstAttribute="leading" secondItem="Klj-j6-FcD" secondAttribute="trailing" constant="4" id="4VE-RD-FxO"/>
+                            <constraint firstItem="ojL-O5-Vff" firstAttribute="leading" secondItem="Klj-j6-FcD" secondAttribute="trailing" id="4VE-RD-FxO"/>
                             <constraint firstItem="XCp-iz-PG3" firstAttribute="leading" secondItem="gQA-43-osU" secondAttribute="leading" id="4ii-df-juk"/>
                             <constraint firstAttribute="trailing" secondItem="aj7-qF-XOj" secondAttribute="trailing" id="D80-Ea-v5L"/>
                             <constraint firstItem="x7N-NB-U2F" firstAttribute="leading" secondItem="gQA-43-osU" secondAttribute="leading" id="F1e-qu-mew"/>
@@ -206,9 +210,13 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="badgesView" destination="Klj-j6-FcD" id="eiJ-2m-BKK"/>
+                <outlet property="badgesViewWidthConstraint" destination="bzy-Z0-rvk" id="lv1-tm-uFj"/>
                 <outlet property="countLabel" destination="hre-l6-zHW" id="JhO-GN-5Do"/>
+                <outlet property="countLabelTrailingConstraint" destination="5FV-jV-Kg9" id="fVv-7F-ERN"/>
                 <outlet property="countLabelWidthConstraint" destination="fUC-I9-MHF" id="LvZ-lo-Yee"/>
                 <outlet property="deleteLabel" destination="VLh-Ex-4Na" id="Q7j-pD-Wcf"/>
+                <outlet property="dotImageTrailingConstraint" destination="zkf-o1-vCS" id="dB8-jB-4xV"/>
                 <outlet property="dotImageWidthConstraint" destination="LV0-2O-V7x" id="e8i-Cf-qTj"/>
                 <outlet property="hasAttachmentImageView" destination="ri0-gV-UDM" id="3Y9-N6-P37"/>
                 <outlet property="headMessageLabel" destination="aj7-qF-XOj" id="LHf-og-y7n"/>
@@ -219,6 +227,7 @@
                 <outlet property="isSelectedImageWidthConstraint" destination="PMC-vx-Qkk" id="Mu6-Vx-W8M"/>
                 <outlet property="isStaredImageView" destination="OGH-zi-U9d" id="MzC-SY-cTU"/>
                 <outlet property="senderLabel" destination="XCp-iz-PG3" id="8b3-wf-cqG"/>
+                <outlet property="senderLabelWidthConstraint" destination="xY5-Q2-hWG" id="RKS-zV-R8c"/>
                 <outlet property="subjectLabel" destination="x7N-NB-U2F" id="bSZ-kY-cbU"/>
                 <outlet property="timeLabel" destination="ojL-O5-Vff" id="BU1-Zs-uKd"/>
             </connections>

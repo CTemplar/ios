@@ -23,11 +23,18 @@ class InboxMessageTableViewCell: UITableViewCell {
     @IBOutlet weak var isSecuredImageView      : UIImageView!
     @IBOutlet weak var isStaredImageView       : UIImageView!
     @IBOutlet weak var hasAttachmentImageView  : UIImageView!
+    @IBOutlet weak var badgesView              : UIView!
     
+    @IBOutlet var senderLabelWidthConstraint            : NSLayoutConstraint!
     @IBOutlet var isSelectedImageTrailingConstraint     : NSLayoutConstraint!
     @IBOutlet var isSelectedImageWidthConstraint        : NSLayoutConstraint!
     @IBOutlet var dotImageWidthConstraint               : NSLayoutConstraint!
+    @IBOutlet var dotImageTrailingConstraint            : NSLayoutConstraint!
     @IBOutlet var countLabelWidthConstraint             : NSLayoutConstraint!
+    @IBOutlet var countLabelTrailingConstraint          : NSLayoutConstraint!
+    @IBOutlet var badgesViewWidthConstraint             : NSLayoutConstraint!
+    
+    var cellWidth : CGFloat = 0.0
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,16 +47,20 @@ class InboxMessageTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setupCellWithData(message : EmailMessage, isSelectionMode: Bool, isSelected: Bool) {
+    func setupCellWithData(message : EmailMessage, isSelectionMode: Bool, isSelected: Bool, frameWidth: CGFloat) {
+        
+        cellWidth = frameWidth
+        
+        setupLabelsAndImages(message: message)
         
         setupConstraints(message: message, isSelectionMode: isSelectionMode)
         
-        setupLabelsAndImages(message: message)
     }
     
     func setupLabelsAndImages(message : EmailMessage) {
         
         if let sender = message.sender {
+            
             senderLabel.text = sender
         }
         
@@ -76,11 +87,20 @@ class InboxMessageTableViewCell: UITableViewCell {
             }
         }
         
+        if let children = message.hasChildren {
+            
+            if children > 0 {
+                countLabel.isHidden = false
+            } else {
+                countLabel.isHidden = true
+            }
+        }
+        
         if let destructionDate = message.destructDay {
             deleteLabel.isHidden = false
             //deleteLabel.text =
         } else {
-            //deleteLabel.isHidden = true
+            deleteLabel.isHidden = true
         }
         
         if let isSecured = message.isProtected {
@@ -111,13 +131,75 @@ class InboxMessageTableViewCell: UITableViewCell {
     func setupConstraints(message : EmailMessage, isSelectionMode: Bool) {
         
         if isSelectionMode {
-            isSelectedImageTrailingConstraint.constant = 12.0
-            isSelectedImageWidthConstraint.constant = 22.0
+            isSelectedImageTrailingConstraint.constant = k_isSelectedImageTrailing
+            isSelectedImageWidthConstraint.constant = k_isSelectedImageWidth
         } else {
             isSelectedImageTrailingConstraint.constant = 0.0
             isSelectedImageWidthConstraint.constant = 0.0
         }
         
+        if let isRead = message.read {
+            
+            if isRead {
+                dotImageWidthConstraint.constant = 0.0
+                dotImageTrailingConstraint.constant = 0.0
+            } else {
+                dotImageWidthConstraint.constant = k_dotImageWidth
+                dotImageTrailingConstraint.constant = k_dotImageTrailing
+            }
+        }
+        
+        if countLabel.isHidden {
+            countLabelWidthConstraint.constant = 0.0
+            countLabelTrailingConstraint.constant = 0.0
+        } else {
+            countLabelWidthConstraint.constant = k_countLabelWidth
+            countLabelTrailingConstraint.constant = k_countLabelTrailing
+        }
+  
+        setupSenderLabelsAndBadgesView()
+        
         self.layoutIfNeeded()
+    }
+    
+    func setupSenderLabelsAndBadgesView() {
+        
+        let sender = senderLabel.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let senderTextWidth : CGFloat  = (sender?.widthOfString(usingFont: senderLabel.font))!
+        
+        let badgesViewWidth = calculateBadgesViewWidth()
+        
+        badgesViewWidthConstraint.constant = badgesViewWidth
+        
+        let availableSpace : CGFloat = cellWidth - badgesViewWidth - k_rightSideWidth - isSelectedImageTrailingConstraint.constant - isSelectedImageWidthConstraint.constant
+        
+        print("cellWidth:", cellWidth)
+        print("senderTextWidth:", senderTextWidth)
+        print("availableSpace:", availableSpace)
+        
+        if senderTextWidth > availableSpace {
+            senderLabelWidthConstraint.constant = availableSpace
+        } else {
+            senderLabelWidthConstraint.constant = senderTextWidth
+        }
+    }
+    
+    func calculateBadgesViewWidth() -> CGFloat {
+        
+        var deleteLabelWidth : CGFloat = 0.0
+        
+        if deleteLabel.isHidden {
+            deleteLabelWidth = 0.0
+        } else {
+            deleteLabelWidth = k_deleteLabelWidth
+        }
+        
+        var badgesViewWidth = dotImageWidthConstraint.constant  + dotImageTrailingConstraint.constant  + countLabelWidthConstraint.constant + countLabelTrailingConstraint.constant
+        
+        badgesViewWidth = badgesViewWidth + deleteLabelWidth
+        
+        print("badgesViewWidth:", badgesViewWidth)
+        
+        return badgesViewWidth
     }
 }
