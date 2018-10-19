@@ -820,13 +820,14 @@
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TL9R53MN93;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Ctemplar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ComeOnSoftware.Ctemplar;
+				PRODUCT_BUNDLE_IDENTIFIER = ctemplardevcom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -841,13 +842,14 @@
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TL9R53MN93;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Ctemplar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ComeOnSoftware.Ctemplar;
+				PRODUCT_BUNDLE_IDENTIFIER = ctemplardevcom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
