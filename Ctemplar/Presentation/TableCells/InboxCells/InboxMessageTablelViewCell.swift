@@ -11,6 +11,8 @@ import UIKit
 
 class InboxMessageTableViewCell: UITableViewCell {
     
+    var formatterService : FormatterService?
+    
     @IBOutlet weak var senderLabel             : UILabel!
     @IBOutlet weak var subjectLabel            : UILabel!
     @IBOutlet weak var headMessageLabel        : UILabel!
@@ -72,8 +74,13 @@ class InboxMessageTableViewCell: UITableViewCell {
          headMessageLabel.text = messageText
          }*/
         
+        //let testDate = Calendar.current.date(byAdding: .day, value: -3, to: Date())!
+        
         if let createdDate = message.createdAt {
-            //timeLabel.text =
+            
+            if  let date = formatterService!.formatStringToDate(date: createdDate) {
+                timeLabel.text = formatterService!.formatCreationDate(date: date)
+            }
         }
         
         if let isRead = message.read {

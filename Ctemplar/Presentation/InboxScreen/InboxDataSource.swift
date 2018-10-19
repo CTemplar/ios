@@ -14,6 +14,7 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     var messagesArray           : Array<EmailMessage> = []
     var tableView               : UITableView!
     var parentViewController    : InboxViewController!
+    var formatterService        : FormatterService?
     
     func initWith(parent: InboxViewController, tableView: UITableView, array: Array<EmailMessage>) {
         
@@ -53,6 +54,8 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         cell.detailTextLabel?.text = message.subject*/
         
         let cell : InboxMessageTableViewCell = tableView.dequeueReusableCell(withIdentifier: k_InboxMessageTableViewCellIdentifier)! as! InboxMessageTableViewCell
+        
+        cell.formatterService = self.formatterService
         
         cell.setupCellWithData(message: messagesArray[indexPath.row], isSelectionMode: false, isSelected: false, frameWidth: self.tableView.frame.width)
         

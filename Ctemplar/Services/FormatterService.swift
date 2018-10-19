@@ -107,6 +107,79 @@ class FormatterService
             return false
         }
     }
+    
+    //MARK: - Date String formatter
+    
+    func formatCreationDate(date: Date) -> String {
+        
+        var dateString : String = ""
+        
+        if let daysCount = calculateDaysCountFromCreate(date: date) {
+
+            if daysCount > 0 {
+                if daysCount == 1 {
+                    //yesterday
+                    dateString = "Yesterday"
+                } else {
+                    //2 or more
+                    dateString = formatDateToStringMonthAndDate(date: date)
+                }
+            } else {
+                //current day
+                dateString = formatDateToStringTime(date: date)
+            }
+        }
+        
+        return dateString
+    }
+    
+    func formatStringToDate(date: String) -> Date? {
+        
+        let dateFormatter = DateFormatter()
+        //2018-10-18T14:03:30.343381Z
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        let formattedDate = dateFormatter.date(from: date)
+        
+        return formattedDate
+    }
+    
+    func formatDateToStringTime(date: Date) -> String {
+        
+        let dateFormatter = DateFormatter()
+        //dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "HH:mm a"
+        
+        let dateString = dateFormatter.string(from:date as Date)
+        
+        return dateString
+    }
+    
+    func formatDateToStringMonthAndDate(date: Date) -> String {
+        
+        let dateFormatter = DateFormatter()       
+        dateFormatter.dateFormat = "MMM dd"
+        
+        let dateString = dateFormatter.string(from:date as Date)
+        
+        return dateString
+    }
+    
+    func calculateDaysCountFromCreate(date: Date) -> Int? {
+        
+        let calendar = NSCalendar.current
+        
+        let date1 = calendar.startOfDay(for: date)
+        let date2 = calendar.startOfDay(for: Date())
+        
+        let components = calendar.dateComponents([.day], from: date1, to: date2)
+        
+        if let days = components.day {
+            return days
+        }
+        
+        return 0
+    }
 }
 
 extension String {

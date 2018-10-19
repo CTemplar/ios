@@ -33,5 +33,7 @@ class InboxConfigurator {
         
         let dataSource = InboxDataSource()
         viewController.dataSource = dataSource
+        
+        dataSource.formatterService = appDelegate.applicationManager.formatterService
     }
 }
