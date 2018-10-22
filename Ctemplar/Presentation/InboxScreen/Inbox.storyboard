@@ -242,11 +242,74 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nWZ-UV-rjK">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="quX-gJ-ckd">
+                                                <rect key="frame" x="19" y="2" width="44" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="44" id="Bv0-T7-mI3"/>
+                                                </constraints>
+                                                <state key="normal" image="unreadMessage"/>
+                                                <connections>
+                                                    <action selector="unreadButtonPressed:" destination="NhN-bs-dS3" eventType="touchUpInside" id="kJe-wN-UDL"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqJ-4G-Cvb">
+                                                <rect key="frame" x="116" y="2" width="44" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="mqJ-4G-Cvb" secondAttribute="height" multiplier="1:1" id="F6R-aD-qdZ"/>
+                                                    <constraint firstAttribute="width" constant="44" id="lUh-xQ-Xta"/>
+                                                </constraints>
+                                                <state key="normal" image="moveMessage"/>
+                                                <connections>
+                                                    <action selector="moveButtonPressed:" destination="NhN-bs-dS3" eventType="touchUpInside" id="vBf-Lk-jW4"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CPq-V3-D0u">
+                                                <rect key="frame" x="214" y="2" width="44" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="CPq-V3-D0u" secondAttribute="height" multiplier="1:1" id="FYc-gg-iUO"/>
+                                                    <constraint firstAttribute="width" constant="44" id="gru-bV-4No"/>
+                                                </constraints>
+                                                <state key="normal" image="trashMessage"/>
+                                                <connections>
+                                                    <action selector="garbageButtonPressed:" destination="NhN-bs-dS3" eventType="touchUpInside" id="whB-KZ-c9X"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WM8-6o-Xbj">
+                                                <rect key="frame" x="311" y="2" width="44" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="44" id="fFV-RY-86l"/>
+                                                    <constraint firstAttribute="width" secondItem="WM8-6o-Xbj" secondAttribute="height" multiplier="1:1" id="jE5-Lm-duc"/>
+                                                </constraints>
+                                                <state key="normal" image="moreMessage"/>
+                                                <connections>
+                                                    <action selector="moreButtonPressed:" destination="NhN-bs-dS3" eventType="touchUpInside" id="I1f-kv-3hm"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="WM8-6o-Xbj" secondAttribute="trailing" constant="20" id="7fH-Je-M2c"/>
+                                            <constraint firstItem="CPq-V3-D0u" firstAttribute="top" secondItem="nWZ-UV-rjK" secondAttribute="top" constant="2" id="Fnn-l1-eso"/>
+                                            <constraint firstItem="WM8-6o-Xbj" firstAttribute="top" secondItem="nWZ-UV-rjK" secondAttribute="top" constant="2" id="JMB-UW-vVa"/>
+                                            <constraint firstItem="quX-gJ-ckd" firstAttribute="top" secondItem="nWZ-UV-rjK" secondAttribute="top" constant="2" id="OPW-TD-bdx"/>
+                                            <constraint firstItem="mqJ-4G-Cvb" firstAttribute="top" secondItem="nWZ-UV-rjK" secondAttribute="top" constant="2" id="eN5-38-4Im"/>
+                                            <constraint firstItem="CPq-V3-D0u" firstAttribute="leading" secondItem="nWZ-UV-rjK" secondAttribute="centerX" constant="26.5" id="foY-0g-loP"/>
+                                            <constraint firstAttribute="centerX" secondItem="mqJ-4G-Cvb" secondAttribute="trailing" constant="27.5" id="lzL-N3-dSa"/>
+                                            <constraint firstItem="quX-gJ-ckd" firstAttribute="leading" secondItem="nWZ-UV-rjK" secondAttribute="leading" constant="19" id="oUe-Iz-Kyz"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="nWZ-UV-rjK" firstAttribute="leading" secondItem="OxM-zC-5gC" secondAttribute="leading" id="7dc-tm-1mU"/>
                                     <constraint firstItem="K4R-qn-ZRa" firstAttribute="centerX" secondItem="OxM-zC-5gC" secondAttribute="centerX" id="AdN-cZ-pDP"/>
+                                    <constraint firstAttribute="trailing" secondItem="nWZ-UV-rjK" secondAttribute="trailing" id="Czp-0F-YJB"/>
+                                    <constraint firstItem="nWZ-UV-rjK" firstAttribute="top" secondItem="OxM-zC-5gC" secondAttribute="top" id="JZQ-60-i1w"/>
                                     <constraint firstItem="ls5-Br-YTX" firstAttribute="leading" secondItem="OxM-zC-5gC" secondAttribute="leading" id="KI5-Pv-YSD"/>
+                                    <constraint firstAttribute="bottom" secondItem="nWZ-UV-rjK" secondAttribute="bottom" id="M6A-Xr-7Hy"/>
                                     <constraint firstAttribute="height" constant="83" id="VH6-R0-X7R"/>
                                     <constraint firstItem="K4R-qn-ZRa" firstAttribute="top" secondItem="OxM-zC-5gC" secondAttribute="top" id="Vkl-Jy-XEJ"/>
                                     <constraint firstAttribute="trailing" secondItem="ls5-Br-YTX" secondAttribute="trailing" id="oAp-Eh-d7Y"/>
@@ -303,6 +366,7 @@
                         <outlet property="messagesLabel" destination="hVo-vt-x7f" id="hqb-QV-S6i"/>
                         <outlet property="rightBarButtonItem" destination="xtH-pi-9Ib" id="zNR-Cq-giI"/>
                         <outlet property="rightComposeButton" destination="qKu-C8-Tfv" id="3hJ-uy-AGO"/>
+                        <outlet property="selectionToolBar" destination="nWZ-UV-rjK" id="AI6-iL-8ck"/>
                         <outlet property="unreadMessagesLabel" destination="hcY-8h-Jxh" id="mT1-e9-wfc"/>
                     </connections>
                 </viewController>
@@ -337,5 +401,9 @@
         <image name="FilterButton" width="44" height="44"/>
         <image name="MenuButton" width="20" height="14"/>
         <image name="SearchButton" width="22" height="30"/>
+        <image name="moreMessage" width="44" height="44"/>
+        <image name="moveMessage" width="44" height="44"/>
+        <image name="trashMessage" width="44" height="44"/>
+        <image name="unreadMessage" width="44" height="44"/>
     </resources>
 </document>

@@ -27,6 +27,7 @@ class InboxViewController: UIViewController {
     
     @IBOutlet var baseToolBar           : UIView!
     @IBOutlet var advancedToolBar       : UIView!
+    @IBOutlet var selectionToolBar      : UIView!
     
     @IBOutlet var rightComposeButton    : UIButton!
     
@@ -74,6 +75,22 @@ class InboxViewController: UIViewController {
     }
     
     @IBAction func filterButtonPressed(_ sender: AnyObject) {
+        
+    }
+    
+    @IBAction func unreadButtonPressed(_ sender: AnyObject) {
+        
+    }
+    
+    @IBAction func moveButtonPressed(_ sender: AnyObject) {
+        
+    }
+    
+    @IBAction func garbageButtonPressed(_ sender: AnyObject) {
+        
+    }
+    
+    @IBAction func moreButtonPressed(_ sender: AnyObject) {
         
     }
 }

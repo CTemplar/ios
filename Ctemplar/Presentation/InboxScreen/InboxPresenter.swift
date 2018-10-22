@@ -23,9 +23,8 @@ class InboxPresenter {
         self.interactor?.messagesList()
       
         // temp
-        /*
+        
         var messagesArray : Array<Any> = []
-        //let message = EmailMessage(dictionary: ["sender" : "Me"])
         let message : [String: Any] = ["sender" : "Me", "id" : 1]
         messagesArray.append(message)
         
@@ -33,7 +32,7 @@ class InboxPresenter {
         self.interactor?.setInboxData(messages: emailMessages)
         
         self.viewController?.dataSource?.reloadData()
- */
+ 
         //
     }
     
@@ -125,7 +124,9 @@ class InboxPresenter {
         self.viewController?.leftBarButtonItem.image = nil
         self.viewController?.leftBarButtonItem.isEnabled = false
         self.viewController?.rightBarButtonItem.image = nil
-        self.viewController?.rightBarButtonItem.title = "Cancel"        
+        self.viewController?.rightBarButtonItem.title = "Cancel"
+        
+        self.viewController?.selectionToolBar.isHidden = false
     }
     
     func disableSelectionMode() {
@@ -138,5 +139,7 @@ class InboxPresenter {
         self.viewController?.leftBarButtonItem.isEnabled = true
         self.viewController?.rightBarButtonItem.image = UIImage(named: k_searchImageName)
         self.viewController?.rightBarButtonItem.title = ""
+        
+        self.viewController?.selectionToolBar.isHidden = true
     }
 }

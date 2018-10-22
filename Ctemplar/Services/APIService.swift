@@ -439,7 +439,7 @@ class APIService {
             if token.count > 0 {
                 return token
             } else {
-                showLoginViewController()
+                //showLoginViewController()
                 return nil
             }
         }
