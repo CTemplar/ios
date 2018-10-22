@@ -14,6 +14,22 @@ class InboxSideMenuPresenter {
     
     var viewController   : InboxSideMenuViewController?
     var interactor       : InboxSideMenuInteractor?
+    
+    func setupUserProfileBar() {
+        
+        let emailTextWidth = viewController!.emailLabel.text?.widthOfString(usingFont: viewController!.emailLabel.font)
+        
+        let triangleTrailingConstraintWidth = self.viewController!.view.frame.width - emailTextWidth! - CGFloat(k_triangleOffset)
+        updateTriangleTrailingConstraint(value: triangleTrailingConstraintWidth )
+    }
+    
+    func updateTriangleTrailingConstraint(value: CGFloat) {
+        
+        DispatchQueue.main.async {
+            self.viewController!.triangleTrailingConstraint.constant = value
+            self.viewController!.view.layoutIfNeeded()
+        }
+    }
 
     func logOut() {
         

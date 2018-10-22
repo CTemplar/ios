@@ -57,15 +57,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         tableView.deselectRow(at: indexPath, animated: true)
         
         let optionName = self.menuOptionsArray[indexPath.row]
-        
-        switch optionName {
-        case InboxSideMenuOptionsName.inbox.rawValue :
-            self.parentViewController?.dismiss(animated: true, completion: nil)
-        case InboxSideMenuOptionsName.logout.rawValue :
-            self.parentViewController?.presenter?.logOut()
-        default:
-            print("do nothing")
-        }
+        self.parentViewController?.presenter?.interactor?.selectAction(optionName: optionName)
     }
     
     func reloadData() {

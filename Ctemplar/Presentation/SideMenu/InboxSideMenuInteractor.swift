@@ -28,4 +28,16 @@ class InboxSideMenuInteractor {
             }
         }
     }
+    
+    func selectAction(optionName: String) {
+        
+        switch optionName {
+        case InboxSideMenuOptionsName.inbox.rawValue :
+            self.viewController?.dismiss(animated: true, completion: nil)
+        case InboxSideMenuOptionsName.logout.rawValue :
+            self.viewController?.presenter?.logOut()
+        default:
+            print("do nothing")
+        }
+    }
 }
