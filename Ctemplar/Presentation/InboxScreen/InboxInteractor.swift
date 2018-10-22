@@ -59,18 +59,7 @@ class InboxInteractor {
                 
                 let emailMessages = value as! EmailMessagesList
                 self.setInboxData(messages: emailMessages)
-                /*
-                var messagesArray : Array<EmailMessage> = []
                 
-                let emailMessages = value as! EmailMessagesList
-                
-                for result in emailMessages.messagesList! {
-                    //print("result", result)
-                    messagesArray.append(result)
-                }
-                
-                self.setInboxData(array: messagesArray)
-                */
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "Close")

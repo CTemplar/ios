@@ -98,6 +98,8 @@ let k_checkBoxSelectedImageName     = "checkedBoxDark"
 
 let k_composeImageName              = "ComposeButton"
 let k_composeRedImageName           = "ComposeRedButton"
+let k_menuImageName                 = "MenuButton"
+let k_searchImageName               = "SearchButton"
 
 let k_darkBackArrowImageName        = "BackArrowDark"
 

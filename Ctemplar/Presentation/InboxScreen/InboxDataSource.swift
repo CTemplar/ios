@@ -12,9 +12,13 @@ import UIKit
 class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     var messagesArray           : Array<EmailMessage> = []
+    var selectedMessagesIDArray : Array<Int> = []
+    
     var tableView               : UITableView!
     var parentViewController    : InboxViewController!
     var formatterService        : FormatterService?
+    
+    var selectionMode : Bool = false
     
     func initWith(parent: InboxViewController, tableView: UITableView, array: Array<EmailMessage>) {
         
@@ -23,6 +27,9 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.messagesArray = array
+
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(sender:)))
+        self.tableView.addGestureRecognizer(longPressRecognizer)
         
         registerTableViewCell()
     }
@@ -45,19 +52,15 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        /*
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellIdentifier")!
-        
-        let message = self.messagesArray[indexPath.row]
-        
-        cell.textLabel?.text = message.sender
-        cell.detailTextLabel?.text = message.subject*/
         
         let cell : InboxMessageTableViewCell = tableView.dequeueReusableCell(withIdentifier: k_InboxMessageTableViewCellIdentifier)! as! InboxMessageTableViewCell
         
         cell.formatterService = self.formatterService
         
-        cell.setupCellWithData(message: messagesArray[indexPath.row], isSelectionMode: false, isSelected: false, frameWidth: self.tableView.frame.width)
+        let message = messagesArray[indexPath.row]
+        let selected = isMessageSelected(message: message)
+        
+        cell.setupCellWithData(message: message, isSelectionMode: self.selectionMode, isSelected: selected, frameWidth: self.tableView.frame.width)
         
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         
@@ -68,11 +71,58 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        self.parentViewController.router?.showViewInboxEmailViewController()
+        if self.selectionMode == false {
+            self.parentViewController.router?.showViewInboxEmailViewController()
+        } else {
+            let message = messagesArray[indexPath.row]
+            let selected = isMessageSelected(message: message)
+            
+            if selected {
+                if let index = selectedMessagesIDArray.index(where: {$0 == message.resultID}) {
+                    print("deselected")
+                   selectedMessagesIDArray.remove(at: index)
+                }
+            } else {
+                print("selected")
+                selectedMessagesIDArray.append(message.resultID!)
+            }
+            
+            self.reloadData()
+        }
     }
     
     func reloadData() {
 
         self.tableView.reloadData()
+    }
+    
+    // MARK: Actions
+    
+    @objc func longPressed(sender: UILongPressGestureRecognizer) {
+        
+        if sender.state == UIGestureRecognizer.State.began {
+            
+            let touchPoint = sender.location(in: self.tableView)
+            if let indexPath = tableView.indexPathForRow(at: touchPoint) {
+                
+                print("Long pressed row: \(indexPath.row)")
+                if self.selectionMode == false {
+                    self.parentViewController.presenter?.enableSelectionMode()
+                }
+            }
+        }
+    }
+    
+    // MARK: local methods
+    
+    func isMessageSelected(message: EmailMessage) -> Bool {
+        
+        for resultID in selectedMessagesIDArray {
+            if resultID == message.resultID {
+                return true
+            }
+        }
+        
+        return false
     }
 }

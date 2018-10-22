@@ -57,6 +57,11 @@ class InboxMessageTableViewCell: UITableViewCell {
         
         setupConstraints(message: message, isSelectionMode: isSelectionMode)
         
+        if isSelected {
+            isSelectedImageView.image = UIImage(named: k_checkBoxSelectedImageName)
+        } else {
+            isSelectedImageView.image = UIImage(named: k_checkBoxUncheckedImageName)
+        }
     }
     
     func setupLabelsAndImages(message : EmailMessage) {

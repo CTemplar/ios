@@ -50,6 +50,5 @@ class InboxSideMenuPresenter {
                 self.interactor?.logOut()
             }
         }
-    }
-    
+    }    
 }

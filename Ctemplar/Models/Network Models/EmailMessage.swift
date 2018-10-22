@@ -22,7 +22,7 @@ struct EmailMessage {
     var folder : String? = nil
     var hasChildren : Int? = nil
     var hash : String? = nil
-    var resultID : String? = nil
+    var resultID : Int? = nil
     var isEncrypted : Bool? = nil
     var isProtected : Bool? = nil
     var mailbox : String? = nil
@@ -54,7 +54,7 @@ struct EmailMessage {
         self.folder = dictionary["folder"] as? String
         self.hasChildren = dictionary["has_children"] as? Int
         self.hash = dictionary["hash"] as? String
-        self.resultID = dictionary["id"] as? String
+        self.resultID = dictionary["id"] as? Int
         self.isEncrypted = dictionary["is_encrypted"] as? Bool
         self.isProtected = dictionary["is_protected"] as? Bool
         self.mailbox = dictionary["mailbox"] as? String        

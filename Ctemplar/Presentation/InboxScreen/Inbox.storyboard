@@ -299,7 +299,9 @@
                         <outlet property="emptyInbox" destination="eDd-Iw-BQd" id="eF2-hW-EuV"/>
                         <outlet property="grayBorder" destination="PWU-yj-LpB" id="C0t-d0-w5p"/>
                         <outlet property="inboxTableView" destination="Kev-ma-6ds" id="ZVw-5J-3DK"/>
+                        <outlet property="leftBarButtonItem" destination="R5E-6J-cXY" id="xmt-uO-ZRR"/>
                         <outlet property="messagesLabel" destination="hVo-vt-x7f" id="hqb-QV-S6i"/>
+                        <outlet property="rightBarButtonItem" destination="xtH-pi-9Ib" id="zNR-Cq-giI"/>
                         <outlet property="rightComposeButton" destination="qKu-C8-Tfv" id="3hJ-uy-AGO"/>
                         <outlet property="unreadMessagesLabel" destination="hcY-8h-Jxh" id="mT1-e9-wfc"/>
                     </connections>

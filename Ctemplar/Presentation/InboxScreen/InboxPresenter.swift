@@ -21,6 +21,20 @@ class InboxPresenter {
     func loadMessages() {
         
         self.interactor?.messagesList()
+      
+        // temp
+        /*
+        var messagesArray : Array<Any> = []
+        //let message = EmailMessage(dictionary: ["sender" : "Me"])
+        let message : [String: Any] = ["sender" : "Me", "id" : 1]
+        messagesArray.append(message)
+        
+        let emailMessages = EmailMessagesList(dictionary: ["results" : messagesArray, "total_count" : 1])
+        self.interactor?.setInboxData(messages: emailMessages)
+        
+        self.viewController?.dataSource?.reloadData()
+ */
+        //
     }
     
     //MARK: - setup UI
@@ -82,6 +96,7 @@ class InboxPresenter {
         
         return emailsCountString
     }
+    
     func formatUreadEmailsCountText(emailsCount: Int) -> String {
         
         var emailsCountString : String = "unread"
@@ -89,5 +104,39 @@ class InboxPresenter {
         emailsCountString = emailsCount.description + " " + emailsCountString
         
         return emailsCountString
+    }
+    
+    //MARK: - navigation bar
+    
+    func searchButtonPressed(sender: AnyObject) {
+        
+        if self.viewController?.dataSource?.selectionMode == true {
+            disableSelectionMode()
+        } else {
+            
+        }
+    }
+    
+    func enableSelectionMode() {
+        
+        self.viewController?.dataSource?.selectionMode = true
+        self.viewController?.dataSource?.reloadData()
+        
+        self.viewController?.leftBarButtonItem.image = nil
+        self.viewController?.leftBarButtonItem.isEnabled = false
+        self.viewController?.rightBarButtonItem.image = nil
+        self.viewController?.rightBarButtonItem.title = "Cancel"        
+    }
+    
+    func disableSelectionMode() {
+        
+        self.viewController?.dataSource?.selectionMode = false
+        self.viewController?.dataSource?.selectedMessagesIDArray.removeAll()
+        self.viewController?.dataSource?.reloadData()
+        
+        self.viewController?.leftBarButtonItem.image = UIImage(named: k_menuImageName)
+        self.viewController?.leftBarButtonItem.isEnabled = true
+        self.viewController?.rightBarButtonItem.image = UIImage(named: k_searchImageName)
+        self.viewController?.rightBarButtonItem.title = ""
     }
 }
