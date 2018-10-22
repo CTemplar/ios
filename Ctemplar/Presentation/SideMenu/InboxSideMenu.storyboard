@@ -15,10 +15,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Inbox Side Menu Controller-->
+        <!--Inbox Side Menu View Controller-->
         <scene sceneID="uD4-OK-x4u">
             <objects>
-                <viewController storyboardIdentifier="InboxSideMenuController" id="bU2-mJ-O3l" customClass="InboxSideMenuController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InboxSideMenuViewController" id="bU2-mJ-O3l" customClass="InboxSideMenuViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5MO-p3-m65">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -100,7 +100,7 @@
                                 <rect key="frame" x="0.0" y="80" width="375" height="587"/>
                                 <color key="backgroundColor" red="0.090196078430000007" green="0.1960784314" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="BxS-1U-0JR" style="IBUITableViewCellStyleDefault" id="NMN-xi-0Bb">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="sideMenuCellIdentifier" textLabel="BxS-1U-0JR" style="IBUITableViewCellStyleDefault" id="NMN-xi-0Bb">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NMN-xi-0Bb" id="Vb8-6B-P2H">

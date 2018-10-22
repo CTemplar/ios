@@ -60,7 +60,7 @@ class InboxPresenter {
         //let vc : InboxSideMenuController = InboxSideMenuController()
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_InboxSideMenuStoryboardName, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: k_InboxSideMenuControllerID) as! InboxSideMenuController
+        let vc = storyboard.instantiateViewController(withIdentifier: k_InboxSideMenuViewControllerID) as! InboxSideMenuViewController
         
         let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: vc)
         

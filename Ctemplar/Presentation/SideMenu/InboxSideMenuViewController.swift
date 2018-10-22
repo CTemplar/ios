@@ -1,5 +1,5 @@
 //
-//  InboxSideMenuController.swift
+//  InboxSideMenuViewController.swift
 //  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 12.10.2018.
@@ -10,7 +10,11 @@ import Foundation
 import UIKit
 import AlertHelperKit //temp
 
-class InboxSideMenuController: UIViewController {
+class InboxSideMenuViewController: UIViewController {
+    
+    var presenter   : InboxSideMenuPresenter?
+    var router      : InboxSideMenuRouter?
+    var dataSource  : InboxSideMenuDataSource?
     
     @IBOutlet var emailLabel : UILabel!
     @IBOutlet var triangle   : UIImageView!
