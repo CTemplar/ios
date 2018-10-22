@@ -15,4 +15,17 @@ class InboxSideMenuInteractor {
     var presenter       : InboxSideMenuPresenter?
     var apiService      : APIService?
 
+    func logOut() {
+        
+        apiService?.logOut()  {(result) in
+            switch(result) {
+                
+            case .success(let value):
+                print("value:", value)
+            case .failure(let error):
+                print("error:", error)
+                
+            }
+        }
+    }
 }

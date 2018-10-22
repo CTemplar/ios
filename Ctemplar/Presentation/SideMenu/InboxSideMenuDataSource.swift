@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SideMenu
 
 class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
@@ -35,7 +36,8 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        
+        return menuOptionsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,5 +50,26 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let optionName = self.menuOptionsArray[indexPath.row]
+        
+        switch optionName {
+        case InboxSideMenuOptionsName.inbox.rawValue :
+            self.parentViewController?.dismiss(animated: true, completion: nil)
+        case InboxSideMenuOptionsName.logout.rawValue :
+            self.parentViewController?.presenter?.logOut()
+        default:
+            print("do nothing")
+        }
+    }
+    
+    func reloadData() {
+        
+        self.tableView.reloadData()
     }
 }

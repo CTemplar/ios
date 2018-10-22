@@ -130,6 +130,10 @@
                                         <color key="value" white="1" alpha="0.1190580986" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="dataSource" destination="bU2-mJ-O3l" id="TVw-4Y-6nB"/>
+                                    <outlet property="delegate" destination="bU2-mJ-O3l" id="0Zk-Ex-Fqa"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.090196078431372548" green="0.19607843137254902" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
@@ -146,6 +150,7 @@
                     </view>
                     <connections>
                         <outlet property="emailLabel" destination="KJS-vw-tOp" id="Pz8-rX-DGy"/>
+                        <outlet property="inboxSideMenuTableView" destination="B65-GU-zD8" id="blU-DB-qsD"/>
                         <outlet property="triangle" destination="Inc-0p-mNk" id="VLW-XH-nFW"/>
                         <outlet property="triangleTrailingConstraint" destination="kd2-3B-CnW" id="UVM-BW-6Kg"/>
                     </connections>
