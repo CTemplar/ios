@@ -19,7 +19,8 @@ struct Device {
     static let SCREEN_HEIGHT        = Int(UIScreen.main.bounds.size.height)
     static let SCREEN_MAX_LENGTH    = Int( max(SCREEN_WIDTH, SCREEN_HEIGHT) )
     static let SCREEN_MIN_LENGTH    = Int( min(SCREEN_WIDTH, SCREEN_HEIGHT) )
-    static let IS_IPHONE_4_OR_LESS  = IS_IPHONE && SCREEN_MAX_LENGTH  < 568
+    static let IS_IPHONE_4_OR_LESS  = IS_IPHONE && SCREEN_MAX_LENGTH < 568
+    static let IS_IPHONE_5_OR_ABOVE = IS_IPHONE && SCREEN_MAX_LENGTH > 568
     static let IS_IPHONE_5          = IS_IPHONE && SCREEN_MAX_LENGTH == 568
     static let IS_IPHONE_6          = IS_IPHONE && SCREEN_MAX_LENGTH == 667
     static let IS_IPHONE_6P         = IS_IPHONE && SCREEN_MAX_LENGTH == 736

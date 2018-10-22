@@ -26,6 +26,8 @@ class SignUpPagePasswordViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var nextButton                : UIButton!
     
+    var keyboardOffset = 0.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,7 +35,13 @@ class SignUpPagePasswordViewController: UIViewController, UITextFieldDelegate {
         parentSignUpPageViewController?.presenter?.setupPasswordTextFieldsAndHintLabels(childViewController: self, sender: choosePasswordTextField)
         parentSignUpPageViewController?.presenter?.setupPasswordTextFieldsAndHintLabels(childViewController: self, sender: confirmPasswordTextField)
         
-        adddNotificationObserver()
+        if Device.IS_IPHONE_5 {
+            keyboardOffset = k_signUpPageKeyboardOffsetLarge        
+        } else {
+            keyboardOffset = k_signUpPageKeyboardOffsetBig
+        }
+        
+        adddNotificationObserver()  
     }
     
     //MARK: - IBActions
@@ -75,19 +83,16 @@ class SignUpPagePasswordViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func keyboardWillShow(notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height
-            }
-        }
         
+        if self.view.frame.origin.y == 0 {
+            self.view.frame.origin.y -= CGFloat(keyboardOffset)
+        }
     }
     
     @objc func keyboardWillHide(notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0 {
-                self.view.frame.origin.y += keyboardSize.height
-            }
+       
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y += CGFloat(keyboardOffset)
         }
     }
 }

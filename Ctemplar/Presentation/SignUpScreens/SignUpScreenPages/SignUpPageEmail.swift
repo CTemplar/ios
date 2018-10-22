@@ -21,6 +21,8 @@ class SignUpPageEmailViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var createAccountButton    : UIButton!
     @IBOutlet var checkBoxButton         : UIButton!
     
+    var keyboardOffset = 0.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,10 +30,17 @@ class SignUpPageEmailViewController: UIViewController, UITextFieldDelegate {
         parentSignUpPageViewController?.presenter?.setupRecoveryEmailTextFieldAndHintLabel(childViewController: self)
         //parentSignUpPageViewController?.presenter?.pressedCheckBoxButton(childViewController: self)
         
-        setupAttributesForTextView() 
+        setupAttributesForTextView()
+        
+        if Device.IS_IPHONE_5 {
+            keyboardOffset = k_signUpPageKeyboardOffsetLarge
+        } else if Device.IS_IPHONE_6 {
+            keyboardOffset = k_signUpPageKeyboardOffsetMedium
+        } else {
+            keyboardOffset = k_signUpPageKeyboardOffsetSmall
+        }
         
         adddNotificationObserver()
-        
     }
     
     func setupAttributesForTextView() {
@@ -92,14 +101,14 @@ class SignUpPageEmailViewController: UIViewController, UITextFieldDelegate {
     @objc func keyboardWillShow(notification: Notification) {
         
         if self.view.frame.origin.y == 0 {
-            self.view.frame.origin.y -= CGFloat(k_signUpPageNameKeyboardHeight)//keyboardSize.height
+            self.view.frame.origin.y -= CGFloat(keyboardOffset)
         }
     }
     
     @objc func keyboardWillHide(notification: Notification) {
         
         if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y += CGFloat(k_signUpPageNameKeyboardHeight)//keyboardSize.height
+            self.view.frame.origin.y += CGFloat(keyboardOffset)
         }
     }
 }

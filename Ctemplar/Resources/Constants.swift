@@ -67,11 +67,16 @@ let k_unreadMessageColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255
 
 //size constants
 
-let k_pageControlBottomOffset       = 30.0
-let k_pageControlDotSize            = 8.0
-let k_signUpPageNameKeyboardHeight  = 128.0
-let k_triangleOffset                = 16.0 + 5.0 + 5.0
-let k_navBarButtonSize              = 32.0
+let k_pageControlBottomOffset           = 30.0
+let k_pageControlDotSize                = 8.0
+
+let k_signUpPageKeyboardOffsetSmall     = 32.0
+let k_signUpPageKeyboardOffsetMedium    = 64.0
+let k_signUpPageKeyboardOffsetBig       = 96.0
+let k_signUpPageKeyboardOffsetLarge     = 160.0
+
+let k_triangleOffset                    = 16.0 + 5.0 + 5.0
+let k_navBarButtonSize                  = 32.0
 
 let k_rightSideWidth            : CGFloat = 120.0
 

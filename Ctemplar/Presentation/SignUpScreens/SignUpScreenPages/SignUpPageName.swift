@@ -18,11 +18,19 @@ class SignUpPageNameViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var userNameHintLabel : UILabel!
     @IBOutlet var nextButton        : UIButton!
     
+    var keyboardOffset = 0.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         parentSignUpPageViewController = self.parent as? SignUpPageViewController
         parentSignUpPageViewController?.presenter?.setupNameTextFieldAndHintLabel(childViewController: self)
+        
+        if (Device.IS_IPHONE_5) {
+            keyboardOffset = k_signUpPageKeyboardOffsetBig
+        } else {
+            keyboardOffset = 0.0
+        }
         
         adddNotificationObserver()
     }
@@ -31,8 +39,8 @@ class SignUpPageNameViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func nextButtonPressed(_ sender: AnyObject) {
         
-         //parentSignUpPageViewController?.presenter?.nextViewController(childViewController: self)
-        parentSignUpPageViewController?.presenter?.pressedNextButton(childViewController: self)
+         parentSignUpPageViewController?.presenter?.showNextViewController(childViewController: self)
+        //parentSignUpPageViewController?.presenter?.pressedNextButton(childViewController: self)
     }
     
     @IBAction func backButtonPressed(_ sender: AnyObject) {
@@ -59,14 +67,14 @@ class SignUpPageNameViewController: UIViewController, UITextFieldDelegate {
     @objc func keyboardWillShow(notification: Notification) {
         
         if self.view.frame.origin.y == 0 {
-            self.view.frame.origin.y -= CGFloat(k_signUpPageNameKeyboardHeight)//keyboardSize.height
+            self.view.frame.origin.y -= CGFloat(keyboardOffset)
         }
     }
     
     @objc func keyboardWillHide(notification: Notification) {
         
         if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y += CGFloat(k_signUpPageNameKeyboardHeight)//keyboardSize.height
+            self.view.frame.origin.y += CGFloat(keyboardOffset)
         }        
     }
 }
