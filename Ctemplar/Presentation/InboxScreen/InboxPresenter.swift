@@ -57,8 +57,6 @@ class InboxPresenter {
     
     func initAndSetupInboxSideMenuController() {
         
-        //let vc : InboxSideMenuController = InboxSideMenuController()
-        
         let storyboard: UIStoryboard = UIStoryboard(name: k_InboxSideMenuStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_InboxSideMenuViewControllerID) as! InboxSideMenuViewController
         
