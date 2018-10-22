@@ -23,16 +23,16 @@ class InboxPresenter {
         self.interactor?.messagesList()
       
         // temp
-        
+        /*
         var messagesArray : Array<Any> = []
-        let message : [String: Any] = ["sender" : "Me", "id" : 1]
+        let message : [String: Any] = ["sender" : "Dmitry3@dev.cetemplar.com", "id" : 1, "destruct_date" : "date"]
         messagesArray.append(message)
         
         let emailMessages = EmailMessagesList(dictionary: ["results" : messagesArray, "total_count" : 1])
         self.interactor?.setInboxData(messages: emailMessages)
         
         self.viewController?.dataSource?.reloadData()
- 
+ */
         //
     }
     

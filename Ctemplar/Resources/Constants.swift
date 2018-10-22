@@ -90,6 +90,7 @@ let k_dotImageWidth             : CGFloat = 6.0
 let k_dotImageTrailing          : CGFloat = 6.0
 
 let k_deleteLabelWidth          : CGFloat = 72.0
+let k_deleteLabelSEWidth        : CGFloat = 30.0
 
 //images
 

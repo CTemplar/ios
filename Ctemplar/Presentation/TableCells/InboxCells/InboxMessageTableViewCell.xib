@@ -216,6 +216,7 @@
                 <outlet property="countLabelTrailingConstraint" destination="5FV-jV-Kg9" id="fVv-7F-ERN"/>
                 <outlet property="countLabelWidthConstraint" destination="fUC-I9-MHF" id="LvZ-lo-Yee"/>
                 <outlet property="deleteLabel" destination="VLh-Ex-4Na" id="Q7j-pD-Wcf"/>
+                <outlet property="deleteLabelWidthConstraint" destination="j9g-Mj-DHd" id="hZ2-rR-5RO"/>
                 <outlet property="dotImageTrailingConstraint" destination="zkf-o1-vCS" id="dB8-jB-4xV"/>
                 <outlet property="dotImageWidthConstraint" destination="LV0-2O-V7x" id="e8i-Cf-qTj"/>
                 <outlet property="hasAttachmentImageView" destination="ri0-gV-UDM" id="3Y9-N6-P37"/>

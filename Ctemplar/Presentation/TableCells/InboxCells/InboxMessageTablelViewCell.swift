@@ -34,6 +34,7 @@ class InboxMessageTableViewCell: UITableViewCell {
     @IBOutlet var dotImageTrailingConstraint            : NSLayoutConstraint!
     @IBOutlet var countLabelWidthConstraint             : NSLayoutConstraint!
     @IBOutlet var countLabelTrailingConstraint          : NSLayoutConstraint!
+    @IBOutlet var deleteLabelWidthConstraint            : NSLayoutConstraint!
     @IBOutlet var badgesViewWidthConstraint             : NSLayoutConstraint!
     
     var cellWidth : CGFloat = 0.0
@@ -168,6 +169,12 @@ class InboxMessageTableViewCell: UITableViewCell {
             countLabelWidthConstraint.constant = k_countLabelWidth
             countLabelTrailingConstraint.constant = k_countLabelTrailing
         }
+
+        if Device.IS_IPHONE_5 {
+            deleteLabelWidthConstraint.constant = k_deleteLabelSEWidth
+        } else {
+            deleteLabelWidthConstraint.constant = k_deleteLabelWidth
+        }
   
         setupSenderLabelsAndBadgesView()
         
@@ -203,7 +210,11 @@ class InboxMessageTableViewCell: UITableViewCell {
         if deleteLabel.isHidden {
             deleteLabelWidth = 0.0
         } else {
-            deleteLabelWidth = k_deleteLabelWidth
+            if Device.IS_IPHONE_5 {
+                deleteLabelWidth = k_deleteLabelSEWidth
+            } else {
+                deleteLabelWidth = k_deleteLabelWidth
+            }
         }
         
         var badgesViewWidth = dotImageWidthConstraint.constant  + dotImageTrailingConstraint.constant  + countLabelWidthConstraint.constant + countLabelTrailingConstraint.constant
