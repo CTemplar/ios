@@ -336,6 +336,14 @@ class APIService {
         }
     }
     
+    func logOut(completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        keychainService?.deleteUserCredentialsAndToken()
+        pgpService?.deleteStoredPGPKeys()
+        
+        showLoginViewController()
+    }
+    
     
     //MARK: - Mail
     
@@ -426,7 +434,18 @@ class APIService {
     
     func getToken() -> String? {
         
-        return keychainService?.getToken()
+        if let token = keychainService?.getToken() {
+            
+            if token.count > 0 {
+                return token
+            } else {
+                showLoginViewController()
+                return nil
+            }
+        }
+        
+        showLoginViewController()
+        return nil
     }
     
     func parseServerResponse(response: Dictionary<String, Any>) -> String? {

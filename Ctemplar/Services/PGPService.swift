@@ -149,6 +149,31 @@ class PGPService {
         return keys
     }
     
+    func deleteStoredPGPKeys() {
+        
+        keyring.deleteAll()
+        
+        
+        let keyRingFileUrl = getDocumentsDirectory().appendingPathComponent(k_keyringFileName)
+        /*
+        do {
+            try keyring.export().write(to: keyRingFileUrl)
+        }  catch {
+            print("delete PGP Key Error")
+        }*/
+        
+        let fileManager = FileManager.default
+        
+        do {
+            try fileManager.removeItem(atPath: keyRingFileUrl.path)
+        }
+        catch let error as NSError {
+            print("delete keyring file Error: \(error)")
+        }
+        
+        print("delete PGP Key")
+    }
+    
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]

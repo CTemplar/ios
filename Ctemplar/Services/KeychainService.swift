@@ -66,5 +66,12 @@ class KeychainService
         saveUsername(name: userName)
         savePassword(password: password)
     }
+    
+    func deleteUserCredentialsAndToken() {
+        
+        keychain.delete(Consts.token.rawValue)
+        keychain.delete(Consts.username.rawValue)
+        keychain.delete(Consts.password.rawValue)
+    }
 }
 

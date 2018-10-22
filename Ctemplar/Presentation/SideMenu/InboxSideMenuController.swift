@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AlertHelperKit //temp
 
 class InboxSideMenuController: UIViewController {
     
@@ -54,6 +55,38 @@ class InboxSideMenuController: UIViewController {
     
     @IBAction func userProfilePressed(_ sender: AnyObject) {
         
+        //temp: ======================
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let apiService: APIService? = appDelegate.applicationManager.apiService
+        
+        let params = Parameters(
+            title: "",
+            message: "Do you want to Logout?",
+            cancelButton: "Cancel",
+            otherButtons: ["Log Out"]
+        )
+        
+        AlertHelperKit().showAlertWithHandler(self, parameters: params) { buttonIndex in
+            switch buttonIndex {
+            case 0:
+                print("Cancel")
+            default:
+                print("LogOut")
+                apiService?.logOut()  {(result) in
+                    switch(result) {
+                        
+                    case .success(let value):
+                        print("value:", value)
+                     case .failure(let error):
+                        print("error:", error)
+                        
+                    }
+                }
+            }
+        }
+        //=========================
     }
     
 }
