@@ -22,6 +22,8 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var userNameHintLabel          : UILabel!
     @IBOutlet var recoveryEmailHintLabel     : UILabel!
     
+    var keyboardOffset = 0.0
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -32,6 +34,14 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
         
         self.configurator?.presenter?.setupUserNameTextFieldsAndHintLabel(userName: userName!)
         self.configurator?.presenter?.setupRecoveryTextFieldsAndHintLabel(email: recoveryEmail!)
+        
+        if (Device.IS_IPHONE_5) {
+            keyboardOffset = k_signUpPageKeyboardOffsetMedium
+        } else {
+            keyboardOffset = 0.0
+        }
+        
+        adddNotificationObserver()
     }
     
     //MARK: - IBActions
@@ -62,5 +72,28 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
         
         recoveryEmail = sender.text
         self.configurator?.presenter?.setupRecoveryTextFieldsAndHintLabel(email: recoveryEmail!)
+    }
+    
+    //MARK: - notification
+    
+    func adddNotificationObserver() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(SignUpPageNameViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SignUpPageNameViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        
+        if self.view.frame.origin.y == 0 {
+            self.view.frame.origin.y -= CGFloat(keyboardOffset)
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y += CGFloat(keyboardOffset)
+        }
     }
 }

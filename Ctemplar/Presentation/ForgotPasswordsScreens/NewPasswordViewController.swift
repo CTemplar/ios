@@ -29,6 +29,8 @@ class NewPasswordViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var resetPasswordButton       : UIButton!
     
+    var keyboardOffset = 0.0
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -38,7 +40,15 @@ class NewPasswordViewController: UIViewController, UITextFieldDelegate {
         self.configurator?.configure(viewController: self)
         
         self.configurator?.presenter?.setupPasswordTextFieldsAndHintLabels(childViewController: self, sender: newPasswordTextField)
-        self.configurator?.presenter?.setupPasswordTextFieldsAndHintLabels(childViewController: self, sender: confirmPasswordTextField)        
+        self.configurator?.presenter?.setupPasswordTextFieldsAndHintLabels(childViewController: self, sender: confirmPasswordTextField)
+        
+        if (Device.IS_IPHONE_5) {
+            keyboardOffset = k_signUpPageKeyboardOffsetMedium
+        } else {
+            keyboardOffset = 0.0
+        }
+        
+        adddNotificationObserver()
     }
     
     //MARK: - IBActions
@@ -56,5 +66,28 @@ class NewPasswordViewController: UIViewController, UITextFieldDelegate {
     @IBAction func passwordTyped(_ sender: UITextField) {
         
         self.configurator?.presenter?.setupPasswordTextFieldsAndHintLabels(childViewController: self, sender: sender)
+    }
+    
+    //MARK: - notification
+    
+    func adddNotificationObserver() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(SignUpPageNameViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SignUpPageNameViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        
+        if self.view.frame.origin.y == 0 {
+            self.view.frame.origin.y -= CGFloat(keyboardOffset)
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y += CGFloat(keyboardOffset)
+        }
     }
 }
