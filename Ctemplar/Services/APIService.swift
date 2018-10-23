@@ -339,7 +339,7 @@ class APIService {
     func logOut(completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         keychainService?.deleteUserCredentialsAndToken()
-        pgpService?.deleteStoredPGPKeys()
+        //pgpService?.deleteStoredPGPKeys()
         
         showLoginViewController()
     }
@@ -439,7 +439,7 @@ class APIService {
             if token.count > 0 {
                 return token
             } else {
-                //showLoginViewController()
+                showLoginViewController()
                 return nil
             }
         }

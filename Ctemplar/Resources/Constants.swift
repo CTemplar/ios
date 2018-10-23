@@ -127,6 +127,8 @@ let k_keyringFileName              = "keyring.gpg"
 
 let k_termsURL                     = "https://ctemplar.com/terms"
 
+let k_firstCharsForHeader          = 50
+
 
 enum InboxSideMenuOptionsName: String {
     

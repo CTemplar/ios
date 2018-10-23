@@ -17,6 +17,7 @@ let key2 = KeyGenerator().generate(for: "fran@krzyzanowskim.com", passphrase: ni
 class PGPService {
     
     let keyring = Keyring()
+    let keychainService = KeychainService()
     
     func encrypt(data: Data) -> Data? {
         
@@ -41,7 +42,8 @@ class PGPService {
         
         //print("encryptedData Array: \(Array(encryptedData))")
         
-        let password : String = "test1234" //"admin1234"//"test1234" //temp
+        //let password : String = "test1234" //"admin1234"//"test1234" //temp
+        let password = keychainService.getPassword()
 
         if let keys = getStoredPGPKeys() {
             
@@ -58,6 +60,22 @@ class PGPService {
     func decodeData(decryptedData: Data) -> String {
         
         return String(decoding: decryptedData, as: UTF8.self)
+    }
+    
+    func decryptMessage(encryptedContet: String) -> String {
+        
+        if let contentData = encryptedContet.data(using: .ascii) {
+            if let decodedData = self.decrypt(encryptedData: contentData) {
+                let decryptedMessage = self.decodeData(decryptedData: decodedData)
+                print("decryptedMessage:", decryptedMessage)
+                return decryptedMessage
+            } else {
+                print("decrypting failed")
+                return ""
+            }
+        }
+        
+        return ""
     }
     
     //MARK: - Keys

@@ -11,7 +11,8 @@ import UIKit
 
 class InboxMessageTableViewCell: UITableViewCell {
     
-    var formatterService : FormatterService?
+    //var formatterService : FormatterService?
+    var parentController : InboxDataSource?
     
     @IBOutlet weak var senderLabel             : UILabel!
     @IBOutlet weak var subjectLabel            : UILabel!
@@ -75,17 +76,17 @@ class InboxMessageTableViewCell: UITableViewCell {
         if let subject = message.subject {
             subjectLabel.text = subject
         }
-        /*
-         if let messageText = message {
-         headMessageLabel.text = messageText
-         }*/
+        
+        if let messageContent = message.content {            
+            headMessageLabel.text = parentController?.parentViewController.presenter?.interactor?.headerOfMessage(contet: messageContent)
+        }
         
         //let testDate = Calendar.current.date(byAdding: .day, value: -3, to: Date())!
         
         if let createdDate = message.createdAt {
             
-            if  let date = formatterService!.formatStringToDate(date: createdDate) {
-                timeLabel.text = formatterService!.formatCreationDate(date: date)
+            if  let date = parentController?.formatterService!.formatStringToDate(date: createdDate) {
+                timeLabel.text = parentController?.formatterService!.formatCreationDate(date: date)
             }
         }
         
@@ -111,7 +112,9 @@ class InboxMessageTableViewCell: UITableViewCell {
         
         if let destructionDate = message.destructDay {
             deleteLabel.isHidden = false
-            //deleteLabel.text =
+            if  let date = parentController?.formatterService!.formatStringToDate(date: destructionDate) {
+                deleteLabel.text = parentController?.formatterService!.formatDestractionDate(date: date)
+            }
         } else {
             deleteLabel.isHidden = true
         }

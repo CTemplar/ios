@@ -55,7 +55,8 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         
         let cell : InboxMessageTableViewCell = tableView.dequeueReusableCell(withIdentifier: k_InboxMessageTableViewCellIdentifier)! as! InboxMessageTableViewCell
         
-        cell.formatterService = self.formatterService
+        //cell.formatterService = self.formatterService
+        cell.parentController = self
         
         let message = messagesArray[indexPath.row]
         let selected = isMessageSelected(message: message)

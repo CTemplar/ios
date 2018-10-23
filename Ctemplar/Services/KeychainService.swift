@@ -40,11 +40,11 @@ class KeychainService
     
     func getUserName() -> String {
         
-        guard let token = keychain.get(Consts.username.rawValue) else {
+        guard let username = keychain.get(Consts.username.rawValue) else {
             return ""
         }
         
-        return token
+        return username
     }
     
     func savePassword(password: String) {
@@ -54,11 +54,11 @@ class KeychainService
     
     func getPassword() -> String {
         
-        guard let token = keychain.get(Consts.password.rawValue) else {
+        guard let password = keychain.get(Consts.password.rawValue) else {
             return ""
         }
         
-        return token
+        return password
     }
     
     func saveUserCredentials(userName: String, password: String) {
