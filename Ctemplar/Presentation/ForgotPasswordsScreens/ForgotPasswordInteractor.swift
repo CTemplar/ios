@@ -42,6 +42,7 @@ class ForgotPasswordInteractor {
                 print("resetPassword success value:", value)
                 
                 //self.keychainService?.saveUserCredentials(userName: userName, password: password)
+                self.presenter?.router?.backToLoginViewController()                
                 
             case .failure(let error):
                 print("resetPassword error:", error)

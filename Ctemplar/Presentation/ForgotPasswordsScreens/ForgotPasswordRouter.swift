@@ -20,6 +20,7 @@ class ForgotPasswordRouter {
         vc.userName = userName
         vc.recoveryEmail = recoveryEmail
         self.viewController?.present(vc, animated: true, completion: nil)
+        //self.viewController?.show(vc, sender: self)
     }
     
     func showForgotUsernameViewController() {
@@ -36,6 +37,7 @@ class ForgotPasswordRouter {
         vc.userName = userName
         vc.recoveryEmail = recoveryEmail
         self.viewController?.present(vc, animated: true, completion: nil)
+        //self.viewController?.show(vc, sender: self)
     }
     
     func showNewPasswordViewController(userName: String, resetPasswordCode: String, recoveryEmail: String) {
@@ -46,5 +48,11 @@ class ForgotPasswordRouter {
         vc.resetCode = resetPasswordCode
         vc.recoveryEmail = recoveryEmail
         self.viewController?.present(vc, animated: true, completion: nil)
+        //self.viewController?.show(vc, sender: self)
+    }
+    
+    func backToLoginViewController() {
+        
+        self.viewController?.view.window?.rootViewController?.presentedViewController!.presentedViewController!.dismiss(animated: true, completion: nil)
     }
 }

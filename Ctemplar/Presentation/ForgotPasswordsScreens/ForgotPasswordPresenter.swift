@@ -67,7 +67,6 @@ class ForgotPasswordPresenter {
     func buttonResetPasswordPressed(userName: String, resetCode: String, recoveryEmail: String) {
         
         if (formatterService?.validateNameLench(enteredName: resetCode))! {
-            //temp
             self.router?.showNewPasswordViewController(userName: userName, resetPasswordCode: resetCode, recoveryEmail: recoveryEmail)
         } else {
             AlertHelperKit().showAlert(self.viewController!, title: "", message: "Entered Reset Code is not valid", button: "Close")
