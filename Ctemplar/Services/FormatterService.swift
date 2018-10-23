@@ -133,9 +133,23 @@ class FormatterService
         return dateString
     }
     
-    func formatDestractionDate(date: Date) -> String {
+    func formatDestructionDate(date: Date) -> String {
         
         var dateString : String = ""
+        
+        if !Device.IS_IPHONE_5 {
+            dateString = dateString + "Delete In "
+        }
+        
+        if let daysCount = calculateDaysCountForDestruct(date: date) {
+         
+            if daysCount > 0 {
+               dateString = dateString + String(format: "%@", daysCount) + "d" //%02d
+                
+               let timeWithoutDaysDate = Calendar.current.date(byAdding: .day, value: -daysCount, to: Date())!
+            }
+        }
+        
         
         
         return dateString
@@ -146,6 +160,17 @@ class FormatterService
         let dateFormatter = DateFormatter()
         //2018-10-18T14:03:30.343381Z
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        let formattedDate = dateFormatter.date(from: date)
+        
+        return formattedDate
+    }
+    
+    func formatDestructionStringToDate(date: String) -> Date? {
+        
+        let dateFormatter = DateFormatter()
+        //2018-10-30T21:00:00Z
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:SSZ"
         
         let formattedDate = dateFormatter.date(from: date)
         
@@ -187,6 +212,83 @@ class FormatterService
         }
         
         return 0
+    }
+    
+    func calculateDaysCountForDestruct(date: Date) -> Int? {
+        
+        let calendar = NSCalendar.current
+        
+        let date1 = calendar.startOfDay(for: date)
+        let date2 = calendar.startOfDay(for: Date())
+        
+        let components = calendar.dateComponents([.day], from: date2, to: date1)
+        
+        if let days = components.day {
+            return days
+        }
+        
+        return 0
+    }
+    
+    func calculateTimeCountForDestruct(date: Date) -> Int? {
+        
+        let calendar = NSCalendar.current
+        
+        let date1 = calendar.startOfDay(for: date)
+        let date2 = calendar.startOfDay(for: Date())
+        
+        let components = calendar.dateComponents([.hour], from: date2, to: date1)
+        
+        if let days = components.hour {
+            return days
+        }
+        
+        return 0
+    }
+}
+
+extension Date {
+    
+    func timeCountForDestruct() -> String {
+        
+        let secondsAgo = Int(Date().timeIntervalSince(self))
+        let minute = 60
+        let hour = 60 * minute
+        let day = 24 * hour
+        
+        let remainDays = secondsAgo / day
+
+        let remainHoursInDay = (secondsAgo - remainDays * day) / hour
+        
+        let remainMinutesInHour = (secondsAgo - remainDays * day - remainHoursInDay * hour) / minute
+        
+        print("now", Date())
+        print("remainDays", remainDays)
+        print("remainHoursInDay", remainHoursInDay)
+        print("remainMinutesInHour", remainMinutesInHour)
+        
+        let timeString = formatDestructionTimeToString(days: abs(remainDays), hours: abs(remainHoursInDay), minutes: abs(remainMinutesInHour))
+        
+        return timeString
+    }
+    
+    func formatDestructionTimeToString(days: Int, hours: Int, minutes: Int) -> String {
+        
+        var dateString : String = ""
+        
+        if !Device.IS_IPHONE_5 {
+            dateString = dateString + "Delete In "
+        }
+            
+        if days > 0 {
+            dateString = dateString + String(format: "%d", days) + "d " //%02d
+        }
+
+        dateString = dateString + String(format: "%02d:%02d", hours, minutes) 
+        
+        print("dateString", dateString)
+        
+        return dateString
     }
 }
 

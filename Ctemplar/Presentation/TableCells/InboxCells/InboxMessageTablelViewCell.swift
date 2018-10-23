@@ -112,8 +112,9 @@ class InboxMessageTableViewCell: UITableViewCell {
         
         if let destructionDate = message.destructDay {
             deleteLabel.isHidden = false
-            if  let date = parentController?.formatterService!.formatStringToDate(date: destructionDate) {
-                deleteLabel.text = parentController?.formatterService!.formatDestractionDate(date: date)
+            if  let date = parentController?.formatterService!.formatDestructionStringToDate(date: destructionDate) {
+                //deleteLabel.text = parentController?.formatterService!.formatDestractionDate(date: date)
+                deleteLabel.text = date.timeCountForDestruct()
             }
         } else {
             deleteLabel.isHidden = true
