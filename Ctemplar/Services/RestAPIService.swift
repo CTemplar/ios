@@ -104,7 +104,8 @@ class RestAPIService {
             JSONKey.privateKey.rawValue: privateKey,
             JSONKey.publicKey.rawValue: publicKey,
             JSONKey.fingerprint.rawValue: fingerprint,
-            JSONKey.recaptcha.rawValue: recaptcha
+            JSONKey.recaptcha.rawValue: recaptcha,
+            JSONKey.recoveryEmail.rawValue: recoveryEmail
         ]
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.signUp.rawValue

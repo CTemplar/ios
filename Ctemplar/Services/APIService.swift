@@ -160,31 +160,6 @@ class APIService {
             print("fingerprint is nil")
             return
         }
-        /*
-        var hashedPassword: String?
-        
-        if let salt = formatterService?.generateSaltFrom(userName: userName) {
-            print("generated salt:", salt)
-            hashedPassword = formatterService?.hash(password: password, salt: salt)
-            print("hashedPassword:", hashedPassword!)
-        }
-        
-        if hashedPassword == nil {
-            print("hashedPassword is nil")
-            return
-        }
-        
-        if (hashedPassword?.count)! < 1 {
-            print("hashedPassword is short")
-            return
-        }
-
-        //==temp avoid login with hashed password problem
-        //hashedPassword = password
-        //========================
-        
-        HUD.show(.progress)
-        */
         
         HUD.show(.progress)
         
@@ -276,30 +251,6 @@ class APIService {
             print("fingerprint is nil")
             return
         }
-        /*
-        var hashedPassword: String?
-        
-        if let salt = formatterService?.generateSaltFrom(userName: userName) {
-            print("generated salt:", salt)
-            hashedPassword = formatterService?.hash(password: password, salt: salt)
-            print("hashedPassword:", hashedPassword!)
-        }
-        
-        if hashedPassword == nil {
-            print("hashedPassword is nil")
-            return
-        }
-        
-        if (hashedPassword?.count)! < 1 {
-            print("hashedPassword is short")
-            return
-        }
-        
-        //==temp avoid login with hashed password problem
-        //hashedPassword = password
-        //========================
-        
-        HUD.show(.progress)*/
         
         HUD.show(.progress)
         
