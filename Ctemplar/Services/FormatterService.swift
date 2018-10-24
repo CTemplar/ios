@@ -16,7 +16,8 @@ class FormatterService
     
     func generateSaltFrom(userName: String) -> String {
         
-        var newUserName = userName.lowercased()
+        let formattedUserName = userName.lowercased().replacingOccurrences( of:"[^a-zA-Z]", with: "", options: .regularExpression)
+        var newUserName = formattedUserName
         
         var newSalt : String = k_saltPrefix
         
@@ -25,7 +26,7 @@ class FormatterService
         //print("rounds:", rounds)
         
         for _ in 0..<rounds {
-            newUserName = newUserName + userName
+            newUserName = newUserName + formattedUserName
         }
         
         //print("newUserName:", newUserName)
