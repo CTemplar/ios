@@ -295,6 +295,40 @@ class APIService {
         showLoginViewController()
     }
     
+    func verifyToken(completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        //HUD.show(.progress)
+        
+        if let token = getToken() {
+        
+            restAPIService?.verifyToken(token: token)  {(result) in
+                
+                switch(result) {
+                    
+                case .success(let value):
+                    
+                    if let response = value as? Dictionary<String, Any> {
+                        print("verifyToken response", response)
+                        if let message = self.parseServerResponse(response:response) {
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                            completionHandler(APIResult.failure(error))
+                        } else {
+                            completionHandler(APIResult.success("success"))
+                        }
+                    } else {
+                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                        completionHandler(APIResult.failure(error))
+                    }
+                    
+                case .failure(let error):
+                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                    completionHandler(APIResult.failure(error))
+                }
+                
+                HUD.hide()
+            }
+        }
+    }
     
     //MARK: - Mail
     
@@ -376,7 +410,7 @@ class APIService {
         }
     }
     
-    //Mark: - local services
+    //MARK: - Local services
     
     func saveToken(token: String) {
         
@@ -421,6 +455,9 @@ class APIService {
                     }
                 }
                 break
+            case APIResponse.tokenExpiredValue.rawValue :
+                self.autologinWhenTokenExpired()
+                break
             case APIResponse.usernameError.rawValue :
                 if let errorMessage = extractErrorTextFrom(value: dictionary.value) {
                     message = "Username field.\n" + errorMessage
@@ -433,6 +470,16 @@ class APIService {
                 break
             case APIResponse.nonFieldError.rawValue :
                 message = extractErrorTextFrom(value: dictionary.value)
+            
+                if let texts = dictionary.value as? Array<Any> { // when checking Token verification catch if Token expired 
+                    if let value = texts.first as? String {
+                        print("value: ", value)
+                        if value == APIResponse.tokenExpiredValue.rawValue || value == APIResponse.noCredentials.rawValue {
+                            self.autologinWhenTokenExpired()
+                        }
+                    }
+                }
+
                 break
             case APIResponse.userExists.rawValue :
                 if let userExists = dictionary.value as? Int {

@@ -18,6 +18,7 @@ class RestAPIService {
         case checkUsername = "auth/check-username/"
         case recoveryCode = "auth/recover/"
         case resetPassword = "auth/reset/"
+        case verifyToken = "auth/verify/"
         case messages = "emails/messages/"
         case mailboxes = "emails/mailboxes/"
     }
@@ -37,6 +38,7 @@ class RestAPIService {
         case emailCount = "email_count"
         case paymentType = "payment_type"
         case resetPasswordCode = "code"
+        case token = "token"
     }
         
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -179,6 +181,34 @@ class RestAPIService {
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
             
             print("resetPassword responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func verifyToken(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.token.rawValue: token
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.verifyToken.rawValue
+        
+        //print("verifyToken parameters:", parameters)
+        print("verifyToken url:", url)
+        
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("verifyToken responce:", response)
             
             switch(response.result) {
             case .success(let value):
