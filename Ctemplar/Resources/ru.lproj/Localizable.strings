@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  Ctemplar
+
+  Created by Tatarinov Dmitry on 24.10.2018.
+  Copyright © 2018 ComeOnSoftware. All rights reserved.
+*/
+
+"invalidEnteredPassword" = "Неправильный формат пароля";
+"invalidEnteredEmail" = "Неправильный формат Email";
+"closeButton" = "Закрыть";
+"termsAndConditionsFullText" = "Пожалуста, поставьте галочку если вы согласны с нашими Условиями и Положениями";
+"termsAndConditionsPhrase" = "Условия и Положения";

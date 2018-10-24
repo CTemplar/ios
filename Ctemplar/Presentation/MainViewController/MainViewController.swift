@@ -93,7 +93,7 @@ class MainViewController: UIViewController {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self, title: "Messages Error", message: error.localizedDescription, button: "Close")
+                AlertHelperKit().showAlert(self, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
     }
@@ -120,7 +120,7 @@ class MainViewController: UIViewController {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self, title: "Mailboxes Error", message: error.localizedDescription, button: "Close")
+                AlertHelperKit().showAlert(self, title: "Mailboxes Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
     }

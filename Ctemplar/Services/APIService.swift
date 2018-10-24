@@ -501,7 +501,7 @@ class APIService {
                 print("autologin error:", error)
                 
                 if let topViewController = UIApplication.topViewController() {
-                    AlertHelperKit().showAlert(topViewController, title: "Autologin Error", message: error.localizedDescription, button: "Close")
+                    AlertHelperKit().showAlert(topViewController, title: "Autologin Error", message: error.localizedDescription, button: "closeButton".localized())
                 }
             }
         }

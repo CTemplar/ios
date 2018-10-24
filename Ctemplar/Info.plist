@@ -20,10 +20,17 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>UILaunchStoryboardName~ipad</key>
-	<string>LaunchScreen-iPad</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Lato-Regular.ttf</string>
+		<string>Lato-Black.ttf</string>
+		<string>Lato-Bold.ttf</string>
+		<string>Roboto-Bold.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+	<key>UILaunchStoryboardName~ipad</key>
+	<string>LaunchScreen-iPad</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIMainStoryboardFile~ipad</key>
@@ -42,13 +49,6 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Lato-Regular.ttf</string>
-		<string>Lato-Black.ttf</string>
-		<string>Lato-Bold.ttf</string>
-		<string>Roboto-Bold.ttf</string>
 	</array>
 </dict>
 </plist>

@@ -29,7 +29,7 @@ class LoginInteractor {
                 self.viewController?.dismiss(animated: true, completion: nil)
             case .failure(let error):
                 print("login error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Login Error", message: error.localizedDescription, button: "Close")
+                AlertHelperKit().showAlert(self.viewController!, title: "Login Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
     }

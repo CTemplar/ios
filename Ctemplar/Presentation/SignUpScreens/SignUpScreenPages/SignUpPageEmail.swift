@@ -45,14 +45,14 @@ class SignUpPageEmailViewController: UIViewController, UITextFieldDelegate {
     
     func setupAttributesForTextView() {
         
-        let attributedString = NSMutableAttributedString(string: "Please check this box if you agree to abide by our Terms and Conditions", attributes: [
+        let attributedString = NSMutableAttributedString(string: "termsAndConditionsFullText".localized(), attributes: [
             .font: UIFont(name: k_latoRegularFontName, size: 14.0)!,
             .foregroundColor: k_lightGrayColor,
             .kern: 0.0
             ])
                 
-        _ = attributedString.setAsLink(textToFind: "Terms and Conditions", linkURL: k_termsURL)
-        _ = attributedString.setForgroundColor(textToFind: "Terms and Conditions", color: k_urlColor)
+        _ = attributedString.setAsLink(textToFind: "termsAndConditionsPhrase".localized(), linkURL: k_termsURL)
+        _ = attributedString.setForgroundColor(textToFind: "termsAndConditionsPhrase".localized(), color: k_urlColor)
         
         termsTextView.attributedText = attributedString
         

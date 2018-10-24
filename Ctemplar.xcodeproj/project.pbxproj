@@ -37,6 +37,7 @@
 		84356863216F2DFE002101D3 /* InboxRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84356862216F2DFE002101D3 /* InboxRouter.swift */; };
 		84356865216F2E0D002101D3 /* InboxPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84356864216F2E0D002101D3 /* InboxPresenter.swift */; };
 		84356867216F2E20002101D3 /* InboxInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84356866216F2E20002101D3 /* InboxInteractor.swift */; };
+		8436AD532180663800D16008 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8436AD552180663800D16008 /* Localizable.strings */; };
 		8437103D217465A700DAE4BA /* ForgotPasswordNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437103C217465A700DAE4BA /* ForgotPasswordNavigationController.swift */; };
 		8437103F217465DD00DAE4BA /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437103E217465DD00DAE4BA /* ForgotPasswordViewController.swift */; };
 		843710412174661000DAE4BA /* ForgotPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843710402174661000DAE4BA /* ForgotPassword.storyboard */; };
@@ -120,6 +121,11 @@
 		84356862216F2DFE002101D3 /* InboxRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxRouter.swift; sourceTree = "<group>"; };
 		84356864216F2E0D002101D3 /* InboxPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxPresenter.swift; sourceTree = "<group>"; };
 		84356866216F2E20002101D3 /* InboxInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxInteractor.swift; sourceTree = "<group>"; };
+		8436AD4F2180650900D16008 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		8436AD502180650A00D16008 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		8436AD542180663800D16008 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8436AD562180664100D16008 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8436AD5821806D3400D16008 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		8437103C217465A700DAE4BA /* ForgotPasswordNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordNavigationController.swift; sourceTree = "<group>"; };
 		8437103E217465DD00DAE4BA /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		843710402174661000DAE4BA /* ForgotPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ForgotPassword.storyboard; sourceTree = "<group>"; };
@@ -321,6 +327,7 @@
 				8433FF20216201A500C57DC8 /* Assets.xcassets */,
 				8433FF592162181E00C57DC8 /* Constants.swift */,
 				843FBF18216E4FE500148FC1 /* DeviceScreenConstants.swift */,
+				8436AD552180663800D16008 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -558,6 +565,7 @@
 				8441099221776B5100F0BE18 /* Lato-Bold.ttf in Resources */,
 				845E64402170A4A2008612FE /* Compose.storyboard in Resources */,
 				8433FF24216201A500C57DC8 /* LaunchScreen.storyboard in Resources */,
+				8436AD532180663800D16008 /* Localizable.strings in Resources */,
 				8435685B216F2748002101D3 /* Inbox.storyboard in Resources */,
 				8433FF4C21620DBD00C57DC8 /* Main-iPad.storyboard in Resources */,
 				843E973421635C3B00147CBE /* Login.storyboard in Resources */,
@@ -705,6 +713,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8433FF1E216201A300C57DC8 /* Base */,
+				8436AD502180650A00D16008 /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -713,8 +722,19 @@
 			isa = PBXVariantGroup;
 			children = (
 				8433FF23216201A500C57DC8 /* Base */,
+				8436AD4F2180650900D16008 /* ru */,
+				8436AD5821806D3400D16008 /* en */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		8436AD552180663800D16008 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8436AD542180663800D16008 /* ru */,
+				8436AD562180664100D16008 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -724,6 +744,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -785,6 +806,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
