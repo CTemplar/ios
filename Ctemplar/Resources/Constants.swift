@@ -134,6 +134,7 @@ let k_termsURL                     = "https://ctemplar.com/terms"
 let k_firstCharsForHeader          = 50
 
 let k_tokenHoursExpiration         = 2
+let k_tokenMinutesExpiration       = 170
 
 
 enum InboxSideMenuOptionsName: String {

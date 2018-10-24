@@ -28,7 +28,43 @@ class MainViewController: UIViewController {
         showInboxNavigationController()
         //messagesList()
         //mailboxesList()
-
+        
+        /*
+        apiService?.verifyToken() {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("value:", value)
+                
+            case .failure(let error):
+                print("error:", error)
+            }
+        }*/
+        
+        /*
+        let keyChainService = apiService?.keychainService
+        let formatterService = apiService?.formatterService
+        
+        if let tokenSavedTime = keyChainService?.getTokenSavedTime() {
+            if tokenSavedTime.count > 0 {
+                //2018-10-24 05:51:21 +0000
+                if let tokenSavedDate = formatterService?.formatTokenTimeStringToDate(date: tokenSavedTime) {
+                    print("tokenSavedDate:", tokenSavedDate)
+                
+                    let minutesCount = tokenSavedDate.minutesCountForTokenExpiration()
+                    print("minutesCount", minutesCount)
+                    
+                    /*
+                    if let hoursCount = formatterService?.calculateHoursCountFor(date: tokenSavedDate) {
+                        print("hoursCount", hoursCount)
+                        if hoursCount > 2 {
+                            //
+                        }
+                    }*/
+                }
+            }
+        }*/
     }
     
     override func viewDidAppear(_ animated: Bool) {

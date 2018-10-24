@@ -455,14 +455,13 @@ class APIService {
                 if let tokenSavedDate = formatterService?.formatTokenTimeStringToDate(date: tokenSavedTime) {
                     print("tokenSavedDate:", tokenSavedDate)
                     
-                    if let hoursCount = formatterService?.calculateHoursCountFor(date: tokenSavedDate) {
-                        if hoursCount > k_tokenHoursExpiration {
-                            self.autologinWhenTokenExpired()
-                        } else {
-                            print("token is valid")
-                            self.dispatchGroup.leave()
-                            return
-                        }
+                    let minutesCount = tokenSavedDate.minutesCountForTokenExpiration()
+                    if minutesCount > k_tokenMinutesExpiration {
+                        self.autologinWhenTokenExpired()
+                    } else {
+                        print("token is valid")
+                        self.dispatchGroup.leave()
+                        return
                     }
                 }
             }

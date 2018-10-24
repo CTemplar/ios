@@ -301,6 +301,21 @@ extension Date {
         
         return dateString
     }
+    
+    func minutesCountForTokenExpiration() -> Int {
+        
+        let secondsAgo = Int(Date().timeIntervalSince(self))
+        let minute = 60
+        let hour = 60 * minute
+        
+        let hoursCount = secondsAgo / hour
+        let minutesCount = secondsAgo / minute
+
+        print("hoursCount", hoursCount)
+        print("minutesCount", minutesCount)
+        
+        return minutesCount
+    }
 }
 
 extension Data {
