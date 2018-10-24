@@ -48,6 +48,8 @@ class APIService {
     
     var hashedPassword: String?
     
+    let dispatchGroup = DispatchGroup()
+    
     @objc func getHashedPassword(userName: String, password: String, completion:@escaping (Bool) -> () ) {
         
         DispatchQueue.main.async {
@@ -333,79 +335,89 @@ class APIService {
     //MARK: - Mail
     
     func messagesList(completionHandler: @escaping (APIResult<Any>) -> Void) {
+
+        self.checkTokenExpiration()
         
-        if let token = getToken() {
+        self.dispatchGroup.notify(queue: .main) {
             
-            HUD.show(.progress)
-            
-            restAPIService?.messagesList(token: token) {(result) in
+            if let token = self.getToken() {
                 
-                switch(result) {
+                HUD.show(.progress)
+                
+                self.restAPIService?.messagesList(token: token) {(result) in
                     
-                case .success(let value):
-                    
-                    print("messagesList success:", value)
-                    
-                    if let response = value as? Dictionary<String, Any> {
+                    switch(result) {
                         
-                        if let message = self.parseServerResponse(response:response) {
-                            print("messagesList message:", message)
-                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
-                            completionHandler(APIResult.failure(error))
+                    case .success(let value):
+                        
+                        print("messagesList success:", value)
+                        
+                        if let response = value as? Dictionary<String, Any> {
+                            
+                            if let message = self.parseServerResponse(response:response) {
+                                print("messagesList message:", message)
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                completionHandler(APIResult.failure(error))
+                            } else {
+                                let emailMessages = EmailMessagesList(dictionary: response)
+                                completionHandler(APIResult.success(emailMessages))
+                            }
                         } else {
-                            let emailMessages = EmailMessagesList(dictionary: response)
-                            completionHandler(APIResult.success(emailMessages))
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                            completionHandler(APIResult.failure(error))
                         }
-                    } else {
-                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                        
+                    case .failure(let error):
+                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                         completionHandler(APIResult.failure(error))
                     }
                     
-                case .failure(let error):
-                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
-                    completionHandler(APIResult.failure(error))
+                    HUD.hide()
                 }
-                
-                HUD.hide()
             }
         }
     }
     
     func mailboxesList(completionHandler: @escaping (APIResult<Any>) -> Void) {
         
-        if let token = getToken() {
-            
-            //HUD.show(.progress) //crashed when method used in root view controller
-            
-            restAPIService?.mailboxesList(token: token) {(result) in
+        self.checkTokenExpiration()
+        
+        self.dispatchGroup.notify(queue: .main) {
+        
+            if let token = self.getToken() {
                 
-                switch(result) {
+                //HUD.show(.progress) //crashed when method used in root view controller
+                
+                self.restAPIService?.mailboxesList(token: token) {(result) in
                     
-                case .success(let value):
-                    
-                    print("mailboxesList success:", value)
-                    
-                    if let response = value as? Dictionary<String, Any> {
+                    switch(result) {
                         
-                        if let message = self.parseServerResponse(response:response) {
-                            print("mailboxesList message:", message)
-                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
-                            completionHandler(APIResult.failure(error))
+                    case .success(let value):
+                        
+                        print("mailboxesList success:", value)
+                        
+                        if let response = value as? Dictionary<String, Any> {
+                            
+                            if let message = self.parseServerResponse(response:response) {
+                                print("mailboxesList message:", message)
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                completionHandler(APIResult.failure(error))
+                            } else {
+                                let mailbox = Mailbox(dictionary: response)
+                                completionHandler(APIResult.success(mailbox))
+                            }
                         } else {
-                            let mailbox = Mailbox(dictionary: response)
-                            completionHandler(APIResult.success(mailbox))
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                            completionHandler(APIResult.failure(error))
                         }
-                    } else {
-                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                        
+                    case .failure(let error):
+                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                         completionHandler(APIResult.failure(error))
                     }
                     
-                case .failure(let error):
-                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
-                    completionHandler(APIResult.failure(error))
+                    HUD.hide()
                 }
-                
-                HUD.hide()
             }
         }
     }
@@ -432,6 +444,34 @@ class APIService {
         showLoginViewController()
         return nil
     }
+    
+    func checkTokenExpiration() {
+        
+        dispatchGroup.enter()
+        
+        if let tokenSavedTime = keychainService?.getTokenSavedTime() {
+            if tokenSavedTime.count > 0 {
+                
+                if let tokenSavedDate = formatterService?.formatTokenTimeStringToDate(date: tokenSavedTime) {
+                    print("tokenSavedDate:", tokenSavedDate)
+                    
+                    if let hoursCount = formatterService?.calculateHoursCountFor(date: tokenSavedDate) {
+                        if hoursCount > k_tokenHoursExpiration {
+                            self.autologinWhenTokenExpired()
+                        } else {
+                            print("token is valid")
+                            self.dispatchGroup.leave()
+                            return
+                        }
+                    }
+                }
+            }
+        }
+        
+        self.autologinWhenTokenExpired()
+    }
+    
+    //MARK: - Parcing
     
     func parseServerResponse(response: Dictionary<String, Any>) -> String? {
         
@@ -536,6 +576,8 @@ class APIService {
             return
         }
         
+        //dispatchGroup.enter()
+        
         self.authenticateUser(userName: storedUserName!, password: storedPassword!) {(result) in
             
             switch(result) {
@@ -543,6 +585,7 @@ class APIService {
             case .success(let value):
                 print("autologin success value:", value)
                 //need repeat request
+                self.dispatchGroup.leave()
               
             case .failure(let error):
                 print("autologin error:", error)

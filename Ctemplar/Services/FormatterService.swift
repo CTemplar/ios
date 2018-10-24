@@ -166,11 +166,22 @@ class FormatterService
         return formattedDate
     }
     
-    func formatDestructionStringToDate(date: String) -> Date? {
+    func formatDestructionTimeStringToDate(date: String) -> Date? {
         
         let dateFormatter = DateFormatter()
         //2018-10-30T21:00:00Z
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:SSZ"
+        
+        let formattedDate = dateFormatter.date(from: date)
+        
+        return formattedDate
+    }
+    
+    func formatTokenTimeStringToDate(date: String) -> Date? {
+        
+        let dateFormatter = DateFormatter()
+        //2018-10-24 05:51:21 +0000
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
         
         let formattedDate = dateFormatter.date(from: date)
         
@@ -230,7 +241,7 @@ class FormatterService
         return 0
     }
     
-    func calculateTimeCountForDestruct(date: Date) -> Int? {
+    func calculateHoursCountFor(date: Date) -> Int? {
         
         let calendar = NSCalendar.current
         
@@ -239,8 +250,8 @@ class FormatterService
         
         let components = calendar.dateComponents([.hour], from: date2, to: date1)
         
-        if let days = components.hour {
-            return days
+        if let hours = components.hour {
+            return hours
         }
         
         return 0

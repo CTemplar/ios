@@ -13,6 +13,7 @@ class KeychainService
 {
     enum Consts: String {
         case token = "token"
+        case tokenSavedTime = "tokenSavedTime"
         case username = "username"
         case password = "password"
     }
@@ -22,6 +23,7 @@ class KeychainService
     func saveToken(token: String) {
         
         keychain.set(token, forKey: Consts.token.rawValue)
+        keychain.set(Date().description, forKey: Consts.tokenSavedTime.rawValue)
     }
     
     func getToken() -> String {
@@ -31,6 +33,19 @@ class KeychainService
         }
         
         return token
+    }
+    
+    func getTokenSavedTime() -> String {
+        
+        //var tokenSavedDate : Date?
+        
+        guard let tokenSavedTime = keychain.get(Consts.tokenSavedTime.rawValue) else {
+            return ""
+        }
+        
+        print("tokenSavedTime", tokenSavedTime)
+        
+        return tokenSavedTime
     }
     
     func saveUsername(name: String) {
@@ -70,6 +85,7 @@ class KeychainService
     func deleteUserCredentialsAndToken() {
         
         keychain.delete(Consts.token.rawValue)
+        keychain.delete(Consts.tokenSavedTime.rawValue)
         keychain.delete(Consts.username.rawValue)
         keychain.delete(Consts.password.rawValue)
     }
