@@ -48,6 +48,7 @@ class InboxViewController: UIViewController {
         
         presenter?.setupUI(emailsCount: 0, unreadEmails: 0)
         
+        adddNotificationObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,5 +93,17 @@ class InboxViewController: UIViewController {
     
     @IBAction func moreButtonPressed(_ sender: AnyObject) {
         
+    }
+    
+    //MARK: - notification
+    
+    func adddNotificationObserver() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reciveUpdateNotification(notification:)), name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil)
+    }
+    
+    @objc func reciveUpdateNotification(notification: Notification) {
+        
+        presenter?.loadMessages()
     }
 }

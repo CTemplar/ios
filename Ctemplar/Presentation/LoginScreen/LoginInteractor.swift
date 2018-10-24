@@ -26,6 +26,8 @@ class LoginInteractor {
                 print("login success value:", value)
                 self.keychainService?.saveUserCredentials(userName: userName, password: password)
                 
+                //NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil, userInfo: nil)
+                
                 self.viewController?.dismiss(animated: true, completion: nil)
             case .failure(let error):
                 print("login error:", error)

@@ -118,6 +118,10 @@ let k_secureOffImageName              = "SecureOff"
 
 let k_latoRegularFontName = "Lato-Regular"
 
+// notifications
+
+let k_updateInboxMessagesNotificationID       = "updateInboxMessagesNotification"
+
 // other
 
 let k_numberOfRounds               = 29

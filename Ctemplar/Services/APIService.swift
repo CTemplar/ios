@@ -483,6 +483,7 @@ class APIService {
             case APIResponse.token.rawValue :
                 if let token = dictionary.value as? String {
                     saveToken(token: token)
+                    self.dispatchGroup.leave()
                 } else {
                     message = "Unknown Error"
                 }
