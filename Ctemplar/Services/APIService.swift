@@ -447,7 +447,7 @@ class APIService {
     
     func checkTokenExpiration() {
         
-        dispatchGroup.enter()
+        //dispatchGroup.enter()
         
         if let tokenSavedTime = keychainService?.getTokenSavedTime() {
             if tokenSavedTime.count > 0 {
@@ -460,7 +460,7 @@ class APIService {
                         self.autologinWhenTokenExpired()
                     } else {
                         print("token is valid")
-                        self.dispatchGroup.leave()
+                        //self.dispatchGroup.leave()
                         return
                     }
                 }
@@ -484,18 +484,20 @@ class APIService {
                     saveToken(token: token)
                     self.dispatchGroup.leave()
                 } else {
-                    message = "Unknown Error"
+                    message = "Token Error"
                 }
                 break
             case APIResponse.tokenExpired.rawValue :
                 print("tokenExpired APIResponce key:", dictionary.key, "value:", dictionary.value)
                 if let value = dictionary.value as? String { //temp
                     if value == APIResponse.tokenExpiredValue.rawValue || value == APIResponse.noCredentials.rawValue {
+                        //dispatchGroup.enter()
                         self.autologinWhenTokenExpired()
                     }
                 }
                 break
             case APIResponse.tokenExpiredValue.rawValue :
+                //dispatchGroup.enter()
                 self.autologinWhenTokenExpired()
                 break
             case APIResponse.usernameError.rawValue :
@@ -515,6 +517,7 @@ class APIService {
                     if let value = texts.first as? String {
                         print("value: ", value)
                         if value == APIResponse.tokenExpiredValue.rawValue || value == APIResponse.noCredentials.rawValue {
+                            //dispatchGroup.enter()
                             self.autologinWhenTokenExpired()
                         }
                     }
@@ -566,6 +569,8 @@ class APIService {
     }
 
     func autologinWhenTokenExpired() {
+        
+        dispatchGroup.enter()
         
         let storedUserName = keychainService?.getUserName()
         let storedPassword = keychainService?.getPassword()
