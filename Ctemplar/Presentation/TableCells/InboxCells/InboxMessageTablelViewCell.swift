@@ -94,7 +94,7 @@ class InboxMessageTableViewCell: UITableViewCell {
             
             isReadImageView.isHidden = isRead
             
-            if isRead {
+            if !isRead {
                 self.backgroundColor = k_unreadMessageColor
             } else {
                 self.backgroundColor = UIColor.white

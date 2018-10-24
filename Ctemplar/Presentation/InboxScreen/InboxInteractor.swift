@@ -22,15 +22,14 @@ class InboxInteractor {
         
         if let emailsArray = messages.messagesList {
             //self.viewController?.messagesList = emailsArray
-            self.viewController?.dataSource?.messagesArray = emailsArray
+            let inboxMessages = filterInboxMessages(array: emailsArray)
+            self.viewController?.dataSource?.messagesArray = inboxMessages
             self.viewController?.dataSource?.reloadData()
-            readEmails = calculateReadEmails(array: emailsArray)
-        }
-        
-        if let totalEmailsCount = messages.totalCount {
+            readEmails = calculateReadEmails(array: inboxMessages)
+            
             var unreadEmails = 0
-            unreadEmails = totalEmailsCount - readEmails
-            self.presenter?.setupUI(emailsCount: totalEmailsCount, unreadEmails: unreadEmails)
+            unreadEmails = inboxMessages.count - readEmails
+            self.presenter?.setupUI(emailsCount: inboxMessages.count, unreadEmails: unreadEmails)
         }
     }
     
@@ -88,20 +87,33 @@ class InboxInteractor {
         //message = message.html2String
         //print("format to String message: ", message)
         message = message.removeHTMLTag
-        print("withoutHtml message: ", message)
+        print("withoutHtml message:", message)
         
         if message.count > 0 {
             
             if message.count > k_firstCharsForHeader {
                 let index = message.index(message.startIndex, offsetBy: k_firstCharsForHeader)                
-                header = String(message.prefix(upTo: index))
+                header = String(message.prefix(upTo: index))//.replacingOccurrences(of: "\n", with: "", options: String.CompareOptions.regularExpression)
             } else {
                 header = message
             }
         }
-        
-        print("header: ", header)
+                
+        print("header:", header)
         
         return header
+    }
+    
+    func filterInboxMessages(array: Array<EmailMessage>) -> Array<EmailMessage> {
+        
+        var inboxMessagesArray : Array<EmailMessage> = []
+        
+        for message in array {
+            if message.folder == MessagesFoldersName.inbox.rawValue {
+                inboxMessagesArray.append(message)
+            }
+        }
+        
+        return inboxMessagesArray
     }
 }

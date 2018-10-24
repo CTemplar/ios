@@ -377,7 +377,18 @@ extension String {
             return self
         }
         
-        return attributedString.string.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression, range: nil)
+        return attributedString.string.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression)
+    }
+}
+
+extension NSAttributedString {
+    
+    var trailingNewlineChopped: NSAttributedString {
+        if string.hasSuffix("\n") {
+            return self.attributedSubstring(from: NSRange(location: 0, length: length - 1))
+        } else {
+            return self
+        }
     }
 }
 

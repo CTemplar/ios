@@ -142,3 +142,15 @@ enum InboxSideMenuOptionsName: String {
     case inbox            = "Inbox"
     case logout           = "Logout"
 }
+
+enum MessagesFoldersName: String {
+    
+    case inbox            = "inbox"
+    case sent             = "sent"
+    case draft            = "draft"
+    case outbox           = "outbox"
+    case starred          = "starred"
+    case archive          = "archive"
+    case spam             = "spam"
+    case trash            = "trash"
+}

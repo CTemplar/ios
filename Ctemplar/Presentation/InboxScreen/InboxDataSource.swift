@@ -55,6 +55,10 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         
         let cell : InboxMessageTableViewCell = tableView.dequeueReusableCell(withIdentifier: k_InboxMessageTableViewCellIdentifier)! as! InboxMessageTableViewCell
         
+        cell.preservesSuperviewLayoutMargins = false
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets.zero
+        
         //cell.formatterService = self.formatterService
         cell.parentController = self
         
