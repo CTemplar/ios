@@ -17,7 +17,7 @@ class InboxFilterView: UIView {
     
     var delegate    : InboxFilterDelegate?
     
-    @IBOutlet var freeSpaceView     : UIView!
+    @IBOutlet var freeSpaceView    : UIView!
     @IBOutlet var barSpaceView     : UIView!
     
     override init(frame: CGRect) {
@@ -35,9 +35,21 @@ class InboxFilterView: UIView {
         self.isUserInteractionEnabled = true
     }
     
+    func setup() {
+        
+        let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
+        self.freeSpaceView.addGestureRecognizer(freeSpaceViewGesture)
+        let barSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
+        self.barSpaceView.addGestureRecognizer(barSpaceViewGesture)
+    }
+    
     //MARK: - IBActions
     
     @IBAction func tappedAction(_ sender: AnyObject) {
+        delegate?.applyAction(sender)
+    }
+    
+    @objc func tappedViewAction(sender : UITapGestureRecognizer) {
         delegate?.applyAction(sender)
     }
 }

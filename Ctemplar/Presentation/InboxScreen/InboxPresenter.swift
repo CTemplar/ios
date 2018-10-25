@@ -150,6 +150,7 @@ class InboxPresenter {
         self.viewController?.inboxFilterView = Bundle.main.loadNibNamed(k_InboxFilterViewXibName, owner: nil, options: nil)?.first as? InboxFilterView
         self.viewController?.inboxFilterView?.frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height - 0.0)
         self.viewController?.inboxFilterView?.delegate = self.viewController
+        self.viewController?.inboxFilterView?.setup()
         self.viewController?.navigationController!.view.addSubview((self.viewController?.inboxFilterView)!)
         
         self.viewController?.inboxFilterView?.isHidden = true
