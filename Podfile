@@ -13,6 +13,7 @@ target 'Ctemplar' do
 	pod 'KeychainSwift'
 	pod "BCryptSwift"
 	pod 'SideMenu', '~> 4.0.0'
+	pod 'MGSwipeTableCell'
     
     post_install do |installer|
         installer.pods_project.targets.each do |target|

@@ -8,8 +8,9 @@
 
 import Foundation
 import UIKit
+import MGSwipeTableCell
 
-class InboxMessageTableViewCell: UITableViewCell {
+class InboxMessageTableViewCell: MGSwipeTableCell {
     
     //var formatterService : FormatterService?
     var parentController : InboxDataSource?

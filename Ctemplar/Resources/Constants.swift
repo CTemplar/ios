@@ -154,3 +154,11 @@ enum MessagesFoldersName: String {
     case spam             = "spam"
     case trash            = "trash"
 }
+
+enum InboxCellButtonsIndex: Int {
+        
+    case spam            = 0
+    case read            = 1
+    case trash           = 2
+    
+}

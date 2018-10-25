@@ -8,8 +8,9 @@
 
 import Foundation
 import UIKit
+import MGSwipeTableCell
 
-class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
+class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate {
     
     var messagesArray           : Array<EmailMessage> = []
     var selectedMessagesIDArray : Array<Int> = []
@@ -59,7 +60,9 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
         
-        //cell.formatterService = self.formatterService
+        cell.rightButtons = [MGSwipeButton(title: "Spam", backgroundColor: .red), MGSwipeButton(title: "Read", backgroundColor: .green),MGSwipeButton(title: "Trash", backgroundColor: .gray)]
+        cell.delegate = self
+        
         cell.parentController = self
         
         let message = messagesArray[indexPath.row]
@@ -99,6 +102,32 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     func reloadData() {
 
         self.tableView.reloadData()
+    }
+    
+    // MARK: MGSwipe delegate
+    
+    func swipeTableCell(_ cell: MGSwipeTableCell, didChange state: MGSwipeState, gestureIsActive: Bool) {
+        
+    }
+    
+    func swipeTableCell(_ cell: MGSwipeTableCell, tappedButtonAt index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
+        
+        switch index {
+        case InboxCellButtonsIndex.spam.rawValue:
+            print("spam tapped")
+            break
+        case InboxCellButtonsIndex.read.rawValue:
+            print("read tapped")
+            break
+        case InboxCellButtonsIndex.trash.rawValue:
+            print("trash tapped")
+            break
+
+        default:
+            print("default")
+        }
+        
+        return true
     }
     
     // MARK: Actions
