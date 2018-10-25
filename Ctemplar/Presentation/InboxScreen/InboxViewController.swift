@@ -88,18 +88,22 @@ class InboxViewController: UIViewController {
     
     @IBAction func unreadButtonPressed(_ sender: AnyObject) {
         
+        self.presenter?.showUndoBar(text: "Undo mark as Read")
     }
     
     @IBAction func moveButtonPressed(_ sender: AnyObject) {
         
+        self.presenter?.showUndoBar(text: "Undo moving")
     }
     
     @IBAction func garbageButtonPressed(_ sender: AnyObject) {
         
+        self.presenter?.showUndoBar(text: "Undo delete")
     }
     
     @IBAction func moreButtonPressed(_ sender: AnyObject) {
         
+        self.presenter?.showUndoBar(text: "Undo ...")
     }
     
     @IBAction func undoButtonPressed(_ sender: AnyObject) {
