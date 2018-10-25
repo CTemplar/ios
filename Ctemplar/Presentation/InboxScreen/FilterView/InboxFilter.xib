@@ -28,7 +28,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xT2-jH-tIe">
                     <rect key="frame" x="0.0" y="413" width="375" height="206"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1p4-aO-djr">
+                        <button opaque="NO" tag="201" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1p4-aO-djr">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="7De-am-V6e"/>
@@ -52,7 +52,7 @@
                                 <action selector="tappedAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="3nw-Hc-XAq"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3FH-kS-Cgg">
+                        <button opaque="NO" tag="202" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3FH-kS-Cgg">
                             <rect key="frame" x="0.0" y="52" width="375" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="WeF-lo-JAd"/>
@@ -76,7 +76,7 @@
                                 <action selector="tappedAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="jfF-sk-2kI"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7s-dK-7aZ">
+                        <button opaque="NO" tag="203" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7s-dK-7aZ">
                             <rect key="frame" x="0.0" y="104" width="375" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="txj-hj-Tc2"/>
@@ -100,7 +100,7 @@
                                 <action selector="tappedAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Gws-gf-Yo1"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="95u-kZ-42e">
+                        <button opaque="NO" tag="204" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="95u-kZ-42e">
                             <rect key="frame" x="0.0" y="156" width="375" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="fwd-XD-DLE"/>

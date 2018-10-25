@@ -205,6 +205,16 @@ class DesignableLabel: UILabel {
 
 extension UIView {
     
+    func addBlurEffect() {
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.regular)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.bounds
+        
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.addSubview(blurEffectView)
+    }
+    
     @IBInspectable
     var cornerRadius: CGFloat {
         get {

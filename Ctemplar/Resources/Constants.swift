@@ -105,12 +105,14 @@ let k_composeImageName              = "ComposeButton"
 let k_composeRedImageName           = "ComposeRedButton"
 let k_menuImageName                 = "MenuButton"
 let k_searchImageName               = "SearchButton"
+let k_filterImageName               = "FilterButton"
+let k_blackFilterImageName          = "blackFilterButton"
 
 let k_darkBackArrowImageName        = "BackArrowDark"
 
 let k_garbageImageName              = "GarbageButton"
 let k_spamImageName                 = "SpamButton"
-let k_moveImageName                 = "MoveBatton"
+let k_moveImageName                 = "MoveButton"
 let k_moreImageName                 = "MoreButton"
 
 let k_unreadImageName               = "unreadMessage"
@@ -170,4 +172,12 @@ enum InboxCellButtonsIndex: Int {
     case trash           = 0
     case unread          = 1
     case spam            = 2
+}
+
+enum InboxFilterButtonsTag: Int {
+    
+    case all              = 201
+    case starred          = 202
+    case unread           = 203
+    case withAttachment   = 204
 }

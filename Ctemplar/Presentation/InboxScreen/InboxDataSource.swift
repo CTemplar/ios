@@ -128,12 +128,15 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         switch index {
         case InboxCellButtonsIndex.trash.rawValue:
             print("trash tapped")
+            self.parentViewController.presenter?.showUndoBar(text: "Undo delete")
             break
         case InboxCellButtonsIndex.unread.rawValue:
             print("unread tapped")
+            self.parentViewController.presenter?.showUndoBar(text: "Undo moving")
             break
         case InboxCellButtonsIndex.spam.rawValue:
             print("spam tapped")
+            self.parentViewController.presenter?.showUndoBar(text: "Undo mark as Spam")
             break
         default:
             print("default")

@@ -301,6 +301,30 @@
                                             <constraint firstItem="quX-gJ-ckd" firstAttribute="leading" secondItem="nWZ-UV-rjK" secondAttribute="leading" constant="19" id="oUe-Iz-Kyz"/>
                                         </constraints>
                                     </view>
+                                    <view hidden="YES" alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZfK-Hc-Mvt">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RR2-8x-5m3">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="doF-LA-3f3"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                                <state key="normal" title="Undo delete">
+                                                    <color key="titleColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="undoButtonPressed:" destination="NhN-bs-dS3" eventType="touchUpInside" id="Iqp-Oe-QvY"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="RR2-8x-5m3" secondAttribute="trailing" id="8QP-FH-7rv"/>
+                                            <constraint firstItem="RR2-8x-5m3" firstAttribute="top" secondItem="ZfK-Hc-Mvt" secondAttribute="top" id="SK2-m2-YfP"/>
+                                            <constraint firstItem="RR2-8x-5m3" firstAttribute="leading" secondItem="ZfK-Hc-Mvt" secondAttribute="leading" id="YMe-S8-e2d"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -310,10 +334,14 @@
                                     <constraint firstItem="nWZ-UV-rjK" firstAttribute="top" secondItem="OxM-zC-5gC" secondAttribute="top" id="JZQ-60-i1w"/>
                                     <constraint firstItem="ls5-Br-YTX" firstAttribute="leading" secondItem="OxM-zC-5gC" secondAttribute="leading" id="KI5-Pv-YSD"/>
                                     <constraint firstAttribute="bottom" secondItem="nWZ-UV-rjK" secondAttribute="bottom" id="M6A-Xr-7Hy"/>
+                                    <constraint firstItem="ZfK-Hc-Mvt" firstAttribute="top" secondItem="OxM-zC-5gC" secondAttribute="top" id="Udf-kU-tzf"/>
                                     <constraint firstAttribute="height" constant="83" id="VH6-R0-X7R"/>
                                     <constraint firstItem="K4R-qn-ZRa" firstAttribute="top" secondItem="OxM-zC-5gC" secondAttribute="top" id="Vkl-Jy-XEJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZfK-Hc-Mvt" secondAttribute="bottom" id="edT-qZ-hE6"/>
+                                    <constraint firstItem="ZfK-Hc-Mvt" firstAttribute="leading" secondItem="OxM-zC-5gC" secondAttribute="leading" id="mHm-ds-KJ8"/>
                                     <constraint firstAttribute="trailing" secondItem="ls5-Br-YTX" secondAttribute="trailing" id="oAp-Eh-d7Y"/>
                                     <constraint firstItem="ls5-Br-YTX" firstAttribute="top" secondItem="OxM-zC-5gC" secondAttribute="top" id="oiM-Ma-ipX"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZfK-Hc-Mvt" secondAttribute="trailing" id="uA0-dY-xfA"/>
                                     <constraint firstAttribute="bottom" secondItem="ls5-Br-YTX" secondAttribute="bottom" id="zxh-ef-oZf"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -363,10 +391,13 @@
                         <outlet property="grayBorder" destination="PWU-yj-LpB" id="C0t-d0-w5p"/>
                         <outlet property="inboxTableView" destination="Kev-ma-6ds" id="ZVw-5J-3DK"/>
                         <outlet property="leftBarButtonItem" destination="R5E-6J-cXY" id="xmt-uO-ZRR"/>
+                        <outlet property="leftFilterButton" destination="aOn-Eo-5Fa" id="BfC-Nh-mYR"/>
                         <outlet property="messagesLabel" destination="hVo-vt-x7f" id="hqb-QV-S6i"/>
                         <outlet property="rightBarButtonItem" destination="xtH-pi-9Ib" id="zNR-Cq-giI"/>
                         <outlet property="rightComposeButton" destination="qKu-C8-Tfv" id="3hJ-uy-AGO"/>
                         <outlet property="selectionToolBar" destination="nWZ-UV-rjK" id="AI6-iL-8ck"/>
+                        <outlet property="undoBar" destination="ZfK-Hc-Mvt" id="zVf-sw-GJO"/>
+                        <outlet property="undoButton" destination="RR2-8x-5m3" id="SeH-Ih-yu9"/>
                         <outlet property="unreadMessagesLabel" destination="hcY-8h-Jxh" id="mT1-e9-wfc"/>
                     </connections>
                 </viewController>

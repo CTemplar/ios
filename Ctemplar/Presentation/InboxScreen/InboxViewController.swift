@@ -30,8 +30,11 @@ class InboxViewController: UIViewController {
     @IBOutlet var baseToolBar           : UIView!
     @IBOutlet var advancedToolBar       : UIView!
     @IBOutlet var selectionToolBar      : UIView!
+    @IBOutlet var undoBar               : UIView!
     
     @IBOutlet var rightComposeButton    : UIButton!
+    @IBOutlet var leftFilterButton      : UIButton!
+    @IBOutlet var undoButton            : UIButton!
     
     @IBOutlet var leftBarButtonItem     : UIBarButtonItem!
     @IBOutlet var rightBarButtonItem    : UIBarButtonItem!
@@ -99,6 +102,10 @@ class InboxViewController: UIViewController {
         
     }
     
+    @IBAction func undoButtonPressed(_ sender: AnyObject) {
+        
+    }
+    
     //MARK: - notification
     
     func adddNotificationObserver() {
@@ -117,7 +124,7 @@ extension InboxViewController: InboxFilterDelegate {
     
     func applyAction(_ sender: AnyObject) {
         
-        presenter?.showFilterView()
-       
+       presenter?.showFilterView()
+       presenter?.applyFilterAction(sender)
     }
 }

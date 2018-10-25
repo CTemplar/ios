@@ -64,6 +64,9 @@ class InboxPresenter {
         }
         
         viewController?.rightComposeButton.setImage(composeImage, for: .normal)
+        
+        viewController?.undoBar.isHidden = true
+        //viewController?.undoBar.blur(blurRadius: 5)
     }
     
     //MARK: - Side Menu
@@ -158,6 +161,49 @@ class InboxPresenter {
     
     func showFilterView() {
         
-        self.viewController?.inboxFilterView?.isHidden = !(self.viewController?.inboxFilterView?.isHidden)!        
+        let hidden = self.viewController?.inboxFilterView?.isHidden
+        
+        self.viewController?.inboxFilterView?.isHidden = !hidden!
+        
+        if !hidden! {
+            self.viewController?.leftFilterButton.setImage(UIImage(named: k_filterImageName), for: .normal)
+        } else {
+            self.viewController?.leftFilterButton.setImage(UIImage(named: k_blackFilterImageName), for: .normal)
+        }
+    }
+    
+    func applyFilterAction(_ sender: AnyObject) {
+        
+        switch sender.tag {
+        case InboxFilterButtonsTag.all.rawValue:
+            print("filter: all")
+            
+            break
+        case InboxFilterButtonsTag.starred.rawValue:
+            print("filter: starred")
+            
+            break
+        case InboxFilterButtonsTag.unread.rawValue:
+            print("filter: unread")
+            
+            break
+        case InboxFilterButtonsTag.withAttachment.rawValue:
+            print("filter: withAttachment")
+            
+            break
+        default:
+            print("filter: default")
+        }
+    }
+    
+    func showUndoBar(text: String) {
+        
+        self.viewController?.undoButton.setTitle(text, for: .normal)
+        
+        self.viewController?.undoBar.isHidden = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
+            self.viewController?.undoBar.isHidden = true
+        })
     }
 }
