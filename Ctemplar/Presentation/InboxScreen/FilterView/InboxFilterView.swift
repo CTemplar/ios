@@ -10,12 +10,15 @@ import Foundation
 import UIKit
 
 protocol InboxFilterDelegate {
-    //func showNextQuizOverviewCard(_ sender: AnyObject)
+    func applyAction(_ sender: AnyObject)
 }
 
 class InboxFilterView: UIView {
     
-    var delegate    : InboxFilterDelegate?    
+    var delegate    : InboxFilterDelegate?
+    
+    @IBOutlet var freeSpaceView     : UIView!
+    @IBOutlet var barSpaceView     : UIView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,5 +32,12 @@ class InboxFilterView: UIView {
     
     private func commonInit() {
         
+        self.isUserInteractionEnabled = true
+    }
+    
+    //MARK: - IBActions
+    
+    @IBAction func tappedAction(_ sender: AnyObject) {
+        delegate?.applyAction(sender)
     }
 }

@@ -15,6 +15,8 @@ class InboxViewController: UIViewController {
     var router      : InboxRouter?
     var dataSource  : InboxDataSource?
     
+    var inboxFilterView : InboxFilterView?
+    
     var messagesList: Array<EmailMessage> = []
     
     @IBOutlet var inboxTableView        : UITableView!
@@ -47,6 +49,7 @@ class InboxViewController: UIViewController {
         dataSource?.initWith(parent: self, tableView: inboxTableView, array: messagesList)
         
         presenter?.setupUI(emailsCount: 0, unreadEmails: 0)
+        presenter?.initFilterView()
         
         adddNotificationObserver()
     }
@@ -77,7 +80,7 @@ class InboxViewController: UIViewController {
     
     @IBAction func filterButtonPressed(_ sender: AnyObject) {
         
-        presenter?.initAndShowFilterView()
+        presenter?.showFilterView()
     }
     
     @IBAction func unreadButtonPressed(_ sender: AnyObject) {
@@ -106,5 +109,15 @@ class InboxViewController: UIViewController {
     @objc func reciveUpdateNotification(notification: Notification) {
         
         presenter?.loadMessages()
+    }
+    
+}
+
+extension InboxViewController: InboxFilterDelegate {
+    
+    func applyAction(_ sender: AnyObject) {
+        
+        presenter?.showFilterView()
+       
     }
 }
