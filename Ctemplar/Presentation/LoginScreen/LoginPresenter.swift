@@ -39,11 +39,11 @@ class LoginPresenter {
         if (formatterService?.validateNameFormat(enteredName: userEmail))! {
             if (formatterService?.validatePasswordFormat(enteredPassword: password))! {
                 authenticateUser(userEmail: userEmail, password: password)
-            } else {
-                AlertHelperKit().showAlert(self.viewController!, title: "", message: "Entered Password is not valid", button: "Close")
+            } else {               
+                AlertHelperKit().showAlert(self.viewController!, title: "", message: "invalidEnteredPassword".localized(), button: "closeButton".localized())
             }
         } else {
-            AlertHelperKit().showAlert(self.viewController!, title: "", message: "Entered Email is not valid", button: "Close")
+            AlertHelperKit().showAlert(self.viewController!, title: "", message: "invalidEnteredEmail".localized(), button: "closeButton".localized())
         }
     }
     

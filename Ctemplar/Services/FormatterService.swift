@@ -338,6 +338,11 @@ extension Data {
 
 extension String {
     
+    func localized(bundle: Bundle = .main, tableName: String = "Localizable") -> String {
+        
+        return NSLocalizedString(self, tableName: tableName, value: "**\(self)**", comment: "")
+    }
+    
     func widthOfString(usingFont font: UIFont) -> CGFloat {
         
         let fontAttributes = [NSAttributedString.Key.font: font]

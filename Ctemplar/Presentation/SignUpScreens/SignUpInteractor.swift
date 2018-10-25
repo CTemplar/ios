@@ -35,7 +35,7 @@ class SignUpInteractor {
                 
             case .failure(let error):
                 print("signup error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "SignUp Error", message: error.localizedDescription, button: "Close")
+                AlertHelperKit().showAlert(self.viewController!, title: "SignUp Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
     }
@@ -52,7 +52,7 @@ class SignUpInteractor {
                 
             case .failure(let error):
                 print("checkUser error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "User Name Error", message: error.localizedDescription, button: "Close")
+                AlertHelperKit().showAlert(self.viewController!, title: "User Name Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
     }
