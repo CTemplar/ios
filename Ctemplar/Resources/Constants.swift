@@ -65,6 +65,7 @@ let k_whiteColor: UIColor = UIColor(red: 250.0 / 255.0, green: 251.0 / 255.0, bl
 
 let k_unreadMessageColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 0.02)
 
+
 //size constants
 
 let k_pageControlBottomOffset           = 30.0
@@ -109,10 +110,16 @@ let k_spamImageName                 = "SpamButton"
 let k_moveImageName                 = "MoveBatton"
 let k_moreImageName                 = "MoreButton"
 
-let k_starOnImageName                 = "StarOn"
-let k_starOffImageName                = "StarOff"
-let k_secureOnImageName               = "SecureOn"
-let k_secureOffImageName              = "SecureOff"
+let k_unreadImageName               = "unreadMessage"
+
+let k_whiteGarbageImageName         = "whiteSpam"
+let k_whiteSpamImageName            = "whiteTrash"
+let k_witeUnreadImageName           = "whiteUnread"
+
+let k_starOnImageName               = "StarOn"
+let k_starOffImageName              = "StarOff"
+let k_secureOnImageName             = "SecureOn"
+let k_secureOffImageName            = "SecureOff"
 
 // fonts
 
@@ -156,9 +163,8 @@ enum MessagesFoldersName: String {
 }
 
 enum InboxCellButtonsIndex: Int {
-        
-    case spam            = 0
-    case read            = 1
-    case trash           = 2
     
+    case trash           = 0
+    case unread          = 1
+    case spam            = 2
 }

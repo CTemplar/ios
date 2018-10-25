@@ -60,7 +60,11 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
         
-        cell.rightButtons = [MGSwipeButton(title: "Spam", backgroundColor: .red), MGSwipeButton(title: "Read", backgroundColor: .green),MGSwipeButton(title: "Trash", backgroundColor: .gray)]
+        let trashButton = MGSwipeButton(title: "", icon: UIImage(named: k_whiteGarbageImageName), backgroundColor: k_sideMenuColor)
+        let unreadButton = MGSwipeButton(title: "", icon: UIImage(named: k_witeUnreadImageName), backgroundColor: k_sideMenuColor)
+        let spamButton = MGSwipeButton(title: "", icon: UIImage(named: k_whiteSpamImageName), backgroundColor: k_sideMenuColor)
+        
+        cell.rightButtons = [spamButton, unreadButton, trashButton]
         cell.delegate = self
         
         cell.parentController = self
@@ -110,19 +114,27 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         
     }
     
+    func swipeTableCell(_ cell: MGSwipeTableCell, canSwipe direction: MGSwipeDirection, from point: CGPoint) -> Bool {
+        
+        if self.selectionMode {
+            return false
+        }
+        
+        return true
+    }
+    
     func swipeTableCell(_ cell: MGSwipeTableCell, tappedButtonAt index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
         
         switch index {
-        case InboxCellButtonsIndex.spam.rawValue:
-            print("spam tapped")
-            break
-        case InboxCellButtonsIndex.read.rawValue:
-            print("read tapped")
-            break
         case InboxCellButtonsIndex.trash.rawValue:
             print("trash tapped")
             break
-
+        case InboxCellButtonsIndex.unread.rawValue:
+            print("unread tapped")
+            break
+        case InboxCellButtonsIndex.spam.rawValue:
+            print("spam tapped")
+            break
         default:
             print("default")
         }
