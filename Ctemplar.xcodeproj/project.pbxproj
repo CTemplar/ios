@@ -9,8 +9,14 @@
 /* Begin PBXBuildFile section */
 		8407AD92216CC61600AF2E7B /* EmailMessagesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407AD91216CC61600AF2E7B /* EmailMessagesList.swift */; };
 		8407AD94216CC98900AF2E7B /* EmailMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407AD93216CC98900AF2E7B /* EmailMessage.swift */; };
+		84304298217D9D1C00DB5787 /* InboxSideMenuConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84304297217D9D1C00DB5787 /* InboxSideMenuConfigurator.swift */; };
+		8430429A217D9D2D00DB5787 /* InboxSideMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84304299217D9D2D00DB5787 /* InboxSideMenuRouter.swift */; };
+		8430429C217D9D3F00DB5787 /* InboxSideMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8430429B217D9D3F00DB5787 /* InboxSideMenuPresenter.swift */; };
+		8430429E217D9D5100DB5787 /* InboxSideMenuInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8430429D217D9D5100DB5787 /* InboxSideMenuInteractor.swift */; };
+		843042A0217D9D5D00DB5787 /* InboxSideMenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8430429F217D9D5D00DB5787 /* InboxSideMenuDataSource.swift */; };
 		8432070B21784B0100F18E5A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8432070A21784B0100F18E5A /* WebKit.framework */; };
-		8432071321785F8400F18E5A /* InboxMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8432071221785F8400F18E5A /* InboxMessageCell.xib */; };
+		8432071321785F8400F18E5A /* InboxMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8432071221785F8400F18E5A /* InboxMessageTableViewCell.xib */; };
+		843207152178C75000F18E5A /* InboxMessageTablelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843207142178C75000F18E5A /* InboxMessageTablelViewCell.swift */; };
 		8433FF1A216201A300C57DC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF19216201A300C57DC8 /* AppDelegate.swift */; };
 		8433FF1C216201A300C57DC8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF1B216201A300C57DC8 /* MainViewController.swift */; };
 		8433FF1F216201A300C57DC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF1D216201A300C57DC8 /* Main.storyboard */; };
@@ -31,6 +37,7 @@
 		84356863216F2DFE002101D3 /* InboxRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84356862216F2DFE002101D3 /* InboxRouter.swift */; };
 		84356865216F2E0D002101D3 /* InboxPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84356864216F2E0D002101D3 /* InboxPresenter.swift */; };
 		84356867216F2E20002101D3 /* InboxInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84356866216F2E20002101D3 /* InboxInteractor.swift */; };
+		8436AD532180663800D16008 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8436AD552180663800D16008 /* Localizable.strings */; };
 		8437103D217465A700DAE4BA /* ForgotPasswordNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437103C217465A700DAE4BA /* ForgotPasswordNavigationController.swift */; };
 		8437103F217465DD00DAE4BA /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437103E217465DD00DAE4BA /* ForgotPasswordViewController.swift */; };
 		843710412174661000DAE4BA /* ForgotPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843710402174661000DAE4BA /* ForgotPassword.storyboard */; };
@@ -62,7 +69,7 @@
 		8441099221776B5100F0BE18 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8441099121776B4C00F0BE18 /* Lato-Bold.ttf */; };
 		8441099421776B6400F0BE18 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8441099321776B6400F0BE18 /* README.md */; };
 		844F4B5A216B3A380057C758 /* UserPGPKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F4B59216B3A380057C758 /* UserPGPKey.swift */; };
-		845E64392170849C008612FE /* InboxSideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E64382170849C008612FE /* InboxSideMenuController.swift */; };
+		845E64392170849C008612FE /* InboxSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E64382170849C008612FE /* InboxSideMenuViewController.swift */; };
 		845E643B21709330008612FE /* InboxSideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845E643A21709330008612FE /* InboxSideMenu.storyboard */; };
 		845E643E2170A46C008612FE /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E643D2170A46C008612FE /* ComposeViewController.swift */; };
 		845E64402170A4A2008612FE /* Compose.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845E643F2170A4A2008612FE /* Compose.storyboard */; };
@@ -78,14 +85,23 @@
 		84A62E512175CD40009C38E5 /* ForgotPasswordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A62E502175CD40009C38E5 /* ForgotPasswordRouter.swift */; };
 		84A62E532175CD95009C38E5 /* ForgotPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A62E522175CD95009C38E5 /* ForgotPasswordPresenter.swift */; };
 		84A62E552175CDFB009C38E5 /* ForgotPasswordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A62E542175CDFB009C38E5 /* ForgotPasswordInteractor.swift */; };
+		84F348542181B20C00F00E37 /* InboxFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F348532181B20C00F00E37 /* InboxFilterView.swift */; };
+		84F348562181B21C00F00E37 /* InboxFilter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F348552181B21C00F00E37 /* InboxFilter.xib */; };
+		84F348582181F4E300F00E37 /* BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F348572181F4E300F00E37 /* BlurEffect.swift */; };
 		8895AB178CEFEFB8A9DCD62B /* Pods_Ctemplar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B8DB58A9BFE099948CF3E1 /* Pods_Ctemplar.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8407AD91216CC61600AF2E7B /* EmailMessagesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailMessagesList.swift; sourceTree = "<group>"; };
 		8407AD93216CC98900AF2E7B /* EmailMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailMessage.swift; sourceTree = "<group>"; };
+		84304297217D9D1C00DB5787 /* InboxSideMenuConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuConfigurator.swift; sourceTree = "<group>"; };
+		84304299217D9D2D00DB5787 /* InboxSideMenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuRouter.swift; sourceTree = "<group>"; };
+		8430429B217D9D3F00DB5787 /* InboxSideMenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuPresenter.swift; sourceTree = "<group>"; };
+		8430429D217D9D5100DB5787 /* InboxSideMenuInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuInteractor.swift; sourceTree = "<group>"; };
+		8430429F217D9D5D00DB5787 /* InboxSideMenuDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuDataSource.swift; sourceTree = "<group>"; };
 		8432070A21784B0100F18E5A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		8432071221785F8400F18E5A /* InboxMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InboxMessageCell.xib; sourceTree = "<group>"; };
+		8432071221785F8400F18E5A /* InboxMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InboxMessageTableViewCell.xib; sourceTree = "<group>"; };
+		843207142178C75000F18E5A /* InboxMessageTablelViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageTablelViewCell.swift; sourceTree = "<group>"; };
 		8433FF16216201A300C57DC8 /* Ctemplar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ctemplar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8433FF19216201A300C57DC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8433FF1B216201A300C57DC8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +124,11 @@
 		84356862216F2DFE002101D3 /* InboxRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxRouter.swift; sourceTree = "<group>"; };
 		84356864216F2E0D002101D3 /* InboxPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxPresenter.swift; sourceTree = "<group>"; };
 		84356866216F2E20002101D3 /* InboxInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxInteractor.swift; sourceTree = "<group>"; };
+		8436AD4F2180650900D16008 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		8436AD502180650A00D16008 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		8436AD542180663800D16008 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8436AD562180664100D16008 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8436AD5821806D3400D16008 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		8437103C217465A700DAE4BA /* ForgotPasswordNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordNavigationController.swift; sourceTree = "<group>"; };
 		8437103E217465DD00DAE4BA /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		843710402174661000DAE4BA /* ForgotPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ForgotPassword.storyboard; sourceTree = "<group>"; };
@@ -142,7 +163,7 @@
 		8441099121776B4C00F0BE18 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		8441099321776B6400F0BE18 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		844F4B59216B3A380057C758 /* UserPGPKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPGPKey.swift; sourceTree = "<group>"; };
-		845E64382170849C008612FE /* InboxSideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuController.swift; sourceTree = "<group>"; };
+		845E64382170849C008612FE /* InboxSideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuViewController.swift; sourceTree = "<group>"; };
 		845E643A21709330008612FE /* InboxSideMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InboxSideMenu.storyboard; sourceTree = "<group>"; };
 		845E643D2170A46C008612FE /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		845E643F2170A4A2008612FE /* Compose.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Compose.storyboard; sourceTree = "<group>"; };
@@ -156,6 +177,9 @@
 		84A62E502175CD40009C38E5 /* ForgotPasswordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordRouter.swift; sourceTree = "<group>"; };
 		84A62E522175CD95009C38E5 /* ForgotPasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPresenter.swift; sourceTree = "<group>"; };
 		84A62E542175CDFB009C38E5 /* ForgotPasswordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordInteractor.swift; sourceTree = "<group>"; };
+		84F348532181B20C00F00E37 /* InboxFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxFilterView.swift; sourceTree = "<group>"; };
+		84F348552181B21C00F00E37 /* InboxFilter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InboxFilter.xib; sourceTree = "<group>"; };
+		84F348572181F4E300F00E37 /* BlurEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurEffect.swift; sourceTree = "<group>"; };
 		8C75257603640BC3576C9BB5 /* Pods-Ctemplar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ctemplar/Pods-Ctemplar.debug.xcconfig"; sourceTree = "<group>"; };
 		A9B8DB58A9BFE099948CF3E1 /* Pods_Ctemplar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6F0F7014DAB1A09E4C0F5D2 /* Pods-Ctemplar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ctemplar/Pods-Ctemplar.release.xcconfig"; sourceTree = "<group>"; };
@@ -205,7 +229,8 @@
 		8432070F21785E7500F18E5A /* InboxCells */ = {
 			isa = PBXGroup;
 			children = (
-				8432071221785F8400F18E5A /* InboxMessageCell.xib */,
+				843207142178C75000F18E5A /* InboxMessageTablelViewCell.swift */,
+				8432071221785F8400F18E5A /* InboxMessageTableViewCell.xib */,
 			);
 			path = InboxCells;
 			sourceTree = "<group>";
@@ -279,6 +304,7 @@
 				843FC3812164C2CC000CFEA9 /* KeychainService.swift */,
 				8433FF5B216246DC00C57DC8 /* PGPService.swift */,
 				8433FF542162129800C57DC8 /* RestAPIService.swift */,
+				84F348572181F4E300F00E37 /* BlurEffect.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -308,6 +334,7 @@
 				8433FF20216201A500C57DC8 /* Assets.xcassets */,
 				8433FF592162181E00C57DC8 /* Constants.swift */,
 				843FBF18216E4FE500148FC1 /* DeviceScreenConstants.swift */,
+				8436AD552180663800D16008 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -315,6 +342,7 @@
 		84356857216F2702002101D3 /* InboxScreen */ = {
 			isa = PBXGroup;
 			children = (
+				84F348512181B1AB00F00E37 /* FilterView */,
 				84356858216F2736002101D3 /* InboxNavigationController.swift */,
 				8435685C216F2DB3002101D3 /* InboxViewController.swift */,
 				84356860216F2DE3002101D3 /* InboxConfigurator.swift */,
@@ -432,7 +460,12 @@
 		845E643721708453008612FE /* SideMenu */ = {
 			isa = PBXGroup;
 			children = (
-				845E64382170849C008612FE /* InboxSideMenuController.swift */,
+				845E64382170849C008612FE /* InboxSideMenuViewController.swift */,
+				84304297217D9D1C00DB5787 /* InboxSideMenuConfigurator.swift */,
+				84304299217D9D2D00DB5787 /* InboxSideMenuRouter.swift */,
+				8430429B217D9D3F00DB5787 /* InboxSideMenuPresenter.swift */,
+				8430429D217D9D5100DB5787 /* InboxSideMenuInteractor.swift */,
+				8430429F217D9D5D00DB5787 /* InboxSideMenuDataSource.swift */,
 				845E643A21709330008612FE /* InboxSideMenu.storyboard */,
 			);
 			path = SideMenu;
@@ -454,6 +487,15 @@
 				845E64422170BD21008612FE /* AboutAs.storyboard */,
 			);
 			path = AboutAsScreen;
+			sourceTree = "<group>";
+		};
+		84F348512181B1AB00F00E37 /* FilterView */ = {
+			isa = PBXGroup;
+			children = (
+				84F348532181B20C00F00E37 /* InboxFilterView.swift */,
+				84F348552181B21C00F00E37 /* InboxFilter.xib */,
+			);
+			path = FilterView;
 			sourceTree = "<group>";
 		};
 		ACB141FEC80B2ECB5851B667 /* Pods */ = {
@@ -534,16 +576,18 @@
 				845E64482170CAEF008612FE /* Lato-Black.ttf in Resources */,
 				845E64432170BD21008612FE /* AboutAs.storyboard in Resources */,
 				845E64492170CAF2008612FE /* Roboto-Bold.ttf in Resources */,
+				84F348562181B21C00F00E37 /* InboxFilter.xib in Resources */,
 				843FBF17216E3D2400148FC1 /* Login-iPad.storyboard in Resources */,
 				843710412174661000DAE4BA /* ForgotPassword.storyboard in Resources */,
 				845E643B21709330008612FE /* InboxSideMenu.storyboard in Resources */,
 				8441099221776B5100F0BE18 /* Lato-Bold.ttf in Resources */,
 				845E64402170A4A2008612FE /* Compose.storyboard in Resources */,
 				8433FF24216201A500C57DC8 /* LaunchScreen.storyboard in Resources */,
+				8436AD532180663800D16008 /* Localizable.strings in Resources */,
 				8435685B216F2748002101D3 /* Inbox.storyboard in Resources */,
 				8433FF4C21620DBD00C57DC8 /* Main-iPad.storyboard in Resources */,
 				843E973421635C3B00147CBE /* Login.storyboard in Resources */,
-				8432071321785F8400F18E5A /* InboxMessageCell.xib in Resources */,
+				8432071321785F8400F18E5A /* InboxMessageTableViewCell.xib in Resources */,
 				8441099421776B6400F0BE18 /* README.md in Resources */,
 				843FC3902164CBFA000CFEA9 /* SignUp.storyboard in Resources */,
 				8433FF21216201A500C57DC8 /* Assets.xcassets in Resources */,
@@ -569,6 +613,7 @@
 				"${BUILT_PRODUCTS_DIR}/AlertHelperKit/AlertHelperKit.framework",
 				"${BUILT_PRODUCTS_DIR}/BCryptSwift/BCryptSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/MGSwipeTableCell/MGSwipeTableCell.framework",
 				"${PODS_ROOT}/ObjectivePGP/Frameworks/ios/ObjectivePGP.framework",
 				"${PODS_ROOT}/ObjectivePGP/Frameworks/ios/ObjectivePGP.framework.dSYM",
 				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
@@ -582,6 +627,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlertHelperKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BCryptSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGSwipeTableCell.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectivePGP.framework",
 				"${DWARF_DSYM_FOLDER_PATH}/ObjectivePGP.framework.dSYM",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
@@ -624,10 +670,13 @@
 				84371043217491F100DAE4BA /* ConfirmResetPasswordViewController.swift in Sources */,
 				8407AD92216CC61600AF2E7B /* EmailMessagesList.swift in Sources */,
 				843FC38E2164CA35000CFEA9 /* SignUpInteractor.swift in Sources */,
+				8430429C217D9D3F00DB5787 /* InboxSideMenuPresenter.swift in Sources */,
 				843FC38C2164CA27000CFEA9 /* SignUpPresenter.swift in Sources */,
+				843042A0217D9D5D00DB5787 /* InboxSideMenuDataSource.swift in Sources */,
 				84A62E532175CD95009C38E5 /* ForgotPasswordPresenter.swift in Sources */,
 				843E973221635BEB00147CBE /* LoginViewController.swift in Sources */,
 				8433FF552162129800C57DC8 /* RestAPIService.swift in Sources */,
+				84304298217D9D1C00DB5787 /* InboxSideMenuConfigurator.swift in Sources */,
 				84356861216F2DE3002101D3 /* InboxConfigurator.swift in Sources */,
 				8433FF5C216246DC00C57DC8 /* PGPService.swift in Sources */,
 				843E972F21634E7900147CBE /* LaunchScreenViewController.swift in Sources */,
@@ -646,6 +695,7 @@
 				84A62E4F2175CC98009C38E5 /* ForgotPasswordConfigurator.swift in Sources */,
 				8433FF1A216201A300C57DC8 /* AppDelegate.swift in Sources */,
 				844F4B5A216B3A380057C758 /* UserPGPKey.swift in Sources */,
+				8430429A217D9D2D00DB5787 /* InboxSideMenuRouter.swift in Sources */,
 				843E973D2163703100147CBE /* LoginPresenter.swift in Sources */,
 				843FC3862164C9EE000CFEA9 /* SignUpPageViewController.swift in Sources */,
 				843FBF15216DF0A000148FC1 /* MailboxResult.swift in Sources */,
@@ -657,17 +707,21 @@
 				84356865216F2E0D002101D3 /* InboxPresenter.swift in Sources */,
 				843FC3932164D1B2000CFEA9 /* SignUpPageName.swift in Sources */,
 				843FC3882164CA0D000CFEA9 /* SignUpConfigurator.swift in Sources */,
-				845E64392170849C008612FE /* InboxSideMenuController.swift in Sources */,
+				845E64392170849C008612FE /* InboxSideMenuViewController.swift in Sources */,
 				843FC3822164C2CC000CFEA9 /* KeychainService.swift in Sources */,
 				84356859216F2736002101D3 /* InboxNavigationController.swift in Sources */,
 				843E973721636FF200147CBE /* LoginConfigurator.swift in Sources */,
 				8435685F216F2DCD002101D3 /* InboxDataSource.swift in Sources */,
 				845E64462170C5A4008612FE /* AboutAsViewController.swift in Sources */,
+				84F348542181B20C00F00E37 /* InboxFilterView.swift in Sources */,
+				84F348582181F4E300F00E37 /* BlurEffect.swift in Sources */,
 				84A62E4B2175C3CF009C38E5 /* NewPasswordViewController.swift in Sources */,
 				8437103D217465A700DAE4BA /* ForgotPasswordNavigationController.swift in Sources */,
+				8430429E217D9D5100DB5787 /* InboxSideMenuInteractor.swift in Sources */,
 				8433FF5A2162181E00C57DC8 /* Constants.swift in Sources */,
 				8441098E2177238A00F0BE18 /* ViewInboxEmailViewController.swift in Sources */,
 				8435685D216F2DB3002101D3 /* InboxViewController.swift in Sources */,
+				843207152178C75000F18E5A /* InboxMessageTablelViewCell.swift in Sources */,
 				843FC3972164D20E000CFEA9 /* SignUpPageEmail.swift in Sources */,
 				84A62E512175CD40009C38E5 /* ForgotPasswordRouter.swift in Sources */,
 				843FBF13216DEFBD00148FC1 /* Mailbox.swift in Sources */,
@@ -681,6 +735,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8433FF1E216201A300C57DC8 /* Base */,
+				8436AD502180650A00D16008 /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -689,8 +744,19 @@
 			isa = PBXVariantGroup;
 			children = (
 				8433FF23216201A500C57DC8 /* Base */,
+				8436AD4F2180650900D16008 /* ru */,
+				8436AD5821806D3400D16008 /* en */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		8436AD552180663800D16008 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8436AD542180663800D16008 /* ru */,
+				8436AD562180664100D16008 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -700,6 +766,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -761,6 +828,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

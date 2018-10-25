@@ -21,6 +21,8 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var resetCodeTextField     : UITextField!
     @IBOutlet var resetCodeHintLabel     : UILabel!
     
+    var keyboardOffset = 0.0
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -31,7 +33,15 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         
         self.configurator?.presenter?.setupResetCodeTextFieldsAndHintLabel(resetCode: resetCode!)
         
-        setupAttributesForTextView()        
+        setupAttributesForTextView()
+        
+        if (Device.IS_IPHONE_5) {
+            keyboardOffset = k_signUpPageKeyboardOffsetMedium
+        } else {
+            keyboardOffset = 0.0
+        }
+        
+        adddNotificationObserver()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -72,16 +82,35 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func resetPasswordButtonPressed(_ sender: AnyObject) {
         
-        //self.configurator?.presenter?.buttonResetPasswordPressed(userName: userName!, resetCode: resetCode!, recoveryEmail: recoveryEmail!)
-        
-        //temp     
-        self.configurator?.router?.showNewPasswordViewController(userName: userName!, resetPasswordCode: resetCode!, recoveryEmail: recoveryEmail!)
-        
+        self.configurator?.presenter?.buttonResetPasswordPressed(userName: userName!, resetCode: resetCode!, recoveryEmail: recoveryEmail!)
     }
     
     @IBAction func resetCodeTyped(_ sender: UITextField) {
         
         resetCode = sender.text
         self.configurator?.presenter?.setupResetCodeTextFieldsAndHintLabel(resetCode: resetCode!)
+    }
+    
+    //MARK: - notification
+    
+    func adddNotificationObserver() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(SignUpPageNameViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SignUpPageNameViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        
+        if self.view.frame.origin.y == 0 {
+            self.view.frame.origin.y -= CGFloat(keyboardOffset)
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y += CGFloat(keyboardOffset)
+        }
     }
 }

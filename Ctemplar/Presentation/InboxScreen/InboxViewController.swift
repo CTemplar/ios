@@ -15,6 +15,8 @@ class InboxViewController: UIViewController {
     var router      : InboxRouter?
     var dataSource  : InboxDataSource?
     
+    var inboxFilterView : InboxFilterView?
+    
     var messagesList: Array<EmailMessage> = []
     
     @IBOutlet var inboxTableView        : UITableView!
@@ -27,9 +29,15 @@ class InboxViewController: UIViewController {
     
     @IBOutlet var baseToolBar           : UIView!
     @IBOutlet var advancedToolBar       : UIView!
+    @IBOutlet var selectionToolBar      : UIView!
+    @IBOutlet var undoBar               : UIView!
     
     @IBOutlet var rightComposeButton    : UIButton!
+    @IBOutlet var leftFilterButton      : UIButton!
+    @IBOutlet var undoButton            : UIButton!
     
+    @IBOutlet var leftBarButtonItem     : UIBarButtonItem!
+    @IBOutlet var rightBarButtonItem    : UIBarButtonItem!
     
     //MARK: - Lifecycle
     
@@ -44,7 +52,9 @@ class InboxViewController: UIViewController {
         dataSource?.initWith(parent: self, tableView: inboxTableView, array: messagesList)
         
         presenter?.setupUI(emailsCount: 0, unreadEmails: 0)
+        presenter?.initFilterView()
         
+        adddNotificationObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,6 +73,7 @@ class InboxViewController: UIViewController {
     
     @IBAction func searchButtonPressed(_ sender: AnyObject) {
         
+        presenter?.searchButtonPressed(sender: self)
     }
     
     @IBAction func composeButtonPressed(_ sender: AnyObject) {
@@ -72,5 +83,52 @@ class InboxViewController: UIViewController {
     
     @IBAction func filterButtonPressed(_ sender: AnyObject) {
         
+        presenter?.showFilterView()
+    }
+    
+    @IBAction func unreadButtonPressed(_ sender: AnyObject) {
+        
+        self.presenter?.showUndoBar(text: "Undo mark as Read")
+    }
+    
+    @IBAction func moveButtonPressed(_ sender: AnyObject) {
+        
+        self.presenter?.showUndoBar(text: "Undo moving")
+    }
+    
+    @IBAction func garbageButtonPressed(_ sender: AnyObject) {
+        
+        self.presenter?.showUndoBar(text: "Undo delete")
+    }
+    
+    @IBAction func moreButtonPressed(_ sender: AnyObject) {
+        
+        self.presenter?.showUndoBar(text: "Undo ...")
+    }
+    
+    @IBAction func undoButtonPressed(_ sender: AnyObject) {
+        
+    }
+    
+    //MARK: - notification
+    
+    func adddNotificationObserver() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reciveUpdateNotification(notification:)), name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil)
+    }
+    
+    @objc func reciveUpdateNotification(notification: Notification) {
+        
+        presenter?.loadMessages()
+    }
+    
+}
+
+extension InboxViewController: InboxFilterDelegate {
+    
+    func applyAction(_ sender: AnyObject) {
+        
+       presenter?.showFilterView()
+       presenter?.applyFilterAction(sender)
     }
 }

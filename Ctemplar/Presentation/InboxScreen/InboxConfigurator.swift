@@ -25,6 +25,7 @@ class InboxConfigurator {
         interactor.presenter = presenter
         interactor.viewController = viewController
         interactor.apiService = appDelegate.applicationManager.apiService
+        interactor.pgpService = appDelegate.applicationManager.pgpService
         
         presenter.interactor = interactor
         
@@ -33,5 +34,7 @@ class InboxConfigurator {
         
         let dataSource = InboxDataSource()
         viewController.dataSource = dataSource
+        
+        dataSource.formatterService = appDelegate.applicationManager.formatterService
     }
 }

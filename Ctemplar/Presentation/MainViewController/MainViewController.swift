@@ -28,7 +28,43 @@ class MainViewController: UIViewController {
         showInboxNavigationController()
         //messagesList()
         //mailboxesList()
-
+        
+        /*
+        apiService?.verifyToken() {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("value:", value)
+                
+            case .failure(let error):
+                print("error:", error)
+            }
+        }*/
+        
+        /*
+        let keyChainService = apiService?.keychainService
+        let formatterService = apiService?.formatterService
+        
+        if let tokenSavedTime = keyChainService?.getTokenSavedTime() {
+            if tokenSavedTime.count > 0 {
+                //2018-10-24 05:51:21 +0000
+                if let tokenSavedDate = formatterService?.formatTokenTimeStringToDate(date: tokenSavedTime) {
+                    print("tokenSavedDate:", tokenSavedDate)
+                
+                    let minutesCount = tokenSavedDate.minutesCountForTokenExpiration()
+                    print("minutesCount", minutesCount)
+                    
+                    /*
+                    if let hoursCount = formatterService?.calculateHoursCountFor(date: tokenSavedDate) {
+                        print("hoursCount", hoursCount)
+                        if hoursCount > 2 {
+                            //
+                        }
+                    }*/
+                }
+            }
+        }*/
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -93,7 +129,7 @@ class MainViewController: UIViewController {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self, title: "Messages Error", message: error.localizedDescription, button: "Close")
+                AlertHelperKit().showAlert(self, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
     }
@@ -120,7 +156,7 @@ class MainViewController: UIViewController {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self, title: "Mailboxes Error", message: error.localizedDescription, button: "Close")
+                AlertHelperKit().showAlert(self, title: "Mailboxes Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
     }
@@ -168,6 +204,16 @@ class DesignableLabel: UILabel {
 }
 
 extension UIView {
+    
+    func addBlurEffect() {
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.regular)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.bounds
+        
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.addSubview(blurEffectView)
+    }
     
     @IBInspectable
     var cornerRadius: CGFloat {

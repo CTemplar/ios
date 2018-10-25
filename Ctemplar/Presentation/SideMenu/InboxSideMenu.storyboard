@@ -15,10 +15,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Inbox Side Menu Controller-->
+        <!--Inbox Side Menu View Controller-->
         <scene sceneID="uD4-OK-x4u">
             <objects>
-                <viewController storyboardIdentifier="InboxSideMenuController" id="bU2-mJ-O3l" customClass="InboxSideMenuController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InboxSideMenuViewController" id="bU2-mJ-O3l" customClass="InboxSideMenuViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5MO-p3-m65">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -100,7 +100,7 @@
                                 <rect key="frame" x="0.0" y="80" width="375" height="587"/>
                                 <color key="backgroundColor" red="0.090196078430000007" green="0.1960784314" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="BxS-1U-0JR" style="IBUITableViewCellStyleDefault" id="NMN-xi-0Bb">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="sideMenuCellIdentifier" textLabel="BxS-1U-0JR" style="IBUITableViewCellStyleDefault" id="NMN-xi-0Bb">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NMN-xi-0Bb" id="Vb8-6B-P2H">
@@ -130,12 +130,16 @@
                                         <color key="value" white="1" alpha="0.1190580986" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="dataSource" destination="bU2-mJ-O3l" id="TVw-4Y-6nB"/>
+                                    <outlet property="delegate" destination="bU2-mJ-O3l" id="0Zk-Ex-Fqa"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.090196078431372548" green="0.19607843137254902" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="S8d-bO-mE2" firstAttribute="leading" secondItem="DCq-14-Ly9" secondAttribute="leading" id="0Tz-lC-0E3"/>
-                            <constraint firstItem="S8d-bO-mE2" firstAttribute="top" secondItem="5MO-p3-m65" secondAttribute="top" id="1Bx-Ah-Yr4"/>
+                            <constraint firstItem="S8d-bO-mE2" firstAttribute="top" secondItem="DCq-14-Ly9" secondAttribute="top" constant="-20" id="1Bx-Ah-Yr4"/>
                             <constraint firstItem="B65-GU-zD8" firstAttribute="bottom" secondItem="DCq-14-Ly9" secondAttribute="bottom" id="RsL-H0-vc3"/>
                             <constraint firstItem="B65-GU-zD8" firstAttribute="leading" secondItem="DCq-14-Ly9" secondAttribute="leading" id="YXg-62-Q2F"/>
                             <constraint firstItem="S8d-bO-mE2" firstAttribute="trailing" secondItem="DCq-14-Ly9" secondAttribute="trailing" id="a91-wI-FW5"/>
@@ -146,6 +150,7 @@
                     </view>
                     <connections>
                         <outlet property="emailLabel" destination="KJS-vw-tOp" id="Pz8-rX-DGy"/>
+                        <outlet property="inboxSideMenuTableView" destination="B65-GU-zD8" id="blU-DB-qsD"/>
                         <outlet property="triangle" destination="Inc-0p-mNk" id="VLW-XH-nFW"/>
                         <outlet property="triangleTrailingConstraint" destination="kd2-3B-CnW" id="UVM-BW-6Kg"/>
                     </connections>

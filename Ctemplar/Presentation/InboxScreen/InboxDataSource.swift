@@ -8,12 +8,18 @@
 
 import Foundation
 import UIKit
+import MGSwipeTableCell
 
-class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
+class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate {
     
     var messagesArray           : Array<EmailMessage> = []
+    var selectedMessagesIDArray : Array<Int> = []
+    
     var tableView               : UITableView!
     var parentViewController    : InboxViewController!
+    var formatterService        : FormatterService?
+    
+    var selectionMode : Bool = false
     
     func initWith(parent: InboxViewController, tableView: UITableView, array: Array<EmailMessage>) {
         
@@ -22,6 +28,9 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.messagesArray = array
+
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(sender:)))
+        self.tableView.addGestureRecognizer(longPressRecognizer)
         
         registerTableViewCell()
     }
@@ -30,7 +39,7 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func registerTableViewCell() {
         
-        //self.tableView.register(UINib(nibName: k_leaderBoardCellXibName, bundle: nil), forCellReuseIdentifier: k_leaderBoardCellIdentifier)
+       self.tableView.register(UINib(nibName: k_InboxMessageTableViewCellXibName, bundle: nil), forCellReuseIdentifier: k_InboxMessageTableViewCellIdentifier)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -45,12 +54,27 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellIdentifier")!
+        let cell : InboxMessageTableViewCell = tableView.dequeueReusableCell(withIdentifier: k_InboxMessageTableViewCellIdentifier)! as! InboxMessageTableViewCell
         
-        let message = self.messagesArray[indexPath.row]
+        cell.preservesSuperviewLayoutMargins = false
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets.zero
         
-        cell.textLabel?.text = message.sender
-        cell.detailTextLabel?.text = message.subject
+        let trashButton = MGSwipeButton(title: "", icon: UIImage(named: k_whiteGarbageImageName), backgroundColor: k_sideMenuColor)
+        let unreadButton = MGSwipeButton(title: "", icon: UIImage(named: k_witeUnreadImageName), backgroundColor: k_sideMenuColor)
+        let spamButton = MGSwipeButton(title: "", icon: UIImage(named: k_whiteSpamImageName), backgroundColor: k_sideMenuColor)
+        
+        cell.rightButtons = [spamButton, unreadButton, trashButton]
+        cell.delegate = self
+        
+        cell.parentController = self
+        
+        let message = messagesArray[indexPath.row]
+        let selected = isMessageSelected(message: message)
+        
+        cell.setupCellWithData(message: message, isSelectionMode: self.selectionMode, isSelected: selected, frameWidth: self.tableView.frame.width)
+        
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         
         return cell
     }
@@ -59,11 +83,95 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        self.parentViewController.router?.showViewInboxEmailViewController()
+        if self.selectionMode == false {
+            self.parentViewController.router?.showViewInboxEmailViewController()
+        } else {
+            let message = messagesArray[indexPath.row]
+            let selected = isMessageSelected(message: message)
+            
+            if selected {
+                if let index = selectedMessagesIDArray.index(where: {$0 == message.resultID}) {
+                    print("deselected")
+                   selectedMessagesIDArray.remove(at: index)
+                }
+            } else {
+                print("selected")
+                selectedMessagesIDArray.append(message.resultID!)
+            }
+            
+            self.reloadData()
+        }
     }
     
     func reloadData() {
 
         self.tableView.reloadData()
+    }
+    
+    // MARK: MGSwipe delegate
+    
+    func swipeTableCell(_ cell: MGSwipeTableCell, didChange state: MGSwipeState, gestureIsActive: Bool) {
+        
+    }
+    
+    func swipeTableCell(_ cell: MGSwipeTableCell, canSwipe direction: MGSwipeDirection, from point: CGPoint) -> Bool {
+        
+        if self.selectionMode {
+            return false
+        }
+        
+        return true
+    }
+    
+    func swipeTableCell(_ cell: MGSwipeTableCell, tappedButtonAt index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
+        
+        switch index {
+        case InboxCellButtonsIndex.trash.rawValue:
+            print("trash tapped")
+            self.parentViewController.presenter?.showUndoBar(text: "Undo delete")
+            break
+        case InboxCellButtonsIndex.unread.rawValue:
+            print("unread tapped")
+            self.parentViewController.presenter?.showUndoBar(text: "Undo moving")
+            break
+        case InboxCellButtonsIndex.spam.rawValue:
+            print("spam tapped")
+            self.parentViewController.presenter?.showUndoBar(text: "Undo mark as Spam")
+            break
+        default:
+            print("default")
+        }
+        
+        return true
+    }
+    
+    // MARK: Actions
+    
+    @objc func longPressed(sender: UILongPressGestureRecognizer) {
+        
+        if sender.state == UIGestureRecognizer.State.began {
+            
+            let touchPoint = sender.location(in: self.tableView)
+            if let indexPath = tableView.indexPathForRow(at: touchPoint) {
+                
+                print("Long pressed row: \(indexPath.row)")
+                if self.selectionMode == false {
+                    self.parentViewController.presenter?.enableSelectionMode()
+                }
+            }
+        }
+    }
+    
+    // MARK: local methods
+    
+    func isMessageSelected(message: EmailMessage) -> Bool {
+        
+        for resultID in selectedMessagesIDArray {
+            if resultID == message.resultID {
+                return true
+            }
+        }
+        
+        return false
     }
 }

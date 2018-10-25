@@ -46,10 +46,10 @@ class ForgotPasswordPresenter {
             if (formatterService?.validateEmailFormat(enteredEmail: recoveryEmail))! {
                 self.router?.showConfirmResetPasswordViewController(userName: userName, recoveryEmail: recoveryEmail)
             } else {
-                AlertHelperKit().showAlert(self.viewController!, title: "", message: "Entered Email is not valid", button: "Close")
+                AlertHelperKit().showAlert(self.viewController!, title: "", message: "invalidEnteredEmail".localized(), button: "closeButton".localized())
             }
         } else {
-            AlertHelperKit().showAlert(self.viewController!, title: "", message: "Entered Username is not valid", button: "Close")
+            AlertHelperKit().showAlert(self.viewController!, title: "", message: "Entered Username is not valid", button: "closeButton".localized())
         }
     }
     
@@ -67,10 +67,9 @@ class ForgotPasswordPresenter {
     func buttonResetPasswordPressed(userName: String, resetCode: String, recoveryEmail: String) {
         
         if (formatterService?.validateNameLench(enteredName: resetCode))! {
-            //temp
             self.router?.showNewPasswordViewController(userName: userName, resetPasswordCode: resetCode, recoveryEmail: recoveryEmail)
         } else {
-            AlertHelperKit().showAlert(self.viewController!, title: "", message: "Entered Reset Code is not valid", button: "Close")
+            AlertHelperKit().showAlert(self.viewController!, title: "", message: "Entered Reset Code is not valid", button: "closeButton".localized())
         }
     }
     

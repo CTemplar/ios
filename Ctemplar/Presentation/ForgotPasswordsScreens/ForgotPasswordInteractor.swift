@@ -27,7 +27,7 @@ class ForgotPasswordInteractor {
                 
             case .failure(let error):
                 print("recoveryPasswordCode error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Password Code Error", message: error.localizedDescription, button: "Close")
+                AlertHelperKit().showAlert(self.viewController!, title: "Password Code Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
     }
@@ -42,10 +42,11 @@ class ForgotPasswordInteractor {
                 print("resetPassword success value:", value)
                 
                 //self.keychainService?.saveUserCredentials(userName: userName, password: password)
+                self.presenter?.router?.backToLoginViewController()                
                 
             case .failure(let error):
                 print("resetPassword error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Reset Password Error", message: error.localizedDescription, button: "Close")
+                AlertHelperKit().showAlert(self.viewController!, title: "Reset Password Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
     }

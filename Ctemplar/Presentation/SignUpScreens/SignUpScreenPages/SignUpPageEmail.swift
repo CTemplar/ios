@@ -21,6 +21,8 @@ class SignUpPageEmailViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var createAccountButton    : UIButton!
     @IBOutlet var checkBoxButton         : UIButton!
     
+    var keyboardOffset = 0.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,22 +30,29 @@ class SignUpPageEmailViewController: UIViewController, UITextFieldDelegate {
         parentSignUpPageViewController?.presenter?.setupRecoveryEmailTextFieldAndHintLabel(childViewController: self)
         //parentSignUpPageViewController?.presenter?.pressedCheckBoxButton(childViewController: self)
         
-        setupAttributesForTextView() 
+        setupAttributesForTextView()
+        
+        if Device.IS_IPHONE_5 {
+            keyboardOffset = k_signUpPageKeyboardOffsetLarge
+        } else if Device.IS_IPHONE_6 {
+            keyboardOffset = k_signUpPageKeyboardOffsetMedium
+        } else {
+            keyboardOffset = k_signUpPageKeyboardOffsetSmall
+        }
         
         adddNotificationObserver()
-        
     }
     
     func setupAttributesForTextView() {
         
-        let attributedString = NSMutableAttributedString(string: "Please check this box if you agree to abide by our Terms and Conditions", attributes: [
+        let attributedString = NSMutableAttributedString(string: "termsAndConditionsFullText".localized(), attributes: [
             .font: UIFont(name: k_latoRegularFontName, size: 14.0)!,
             .foregroundColor: k_lightGrayColor,
             .kern: 0.0
             ])
                 
-        _ = attributedString.setAsLink(textToFind: "Terms and Conditions", linkURL: k_termsURL)
-        _ = attributedString.setForgroundColor(textToFind: "Terms and Conditions", color: k_urlColor)
+        _ = attributedString.setAsLink(textToFind: "termsAndConditionsPhrase".localized(), linkURL: k_termsURL)
+        _ = attributedString.setForgroundColor(textToFind: "termsAndConditionsPhrase".localized(), color: k_urlColor)
         
         termsTextView.attributedText = attributedString
         
@@ -92,14 +101,14 @@ class SignUpPageEmailViewController: UIViewController, UITextFieldDelegate {
     @objc func keyboardWillShow(notification: Notification) {
         
         if self.view.frame.origin.y == 0 {
-            self.view.frame.origin.y -= CGFloat(k_signUpPageNameKeyboardHeight)//keyboardSize.height
+            self.view.frame.origin.y -= CGFloat(keyboardOffset)
         }
     }
     
     @objc func keyboardWillHide(notification: Notification) {
         
         if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y += CGFloat(k_signUpPageNameKeyboardHeight)//keyboardSize.height
+            self.view.frame.origin.y += CGFloat(keyboardOffset)
         }
     }
 }
