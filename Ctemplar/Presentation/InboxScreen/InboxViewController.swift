@@ -77,6 +77,7 @@ class InboxViewController: UIViewController {
     
     @IBAction func filterButtonPressed(_ sender: AnyObject) {
         
+        presenter?.initAndShowFilterView()
     }
     
     @IBAction func unreadButtonPressed(_ sender: AnyObject) {

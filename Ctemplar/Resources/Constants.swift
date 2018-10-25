@@ -40,6 +40,7 @@ let k_AboutAsStoryboardName                = "AboutAs"
 let k_ViewInboxEmailStoryboardName         = "ViewInboxEmail"
 
 let k_InboxMessageTableViewCellXibName     = "InboxMessageTableViewCell"
+let k_InboxFilterViewXibName               = "InboxFilter"
 
 // cell identifier
 
@@ -92,6 +93,8 @@ let k_dotImageTrailing          : CGFloat = 6.0
 
 let k_deleteLabelWidth          : CGFloat = 85.0 //72.0
 let k_deleteLabelSEWidth        : CGFloat = 45.0 //30.0
+
+let k_inboxFilterViewCenterY    : CGFloat = 430.0
 
 //images
 

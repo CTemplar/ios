@@ -142,4 +142,25 @@ class InboxPresenter {
         
         self.viewController?.selectionToolBar.isHidden = true
     }
+    
+    //MARK: - filter
+    
+    func initAndShowFilterView() {
+        
+        let inboxFilterView = Bundle.main.loadNibNamed(k_InboxFilterViewXibName, owner: nil, options: nil)?.first as? InboxFilterView
+        //inboxFilterView?.center = CGPoint(x: self.viewController!.view.frame.width/2 , y: k_inboxFilterViewCenterY)
+        inboxFilterView?.frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height - 0.0)
+        //inboxFilterView?.delegate = viewController
+        self.viewController?.navigationController!.view.addSubview(inboxFilterView!)
+        
+     /*
+        let quizOverviewCard: QuizOverviewCardView? = Bundle.main.loadNibNamed(k_QuizOverviewCardXibName, owner: nil, options: nil)?.first as? QuizOverviewCardView
+        quizOverviewCard?.center = CGPoint(x: k_mainViewFrameWidth/2, y: k_quizContentCardCenterY)
+        quizOverviewCard?.delegate = viewController
+        quizOverviewCard?.presenter = viewController?.presenter
+        quizOverviewCard?.setCardContent(cardData: cardData)
+        viewController?.currentCardView = quizOverviewCard
+        viewController?.view.addSubview((viewController?.currentCardView!)!)
+ */
+    }
 }
