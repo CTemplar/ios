@@ -324,7 +324,7 @@ class APIService {
     func logOut(completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         keychainService?.deleteUserCredentialsAndToken()
-        //pgpService?.deleteStoredPGPKeys()
+        pgpService?.deleteStoredPGPKeys()
         
         showLoginViewController()
     }
@@ -425,12 +425,12 @@ class APIService {
                             
                         case .success(let value):
                             
-                            print("mailboxesList success:", value)
+                            //print("mailboxesList success:", value)
                             
                             if let response = value as? Dictionary<String, Any> {
                                 
                                 if let message = self.parseServerResponse(response:response) {
-                                    print("mailboxesList message:", message)
+                                    //print("mailboxesList message:", message)
                                     let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
                                     completionHandler(APIResult.failure(error))
                                 } else {

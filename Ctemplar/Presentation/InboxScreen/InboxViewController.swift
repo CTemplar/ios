@@ -60,7 +60,10 @@ class InboxViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        presenter?.loadMessages()
+        if (presenter?.interactor?.checkStoredPGPKeys())! {
+            presenter?.loadMessages()
+        }
+        
         navigationController?.navigationBar.backgroundColor = k_whiteColor
     }
        
@@ -119,9 +122,10 @@ class InboxViewController: UIViewController {
     
     @objc func reciveUpdateNotification(notification: Notification) {
         
-        presenter?.loadMessages()
-    }
-    
+        if (presenter?.interactor?.checkStoredPGPKeys())! {
+            presenter?.loadMessages()
+        }
+    }    
 }
 
 extension InboxViewController: InboxFilterDelegate {

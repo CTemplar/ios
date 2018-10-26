@@ -67,6 +67,52 @@ class InboxInteractor {
         }
     }
     
+    func checkStoredPGPKeys() -> Bool {
+        
+        if pgpService?.getStoredPGPKeys() == nil {
+            self.mailboxesList()
+        } else {
+            print("local PGPKeys exist")
+            return true
+        }
+        
+        return false
+    }
+    
+    func mailboxesList() {
+        
+        apiService?.mailboxesList() {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("Mailboxes value:", value)
+                
+                let mailbox = value as! Mailbox
+                
+                for result in mailbox.mailboxesResultsList! {
+                    //print("result", result)
+                    //print("privateKey:", result.privateKey as Any)
+                    //print("publicKey:", result.publicKey as Any)
+                    
+                    if let privateKey = result.privateKey {
+                        self.pgpService?.extractAndSavePGPKeyFromString(key: privateKey)
+                    }
+                    
+                    if let publicKey = result.privateKey {
+                        self.pgpService?.extractAndSavePGPKeyFromString(key: publicKey)
+                    }
+                    
+                    //repeat
+                    self.messagesList()
+                }
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Mailboxes Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
 
     func decryptMessage(contet: String) -> String {
         
