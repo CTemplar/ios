@@ -16,6 +16,8 @@ class InboxSideMenuViewController: UIViewController {
     var router      : InboxSideMenuRouter?
     var dataSource  : InboxSideMenuDataSource?
     
+    var currentParentViewController    : InboxViewController!
+    
     var optionsNameList: Array<String> = [InboxSideMenuOptionsName.inbox.rawValue,
                                           InboxSideMenuOptionsName.logout.rawValue]
     

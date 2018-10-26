@@ -87,6 +87,8 @@ class InboxPresenter {
         let storyboard: UIStoryboard = UIStoryboard(name: k_InboxSideMenuStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_InboxSideMenuViewControllerID) as! InboxSideMenuViewController
         
+        vc.currentParentViewController = self.viewController
+        
         let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: vc)
         
         SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController

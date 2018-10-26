@@ -33,6 +33,7 @@ class InboxSideMenuInteractor {
         
         switch optionName {
         case InboxSideMenuOptionsName.inbox.rawValue :
+            self.viewController?.currentParentViewController.currentFolder = InboxSideMenuOptionsName.inbox.rawValue
             self.viewController?.dismiss(animated: true, completion: nil)
         case InboxSideMenuOptionsName.logout.rawValue :
             self.viewController?.presenter?.logOut()
