@@ -28,7 +28,7 @@ enum APIResponse: String {
     case recaptchaError    = "recaptcha"
     case fingerprintError  = "fingerprint"
     case userExists        = "exists"
-    case tokenExpired      = "detail"
+    case errorDetail       = "detail"
     case tokenExpiredValue = "Signature has expired."
     case noCredentials     = "Invalid Authorization header. No credentials provided."
     
@@ -527,8 +527,9 @@ class APIService {
                     message = "Token Error"
                 }
                 break
-            case APIResponse.tokenExpired.rawValue :
-                print("tokenExpired APIResponce key:", dictionary.key, "value:", dictionary.value)
+            case APIResponse.errorDetail.rawValue :
+                print("errorDetail APIResponce key:", dictionary.key, "value:", dictionary.value)
+                message = extractErrorTextFrom(value: dictionary.value)
                 if let value = dictionary.value as? String { //temp
                     if value == APIResponse.tokenExpiredValue.rawValue || value == APIResponse.noCredentials.rawValue {
                         //self.autologinWhenTokenExpired()
