@@ -70,41 +70,49 @@ class InboxInteractor {
     func checkStoredPGPKeys() -> Bool {
         
         if pgpService?.getStoredPGPKeys() == nil {
-            self.mailboxesList()
+            self.mailboxesList(storeKeys: true)
         } else {
             print("local PGPKeys exist")
+            self.mailboxesList(storeKeys: false)            
             return true
         }
         
         return false
     }
     
-    func mailboxesList() {
+    func mailboxesList(storeKeys: Bool) {
         
         apiService?.mailboxesList() {(result) in
             
             switch(result) {
                 
             case .success(let value):
-                print("Mailboxes value:", value)
+                //print("Mailboxes value:", value)
                 
-                let mailbox = value as! Mailbox
+                let mailboxes = value as! Mailboxes
                 
-                for result in mailbox.mailboxesResultsList! {
-                    //print("result", result)
-                    //print("privateKey:", result.privateKey as Any)
-                    //print("publicKey:", result.publicKey as Any)
+                if let mailboxesList = mailboxes.mailboxesResultsList {
+
+                    self.viewController?.mailboxesList = mailboxesList
                     
-                    if let privateKey = result.privateKey {
-                        self.pgpService?.extractAndSavePGPKeyFromString(key: privateKey)
+                    for mailbox in mailboxesList{
+                        //print("mailbox", mailbox)
+                        //print("privateKey:", mailbox.privateKey as Any)
+                        //print("publicKey:", mailbox.publicKey as Any)
+                        
+                        if storeKeys == true {
+                            if let privateKey = mailbox.privateKey {
+                                self.pgpService?.extractAndSavePGPKeyFromString(key: privateKey)
+                            }
+                        
+                            if let publicKey = mailbox.privateKey {
+                                self.pgpService?.extractAndSavePGPKeyFromString(key: publicKey)
+                            }
+                            
+                            //load messages after keys storred
+                            self.messagesList()
+                        }
                     }
-                    
-                    if let publicKey = result.privateKey {
-                        self.pgpService?.extractAndSavePGPKeyFromString(key: publicKey)
-                    }
-                    
-                    //repeat
-                    self.messagesList()
                 }
                 
             case .failure(let error):

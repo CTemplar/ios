@@ -23,6 +23,7 @@ class InboxSideMenuViewController: UIViewController {
     
     @IBOutlet var inboxSideMenuTableView        : UITableView!
     
+    @IBOutlet var nameLabel  : UILabel!
     @IBOutlet var emailLabel : UILabel!
     @IBOutlet var triangle   : UIImageView!
     

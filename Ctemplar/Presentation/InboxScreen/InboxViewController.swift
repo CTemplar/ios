@@ -17,7 +17,8 @@ class InboxViewController: UIViewController {
     
     var inboxFilterView : InboxFilterView?
     
-    var messagesList: Array<EmailMessage> = []
+    var messagesList    : Array<EmailMessage> = []
+    var mailboxesList   : Array<Mailbox> = []
     
     var currentFolder: String = InboxSideMenuOptionsName.inbox.rawValue
     

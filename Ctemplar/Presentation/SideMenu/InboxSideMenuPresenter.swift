@@ -17,10 +17,25 @@ class InboxSideMenuPresenter {
     
     func setupUserProfileBar() {
         
+        for mailbox in (self.viewController?.currentParentViewController.mailboxesList)! {            
+            if let defaultMailbox = mailbox.isDefault {
+                if defaultMailbox {
+                    if let defaultEmail = mailbox.email {
+                        self.viewController!.emailLabel.text = defaultEmail
+                        self.viewController!.nameLabel.text = mailbox.displayName
+                    }
+                }
+            }
+        }
+        
         let emailTextWidth = viewController!.emailLabel.text?.widthOfString(usingFont: viewController!.emailLabel.font)
         
         let triangleTrailingConstraintWidth = self.viewController!.view.frame.width - emailTextWidth! - CGFloat(k_triangleOffset)
         updateTriangleTrailingConstraint(value: triangleTrailingConstraintWidth )
+        
+        if self.viewController?.currentParentViewController.mailboxesList.count == 1 {
+            self.viewController?.triangle.isHidden = true
+        }
     }
     
     func updateTriangleTrailingConstraint(value: CGFloat) {

@@ -143,9 +143,9 @@ class MainViewController: UIViewController {
             case .success(let value):
                 print("Mailboxes value:", value)
                 
-                let mailbox = value as! Mailbox
+                let mailboxes = value as! Mailboxes
                 
-                for result in mailbox.mailboxesResultsList! {
+                for result in mailboxes.mailboxesResultsList! {
                     //print("result", result)
                     print("privateKey:", result.privateKey as Any)
                     print("publicKey:", result.publicKey as Any)
