@@ -8,6 +8,13 @@
 
 "invalidEnteredPassword" = "Неправильный формат пароля";
 "invalidEnteredEmail" = "Неправильный формат Email";
+
+"logoutTitle" = "Выход";
+"logotuMessage" = "Вы уверены, что хотите выйти?";
+
 "closeButton" = "Закрыть";
+"cancelButton" = "Отмена";
+"logotButton" = "Выйти";
+
 "termsAndConditionsFullText" = "Пожалуста, поставьте галочку если вы согласны с нашими Условиями и Положениями";
 "termsAndConditionsPhrase" = "Условия и Положения";
