@@ -129,6 +129,7 @@ let k_secureOffImageName            = "SecureOff"
 // fonts
 
 let k_latoRegularFontName = "Lato-Regular"
+let k_latoBoldFontName    = "Lato-Bold"
 
 // notifications
 
