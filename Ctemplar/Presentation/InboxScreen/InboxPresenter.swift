@@ -67,6 +67,17 @@ class InboxPresenter {
         
         viewController?.undoBar.isHidden = true
         //viewController?.undoBar.blur(blurRadius: 5)
+        
+        setupNavigationItemTitle(selectedMessages: (self.viewController?.dataSource?.selectedMessagesIDArray.count)!, selectionMode: (self.viewController?.dataSource?.selectionMode)!, currentFolder: self.viewController!.currentFolder)
+    }
+    
+    func setupNavigationItemTitle(selectedMessages: Int, selectionMode: Bool, currentFolder: String) {
+        
+        if selectionMode == true {
+            self.viewController?.navigationItem.title = String(format: "%d Selected", selectedMessages)
+        } else {
+            self.viewController?.navigationItem.title = currentFolder
+        }
     }
     
     //MARK: - Side Menu
@@ -130,6 +141,8 @@ class InboxPresenter {
         self.viewController?.rightBarButtonItem.title = "Cancel"
         
         self.viewController?.selectionToolBar.isHidden = false
+        
+        setupNavigationItemTitle(selectedMessages: (self.viewController?.dataSource?.selectedMessagesIDArray.count)!, selectionMode: (self.viewController?.dataSource?.selectionMode)!, currentFolder: self.viewController!.currentFolder)
     }
     
     func disableSelectionMode() {
@@ -144,6 +157,8 @@ class InboxPresenter {
         self.viewController?.rightBarButtonItem.title = ""
         
         self.viewController?.selectionToolBar.isHidden = true
+        
+        setupNavigationItemTitle(selectedMessages: (self.viewController?.dataSource?.selectedMessagesIDArray.count)!, selectionMode: (self.viewController?.dataSource?.selectionMode)!, currentFolder: self.viewController!.currentFolder)
     }
     
     //MARK: - filter

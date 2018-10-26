@@ -19,6 +19,8 @@ class InboxViewController: UIViewController {
     
     var messagesList: Array<EmailMessage> = []
     
+    var currentFolder: String = InboxSideMenuOptionsName.inbox.rawValue
+    
     @IBOutlet var inboxTableView        : UITableView!
     
     @IBOutlet var messagesLabel         : UILabel!
@@ -55,6 +57,8 @@ class InboxViewController: UIViewController {
         presenter?.initFilterView()
         
         adddNotificationObserver()
+        
+        self.navigationItem.title = InboxSideMenuOptionsName.inbox.rawValue
     }
     
     override func viewWillAppear(_ animated: Bool) {
