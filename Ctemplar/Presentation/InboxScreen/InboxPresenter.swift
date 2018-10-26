@@ -201,9 +201,14 @@ class InboxPresenter {
         self.viewController?.undoButton.setTitle(text, for: .normal)
         
         self.viewController?.undoBar.isHidden = false
+        self.viewController?.undoBar.alpha = 1.0
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
             self.viewController?.undoBar.isHidden = true
+        })
+        
+        UIView.animate(withDuration: 5.0, animations: {
+            self.viewController?.undoBar.alpha = 0.0
         })
     }
 }
