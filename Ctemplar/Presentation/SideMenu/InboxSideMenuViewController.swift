@@ -16,11 +16,14 @@ class InboxSideMenuViewController: UIViewController {
     var router      : InboxSideMenuRouter?
     var dataSource  : InboxSideMenuDataSource?
     
-    var optionsNameList: Array<String> = [InboxSideMenuOptionsName.inbox.rawValue,
+    var currentParentViewController    : InboxViewController!
+    
+    var optionsNameList: Array<String> = [InboxSideMenuOptionsName.inbox.rawValue, InboxSideMenuOptionsName.sent.rawValue,
                                           InboxSideMenuOptionsName.logout.rawValue]
     
     @IBOutlet var inboxSideMenuTableView        : UITableView!
     
+    @IBOutlet var nameLabel  : UILabel!
     @IBOutlet var emailLabel : UILabel!
     @IBOutlet var triangle   : UIImageView!
     

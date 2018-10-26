@@ -10,12 +10,15 @@ import Foundation
 
 struct Mailbox {
     
-    var previous: String? = nil
-    var totalCount: Int? = nil
-    var next: String? = nil
-    var pageConut: Int? = nil
-    var mailboxesResultsList : Array<MailboxResult>? = nil
-    
+    var displayName : String? = nil
+    var email : String? = nil
+    var fingerprint : String? = nil
+    var resultID : Int? = nil
+    var isDefault : Bool? = nil
+    var isEnabled : Bool? = nil
+    var privateKey : String? = nil
+    var publicKey : String? = nil
+    var signature : String? = nil
     
     init() {
         
@@ -23,34 +26,14 @@ struct Mailbox {
     
     init(dictionary: [String: Any]) {
         
-        self.previous = dictionary["previous"] as? String
-        self.next = dictionary["next"] as? String
-        self.totalCount = dictionary["total_count"] as? Int
-        self.pageConut = dictionary["page_count"] as? Int
-        
-        if let resultsArray = dictionary["results"] as? Array<Any> {
-            self.mailboxesResultsList = self.parsResultsFromList(array: resultsArray)
-        }
-    }
-    
-    func parsResultsFromList(array: Array<Any>) -> Array<MailboxResult>{
-        
-        var objectsArray: Array<MailboxResult> = []
-        
-        for object in array {
-            if let objectDictionary = object as? Dictionary<String, Any> {//[String : Any] {
-                let messageResult = MailboxResult(dictionary: objectDictionary)
-                objectsArray.append(messageResult)
-            }
-        }
-        
-        return objectsArray
+        self.displayName = dictionary["display_name"] as? String
+        self.email = dictionary["email"] as? String
+        self.fingerprint = dictionary["fingerprint"] as? String
+        self.resultID = dictionary["id"] as? Int
+        self.isDefault = dictionary["is_default"] as? Bool
+        self.isEnabled = dictionary["is_enabled"] as? Bool
+        self.privateKey = dictionary["private_key"] as? String
+        self.publicKey = dictionary["public_key"] as? String
+        self.signature = dictionary["signature"] as? String
     }
 }
-
-/*
- results
- page_count
- previous
- total_count
- */

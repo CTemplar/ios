@@ -21,15 +21,15 @@ class InboxInteractor {
         var readEmails = 0
         
         if let emailsArray = messages.messagesList {
-            //self.viewController?.messagesList = emailsArray
-            let inboxMessages = filterInboxMessages(array: emailsArray)
-            self.viewController?.dataSource?.messagesArray = inboxMessages
+           
+            //let inboxMessages = filterInboxMessages(array: emailsArray)
+            self.viewController?.dataSource?.messagesArray = emailsArray
             self.viewController?.dataSource?.reloadData()
-            readEmails = calculateReadEmails(array: inboxMessages)
+            readEmails = calculateReadEmails(array: emailsArray)
             
             var unreadEmails = 0
-            unreadEmails = inboxMessages.count - readEmails
-            self.presenter?.setupUI(emailsCount: inboxMessages.count, unreadEmails: unreadEmails)
+            unreadEmails = emailsArray.count - readEmails
+            self.presenter?.setupUI(emailsCount: emailsArray.count, unreadEmails: unreadEmails)
         }
     }
     
@@ -48,9 +48,9 @@ class InboxInteractor {
         return readEmails
     }
     
-    func messagesList() {
+    func messagesList(folder: String) {
         
-        apiService?.messagesList() {(result) in
+        apiService?.messagesList(folder: folder) {(result) in
             
             switch(result) {
                 
@@ -67,6 +67,60 @@ class InboxInteractor {
         }
     }
     
+    func checkStoredPGPKeys() -> Bool {
+        
+        if pgpService?.getStoredPGPKeys() == nil {
+            self.mailboxesList(storeKeys: true)
+        } else {
+            print("local PGPKeys exist")
+            self.mailboxesList(storeKeys: false)            
+            return true
+        }
+        
+        return false
+    }
+    
+    func mailboxesList(storeKeys: Bool) {
+        
+        apiService?.mailboxesList() {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                //print("Mailboxes value:", value)
+                
+                let mailboxes = value as! Mailboxes
+                
+                if let mailboxesList = mailboxes.mailboxesResultsList {
+
+                    self.viewController?.mailboxesList = mailboxesList
+                    
+                    for mailbox in mailboxesList{
+                        //print("mailbox", mailbox)
+                        //print("privateKey:", mailbox.privateKey as Any)
+                        //print("publicKey:", mailbox.publicKey as Any)
+                        
+                        if storeKeys == true {
+                            if let privateKey = mailbox.privateKey {
+                                self.pgpService?.extractAndSavePGPKeyFromString(key: privateKey)
+                            }
+                        
+                            if let publicKey = mailbox.privateKey {
+                                self.pgpService?.extractAndSavePGPKeyFromString(key: publicKey)
+                            }
+                            
+                            //load messages after keys storred
+                            self.messagesList(folder: (self.viewController?.currentFolderFilter)!)
+                        }
+                    }
+                }
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Mailboxes Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
 
     func decryptMessage(contet: String) -> String {
         

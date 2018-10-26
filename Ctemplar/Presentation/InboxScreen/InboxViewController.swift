@@ -17,7 +17,11 @@ class InboxViewController: UIViewController {
     
     var inboxFilterView : InboxFilterView?
     
-    var messagesList: Array<EmailMessage> = []
+    var messagesList    : Array<EmailMessage> = []
+    var mailboxesList   : Array<Mailbox> = []
+    
+    var currentFolder       : String = InboxSideMenuOptionsName.inbox.rawValue
+    var currentFolderFilter : String = MessagesFoldersName.inbox.rawValue
     
     @IBOutlet var inboxTableView        : UITableView!
     
@@ -55,12 +59,17 @@ class InboxViewController: UIViewController {
         presenter?.initFilterView()
         
         adddNotificationObserver()
+        
+        self.navigationItem.title = currentFolder
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        presenter?.loadMessages()
+        if (presenter?.interactor?.checkStoredPGPKeys())! {
+            presenter?.loadMessages(folder: self.currentFolderFilter)
+        }
+        
         navigationController?.navigationBar.backgroundColor = k_whiteColor
     }
        
@@ -119,9 +128,10 @@ class InboxViewController: UIViewController {
     
     @objc func reciveUpdateNotification(notification: Notification) {
         
-        presenter?.loadMessages()
-    }
-    
+        if (presenter?.interactor?.checkStoredPGPKeys())! {
+            presenter?.loadMessages(folder: self.currentFolderFilter)
+        }
+    }    
 }
 
 extension InboxViewController: InboxFilterDelegate {

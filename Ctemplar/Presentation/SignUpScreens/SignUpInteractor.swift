@@ -33,6 +33,8 @@ class SignUpInteractor {
                     currentPresentingViewController?.dismiss(animated: false, completion: nil) //hide Login View Controller
                 }
                 
+                NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil, userInfo: nil)
+                
             case .failure(let error):
                 print("signup error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "SignUp Error", message: error.localizedDescription, button: "closeButton".localized())

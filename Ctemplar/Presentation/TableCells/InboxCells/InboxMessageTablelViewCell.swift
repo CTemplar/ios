@@ -111,11 +111,11 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
             }
         }
         
+        //let testDate = "2018-10-26T13:00:00Z"
         if let destructionDate = message.destructDay {
             deleteLabel.isHidden = false
             if  let date = parentController?.formatterService!.formatDestructionTimeStringToDate(date: destructionDate) {
-                //deleteLabel.text = parentController?.formatterService!.formatDestractionDate(date: date)
-                deleteLabel.text = date.timeCountForDestruct()
+                deleteLabel.attributedText = date.timeCountForDestruct()                
             }
         } else {
             deleteLabel.isHidden = true

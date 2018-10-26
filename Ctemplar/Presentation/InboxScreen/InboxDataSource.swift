@@ -100,6 +100,8 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
             }
             
             self.reloadData()
+            
+            self.parentViewController.presenter?.setupNavigationItemTitle(selectedMessages: selectedMessagesIDArray.count, selectionMode: selectionMode, currentFolder: self.parentViewController!.currentFolder)
         }
     }
     

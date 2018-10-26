@@ -261,7 +261,7 @@ class FormatterService
 
 extension Date {
     
-    func timeCountForDestruct() -> String {
+    func timeCountForDestruct() -> NSMutableAttributedString {
         
         let secondsAgo = Int(Date().timeIntervalSince(self))
         let minute = 60
@@ -284,23 +284,44 @@ extension Date {
         return timeString
     }
     
-    func formatDestructionTimeToString(days: Int, hours: Int, minutes: Int) -> String {
+    func formatDestructionTimeToString(days: Int, hours: Int, minutes: Int) -> NSMutableAttributedString {
         
+        var destructionLabelAttributedText = ""
         var dateString : String = ""
+        var location = 0
+        var length = 5
         
         if !Device.IS_IPHONE_5 {
-            dateString = dateString + "Delete In "
+            location = 10
+            destructionLabelAttributedText = destructionLabelAttributedText + "Delete In "
         }
             
         if days > 0 {
+            
+            length = 8
+            
+            if days > 10 {
+                length = 9
+            }
+            
             dateString = dateString + String(format: "%d", days) + "d " //%02d
         }
-
-        dateString = dateString + String(format: "%02d:%02d", hours, minutes) 
         
-        print("dateString", dateString)
+        dateString = dateString + String(format: "%02d:%02d", hours, minutes)
         
-        return dateString
+        destructionLabelAttributedText = destructionLabelAttributedText + dateString
+        
+        //print("destructionLabelAttributedText", destructionLabelAttributedText)
+        
+        let attributedString = NSMutableAttributedString(string: destructionLabelAttributedText, attributes: [
+            .font: UIFont(name: k_latoRegularFontName, size: 9.0)!,
+            .foregroundColor: UIColor.white,
+            .kern: 0.0
+            ])
+        
+        attributedString.addAttribute(.font, value: UIFont(name: k_latoBoldFontName, size: 9.0)!, range: NSRange(location: location, length: length))
+        
+        return attributedString
     }
     
     func minutesCountForTokenExpiration() -> Int {

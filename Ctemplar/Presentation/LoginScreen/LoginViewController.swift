@@ -35,6 +35,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         presenter!.setupEmailTextFieldsAndHintLabel(userEmail: userEmail!)
         presenter!.setupPasswordTextFieldsAndHintLabel(password: password!)
+        
+        let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
+        self.view.addGestureRecognizer(freeSpaceViewGesture)
     }
     
     //MARK: - IBActions
@@ -70,5 +73,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         password = sender.text
         presenter!.setupPasswordTextFieldsAndHintLabel(password: password!)
+    }
+    
+    @objc func tappedViewAction(sender : UITapGestureRecognizer) {
+        
+        view.endEditing(true)
     }
 }

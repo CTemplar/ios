@@ -151,6 +151,7 @@
                     <connections>
                         <outlet property="emailLabel" destination="KJS-vw-tOp" id="Pz8-rX-DGy"/>
                         <outlet property="inboxSideMenuTableView" destination="B65-GU-zD8" id="blU-DB-qsD"/>
+                        <outlet property="nameLabel" destination="Mww-En-Egy" id="zKz-7B-Kvd"/>
                         <outlet property="triangle" destination="Inc-0p-mNk" id="VLW-XH-nFW"/>
                         <outlet property="triangleTrailingConstraint" destination="kd2-3B-CnW" id="UVM-BW-6Kg"/>
                     </connections>

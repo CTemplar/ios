@@ -167,12 +167,23 @@ class PGPService {
         return keys
     }
     
+    func extractAndSavePGPKeyFromString(key: String) {
+        
+        if let pgpKeys = self.readPGPKeysFromString(key: key) {
+            for pgpKey in pgpKeys {
+                self.savePGPKey(pgpKey: pgpKey)
+            }
+        } else {
+            print("can not read keys from string!!!")
+        }
+    }
+    
     func deleteStoredPGPKeys() {
         
         keyring.deleteAll()
         
-        
         let keyRingFileUrl = getDocumentsDirectory().appendingPathComponent(k_keyringFileName)
+        
         /*
         do {
             try keyring.export().write(to: keyRingFileUrl)

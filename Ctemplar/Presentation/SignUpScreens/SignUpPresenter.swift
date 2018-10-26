@@ -147,16 +147,16 @@ class SignUpPresenter {
             childViewController.recoveryEmailHintLabel.isHidden = true
         }
         
-        if (formatterService?.validateEmailFormat(enteredEmail:(viewController?.recoveryEmail)!))! {
+        //if (formatterService?.validateEmailFormat(enteredEmail:(viewController?.recoveryEmail)!))! {
             if childViewController.termsBoxChecked {
                 changeButtonState(button: childViewController.createAccountButton, disabled: false)
             } else {
                 changeButtonState(button: childViewController.createAccountButton, disabled: true)
             }
-        } else {
-            print("wrong Email format")
-            changeButtonState(button: childViewController.createAccountButton, disabled: true)
-        }
+        //} else {
+        //    print("wrong Email format")
+        //    changeButtonState(button: childViewController.createAccountButton, disabled: true)
+        //}
     }
     
     func changeButtonState(button: UIButton, disabled: Bool) {

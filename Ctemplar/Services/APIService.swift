@@ -28,7 +28,7 @@ enum APIResponse: String {
     case recaptchaError    = "recaptcha"
     case fingerprintError  = "fingerprint"
     case userExists        = "exists"
-    case tokenExpired      = "detail"
+    case errorDetail       = "detail"
     case tokenExpiredValue = "Signature has expired."
     case noCredentials     = "Invalid Authorization header. No credentials provided."
     
@@ -324,7 +324,7 @@ class APIService {
     func logOut(completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         keychainService?.deleteUserCredentialsAndToken()
-        //pgpService?.deleteStoredPGPKeys()
+        pgpService?.deleteStoredPGPKeys()
         
         showLoginViewController()
     }
@@ -366,7 +366,13 @@ class APIService {
     
     //MARK: - Mail
     
-    func messagesList(completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func messagesList(folder: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        var folderFilter = ""
+        
+        if folder.count > 0 {
+            folderFilter = "?folder=" + folder
+        }
 
         self.checkTokenExpiration(){ (complete) in
             if complete {
@@ -375,7 +381,7 @@ class APIService {
                     
                     HUD.show(.progress)
                     
-                    self.restAPIService?.messagesList(token: token) {(result) in
+                    self.restAPIService?.messagesList(token: token, folder: folderFilter) {(result) in
                         
                         switch(result) {
                             
@@ -425,17 +431,17 @@ class APIService {
                             
                         case .success(let value):
                             
-                            print("mailboxesList success:", value)
+                            //print("mailboxesList success:", value)
                             
                             if let response = value as? Dictionary<String, Any> {
                                 
                                 if let message = self.parseServerResponse(response:response) {
-                                    print("mailboxesList message:", message)
+                                    //print("mailboxesList message:", message)
                                     let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
                                     completionHandler(APIResult.failure(error))
                                 } else {
-                                    let mailbox = Mailbox(dictionary: response)
-                                    completionHandler(APIResult.success(mailbox))
+                                    let mailboxes = Mailboxes(dictionary: response)
+                                    completionHandler(APIResult.success(mailboxes))
                                 }
                             } else {
                                 let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
@@ -527,8 +533,9 @@ class APIService {
                     message = "Token Error"
                 }
                 break
-            case APIResponse.tokenExpired.rawValue :
-                print("tokenExpired APIResponce key:", dictionary.key, "value:", dictionary.value)
+            case APIResponse.errorDetail.rawValue :
+                print("errorDetail APIResponce key:", dictionary.key, "value:", dictionary.value)
+                message = extractErrorTextFrom(value: dictionary.value)
                 if let value = dictionary.value as? String { //temp
                     if value == APIResponse.tokenExpiredValue.rawValue || value == APIResponse.noCredentials.rawValue {
                         //self.autologinWhenTokenExpired()

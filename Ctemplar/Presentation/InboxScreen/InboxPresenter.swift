@@ -18,9 +18,9 @@ class InboxPresenter {
     
     //MARK: - API Requests
     
-    func loadMessages() {
+    func loadMessages(folder: String) {
         
-        self.interactor?.messagesList()
+        self.interactor?.messagesList(folder: folder)
       
         // temp
         /*
@@ -67,6 +67,17 @@ class InboxPresenter {
         
         viewController?.undoBar.isHidden = true
         //viewController?.undoBar.blur(blurRadius: 5)
+        
+        setupNavigationItemTitle(selectedMessages: (self.viewController?.dataSource?.selectedMessagesIDArray.count)!, selectionMode: (self.viewController?.dataSource?.selectionMode)!, currentFolder: self.viewController!.currentFolder)
+    }
+    
+    func setupNavigationItemTitle(selectedMessages: Int, selectionMode: Bool, currentFolder: String) {
+        
+        if selectionMode == true {
+            self.viewController?.navigationItem.title = String(format: "%d Selected", selectedMessages)
+        } else {
+            self.viewController?.navigationItem.title = currentFolder
+        }
     }
     
     //MARK: - Side Menu
@@ -75,6 +86,8 @@ class InboxPresenter {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_InboxSideMenuStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_InboxSideMenuViewControllerID) as! InboxSideMenuViewController
+        
+        vc.currentParentViewController = self.viewController
         
         let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: vc)
         
@@ -130,6 +143,8 @@ class InboxPresenter {
         self.viewController?.rightBarButtonItem.title = "Cancel"
         
         self.viewController?.selectionToolBar.isHidden = false
+        
+        setupNavigationItemTitle(selectedMessages: (self.viewController?.dataSource?.selectedMessagesIDArray.count)!, selectionMode: (self.viewController?.dataSource?.selectionMode)!, currentFolder: self.viewController!.currentFolder)
     }
     
     func disableSelectionMode() {
@@ -144,6 +159,8 @@ class InboxPresenter {
         self.viewController?.rightBarButtonItem.title = ""
         
         self.viewController?.selectionToolBar.isHidden = true
+        
+        setupNavigationItemTitle(selectedMessages: (self.viewController?.dataSource?.selectedMessagesIDArray.count)!, selectionMode: (self.viewController?.dataSource?.selectionMode)!, currentFolder: self.viewController!.currentFolder)
     }
     
     //MARK: - filter
@@ -201,9 +218,14 @@ class InboxPresenter {
         self.viewController?.undoButton.setTitle(text, for: .normal)
         
         self.viewController?.undoBar.isHidden = false
+        self.viewController?.undoBar.alpha = 1.0
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
             self.viewController?.undoBar.isHidden = true
+        })
+        
+        UIView.animate(withDuration: 5.0, animations: {
+            self.viewController?.undoBar.alpha = 0.0
         })
     }
 }
