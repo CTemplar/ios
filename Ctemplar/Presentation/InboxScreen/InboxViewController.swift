@@ -20,7 +20,8 @@ class InboxViewController: UIViewController {
     var messagesList    : Array<EmailMessage> = []
     var mailboxesList   : Array<Mailbox> = []
     
-    var currentFolder: String = InboxSideMenuOptionsName.inbox.rawValue
+    var currentFolder       : String = InboxSideMenuOptionsName.inbox.rawValue
+    var currentFolderFilter : String = MessagesFoldersName.inbox.rawValue
     
     @IBOutlet var inboxTableView        : UITableView!
     
@@ -59,14 +60,14 @@ class InboxViewController: UIViewController {
         
         adddNotificationObserver()
         
-        self.navigationItem.title = InboxSideMenuOptionsName.inbox.rawValue
+        self.navigationItem.title = currentFolder
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if (presenter?.interactor?.checkStoredPGPKeys())! {
-            presenter?.loadMessages()
+            presenter?.loadMessages(folder: self.currentFolderFilter)
         }
         
         navigationController?.navigationBar.backgroundColor = k_whiteColor
@@ -128,7 +129,7 @@ class InboxViewController: UIViewController {
     @objc func reciveUpdateNotification(notification: Notification) {
         
         if (presenter?.interactor?.checkStoredPGPKeys())! {
-            presenter?.loadMessages()
+            presenter?.loadMessages(folder: self.currentFolderFilter)
         }
     }    
 }

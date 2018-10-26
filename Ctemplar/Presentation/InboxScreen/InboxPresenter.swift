@@ -18,9 +18,9 @@ class InboxPresenter {
     
     //MARK: - API Requests
     
-    func loadMessages() {
+    func loadMessages(folder: String) {
         
-        self.interactor?.messagesList()
+        self.interactor?.messagesList(folder: folder)
       
         // temp
         /*

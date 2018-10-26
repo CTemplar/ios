@@ -366,7 +366,13 @@ class APIService {
     
     //MARK: - Mail
     
-    func messagesList(completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func messagesList(folder: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        var folderFilter = ""
+        
+        if folder.count > 0 {
+            folderFilter = "?folder=" + folder
+        }
 
         self.checkTokenExpiration(){ (complete) in
             if complete {
@@ -375,7 +381,7 @@ class APIService {
                     
                     HUD.show(.progress)
                     
-                    self.restAPIService?.messagesList(token: token) {(result) in
+                    self.restAPIService?.messagesList(token: token, folder: folderFilter) {(result) in
                         
                         switch(result) {
                             

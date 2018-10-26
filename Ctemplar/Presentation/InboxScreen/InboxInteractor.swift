@@ -21,15 +21,15 @@ class InboxInteractor {
         var readEmails = 0
         
         if let emailsArray = messages.messagesList {
-            //self.viewController?.messagesList = emailsArray
-            let inboxMessages = filterInboxMessages(array: emailsArray)
-            self.viewController?.dataSource?.messagesArray = inboxMessages
+           
+            //let inboxMessages = filterInboxMessages(array: emailsArray)
+            self.viewController?.dataSource?.messagesArray = emailsArray
             self.viewController?.dataSource?.reloadData()
-            readEmails = calculateReadEmails(array: inboxMessages)
+            readEmails = calculateReadEmails(array: emailsArray)
             
             var unreadEmails = 0
-            unreadEmails = inboxMessages.count - readEmails
-            self.presenter?.setupUI(emailsCount: inboxMessages.count, unreadEmails: unreadEmails)
+            unreadEmails = emailsArray.count - readEmails
+            self.presenter?.setupUI(emailsCount: emailsArray.count, unreadEmails: unreadEmails)
         }
     }
     
@@ -48,9 +48,9 @@ class InboxInteractor {
         return readEmails
     }
     
-    func messagesList() {
+    func messagesList(folder: String) {
         
-        apiService?.messagesList() {(result) in
+        apiService?.messagesList(folder: folder) {(result) in
             
             switch(result) {
                 
@@ -110,7 +110,7 @@ class InboxInteractor {
                             }
                             
                             //load messages after keys storred
-                            self.messagesList()
+                            self.messagesList(folder: (self.viewController?.currentFolderFilter)!)
                         }
                     }
                 }

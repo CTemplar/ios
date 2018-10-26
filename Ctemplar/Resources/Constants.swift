@@ -153,6 +153,7 @@ let k_tokenMinutesExpiration       = 170
 enum InboxSideMenuOptionsName: String {
     
     case inbox            = "Inbox"
+    case sent             = "Sent"
     case logout           = "Logout"
 }
 

@@ -109,7 +109,7 @@ class MainViewController: UIViewController {
     
     func messagesList() {
         
-        apiService?.messagesList() {(result) in
+        apiService?.messagesList(folder: "inbox") {(result) in
             
             switch(result) {
                 

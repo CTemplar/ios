@@ -34,9 +34,19 @@ class InboxSideMenuInteractor {
         switch optionName {
         case InboxSideMenuOptionsName.inbox.rawValue :
             self.viewController?.currentParentViewController.currentFolder = InboxSideMenuOptionsName.inbox.rawValue
+            self.viewController?.currentParentViewController.currentFolderFilter = MessagesFoldersName.inbox.rawValue
+            self.viewController?.currentParentViewController.presenter?.loadMessages(folder: MessagesFoldersName.inbox.rawValue)
             self.viewController?.dismiss(animated: true, completion: nil)
+            break
+        case InboxSideMenuOptionsName.sent.rawValue :
+            self.viewController?.currentParentViewController.currentFolder = InboxSideMenuOptionsName.sent.rawValue
+            self.viewController?.currentParentViewController.currentFolderFilter = MessagesFoldersName.sent.rawValue
+            self.viewController?.currentParentViewController.presenter?.loadMessages(folder: MessagesFoldersName.sent.rawValue)
+            self.viewController?.dismiss(animated: true, completion: nil)
+            break
         case InboxSideMenuOptionsName.logout.rawValue :
             self.viewController?.presenter?.logOut()
+            break
         default:
             print("do nothing")
         }

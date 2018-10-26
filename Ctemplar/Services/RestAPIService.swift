@@ -39,6 +39,7 @@ class RestAPIService {
         case paymentType = "payment_type"
         case resetPasswordCode = "code"
         case token = "token"
+        case filter = "id__in"
     }
         
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -221,19 +222,18 @@ class RestAPIService {
     
     //MARK: - Mail
     
-    func messagesList(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func messagesList(token: String, folder: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
             "Accept": "application/json"
         ]
-        /*
-         let parameters: Parameters = [
-         JSONKey.userName.rawValue: userName,
-         JSONKey.password.rawValue: password
-         ]*/
         
-        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue
+         //let parameters: Parameters = [
+         //   JSONKey.filter.rawValue: "inbox"
+         //]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + folder//"?folder=sent"//"?starred=1"//
         
         //print("messagesList parameters:", parameters)
         print("messagesList url:", url)

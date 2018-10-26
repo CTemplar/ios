@@ -46,6 +46,8 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         
         let optionName = self.menuOptionsArray[indexPath.row]
         
+        cell.selectionStyle = .gray
+        
         cell.textLabel?.text = optionName
         
         
