@@ -25,5 +25,6 @@ class SideMenuTableSectionHeaderView: UITableViewHeaderFooterView {
         self.iconImageView.image = UIImage(named: iconName)
         self.titleLabel.text = title
         self.bottomSeparatorView.isHidden = hideBottomLine
+        self.backgroundColor = k_whiteColor
     }
 }

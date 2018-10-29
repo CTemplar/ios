@@ -20,6 +20,8 @@ class InboxSideMenuViewController: UIViewController {
     
     var mainFoldersNameList: Array<String> = [InboxSideMenuOptionsName.inbox.rawValue, InboxSideMenuOptionsName.draft.rawValue, InboxSideMenuOptionsName.sent.rawValue, InboxSideMenuOptionsName.starred.rawValue, InboxSideMenuOptionsName.archive.rawValue, InboxSideMenuOptionsName.spam.rawValue, InboxSideMenuOptionsName.trash.rawValue, InboxSideMenuOptionsName.allMails.rawValue]
     
+    var mainFoldersUnreadMessagesCount: Array<Int> = []
+    
     var customFoldersNameList: Array<String> = []
     var labelsNameList: Array<String> = []
     
@@ -50,6 +52,7 @@ class InboxSideMenuViewController: UIViewController {
         super.viewWillAppear(animated)
         
         presenter?.setupUserProfileBar()
+        self.dataSource?.reloadData()
     }
     
     //MARK: - IBActions

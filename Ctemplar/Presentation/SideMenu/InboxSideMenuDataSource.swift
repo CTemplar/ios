@@ -39,10 +39,9 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     
     func registerTableViewCell() {
         
-        //self.tableView.register(UINib(nibName: k_InboxMessageTableViewCellXibName, bundle: nil), forCellReuseIdentifier: k_InboxMessageTableViewCellIdentifier)
+        self.tableView.register(UINib(nibName: k_SideMenuTableViewCellXibName, bundle: nil), forCellReuseIdentifier: k_SideMenuTableViewCellIdentifier)
         
-        let nib = UINib(nibName: k_SideMenuTableSectionHeaderViewXibName, bundle: nil)
-        self.tableView.register(nib, forHeaderFooterViewReuseIdentifier: k_SideMenuTableSectionHeaderViewIdentifier)
+        self.tableView.register(UINib(nibName: k_SideMenuTableSectionHeaderViewXibName, bundle: nil), forHeaderFooterViewReuseIdentifier: k_SideMenuTableSectionHeaderViewIdentifier)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -112,15 +111,16 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         
         var cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "sideMenuCellIdentifier")!
         
-        cell.selectionStyle = .gray
+        //cell.selectionStyle = .gray
         
         switch indexPath.section {
         case SideMenuSectionIndex.mainFolders.rawValue:
             
-            cell = tableView.dequeueReusableCell(withIdentifier: "sideMenuCellIdentifier")!
+            cell = tableView.dequeueReusableCell(withIdentifier: k_SideMenuTableViewCellIdentifier)! as! SideMenuTableViewCell
             
             let folderName = self.mainFoldersArray[indexPath.row]
-            cell.textLabel?.text = folderName
+            let selected = self.isSelected(folderName: folderName)
+            (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: selected, iconName: "", title: folderName, unreadCount: 3)
             
             break
         case SideMenuSectionIndex.customFolders.rawValue:
@@ -164,5 +164,14 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     func reloadData() {
         
         self.tableView.reloadData()
+    }
+    
+    func isSelected(folderName: String) -> Bool {
+        
+        if folderName == self.parentViewController?.currentParentViewController.currentFolder {
+            return true
+        }
+        
+        return false
     }
 }

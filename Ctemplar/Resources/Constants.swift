@@ -42,11 +42,13 @@ let k_ViewInboxEmailStoryboardName         = "ViewInboxEmail"
 let k_InboxMessageTableViewCellXibName     = "InboxMessageTableViewCell"
 let k_InboxFilterViewXibName               = "InboxFilter"
 let k_SideMenuTableSectionHeaderViewXibName               = "SideMenuTableSectionHeader"
+let k_SideMenuTableViewCellXibName         = "SideMenuTableViewCell"
 
 // cell identifier
 
 let k_InboxMessageTableViewCellIdentifier       = "inboxMessageTableViewCellIdentifier"
-let k_SideMenuTableSectionHeaderViewIdentifier  = "sideMenuTableSectionHeaderViewIdentifier "
+let k_SideMenuTableSectionHeaderViewIdentifier  = "sideMenuTableSectionHeaderViewIdentifier"
+let k_SideMenuTableViewCellIdentifier           = "sideMenuTableViewCellIdentifier"
 
 // view controllers iPad storyboards name
 
@@ -65,6 +67,7 @@ let k_urlColor: UIColor = UIColor(red: 74.0 / 255.0, green: 144.0 / 255.0, blue:
 let k_lightGrayColor: UIColor = UIColor(white: 0.0, alpha: 0.54)
 
 let k_whiteColor: UIColor = UIColor(red: 250.0 / 255.0, green: 251.0 / 255.0, blue: 251.0 / 255.0, alpha: 1.0)
+let k_selectedFolderColor: UIColor = UIColor(red: 18.0 / 255.0, green: 45.0 / 255.0, blue: 71.0 / 255.0, alpha: 0.1)
 
 let k_unreadMessageColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 0.02)
 
