@@ -40,7 +40,7 @@ class InboxSideMenuViewController: UIViewController {
         k_darkAllMailsIconImageName
     ]
     
-    var mainFoldersUnreadMessagesCount: Array<Int> = []
+    //var mainFoldersUnreadMessagesCount: Array<Int> = []
     
     var customFoldersNameList: Array<String> = []
     var labelsNameList: Array<String> = []
@@ -85,6 +85,10 @@ class InboxSideMenuViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if let mainFoldersUnreadMessagesCountValue = self.currentParentViewController?.mainFoldersUnreadMessagesCount {
+            self.dataSource?.mainFoldersUnreadMessagesCount = mainFoldersUnreadMessagesCountValue
+        }
+    
         presenter?.setupUserProfileBar()
         self.dataSource?.reloadData()
     }

@@ -233,7 +233,7 @@ class RestAPIService {
          //   JSONKey.filter.rawValue: "inbox"
          //]
         
-        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + folder//"?folder=sent"//"?starred=1"//
+        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + folder //"?starred=1"// "?read=0"
         
         //print("messagesList parameters:", parameters)
         print("messagesList url:", url)

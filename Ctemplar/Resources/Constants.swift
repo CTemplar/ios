@@ -193,16 +193,17 @@ enum InboxSideMenuOptionsName: String {
     case logout           = "Logout"
 }
 
-enum MessagesFoldersName: String {
+enum MessagesFoldersName: String, CaseIterable {
     
     case inbox            = "inbox"
     case sent             = "sent"
     case draft            = "draft"
-    case outbox           = "outbox"
+    //case outbox           = "outbox"
     case starred          = "starred"
     case archive          = "archive"
     case spam             = "spam"
     case trash            = "trash"
+    //case foldersCount     = "foldersCount"
 }
 
 enum InboxCellButtonsIndex: Int {
@@ -226,5 +227,5 @@ enum SideMenuSectionIndex: Int {
     case customFolders    = 1
     case labels           = 2
     case options          = 3
-    case sectionsCount     = 4
+    case sectionsCount    = 4
 }

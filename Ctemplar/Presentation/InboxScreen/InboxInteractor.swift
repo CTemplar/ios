@@ -43,6 +43,28 @@ class InboxInteractor {
         }
     }
     
+    func setSideMenuData(messages: EmailMessagesList) {
+        
+        var readEmails = 0
+        var unreadEmails = 0
+        
+        if let emailsArray = messages.messagesList {
+            
+            for filter in MessagesFoldersName.allCases {
+                let messages = filterInboxMessages(array: emailsArray, filter: filter.rawValue)
+                readEmails = calculateReadEmails(array: messages)
+                
+                unreadEmails = messages.count - readEmails
+                print("filter:", filter, "unreadEmails:", unreadEmails)
+                self.viewController?.mainFoldersUnreadMessagesCount.append(unreadEmails)
+            }
+            // for all message case
+            readEmails = calculateReadEmails(array: emailsArray)
+            unreadEmails = emailsArray.count - readEmails
+            self.viewController?.mainFoldersUnreadMessagesCount.append(unreadEmails)
+        }
+    }
+    
     func calculateReadEmails(array: Array<EmailMessage>) -> Int {
         
         var readEmails = 0
@@ -69,6 +91,27 @@ class InboxInteractor {
                 
                 let emailMessages = value as! EmailMessagesList
                 self.setInboxData(messages: emailMessages)
+                
+                self.allMessagesList()
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
+    func allMessagesList() {
+        
+        apiService?.messagesList(folder: "") {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                //print("value:", value)
+                
+                let emailMessages = value as! EmailMessagesList
+                self.setSideMenuData(messages: emailMessages)
                 
             case .failure(let error):
                 print("error:", error)
@@ -172,12 +215,12 @@ class InboxInteractor {
         return header
     }
     
-    func filterInboxMessages(array: Array<EmailMessage>) -> Array<EmailMessage> {
+    func filterInboxMessages(array: Array<EmailMessage>, filter: String) -> Array<EmailMessage> {
         
         var inboxMessagesArray : Array<EmailMessage> = []
         
         for message in array {
-            if message.folder == MessagesFoldersName.inbox.rawValue {
+            if message.folder == filter {
                 inboxMessagesArray.append(message)
             }
         }

@@ -23,6 +23,8 @@ class InboxViewController: UIViewController {
     var currentFolder       : String = InboxSideMenuOptionsName.inbox.rawValue
     var currentFolderFilter : String = MessagesFoldersName.inbox.rawValue
     
+    var mainFoldersUnreadMessagesCount: Array<Int> = []
+    
     @IBOutlet var inboxTableView        : UITableView!
     
     @IBOutlet var messagesLabel         : UILabel!
