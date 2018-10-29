@@ -12,27 +12,37 @@ import SideMenu
 
 class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
-    var mainFoldersArray        : Array<String> = []
-    var customFoldersArray      : Array<String> = []
-    var labelsArray             : Array<String> = []
-    var optionsArray            : Array<String> = []
+    var mainFoldersArray                : Array<String> = []
+    var mainFoldersImageNameList        : Array<String> = []
+    var mainFoldersUnreadMessagesCount  : Array<Int> = [0, 0, 0, 0, 0, 0, 0, 0]
+    
+    var customFoldersArray              : Array<String> = []
+    var labelsArray                     : Array<String> = []
+    var optionsArray                    : Array<String> = []
+    var optionsImageNameList            : Array<String> = []
     
     var tableView               : UITableView!
     var parentViewController    : InboxSideMenuViewController?
     var formatterService        : FormatterService?
     
-    func initWith(parent: InboxSideMenuViewController, tableView: UITableView, mainFoldersArray: Array<String>, customFoldersArray: Array<String>, labelsArray: Array<String>, optionsArray: Array<String>) {
+    func initWith(parent: InboxSideMenuViewController, tableView: UITableView) {
         
         self.parentViewController = parent
         self.tableView = tableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
+
+        registerTableViewCell()
+    }
+ 
+    func setupData(mainFoldersArray: Array<String>, mainFoldersImageNameList: Array<String>, customFoldersArray: Array<String>, labelsArray: Array<String>, optionsArray: Array<String>, optionsImageNameList: Array<String>) {
+        
         self.mainFoldersArray = mainFoldersArray
+        self.mainFoldersImageNameList = mainFoldersImageNameList
         self.customFoldersArray = customFoldersArray
         self.labelsArray = labelsArray
         self.optionsArray = optionsArray
-        
-        registerTableViewCell()
+        self.optionsImageNameList = optionsImageNameList
     }
     
     //MARK: - table view
@@ -120,7 +130,10 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             
             let folderName = self.mainFoldersArray[indexPath.row]
             let selected = self.isSelected(folderName: folderName)
-            (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: selected, iconName: "", title: folderName, unreadCount: 3)
+            let iconName = self.mainFoldersImageNameList[indexPath.row]
+            let unreadCount = self.mainFoldersUnreadMessagesCount[indexPath.row]
+            
+            (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: selected, iconName: iconName, title: folderName, unreadCount: unreadCount)
             
             break
         case SideMenuSectionIndex.customFolders.rawValue:
@@ -128,8 +141,15 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         case SideMenuSectionIndex.labels.rawValue:
             break
         case SideMenuSectionIndex.options.rawValue:
+            //let optionName = self.optionsArray[indexPath.row]
+            //cell.textLabel?.text = optionName
+            
+            cell = tableView.dequeueReusableCell(withIdentifier: k_SideMenuTableViewCellIdentifier)! as! SideMenuTableViewCell
+            
             let optionName = self.optionsArray[indexPath.row]
-            cell.textLabel?.text = optionName
+            let iconName = self.optionsImageNameList[indexPath.row]
+            
+            (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: false, iconName: iconName, title: optionName, unreadCount: 0)
             
             break
         default:

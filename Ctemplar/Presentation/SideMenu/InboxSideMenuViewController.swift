@@ -18,14 +18,46 @@ class InboxSideMenuViewController: UIViewController {
     
     var currentParentViewController    : InboxViewController!
     
-    var mainFoldersNameList: Array<String> = [InboxSideMenuOptionsName.inbox.rawValue, InboxSideMenuOptionsName.draft.rawValue, InboxSideMenuOptionsName.sent.rawValue, InboxSideMenuOptionsName.starred.rawValue, InboxSideMenuOptionsName.archive.rawValue, InboxSideMenuOptionsName.spam.rawValue, InboxSideMenuOptionsName.trash.rawValue, InboxSideMenuOptionsName.allMails.rawValue]
+    var mainFoldersNameList: Array<String> = [
+        InboxSideMenuOptionsName.inbox.rawValue,
+        InboxSideMenuOptionsName.draft.rawValue,
+        InboxSideMenuOptionsName.sent.rawValue,
+        InboxSideMenuOptionsName.starred.rawValue,
+        InboxSideMenuOptionsName.archive.rawValue,
+        InboxSideMenuOptionsName.spam.rawValue,
+        InboxSideMenuOptionsName.trash.rawValue,
+        InboxSideMenuOptionsName.allMails.rawValue
+    ]
+    
+    var mainFoldersImageNameList: Array<String> = [
+        k_darkInboxIconImageName,
+        k_darkDraftIconImageName,
+        k_darkSentIconImageName,
+        k_darkStarIconImageName,
+        k_darkArchiveIconImageName,
+        k_darkSpamIconImageName,
+        k_darkTrashIconImageName,
+        k_darkAllMailsIconImageName
+    ]
     
     var mainFoldersUnreadMessagesCount: Array<Int> = []
     
     var customFoldersNameList: Array<String> = []
     var labelsNameList: Array<String> = []
     
-    var optionsNameList: Array<String> = [InboxSideMenuOptionsName.logout.rawValue]
+    var optionsNameList: Array<String> = [
+        InboxSideMenuOptionsName.contact.rawValue,
+        InboxSideMenuOptionsName.settings.rawValue,
+        InboxSideMenuOptionsName.help.rawValue,
+        InboxSideMenuOptionsName.logout.rawValue
+    ]
+    
+    var optionsImageNameList: Array<String> = [
+        k_darkContactIconImageName,
+        k_darkSettingsIconImageName,
+        k_darkHelpconImageName,
+        k_darkExitIconImageName
+    ]
                                           
     
     @IBOutlet var inboxSideMenuTableView        : UITableView!
@@ -43,7 +75,9 @@ class InboxSideMenuViewController: UIViewController {
         let configurator = InboxSideMenuConfigurator()
         configurator.configure(viewController: self)
         
-        dataSource?.initWith(parent: self, tableView: inboxSideMenuTableView, mainFoldersArray: mainFoldersNameList, customFoldersArray: customFoldersNameList, labelsArray: labelsNameList, optionsArray: optionsNameList)
+        dataSource?.initWith(parent: self, tableView: inboxSideMenuTableView)
+        
+        dataSource?.setupData(mainFoldersArray: mainFoldersNameList, mainFoldersImageNameList: mainFoldersImageNameList, customFoldersArray: customFoldersNameList, labelsArray: labelsNameList, optionsArray: optionsNameList, optionsImageNameList: optionsImageNameList)
         
         self.navigationController?.navigationBar.isHidden = true
     }

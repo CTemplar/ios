@@ -137,6 +137,20 @@ let k_labelsIconImageName           = "labelsIcon"
 let k_darkFoldersIconImageName      = "darkFoldersIcon"
 let k_darkLabelsIconImageName       = "darkLabelsIcon"
 
+let k_darkAllMailsIconImageName     = "darkAllMails"
+let k_darkArchiveIconImageName      = "darkArchive"
+let k_darkDraftIconImageName        = "darkDraft"
+let k_darkInboxIconImageName        = "darkInbox"
+let k_darkSentIconImageName         = "darkSent"
+let k_darkSpamIconImageName         = "darkSpam"
+let k_darkStarIconImageName         = "darkStar"
+let k_darkTrashIconImageName        = "darkTrash"
+
+let k_darkContactIconImageName      = "darkSpam"
+let k_darkSettingsIconImageName     = "darkSent"
+let k_darkHelpconImageName          = "darkStar"
+let k_darkExitIconImageName         = "darkTrash"
+
 // fonts
 
 let k_latoRegularFontName = "Lato-Regular"
@@ -168,12 +182,15 @@ enum InboxSideMenuOptionsName: String {
     case inbox            = "Inbox"
     case draft            = "Draft"
     case sent             = "Sent"
-    case logout           = "Logout"
     case starred          = "Starred"
     case archive          = "Archive"
     case spam             = "Spam"
     case trash            = "Trash"
     case allMails         = "All Mails"
+    case contact          = "Contact"
+    case settings         = "Settings"
+    case help             = "Help"
+    case logout           = "Logout"
 }
 
 enum MessagesFoldersName: String {
