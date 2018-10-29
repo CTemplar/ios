@@ -23,9 +23,9 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hmp-lU-aYX">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                     <subviews>
-                        <view alpha="0.12" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rt4-pr-cdZ">
+                        <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rt4-pr-cdZ">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" red="0.090196078430000007" green="0.1960784314" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="6Js-Ei-U4D"/>
                             </constraints>
@@ -40,12 +40,12 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ML3-N0-Jcm">
                             <rect key="frame" x="44" y="15" width="311" height="20"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" red="0.090196078430000007" green="0.1960784314" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view alpha="0.11999999731779099" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nXh-H4-m5H">
+                        <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nXh-H4-m5H">
                             <rect key="frame" x="0.0" y="48" width="375" height="1"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" red="0.090196078430000007" green="0.1960784314" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="B5M-xF-rsx"/>
                             </constraints>
@@ -78,6 +78,7 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="bottomSeparatorView" destination="nXh-H4-m5H" id="cGo-2C-Bg7"/>
                 <outlet property="iconImageView" destination="ERa-CF-GuN" id="F1e-uD-ZOP"/>
                 <outlet property="titleLabel" destination="ML3-N0-Jcm" id="bc7-Q0-Ndj"/>
             </connections>

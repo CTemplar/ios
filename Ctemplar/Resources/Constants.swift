@@ -131,6 +131,9 @@ let k_secureOffImageName            = "SecureOff"
 let k_foldersIconImageName          = "foldersIcon"
 let k_labelsIconImageName           = "labelsIcon"
 
+let k_darkFoldersIconImageName      = "darkFoldersIcon"
+let k_darkLabelsIconImageName       = "darkLabelsIcon"
+
 // fonts
 
 let k_latoRegularFontName = "Lato-Regular"

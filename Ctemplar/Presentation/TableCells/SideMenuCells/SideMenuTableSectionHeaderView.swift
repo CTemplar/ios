@@ -13,15 +13,17 @@ class SideMenuTableSectionHeaderView: UITableViewHeaderFooterView {
 
     @IBOutlet weak var iconImageView     : UIImageView!
     @IBOutlet weak var titleLabel        : UILabel!
+    @IBOutlet weak var bottomSeparatorView      : UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
     
-    func setupHeader(iconName: String, title: String) {
+    func setupHeader(iconName: String, title: String, hideBottomLine: Bool) {
         
         self.iconImageView.image = UIImage(named: iconName)
         self.titleLabel.text = title
+        self.bottomSeparatorView.isHidden = hideBottomLine
     }
 }

@@ -54,7 +54,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         
         switch section {
         case SideMenuSectionIndex.mainFolders.rawValue:
-            return 0
+            return k_sideMenuSeparatorHeight
         case SideMenuSectionIndex.customFolders.rawValue:
             return k_sideMenuSectionHeaderHeight
         case SideMenuSectionIndex.labels.rawValue:
@@ -74,16 +74,16 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         
         switch section {
         case SideMenuSectionIndex.mainFolders.rawValue:
-            headerView.setupHeader(iconName: "", title: "")
+            headerView.setupHeader(iconName: "", title: "", hideBottomLine: false)
             break
         case SideMenuSectionIndex.customFolders.rawValue:
-            headerView.setupHeader(iconName: k_foldersIconImageName, title: "Manage Folders")
+            headerView.setupHeader(iconName: k_darkFoldersIconImageName, title: "Manage Folders", hideBottomLine: true)
             break
         case SideMenuSectionIndex.labels.rawValue:
-            headerView.setupHeader(iconName: k_labelsIconImageName, title: "Manage Labels")
+            headerView.setupHeader(iconName: k_darkLabelsIconImageName, title: "Manage Labels", hideBottomLine: false)
             break
         case SideMenuSectionIndex.options.rawValue:
-            headerView.setupHeader(iconName: "", title: "")
+            headerView.setupHeader(iconName: "", title: "", hideBottomLine: false)
             break
         default:
             print("unknown header section")
