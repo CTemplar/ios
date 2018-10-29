@@ -12,18 +12,25 @@ import SideMenu
 
 class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
-    var menuOptionsArray        : Array<String> = []
+    var mainFoldersArray        : Array<String> = []
+    var customFoldersArray      : Array<String> = []
+    var labelsArray             : Array<String> = []
+    var optionsArray            : Array<String> = []
+    
     var tableView               : UITableView!
     var parentViewController    : InboxSideMenuViewController?
     var formatterService        : FormatterService?
     
-    func initWith(parent: InboxSideMenuViewController, tableView: UITableView, array: Array<String>) {
+    func initWith(parent: InboxSideMenuViewController, tableView: UITableView, mainFoldersArray: Array<String>, customFoldersArray: Array<String>, labelsArray: Array<String>, optionsArray: Array<String>) {
         
         self.parentViewController = parent
         self.tableView = tableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.menuOptionsArray = array
+        self.mainFoldersArray = mainFoldersArray
+        self.customFoldersArray = customFoldersArray
+        self.labelsArray = labelsArray
+        self.optionsArray = optionsArray
         
         registerTableViewCell()
     }
@@ -35,21 +42,54 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         //self.tableView.register(UINib(nibName: k_InboxMessageTableViewCellXibName, bundle: nil), forCellReuseIdentifier: k_InboxMessageTableViewCellIdentifier)
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return SideMenuSectionIndex.sectionCount.rawValue
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return menuOptionsArray.count
+        switch section {
+        case SideMenuSectionIndex.mainFolders.rawValue:
+            return mainFoldersArray.count
+        case SideMenuSectionIndex.customFolders.rawValue:
+            return 0
+        case SideMenuSectionIndex.labels.rawValue:
+            return 0
+        case SideMenuSectionIndex.options.rawValue:
+            return self.optionsArray.count
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "sideMenuCellIdentifier")!
-        
-        let optionName = self.menuOptionsArray[indexPath.row]
+        var cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "sideMenuCellIdentifier")!
         
         cell.selectionStyle = .gray
         
-        cell.textLabel?.text = optionName
-        
+        switch indexPath.section {
+        case SideMenuSectionIndex.mainFolders.rawValue:
+            
+            cell = tableView.dequeueReusableCell(withIdentifier: "sideMenuCellIdentifier")!
+            
+            let folderName = self.mainFoldersArray[indexPath.row]
+            cell.textLabel?.text = folderName
+            
+            break
+        case SideMenuSectionIndex.customFolders.rawValue:
+            break
+        case SideMenuSectionIndex.labels.rawValue:
+            break
+        case SideMenuSectionIndex.options.rawValue:
+            let optionName = self.optionsArray[indexPath.row]
+            cell.textLabel?.text = optionName
+            
+            break
+        default:
+            print("unknown section")
+        }
         
         return cell
     }
@@ -58,8 +98,22 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let optionName = self.menuOptionsArray[indexPath.row]
-        self.parentViewController?.presenter?.interactor?.selectAction(optionName: optionName)
+        switch indexPath.section {
+            case SideMenuSectionIndex.mainFolders.rawValue:
+                let optionName = self.mainFoldersArray[indexPath.row]
+                self.parentViewController?.presenter?.interactor?.selectAction(optionName: optionName)
+            break
+        case SideMenuSectionIndex.customFolders.rawValue:
+            break
+        case SideMenuSectionIndex.labels.rawValue:
+            break
+        case SideMenuSectionIndex.options.rawValue:
+            let optionName = self.optionsArray[indexPath.row]
+            self.parentViewController?.presenter?.interactor?.selectAction(optionName: optionName)
+            break
+        default:
+            print("selected unknown section")
+        }
     }
     
     func reloadData() {

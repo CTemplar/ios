@@ -149,6 +149,8 @@ let k_firstCharsForHeader          = 50
 let k_tokenHoursExpiration         = 2
 let k_tokenMinutesExpiration       = 170
 
+let k_sideMenuSectionsCount        = 4
+
 
 enum InboxSideMenuOptionsName: String {
     
@@ -188,4 +190,13 @@ enum InboxFilterButtonsTag: Int {
     case starred          = 202
     case unread           = 203
     case withAttachment   = 204
+}
+
+enum SideMenuSectionIndex: Int {
+    
+    case mainFolders      = 0
+    case customFolders    = 1
+    case labels           = 2
+    case options          = 3
+    case sectionCount     = 4
 }
