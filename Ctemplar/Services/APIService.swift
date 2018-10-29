@@ -423,7 +423,7 @@ class APIService {
                 
                 if let token = self.getToken() {
                     
-                    //HUD.show(.progress) //crashed when method used in root view controller
+                    HUD.show(.progress) //crashed when method used in root view controller
                     
                     self.restAPIService?.mailboxesList(token: token) {(result) in
                         

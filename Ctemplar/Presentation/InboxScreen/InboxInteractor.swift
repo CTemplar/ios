@@ -24,6 +24,14 @@ class InboxInteractor {
            
             //let inboxMessages = filterInboxMessages(array: emailsArray)
             self.viewController?.dataSource?.messagesArray = emailsArray
+            
+            for message in emailsArray {
+                if let messageContent = message.content {
+                    let header = self.headerOfMessage(contet: messageContent)
+                    self.viewController?.dataSource?.messagesHeaderArray.append(header)
+                }
+            }            
+            
             self.viewController?.dataSource?.reloadData()
             readEmails = calculateReadEmails(array: emailsArray)
             
@@ -136,24 +144,28 @@ class InboxInteractor {
     func headerOfMessage(contet: String) -> String {
         
         var header : String = ""
-        var message = self.decryptMessage(contet: contet)
+        var message : String = ""
+        
+        message = self.decryptMessage(contet: contet)
 
         //message = message.html2String
         //print("format to String message: ", message)
         message = message.removeHTMLTag
-        print("withoutHtml message:", message)
+        //print("withoutHtml message:", message)
         
         if message.count > 0 {
             
             if message.count > k_firstCharsForHeader {
                 let index = message.index(message.startIndex, offsetBy: k_firstCharsForHeader)                
-                header = String(message.prefix(upTo: index))//.replacingOccurrences(of: "\n", with: "", options: String.CompareOptions.regularExpression)
+                header = String(message.prefix(upTo: index))
             } else {
                 header = message
             }
         }
+        
+        header = header.replacingOccurrences(of: "\\s", with: " ", options: String.CompareOptions.regularExpression)
                 
-        print("header:", header)
+        //print("header:", header)
         
         return header
     }

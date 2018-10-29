@@ -13,6 +13,7 @@ import MGSwipeTableCell
 class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate {
     
     var messagesArray           : Array<EmailMessage> = []
+    var messagesHeaderArray     : Array<String> = []
     var selectedMessagesIDArray : Array<Int> = []
     
     var tableView               : UITableView!
@@ -71,8 +72,9 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         
         let message = messagesArray[indexPath.row]
         let selected = isMessageSelected(message: message)
+        let header = messagesHeaderArray[indexPath.row]
         
-        cell.setupCellWithData(message: message, isSelectionMode: self.selectionMode, isSelected: selected, frameWidth: self.tableView.frame.width)
+        cell.setupCellWithData(message: message, header: header, isSelectionMode: self.selectionMode, isSelected: selected, frameWidth: self.tableView.frame.width)
         
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         
