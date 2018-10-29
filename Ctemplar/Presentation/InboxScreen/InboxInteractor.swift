@@ -25,6 +25,8 @@ class InboxInteractor {
             //let inboxMessages = filterInboxMessages(array: emailsArray)
             self.viewController?.dataSource?.messagesArray = emailsArray
             
+            self.viewController?.dataSource?.messagesHeaderArray.removeAll()
+            
             for message in emailsArray {
                 if let messageContent = message.content {
                     let header = self.headerOfMessage(contet: messageContent)

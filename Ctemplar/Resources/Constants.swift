@@ -153,8 +153,14 @@ let k_tokenMinutesExpiration       = 170
 enum InboxSideMenuOptionsName: String {
     
     case inbox            = "Inbox"
+    case draft            = "Draft"
     case sent             = "Sent"
     case logout           = "Logout"
+    case starred          = "Starred"
+    case archive          = "Archive"
+    case spam             = "Spam"
+    case trash            = "Trash"
+    case allMails         = "All Mails"
 }
 
 enum MessagesFoldersName: String {

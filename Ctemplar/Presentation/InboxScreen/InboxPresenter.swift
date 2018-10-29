@@ -107,6 +107,10 @@ class InboxPresenter {
         
         var emailsCountString : String = "emails"
         
+        if emailsCount == 1 {
+            emailsCountString = "email"
+        }
+        
         emailsCountString = emailsCount.description + " " + emailsCountString
         
         return emailsCountString

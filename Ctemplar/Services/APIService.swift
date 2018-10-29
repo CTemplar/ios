@@ -371,7 +371,11 @@ class APIService {
         var folderFilter = ""
         
         if folder.count > 0 {
-            folderFilter = "?folder=" + folder
+            if folder == MessagesFoldersName.starred.rawValue {
+                folderFilter = "?starred=1"
+            } else {
+                folderFilter = "?folder=" + folder
+            }
         }
 
         self.checkTokenExpiration(){ (complete) in

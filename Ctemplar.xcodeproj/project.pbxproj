@@ -222,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				8432070F21785E7500F18E5A /* InboxCells */,
+				8432B2FA2186DC1C006C901C /* SideMenuCells */,
 			);
 			path = TableCells;
 			sourceTree = "<group>";
@@ -233,6 +234,13 @@
 				8432071221785F8400F18E5A /* InboxMessageTableViewCell.xib */,
 			);
 			path = InboxCells;
+			sourceTree = "<group>";
+		};
+		8432B2FA2186DC1C006C901C /* SideMenuCells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SideMenuCells;
 			sourceTree = "<group>";
 		};
 		8433FF0D216201A300C57DC8 = {

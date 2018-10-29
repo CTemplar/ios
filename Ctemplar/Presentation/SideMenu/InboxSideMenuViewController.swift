@@ -18,7 +18,7 @@ class InboxSideMenuViewController: UIViewController {
     
     var currentParentViewController    : InboxViewController!
     
-    var optionsNameList: Array<String> = [InboxSideMenuOptionsName.inbox.rawValue, InboxSideMenuOptionsName.sent.rawValue,
+    var optionsNameList: Array<String> = [InboxSideMenuOptionsName.inbox.rawValue, InboxSideMenuOptionsName.draft.rawValue, InboxSideMenuOptionsName.sent.rawValue, InboxSideMenuOptionsName.starred.rawValue, InboxSideMenuOptionsName.archive.rawValue, InboxSideMenuOptionsName.spam.rawValue, InboxSideMenuOptionsName.trash.rawValue, InboxSideMenuOptionsName.allMails.rawValue, 
                                           InboxSideMenuOptionsName.logout.rawValue]
     
     @IBOutlet var inboxSideMenuTableView        : UITableView!
