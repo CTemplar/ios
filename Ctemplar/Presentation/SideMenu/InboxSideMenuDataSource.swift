@@ -40,11 +40,56 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     func registerTableViewCell() {
         
         //self.tableView.register(UINib(nibName: k_InboxMessageTableViewCellXibName, bundle: nil), forCellReuseIdentifier: k_InboxMessageTableViewCellIdentifier)
+        
+        let nib = UINib(nibName: k_SideMenuTableSectionHeaderViewXibName, bundle: nil)
+        self.tableView.register(nib, forHeaderFooterViewReuseIdentifier: k_SideMenuTableSectionHeaderViewIdentifier)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
-        return SideMenuSectionIndex.sectionCount.rawValue
+        return SideMenuSectionIndex.sectionsCount.rawValue
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        switch section {
+        case SideMenuSectionIndex.mainFolders.rawValue:
+            return 0
+        case SideMenuSectionIndex.customFolders.rawValue:
+            return k_sideMenuSectionHeaderHeight
+        case SideMenuSectionIndex.labels.rawValue:
+            return k_sideMenuSectionHeaderHeight
+        case SideMenuSectionIndex.options.rawValue:
+            return k_sideMenuSeparatorHeight
+        default:
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        // Dequeue with the reuse identifier
+        let header = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: k_SideMenuTableSectionHeaderViewIdentifier)
+        let headerView = header as! SideMenuTableSectionHeaderView
+        
+        switch section {
+        case SideMenuSectionIndex.mainFolders.rawValue:
+            headerView.setupHeader(iconName: "", title: "")
+            break
+        case SideMenuSectionIndex.customFolders.rawValue:
+            headerView.setupHeader(iconName: k_foldersIconImageName, title: "Manage Folders")
+            break
+        case SideMenuSectionIndex.labels.rawValue:
+            headerView.setupHeader(iconName: k_labelsIconImageName, title: "Manage Labels")
+            break
+        case SideMenuSectionIndex.options.rawValue:
+            headerView.setupHeader(iconName: "", title: "")
+            break
+        default:
+            print("unknown header section")
+        }
+        
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

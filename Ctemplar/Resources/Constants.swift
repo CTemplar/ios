@@ -23,7 +23,7 @@ let k_ResetPasswordViewControllerID         = "ResetPasswordViewController"
 let k_NewPasswordViewControllerID           = "NewPasswordViewController"
 let k_ForgorUsernameViewControllerID        = "ForgotUsernameViewController"
 let k_InboxNavigationControllerID           = "InboxNavigationController"
-let k_InboxSideMenuViewControllerID             = "InboxSideMenuViewController"
+let k_InboxSideMenuViewControllerID         = "InboxSideMenuViewController"
 let k_ViewInboxEmailViewControllerID        = "ViewInboxEmailViewController"
 let k_ComposeViewControllerID               = "ComposeViewController"
 let k_AboutAsViewControllerID               = "AboutAsViewController"
@@ -41,10 +41,12 @@ let k_ViewInboxEmailStoryboardName         = "ViewInboxEmail"
 
 let k_InboxMessageTableViewCellXibName     = "InboxMessageTableViewCell"
 let k_InboxFilterViewXibName               = "InboxFilter"
+let k_SideMenuTableSectionHeaderViewXibName               = "SideMenuTableSectionHeader"
 
 // cell identifier
 
-let k_InboxMessageTableViewCellIdentifier  = "inboxMessageTableViewCellIdentifier"
+let k_InboxMessageTableViewCellIdentifier       = "inboxMessageTableViewCellIdentifier"
+let k_SideMenuTableSectionHeaderViewIdentifier  = "sideMenuTableSectionHeaderViewIdentifier "
 
 // view controllers iPad storyboards name
 
@@ -126,6 +128,9 @@ let k_starOffImageName              = "StarOff"
 let k_secureOnImageName             = "SecureOn"
 let k_secureOffImageName            = "SecureOff"
 
+let k_foldersIconImageName          = "foldersIcon"
+let k_labelsIconImageName           = "labelsIcon"
+
 // fonts
 
 let k_latoRegularFontName = "Lato-Regular"
@@ -149,8 +154,8 @@ let k_firstCharsForHeader          = 50
 let k_tokenHoursExpiration         = 2
 let k_tokenMinutesExpiration       = 170
 
-let k_sideMenuSectionsCount        = 4
-
+let k_sideMenuSectionHeaderHeight  : CGFloat = 49
+let k_sideMenuSeparatorHeight      : CGFloat = 1
 
 enum InboxSideMenuOptionsName: String {
     
@@ -198,5 +203,5 @@ enum SideMenuSectionIndex: Int {
     case customFolders    = 1
     case labels           = 2
     case options          = 3
-    case sectionCount     = 4
+    case sectionsCount     = 4
 }
