@@ -18,6 +18,13 @@ class InboxInteractor {
     
     //MARK: - data
 
+    func updateMessages() {
+        
+        if self.checkStoredPGPKeys() {
+            self.messagesList(folder: (self.viewController?.currentFolderFilter)!)
+        }
+    }
+    
     func setInboxData(messages: EmailMessagesList) {
         
         var readEmails = 0
@@ -322,10 +329,7 @@ class InboxInteractor {
                 //print("value:", value)
                 print("marked as spam")
                 self.viewController?.presenter?.showUndoBar(text: "Undo mark as Spam")
-                
-                if (self.presenter?.interactor?.checkStoredPGPKeys())! {
-                    self.presenter?.loadMessages(folder: (self.viewController?.currentFolderFilter)!)
-                }
+                self.updateMessages()
                 
             case .failure(let error):
                 print("error:", error)
@@ -346,10 +350,7 @@ class InboxInteractor {
                 //print("value:", value)
                 print("marked as read/unread")
                 self.viewController?.presenter?.showUndoBar(text: "Undo mark as Read")
-                
-                if (self.presenter?.interactor?.checkStoredPGPKeys())! {
-                    self.presenter?.loadMessages(folder: (self.viewController?.currentFolderFilter)!)
-                }
+                self.updateMessages()
                 
             case .failure(let error):
                 print("error:", error)
@@ -374,10 +375,7 @@ class InboxInteractor {
                 //print("value:", value)
                 print("marked as trash")
                 self.viewController?.presenter?.showUndoBar(text: "Undo delete")
-                
-                if (self.presenter?.interactor?.checkStoredPGPKeys())! {
-                    self.presenter?.loadMessages(folder: (self.viewController?.currentFolderFilter)!)
-                }
+                self.updateMessages()
                 
             case .failure(let error):
                 print("error:", error)
