@@ -303,4 +303,77 @@ class InboxInteractor {
         self.updateMessagesHeader(emailsArray: withAttachmentMessagesArray)
         self.viewController?.dataSource?.reloadData()
     }
+    
+    //MARK: - Swipe Actions
+    
+    func markMessageAsSpam(message: EmailMessage) {
+        
+        var folder = message.folder
+        
+        if folder != MessagesFoldersName.spam.rawValue {
+            folder = MessagesFoldersName.spam.rawValue
+        }
+        
+        apiService?.updateMessages(messageID: (message.messsageID?.description)!, messagesIDIn: "", folder: folder!, starred: message.starred!, read: message.read!)  {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("value:", value)
+                
+                //let emailMessages = value as! EmailMessagesList
+                //self.setSideMenuData(messages: emailMessages)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
+    func markMessageAsRead(message: EmailMessage) {
+        
+        let read = !message.read!
+        
+        apiService?.updateMessages(messageID: (message.messsageID?.description)!, messagesIDIn: "", folder: message.folder!, starred: message.starred!, read: read)  {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("value:", value)
+                
+                //let emailMessages = value as! EmailMessagesList
+                //self.setSideMenuData(messages: emailMessages)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
+    func markMessageAsTrash(message: EmailMessage) {
+        
+        var folder = message.folder
+        
+        if folder != MessagesFoldersName.trash.rawValue {
+            folder = MessagesFoldersName.trash.rawValue
+        }
+        
+        apiService?.updateMessages(messageID: (message.messsageID?.description)!, messagesIDIn: "", folder: folder!, starred: message.starred!, read: message.read!)  {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("value:", value)
+                
+                //let emailMessages = value as! EmailMessagesList
+                //self.setSideMenuData(messages: emailMessages)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
 }

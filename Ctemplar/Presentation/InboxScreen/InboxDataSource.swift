@@ -92,13 +92,13 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
             let selected = isMessageSelected(message: message)
             
             if selected {
-                if let index = selectedMessagesIDArray.index(where: {$0 == message.resultID}) {
+                if let index = selectedMessagesIDArray.index(where: {$0 == message.messsageID}) {
                     print("deselected")
                    selectedMessagesIDArray.remove(at: index)
                 }
             } else {
                 print("selected")
-                selectedMessagesIDArray.append(message.resultID!)
+                selectedMessagesIDArray.append(message.messsageID!)
             }
             
             self.reloadData()
@@ -133,13 +133,19 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         case InboxCellButtonsIndex.trash.rawValue:
             print("trash tapped")
             self.parentViewController.presenter?.showUndoBar(text: "Undo delete")
+            let message = messagesArray[index]
+            self.parentViewController.presenter?.interactor?.markMessageAsTrash(message: message)
             break
         case InboxCellButtonsIndex.unread.rawValue:
             print("unread tapped")
+            let message = messagesArray[index]
+            self.parentViewController.presenter?.interactor?.markMessageAsRead(message: message)
             self.parentViewController.presenter?.showUndoBar(text: "Undo moving")
             break
         case InboxCellButtonsIndex.spam.rawValue:
             print("spam tapped")
+            let message = messagesArray[index]
+            self.parentViewController.presenter?.interactor?.markMessageAsSpam(message: message)
             self.parentViewController.presenter?.showUndoBar(text: "Undo mark as Spam")
             break
         default:
@@ -171,7 +177,7 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
     func isMessageSelected(message: EmailMessage) -> Bool {
         
         for resultID in selectedMessagesIDArray {
-            if resultID == message.resultID {
+            if resultID == message.messsageID {
                 return true
             }
         }
