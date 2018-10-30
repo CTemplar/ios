@@ -15,30 +15,24 @@ class InboxInteractor {
     var presenter       : InboxPresenter?
     var apiService      : APIService?
     var pgpService      : PGPService?
+    
+    //MARK: - data
 
     func setInboxData(messages: EmailMessagesList) {
         
         var readEmails = 0
+        var unreadEmails = 0
         
         if let emailsArray = messages.messagesList {
-           
-            //let inboxMessages = filterInboxMessages(array: emailsArray)
+
+            //self.viewController?.messagesList = emailsArray//
             self.viewController?.dataSource?.messagesArray = emailsArray
-            
-            self.viewController?.dataSource?.messagesHeaderArray.removeAll()
-            
-            for message in emailsArray {
-                if let messageContent = message.content {
-                    let header = self.headerOfMessage(contet: messageContent)
-                    self.viewController?.dataSource?.messagesHeaderArray.append(header)
-                }
-            }            
-            
+            self.updateMessagesHeader(emailsArray: emailsArray)
             self.viewController?.dataSource?.reloadData()
-            readEmails = calculateReadEmails(array: emailsArray)
             
-            var unreadEmails = 0
+            readEmails = calculateReadEmails(array: emailsArray)
             unreadEmails = emailsArray.count - readEmails
+            
             self.presenter?.setupUI(emailsCount: emailsArray.count, unreadEmails: unreadEmails)
         }
     }
@@ -80,6 +74,8 @@ class InboxInteractor {
         return readEmails
     }
     
+    //MARK: - API
+    
     func messagesList(folder: String) {
         
         apiService?.messagesList(folder: folder) {(result) in
@@ -90,6 +86,7 @@ class InboxInteractor {
                 //print("value:", value)
                 
                 let emailMessages = value as! EmailMessagesList
+                self.viewController?.currentMessagesList = emailMessages
                 self.setInboxData(messages: emailMessages)
                 
                 self.allMessagesList()
@@ -174,6 +171,8 @@ class InboxInteractor {
             }
         }
     }
+    
+    //MARK: - message headers
 
     func decryptMessage(contet: String) -> String {
         
@@ -215,6 +214,8 @@ class InboxInteractor {
         return header
     }
     
+    //MARK: - filters
+    
     func filterInboxMessages(array: Array<EmailMessage>, filter: String) -> Array<EmailMessage> {
         
         var inboxMessagesArray : Array<EmailMessage> = []
@@ -226,5 +227,80 @@ class InboxInteractor {
         }
         
         return inboxMessagesArray
+    }
+    
+    func updateMessagesHeader(emailsArray: Array<EmailMessage>) {
+        
+        self.viewController?.dataSource?.messagesHeaderArray.removeAll()
+        
+        for message in emailsArray {
+            if let messageContent = message.content {
+                let header = self.headerOfMessage(contet: messageContent)
+                self.viewController?.dataSource?.messagesHeaderArray.append(header)
+            }
+        }
+    }
+    
+    func clearFilters() {
+        
+        self.setInboxData(messages: (self.viewController?.currentMessagesList)!)
+    }
+    
+    func filterStarredMessages() {
+        
+        var starredMessagesArray : Array<EmailMessage> = []
+        let currentMessagesArray : Array<EmailMessage> = (self.viewController?.currentMessagesList?.messagesList)!
+        
+        for message in currentMessagesArray {
+            
+            if let starred = message.starred {
+                if starred {
+                    starredMessagesArray.append(message)
+                }
+            }
+        }
+        
+        self.viewController?.dataSource?.messagesArray = starredMessagesArray
+        self.updateMessagesHeader(emailsArray: starredMessagesArray)
+        self.viewController?.dataSource?.reloadData()
+    }
+    
+    func filterUnreadMessages() {
+        
+        var unredMessagesArray : Array<EmailMessage> = []
+        let currentMessagesArray : Array<EmailMessage> = (self.viewController?.currentMessagesList?.messagesList)!
+        //(self.viewController?.dataSource?.messagesArray)!
+        
+        for message in currentMessagesArray {
+            
+            if let read = message.read {
+                if !read {
+                    unredMessagesArray.append(message)
+                }
+            }
+        }
+        
+        self.viewController?.dataSource?.messagesArray = unredMessagesArray
+        self.updateMessagesHeader(emailsArray: unredMessagesArray)
+        self.viewController?.dataSource?.reloadData()
+    }
+    
+    func filterWithAttachmentMessages() {
+        
+        var withAttachmentMessagesArray : Array<EmailMessage> = []
+        let currentMessagesArray : Array<EmailMessage> = (self.viewController?.currentMessagesList?.messagesList)!
+        
+        for message in currentMessagesArray {
+            
+            if let attachments = message.attachments {
+                if attachments.count > 0 {
+                    withAttachmentMessagesArray.append(message)
+                }
+            }
+        }
+        
+        self.viewController?.dataSource?.messagesArray = withAttachmentMessagesArray
+        self.updateMessagesHeader(emailsArray: withAttachmentMessagesArray)
+        self.viewController?.dataSource?.reloadData()
     }
 }

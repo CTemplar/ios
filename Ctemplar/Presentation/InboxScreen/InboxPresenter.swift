@@ -198,19 +198,19 @@ class InboxPresenter {
         switch sender.tag {
         case InboxFilterButtonsTag.all.rawValue:
             print("filter: all")
-            
+            self.interactor?.clearFilters()
             break
         case InboxFilterButtonsTag.starred.rawValue:
             print("filter: starred")
-            
+            self.interactor?.filterStarredMessages()
             break
         case InboxFilterButtonsTag.unread.rawValue:
             print("filter: unread")
-            
+            self.interactor?.filterUnreadMessages()
             break
         case InboxFilterButtonsTag.withAttachment.rawValue:
             print("filter: withAttachment")
-            
+            self.interactor?.filterWithAttachmentMessages()
             break
         default:
             print("filter: default")
