@@ -40,6 +40,9 @@ class RestAPIService {
         case resetPasswordCode = "code"
         case token = "token"
         case filter = "id__in"
+        case folder = "folder"
+        case starred = "starred"
+        case read = "read"
     }
         
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -249,6 +252,44 @@ class RestAPIService {
                 completionHandler(APIResult.failure(error))
             }
         }
+    }
+    
+    func updateMessages(token: String, messageID: String, messagesIDIn: String, folder: String, starred: Bool, read: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.folder.rawValue: folder,
+            JSONKey.starred.rawValue: starred,
+            JSONKey.read.rawValue: read
+        ]
+        /*
+        let parameters: Parameters = [
+            JSONKey.folder.rawValue: folder,
+            JSONKey.starred.rawValue: "1",
+            JSONKey.read.rawValue: "0"
+        ]*/
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messageID
+        
+        print("updateMessages parameters:", parameters)
+        print("updateMessages url:", url)
+        
+        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+            
+            print("updateMessages responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+        
     }
     
     func mailboxesList(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
