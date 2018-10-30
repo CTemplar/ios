@@ -196,8 +196,8 @@ enum InboxSideMenuOptionsName: String {
 enum MessagesFoldersName: String, CaseIterable {
     
     case inbox            = "inbox"
-    case sent             = "sent"
     case draft            = "draft"
+    case sent             = "sent"    
     //case outbox           = "outbox"
     case starred          = "starred"
     case archive          = "archive"

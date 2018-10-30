@@ -632,10 +632,10 @@ class APIService {
                 //do nothing
                 break
             default:
-                print("APIResponce key:", dictionary.key, "value:", dictionary.value)
-                if let errorMessage = extractErrorTextFrom(value: dictionary.value) {
-                    message = dictionary.key + ": " + errorMessage
-                }
+                print("Default case APIResponce key:", dictionary.key, "value:", dictionary.value)
+               // if let errorMessage = extractErrorTextFrom(value: dictionary.value) {
+               //     message = dictionary.key + ": " + errorMessage
+               // }
             }
         }
         

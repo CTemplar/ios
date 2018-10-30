@@ -319,10 +319,13 @@ class InboxInteractor {
             switch(result) {
                 
             case .success(let value):
-                print("value:", value)
+                //print("value:", value)
+                print("marked as spam")
+                self.viewController?.presenter?.showUndoBar(text: "Undo mark as Spam")
                 
-                //let emailMessages = value as! EmailMessagesList
-                //self.setSideMenuData(messages: emailMessages)
+                if (self.presenter?.interactor?.checkStoredPGPKeys())! {
+                    self.presenter?.loadMessages(folder: (self.viewController?.currentFolderFilter)!)
+                }
                 
             case .failure(let error):
                 print("error:", error)
@@ -340,10 +343,13 @@ class InboxInteractor {
             switch(result) {
                 
             case .success(let value):
-                print("value:", value)
+                //print("value:", value)
+                print("marked as read/unread")
+                self.viewController?.presenter?.showUndoBar(text: "Undo mark as Read")
                 
-                //let emailMessages = value as! EmailMessagesList
-                //self.setSideMenuData(messages: emailMessages)
+                if (self.presenter?.interactor?.checkStoredPGPKeys())! {
+                    self.presenter?.loadMessages(folder: (self.viewController?.currentFolderFilter)!)
+                }
                 
             case .failure(let error):
                 print("error:", error)
@@ -365,10 +371,13 @@ class InboxInteractor {
             switch(result) {
                 
             case .success(let value):
-                print("value:", value)
+                //print("value:", value)
+                print("marked as trash")
+                self.viewController?.presenter?.showUndoBar(text: "Undo delete")
                 
-                //let emailMessages = value as! EmailMessagesList
-                //self.setSideMenuData(messages: emailMessages)
+                if (self.presenter?.interactor?.checkStoredPGPKeys())! {
+                    self.presenter?.loadMessages(folder: (self.viewController?.currentFolderFilter)!)
+                }
                 
             case .failure(let error):
                 print("error:", error)

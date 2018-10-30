@@ -273,7 +273,7 @@ class RestAPIService {
             JSONKey.read.rawValue: "0"
         ]*/
         
-        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messageID
+        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messageID + "/"
         
         print("updateMessages parameters:", parameters)
         print("updateMessages url:", url)

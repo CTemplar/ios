@@ -129,24 +129,26 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
     
     func swipeTableCell(_ cell: MGSwipeTableCell, tappedButtonAt index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
         
+        guard let indexPath = tableView.indexPath(for: cell) else { return true }
+        
         switch index {
         case InboxCellButtonsIndex.trash.rawValue:
             print("trash tapped")
-            self.parentViewController.presenter?.showUndoBar(text: "Undo delete")
-            let message = messagesArray[index]
+            let message = messagesArray[indexPath.row]
             self.parentViewController.presenter?.interactor?.markMessageAsTrash(message: message)
+            //self.parentViewController.presenter?.showUndoBar(text: "Undo delete")
             break
         case InboxCellButtonsIndex.unread.rawValue:
             print("unread tapped")
-            let message = messagesArray[index]
+            let message = messagesArray[indexPath.row]
             self.parentViewController.presenter?.interactor?.markMessageAsRead(message: message)
-            self.parentViewController.presenter?.showUndoBar(text: "Undo moving")
+            //self.parentViewController.presenter?.showUndoBar(text: "Undo mark as Read")
             break
         case InboxCellButtonsIndex.spam.rawValue:
             print("spam tapped")
-            let message = messagesArray[index]
+            let message = messagesArray[indexPath.row]
             self.parentViewController.presenter?.interactor?.markMessageAsSpam(message: message)
-            self.parentViewController.presenter?.showUndoBar(text: "Undo mark as Spam")
+            //self.parentViewController.presenter?.showUndoBar(text: "Undo mark as Spam")
             break
         default:
             print("default")
