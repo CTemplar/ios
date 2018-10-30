@@ -422,6 +422,18 @@ class APIService {
     
     func updateMessages(messageID: String, messagesIDIn: String, folder: String, starred: Bool, read: Bool,completionHandler: @escaping (APIResult<Any>) -> Void) {
         
+        var messageIDParameter = ""
+        
+        if messageID.count > 0 {
+            messageIDParameter = messageID + "/"
+        }
+    
+        var messagesIDInParameter = ""
+        
+        if messagesIDIn.count > 0 {
+            messagesIDInParameter = "?id__in=" + messagesIDIn
+        }
+        
         self.checkTokenExpiration(){ (complete) in
             if complete {
                 
@@ -429,13 +441,13 @@ class APIService {
                     
                     HUD.show(.progress)
                     
-                    self.restAPIService?.updateMessages(token: token, messageID: messageID, messagesIDIn: messagesIDIn, folder: folder, starred: starred, read: read) {(result) in
+                    self.restAPIService?.updateMessages(token: token, messageID: messageIDParameter, messagesIDIn: messagesIDInParameter, folder: folder, starred: starred, read: read) {(result) in
                         
                         switch(result) {
                             
                         case .success(let value):
                             
-                           // print("messagesList success:", value)
+                            print("messagesList success:", value)
                             
                             if let response = value as? Dictionary<String, Any> {
                                 
@@ -448,8 +460,9 @@ class APIService {
                                     completionHandler(APIResult.success(value))
                                 }
                             } else {
-                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
-                                completionHandler(APIResult.failure(error))
+                               // let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                               // completionHandler(APIResult.failure(error))
+                                completionHandler(APIResult.success(value))
                             }
                             
                         case .failure(let error):

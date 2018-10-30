@@ -99,6 +99,7 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
             } else {
                 print("selected")
                 selectedMessagesIDArray.append(message.messsageID!)
+                self.parentViewController.appliedActionMessage = message
             }
             
             self.reloadData()

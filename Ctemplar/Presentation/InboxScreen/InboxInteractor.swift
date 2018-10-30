@@ -403,4 +403,68 @@ class InboxInteractor {
         }
         
     }
+    
+    //MARK: - Selection Bar Actions
+    
+    func markMessagesListAsRead(selectedMessagesIdArray: Array<Int>, lastSelectedMessage: EmailMessage) {
+        
+        let read = !lastSelectedMessage.read!
+        
+        var messagesIDList : String = ""
+        
+        for message in selectedMessagesIdArray {
+            messagesIDList = messagesIDList + message.description + ","
+        }
+        
+        messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex)) //remove last ","
+        
+        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: lastSelectedMessage.folder!, starred: lastSelectedMessage.starred!, read: read)  {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                //print("value:", value)
+                print("marked list as read/unread")
+                //self.viewController?.presenter?.showUndoBar(text: "Undo mark as Read")
+                self.updateMessages()
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
+    func markMessagesListAsTrash(selectedMessagesIdArray: Array<Int>, lastSelectedMessage: EmailMessage) {
+        
+        var folder = lastSelectedMessage.folder
+        
+        if folder != MessagesFoldersName.trash.rawValue {
+            folder = MessagesFoldersName.trash.rawValue
+        }
+        
+        var messagesIDList : String = ""
+        
+        for message in selectedMessagesIdArray {
+            messagesIDList = messagesIDList + message.description + ","
+        }
+        
+        messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex)) //remove last ","
+        
+        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: folder!, starred: lastSelectedMessage.starred!, read: lastSelectedMessage.read!)  {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                //print("value:", value)
+                print("marked list as read/unread")
+                //self.viewController?.presenter?.showUndoBar(text: "Undo mark as Read")
+                self.updateMessages()
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
 }

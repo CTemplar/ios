@@ -39,7 +39,7 @@ class RestAPIService {
         case paymentType = "payment_type"
         case resetPasswordCode = "code"
         case token = "token"
-        case filter = "id__in"
+        case idIn = "id__in"
         case folder = "folder"
         case starred = "starred"
         case read = "read"
@@ -273,7 +273,7 @@ class RestAPIService {
             JSONKey.read.rawValue: "0"
         ]*/
         
-        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messageID + "/"
+        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messageID + messagesIDIn
         
         print("updateMessages parameters:", parameters)
         print("updateMessages url:", url)

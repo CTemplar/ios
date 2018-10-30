@@ -101,7 +101,14 @@ class InboxViewController: UIViewController {
     
     @IBAction func unreadButtonPressed(_ sender: AnyObject) {
         
-        self.presenter?.showUndoBar(text: "Undo mark as Read")
+        if appliedActionMessage != nil {
+            if (self.dataSource?.selectedMessagesIDArray.count)! > 0 {
+                self.presenter?.interactor?.markMessagesListAsRead(selectedMessagesIdArray: (self.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: appliedActionMessage!)
+            } else {
+                print("messages not selected!!!")
+            }
+        }
+        //self.presenter?.showUndoBar(text: "Undo mark as Read")
     }
     
     @IBAction func moveButtonPressed(_ sender: AnyObject) {
@@ -111,7 +118,15 @@ class InboxViewController: UIViewController {
     
     @IBAction func garbageButtonPressed(_ sender: AnyObject) {
         
-        self.presenter?.showUndoBar(text: "Undo delete")
+        if appliedActionMessage != nil {
+            if (self.dataSource?.selectedMessagesIDArray.count)! > 0 {
+                self.presenter?.interactor?.markMessagesListAsTrash(selectedMessagesIdArray: (self.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: appliedActionMessage!)
+            } else {
+                print("messages not selected!!!")
+            }
+        }
+        
+        //self.presenter?.showUndoBar(text: "Undo delete")
     }
     
     @IBAction func moreButtonPressed(_ sender: AnyObject) {
