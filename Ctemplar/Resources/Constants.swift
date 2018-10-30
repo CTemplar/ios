@@ -177,6 +177,8 @@ let k_tokenMinutesExpiration       = 170
 let k_sideMenuSectionHeaderHeight  : CGFloat = 49
 let k_sideMenuSeparatorHeight      : CGFloat = 1
 
+let k_undoActionBarShowingSecs     = 5.0
+
 enum InboxSideMenuOptionsName: String {
     
     case inbox            = "Inbox"

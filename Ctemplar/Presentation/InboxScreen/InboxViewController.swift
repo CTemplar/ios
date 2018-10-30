@@ -25,6 +25,8 @@ class InboxViewController: UIViewController {
     var currentFolder       : String = InboxSideMenuOptionsName.inbox.rawValue
     var currentFolderFilter : String = MessagesFoldersName.inbox.rawValue
     
+    var appliedActionMessage : EmailMessage?
+    
     var mainFoldersUnreadMessagesCount: Array<Int> = []
     
     @IBOutlet var inboxTableView        : UITableView!
@@ -119,6 +121,9 @@ class InboxViewController: UIViewController {
     
     @IBAction func undoButtonPressed(_ sender: AnyObject) {
         
+        if appliedActionMessage != nil {
+            self.presenter?.interactor?.undoLastAction(message: appliedActionMessage!)
+        }        
     }
     
     //MARK: - notification

@@ -131,24 +131,21 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         
         guard let indexPath = tableView.indexPath(for: cell) else { return true }
         
+        let message = messagesArray[indexPath.row]
+        self.parentViewController.appliedActionMessage = message
+        
         switch index {
         case InboxCellButtonsIndex.trash.rawValue:
             print("trash tapped")
-            let message = messagesArray[indexPath.row]
             self.parentViewController.presenter?.interactor?.markMessageAsTrash(message: message)
-            //self.parentViewController.presenter?.showUndoBar(text: "Undo delete")
             break
         case InboxCellButtonsIndex.unread.rawValue:
             print("unread tapped")
-            let message = messagesArray[indexPath.row]
             self.parentViewController.presenter?.interactor?.markMessageAsRead(message: message)
-            //self.parentViewController.presenter?.showUndoBar(text: "Undo mark as Read")
             break
         case InboxCellButtonsIndex.spam.rawValue:
             print("spam tapped")
-            let message = messagesArray[indexPath.row]
-            self.parentViewController.presenter?.interactor?.markMessageAsSpam(message: message)
-            //self.parentViewController.presenter?.showUndoBar(text: "Undo mark as Spam")
+            self.parentViewController.presenter?.interactor?.markMessageAsSpam(message: message)            
             break
         default:
             print("default")

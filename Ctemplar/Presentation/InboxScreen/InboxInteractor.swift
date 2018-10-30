@@ -383,4 +383,24 @@ class InboxInteractor {
             }
         }
     }
+    
+    func undoLastAction(message: EmailMessage) {
+        
+        apiService?.updateMessages(messageID: (message.messsageID?.description)!, messagesIDIn: "", folder: message.folder!, starred: message.starred!, read: message.read!)  {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                //print("value:", value)
+                print("undo last action")
+                self.viewController?.undoBar.isHidden = true
+                self.updateMessages()
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+        
+    }
 }

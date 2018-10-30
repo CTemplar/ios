@@ -224,12 +224,12 @@ class InboxPresenter {
         self.viewController?.undoBar.isHidden = false
         self.viewController?.undoBar.alpha = 1.0
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
-            self.viewController?.undoBar.isHidden = true
-        })
+        let duration = k_undoActionBarShowingSecs
         
-        UIView.animate(withDuration: 5.0, animations: {
-            self.viewController?.undoBar.alpha = 0.0
+        UIView.animate(withDuration: duration, delay: 0.0, options: .allowUserInteraction, animations: {
+            self.viewController?.undoBar.alpha = 0.1
+        }, completion: { _ in
+            self.viewController?.undoBar.isHidden = true
         })
     }
 }
