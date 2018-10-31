@@ -2,7 +2,7 @@
 //  InboxFilterView.swift
 //  Ctemplar
 //
-//  Created by Tatarinov Dmitry on 31.10.2018.
+//  Created by Tatarinov Dmitry on 25.10.2018.
 //  Copyright © 2018 ComeOnSoftware. All rights reserved.
 //
 
@@ -36,11 +36,11 @@ class InboxFilterView: UIView {
     }
     
     func setup() {
-        /*
+        
         let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
         self.freeSpaceView.addGestureRecognizer(freeSpaceViewGesture)
         let barSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
-        self.barSpaceView.addGestureRecognizer(barSpaceViewGesture)*/
+        self.barSpaceView.addGestureRecognizer(barSpaceViewGesture)
     }
     
     //MARK: - IBActions

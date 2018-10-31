@@ -151,6 +151,9 @@ let k_darkSettingsIconImageName     = "darkSent"
 let k_darkHelpconImageName          = "darkStar"
 let k_darkExitIconImageName         = "darkTrash"
 
+let k_darkCrossIconImageName        = "darkCross"
+let k_redCheckIconImageName         = "redCheck"
+
 // fonts
 
 let k_latoRegularFontName = "Lato-Regular"
