@@ -23,6 +23,8 @@
 		8432B302218709F5006C901C /* SideMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8432B301218709F5006C901C /* SideMenuTableViewCell.xib */; };
 		8433A53A218974B5008E1C85 /* InboxFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433A539218974B5008E1C85 /* InboxFilterView.swift */; };
 		8433A53C21897595008E1C85 /* InboxFilter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8433A53B21897595008E1C85 /* InboxFilter.xib */; };
+		8433A53F2189DD33008E1C85 /* MoveToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433A53E2189DD33008E1C85 /* MoveToViewController.swift */; };
+		8433A5412189DE17008E1C85 /* MoveTo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433A5402189DE17008E1C85 /* MoveTo.storyboard */; };
 		8433FF1A216201A300C57DC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF19216201A300C57DC8 /* AppDelegate.swift */; };
 		8433FF1C216201A300C57DC8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF1B216201A300C57DC8 /* MainViewController.swift */; };
 		8433FF1F216201A300C57DC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF1D216201A300C57DC8 /* Main.storyboard */; };
@@ -112,6 +114,8 @@
 		8432B301218709F5006C901C /* SideMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuTableViewCell.xib; sourceTree = "<group>"; };
 		8433A539218974B5008E1C85 /* InboxFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxFilterView.swift; sourceTree = "<group>"; };
 		8433A53B21897595008E1C85 /* InboxFilter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InboxFilter.xib; sourceTree = "<group>"; };
+		8433A53E2189DD33008E1C85 /* MoveToViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToViewController.swift; sourceTree = "<group>"; };
+		8433A5402189DE17008E1C85 /* MoveTo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MoveTo.storyboard; sourceTree = "<group>"; };
 		8433FF16216201A300C57DC8 /* Ctemplar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ctemplar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8433FF19216201A300C57DC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8433FF1B216201A300C57DC8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -257,6 +261,15 @@
 			path = SideMenuCells;
 			sourceTree = "<group>";
 		};
+		8433A53D2189DCB4008E1C85 /* MoveToViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8433A53E2189DD33008E1C85 /* MoveToViewController.swift */,
+				8433A5402189DE17008E1C85 /* MoveTo.storyboard */,
+			);
+			path = MoveToViewController;
+			sourceTree = "<group>";
+		};
 		8433FF0D216201A300C57DC8 = {
 			isa = PBXGroup;
 			children = (
@@ -364,6 +377,7 @@
 		84356857216F2702002101D3 /* InboxScreen */ = {
 			isa = PBXGroup;
 			children = (
+				8433A53D2189DCB4008E1C85 /* MoveToViewController */,
 				84F348512181B1AB00F00E37 /* FilterView */,
 				84356858216F2736002101D3 /* InboxNavigationController.swift */,
 				8435685C216F2DB3002101D3 /* InboxViewController.swift */,
@@ -601,6 +615,7 @@
 				845E64432170BD21008612FE /* AboutAs.storyboard in Resources */,
 				845E64492170CAF2008612FE /* Roboto-Bold.ttf in Resources */,
 				843FBF17216E3D2400148FC1 /* Login-iPad.storyboard in Resources */,
+				8433A5412189DE17008E1C85 /* MoveTo.storyboard in Resources */,
 				843710412174661000DAE4BA /* ForgotPassword.storyboard in Resources */,
 				845E643B21709330008612FE /* InboxSideMenu.storyboard in Resources */,
 				8441099221776B5100F0BE18 /* Lato-Bold.ttf in Resources */,
@@ -742,6 +757,7 @@
 				8432B2FC2186F39F006C901C /* SideMenuTableSectionHeaderView.swift in Sources */,
 				8435685F216F2DCD002101D3 /* InboxDataSource.swift in Sources */,
 				845E64462170C5A4008612FE /* AboutAsViewController.swift in Sources */,
+				8433A53F2189DD33008E1C85 /* MoveToViewController.swift in Sources */,
 				84F348582181F4E300F00E37 /* BlurEffect.swift in Sources */,
 				84A62E4B2175C3CF009C38E5 /* NewPasswordViewController.swift in Sources */,
 				8437103D217465A700DAE4BA /* ForgotPasswordNavigationController.swift in Sources */,

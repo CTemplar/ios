@@ -139,7 +139,7 @@ class InboxPresenter {
         if self.viewController?.dataSource?.selectionMode == true {
             disableSelectionMode()
         } else {
-            
+            self.viewController?.router?.showMoveToViewController()//temp
         }
     }
     

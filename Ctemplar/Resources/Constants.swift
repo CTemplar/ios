@@ -26,6 +26,7 @@ let k_InboxNavigationControllerID           = "InboxNavigationController"
 let k_InboxSideMenuViewControllerID         = "InboxSideMenuViewController"
 let k_ViewInboxEmailViewControllerID        = "ViewInboxEmailViewController"
 let k_ComposeViewControllerID               = "ComposeViewController"
+let k_MoveToViewControllerID                = "MoveToViewController"
 let k_AboutAsViewControllerID               = "AboutAsViewController"
 
 // view controllers storyboards name
@@ -37,6 +38,7 @@ let k_InboxStoryboardName                  = "Inbox"
 let k_InboxSideMenuStoryboardName          = "InboxSideMenu"
 let k_ComposeStoryboardName                = "Compose"
 let k_AboutAsStoryboardName                = "AboutAs"
+let k_MoveToStoryboardName                 = "MoveTo"
 let k_ViewInboxEmailStoryboardName         = "ViewInboxEmail"
 
 let k_InboxMessageTableViewCellXibName     = "InboxMessageTableViewCell"
