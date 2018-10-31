@@ -172,9 +172,9 @@ class InboxPresenter {
     func initFilterView() {
         
         self.viewController?.inboxFilterView = Bundle.main.loadNibNamed(k_InboxFilterViewXibName, owner: nil, options: nil)?.first as? InboxFilterView
-        self.viewController?.inboxFilterView?.frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height - 0.0)
+        self.viewController?.inboxFilterView?.frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
         self.viewController?.inboxFilterView?.delegate = self.viewController
-        self.viewController?.inboxFilterView?.setup()
+        self.viewController?.inboxFilterView?.setup(appliedFilters: (self.viewController?.appliedFilters)!)
         self.viewController?.navigationController!.view.addSubview((self.viewController?.inboxFilterView)!)
         
         self.viewController?.inboxFilterView?.isHidden = true
@@ -196,21 +196,14 @@ class InboxPresenter {
     func applyFilterAction(_ sender: AnyObject) {
         
         switch sender.tag {
-        case InboxFilterButtonsTag.all.rawValue:
-            print("filter: all")
-            self.interactor?.clearFilters()
+            
+        case InboxFilterViewButtonsTag.cancelButton.rawValue:
+            print("cancel filters")
+            
             break
-        case InboxFilterButtonsTag.starred.rawValue:
-            print("filter: starred")
-            self.interactor?.filterStarredMessages()
-            break
-        case InboxFilterButtonsTag.unread.rawValue:
-            print("filter: unread")
-            self.interactor?.filterUnreadMessages()
-            break
-        case InboxFilterButtonsTag.withAttachment.rawValue:
-            print("filter: withAttachment")
-            self.interactor?.filterWithAttachmentMessages()
+        case InboxFilterViewButtonsTag.applyButton.rawValue:
+            print("apply filters")
+            self.interactor?.applyFilters()
             break
         default:
             print("filter: default")

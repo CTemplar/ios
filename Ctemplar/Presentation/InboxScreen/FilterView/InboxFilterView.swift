@@ -10,15 +10,28 @@ import Foundation
 import UIKit
 
 protocol InboxFilterDelegate {
-    func applyAction(_ sender: AnyObject)
+    func applyAction(_ sender: AnyObject, appliedFilters: Array<Bool>)
 }
 
 class InboxFilterView: UIView {
     
     var delegate    : InboxFilterDelegate?
     
-    @IBOutlet var freeSpaceView    : UIView!
-    @IBOutlet var barSpaceView     : UIView!
+    @IBOutlet var closeButton           : UIButton!
+    @IBOutlet var clearAllButton        : UIButton!
+    
+    @IBOutlet var starredFilterButton   : UIButton!
+    @IBOutlet var unreadFilterButton    : UIButton!
+    @IBOutlet var withAttachmentButton  : UIButton!
+    
+    @IBOutlet var cancelButton          : UIButton!
+    @IBOutlet var applyButton           : UIButton!
+    
+    @IBOutlet var starredFilterCheckImage    : UIImageView!
+    @IBOutlet var unreadFilterCheckImage     : UIImageView!
+    @IBOutlet var withAttachmentCheckImage   : UIImageView!
+
+    var appliedFilters   : Array<Bool> = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,24 +45,57 @@ class InboxFilterView: UIView {
     
     private func commonInit() {
         
-        self.isUserInteractionEnabled = true
     }
     
-    func setup() {
-        /*
-        let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
-        self.freeSpaceView.addGestureRecognizer(freeSpaceViewGesture)
-        let barSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
-        self.barSpaceView.addGestureRecognizer(barSpaceViewGesture)*/
+    func setup(appliedFilters: Array<Bool>) {
+        
+        self.appliedFilters = appliedFilters
+        
+        for (index, imageViewTag) in InboxFilterImagesTag.allCases.enumerated() {
+            
+            let filterApplied = self.appliedFilters[index]
+            
+            if let filterImageCheck = self.viewWithTag(imageViewTag.rawValue) as? UIImageView {
+                filterImageCheck.isHidden = !filterApplied
+            }
+        }
+    }
+    
+    func localApplyFilter(_ sender: AnyObject) {
+        
+        if sender.tag == InboxFilterViewButtonsTag.clearAllButton.rawValue {
+            
+            self.appliedFilters = [false, false, false]
+            self.setup(appliedFilters: self.appliedFilters)
+            return
+        }
+        
+        for (index, buttonTag) in InboxFilterButtonsTag.allCases.enumerated() {
+            
+            if sender.tag == buttonTag.rawValue {
+                
+                let filterApplied = self.appliedFilters[index]
+                self.appliedFilters[index] = !filterApplied
+                self.setup(appliedFilters: self.appliedFilters)
+            }
+        }    
     }
     
     //MARK: - IBActions
     
-    @IBAction func tappedAction(_ sender: AnyObject) {
-        delegate?.applyAction(sender)
+    @IBAction func filterTappedAction(_ sender: AnyObject) {
+        self.localApplyFilter(sender)
     }
     
-    @objc func tappedViewAction(sender : UITapGestureRecognizer) {
-        delegate?.applyAction(sender)
+    @IBAction func clearFilterTappedAction(_ sender: AnyObject) {
+        self.localApplyFilter(sender)
+    }
+    
+    @IBAction func applyButtonPressed(_ sender: AnyObject) {    
+        delegate?.applyAction(sender, appliedFilters: self.appliedFilters)
+    }
+    
+    @IBAction func cancelButtonPressed(_ sender: AnyObject) {
+        delegate?.applyAction(sender, appliedFilters: self.appliedFilters)
     }
 }

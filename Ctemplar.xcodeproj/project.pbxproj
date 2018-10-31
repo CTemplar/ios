@@ -514,9 +514,9 @@
 		84F348512181B1AB00F00E37 /* FilterView */ = {
 			isa = PBXGroup;
 			children = (
-				84F348532181B20C00F00E37 /* InboxFilterViewOld.swift */,
 				8433A539218974B5008E1C85 /* InboxFilterView.swift */,
 				8433A53B21897595008E1C85 /* InboxFilter.xib */,
+				84F348532181B20C00F00E37 /* InboxFilterViewOld.swift */,
 				84F348552181B21C00F00E37 /* InboxFilterOld.xib */,
 			);
 			path = FilterView;

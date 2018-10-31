@@ -218,12 +218,26 @@ enum InboxCellButtonsIndex: Int {
     case spam            = 2
 }
 
-enum InboxFilterButtonsTag: Int {
+enum InboxFilterButtonsTag: Int, CaseIterable {
     
-    case all              = 201
+    //case all              = 201
     case starred          = 202
     case unread           = 203
     case withAttachment   = 204
+}
+
+enum InboxFilterImagesTag: Int, CaseIterable {
+    
+    case starred          = 301
+    case unread           = 302
+    case withAttachment   = 303
+}
+
+enum InboxFilterViewButtonsTag: Int {
+    
+    case clearAllButton   = 205
+    case cancelButton     = 206
+    case applyButton      = 207
 }
 
 enum SideMenuSectionIndex: Int {

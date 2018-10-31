@@ -252,15 +252,50 @@ class InboxInteractor {
     
     func clearFilters() {
         
-        self.setInboxData(messages: (self.viewController?.currentMessagesList)!)
+        self.viewController?.appliedFilters = [false, false, false]
+        self.viewController?.inboxFilterView?.setup(appliedFilters: (self.viewController?.appliedFilters)!)
     }
     
-    func filterStarredMessages() {
+    func applyFilters() {
         
+        var filteredMessagesArray : Array<EmailMessage> = (self.viewController?.currentMessagesList?.messagesList)!
+        
+        for (index, filterApplied) in (self.viewController?.appliedFilters)!.enumerated() {
+                 
+            switch index + 202 {
+            case InboxFilterButtonsTag.starred.rawValue:
+                print("starred filtered")
+                if filterApplied == true {
+                    filteredMessagesArray = self.filterStarredMessages(messagesArray: filteredMessagesArray)
+                }
+                break
+            case InboxFilterButtonsTag.unread.rawValue:
+                print("unread filtered")
+                if filterApplied == true {
+                    filteredMessagesArray = self.filterUnreadMessages(messagesArray: filteredMessagesArray)
+                }
+                break
+            case InboxFilterButtonsTag.withAttachment.rawValue:
+                print("with attachment filtered")
+                if filterApplied == true {
+                    filteredMessagesArray = self.filterWithAttachmentMessages(messagesArray: filteredMessagesArray)
+                }
+                break
+            default:
+                print("default")
+            }
+        }
+        
+        self.viewController?.dataSource?.messagesArray = filteredMessagesArray
+        self.updateMessagesHeader(emailsArray: filteredMessagesArray)
+        self.viewController?.dataSource?.reloadData()        
+    }
+    
+    func filterStarredMessages(messagesArray: Array<EmailMessage>) -> Array<EmailMessage> {
+    
         var starredMessagesArray : Array<EmailMessage> = []
-        let currentMessagesArray : Array<EmailMessage> = (self.viewController?.currentMessagesList?.messagesList)!
         
-        for message in currentMessagesArray {
+        for message in messagesArray {
             
             if let starred = message.starred {
                 if starred {
@@ -269,18 +304,14 @@ class InboxInteractor {
             }
         }
         
-        self.viewController?.dataSource?.messagesArray = starredMessagesArray
-        self.updateMessagesHeader(emailsArray: starredMessagesArray)
-        self.viewController?.dataSource?.reloadData()
+        return starredMessagesArray
     }
     
-    func filterUnreadMessages() {
+    func filterUnreadMessages(messagesArray: Array<EmailMessage>) -> Array<EmailMessage> {
         
         var unredMessagesArray : Array<EmailMessage> = []
-        let currentMessagesArray : Array<EmailMessage> = (self.viewController?.currentMessagesList?.messagesList)!
-        //(self.viewController?.dataSource?.messagesArray)!
         
-        for message in currentMessagesArray {
+        for message in messagesArray {
             
             if let read = message.read {
                 if !read {
@@ -289,17 +320,14 @@ class InboxInteractor {
             }
         }
         
-        self.viewController?.dataSource?.messagesArray = unredMessagesArray
-        self.updateMessagesHeader(emailsArray: unredMessagesArray)
-        self.viewController?.dataSource?.reloadData()
+        return unredMessagesArray
     }
     
-    func filterWithAttachmentMessages() {
+    func filterWithAttachmentMessages(messagesArray: Array<EmailMessage>) -> Array<EmailMessage> {
         
         var withAttachmentMessagesArray : Array<EmailMessage> = []
-        let currentMessagesArray : Array<EmailMessage> = (self.viewController?.currentMessagesList?.messagesList)!
         
-        for message in currentMessagesArray {
+        for message in messagesArray {
             
             if let attachments = message.attachments {
                 if attachments.count > 0 {
@@ -308,9 +336,7 @@ class InboxInteractor {
             }
         }
         
-        self.viewController?.dataSource?.messagesArray = withAttachmentMessagesArray
-        self.updateMessagesHeader(emailsArray: withAttachmentMessagesArray)
-        self.viewController?.dataSource?.reloadData()
+        return withAttachmentMessagesArray
     }
     
     //MARK: - Swipe Actions

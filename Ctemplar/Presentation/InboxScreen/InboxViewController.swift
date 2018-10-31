@@ -29,6 +29,8 @@ class InboxViewController: UIViewController {
     
     var mainFoldersUnreadMessagesCount: Array<Int> = []
     
+    var appliedFilters   : Array<Bool> = [false, false, false]
+    
     @IBOutlet var inboxTableView        : UITableView!
     
     @IBOutlet var messagesLabel         : UILabel!
@@ -156,9 +158,9 @@ class InboxViewController: UIViewController {
 
 extension InboxViewController: InboxFilterDelegate {
     
-    func applyAction(_ sender: AnyObject) {
-        
-       presenter?.showFilterView()
-       presenter?.applyFilterAction(sender)
+    func applyAction(_ sender: AnyObject, appliedFilters: Array<Bool>) {
+        presenter?.showFilterView()
+        self.appliedFilters = appliedFilters
+        presenter?.applyFilterAction(sender)
     }
 }

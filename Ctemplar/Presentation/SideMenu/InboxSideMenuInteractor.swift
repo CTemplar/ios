@@ -68,7 +68,8 @@ class InboxSideMenuInteractor {
         
         self.viewController?.currentParentViewController.currentFolder = folder
         self.viewController?.currentParentViewController.currentFolderFilter = filter
-        self.viewController?.currentParentViewController.presenter?.loadMessages(folder: filter)
+        self.viewController?.currentParentViewController.presenter?.interactor?.updateMessages()//loadMessages(folder: filter)
+        self.viewController?.currentParentViewController.presenter?.interactor?.clearFilters()
         self.viewController?.dismiss(animated: true, completion: nil)
     }
 }
