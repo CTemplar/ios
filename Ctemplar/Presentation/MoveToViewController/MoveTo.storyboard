@@ -37,6 +37,9 @@
                                             <constraint firstAttribute="width" secondItem="pxw-ht-2iQ" secondAttribute="height" multiplier="1:1" id="xrA-67-rE4"/>
                                         </constraints>
                                         <state key="normal" image="darkCross"/>
+                                        <connections>
+                                            <action selector="cancelButtonPressed:" destination="FNd-Or-ZG7" eventType="touchUpInside" id="SbU-0U-Le7"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Move to..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvH-cx-MaS">
                                         <rect key="frame" x="137.5" y="29" width="100" height="27"/>
@@ -118,6 +121,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P36-9T-3rm">
                                 <rect key="frame" x="0.0" y="136" width="375" height="531"/>
                                 <subviews>
+                                    <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FNs-U3-Y0L">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="423"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXl-sY-7ce">
                                         <rect key="frame" x="16" y="15" width="110" height="20"/>
                                         <constraints>
@@ -130,7 +137,37 @@
                                         <state key="normal" title="Add folder" image="redPlus">
                                             <color key="titleColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="addButtonPressed:" destination="FNd-Or-ZG7" eventType="touchUpInside" id="f9e-Bx-Vpt"/>
+                                        </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8r-20-gvx">
+                                        <rect key="frame" x="0.0" y="423" width="375" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1AQ-Zz-7IY">
+                                                <rect key="frame" x="16" y="10" width="150" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="6AX-wL-dVf"/>
+                                                    <constraint firstAttribute="height" constant="20" id="Ev8-gj-arP"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                                <inset key="titleEdgeInsets" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <inset key="imageEdgeInsets" minX="-12" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Manage folders" image="redFolder">
+                                                    <color key="titleColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="manageFoldersButtonPressed:" destination="FNd-Or-ZG7" eventType="touchUpInside" id="SF7-vV-6jq"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="1AQ-Zz-7IY" firstAttribute="leading" secondItem="S8r-20-gvx" secondAttribute="leading" constant="16" id="Ii0-Dn-dyS"/>
+                                            <constraint firstItem="1AQ-Zz-7IY" firstAttribute="top" secondItem="S8r-20-gvx" secondAttribute="top" constant="10" id="Knn-M4-LZl"/>
+                                            <constraint firstAttribute="height" constant="40" id="UPk-3K-fTF"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" tag="206" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="khh-ts-9p1">
                                         <rect key="frame" x="16" y="473" width="163.5" height="48"/>
                                         <constraints>
@@ -151,6 +188,9 @@
                                                 <color key="value" red="0.090196078430000007" green="0.1960784314" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="cancelButtonPressed:" destination="FNd-Or-ZG7" eventType="touchUpInside" id="hLS-8H-WOp"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="207" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xxy-Hd-3eK">
                                         <rect key="frame" x="195.5" y="473" width="163.5" height="48"/>
@@ -162,18 +202,28 @@
                                         <state key="normal" title="Apply">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="applyButtonPressed:" destination="FNd-Or-ZG7" eventType="touchUpInside" id="Pkc-Lf-AQW"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Xxy-Hd-3eK" secondAttribute="bottom" constant="10" id="0m2-2B-gjm"/>
+                                    <constraint firstAttribute="trailing" secondItem="FNs-U3-Y0L" secondAttribute="trailing" id="1n2-Rf-Kqx"/>
                                     <constraint firstItem="bXl-sY-7ce" firstAttribute="leading" secondItem="P36-9T-3rm" secondAttribute="leading" constant="16" id="2F2-e5-PZp"/>
                                     <constraint firstAttribute="trailing" secondItem="Xxy-Hd-3eK" secondAttribute="trailing" constant="16" id="5Qw-sd-h2h"/>
+                                    <constraint firstItem="khh-ts-9p1" firstAttribute="top" secondItem="S8r-20-gvx" secondAttribute="bottom" constant="10" id="8ah-Ez-r61"/>
                                     <constraint firstAttribute="centerX" secondItem="khh-ts-9p1" secondAttribute="trailing" constant="8" id="CUy-aG-Ctd"/>
+                                    <constraint firstItem="FNs-U3-Y0L" firstAttribute="leading" secondItem="P36-9T-3rm" secondAttribute="leading" id="DCq-zu-EIC"/>
                                     <constraint firstAttribute="bottom" secondItem="khh-ts-9p1" secondAttribute="bottom" constant="10" id="QTb-Sh-z3O"/>
+                                    <constraint firstAttribute="trailing" secondItem="S8r-20-gvx" secondAttribute="trailing" id="b52-8k-9dy"/>
                                     <constraint firstItem="khh-ts-9p1" firstAttribute="leading" secondItem="P36-9T-3rm" secondAttribute="leading" constant="16" id="cW2-bQ-Sb7"/>
                                     <constraint firstItem="bXl-sY-7ce" firstAttribute="top" secondItem="P36-9T-3rm" secondAttribute="top" constant="15" id="eko-8s-csV"/>
+                                    <constraint firstItem="S8r-20-gvx" firstAttribute="leading" secondItem="P36-9T-3rm" secondAttribute="leading" id="fb1-rY-Kfl"/>
+                                    <constraint firstItem="FNs-U3-Y0L" firstAttribute="top" secondItem="P36-9T-3rm" secondAttribute="top" id="qRv-oX-mHd"/>
                                     <constraint firstItem="Xxy-Hd-3eK" firstAttribute="leading" secondItem="P36-9T-3rm" secondAttribute="centerX" constant="8" id="y7L-56-9so"/>
+                                    <constraint firstItem="S8r-20-gvx" firstAttribute="top" secondItem="FNs-U3-Y0L" secondAttribute="bottom" id="zEC-jF-vn4"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -194,6 +244,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="82V-Gs-dDY"/>
                     </view>
+                    <connections>
+                        <outlet property="applyButton" destination="Xxy-Hd-3eK" id="XFz-8G-tfh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1GX-5E-bSR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -202,6 +255,7 @@
     </scenes>
     <resources>
         <image name="darkCross" width="48" height="48"/>
+        <image name="redFolder" width="20" height="20"/>
         <image name="redPlus" width="18" height="18"/>
     </resources>
 </document>

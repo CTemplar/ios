@@ -118,7 +118,8 @@ class InboxViewController: UIViewController {
     
     @IBAction func moveButtonPressed(_ sender: AnyObject) {
         
-        self.presenter?.showUndoBar(text: "Undo moving")
+        self.router?.showMoveToViewController()
+        //self.presenter?.showUndoBar(text: "Undo moving")
     }
     
     @IBAction func garbageButtonPressed(_ sender: AnyObject) {
