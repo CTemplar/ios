@@ -38,10 +38,17 @@ class InboxPresenter {
     
     //MARK: - setup UI
     
-    func setupUI(emailsCount: Int, unreadEmails: Int) {
+    func setupUI(emailsCount: Int, unreadEmails: Int, filterEnabled: Bool) {
         
-        viewController?.messagesLabel.text = formatEmailsCountText(emailsCount: emailsCount)
-        viewController?.unreadMessagesLabel.text = formatUreadEmailsCountText(emailsCount: unreadEmails)
+        if filterEnabled {
+            viewController?.messagesLabel.text = "Filtered"
+            viewController?.unreadMessagesLabel.text = self.formatAppliedFilters()
+            viewController?.unreadMessagesLabel.textColor = k_redColor
+        } else {
+            viewController?.messagesLabel.text = formatEmailsCountText(emailsCount: emailsCount)
+            viewController?.unreadMessagesLabel.text = formatUreadEmailsCountText(emailsCount: unreadEmails)
+            viewController?.unreadMessagesLabel.textColor = k_lightGrayTextColor
+        }
         
         if emailsCount > 0 {
             viewController?.emptyInbox.isHidden = true
@@ -186,6 +193,8 @@ class InboxPresenter {
         
         self.viewController?.inboxFilterView?.isHidden = !hidden!
         
+        self.viewController?.inboxFilterView?.setup(appliedFilters: (self.viewController?.appliedFilters)!)
+        
         if !hidden! {
             self.viewController?.leftFilterButton.setImage(UIImage(named: k_filterImageName), for: .normal)
         } else {
@@ -199,15 +208,58 @@ class InboxPresenter {
             
         case InboxFilterViewButtonsTag.cancelButton.rawValue:
             print("cancel filters")
-            
+            self.viewController?.presenter?.setupUI(emailsCount: (self.viewController?.emailsCount)!, unreadEmails: (self.viewController?.unreadEmails)!, filterEnabled: false)
             break
         case InboxFilterViewButtonsTag.applyButton.rawValue:
             print("apply filters")
             self.interactor?.applyFilters()
+            let filterEnabled = self.interactor?.filterEnabled()
+            self.viewController?.presenter?.setupUI(emailsCount: (self.viewController?.emailsCount)!, unreadEmails: (self.viewController?.unreadEmails)!, filterEnabled: filterEnabled!)
             break
         default:
             print("filter: default")
         }
+    }
+    
+    func formatAppliedFilters() -> String {
+        
+        var appliedFiltersText = "" //Starred, Unread, With attachments
+        
+        for (index, filterApplied) in (self.viewController?.appliedFilters)!.enumerated() {
+            
+            switch index + InboxFilterButtonsTag.starred.rawValue {
+            case InboxFilterButtonsTag.starred.rawValue:
+                //print("starred filtered")
+                if filterApplied == true {
+                   appliedFiltersText = "Starred"
+                }
+                break
+            case InboxFilterButtonsTag.unread.rawValue:
+                //print("unread filtered")
+                if filterApplied == true {
+                    if appliedFiltersText.count > 0 {
+                        appliedFiltersText = appliedFiltersText + ", Unread"
+                    } else {
+                        appliedFiltersText = "Unread"
+                    }
+                }
+                break
+            case InboxFilterButtonsTag.withAttachment.rawValue:
+                //print("with attachment filtered")
+                if filterApplied == true {
+                    if appliedFiltersText.count > 0 {
+                        appliedFiltersText = appliedFiltersText + ", With attachments"
+                    } else {
+                        appliedFiltersText = "With attachments"
+                    }
+                }
+                break
+            default:
+                print("default")
+            }
+        }
+        
+        return appliedFiltersText
     }
     
     func showUndoBar(text: String) {

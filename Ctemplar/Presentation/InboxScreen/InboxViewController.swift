@@ -31,6 +31,9 @@ class InboxViewController: UIViewController {
     
     var appliedFilters   : Array<Bool> = [false, false, false]
     
+    var emailsCount : Int = 0
+    var unreadEmails: Int = 0
+    
     @IBOutlet var inboxTableView        : UITableView!
     
     @IBOutlet var messagesLabel         : UILabel!
@@ -63,7 +66,7 @@ class InboxViewController: UIViewController {
         
         dataSource?.initWith(parent: self, tableView: inboxTableView, array: messagesList)
         
-        presenter?.setupUI(emailsCount: 0, unreadEmails: 0)
+        presenter?.setupUI(emailsCount: 0, unreadEmails: 0, filterEnabled: false)
         presenter?.initFilterView()
         
         adddNotificationObserver()
@@ -159,8 +162,9 @@ class InboxViewController: UIViewController {
 extension InboxViewController: InboxFilterDelegate {
     
     func applyAction(_ sender: AnyObject, appliedFilters: Array<Bool>) {
-        presenter?.showFilterView()
+        
         self.appliedFilters = appliedFilters
+        presenter?.showFilterView()
         presenter?.applyFilterAction(sender)
     }
 }

@@ -40,7 +40,11 @@ class InboxInteractor {
             readEmails = calculateReadEmails(array: emailsArray)
             unreadEmails = emailsArray.count - readEmails
             
-            self.presenter?.setupUI(emailsCount: emailsArray.count, unreadEmails: unreadEmails)
+            self.viewController?.emailsCount = emailsArray.count
+            self.viewController?.unreadEmails = unreadEmails
+            
+            let filterEnabled = self.filterEnabled()
+            self.presenter?.setupUI(emailsCount: emailsArray.count, unreadEmails: unreadEmails, filterEnabled: filterEnabled)
         }
     }
     
@@ -250,6 +254,17 @@ class InboxInteractor {
         }
     }
     
+    func filterEnabled() -> Bool {
+        
+        for filterApplied in (self.viewController?.appliedFilters)! {
+            if filterApplied == true {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
     func clearFilters() {
         
         self.viewController?.appliedFilters = [false, false, false]
@@ -262,7 +277,7 @@ class InboxInteractor {
         
         for (index, filterApplied) in (self.viewController?.appliedFilters)!.enumerated() {
                  
-            switch index + 202 {
+            switch index + InboxFilterButtonsTag.starred.rawValue {
             case InboxFilterButtonsTag.starred.rawValue:
                 print("starred filtered")
                 if filterApplied == true {

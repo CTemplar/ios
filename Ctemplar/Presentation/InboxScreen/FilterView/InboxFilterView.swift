@@ -31,6 +31,7 @@ class InboxFilterView: UIView {
     @IBOutlet var unreadFilterCheckImage     : UIImageView!
     @IBOutlet var withAttachmentCheckImage   : UIImageView!
 
+    var parentFilters    : Array<Bool> = []
     var appliedFilters   : Array<Bool> = []
     
     override init(frame: CGRect) {
@@ -49,6 +50,13 @@ class InboxFilterView: UIView {
     
     func setup(appliedFilters: Array<Bool>) {
         
+        self.parentFilters = appliedFilters
+        
+        self.setupLocal(appliedFilters: appliedFilters)
+    }
+    
+    func setupLocal(appliedFilters: Array<Bool>) {
+        
         self.appliedFilters = appliedFilters
         
         for (index, imageViewTag) in InboxFilterImagesTag.allCases.enumerated() {
@@ -66,7 +74,7 @@ class InboxFilterView: UIView {
         if sender.tag == InboxFilterViewButtonsTag.clearAllButton.rawValue {
             
             self.appliedFilters = [false, false, false]
-            self.setup(appliedFilters: self.appliedFilters)
+            self.setupLocal(appliedFilters: self.appliedFilters)
             return
         }
         
@@ -76,7 +84,7 @@ class InboxFilterView: UIView {
                 
                 let filterApplied = self.appliedFilters[index]
                 self.appliedFilters[index] = !filterApplied
-                self.setup(appliedFilters: self.appliedFilters)
+                self.setupLocal(appliedFilters: self.appliedFilters)
             }
         }    
     }
@@ -95,7 +103,7 @@ class InboxFilterView: UIView {
         delegate?.applyAction(sender, appliedFilters: self.appliedFilters)
     }
     
-    @IBAction func cancelButtonPressed(_ sender: AnyObject) {
-        delegate?.applyAction(sender, appliedFilters: self.appliedFilters)
+    @IBAction func cancelButtonPressed(_ sender: AnyObject) {        
+        delegate?.applyAction(sender, appliedFilters: self.parentFilters)
     }
 }
