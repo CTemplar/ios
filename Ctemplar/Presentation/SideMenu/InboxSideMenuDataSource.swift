@@ -64,12 +64,10 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         switch section {
         case SideMenuSectionIndex.mainFolders.rawValue:
             return k_sideMenuSeparatorHeight
-        case SideMenuSectionIndex.customFolders.rawValue:
-            return k_sideMenuSectionHeaderHeight
-        case SideMenuSectionIndex.labels.rawValue:
-            return k_sideMenuSectionHeaderHeight
         case SideMenuSectionIndex.options.rawValue:
             return k_sideMenuSeparatorHeight
+        case SideMenuSectionIndex.customFolders.rawValue:
+            return k_sideMenuSectionHeaderHeight
         default:
             return 0
         }
@@ -85,14 +83,11 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         case SideMenuSectionIndex.mainFolders.rawValue:
             headerView.setupHeader(iconName: "", title: "", hideBottomLine: false)
             break
-        case SideMenuSectionIndex.customFolders.rawValue:
-            headerView.setupHeader(iconName: k_darkFoldersIconImageName, title: "Manage Folders", hideBottomLine: true)
-            break
-        case SideMenuSectionIndex.labels.rawValue:
-            headerView.setupHeader(iconName: k_darkLabelsIconImageName, title: "Manage Labels", hideBottomLine: false)
-            break
         case SideMenuSectionIndex.options.rawValue:
             headerView.setupHeader(iconName: "", title: "", hideBottomLine: false)
+            break
+        case SideMenuSectionIndex.customFolders.rawValue:
+            headerView.setupHeader(iconName: k_darkFoldersIconImageName, title: "Manage Folders", hideBottomLine: false)
             break
         default:
             print("unknown header section")
@@ -106,12 +101,10 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         switch section {
         case SideMenuSectionIndex.mainFolders.rawValue:
             return mainFoldersArray.count
-        case SideMenuSectionIndex.customFolders.rawValue:
-            return 0
-        case SideMenuSectionIndex.labels.rawValue:
-            return 0
         case SideMenuSectionIndex.options.rawValue:
             return self.optionsArray.count
+        case SideMenuSectionIndex.customFolders.rawValue:
+            return 0
         default:
             return 0
         }
@@ -136,13 +129,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: selected, iconName: iconName, title: folderName, unreadCount: unreadCount)
             
             break
-        case SideMenuSectionIndex.customFolders.rawValue:
-            break
-        case SideMenuSectionIndex.labels.rawValue:
-            break
         case SideMenuSectionIndex.options.rawValue:
-            //let optionName = self.optionsArray[indexPath.row]
-            //cell.textLabel?.text = optionName
             
             cell = tableView.dequeueReusableCell(withIdentifier: k_SideMenuTableViewCellIdentifier)! as! SideMenuTableViewCell
             
@@ -151,6 +138,8 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             
             (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: false, iconName: iconName, title: optionName, unreadCount: 0)
             
+            break
+        case SideMenuSectionIndex.customFolders.rawValue:
             break
         default:
             print("unknown section")
@@ -168,13 +157,11 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
                 let optionName = self.mainFoldersArray[indexPath.row]
                 self.parentViewController?.presenter?.interactor?.selectAction(optionName: optionName)
             break
-        case SideMenuSectionIndex.customFolders.rawValue:
-            break
-        case SideMenuSectionIndex.labels.rawValue:
-            break
         case SideMenuSectionIndex.options.rawValue:
             let optionName = self.optionsArray[indexPath.row]
             self.parentViewController?.presenter?.interactor?.selectAction(optionName: optionName)
+            break
+        case SideMenuSectionIndex.customFolders.rawValue:
             break
         default:
             print("selected unknown section")

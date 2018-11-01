@@ -41,6 +41,9 @@ class InboxSideMenuInteractor {
         case InboxSideMenuOptionsName.sent.rawValue :
             self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.sent.rawValue)
             break
+        case InboxSideMenuOptionsName.outbox.rawValue :
+            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.outbox.rawValue)
+            break
         case InboxSideMenuOptionsName.starred.rawValue :
             self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.starred.rawValue)
             break

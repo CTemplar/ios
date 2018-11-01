@@ -65,10 +65,13 @@ class InboxInteractor {
                 print("filter:", filter, "unreadEmails:", unreadEmails)
                 self.viewController?.mainFoldersUnreadMessagesCount.append(unreadEmails)
             }
+            /*
             // for all message case
             readEmails = calculateReadEmails(array: emailsArray)
             unreadEmails = emailsArray.count - readEmails
+            print("filter: all messages", "unreadEmails:", unreadEmails)
             self.viewController?.mainFoldersUnreadMessagesCount.append(unreadEmails)
+ */
         }
     }
     

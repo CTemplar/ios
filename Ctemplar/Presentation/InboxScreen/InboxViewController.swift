@@ -27,7 +27,7 @@ class InboxViewController: UIViewController {
     
     var appliedActionMessage : EmailMessage?
     
-    var mainFoldersUnreadMessagesCount: Array<Int> = []
+    var mainFoldersUnreadMessagesCount: Array<Int> = [0, 0, 0, 0, 0, 0, 0, 0]
     
     var appliedFilters   : Array<Bool> = [false, false, false]
     

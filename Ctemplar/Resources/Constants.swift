@@ -147,14 +147,15 @@ let k_darkArchiveIconImageName      = "darkArchive"
 let k_darkDraftIconImageName        = "darkDraft"
 let k_darkInboxIconImageName        = "darkInbox"
 let k_darkSentIconImageName         = "darkSent"
+let k_darkOutboxIconImageName       = "darkOutbox"
 let k_darkSpamIconImageName         = "darkSpam"
 let k_darkStarIconImageName         = "darkStar"
 let k_darkTrashIconImageName        = "darkTrash"
 
-let k_darkContactIconImageName      = "darkSpam"
-let k_darkSettingsIconImageName     = "darkSent"
-let k_darkHelpconImageName          = "darkStar"
-let k_darkExitIconImageName         = "darkTrash"
+let k_darkContactIconImageName      = "darkContact"
+let k_darkSettingsIconImageName     = "darkSettings"
+let k_darkHelpconImageName          = "darkHelp"
+let k_darkExitIconImageName         = "darkLogout"
 
 let k_darkCrossIconImageName        = "darkCross"
 let k_redCheckIconImageName         = "redCheck"
@@ -192,6 +193,7 @@ enum InboxSideMenuOptionsName: String {
     case inbox            = "Inbox"
     case draft            = "Draft"
     case sent             = "Sent"
+    case outbox           = "Outbox"
     case starred          = "Starred"
     case archive          = "Archive"
     case spam             = "Spam"
@@ -208,7 +210,7 @@ enum MessagesFoldersName: String, CaseIterable {
     case inbox            = "inbox"
     case draft            = "draft"
     case sent             = "sent"    
-    //case outbox           = "outbox"
+    case outbox           = "outbox"
     case starred          = "starred"
     case archive          = "archive"
     case spam             = "spam"
@@ -248,8 +250,7 @@ enum InboxFilterViewButtonsTag: Int {
 enum SideMenuSectionIndex: Int {
     
     case mainFolders      = 0
-    case customFolders    = 1
-    case labels           = 2
-    case options          = 3
-    case sectionsCount    = 4
+    case options          = 1
+    case customFolders    = 2    
+    case sectionsCount    = 3
 }

@@ -22,22 +22,24 @@ class InboxSideMenuViewController: UIViewController {
         InboxSideMenuOptionsName.inbox.rawValue,
         InboxSideMenuOptionsName.draft.rawValue,
         InboxSideMenuOptionsName.sent.rawValue,
+        InboxSideMenuOptionsName.outbox.rawValue,
         InboxSideMenuOptionsName.starred.rawValue,
         InboxSideMenuOptionsName.archive.rawValue,
         InboxSideMenuOptionsName.spam.rawValue,
         InboxSideMenuOptionsName.trash.rawValue,
-        InboxSideMenuOptionsName.allMails.rawValue
+        //InboxSideMenuOptionsName.allMails.rawValue
     ]
     
     var mainFoldersImageNameList: Array<String> = [
         k_darkInboxIconImageName,
         k_darkDraftIconImageName,
         k_darkSentIconImageName,
+        k_darkOutboxIconImageName,
         k_darkStarIconImageName,
         k_darkArchiveIconImageName,
         k_darkSpamIconImageName,
         k_darkTrashIconImageName,
-        k_darkAllMailsIconImageName
+       //k_darkAllMailsIconImageName
     ]
     
     //var mainFoldersUnreadMessagesCount: Array<Int> = []
