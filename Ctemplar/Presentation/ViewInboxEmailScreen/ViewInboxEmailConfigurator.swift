@@ -26,6 +26,7 @@ class ViewInboxEmailConfigurator {
         interactor.viewController = viewController
         interactor.apiService = appDelegate.applicationManager.apiService
         interactor.pgpService = appDelegate.applicationManager.pgpService
+        interactor.formatterService = appDelegate.applicationManager.formatterService
         
         presenter.interactor = interactor
         

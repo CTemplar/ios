@@ -196,9 +196,9 @@ class InboxInteractor {
     
     //MARK: - message headers
 
-    func decryptMessage(contet: String) -> String {
+    func decryptMessage(content: String) -> String {
         
-        if let message = self.pgpService?.decryptMessage(encryptedContet: contet) {
+        if let message = self.pgpService?.decryptMessage(encryptedContet: content) {
             //print("decrypt message: ", message)
             return message
         }
@@ -207,12 +207,12 @@ class InboxInteractor {
     }
     
     
-    func headerOfMessage(contet: String) -> String {
+    func headerOfMessage(content: String) -> String {
         
         var header : String = ""
         var message : String = ""
         
-        message = self.decryptMessage(contet: contet)
+        message = self.decryptMessage(content: content)
 
         //message = message.html2String
         //print("format to String message: ", message)
@@ -257,8 +257,10 @@ class InboxInteractor {
         
         for message in emailsArray {
             if let messageContent = message.content {
-                let header = self.headerOfMessage(contet: messageContent)
+                let header = self.headerOfMessage(content: messageContent)
                 self.viewController?.dataSource?.messagesHeaderArray.append(header)
+            } else {
+                self.viewController?.dataSource?.messagesHeaderArray.append("Empty content")
             }
         }
     }

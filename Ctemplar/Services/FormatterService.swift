@@ -109,6 +109,36 @@ class FormatterService
         }
     }
     
+    //MARK: - Message String formatter
+    
+    func formatFromToAttributedString(fromName: String, fromEmail: String, toName: String, toEmail: String, ccArray: Array<String>) -> NSAttributedString {
+        
+        var ccText : String = "\nCC:"
+        
+        for carbonCopy in ccArray {
+            ccText = ccText + " <" + carbonCopy + ">,"
+        }
+        
+        if ccArray.count > 1 {
+            ccText.remove(at: ccText.index(before: ccText.endIndex)) //remove last ","
+        }
+        
+        //"From: Ctemplar <contact@ctemplar.ch>\nTo: John Doe <johndoe@gmail.com>\nCC: Sam Smith <samsmith@hotmail.com>"
+        let textString = "From: " + fromName + " <" + fromEmail + ">\nTo: " + toName + " <" + toEmail + "> " + ccText
+        
+        let attributedString = NSMutableAttributedString(string: textString, attributes: [
+            .font: UIFont(name: "Lato-Regular", size: 14.0)!,
+            .foregroundColor: UIColor(white: 0.0, alpha: 0.38),
+            .kern: 0.0
+            ])
+        
+        _ = attributedString.setForgroundColor(textToFind: fromName, color: UIColor(white: 0.0, alpha: 0.87))
+        _ = attributedString.setForgroundColor(textToFind: toName, color: UIColor(white: 0.0, alpha: 0.87))
+        //_ = attributedString.setForgroundColor(textToFind: fromName, color: UIColor(white: 0.0, alpha: 0.87))
+        
+        return attributedString
+    }
+    
     //MARK: - Date String formatter
     
     func formatCreationDate(date: Date) -> String {

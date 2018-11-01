@@ -111,9 +111,14 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         
         let message = messagesArray[indexPath.row]
         let selected = isMessageSelected(message: message)
-        let header = messagesHeaderArray[indexPath.row]
         
-        cell.setupCellWithData(message: message, header: header, isSelectionMode: self.selectionMode, isSelected: selected, frameWidth: self.tableView.frame.width)
+        var localHeader = ""
+        
+        if messagesHeaderArray.count > indexPath.row {
+            localHeader = messagesHeaderArray[indexPath.row]
+        }
+
+        cell.setupCellWithData(message: message, header: localHeader, isSelectionMode: self.selectionMode, isSelected: selected, frameWidth: self.tableView.frame.width)
         
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         
@@ -124,10 +129,12 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         
         tableView.deselectRow(at: indexPath, animated: true)
         
+        let message = messagesArray[indexPath.row]
+         
         if self.selectionMode == false {
-            self.parentViewController.router?.showViewInboxEmailViewController()
+            self.parentViewController.router?.showViewInboxEmailViewController(message: message)
         } else {
-            let message = messagesArray[indexPath.row]
+            
             let selected = isMessageSelected(message: message)
             
             if selected {

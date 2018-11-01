@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 class ViewInboxEmailViewController: UIViewController {
     
@@ -15,6 +16,22 @@ class ViewInboxEmailViewController: UIViewController {
     var router      : ViewInboxEmailRouter?
         
     @IBOutlet var secureImageTrailingConstraint : NSLayoutConstraint!
+    
+    @IBOutlet var headerLabel           : UILabel!
+    
+    @IBOutlet var fromToBarTextView     : UITextView!
+    @IBOutlet var contentTextView       : UITextView!
+    
+    @IBOutlet var securedImageView      : UIImageView!
+    @IBOutlet var starredmageView       : UIImageView!
+    
+    @IBOutlet var dateLabel             : UILabel!
+    
+    @IBOutlet var scrollView            : UIScrollView!
+    @IBOutlet var webView               : WKWebView!
+    
+    var message : EmailMessage?
+    //var header  : String?
     
     //MARK: - Lifecycle
     
@@ -25,9 +42,8 @@ class ViewInboxEmailViewController: UIViewController {
         configurator.configure(viewController: self)
         
         self.presenter?.setupNavigationBar()
+        self.presenter?.setupMessageHeader(message: self.message!)
     }
-    
-    
     
     //MARK: - IBActions
     

@@ -26,10 +26,11 @@ class InboxRouter {
         self.viewController?.show(vc, sender: self)   
     }
     
-    func showViewInboxEmailViewController() {
+    func showViewInboxEmailViewController(message: EmailMessage) {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_ViewInboxEmailStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_ViewInboxEmailViewControllerID) as! ViewInboxEmailViewController
+        vc.message = message
         //self.viewController?.show(vc, sender: self)
         //self.viewController?.present(vc, animated: true, completion: nil)
         self.viewController?.navigationController?.pushViewController(vc, animated: true)
@@ -38,9 +39,7 @@ class InboxRouter {
     func showMoveToViewController() {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_MoveToStoryboardName, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: k_MoveToViewControllerID) as! MoveToViewController
-        //self.viewController?.show(vc, sender: self)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_MoveToViewControllerID) as! MoveToViewController        
         self.viewController?.present(vc, animated: true, completion: nil)
-        //self.viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }
