@@ -365,6 +365,11 @@ class InboxInteractor {
     
     //MARK: - Swipe Actions
     
+    func showMoveTo(message: EmailMessage) {
+        
+        self.viewController!.router?.showMoveToViewController()
+    }
+    
     func markMessageAsSpam(message: EmailMessage) {
         
         var folder = message.folder

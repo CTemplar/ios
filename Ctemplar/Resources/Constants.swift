@@ -132,6 +132,7 @@ let k_unreadImageName               = "unreadMessage"
 let k_whiteGarbageImageName         = "whiteSpam"
 let k_whiteSpamImageName            = "whiteTrash"
 let k_witeUnreadImageName           = "whiteUnread"
+let k_witeMoveToImageName           = "whiteMoveTo"
 
 let k_starOnImageName               = "StarOn"
 let k_starOffImageName              = "StarOff"
@@ -225,9 +226,9 @@ enum MessagesFoldersName: String, CaseIterable {
 
 enum InboxCellButtonsIndex: Int {
     
-    case trash           = 0
-    case unread          = 1
-    case spam            = 2
+    case right           = 0
+    case middle          = 1
+    case left            = 2
 }
 
 enum InboxFilterButtonsTag: Int, CaseIterable {
