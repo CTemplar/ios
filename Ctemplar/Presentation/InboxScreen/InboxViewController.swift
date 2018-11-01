@@ -42,6 +42,8 @@ class InboxViewController: UIViewController {
     @IBOutlet var unreadMessagesLabel   : UILabel!
     
     @IBOutlet var emptyInbox            : UIView!
+    @IBOutlet var inboxEmptyImageView   : UIImageView!
+    @IBOutlet var inboxEmptyLabel       : UILabel!
     @IBOutlet var grayBorder            : UIView!
     
     @IBOutlet var baseToolBar           : UIView!

@@ -44,10 +44,16 @@ class InboxPresenter {
             viewController?.messagesLabel.text = "Filtered"
             viewController?.unreadMessagesLabel.text = self.formatAppliedFilters()
             viewController?.unreadMessagesLabel.textColor = k_redColor
+            
+            viewController?.inboxEmptyLabel.text = "There are no messages match the filter"
+            viewController?.inboxEmptyImageView.image =  UIImage(named: k_emptyFilterInboxIconImageName)
         } else {
             viewController?.messagesLabel.text = formatEmailsCountText(emailsCount: emailsCount)
             viewController?.unreadMessagesLabel.text = formatUreadEmailsCountText(emailsCount: unreadEmails)
             viewController?.unreadMessagesLabel.textColor = k_lightGrayTextColor
+            
+            viewController?.inboxEmptyLabel.text = "You have no Inbox messages"
+            viewController?.inboxEmptyImageView.image =  UIImage(named: k_emptyInboxIconImageName)
         }
         
         if emailsCount > 0 {
@@ -76,6 +82,12 @@ class InboxPresenter {
         //viewController?.undoBar.blur(blurRadius: 5)
         
         setupNavigationItemTitle(selectedMessages: (self.viewController?.dataSource?.selectedMessagesIDArray.count)!, selectionMode: (self.viewController?.dataSource?.selectionMode)!, currentFolder: self.viewController!.currentFolder)
+        
+        if (self.viewController?.dataSource?.messagesArray.count)! > 0 {
+            viewController?.emptyInbox.isHidden = true
+        } else {
+            viewController?.emptyInbox.isHidden = false
+        }
     }
     
     func setupNavigationItemTitle(selectedMessages: Int, selectionMode: Bool, currentFolder: String) {

@@ -32,7 +32,7 @@ class SideMenuTableSectionHeaderView: UITableViewHeaderFooterView {
         
         let attributedString = NSMutableAttributedString(string: text, attributes: [
             .font: UIFont(name: k_latoRegularFontName, size: 14.0)!,
-            .foregroundColor: k_sideMenuFadeColor,
+            .foregroundColor: k_sideMenuTextFadeColor,
             .kern: 0.0
             ])
         

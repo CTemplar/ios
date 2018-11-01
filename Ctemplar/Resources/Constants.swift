@@ -65,6 +65,7 @@ let k_redColor: UIColor = UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.
 let k_sideMenuColor: UIColor = UIColor(red: 23.0/255.0, green: 50.0/255.0, blue: 77.0/255.0, alpha: 1.0)
 let k_sideMenuSeparatorColor: UIColor = UIColor(red: 23.0/255.0, green: 50.0/255.0, blue: 77.0/255.0, alpha: 0.1)
 let k_sideMenuFadeColor: UIColor = UIColor(red: 2.0/255.0, green: 13.0/255.0, blue: 25.0/255.0, alpha: 0.56)
+let k_sideMenuTextFadeColor: UIColor = UIColor(red: 52.0/255.0, green: 73.0/255.0, blue: 94.0/255.0, alpha: 0.4)
 
 let k_urlColor: UIColor = UIColor(red: 74.0 / 255.0, green: 144.0 / 255.0, blue: 226.0 / 255.0, alpha: 1.0)
 let k_lightGrayColor: UIColor = UIColor(white: 0.0, alpha: 0.54)
@@ -160,6 +161,9 @@ let k_darkExitIconImageName         = "darkLogout"
 
 let k_darkCrossIconImageName        = "darkCross"
 let k_redCheckIconImageName         = "redCheck"
+
+let k_emptyInboxIconImageName         = "EmptyInboxIcon"
+let k_emptyFilterInboxIconImageName   = "EmptyFilterInboxIcon"
 
 // fonts
 
