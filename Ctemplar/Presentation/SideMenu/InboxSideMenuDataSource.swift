@@ -63,7 +63,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         
         switch section {
         case SideMenuSectionIndex.mainFolders.rawValue:
-            return k_sideMenuSeparatorHeight
+            return 0//k_sideMenuSeparatorHeight
         case SideMenuSectionIndex.options.rawValue:
             return k_sideMenuSeparatorHeight
         case SideMenuSectionIndex.customFolders.rawValue:
@@ -79,13 +79,17 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         let header = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: k_SideMenuTableSectionHeaderViewIdentifier)
         let headerView = header as! SideMenuTableSectionHeaderView
         
+        let separatorLineHeaderView: UIView =  UIView()
+        separatorLineHeaderView.backgroundColor = k_sideMenuSeparatorColor
+        
         switch section {
         case SideMenuSectionIndex.mainFolders.rawValue:
             headerView.setupHeader(iconName: "", title: "", hideBottomLine: false)
             break
         case SideMenuSectionIndex.options.rawValue:
-            headerView.setupHeader(iconName: "", title: "", hideBottomLine: false)
-            break
+            //headerView.setupHeader(iconName: "", title: "", hideBottomLine: false)
+            //break
+            return separatorLineHeaderView
         case SideMenuSectionIndex.customFolders.rawValue:
             headerView.setupHeader(iconName: k_darkFoldersIconImageName, title: "Manage Folders", hideBottomLine: false)
             break
