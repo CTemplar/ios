@@ -92,11 +92,16 @@ class InboxPresenter {
     func initAndSetupInboxSideMenuController() {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_InboxSideMenuStoryboardName, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: k_InboxSideMenuViewControllerID) as! InboxSideMenuViewController
+        //let vc = storyboard.instantiateViewController(withIdentifier: k_InboxSideMenuViewControllerID) as! InboxSideMenuViewController
+        self.viewController?.inboxSideMenuViewController = storyboard.instantiateViewController(withIdentifier: k_InboxSideMenuViewControllerID) as? InboxSideMenuViewController
         
-        vc.currentParentViewController = self.viewController
         
-        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: vc)
+        //vc.currentParentViewController = self.viewController
+        
+        //let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: vc)
+        
+        self.viewController?.inboxSideMenuViewController?.currentParentViewController = self.viewController
+        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: (self.viewController?.inboxSideMenuViewController)!)
         
         SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
         SideMenuManager.default.menuFadeStatusBar = false

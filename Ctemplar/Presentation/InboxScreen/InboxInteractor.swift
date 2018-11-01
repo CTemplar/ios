@@ -55,7 +55,9 @@ class InboxInteractor {
         
         if let emailsArray = messages.messagesList {
             
-            self.viewController?.mainFoldersUnreadMessagesCount.removeAll()
+            //self.viewController?.mainFoldersUnreadMessagesCount.removeAll()
+            self.viewController?.inboxSideMenuViewController?.dataSource?.mainFoldersUnreadMessagesCount.removeAll()
+            
             
             for filter in MessagesFoldersName.allCases {
                 let messages = filterInboxMessages(array: emailsArray, filter: filter.rawValue)
@@ -63,8 +65,12 @@ class InboxInteractor {
                 
                 unreadEmails = messages.count - readEmails
                 print("filter:", filter, "unreadEmails:", unreadEmails)
-                self.viewController?.mainFoldersUnreadMessagesCount.append(unreadEmails)
+                //self.viewController?.mainFoldersUnreadMessagesCount.append(unreadEmails)
+                self.viewController?.inboxSideMenuViewController?.dataSource?.mainFoldersUnreadMessagesCount.append(unreadEmails)
             }
+            
+            self.viewController?.inboxSideMenuViewController?.dataSource?.reloadData()
+            
             /*
             // for all message case
             readEmails = calculateReadEmails(array: emailsArray)

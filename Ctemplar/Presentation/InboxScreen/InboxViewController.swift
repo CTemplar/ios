@@ -17,6 +17,8 @@ class InboxViewController: UIViewController {
     
     var inboxFilterView : InboxFilterView?
     
+    var inboxSideMenuViewController: InboxSideMenuViewController?
+    
     var currentMessagesList : EmailMessagesList?
     
     var messagesList    : Array<EmailMessage> = []

@@ -87,12 +87,12 @@ class InboxSideMenuViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let mainFoldersUnreadMessagesCountValue = self.currentParentViewController?.mainFoldersUnreadMessagesCount {
-            self.dataSource?.mainFoldersUnreadMessagesCount = mainFoldersUnreadMessagesCountValue
-        }
+        //if let mainFoldersUnreadMessagesCountValue = self.currentParentViewController?.mainFoldersUnreadMessagesCount {
+        //    self.dataSource?.mainFoldersUnreadMessagesCount = mainFoldersUnreadMessagesCountValue
+        //}
     
         presenter?.setupUserProfileBar()
-        self.dataSource?.reloadData()
+        //self.dataSource?.reloadData()
     }
     
     //MARK: - IBActions
