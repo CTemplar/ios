@@ -84,14 +84,14 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         
         switch section {
         case SideMenuSectionIndex.mainFolders.rawValue:
-            headerView.setupHeader(iconName: "", title: "", hideBottomLine: false)
+            headerView.setupHeader(iconName: "", title: "", foldersCount: 0, hideBottomLine: false)
             break
         case SideMenuSectionIndex.options.rawValue:
             //headerView.setupHeader(iconName: "", title: "", hideBottomLine: false)
             //break
             return separatorLineHeaderView
         case SideMenuSectionIndex.customFolders.rawValue:
-            headerView.setupHeader(iconName: k_darkFoldersIconImageName, title: "Manage Folders", hideBottomLine: false)
+            headerView.setupHeader(iconName: k_darkFoldersIconImageName, title: "manageFolders".localized(), foldersCount: self.customFoldersArray.count, hideBottomLine: false)
             break
         default:
             print("unknown header section")
@@ -108,7 +108,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         case SideMenuSectionIndex.options.rawValue:
             return self.optionsArray.count
         case SideMenuSectionIndex.customFolders.rawValue:
-            return 0
+            return self.customFoldersArray.count
         default:
             return 0
         }

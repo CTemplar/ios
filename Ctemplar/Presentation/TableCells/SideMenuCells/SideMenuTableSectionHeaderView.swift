@@ -20,10 +20,28 @@ class SideMenuTableSectionHeaderView: UITableViewHeaderFooterView {
         // Initialization code
     }
     
-    func setupHeader(iconName: String, title: String, hideBottomLine: Bool) {
+    func setupHeader(iconName: String, title: String, foldersCount: Int, hideBottomLine: Bool) {
+        
+        var folderText = "folders"
+        
+        if foldersCount == 1 {
+            folderText = "folder"
+        }
+        
+        let text: String = title + " (" + foldersCount.description + " " + folderText + ")"
+        
+        let attributedString = NSMutableAttributedString(string: text, attributes: [
+            .font: UIFont(name: k_latoRegularFontName, size: 14.0)!,
+            .foregroundColor: k_sideMenuFadeColor,
+            .kern: 0.0
+            ])
+        
+        _ = attributedString.setForgroundColor(textToFind: title, color: k_sideMenuColor)
+        _ = attributedString.setFont(textToFind: title, font: UIFont(name: k_latoRegularFontName, size: 16.0)!)
         
         self.iconImageView.image = UIImage(named: iconName)
-        self.titleLabel.text = title
+        //self.titleLabel.text = title
+        self.titleLabel.attributedText = attributedString
         self.bottomSeparatorView.isHidden = hideBottomLine
         self.backgroundColor = k_whiteColor
     }

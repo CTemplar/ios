@@ -420,7 +420,7 @@ extension NSAttributedString {
 
 extension NSMutableAttributedString {
     
-    public func setAsLink(textToFind:String, linkURL:String) -> Bool {
+    public func setAsLink(textToFind: String, linkURL: String) -> Bool {
         
         let foundRange = self.mutableString.range(of: textToFind)
         
@@ -433,7 +433,7 @@ extension NSMutableAttributedString {
         return false
     }
     
-    public func setUnderline(textToFind:String) -> Bool {
+    public func setUnderline(textToFind: String) -> Bool {
         
         let foundRange = self.mutableString.range(of: textToFind)
         
@@ -445,12 +445,23 @@ extension NSMutableAttributedString {
         return false
     }
     
-    public func setForgroundColor(textToFind:String, color: UIColor) -> Bool {
+    public func setForgroundColor(textToFind: String, color: UIColor) -> Bool {
         
         let foundRange = self.mutableString.range(of: textToFind)
         
         if foundRange.location != NSNotFound {            
             self.addAttribute(.foregroundColor, value: color, range: foundRange)
+            return true
+        }
+        return false
+    }
+    
+    public func setFont(textToFind: String, font: UIFont) -> Bool {
+        
+        let foundRange = self.mutableString.range(of: textToFind)
+        
+        if foundRange.location != NSNotFound {           
+            self.addAttribute(.font, value: font, range: foundRange)
             return true
         }
         return false

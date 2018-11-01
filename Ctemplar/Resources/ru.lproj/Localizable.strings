@@ -18,3 +18,7 @@
 
 "termsAndConditionsFullText" = "Пожалуста, поставьте галочку если вы согласны с нашими Условиями и Положениями";
 "termsAndConditionsPhrase" = "Условия и Положения";
+
+//side menu
+
+"manageFolders" = "Папки";
