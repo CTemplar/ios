@@ -49,28 +49,28 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         
         switch currentFolder {
         case MessagesFoldersName.inbox.rawValue:
-            swipeButtonsArray = [spamButton, moveToButton, trashButton]
+            swipeButtonsArray = [trashButton, moveToButton, spamButton]
             break
         case MessagesFoldersName.draft.rawValue:
             swipeButtonsArray = [trashButton]
             break
         case MessagesFoldersName.sent.rawValue:
-            swipeButtonsArray = [spamButton, moveToButton, trashButton] //? smap?
+            swipeButtonsArray = [trashButton, moveToButton, spamButton] //? spam?
             break
         case MessagesFoldersName.outbox.rawValue:
-            swipeButtonsArray = [spamButton, moveToButton, trashButton] //?
+            swipeButtonsArray = [trashButton, moveToButton, spamButton] //?
             break
         case MessagesFoldersName.starred.rawValue:
-            swipeButtonsArray = [spamButton, moveToButton, trashButton]
+            swipeButtonsArray = [trashButton, moveToButton, spamButton]
             break
         case MessagesFoldersName.archive.rawValue:
-            swipeButtonsArray = [spamButton, moveToButton, trashButton]
+            swipeButtonsArray = [trashButton, moveToButton, spamButton]
             break
         case MessagesFoldersName.spam.rawValue:
-            swipeButtonsArray = [unreadButton, moveToButton, trashButton]
+            swipeButtonsArray = [trashButton, moveToButton, unreadButton]
             break
         case MessagesFoldersName.trash.rawValue:
-            swipeButtonsArray = [spamButton, moveToButton, trashButton] //? trash?
+            swipeButtonsArray = [trashButton, moveToButton, spamButton] //? trash?
             break
         default:
             break
