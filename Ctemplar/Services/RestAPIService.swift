@@ -254,24 +254,35 @@ class RestAPIService {
         }
     }
     
-    func updateMessages(token: String, messageID: String, messagesIDIn: String, folder: String, starred: Bool, read: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateMessages(token: String, messageID: String, messagesIDIn: String, folder: String, starred: Bool, read: Bool, updateFolder: Bool, updateStarred: Bool, updateRead: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
             "Accept": "application/json"
         ]
         
+        /*
         let parameters: Parameters = [
             JSONKey.folder.rawValue: folder,
             JSONKey.starred.rawValue: starred,
             JSONKey.read.rawValue: read
-        ]
-        /*
-        let parameters: Parameters = [
-            JSONKey.folder.rawValue: folder,
-            JSONKey.starred.rawValue: "1",
-            JSONKey.read.rawValue: "0"
         ]*/
+        
+        let configureParameters : NSMutableDictionary = [:]
+        
+        if updateFolder {
+            configureParameters[JSONKey.folder.rawValue] = folder
+        }
+        
+        if updateStarred {
+            configureParameters[JSONKey.starred.rawValue] = starred
+        }
+        
+        if updateRead{
+            configureParameters[JSONKey.read.rawValue] = read
+        }
+        
+        let parameters: Parameters = configureParameters as! Parameters
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messageID + messagesIDIn
         

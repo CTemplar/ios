@@ -420,7 +420,7 @@ class APIService {
         }
     }
     
-    func updateMessages(messageID: String, messagesIDIn: String, folder: String, starred: Bool, read: Bool,completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateMessages(messageID: String, messagesIDIn: String, folder: String, starred: Bool, read: Bool, updateFolder: Bool, updateStarred: Bool, updateRead: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         var messageIDParameter = ""
         
@@ -441,7 +441,7 @@ class APIService {
                     
                     HUD.show(.progress)
                     
-                    self.restAPIService?.updateMessages(token: token, messageID: messageIDParameter, messagesIDIn: messagesIDInParameter, folder: folder, starred: starred, read: read) {(result) in
+                    self.restAPIService?.updateMessages(token: token, messageID: messageIDParameter, messagesIDIn: messagesIDInParameter, folder: folder, starred: starred, read: read, updateFolder: updateFolder, updateStarred: updateStarred, updateRead: updateRead) {(result) in
                         
                         switch(result) {
                             
