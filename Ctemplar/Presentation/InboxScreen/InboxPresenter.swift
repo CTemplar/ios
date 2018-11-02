@@ -318,7 +318,7 @@ class InboxPresenter {
     
     func applyMoreAction(_ sender: AnyObject) {
         
-        self.showFilterView()
+        self.showMoreActionsView()
         
         switch sender.tag {
             
@@ -328,11 +328,11 @@ class InboxPresenter {
             break
         case MoreViewButtonsTag.bottom.rawValue:
             print("bottom btn action")
-            
+            self.markSelectedMessagesAsRead()
             break
         case MoreViewButtonsTag.middle.rawValue:
             print("middle btn action")
-            
+            self.moveSelectedMessagesToArchive()
             break
         case MoreViewButtonsTag.upper.rawValue:
             print("upper btn action")
@@ -372,6 +372,17 @@ class InboxPresenter {
         if self.viewController?.appliedActionMessage != nil {
             if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! > 0 {
                 self.interactor?.markMessagesListAsTrash(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!)
+            } else {
+                print("messages not selected!!!")
+            }
+        }
+    }
+    
+    func moveSelectedMessagesToArchive() {
+        
+        if self.viewController?.appliedActionMessage != nil {
+            if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! > 0 {
+                self.interactor?.moveMessagesListToArchive(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!)
             } else {
                 print("messages not selected!!!")
             }
