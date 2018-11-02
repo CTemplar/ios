@@ -176,3 +176,31 @@ extension InboxViewController: InboxFilterDelegate {
         presenter?.applyFilterAction(sender)
     }
 }
+
+extension InboxViewController: MoreActionsDelegate {
+    
+    func applyAction(_ sender: AnyObject) {
+        
+        switch sender.tag {
+            
+        case MoreViewButtonsTag.cancel.rawValue:
+            print("cancel btn more actions")
+     
+            break
+        case MoreViewButtonsTag.bottom.rawValue:
+            print("bottom btn action")
+
+            break
+        case MoreViewButtonsTag.middle.rawValue:
+            print("middle btn action")
+
+            break
+        case MoreViewButtonsTag.upper.rawValue:
+            print("upper btn action")
+
+            break
+        default:
+            print("more actions: default")
+        }  
+    }
+}

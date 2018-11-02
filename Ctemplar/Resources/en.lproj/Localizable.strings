@@ -22,3 +22,8 @@
 //side menu
 
 "manageFolders" = "Manage Folders";
+
+//more actions buttons
+"moveToArchive" = "Move to archive";
+"markAsUnread" = "Mark as unread";
+"cancel" = "Cancel";

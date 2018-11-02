@@ -301,8 +301,8 @@ class InboxPresenter {
         
         self.viewController?.moreActionsView = Bundle.main.loadNibNamed(k_MoreActionsViewXibName, owner: nil, options: nil)?.first as? MoreActionsView
         self.viewController?.moreActionsView?.frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
-        //self.viewController?.moreActionsView?.delegate = self.viewController
-        let moreActionsButtonsName: Array<String> = []
+        self.viewController?.moreActionsView?.delegate = self.viewController
+        let moreActionsButtonsName: Array<String> = ["cancel".localized(), "markAsUnread".localized(), "moveToArchive".localized()]
         self.viewController?.moreActionsView?.setup(buttonsNameArray: moreActionsButtonsName)
         self.viewController?.navigationController!.view.addSubview((self.viewController?.moreActionsView)!)
         

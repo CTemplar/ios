@@ -22,3 +22,9 @@
 //side menu
 
 "manageFolders" = "Папки";
+
+
+//more actions buttons
+"moveToArchive" = "Переместить в Архив";
+"markAsUnread" = "Пометить как прочтенное";
+"cancel" = "Отмена";

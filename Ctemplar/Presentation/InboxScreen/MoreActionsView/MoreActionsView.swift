@@ -15,7 +15,7 @@ protocol MoreActionsDelegate {
 
 class MoreActionsView: UIView {
     
-    var delegate    : InboxFilterDelegate?
+    var delegate    : MoreActionsDelegate?
     
     @IBOutlet var upperButtonHeightConstraint           : NSLayoutConstraint!
     @IBOutlet var buttonsViewHeightConstraint           : NSLayoutConstraint!
@@ -54,25 +54,21 @@ class MoreActionsView: UIView {
         
         for (index, buttonName) in buttonsNameArray.enumerated() {
             
-            switch index {
+            switch index + MoreViewButtonsTag.cancel.rawValue {
                 
             case MoreViewButtonsTag.cancel.rawValue:
-                //print("cancel btn more actions")
                 cancelButton.isHidden = false
                 cancelButton.setTitle(buttonName, for: .normal)
                 break
             case MoreViewButtonsTag.bottom.rawValue:
-                //print("bottom btn action")
                 bottomButton.isHidden = false
                 bottomButton.setTitle(buttonName, for: .normal)
                 break
             case MoreViewButtonsTag.middle.rawValue:
-                //print("middle btn action")
                 middleButton.isHidden = false
                 middleButton.setTitle(buttonName, for: .normal)
                 break
-            case MoreViewButtonsTag.upper.rawValue:
-                //print("upper btn action")
+            case MoreViewButtonsTag.upper.rawValue:               
                 upperButton.isHidden = false
                 buttonsViewHeightConstraint.constant = k_moreActionsButtonsViewFullContstraint
                 upperButtonHeightConstraint.constant = k_moreActionsButtonHeightConstraint
@@ -89,10 +85,10 @@ class MoreActionsView: UIView {
     //MARK: - IBActions
     
     @IBAction func tappedAction(_ sender: AnyObject) {
-        //delegate?.applyAction(sender)
+        delegate?.applyAction(sender)
     }
     
     @objc func tappedViewAction(sender : UITapGestureRecognizer) {
-        //delegate?.applyAction(sender)
+        delegate?.applyAction(sender)
     }
 }
