@@ -294,4 +294,25 @@ class InboxPresenter {
             self.viewController?.undoBar.isHidden = true
         })
     }
+    
+    //MARK: - More Actions
+    
+    func initMoreActionsView() {
+        
+        self.viewController?.moreActionsView = Bundle.main.loadNibNamed(k_MoreActionsViewXibName, owner: nil, options: nil)?.first as? MoreActionsView
+        self.viewController?.moreActionsView?.frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
+        //self.viewController?.moreActionsView?.delegate = self.viewController
+        let moreActionsButtonsName: Array<String> = []
+        self.viewController?.moreActionsView?.setup(buttonsNameArray: moreActionsButtonsName)
+        self.viewController?.navigationController!.view.addSubview((self.viewController?.moreActionsView)!)
+        
+        self.viewController?.moreActionsView?.isHidden = true
+    }
+    
+    func showMoreActionsView() {
+        
+        let hidden = self.viewController?.moreActionsView?.isHidden
+        
+        self.viewController?.moreActionsView?.isHidden = !hidden!
+    }
 }

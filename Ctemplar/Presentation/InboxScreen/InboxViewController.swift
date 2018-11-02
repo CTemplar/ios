@@ -16,6 +16,7 @@ class InboxViewController: UIViewController {
     var dataSource  : InboxDataSource?
     
     var inboxFilterView : InboxFilterView?
+    var moreActionsView : MoreActionsView?
     
     var inboxSideMenuViewController: InboxSideMenuViewController?
     
@@ -72,6 +73,7 @@ class InboxViewController: UIViewController {
         
         presenter?.setupUI(emailsCount: 0, unreadEmails: 0, filterEnabled: false)
         presenter?.initFilterView()
+        presenter?.initMoreActionsView()
         
         adddNotificationObserver()
         
@@ -141,7 +143,8 @@ class InboxViewController: UIViewController {
     
     @IBAction func moreButtonPressed(_ sender: AnyObject) {
         
-        self.presenter?.showUndoBar(text: "Undo ...")
+        //self.presenter?.showUndoBar(text: "Undo ...")
+        self.presenter?.showMoreActionsView()
     }
     
     @IBAction func undoButtonPressed(_ sender: AnyObject) {

@@ -43,6 +43,7 @@ let k_ViewInboxEmailStoryboardName         = "ViewInboxEmail"
 
 let k_InboxMessageTableViewCellXibName     = "InboxMessageTableViewCell"
 let k_InboxFilterViewXibName               = "InboxFilter"
+let k_MoreActionsViewXibName               = "MoreActions"
 let k_SideMenuTableSectionHeaderViewXibName               = "SideMenuTableSectionHeader"
 let k_SideMenuTableViewCellXibName         = "SideMenuTableViewCell"
 
@@ -192,6 +193,10 @@ let k_tokenMinutesExpiration       = 170
 let k_sideMenuSectionHeaderHeight  : CGFloat = 49
 let k_sideMenuSeparatorHeight      : CGFloat = 1
 
+let k_moreActionsButtonsViewFullContstraint   : CGFloat = 206
+let k_moreActionsButtonsViewSmallContstraint  : CGFloat = 154
+let k_moreActionsButtonHeightConstraint       : CGFloat = 50
+
 let k_undoActionBarShowingSecs     = 5.0
 
 enum InboxSideMenuOptionsName: String {
@@ -259,4 +264,12 @@ enum SideMenuSectionIndex: Int {
     case options          = 1
     case customFolders    = 2    
     case sectionsCount    = 3
+}
+
+enum MoreViewButtonsTag: Int, CaseIterable {
+    
+    case cancel           = 401
+    case bottom           = 402
+    case middle           = 403
+    case upper            = 404
 }
