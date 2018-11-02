@@ -90,7 +90,7 @@ class FormatterService
     
     func validatePasswordFormat(enteredPassword: String) -> Bool {
         
-        let passwordFormat = "[A-Z0-9a-z._%+-]{7,64}"//"^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()\\-_=+{}|?>.<,:;~`’]{8,64}$"
+        let passwordFormat = "[A-Z0-9a-z._%+-]{1,64}"//"^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()\\-_=+{}|?>.<,:;~`’]{8,64}$"
         let passwordPredicate = NSPredicate(format:"SELF MATCHES %@", passwordFormat)
         return passwordPredicate.evaluate(with: enteredPassword)
     }
@@ -107,6 +107,36 @@ class FormatterService
         } else {
             return false
         }
+    }
+    
+    //MARK: - Message String formatter
+    
+    func formatFromToAttributedString(fromName: String, fromEmail: String, toName: String, toEmail: String, ccArray: Array<String>) -> NSAttributedString {
+        
+        var ccText : String = "\nCC:"
+        
+        for carbonCopy in ccArray {
+            ccText = ccText + " <" + carbonCopy + ">,"
+        }
+        
+        if ccArray.count > 1 {
+            ccText.remove(at: ccText.index(before: ccText.endIndex)) //remove last ","
+        }
+        
+        //"From: Ctemplar <contact@ctemplar.ch>\nTo: John Doe <johndoe@gmail.com>\nCC: Sam Smith <samsmith@hotmail.com>"
+        let textString = "From: " + fromName + " <" + fromEmail + ">\nTo: " + toName + " <" + toEmail + "> " + ccText
+        
+        let attributedString = NSMutableAttributedString(string: textString, attributes: [
+            .font: UIFont(name: "Lato-Regular", size: 14.0)!,
+            .foregroundColor: UIColor(white: 0.0, alpha: 0.38),
+            .kern: 0.0
+            ])
+        
+        _ = attributedString.setForgroundColor(textToFind: fromName, color: UIColor(white: 0.0, alpha: 0.87))
+        _ = attributedString.setForgroundColor(textToFind: toName, color: UIColor(white: 0.0, alpha: 0.87))
+        //_ = attributedString.setForgroundColor(textToFind: fromName, color: UIColor(white: 0.0, alpha: 0.87))
+        
+        return attributedString
     }
     
     //MARK: - Date String formatter
@@ -420,7 +450,7 @@ extension NSAttributedString {
 
 extension NSMutableAttributedString {
     
-    public func setAsLink(textToFind:String, linkURL:String) -> Bool {
+    public func setAsLink(textToFind: String, linkURL: String) -> Bool {
         
         let foundRange = self.mutableString.range(of: textToFind)
         
@@ -433,7 +463,7 @@ extension NSMutableAttributedString {
         return false
     }
     
-    public func setUnderline(textToFind:String) -> Bool {
+    public func setUnderline(textToFind: String) -> Bool {
         
         let foundRange = self.mutableString.range(of: textToFind)
         
@@ -445,12 +475,23 @@ extension NSMutableAttributedString {
         return false
     }
     
-    public func setForgroundColor(textToFind:String, color: UIColor) -> Bool {
+    public func setForgroundColor(textToFind: String, color: UIColor) -> Bool {
         
         let foundRange = self.mutableString.range(of: textToFind)
         
         if foundRange.location != NSNotFound {            
             self.addAttribute(.foregroundColor, value: color, range: foundRange)
+            return true
+        }
+        return false
+    }
+    
+    public func setFont(textToFind: String, font: UIFont) -> Bool {
+        
+        let foundRange = self.mutableString.range(of: textToFind)
+        
+        if foundRange.location != NSNotFound {           
+            self.addAttribute(.font, value: font, range: foundRange)
             return true
         }
         return false

@@ -100,10 +100,10 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have no Inbox messages" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="aXO-qW-NOt">
-                                        <rect key="frame" x="87.5" y="339" width="200" height="18"/>
+                                        <rect key="frame" x="27.5" y="339" width="320" height="18"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="por-Ew-ivU"/>
-                                            <constraint firstAttribute="width" secondItem="aXO-qW-NOt" secondAttribute="height" multiplier="100:9" id="rnD-gF-6bD"/>
+                                            <constraint firstAttribute="width" constant="320" id="por-Ew-ivU"/>
+                                            <constraint firstAttribute="width" secondItem="aXO-qW-NOt" secondAttribute="height" multiplier="160:9" id="rnD-gF-6bD"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -389,6 +389,8 @@
                         <outlet property="baseToolBar" destination="OxM-zC-5gC" id="4gF-Tv-dWI"/>
                         <outlet property="emptyInbox" destination="eDd-Iw-BQd" id="eF2-hW-EuV"/>
                         <outlet property="grayBorder" destination="PWU-yj-LpB" id="C0t-d0-w5p"/>
+                        <outlet property="inboxEmptyImageView" destination="sCN-au-kGO" id="V3r-6b-fPd"/>
+                        <outlet property="inboxEmptyLabel" destination="aXO-qW-NOt" id="xec-Gq-cB0"/>
                         <outlet property="inboxTableView" destination="Kev-ma-6ds" id="ZVw-5J-3DK"/>
                         <outlet property="leftBarButtonItem" destination="R5E-6J-cXY" id="xmt-uO-ZRR"/>
                         <outlet property="leftFilterButton" destination="aOn-Eo-5Fa" id="BfC-Nh-mYR"/>

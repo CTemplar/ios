@@ -8,53 +8,41 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 class ViewInboxEmailViewController: UIViewController {
     
+    var presenter   : ViewInboxEmailPresenter?
+    var router      : ViewInboxEmailRouter?
+        
     @IBOutlet var secureImageTrailingConstraint : NSLayoutConstraint!
+    
+    @IBOutlet var headerLabel           : UILabel!
+    
+    @IBOutlet var fromToBarTextView     : UITextView!
+    @IBOutlet var contentTextView       : UITextView!
+    
+    @IBOutlet var securedImageView      : UIImageView!
+    @IBOutlet var starredmageView       : UIImageView!
+    
+    @IBOutlet var dateLabel             : UILabel!
+    
+    @IBOutlet var scrollView            : UIScrollView!
+    @IBOutlet var webView               : WKWebView!
+    
+    var message : EmailMessage?
+    //var header  : String?
     
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNavigationBar()
-    }
-    
-    func setupNavigationBar() {
+        let configurator = ViewInboxEmailConfigurator()
+        configurator.configure(viewController: self)
         
-        let arrowBackImage = UIImage(named: k_darkBackArrowImageName)
-        self.navigationController?.navigationBar.backIndicatorImage = arrowBackImage
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = arrowBackImage
-        
-        self.navigationController?.navigationBar.topItem?.title = ""
-        self.navigationController?.navigationBar.tintColor = UIColor.darkGray
-        
-        let garbageButton : UIButton = UIButton.init(type: .custom)
-        garbageButton.setImage(UIImage(named: k_garbageImageName), for: .normal)
-        garbageButton.addTarget(self, action: #selector(garbageButtonPresed), for: .touchUpInside)
-        garbageButton.frame = CGRect(x: 0, y: 0, width: k_navBarButtonSize, height: k_navBarButtonSize)
-        let garbageItem = UIBarButtonItem(customView: garbageButton)
-        
-        let spamButton : UIButton = UIButton.init(type: .custom)
-        spamButton.setImage(UIImage(named: k_spamImageName), for: .normal)
-        spamButton.addTarget(self, action: #selector(spamButtonPresed), for: .touchUpInside)
-        spamButton.frame = CGRect(x: 0, y: 0, width: k_navBarButtonSize, height: k_navBarButtonSize)
-        let spamItem = UIBarButtonItem(customView: spamButton)
-        
-        let moveButton : UIButton = UIButton.init(type: .custom)
-        moveButton.setImage(UIImage(named: k_moveImageName), for: .normal)
-        moveButton.addTarget(self, action: #selector(moveButtonPresed), for: .touchUpInside)
-        moveButton.frame = CGRect(x: 0, y: 0, width: k_navBarButtonSize, height: k_navBarButtonSize)
-        let moveItem = UIBarButtonItem(customView: moveButton)
-        
-        let moreButton : UIButton = UIButton.init(type: .custom)
-        moreButton.setImage(UIImage(named: k_moreImageName), for: .normal)
-        moreButton.addTarget(self, action: #selector(moreButtonPresed), for: .touchUpInside)
-        moreButton.frame = CGRect(x: 0, y: 0, width: k_navBarButtonSize, height: k_navBarButtonSize)
-        let moreItem = UIBarButtonItem(customView: moreButton)
-        
-        self.navigationItem.rightBarButtonItems = [moreItem, moveItem, spamItem, garbageItem]
+        self.presenter?.setupNavigationBar()
+        self.presenter?.setupMessageHeader(message: self.message!)
     }
     
     //MARK: - IBActions
@@ -71,22 +59,6 @@ class ViewInboxEmailViewController: UIViewController {
     
     @IBAction func forwardButtonPressed(_ sender: AnyObject) {
         
-        
-    }
-    
-    @objc func garbageButtonPresed() {
-        
-    }
-    
-    @objc func spamButtonPresed() {
-        
-    }
-    
-    @objc func moveButtonPresed() {
-        
-    }
-    
-    @objc func moreButtonPresed() {
         
     }
 }

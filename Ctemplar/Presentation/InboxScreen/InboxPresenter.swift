@@ -38,10 +38,23 @@ class InboxPresenter {
     
     //MARK: - setup UI
     
-    func setupUI(emailsCount: Int, unreadEmails: Int) {
+    func setupUI(emailsCount: Int, unreadEmails: Int, filterEnabled: Bool) {
         
-        viewController?.messagesLabel.text = formatEmailsCountText(emailsCount: emailsCount)
-        viewController?.unreadMessagesLabel.text = formatUreadEmailsCountText(emailsCount: unreadEmails)
+        if filterEnabled {
+            viewController?.messagesLabel.text = "Filtered"
+            viewController?.unreadMessagesLabel.text = self.formatAppliedFilters()
+            viewController?.unreadMessagesLabel.textColor = k_redColor
+            
+            viewController?.inboxEmptyLabel.text = "There are no messages match the filter"
+            viewController?.inboxEmptyImageView.image =  UIImage(named: k_emptyFilterInboxIconImageName)
+        } else {
+            viewController?.messagesLabel.text = formatEmailsCountText(emailsCount: emailsCount)
+            viewController?.unreadMessagesLabel.text = formatUreadEmailsCountText(emailsCount: unreadEmails)
+            viewController?.unreadMessagesLabel.textColor = k_lightGrayTextColor
+            
+            viewController?.inboxEmptyLabel.text = "You have no Inbox messages"
+            viewController?.inboxEmptyImageView.image =  UIImage(named: k_emptyInboxIconImageName)
+        }
         
         if emailsCount > 0 {
             viewController?.emptyInbox.isHidden = true
@@ -69,6 +82,12 @@ class InboxPresenter {
         //viewController?.undoBar.blur(blurRadius: 5)
         
         setupNavigationItemTitle(selectedMessages: (self.viewController?.dataSource?.selectedMessagesIDArray.count)!, selectionMode: (self.viewController?.dataSource?.selectionMode)!, currentFolder: self.viewController!.currentFolder)
+        
+        if (self.viewController?.dataSource?.messagesArray.count)! > 0 {
+            viewController?.emptyInbox.isHidden = true
+        } else {
+            viewController?.emptyInbox.isHidden = false
+        }
     }
     
     func setupNavigationItemTitle(selectedMessages: Int, selectionMode: Bool, currentFolder: String) {
@@ -85,11 +104,16 @@ class InboxPresenter {
     func initAndSetupInboxSideMenuController() {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_InboxSideMenuStoryboardName, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: k_InboxSideMenuViewControllerID) as! InboxSideMenuViewController
+        //let vc = storyboard.instantiateViewController(withIdentifier: k_InboxSideMenuViewControllerID) as! InboxSideMenuViewController
+        self.viewController?.inboxSideMenuViewController = storyboard.instantiateViewController(withIdentifier: k_InboxSideMenuViewControllerID) as? InboxSideMenuViewController
         
-        vc.currentParentViewController = self.viewController
         
-        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: vc)
+        //vc.currentParentViewController = self.viewController
+        
+        //let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: vc)
+        
+        self.viewController?.inboxSideMenuViewController?.currentParentViewController = self.viewController
+        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: (self.viewController?.inboxSideMenuViewController)!)
         
         SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
         SideMenuManager.default.menuFadeStatusBar = false
@@ -106,6 +130,10 @@ class InboxPresenter {
     func formatEmailsCountText(emailsCount: Int) -> String {
         
         var emailsCountString : String = "emails"
+        
+        if emailsCount == 1 {
+            emailsCountString = "email"
+        }
         
         emailsCountString = emailsCount.description + " " + emailsCountString
         
@@ -128,7 +156,7 @@ class InboxPresenter {
         if self.viewController?.dataSource?.selectionMode == true {
             disableSelectionMode()
         } else {
-            
+            //self.viewController?.router?.showMoveToViewController()//temp
         }
     }
     
@@ -168,9 +196,9 @@ class InboxPresenter {
     func initFilterView() {
         
         self.viewController?.inboxFilterView = Bundle.main.loadNibNamed(k_InboxFilterViewXibName, owner: nil, options: nil)?.first as? InboxFilterView
-        self.viewController?.inboxFilterView?.frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height - 0.0)
+        self.viewController?.inboxFilterView?.frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
         self.viewController?.inboxFilterView?.delegate = self.viewController
-        self.viewController?.inboxFilterView?.setup()
+        self.viewController?.inboxFilterView?.setup(appliedFilters: (self.viewController?.appliedFilters)!)
         self.viewController?.navigationController!.view.addSubview((self.viewController?.inboxFilterView)!)
         
         self.viewController?.inboxFilterView?.isHidden = true
@@ -182,6 +210,8 @@ class InboxPresenter {
         
         self.viewController?.inboxFilterView?.isHidden = !hidden!
         
+        self.viewController?.inboxFilterView?.setup(appliedFilters: (self.viewController?.appliedFilters)!)
+        
         if !hidden! {
             self.viewController?.leftFilterButton.setImage(UIImage(named: k_filterImageName), for: .normal)
         } else {
@@ -192,25 +222,61 @@ class InboxPresenter {
     func applyFilterAction(_ sender: AnyObject) {
         
         switch sender.tag {
-        case InboxFilterButtonsTag.all.rawValue:
-            print("filter: all")
             
+        case InboxFilterViewButtonsTag.cancelButton.rawValue:
+            print("cancel filters")
+            self.viewController?.presenter?.setupUI(emailsCount: (self.viewController?.emailsCount)!, unreadEmails: (self.viewController?.unreadEmails)!, filterEnabled: false)
             break
-        case InboxFilterButtonsTag.starred.rawValue:
-            print("filter: starred")
-            
-            break
-        case InboxFilterButtonsTag.unread.rawValue:
-            print("filter: unread")
-            
-            break
-        case InboxFilterButtonsTag.withAttachment.rawValue:
-            print("filter: withAttachment")
-            
+        case InboxFilterViewButtonsTag.applyButton.rawValue:
+            print("apply filters")
+            self.interactor?.applyFilters()
+            let filterEnabled = self.interactor?.filterEnabled()
+            self.viewController?.presenter?.setupUI(emailsCount: (self.viewController?.emailsCount)!, unreadEmails: (self.viewController?.unreadEmails)!, filterEnabled: filterEnabled!)
             break
         default:
             print("filter: default")
         }
+    }
+    
+    func formatAppliedFilters() -> String {
+        
+        var appliedFiltersText = "" //Starred, Unread, With attachments
+        
+        for (index, filterApplied) in (self.viewController?.appliedFilters)!.enumerated() {
+            
+            switch index + InboxFilterButtonsTag.starred.rawValue {
+            case InboxFilterButtonsTag.starred.rawValue:
+                //print("starred filtered")
+                if filterApplied == true {
+                   appliedFiltersText = "Starred"
+                }
+                break
+            case InboxFilterButtonsTag.unread.rawValue:
+                //print("unread filtered")
+                if filterApplied == true {
+                    if appliedFiltersText.count > 0 {
+                        appliedFiltersText = appliedFiltersText + ", Unread"
+                    } else {
+                        appliedFiltersText = "Unread"
+                    }
+                }
+                break
+            case InboxFilterButtonsTag.withAttachment.rawValue:
+                //print("with attachment filtered")
+                if filterApplied == true {
+                    if appliedFiltersText.count > 0 {
+                        appliedFiltersText = appliedFiltersText + ", With attachments"
+                    } else {
+                        appliedFiltersText = "With attachments"
+                    }
+                }
+                break
+            default:
+                print("default")
+            }
+        }
+        
+        return appliedFiltersText
     }
     
     func showUndoBar(text: String) {
@@ -220,12 +286,12 @@ class InboxPresenter {
         self.viewController?.undoBar.isHidden = false
         self.viewController?.undoBar.alpha = 1.0
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
-            self.viewController?.undoBar.isHidden = true
-        })
+        let duration = k_undoActionBarShowingSecs
         
-        UIView.animate(withDuration: 5.0, animations: {
-            self.viewController?.undoBar.alpha = 0.0
+        UIView.animate(withDuration: duration, delay: 0.0, options: .allowUserInteraction, animations: {
+            self.viewController?.undoBar.alpha = 0.1
+        }, completion: { _ in
+            self.viewController?.undoBar.isHidden = true
         })
     }
 }

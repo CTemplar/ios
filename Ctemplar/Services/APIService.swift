@@ -371,7 +371,11 @@ class APIService {
         var folderFilter = ""
         
         if folder.count > 0 {
-            folderFilter = "?folder=" + folder
+            if folder == MessagesFoldersName.starred.rawValue {
+                folderFilter = "?starred=1"
+            } else {
+                folderFilter = "?folder=" + folder
+            }
         }
 
         self.checkTokenExpiration(){ (complete) in
@@ -402,6 +406,63 @@ class APIService {
                             } else {
                                 let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
                                 completionHandler(APIResult.failure(error))
+                            }
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                        
+                        HUD.hide()
+                    }
+                }
+            }
+        }
+    }
+    
+    func updateMessages(messageID: String, messagesIDIn: String, folder: String, starred: Bool, read: Bool,completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        var messageIDParameter = ""
+        
+        if messageID.count > 0 {
+            messageIDParameter = messageID + "/"
+        }
+    
+        var messagesIDInParameter = ""
+        
+        if messagesIDIn.count > 0 {
+            messagesIDInParameter = "?id__in=" + messagesIDIn
+        }
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    
+                    HUD.show(.progress)
+                    
+                    self.restAPIService?.updateMessages(token: token, messageID: messageIDParameter, messagesIDIn: messagesIDInParameter, folder: folder, starred: starred, read: read) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            
+                            print("messagesList success:", value)
+                            
+                            if let response = value as? Dictionary<String, Any> {
+                                
+                                if let message = self.parseServerResponse(response:response) {
+                                    print("updateMessages message:", message)
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    //
+                                    completionHandler(APIResult.success(value))
+                                }
+                            } else {
+                               // let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                               // completionHandler(APIResult.failure(error))
+                                completionHandler(APIResult.success(value))
                             }
                             
                         case .failure(let error):
@@ -584,10 +645,10 @@ class APIService {
                 //do nothing
                 break
             default:
-                print("APIResponce key:", dictionary.key, "value:", dictionary.value)
-                if let errorMessage = extractErrorTextFrom(value: dictionary.value) {
-                    message = dictionary.key + ": " + errorMessage
-                }
+                print("Default case APIResponce key:", dictionary.key, "value:", dictionary.value)
+               // if let errorMessage = extractErrorTextFrom(value: dictionary.value) {
+               //     message = dictionary.key + ": " + errorMessage
+               // }
             }
         }
         

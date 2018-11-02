@@ -33,16 +33,31 @@ class InboxSideMenuInteractor {
         
         switch optionName {
         case InboxSideMenuOptionsName.inbox.rawValue :
-            self.viewController?.currentParentViewController.currentFolder = InboxSideMenuOptionsName.inbox.rawValue
-            self.viewController?.currentParentViewController.currentFolderFilter = MessagesFoldersName.inbox.rawValue
-            self.viewController?.currentParentViewController.presenter?.loadMessages(folder: MessagesFoldersName.inbox.rawValue)
-            self.viewController?.dismiss(animated: true, completion: nil)
+            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.inbox.rawValue)
+            break
+        case InboxSideMenuOptionsName.draft.rawValue :
+            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.draft.rawValue)
             break
         case InboxSideMenuOptionsName.sent.rawValue :
-            self.viewController?.currentParentViewController.currentFolder = InboxSideMenuOptionsName.sent.rawValue
-            self.viewController?.currentParentViewController.currentFolderFilter = MessagesFoldersName.sent.rawValue
-            self.viewController?.currentParentViewController.presenter?.loadMessages(folder: MessagesFoldersName.sent.rawValue)
-            self.viewController?.dismiss(animated: true, completion: nil)
+            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.sent.rawValue)
+            break
+        case InboxSideMenuOptionsName.outbox.rawValue :
+            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.outbox.rawValue)
+            break
+        case InboxSideMenuOptionsName.starred.rawValue :
+            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.starred.rawValue)
+            break
+        case InboxSideMenuOptionsName.archive.rawValue :
+            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.archive.rawValue)
+            break
+        case InboxSideMenuOptionsName.spam.rawValue :
+            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.spam.rawValue)
+            break
+        case InboxSideMenuOptionsName.trash.rawValue :
+            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.trash.rawValue)
+            break
+        case InboxSideMenuOptionsName.allMails.rawValue :
+            self.applyFirstSectionAction(folder: optionName, filter: "")
             break
         case InboxSideMenuOptionsName.logout.rawValue :
             self.viewController?.presenter?.logOut()
@@ -50,5 +65,14 @@ class InboxSideMenuInteractor {
         default:
             print("do nothing")
         }
+    }
+    
+    func applyFirstSectionAction(folder: String, filter: String) {
+        
+        self.viewController?.currentParentViewController.currentFolder = folder
+        self.viewController?.currentParentViewController.currentFolderFilter = filter
+        self.viewController?.currentParentViewController.presenter?.interactor?.updateMessages()//loadMessages(folder: filter)
+        self.viewController?.currentParentViewController.presenter?.interactor?.clearFilters()
+        self.viewController?.dismiss(animated: true, completion: nil)
     }
 }

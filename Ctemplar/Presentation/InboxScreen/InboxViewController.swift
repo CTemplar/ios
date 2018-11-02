@@ -17,11 +17,24 @@ class InboxViewController: UIViewController {
     
     var inboxFilterView : InboxFilterView?
     
+    var inboxSideMenuViewController: InboxSideMenuViewController?
+    
+    var currentMessagesList : EmailMessagesList?
+    
     var messagesList    : Array<EmailMessage> = []
     var mailboxesList   : Array<Mailbox> = []
     
     var currentFolder       : String = InboxSideMenuOptionsName.inbox.rawValue
     var currentFolderFilter : String = MessagesFoldersName.inbox.rawValue
+    
+    var appliedActionMessage : EmailMessage?
+    
+    var mainFoldersUnreadMessagesCount: Array<Int> = [0, 0, 0, 0, 0, 0, 0, 0]
+    
+    var appliedFilters   : Array<Bool> = [false, false, false]
+    
+    var emailsCount : Int = 0
+    var unreadEmails: Int = 0
     
     @IBOutlet var inboxTableView        : UITableView!
     
@@ -29,6 +42,8 @@ class InboxViewController: UIViewController {
     @IBOutlet var unreadMessagesLabel   : UILabel!
     
     @IBOutlet var emptyInbox            : UIView!
+    @IBOutlet var inboxEmptyImageView   : UIImageView!
+    @IBOutlet var inboxEmptyLabel       : UILabel!
     @IBOutlet var grayBorder            : UIView!
     
     @IBOutlet var baseToolBar           : UIView!
@@ -55,7 +70,7 @@ class InboxViewController: UIViewController {
         
         dataSource?.initWith(parent: self, tableView: inboxTableView, array: messagesList)
         
-        presenter?.setupUI(emailsCount: 0, unreadEmails: 0)
+        presenter?.setupUI(emailsCount: 0, unreadEmails: 0, filterEnabled: false)
         presenter?.initFilterView()
         
         adddNotificationObserver()
@@ -66,9 +81,7 @@ class InboxViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if (presenter?.interactor?.checkStoredPGPKeys())! {
-            presenter?.loadMessages(folder: self.currentFolderFilter)
-        }
+        self.presenter?.interactor?.updateMessages()
         
         navigationController?.navigationBar.backgroundColor = k_whiteColor
     }
@@ -97,17 +110,33 @@ class InboxViewController: UIViewController {
     
     @IBAction func unreadButtonPressed(_ sender: AnyObject) {
         
-        self.presenter?.showUndoBar(text: "Undo mark as Read")
+        if appliedActionMessage != nil {
+            if (self.dataSource?.selectedMessagesIDArray.count)! > 0 {
+                self.presenter?.interactor?.markMessagesListAsRead(selectedMessagesIdArray: (self.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: appliedActionMessage!)
+            } else {
+                print("messages not selected!!!")
+            }
+        }
+        //self.presenter?.showUndoBar(text: "Undo mark as Read")
     }
     
     @IBAction func moveButtonPressed(_ sender: AnyObject) {
         
-        self.presenter?.showUndoBar(text: "Undo moving")
+        self.router?.showMoveToViewController()
+        //self.presenter?.showUndoBar(text: "Undo moving")
     }
     
     @IBAction func garbageButtonPressed(_ sender: AnyObject) {
         
-        self.presenter?.showUndoBar(text: "Undo delete")
+        if appliedActionMessage != nil {
+            if (self.dataSource?.selectedMessagesIDArray.count)! > 0 {
+                self.presenter?.interactor?.markMessagesListAsTrash(selectedMessagesIdArray: (self.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: appliedActionMessage!)
+            } else {
+                print("messages not selected!!!")
+            }
+        }
+        
+        //self.presenter?.showUndoBar(text: "Undo delete")
     }
     
     @IBAction func moreButtonPressed(_ sender: AnyObject) {
@@ -117,6 +146,9 @@ class InboxViewController: UIViewController {
     
     @IBAction func undoButtonPressed(_ sender: AnyObject) {
         
+        if appliedActionMessage != nil {
+            self.presenter?.interactor?.undoLastAction(message: appliedActionMessage!)
+        }        
     }
     
     //MARK: - notification
@@ -128,17 +160,16 @@ class InboxViewController: UIViewController {
     
     @objc func reciveUpdateNotification(notification: Notification) {
         
-        if (presenter?.interactor?.checkStoredPGPKeys())! {
-            presenter?.loadMessages(folder: self.currentFolderFilter)
-        }
+        self.presenter?.interactor?.updateMessages()
     }    
 }
 
 extension InboxViewController: InboxFilterDelegate {
     
-    func applyAction(_ sender: AnyObject) {
+    func applyAction(_ sender: AnyObject, appliedFilters: Array<Bool>) {
         
-       presenter?.showFilterView()
-       presenter?.applyFilterAction(sender)
+        self.appliedFilters = appliedFilters
+        presenter?.showFilterView()
+        presenter?.applyFilterAction(sender)
     }
 }

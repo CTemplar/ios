@@ -52,11 +52,11 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
         // Configure the view for the selected state
     }
     
-    func setupCellWithData(message : EmailMessage, isSelectionMode: Bool, isSelected: Bool, frameWidth: CGFloat) {
+    func setupCellWithData(message: EmailMessage, header: String, isSelectionMode: Bool, isSelected: Bool, frameWidth: CGFloat) {
         
         cellWidth = frameWidth
         
-        setupLabelsAndImages(message: message)
+        setupLabelsAndImages(message: message, header: header)
         
         setupConstraints(message: message, isSelectionMode: isSelectionMode)
         
@@ -67,7 +67,7 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
         }
     }
     
-    func setupLabelsAndImages(message : EmailMessage) {
+    func setupLabelsAndImages(message: EmailMessage, header : String) {
         
         if let sender = message.sender {
             
@@ -78,9 +78,7 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
             subjectLabel.text = subject
         }
         
-        if let messageContent = message.content {            
-            headMessageLabel.text = parentController?.parentViewController.presenter?.interactor?.headerOfMessage(contet: messageContent)
-        }
+        headMessageLabel.text = header
         
         //let testDate = Calendar.current.date(byAdding: .day, value: -3, to: Date())!
         
@@ -197,9 +195,9 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
         
         let availableSpace : CGFloat = cellWidth - badgesViewWidth - k_rightSideWidth - isSelectedImageTrailingConstraint.constant - isSelectedImageWidthConstraint.constant
         
-        print("cellWidth:", cellWidth)
-        print("senderTextWidth:", senderTextWidth)
-        print("availableSpace:", availableSpace)
+        //print("cellWidth:", cellWidth)
+        //print("senderTextWidth:", senderTextWidth)
+        //print("availableSpace:", availableSpace)
         
         if senderTextWidth > availableSpace {
             senderLabelWidthConstraint.constant = availableSpace
@@ -226,7 +224,7 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
         
         badgesViewWidth = badgesViewWidth + deleteLabelWidth
         
-        print("badgesViewWidth:", badgesViewWidth)
+        //print("badgesViewWidth:", badgesViewWidth)
         
         return badgesViewWidth
     }
