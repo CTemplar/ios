@@ -173,6 +173,9 @@ class InboxPresenter {
         self.viewController?.selectionToolBar.isHidden = false
         
         setupNavigationItemTitle(selectedMessages: (self.viewController?.dataSource?.selectedMessagesIDArray.count)!, selectionMode: (self.viewController?.dataSource?.selectionMode)!, currentFolder: self.viewController!.currentFolder)
+        
+        self.viewController?.appliedActionMessage = nil
+        self.viewController?.dataSource?.selectedMessagesIDArray.removeAll()
     }
     
     func disableSelectionMode() {
@@ -189,6 +192,9 @@ class InboxPresenter {
         self.viewController?.selectionToolBar.isHidden = true
         
         setupNavigationItemTitle(selectedMessages: (self.viewController?.dataSource?.selectedMessagesIDArray.count)!, selectionMode: (self.viewController?.dataSource?.selectionMode)!, currentFolder: self.viewController!.currentFolder)
+        
+        self.viewController?.appliedActionMessage = nil
+        self.viewController?.dataSource?.selectedMessagesIDArray.removeAll()
     }
     
     //MARK: - filter

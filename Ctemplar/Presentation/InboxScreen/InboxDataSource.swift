@@ -181,7 +181,8 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         let message = messagesArray[indexPath.row]
         self.parentViewController.appliedActionMessage = message
         
-        //self.applySwipeAction(index: index)
+        selectedMessagesIDArray.removeAll()
+        selectedMessagesIDArray.append(message.messsageID!)
         
         let currentFolder = self.parentViewController.currentFolderFilter
         

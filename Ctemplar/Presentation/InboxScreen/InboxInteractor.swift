@@ -408,23 +408,33 @@ class InboxInteractor {
     }
     
     func undoLastAction(message: EmailMessage) {
-        /*
-        apiService?.updateMessages(messageID: (message.messsageID?.description)!, messagesIDIn: "", folder: message.folder!, starred: message.starred!, read: message.read!)  {(result) in
-            
-            switch(result) {
-                
-            case .success( _):
-                //print("value:", value)
-                print("undo last action")
-                self.viewController?.undoBar.isHidden = true
-                self.updateMessages()
-                
-            case .failure(let error):
-                print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
-            }
-        }*/
+   
+        if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! < 1 {
+            return
+        }
         
+        switch self.viewController?.lastAction.rawValue {
+        case ActionsIndex.markAsSpam.rawValue:
+            self.markMessagesListAsSpam(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: message)
+            break
+        case ActionsIndex.markAsRead.rawValue:
+            self.markMessagesListAsRead(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: message)
+            break
+        case ActionsIndex.markAsStarred.rawValue:
+            
+            break
+        case ActionsIndex.moveToArchive.rawValue:
+            self.moveMessagesListToArchive(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: message)
+            break
+        case ActionsIndex.moveToTrach.rawValue:
+            self.markMessagesListAsTrash(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: message)
+            break
+        default:
+            print("unknown undo action")
+        }
+        
+        self.viewController?.appliedActionMessage = nil
+        self.viewController?.dataSource?.selectedMessagesIDArray.removeAll()
     }
     
     //MARK: - Selection Bar Actions
@@ -452,8 +462,9 @@ class InboxInteractor {
             case .success( _):
                 //print("value:", value)
                 print("marked list as read/unread")
-                //self.viewController?.presenter?.showUndoBar(text: "Undo mark as Read")
+                self.viewController?.presenter?.showUndoBar(text: "Undo mark as spam")
                 self.updateMessages()
+                self.viewController?.lastAction = ActionsIndex.markAsSpam
                 
             case .failure(let error):
                 print("error:", error)
@@ -481,8 +492,9 @@ class InboxInteractor {
             case .success( _):
                 //print("value:", value)
                 print("marked list as read/unread")
-                //self.viewController?.presenter?.showUndoBar(text: "Undo mark as Read")
+                self.viewController?.presenter?.showUndoBar(text: "Undo mark as Read")
                 self.updateMessages()
+                self.viewController?.lastAction = ActionsIndex.markAsRead
                 
             case .failure(let error):
                 print("error:", error)
@@ -510,8 +522,9 @@ class InboxInteractor {
             case .success( _):
                 //print("value:", value)
                 print("marked list as trash")
-                //self.viewController?.presenter?.showUndoBar(text: "Undo mark as Read")
+                self.viewController?.presenter?.showUndoBar(text: "Undo delete")
                 self.updateMessages()
+                self.viewController?.lastAction = ActionsIndex.moveToTrach
                 
             case .failure(let error):
                 print("error:", error)
@@ -543,8 +556,9 @@ class InboxInteractor {
             case .success( _):
                 //print("value:", value)
                 print("move list to archive")
-                //self.viewController?.presenter?.showUndoBar(text: "Undo mark as Read")
+                self.viewController?.presenter?.showUndoBar(text: "Undo move to archive")
                 self.updateMessages()
+                self.viewController?.lastAction = ActionsIndex.moveToArchive
                 
             case .failure(let error):
                 print("error:", error)

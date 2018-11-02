@@ -30,6 +30,8 @@ class InboxViewController: UIViewController {
     
     var appliedActionMessage : EmailMessage?
     
+    var lastAction : ActionsIndex = ActionsIndex.markAsRead
+    
     var mainFoldersUnreadMessagesCount: Array<Int> = [0, 0, 0, 0, 0, 0, 0, 0]
     
     var appliedFilters   : Array<Bool> = [false, false, false]
@@ -163,8 +165,17 @@ class InboxViewController: UIViewController {
     @IBAction func undoButtonPressed(_ sender: AnyObject) {
         
         if appliedActionMessage != nil {
+            if (self.dataSource?.selectedMessagesIDArray.count)! > 0 {
+                self.presenter?.interactor?.undoLastAction(message: appliedActionMessage!)
+            } else {
+                print("messages not selected!!!")
+            }
+        }
+        
+        /*
+        if appliedActionMessage != nil {
             self.presenter?.interactor?.undoLastAction(message: appliedActionMessage!)
-        }        
+        }        */
     }
     
     //MARK: - notification

@@ -273,3 +273,13 @@ enum MoreViewButtonsTag: Int, CaseIterable {
     case middle           = 403
     case upper            = 404
 }
+
+enum ActionsIndex: Int, CaseIterable {
+
+    case markAsSpam       = 1
+    case markAsRead       = 2
+    case markAsStarred    = 3
+    case moveToTrach      = 4
+    case moveToArchive    = 5
+    case moveTo           = 6
+}
