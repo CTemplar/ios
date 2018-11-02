@@ -250,9 +250,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="44" id="Bv0-T7-mI3"/>
                                                 </constraints>
-                                                <state key="normal" image="unreadMessage"/>
+                                                <state key="normal" image="spamMessage"/>
                                                 <connections>
-                                                    <action selector="unreadButtonPressed:" destination="NhN-bs-dS3" eventType="touchUpInside" id="kJe-wN-UDL"/>
+                                                    <action selector="spamButtonPressed:" destination="NhN-bs-dS3" eventType="touchUpInside" id="RH0-Ln-dJw"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqJ-4G-Cvb">
@@ -436,7 +436,7 @@
         <image name="SearchButton" width="22" height="30"/>
         <image name="moreMessage" width="44" height="44"/>
         <image name="moveMessage" width="44" height="44"/>
+        <image name="spamMessage" width="44" height="44"/>
         <image name="trashMessage" width="44" height="44"/>
-        <image name="unreadMessage" width="44" height="44"/>
     </resources>
 </document>

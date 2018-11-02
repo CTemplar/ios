@@ -112,33 +112,46 @@ class InboxViewController: UIViewController {
     
     @IBAction func unreadButtonPressed(_ sender: AnyObject) {
         
+        self.presenter?.markSelectedMessagesAsRead()
+        /*
         if appliedActionMessage != nil {
             if (self.dataSource?.selectedMessagesIDArray.count)! > 0 {
                 self.presenter?.interactor?.markMessagesListAsRead(selectedMessagesIdArray: (self.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: appliedActionMessage!)
             } else {
                 print("messages not selected!!!")
             }
-        }
-        //self.presenter?.showUndoBar(text: "Undo mark as Read")
+        }*/
+    }
+    
+    @IBAction func spamButtonPressed(_ sender: AnyObject) {
+        
+        self.presenter?.markSelectedMessagesAsSpam()
+        /*
+        if appliedActionMessage != nil {
+            if (self.dataSource?.selectedMessagesIDArray.count)! > 0 {
+                self.presenter?.interactor?.markMessagesListAsSpam(selectedMessagesIdArray: (self.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: appliedActionMessage!)
+            } else {
+                print("messages not selected!!!")
+            }
+        }*/
     }
     
     @IBAction func moveButtonPressed(_ sender: AnyObject) {
         
         self.router?.showMoveToViewController()
-        //self.presenter?.showUndoBar(text: "Undo moving")
     }
     
     @IBAction func garbageButtonPressed(_ sender: AnyObject) {
         
+        self.presenter?.markSelectedMessagesAsTrash()
+        /*
         if appliedActionMessage != nil {
             if (self.dataSource?.selectedMessagesIDArray.count)! > 0 {
                 self.presenter?.interactor?.markMessagesListAsTrash(selectedMessagesIdArray: (self.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: appliedActionMessage!)
             } else {
                 print("messages not selected!!!")
             }
-        }
-        
-        //self.presenter?.showUndoBar(text: "Undo delete")
+        }        */
     }
     
     @IBAction func moreButtonPressed(_ sender: AnyObject) {
@@ -181,26 +194,6 @@ extension InboxViewController: MoreActionsDelegate {
     
     func applyAction(_ sender: AnyObject) {
         
-        switch sender.tag {
-            
-        case MoreViewButtonsTag.cancel.rawValue:
-            print("cancel btn more actions")
-     
-            break
-        case MoreViewButtonsTag.bottom.rawValue:
-            print("bottom btn action")
-
-            break
-        case MoreViewButtonsTag.middle.rawValue:
-            print("middle btn action")
-
-            break
-        case MoreViewButtonsTag.upper.rawValue:
-            print("upper btn action")
-
-            break
-        default:
-            print("more actions: default")
-        }  
+        presenter?.applyMoreAction(sender)
     }
 }

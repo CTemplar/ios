@@ -315,4 +315,66 @@ class InboxPresenter {
         
         self.viewController?.moreActionsView?.isHidden = !hidden!
     }
+    
+    func applyMoreAction(_ sender: AnyObject) {
+        
+        self.showFilterView()
+        
+        switch sender.tag {
+            
+        case MoreViewButtonsTag.cancel.rawValue:
+            print("cancel btn more actions")
+            
+            break
+        case MoreViewButtonsTag.bottom.rawValue:
+            print("bottom btn action")
+            
+            break
+        case MoreViewButtonsTag.middle.rawValue:
+            print("middle btn action")
+            
+            break
+        case MoreViewButtonsTag.upper.rawValue:
+            print("upper btn action")
+            
+            break
+        default:
+            print("more actions: default")
+        }
+    }
+    
+    //MARK: - Actions with Selected Messages
+    
+    func markSelectedMessagesAsSpam() {
+        
+        if self.viewController?.appliedActionMessage != nil {
+            if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! > 0 {
+                self.interactor?.markMessagesListAsSpam(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!)
+            } else {
+                print("messages not selected!!!")
+            }
+        }
+    }
+    
+    func markSelectedMessagesAsRead() {
+        
+        if self.viewController?.appliedActionMessage != nil {
+            if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! > 0 {
+                self.interactor?.markMessagesListAsRead(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!)
+            } else {
+                print("messages not selected!!!")
+            }
+        }
+    }
+    
+    func markSelectedMessagesAsTrash() {
+        
+        if self.viewController?.appliedActionMessage != nil {
+            if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! > 0 {
+                self.interactor?.markMessagesListAsTrash(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!)
+            } else {
+                print("messages not selected!!!")
+            }
+        }
+    }
 }

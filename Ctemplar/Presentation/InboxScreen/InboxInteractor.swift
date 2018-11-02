@@ -465,6 +465,41 @@ class InboxInteractor {
     
     //MARK: - Selection Bar Actions
     
+    func markMessagesListAsSpam(selectedMessagesIdArray: Array<Int>, lastSelectedMessage: EmailMessage) {
+        
+        //let read = !lastSelectedMessage.read!
+        
+        var folder = lastSelectedMessage.folder
+        
+        if folder != MessagesFoldersName.spam.rawValue {
+            folder = MessagesFoldersName.spam.rawValue
+        }
+        
+        var messagesIDList : String = ""
+        
+        for message in selectedMessagesIdArray {
+            messagesIDList = messagesIDList + message.description + ","
+        }
+        
+        messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex)) //remove last ","
+        
+        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: folder!, starred: lastSelectedMessage.starred!, read: lastSelectedMessage.read!)  {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                //print("value:", value)
+                print("marked list as read/unread")
+                //self.viewController?.presenter?.showUndoBar(text: "Undo mark as Read")
+                self.updateMessages()
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
     func markMessagesListAsRead(selectedMessagesIdArray: Array<Int>, lastSelectedMessage: EmailMessage) {
         
         let read = !lastSelectedMessage.read!
@@ -516,7 +551,7 @@ class InboxInteractor {
                 
             case .success(let value):
                 //print("value:", value)
-                print("marked list as read/unread")
+                print("marked list as trash")
                 //self.viewController?.presenter?.showUndoBar(text: "Undo mark as Read")
                 self.updateMessages()
                 
