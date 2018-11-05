@@ -383,7 +383,7 @@ class APIService {
                 
                 if let token = self.getToken() {
                     
-                    HUD.show(.progress)
+                    //HUD.show(.progress)
                     
                     self.restAPIService?.messagesList(token: token, folder: folderFilter) {(result) in
                         
@@ -391,7 +391,7 @@ class APIService {
                             
                         case .success(let value):
                             
-                            print("messagesList success:", value)
+                            //print("messagesList success:", value)
                             
                             if let response = value as? Dictionary<String, Any> {
                                 
@@ -413,7 +413,7 @@ class APIService {
                             completionHandler(APIResult.failure(error))
                         }
                         
-                        HUD.hide()
+                        //HUD.hide()
                     }
                 }
             }
@@ -439,7 +439,7 @@ class APIService {
                 
                 if let token = self.getToken() {
                     
-                    HUD.show(.progress)
+                    //HUD.show(.progress)
                     
                     self.restAPIService?.updateMessages(token: token, messageID: messageIDParameter, messagesIDIn: messagesIDInParameter, folder: folder, starred: starred, read: read, updateFolder: updateFolder, updateStarred: updateStarred, updateRead: updateRead) {(result) in
                         
@@ -447,7 +447,7 @@ class APIService {
                             
                         case .success(let value):
                             
-                            print("messagesList success:", value)
+                            print("updateMessages success:", value)
                             
                             if let response = value as? Dictionary<String, Any> {
                                 
@@ -470,7 +470,7 @@ class APIService {
                             completionHandler(APIResult.failure(error))
                         }
                         
-                        HUD.hide()
+                        //HUD.hide()
                     }
                 }
             }
@@ -484,7 +484,7 @@ class APIService {
                 
                 if let token = self.getToken() {
                     
-                    HUD.show(.progress) //crashed when method used in root view controller
+                    //HUD.show(.progress) //crashed when method used in root view controller
                     
                     self.restAPIService?.mailboxesList(token: token) {(result) in
                         
@@ -514,7 +514,7 @@ class APIService {
                             completionHandler(APIResult.failure(error))
                         }
                         
-                        HUD.hide()
+                        //HUD.hide()
                     }
                 }
             }

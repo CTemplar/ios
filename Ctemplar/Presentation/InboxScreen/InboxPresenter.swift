@@ -16,11 +16,14 @@ class InboxPresenter {
     var viewController   : InboxViewController?
     var interactor       : InboxInteractor?
     
+    var timer = Timer()
+    var counter = 0
+    
     //MARK: - API Requests
     
     func loadMessages(folder: String) {
         
-        self.interactor?.messagesList(folder: folder)
+        self.interactor?.messagesList(folder: folder, withUndo: "")
       
         // temp
         /*
@@ -287,18 +290,44 @@ class InboxPresenter {
     
     func showUndoBar(text: String) {
         
+        print("show undo bar")
+        
         self.viewController?.undoButton.setTitle(text, for: .normal)
         
         self.viewController?.undoBar.isHidden = false
-        self.viewController?.undoBar.alpha = 1.0
+        //self.viewController?.undoBar.alpha = 1.0
         
-        let duration = k_undoActionBarShowingSecs
+        //let duration = k_undoActionBarShowingSecs
         
+        /*
         UIView.animate(withDuration: duration, delay: 0.0, options: .allowUserInteraction, animations: {
             self.viewController?.undoBar.alpha = 0.1
         }, completion: { _ in
-            self.viewController?.undoBar.isHidden = true
-        })
+            self.hideUndoBar()
+        })*/
+        
+        counter = 0
+        timer.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fadeUndoBar), userInfo: nil, repeats: true)
+    }
+    
+    @objc func fadeUndoBar() {
+        
+        counter +=  1
+        let alpha = 1.0/Double(counter)
+        self.viewController?.undoBar.alpha = CGFloat(alpha)
+        
+        if counter == Int(k_undoActionBarShowingSecs) {
+            self.hideUndoBar()
+        }
+    }
+    
+    func hideUndoBar() {
+        
+        counter = 0
+        timer.invalidate()
+        self.viewController?.undoBar.isHidden = true
+        self.viewController?.undoBar.alpha = 1.0
     }
     
     //MARK: - More Actions
@@ -355,7 +384,7 @@ class InboxPresenter {
         
         if self.viewController?.appliedActionMessage != nil {
             if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! > 0 {
-                self.interactor?.markMessagesListAsSpam(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!)
+                self.interactor?.markMessagesListAsSpam(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!, withUndo: "Undo mark as spam")
             } else {
                 print("messages not selected!!!")
             }
@@ -366,7 +395,7 @@ class InboxPresenter {
         
         if self.viewController?.appliedActionMessage != nil {
             if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! > 0 {
-                self.interactor?.markMessagesListAsRead(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!)
+                self.interactor?.markMessagesListAsRead(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!, withUndo: "Undo mark as read")
             } else {
                 print("messages not selected!!!")
             }
@@ -377,7 +406,7 @@ class InboxPresenter {
         
         if self.viewController?.appliedActionMessage != nil {
             if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! > 0 {
-                self.interactor?.markMessagesListAsTrash(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!)
+                self.interactor?.markMessagesListAsTrash(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!, withUndo: "Undo delete")
             } else {
                 print("messages not selected!!!")
             }
@@ -388,7 +417,7 @@ class InboxPresenter {
         
         if self.viewController?.appliedActionMessage != nil {
             if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! > 0 {
-                self.interactor?.moveMessagesListToArchive(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!)
+                self.interactor?.moveMessagesListToArchive(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!, withUndo: "Undo move to archive")
             } else {
                 print("messages not selected!!!")
             }

@@ -130,8 +130,8 @@ let k_moreImageName                 = "MoreButton"
 
 let k_unreadImageName               = "unreadMessage"
 
-let k_whiteGarbageImageName         = "whiteSpam"
-let k_whiteSpamImageName            = "whiteTrash"
+let k_whiteGarbageImageName         = "whiteTrash"
+let k_whiteSpamImageName            = "whiteSpam"
 let k_witeUnreadImageName           = "whiteUnread"
 let k_witeMoveToImageName           = "whiteMoveTo"
 
@@ -282,4 +282,5 @@ enum ActionsIndex: Int, CaseIterable {
     case moveToTrach      = 4
     case moveToArchive    = 5
     case moveTo           = 6
+    case noAction         = 7
 }
