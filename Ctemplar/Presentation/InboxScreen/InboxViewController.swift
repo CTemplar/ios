@@ -112,6 +112,8 @@ class InboxViewController: UIViewController {
         presenter?.showFilterView()
     }
     
+    //MARK: - Selected Actions
+    
     @IBAction func unreadButtonPressed(_ sender: AnyObject) {
         
         self.presenter?.markSelectedMessagesAsRead()

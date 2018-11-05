@@ -29,6 +29,7 @@
 "markAsUnread" = "Mark as unread";
 "moveToTrash" = "Delete";
 "moveToArchive" = "Move to archive";
+"emptyFolder" = "Empty Folder";
 "cancel" = "Cancel";
 
 //undo actions buttons

@@ -194,7 +194,8 @@ let k_sideMenuSectionHeaderHeight  : CGFloat = 49
 let k_sideMenuSeparatorHeight      : CGFloat = 1
 
 let k_moreActionsButtonsViewFullContstraint   : CGFloat = 206
-let k_moreActionsButtonsViewSmallContstraint  : CGFloat = 154
+let k_moreActionsButtonsViewMiddleContstraint : CGFloat = 154
+let k_moreActionsButtonsViewSmallContstraint  : CGFloat = 102
 let k_moreActionsButtonHeightConstraint       : CGFloat = 50
 
 let k_undoActionBarShowingSecs     = 5.0
@@ -272,6 +273,20 @@ enum MoreViewButtonsTag: Int, CaseIterable {
     case bottom           = 402
     case middle           = 403
     case upper            = 404
+}
+
+enum MoreActionsTitles: String, CaseIterable {
+    
+    case markAsSpam       = "markAsSpam"
+    case markAsRead       = "markAsRead"
+    case markAsUnread     = "markAsUnread"
+    //case markAsStarred    = ""
+    case moveToTrach      = "moveToTrash"
+    case moveToArchive    = "moveToArchive"
+    //case moveTo           = ""
+    case emptyFolder      = "emptyFolder"
+    case cancel           = "cancel"
+ 
 }
 
 enum ActionsIndex: Int, CaseIterable {

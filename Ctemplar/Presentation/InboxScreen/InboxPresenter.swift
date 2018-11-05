@@ -338,8 +338,8 @@ class InboxPresenter {
         self.viewController?.moreActionsView?.frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
         self.viewController?.moreActionsView?.delegate = self.viewController
         
-        let moreActionsButtonsName: Array<String> = ["cancel".localized(), "markAsUnread".localized(), "moveToArchive".localized()]
-        self.viewController?.moreActionsView?.setup(buttonsNameArray: moreActionsButtonsName)
+        //let moreActionsButtonsName: Array<String> = self.setupMoreActionsButtons()
+        //self.viewController?.moreActionsView?.setup(buttonsNameArray: moreActionsButtonsName)
         self.viewController?.navigationController!.view.addSubview((self.viewController?.moreActionsView)!)
         
         self.viewController?.moreActionsView?.isHidden = true
@@ -347,32 +347,82 @@ class InboxPresenter {
     
     func showMoreActionsView() {
         
+        let moreActionsButtonsName: Array<String> = self.setupMoreActionsButtons()
+        self.viewController?.moreActionsView?.setup(buttonsNameArray: moreActionsButtonsName)
+        
         let hidden = self.viewController?.moreActionsView?.isHidden
         
         self.viewController?.moreActionsView?.isHidden = !hidden!
+    }
+    
+    func setupMoreActionsButtons() -> Array<String> {
+        
+        let currentFolder = self.viewController?.currentFolderFilter
+        
+        var moreActionsButtonsName: Array<String> = []
+        
+        switch currentFolder {
+        case MessagesFoldersName.inbox.rawValue:
+            moreActionsButtonsName = ["cancel".localized(), "markAsUnread".localized(), "moveToArchive".localized()]
+            break
+        case MessagesFoldersName.draft.rawValue:
+            moreActionsButtonsName = []
+            break
+        case MessagesFoldersName.sent.rawValue:
+            moreActionsButtonsName = []
+            break
+        case MessagesFoldersName.outbox.rawValue:
+            moreActionsButtonsName = []
+            break
+        case MessagesFoldersName.starred.rawValue:
+            moreActionsButtonsName = []
+            break
+        case MessagesFoldersName.archive.rawValue:
+            moreActionsButtonsName = []
+            break
+        case MessagesFoldersName.spam.rawValue:
+            moreActionsButtonsName = ["cancel".localized(), "emptyFolder".localized()]
+            break
+        case MessagesFoldersName.trash.rawValue:
+            moreActionsButtonsName = []
+            break
+        default:
+            break
+        }
+        
+        return moreActionsButtonsName
     }
     
     func applyMoreAction(_ sender: AnyObject) {
         
         self.showMoreActionsView()
         
-        switch sender.tag {
-            
-        case MoreViewButtonsTag.cancel.rawValue:
+        let button = sender as! UIButton
+        
+        let title = button.title(for: .normal)
+        
+        print("title:", title as Any)
+        
+        switch title {
+        case MoreActionsTitles.cancel.rawValue.localized():
             print("cancel btn more actions")
             
             break
-        case MoreViewButtonsTag.bottom.rawValue:
-            print("bottom btn action")
+        case MoreActionsTitles.markAsRead.rawValue.localized():
+            print("markAsRead btn more actions")
             self.markSelectedMessagesAsRead()
             break
-        case MoreViewButtonsTag.middle.rawValue:
-            print("middle btn action")
+        case MoreActionsTitles.markAsUnread.rawValue.localized():
+            print("markAsUnread btn more actions")
+            self.markSelectedMessagesAsRead()
+            break
+        case MoreActionsTitles.moveToArchive.rawValue.localized():
+            print("moveToArchive btn more actions")
             self.moveSelectedMessagesToArchive()
             break
-        case MoreViewButtonsTag.upper.rawValue:
-            print("upper btn action")
-            
+        case MoreActionsTitles.emptyFolder.rawValue.localized():
+            print("emptyFolder btn more actions")
+            //self.markSelectedMessagesAsTrash()
             break
         default:
             print("more actions: default")

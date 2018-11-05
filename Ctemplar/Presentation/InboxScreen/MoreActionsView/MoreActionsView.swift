@@ -18,6 +18,7 @@ class MoreActionsView: UIView {
     var delegate    : MoreActionsDelegate?
     
     @IBOutlet var upperButtonHeightConstraint           : NSLayoutConstraint!
+    @IBOutlet var middleButtonHeightConstraint          : NSLayoutConstraint!
     @IBOutlet var buttonsViewHeightConstraint           : NSLayoutConstraint!
     
     @IBOutlet var upperButton     : UIButton!
@@ -47,6 +48,7 @@ class MoreActionsView: UIView {
         let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
         self.freeSpaceView.addGestureRecognizer(freeSpaceViewGesture)
         
+        middleButton.isHidden = true
         upperButton.isHidden = true
         
         upperButtonHeightConstraint.constant = 0
@@ -66,6 +68,8 @@ class MoreActionsView: UIView {
                 break
             case MoreViewButtonsTag.middle.rawValue:
                 middleButton.isHidden = false
+                buttonsViewHeightConstraint.constant = k_moreActionsButtonsViewMiddleContstraint
+                middleButtonHeightConstraint.constant = k_moreActionsButtonHeightConstraint
                 middleButton.setTitle(buttonName, for: .normal)
                 break
             case MoreViewButtonsTag.upper.rawValue:               

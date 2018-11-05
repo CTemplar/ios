@@ -165,6 +165,7 @@
                 <outlet property="cancelButton" destination="95u-kZ-42e" id="jgy-XK-uZY"/>
                 <outlet property="freeSpaceView" destination="BSn-hE-uwj" id="BU4-ex-7Ia"/>
                 <outlet property="middleButton" destination="3FH-kS-Cgg" id="sac-OW-BN1"/>
+                <outlet property="middleButtonHeightConstraint" destination="WeF-lo-JAd" id="0sg-ny-KZn"/>
                 <outlet property="upperButton" destination="1p4-aO-djr" id="LSw-og-s1h"/>
                 <outlet property="upperButtonHeightConstraint" destination="7De-am-V6e" id="fnz-Cv-hW0"/>
             </connections>
