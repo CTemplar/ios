@@ -86,6 +86,8 @@ class InboxPresenter {
         
         setupNavigationItemTitle(selectedMessages: (self.viewController?.dataSource?.selectedMessagesIDArray.count)!, selectionMode: (self.viewController?.dataSource?.selectionMode)!, currentFolder: self.viewController!.currentFolder)
         
+        setupNavigationRightItems(searchMode: false)
+        
         if (self.viewController?.dataSource?.messagesArray.count)! > 0 {
             viewController?.emptyInbox.isHidden = true
         } else {
@@ -99,6 +101,34 @@ class InboxPresenter {
             self.viewController?.navigationItem.title = String(format: "%d Selected", selectedMessages)
         } else {
             self.viewController?.navigationItem.title = currentFolder
+        }
+    }
+    
+    func setupNavigationRightItems(searchMode: Bool) {
+        
+        let searchButton : UIButton = UIButton.init(type: .custom)
+        searchButton.setImage(UIImage(named: k_searchImageName), for: .normal)
+        searchButton.addTarget(self, action: #selector(searchButtonPresed), for: .touchUpInside)
+        searchButton.frame = CGRect(x: 0, y: 0, width: k_navBarButtonSize, height: k_navBarButtonSize)
+        let searchItem = UIBarButtonItem(customView: searchButton)
+        
+        let moreButton : UIButton = UIButton.init(type: .custom)
+        moreButton.setImage(UIImage(named: k_moreImageName), for: .normal)
+        moreButton.addTarget(self, action: #selector(moreButtonPresed), for: .touchUpInside)
+        moreButton.frame = CGRect(x: 0, y: 0, width: k_navBarButtonSize, height: k_navBarButtonSize)
+        let moreItem = UIBarButtonItem(customView: moreButton)
+        
+        let cancelItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelButtonPresed))
+        cancelItem.tintColor = UIColor.darkGray
+        
+        if searchMode {
+            self.viewController?.navigationItem.rightBarButtonItems = [cancelItem]
+        } else {
+            if self.viewController?.currentFolderFilter ==  MessagesFoldersName.spam.rawValue || self.viewController?.currentFolderFilter ==  MessagesFoldersName.trash.rawValue{
+                self.viewController?.navigationItem.rightBarButtonItems = [searchItem, moreItem]
+            } else {
+                self.viewController?.navigationItem.rightBarButtonItems = [searchItem]
+            }
         }
     }
     
@@ -154,6 +184,20 @@ class InboxPresenter {
     
     //MARK: - navigation bar
     
+    @objc func searchButtonPresed() {
+ 
+    }
+    
+    @objc func cancelButtonPresed() {
+        
+        disableSelectionMode()
+    }
+    
+    @objc func moreButtonPresed() {
+        
+    }
+    
+    /*
     func searchButtonPressed(sender: AnyObject) {
         
         if self.viewController?.dataSource?.selectionMode == true {
@@ -161,7 +205,7 @@ class InboxPresenter {
         } else {
             //self.viewController?.router?.showMoveToViewController()//temp
         }
-    }
+    }*/
     
     func enableSelectionMode() {
         
@@ -170,8 +214,11 @@ class InboxPresenter {
         
         self.viewController?.leftBarButtonItem.image = nil
         self.viewController?.leftBarButtonItem.isEnabled = false
-        self.viewController?.rightBarButtonItem.image = nil
-        self.viewController?.rightBarButtonItem.title = "Cancel"
+        
+        //self.viewController?.rightBarButtonItem.image = nil
+        //self.viewController?.rightBarButtonItem.title = "Cancel"
+        
+        setupNavigationRightItems(searchMode: true)
         
         if self.viewController?.currentFolderFilter ==  MessagesFoldersName.draft.rawValue {
             self.viewController?.selectionDraftToolBar.isHidden = false
@@ -193,8 +240,11 @@ class InboxPresenter {
         
         self.viewController?.leftBarButtonItem.image = UIImage(named: k_menuImageName)
         self.viewController?.leftBarButtonItem.isEnabled = true
-        self.viewController?.rightBarButtonItem.image = UIImage(named: k_searchImageName)
-        self.viewController?.rightBarButtonItem.title = ""
+        
+        //self.viewController?.rightBarButtonItem.image = UIImage(named: k_searchImageName)
+        //self.viewController?.rightBarButtonItem.title = ""
+        
+        setupNavigationRightItems(searchMode: false)
         
         self.viewController?.selectionDraftToolBar.isHidden = true
         self.viewController?.selectionToolBar.isHidden = true

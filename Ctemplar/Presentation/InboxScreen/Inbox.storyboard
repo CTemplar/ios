@@ -402,12 +402,20 @@
                                 <action selector="menuButtonPressed:" destination="NhN-bs-dS3" id="m9w-nf-lBl"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="SearchButton" id="xtH-pi-9Ib">
-                            <color key="tintColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="0.86550946299999998" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="searchButtonPressed:" destination="NhN-bs-dS3" id="XYC-yn-ru8"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="SearchButton" id="xtH-pi-9Ib">
+                                <color key="tintColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="0.86550946299999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="searchButtonPressed:" destination="NhN-bs-dS3" id="XYC-yn-ru8"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="moreMessage" id="T69-S1-hv2">
+                                <color key="tintColor" red="0.17254901960784313" green="0.24313725490196078" blue="0.31372549019607843" alpha="0.865509463028169" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="moreNavButtonPressed:" destination="NhN-bs-dS3" id="5jE-wd-OGR"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="advancedToolBar" destination="ls5-Br-YTX" id="Z4K-XN-Hgj"/>
@@ -420,6 +428,7 @@
                         <outlet property="leftBarButtonItem" destination="R5E-6J-cXY" id="xmt-uO-ZRR"/>
                         <outlet property="leftFilterButton" destination="aOn-Eo-5Fa" id="BfC-Nh-mYR"/>
                         <outlet property="messagesLabel" destination="hVo-vt-x7f" id="hqb-QV-S6i"/>
+                        <outlet property="moreBarButtonItem" destination="T69-S1-hv2" id="de4-C7-OxX"/>
                         <outlet property="rightBarButtonItem" destination="xtH-pi-9Ib" id="zNR-Cq-giI"/>
                         <outlet property="rightComposeButton" destination="qKu-C8-Tfv" id="3hJ-uy-AGO"/>
                         <outlet property="selectionDraftToolBar" destination="1ig-SZ-idl" id="h7L-Zc-74g"/>

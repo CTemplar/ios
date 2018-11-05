@@ -61,6 +61,7 @@ class InboxViewController: UIViewController {
     
     @IBOutlet var leftBarButtonItem     : UIBarButtonItem!
     @IBOutlet var rightBarButtonItem    : UIBarButtonItem!
+    @IBOutlet var moreBarButtonItem    : UIBarButtonItem!
     
     //MARK: - Lifecycle
     
@@ -100,7 +101,12 @@ class InboxViewController: UIViewController {
     
     @IBAction func searchButtonPressed(_ sender: AnyObject) {
         
-        presenter?.searchButtonPressed(sender: self)
+    //    presenter?.searchButtonPressed(sender: self)
+    }
+    
+    @IBAction func moreNavButtonPressed(_ sender: AnyObject) {
+        
+    //    presenter?.searchButtonPressed(sender: self)
     }
     
     @IBAction func composeButtonPressed(_ sender: AnyObject) {
