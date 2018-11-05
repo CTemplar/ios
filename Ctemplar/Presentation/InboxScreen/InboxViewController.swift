@@ -143,7 +143,7 @@ class InboxViewController: UIViewController {
     
     @IBAction func moreButtonPressed(_ sender: AnyObject) {
         
-        self.presenter?.showMoreActionsView()
+        self.presenter?.showMoreActionsView(emptyFolder: false)
     }
     
     @IBAction func undoButtonPressed(_ sender: AnyObject) {

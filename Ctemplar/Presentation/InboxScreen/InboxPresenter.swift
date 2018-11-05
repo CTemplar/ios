@@ -195,6 +195,7 @@ class InboxPresenter {
     
     @objc func moreButtonPresed() {
         
+        showMoreActionsView(emptyFolder: true)
     }
     
     /*
@@ -393,21 +394,33 @@ class InboxPresenter {
         self.viewController?.moreActionsView?.frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
         self.viewController?.moreActionsView?.delegate = self.viewController
         
-        //let moreActionsButtonsName: Array<String> = self.setupMoreActionsButtons()
-        //self.viewController?.moreActionsView?.setup(buttonsNameArray: moreActionsButtonsName)
         self.viewController?.navigationController!.view.addSubview((self.viewController?.moreActionsView)!)
         
         self.viewController?.moreActionsView?.isHidden = true
     }
     
-    func showMoreActionsView() {
+    func showMoreActionsView(emptyFolder: Bool) {
         
-        let moreActionsButtonsName: Array<String> = self.setupMoreActionsButtons()
+        var moreActionsButtonsName: Array<String> = []
+        
+        if emptyFolder {
+            moreActionsButtonsName = self.setupMoreActionsButtonsEmptyFolder()
+        } else {
+            moreActionsButtonsName = self.setupMoreActionsButtons()
+        }
+        
         self.viewController?.moreActionsView?.setup(buttonsNameArray: moreActionsButtonsName)
         
         let hidden = self.viewController?.moreActionsView?.isHidden
         
         self.viewController?.moreActionsView?.isHidden = !hidden!
+    }
+    
+    func setupMoreActionsButtonsEmptyFolder() -> Array<String> {
+        
+        let moreActionsButtonsName: Array<String> = ["cancel".localized(), "emptyFolder".localized()]
+        
+        return moreActionsButtonsName
     }
     
     func setupMoreActionsButtons() -> Array<String> {
@@ -459,8 +472,6 @@ class InboxPresenter {
     
     func applyMoreAction(_ sender: AnyObject) {
         
-        self.showMoreActionsView()
-        
         let button = sender as! UIButton
         
         let title = button.title(for: .normal)
@@ -495,6 +506,8 @@ class InboxPresenter {
         default:
             print("more actions: default")
         }
+        
+        self.showMoreActionsView(emptyFolder: false)
     }
     
     func needReadAction() -> Bool {
