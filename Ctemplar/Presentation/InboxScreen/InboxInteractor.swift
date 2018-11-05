@@ -393,7 +393,7 @@ class InboxInteractor {
             messagesIDArray.append(messageID)
         }
         
-        self.markMessagesListAsSpam(selectedMessagesIdArray: messagesIDArray, lastSelectedMessage: message, withUndo: "markAsSpam".localized())
+        self.markMessagesListAsSpam(selectedMessagesIdArray: messagesIDArray, lastSelectedMessage: message, withUndo: "undoMarkAsSpam".localized())
         
     }
     
@@ -407,9 +407,9 @@ class InboxInteractor {
         
         var undoMessage = ""
         if message.read! {
-            undoMessage = "markAsUnread".localized()
+            undoMessage = "undoMarkAsUnread".localized()
         } else {
-            undoMessage = "markAsRead".localized()
+            undoMessage = "undoMarkAsRead".localized()
         }
 
         self.markMessagesListAsRead(selectedMessagesIdArray: messagesIDArray, asRead: !message.read!, withUndo: undoMessage)
@@ -423,7 +423,7 @@ class InboxInteractor {
             messagesIDArray.append(messageID)
         }
         
-        self.markMessagesListAsTrash(selectedMessagesIdArray: messagesIDArray, lastSelectedMessage: message, withUndo: "moveToTrash".localized())
+        self.markMessagesListAsTrash(selectedMessagesIdArray: messagesIDArray, lastSelectedMessage: message, withUndo: "undoMoveToTrash".localized())
     }
     
     func undoLastAction(message: EmailMessage) {

@@ -359,32 +359,41 @@ class InboxPresenter {
         
         let currentFolder = self.viewController?.currentFolderFilter
         
+        let read = self.needReadAction()
+        var readButton : String = ""
+        
+        if read {
+            readButton = "markAsRead".localized()
+        } else {
+            readButton = "markAsUnread".localized()
+        }
+        
         var moreActionsButtonsName: Array<String> = []
         
         switch currentFolder {
         case MessagesFoldersName.inbox.rawValue:
-            moreActionsButtonsName = ["cancel".localized(), "markAsUnread".localized(), "moveToArchive".localized()]
+            moreActionsButtonsName = ["cancel".localized(), readButton, "moveToArchive".localized()]
             break
         case MessagesFoldersName.draft.rawValue:
             moreActionsButtonsName = []
             break
         case MessagesFoldersName.sent.rawValue:
-            moreActionsButtonsName = ["cancel".localized(), "markAsUnread".localized(), "moveToArchive".localized()]
+            moreActionsButtonsName = ["cancel".localized(), readButton, "moveToArchive".localized()]
             break
         case MessagesFoldersName.outbox.rawValue:
-            moreActionsButtonsName = ["cancel".localized(), "markAsUnread".localized(), "moveToArchive".localized(), "moveToInbox".localized()]
+            moreActionsButtonsName = ["cancel".localized(), readButton, "moveToArchive".localized(), "moveToInbox".localized()]
             break
         case MessagesFoldersName.starred.rawValue:
-            moreActionsButtonsName = ["cancel".localized(), "markAsUnread".localized(), "moveToArchive".localized(), "moveToInbox".localized()]
+            moreActionsButtonsName = ["cancel".localized(), readButton, "moveToArchive".localized(), "moveToInbox".localized()]
             break
         case MessagesFoldersName.archive.rawValue:
-            moreActionsButtonsName = ["cancel".localized(), "markAsUnread".localized(), "moveToInbox".localized()]
+            moreActionsButtonsName = ["cancel".localized(), readButton, "moveToInbox".localized()]
             break
         case MessagesFoldersName.spam.rawValue:
             moreActionsButtonsName = ["cancel".localized(), "moveToArchive".localized(), "moveToInbox".localized()]
             break
         case MessagesFoldersName.trash.rawValue:
-            moreActionsButtonsName = ["cancel".localized(), "markAsUnread".localized(), "moveToArchive".localized(), "moveToInbox".localized()]
+            moreActionsButtonsName = ["cancel".localized(), readButton, "moveToArchive".localized(), "moveToInbox".localized()]
             break
         default:
             break
@@ -433,13 +442,30 @@ class InboxPresenter {
         }
     }
     
+    func needReadAction() -> Bool {
+        
+        for messageID in (self.viewController?.dataSource?.selectedMessagesIDArray)! {
+            for message in (self.viewController?.dataSource?.messagesArray)! {
+                if messageID == message.messsageID {
+                    if let read = message.read {
+                        if !read {
+                            return true
+                        }
+                    }
+                }
+            }
+        }
+        
+        return false
+    }
+    
     //MARK: - Actions with Selected Messages
     
     func markSelectedMessagesAsSpam() {
         
         if self.viewController?.appliedActionMessage != nil {
             if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! > 0 {
-                self.interactor?.markMessagesListAsSpam(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!, withUndo: "markAsSpam".localized())
+                self.interactor?.markMessagesListAsSpam(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!, withUndo: "undoMarkAsSpam".localized())
             } else {
                 print("messages not selected!!!")
             }
@@ -455,9 +481,9 @@ class InboxPresenter {
                 
                 var undoMessage = ""
                 if read! {
-                    undoMessage = "markAsUnread".localized()
+                    undoMessage = "undoMarkAsUnread".localized()
                 } else {
-                    undoMessage = "markAsRead".localized()
+                    undoMessage = "undoMarkAsRead".localized()
                 }
                 
                 self.interactor?.markMessagesListAsRead(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, asRead: !read!, withUndo: undoMessage)
@@ -471,7 +497,7 @@ class InboxPresenter {
         
         if self.viewController?.appliedActionMessage != nil {
             if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! > 0 {
-                self.interactor?.markMessagesListAsTrash(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!, withUndo: "moveToTrash".localized())
+                self.interactor?.markMessagesListAsTrash(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!, withUndo: "undoMoveToTrash".localized())
             } else {
                 print("messages not selected!!!")
             }
@@ -482,7 +508,7 @@ class InboxPresenter {
         
         if self.viewController?.appliedActionMessage != nil {
             if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! > 0 {
-                self.interactor?.moveMessagesListToArchive(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!, withUndo: "moveToArchive".localized())
+                self.interactor?.moveMessagesListToArchive(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!, withUndo: "undoMoveToArchive".localized())
             } else {
                 print("messages not selected!!!")
             }
@@ -493,7 +519,7 @@ class InboxPresenter {
         
         if self.viewController?.appliedActionMessage != nil {
             if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! > 0 {
-                self.interactor?.moveMessagesListToInbox(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!, withUndo: "moveToInbox".localized())
+                self.interactor?.moveMessagesListToInbox(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!, withUndo: "undoMoveToInbox".localized())
             } else {
                 print("messages not selected!!!")
             }

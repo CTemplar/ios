@@ -39,5 +39,6 @@
 "undoMarkAsUnread" = "Undo mark as unread";
 "undoMoveToTrash" = "Undo delete";
 "undoMoveToArchive" = "Undo move to archive";
+"undoMoveToInbox" = "Undo move to inbox";
 
 

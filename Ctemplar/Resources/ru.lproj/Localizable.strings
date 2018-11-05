@@ -43,6 +43,6 @@
 "undoMarkAsUnread" = "Отменить: пометить как не прочтенное";
 "undoMoveToTrash" = "Отменить удаление";
 "undoMoveToArchive" = "Отменить перенос в архив";
-
+"undoMoveToInbox" = "Отменить перенос в inbox";
 
 
