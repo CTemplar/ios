@@ -369,13 +369,13 @@ class InboxPresenter {
             moreActionsButtonsName = []
             break
         case MessagesFoldersName.sent.rawValue:
-            moreActionsButtonsName = []
+            moreActionsButtonsName = ["cancel".localized(), "markAsUnread".localized(), "moveToArchive".localized()]
             break
         case MessagesFoldersName.outbox.rawValue:
-            moreActionsButtonsName = []
+            moreActionsButtonsName = ["cancel".localized(), "markAsUnread".localized(), "moveToArchive".localized(), "moveToInbox".localized()]
             break
         case MessagesFoldersName.starred.rawValue:
-            moreActionsButtonsName = []
+            moreActionsButtonsName = ["cancel".localized(), "markAsUnread".localized(), "moveToArchive".localized(), "moveToInbox".localized()]
             break
         case MessagesFoldersName.archive.rawValue:
             moreActionsButtonsName = ["cancel".localized(), "markAsUnread".localized(), "moveToInbox".localized()]
