@@ -54,12 +54,14 @@ class MoreActionsView: UIView {
         upperButtonHeightConstraint.constant = 0
         buttonsViewHeightConstraint.constant = k_moreActionsButtonsViewSmallContstraint
         
+        bottomButton.setTitleColor(k_actionMessageColor, for: .normal)
+        middleButton.setTitleColor(k_actionMessageColor, for: .normal)
+        upperButton.setTitleColor(k_actionMessageColor, for: .normal)
+        
         for (index, buttonName) in buttonsNameArray.enumerated() {
             
             if buttonName == "emptyFolder".localized() {
                 bottomButton.setTitleColor(k_redColor, for: .normal)
-            } else {
-                bottomButton.setTitleColor(k_actionMessageColor, for: .normal)
             }
             
             switch index + MoreViewButtonsTag.cancel.rawValue {

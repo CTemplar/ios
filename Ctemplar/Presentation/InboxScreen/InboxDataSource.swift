@@ -397,8 +397,10 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
                 
                 print("Long pressed row: \(indexPath.row)")
                 if self.selectionMode == false {
-                    self.parentViewController.presenter?.enableSelectionMode()
+                    self.selectedMessagesIDArray.removeAll()
+                    self.parentViewController.appliedActionMessage = message
                     self.selectedMessagesIDArray.append(message.messsageID!)
+                    self.parentViewController.presenter?.enableSelectionMode()
                 }
             }
         }

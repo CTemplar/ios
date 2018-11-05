@@ -177,8 +177,8 @@ class InboxPresenter {
         
         setupNavigationItemTitle(selectedMessages: (self.viewController?.dataSource?.selectedMessagesIDArray.count)!, selectionMode: (self.viewController?.dataSource?.selectionMode)!, currentFolder: self.viewController!.currentFolder)
         
-        self.viewController?.appliedActionMessage = nil
-        self.viewController?.dataSource?.selectedMessagesIDArray.removeAll()
+        //self.viewController?.appliedActionMessage = nil
+        //self.viewController?.dataSource?.selectedMessagesIDArray.removeAll()
     }
     
     func disableSelectionMode() {
@@ -378,13 +378,13 @@ class InboxPresenter {
             moreActionsButtonsName = []
             break
         case MessagesFoldersName.archive.rawValue:
-            moreActionsButtonsName = []
+            moreActionsButtonsName = ["cancel".localized(), "markAsUnread".localized(), "moveToInbox".localized()]
             break
         case MessagesFoldersName.spam.rawValue:
-            moreActionsButtonsName = ["cancel".localized(), "emptyFolder".localized()]
+            moreActionsButtonsName = ["cancel".localized(), "moveToArchive".localized(), "moveToInbox".localized()]
             break
         case MessagesFoldersName.trash.rawValue:
-            moreActionsButtonsName = ["cancel".localized(), "emptyFolder".localized()]
+            moreActionsButtonsName = ["cancel".localized(), "markAsUnread".localized(), "moveToArchive".localized(), "moveToInbox".localized()]
             break
         default:
             break
@@ -419,6 +419,10 @@ class InboxPresenter {
         case MoreActionsTitles.moveToArchive.rawValue.localized():
             print("moveToArchive btn more actions")
             self.moveSelectedMessagesToArchive()
+            break
+        case MoreActionsTitles.moveToInbox.rawValue.localized():
+            print("moveToInbox btn more actions")
+            self.moveSelectedMessagesToInbox()
             break
         case MoreActionsTitles.emptyFolder.rawValue.localized():
             print("emptyFolder btn more actions")
@@ -479,6 +483,17 @@ class InboxPresenter {
         if self.viewController?.appliedActionMessage != nil {
             if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! > 0 {
                 self.interactor?.moveMessagesListToArchive(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!, withUndo: "moveToArchive".localized())
+            } else {
+                print("messages not selected!!!")
+            }
+        }
+    }
+    
+    func moveSelectedMessagesToInbox() {
+        
+        if self.viewController?.appliedActionMessage != nil {
+            if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! > 0 {
+                self.interactor?.moveMessagesListToInbox(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!, withUndo: "moveToInbox".localized())
             } else {
                 print("messages not selected!!!")
             }

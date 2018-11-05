@@ -285,6 +285,7 @@ enum MoreActionsTitles: String, CaseIterable {
     //case markAsStarred    = ""
     case moveToTrach      = "moveToTrash"
     case moveToArchive    = "moveToArchive"
+    case moveToInbox      = "moveToInbox"
     //case moveTo           = ""
     case emptyFolder      = "emptyFolder"
     case cancel           = "cancel"

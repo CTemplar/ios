@@ -30,6 +30,7 @@
 "markAsUnread" = "Пометить как не прочтенное";
 "moveToTrash" = "Удалить";
 "moveToArchive" = "Переместить в архив";
+"moveToInbox" = "Переместить в inbox";
 "emptyFolder" = "Очистить папку";
 "cancel" = "Cancel";
 

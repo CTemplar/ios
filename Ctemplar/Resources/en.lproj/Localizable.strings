@@ -29,6 +29,7 @@
 "markAsUnread" = "Mark as unread";
 "moveToTrash" = "Delete";
 "moveToArchive" = "Move to archive";
+"moveToInbox" = "Move to inbox";
 "emptyFolder" = "Empty folder";
 "cancel" = "Cancel";
 

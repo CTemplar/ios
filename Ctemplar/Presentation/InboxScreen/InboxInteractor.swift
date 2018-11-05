@@ -588,4 +588,37 @@ class InboxInteractor {
             }
         }
     }
+    
+    func moveMessagesListToInbox(selectedMessagesIdArray: Array<Int>, lastSelectedMessage: EmailMessage, withUndo: String) {
+        
+        var folder = lastSelectedMessage.folder
+        
+        if withUndo.count > 0 {
+            folder = MessagesFoldersName.inbox.rawValue
+        }
+        
+        var messagesIDList : String = ""
+        
+        for message in selectedMessagesIdArray {
+            messagesIDList = messagesIDList + message.description + ","
+        }
+        
+        messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex)) //remove last ","
+        
+        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: folder!, starred: lastSelectedMessage.starred!, read: lastSelectedMessage.read!, updateFolder: true, updateStarred: false, updateRead: false)  {(result) in
+            
+            switch(result) {
+                
+            case .success( _):
+                //print("value:", value)
+                print("move list to inbox")
+                self.viewController?.lastAction = ActionsIndex.moveToArchive
+                self.updateMessages(withUndo: withUndo)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
 }
