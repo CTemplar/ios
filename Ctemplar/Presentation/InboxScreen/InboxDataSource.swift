@@ -148,6 +148,10 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
                 self.parentViewController.appliedActionMessage = message
             }
             
+            if selectedMessagesIDArray.count == 0 {
+                self.parentViewController.presenter?.disableSelectionMode()
+            }
+            
             self.reloadData()
             
             self.parentViewController.presenter?.setupNavigationItemTitle(selectedMessages: selectedMessagesIDArray.count, selectionMode: selectionMode, currentFolder: self.parentViewController!.currentFolder)
@@ -389,9 +393,12 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
             let touchPoint = sender.location(in: self.tableView)
             if let indexPath = tableView.indexPathForRow(at: touchPoint) {
                 
+                let message = messagesArray[indexPath.row]
+                
                 print("Long pressed row: \(indexPath.row)")
                 if self.selectionMode == false {
                     self.parentViewController.presenter?.enableSelectionMode()
+                    self.selectedMessagesIDArray.append(message.messsageID!)
                 }
             }
         }
