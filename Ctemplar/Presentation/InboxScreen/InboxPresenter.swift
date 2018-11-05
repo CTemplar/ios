@@ -384,7 +384,7 @@ class InboxPresenter {
             moreActionsButtonsName = ["cancel".localized(), "emptyFolder".localized()]
             break
         case MessagesFoldersName.trash.rawValue:
-            moreActionsButtonsName = []
+            moreActionsButtonsName = ["cancel".localized(), "emptyFolder".localized()]
             break
         default:
             break

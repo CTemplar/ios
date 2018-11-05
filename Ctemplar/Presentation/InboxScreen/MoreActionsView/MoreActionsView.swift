@@ -56,6 +56,12 @@ class MoreActionsView: UIView {
         
         for (index, buttonName) in buttonsNameArray.enumerated() {
             
+            if buttonName == "emptyFolder".localized() {
+                bottomButton.setTitleColor(k_redColor, for: .normal)
+            } else {
+                bottomButton.setTitleColor(k_actionMessageColor, for: .normal)
+            }
+            
             switch index + MoreViewButtonsTag.cancel.rawValue {
                 
             case MoreViewButtonsTag.cancel.rawValue:

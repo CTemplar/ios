@@ -29,7 +29,7 @@
 "markAsRead" = "Пометить как прочтенное";
 "markAsUnread" = "Пометить как не прочтенное";
 "moveToTrash" = "Удалить";
-"moveToArchive" = "Переместить в Архив";
+"moveToArchive" = "Переместить в архив";
 "emptyFolder" = "Очистить папку";
 "cancel" = "Cancel";
 
@@ -41,7 +41,7 @@
 "undoMarkAsRead" = "Отменить: пометить как прочтенное";
 "undoMarkAsUnread" = "Отменить: пометить как не прочтенное";
 "undoMoveToTrash" = "Отменить удаление";
-"undoMoveToArchive" = "Отменить перенос в Архив";
+"undoMoveToArchive" = "Отменить перенос в архив";
 
 
 
