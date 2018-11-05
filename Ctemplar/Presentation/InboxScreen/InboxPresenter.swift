@@ -173,7 +173,11 @@ class InboxPresenter {
         self.viewController?.rightBarButtonItem.image = nil
         self.viewController?.rightBarButtonItem.title = "Cancel"
         
-        self.viewController?.selectionToolBar.isHidden = false
+        if self.viewController?.currentFolderFilter ==  MessagesFoldersName.draft.rawValue {
+            self.viewController?.selectionDraftToolBar.isHidden = false
+        } else {
+            self.viewController?.selectionToolBar.isHidden = false
+        }
         
         setupNavigationItemTitle(selectedMessages: (self.viewController?.dataSource?.selectedMessagesIDArray.count)!, selectionMode: (self.viewController?.dataSource?.selectionMode)!, currentFolder: self.viewController!.currentFolder)
         
@@ -192,6 +196,7 @@ class InboxPresenter {
         self.viewController?.rightBarButtonItem.image = UIImage(named: k_searchImageName)
         self.viewController?.rightBarButtonItem.title = ""
         
+        self.viewController?.selectionDraftToolBar.isHidden = true
         self.viewController?.selectionToolBar.isHidden = true
         
         setupNavigationItemTitle(selectedMessages: (self.viewController?.dataSource?.selectedMessagesIDArray.count)!, selectionMode: (self.viewController?.dataSource?.selectionMode)!, currentFolder: self.viewController!.currentFolder)

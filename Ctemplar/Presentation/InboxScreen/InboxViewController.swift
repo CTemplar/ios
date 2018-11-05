@@ -52,6 +52,7 @@ class InboxViewController: UIViewController {
     @IBOutlet var baseToolBar           : UIView!
     @IBOutlet var advancedToolBar       : UIView!
     @IBOutlet var selectionToolBar      : UIView!
+    @IBOutlet var selectionDraftToolBar : UIView!
     @IBOutlet var undoBar               : UIView!
     
     @IBOutlet var rightComposeButton    : UIButton!
