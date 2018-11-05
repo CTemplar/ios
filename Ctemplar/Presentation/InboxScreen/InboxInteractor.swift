@@ -393,7 +393,7 @@ class InboxInteractor {
             messagesIDArray.append(messageID)
         }
         
-        self.markMessagesListAsSpam(selectedMessagesIdArray: messagesIDArray, lastSelectedMessage: message, withUndo: "Undo mark as spam")
+        self.markMessagesListAsSpam(selectedMessagesIdArray: messagesIDArray, lastSelectedMessage: message, withUndo: "markAsSpam".localized())
         
     }
     
@@ -405,8 +405,14 @@ class InboxInteractor {
             messagesIDArray.append(messageID)
         }
         
-        self.markMessagesListAsRead(selectedMessagesIdArray: messagesIDArray, lastSelectedMessage: message, withUndo: "Undo mark as read")
-        
+        var undoMessage = ""
+        if message.read! {
+            undoMessage = "markAsUnread".localized()
+        } else {
+            undoMessage = "markAsRead".localized()
+        }
+
+        self.markMessagesListAsRead(selectedMessagesIdArray: messagesIDArray, asRead: !message.read!, withUndo: undoMessage)
     }
     
     func markMessageAsTrash(message: EmailMessage) {
@@ -417,7 +423,7 @@ class InboxInteractor {
             messagesIDArray.append(messageID)
         }
         
-        self.markMessagesListAsTrash(selectedMessagesIdArray: messagesIDArray, lastSelectedMessage: message, withUndo: "Undo delete")
+        self.markMessagesListAsTrash(selectedMessagesIdArray: messagesIDArray, lastSelectedMessage: message, withUndo: "moveToTrash".localized())
     }
     
     func undoLastAction(message: EmailMessage) {
@@ -433,7 +439,7 @@ class InboxInteractor {
             self.markMessagesListAsSpam(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: message, withUndo: "")
             break
         case ActionsIndex.markAsRead.rawValue:
-            self.markMessagesListAsRead(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: message, withUndo: "")
+            self.markMessagesListAsRead(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, asRead:message.read!, withUndo: "")
             break
         case ActionsIndex.markAsStarred.rawValue:
             
@@ -459,7 +465,7 @@ class InboxInteractor {
         
         var folder = lastSelectedMessage.folder
         
-        if folder != MessagesFoldersName.spam.rawValue {
+        if withUndo.count > 0 {
             folder = MessagesFoldersName.spam.rawValue
         }
         
@@ -478,7 +484,6 @@ class InboxInteractor {
             case .success( _):
                 //print("value:", value)
                 print("marked list as spam")
-                //self.viewController?.presenter?.showUndoBar(text: "Undo mark as spam")
                 self.viewController?.lastAction = ActionsIndex.markAsSpam
                 self.updateMessages(withUndo: withUndo)
                 
@@ -489,9 +494,9 @@ class InboxInteractor {
         }
     }
     
-    func markMessagesListAsRead(selectedMessagesIdArray: Array<Int>, lastSelectedMessage: EmailMessage, withUndo: String) {
+    func markMessagesListAsRead(selectedMessagesIdArray: Array<Int>, asRead: Bool, withUndo: String) {
         
-        let read = !lastSelectedMessage.read!
+        //let read = !lastSelectedMessage.read!
         
         var messagesIDList : String = ""
         
@@ -501,14 +506,13 @@ class InboxInteractor {
         
         messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex)) //remove last ","
         
-        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: "", starred: false, read: read, updateFolder: false, updateStarred: false, updateRead: true)  {(result) in
+        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: "", starred: false, read: asRead, updateFolder: false, updateStarred: false, updateRead: true)  {(result) in
             
             switch(result) {
                 
             case .success( _):
                 //print("value:", value)
                 print("marked list as read/unread")
-                //self.viewController?.presenter?.showUndoBar(text: "Undo mark as read")
                 self.viewController?.lastAction = ActionsIndex.markAsRead
                 self.updateMessages(withUndo: withUndo)
                 
@@ -521,7 +525,11 @@ class InboxInteractor {
     
     func markMessagesListAsTrash(selectedMessagesIdArray: Array<Int>, lastSelectedMessage: EmailMessage, withUndo: String) {
         
-        let folder = MessagesFoldersName.trash.rawValue
+        var folder = lastSelectedMessage.folder
+        
+        if withUndo.count > 0 {
+            folder = MessagesFoldersName.trash.rawValue
+        }
         
         var messagesIDList : String = ""
         
@@ -531,14 +539,13 @@ class InboxInteractor {
         
         messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex)) //remove last ","
         
-        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: folder, starred: false, read: false, updateFolder: true, updateStarred: false, updateRead: false)  {(result) in
+        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: folder!, starred: false, read: false, updateFolder: true, updateStarred: false, updateRead: false)  {(result) in
             
             switch(result) {
                 
             case .success( _):
                 //print("value:", value)
                 print("marked list as trash")
-                //self.viewController?.presenter?.showUndoBar(text: "Undo delete")
                 self.viewController?.lastAction = ActionsIndex.moveToTrach
                 self.updateMessages(withUndo: withUndo)
                 
@@ -553,7 +560,7 @@ class InboxInteractor {
         
         var folder = lastSelectedMessage.folder
         
-        if folder != MessagesFoldersName.archive.rawValue {
+        if withUndo.count > 0 {
             folder = MessagesFoldersName.archive.rawValue
         }
         
@@ -572,7 +579,6 @@ class InboxInteractor {
             case .success( _):
                 //print("value:", value)
                 print("move list to archive")
-                //self.viewController?.presenter?.showUndoBar(text: "Undo move to archive")
                 self.viewController?.lastAction = ActionsIndex.moveToArchive
                 self.updateMessages(withUndo: withUndo)
                 

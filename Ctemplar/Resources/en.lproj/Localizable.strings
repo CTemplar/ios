@@ -24,6 +24,18 @@
 "manageFolders" = "Manage Folders";
 
 //more actions buttons
-"moveToArchive" = "Move to archive";
+"markAsSpam" = "Mark as spam";
+"markAsRead" = "Mark as read";
 "markAsUnread" = "Mark as unread";
+"moveToTrash" = "Delete";
+"moveToArchive" = "Move to archive";
 "cancel" = "Cancel";
+
+//undo actions buttons
+"undoMarkAsSpam" = "Undo mark as spam";
+"undoMarkAsRead" = "Undo mark as read";
+"undoMarkAsUnread" = "Undo mark as unread";
+"undoMoveToTrash" = "Undo delete";
+"undoMoveToArchive" = "Undo move to archive";
+
+

@@ -25,6 +25,22 @@
 
 
 //more actions buttons
+"markAsSpam" = "Пометить как спам";
+"markAsRead" = "Пометить как прочтенное";
+"markAsUnread" = "Пометить как не прочтенное";
+"moveToTrash" = "Удалить";
 "moveToArchive" = "Переместить в Архив";
-"markAsUnread" = "Пометить как прочтенное";
+"cancel" = "Cancel";
+
+
 "cancel" = "Отмена";
+
+//undo actions buttons
+"undoMarkAsSpam" = "Отменить: пометить как спам";
+"undoMarkAsRead" = "Отменить: пометить как прочтенное";
+"undoMarkAsUnread" = "Отменить: пометить как не прочтенное";
+"undoMoveToTrash" = "Отменить удаление";
+"undoMoveToArchive" = "Отменить перенос в Архив";
+
+
+
