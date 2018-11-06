@@ -14,10 +14,9 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     
     var mainFoldersArray                : Array<String> = []
     var mainFoldersImageNameList        : Array<String> = []
-    //var mainFoldersUnreadMessagesCount  : Array<Int> = [0, 0, 0, 0, 0, 0, 0, 0]
     var unreadMessages : UnreadMessages!
     
-    var customFoldersArray              : Array<String> = []
+    var customFoldersArray              : Array<Folder> = []
     var labelsArray                     : Array<String> = []
     var optionsArray                    : Array<String> = []
     var optionsImageNameList            : Array<String> = []
@@ -40,7 +39,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         
         self.mainFoldersArray = mainFoldersArray
         self.mainFoldersImageNameList = mainFoldersImageNameList
-        self.customFoldersArray = customFoldersArray
+        //self.customFoldersArray = customFoldersArray
         self.labelsArray = labelsArray
         self.optionsArray = optionsArray
         self.optionsImageNameList = optionsImageNameList
@@ -145,6 +144,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             
             break
         case SideMenuSectionIndex.customFolders.rawValue:
+            
             break
         default:
             print("unknown section")

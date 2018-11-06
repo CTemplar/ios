@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 struct UnreadMessages {
     
     var archive: Int? = nil

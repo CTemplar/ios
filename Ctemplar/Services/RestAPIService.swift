@@ -22,6 +22,7 @@ class RestAPIService {
         case messages = "emails/messages/"
         case mailboxes = "emails/mailboxes/"
         case unreadCounter = "emails/unread/"
+        case customFolders = "emails/custom-folder/"
     }
     
     enum JSONKey: String {
@@ -44,6 +45,8 @@ class RestAPIService {
         case folder = "folder"
         case starred = "starred"
         case read = "read"
+        case limit = "limit"
+        case offset = "offset"
     }
         
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -342,6 +345,39 @@ class RestAPIService {
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
             
             print("unreadMessagesCounter responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    //MARK: - Folders
+    
+    func customFoldersList(token: String, limit: Int, offset: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.limit.rawValue: limit,
+            JSONKey.offset.rawValue: offset
+        ]
+        
+        print("customFolders parameters:", parameters)
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.customFolders.rawValue
+        
+        print("customFolders url:", url)
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+            
+            print("customFolders responce:", response)
             
             switch(response.result) {
             case .success(let value):
