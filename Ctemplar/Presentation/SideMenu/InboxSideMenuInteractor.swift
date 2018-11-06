@@ -103,7 +103,16 @@ class InboxSideMenuInteractor {
     
     func applyCustomFolderAction(folderName: String) {
         
-        self.applyFirstSectionAction(folder: folderName, filter: folderName)
+        let formattedFolderName = self.formatFolderNameLikeUrl(folderName: folderName)
+        
+        self.applyFirstSectionAction(folder: folderName, filter: formattedFolderName)
+    }
+    
+    func formatFolderNameLikeUrl(folderName: String) -> String {
+        
+        let formattedFolderName = folderName.replacingOccurrences(of: " ", with: "%20")
+        
+        return formattedFolderName
     }
     
     func applyFirstSectionAction(folder: String, filter: String) {
