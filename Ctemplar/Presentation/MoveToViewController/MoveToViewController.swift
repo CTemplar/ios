@@ -18,6 +18,9 @@ class MoveToViewController: UIViewController {
     @IBOutlet var cancelButton          : UIButton!
     @IBOutlet var applyButton           : UIButton!
     
+    @IBOutlet var addFolderButton       : UIButton!
+    @IBOutlet var manageFolderButton    : UIButton!
+    
     @IBOutlet var moveToTableView       : UITableView!
 
     //MARK: - Lifecycle
@@ -28,7 +31,9 @@ class MoveToViewController: UIViewController {
         let configurator = MoveToConfigurator()
         configurator.configure(viewController: self)
         
-        dataSource?.initWith(parent: self, tableView: moveToTableView)        
+        dataSource?.initWith(parent: self, tableView: moveToTableView)
+        
+        self.presenter?.applyButton(enabled: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {

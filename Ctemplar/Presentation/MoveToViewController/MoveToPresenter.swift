@@ -13,5 +13,16 @@ class MoveToPresenter {
     
     var viewController   : MoveToViewController?
     var interactor       : MoveToInteractor?
+    
+    func applyButton(enabled: Bool) {
+        
+        if enabled {
+            self.viewController?.applyButton.isEnabled = true
+            self.viewController?.applyButton.alpha = 1.0
+        } else {
+            self.viewController?.applyButton.isEnabled = false
+            self.viewController?.applyButton.alpha = 0.3
+        }
+    }
 
 }
