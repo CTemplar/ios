@@ -32,5 +32,8 @@ class MoveToConfigurator {
         viewController.presenter = presenter
         viewController.router = router
         
+        let dataSource = MoveToDataSource()
+        viewController.dataSource = dataSource
+        
     }
 }

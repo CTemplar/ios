@@ -28,6 +28,13 @@ class MoveToViewController: UIViewController {
         let configurator = MoveToConfigurator()
         configurator.configure(viewController: self)
         
+        dataSource?.initWith(parent: self, tableView: moveToTableView)        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.presenter?.interactor?.customFoldersList()
     }
     
     //MARK: - IBActions

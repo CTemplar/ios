@@ -121,14 +121,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P36-9T-3rm">
                                 <rect key="frame" x="0.0" y="136" width="375" height="531"/>
                                 <subviews>
-                                    <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FNs-U3-Y0L">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="423"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <outlet property="dataSource" destination="FNd-Or-ZG7" id="HTe-JF-Cvh"/>
-                                            <outlet property="delegate" destination="FNd-Or-ZG7" id="NPX-ZZ-vJc"/>
-                                        </connections>
-                                    </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXl-sY-7ce">
                                         <rect key="frame" x="16" y="15" width="110" height="20"/>
                                         <constraints>
@@ -145,6 +137,10 @@
                                             <action selector="addButtonPressed:" destination="FNd-Or-ZG7" eventType="touchUpInside" id="f9e-Bx-Vpt"/>
                                         </connections>
                                     </button>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FNs-U3-Y0L">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="423"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8r-20-gvx">
                                         <rect key="frame" x="0.0" y="423" width="375" height="40"/>
                                         <subviews>
