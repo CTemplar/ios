@@ -75,4 +75,51 @@ class InboxSideMenuInteractor {
         self.viewController?.currentParentViewController.presenter?.interactor?.clearFilters()
         self.viewController?.dismiss(animated: true, completion: nil)
     }
+    
+    func getUnreadMessagesCount(folderName: String, unreadMessages: UnreadMessages) -> Int {
+        
+        var unreadMessagesCount = 0
+        
+        switch folderName {
+        case InboxSideMenuOptionsName.inbox.rawValue:
+            if let inboxUnreadMessages = unreadMessages.inbox {
+                unreadMessagesCount = inboxUnreadMessages
+            }
+            break
+        case InboxSideMenuOptionsName.draft.rawValue:
+            if let draftUnreadMessages = unreadMessages.draft {
+                unreadMessagesCount = draftUnreadMessages
+            }
+            break
+        case InboxSideMenuOptionsName.sent.rawValue:
+            break
+        case InboxSideMenuOptionsName.outbox.rawValue:
+            break
+        case InboxSideMenuOptionsName.starred.rawValue:
+            if let starredUnreadMessages = unreadMessages.starred {
+                unreadMessagesCount = starredUnreadMessages
+            }
+            break
+        case InboxSideMenuOptionsName.archive.rawValue:
+            if let archiveUnreadMessages = unreadMessages.archive {
+                unreadMessagesCount = archiveUnreadMessages
+            }
+            break
+        case InboxSideMenuOptionsName.spam.rawValue:
+            if let spamUnreadMessages = unreadMessages.spam {
+                unreadMessagesCount = spamUnreadMessages
+            }
+            break
+        case InboxSideMenuOptionsName.trash.rawValue:
+            if let trashUnreadMessages = unreadMessages.trash {
+                unreadMessagesCount = trashUnreadMessages
+            }
+            break
+            
+        default:
+            break
+        }
+        
+        return unreadMessagesCount
+    }
 }

@@ -14,7 +14,8 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     
     var mainFoldersArray                : Array<String> = []
     var mainFoldersImageNameList        : Array<String> = []
-    var mainFoldersUnreadMessagesCount  : Array<Int> = [0, 0, 0, 0, 0, 0, 0, 0]
+    //var mainFoldersUnreadMessagesCount  : Array<Int> = [0, 0, 0, 0, 0, 0, 0, 0]
+    var unreadMessages : UnreadMessages!
     
     var customFoldersArray              : Array<String> = []
     var labelsArray                     : Array<String> = []
@@ -128,9 +129,9 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             let folderName = self.mainFoldersArray[indexPath.row]
             let selected = self.isSelected(folderName: folderName)
             let iconName = self.mainFoldersImageNameList[indexPath.row]
-            let unreadCount = self.mainFoldersUnreadMessagesCount[indexPath.row]
+            let unreadCount = self.parentViewController?.presenter?.interactor?.getUnreadMessagesCount(folderName: folderName, unreadMessages: self.unreadMessages!)
             
-            (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: selected, iconName: iconName, title: folderName, unreadCount: unreadCount)
+            (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: selected, iconName: iconName, title: folderName, unreadCount: unreadCount!)
             
             break
         case SideMenuSectionIndex.options.rawValue:

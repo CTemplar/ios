@@ -49,6 +49,12 @@ class InboxInteractor {
         }
     }
     
+    func setSideMenuData(unreadMessages: UnreadMessages) {
+        
+        self.viewController?.inboxSideMenuViewController?.dataSource?.unreadMessages = unreadMessages
+        self.viewController?.inboxSideMenuViewController?.dataSource?.reloadData()
+    }
+    
     func setSideMenuData(messages: EmailMessagesList) {
         
         var readEmails = 0
@@ -57,7 +63,7 @@ class InboxInteractor {
         if let emailsArray = messages.messagesList {
             
             //self.viewController?.mainFoldersUnreadMessagesCount.removeAll()
-            self.viewController?.inboxSideMenuViewController?.dataSource?.mainFoldersUnreadMessagesCount.removeAll()
+           // self.viewController?.inboxSideMenuViewController?.dataSource?.mainFoldersUnreadMessagesCount.removeAll()
             
             
             for filter in MessagesFoldersName.allCases {
@@ -67,7 +73,7 @@ class InboxInteractor {
                 unreadEmails = messages.count - readEmails
                 print("filter:", filter, "unreadEmails:", unreadEmails)
                 //self.viewController?.mainFoldersUnreadMessagesCount.append(unreadEmails)
-                self.viewController?.inboxSideMenuViewController?.dataSource?.mainFoldersUnreadMessagesCount.append(unreadEmails)
+               // self.viewController?.inboxSideMenuViewController?.dataSource?.mainFoldersUnreadMessagesCount.append(unreadEmails)
             }
             
             self.viewController?.inboxSideMenuViewController?.dataSource?.reloadData()
@@ -118,7 +124,8 @@ class InboxInteractor {
                     self.presenter?.showUndoBar(text: withUndo)
                 }
                 
-                self.allMessagesList() //need to Side Menu unread msg counters
+                //self.allMessagesList() //need to Side Menu unread msg counters
+                self.unreadMessagesCounter()
                 
             case .failure(let error):
                 print("error:", error)
@@ -150,6 +157,29 @@ class InboxInteractor {
             
             HUD.hide()
         }
+    }
+    
+    func unreadMessagesCounter() {
+        
+        HUD.show(.progress)
+        
+        apiService?.unreadMessagesCounter() {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                //print("unreadMessagesCounter value:", value)
+                let unreadMessages = value as! UnreadMessages
+                self.setSideMenuData(unreadMessages: unreadMessages)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+            
+            HUD.hide()
+        }
+        
     }
     
     func checkStoredPGPKeys() -> Bool {

@@ -21,6 +21,7 @@ class RestAPIService {
         case verifyToken = "auth/verify/"
         case messages = "emails/messages/"
         case mailboxes = "emails/mailboxes/"
+        case unreadCounter = "emails/unread/"
     }
     
     enum JSONKey: String {
@@ -317,6 +318,30 @@ class RestAPIService {
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
             
             print("mailboxes responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func unreadMessagesCounter(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.unreadCounter.rawValue
+        
+        print("unreadMessagesCounter url:", url)
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+            
+            print("unreadMessagesCounter responce:", response)
             
             switch(response.result) {
             case .success(let value):
