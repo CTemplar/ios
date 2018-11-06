@@ -17,6 +17,8 @@
 		8402498C2191A00100CDDB0F /* MoveToPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8402498B2191A00100CDDB0F /* MoveToPresenter.swift */; };
 		8402498E2191A01B00CDDB0F /* MoveToInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8402498D2191A01B00CDDB0F /* MoveToInteractor.swift */; };
 		840249902191A02800CDDB0F /* MoveToDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8402498F2191A02800CDDB0F /* MoveToDataSource.swift */; };
+		840249942191C23800CDDB0F /* MoveToFolderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840249922191C23800CDDB0F /* MoveToFolderTableViewCell.swift */; };
+		840249952191C23800CDDB0F /* MoveToFolderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840249932191C23800CDDB0F /* MoveToFolderTableViewCell.xib */; };
 		8407AD92216CC61600AF2E7B /* EmailMessagesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407AD91216CC61600AF2E7B /* EmailMessagesList.swift */; };
 		8407AD94216CC98900AF2E7B /* EmailMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407AD93216CC98900AF2E7B /* EmailMessage.swift */; };
 		84304298217D9D1C00DB5787 /* InboxSideMenuConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84304297217D9D1C00DB5787 /* InboxSideMenuConfigurator.swift */; };
@@ -124,6 +126,8 @@
 		8402498B2191A00100CDDB0F /* MoveToPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToPresenter.swift; sourceTree = "<group>"; };
 		8402498D2191A01B00CDDB0F /* MoveToInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToInteractor.swift; sourceTree = "<group>"; };
 		8402498F2191A02800CDDB0F /* MoveToDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToDataSource.swift; sourceTree = "<group>"; };
+		840249922191C23800CDDB0F /* MoveToFolderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveToFolderTableViewCell.swift; sourceTree = "<group>"; };
+		840249932191C23800CDDB0F /* MoveToFolderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoveToFolderTableViewCell.xib; sourceTree = "<group>"; };
 		8407AD91216CC61600AF2E7B /* EmailMessagesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailMessagesList.swift; sourceTree = "<group>"; };
 		8407AD93216CC98900AF2E7B /* EmailMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailMessage.swift; sourceTree = "<group>"; };
 		84304297217D9D1C00DB5787 /* InboxSideMenuConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuConfigurator.swift; sourceTree = "<group>"; };
@@ -260,13 +264,22 @@
 			path = MoreActionsView;
 			sourceTree = "<group>";
 		};
-		840249822191737B00CDDB0F /* CustomFolderCell */ = {
+		840249822191737B00CDDB0F /* CustomFolderCells */ = {
 			isa = PBXGroup;
 			children = (
 				840249842191758D00CDDB0F /* CustomFolderTableViewCell.swift */,
 				840249832191758D00CDDB0F /* CustomFolderTableViewCell.xib */,
 			);
-			path = CustomFolderCell;
+			path = CustomFolderCells;
+			sourceTree = "<group>";
+		};
+		840249912191C1E800CDDB0F /* MoveToFolderCells */ = {
+			isa = PBXGroup;
+			children = (
+				840249922191C23800CDDB0F /* MoveToFolderTableViewCell.swift */,
+				840249932191C23800CDDB0F /* MoveToFolderTableViewCell.xib */,
+			);
+			path = MoveToFolderCells;
 			sourceTree = "<group>";
 		};
 		8407AD90216CC5C400AF2E7B /* Network Models */ = {
@@ -288,7 +301,8 @@
 			children = (
 				8432070F21785E7500F18E5A /* InboxCells */,
 				8432B2FA2186DC1C006C901C /* SideMenuCells */,
-				840249822191737B00CDDB0F /* CustomFolderCell */,
+				840249822191737B00CDDB0F /* CustomFolderCells */,
+				840249912191C1E800CDDB0F /* MoveToFolderCells */,
 			);
 			path = TableCells;
 			sourceTree = "<group>";
@@ -670,6 +684,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				840249952191C23800CDDB0F /* MoveToFolderTableViewCell.xib in Resources */,
 				84410990217723CE00F0BE18 /* ViewInboxEmail.storyboard in Resources */,
 				845E64482170CAEF008612FE /* Lato-Black.ttf in Resources */,
 				845E64432170BD21008612FE /* AboutAs.storyboard in Resources */,
@@ -830,6 +845,7 @@
 				8432B2FC2186F39F006C901C /* SideMenuTableSectionHeaderView.swift in Sources */,
 				8435685F216F2DCD002101D3 /* InboxDataSource.swift in Sources */,
 				845E64462170C5A4008612FE /* AboutAsViewController.swift in Sources */,
+				840249942191C23800CDDB0F /* MoveToFolderTableViewCell.swift in Sources */,
 				8433A53F2189DD33008E1C85 /* MoveToViewController.swift in Sources */,
 				8431218C218AF81B0014560D /* ViewInboxEmailPresenter.swift in Sources */,
 				84F348582181F4E300F00E37 /* BlurEffect.swift in Sources */,

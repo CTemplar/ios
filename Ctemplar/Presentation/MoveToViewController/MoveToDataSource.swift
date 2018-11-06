@@ -15,6 +15,8 @@ class MoveToDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     var parentViewController    : MoveToViewController?
     
     var customFoldersArray      : Array<Folder> = []
+    var selectedFolderArray     : Array<Int> = []
+    var selectedFolderIndex     : Int?
     
     func initWith(parent: MoveToViewController, tableView: UITableView) {
         
@@ -28,7 +30,7 @@ class MoveToDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func registerTableViewCell() {
                 
-        self.tableView.register(UINib(nibName: k_CustomFolderCellXibName, bundle: nil), forCellReuseIdentifier: k_CustomFolderTableViewCellIdentifier)
+        self.tableView.register(UINib(nibName: k_MoveToFolderCellXibName, bundle: nil), forCellReuseIdentifier: k_MoveToFolderTableViewCellIdentifier)
     }
     
     //MARK: - table view
@@ -42,9 +44,35 @@ class MoveToDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         
         //var cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "moveToCellIdentifier")!
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: k_CustomFolderTableViewCellIdentifier)! as! CustomFolderTableViewCell
+        let folder = customFoldersArray[indexPath.row]
+        let color = folder.color
+        let folderName = folder.folderName
+        
+        var selected = false
+        
+        if indexPath.row == self.selectedFolderIndex {
+            selected = true
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: k_MoveToFolderTableViewCellIdentifier)! as! MoveToFolderTableViewCell
+        (cell as MoveToFolderTableViewCell).setupMoveToFolderTableCell(checked: selected, iconColor: color!, title: folderName!)
+        
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if self.selectedFolderIndex == indexPath.row {
+            self.selectedFolderIndex = nil
+        } else {
+            self.selectedFolderIndex = indexPath.row
+        }
+        
+        setApplyButtonEnabled()
+        
+        self.tableView.reloadData()
     }
     
     func reloadData() {
@@ -56,5 +84,14 @@ class MoveToDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         }
         
         self.tableView.reloadData()
+    }
+    
+    func setApplyButtonEnabled() {
+        
+        if self.selectedFolderIndex == nil {
+            self.parentViewController?.presenter?.applyButton(enabled: false)
+        } else {
+            self.parentViewController?.presenter?.applyButton(enabled: true)
+        }
     }
 }

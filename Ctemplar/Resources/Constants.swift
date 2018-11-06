@@ -47,6 +47,7 @@ let k_MoreActionsViewXibName               = "MoreActions"
 let k_SideMenuTableSectionHeaderViewXibName               = "SideMenuTableSectionHeader"
 let k_SideMenuTableViewCellXibName         = "SideMenuTableViewCell"
 let k_CustomFolderCellXibName              = "CustomFolderTableViewCell"
+let k_MoveToFolderCellXibName              = "MoveToFolderTableViewCell"
 
 // cell identifier
 
@@ -54,6 +55,7 @@ let k_InboxMessageTableViewCellIdentifier       = "inboxMessageTableViewCellIden
 let k_SideMenuTableSectionHeaderViewIdentifier  = "sideMenuTableSectionHeaderViewIdentifier"
 let k_SideMenuTableViewCellIdentifier           = "sideMenuTableViewCellIdentifier"
 let k_CustomFolderTableViewCellIdentifier       = "customFolderTableViewCellIdentifier"
+let k_MoveToFolderTableViewCellIdentifier       = "moveToFolderTableViewCellIdentifier"
 
 // view controllers iPad storyboards name
 
