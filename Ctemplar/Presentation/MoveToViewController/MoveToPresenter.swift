@@ -24,5 +24,4 @@ class MoveToPresenter {
             self.viewController?.applyButton.alpha = 0.3
         }
     }
-
 }

@@ -32,8 +32,13 @@ class InboxInteractor {
         var unreadEmails = 0
         
         if let emailsArray = messages.messagesList {
+            
+            if emailsArray.count == 0 {
+                if self.viewController?.dataSource?.selectionMode == true {
+                    self.viewController?.presenter?.disableSelectionMode()
+                }
+            }
 
-            //self.viewController?.messagesList = emailsArray//
             self.viewController?.dataSource?.messagesArray = emailsArray
             self.updateMessagesHeader(emailsArray: emailsArray)
             self.viewController?.dataSource?.reloadData()

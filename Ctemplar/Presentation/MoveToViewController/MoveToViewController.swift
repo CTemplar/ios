@@ -22,6 +22,8 @@ class MoveToViewController: UIViewController {
     @IBOutlet var manageFolderButton    : UIButton!
     
     @IBOutlet var moveToTableView       : UITableView!
+    
+    var selectedMessagesIDArray : Array<Int> = []
 
     //MARK: - Lifecycle
     
@@ -54,6 +56,7 @@ class MoveToViewController: UIViewController {
     
     @IBAction func applyButtonPressed(_ sender: AnyObject) {
         
+        self.presenter?.interactor?.applyButtonPressed()
     }
     
     @IBAction func cancelButtonPressed(_ sender: AnyObject) {

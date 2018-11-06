@@ -14,8 +14,7 @@ class MoveToDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     var tableView               : UITableView!
     var parentViewController    : MoveToViewController?
     
-    var customFoldersArray      : Array<Folder> = []
-    var selectedFolderArray     : Array<Int> = []
+    var customFoldersArray      : Array<Folder> = []    
     var selectedFolderIndex     : Int?
     
     func initWith(parent: MoveToViewController, tableView: UITableView) {
@@ -41,9 +40,7 @@ class MoveToDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        //var cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "moveToCellIdentifier")!
-        
+              
         let folder = customFoldersArray[indexPath.row]
         let color = folder.color
         let folderName = folder.folderName

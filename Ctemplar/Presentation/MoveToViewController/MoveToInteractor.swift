@@ -56,4 +56,60 @@ class MoveToInteractor {
             self.viewController?.dataSource?.reloadData()
         }
     }
+    
+    func moveMessagesListTo(selectedMessagesIdArray: Array<Int>, folder: String) {       
+        
+        var messagesIDList : String = ""
+        
+        for message in selectedMessagesIdArray {
+            messagesIDList = messagesIDList + message.description + ","
+        }
+        
+        messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex))
+        
+        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: folder, starred: false, read: false, updateFolder: true, updateStarred: false, updateRead: false)  {(result) in
+            
+            switch(result) {
+                
+            case .success( _):
+                //print("value:", value)
+                print("move list to another folder")
+                
+                self.viewController?.dismiss(animated: true, completion: nil)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
+    func applyButtonPressed() {
+        
+        if (self.viewController?.selectedMessagesIDArray.count)! > 0 {
+            if self.viewController?.dataSource?.selectedFolderIndex != nil {
+                
+                let folderName = self.folderNameBy(selectedIndex: (self.viewController?.dataSource?.selectedFolderIndex)!)
+                
+                if folderName.count > 0 {
+                    self.moveMessagesListTo(selectedMessagesIdArray: (self.viewController?.selectedMessagesIDArray)!, folder: folderName)
+                }
+            }
+        }
+    }
+    
+    func folderNameBy(selectedIndex: Int) -> String {
+        
+        var folderName : String = ""
+        
+        for (index, folder) in (self.viewController?.dataSource?.customFoldersArray)!.enumerated() {
+            if index == selectedIndex {
+                if let name = folder.folderName {
+                    folderName = name
+                }
+            }
+        }
+        
+        return folderName
+    }
 }

@@ -39,7 +39,10 @@ class InboxRouter {
     func showMoveToViewController() {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_MoveToStoryboardName, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: k_MoveToViewControllerID) as! MoveToViewController        
+        let vc = storyboard.instantiateViewController(withIdentifier: k_MoveToViewControllerID) as! MoveToViewController
+        if let selectedMessages = self.viewController?.dataSource?.selectedMessagesIDArray {
+            vc.selectedMessagesIDArray = selectedMessages
+        }
         self.viewController?.present(vc, animated: true, completion: nil)
     }
 }
