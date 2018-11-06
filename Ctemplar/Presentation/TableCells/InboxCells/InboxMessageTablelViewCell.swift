@@ -100,10 +100,10 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
             }
         }
         
-        if let children = message.hasChildren {
-            
-            if children > 0 {
+        if let childrenCount = message.childrenCount {
+            if childrenCount > 0 {
                 countLabel.isHidden = false
+                countLabel.text = childrenCount.description
             } else {
                 countLabel.isHidden = true
             }

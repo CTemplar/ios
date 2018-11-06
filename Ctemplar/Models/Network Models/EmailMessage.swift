@@ -20,7 +20,8 @@ struct EmailMessage {
     var destructDay : String? = nil
     var encryption : String? = nil
     var folder : String? = nil
-    var hasChildren : Int? = nil
+    var hasChildren : Bool? = nil
+    var childrenCount: Int? = nil
     var hash : String? = nil
     var messsageID : Int? = nil
     var isEncrypted : Bool? = nil
@@ -52,7 +53,8 @@ struct EmailMessage {
         self.destructDay = dictionary["destruct_date"] as? String
         self.encryption = dictionary["encryption"] as? String
         self.folder = dictionary["folder"] as? String
-        self.hasChildren = dictionary["has_children"] as? Int
+        self.hasChildren = dictionary["has_children"] as? Bool
+        self.childrenCount = dictionary["children_count"] as? Int
         self.hash = dictionary["hash"] as? String
         self.messsageID = dictionary["id"] as? Int
         self.isEncrypted = dictionary["is_encrypted"] as? Bool
