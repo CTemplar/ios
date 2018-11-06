@@ -124,6 +124,10 @@
                                     <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FNs-U3-Y0L">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="423"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="FNd-Or-ZG7" id="HTe-JF-Cvh"/>
+                                            <outlet property="delegate" destination="FNd-Or-ZG7" id="NPX-ZZ-vJc"/>
+                                        </connections>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXl-sY-7ce">
                                         <rect key="frame" x="16" y="15" width="110" height="20"/>
@@ -246,6 +250,7 @@
                     </view>
                     <connections>
                         <outlet property="applyButton" destination="Xxy-Hd-3eK" id="XFz-8G-tfh"/>
+                        <outlet property="moveToTableView" destination="FNs-U3-Y0L" id="9O6-hl-fHQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1GX-5E-bSR" userLabel="First Responder" sceneMemberID="firstResponder"/>

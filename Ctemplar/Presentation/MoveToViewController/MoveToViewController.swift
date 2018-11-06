@@ -11,18 +11,22 @@ import UIKit
 
 class MoveToViewController: UIViewController {
     
-    //var presenter   : InboxPresenter?
-    //var router      : InboxRouter?
-    //var dataSource  : InboxDataSource?
+    var presenter   : MoveToPresenter?
+    var router      : MoveToRouter?
+    var dataSource  : MoveToDataSource?
     
     @IBOutlet var cancelButton          : UIButton!
     @IBOutlet var applyButton           : UIButton!
+    
+    @IBOutlet var moveToTableView       : UITableView!
 
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let configurator = MoveToConfigurator()
+        configurator.configure(viewController: self)
         
     }
     
