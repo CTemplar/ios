@@ -52,6 +52,8 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         self.tableView.register(UINib(nibName: k_SideMenuTableViewCellXibName, bundle: nil), forCellReuseIdentifier: k_SideMenuTableViewCellIdentifier)
         
         self.tableView.register(UINib(nibName: k_SideMenuTableSectionHeaderViewXibName, bundle: nil), forHeaderFooterViewReuseIdentifier: k_SideMenuTableSectionHeaderViewIdentifier)
+        
+        self.tableView.register(UINib(nibName: k_CustomFolderCellXibName, bundle: nil), forCellReuseIdentifier: k_CustomFolderTableViewCellIdentifier)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -144,6 +146,15 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             
             break
         case SideMenuSectionIndex.customFolders.rawValue:
+            
+            cell = tableView.dequeueReusableCell(withIdentifier: k_CustomFolderTableViewCellIdentifier)! as! CustomFolderTableViewCell
+            
+            let folder = self.customFoldersArray[indexPath.row]
+            let folderName = folder.folderName
+            let selected = self.isSelected(folderName: folderName!)
+            let folderColor = folder.color
+            
+            (cell as! CustomFolderTableViewCell).setupCustomFolderTableCell(selected: selected, iconColor: folderColor!, title: folderName!, unreadCount: 0)
             
             break
         default:

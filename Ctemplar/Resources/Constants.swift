@@ -46,12 +46,14 @@ let k_InboxFilterViewXibName               = "InboxFilter"
 let k_MoreActionsViewXibName               = "MoreActions"
 let k_SideMenuTableSectionHeaderViewXibName               = "SideMenuTableSectionHeader"
 let k_SideMenuTableViewCellXibName         = "SideMenuTableViewCell"
+let k_CustomFolderCellXibName              = "CustomFolderTableViewCell"
 
 // cell identifier
 
 let k_InboxMessageTableViewCellIdentifier       = "inboxMessageTableViewCellIdentifier"
 let k_SideMenuTableSectionHeaderViewIdentifier  = "sideMenuTableSectionHeaderViewIdentifier"
 let k_SideMenuTableViewCellIdentifier           = "sideMenuTableViewCellIdentifier"
+let k_CustomFolderTableViewCellIdentifier       = "customFolderTableViewCellIdentifier"
 
 // view controllers iPad storyboards name
 
@@ -146,8 +148,8 @@ let k_starOffImageName              = "StarOff"
 let k_secureOnImageName             = "SecureOn"
 let k_secureOffImageName            = "SecureOff"
 
-let k_foldersIconImageName          = "foldersIcon"
-let k_labelsIconImageName           = "labelsIcon"
+let k_folderIconImageName          = "folderIcon"
+let k_labelIconImageName           = "labelIcon"
 
 let k_darkFoldersIconImageName      = "darkFoldersIcon"
 let k_darkLabelsIconImageName       = "darkLabelsIcon"
