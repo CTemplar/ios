@@ -101,6 +101,11 @@ class InboxSideMenuInteractor {
         }
     }
     
+    func applyCustomFolderAction(folderName: String) {
+        
+        self.applyFirstSectionAction(folder: folderName, filter: folderName)
+    }
+    
     func applyFirstSectionAction(folder: String, filter: String) {
         
         self.viewController?.currentParentViewController.currentFolder = folder

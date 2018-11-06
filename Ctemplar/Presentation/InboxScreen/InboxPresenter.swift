@@ -464,6 +464,7 @@ class InboxPresenter {
             moreActionsButtonsName = ["cancel".localized(), readButton, "moveToArchive".localized(), "moveToInbox".localized()]
             break
         default:
+            moreActionsButtonsName = ["cancel".localized(), readButton, "moveToArchive".localized()] //for custom folders
             break
         }
         

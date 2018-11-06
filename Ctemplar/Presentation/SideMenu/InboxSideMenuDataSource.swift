@@ -25,6 +25,8 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     var parentViewController    : InboxSideMenuViewController?
     var formatterService        : FormatterService?
     
+    var showAllFolders : Bool = false
+    
     func initWith(parent: InboxSideMenuViewController, tableView: UITableView) {
         
         self.parentViewController = parent
@@ -110,7 +112,12 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         case SideMenuSectionIndex.options.rawValue:
             return self.optionsArray.count
         case SideMenuSectionIndex.customFolders.rawValue:
-            return self.customFoldersArray.count
+            if self.showAllFolders {
+                return self.customFoldersArray.count
+            } else {
+                return k_numberOfCustomFoldersShowing + 1
+            }
+            //return self.customFoldersArray.count
         default:
             return 0
         }
@@ -147,14 +154,35 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             break
         case SideMenuSectionIndex.customFolders.rawValue:
             
-            cell = tableView.dequeueReusableCell(withIdentifier: k_CustomFolderTableViewCellIdentifier)! as! CustomFolderTableViewCell
-            
-            let folder = self.customFoldersArray[indexPath.row]
-            let folderName = folder.folderName
-            let selected = self.isSelected(folderName: folderName!)
-            let folderColor = folder.color
-            
-            (cell as! CustomFolderTableViewCell).setupCustomFolderTableCell(selected: selected, iconColor: folderColor!, title: folderName!, unreadCount: 0)
+            if self.showAllFolders {
+                
+                cell = tableView.dequeueReusableCell(withIdentifier: k_CustomFolderTableViewCellIdentifier)! as! CustomFolderTableViewCell
+                
+                let folder = self.customFoldersArray[indexPath.row]
+                let folderName = folder.folderName
+                let selected = self.isSelected(folderName: folderName!)
+                let folderColor = folder.color
+                
+                (cell as! CustomFolderTableViewCell).setupCustomFolderTableCell(selected: selected, iconColor: folderColor!, title: folderName!, unreadCount: 0)
+            } else {
+                
+                if indexPath.row < k_numberOfCustomFoldersShowing {
+                    
+                    cell = tableView.dequeueReusableCell(withIdentifier: k_CustomFolderTableViewCellIdentifier)! as! CustomFolderTableViewCell
+                    
+                    let folder = self.customFoldersArray[indexPath.row]
+                    let folderName = folder.folderName
+                    let selected = self.isSelected(folderName: folderName!)
+                    let folderColor = folder.color
+                    
+                    (cell as! CustomFolderTableViewCell).setupCustomFolderTableCell(selected: selected, iconColor: folderColor!, title: folderName!, unreadCount: 0)
+                } else {
+                  
+                    if indexPath.row == k_numberOfCustomFoldersShowing {
+                        cell.textLabel?.text = "Show More Folders"
+                    }
+                }
+            }
             
             break
         default:
@@ -173,18 +201,40 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
                 let optionName = self.mainFoldersArray[indexPath.row]
                 self.parentViewController?.presenter?.interactor?.selectAction(optionName: optionName)
             break
-        case SideMenuSectionIndex.options.rawValue:
-            let optionName = self.optionsArray[indexPath.row]
-            self.parentViewController?.presenter?.interactor?.selectAction(optionName: optionName)
-            break
-        case SideMenuSectionIndex.customFolders.rawValue:
-            break
-        default:
-            print("selected unknown section")
+            case SideMenuSectionIndex.options.rawValue:
+                let optionName = self.optionsArray[indexPath.row]
+                self.parentViewController?.presenter?.interactor?.selectAction(optionName: optionName)
+                break
+            case SideMenuSectionIndex.customFolders.rawValue:
+                
+                if self.showAllFolders {
+                    let folder = self.customFoldersArray[indexPath.row]
+                    let folderName = folder.folderName
+                    self.parentViewController?.presenter?.interactor?.applyCustomFolderAction(folderName: folderName!)
+                } else {
+                    if indexPath.row == k_numberOfCustomFoldersShowing {
+                        self.showAllFolders = true
+                        self.tableView.reloadData()
+                    } else {
+                        let folder = self.customFoldersArray[indexPath.row]
+                        let folderName = folder.folderName
+                        self.parentViewController?.presenter?.interactor?.applyCustomFolderAction(folderName: folderName!)
+                    }
+                }
+ 
+                break
+            default:
+                print("selected unknown section")
         }
     }
     
     func reloadData() {
+        
+        if self.customFoldersArray.count > k_numberOfCustomFoldersShowing {
+            self.showAllFolders = false
+        } else {
+            self.showAllFolders = true
+        }
         
         self.tableView.reloadData()
     }

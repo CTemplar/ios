@@ -73,6 +73,7 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
             swipeButtonsArray = [trashButton, moveToButton, spamButton] //? trash?
             break
         default:
+            swipeButtonsArray = [trashButton, moveToButton, spamButton] //for Custom Folders
             break
         }
         
