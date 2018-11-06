@@ -47,6 +47,8 @@ class RestAPIService {
         case read = "read"
         case limit = "limit"
         case offset = "offset"
+        case folderName = "name"
+        case folderColor = "color"
     }
         
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -378,6 +380,37 @@ class RestAPIService {
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
             
             print("customFolders responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func createCustomFolder(token: String, name: String, color: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.folderName.rawValue: name,
+            JSONKey.folderColor.rawValue: color
+        ]
+        
+        print("createCustomFolder parameters:", parameters)
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.customFolders.rawValue
+        
+        print("createCustomFolder url:", url)
+        
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+            
+            print("createCustomFolder responce:", response)
             
             switch(response.result) {
             case .success(let value):
