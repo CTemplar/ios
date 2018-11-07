@@ -16,6 +16,8 @@ class ViewInboxEmailViewController: UIViewController {
     var router      : ViewInboxEmailRouter?
         
     @IBOutlet var headerLabelWidthConstraint : NSLayoutConstraint!
+    @IBOutlet var fromToViewHeightConstraint : NSLayoutConstraint!
+    @IBOutlet var topViewHeightConstraint    : NSLayoutConstraint!
     
     @IBOutlet var headerLabel           : UILabel!
     
