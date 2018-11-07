@@ -75,6 +75,20 @@ class ViewInboxEmailPresenter {
             self.setupStarredButton(starred: starred)
         }
         
+        self.setupFromToHeaderHeight(message: message)
+        
+        
+        
+        if let messageContent = self.interactor?.extractMessageContent(message: message) {
+        
+            self.viewController?.contentTextView.isHidden = true
+            //self.viewController?.contentTextView.attributedText = messageContent.html2AttributedString
+            self.viewController?.webView.loadHTMLString(messageContent, baseURL: nil)
+        }
+    }
+    
+    func setupFromToHeaderHeight(message: EmailMessage) {
+        
         var fromName: String = "Dmitry"
         var fromEmail: String = ""
         var toName: String = "Dima"
@@ -98,15 +112,12 @@ class ViewInboxEmailPresenter {
         
         let fromToAttributtedString = self.interactor?.formatterService!.formatFromToAttributedString(fromName: fromName, fromEmail: fromEmail, toName: toName, toEmail: toEmail, ccArray: ccArray)
         
-        
+        self.viewController?.fromToBarTextView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
         self.viewController?.fromToBarTextView.attributedText = fromToAttributtedString
         
-        if let messageContent = self.interactor?.extractMessageContent(message: message) {
+        let numberOfLines = self.viewController?.fromToBarTextView.numberOfLines()
+        print("numberOfLines:", numberOfLines)
         
-            self.viewController?.contentTextView.isHidden = true
-            //self.viewController?.contentTextView.attributedText = messageContent.html2AttributedString
-            self.viewController?.webView.loadHTMLString(messageContent, baseURL: nil)
-        }
     }
     
     func setupStarredButton(starred: Bool) {

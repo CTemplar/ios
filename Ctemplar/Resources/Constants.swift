@@ -121,6 +121,10 @@ let k_inboxFilterViewCenterY    : CGFloat = 430.0
 
 let k_rightOffsetForSubjectLabel : CGFloat = 90.0
 
+let k_fromToViewMinHeight       : CGFloat = 94.0
+let k_fromToHeaderMinHeight     : CGFloat = 146.0
+let k_dateLabelOffsetHeight     : CGFloat = 52.0
+
 //images
 
 let k_checkBoxUncheckedImageName    = "roundDark"
@@ -213,6 +217,8 @@ let k_moreActionsButtonHeightConstraint       : CGFloat = 50
 let k_undoActionBarShowingSecs     = 5.0
 
 let k_numberOfCustomFoldersShowing = 2
+
+let k_lineSpaceSizeForFromToText = 10
 
 enum InboxSideMenuOptionsName: String {
     

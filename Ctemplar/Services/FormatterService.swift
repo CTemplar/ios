@@ -126,10 +126,16 @@ class FormatterService
         //"From: Ctemplar <contact@ctemplar.ch>\nTo: John Doe <johndoe@gmail.com>\nCC: Sam Smith <samsmith@hotmail.com>"
         let textString = "From: " + fromName + " <" + fromEmail + ">\nTo: " + toName + " <" + toEmail + "> " + ccText
         
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = CGFloat(k_lineSpaceSizeForFromToText)
+        
+        let font : UIFont = UIFont(name: k_latoRegularFontName, size: 14.0)!        
+        
         let attributedString = NSMutableAttributedString(string: textString, attributes: [
-            .font: UIFont(name: "Lato-Regular", size: 14.0)!,
+            .font: font,
             .foregroundColor: UIColor(white: 0.0, alpha: 0.38),
-            .kern: 0.0
+            .kern: 0.0,
+            .paragraphStyle: style
             ])
         
         _ = attributedString.setForgroundColor(textToFind: fromName, color: UIColor(white: 0.0, alpha: 0.87))
@@ -555,6 +561,23 @@ extension UITextView {
     func disableTextPadding() {
         
         self.contentInset = UIEdgeInsets(top: -8, left: -2, bottom: -8, right: -8)
+    }
+    
+    func numberOfLines() -> Int {
+        
+        let layoutManager = self.layoutManager
+        var numberOfLines : Int = 0
+        var index : Int = 0
+        let numberOfGlyphs = layoutManager.numberOfGlyphs
+        var lineRange: NSRange = NSMakeRange(0, 1)
+        
+        while index < numberOfGlyphs {
+            layoutManager.lineFragmentRect(forGlyphAt: index, effectiveRange: &lineRange)
+            index = NSMaxRange(lineRange)
+            numberOfLines += 1
+        }
+        
+        return numberOfLines
     }
 }
 
