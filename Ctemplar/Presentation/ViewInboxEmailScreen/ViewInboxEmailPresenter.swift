@@ -106,7 +106,7 @@ class ViewInboxEmailPresenter {
         if let carbonCopyArray = message.cc {
             ccArray = carbonCopyArray as! Array<String>
         }
-        
+        /*
         //temp names
         toEmailsArray.append("oak777@unet.lg.ua")
         toEmailsArray.append("support5464@hypertunnels3d.com")
@@ -122,7 +122,7 @@ class ViewInboxEmailPresenter {
         ccArray.append("huly-gun@white-zebra.com")
         ccArray.append("supportxx@hypertunnels3d.com")
         ccArray.append("huly-gunxx@white-zebra.com")
-        
+        */
         
         let fromToText = self.interactor?.formatterService!.formatFromToString(fromName: fromName, fromEmail: fromEmail, toNamesArray: toNamesArray, toEmailsArray: toEmailsArray, ccArray: ccArray)
         
