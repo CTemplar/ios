@@ -55,7 +55,7 @@ class ViewInboxEmailPresenter {
     
     func setupMessageHeader(message: EmailMessage) {
      
-        self.viewController?.headerLabel.text = message.subject
+        self.setupSubjectLabel(message: message)
         
         if let createdDate = message.createdAt {
             if  let date = self.interactor?.formatterService!.formatStringToDate(date: createdDate) {
@@ -115,6 +115,19 @@ class ViewInboxEmailPresenter {
             self.viewController?.starredButton.setImage(UIImage(named: k_starOnImageName), for: .normal)
         } else {
             self.viewController?.starredButton.setImage(UIImage(named: k_starOffImageName), for: .normal)
+        }
+    }
+    
+    func setupSubjectLabel(message: EmailMessage) {
+        
+        self.viewController?.headerLabel.text = message.subject
+        
+        let subjectTextWidth : CGFloat  = (self.viewController?.headerLabel.text!.widthOfString(usingFont: (self.viewController?.headerLabel.font)!))!
+        
+        if subjectTextWidth < (self.viewController?.view.frame.width)! - k_rightOffsetForSubjectLabel {
+            self.viewController?.headerLabelWidthConstraint.constant = subjectTextWidth
+        } else {
+            self.viewController?.headerLabelWidthConstraint.constant = (self.viewController?.view.frame.width)! - k_rightOffsetForSubjectLabel
         }
     }
     

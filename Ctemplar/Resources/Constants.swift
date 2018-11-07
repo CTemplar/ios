@@ -119,6 +119,8 @@ let k_deleteLabelSEWidth        : CGFloat = 45.0 //30.0
 
 let k_inboxFilterViewCenterY    : CGFloat = 430.0
 
+let k_rightOffsetForSubjectLabel : CGFloat = 90.0
+
 //images
 
 let k_checkBoxUncheckedImageName    = "roundDark"
