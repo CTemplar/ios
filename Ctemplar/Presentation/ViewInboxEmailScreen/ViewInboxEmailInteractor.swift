@@ -40,7 +40,7 @@ class ViewInboxEmailInteractor {
             folder = MessagesFoldersName.trash.rawValue
         }
         
-        self.moveMessageTo(messageID: message.messsageID!, folder: folder!, withUndo: withUndo)
+        self.moveMessageTo(message: message, folder: folder!, withUndo: withUndo)
     }
     
     func moveMessageToSpam(message: EmailMessage, withUndo: String) {
@@ -53,7 +53,7 @@ class ViewInboxEmailInteractor {
             folder = MessagesFoldersName.spam.rawValue
         }
         
-        self.moveMessageTo(messageID: message.messsageID!, folder: folder!, withUndo: withUndo)
+        self.moveMessageTo(message: message, folder: folder!, withUndo: withUndo)
     }
     
     func moveMessageToInbox(message: EmailMessage, withUndo: String) {
@@ -66,7 +66,7 @@ class ViewInboxEmailInteractor {
             folder = MessagesFoldersName.inbox.rawValue
         }
         
-        self.moveMessageTo(messageID: message.messsageID!, folder: folder!, withUndo: withUndo)
+        self.moveMessageTo(message: message, folder: folder!, withUndo: withUndo)
     }
     
     func moveMessageToArchive(message: EmailMessage, withUndo: String) {
@@ -79,30 +79,74 @@ class ViewInboxEmailInteractor {
             folder = MessagesFoldersName.archive.rawValue
         }
         
-        self.moveMessageTo(messageID: message.messsageID!, folder: folder!, withUndo: withUndo)
+        self.moveMessageTo(message: message, folder: folder!, withUndo: withUndo)
+    }
+/*
+    func markMessageAsStarred(message: EmailMessage, starred: Bool, withUndo: String) {
+     
+        self.viewController?.lastAction = ActionsIndex.markAsStarred
+        
+    }*/
+    
+    func moveMessageTo(message: EmailMessage, folder: String, withUndo: String) {
+        
+        apiService?.updateMessages(messageID: (message.messsageID?.description)!, messagesIDIn: "", folder: folder, starred: false, read: false, updateFolder: true, updateStarred: false, updateRead: false)  {(result) in
+            
+            switch(result) {
+                
+            case .success( _):
+                //print("value:", value)
+                print("move message to:", folder)
+                
+                if withUndo.count > 0 {
+                    self.presenter?.showUndoBar(text: withUndo)
+                }
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
     }
     
     func markMessageAsRead(message: EmailMessage, asRead: Bool, withUndo: String) {
         
         self.viewController?.lastAction = ActionsIndex.markAsRead
         
-    }
-    
-    func markMessageAsStarred(message: EmailMessage, starred: Bool, withUndo: String) {
-     
-        self.viewController?.lastAction = ActionsIndex.markAsStarred
-        
-    }
-    
-    func moveMessageTo(messageID: Int, folder: String, withUndo: String) {
-        
-        apiService?.updateMessages(messageID: messageID.description, messagesIDIn: "", folder: folder, starred: false, read: false, updateFolder: true, updateStarred: false, updateRead: false)  {(result) in
+        apiService?.updateMessages(messageID: message.messsageID!.description, messagesIDIn: "", folder: message.folder!, starred: false, read: asRead, updateFolder: false, updateStarred: false, updateRead: true)  {(result) in
             
             switch(result) {
                 
             case .success( _):
                 //print("value:", value)
-                print("move list to:", folder)
+                print("mark message as read:", asRead)
+                
+                self.viewController?.messageIsRead = asRead
+                
+                if withUndo.count > 0 {
+                    self.presenter?.showUndoBar(text: withUndo)
+                }
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
+    func markMessageAsStarred(message: EmailMessage, starred: Bool, withUndo: String) {
+        
+        self.viewController?.lastAction = ActionsIndex.markAsStarred
+        
+        apiService?.updateMessages(messageID: message.messsageID!.description, messagesIDIn: "", folder: message.folder!, starred: starred, read: false, updateFolder: false, updateStarred: true, updateRead: false)  {(result) in
+            
+            switch(result) {
+                
+            case .success( _):
+                //print("value:", value)
+                print("mark message as starred:", starred)
+                
+                self.viewController?.messageIsRead = starred
                 
                 if withUndo.count > 0 {
                     self.presenter?.showUndoBar(text: withUndo)
@@ -118,6 +162,8 @@ class ViewInboxEmailInteractor {
     func undoLastAction(message: EmailMessage) {
         
         self.presenter?.hideUndoBar()
+        
+        print("undo pressed")
         
         switch self.viewController?.lastAction.rawValue {
         case ActionsIndex.markAsSpam.rawValue:

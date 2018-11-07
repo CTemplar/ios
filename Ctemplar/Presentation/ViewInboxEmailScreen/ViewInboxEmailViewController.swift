@@ -39,6 +39,9 @@ class ViewInboxEmailViewController: UIViewController {
     
     var lastAction : ActionsIndex = ActionsIndex.noAction
     
+    var messageIsRead : Bool?
+    var messageIsStarred: Bool?
+    
     var message : EmailMessage?
     //var header  : String?
     
@@ -52,6 +55,9 @@ class ViewInboxEmailViewController: UIViewController {
         
         self.presenter?.setupNavigationBar()
         self.presenter?.setupMessageHeader(message: self.message!)
+        
+        self.messageIsRead = message?.read
+        self.messageIsStarred = message?.starred
         
         self.presenter?.initMoreActionsView()
     }

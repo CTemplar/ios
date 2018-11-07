@@ -201,7 +201,7 @@ class ViewInboxEmailPresenter {
         
         var readButton : String = ""
         
-        if (self.viewController?.message?.read)! {
+        if (self.viewController?.messageIsRead)! {
             readButton = "markAsUnread".localized()
         } else {
             readButton = "markAsRead".localized()
@@ -256,11 +256,11 @@ class ViewInboxEmailPresenter {
             break
         case MoreActionsTitles.markAsRead.rawValue.localized():
             print("markAsRead btn more actions")
-            //self.interactor?.markMessageAsRead(message: <#T##EmailMessage#>, asRead: <#T##Bool#>, withUndo: <#T##String#>)
+            self.interactor?.markMessageAsRead(message: (self.viewController?.message)!, asRead: true, withUndo: "undoMarkAsRead".localized())
             break
         case MoreActionsTitles.markAsUnread.rawValue.localized():
             print("markAsUnread btn more actions")
-            //self.markSelectedMessagesAsRead()
+            self.interactor?.markMessageAsRead(message: (self.viewController?.message)!, asRead: false, withUndo: "undoMarkAsUnread".localized())
             break
         case MoreActionsTitles.moveToArchive.rawValue.localized():
             print("moveToArchive btn more actions")
