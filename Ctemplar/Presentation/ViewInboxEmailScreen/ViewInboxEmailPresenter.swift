@@ -91,8 +91,8 @@ class ViewInboxEmailPresenter {
         
         var fromName: String = "Dmitry"
         var fromEmail: String = ""
-        var toName: String = "Dima"
-        var toEmail: String = ""
+        var toNamesArray : Array<String> = []
+        var toEmailsArray : Array<String> = []
         var ccArray : Array<String> = []
         
         if let sender = message.sender {
@@ -100,24 +100,52 @@ class ViewInboxEmailPresenter {
         }
         
         if let recieversArray = message.receiver {
-            
-            if recieversArray.count > 0 {
-                toEmail = recieversArray.first as! String
-            }
+            toEmailsArray = recieversArray as! Array<String>
         }
         
         if let carbonCopyArray = message.cc {
             ccArray = carbonCopyArray as! Array<String>
         }
         
-        let fromToAttributtedString = self.interactor?.formatterService!.formatFromToAttributedString(fromName: fromName, fromEmail: fromEmail, toName: toName, toEmail: toEmail, ccArray: ccArray)
+        //temp names
+        toEmailsArray.append("oak777@unet.lg.ua")
+        toEmailsArray.append("support5464@hypertunnels3d.com")
+        toEmailsArray.append("huly-gun4444@white-zebra.com")
         
-        self.viewController?.fromToBarTextView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
+        toNamesArray.append("Dima")
+        toNamesArray.append("Dimon")
+        toNamesArray.append("MegaDima")
+        
+        //temp carbon
+        ccArray.append("oak@unet.lg.ua")
+        ccArray.append("support@hypertunnels3d.com")
+        ccArray.append("huly-gun@white-zebra.com")
+        ccArray.append("supportxx@hypertunnels3d.com")
+        ccArray.append("huly-gunxx@white-zebra.com")
+        
+        
+        let fromToText = self.interactor?.formatterService!.formatFromToString(fromName: fromName, fromEmail: fromEmail, toNamesArray: toNamesArray, toEmailsArray: toEmailsArray, ccArray: ccArray)
+        
+        let fromToAttributtedString = self.interactor?.formatterService!.formatFromToAttributedString(fromName: fromName, fromToText: fromToText!, toNamesArray: toNamesArray, toEmailsArray: toEmailsArray, ccArray: ccArray)
+        
+        self.viewController?.fromToBarTextView.contentInset = UIEdgeInsets(top: 3, left: 0, bottom: 0, right: 0)
         self.viewController?.fromToBarTextView.attributedText = fromToAttributtedString
         
-        let numberOfLines = self.viewController?.fromToBarTextView.numberOfLines()
-        print("numberOfLines:", numberOfLines)
+        let numberOfLines = fromToText?.numberOfLines()
+        //print("numberOfLines:", numberOfLines as Any)
         
+        var fromToViewHeight = k_lineHeightForFromToText * CGFloat(numberOfLines!)
+        
+        if fromToViewHeight < k_fromToViewMinHeight {
+            fromToViewHeight = k_fromToViewMinHeight
+        } else {
+            fromToViewHeight = (k_lineHeightForFromToText * CGFloat(numberOfLines!))  + k_InsetsForFromTo
+        }        
+        
+        self.viewController?.fromToViewHeightConstraint.constant = fromToViewHeight
+        self.viewController?.topViewHeightConstraint.constant = fromToViewHeight + k_dateLabelOffsetHeight
+        
+        self.viewController?.view.layoutIfNeeded()
     }
     
     func setupStarredButton(starred: Bool) {

@@ -121,9 +121,21 @@ let k_inboxFilterViewCenterY    : CGFloat = 430.0
 
 let k_rightOffsetForSubjectLabel : CGFloat = 90.0
 
+let k_sideMenuSectionHeaderHeight  : CGFloat = 49
+let k_sideMenuSeparatorHeight      : CGFloat = 1
+
+let k_moreActionsButtonsViewFullContstraint   : CGFloat = 206
+let k_moreActionsButtonsViewMiddleContstraint : CGFloat = 154
+let k_moreActionsButtonsViewSmallContstraint  : CGFloat = 102
+let k_moreActionsButtonHeightConstraint       : CGFloat = 50
+
 let k_fromToViewMinHeight       : CGFloat = 94.0
 let k_fromToHeaderMinHeight     : CGFloat = 146.0
 let k_dateLabelOffsetHeight     : CGFloat = 52.0
+
+let k_InsetsForFromTo           : CGFloat = 26.0
+let k_lineSpaceSizeForFromToText    = 10
+let k_lineHeightForFromToText   : CGFloat = 26.0
 
 //images
 
@@ -206,19 +218,9 @@ let k_firstCharsForHeader          = 50
 let k_tokenHoursExpiration         = 2
 let k_tokenMinutesExpiration       = 170
 
-let k_sideMenuSectionHeaderHeight  : CGFloat = 49
-let k_sideMenuSeparatorHeight      : CGFloat = 1
-
-let k_moreActionsButtonsViewFullContstraint   : CGFloat = 206
-let k_moreActionsButtonsViewMiddleContstraint : CGFloat = 154
-let k_moreActionsButtonsViewSmallContstraint  : CGFloat = 102
-let k_moreActionsButtonHeightConstraint       : CGFloat = 50
-
 let k_undoActionBarShowingSecs     = 5.0
 
 let k_numberOfCustomFoldersShowing = 2
-
-let k_lineSpaceSizeForFromToText = 10
 
 enum InboxSideMenuOptionsName: String {
     

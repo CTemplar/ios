@@ -101,6 +101,6 @@ class MoreActionsView: UIView {
     }
     
     @objc func tappedViewAction(sender : UITapGestureRecognizer) {
-        delegate?.applyAction(sender)
+        //delegate?.applyAction(sender)
     }
 }
