@@ -13,6 +13,9 @@ class ViewInboxEmailPresenter {
     
     var viewController   : ViewInboxEmailViewController?
     var interactor       : ViewInboxEmailInteractor?
+    
+    var timer = Timer()
+    var counter = 0
 
     func setupNavigationBar() {
         
@@ -114,10 +117,12 @@ class ViewInboxEmailPresenter {
     
     @objc func garbageButtonPresed() {
         
+        self.interactor?.moveMessageToTrash(message: (self.viewController?.message)!, withUndo: "undoMoveToTrash".localized())
     }
     
     @objc func spamButtonPresed() {
         
+        self.interactor?.moveMessageToSpam(message: (self.viewController?.message)!, withUndo: "undoMarkAsSpam".localized())
     }
     
     @objc func moveButtonPresed() {
@@ -127,4 +132,180 @@ class ViewInboxEmailPresenter {
     @objc func moreButtonPresed() {
         
     }
+    
+    //MARK: - Undo
+    
+    func showUndoBar(text: String) {
+        
+        print("show undo bar")
+        
+        self.viewController?.undoButton.setTitle(text, for: .normal)        
+        self.viewController?.undoBar.isHidden = false
+        
+        counter = 0
+        timer.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fadeUndoBar), userInfo: nil, repeats: true)
+    }
+    
+    @objc func fadeUndoBar() {
+        
+        counter +=  1
+        let alpha = 1.0/Double(counter)
+        self.viewController?.undoBar.alpha = CGFloat(alpha)
+        
+        if counter == Int(k_undoActionBarShowingSecs) {
+            self.hideUndoBar()
+        }
+    }
+    
+    func hideUndoBar() {
+        
+        counter = 0
+        timer.invalidate()
+        self.viewController?.undoBar.isHidden = true
+        self.viewController?.undoBar.alpha = 1.0
+    }
+    
+    //MARK: - More Actions
+    /*
+    func initMoreActionsView() {
+        
+        self.viewController?.moreActionsView = Bundle.main.loadNibNamed(k_MoreActionsViewXibName, owner: nil, options: nil)?.first as? MoreActionsView
+        self.viewController?.moreActionsView?.frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
+        self.viewController?.moreActionsView?.delegate = self.viewController
+        
+        self.viewController?.navigationController!.view.addSubview((self.viewController?.moreActionsView)!)
+        
+        self.viewController?.moreActionsView?.isHidden = true
+    }
+    
+    func showMoreActionsView(emptyFolder: Bool) {
+        
+        var moreActionsButtonsName: Array<String> = []
+        
+        if emptyFolder {
+            moreActionsButtonsName = self.setupMoreActionsButtonsEmptyFolder()
+        } else {
+            moreActionsButtonsName = self.setupMoreActionsButtons()
+        }
+        
+        self.viewController?.moreActionsView?.setup(buttonsNameArray: moreActionsButtonsName)
+        
+        let hidden = self.viewController?.moreActionsView?.isHidden
+        
+        self.viewController?.moreActionsView?.isHidden = !hidden!
+    }
+    
+    func setupMoreActionsButtonsEmptyFolder() -> Array<String> {
+        
+        let moreActionsButtonsName: Array<String> = ["cancel".localized(), "emptyFolder".localized()]
+        
+        return moreActionsButtonsName
+    }
+    
+    func setupMoreActionsButtons() -> Array<String> {
+        
+        let currentFolder = self.viewController?.currentFolderFilter
+        
+        let read = self.needReadAction()
+        var readButton : String = ""
+        
+        if read {
+            readButton = "markAsRead".localized()
+        } else {
+            readButton = "markAsUnread".localized()
+        }
+        
+        var moreActionsButtonsName: Array<String> = []
+        
+        switch currentFolder {
+        case MessagesFoldersName.inbox.rawValue:
+            moreActionsButtonsName = ["cancel".localized(), readButton, "moveToArchive".localized()]
+            break
+        case MessagesFoldersName.draft.rawValue:
+            moreActionsButtonsName = []
+            break
+        case MessagesFoldersName.sent.rawValue:
+            moreActionsButtonsName = ["cancel".localized(), readButton, "moveToArchive".localized()]
+            break
+        case MessagesFoldersName.outbox.rawValue:
+            moreActionsButtonsName = ["cancel".localized(), readButton, "moveToArchive".localized(), "moveToInbox".localized()]
+            break
+        case MessagesFoldersName.starred.rawValue:
+            moreActionsButtonsName = ["cancel".localized(), readButton, "moveToArchive".localized(), "moveToInbox".localized()]
+            break
+        case MessagesFoldersName.archive.rawValue:
+            moreActionsButtonsName = ["cancel".localized(), readButton, "moveToInbox".localized()]
+            break
+        case MessagesFoldersName.spam.rawValue:
+            moreActionsButtonsName = ["cancel".localized(), "moveToArchive".localized(), "moveToInbox".localized()]
+            break
+        case MessagesFoldersName.trash.rawValue:
+            moreActionsButtonsName = ["cancel".localized(), readButton, "moveToArchive".localized(), "moveToInbox".localized()]
+            break
+        default:
+            moreActionsButtonsName = ["cancel".localized(), readButton, "moveToArchive".localized(), "moveToInbox".localized()] //for custom folders
+            break
+        }
+        
+        return moreActionsButtonsName
+    }
+    
+    func applyMoreAction(_ sender: AnyObject) {
+        
+        let button = sender as! UIButton
+        
+        let title = button.title(for: .normal)
+        
+        print("title:", title as Any)
+        
+        switch title {
+        case MoreActionsTitles.cancel.rawValue.localized():
+            print("cancel btn more actions")
+            
+            break
+        case MoreActionsTitles.markAsRead.rawValue.localized():
+            print("markAsRead btn more actions")
+            self.markSelectedMessagesAsRead()
+            break
+        case MoreActionsTitles.markAsUnread.rawValue.localized():
+            print("markAsUnread btn more actions")
+            self.markSelectedMessagesAsRead()
+            break
+        case MoreActionsTitles.moveToArchive.rawValue.localized():
+            print("moveToArchive btn more actions")
+            self.moveSelectedMessagesToArchive()
+            break
+        case MoreActionsTitles.moveToInbox.rawValue.localized():
+            print("moveToInbox btn more actions")
+            self.moveSelectedMessagesToInbox()
+            break
+        case MoreActionsTitles.emptyFolder.rawValue.localized():
+            print("emptyFolder btn more actions")
+            //self.markSelectedMessagesAsTrash()
+            break
+        default:
+            print("more actions: default")
+        }
+        
+        self.showMoreActionsView(emptyFolder: false)
+    }
+    
+    func needReadAction() -> Bool {
+        
+        for messageID in (self.viewController?.dataSource?.selectedMessagesIDArray)! {
+            for message in (self.viewController?.dataSource?.messagesArray)! {
+                if messageID == message.messsageID {
+                    if let read = message.read {
+                        if !read {
+                            return true
+                        }
+                    }
+                }
+            }
+        }
+        
+        return false
+    }
+    */
 }

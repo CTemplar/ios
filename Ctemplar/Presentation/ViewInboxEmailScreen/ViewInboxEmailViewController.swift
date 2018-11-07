@@ -30,6 +30,11 @@ class ViewInboxEmailViewController: UIViewController {
     @IBOutlet var scrollView            : UIScrollView!
     @IBOutlet var webView               : WKWebView!
     
+    @IBOutlet var undoButton            : UIButton!
+    @IBOutlet var undoBar               : UIView!
+    
+    var lastAction : ActionsIndex = ActionsIndex.noAction
+    
     var message : EmailMessage?
     //var header  : String?
     
@@ -60,6 +65,11 @@ class ViewInboxEmailViewController: UIViewController {
     @IBAction func forwardButtonPressed(_ sender: AnyObject) {
         
         
+    }
+    
+    @IBAction func undoButtonPressed(_ sender: AnyObject) {
+        
+        self.presenter?.interactor?.undoLastAction(message: self.message!)
     }
 }
 

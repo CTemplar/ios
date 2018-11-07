@@ -309,6 +309,7 @@ enum ActionsIndex: Int, CaseIterable {
     case markAsStarred    = 3
     case moveToTrach      = 4
     case moveToArchive    = 5
-    case moveTo           = 6
-    case noAction         = 7
+    case moveToInbox      = 6
+    case moveTo           = 7
+    case noAction         = 8
 }

@@ -150,6 +150,30 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                             <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z5N-8m-C3L">
                                 <rect key="frame" x="0.0" y="618" width="375" height="49"/>
                                 <subviews>
+                                    <view hidden="YES" alpha="0.89999997615814209" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XUa-dI-sHj">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vCM-qe-6hi">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="mAv-sW-wSd"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                                <state key="normal" title="Undo delete">
+                                                    <color key="titleColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="undoButtonPressed:" destination="eXb-8R-FAT" eventType="touchUpInside" id="cqu-om-Qih"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="vCM-qe-6hi" firstAttribute="top" secondItem="XUa-dI-sHj" secondAttribute="top" id="8md-au-3jl"/>
+                                            <constraint firstItem="vCM-qe-6hi" firstAttribute="leading" secondItem="XUa-dI-sHj" secondAttribute="leading" id="KKZ-DV-I6o"/>
+                                            <constraint firstAttribute="trailing" secondItem="vCM-qe-6hi" secondAttribute="trailing" id="aqa-16-ak2"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2m-Xp-8JM">
                                         <rect key="frame" x="48" y="6" width="46" height="35"/>
                                         <constraints>
@@ -183,7 +207,11 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="XUa-dI-sHj" firstAttribute="leading" secondItem="Z5N-8m-C3L" secondAttribute="leading" id="48n-06-8Vx"/>
+                                    <constraint firstItem="XUa-dI-sHj" firstAttribute="top" secondItem="Z5N-8m-C3L" secondAttribute="top" id="BeH-1I-ohc"/>
+                                    <constraint firstAttribute="bottom" secondItem="XUa-dI-sHj" secondAttribute="bottom" constant="-34" id="FYV-cX-JM3"/>
                                     <constraint firstItem="1u4-Uf-KqQ" firstAttribute="centerX" secondItem="Z5N-8m-C3L" secondAttribute="centerX" id="JGP-FW-leL"/>
+                                    <constraint firstAttribute="trailing" secondItem="XUa-dI-sHj" secondAttribute="trailing" id="K92-nX-5HV"/>
                                     <constraint firstItem="b2m-Xp-8JM" firstAttribute="leading" secondItem="Z5N-8m-C3L" secondAttribute="leading" constant="48" id="PqH-St-B1n"/>
                                     <constraint firstItem="9Ya-OR-KPO" firstAttribute="top" secondItem="Z5N-8m-C3L" secondAttribute="top" constant="7" id="Wxq-Jw-Ybq"/>
                                     <constraint firstItem="b2m-Xp-8JM" firstAttribute="top" secondItem="Z5N-8m-C3L" secondAttribute="top" constant="6" id="Xe0-IZ-LSj"/>
@@ -238,6 +266,8 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                         <outlet property="secureImageTrailingConstraint" destination="qmu-ft-mLf" id="XN0-2U-Xj9"/>
                         <outlet property="securedImageView" destination="P88-l5-8f4" id="Wja-H7-2kr"/>
                         <outlet property="starredmageView" destination="kZj-sB-tqw" id="QWs-cY-8Ju"/>
+                        <outlet property="undoBar" destination="XUa-dI-sHj" id="tVt-15-w8Q"/>
+                        <outlet property="undoButton" destination="vCM-qe-6hi" id="6ko-gu-MWT"/>
                         <outlet property="webView" destination="ies-qD-5qy" id="7KL-FM-kjf"/>
                     </connections>
                 </viewController>
