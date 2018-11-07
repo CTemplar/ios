@@ -71,12 +71,8 @@ class ViewInboxEmailPresenter {
             }
         }
         
-        if let starred = message.starred {
-            if starred {
-                self.viewController?.starredmageView.image = UIImage(named: k_starOnImageName)
-            } else {
-                self.viewController?.starredmageView.image = UIImage(named: k_starOffImageName)
-            }
+        if let starred = self.viewController?.messageIsStarred {
+            self.setupStarredButton(starred: starred)
         }
         
         var fromName: String = "Dmitry"
@@ -113,6 +109,15 @@ class ViewInboxEmailPresenter {
         }
     }
     
+    func setupStarredButton(starred: Bool) {
+        
+        if starred {
+            self.viewController?.starredButton.setImage(UIImage(named: k_starOnImageName), for: .normal)
+        } else {
+            self.viewController?.starredButton.setImage(UIImage(named: k_starOffImageName), for: .normal)
+        }
+    }
+    
     //MARK: - NavBar Actions
     
     @objc func garbageButtonPresed() {
@@ -133,6 +138,13 @@ class ViewInboxEmailPresenter {
     @objc func moreButtonPresed() {
         
         self.showMoreActionsView()
+    }
+    
+    func starButtonPressed() {
+        
+        self.viewController?.messageIsStarred = !(self.viewController?.messageIsStarred)!
+        
+        self.interactor?.markMessageAsStarred(message: (self.viewController?.message)!, starred: (self.viewController?.messageIsStarred)!, withUndo: "")
     }
     
     //MARK: - Undo

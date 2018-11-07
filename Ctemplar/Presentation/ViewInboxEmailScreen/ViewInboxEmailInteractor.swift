@@ -136,7 +136,7 @@ class ViewInboxEmailInteractor {
     
     func markMessageAsStarred(message: EmailMessage, starred: Bool, withUndo: String) {
         
-        self.viewController?.lastAction = ActionsIndex.markAsStarred
+        //self.viewController?.lastAction = ActionsIndex.markAsStarred
         
         apiService?.updateMessages(messageID: message.messsageID!.description, messagesIDIn: "", folder: message.folder!, starred: starred, read: false, updateFolder: false, updateStarred: true, updateRead: false)  {(result) in
             
@@ -146,11 +146,14 @@ class ViewInboxEmailInteractor {
                 //print("value:", value)
                 print("mark message as starred:", starred)
                 
-                self.viewController?.messageIsRead = starred
+                self.viewController?.messageIsStarred = starred
                 
+                self.presenter?.setupStarredButton(starred: starred)
+                
+                /*
                 if withUndo.count > 0 {
                     self.presenter?.showUndoBar(text: withUndo)
-                }
+                }*/
                 
             case .failure(let error):
                 print("error:", error)

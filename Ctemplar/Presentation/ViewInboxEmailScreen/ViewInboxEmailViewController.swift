@@ -15,7 +15,7 @@ class ViewInboxEmailViewController: UIViewController {
     var presenter   : ViewInboxEmailPresenter?
     var router      : ViewInboxEmailRouter?
         
-    @IBOutlet var secureImageTrailingConstraint : NSLayoutConstraint!
+    @IBOutlet var headerLabelWidthConstraint : NSLayoutConstraint!
     
     @IBOutlet var headerLabel           : UILabel!
     
@@ -23,7 +23,7 @@ class ViewInboxEmailViewController: UIViewController {
     @IBOutlet var contentTextView       : UITextView!
     
     @IBOutlet var securedImageView      : UIImageView!
-    @IBOutlet var starredmageView       : UIImageView!
+    @IBOutlet var starredButton         : UIButton!
     
     @IBOutlet var dateLabel             : UILabel!
     
@@ -53,11 +53,11 @@ class ViewInboxEmailViewController: UIViewController {
         let configurator = ViewInboxEmailConfigurator()
         configurator.configure(viewController: self)
         
-        self.presenter?.setupNavigationBar()
-        self.presenter?.setupMessageHeader(message: self.message!)
-        
         self.messageIsRead = message?.read
         self.messageIsStarred = message?.starred
+        
+        self.presenter?.setupNavigationBar()
+        self.presenter?.setupMessageHeader(message: self.message!)
         
         self.presenter?.initMoreActionsView()
     }
@@ -82,6 +82,11 @@ class ViewInboxEmailViewController: UIViewController {
     @IBAction func undoButtonPressed(_ sender: AnyObject) {
         
         self.presenter?.interactor?.undoLastAction(message: self.message!)
+    }
+    
+    @IBAction func starButtonPressed(_ sender: AnyObject) {
+        
+        self.presenter?.starButtonPressed()
     }
 }
 

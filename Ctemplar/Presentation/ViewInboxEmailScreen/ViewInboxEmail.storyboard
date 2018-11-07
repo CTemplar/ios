@@ -30,19 +30,26 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="47"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to CTemplar!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="O3z-ha-xta">
-                                        <rect key="frame" x="16" y="12" width="274" height="22"/>
+                                        <rect key="frame" x="16" y="12" width="162" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="162" id="haR-mM-ync"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="16"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.865509463028169" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="kZj-sB-tqw">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iev-lH-mPM">
                                         <rect key="frame" x="340" y="15" width="16" height="16"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="kZj-sB-tqw" secondAttribute="height" multiplier="1:1" id="NtR-SY-2vs"/>
+                                            <constraint firstAttribute="width" secondItem="iev-lH-mPM" secondAttribute="height" multiplier="1:1" id="VL6-Y8-p3T"/>
                                         </constraints>
-                                    </imageView>
+                                        <state key="normal" title="Button" image="StarOn"/>
+                                        <connections>
+                                            <action selector="starButtonPressed:" destination="eXb-8R-FAT" eventType="touchUpInside" id="Ypd-ze-fmh"/>
+                                        </connections>
+                                    </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SecureIcon" translatesAutoresizingMaskIntoConstraints="NO" id="P88-l5-8f4">
-                                        <rect key="frame" x="311" y="15" width="16" height="16"/>
+                                        <rect key="frame" x="188" y="15" width="16" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="P88-l5-8f4" secondAttribute="height" multiplier="1:1" id="vpM-51-GDZ"/>
                                         </constraints>
@@ -51,16 +58,15 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="P88-l5-8f4" secondAttribute="bottom" constant="16" id="0tJ-J1-J92"/>
-                                    <constraint firstItem="kZj-sB-tqw" firstAttribute="leading" secondItem="O3z-ha-xta" secondAttribute="trailing" constant="50" id="FOD-ke-TyX"/>
-                                    <constraint firstAttribute="trailing" secondItem="kZj-sB-tqw" secondAttribute="trailing" constant="19" id="JH6-Zt-eIP"/>
                                     <constraint firstItem="O3z-ha-xta" firstAttribute="leading" secondItem="Bdn-cE-JGF" secondAttribute="leading" constant="16" id="YHm-Jr-fcm"/>
+                                    <constraint firstAttribute="bottom" secondItem="iev-lH-mPM" secondAttribute="bottom" constant="16" id="YSz-gr-my4"/>
                                     <constraint firstItem="O3z-ha-xta" firstAttribute="top" secondItem="Bdn-cE-JGF" secondAttribute="top" constant="12" id="e1z-CG-QWD"/>
                                     <constraint firstItem="P88-l5-8f4" firstAttribute="top" secondItem="Bdn-cE-JGF" secondAttribute="top" constant="15" id="hCi-Ws-j20"/>
-                                    <constraint firstItem="kZj-sB-tqw" firstAttribute="top" secondItem="Bdn-cE-JGF" secondAttribute="top" constant="15" id="p3x-uZ-38e"/>
-                                    <constraint firstAttribute="trailing" secondItem="P88-l5-8f4" secondAttribute="trailing" constant="48" id="qmu-ft-mLf"/>
+                                    <constraint firstItem="iev-lH-mPM" firstAttribute="top" secondItem="Bdn-cE-JGF" secondAttribute="top" constant="15" id="oq2-mY-ej7"/>
+                                    <constraint firstItem="P88-l5-8f4" firstAttribute="leading" secondItem="O3z-ha-xta" secondAttribute="trailing" constant="10" id="tLX-ED-Tbk"/>
                                     <constraint firstAttribute="height" constant="47" id="uhC-jo-9A4"/>
                                     <constraint firstAttribute="bottom" secondItem="O3z-ha-xta" secondAttribute="bottom" constant="13" id="v2O-8R-kBB"/>
-                                    <constraint firstAttribute="bottom" secondItem="kZj-sB-tqw" secondAttribute="bottom" constant="16" id="w1m-AJ-mXY"/>
+                                    <constraint firstAttribute="trailing" secondItem="iev-lH-mPM" secondAttribute="trailing" constant="19" id="wLg-Q2-1f9"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8rf-rG-IDF">
@@ -262,10 +268,10 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                         <outlet property="dateLabel" destination="Ddf-wl-u6u" id="kz4-l0-cgX"/>
                         <outlet property="fromToBarTextView" destination="Hzr-UF-fnO" id="5JS-Go-d69"/>
                         <outlet property="headerLabel" destination="O3z-ha-xta" id="1qi-xM-bvq"/>
+                        <outlet property="headerLabelWidthConstraint" destination="haR-mM-ync" id="F1F-UW-NRW"/>
                         <outlet property="scrollView" destination="pMK-H7-dDA" id="HV7-sq-6KY"/>
-                        <outlet property="secureImageTrailingConstraint" destination="qmu-ft-mLf" id="XN0-2U-Xj9"/>
                         <outlet property="securedImageView" destination="P88-l5-8f4" id="Wja-H7-2kr"/>
-                        <outlet property="starredmageView" destination="kZj-sB-tqw" id="QWs-cY-8Ju"/>
+                        <outlet property="starredButton" destination="iev-lH-mPM" id="gXL-6t-7no"/>
                         <outlet property="undoBar" destination="XUa-dI-sHj" id="tVt-15-w8Q"/>
                         <outlet property="undoButton" destination="vCM-qe-6hi" id="6ko-gu-MWT"/>
                         <outlet property="webView" destination="ies-qD-5qy" id="7KL-FM-kjf"/>
@@ -278,7 +284,7 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
     </scenes>
     <resources>
         <image name="SecureIcon" width="16" height="16"/>
-        <image name="StarIcon" width="16" height="16"/>
+        <image name="StarOn" width="24" height="24"/>
         <image name="forwardButton" width="44" height="31"/>
         <image name="replyAllButton" width="44" height="31"/>
         <image name="replyButton" width="44" height="31"/>
