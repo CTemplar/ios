@@ -132,6 +132,7 @@ class ViewInboxEmailPresenter {
     
     @objc func moreButtonPresed() {
         
+        self.showMoreActionsView()
     }
     
     //MARK: - Undo
@@ -168,7 +169,7 @@ class ViewInboxEmailPresenter {
     }
     
     //MARK: - More Actions
-    /*
+    
     func initMoreActionsView() {
         
         self.viewController?.moreActionsView = Bundle.main.loadNibNamed(k_MoreActionsViewXibName, owner: nil, options: nil)?.first as? MoreActionsView
@@ -180,15 +181,11 @@ class ViewInboxEmailPresenter {
         self.viewController?.moreActionsView?.isHidden = true
     }
     
-    func showMoreActionsView(emptyFolder: Bool) {
+    func showMoreActionsView() {
         
         var moreActionsButtonsName: Array<String> = []
-        
-        if emptyFolder {
-            moreActionsButtonsName = self.setupMoreActionsButtonsEmptyFolder()
-        } else {
-            moreActionsButtonsName = self.setupMoreActionsButtons()
-        }
+
+        moreActionsButtonsName = self.setupMoreActionsButtons()
         
         self.viewController?.moreActionsView?.setup(buttonsNameArray: moreActionsButtonsName)
         
@@ -197,24 +194,17 @@ class ViewInboxEmailPresenter {
         self.viewController?.moreActionsView?.isHidden = !hidden!
     }
     
-    func setupMoreActionsButtonsEmptyFolder() -> Array<String> {
-        
-        let moreActionsButtonsName: Array<String> = ["cancel".localized(), "emptyFolder".localized()]
-        
-        return moreActionsButtonsName
-    }
     
     func setupMoreActionsButtons() -> Array<String> {
         
         let currentFolder = self.viewController?.currentFolderFilter
         
-        let read = self.needReadAction()
         var readButton : String = ""
         
-        if read {
-            readButton = "markAsRead".localized()
-        } else {
+        if (self.viewController?.message?.read)! {
             readButton = "markAsUnread".localized()
+        } else {
+            readButton = "markAsRead".localized()
         }
         
         var moreActionsButtonsName: Array<String> = []
@@ -263,50 +253,30 @@ class ViewInboxEmailPresenter {
         switch title {
         case MoreActionsTitles.cancel.rawValue.localized():
             print("cancel btn more actions")
-            
             break
         case MoreActionsTitles.markAsRead.rawValue.localized():
             print("markAsRead btn more actions")
-            self.markSelectedMessagesAsRead()
+            //self.interactor?.markMessageAsRead(message: <#T##EmailMessage#>, asRead: <#T##Bool#>, withUndo: <#T##String#>)
             break
         case MoreActionsTitles.markAsUnread.rawValue.localized():
             print("markAsUnread btn more actions")
-            self.markSelectedMessagesAsRead()
+            //self.markSelectedMessagesAsRead()
             break
         case MoreActionsTitles.moveToArchive.rawValue.localized():
             print("moveToArchive btn more actions")
-            self.moveSelectedMessagesToArchive()
+            self.interactor?.moveMessageToArchive(message: (self.viewController?.message)!, withUndo: "undoMoveToInbox".localized())
             break
         case MoreActionsTitles.moveToInbox.rawValue.localized():
             print("moveToInbox btn more actions")
-            self.moveSelectedMessagesToInbox()
+            self.interactor?.moveMessageToInbox(message: (self.viewController?.message)!, withUndo: "undoMoveToInbox".localized())
             break
         case MoreActionsTitles.emptyFolder.rawValue.localized():
             print("emptyFolder btn more actions")
-            //self.markSelectedMessagesAsTrash()
             break
         default:
             print("more actions: default")
         }
         
-        self.showMoreActionsView(emptyFolder: false)
+        self.showMoreActionsView()
     }
-    
-    func needReadAction() -> Bool {
-        
-        for messageID in (self.viewController?.dataSource?.selectedMessagesIDArray)! {
-            for message in (self.viewController?.dataSource?.messagesArray)! {
-                if messageID == message.messsageID {
-                    if let read = message.read {
-                        if !read {
-                            return true
-                        }
-                    }
-                }
-            }
-        }
-        
-        return false
-    }
-    */
 }

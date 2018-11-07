@@ -33,6 +33,10 @@ class ViewInboxEmailViewController: UIViewController {
     @IBOutlet var undoButton            : UIButton!
     @IBOutlet var undoBar               : UIView!
     
+    var moreActionsView : MoreActionsView?
+    
+    var currentFolderFilter : String?
+    
     var lastAction : ActionsIndex = ActionsIndex.noAction
     
     var message : EmailMessage?
@@ -48,6 +52,8 @@ class ViewInboxEmailViewController: UIViewController {
         
         self.presenter?.setupNavigationBar()
         self.presenter?.setupMessageHeader(message: self.message!)
+        
+        self.presenter?.initMoreActionsView()
     }
     
     //MARK: - IBActions
@@ -73,3 +79,10 @@ class ViewInboxEmailViewController: UIViewController {
     }
 }
 
+extension ViewInboxEmailViewController: MoreActionsDelegate {
+    
+    func applyAction(_ sender: AnyObject) {
+        
+        presenter?.applyMoreAction(sender)
+    }
+}

@@ -31,6 +31,7 @@ class InboxRouter {
         let storyboard: UIStoryboard = UIStoryboard(name: k_ViewInboxEmailStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_ViewInboxEmailViewControllerID) as! ViewInboxEmailViewController
         vc.message = message
+        vc.currentFolderFilter = self.viewController?.currentFolderFilter
         //self.viewController?.show(vc, sender: self)
         //self.viewController?.present(vc, animated: true, completion: nil)
         self.viewController?.navigationController?.pushViewController(vc, animated: true)
