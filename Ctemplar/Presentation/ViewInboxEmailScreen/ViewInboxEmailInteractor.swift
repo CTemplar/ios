@@ -102,7 +102,7 @@ class ViewInboxEmailInteractor {
                 
             case .success( _):
                 //print("value:", value)
-                print("move list to another folder")
+                print("move list to:", folder)
                 
                 if withUndo.count > 0 {
                     self.presenter?.showUndoBar(text: withUndo)

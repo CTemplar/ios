@@ -127,6 +127,7 @@ class ViewInboxEmailPresenter {
     
     @objc func moveButtonPresed() {
         
+        self.viewController?.router?.showMoveToViewController()        
     }
     
     @objc func moreButtonPresed() {
