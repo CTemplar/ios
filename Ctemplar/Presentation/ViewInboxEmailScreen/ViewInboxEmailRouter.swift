@@ -24,5 +24,13 @@ class ViewInboxEmailRouter {
         
         self.viewController?.present(vc, animated: true, completion: nil)
     }
+    
+    func showComposeViewController(title: String) {
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: k_ComposeStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_ComposeViewControllerID) as! ComposeViewController
+        vc.navBarTitle = title
+        self.viewController?.show(vc, sender: self)        
+    }
 
 }

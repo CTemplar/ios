@@ -46,4 +46,9 @@
 "undoMoveToArchive" = "Undo move to archive";
 "undoMoveToInbox" = "Undo move to inbox";
 
+//compose message titles
+"newMessage" = "New Message";
+"reply" = "Reply";
+"relpyAll" = "Reply All";
+"forward" = "Forward";
 

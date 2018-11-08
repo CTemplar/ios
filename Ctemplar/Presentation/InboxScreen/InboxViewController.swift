@@ -111,7 +111,7 @@ class InboxViewController: UIViewController {
     
     @IBAction func composeButtonPressed(_ sender: AnyObject) {
         
-        router?.showComposeViewController()
+        router?.showComposeViewController(title: "newMessage".localized())
     }
     
     @IBAction func filterButtonPressed(_ sender: AnyObject) {

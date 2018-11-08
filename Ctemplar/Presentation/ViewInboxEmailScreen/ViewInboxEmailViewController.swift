@@ -68,17 +68,17 @@ class ViewInboxEmailViewController: UIViewController {
     
     @IBAction func replyButtonPressed(_ sender: AnyObject) {
         
-        
+        self.router?.showComposeViewController(title: "reply".localized())
     }
     
     @IBAction func replyAllButtonPressed(_ sender: AnyObject) {
         
-        
+        self.router?.showComposeViewController(title: "relpyAll".localized())
     }
     
     @IBAction func forwardButtonPressed(_ sender: AnyObject) {
         
-        
+        self.router?.showComposeViewController(title: "forward".localized())
     }
     
     @IBAction func undoButtonPressed(_ sender: AnyObject) {
