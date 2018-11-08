@@ -14,9 +14,10 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     
     var mainFoldersArray                : Array<String> = []
     var mainFoldersImageNameList        : Array<String> = []
-    var mainFoldersUnreadMessagesCount  : Array<Int> = [0, 0, 0, 0, 0, 0, 0, 0]
+   
+    var unreadMessagesArray             : Array<UnreadMessagesCounter> = []
     
-    var customFoldersArray              : Array<String> = []
+    var customFoldersArray              : Array<Folder> = []
     var labelsArray                     : Array<String> = []
     var optionsArray                    : Array<String> = []
     var optionsImageNameList            : Array<String> = []
@@ -24,6 +25,8 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     var tableView               : UITableView!
     var parentViewController    : InboxSideMenuViewController?
     var formatterService        : FormatterService?
+    
+    var showAllFolders : Bool = false
     
     func initWith(parent: InboxSideMenuViewController, tableView: UITableView) {
         
@@ -39,7 +42,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         
         self.mainFoldersArray = mainFoldersArray
         self.mainFoldersImageNameList = mainFoldersImageNameList
-        self.customFoldersArray = customFoldersArray
+        //self.customFoldersArray = customFoldersArray
         self.labelsArray = labelsArray
         self.optionsArray = optionsArray
         self.optionsImageNameList = optionsImageNameList
@@ -52,6 +55,8 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         self.tableView.register(UINib(nibName: k_SideMenuTableViewCellXibName, bundle: nil), forCellReuseIdentifier: k_SideMenuTableViewCellIdentifier)
         
         self.tableView.register(UINib(nibName: k_SideMenuTableSectionHeaderViewXibName, bundle: nil), forHeaderFooterViewReuseIdentifier: k_SideMenuTableSectionHeaderViewIdentifier)
+        
+        self.tableView.register(UINib(nibName: k_CustomFolderCellXibName, bundle: nil), forCellReuseIdentifier: k_CustomFolderTableViewCellIdentifier)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -108,7 +113,12 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         case SideMenuSectionIndex.options.rawValue:
             return self.optionsArray.count
         case SideMenuSectionIndex.customFolders.rawValue:
-            return self.customFoldersArray.count
+            if self.showAllFolders {
+                return self.customFoldersArray.count
+            } else {
+                return k_numberOfCustomFoldersShowing + 1
+            }
+            //return self.customFoldersArray.count
         default:
             return 0
         }
@@ -128,9 +138,10 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             let folderName = self.mainFoldersArray[indexPath.row]
             let selected = self.isSelected(folderName: folderName)
             let iconName = self.mainFoldersImageNameList[indexPath.row]
-            let unreadCount = self.mainFoldersUnreadMessagesCount[indexPath.row]
+
+            let unreadCount = self.parentViewController?.presenter?.interactor?.getUnreadMessagesCount(folderName: folderName)
             
-            (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: selected, iconName: iconName, title: folderName, unreadCount: unreadCount)
+            (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: selected, iconName: iconName, title: folderName, unreadCount: unreadCount!)
             
             break
         case SideMenuSectionIndex.options.rawValue:
@@ -144,6 +155,41 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             
             break
         case SideMenuSectionIndex.customFolders.rawValue:
+            
+            if self.showAllFolders {
+                
+                cell = tableView.dequeueReusableCell(withIdentifier: k_CustomFolderTableViewCellIdentifier)! as! CustomFolderTableViewCell
+                
+                let folder = self.customFoldersArray[indexPath.row]
+                let folderName = folder.folderName
+                let selected = self.isSelected(folderName: folderName!)
+                let folderColor = folder.color
+                
+                let unreadCount = self.parentViewController?.presenter?.interactor?.getUnreadMessagesCount(folderName: folderName!)
+                
+                (cell as! CustomFolderTableViewCell).setupCustomFolderTableCell(selected: selected, iconColor: folderColor!, title: folderName!, unreadCount: unreadCount!)
+            } else {
+                
+                if indexPath.row < k_numberOfCustomFoldersShowing {
+                    
+                    cell = tableView.dequeueReusableCell(withIdentifier: k_CustomFolderTableViewCellIdentifier)! as! CustomFolderTableViewCell
+                    
+                    let folder = self.customFoldersArray[indexPath.row]
+                    let folderName = folder.folderName
+                    let selected = self.isSelected(folderName: folderName!)
+                    let folderColor = folder.color
+                    
+                    let unreadCount = self.parentViewController?.presenter?.interactor?.getUnreadMessagesCount(folderName: folderName!)
+                    
+                    (cell as! CustomFolderTableViewCell).setupCustomFolderTableCell(selected: selected, iconColor: folderColor!, title: folderName!, unreadCount: unreadCount!)
+                } else {
+                  
+                    if indexPath.row == k_numberOfCustomFoldersShowing {
+                        cell.textLabel?.text = "Show More Folders"
+                    }
+                }
+            }
+            
             break
         default:
             print("unknown section")
@@ -161,18 +207,40 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
                 let optionName = self.mainFoldersArray[indexPath.row]
                 self.parentViewController?.presenter?.interactor?.selectAction(optionName: optionName)
             break
-        case SideMenuSectionIndex.options.rawValue:
-            let optionName = self.optionsArray[indexPath.row]
-            self.parentViewController?.presenter?.interactor?.selectAction(optionName: optionName)
-            break
-        case SideMenuSectionIndex.customFolders.rawValue:
-            break
-        default:
-            print("selected unknown section")
+            case SideMenuSectionIndex.options.rawValue:
+                let optionName = self.optionsArray[indexPath.row]
+                self.parentViewController?.presenter?.interactor?.selectAction(optionName: optionName)
+                break
+            case SideMenuSectionIndex.customFolders.rawValue:
+                
+                if self.showAllFolders {
+                    let folder = self.customFoldersArray[indexPath.row]
+                    let folderName = folder.folderName
+                    self.parentViewController?.presenter?.interactor?.applyCustomFolderAction(folderName: folderName!)
+                } else {
+                    if indexPath.row == k_numberOfCustomFoldersShowing {
+                        self.showAllFolders = true
+                        self.tableView.reloadData()
+                    } else {
+                        let folder = self.customFoldersArray[indexPath.row]
+                        let folderName = folder.folderName
+                        self.parentViewController?.presenter?.interactor?.applyCustomFolderAction(folderName: folderName!)
+                    }
+                }
+ 
+                break
+            default:
+                print("selected unknown section")
         }
     }
     
     func reloadData() {
+        
+        if self.customFoldersArray.count > k_numberOfCustomFoldersShowing {
+            self.showAllFolders = false
+        } else {
+            self.showAllFolders = true
+        }
         
         self.tableView.reloadData()
     }

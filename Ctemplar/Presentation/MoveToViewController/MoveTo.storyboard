@@ -121,7 +121,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P36-9T-3rm">
                                 <rect key="frame" x="0.0" y="136" width="375" height="531"/>
                                 <subviews>
-                                    <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FNs-U3-Y0L">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FNs-U3-Y0L">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="423"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
@@ -245,7 +245,10 @@
                         <viewLayoutGuide key="safeArea" id="82V-Gs-dDY"/>
                     </view>
                     <connections>
+                        <outlet property="addFolderButton" destination="bXl-sY-7ce" id="iOm-Bw-p7L"/>
                         <outlet property="applyButton" destination="Xxy-Hd-3eK" id="XFz-8G-tfh"/>
+                        <outlet property="manageFolderButton" destination="1AQ-Zz-7IY" id="nnH-MW-aFx"/>
+                        <outlet property="moveToTableView" destination="FNs-U3-Y0L" id="9O6-hl-fHQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1GX-5E-bSR" userLabel="First Responder" sceneMemberID="firstResponder"/>

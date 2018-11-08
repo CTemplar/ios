@@ -111,30 +111,54 @@ class FormatterService
     
     //MARK: - Message String formatter
     
-    func formatFromToAttributedString(fromName: String, fromEmail: String, toName: String, toEmail: String, ccArray: Array<String>) -> NSAttributedString {
+     func formatFromToString(fromName: String, fromEmail: String, toNamesArray: Array<String>, toEmailsArray: Array<String>, ccArray: Array<String>) -> String {
         
-        var ccText : String = "\nCC:"
+        var toEmailsText : String = "\nTo: "
+        
+        for toEmail in toEmailsArray {
+            toEmailsText = toEmailsText + "<" + toEmail + ">,\n"
+        }
+        
+        if toEmailsText.count > 0 {
+            toEmailsText = String(toEmailsText.dropLast(2))
+        }
+        
+        var ccText : String = "\nCC: "
         
         for carbonCopy in ccArray {
-            ccText = ccText + " <" + carbonCopy + ">,"
+            ccText = ccText + "<" + carbonCopy + ">,\n"
         }
         
-        if ccArray.count > 1 {
-            ccText.remove(at: ccText.index(before: ccText.endIndex)) //remove last ","
+        if ccArray.count > 0 {
+            ccText = String(ccText.dropLast(2))
         }
+
+        let textString = "From: " + fromName + " <" + fromEmail + ">" + toEmailsText + ccText
         
-        //"From: Ctemplar <contact@ctemplar.ch>\nTo: John Doe <johndoe@gmail.com>\nCC: Sam Smith <samsmith@hotmail.com>"
-        let textString = "From: " + fromName + " <" + fromEmail + ">\nTo: " + toName + " <" + toEmail + "> " + ccText
+        print("textString:", textString)
         
-        let attributedString = NSMutableAttributedString(string: textString, attributes: [
-            .font: UIFont(name: "Lato-Regular", size: 14.0)!,
+        return textString
+    }
+    
+    func formatFromToAttributedString(fromName: String, fromToText: String, toNamesArray: Array<String>, toEmailsArray: Array<String>, ccArray: Array<String>) -> NSAttributedString {
+        
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = CGFloat(k_lineSpaceSizeForFromToText)
+        
+        let font : UIFont = UIFont(name: k_latoRegularFontName, size: 14.0)!
+        
+        let attributedString = NSMutableAttributedString(string: fromToText, attributes: [
+            .font: font,
             .foregroundColor: UIColor(white: 0.0, alpha: 0.38),
-            .kern: 0.0
+            .kern: 0.0,
+            .paragraphStyle: style
             ])
         
         _ = attributedString.setForgroundColor(textToFind: fromName, color: UIColor(white: 0.0, alpha: 0.87))
-        _ = attributedString.setForgroundColor(textToFind: toName, color: UIColor(white: 0.0, alpha: 0.87))
-        //_ = attributedString.setForgroundColor(textToFind: fromName, color: UIColor(white: 0.0, alpha: 0.87))
+        
+        for name in toNamesArray {
+            _ = attributedString.setForgroundColor(textToFind: name, color: UIColor(white: 0.0, alpha: 0.87))
+        }
         
         return attributedString
     }
@@ -291,6 +315,29 @@ class FormatterService
 
 extension Date {
     
+    func timeCountForDelivery() -> NSMutableAttributedString {
+        
+        let secondsAgo = Int(Date().timeIntervalSince(self))
+        let minute = 60
+        let hour = 60 * minute
+        let day = 24 * hour
+        
+        let remainDays = secondsAgo / day
+        
+        let remainHoursInDay = (secondsAgo - remainDays * day) / hour
+        
+        let remainMinutesInHour = (secondsAgo - remainDays * day - remainHoursInDay * hour) / minute
+        
+        print("now", Date())
+        print("remainDays", remainDays)
+        print("remainHoursInDay", remainHoursInDay)
+        print("remainMinutesInHour", remainMinutesInHour)
+        
+        let timeString = formatDestructionTimeToString(days: abs(remainDays), hours: abs(remainHoursInDay), minutes: abs(remainMinutesInHour))
+        
+        return timeString
+    }
+    
     func timeCountForDestruct() -> NSMutableAttributedString {
         
         let secondsAgo = Int(Date().timeIntervalSince(self))
@@ -435,6 +482,17 @@ extension String {
         
         return attributedString.string.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression)
     }
+    
+    func numberOfLines() -> Int {
+    
+        var numberOfLines : Int = 0
+        
+        self.enumerateLines { (str, _) in
+            numberOfLines += 1
+        }
+        
+        return numberOfLines
+    }
 }
 
 extension NSAttributedString {
@@ -532,6 +590,23 @@ extension UITextView {
     func disableTextPadding() {
         
         self.contentInset = UIEdgeInsets(top: -8, left: -2, bottom: -8, right: -8)
+    }
+    
+    func numberOfLines() -> Int {
+        
+        let layoutManager = self.layoutManager
+        var numberOfLines : Int = 0
+        var index : Int = 0
+        let numberOfGlyphs = layoutManager.numberOfGlyphs
+        var lineRange: NSRange = NSMakeRange(0, 1)
+        
+        while index < numberOfGlyphs {
+            layoutManager.lineFragmentRect(forGlyphAt: index, effectiveRange: &lineRange)
+            index = NSMaxRange(lineRange)
+            numberOfLines += 1
+        }
+        
+        return numberOfLines
     }
 }
 

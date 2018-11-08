@@ -19,6 +19,35 @@
 "termsAndConditionsFullText" = "Пожалуста, поставьте галочку если вы согласны с нашими Условиями и Положениями";
 "termsAndConditionsPhrase" = "Условия и Положения";
 
+//login
+
+"emailPlaceholder" = "Email";
+"passwordPlaceholder" = "Password";
+
 //side menu
 
 "manageFolders" = "Папки";
+
+
+//more actions buttons
+"markAsSpam" = "Пометить как спам";
+"markAsRead" = "Пометить как прочтенное";
+"markAsUnread" = "Пометить как не прочтенное";
+"moveToTrash" = "Удалить";
+"moveToArchive" = "Переместить в архив";
+"moveToInbox" = "Переместить в inbox";
+"emptyFolder" = "Очистить папку";
+"cancel" = "Cancel";
+
+
+"cancel" = "Отмена";
+
+//undo actions buttons
+"undoMarkAsSpam" = "Отменить: пометить как спам";
+"undoMarkAsRead" = "Отменить: пометить как прочтенное";
+"undoMarkAsUnread" = "Отменить: пометить как не прочтенное";
+"undoMoveToTrash" = "Отменить удаление";
+"undoMoveToArchive" = "Отменить перенос в архив";
+"undoMoveToInbox" = "Отменить перенос в inbox";
+
+

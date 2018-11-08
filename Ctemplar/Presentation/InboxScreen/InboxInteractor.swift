@@ -8,6 +8,7 @@
 
 import Foundation
 import AlertHelperKit
+import PKHUD
 
 class InboxInteractor {
     
@@ -18,10 +19,10 @@ class InboxInteractor {
     
     //MARK: - data
 
-    func updateMessages() {
+    func updateMessages(withUndo: String) {
         
         if self.checkStoredPGPKeys() {
-            self.messagesList(folder: (self.viewController?.currentFolderFilter)!)
+            self.messagesList(folder: (self.viewController?.currentFolderFilter)!, withUndo: withUndo)
         }
     }
     
@@ -31,8 +32,13 @@ class InboxInteractor {
         var unreadEmails = 0
         
         if let emailsArray = messages.messagesList {
+            
+            //if emailsArray.count == 0 {
+                if self.viewController?.dataSource?.selectionMode == true {
+                    self.viewController?.presenter?.disableSelectionMode()
+                }
+            //}
 
-            //self.viewController?.messagesList = emailsArray//
             self.viewController?.dataSource?.messagesArray = emailsArray
             self.updateMessagesHeader(emailsArray: emailsArray)
             self.viewController?.dataSource?.reloadData()
@@ -48,6 +54,12 @@ class InboxInteractor {
         }
     }
     
+    func setSideMenuData(array: Array<UnreadMessagesCounter>) {
+        
+        self.viewController?.inboxSideMenuViewController?.dataSource?.unreadMessagesArray = array
+        self.viewController?.inboxSideMenuViewController?.dataSource?.reloadData()
+    }
+    
     func setSideMenuData(messages: EmailMessagesList) {
         
         var readEmails = 0
@@ -56,7 +68,7 @@ class InboxInteractor {
         if let emailsArray = messages.messagesList {
             
             //self.viewController?.mainFoldersUnreadMessagesCount.removeAll()
-            self.viewController?.inboxSideMenuViewController?.dataSource?.mainFoldersUnreadMessagesCount.removeAll()
+           // self.viewController?.inboxSideMenuViewController?.dataSource?.mainFoldersUnreadMessagesCount.removeAll()
             
             
             for filter in MessagesFoldersName.allCases {
@@ -66,18 +78,10 @@ class InboxInteractor {
                 unreadEmails = messages.count - readEmails
                 print("filter:", filter, "unreadEmails:", unreadEmails)
                 //self.viewController?.mainFoldersUnreadMessagesCount.append(unreadEmails)
-                self.viewController?.inboxSideMenuViewController?.dataSource?.mainFoldersUnreadMessagesCount.append(unreadEmails)
+               // self.viewController?.inboxSideMenuViewController?.dataSource?.mainFoldersUnreadMessagesCount.append(unreadEmails)
             }
             
             self.viewController?.inboxSideMenuViewController?.dataSource?.reloadData()
-            
-            /*
-            // for all message case
-            readEmails = calculateReadEmails(array: emailsArray)
-            unreadEmails = emailsArray.count - readEmails
-            print("filter: all messages", "unreadEmails:", unreadEmails)
-            self.viewController?.mainFoldersUnreadMessagesCount.append(unreadEmails)
- */
         }
     }
     
@@ -98,7 +102,9 @@ class InboxInteractor {
     
     //MARK: - API
     
-    func messagesList(folder: String) {
+    func messagesList(folder: String, withUndo: String) {
+        
+        HUD.show(.progress)
         
         apiService?.messagesList(folder: folder) {(result) in
             
@@ -111,16 +117,24 @@ class InboxInteractor {
                 self.viewController?.currentMessagesList = emailMessages
                 self.setInboxData(messages: emailMessages)
                 
-                self.allMessagesList()
+                if withUndo.count > 0 {
+                    self.presenter?.showUndoBar(text: withUndo)
+                }
+                
+                self.unreadMessagesCounter() //need to Side Menu unread msg counters
                 
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
             }
+            
+            HUD.hide()
         }
     }
     
     func allMessagesList() {
+        
+        HUD.show(.progress)
         
         apiService?.messagesList(folder: "") {(result) in
             
@@ -136,7 +150,40 @@ class InboxInteractor {
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
             }
+            
+            HUD.hide()
         }
+    }
+    
+    func unreadMessagesCounter() {
+        
+        HUD.show(.progress)
+        
+        apiService?.unreadMessagesCounter() {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("unreadMessagesCounter value:", value)
+                
+                var unreadMessagesCounterArray: Array<UnreadMessagesCounter> = []
+                
+                for objectDictionary in (value as? Dictionary<String, Any>)! {
+                   
+                    let unreadMessageCounter = UnreadMessagesCounter(key: objectDictionary.key, value: objectDictionary.value)
+                    unreadMessagesCounterArray.append(unreadMessageCounter)
+                }
+              
+                self.setSideMenuData(array: unreadMessagesCounterArray)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+            
+            HUD.hide()
+        }
+        
     }
     
     func checkStoredPGPKeys() -> Bool {
@@ -182,7 +229,7 @@ class InboxInteractor {
                             }
                             
                             //load messages after keys storred
-                            self.messagesList(folder: (self.viewController?.currentFolderFilter)!)
+                            self.messagesList(folder: (self.viewController?.currentFolderFilter)!, withUndo: "")
                         }
                     }
                 }
@@ -374,100 +421,87 @@ class InboxInteractor {
     
     func markMessageAsSpam(message: EmailMessage) {
         
-        var folder = message.folder
+        var messagesIDArray: Array<Int> = []
         
-        if folder != MessagesFoldersName.spam.rawValue {
-            folder = MessagesFoldersName.spam.rawValue
+        if let messageID = message.messsageID {
+            messagesIDArray.append(messageID)
         }
         
-        apiService?.updateMessages(messageID: (message.messsageID?.description)!, messagesIDIn: "", folder: folder!, starred: message.starred!, read: message.read!)  {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                //print("value:", value)
-                print("marked as spam")
-                self.viewController?.presenter?.showUndoBar(text: "Undo mark as Spam")
-                self.updateMessages()
-                
-            case .failure(let error):
-                print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
-            }
-        }
+        self.markMessagesListAsSpam(selectedMessagesIdArray: messagesIDArray, lastSelectedMessage: message, withUndo: "undoMarkAsSpam".localized())
+        
     }
     
     func markMessageAsRead(message: EmailMessage) {
         
-        let read = !message.read!
+        var messagesIDArray: Array<Int> = []
         
-        apiService?.updateMessages(messageID: (message.messsageID?.description)!, messagesIDIn: "", folder: message.folder!, starred: message.starred!, read: read)  {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                //print("value:", value)
-                print("marked as read/unread")
-                self.viewController?.presenter?.showUndoBar(text: "Undo mark as Read")
-                self.updateMessages()
-                
-            case .failure(let error):
-                print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
-            }
+        if let messageID = message.messsageID {
+            messagesIDArray.append(messageID)
         }
+        
+        var undoMessage = ""
+        if message.read! {
+            undoMessage = "undoMarkAsUnread".localized()
+        } else {
+            undoMessage = "undoMarkAsRead".localized()
+        }
+
+        self.markMessagesListAsRead(selectedMessagesIdArray: messagesIDArray, asRead: !message.read!, withUndo: undoMessage)
     }
     
     func markMessageAsTrash(message: EmailMessage) {
         
-        var folder = message.folder
+        var messagesIDArray: Array<Int> = []
         
-        if folder != MessagesFoldersName.trash.rawValue {
-            folder = MessagesFoldersName.trash.rawValue
+        if let messageID = message.messsageID {
+            messagesIDArray.append(messageID)
         }
         
-        apiService?.updateMessages(messageID: (message.messsageID?.description)!, messagesIDIn: "", folder: folder!, starred: message.starred!, read: message.read!)  {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                //print("value:", value)
-                print("marked as trash")
-                self.viewController?.presenter?.showUndoBar(text: "Undo delete")
-                self.updateMessages()
-                
-            case .failure(let error):
-                print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
-            }
-        }
+        self.markMessagesListAsTrash(selectedMessagesIdArray: messagesIDArray, lastSelectedMessage: message, withUndo: "undoMoveToTrash".localized())
     }
     
     func undoLastAction(message: EmailMessage) {
+   
+        self.presenter?.hideUndoBar()
         
-        apiService?.updateMessages(messageID: (message.messsageID?.description)!, messagesIDIn: "", folder: message.folder!, starred: message.starred!, read: message.read!)  {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                //print("value:", value)
-                print("undo last action")
-                self.viewController?.undoBar.isHidden = true
-                self.updateMessages()
-                
-            case .failure(let error):
-                print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
-            }
+        if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! < 1 {
+            return
         }
         
+        switch self.viewController?.lastAction.rawValue {
+        case ActionsIndex.markAsSpam.rawValue:
+            self.markMessagesListAsSpam(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: message, withUndo: "")
+            break
+        case ActionsIndex.markAsRead.rawValue:
+            self.markMessagesListAsRead(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, asRead:message.read!, withUndo: "")
+            break
+        case ActionsIndex.markAsStarred.rawValue:
+            
+            break
+        case ActionsIndex.moveToArchive.rawValue:
+            self.moveMessagesListToArchive(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: message, withUndo: "")
+            break
+        case ActionsIndex.moveToTrach.rawValue:
+            self.markMessagesListAsTrash(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: message, withUndo: "")
+            break
+        default:
+            print("unknown undo action")
+        }
+        
+        //self.viewController?.lastAction = ActionsIndex.noAction
+        self.viewController?.appliedActionMessage = nil
+        self.viewController?.dataSource?.selectedMessagesIDArray.removeAll()
     }
     
     //MARK: - Selection Bar Actions
     
-    func markMessagesListAsRead(selectedMessagesIdArray: Array<Int>, lastSelectedMessage: EmailMessage) {
+    func markMessagesListAsSpam(selectedMessagesIdArray: Array<Int>, lastSelectedMessage: EmailMessage, withUndo: String) {
         
-        let read = !lastSelectedMessage.read!
+        var folder = lastSelectedMessage.folder
+        
+        if withUndo.count > 0 {
+            folder = MessagesFoldersName.spam.rawValue
+        }
         
         var messagesIDList : String = ""
         
@@ -477,15 +511,15 @@ class InboxInteractor {
         
         messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex)) //remove last ","
         
-        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: lastSelectedMessage.folder!, starred: lastSelectedMessage.starred!, read: read)  {(result) in
+        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: folder!, starred: false, read: false, updateFolder: true, updateStarred: false, updateRead: false)  {(result) in
             
             switch(result) {
                 
-            case .success(let value):
+            case .success( _):
                 //print("value:", value)
-                print("marked list as read/unread")
-                //self.viewController?.presenter?.showUndoBar(text: "Undo mark as Read")
-                self.updateMessages()
+                print("marked list as spam")
+                self.viewController?.lastAction = ActionsIndex.markAsSpam
+                self.updateMessages(withUndo: withUndo)
                 
             case .failure(let error):
                 print("error:", error)
@@ -494,11 +528,40 @@ class InboxInteractor {
         }
     }
     
-    func markMessagesListAsTrash(selectedMessagesIdArray: Array<Int>, lastSelectedMessage: EmailMessage) {
+    func markMessagesListAsRead(selectedMessagesIdArray: Array<Int>, asRead: Bool, withUndo: String) {
+        
+        //let read = !lastSelectedMessage.read!
+        
+        var messagesIDList : String = ""
+        
+        for message in selectedMessagesIdArray {
+            messagesIDList = messagesIDList + message.description + ","
+        }
+        
+        messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex)) //remove last ","
+        
+        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: "", starred: false, read: asRead, updateFolder: false, updateStarred: false, updateRead: true)  {(result) in
+            
+            switch(result) {
+                
+            case .success( _):
+                //print("value:", value)
+                print("marked list as read/unread")
+                self.viewController?.lastAction = ActionsIndex.markAsRead
+                self.updateMessages(withUndo: withUndo)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
+    func markMessagesListAsTrash(selectedMessagesIdArray: Array<Int>, lastSelectedMessage: EmailMessage, withUndo: String) {
         
         var folder = lastSelectedMessage.folder
         
-        if folder != MessagesFoldersName.trash.rawValue {
+        if withUndo.count > 0 {
             folder = MessagesFoldersName.trash.rawValue
         }
         
@@ -510,15 +573,81 @@ class InboxInteractor {
         
         messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex)) //remove last ","
         
-        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: folder!, starred: lastSelectedMessage.starred!, read: lastSelectedMessage.read!)  {(result) in
+        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: folder!, starred: false, read: false, updateFolder: true, updateStarred: false, updateRead: false)  {(result) in
             
             switch(result) {
                 
-            case .success(let value):
+            case .success( _):
                 //print("value:", value)
-                print("marked list as read/unread")
-                //self.viewController?.presenter?.showUndoBar(text: "Undo mark as Read")
-                self.updateMessages()
+                print("marked list as trash")
+                self.viewController?.lastAction = ActionsIndex.moveToTrach
+                self.updateMessages(withUndo: withUndo)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
+    func moveMessagesListToArchive(selectedMessagesIdArray: Array<Int>, lastSelectedMessage: EmailMessage, withUndo: String) {
+        
+        var folder = lastSelectedMessage.folder
+        
+        if withUndo.count > 0 {
+            folder = MessagesFoldersName.archive.rawValue
+        }
+        
+        var messagesIDList : String = ""
+        
+        for message in selectedMessagesIdArray {
+            messagesIDList = messagesIDList + message.description + ","
+        }
+        
+        messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex)) //remove last ","
+        
+        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: folder!, starred: lastSelectedMessage.starred!, read: lastSelectedMessage.read!, updateFolder: true, updateStarred: false, updateRead: false)  {(result) in
+            
+            switch(result) {
+                
+            case .success( _):
+                //print("value:", value)
+                print("move list to archive")
+                self.viewController?.lastAction = ActionsIndex.moveToArchive
+                self.updateMessages(withUndo: withUndo)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
+    func moveMessagesListToInbox(selectedMessagesIdArray: Array<Int>, lastSelectedMessage: EmailMessage, withUndo: String) {
+        
+        var folder = lastSelectedMessage.folder
+        
+        if withUndo.count > 0 {
+            folder = MessagesFoldersName.inbox.rawValue
+        }
+        
+        var messagesIDList : String = ""
+        
+        for message in selectedMessagesIdArray {
+            messagesIDList = messagesIDList + message.description + ","
+        }
+        
+        messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex)) //remove last ","
+        
+        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: folder!, starred: lastSelectedMessage.starred!, read: lastSelectedMessage.read!, updateFolder: true, updateStarred: false, updateRead: false)  {(result) in
+            
+            switch(result) {
+                
+            case .success( _):
+                //print("value:", value)
+                print("move list to inbox")
+                self.viewController?.lastAction = ActionsIndex.moveToArchive
+                self.updateMessages(withUndo: withUndo)
                 
             case .failure(let error):
                 print("error:", error)

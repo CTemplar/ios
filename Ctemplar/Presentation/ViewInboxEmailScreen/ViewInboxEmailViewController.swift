@@ -15,7 +15,9 @@ class ViewInboxEmailViewController: UIViewController {
     var presenter   : ViewInboxEmailPresenter?
     var router      : ViewInboxEmailRouter?
         
-    @IBOutlet var secureImageTrailingConstraint : NSLayoutConstraint!
+    @IBOutlet var headerLabelWidthConstraint : NSLayoutConstraint!
+    @IBOutlet var fromToViewHeightConstraint : NSLayoutConstraint!
+    @IBOutlet var topViewHeightConstraint    : NSLayoutConstraint!
     
     @IBOutlet var headerLabel           : UILabel!
     
@@ -23,12 +25,24 @@ class ViewInboxEmailViewController: UIViewController {
     @IBOutlet var contentTextView       : UITextView!
     
     @IBOutlet var securedImageView      : UIImageView!
-    @IBOutlet var starredmageView       : UIImageView!
+    @IBOutlet var starredButton         : UIButton!
     
     @IBOutlet var dateLabel             : UILabel!
     
     @IBOutlet var scrollView            : UIScrollView!
     @IBOutlet var webView               : WKWebView!
+    
+    @IBOutlet var undoButton            : UIButton!
+    @IBOutlet var undoBar               : UIView!
+    
+    var moreActionsView : MoreActionsView?
+    
+    var currentFolderFilter : String?
+    
+    var lastAction : ActionsIndex = ActionsIndex.noAction
+    
+    var messageIsRead : Bool?
+    var messageIsStarred: Bool?
     
     var message : EmailMessage?
     //var header  : String?
@@ -41,8 +55,13 @@ class ViewInboxEmailViewController: UIViewController {
         let configurator = ViewInboxEmailConfigurator()
         configurator.configure(viewController: self)
         
+        self.messageIsRead = message?.read
+        self.messageIsStarred = message?.starred
+        
         self.presenter?.setupNavigationBar()
         self.presenter?.setupMessageHeader(message: self.message!)
+        
+        self.presenter?.initMoreActionsView()
     }
     
     //MARK: - IBActions
@@ -61,5 +80,22 @@ class ViewInboxEmailViewController: UIViewController {
         
         
     }
+    
+    @IBAction func undoButtonPressed(_ sender: AnyObject) {
+        
+        self.presenter?.interactor?.undoLastAction(message: self.message!)
+    }
+    
+    @IBAction func starButtonPressed(_ sender: AnyObject) {
+        
+        self.presenter?.starButtonPressed()
+    }
 }
 
+extension ViewInboxEmailViewController: MoreActionsDelegate {
+    
+    func applyAction(_ sender: AnyObject, isButton: Bool) {
+        
+        presenter?.applyMoreAction(sender, isButton: isButton)
+    }
+}

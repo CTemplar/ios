@@ -383,7 +383,7 @@ class APIService {
                 
                 if let token = self.getToken() {
                     
-                    HUD.show(.progress)
+                    //HUD.show(.progress)
                     
                     self.restAPIService?.messagesList(token: token, folder: folderFilter) {(result) in
                         
@@ -391,7 +391,7 @@ class APIService {
                             
                         case .success(let value):
                             
-                            print("messagesList success:", value)
+                            //print("messagesList success:", value)
                             
                             if let response = value as? Dictionary<String, Any> {
                                 
@@ -413,14 +413,14 @@ class APIService {
                             completionHandler(APIResult.failure(error))
                         }
                         
-                        HUD.hide()
+                        //HUD.hide()
                     }
                 }
             }
         }
     }
     
-    func updateMessages(messageID: String, messagesIDIn: String, folder: String, starred: Bool, read: Bool,completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateMessages(messageID: String, messagesIDIn: String, folder: String, starred: Bool, read: Bool, updateFolder: Bool, updateStarred: Bool, updateRead: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         var messageIDParameter = ""
         
@@ -439,15 +439,15 @@ class APIService {
                 
                 if let token = self.getToken() {
                     
-                    HUD.show(.progress)
+                    //HUD.show(.progress)
                     
-                    self.restAPIService?.updateMessages(token: token, messageID: messageIDParameter, messagesIDIn: messagesIDInParameter, folder: folder, starred: starred, read: read) {(result) in
+                    self.restAPIService?.updateMessages(token: token, messageID: messageIDParameter, messagesIDIn: messagesIDInParameter, folder: folder, starred: starred, read: read, updateFolder: updateFolder, updateStarred: updateStarred, updateRead: updateRead) {(result) in
                         
                         switch(result) {
                             
                         case .success(let value):
                             
-                            print("messagesList success:", value)
+                            print("updateMessages success:", value)
                             
                             if let response = value as? Dictionary<String, Any> {
                                 
@@ -470,7 +470,7 @@ class APIService {
                             completionHandler(APIResult.failure(error))
                         }
                         
-                        HUD.hide()
+                        //HUD.hide()
                     }
                 }
             }
@@ -484,7 +484,7 @@ class APIService {
                 
                 if let token = self.getToken() {
                     
-                    HUD.show(.progress) 
+                    //HUD.show(.progress) //crashed when method used in root view controller
                     
                     self.restAPIService?.mailboxesList(token: token) {(result) in
                         
@@ -514,7 +514,185 @@ class APIService {
                             completionHandler(APIResult.failure(error))
                         }
                         
-                        HUD.hide()
+                        //HUD.hide()
+                    }
+                }
+            }
+        }
+    }
+    
+    func unreadMessagesCounter(completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    
+                    //HUD.show(.progress)
+                    
+                    self.restAPIService?.unreadMessagesCounter(token: token) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            
+                            //print("unreadMessagesCounter success:", value)
+                            
+                            if let response = value as? Dictionary<String, Any> {
+                                
+                                if let message = self.parseServerResponse(response:response) {
+                                    //print("unreadMessagesCounter message:", message)
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {                              
+                                    completionHandler(APIResult.success(response))
+                                }                            
+                            } else {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
+                            }
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                        
+                        //HUD.hide()
+                    }
+                }
+            }
+        }
+    }
+    
+    func createMessage(content: String, folder: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    
+                    //HUD.show(.progress)
+                    
+                    self.restAPIService?.createMessage(token: token, content: content, folder: folder) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            
+                           //print("createMessage success:", value)
+                            
+                            if let response = value as? Dictionary<String, Any> {
+                                
+                                if let message = self.parseServerResponse(response:response) {
+                                    //print("unreadMessagesCounter message:", message)
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    completionHandler(APIResult.success(response))
+                                }
+                            } else {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
+                            }
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                        
+                        //HUD.hide()
+                    }
+                }
+            }
+        }
+    }
+    
+    //MARK: - Folders
+    
+    func customFoldersList(limit: Int, offset: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    
+                    //HUD.show(.progress)
+                    
+                    self.restAPIService?.customFoldersList(token: token, limit: limit, offset: offset) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            
+                            //print("customFoldersList success:", value)
+                            
+                            if let response = value as? Dictionary<String, Any> {
+                                
+                                if let message = self.parseServerResponse(response:response) {
+                                    //print("customFoldersList message:", message)
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    let customFolders = FolderList(dictionary: response)
+                                    completionHandler(APIResult.success(customFolders))
+                                }
+                                
+                            } else {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
+                            }
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                        
+                        //HUD.hide()
+                    }
+                }
+            }
+        }
+    }
+    
+    func createCustomFolder(name: String, color: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    
+                    //HUD.show(.progress)
+                    
+                    self.restAPIService?.createCustomFolder(token: token, name: name, color: color) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            
+                            print("createCustomFolder success:", value)
+                            
+                            if let response = value as? Dictionary<String, Any> {
+                                
+                                if let message = self.parseServerResponse(response:response) {
+                                    //print("customFoldersList message:", message)
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    let customFolders = FolderList(dictionary: response)
+                                    completionHandler(APIResult.success(customFolders))
+                                }
+                                
+                            } else {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
+                            }
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                        
+                        //HUD.hide()
                     }
                 }
             }

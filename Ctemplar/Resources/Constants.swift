@@ -43,14 +43,19 @@ let k_ViewInboxEmailStoryboardName         = "ViewInboxEmail"
 
 let k_InboxMessageTableViewCellXibName     = "InboxMessageTableViewCell"
 let k_InboxFilterViewXibName               = "InboxFilter"
+let k_MoreActionsViewXibName               = "MoreActions"
 let k_SideMenuTableSectionHeaderViewXibName               = "SideMenuTableSectionHeader"
 let k_SideMenuTableViewCellXibName         = "SideMenuTableViewCell"
+let k_CustomFolderCellXibName              = "CustomFolderTableViewCell"
+let k_MoveToFolderCellXibName              = "MoveToFolderTableViewCell"
 
 // cell identifier
 
 let k_InboxMessageTableViewCellIdentifier       = "inboxMessageTableViewCellIdentifier"
 let k_SideMenuTableSectionHeaderViewIdentifier  = "sideMenuTableSectionHeaderViewIdentifier"
 let k_SideMenuTableViewCellIdentifier           = "sideMenuTableViewCellIdentifier"
+let k_CustomFolderTableViewCellIdentifier       = "customFolderTableViewCellIdentifier"
+let k_MoveToFolderTableViewCellIdentifier       = "moveToFolderTableViewCellIdentifier"
 
 // view controllers iPad storyboards name
 
@@ -77,6 +82,12 @@ let k_whiteColor: UIColor = UIColor(red: 250.0 / 255.0, green: 251.0 / 255.0, bl
 let k_selectedFolderColor: UIColor = UIColor(red: 18.0 / 255.0, green: 45.0 / 255.0, blue: 71.0 / 255.0, alpha: 0.1)
 
 let k_unreadMessageColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 0.02)
+
+let k_actionMessageColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 1.0)
+
+
+let k_orangeColor : UIColor = UIColor(red: 255.0 / 255.0, green: 170.0 / 255.0, blue: 14.0 / 255.0, alpha: 1.0)
+let k_greenColor : UIColor = UIColor(red: 0.0 / 255.0, green: 116.0 / 255.0, blue: 33.0 / 255.0, alpha: 1.0)
 
 
 //size constants
@@ -108,7 +119,31 @@ let k_deleteLabelSEWidth        : CGFloat = 45.0 //30.0
 
 let k_inboxFilterViewCenterY    : CGFloat = 430.0
 
+let k_rightOffsetForSubjectLabel : CGFloat = 90.0
+
+let k_sideMenuSectionHeaderHeight  : CGFloat = 49
+let k_sideMenuSeparatorHeight      : CGFloat = 1
+
+let k_moreActionsButtonsViewFullContstraint   : CGFloat = 206
+let k_moreActionsButtonsViewMiddleContstraint : CGFloat = 154
+let k_moreActionsButtonsViewSmallContstraint  : CGFloat = 102
+let k_moreActionsButtonHeightConstraint       : CGFloat = 50
+
+let k_fromToViewMinHeight       : CGFloat = 94.0
+let k_fromToHeaderMinHeight     : CGFloat = 146.0
+let k_dateLabelOffsetHeight     : CGFloat = 52.0
+
+let k_InsetsForFromTo           : CGFloat = 26.0
+let k_lineSpaceSizeForFromToText    = 10
+let k_lineHeightForFromToText   : CGFloat = 26.0
+
 //images
+
+let k_eyeOffIconImageName           = "EyeIcon"
+let k_eyeOnIconImageName            = "EyeOnIcon"
+
+let k_darkEyeOffIconImageName       = "DarkEyeIcon"
+let k_darkEyeOnIconImageName        = "DarkEyeOnIcon"
 
 let k_checkBoxUncheckedImageName    = "roundDark"
 let k_checkBoxSelectedImageName     = "checkedBoxDark"
@@ -129,8 +164,8 @@ let k_moreImageName                 = "MoreButton"
 
 let k_unreadImageName               = "unreadMessage"
 
-let k_whiteGarbageImageName         = "whiteSpam"
-let k_whiteSpamImageName            = "whiteTrash"
+let k_whiteGarbageImageName         = "whiteTrash"
+let k_whiteSpamImageName            = "whiteSpam"
 let k_witeUnreadImageName           = "whiteUnread"
 let k_witeMoveToImageName           = "whiteMoveTo"
 
@@ -139,8 +174,8 @@ let k_starOffImageName              = "StarOff"
 let k_secureOnImageName             = "SecureOn"
 let k_secureOffImageName            = "SecureOff"
 
-let k_foldersIconImageName          = "foldersIcon"
-let k_labelsIconImageName           = "labelsIcon"
+let k_folderIconImageName          = "folderIcon"
+let k_labelIconImageName           = "labelIcon"
 
 let k_darkFoldersIconImageName      = "darkFoldersIcon"
 let k_darkLabelsIconImageName       = "darkLabelsIcon"
@@ -189,10 +224,9 @@ let k_firstCharsForHeader          = 50
 let k_tokenHoursExpiration         = 2
 let k_tokenMinutesExpiration       = 170
 
-let k_sideMenuSectionHeaderHeight  : CGFloat = 49
-let k_sideMenuSeparatorHeight      : CGFloat = 1
-
 let k_undoActionBarShowingSecs     = 5.0
+
+let k_numberOfCustomFoldersShowing = 2
 
 enum InboxSideMenuOptionsName: String {
     
@@ -259,4 +293,39 @@ enum SideMenuSectionIndex: Int {
     case options          = 1
     case customFolders    = 2    
     case sectionsCount    = 3
+}
+
+enum MoreViewButtonsTag: Int, CaseIterable {
+    
+    case cancel           = 401
+    case bottom           = 402
+    case middle           = 403
+    case upper            = 404
+}
+
+enum MoreActionsTitles: String, CaseIterable {
+    
+    case markAsSpam       = "markAsSpam"
+    case markAsRead       = "markAsRead"
+    case markAsUnread     = "markAsUnread"
+    //case markAsStarred    = ""
+    case moveToTrach      = "moveToTrash"
+    case moveToArchive    = "moveToArchive"
+    case moveToInbox      = "moveToInbox"
+    //case moveTo           = ""
+    case emptyFolder      = "emptyFolder"
+    case cancel           = "cancel"
+ 
+}
+
+enum ActionsIndex: Int, CaseIterable {
+
+    case markAsSpam       = 1
+    case markAsRead       = 2
+    case markAsStarred    = 3
+    case moveToTrach      = 4
+    case moveToArchive    = 5
+    case moveToInbox      = 6
+    case moveTo           = 7
+    case noAction         = 8
 }

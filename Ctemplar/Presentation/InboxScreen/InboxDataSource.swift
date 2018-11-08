@@ -49,30 +49,31 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         
         switch currentFolder {
         case MessagesFoldersName.inbox.rawValue:
-            swipeButtonsArray = [spamButton, moveToButton, trashButton]
+            swipeButtonsArray = [trashButton, moveToButton, spamButton]
             break
         case MessagesFoldersName.draft.rawValue:
             swipeButtonsArray = [trashButton]
             break
         case MessagesFoldersName.sent.rawValue:
-            swipeButtonsArray = [spamButton, moveToButton, trashButton] //? smap?
+            swipeButtonsArray = [trashButton, moveToButton, spamButton] //? spam?
             break
         case MessagesFoldersName.outbox.rawValue:
-            swipeButtonsArray = [spamButton, moveToButton, trashButton] //?
+            swipeButtonsArray = [trashButton, moveToButton, spamButton] //?
             break
         case MessagesFoldersName.starred.rawValue:
-            swipeButtonsArray = [spamButton, moveToButton, trashButton]
+            swipeButtonsArray = [trashButton, moveToButton, spamButton]
             break
         case MessagesFoldersName.archive.rawValue:
-            swipeButtonsArray = [spamButton, moveToButton, trashButton]
+            swipeButtonsArray = [trashButton, moveToButton, spamButton]
             break
         case MessagesFoldersName.spam.rawValue:
-            swipeButtonsArray = [unreadButton, moveToButton, trashButton]
+            swipeButtonsArray = [trashButton, moveToButton, unreadButton]
             break
         case MessagesFoldersName.trash.rawValue:
-            swipeButtonsArray = [spamButton, moveToButton, trashButton] //? trash?
+            swipeButtonsArray = [trashButton, moveToButton, spamButton] //? trash?
             break
         default:
+            swipeButtonsArray = [trashButton, moveToButton, spamButton] //for Custom Folders
             break
         }
         
@@ -148,6 +149,10 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
                 self.parentViewController.appliedActionMessage = message
             }
             
+            if selectedMessagesIDArray.count == 0 {
+                self.parentViewController.presenter?.disableSelectionMode()
+            }
+            
             self.reloadData()
             
             self.parentViewController.presenter?.setupNavigationItemTitle(selectedMessages: selectedMessagesIDArray.count, selectionMode: selectionMode, currentFolder: self.parentViewController!.currentFolder)
@@ -181,7 +186,8 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         let message = messagesArray[indexPath.row]
         self.parentViewController.appliedActionMessage = message
         
-        //self.applySwipeAction(index: index)
+        selectedMessagesIDArray.removeAll()
+        selectedMessagesIDArray.append(message.messsageID!)
         
         let currentFolder = self.parentViewController.currentFolderFilter
         
@@ -388,8 +394,13 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
             let touchPoint = sender.location(in: self.tableView)
             if let indexPath = tableView.indexPathForRow(at: touchPoint) {
                 
+                let message = messagesArray[indexPath.row]
+                
                 print("Long pressed row: \(indexPath.row)")
                 if self.selectionMode == false {
+                    self.selectedMessagesIDArray.removeAll()
+                    self.parentViewController.appliedActionMessage = message
+                    self.selectedMessagesIDArray.append(message.messsageID!)
                     self.parentViewController.presenter?.enableSelectionMode()
                 }
             }

@@ -25,6 +25,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var emailHintLabel        : UILabel!
     @IBOutlet var passwordHintLabel     : UILabel!
     
+    @IBOutlet var eyeButton             : UIButton!
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -35,6 +37,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         presenter!.setupEmailTextFieldsAndHintLabel(userEmail: userEmail!)
         presenter!.setupPasswordTextFieldsAndHintLabel(password: password!)
+        
+        userNameTextField.delegate = self
+        passwordTextField.delegate = self
         
         let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
         self.view.addGestureRecognizer(freeSpaceViewGesture)
@@ -60,23 +65,43 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func userEmailTyped(_ sender: UITextField) {
         
         userEmail = sender.text
-        presenter!.setupEmailTextFieldsAndHintLabel(userEmail: userEmail!)
+        //presenter!.setupEmailTextFieldsAndHintLabel(userEmail: userEmail!)
     }
     
     @IBAction func passwordEyeButtonPressed(_ sender: AnyObject) {
         
         passwordTextFieldSecure = !passwordTextFieldSecure
         passwordTextField.isSecureTextEntry = passwordTextFieldSecure
+        
+        var buttonImage = UIImage()
+        
+        if passwordTextFieldSecure {
+            buttonImage = UIImage(named: k_eyeOffIconImageName)!
+        } else {
+            buttonImage = UIImage(named: k_eyeOnIconImageName)!
+        }
+        
+        eyeButton.setImage(buttonImage, for: .normal)
     }
     
     @IBAction func passwordTyped(_ sender: UITextField) {
         
         password = sender.text
-        presenter!.setupPasswordTextFieldsAndHintLabel(password: password!)
+        //presenter!.setupPasswordTextFieldsAndHintLabel(password: password!)
     }
     
     @objc func tappedViewAction(sender : UITapGestureRecognizer) {
         
         view.endEditing(true)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        presenter!.hintLabel(show: true, sender: textField)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        presenter!.hintLabel(show: false, sender: textField)
     }
 }

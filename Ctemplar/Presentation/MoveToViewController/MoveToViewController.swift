@@ -11,19 +11,37 @@ import UIKit
 
 class MoveToViewController: UIViewController {
     
-    //var presenter   : InboxPresenter?
-    //var router      : InboxRouter?
-    //var dataSource  : InboxDataSource?
+    var presenter   : MoveToPresenter?
+    var router      : MoveToRouter?
+    var dataSource  : MoveToDataSource?
     
     @IBOutlet var cancelButton          : UIButton!
     @IBOutlet var applyButton           : UIButton!
+    
+    @IBOutlet var addFolderButton       : UIButton!
+    @IBOutlet var manageFolderButton    : UIButton!
+    
+    @IBOutlet var moveToTableView       : UITableView!
+    
+    var selectedMessagesIDArray : Array<Int> = []
 
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let configurator = MoveToConfigurator()
+        configurator.configure(viewController: self)
         
+        dataSource?.initWith(parent: self, tableView: moveToTableView)
+        
+        self.presenter?.applyButton(enabled: false)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.presenter?.interactor?.customFoldersList()
     }
     
     //MARK: - IBActions
@@ -38,6 +56,7 @@ class MoveToViewController: UIViewController {
     
     @IBAction func applyButtonPressed(_ sender: AnyObject) {
         
+        self.presenter?.interactor?.applyButtonPressed()
     }
     
     @IBAction func cancelButtonPressed(_ sender: AnyObject) {

@@ -16,6 +16,7 @@ class InboxViewController: UIViewController {
     var dataSource  : InboxDataSource?
     
     var inboxFilterView : InboxFilterView?
+    var moreActionsView : MoreActionsView?
     
     var inboxSideMenuViewController: InboxSideMenuViewController?
     
@@ -28,6 +29,8 @@ class InboxViewController: UIViewController {
     var currentFolderFilter : String = MessagesFoldersName.inbox.rawValue
     
     var appliedActionMessage : EmailMessage?
+    
+    var lastAction : ActionsIndex = ActionsIndex.noAction
     
     var mainFoldersUnreadMessagesCount: Array<Int> = [0, 0, 0, 0, 0, 0, 0, 0]
     
@@ -49,6 +52,7 @@ class InboxViewController: UIViewController {
     @IBOutlet var baseToolBar           : UIView!
     @IBOutlet var advancedToolBar       : UIView!
     @IBOutlet var selectionToolBar      : UIView!
+    @IBOutlet var selectionDraftToolBar : UIView!
     @IBOutlet var undoBar               : UIView!
     
     @IBOutlet var rightComposeButton    : UIButton!
@@ -57,6 +61,7 @@ class InboxViewController: UIViewController {
     
     @IBOutlet var leftBarButtonItem     : UIBarButtonItem!
     @IBOutlet var rightBarButtonItem    : UIBarButtonItem!
+    @IBOutlet var moreBarButtonItem    : UIBarButtonItem!
     
     //MARK: - Lifecycle
     
@@ -72,6 +77,7 @@ class InboxViewController: UIViewController {
         
         presenter?.setupUI(emailsCount: 0, unreadEmails: 0, filterEnabled: false)
         presenter?.initFilterView()
+        presenter?.initMoreActionsView()
         
         adddNotificationObserver()
         
@@ -81,7 +87,7 @@ class InboxViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.presenter?.interactor?.updateMessages()
+        self.presenter?.interactor?.updateMessages(withUndo: "")
         
         navigationController?.navigationBar.backgroundColor = k_whiteColor
     }
@@ -95,7 +101,12 @@ class InboxViewController: UIViewController {
     
     @IBAction func searchButtonPressed(_ sender: AnyObject) {
         
-        presenter?.searchButtonPressed(sender: self)
+    //    presenter?.searchButtonPressed(sender: self)
+    }
+    
+    @IBAction func moreNavButtonPressed(_ sender: AnyObject) {
+        
+    //    presenter?.searchButtonPressed(sender: self)
     }
     
     @IBAction func composeButtonPressed(_ sender: AnyObject) {
@@ -108,47 +119,42 @@ class InboxViewController: UIViewController {
         presenter?.showFilterView()
     }
     
+    //MARK: - Selected Actions
+    
     @IBAction func unreadButtonPressed(_ sender: AnyObject) {
         
-        if appliedActionMessage != nil {
-            if (self.dataSource?.selectedMessagesIDArray.count)! > 0 {
-                self.presenter?.interactor?.markMessagesListAsRead(selectedMessagesIdArray: (self.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: appliedActionMessage!)
-            } else {
-                print("messages not selected!!!")
-            }
-        }
-        //self.presenter?.showUndoBar(text: "Undo mark as Read")
+        self.presenter?.markSelectedMessagesAsRead()
+    }
+    
+    @IBAction func spamButtonPressed(_ sender: AnyObject) {
+        
+        self.presenter?.markSelectedMessagesAsSpam()
     }
     
     @IBAction func moveButtonPressed(_ sender: AnyObject) {
         
         self.router?.showMoveToViewController()
-        //self.presenter?.showUndoBar(text: "Undo moving")
     }
     
     @IBAction func garbageButtonPressed(_ sender: AnyObject) {
         
-        if appliedActionMessage != nil {
-            if (self.dataSource?.selectedMessagesIDArray.count)! > 0 {
-                self.presenter?.interactor?.markMessagesListAsTrash(selectedMessagesIdArray: (self.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: appliedActionMessage!)
-            } else {
-                print("messages not selected!!!")
-            }
-        }
-        
-        //self.presenter?.showUndoBar(text: "Undo delete")
+        self.presenter?.markSelectedMessagesAsTrash()
     }
     
     @IBAction func moreButtonPressed(_ sender: AnyObject) {
         
-        self.presenter?.showUndoBar(text: "Undo ...")
+        self.presenter?.showMoreActionsView(emptyFolder: false)
     }
     
     @IBAction func undoButtonPressed(_ sender: AnyObject) {
         
         if appliedActionMessage != nil {
-            self.presenter?.interactor?.undoLastAction(message: appliedActionMessage!)
-        }        
+            if (self.dataSource?.selectedMessagesIDArray.count)! > 0 {
+                self.presenter?.interactor?.undoLastAction(message: appliedActionMessage!)
+            } else {
+                print("messages not selected!!!")
+            }
+        }
     }
     
     //MARK: - notification
@@ -160,7 +166,7 @@ class InboxViewController: UIViewController {
     
     @objc func reciveUpdateNotification(notification: Notification) {
         
-        self.presenter?.interactor?.updateMessages()
+        self.presenter?.interactor?.updateMessages(withUndo: "")
     }    
 }
 
@@ -171,5 +177,13 @@ extension InboxViewController: InboxFilterDelegate {
         self.appliedFilters = appliedFilters
         presenter?.showFilterView()
         presenter?.applyFilterAction(sender)
+    }
+}
+
+extension InboxViewController: MoreActionsDelegate {
+    
+    func applyAction(_ sender: AnyObject, isButton: Bool) {
+        
+        presenter?.applyMoreAction(sender, isButton: isButton)
     }
 }

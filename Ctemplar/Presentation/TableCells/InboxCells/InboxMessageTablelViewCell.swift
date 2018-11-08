@@ -100,10 +100,10 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
             }
         }
         
-        if let children = message.hasChildren {
-            
-            if children > 0 {
+        if let childrenCount = message.childrenCount {
+            if childrenCount > 0 {
                 countLabel.isHidden = false
+                countLabel.text = childrenCount.description
             } else {
                 countLabel.isHidden = true
             }
@@ -112,8 +112,19 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
         //let testDate = "2018-10-26T13:00:00Z"
         if let destructionDate = message.destructDay {
             deleteLabel.isHidden = false
+            deleteLabel.backgroundColor = k_orangeColor
             if  let date = parentController?.formatterService!.formatDestructionTimeStringToDate(date: destructionDate) {
                 deleteLabel.attributedText = date.timeCountForDestruct()                
+            }
+        } else {
+            deleteLabel.isHidden = true
+        }
+        
+        if let delayedDelivery = message.delayedDelivery {
+            deleteLabel.isHidden = false
+            deleteLabel.backgroundColor = k_greenColor
+            if  let date = parentController?.formatterService!.formatDestructionTimeStringToDate(date: delayedDelivery) {
+                deleteLabel.attributedText = date.timeCountForDelivery()
             }
         } else {
             deleteLabel.isHidden = true

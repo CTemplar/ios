@@ -21,6 +21,8 @@ class RestAPIService {
         case verifyToken = "auth/verify/"
         case messages = "emails/messages/"
         case mailboxes = "emails/mailboxes/"
+        case unreadCounter = "emails/unread/"
+        case customFolders = "emails/custom-folder/"
     }
     
     enum JSONKey: String {
@@ -41,8 +43,13 @@ class RestAPIService {
         case token = "token"
         case idIn = "id__in"
         case folder = "folder"
+        case content = "content"
         case starred = "starred"
         case read = "read"
+        case limit = "limit"
+        case offset = "offset"
+        case folderName = "name"
+        case folderColor = "color"
     }
         
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -243,7 +250,7 @@ class RestAPIService {
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
             
-            //print("messagesList responce:", response)
+            print("messagesList responce:", response)
             
             switch(response.result) {
             case .success(let value):
@@ -254,24 +261,35 @@ class RestAPIService {
         }
     }
     
-    func updateMessages(token: String, messageID: String, messagesIDIn: String, folder: String, starred: Bool, read: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateMessages(token: String, messageID: String, messagesIDIn: String, folder: String, starred: Bool, read: Bool, updateFolder: Bool, updateStarred: Bool, updateRead: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
             "Accept": "application/json"
         ]
         
+        /*
         let parameters: Parameters = [
             JSONKey.folder.rawValue: folder,
             JSONKey.starred.rawValue: starred,
             JSONKey.read.rawValue: read
-        ]
-        /*
-        let parameters: Parameters = [
-            JSONKey.folder.rawValue: folder,
-            JSONKey.starred.rawValue: "1",
-            JSONKey.read.rawValue: "0"
         ]*/
+        
+        let configureParameters : NSMutableDictionary = [:]
+        
+        if updateFolder {
+            configureParameters[JSONKey.folder.rawValue] = folder
+        }
+        
+        if updateStarred {
+            configureParameters[JSONKey.starred.rawValue] = starred
+        }
+        
+        if updateRead{
+            configureParameters[JSONKey.read.rawValue] = read
+        }
+        
+        let parameters: Parameters = configureParameters as! Parameters
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messageID + messagesIDIn
         
@@ -306,6 +324,124 @@ class RestAPIService {
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
             
             print("mailboxes responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func unreadMessagesCounter(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.unreadCounter.rawValue
+        
+        print("unreadMessagesCounter url:", url)
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+            
+            print("unreadMessagesCounter responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func createMessage(token: String, content: String, folder: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.content.rawValue: content,
+            JSONKey.folder.rawValue: folder
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue
+        
+        print("createMessage url:", url)
+        print("createMessage parameters:", parameters)
+        
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("createMessage responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    //MARK: - Folders
+    
+    func customFoldersList(token: String, limit: Int, offset: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.limit.rawValue: limit,
+            JSONKey.offset.rawValue: offset
+        ]
+        
+        print("customFolders parameters:", parameters)
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.customFolders.rawValue
+        
+        print("customFolders url:", url)
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+            
+            print("customFolders responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func createCustomFolder(token: String, name: String, color: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.folderName.rawValue: name,
+            JSONKey.folderColor.rawValue: color
+        ]
+        
+        print("createCustomFolder parameters:", parameters)
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.customFolders.rawValue
+        
+        print("createCustomFolder url:", url)
+        
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+            
+            print("createCustomFolder responce:", response)
             
             switch(response.result) {
             case .success(let value):
