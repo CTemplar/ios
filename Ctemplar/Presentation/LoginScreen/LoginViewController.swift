@@ -25,6 +25,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var emailHintLabel        : UILabel!
     @IBOutlet var passwordHintLabel     : UILabel!
     
+    @IBOutlet var eyeButton             : UIButton!
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -70,6 +72,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         passwordTextFieldSecure = !passwordTextFieldSecure
         passwordTextField.isSecureTextEntry = passwordTextFieldSecure
+        
+        var buttonImage = UIImage()
+        
+        if passwordTextFieldSecure {
+            buttonImage = UIImage(named: k_eyeOffIconImageName)!
+        } else {
+            buttonImage = UIImage(named: k_eyeOnIconImageName)!
+        }
+        
+        eyeButton.setImage(buttonImage, for: .normal)
     }
     
     @IBAction func passwordTyped(_ sender: UITextField) {

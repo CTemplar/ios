@@ -118,12 +118,12 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L56-Az-CHr">
-                                <rect key="frame" x="323" y="274" width="20" height="15"/>
+                                <rect key="frame" x="323" y="269" width="20" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="15" id="q1M-tv-qhM"/>
-                                    <constraint firstAttribute="width" secondItem="L56-Az-CHr" secondAttribute="height" multiplier="4:3" id="yP3-hh-Ts8"/>
+                                    <constraint firstAttribute="height" constant="20" id="q1M-tv-qhM"/>
+                                    <constraint firstAttribute="width" secondItem="L56-Az-CHr" secondAttribute="height" multiplier="1:1" id="yP3-hh-Ts8"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="EyeIcon"/>
+                                <state key="normal" image="EyeIcon"/>
                                 <connections>
                                     <action selector="passwordEyeButtonPressed:" destination="k7s-rE-KqE" eventType="touchUpInside" id="T83-gN-vM4"/>
                                 </connections>
@@ -222,6 +222,7 @@
                     </view>
                     <connections>
                         <outlet property="emailHintLabel" destination="Zyc-Qa-hyt" id="gLz-jQ-7EK"/>
+                        <outlet property="eyeButton" destination="L56-Az-CHr" id="k7z-hd-oDx"/>
                         <outlet property="passwordHintLabel" destination="8Ip-E3-IDL" id="4X6-t4-LPw"/>
                         <outlet property="passwordTextField" destination="S0R-MO-LOs" id="2ee-39-AXA"/>
                         <outlet property="userNameTextField" destination="t1J-Gy-OcL" id="5xI-do-IlW"/>
@@ -234,7 +235,7 @@
     </scenes>
     <resources>
         <image name="Background" width="375" height="667"/>
-        <image name="EyeIcon" width="16" height="10"/>
+        <image name="EyeIcon" width="16" height="16"/>
         <image name="Logo" width="103" height="102"/>
     </resources>
 </document>

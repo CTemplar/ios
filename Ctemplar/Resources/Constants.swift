@@ -139,6 +139,9 @@ let k_lineHeightForFromToText   : CGFloat = 26.0
 
 //images
 
+let k_eyeOffIconImageName           = "EyeIcon"
+let k_eyeOnIconImageName            = "EyeOnIcon"
+
 let k_checkBoxUncheckedImageName    = "roundDark"
 let k_checkBoxSelectedImageName     = "checkedBoxDark"
 
