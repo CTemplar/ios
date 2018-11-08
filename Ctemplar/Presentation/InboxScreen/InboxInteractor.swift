@@ -54,9 +54,9 @@ class InboxInteractor {
         }
     }
     
-    func setSideMenuData(unreadMessages: UnreadMessages) {
+    func setSideMenuData(array: Array<UnreadMessagesCounter>) {
         
-        self.viewController?.inboxSideMenuViewController?.dataSource?.unreadMessages = unreadMessages
+        self.viewController?.inboxSideMenuViewController?.dataSource?.unreadMessagesArray = array
         self.viewController?.inboxSideMenuViewController?.dataSource?.reloadData()
     }
     
@@ -82,14 +82,6 @@ class InboxInteractor {
             }
             
             self.viewController?.inboxSideMenuViewController?.dataSource?.reloadData()
-            
-            /*
-            // for all message case
-            readEmails = calculateReadEmails(array: emailsArray)
-            unreadEmails = emailsArray.count - readEmails
-            print("filter: all messages", "unreadEmails:", unreadEmails)
-            self.viewController?.mainFoldersUnreadMessagesCount.append(unreadEmails)
- */
         }
     }
     
@@ -129,8 +121,7 @@ class InboxInteractor {
                     self.presenter?.showUndoBar(text: withUndo)
                 }
                 
-                //self.allMessagesList() //need to Side Menu unread msg counters
-                self.unreadMessagesCounter()
+                self.unreadMessagesCounter() //need to Side Menu unread msg counters
                 
             case .failure(let error):
                 print("error:", error)
@@ -173,9 +164,17 @@ class InboxInteractor {
             switch(result) {
                 
             case .success(let value):
-                //print("unreadMessagesCounter value:", value)
-                let unreadMessages = value as! UnreadMessages
-                self.setSideMenuData(unreadMessages: unreadMessages)
+                print("unreadMessagesCounter value:", value)
+                
+                var unreadMessagesCounterArray: Array<UnreadMessagesCounter> = []
+                
+                for objectDictionary in (value as? Dictionary<String, Any>)! {
+                   
+                    let unreadMessageCounter = UnreadMessagesCounter(key: objectDictionary.key, value: objectDictionary.value)
+                    unreadMessagesCounterArray.append(unreadMessageCounter)
+                }
+              
+                self.setSideMenuData(array: unreadMessagesCounterArray)
                 
             case .failure(let error):
                 print("error:", error)

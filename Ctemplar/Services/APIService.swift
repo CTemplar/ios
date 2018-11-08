@@ -536,7 +536,7 @@ class APIService {
                             
                         case .success(let value):
                             
-                            print("unreadMessagesCounter success:", value)
+                            //print("unreadMessagesCounter success:", value)
                             
                             if let response = value as? Dictionary<String, Any> {
                                 
@@ -544,9 +544,8 @@ class APIService {
                                     //print("unreadMessagesCounter message:", message)
                                     let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
                                     completionHandler(APIResult.failure(error))
-                                } else {
-                                    let unreadMessages = UnreadMessages(dictionary: response)
-                                    completionHandler(APIResult.success(unreadMessages))
+                                } else {                              
+                                    completionHandler(APIResult.success(response))
                                 }                            
                             } else {
                                 let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])

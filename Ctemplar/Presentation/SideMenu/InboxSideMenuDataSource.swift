@@ -14,7 +14,8 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     
     var mainFoldersArray                : Array<String> = []
     var mainFoldersImageNameList        : Array<String> = []
-    var unreadMessages : UnreadMessages = UnreadMessages.init()
+   
+    var unreadMessagesArray             : Array<UnreadMessagesCounter> = []
     
     var customFoldersArray              : Array<Folder> = []
     var labelsArray                     : Array<String> = []
@@ -137,7 +138,8 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             let folderName = self.mainFoldersArray[indexPath.row]
             let selected = self.isSelected(folderName: folderName)
             let iconName = self.mainFoldersImageNameList[indexPath.row]
-            let unreadCount = self.parentViewController?.presenter?.interactor?.getUnreadMessagesCount(folderName: folderName, unreadMessages: self.unreadMessages)
+
+            let unreadCount = self.parentViewController?.presenter?.interactor?.getUnreadMessagesCount(folderName: folderName)
             
             (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: selected, iconName: iconName, title: folderName, unreadCount: unreadCount!)
             
@@ -163,7 +165,9 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
                 let selected = self.isSelected(folderName: folderName!)
                 let folderColor = folder.color
                 
-                (cell as! CustomFolderTableViewCell).setupCustomFolderTableCell(selected: selected, iconColor: folderColor!, title: folderName!, unreadCount: 0)
+                let unreadCount = self.parentViewController?.presenter?.interactor?.getUnreadMessagesCount(folderName: folderName!)
+                
+                (cell as! CustomFolderTableViewCell).setupCustomFolderTableCell(selected: selected, iconColor: folderColor!, title: folderName!, unreadCount: unreadCount!)
             } else {
                 
                 if indexPath.row < k_numberOfCustomFoldersShowing {
@@ -175,7 +179,9 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
                     let selected = self.isSelected(folderName: folderName!)
                     let folderColor = folder.color
                     
-                    (cell as! CustomFolderTableViewCell).setupCustomFolderTableCell(selected: selected, iconColor: folderColor!, title: folderName!, unreadCount: 0)
+                    let unreadCount = self.parentViewController?.presenter?.interactor?.getUnreadMessagesCount(folderName: folderName!)
+                    
+                    (cell as! CustomFolderTableViewCell).setupCustomFolderTableCell(selected: selected, iconColor: folderColor!, title: folderName!, unreadCount: unreadCount!)
                 } else {
                   
                     if indexPath.row == k_numberOfCustomFoldersShowing {

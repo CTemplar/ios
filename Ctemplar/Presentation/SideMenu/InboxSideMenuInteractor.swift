@@ -124,50 +124,54 @@ class InboxSideMenuInteractor {
         self.viewController?.dismiss(animated: true, completion: nil)
     }
     
-    func getUnreadMessagesCount(folderName: String, unreadMessages: UnreadMessages) -> Int {
+    func getUnreadMessagesCount(folderName: String) -> Int {
         
         var unreadMessagesCount = 0
         
-        switch folderName {
-        case InboxSideMenuOptionsName.inbox.rawValue:
-            if let inboxUnreadMessages = unreadMessages.inbox {
-                unreadMessagesCount = inboxUnreadMessages
-            }
-            break
-        case InboxSideMenuOptionsName.draft.rawValue:
-            if let draftUnreadMessages = unreadMessages.draft {
-                unreadMessagesCount = draftUnreadMessages
-            }
-            break
-        case InboxSideMenuOptionsName.sent.rawValue:
-            break
-        case InboxSideMenuOptionsName.outbox.rawValue:
-            break
-        case InboxSideMenuOptionsName.starred.rawValue:
-            if let starredUnreadMessages = unreadMessages.starred {
-                unreadMessagesCount = starredUnreadMessages
-            }
-            break
-        case InboxSideMenuOptionsName.archive.rawValue:
-            if let archiveUnreadMessages = unreadMessages.archive {
-                unreadMessagesCount = archiveUnreadMessages
-            }
-            break
-        case InboxSideMenuOptionsName.spam.rawValue:
-            if let spamUnreadMessages = unreadMessages.spam {
-                unreadMessagesCount = spamUnreadMessages
-            }
-            break
-        case InboxSideMenuOptionsName.trash.rawValue:
-            if let trashUnreadMessages = unreadMessages.trash {
-                unreadMessagesCount = trashUnreadMessages
-            }
-            break
+        for object in (self.viewController?.dataSource?.unreadMessagesArray)! {
             
-        default:
-            break
+            if object.folderName == self.apiFolderName(folderName: folderName) {
+                unreadMessagesCount = object.unreadMessagesCount!
+            }
         }
         
         return unreadMessagesCount
+    }
+    
+    func apiFolderName(folderName: String) -> String {
+        
+        var apiFolderName = ""
+        
+        switch folderName {
+        case InboxSideMenuOptionsName.inbox.rawValue:
+            apiFolderName = MessagesFoldersName.inbox.rawValue
+            break
+        case InboxSideMenuOptionsName.draft.rawValue:
+            apiFolderName = MessagesFoldersName.draft.rawValue
+            break
+        case InboxSideMenuOptionsName.sent.rawValue:
+            apiFolderName = MessagesFoldersName.sent.rawValue
+            break
+        case InboxSideMenuOptionsName.outbox.rawValue:
+            apiFolderName = MessagesFoldersName.outbox.rawValue
+            break
+        case InboxSideMenuOptionsName.starred.rawValue:
+            apiFolderName = MessagesFoldersName.starred.rawValue
+            break
+        case InboxSideMenuOptionsName.archive.rawValue:
+            apiFolderName = MessagesFoldersName.archive.rawValue
+            break
+        case InboxSideMenuOptionsName.spam.rawValue:
+            apiFolderName = MessagesFoldersName.spam.rawValue
+            break
+        case InboxSideMenuOptionsName.trash.rawValue:
+            apiFolderName = MessagesFoldersName.trash.rawValue
+            break
+        default:
+            apiFolderName = folderName //custom folder name
+            break
+        }
+        
+        return apiFolderName
     }
 }
