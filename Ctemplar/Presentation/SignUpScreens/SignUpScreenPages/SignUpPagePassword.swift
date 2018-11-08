@@ -26,6 +26,9 @@ class SignUpPagePasswordViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var nextButton                : UIButton!
     
+    @IBOutlet var choosePassEyeIconButton   : UIButton!
+    @IBOutlet var confirmPassEyeIconButton  : UIButton!
+    
     var keyboardOffset = 0.0
     
     override func viewDidLoad() {
@@ -60,12 +63,32 @@ class SignUpPagePasswordViewController: UIViewController, UITextFieldDelegate {
         
         choosePasswordTextFieldSecure = !choosePasswordTextFieldSecure
         choosePasswordTextField.isSecureTextEntry = choosePasswordTextFieldSecure
+        
+        var buttonImage = UIImage()
+        
+        if choosePasswordTextFieldSecure {
+            buttonImage = UIImage(named: k_darkEyeOffIconImageName)!
+        } else {
+            buttonImage = UIImage(named: k_darkEyeOnIconImageName)!
+        }
+        
+        choosePassEyeIconButton.setImage(buttonImage, for: .normal)
     }
     
     @IBAction func confirmPasswordEyeButtonPressed(_ sender: AnyObject) {
         
         confirmPasswordTextFieldSecure = !confirmPasswordTextFieldSecure
         confirmPasswordTextField.isSecureTextEntry = confirmPasswordTextFieldSecure
+        
+        var buttonImage = UIImage()
+        
+        if confirmPasswordTextFieldSecure {
+            buttonImage = UIImage(named: k_darkEyeOffIconImageName)!
+        } else {
+            buttonImage = UIImage(named: k_darkEyeOnIconImageName)!
+        }
+        
+        confirmPassEyeIconButton.setImage(buttonImage, for: .normal)
     }
     
     @IBAction func passwordTyped(_ sender: UITextField) {
