@@ -43,6 +43,7 @@ class RestAPIService {
         case token = "token"
         case idIn = "id__in"
         case folder = "folder"
+        case content = "content"
         case starred = "starred"
         case read = "read"
         case limit = "limit"
@@ -347,6 +348,36 @@ class RestAPIService {
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
             
             print("unreadMessagesCounter responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func createMessage(token: String, content: String, folder: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.content.rawValue: content,
+            JSONKey.folder.rawValue: folder
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue
+        
+        print("createMessage url:", url)
+        print("createMessage parameters:", parameters)
+        
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("createMessage responce:", response)
             
             switch(response.result) {
             case .success(let value):

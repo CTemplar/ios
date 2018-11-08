@@ -50,8 +50,11 @@
                                 <action selector="backButtonPressed:" destination="Paf-AF-Vql" id="ojg-Ee-C6N"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" image="SendButton" id="pjB-4q-8ts">
+                        <barButtonItem key="rightBarButtonItem" image="SendButton" id="pjB-4q-8ts">
                             <color key="tintColor" red="0.090196078430000007" green="0.1960784314" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="sendButtonPressed:" destination="Paf-AF-Vql" id="7aY-t7-U5g"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>

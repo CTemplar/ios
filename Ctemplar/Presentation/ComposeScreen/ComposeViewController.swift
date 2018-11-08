@@ -25,4 +25,34 @@ class ComposeViewController: UIViewController {
         
         self.navigationController?.popViewController(animated: true)
     }
+    
+    @IBAction func sendButtonPressed(_ sender: AnyObject) {
+        
+        sendMail()
+        
+    }
+    
+    //temp
+    
+    func sendMail() {
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let apiService = appDelegate.applicationManager.apiService
+        
+        apiService.createMessage(content: "xxxxxxx", folder: "inbox") {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("createMessage value:", value)
+                
+                
+                
+            case .failure(let error):
+                print("error:", error)
+                //AlertHelperKit().showAlert(self.viewController!, title: "Mailboxes Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
 }
