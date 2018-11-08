@@ -51,3 +51,8 @@
 "undoMoveToInbox" = "Отменить перенос в inbox";
 
 
+//compose message titles
+"newMessage" = "New Message";
+"reply" = "Reply";
+"relpyAll" = "Reply All";
+"forward" = "Forward";

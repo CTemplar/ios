@@ -13,12 +13,14 @@ import AlertHelperKit
 
 class ComposeViewController: UIViewController {
     
+    var navBarTitle: String? = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        //self.navigationController?.navigationItem.title = "XXX"
-        
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        self.navigationItem.title = navBarTitle
     }
     
     @IBAction func backButtonPressed(_ sender: AnyObject) {
@@ -28,7 +30,7 @@ class ComposeViewController: UIViewController {
     
     @IBAction func sendButtonPressed(_ sender: AnyObject) {
         
-        sendMail()
+        //sendMail()
         
     }
     
