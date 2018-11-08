@@ -19,6 +19,11 @@
 "termsAndConditionsFullText" = "Please check this box if you agree to abide by our Terms and Conditions";
 "termsAndConditionsPhrase" = "Terms and Conditions";
 
+//login
+
+"emailPlaceholder" = "Email";
+"passwordPlaceholder" = "Password";
+
 //side menu
 
 "manageFolders" = "Manage Folders";

@@ -16,6 +16,33 @@ class LoginPresenter {
     var interactor       : LoginInteractor?
     var formatterService : FormatterService?
     
+    func hintLabel(show: Bool, sender: UITextField) {
+        
+        if sender == viewController?.userNameTextField {
+            if show {
+                viewController!.emailHintLabel.isHidden = false
+                viewController?.userNameTextField.placeholder = ""
+            } else {
+                if !(formatterService?.validateNameLench(enteredName: (viewController?.userNameTextField.text)!))! {
+                    viewController?.userNameTextField.placeholder = "emailPlaceholder".localized()
+                    viewController!.emailHintLabel.isHidden = true
+                }
+            }
+        }
+        
+        if sender == viewController?.passwordTextField {            
+            if show {
+                viewController!.passwordHintLabel.isHidden = false
+                viewController?.passwordTextField.placeholder = ""
+            } else {
+                if !(formatterService?.validateNameLench(enteredName: (viewController?.passwordTextField.text)!))! {
+                    viewController?.passwordTextField.placeholder = "emailPlaceholder".localized()
+                    viewController!.passwordHintLabel.isHidden = true
+                }
+            }
+        }
+    }
+    
     func setupEmailTextFieldsAndHintLabel(userEmail: String) {
         
         if (formatterService?.validateNameLench(enteredName: userEmail))! {
