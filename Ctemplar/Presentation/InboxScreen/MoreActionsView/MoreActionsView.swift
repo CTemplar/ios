@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol MoreActionsDelegate {
-    func applyAction(_ sender: AnyObject)
+    func applyAction(_ sender: AnyObject, isButton: Bool)
 }
 
 class MoreActionsView: UIView {
@@ -97,10 +97,10 @@ class MoreActionsView: UIView {
     //MARK: - IBActions
     
     @IBAction func tappedAction(_ sender: AnyObject) {
-        delegate?.applyAction(sender)
+        delegate?.applyAction(sender, isButton: true)
     }
     
     @objc func tappedViewAction(sender : UITapGestureRecognizer) {
-        //delegate?.applyAction(sender)
+        delegate?.applyAction(sender, isButton: false)
     }
 }

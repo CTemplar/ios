@@ -137,13 +137,8 @@ class InboxPresenter {
     func initAndSetupInboxSideMenuController() {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_InboxSideMenuStoryboardName, bundle: nil)
-        //let vc = storyboard.instantiateViewController(withIdentifier: k_InboxSideMenuViewControllerID) as! InboxSideMenuViewController
+       
         self.viewController?.inboxSideMenuViewController = storyboard.instantiateViewController(withIdentifier: k_InboxSideMenuViewControllerID) as? InboxSideMenuViewController
-        
-        
-        //vc.currentParentViewController = self.viewController
-        
-        //let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: vc)
         
         self.viewController?.inboxSideMenuViewController?.currentParentViewController = self.viewController
         let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: (self.viewController?.inboxSideMenuViewController)!)
@@ -153,7 +148,7 @@ class InboxPresenter {
         SideMenuManager.default.menuAnimationFadeStrength = 0.5
         SideMenuManager.default.menuAnimationBackgroundColor = k_sideMenuFadeColor
         
-        SideMenuManager.default.menuPresentMode = .viewSlideInOut
+        SideMenuManager.default.menuPresentMode = .menuSlideIn
         let frame = self.viewController?.view.frame
         SideMenuManager.default.menuWidth = max(round(min((frame!.width), (frame!.height)) * 0.67), 240)
     }
@@ -471,41 +466,44 @@ class InboxPresenter {
         return moreActionsButtonsName
     }
     
-    func applyMoreAction(_ sender: AnyObject) {
+    func applyMoreAction(_ sender: AnyObject, isButton: Bool) {
         
-        let button = sender as! UIButton
-        
-        let title = button.title(for: .normal)
-        
-        print("title:", title as Any)
-        
-        switch title {
-        case MoreActionsTitles.cancel.rawValue.localized():
-            print("cancel btn more actions")
+        if isButton {
             
-            break
-        case MoreActionsTitles.markAsRead.rawValue.localized():
-            print("markAsRead btn more actions")
-            self.markSelectedMessagesAsRead()
-            break
-        case MoreActionsTitles.markAsUnread.rawValue.localized():
-            print("markAsUnread btn more actions")
-            self.markSelectedMessagesAsRead()
-            break
-        case MoreActionsTitles.moveToArchive.rawValue.localized():
-            print("moveToArchive btn more actions")
-            self.moveSelectedMessagesToArchive()
-            break
-        case MoreActionsTitles.moveToInbox.rawValue.localized():
-            print("moveToInbox btn more actions")
-            self.moveSelectedMessagesToInbox()
-            break
-        case MoreActionsTitles.emptyFolder.rawValue.localized():
-            print("emptyFolder btn more actions")
-            //self.markSelectedMessagesAsTrash()
-            break
-        default:
-            print("more actions: default")
+            let button = sender as! UIButton
+            
+            let title = button.title(for: .normal)
+            
+            print("title:", title as Any)
+            
+            switch title {
+            case MoreActionsTitles.cancel.rawValue.localized():
+                print("cancel btn more actions")
+                
+                break
+            case MoreActionsTitles.markAsRead.rawValue.localized():
+                print("markAsRead btn more actions")
+                self.markSelectedMessagesAsRead()
+                break
+            case MoreActionsTitles.markAsUnread.rawValue.localized():
+                print("markAsUnread btn more actions")
+                self.markSelectedMessagesAsRead()
+                break
+            case MoreActionsTitles.moveToArchive.rawValue.localized():
+                print("moveToArchive btn more actions")
+                self.moveSelectedMessagesToArchive()
+                break
+            case MoreActionsTitles.moveToInbox.rawValue.localized():
+                print("moveToInbox btn more actions")
+                self.moveSelectedMessagesToInbox()
+                break
+            case MoreActionsTitles.emptyFolder.rawValue.localized():
+                print("emptyFolder btn more actions")
+                //self.markSelectedMessagesAsTrash()
+                break
+            default:
+                print("more actions: default")
+            }
         }
         
         self.showMoreActionsView(emptyFolder: false)

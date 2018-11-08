@@ -182,8 +182,8 @@ extension InboxViewController: InboxFilterDelegate {
 
 extension InboxViewController: MoreActionsDelegate {
     
-    func applyAction(_ sender: AnyObject) {
+    func applyAction(_ sender: AnyObject, isButton: Bool) {
         
-        presenter?.applyMoreAction(sender)
+        presenter?.applyMoreAction(sender, isButton: isButton)
     }
 }

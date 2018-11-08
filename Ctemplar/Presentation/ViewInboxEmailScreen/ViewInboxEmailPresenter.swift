@@ -306,39 +306,42 @@ class ViewInboxEmailPresenter {
         return moreActionsButtonsName
     }
     
-    func applyMoreAction(_ sender: AnyObject) {
+    func applyMoreAction(_ sender: AnyObject, isButton: Bool) {
         
-        let button = sender as! UIButton
+        if isButton {
         
-        let title = button.title(for: .normal)
-        
-        print("title:", title as Any)
-        
-        switch title {
-        case MoreActionsTitles.cancel.rawValue.localized():
-            print("cancel btn more actions")
-            break
-        case MoreActionsTitles.markAsRead.rawValue.localized():
-            print("markAsRead btn more actions")
-            self.interactor?.markMessageAsRead(message: (self.viewController?.message)!, asRead: true, withUndo: "undoMarkAsRead".localized())
-            break
-        case MoreActionsTitles.markAsUnread.rawValue.localized():
-            print("markAsUnread btn more actions")
-            self.interactor?.markMessageAsRead(message: (self.viewController?.message)!, asRead: false, withUndo: "undoMarkAsUnread".localized())
-            break
-        case MoreActionsTitles.moveToArchive.rawValue.localized():
-            print("moveToArchive btn more actions")
-            self.interactor?.moveMessageToArchive(message: (self.viewController?.message)!, withUndo: "undoMoveToInbox".localized())
-            break
-        case MoreActionsTitles.moveToInbox.rawValue.localized():
-            print("moveToInbox btn more actions")
-            self.interactor?.moveMessageToInbox(message: (self.viewController?.message)!, withUndo: "undoMoveToInbox".localized())
-            break
-        case MoreActionsTitles.emptyFolder.rawValue.localized():
-            print("emptyFolder btn more actions")
-            break
-        default:
-            print("more actions: default")
+            let button = sender as! UIButton
+            
+            let title = button.title(for: .normal)
+            
+            print("title:", title as Any)
+            
+            switch title {
+            case MoreActionsTitles.cancel.rawValue.localized():
+                print("cancel btn more actions")
+                break
+            case MoreActionsTitles.markAsRead.rawValue.localized():
+                print("markAsRead btn more actions")
+                self.interactor?.markMessageAsRead(message: (self.viewController?.message)!, asRead: true, withUndo: "undoMarkAsRead".localized())
+                break
+            case MoreActionsTitles.markAsUnread.rawValue.localized():
+                print("markAsUnread btn more actions")
+                self.interactor?.markMessageAsRead(message: (self.viewController?.message)!, asRead: false, withUndo: "undoMarkAsUnread".localized())
+                break
+            case MoreActionsTitles.moveToArchive.rawValue.localized():
+                print("moveToArchive btn more actions")
+                self.interactor?.moveMessageToArchive(message: (self.viewController?.message)!, withUndo: "undoMoveToInbox".localized())
+                break
+            case MoreActionsTitles.moveToInbox.rawValue.localized():
+                print("moveToInbox btn more actions")
+                self.interactor?.moveMessageToInbox(message: (self.viewController?.message)!, withUndo: "undoMoveToInbox".localized())
+                break
+            case MoreActionsTitles.emptyFolder.rawValue.localized():
+                print("emptyFolder btn more actions")
+                break
+            default:
+                print("more actions: default")
+            }
         }
         
         self.showMoreActionsView()
