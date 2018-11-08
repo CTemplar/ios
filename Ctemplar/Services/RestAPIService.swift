@@ -23,6 +23,7 @@ class RestAPIService {
         case mailboxes = "emails/mailboxes/"
         case unreadCounter = "emails/unread/"
         case customFolders = "emails/custom-folder/"
+        case userMyself = "/users/myself/"
     }
     
     enum JSONKey: String {
@@ -220,6 +221,32 @@ class RestAPIService {
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
             
             print("verifyToken responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    //MARK: - User
+    
+    func userMyself(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.userMyself.rawValue
+        
+        print("userMyself url:", url)
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+            
+            print("userMyself responce:", response)
             
             switch(response.result) {
             case .success(let value):

@@ -122,6 +122,7 @@ class InboxInteractor {
                 }
                 
                 self.unreadMessagesCounter() //need to Side Menu unread msg counters
+                self.userMyself()//temp for debug
                 
             case .failure(let error):
                 print("error:", error)
@@ -237,6 +238,22 @@ class InboxInteractor {
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Mailboxes Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
+    func userMyself() {
+        
+        apiService?.mailboxesList() {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("userMyself value:", value)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "User Myself Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
     }
