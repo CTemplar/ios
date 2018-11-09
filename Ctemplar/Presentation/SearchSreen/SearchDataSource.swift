@@ -34,7 +34,7 @@ class SearchDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func registerTableViewCell() {
         
-        //self.tableView.register(UINib(nibName: k_InboxMessageTableViewCellXibName, bundle: nil), forCellReuseIdentifier: k_InboxMessageTableViewCellIdentifier)
+        self.tableView.register(UINib(nibName: k_SearchCellXibName, bundle: nil), forCellReuseIdentifier: k_SearchTableViewCellIdentifier)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -49,7 +49,8 @@ class SearchDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "sideMenuCellIdentifier")!
+        let cell : SearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: k_SearchTableViewCellIdentifier)! as! SearchTableViewCell
+      
         
         return cell
     }

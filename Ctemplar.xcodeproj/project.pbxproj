@@ -102,6 +102,8 @@
 		84525F1B219568F200CA732E /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84525F1A219568F200CA732E /* SearchPresenter.swift */; };
 		84525F1D219568FF00CA732E /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84525F1C219568FF00CA732E /* SearchInteractor.swift */; };
 		84525F1F2195690A00CA732E /* SearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84525F1E2195690A00CA732E /* SearchDataSource.swift */; };
+		84525F222195710D00CA732E /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84525F212195710D00CA732E /* SearchTableViewCell.swift */; };
+		84525F242195718200CA732E /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84525F232195718200CA732E /* SearchTableViewCell.xib */; };
 		845E64392170849C008612FE /* InboxSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E64382170849C008612FE /* InboxSideMenuViewController.swift */; };
 		845E643B21709330008612FE /* InboxSideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845E643A21709330008612FE /* InboxSideMenu.storyboard */; };
 		845E643E2170A46C008612FE /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E643D2170A46C008612FE /* ComposeViewController.swift */; };
@@ -225,6 +227,8 @@
 		84525F1A219568F200CA732E /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		84525F1C219568FF00CA732E /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
 		84525F1E2195690A00CA732E /* SearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataSource.swift; sourceTree = "<group>"; };
+		84525F212195710D00CA732E /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		84525F232195718200CA732E /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
 		845E64382170849C008612FE /* InboxSideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuViewController.swift; sourceTree = "<group>"; };
 		845E643A21709330008612FE /* InboxSideMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InboxSideMenu.storyboard; sourceTree = "<group>"; };
 		845E643D2170A46C008612FE /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
@@ -313,6 +317,7 @@
 		8432070C21785E0D00F18E5A /* TableCells */ = {
 			isa = PBXGroup;
 			children = (
+				84525F20219570F500CA732E /* SearchCells */,
 				8432070F21785E7500F18E5A /* InboxCells */,
 				8432B2FA2186DC1C006C901C /* SideMenuCells */,
 				840249822191737B00CDDB0F /* CustomFolderCells */,
@@ -598,6 +603,15 @@
 			path = SearchSreen;
 			sourceTree = "<group>";
 		};
+		84525F20219570F500CA732E /* SearchCells */ = {
+			isa = PBXGroup;
+			children = (
+				84525F212195710D00CA732E /* SearchTableViewCell.swift */,
+				84525F232195718200CA732E /* SearchTableViewCell.xib */,
+			);
+			path = SearchCells;
+			sourceTree = "<group>";
+		};
 		845E643721708453008612FE /* SideMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -742,6 +756,7 @@
 				840249852191758D00CDDB0F /* CustomFolderTableViewCell.xib in Resources */,
 				8433FF5E21626D0600C57DC8 /* LaunchScreen-iPad.storyboard in Resources */,
 				8433FF1F216201A300C57DC8 /* Main.storyboard in Resources */,
+				84525F242195718200CA732E /* SearchTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -845,6 +860,7 @@
 				843FC38A2164CA1A000CFEA9 /* SignUpRouter.swift in Sources */,
 				84A62E552175CDFB009C38E5 /* ForgotPasswordInteractor.swift in Sources */,
 				84A62E4D2175C6EB009C38E5 /* ForgotUsernameViewController.swift in Sources */,
+				84525F222195710D00CA732E /* SearchTableViewCell.swift in Sources */,
 				84A62E492175B508009C38E5 /* ResetPasswordViewController.swift in Sources */,
 				84525F1D219568FF00CA732E /* SearchInteractor.swift in Sources */,
 				840249862191758D00CDDB0F /* CustomFolderTableViewCell.swift in Sources */,
