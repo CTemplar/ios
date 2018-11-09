@@ -181,6 +181,7 @@ class InboxPresenter {
     
     @objc func searchButtonPresed() {
  
+        self.viewController?.router?.showSearchViewController()
     }
     
     @objc func cancelButtonPresed() {

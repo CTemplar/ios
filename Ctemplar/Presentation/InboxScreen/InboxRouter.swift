@@ -27,6 +27,13 @@ class InboxRouter {
         self.viewController?.show(vc, sender: self)   
     }
     
+    func showSearchViewController() {
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: k_SearchStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_SearchViewControllerID) as! SearchViewController
+        self.viewController?.show(vc, sender: self)
+    }
+    
     func showViewInboxEmailViewController(message: EmailMessage) {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_ViewInboxEmailStoryboardName, bundle: nil)
