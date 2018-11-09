@@ -13,29 +13,26 @@ import AlertHelperKit
 
 class SearchViewController: UIViewController {
     
+    var presenter   : SearchPresenter?
+    var router      : SearchRouter?
+    var dataSource  : SearchDataSource?
+    
+    var messagesList    : Array<EmailMessage> = []
+    
     lazy var searchBar = UISearchBar(frame: CGRect.zero)
     
-    @IBOutlet var searchTableView        : UITableView!
-    
+    @IBOutlet var searchTableView        : UITableView!    
     @IBOutlet var emptySearch            : UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        searchBar.placeholder = "Search"
-        searchBar.sizeToFit()
+        let configurator = SearchConfigurator()
+        configurator.configure(viewController: self)
         
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).leftViewMode = .never
+        presenter?.setupNavigationBarItem(searchBar: searchBar)
         
-        if let txfSearchField = searchBar.value(forKey: "_searchField") as? UITextField {
-            txfSearchField.borderStyle = .none
-            txfSearchField.backgroundColor = self.navigationItem.titleView?.backgroundColor
-        }
-        
-        navigationItem.titleView = searchBar       
-        
-
+        dataSource?.initWith(parent: self, tableView: searchTableView, array: messagesList)
     
     }
     
