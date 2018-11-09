@@ -11,18 +11,23 @@ import Foundation
 import PKHUD
 import AlertHelperKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UISearchBarDelegate {
     
     var presenter   : SearchPresenter?
     var router      : SearchRouter?
     var dataSource  : SearchDataSource?
     
     var messagesList    : Array<EmailMessage> = []
+    var filteredArray   : Array<EmailMessage> = []
     
     lazy var searchBar = UISearchBar(frame: CGRect.zero)
     
+    var searchActive : Bool = false
+    
     @IBOutlet var searchTableView        : UITableView!    
     @IBOutlet var emptySearch            : UIView!
+    
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +39,7 @@ class SearchViewController: UIViewController {
         
         dataSource?.initWith(parent: self, tableView: searchTableView, array: messagesList)
         
+        searchBar.delegate = self        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,6 +48,8 @@ class SearchViewController: UIViewController {
         self.presenter?.interactor?.allMessagesList()     
     }
     
+    // MARK: IBActions
+    
     @IBAction func cancelButtonPressed(_ sender: AnyObject) {
         
         self.navigationController?.popViewController(animated: true)
@@ -49,5 +57,48 @@ class SearchViewController: UIViewController {
     
     @IBAction func searchButtonPressed(_ sender: AnyObject) {
         
+    }
+    
+    // MARK: SearchBar delegate
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+        searchActive = true;
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        
+        searchActive = false;
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchActive = false;
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchActive = false;
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        
+        return searchBar.text?.isEmpty ?? true
+    }
+    
+    func isFiltering() -> Bool {
+        
+        return searchActive && !searchBarIsEmpty()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        filteredArray = (self.dataSource?.messagesArray.filter({( message : EmailMessage) -> Bool in
+            return (message.subject?.lowercased().contains(searchText.lowercased()))!
+        }))!
+        
+        self.dataSource?.filtered = isFiltering()
+        self.dataSource?.filteredArray = filteredArray
+        self.dataSource?.reloadData()
     }
 }

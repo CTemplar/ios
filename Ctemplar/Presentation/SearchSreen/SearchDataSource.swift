@@ -13,12 +13,13 @@ class SearchDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     var messagesArray           : Array<EmailMessage> = []
     var customFoldersArray      : Array<Folder> = []
+    var filteredArray           : Array<EmailMessage> = []
     
     var tableView               : UITableView!
     var parentViewController    : SearchViewController!
     var formatterService        : FormatterService?
     
-    var selectionMode : Bool = false
+    var filtered : Bool = false
     
     func initWith(parent: SearchViewController, tableView: UITableView, array: Array<EmailMessage>) {
         
@@ -45,6 +46,10 @@ class SearchDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        if self.filtered {
+            return self.filteredArray.count
+        }
+        
         return self.messagesArray.count
     }
     
@@ -54,7 +59,15 @@ class SearchDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
       
         cell.parentController = self
         
-        let message = messagesArray[indexPath.row]        
+        var message : EmailMessage
+        
+        if self.filtered {
+            message = filteredArray[indexPath.row]
+        } else {
+            message = messagesArray[indexPath.row]
+        }
+        
+        //let message = messagesArray[indexPath.row]
         cell.setupCellWithData(message: message)
                 
         cell.preservesSuperviewLayoutMargins = false
@@ -72,10 +85,14 @@ class SearchDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         
         self.tableView.reloadData()
         
-        if self.messagesArray.count > 0 {
-            self.tableView.isHidden = false
+        if self.filtered {
+            if self.filteredArray.count > 0 {
+                self.tableView.isHidden = false
+            } else {
+                self.tableView.isHidden = true
+            }
         } else {
-            self.tableView.isHidden = true
+            self.tableView.isHidden = false
         }
     }
 }

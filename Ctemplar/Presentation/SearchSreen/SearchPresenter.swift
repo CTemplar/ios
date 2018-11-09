@@ -29,9 +29,9 @@ class SearchPresenter {
         
         self.viewController?.navigationItem.titleView = searchBar
         
-        if (self.viewController?.messagesList.count)! > 0 {
-            self.viewController?.searchTableView.isHidden = false
-        }
+        //if (self.viewController?.messagesList.count)! > 0 {
+        //    self.viewController?.searchTableView.isHidden = false
+        //}
     }
 
 }
