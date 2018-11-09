@@ -120,6 +120,7 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
             deleteLabel.isHidden = true
         }
         
+        /*
         if let delayedDelivery = message.delayedDelivery {
             deleteLabel.isHidden = false
             deleteLabel.backgroundColor = k_greenColor
@@ -128,7 +129,7 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
             }
         } else {
             deleteLabel.isHidden = true
-        }
+        }*/
         
         if let isSecured = message.isProtected {
             if isSecured {

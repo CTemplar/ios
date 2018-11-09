@@ -31,6 +31,7 @@ class InboxRouter {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_SearchStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_SearchViewControllerID) as! SearchViewController
+        vc.messagesList = (self.viewController?.dataSource?.messagesArray)!
         self.viewController?.show(vc, sender: self)
     }
     

@@ -12,7 +12,17 @@ import UIKit
 
 class SearchTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var titleLabel        : UILabel!
+    @IBOutlet weak var folderNameBackground    : UIView!
+    @IBOutlet weak var folderNameLabel         : UILabel!
+    @IBOutlet weak var subjectLabel            : UILabel!
+    @IBOutlet weak var dateLabel               : UILabel!
+    @IBOutlet weak var senderLabel             : UILabel!
+    
+    @IBOutlet weak var hasAttachmentImageView  : UIImageView!
+    @IBOutlet weak var isSecuredImageView      : UIImageView!
+    @IBOutlet weak var isStaredImageView       : UIImageView!
+    
+    @IBOutlet var folderNameLabelWidthConstraint            : NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,5 +33,10 @@ class SearchTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
+    }
+    
+    func setupCellWithData(message: EmailMessage) {
+        
+        
     }
 }

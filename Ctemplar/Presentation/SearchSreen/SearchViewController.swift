@@ -33,7 +33,7 @@ class SearchViewController: UIViewController {
         presenter?.setupNavigationBarItem(searchBar: searchBar)
         
         dataSource?.initWith(parent: self, tableView: searchTableView, array: messagesList)
-    
+        
     }
     
     @IBAction func cancelButtonPressed(_ sender: AnyObject) {
@@ -42,7 +42,6 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func searchButtonPressed(_ sender: AnyObject) {
-        
         
     }
 }
