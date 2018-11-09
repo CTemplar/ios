@@ -12,6 +12,7 @@ import UIKit
 class SearchDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     var messagesArray           : Array<EmailMessage> = []
+    var customFoldersArray      : Array<Folder> = []
     
     var tableView               : UITableView!
     var parentViewController    : SearchViewController!
@@ -51,6 +52,11 @@ class SearchDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         
         let cell : SearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: k_SearchTableViewCellIdentifier)! as! SearchTableViewCell
       
+        cell.parentController = self
+        
+        let message = messagesArray[indexPath.row]        
+        cell.setupCellWithData(message: message)
+                
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
@@ -65,5 +71,11 @@ class SearchDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     func reloadData() {
         
         self.tableView.reloadData()
+        
+        if self.messagesArray.count > 0 {
+            self.tableView.isHidden = false
+        } else {
+            self.tableView.isHidden = true
+        }
     }
 }

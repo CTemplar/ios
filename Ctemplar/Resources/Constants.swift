@@ -81,6 +81,7 @@ let k_lightGrayColor: UIColor = UIColor(white: 0.0, alpha: 0.54)
 
 let k_lightGrayTextColor: UIColor = UIColor(red: 147.0 / 255.0, green: 145.0 / 255.0, blue: 145.0 / 255.0, alpha: 1.0)
 
+let k_mainInboxColor: UIColor = UIColor(red: 242.0 / 255.0, green: 240.0 / 255.0, blue: 240.0 / 255.0, alpha: 1.0)
 
 let k_whiteColor: UIColor = UIColor(red: 250.0 / 255.0, green: 251.0 / 255.0, blue: 251.0 / 255.0, alpha: 1.0)
 let k_selectedFolderColor: UIColor = UIColor(red: 18.0 / 255.0, green: 45.0 / 255.0, blue: 71.0 / 255.0, alpha: 0.1)
@@ -89,6 +90,7 @@ let k_unreadMessageColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255
 
 let k_actionMessageColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 1.0)
 
+let k_mainFolderTextColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 0.5)
 
 let k_orangeColor : UIColor = UIColor(red: 255.0 / 255.0, green: 170.0 / 255.0, blue: 14.0 / 255.0, alpha: 1.0)
 let k_greenColor : UIColor = UIColor(red: 0.0 / 255.0, green: 116.0 / 255.0, blue: 33.0 / 255.0, alpha: 1.0)
@@ -120,6 +122,10 @@ let k_dotImageTrailing          : CGFloat = 6.0
 
 let k_deleteLabelWidth          : CGFloat = 85.0 //72.0
 let k_deleteLabelSEWidth        : CGFloat = 45.0 //30.0
+
+let k_folderNameLabelWidth      : CGFloat = 50.0
+let k_folderNameLabelMaxWidth   : CGFloat = 80.0
+let k_folderNameLabelOffset     : CGFloat = 12.0
 
 let k_inboxFilterViewCenterY    : CGFloat = 430.0
 

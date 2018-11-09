@@ -36,6 +36,12 @@ class SearchViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.presenter?.interactor?.allMessagesList()     
+    }
+    
     @IBAction func cancelButtonPressed(_ sender: AnyObject) {
         
         self.navigationController?.popViewController(animated: true)
