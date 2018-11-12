@@ -366,7 +366,7 @@ class APIService {
     
     //MARK: - Mail
     
-    func messagesList(folder: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func messagesList(folder: String, seconds: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         var folderFilter = ""
         
@@ -385,7 +385,7 @@ class APIService {
                     
                     //HUD.show(.progress)
                     
-                    self.restAPIService?.messagesList(token: token, folder: folderFilter) {(result) in
+                    self.restAPIService?.messagesList(token: token, folder: folderFilter, seconds: seconds) {(result) in
                         
                         switch(result) {
                             
