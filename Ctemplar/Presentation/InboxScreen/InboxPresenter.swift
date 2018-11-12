@@ -59,9 +59,12 @@ class InboxPresenter {
             viewController?.inboxEmptyImageView.image =  UIImage(named: k_emptyInboxIconImageName)
         }
         
+        var moreButtonEnabled: Bool = false
+        
         if emailsCount > 0 {
             viewController?.emptyInbox.isHidden = true
             viewController?.advancedToolBar.isHidden = false
+            moreButtonEnabled = true
         } else {
             viewController?.emptyInbox.isHidden = false
             viewController?.advancedToolBar.isHidden = true
@@ -86,7 +89,7 @@ class InboxPresenter {
         
         setupNavigationItemTitle(selectedMessages: (self.viewController?.dataSource?.selectedMessagesIDArray.count)!, selectionMode: (self.viewController?.dataSource?.selectionMode)!, currentFolder: self.viewController!.currentFolder)
         
-        setupNavigationRightItems(searchMode: false)
+        setupNavigationRightItems(searchMode: false, moreButtonEnabled: moreButtonEnabled)
         
         if (self.viewController?.dataSource?.messagesArray.count)! > 0 {
             viewController?.emptyInbox.isHidden = true
@@ -104,7 +107,7 @@ class InboxPresenter {
         }
     }
     
-    func setupNavigationRightItems(searchMode: Bool) {
+    func setupNavigationRightItems(searchMode: Bool, moreButtonEnabled: Bool) {
         
         let searchButton : UIButton = UIButton.init(type: .custom)
         searchButton.setImage(UIImage(named: k_searchImageName), for: .normal)
@@ -117,6 +120,8 @@ class InboxPresenter {
         moreButton.addTarget(self, action: #selector(moreButtonPresed), for: .touchUpInside)
         moreButton.frame = CGRect(x: 0, y: 0, width: k_navBarButtonSize, height: k_navBarButtonSize)
         let moreItem = UIBarButtonItem(customView: moreButton)
+        
+        moreItem.isEnabled = moreButtonEnabled
         
         let cancelItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelButtonPresed))
         cancelItem.tintColor = UIColor.darkGray
@@ -206,16 +211,19 @@ class InboxPresenter {
     
     func enableSelectionMode() {
         
+        var moreButtonEnabled: Bool = false
+        
         self.viewController?.dataSource?.selectionMode = true
         self.viewController?.dataSource?.reloadData()
+        
+        if (self.viewController?.dataSource?.messagesArray.count)! > 0 {
+            moreButtonEnabled = true
+        }
         
         self.viewController?.leftBarButtonItem.image = nil
         self.viewController?.leftBarButtonItem.isEnabled = false
         
-        //self.viewController?.rightBarButtonItem.image = nil
-        //self.viewController?.rightBarButtonItem.title = "Cancel"
-        
-        setupNavigationRightItems(searchMode: true)
+        setupNavigationRightItems(searchMode: true, moreButtonEnabled: moreButtonEnabled)
         
         if self.viewController?.currentFolderFilter ==  MessagesFoldersName.draft.rawValue {
             self.viewController?.selectionDraftToolBar.isHidden = false
@@ -231,15 +239,21 @@ class InboxPresenter {
     
     func disableSelectionMode() {
         
+        var moreButtonEnabled: Bool = false
+        
         self.viewController?.appliedActionMessage = nil
         self.viewController?.dataSource?.selectionMode = false
         self.viewController?.dataSource?.selectedMessagesIDArray.removeAll()
         self.viewController?.dataSource?.reloadData()
         
+        if (self.viewController?.dataSource?.messagesArray.count)! > 0 {
+            moreButtonEnabled = true
+        }
+        
         self.viewController?.leftBarButtonItem.image = UIImage(named: k_menuImageName)
         self.viewController?.leftBarButtonItem.isEnabled = true
                 
-        setupNavigationRightItems(searchMode: false)
+        setupNavigationRightItems(searchMode: false, moreButtonEnabled: moreButtonEnabled)
         
         self.viewController?.selectionDraftToolBar.isHidden = true
         self.viewController?.selectionToolBar.isHidden = true
@@ -507,14 +521,20 @@ class InboxPresenter {
     
     func applyEmptyFolderAction() {
         
-        if self.viewController?.currentFolderFilter == MessagesFoldersName.trash.rawValue {
-            
-        }
+        if (self.viewController?.dataSource?.messagesArray.count)! > 0 {
         
-        if self.viewController?.currentFolderFilter == MessagesFoldersName.spam.rawValue {
             self.viewController?.dataSource?.selectedMessagesIDArray = self.allMessagesID()
             self.viewController?.appliedActionMessage = self.viewController?.dataSource?.messagesArray.first
-            self.markSelectedMessagesAsTrash()
+            
+            if self.viewController?.currentFolderFilter == MessagesFoldersName.trash.rawValue {
+                self.deleteMessagesPermanently()
+            }
+            
+            if self.viewController?.currentFolderFilter == MessagesFoldersName.spam.rawValue {
+                self.markSelectedMessagesAsTrash()
+            }
+        } else {
+            
         }
     }
     
@@ -611,6 +631,26 @@ class InboxPresenter {
                 self.interactor?.moveMessagesListToInbox(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!, withUndo: "undoMoveToInbox".localized())
             } else {
                 print("messages not selected!!!")
+            }
+        }
+    }
+    
+    func deleteMessagesPermanently() {
+     
+        let params = Parameters(
+            title: "deleteTitle".localized(),
+            message: "deleteMessage".localized(),
+            cancelButton: "cancelButton".localized(),
+            otherButtons: ["deleteButton".localized()]
+        )
+        
+        AlertHelperKit().showAlertWithHandler(self.viewController!, parameters: params) { buttonIndex in
+            switch buttonIndex {
+            case 0:
+                print("Cancel Delete")
+            default:
+                print("Delete")
+                self.interactor?.deleteMessagesList(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, withUndo: "")
             }
         }
     }

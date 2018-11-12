@@ -609,6 +609,12 @@ class APIService {
     
     func deleteMessages(messagesIDIn: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
+        var messagesIDInParameter = ""
+        
+        if messagesIDIn.count > 0 {
+            messagesIDInParameter = "?id__in=" + messagesIDIn
+        }
+        
         self.checkTokenExpiration(){ (complete) in
             if complete {
                 
@@ -616,27 +622,14 @@ class APIService {
                     
                     //HUD.show(.progress)
                     
-                    self.restAPIService?.deleteMessages(token: token, messagesIDIn: messagesIDIn) {(result) in
+                    self.restAPIService?.deleteMessages(token: token, messagesIDIn: messagesIDInParameter) {(result) in
                         
                         switch(result) {
                             
                         case .success(let value):
                             
                             print("deleteMessages success:", value)
-                            
-                            if let response = value as? Dictionary<String, Any> {
-                                
-                                if let message = self.parseServerResponse(response:response) {
-                                    //print("deleteMessages message:", message)
-                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
-                                    completionHandler(APIResult.failure(error))
-                                } else {
-                                    completionHandler(APIResult.success(response))
-                                }
-                            } else {
-                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
-                                completionHandler(APIResult.failure(error))
-                            }
+                            completionHandler(APIResult.success(value))
                             
                         case .failure(let error):
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])

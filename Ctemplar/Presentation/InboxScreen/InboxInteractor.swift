@@ -656,13 +656,7 @@ class InboxInteractor {
     
     //MARK: - Empty Folder Action
     
-    func deleteMessagesList(selectedMessagesIdArray: Array<Int>, lastSelectedMessage: EmailMessage, withUndo: String) {
-        /*
-        var folder = lastSelectedMessage.folder
-        
-        if withUndo.count > 0 {
-            folder = MessagesFoldersName.trash.rawValue
-        }*/
+    func deleteMessagesList(selectedMessagesIdArray: Array<Int>, withUndo: String) {
         
         var messagesIDList : String = ""
         
