@@ -81,9 +81,11 @@ class ViewInboxEmailPresenter {
         
         if let messageContent = self.interactor?.extractMessageContent(message: message) {
         
-            self.viewController?.contentTextView.isHidden = true
-            //self.viewController?.contentTextView.attributedText = messageContent.html2AttributedString
-            self.viewController?.webView.loadHTMLString(messageContent, baseURL: nil)
+            self.viewController?.contentTextView.isHidden = false
+            self.viewController?.webView.isHidden = true
+            self.viewController?.contentTextView.attributedText = messageContent.html2AttributedString
+            //self.viewController?.contentTextView.text = messageContent.html2String
+            //self.viewController?.webView.loadHTMLString(messageContent, baseURL: nil)
         }
     }
     
