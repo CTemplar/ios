@@ -38,11 +38,17 @@ class SignUpPagePasswordViewController: UIViewController, UITextFieldDelegate {
         parentSignUpPageViewController?.presenter?.setupPasswordTextFieldsAndHintLabels(childViewController: self, sender: choosePasswordTextField)
         parentSignUpPageViewController?.presenter?.setupPasswordTextFieldsAndHintLabels(childViewController: self, sender: confirmPasswordTextField)
         
+        parentSignUpPageViewController?.presenter?.passwordsHintLabel(show: false, sender: choosePasswordTextField, childViewController: self)
+        parentSignUpPageViewController?.presenter?.passwordsHintLabel(show: false, sender: confirmPasswordTextField, childViewController: self)
+        
         if Device.IS_IPHONE_5 {
             keyboardOffset = k_signUpPageKeyboardOffsetLarge        
         } else {
             keyboardOffset = k_signUpPageKeyboardOffsetBig
         }
+        
+        let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
+        self.view.addGestureRecognizer(freeSpaceViewGesture)
         
         adddNotificationObserver()  
     }
@@ -94,6 +100,21 @@ class SignUpPagePasswordViewController: UIViewController, UITextFieldDelegate {
     @IBAction func passwordTyped(_ sender: UITextField) {
         
         parentSignUpPageViewController?.presenter?.setupPasswordTextFieldsAndHintLabels(childViewController: self, sender: sender)
+    }
+    
+    @objc func tappedViewAction(sender : UITapGestureRecognizer) {
+        
+        view.endEditing(true)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        parentSignUpPageViewController?.presenter?.passwordsHintLabel(show: true, sender: textField, childViewController: self)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        parentSignUpPageViewController?.presenter?.passwordsHintLabel(show: false, sender: textField, childViewController: self)
     }
     
     //MARK: - notification

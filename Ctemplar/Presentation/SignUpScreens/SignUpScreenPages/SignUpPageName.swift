@@ -23,8 +23,9 @@ class SignUpPageNameViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        parentSignUpPageViewController = self.parent as? SignUpPageViewController
-        parentSignUpPageViewController?.presenter?.setupNameTextFieldAndHintLabel(childViewController: self)
+        parentSignUpPageViewController = self.parent as? SignUpPageViewController        
+        parentSignUpPageViewController?.presenter?.setupNextButtonState(childViewController: self)
+        parentSignUpPageViewController?.presenter?.userNameHintLabel(show: false, childViewController: self)
         
         if (Device.IS_IPHONE_5) {
             keyboardOffset = k_signUpPageKeyboardOffsetBig
@@ -53,7 +54,7 @@ class SignUpPageNameViewController: UIViewController, UITextFieldDelegate {
     @IBAction func userNameTyped(_ sender: UITextField) {
         
         parentSignUpPageViewController?.userName = sender.text
-    
+        parentSignUpPageViewController?.presenter?.setupNextButtonState(childViewController: self)
     }
     
     @objc func tappedViewAction(sender : UITapGestureRecognizer) {

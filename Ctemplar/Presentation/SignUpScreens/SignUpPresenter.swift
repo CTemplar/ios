@@ -95,18 +95,41 @@ class SignUpPresenter {
         }
     }
     
-    func setupNameTextFieldAndHintLabel(childViewController: SignUpPageNameViewController) {
-        
-        if (formatterService?.validateNameLench(enteredName: (viewController?.userName)!))! {
-            childViewController.userNameHintLabel.isHidden = false
-        } else {
-            childViewController.userNameHintLabel.isHidden = true
-        }
-        
+    func setupNextButtonState(childViewController: SignUpPageNameViewController) {
+
         if (formatterService?.validateNameFormat(enteredName: (viewController?.userName)!))! {
             changeButtonState(button: childViewController.nextButton, disabled: false)
         } else {
             changeButtonState(button: childViewController.nextButton, disabled: true)
+        }
+    }
+    
+    //MARK: - New Password Screen
+    
+    func passwordsHintLabel(show: Bool, sender: UITextField, childViewController: SignUpPagePasswordViewController) {
+        
+        if sender == childViewController.choosePasswordTextField {
+            if show {
+                childViewController.choosePasswordHintLabel.isHidden = false
+                childViewController.choosePasswordTextField.placeholder = ""
+            } else {
+                if !(formatterService?.validateNameLench(enteredName: (childViewController.choosePasswordTextField.text)!))! {
+                    childViewController.choosePasswordTextField.placeholder = "choosePasswordPlaceholder".localized()
+                    childViewController.choosePasswordHintLabel.isHidden = true
+                }
+            }
+        }
+        
+        if sender == childViewController.confirmPasswordTextField {
+            if show {
+                childViewController.confirmPasswordHintLabel.isHidden = false
+                childViewController.confirmPasswordTextField.placeholder = ""
+            } else {
+                if !(formatterService?.validateNameLench(enteredName: (childViewController.confirmPasswordTextField.text)!))! {
+                    childViewController.confirmPasswordTextField.placeholder = "confirmPasswordPlaceholder".localized()
+                    childViewController.confirmPasswordHintLabel.isHidden = true
+                }
+            }
         }
     }
     
@@ -123,6 +146,7 @@ class SignUpPresenter {
             print("unknown textfield")
         }
         
+        /*
         if (formatterService?.validatePasswordLench(enteredPassword: childViewController.choosedPassword!))! {
             childViewController.choosePasswordHintLabel.isHidden = false
         } else {
@@ -134,6 +158,7 @@ class SignUpPresenter {
         } else {
             childViewController.confirmPasswordHintLabel.isHidden = true
         }
+        */
         
         if ((formatterService?.passwordsMatched(choosedPassword: childViewController.choosedPassword! , confirmedPassword: childViewController.confirmedPassword!))!) {
             print("passwords matched")
