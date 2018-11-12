@@ -17,12 +17,14 @@ class InboxSideMenuPresenter {
     
     func setupUserProfileBar() {
         
-        for mailbox in (self.viewController?.currentParentViewController.mailboxesList)! {            
-            if let defaultMailbox = mailbox.isDefault {
-                if defaultMailbox {
-                    if let defaultEmail = mailbox.email {
-                        self.viewController!.emailLabel.text = defaultEmail
-                        self.viewController!.nameLabel.text = mailbox.displayName
+        if let mailboxes = self.viewController?.currentParentViewController.mailboxesList {
+            for mailbox in mailboxes {
+                if let defaultMailbox = mailbox.isDefault {
+                    if defaultMailbox {
+                        if let defaultEmail = mailbox.email {
+                            self.viewController!.emailLabel.text = defaultEmail
+                            self.viewController!.nameLabel.text = mailbox.displayName
+                        }
                     }
                 }
             }

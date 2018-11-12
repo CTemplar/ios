@@ -128,7 +128,7 @@ class InboxInteractor {
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
-            HUD.hide()
+            //HUD.hide()
         }
     }
     
