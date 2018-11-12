@@ -339,5 +339,6 @@ enum ActionsIndex: Int, CaseIterable {
     case moveToArchive    = 5
     case moveToInbox      = 6
     case moveTo           = 7
-    case noAction         = 8
+    case delete           = 8
+    case noAction         = 9
 }

@@ -653,4 +653,39 @@ class InboxInteractor {
             }
         }
     }
+    
+    //MARK: - Empty Folder Action
+    
+    func deleteMessagesList(selectedMessagesIdArray: Array<Int>, lastSelectedMessage: EmailMessage, withUndo: String) {
+        /*
+        var folder = lastSelectedMessage.folder
+        
+        if withUndo.count > 0 {
+            folder = MessagesFoldersName.trash.rawValue
+        }*/
+        
+        var messagesIDList : String = ""
+        
+        for message in selectedMessagesIdArray {
+            messagesIDList = messagesIDList + message.description + ","
+        }
+        
+        messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex)) //remove last ","
+        
+        apiService?.deleteMessages(messagesIDIn: messagesIDList) {(result) in
+            
+            switch(result) {
+                
+            case .success( _):
+                //print("value:", value)
+                print("deleteMessagesList")
+                self.viewController?.lastAction = ActionsIndex.moveToArchive
+                self.updateMessages(withUndo: withUndo)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
 }
