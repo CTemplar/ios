@@ -178,6 +178,13 @@ extension InboxViewController: InboxFilterDelegate {
         presenter?.showFilterView()
         presenter?.applyFilterAction(sender)
     }
+    
+    func cancelAction() {
+        
+        presenter?.showFilterView()
+        
+        self.presenter?.setupUI(emailsCount: emailsCount, unreadEmails: unreadEmails, filterEnabled: false)
+    }
 }
 
 extension InboxViewController: MoreActionsDelegate {

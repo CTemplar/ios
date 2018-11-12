@@ -11,6 +11,7 @@ import UIKit
 
 protocol InboxFilterDelegate {
     func applyAction(_ sender: AnyObject, appliedFilters: Array<Bool>)
+    func cancelAction()
 }
 
 class InboxFilterView: UIView {
@@ -46,6 +47,9 @@ class InboxFilterView: UIView {
     
     private func commonInit() {
         
+        let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture(gesture:)))
+        swipeDownGesture.direction = .down
+        self.addGestureRecognizer(swipeDownGesture)
     }
     
     func setup(appliedFilters: Array<Bool>) {
@@ -53,6 +57,8 @@ class InboxFilterView: UIView {
         self.parentFilters = appliedFilters
         
         self.setupLocal(appliedFilters: appliedFilters)
+        
+
     }
     
     func setupLocal(appliedFilters: Array<Bool>) {
@@ -104,6 +110,13 @@ class InboxFilterView: UIView {
     }
     
     @IBAction func cancelButtonPressed(_ sender: AnyObject) {        
-        delegate?.applyAction(sender, appliedFilters: self.parentFilters)
+        delegate?.cancelAction()
+    }
+    
+    @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+        
+        if gesture.direction == UISwipeGestureRecognizer.Direction.down {
+            delegate?.cancelAction()
+        }
     }
 }
