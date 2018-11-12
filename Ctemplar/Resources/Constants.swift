@@ -158,6 +158,7 @@ let k_darkEyeOnIconImageName        = "DarkEyeOnIcon"
 
 let k_checkBoxUncheckedImageName    = "roundDark"
 let k_checkBoxSelectedImageName     = "checkedBoxDark"
+let k_roundSelectedImageName        = "selectedRoundDark"
 
 let k_composeImageName              = "ComposeButton"
 let k_composeRedImageName           = "ComposeRedButton"
