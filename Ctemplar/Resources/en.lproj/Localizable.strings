@@ -26,7 +26,11 @@
 "usernamePlaceholder" = "Username";
 "choosePasswordPlaceholder" = "Choose password";
 "confirmPasswordPlaceholder" = "Confirm password";
-"recoveryEmailPlaceholder" = "Recovey email";
+"recoveryEmailPlaceholder" = "Recovery email";
+"usernameResetPlaceholder" = "Ctemplar username to reset";
+"resetCodePlaceholder" = "Reset Code";
+"newPasswordPlaceholder" = "New password";
+"confirmNewPasswordPlaceholder" = "Confirm new password";
 
 //side menu
 

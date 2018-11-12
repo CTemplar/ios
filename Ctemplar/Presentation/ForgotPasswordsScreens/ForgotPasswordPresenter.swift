@@ -17,26 +17,32 @@ class ForgotPasswordPresenter {
     var interactor       : ForgotPasswordInteractor?
     var formatterService : FormatterService?
 
-    
-    func setupUserNameTextFieldsAndHintLabel(userName: String) {
+    func forgotPasswordHintLabel(show: Bool, sender: UITextField) {
         
         let currentViewController = viewController as? ForgotPasswordViewController
         
-        if (formatterService?.validateNameLench(enteredName: userName))! {
-            currentViewController?.userNameHintLabel.isHidden = false
-        } else {
-            currentViewController?.userNameHintLabel.isHidden = true
+        if sender == currentViewController?.userNameTextField {
+            if show {
+                currentViewController!.userNameHintLabel.isHidden = false
+                currentViewController?.userNameTextField.placeholder = ""
+            } else {
+                if !(formatterService?.validateNameLench(enteredName: (currentViewController?.userNameTextField.text)!))! {
+                    currentViewController?.userNameTextField.placeholder = "usernameResetPlaceholder".localized()
+                    currentViewController!.userNameHintLabel.isHidden = true
+                }
+            }
         }
-    }
-    
-    func setupRecoveryTextFieldsAndHintLabel(email: String) {
         
-        let currentViewController = viewController as? ForgotPasswordViewController
-        
-        if (formatterService?.validateEmailFormat(enteredEmail: email))! {
-            currentViewController?.recoveryEmailHintLabel.isHidden = false
-        } else {
-            currentViewController?.recoveryEmailHintLabel.isHidden = true
+        if sender == currentViewController?.recoveryEmailTextField {
+            if show {
+                currentViewController?.recoveryEmailHintLabel.isHidden = false
+                currentViewController?.recoveryEmailTextField.placeholder = ""
+            } else {
+                if !(formatterService?.validateNameLench(enteredName: (currentViewController?.recoveryEmailTextField.text)!))! {
+                    currentViewController?.recoveryEmailTextField.placeholder = "recoveryEmailPlaceholder".localized()
+                    currentViewController!.recoveryEmailHintLabel.isHidden = true
+                }
+            }
         }
     }
     
@@ -53,14 +59,18 @@ class ForgotPasswordPresenter {
         }
     }
     
-    func setupResetCodeTextFieldsAndHintLabel(resetCode: String) {
+    func resetPasswordHintLabel(show: Bool) {
         
         let currentViewController = viewController as? ResetPasswordViewController
         
-        if (formatterService?.validateNameLench(enteredName: resetCode))! {
+        if show {
             currentViewController?.resetCodeHintLabel.isHidden = false
+            currentViewController?.resetCodeTextField.placeholder = ""
         } else {
-            currentViewController?.resetCodeHintLabel.isHidden = true
+            if !(formatterService?.validateNameLench(enteredName: (currentViewController?.resetCodeTextField.text)!))! {
+                currentViewController?.resetCodeTextField.placeholder = "resetCodePlaceholder".localized()
+                currentViewController!.resetCodeHintLabel.isHidden = true
+            }
         }
     }
     
@@ -73,7 +83,36 @@ class ForgotPasswordPresenter {
         }
     }
     
-    func setupPasswordTextFieldsAndHintLabels(childViewController: NewPasswordViewController, sender: UITextField) {
+    func passwordsHintLabel(show: Bool, sender: UITextField) {
+        
+        let currentViewController = viewController as? NewPasswordViewController
+        
+        if sender == currentViewController?.newPasswordTextField {
+            if show {
+                currentViewController?.newPasswordHintLabel.isHidden = false
+                currentViewController?.newPasswordTextField.placeholder = ""
+            } else {
+                if !(formatterService?.validateNameLench(enteredName: (currentViewController?.newPasswordTextField.text)!))! {
+                    currentViewController?.newPasswordTextField.placeholder = "newPasswordPlaceholder".localized()
+                    currentViewController?.newPasswordHintLabel.isHidden = true
+                }
+            }
+        }
+        
+        if sender == currentViewController?.confirmPasswordTextField {
+            if show {
+                currentViewController?.confirmPasswordHintLabel.isHidden = false
+                currentViewController?.confirmPasswordTextField.placeholder = ""
+            } else {
+                if !(formatterService?.validateNameLench(enteredName: (currentViewController?.confirmPasswordTextField.text)!))! {
+                    currentViewController?.confirmPasswordTextField.placeholder = "confirmNewPasswordPlaceholder".localized()
+                    currentViewController?.confirmPasswordHintLabel.isHidden = true
+                }
+            }
+        }
+    }
+    
+    func newPasswordsResetButtonState(childViewController: NewPasswordViewController, sender: UITextField) {
         
         switch sender {
         case (childViewController.newPasswordTextField)!:
@@ -84,18 +123,6 @@ class ForgotPasswordPresenter {
             childViewController.confirmedPassword = sender.text
         default:
             print("unknown textfield")
-        }
-        
-        if (formatterService?.validatePasswordLench(enteredPassword: childViewController.newPassword!))! {
-            childViewController.newPasswordHintLabel.isHidden = false
-        } else {
-            childViewController.newPasswordHintLabel.isHidden = true
-        }
-        
-        if (formatterService?.validatePasswordLench(enteredPassword: childViewController.confirmedPassword!))! {
-            childViewController.confirmPasswordHintLabel.isHidden = false
-        } else {
-            childViewController.confirmPasswordHintLabel.isHidden = true
         }
         
         if ((formatterService?.passwordsMatched(choosedPassword: childViewController.newPassword! , confirmedPassword: childViewController.confirmedPassword!))!) {

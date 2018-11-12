@@ -39,14 +39,19 @@ class NewPasswordViewController: UIViewController, UITextFieldDelegate {
         self.configurator = ForgotPasswordConfigurator()
         self.configurator?.configure(viewController: self)
         
-        self.configurator?.presenter?.setupPasswordTextFieldsAndHintLabels(childViewController: self, sender: newPasswordTextField)
-        self.configurator?.presenter?.setupPasswordTextFieldsAndHintLabels(childViewController: self, sender: confirmPasswordTextField)
+        self.configurator?.presenter?.newPasswordsResetButtonState(childViewController: self, sender: newPasswordTextField)
+        self.configurator?.presenter?.newPasswordsResetButtonState(childViewController: self, sender: confirmPasswordTextField)
+        self.configurator?.presenter?.passwordsHintLabel(show: false, sender: newPasswordTextField)
+        self.configurator?.presenter?.passwordsHintLabel(show: false, sender: confirmPasswordTextField)
         
         if (Device.IS_IPHONE_5) {
             keyboardOffset = k_signUpPageKeyboardOffsetMedium
         } else {
             keyboardOffset = 0.0
         }
+        
+        let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
+        self.view.addGestureRecognizer(freeSpaceViewGesture)
         
         adddNotificationObserver()
     }
@@ -65,7 +70,22 @@ class NewPasswordViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func passwordTyped(_ sender: UITextField) {
         
-        self.configurator?.presenter?.setupPasswordTextFieldsAndHintLabels(childViewController: self, sender: sender)
+        self.configurator?.presenter?.newPasswordsResetButtonState(childViewController: self, sender: sender)
+    }
+    
+    @objc func tappedViewAction(sender : UITapGestureRecognizer) {
+        
+        view.endEditing(true)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        self.configurator?.presenter?.forgotPasswordHintLabel(show: true, sender: textField)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        self.configurator?.presenter?.forgotPasswordHintLabel(show: false, sender: textField)
     }
     
     //MARK: - notification
