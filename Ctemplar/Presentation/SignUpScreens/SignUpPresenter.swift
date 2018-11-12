@@ -82,6 +82,19 @@ class SignUpPresenter {
     
     //MARK: - Child View Controllers functional
     
+    func userNameHintLabel(show: Bool, childViewController: SignUpPageNameViewController) {
+       
+        if show {
+            childViewController.userNameHintLabel.isHidden = false
+            childViewController.userNameTextField.placeholder = ""
+        } else {
+            if !(formatterService?.validateNameLench(enteredName: (childViewController.userNameTextField.text)!))! {
+                childViewController.userNameTextField.placeholder = "usernamePlaceholder".localized()
+                childViewController.userNameHintLabel.isHidden = true
+            }
+        }
+    }
+    
     func setupNameTextFieldAndHintLabel(childViewController: SignUpPageNameViewController) {
         
         if (formatterService?.validateNameLench(enteredName: (viewController?.userName)!))! {

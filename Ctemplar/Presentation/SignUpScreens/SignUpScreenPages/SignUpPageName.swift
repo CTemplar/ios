@@ -32,6 +32,9 @@ class SignUpPageNameViewController: UIViewController, UITextFieldDelegate {
             keyboardOffset = 0.0
         }
         
+        let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
+        self.view.addGestureRecognizer(freeSpaceViewGesture)
+        
         adddNotificationObserver()
     }
     
@@ -39,7 +42,6 @@ class SignUpPageNameViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func nextButtonPressed(_ sender: AnyObject) {
         
-         //parentSignUpPageViewController?.presenter?.showNextViewController(childViewController: self)
         parentSignUpPageViewController?.presenter?.pressedNextButton(childViewController: self)
     }
     
@@ -52,7 +54,21 @@ class SignUpPageNameViewController: UIViewController, UITextFieldDelegate {
         
         parentSignUpPageViewController?.userName = sender.text
     
-        parentSignUpPageViewController?.presenter?.setupNameTextFieldAndHintLabel(childViewController: self)
+    }
+    
+    @objc func tappedViewAction(sender : UITapGestureRecognizer) {
+        
+        view.endEditing(true)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        parentSignUpPageViewController?.presenter?.userNameHintLabel(show: true, childViewController: self)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        parentSignUpPageViewController?.presenter?.userNameHintLabel(show: false, childViewController: self)
     }
     
     //MARK: - notification

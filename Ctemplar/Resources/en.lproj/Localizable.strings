@@ -23,6 +23,7 @@
 
 "emailPlaceholder" = "Email";
 "passwordPlaceholder" = "Password";
+"usernamePlaceholder" = "Username";
 
 //side menu
 
