@@ -61,7 +61,7 @@ class InboxViewController: UIViewController {
     
     @IBOutlet var leftBarButtonItem     : UIBarButtonItem!
     @IBOutlet var rightBarButtonItem    : UIBarButtonItem!
-    @IBOutlet var moreBarButtonItem    : UIBarButtonItem!
+    @IBOutlet var moreBarButtonItem     : UIBarButtonItem!
     
     //MARK: - Lifecycle
     

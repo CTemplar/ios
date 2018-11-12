@@ -231,25 +231,20 @@ class InboxPresenter {
     
     func disableSelectionMode() {
         
+        self.viewController?.appliedActionMessage = nil
         self.viewController?.dataSource?.selectionMode = false
         self.viewController?.dataSource?.selectedMessagesIDArray.removeAll()
         self.viewController?.dataSource?.reloadData()
         
         self.viewController?.leftBarButtonItem.image = UIImage(named: k_menuImageName)
         self.viewController?.leftBarButtonItem.isEnabled = true
-        
-        //self.viewController?.rightBarButtonItem.image = UIImage(named: k_searchImageName)
-        //self.viewController?.rightBarButtonItem.title = ""
-        
+                
         setupNavigationRightItems(searchMode: false)
         
         self.viewController?.selectionDraftToolBar.isHidden = true
         self.viewController?.selectionToolBar.isHidden = true
         
         setupNavigationItemTitle(selectedMessages: (self.viewController?.dataSource?.selectedMessagesIDArray.count)!, selectionMode: (self.viewController?.dataSource?.selectionMode)!, currentFolder: self.viewController!.currentFolder)
-        
-        self.viewController?.appliedActionMessage = nil
-        self.viewController?.dataSource?.selectedMessagesIDArray.removeAll()
     }
     
     //MARK: - filter
@@ -500,7 +495,7 @@ class InboxPresenter {
                 break
             case MoreActionsTitles.emptyFolder.rawValue.localized():
                 print("emptyFolder btn more actions")
-                //self.markSelectedMessagesAsTrash()
+                self.applyEmptyFolderAction()
                 break
             default:
                 print("more actions: default")
@@ -508,6 +503,32 @@ class InboxPresenter {
         }
         
         self.showMoreActionsView(emptyFolder: false)
+    }
+    
+    func applyEmptyFolderAction() {
+        
+        if self.viewController?.currentFolderFilter == MessagesFoldersName.trash.rawValue {
+            
+        }
+        
+        if self.viewController?.currentFolderFilter == MessagesFoldersName.spam.rawValue {
+            self.viewController?.dataSource?.selectedMessagesIDArray = self.allMessagesID()
+            self.viewController?.appliedActionMessage = self.viewController?.dataSource?.messagesArray.first
+            self.markSelectedMessagesAsTrash()
+        }
+    }
+    
+    func allMessagesID() -> Array<Int> {
+        
+        var messagesID : Array<Int> = []
+        
+        for message in (self.viewController?.dataSource?.messagesArray)! {
+            if let messageID = message.messsageID {
+                messagesID.append(messageID)
+            }
+        }
+        
+        return messagesID
     }
     
     func needReadAction() -> Bool {
