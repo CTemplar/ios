@@ -26,6 +26,7 @@
 "usernamePlaceholder" = "Username";
 "choosePasswordPlaceholder" = "Choose password";
 "confirmPasswordPlaceholder" = "Confirm password";
+"recoveryEmailPlaceholder" = "Recovey email";
 
 //side menu
 

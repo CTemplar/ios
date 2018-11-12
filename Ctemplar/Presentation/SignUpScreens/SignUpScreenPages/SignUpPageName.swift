@@ -24,7 +24,7 @@ class SignUpPageNameViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         parentSignUpPageViewController = self.parent as? SignUpPageViewController        
-        parentSignUpPageViewController?.presenter?.setupNextButtonState(childViewController: self)
+        parentSignUpPageViewController?.presenter?.setupUsernamePageNextButtonState(childViewController: self)
         parentSignUpPageViewController?.presenter?.userNameHintLabel(show: false, childViewController: self)
         
         if (Device.IS_IPHONE_5) {
@@ -54,7 +54,7 @@ class SignUpPageNameViewController: UIViewController, UITextFieldDelegate {
     @IBAction func userNameTyped(_ sender: UITextField) {
         
         parentSignUpPageViewController?.userName = sender.text
-        parentSignUpPageViewController?.presenter?.setupNextButtonState(childViewController: self)
+        parentSignUpPageViewController?.presenter?.setupUsernamePageNextButtonState(childViewController: self)
     }
     
     @objc func tappedViewAction(sender : UITapGestureRecognizer) {

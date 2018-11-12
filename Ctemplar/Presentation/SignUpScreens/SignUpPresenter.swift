@@ -95,7 +95,7 @@ class SignUpPresenter {
         }
     }
     
-    func setupNextButtonState(childViewController: SignUpPageNameViewController) {
+    func setupUsernamePageNextButtonState(childViewController: SignUpPageNameViewController) {
 
         if (formatterService?.validateNameFormat(enteredName: (viewController?.userName)!))! {
             changeButtonState(button: childViewController.nextButton, disabled: false)
@@ -133,7 +133,7 @@ class SignUpPresenter {
         }
     }
     
-    func setupPasswordTextFieldsAndHintLabels(childViewController: SignUpPagePasswordViewController, sender: UITextField) {
+    func setupPasswordsNextButtonState(childViewController: SignUpPagePasswordViewController, sender: UITextField) {
         
         switch sender {
         case (childViewController.choosePasswordTextField)!:
@@ -145,20 +145,6 @@ class SignUpPresenter {
         default:
             print("unknown textfield")
         }
-        
-        /*
-        if (formatterService?.validatePasswordLench(enteredPassword: childViewController.choosedPassword!))! {
-            childViewController.choosePasswordHintLabel.isHidden = false
-        } else {
-            childViewController.choosePasswordHintLabel.isHidden = true
-        }
-        
-        if (formatterService?.validatePasswordLench(enteredPassword: childViewController.confirmedPassword!))! {
-            childViewController.confirmPasswordHintLabel.isHidden = false
-        } else {
-            childViewController.confirmPasswordHintLabel.isHidden = true
-        }
-        */
         
         if ((formatterService?.passwordsMatched(choosedPassword: childViewController.choosedPassword! , confirmedPassword: childViewController.confirmedPassword!))!) {
             print("passwords matched")
@@ -177,13 +163,22 @@ class SignUpPresenter {
         }
     }
     
-    func setupRecoveryEmailTextFieldAndHintLabel(childViewController: SignUpPageEmailViewController) {
+    //MARK: - Recovery Email Screen
+    
+    func recoveryEmailHintLabel(show: Bool, childViewController: SignUpPageEmailViewController) {
         
-        if (formatterService?.validateNameLench(enteredName: (viewController?.recoveryEmail)!))! {
+        if show {
             childViewController.recoveryEmailHintLabel.isHidden = false
+            childViewController.recoveryEmailTextField.placeholder = ""
         } else {
-            childViewController.recoveryEmailHintLabel.isHidden = true
+            if !(formatterService?.validateNameLench(enteredName: (childViewController.recoveryEmailTextField.text)!))! {
+                childViewController.recoveryEmailTextField.placeholder = "recoveryEmailPlaceholder".localized()
+                childViewController.recoveryEmailHintLabel.isHidden = true
+            }
         }
+    }
+    
+    func setupRecoveryEmailNextButtonState(childViewController: SignUpPageEmailViewController) {
         
         if childViewController.termsBoxChecked {
             if (formatterService?.validateNameLench(enteredName: (viewController?.recoveryEmail)!))! {
@@ -225,7 +220,7 @@ class SignUpPresenter {
         
         childViewController.checkBoxButton.setBackgroundImage(checkBoxImage, for: .normal)
         
-        setupRecoveryEmailTextFieldAndHintLabel(childViewController: childViewController)
+        setupRecoveryEmailNextButtonState(childViewController: childViewController)
     }
 
     func showNextViewController(childViewController: UIViewController) {

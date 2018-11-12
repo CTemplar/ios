@@ -27,8 +27,10 @@ class SignUpPageEmailViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         parentSignUpPageViewController = self.parent as? SignUpPageViewController
-        parentSignUpPageViewController?.presenter?.setupRecoveryEmailTextFieldAndHintLabel(childViewController: self)
+        parentSignUpPageViewController?.presenter?.setupRecoveryEmailNextButtonState(childViewController: self)
         //parentSignUpPageViewController?.presenter?.pressedCheckBoxButton(childViewController: self)
+        
+        parentSignUpPageViewController?.presenter?.recoveryEmailHintLabel(show: false, childViewController: self)
         
         setupAttributesForTextView()
         
@@ -39,6 +41,9 @@ class SignUpPageEmailViewController: UIViewController, UITextFieldDelegate {
         } else {
             keyboardOffset = k_signUpPageKeyboardOffsetSmall
         }
+        
+        let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
+        self.view.addGestureRecognizer(freeSpaceViewGesture)
         
         adddNotificationObserver()
     }
@@ -81,12 +86,27 @@ class SignUpPageEmailViewController: UIViewController, UITextFieldDelegate {
         
         parentSignUpPageViewController?.recoveryEmail = sender.text
         
-        parentSignUpPageViewController?.presenter?.setupRecoveryEmailTextFieldAndHintLabel(childViewController: self)
+        parentSignUpPageViewController?.presenter?.setupRecoveryEmailNextButtonState(childViewController: self)
     }
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
      
         return true
+    }
+    
+    @objc func tappedViewAction(sender : UITapGestureRecognizer) {
+        
+        view.endEditing(true)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        parentSignUpPageViewController?.presenter?.recoveryEmailHintLabel(show: true, childViewController: self)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        parentSignUpPageViewController?.presenter?.recoveryEmailHintLabel(show: false, childViewController: self)
     }
     
     //MARK: - notification
