@@ -15,6 +15,8 @@ class SearchDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     var customFoldersArray      : Array<Folder> = []
     var filteredArray           : Array<EmailMessage> = []
     
+    var searchText              : String = ""
+    
     var tableView               : UITableView!
     var parentViewController    : SearchViewController!
     var formatterService        : FormatterService?
@@ -68,7 +70,7 @@ class SearchDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         }
         
         //let message = messagesArray[indexPath.row]
-        cell.setupCellWithData(message: message)
+        cell.setupCellWithData(message: message, foundText: searchText)
                 
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero

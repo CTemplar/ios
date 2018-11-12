@@ -544,6 +544,41 @@ extension NSMutableAttributedString {
         return false
     }
     
+    public func foundRangeFor(lowercasedString: String, textToFind: String) -> NSRange {
+        
+        let lowercasedTextToFind = textToFind.lowercased()
+        
+        if let stringRange = lowercasedString.range(of: lowercasedTextToFind) {
+            let foundRange = NSRange(stringRange, in: lowercasedString)
+            
+            if foundRange.location != NSNotFound {
+                return foundRange
+            }
+        }
+        
+        return NSRange(location: 0, length: 0)
+    }
+    
+    public func setBackgroundColor(range: NSRange, color: UIColor) -> Bool {
+        
+        if range.location != NSNotFound {
+            self.addAttribute(.backgroundColor, value: color, range: range)
+            return true
+        }
+        return false
+    }
+    
+    public func setBackgroundColor(textToFind: String, color: UIColor) -> Bool {
+        
+        let foundRange = self.mutableString.range(of: textToFind)
+        
+        if foundRange.location != NSNotFound {
+            self.addAttribute(.backgroundColor, value: color, range: foundRange)
+            return true
+        }
+        return false
+    }
+    
     public func setFont(textToFind: String, font: UIFont) -> Bool {
         
         let foundRange = self.mutableString.range(of: textToFind)

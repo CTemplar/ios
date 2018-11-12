@@ -37,15 +37,20 @@ class SearchTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setupCellWithData(message: EmailMessage) {
+    func setupCellWithData(message: EmailMessage, foundText: String) {
         
-        if let subject = message.subject {
-            subjectLabel.text = subject
+        if let subject = message.subject {            
+            let subjectAttributedString = NSMutableAttributedString(string: subject)
+            let range = subjectAttributedString.foundRangeFor(lowercasedString: subject.lowercased(), textToFind: foundText)
+            _ = subjectAttributedString.setBackgroundColor(range: range, color: k_foundTextBackgroundColor)
+            subjectLabel.attributedText = subjectAttributedString
         }
         
         if let sender = message.sender {
-            
-            senderLabel.text = sender
+            let senderAttributedString = NSMutableAttributedString(string: sender)
+            let range = senderAttributedString.foundRangeFor(lowercasedString: sender.lowercased(), textToFind: foundText)
+            _ = senderAttributedString.setBackgroundColor(range: range, color: k_foundTextBackgroundColor)
+            senderLabel.attributedText = senderAttributedString
         }
         
         if let createdDate = message.createdAt {            

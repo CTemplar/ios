@@ -84,4 +84,27 @@ class SearchInteractor {
             HUD.hide()
         }
     }
+    
+    func setFilteredList(searchText: String) {
+        
+        let filteredSubjectsList = (self.viewController?.dataSource?.messagesArray.filter({( message : EmailMessage) -> Bool in
+            return (message.subject?.lowercased().contains(searchText.lowercased()))!
+        }))!
+        
+        let filteredSendersList = (self.viewController?.dataSource?.messagesArray.filter({( message : EmailMessage) -> Bool in
+            return (message.sender?.lowercased().contains(searchText.lowercased()))!
+        }))!
+        
+        let filteredList = filteredSendersList + filteredSubjectsList
+        
+        updateDataSource(searchText: searchText, filteredList: filteredList)
+    }
+    
+    func updateDataSource(searchText: String, filteredList: Array<EmailMessage>) {
+        
+        self.viewController?.dataSource?.filtered =  (self.viewController?.isFiltering())!
+        self.viewController?.dataSource?.filteredArray = filteredList
+        self.viewController?.dataSource?.searchText = searchText
+        self.viewController?.dataSource?.reloadData()
+    }
 }

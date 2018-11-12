@@ -93,12 +93,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        filteredArray = (self.dataSource?.messagesArray.filter({( message : EmailMessage) -> Bool in
-            return (message.subject?.lowercased().contains(searchText.lowercased()))!
-        }))!
-        
-        self.dataSource?.filtered = isFiltering()
-        self.dataSource?.filteredArray = filteredArray
-        self.dataSource?.reloadData()
+        self.presenter?.interactor?.setFilteredList(searchText: searchText)
     }
 }
