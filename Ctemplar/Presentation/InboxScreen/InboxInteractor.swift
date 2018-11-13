@@ -120,7 +120,7 @@ class InboxInteractor {
                 }
                 
                 self.unreadMessagesCounter() //need to Side Menu unread msg counters
-                self.userMyself()//temp for debug
+                //self.userMyself()//temp for debug
                 
             case .failure(let error):
                 print("error:", error)
@@ -181,8 +181,7 @@ class InboxInteractor {
             }
             
             HUD.hide()
-        }
-        
+        }        
     }
     
     func checkStoredPGPKeys() -> Bool {
@@ -257,7 +256,7 @@ class InboxInteractor {
     }
     
     //MARK: - message headers
-
+/*
     func decryptMessage(content: String) -> String {
         
         if let message = self.pgpService?.decryptMessage(encryptedContet: content) {
@@ -267,14 +266,15 @@ class InboxInteractor {
         
         return ""
     }
-    
+    */
     
     func headerOfMessage(content: String) -> String {
         
         var header : String = ""
         var message : String = ""
         
-        message = self.decryptMessage(content: content)
+        //message = self.decryptMessage(content: content)
+        message = content //!!!!!!
 
         //message = message.html2String
         //print("format to String message: ", message)
@@ -298,6 +298,45 @@ class InboxInteractor {
         return header
     }
     
+    func decryptHeader(content: String, index: Int) {
+     
+        let queue = DispatchQueue.global(qos: .utility)
+
+        queue.async {
+            
+            if let message = self.pgpService?.decryptMessage(encryptedContet: content) {
+                DispatchQueue.main.async {
+                    //print("message:", message)
+                    self.setDecryptedHeader(content: message, index: index)
+                }
+            }
+        }
+    }
+    
+    func setDecryptedHeader(content: String, index: Int) {
+        
+        let header = self.headerOfMessage(content: content)
+        
+        self.viewController?.dataSource?.messagesHeaderArray[index] = header
+        self.viewController?.dataSource?.reloadData()
+    }
+    
+    func updateMessagesHeader(emailsArray: Array<EmailMessage>) {
+        
+        self.viewController?.dataSource?.messagesHeaderArray.removeAll()
+        
+        for (index, message) in emailsArray.enumerated() {
+            if let messageContent = message.content {
+                //let header = self.headerOfMessage(content: messageContent)
+                //self.viewController?.dataSource?.messagesHeaderArray.append(header)
+                self.viewController?.dataSource?.messagesHeaderArray.append("decoding...")
+                self.decryptHeader(content: messageContent, index: index)
+            } else {
+                self.viewController?.dataSource?.messagesHeaderArray.append("Empty content")
+            }
+        }
+    }
+    
     //MARK: - filters
     
     func filterInboxMessages(array: Array<EmailMessage>, filter: String) -> Array<EmailMessage> {
@@ -311,20 +350,6 @@ class InboxInteractor {
         }
         
         return inboxMessagesArray
-    }
-    
-    func updateMessagesHeader(emailsArray: Array<EmailMessage>) {
-        
-        self.viewController?.dataSource?.messagesHeaderArray.removeAll()
-        
-        for message in emailsArray {
-            if let messageContent = message.content {
-                let header = self.headerOfMessage(content: messageContent)
-                self.viewController?.dataSource?.messagesHeaderArray.append(header)
-            } else {
-                self.viewController?.dataSource?.messagesHeaderArray.append("Empty content")
-            }
-        }
     }
     
     func filterEnabled() -> Bool {

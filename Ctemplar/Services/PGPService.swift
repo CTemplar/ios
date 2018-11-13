@@ -64,7 +64,7 @@ class PGPService {
         if let contentData = encryptedContet.data(using: .ascii) {
             if let decodedData = self.decrypt(encryptedData: contentData) {
                 let decryptedMessage = self.decodeData(decryptedData: decodedData)
-                print("decryptedMessage:", decryptedMessage)
+                //print("decryptedMessage:", decryptedMessage)
                 return decryptedMessage
             } else {
                 print("decrypting failed")

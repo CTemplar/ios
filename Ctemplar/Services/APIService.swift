@@ -976,7 +976,7 @@ class APIService {
             
             let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: k_LoginViewControllerID) as! LoginViewController
-            topViewController.present(vc, animated: true, completion: nil)
+            topViewController.present(vc, animated: false, completion: nil)
         }
     }
 }
