@@ -50,6 +50,11 @@ class RestAPIService {
         case offset = "offset"
         case folderName = "name"
         case folderColor = "color"
+        case receiver = "receiver"
+        case sender = "sender"
+        case mailbox = "mailbox"
+        case send = "send"
+        case subject = "subject"
     }
         
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -358,7 +363,7 @@ class RestAPIService {
         }
     }
     
-    func createMessage(token: String, content: String, folder: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func createMessage(token: String, content: String, subject: String, recieversList: Array<String>, folder: String, mailboxID: Int, send: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
     
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -367,7 +372,12 @@ class RestAPIService {
         
         let parameters: Parameters = [
             JSONKey.content.rawValue: content,
-            JSONKey.folder.rawValue: folder
+            JSONKey.subject.rawValue: subject,
+            JSONKey.receiver.rawValue: recieversList,
+            //JSONKey.sender.rawValue: "dmitry5@dev.ctemplar.com",
+            JSONKey.folder.rawValue: folder,
+            JSONKey.mailbox.rawValue: mailboxID,
+            JSONKey.send.rawValue: send
         ]
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue
