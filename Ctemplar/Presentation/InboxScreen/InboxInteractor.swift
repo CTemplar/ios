@@ -222,7 +222,7 @@ class InboxInteractor {
                                 self.pgpService?.extractAndSavePGPKeyFromString(key: privateKey)
                             }
                         
-                            if let publicKey = mailbox.privateKey {
+                            if let publicKey = mailbox.publicKey {
                                 self.pgpService?.extractAndSavePGPKeyFromString(key: publicKey)
                             }
                             

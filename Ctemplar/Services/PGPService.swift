@@ -9,29 +9,29 @@
 import Foundation
 import ObjectivePGP
 
-
-// Generate new key
-let key1 = KeyGenerator().generate(for: "marcin@krzyzanowskim.com", passphrase: nil)
-let key2 = KeyGenerator().generate(for: "fran@krzyzanowskim.com", passphrase: nil)
-
 class PGPService {
     
     let keyring = Keyring()
     let keychainService = KeychainService()
     
-    func encrypt(data: Data) -> Data? {
+    func encodeString(message: String) -> Data {
         
-        let encryptedBin = try! ObjectivePGP.encrypt(data, addSignature: false, using: [key1, key2])
-        let encrypted = Armor.armored(encryptedBin, as: .message)
-        print(encrypted)
+        return Data(message.utf8)
+    }
+    
+    func encrypt(data: Data) -> String? {
         
-        let signatureBin = try! ObjectivePGP.sign(encryptedBin, detached: true, using: [key1])
-        let signature = Armor.armored(signatureBin, as: .signature)
-        print(signature)
+        if let keys = getStoredPGPKeys() {
+            
+            //let encryptedBin = try! ObjectivePGP.encrypt(data, addSignature: false, using: keys)
+            guard let encryptedBin = try? ObjectivePGP.encrypt(data, addSignature: false, using: keys) else {return ""}
+            
+            let encrypted = Armor.armored(encryptedBin, as: .message)
+            
+            return encrypted
+        }
         
-        try! ObjectivePGP.verify(encryptedBin, withSignature: signatureBin, using: [key1])
-        
-        return encryptedBin
+        return ""
     }
     
     func decrypt(encryptedData: Data) -> Data? {
@@ -39,10 +39,7 @@ class PGPService {
         if Armor.isArmoredData(encryptedData)  {
             print("encryptedData is armored")
         }
-        
-        //print("encryptedData Array: \(Array(encryptedData))")
-        
-        //let password : String = "test1234" //"admin1234"//"test1234" //temp
+
         let password = keychainService.getPassword()
 
         if let keys = getStoredPGPKeys() {
@@ -94,8 +91,6 @@ class PGPService {
     func generatePGPKey(userName: String, password: String) -> Key {
         
         let pgpKey = KeyGenerator().generate(for: userName, passphrase: password)
-        // <PGPKey: 0x600002ae0800>, publicKey: DAF8551361A84672, secretKey: DAF8551361A84672
-        //print("generate publicKey:", pgpKey)
         print("generate keyID:", pgpKey.publicKey?.keyID as Any)
         print("generate fingerprint:", pgpKey.publicKey?.fingerprint as Any)
         
@@ -146,6 +141,22 @@ class PGPService {
         print("save PGP Key:", pgpKey)
     }
     
+    func savePGPKeys(pgpKeys: [Key]) {
+        
+        keyring.import(keys: pgpKeys)
+        
+        let keyRingFileUrl = getDocumentsDirectory().appendingPathComponent(k_keyringFileName)
+        
+        do {
+            try keyring.export().write(to: keyRingFileUrl)
+        }  catch {
+            print("save PGP Keys Error")
+        }
+        
+        print("save PGP Keys:", pgpKeys)
+    }
+
+    
     func getStoredPGPKeys() -> [Key]? {
         
         let keyRingFileUrl = getDocumentsDirectory().appendingPathComponent(k_keyringFileName)
@@ -170,9 +181,10 @@ class PGPService {
     func extractAndSavePGPKeyFromString(key: String) {
         
         if let pgpKeys = self.readPGPKeysFromString(key: key) {
-            for pgpKey in pgpKeys {
-                self.savePGPKey(pgpKey: pgpKey)
-            }
+            //for pgpKey in pgpKeys {
+            //    self.savePGPKey(pgpKey: pgpKey)
+            //}
+            self.savePGPKeys(pgpKeys: pgpKeys)
         } else {
             print("can not read keys from string!!!")
         }
