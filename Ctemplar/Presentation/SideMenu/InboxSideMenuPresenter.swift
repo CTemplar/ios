@@ -16,7 +16,7 @@ class InboxSideMenuPresenter {
     var interactor       : InboxSideMenuInteractor?
     
     func setupUserProfileBar() {
-        
+        /*
         if let mailboxes = self.viewController?.currentParentViewController.mailboxesList {
             for mailbox in mailboxes {
                 if let defaultMailbox = mailbox.isDefault {
@@ -37,7 +37,7 @@ class InboxSideMenuPresenter {
         
         if self.viewController?.currentParentViewController.mailboxesList.count == 1 {
             self.viewController?.triangle.isHidden = true
-        }
+        }*/
     }
     
     func updateTriangleTrailingConstraint(value: CGFloat) {

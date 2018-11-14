@@ -65,6 +65,20 @@ class InboxSideMenuInteractor {
     
     func selectAction(optionName: String) {
         
+        if (self.viewController?.currentParentViewController.isKind(of: InboxViewController.self))! {
+            self.selectInboxAction(optionName: optionName)
+        }
+       
+        if (self.viewController?.currentParentViewController.isKind(of: ContactsViewController.self))! {
+            self.viewController?.dismiss(animated: true, completion: {
+
+                self.viewController?.currentParentViewController.navigationController?.popViewController(animated: true)
+            })
+        }
+    }
+        
+    func selectInboxAction(optionName: String) {
+        
         switch optionName {
         case InboxSideMenuOptionsName.inbox.rawValue :
             self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.inbox.rawValue)
@@ -93,6 +107,9 @@ class InboxSideMenuInteractor {
         case InboxSideMenuOptionsName.allMails.rawValue :
             self.applyFirstSectionAction(folder: optionName, filter: "")
             break
+        case InboxSideMenuOptionsName.contacts.rawValue :
+            self.viewController?.router?.showContactsViewController()
+            break
         case InboxSideMenuOptionsName.logout.rawValue :
             self.viewController?.presenter?.logOut()
             break
@@ -117,11 +134,21 @@ class InboxSideMenuInteractor {
     
     func applyFirstSectionAction(folder: String, filter: String) {
         
+        let currentViewController = self.viewController?.currentParentViewController as! InboxViewController
+        
+        currentViewController.currentFolder = folder
+        currentViewController.currentFolderFilter = filter
+        currentViewController.presenter?.interactor?.updateMessages(withUndo: "")//loadMessages(folder: filter)
+        currentViewController.presenter?.interactor?.clearFilters()
+        self.viewController?.dismiss(animated: true, completion: nil)
+        
+        /*
         self.viewController?.currentParentViewController.currentFolder = folder
         self.viewController?.currentParentViewController.currentFolderFilter = filter
         self.viewController?.currentParentViewController.presenter?.interactor?.updateMessages(withUndo: "")//loadMessages(folder: filter)
         self.viewController?.currentParentViewController.presenter?.interactor?.clearFilters()
         self.viewController?.dismiss(animated: true, completion: nil)
+ */
     }
     
     func getUnreadMessagesCount(folderName: String) -> Int {

@@ -12,5 +12,13 @@ import UIKit
 class InboxSideMenuRouter {
     
     var viewController: InboxSideMenuViewController?
-
+    
+    func showContactsViewController() {
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: k_ContactsStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_ContactsViewControllerID) as! ContactsViewController
+        //self.viewController?.show(vc, sender: self)
+        //self.viewController?.present(vc, animated: true, completion: nil)
+        self.viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
 }

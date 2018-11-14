@@ -247,9 +247,9 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     
     func isSelected(folderName: String) -> Bool {
         
-        if folderName == self.parentViewController?.currentParentViewController.currentFolder {
-            return true
-        }
+        //if folderName == self.parentViewController?.currentParentViewController.currentFolder {
+        //    return true
+        //}
         
         return false
     }

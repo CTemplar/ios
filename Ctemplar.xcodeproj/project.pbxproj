@@ -53,6 +53,8 @@
 		8433FF5A2162181E00C57DC8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF592162181E00C57DC8 /* Constants.swift */; };
 		8433FF5C216246DC00C57DC8 /* PGPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF5B216246DC00C57DC8 /* PGPService.swift */; };
 		8433FF5E21626D0600C57DC8 /* LaunchScreen-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF5D21626D0600C57DC8 /* LaunchScreen-iPad.storyboard */; };
+		8434D9AC219BFD1E00D2C3A5 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D9AB219BFD1E00D2C3A5 /* ContactsViewController.swift */; };
+		8434D9AE219BFD3300D2C3A5 /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8434D9AD219BFD3300D2C3A5 /* Contacts.storyboard */; };
 		84356859216F2736002101D3 /* InboxNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84356858216F2736002101D3 /* InboxNavigationController.swift */; };
 		8435685B216F2748002101D3 /* Inbox.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8435685A216F2748002101D3 /* Inbox.storyboard */; };
 		8435685D216F2DB3002101D3 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8435685C216F2DB3002101D3 /* InboxViewController.swift */; };
@@ -173,6 +175,8 @@
 		8433FF592162181E00C57DC8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8433FF5B216246DC00C57DC8 /* PGPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PGPService.swift; sourceTree = "<group>"; };
 		8433FF5D21626D0600C57DC8 /* LaunchScreen-iPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "LaunchScreen-iPad.storyboard"; sourceTree = "<group>"; };
+		8434D9AB219BFD1E00D2C3A5 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		8434D9AD219BFD3300D2C3A5 /* Contacts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Contacts.storyboard; sourceTree = "<group>"; };
 		84356858216F2736002101D3 /* InboxNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxNavigationController.swift; sourceTree = "<group>"; };
 		8435685A216F2748002101D3 /* Inbox.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Inbox.storyboard; sourceTree = "<group>"; };
 		8435685C216F2DB3002101D3 /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
@@ -449,6 +453,7 @@
 				8433A53D2189DCB4008E1C85 /* MoveToViewController */,
 				8441098C2177233800F0BE18 /* ViewInboxEmailScreen */,
 				845E643721708453008612FE /* SideMenu */,
+				8434D9AA219BFCE700D2C3A5 /* ContactsScreen */,
 				845E64412170BD08008612FE /* AboutAsScreen */,
 			);
 			path = Presentation;
@@ -464,6 +469,15 @@
 				8436AD552180663800D16008 /* Localizable.strings */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		8434D9AA219BFCE700D2C3A5 /* ContactsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8434D9AB219BFD1E00D2C3A5 /* ContactsViewController.swift */,
+				8434D9AD219BFD3300D2C3A5 /* Contacts.storyboard */,
+			);
+			path = ContactsScreen;
 			sourceTree = "<group>";
 		};
 		84356857216F2702002101D3 /* InboxScreen */ = {
@@ -741,6 +755,7 @@
 				8433FF24216201A500C57DC8 /* LaunchScreen.storyboard in Resources */,
 				8436AD532180663800D16008 /* Localizable.strings in Resources */,
 				844655BD218C264E00B2F2E4 /* MoreActions.xib in Resources */,
+				8434D9AE219BFD3300D2C3A5 /* Contacts.storyboard in Resources */,
 				8435685B216F2748002101D3 /* Inbox.storyboard in Resources */,
 				8433FF4C21620DBD00C57DC8 /* Main-iPad.storyboard in Resources */,
 				8432B2FE2186F403006C901C /* SideMenuTableSectionHeader.xib in Resources */,
@@ -859,6 +874,7 @@
 				84525F1F2195690A00CA732E /* SearchDataSource.swift in Sources */,
 				843FC38A2164CA1A000CFEA9 /* SignUpRouter.swift in Sources */,
 				84A62E552175CDFB009C38E5 /* ForgotPasswordInteractor.swift in Sources */,
+				8434D9AC219BFD1E00D2C3A5 /* ContactsViewController.swift in Sources */,
 				84A62E4D2175C6EB009C38E5 /* ForgotUsernameViewController.swift in Sources */,
 				84525F222195710D00CA732E /* SearchTableViewCell.swift in Sources */,
 				84A62E492175B508009C38E5 /* ResetPasswordViewController.swift in Sources */,

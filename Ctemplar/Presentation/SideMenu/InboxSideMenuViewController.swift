@@ -16,7 +16,7 @@ class InboxSideMenuViewController: UIViewController {
     var router      : InboxSideMenuRouter?
     var dataSource  : InboxSideMenuDataSource?
     
-    var currentParentViewController    : InboxViewController!
+    var currentParentViewController   : UIViewController! //: InboxViewController!
     
     var mainFoldersNameList: Array<String> = [
         InboxSideMenuOptionsName.inbox.rawValue,
@@ -48,7 +48,7 @@ class InboxSideMenuViewController: UIViewController {
     var labelsNameList: Array<String> = []
     
     var optionsNameList: Array<String> = [
-        InboxSideMenuOptionsName.contact.rawValue,
+        InboxSideMenuOptionsName.contacts.rawValue,
         InboxSideMenuOptionsName.settings.rawValue,
         InboxSideMenuOptionsName.help.rawValue,
         InboxSideMenuOptionsName.logout.rawValue
