@@ -43,13 +43,31 @@
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzb-ZQ-8jY">
+                                        <rect key="frame" x="0.0" y="598" width="375" height="49"/>
+                                        <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="49" id="NNT-BV-4ND"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                        <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Add contacts" image="WhitePlus">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addContactButtonPressed:" destination="2vi-x4-vcD" eventType="touchUpInside" id="18A-7v-5yO"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="yzb-ZQ-8jY" firstAttribute="leading" secondItem="HMB-Ka-V96" secondAttribute="leading" id="0f6-6q-orQ"/>
                                     <constraint firstItem="VIS-Uv-COX" firstAttribute="top" secondItem="HMB-Ka-V96" secondAttribute="centerY" constant="-197" id="OJe-D9-6eW"/>
                                     <constraint firstItem="bHr-zi-ycR" firstAttribute="centerX" secondItem="HMB-Ka-V96" secondAttribute="centerX" id="RCl-fN-S8d"/>
                                     <constraint firstItem="VIS-Uv-COX" firstAttribute="centerX" secondItem="HMB-Ka-V96" secondAttribute="centerX" id="USP-66-ig9"/>
+                                    <constraint firstAttribute="bottom" secondItem="yzb-ZQ-8jY" secondAttribute="bottom" id="UUn-dE-orE"/>
                                     <constraint firstItem="bHr-zi-ycR" firstAttribute="top" secondItem="VIS-Uv-COX" secondAttribute="bottom" constant="32" id="rw3-Mz-x0J"/>
+                                    <constraint firstAttribute="trailing" secondItem="yzb-ZQ-8jY" secondAttribute="trailing" id="sIk-cb-Svf"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -97,5 +115,6 @@
         <image name="EmptyContactsIcon" width="100" height="100"/>
         <image name="MenuButton" width="20" height="14"/>
         <image name="PlusButton" width="24" height="24"/>
+        <image name="WhitePlus" width="18" height="18"/>
     </resources>
 </document>
