@@ -161,6 +161,13 @@ class ViewInboxEmailPresenter {
         self.viewController?.view.layoutIfNeeded()
     }
     
+    func setupBottomBar(enabled: Bool) {
+        
+        self.viewController?.replyButton.isEnabled = enabled
+        self.viewController?.replyAllButton.isEnabled = enabled
+        self.viewController?.forwardButton.isEnabled = enabled
+    }
+    
     func setupStarredButton(starred: Bool) {
         
         if starred {

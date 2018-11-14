@@ -297,10 +297,13 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                     <connections>
                         <outlet property="contentTextView" destination="iWp-Zr-ahh" id="8mS-2f-AJb"/>
                         <outlet property="dateLabel" destination="Ddf-wl-u6u" id="kz4-l0-cgX"/>
+                        <outlet property="forwardButton" destination="9Ya-OR-KPO" id="lz7-Zp-uZR"/>
                         <outlet property="fromToBarTextView" destination="Hzr-UF-fnO" id="5JS-Go-d69"/>
                         <outlet property="fromToViewHeightConstraint" destination="RzV-fy-BrA" id="0vD-0n-SXW"/>
                         <outlet property="headerLabel" destination="O3z-ha-xta" id="1qi-xM-bvq"/>
                         <outlet property="headerLabelWidthConstraint" destination="haR-mM-ync" id="F1F-UW-NRW"/>
+                        <outlet property="replyAllButton" destination="1u4-Uf-KqQ" id="N8I-IS-316"/>
+                        <outlet property="replyButton" destination="b2m-Xp-8JM" id="Mny-gG-aMw"/>
                         <outlet property="scrollView" destination="pMK-H7-dDA" id="HV7-sq-6KY"/>
                         <outlet property="securedImageView" destination="P88-l5-8f4" id="Wja-H7-2kr"/>
                         <outlet property="starredButton" destination="iev-lH-mPM" id="gXL-6t-7no"/>

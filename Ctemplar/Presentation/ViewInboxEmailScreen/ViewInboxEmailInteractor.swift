@@ -31,6 +31,7 @@ class ViewInboxEmailInteractor {
                     self.presenter?.setupMessageHeader(message: message)
                     self.presenter?.setupMessageContent(message: message)
                     self.presenter?.setupNavigationBar(enabled: true)
+                    self.presenter?.setupBottomBar(enabled: true)
                 }
             }
         }

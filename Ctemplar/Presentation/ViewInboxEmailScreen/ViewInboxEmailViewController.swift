@@ -35,6 +35,10 @@ class ViewInboxEmailViewController: UIViewController {
     @IBOutlet var undoButton            : UIButton!
     @IBOutlet var undoBar               : UIView!
     
+    @IBOutlet var replyButton           : UIButton!
+    @IBOutlet var replyAllButton        : UIButton!
+    @IBOutlet var forwardButton         : UIButton!
+    
     var moreActionsView : MoreActionsView?
     
     var currentFolderFilter : String?
@@ -56,6 +60,7 @@ class ViewInboxEmailViewController: UIViewController {
         configurator.configure(viewController: self)
         
         self.presenter?.setupNavigationBar(enabled: false)
+        self.presenter?.setupBottomBar(enabled: false)
         //self.presenter?.setupMessageHeader(message: self.message!)
         
         self.presenter?.initMoreActionsView()
