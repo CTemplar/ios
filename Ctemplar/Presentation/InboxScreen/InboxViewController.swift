@@ -71,7 +71,7 @@ class InboxViewController: UIViewController {
         let configurator = InboxConfigurator()
         configurator.configure(viewController: self)
         
-        presenter?.initAndSetupInboxSideMenuController()
+        //presenter?.initAndSetupInboxSideMenuController()
         
         dataSource?.initWith(parent: self, tableView: inboxTableView, array: messagesList)
         

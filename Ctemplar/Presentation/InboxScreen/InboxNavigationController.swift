@@ -11,4 +11,5 @@ import UIKit
 
 class InboxNavigationController: UINavigationController {
 
+    //var inboxViewController: InboxViewController?
 }

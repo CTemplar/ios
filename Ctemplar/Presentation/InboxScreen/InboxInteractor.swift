@@ -54,8 +54,8 @@ class InboxInteractor {
     
     func setSideMenuData(array: Array<UnreadMessagesCounter>) {
         
-        self.viewController?.inboxSideMenuViewController?.dataSource?.unreadMessagesArray = array
-        self.viewController?.inboxSideMenuViewController?.dataSource?.reloadData()
+       // self.viewController?.inboxSideMenuViewController?.dataSource?.unreadMessagesArray = array
+       // self.viewController?.inboxSideMenuViewController?.dataSource?.reloadData()
     }
     
     func setSideMenuData(messages: EmailMessagesList) {
@@ -119,7 +119,7 @@ class InboxInteractor {
                     self.presenter?.showUndoBar(text: withUndo)
                 }
                 
-                self.unreadMessagesCounter() //need to Side Menu unread msg counters
+               // self.unreadMessagesCounter() //need to Side Menu unread msg counters
                 //self.userMyself()//temp for debug
                 
             case .failure(let error):
@@ -127,7 +127,7 @@ class InboxInteractor {
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
-            //HUD.hide()
+            HUD.hide()
         }
     }
     
@@ -241,7 +241,7 @@ class InboxInteractor {
     
     func userMyself() {
         
-        apiService?.mailboxesList() {(result) in
+        apiService?.userMyself() {(result) in
             
             switch(result) {
                 

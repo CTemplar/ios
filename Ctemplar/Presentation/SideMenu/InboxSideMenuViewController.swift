@@ -16,7 +16,8 @@ class InboxSideMenuViewController: UIViewController {
     var router      : InboxSideMenuRouter?
     var dataSource  : InboxSideMenuDataSource?
     
-    var currentParentViewController   : UIViewController! //: InboxViewController!
+    var currentParentViewController     : UIViewController!
+    var inboxViewController             : InboxViewController!
     
     var mainFoldersNameList: Array<String> = [
         InboxSideMenuOptionsName.inbox.rawValue,
@@ -87,10 +88,11 @@ class InboxSideMenuViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     
-        presenter?.setupUserProfileBar()
-        //self.dataSource?.reloadData()
-        
+        //self.presenter?.setupUserProfileBar()
+      
         self.presenter?.interactor?.customFoldersList()
+        self.presenter?.interactor?.unreadMessagesCounter()
+        //self.presenter?.interactor?.userMyself()
     }
     
     //MARK: - IBActions
