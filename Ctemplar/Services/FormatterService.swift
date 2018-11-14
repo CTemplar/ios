@@ -327,12 +327,12 @@ extension Date {
         let remainHoursInDay = (secondsAgo - remainDays * day) / hour
         
         let remainMinutesInHour = (secondsAgo - remainDays * day - remainHoursInDay * hour) / minute
-        
+        /*
         print("now", Date())
         print("remainDays", remainDays)
         print("remainHoursInDay", remainHoursInDay)
         print("remainMinutesInHour", remainMinutesInHour)
-        
+        */
         let timeString = formatDestructionTimeToString(days: abs(remainDays), hours: abs(remainHoursInDay), minutes: abs(remainMinutesInHour))
         
         return timeString
@@ -350,12 +350,12 @@ extension Date {
         let remainHoursInDay = (secondsAgo - remainDays * day) / hour
         
         let remainMinutesInHour = (secondsAgo - remainDays * day - remainHoursInDay * hour) / minute
-        
+        /*
         print("now", Date())
         print("remainDays", remainDays)
         print("remainHoursInDay", remainHoursInDay)
         print("remainMinutesInHour", remainMinutesInHour)
-        
+        */
         let timeString = formatDestructionTimeToString(days: abs(remainDays), hours: abs(remainHoursInDay), minutes: abs(remainMinutesInHour))
         
         return timeString

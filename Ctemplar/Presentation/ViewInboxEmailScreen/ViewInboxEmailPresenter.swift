@@ -17,7 +17,7 @@ class ViewInboxEmailPresenter {
     var timer = Timer()
     var counter = 0
 
-    func setupNavigationBar() {
+    func setupNavigationBar(enabled: Bool) {
         
         let arrowBackImage = UIImage(named: k_darkBackArrowImageName)
         self.viewController?.navigationController?.navigationBar.backIndicatorImage = arrowBackImage
@@ -50,6 +50,11 @@ class ViewInboxEmailPresenter {
         moreButton.frame = CGRect(x: 0, y: 0, width: k_navBarButtonSize, height: k_navBarButtonSize)
         let moreItem = UIBarButtonItem(customView: moreButton)
         
+        moreItem.isEnabled = enabled
+        moveItem.isEnabled = enabled
+        spamItem.isEnabled = enabled
+        garbageItem.isEnabled = enabled
+        
         self.viewController?.navigationItem.rightBarButtonItems = [moreItem, moveItem, spamItem, garbageItem]
     }
     
@@ -76,9 +81,13 @@ class ViewInboxEmailPresenter {
         }
         
         self.setupFromToHeaderHeight(message: message)
+
+    }
+    
+    func setupMessageContent(message: EmailMessage) {
         
         if let messageContent = self.interactor?.extractMessageContent(message: message) {
-        
+            
             //self.viewController?.contentTextView.isHidden = true
             //self.viewController?.webView.isHidden = false
             

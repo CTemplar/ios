@@ -55,10 +55,7 @@ class ViewInboxEmailViewController: UIViewController {
         let configurator = ViewInboxEmailConfigurator()
         configurator.configure(viewController: self)
         
-        self.messageIsRead = message?.read
-        self.messageIsStarred = message?.starred
-        
-        self.presenter?.setupNavigationBar()
+        self.presenter?.setupNavigationBar(enabled: false)
         //self.presenter?.setupMessageHeader(message: self.message!)
         
         self.presenter?.initMoreActionsView()

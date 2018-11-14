@@ -13,6 +13,7 @@ struct EmailMessage {
     var attachments: Array<Any>? = nil
     var bcc: Array<Any>? = nil
     var cc: Array<Any>? = nil
+    var children: Array<Any>? = nil
     var content : String? = nil
     var createdAt : String? = nil
     var deadManDuration : String? = nil
@@ -46,6 +47,10 @@ struct EmailMessage {
         self.attachments = dictionary["attachments"] as? Array<Any>
         self.bcc = dictionary["bcc"] as? Array<Any>
         self.cc = dictionary["cc"] as? Array<Any>
+        //self.children = dictionary["children"] as? Array<Any>
+        if let childrenArray = dictionary["children"] as? Array<Any> {
+            self.children  = self.parsResultsFromList(array: childrenArray)
+        }
         self.content = dictionary["content"] as? String
         self.createdAt = dictionary["created_at"] as? String
         self.deadManDuration = dictionary["dead_man_duration"] as? String
@@ -69,5 +74,19 @@ struct EmailMessage {
         self.starred = dictionary["starred"] as? Bool
         self.subject = dictionary["subject"] as? String
         self.updated = dictionary["updated"] as? String
+    }
+    
+    func parsResultsFromList(array: Array<Any>) -> Array<EmailMessage>{
+        
+        var objectsArray: Array<EmailMessage> = []
+        
+        for object in array {
+            if let objectDictionary = object as? Dictionary<String, Any> {
+                let messageResult = EmailMessage(dictionary: objectDictionary)
+                objectsArray.append(messageResult)
+            }
+        }
+        
+        return objectsArray
     }
 }

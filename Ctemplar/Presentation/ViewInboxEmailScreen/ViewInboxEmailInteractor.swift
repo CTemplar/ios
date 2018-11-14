@@ -19,6 +19,23 @@ class ViewInboxEmailInteractor {
     var formatterService    : FormatterService?
     
 
+    func setMessageData(messages: EmailMessagesList) {
+        
+        if let emailsArray = messages.messagesList {
+            if emailsArray.count > 0 {
+                if let message = emailsArray.first {
+                    self.viewController?.message = message
+                    self.viewController?.messageIsRead = message.read
+                    self.viewController?.messageIsStarred = message.starred
+                
+                    self.presenter?.setupMessageHeader(message: message)
+                    self.presenter?.setupMessageContent(message: message)
+                    self.presenter?.setupNavigationBar(enabled: true)
+                }
+            }
+        }
+    }
+    
     func getMessage(messageID: Int) {
         
         HUD.show(.progress)
@@ -28,9 +45,11 @@ class ViewInboxEmailInteractor {
             switch(result) {
                 
             case .success(let value):
-                print("value:", value)
-                
-                
+                //print("value:", value)
+  
+                let emailMessages = value as! EmailMessagesList
+                self.setMessageData(messages: emailMessages)
+                                
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
