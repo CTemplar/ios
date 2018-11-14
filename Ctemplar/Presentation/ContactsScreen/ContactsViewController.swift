@@ -11,25 +11,49 @@ import UIKit
 import SideMenu
 
 
-class ContactsViewController: UIViewController {
+class ContactsViewController: UIViewController, UISearchResultsUpdating {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+     
+        self.setupSearchController()
     }
         
     //MARK: - IBActions
     
     @IBAction func menuButtonPressed(_ sender: AnyObject) {
         
-        self.showInboxSideMenu()
+        //self.showInboxSideMenu()
         //self.dismiss(animated: true, completion: nil)
-        //self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true) //temp
     }
     
     @IBAction func addContactButtonPressed(_ sender: AnyObject) {
         
        
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        print(text)
+    }
+    
+    func setupSearchController() {
+        
+        self.definesPresentationContext = true
+        
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.tintColor = k_actionMessageColor
+        searchController.searchBar.placeholder = "search".localized()
+        navigationItem.searchController = searchController        
+        
+        if let searchTextField = searchController.searchBar.value(forKey: "_searchField") as? UITextField {
+            //searchTextField.borderStyle = .none
+            searchTextField.backgroundColor = self.navigationItem.titleView?.backgroundColor
+        }
     }
     
     func showInboxSideMenu() {

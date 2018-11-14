@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Contacts-->
         <scene sceneID="wK6-LK-jzi">
@@ -17,16 +22,66 @@
                     <view key="view" contentMode="scaleToFill" id="Kf4-dK-U3s">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HMB-Ka-V96">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyContactsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="VIS-Uv-COX">
+                                        <rect key="frame" x="137.5" y="126.5" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="fZw-Uw-uxP"/>
+                                            <constraint firstAttribute="width" secondItem="VIS-Uv-COX" secondAttribute="height" multiplier="1:1" id="r3O-GU-Kfq"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have no contacts yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="bHr-zi-ycR">
+                                        <rect key="frame" x="27.5" y="258.5" width="320" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="320" id="AgM-c5-YNg"/>
+                                            <constraint firstAttribute="width" secondItem="bHr-zi-ycR" secondAttribute="height" multiplier="160:9" id="NyQ-J7-YHB"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="VIS-Uv-COX" firstAttribute="top" secondItem="HMB-Ka-V96" secondAttribute="centerY" constant="-197" id="OJe-D9-6eW"/>
+                                    <constraint firstItem="bHr-zi-ycR" firstAttribute="centerX" secondItem="HMB-Ka-V96" secondAttribute="centerX" id="RCl-fN-S8d"/>
+                                    <constraint firstItem="VIS-Uv-COX" firstAttribute="centerX" secondItem="HMB-Ka-V96" secondAttribute="centerX" id="USP-66-ig9"/>
+                                    <constraint firstItem="bHr-zi-ycR" firstAttribute="top" secondItem="VIS-Uv-COX" secondAttribute="bottom" constant="32" id="rw3-Mz-x0J"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HMB-Ka-V96" firstAttribute="top" secondItem="xAf-DS-WX6" secondAttribute="top" id="Vdd-R0-EI3"/>
+                            <constraint firstItem="HMB-Ka-V96" firstAttribute="bottom" secondItem="xAf-DS-WX6" secondAttribute="bottom" id="Y9g-n6-tnx"/>
+                            <constraint firstItem="HMB-Ka-V96" firstAttribute="trailing" secondItem="xAf-DS-WX6" secondAttribute="trailing" id="ytn-bf-fB1"/>
+                            <constraint firstItem="HMB-Ka-V96" firstAttribute="leading" secondItem="xAf-DS-WX6" secondAttribute="leading" id="z1y-eY-Dqt"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="xAf-DS-WX6"/>
                     </view>
                     <navigationItem key="navigationItem" title="Contacts" id="ufM-BZ-lkb">
                         <barButtonItem key="leftBarButtonItem" image="MenuButton" id="Bv7-Oq-GVT">
+                            <color key="tintColor" red="0.17254901960784313" green="0.24313725490196078" blue="0.31372549019607843" alpha="0.865509463028169" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="menuButtonPressed:" destination="2vi-x4-vcD" id="FTd-Ri-qUF"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="+" id="pxo-NY-zSu">
+                        <barButtonItem key="rightBarButtonItem" image="PlusButton" id="pxo-NY-zSu">
+                            <color key="tintColor" red="0.17254901960784313" green="0.24313725490196078" blue="0.31372549019607843" alpha="0.865509463028169" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="addContactButtonPressed:" destination="2vi-x4-vcD" id="kVJ-Uc-iqR"/>
                             </connections>
@@ -35,10 +90,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BAO-0O-NtI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="298" y="197"/>
+            <point key="canvasLocation" x="186.25" y="218.99833333333331"/>
         </scene>
     </scenes>
     <resources>
+        <image name="EmptyContactsIcon" width="100" height="100"/>
         <image name="MenuButton" width="20" height="14"/>
+        <image name="PlusButton" width="24" height="24"/>
     </resources>
 </document>

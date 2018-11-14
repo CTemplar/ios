@@ -449,7 +449,7 @@
 				844F4B58216B330E0057C758 /* MainViewController */,
 				84356857216F2702002101D3 /* InboxScreen */,
 				845E643C2170A440008612FE /* ComposeScreen */,
-				84525F112195498F00CA732E /* SearchSreen */,
+				84525F112195498F00CA732E /* SearchScreen */,
 				8433A53D2189DCB4008E1C85 /* MoveToViewController */,
 				8441098C2177233800F0BE18 /* ViewInboxEmailScreen */,
 				845E643721708453008612FE /* SideMenu */,
@@ -603,7 +603,7 @@
 			path = "Local Models";
 			sourceTree = "<group>";
 		};
-		84525F112195498F00CA732E /* SearchSreen */ = {
+		84525F112195498F00CA732E /* SearchScreen */ = {
 			isa = PBXGroup;
 			children = (
 				84525F12219549B100CA732E /* SearchViewController.swift */,
@@ -614,7 +614,7 @@
 				84525F1E2195690A00CA732E /* SearchDataSource.swift */,
 				84525F14219549C100CA732E /* Search.storyboard */,
 			);
-			path = SearchSreen;
+			path = SearchScreen;
 			sourceTree = "<group>";
 		};
 		84525F20219570F500CA732E /* SearchCells */ = {
