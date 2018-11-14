@@ -23,6 +23,7 @@ class RestAPIService {
         case mailboxes = "emails/mailboxes/"
         case unreadCounter = "emails/unread/"
         case customFolders = "emails/custom-folder/"
+        case userMyself = "/users/myself/"
     }
     
     enum JSONKey: String {
@@ -50,6 +51,11 @@ class RestAPIService {
         case offset = "offset"
         case folderName = "name"
         case folderColor = "color"
+        case receiver = "receiver"
+        case sender = "sender"
+        case mailbox = "mailbox"
+        case send = "send"
+        case subject = "subject"
     }
         
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -230,9 +236,35 @@ class RestAPIService {
         }
     }
     
+    //MARK: - User
+    
+    func userMyself(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.userMyself.rawValue
+        
+        print("userMyself url:", url)
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+            
+            print("userMyself responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
     //MARK: - Mail
     
-    func messagesList(token: String, folder: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func messagesList(token: String, folder: String, seconds: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -243,7 +275,15 @@ class RestAPIService {
          //   JSONKey.filter.rawValue: "inbox"
          //]
         
-        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + folder //"?starred=1"// "?read=0"
+        var timeParameter = ""
+        
+        if seconds > 0 {
+            timeParameter = "&seconds=" + seconds.description
+        }
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + folder  + timeParameter//"?starred=1"// "?read=0"
+        //let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + "?seconds=" + seconds
+        //let url = "https://devapi.ctemplar.com/emails/messages/?limit=20&offset=0&folder=inbox&read=false&seconds=30"
         
         //print("messagesList parameters:", parameters)
         print("messagesList url:", url)
@@ -358,7 +398,7 @@ class RestAPIService {
         }
     }
     
-    func createMessage(token: String, content: String, folder: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func createMessage(token: String, content: String, subject: String, recieversList: Array<String>, folder: String, mailboxID: Int, send: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
     
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -367,7 +407,12 @@ class RestAPIService {
         
         let parameters: Parameters = [
             JSONKey.content.rawValue: content,
-            JSONKey.folder.rawValue: folder
+            JSONKey.subject.rawValue: subject,
+            JSONKey.receiver.rawValue: recieversList,
+            //JSONKey.sender.rawValue: "dmitry5@dev.ctemplar.com",
+            JSONKey.folder.rawValue: folder,
+            JSONKey.mailbox.rawValue: mailboxID,
+            JSONKey.send.rawValue: send
         ]
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue
@@ -378,6 +423,31 @@ class RestAPIService {
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
             
             print("createMessage responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func deleteMessages(token: String, messagesIDIn: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messagesIDIn
+        
+        //print("messagesList parameters:", parameters)
+        print("deleteMessages url:", url)
+        
+        Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("deleteMessages responce:", response)
             
             switch(response.result) {
             case .success(let value):

@@ -33,15 +33,13 @@ class InboxInteractor {
         
         if let emailsArray = messages.messagesList {
             
-            //if emailsArray.count == 0 {
-                if self.viewController?.dataSource?.selectionMode == true {
-                    self.viewController?.presenter?.disableSelectionMode()
-                }
-            //}
-
             self.viewController?.dataSource?.messagesArray = emailsArray
             self.updateMessagesHeader(emailsArray: emailsArray)
             self.viewController?.dataSource?.reloadData()
+            
+            if self.viewController?.dataSource?.selectionMode == true {
+                self.viewController?.presenter?.disableSelectionMode()
+            }
             
             readEmails = calculateReadEmails(array: emailsArray)
             unreadEmails = emailsArray.count - readEmails
@@ -106,7 +104,7 @@ class InboxInteractor {
         
         HUD.show(.progress)
         
-        apiService?.messagesList(folder: folder) {(result) in
+        apiService?.messagesList(folder: folder, seconds: 0) {(result) in
             
             switch(result) {
                 
@@ -122,13 +120,14 @@ class InboxInteractor {
                 }
                 
                 self.unreadMessagesCounter() //need to Side Menu unread msg counters
+                //self.userMyself()//temp for debug
                 
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
-            HUD.hide()
+            //HUD.hide()
         }
     }
     
@@ -136,7 +135,7 @@ class InboxInteractor {
         
         HUD.show(.progress)
         
-        apiService?.messagesList(folder: "") {(result) in
+        apiService?.messagesList(folder: "", seconds: 0) {(result) in
             
             switch(result) {
                 
@@ -182,8 +181,7 @@ class InboxInteractor {
             }
             
             HUD.hide()
-        }
-        
+        }        
     }
     
     func checkStoredPGPKeys() -> Bool {
@@ -224,7 +222,7 @@ class InboxInteractor {
                                 self.pgpService?.extractAndSavePGPKeyFromString(key: privateKey)
                             }
                         
-                            if let publicKey = mailbox.privateKey {
+                            if let publicKey = mailbox.publicKey {
                                 self.pgpService?.extractAndSavePGPKeyFromString(key: publicKey)
                             }
                             
@@ -241,8 +239,24 @@ class InboxInteractor {
         }
     }
     
+    func userMyself() {
+        
+        apiService?.mailboxesList() {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("userMyself value:", value)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "User Myself Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
     //MARK: - message headers
-
+/*
     func decryptMessage(content: String) -> String {
         
         if let message = self.pgpService?.decryptMessage(encryptedContet: content) {
@@ -252,14 +266,15 @@ class InboxInteractor {
         
         return ""
     }
-    
+    */
     
     func headerOfMessage(content: String) -> String {
         
         var header : String = ""
         var message : String = ""
         
-        message = self.decryptMessage(content: content)
+        //message = self.decryptMessage(content: content)
+        message = content //!!!!!!
 
         //message = message.html2String
         //print("format to String message: ", message)
@@ -283,6 +298,45 @@ class InboxInteractor {
         return header
     }
     
+    func decryptHeader(content: String, index: Int) {
+     
+        let queue = DispatchQueue.global(qos: .utility)
+
+        queue.async {
+            
+            if let message = self.pgpService?.decryptMessage(encryptedContet: content) {
+                DispatchQueue.main.async {
+                    //print("message:", message)
+                    self.setDecryptedHeader(content: message, index: index)
+                }
+            }
+        }
+    }
+    
+    func setDecryptedHeader(content: String, index: Int) {
+        
+        let header = self.headerOfMessage(content: content)
+        
+        self.viewController?.dataSource?.messagesHeaderArray[index] = header
+        self.viewController?.dataSource?.reloadData()
+    }
+    
+    func updateMessagesHeader(emailsArray: Array<EmailMessage>) {
+        
+        self.viewController?.dataSource?.messagesHeaderArray.removeAll()
+        
+        for (index, message) in emailsArray.enumerated() {
+            if let messageContent = message.content {
+                //let header = self.headerOfMessage(content: messageContent)
+                //self.viewController?.dataSource?.messagesHeaderArray.append(header)
+                self.viewController?.dataSource?.messagesHeaderArray.append("decoding...")
+                self.decryptHeader(content: messageContent, index: index)
+            } else {
+                self.viewController?.dataSource?.messagesHeaderArray.append("Empty content")
+            }
+        }
+    }
+    
     //MARK: - filters
     
     func filterInboxMessages(array: Array<EmailMessage>, filter: String) -> Array<EmailMessage> {
@@ -296,20 +350,6 @@ class InboxInteractor {
         }
         
         return inboxMessagesArray
-    }
-    
-    func updateMessagesHeader(emailsArray: Array<EmailMessage>) {
-        
-        self.viewController?.dataSource?.messagesHeaderArray.removeAll()
-        
-        for message in emailsArray {
-            if let messageContent = message.content {
-                let header = self.headerOfMessage(content: messageContent)
-                self.viewController?.dataSource?.messagesHeaderArray.append(header)
-            } else {
-                self.viewController?.dataSource?.messagesHeaderArray.append("Empty content")
-            }
-        }
     }
     
     func filterEnabled() -> Bool {
@@ -646,6 +686,35 @@ class InboxInteractor {
             case .success( _):
                 //print("value:", value)
                 print("move list to inbox")
+                self.viewController?.lastAction = ActionsIndex.moveToArchive
+                self.updateMessages(withUndo: withUndo)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
+    //MARK: - Empty Folder Action
+    
+    func deleteMessagesList(selectedMessagesIdArray: Array<Int>, withUndo: String) {
+        
+        var messagesIDList : String = ""
+        
+        for message in selectedMessagesIdArray {
+            messagesIDList = messagesIDList + message.description + ","
+        }
+        
+        messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex)) //remove last ","
+        
+        apiService?.deleteMessages(messagesIDIn: messagesIDList) {(result) in
+            
+            switch(result) {
+                
+            case .success( _):
+                //print("value:", value)
+                print("deleteMessagesList")
                 self.viewController?.lastAction = ActionsIndex.moveToArchive
                 self.updateMessages(withUndo: withUndo)
                 

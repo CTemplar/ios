@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Search View Controller-->
+        <scene sceneID="zcj-k5-FhX">
+            <objects>
+                <viewController storyboardIdentifier="SearchViewController" id="zrE-J9-SjE" customClass="SearchViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ymo-wo-SJe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cZy-md-dX6">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptySearchIcon" translatesAutoresizingMaskIntoConstraints="NO" id="P6t-Id-Fcn">
+                                        <rect key="frame" x="137.5" y="129.5" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="PiF-26-tnq"/>
+                                            <constraint firstAttribute="width" secondItem="P6t-Id-Fcn" secondAttribute="height" multiplier="1:1" id="dry-ss-nEa"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No results found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="f7x-0w-1Zz">
+                                        <rect key="frame" x="27.5" y="261.5" width="320" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="320" id="h61-fx-mKc"/>
+                                            <constraint firstAttribute="width" secondItem="f7x-0w-1Zz" secondAttribute="height" multiplier="160:9" id="xQf-ps-pP0"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="P6t-Id-Fcn" firstAttribute="centerX" secondItem="cZy-md-dX6" secondAttribute="centerX" id="7u6-dy-rZn"/>
+                                    <constraint firstItem="f7x-0w-1Zz" firstAttribute="top" secondItem="P6t-Id-Fcn" secondAttribute="bottom" constant="32" id="NhK-GD-uSX"/>
+                                    <constraint firstItem="P6t-Id-Fcn" firstAttribute="top" secondItem="cZy-md-dX6" secondAttribute="centerY" constant="-194" id="Nmd-5i-GKI"/>
+                                    <constraint firstItem="f7x-0w-1Zz" firstAttribute="centerX" secondItem="cZy-md-dX6" secondAttribute="centerX" id="l3n-Wn-hnK"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nPA-Nh-LEM">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="t9q-CE-7PO">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="t9q-CE-7PO" id="gaY-GS-J6W">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cZy-md-dX6" firstAttribute="leading" secondItem="ISB-lS-cov" secondAttribute="leading" id="47J-od-Ik5"/>
+                            <constraint firstItem="nPA-Nh-LEM" firstAttribute="bottom" secondItem="ISB-lS-cov" secondAttribute="bottom" id="FTH-bV-NMi"/>
+                            <constraint firstAttribute="bottom" secondItem="cZy-md-dX6" secondAttribute="bottom" id="Fi0-ls-vYF"/>
+                            <constraint firstItem="nPA-Nh-LEM" firstAttribute="top" secondItem="ISB-lS-cov" secondAttribute="top" id="HqQ-6o-tD4"/>
+                            <constraint firstItem="nPA-Nh-LEM" firstAttribute="leading" secondItem="ISB-lS-cov" secondAttribute="leading" id="N0F-hX-rrD"/>
+                            <constraint firstItem="nPA-Nh-LEM" firstAttribute="trailing" secondItem="ISB-lS-cov" secondAttribute="trailing" id="YeH-oC-tKt"/>
+                            <constraint firstAttribute="trailing" secondItem="cZy-md-dX6" secondAttribute="trailing" id="dhB-Li-UW5"/>
+                            <constraint firstItem="cZy-md-dX6" firstAttribute="top" secondItem="ISB-lS-cov" secondAttribute="top" id="ld3-kX-fAX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ISB-lS-cov"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Z3N-2z-VrQ">
+                        <barButtonItem key="leftBarButtonItem" image="SearchButton" id="h0e-Gp-G4P">
+                            <color key="tintColor" red="0.090196078430000007" green="0.1960784314" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="searchButtonPressed:" destination="zrE-J9-SjE" id="5ZX-hw-3Zz"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="tJK-T6-fUi">
+                            <color key="tintColor" red="0.090196078430000007" green="0.1960784314" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="zrE-J9-SjE" id="D5b-OO-YOz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="emptySearch" destination="cZy-md-dX6" id="ric-9V-rvQ"/>
+                        <outlet property="searchTableView" destination="nPA-Nh-LEM" id="bG2-6f-dwE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5nn-3D-zis" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="74.400000000000006" y="-442.12893553223392"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="EmptySearchIcon" width="100" height="100"/>
+        <image name="SearchButton" width="22" height="30"/>
+    </resources>
+</document>

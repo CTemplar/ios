@@ -30,7 +30,7 @@ class ComposeViewController: UIViewController {
     
     @IBAction func sendButtonPressed(_ sender: AnyObject) {
         
-        //sendMail()
+        sendMail() //temp
         
     }
     
@@ -42,7 +42,9 @@ class ComposeViewController: UIViewController {
         
         let apiService = appDelegate.applicationManager.apiService
         
-        apiService.createMessage(content: "xxxxxxx", folder: "inbox") {(result) in
+        let recievers : Array<String> = ["dmitry3@dev.ctemplar.com"]
+        
+        apiService.createMessage(content: "Non encrypted content for sended message", subject: "Send Test with Sent folder", recieversList: recievers, folder: MessagesFoldersName.sent.rawValue, mailboxID: 44, send: true) {(result) in
             
             switch(result) {
                 

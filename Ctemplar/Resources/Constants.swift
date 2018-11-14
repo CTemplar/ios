@@ -26,6 +26,7 @@ let k_InboxNavigationControllerID           = "InboxNavigationController"
 let k_InboxSideMenuViewControllerID         = "InboxSideMenuViewController"
 let k_ViewInboxEmailViewControllerID        = "ViewInboxEmailViewController"
 let k_ComposeViewControllerID               = "ComposeViewController"
+let k_SearchViewControllerID                = "SearchViewController"
 let k_MoveToViewControllerID                = "MoveToViewController"
 let k_AboutAsViewControllerID               = "AboutAsViewController"
 
@@ -37,6 +38,7 @@ let k_ForgotPasswordStoryboardName         = "ForgotPassword"
 let k_InboxStoryboardName                  = "Inbox"
 let k_InboxSideMenuStoryboardName          = "InboxSideMenu"
 let k_ComposeStoryboardName                = "Compose"
+let k_SearchStoryboardName                 = "Search"
 let k_AboutAsStoryboardName                = "AboutAs"
 let k_MoveToStoryboardName                 = "MoveTo"
 let k_ViewInboxEmailStoryboardName         = "ViewInboxEmail"
@@ -48,6 +50,7 @@ let k_SideMenuTableSectionHeaderViewXibName               = "SideMenuTableSectio
 let k_SideMenuTableViewCellXibName         = "SideMenuTableViewCell"
 let k_CustomFolderCellXibName              = "CustomFolderTableViewCell"
 let k_MoveToFolderCellXibName              = "MoveToFolderTableViewCell"
+let k_SearchCellXibName                    = "SearchTableViewCell"
 
 // cell identifier
 
@@ -56,6 +59,7 @@ let k_SideMenuTableSectionHeaderViewIdentifier  = "sideMenuTableSectionHeaderVie
 let k_SideMenuTableViewCellIdentifier           = "sideMenuTableViewCellIdentifier"
 let k_CustomFolderTableViewCellIdentifier       = "customFolderTableViewCellIdentifier"
 let k_MoveToFolderTableViewCellIdentifier       = "moveToFolderTableViewCellIdentifier"
+let k_SearchTableViewCellIdentifier             = "searchTableViewCellIdentifier"
 
 // view controllers iPad storyboards name
 
@@ -77,6 +81,8 @@ let k_lightGrayColor: UIColor = UIColor(white: 0.0, alpha: 0.54)
 
 let k_lightGrayTextColor: UIColor = UIColor(red: 147.0 / 255.0, green: 145.0 / 255.0, blue: 145.0 / 255.0, alpha: 1.0)
 
+let k_mainInboxColor: UIColor = UIColor(red: 242.0 / 255.0, green: 240.0 / 255.0, blue: 240.0 / 255.0, alpha: 1.0)
+let k_foundTextBackgroundColor: UIColor = UIColor(red: 240.0 / 255.0, green: 243.0 / 255.0, blue: 245.0 / 255.0, alpha: 1.0)
 
 let k_whiteColor: UIColor = UIColor(red: 250.0 / 255.0, green: 251.0 / 255.0, blue: 251.0 / 255.0, alpha: 1.0)
 let k_selectedFolderColor: UIColor = UIColor(red: 18.0 / 255.0, green: 45.0 / 255.0, blue: 71.0 / 255.0, alpha: 0.1)
@@ -85,6 +91,7 @@ let k_unreadMessageColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255
 
 let k_actionMessageColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 1.0)
 
+let k_mainFolderTextColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 0.5)
 
 let k_orangeColor : UIColor = UIColor(red: 255.0 / 255.0, green: 170.0 / 255.0, blue: 14.0 / 255.0, alpha: 1.0)
 let k_greenColor : UIColor = UIColor(red: 0.0 / 255.0, green: 116.0 / 255.0, blue: 33.0 / 255.0, alpha: 1.0)
@@ -117,6 +124,10 @@ let k_dotImageTrailing          : CGFloat = 6.0
 let k_deleteLabelWidth          : CGFloat = 85.0 //72.0
 let k_deleteLabelSEWidth        : CGFloat = 45.0 //30.0
 
+let k_folderNameLabelWidth      : CGFloat = 50.0
+let k_folderNameLabelMaxWidth   : CGFloat = 80.0
+let k_folderNameLabelOffset     : CGFloat = 12.0
+
 let k_inboxFilterViewCenterY    : CGFloat = 430.0
 
 let k_rightOffsetForSubjectLabel : CGFloat = 90.0
@@ -147,6 +158,7 @@ let k_darkEyeOnIconImageName        = "DarkEyeOnIcon"
 
 let k_checkBoxUncheckedImageName    = "roundDark"
 let k_checkBoxSelectedImageName     = "checkedBoxDark"
+let k_roundSelectedImageName        = "selectedRoundDark"
 
 let k_composeImageName              = "ComposeButton"
 let k_composeRedImageName           = "ComposeRedButton"
@@ -327,5 +339,6 @@ enum ActionsIndex: Int, CaseIterable {
     case moveToArchive    = 5
     case moveToInbox      = 6
     case moveTo           = 7
-    case noAction         = 8
+    case delete           = 8
+    case noAction         = 9
 }

@@ -23,6 +23,14 @@
 
 "emailPlaceholder" = "Email";
 "passwordPlaceholder" = "Password";
+"usernamePlaceholder" = "Username";
+"choosePasswordPlaceholder" = "Choose password";
+"confirmPasswordPlaceholder" = "Confirm password";
+"recoveryEmailPlaceholder" = "Recovery email";
+"usernameResetPlaceholder" = "Ctemplar username to reset";
+"resetCodePlaceholder" = "Reset Code";
+"newPasswordPlaceholder" = "New password";
+"confirmNewPasswordPlaceholder" = "Confirm new password";
 
 //side menu
 
@@ -51,4 +59,12 @@
 "reply" = "Reply";
 "relpyAll" = "Reply All";
 "forward" = "Forward";
+
+"search" = "Search";
+
+//delete
+
+"deleteTitle" = "Warning!";
+"deleteMessage" = "Do you want to delete this message(s) permanently?";
+"deleteButton" = "Delete";
 

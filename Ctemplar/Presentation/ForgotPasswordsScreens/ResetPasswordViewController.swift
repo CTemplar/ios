@@ -31,7 +31,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         self.configurator = ForgotPasswordConfigurator()
         self.configurator?.configure(viewController: self)
         
-        self.configurator?.presenter?.setupResetCodeTextFieldsAndHintLabel(resetCode: resetCode!)
+        self.configurator?.presenter?.resetPasswordHintLabel(show: false)
         
         setupAttributesForTextView()
         
@@ -40,6 +40,9 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         } else {
             keyboardOffset = 0.0
         }
+        
+        let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
+        self.view.addGestureRecognizer(freeSpaceViewGesture)
         
         adddNotificationObserver()
     }
@@ -88,7 +91,21 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     @IBAction func resetCodeTyped(_ sender: UITextField) {
         
         resetCode = sender.text
-        self.configurator?.presenter?.setupResetCodeTextFieldsAndHintLabel(resetCode: resetCode!)
+    }
+    
+    @objc func tappedViewAction(sender : UITapGestureRecognizer) {
+        
+        view.endEditing(true)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        self.configurator?.presenter?.resetPasswordHintLabel(show: true)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        self.configurator?.presenter?.resetPasswordHintLabel(show: false)
     }
     
     //MARK: - notification

@@ -364,9 +364,57 @@ class APIService {
         }
     }
     
+    //MARK: - User
+    
+    func userMyself(completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    
+                    //HUD.show(.progress)
+                    
+                    self.restAPIService?.userMyself(token: token) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            
+                            print("userMyself success:", value)
+                            
+                            if let response = value as? Dictionary<String, Any> {
+                                
+                                completionHandler(APIResult.success(response))
+                                /*
+                                if let message = self.parseServerResponse(response:response) {
+                                    print("userMyself message:", message)
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    let emailMessages = EmailMessagesList(dictionary: response)
+                                    completionHandler(APIResult.success(emailMessages))
+                                }*/
+                            } else {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
+                            }
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                        
+                        //HUD.hide()
+                    }
+                }
+            }
+        }
+    }
+    
     //MARK: - Mail
     
-    func messagesList(folder: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func messagesList(folder: String, seconds: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         var folderFilter = ""
         
@@ -385,7 +433,7 @@ class APIService {
                     
                     //HUD.show(.progress)
                     
-                    self.restAPIService?.messagesList(token: token, folder: folderFilter) {(result) in
+                    self.restAPIService?.messagesList(token: token, folder: folderFilter, seconds: seconds) {(result) in
                         
                         switch(result) {
                             
@@ -564,7 +612,7 @@ class APIService {
         }
     }
     
-    func createMessage(content: String, folder: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func createMessage(content: String, subject: String, recieversList: Array<String>, folder: String, mailboxID: Int, send: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         self.checkTokenExpiration(){ (complete) in
             if complete {
@@ -573,7 +621,7 @@ class APIService {
                     
                     //HUD.show(.progress)
                     
-                    self.restAPIService?.createMessage(token: token, content: content, folder: folder) {(result) in
+                    self.restAPIService?.createMessage(token: token, content: content, subject: subject, recieversList: recieversList, folder: folder, mailboxID: mailboxID, send: send) {(result) in
                         
                         switch(result) {
                             
@@ -594,6 +642,42 @@ class APIService {
                                 let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
                                 completionHandler(APIResult.failure(error))
                             }
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                        
+                        //HUD.hide()
+                    }
+                }
+            }
+        }
+    }
+    
+    func deleteMessages(messagesIDIn: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        var messagesIDInParameter = ""
+        
+        if messagesIDIn.count > 0 {
+            messagesIDInParameter = "?id__in=" + messagesIDIn
+        }
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    
+                    //HUD.show(.progress)
+                    
+                    self.restAPIService?.deleteMessages(token: token, messagesIDIn: messagesIDInParameter) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            
+                            print("deleteMessages success:", value)
+                            completionHandler(APIResult.success(value))
                             
                         case .failure(let error):
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
@@ -892,7 +976,7 @@ class APIService {
             
             let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: k_LoginViewControllerID) as! LoginViewController
-            topViewController.present(vc, animated: true, completion: nil)
+            topViewController.present(vc, animated: false, completion: nil)
         }
     }
 }

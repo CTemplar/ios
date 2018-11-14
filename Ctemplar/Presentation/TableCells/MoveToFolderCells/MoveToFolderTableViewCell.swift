@@ -30,7 +30,7 @@ class MoveToFolderTableViewCell: UITableViewCell {
     func setupMoveToFolderTableCell(checked: Bool, iconColor: String, title: String) {
         
         if checked {
-            checkImageView.image = UIImage(named: k_checkBoxSelectedImageName)
+            checkImageView.image = UIImage(named: k_roundSelectedImageName)
         } else {
             checkImageView.image = UIImage(named: k_checkBoxUncheckedImageName)
         }

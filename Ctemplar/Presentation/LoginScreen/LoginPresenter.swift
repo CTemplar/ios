@@ -36,7 +36,7 @@ class LoginPresenter {
                 viewController?.passwordTextField.placeholder = ""
             } else {
                 if !(formatterService?.validateNameLench(enteredName: (viewController?.passwordTextField.text)!))! {
-                    viewController?.passwordTextField.placeholder = "emailPlaceholder".localized()
+                    viewController?.passwordTextField.placeholder = "passwordPlaceholder".localized()
                     viewController!.passwordHintLabel.isHidden = true
                 }
             }

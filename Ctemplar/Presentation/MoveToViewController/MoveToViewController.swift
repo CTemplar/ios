@@ -36,6 +36,10 @@ class MoveToViewController: UIViewController {
         dataSource?.initWith(parent: self, tableView: moveToTableView)
         
         self.presenter?.applyButton(enabled: false)
+        
+        let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture(gesture:)))
+        swipeDownGesture.direction = .down
+        self.view.addGestureRecognizer(swipeDownGesture)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,5 +66,12 @@ class MoveToViewController: UIViewController {
     @IBAction func cancelButtonPressed(_ sender: AnyObject) {
         
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+        
+        if gesture.direction == UISwipeGestureRecognizer.Direction.down {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }
