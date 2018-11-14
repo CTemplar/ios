@@ -45,7 +45,7 @@ class ViewInboxEmailViewController: UIViewController {
     var messageIsStarred: Bool?
     
     var message : EmailMessage?
-    //var header  : String?
+    var messageID  : Int?
     
     //MARK: - Lifecycle
     
@@ -59,9 +59,17 @@ class ViewInboxEmailViewController: UIViewController {
         self.messageIsStarred = message?.starred
         
         self.presenter?.setupNavigationBar()
-        self.presenter?.setupMessageHeader(message: self.message!)
+        //self.presenter?.setupMessageHeader(message: self.message!)
         
         self.presenter?.initMoreActionsView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let messageID = self.messageID {
+            self.presenter?.interactor?.getMessage(messageID: messageID)
+        }        
     }
     
     //MARK: - IBActions

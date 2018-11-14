@@ -8,6 +8,7 @@
 
 import Foundation
 import AlertHelperKit
+import PKHUD
 
 class ViewInboxEmailInteractor {
     
@@ -18,11 +19,32 @@ class ViewInboxEmailInteractor {
     var formatterService    : FormatterService?
     
 
+    func getMessage(messageID: Int) {
+        
+        HUD.show(.progress)
+        
+        apiService?.messagesList(folder: "", messagesIDIn: messageID.description, seconds: 0) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("value:", value)
+                
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+            
+            HUD.hide()
+        }
+    }
+    
     func extractMessageContent(message: EmailMessage) -> String {
         
         if let content = message.content {            
             if let message = self.pgpService?.decryptMessage(encryptedContet: content) {
-                print("decrypt message: ", message)
+                print("decrypt viewed message: ", message)
                 return message
             }
         }

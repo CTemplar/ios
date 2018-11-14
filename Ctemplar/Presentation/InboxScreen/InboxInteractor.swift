@@ -104,7 +104,7 @@ class InboxInteractor {
         
         HUD.show(.progress)
         
-        apiService?.messagesList(folder: folder, seconds: 0) {(result) in
+        apiService?.messagesList(folder: folder, messagesIDIn: "", seconds: 0) {(result) in
             
             switch(result) {
                 
@@ -135,7 +135,7 @@ class InboxInteractor {
         
         HUD.show(.progress)
         
-        apiService?.messagesList(folder: "", seconds: 0) {(result) in
+        apiService?.messagesList(folder: "", messagesIDIn: "", seconds: 0) {(result) in
             
             switch(result) {
                 

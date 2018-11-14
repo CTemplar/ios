@@ -77,21 +77,23 @@ class ViewInboxEmailPresenter {
         
         self.setupFromToHeaderHeight(message: message)
         
-        
-        
         if let messageContent = self.interactor?.extractMessageContent(message: message) {
         
+            //self.viewController?.contentTextView.isHidden = true
+            //self.viewController?.webView.isHidden = false
+            
             self.viewController?.contentTextView.isHidden = false
             self.viewController?.webView.isHidden = true
+            
             self.viewController?.contentTextView.attributedText = messageContent.html2AttributedString
             //self.viewController?.contentTextView.text = messageContent.html2String
-            //self.viewController?.webView.loadHTMLString(messageContent, baseURL: nil)
+            self.viewController?.webView.loadHTMLString(messageContent, baseURL: nil)
         }
     }
     
     func setupFromToHeaderHeight(message: EmailMessage) {
         
-        var fromName: String = "Dmitry"
+        var fromName: String = ""
         var fromEmail: String = ""
         var toNamesArray : Array<String> = []
         var toEmailsArray : Array<String> = []
