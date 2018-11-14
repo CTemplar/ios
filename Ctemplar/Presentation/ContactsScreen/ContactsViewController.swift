@@ -13,10 +13,14 @@ import SideMenu
 
 class ContactsViewController: UIViewController, UISearchResultsUpdating {
 
+    @IBOutlet var contactsTableView        : UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
      
         self.setupSearchController()
+        
+        contactsTableView.isHidden = true
     }
         
     //MARK: - IBActions
