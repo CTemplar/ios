@@ -83,6 +83,8 @@ class InboxSideMenuViewController: UIViewController {
         dataSource?.setupData(mainFoldersArray: mainFoldersNameList, mainFoldersImageNameList: mainFoldersImageNameList, customFoldersArray: customFoldersNameList, labelsArray: labelsNameList, optionsArray: optionsNameList, optionsImageNameList: optionsImageNameList)
         
         self.navigationController?.navigationBar.isHidden = true
+        
+        self.presenter?.interactor?.customFoldersList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,7 +92,7 @@ class InboxSideMenuViewController: UIViewController {
     
         //self.presenter?.setupUserProfileBar()
       
-        self.presenter?.interactor?.customFoldersList()
+        //self.presenter?.interactor?.customFoldersList()
         self.presenter?.interactor?.unreadMessagesCounter()
         //self.presenter?.interactor?.userMyself()
     }

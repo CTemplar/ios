@@ -214,19 +214,19 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         switch indexPath.section {
             case SideMenuSectionIndex.mainFolders.rawValue:
                 let optionName = self.mainFoldersArray[indexPath.row]
-                //self.parentViewController?.presenter?.interactor?.selectAction(optionName: optionName)
+                self.parentViewController?.presenter?.interactor?.selectInboxAction(optionName: optionName)
                 
             break
             case SideMenuSectionIndex.options.rawValue:
                 let optionName = self.optionsArray[indexPath.row]
-                //self.parentViewController?.presenter?.interactor?.selectAction(optionName: optionName)
+                self.parentViewController?.presenter?.interactor?.selectInboxAction(optionName: optionName)
                 break
             case SideMenuSectionIndex.customFolders.rawValue:
                 
                 if self.showAllFolders {
                     let folder = self.customFoldersArray[indexPath.row]
                     let folderName = folder.folderName
-                    //self.parentViewController?.presenter?.interactor?.applyCustomFolderAction(folderName: folderName!)
+                    self.parentViewController?.presenter?.interactor?.applyCustomFolderAction(folderName: folderName!)
                 } else {
                     if indexPath.row == k_numberOfCustomFoldersShowing {
                         self.showAllFolders = true
@@ -234,7 +234,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
                     } else {
                         let folder = self.customFoldersArray[indexPath.row]
                         let folderName = folder.folderName
-                        //self.parentViewController?.presenter?.interactor?.applyCustomFolderAction(folderName: folderName!)
+                        self.parentViewController?.presenter?.interactor?.applyCustomFolderAction(folderName: folderName!)
                     }
                 }
  

@@ -41,7 +41,7 @@ class InboxSideMenuInteractor {
     
     func customFoldersList() {
         
-        //HUD.show(.progress)
+        HUD.show(.progress)
         
         apiService?.customFoldersList(limit: 200, offset: 0) {(result) in
             
@@ -59,7 +59,7 @@ class InboxSideMenuInteractor {
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
-           // HUD.hide()
+            HUD.hide()
         }
     }
     
@@ -127,8 +127,7 @@ class InboxSideMenuInteractor {
                 self.viewController?.currentParentViewController.navigationController?.popViewController(animated: true)
             })
         }*/
-        
-        
+     
         
     }
         
