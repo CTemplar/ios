@@ -85,15 +85,15 @@ class InboxSideMenuViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         
         //DispatchQueue.main.async {
-            self.presenter?.interactor?.customFoldersList()
+        //    self.presenter?.interactor?.customFoldersList()
         //}
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(userDataUpdate), name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    
-        //self.presenter?.setupUserProfileBar()
-      
+
         //self.presenter?.interactor?.customFoldersList()
         DispatchQueue.main.async {
             self.presenter?.interactor?.unreadMessagesCounter()
@@ -106,5 +106,29 @@ class InboxSideMenuViewController: UIViewController {
     @IBAction func userProfilePressed(_ sender: AnyObject) {
         
 
-    }    
+    }
+    
+    @objc func userDataUpdate(notification: Notification) {
+        
+        let userData = notification.object as! UserMyself
+            
+        if let folders = userData.foldersList {
+            self.dataSource?.customFoldersArray = folders
+            self.dataSource?.reloadData()
+        }
+        
+        var userName : String = ""
+        
+        if let getUserName = userData.username {
+            userName = getUserName
+        }
+        
+        if let mailboxes = userData.mailboxesList {
+            self.presenter?.setupUserProfileBar(mailboxes: mailboxes, userName: userName)
+        }
+        
+        DispatchQueue.main.async {
+            self.presenter?.interactor?.unreadMessagesCounter()
+        }
+    }
 }

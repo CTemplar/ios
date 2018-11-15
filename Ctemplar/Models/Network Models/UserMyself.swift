@@ -14,11 +14,11 @@ struct UserMyself {
     var next: String? = nil
     var pageConut: Int? = nil
     var previous: String? = nil
-    //var resultsList: Array<Any>? = nil
-    //var resultsList: Dictionary<String, Any>? = nil
     
     var mailboxesList : Array<Mailbox>? = nil
     var foldersList : Array<Folder>? = nil
+    
+    var username : String? = nil
         
     init() {
         
@@ -30,8 +30,6 @@ struct UserMyself {
         self.next = dictionary["next"] as? String
         self.pageConut = dictionary["page_count"] as? Int
         self.previous = dictionary["previous"] as? String
-        //self.resultsList = dictionary["results"] as? Array<Any>
-        //self.resultsList = dictionary["results"] as? Dictionary<String, Any>
         
         if let resultsArray = dictionary["results"] as? Array<Any> {
             self.parsResults(array: resultsArray)
@@ -50,10 +48,7 @@ struct UserMyself {
             
             for (key, value) in dictionary {
                 if key == "mailboxes" {
-                    //print("value:", value)
-                    
                     let array = value as! Array<Any>
-                    
                     for item in array {
                         let mailboxDict = item as! [String : Any]
                         let mailbox = Mailbox(dictionary: mailboxDict)
@@ -62,15 +57,16 @@ struct UserMyself {
                 }
                 
                 if key == "custom_folders" {
-                    //print("custom_folders value:", value)
-                    
-                    let array = value as! Array<Any>
-                    
+                    let array = value as! Array<Any>                    
                     for item in array {
                         let folderDict = item as! [String : Any]
                         let folder = Folder(dictionary: folderDict)
                         localFoldersList?.append(folder)
                     }
+                }
+                
+                if key == "username" {
+                    self.username = value as? String
                 }
             }
         }

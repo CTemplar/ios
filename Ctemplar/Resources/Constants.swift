@@ -68,6 +68,10 @@ let k_SearchTableViewCellIdentifier             = "searchTableViewCellIdentifier
 let k_LoginStoryboardName_iPad             = "Login-iPad"
 
 
+// notifications
+
+let k_updateUserDataNotificationID       = "UpdateUserDataNotificationIdentifier"
+
 // colors
 
 let k_lightRedColor: UIColor = UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 0.2)

@@ -120,7 +120,7 @@ class InboxInteractor {
                 }
                 
                // self.unreadMessagesCounter() //need to Side Menu unread msg counters
-                self.userMyself()//temp for debug
+               // self.userMyself()//temp for debug
                 
             case .failure(let error):
                 print("error:", error)
@@ -248,11 +248,15 @@ class InboxInteractor {
             case .success(let value):
                 //print("userMyself value:", value)
                 
-                let userMyself = value as! UserMyself
+                //let userMyself = value as! UserMyself
                 
                 //print("userMyself:", userMyself)
-                print("mailboxesList:", userMyself.mailboxesList)
-                print("foldersList:", userMyself.foldersList)
+                //print("mailboxesList:", userMyself.mailboxesList)
+                //print("foldersList:", userMyself.foldersList)
+                
+                self.viewController?.leftBarButtonItem.isEnabled = true
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: value)
                 
             case .failure(let error):
                 print("error:", error)

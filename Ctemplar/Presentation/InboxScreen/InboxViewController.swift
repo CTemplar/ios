@@ -71,8 +71,6 @@ class InboxViewController: UIViewController {
         let configurator = InboxConfigurator()
         configurator.configure(viewController: self)
         
-        //presenter?.initAndSetupInboxSideMenuController()
-        
         dataSource?.initWith(parent: self, tableView: inboxTableView, array: messagesList)
         
         presenter?.setupUI(emailsCount: 0, unreadEmails: 0, filterEnabled: false)
@@ -82,12 +80,14 @@ class InboxViewController: UIViewController {
         adddNotificationObserver()
         
         self.navigationItem.title = currentFolder
+        self.leftBarButtonItem.isEnabled = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.presenter?.interactor?.updateMessages(withUndo: "")
+        self.presenter?.interactor?.userMyself()
         
         navigationController?.navigationBar.backgroundColor = k_whiteColor
     }

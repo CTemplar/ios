@@ -164,29 +164,33 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
                 
                 cell = tableView.dequeueReusableCell(withIdentifier: k_CustomFolderTableViewCellIdentifier)! as! CustomFolderTableViewCell
                 
-                let folder = self.customFoldersArray[indexPath.row]
-                let folderName = folder.folderName
-                //let selected = self.isSelected(folderName: folderName!)
-                let selected = isSelected(section: indexPath.section, row: indexPath.row)
-                let folderColor = folder.color
-                
-                let unreadCount = self.parentViewController?.presenter?.interactor?.getUnreadMessagesCount(folderName: folderName!)
-                
-                (cell as! CustomFolderTableViewCell).setupCustomFolderTableCell(selected: selected, iconColor: folderColor!, title: folderName!, unreadCount: unreadCount!)
-            } else {
-                
-                if indexPath.row < k_numberOfCustomFoldersShowing {
-                    
-                    cell = tableView.dequeueReusableCell(withIdentifier: k_CustomFolderTableViewCellIdentifier)! as! CustomFolderTableViewCell
+                if self.customFoldersArray.count > indexPath.row {
                     
                     let folder = self.customFoldersArray[indexPath.row]
                     let folderName = folder.folderName
-                    let selected = self.isSelected(folderName: folderName!)
+                    let selected = isSelected(section: indexPath.section, row: indexPath.row)
                     let folderColor = folder.color
                     
                     let unreadCount = self.parentViewController?.presenter?.interactor?.getUnreadMessagesCount(folderName: folderName!)
                     
                     (cell as! CustomFolderTableViewCell).setupCustomFolderTableCell(selected: selected, iconColor: folderColor!, title: folderName!, unreadCount: unreadCount!)
+                }
+            } else {
+                
+                if indexPath.row < k_numberOfCustomFoldersShowing {
+                    
+                    if self.customFoldersArray.count > indexPath.row {
+                        cell = tableView.dequeueReusableCell(withIdentifier: k_CustomFolderTableViewCellIdentifier)! as! CustomFolderTableViewCell
+                        
+                        let folder = self.customFoldersArray[indexPath.row]
+                        let folderName = folder.folderName
+                        let selected = self.isSelected(folderName: folderName!)
+                        let folderColor = folder.color
+                        
+                        let unreadCount = self.parentViewController?.presenter?.interactor?.getUnreadMessagesCount(folderName: folderName!)
+                        
+                        (cell as! CustomFolderTableViewCell).setupCustomFolderTableCell(selected: selected, iconColor: folderColor!, title: folderName!, unreadCount: unreadCount!)
+                    }
                 } else {
                   
                     if indexPath.row == k_numberOfCustomFoldersShowing {
