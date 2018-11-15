@@ -84,7 +84,9 @@ class InboxSideMenuViewController: UIViewController {
         
         self.navigationController?.navigationBar.isHidden = true
         
-        self.presenter?.interactor?.customFoldersList()
+        //DispatchQueue.main.async {
+            self.presenter?.interactor?.customFoldersList()
+        //}
     }
     
     override func viewWillAppear(_ animated: Bool) {

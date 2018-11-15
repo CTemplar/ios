@@ -317,8 +317,10 @@ class InboxInteractor {
         
         let header = self.headerOfMessage(content: content)
         
-        self.viewController?.dataSource?.messagesHeaderArray[index] = header
-        self.viewController?.dataSource?.reloadData()
+        if (self.viewController?.dataSource?.messagesHeaderArray.count)! > index {
+            self.viewController?.dataSource?.messagesHeaderArray[index] = header
+            self.viewController?.dataSource?.reloadData()
+        }
     }
     
     func updateMessagesHeader(emailsArray: Array<EmailMessage>) {
