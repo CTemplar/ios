@@ -934,36 +934,7 @@ class APIService {
         
         return ""
     }
-/*
-    func autologinWhenTokenExpired() {
-        
-        let storedUserName = keychainService?.getUserName()
-        let storedPassword = keychainService?.getPassword()
-        
-        if (storedUserName?.count)! < 1 || (storedPassword?.count)! < 1 {
-            print("wrong stored credentials!")
-            showLoginViewController()
-            return
-        }
-        
-        self.authenticateUser(userName: storedUserName!, password: storedPassword!) {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                print("autologin success value:", value)
-                //need repeat request
-              
-            case .failure(let error):
-                print("autologin error:", error)
-                
-                if let topViewController = UIApplication.topViewController() {
-                    AlertHelperKit().showAlert(topViewController, title: "Autologin Error", message: error.localizedDescription, button: "closeButton".localized())
-                }
-            }
-        }
-    }
-    */
+
     func showLoginViewController() {
         
         if let topViewController = UIApplication.topViewController() {

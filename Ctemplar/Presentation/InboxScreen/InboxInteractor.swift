@@ -190,7 +190,7 @@ class InboxInteractor {
             self.mailboxesList(storeKeys: true)
         } else {
             print("local PGPKeys exist")
-            self.mailboxesList(storeKeys: false)            
+            //self.mailboxesList(storeKeys: false)
             return true
         }
         
@@ -256,17 +256,6 @@ class InboxInteractor {
     }
     
     //MARK: - message headers
-/*
-    func decryptMessage(content: String) -> String {
-        
-        if let message = self.pgpService?.decryptMessage(encryptedContet: content) {
-            //print("decrypt message: ", message)
-            return message
-        }
-        
-        return ""
-    }
-    */
     
     func headerOfMessage(content: String) -> String {
         

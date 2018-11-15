@@ -54,6 +54,8 @@ class InboxSideMenuInteractor {
                 
                 self.setCustomFoldersData(folderList: folderList)
                 
+                self.unreadMessagesCounter()
+                
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())

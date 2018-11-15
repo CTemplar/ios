@@ -95,7 +95,9 @@ class InboxSideMenuViewController: UIViewController {
         //self.presenter?.setupUserProfileBar()
       
         //self.presenter?.interactor?.customFoldersList()
-        self.presenter?.interactor?.unreadMessagesCounter()
+        DispatchQueue.main.async {
+            self.presenter?.interactor?.unreadMessagesCounter()
+        }
         //self.presenter?.interactor?.userMyself()
     }
     
