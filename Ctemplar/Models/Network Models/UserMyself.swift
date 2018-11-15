@@ -17,6 +17,7 @@ struct UserMyself {
     
     var mailboxesList : Array<Mailbox>? = nil
     var foldersList : Array<Folder>? = nil
+    var contactsList : Array<Contact>? = nil
     
     var username : String? = nil
         
@@ -40,6 +41,7 @@ struct UserMyself {
         
         var localMailboxesList : Array<Mailbox>? = []
         var localFoldersList : Array<Folder>? = []
+        var localContactsList : Array<Contact>? = []
         
         for item in array {
             
@@ -68,10 +70,20 @@ struct UserMyself {
                 if key == "username" {
                     self.username = value as? String
                 }
+                
+                if key == "contacts" {
+                   let array = value as! Array<Any>
+                    for item in array {
+                        let contactDict = item as! [String : Any]
+                        let contact = Contact(dictionary: contactDict)
+                        localContactsList?.append(contact)
+                    }
+                }
             }
         }
         
         self.mailboxesList = localMailboxesList
         self.foldersList = localFoldersList
+        self.contactsList = localContactsList
     }
 }

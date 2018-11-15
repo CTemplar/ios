@@ -253,6 +253,7 @@ class InboxInteractor {
                 //print("userMyself:", userMyself)
                 //print("mailboxesList:", userMyself.mailboxesList)
                 //print("foldersList:", userMyself.foldersList)
+                //print("contactsList:", userMyself.contactsList)
                 
                 self.viewController?.leftBarButtonItem.isEnabled = true
                 
