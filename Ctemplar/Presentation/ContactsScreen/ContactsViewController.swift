@@ -35,7 +35,7 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating {
         contactsTableView.isHidden = true
         
         //temp
-        
+        contactsTableView.isHidden = false
         dataSource?.contactsArray = contactsList
         dataSource?.reloadData()
     }
