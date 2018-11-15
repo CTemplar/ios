@@ -207,19 +207,24 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         
         tableView.deselectRow(at: indexPath, animated: true)
         
+        if self.selectedIndexPath == indexPath {
+            self.parentViewController?.dismiss(animated: true, completion: nil)
+            return
+        }
+        
         self.selectedIndexPath = indexPath
         
-        reloadData()//temp
+        self.reloadData()//for update Selection Status of Rows
         
         switch indexPath.section {
             case SideMenuSectionIndex.mainFolders.rawValue:
                 let optionName = self.mainFoldersArray[indexPath.row]
-                self.parentViewController?.presenter?.interactor?.selectInboxAction(optionName: optionName)
+                self.parentViewController?.presenter?.interactor?.selectSideMenuAction(optionName: optionName)
                 
             break
             case SideMenuSectionIndex.options.rawValue:
                 let optionName = self.optionsArray[indexPath.row]
-                self.parentViewController?.presenter?.interactor?.selectInboxAction(optionName: optionName)
+                self.parentViewController?.presenter?.interactor?.selectSideMenuAction(optionName: optionName)
                 break
             case SideMenuSectionIndex.customFolders.rawValue:
                 

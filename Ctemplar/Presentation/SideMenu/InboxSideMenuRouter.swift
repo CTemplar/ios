@@ -17,8 +17,8 @@ class InboxSideMenuRouter {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_ContactsStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_ContactsViewControllerID) as! ContactsViewController
-        //self.viewController?.show(vc, sender: self)
-        //self.viewController?.present(vc, animated: true, completion: nil)
+        self.viewController?.currentParentViewController = vc
+        //vc.sideMenuViewController = self.viewController
         self.viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }

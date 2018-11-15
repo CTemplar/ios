@@ -27,9 +27,14 @@ class ContactsPresenter {
         searchController.searchBar.placeholder = "search".localized()
         self.viewController?.navigationItem.searchController = searchController
         
+        //UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).leftViewMode = .never
+        UISearchBar.appearance().searchTextPositionAdjustment = UIOffset(horizontal: 10, vertical: 0)
+       // UISearchBar.appearance().searchFieldBackgroundPositionAdjustment = UIOffset(horizontal: 0, vertical: 8)
+        
         if let searchTextField = searchController.searchBar.value(forKey: "_searchField") as? UITextField {
-            //searchTextField.borderStyle = .none
-            searchTextField.backgroundColor = self.viewController?.navigationItem.titleView?.backgroundColor
+            searchTextField.borderStyle = .none
+            //searchTextField.backgroundColor = self.viewController?.navigationItem.titleView?.backgroundColor
+            //searchTextField.background = UIImage()
         }
     }
 }

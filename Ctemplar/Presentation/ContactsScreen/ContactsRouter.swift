@@ -16,9 +16,8 @@ class ContactsRouter {
     
     func showInboxSideMenu() {
         
-        //self.viewController?.inboxSideMenuViewController?.currentParentViewController = self.viewController
-        let inboxSideMenuViewController = SideMenuManager.default.menuLeftNavigationController?.children.first as! InboxSideMenuViewController
-        inboxSideMenuViewController.currentParentViewController = self.viewController
+        //let inboxSideMenuViewController = SideMenuManager.default.menuLeftNavigationController?.children.first as! InboxSideMenuViewController
+        //inboxSideMenuViewController.currentParentViewController = self.viewController
         self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
 }

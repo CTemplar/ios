@@ -15,16 +15,18 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating {
     var presenter   : ContactsPresenter?
     var router      : ContactsRouter?
     var dataSource  : ContactsDataSource?
+    
+    var sideMenuViewController : InboxSideMenuViewController?
 
     @IBOutlet var contactsTableView        : UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-        self.presenter?.setupSearchController()
         
         let configurator = ContactsConfigurator()
         configurator.configure(viewController: self)
+     
+        self.presenter?.setupSearchController()
         
         dataSource?.initWith(parent: self, tableView: contactsTableView)
         
@@ -35,9 +37,9 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating {
     
     @IBAction func menuButtonPressed(_ sender: AnyObject) {
         
-        //self.showInboxSideMenu()
+        self.router?.showInboxSideMenu()
         //self.dismiss(animated: true, completion: nil)
-        self.navigationController?.popViewController(animated: true) //temp
+        //self.navigationController?.popViewController(animated: true) //temp
     }
     
     @IBAction func addContactButtonPressed(_ sender: AnyObject) {

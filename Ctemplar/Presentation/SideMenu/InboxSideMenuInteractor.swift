@@ -115,23 +115,16 @@ class InboxSideMenuInteractor {
         }
     }
     
-    func selectAction(optionName: String) {
-        /*
-        if (self.viewController?.currentParentViewController.isKind(of: InboxViewController.self))! {
-            self.selectInboxAction(optionName: optionName)
-        }
-       
-        if (self.viewController?.currentParentViewController.isKind(of: ContactsViewController.self))! {
-            self.viewController?.dismiss(animated: true, completion: {
-
-                self.viewController?.currentParentViewController.navigationController?.popViewController(animated: true)
-            })
-        }*/
-     
+    func dismissSideMenuAndTopController() {
         
+        self.viewController?.dismiss(animated: true, completion: {
+            if let parentViewController = self.viewController?.currentParentViewController {
+                parentViewController.navigationController?.popViewController(animated: true)
+            }
+        })
     }
-        
-    func selectInboxAction(optionName: String) {
+    
+    func selectSideMenuAction(optionName: String) {
         
         switch optionName {
         case InboxSideMenuOptionsName.inbox.rawValue :
@@ -181,7 +174,7 @@ class InboxSideMenuInteractor {
         currentViewController?.presenter?.interactor?.updateMessages(withUndo: "")//loadMessages(folder: filter)
         currentViewController?.presenter?.interactor?.clearFilters()
         
-        self.viewController?.dismiss(animated: true, completion: nil)
+        self.dismissSideMenuAndTopController()
     }
     
     func applyCustomFolderAction(folderName: String) {
