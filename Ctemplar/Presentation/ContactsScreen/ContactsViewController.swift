@@ -17,6 +17,8 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating {
     var dataSource  : ContactsDataSource?
     
     var sideMenuViewController : InboxSideMenuViewController?
+    
+    var contactsList : Array<Contact> = []
 
     @IBOutlet var contactsTableView        : UITableView!
     
@@ -31,6 +33,11 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating {
         dataSource?.initWith(parent: self, tableView: contactsTableView)
         
         contactsTableView.isHidden = true
+        
+        //temp
+        
+        dataSource?.contactsArray = contactsList
+        dataSource?.reloadData()
     }
         
     //MARK: - IBActions

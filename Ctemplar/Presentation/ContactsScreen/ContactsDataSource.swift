@@ -11,7 +11,7 @@ import UIKit
 
 class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
-    var contactsArray           : Array<Any> = []
+    var contactsArray           : Array<Contact> = []
     
     var searchText              : String = ""
     
@@ -56,5 +56,10 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
         
         return cell
+    }
+    
+    func reloadData() {
+        
+        self.tableView.reloadData()
     }
 }

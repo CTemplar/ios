@@ -248,7 +248,11 @@ class InboxInteractor {
             case .success(let value):
                 //print("userMyself value:", value)
                 
-                //let userMyself = value as! UserMyself
+                let userMyself = value as! UserMyself
+                
+                if let contacts = userMyself.contactsList {
+                    self.viewController?.contactsList = contacts
+                }
                 
                 //print("userMyself:", userMyself)
                 //print("mailboxesList:", userMyself.mailboxesList)
