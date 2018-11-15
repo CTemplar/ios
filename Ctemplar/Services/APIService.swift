@@ -381,20 +381,18 @@ class APIService {
                             
                         case .success(let value):
                             
-                            print("userMyself success:", value)
+                            //print("userMyself success:", value)
                             
-                            if let response = value as? Dictionary<String, Any> {
+                            if let response = value as? Dictionary<String, Any> {                            
                                 
-                                completionHandler(APIResult.success(response))
-                                /*
                                 if let message = self.parseServerResponse(response:response) {
                                     print("userMyself message:", message)
                                     let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
                                     completionHandler(APIResult.failure(error))
                                 } else {
-                                    let emailMessages = EmailMessagesList(dictionary: response)
-                                    completionHandler(APIResult.success(emailMessages))
-                                }*/
+                                    let userMyself = UserMyself(dictionary: response)
+                                    completionHandler(APIResult.success(userMyself))
+                                }
                             } else {
                                 let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
                                 completionHandler(APIResult.failure(error))

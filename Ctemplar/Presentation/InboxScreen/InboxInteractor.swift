@@ -120,7 +120,7 @@ class InboxInteractor {
                 }
                 
                // self.unreadMessagesCounter() //need to Side Menu unread msg counters
-                //self.userMyself()//temp for debug
+                self.userMyself()//temp for debug
                 
             case .failure(let error):
                 print("error:", error)
@@ -246,7 +246,13 @@ class InboxInteractor {
             switch(result) {
                 
             case .success(let value):
-                print("userMyself value:", value)
+                //print("userMyself value:", value)
+                
+                let userMyself = value as! UserMyself
+                
+                //print("userMyself:", userMyself)
+                print("mailboxesList:", userMyself.mailboxesList)
+                print("foldersList:", userMyself.foldersList)
                 
             case .failure(let error):
                 print("error:", error)

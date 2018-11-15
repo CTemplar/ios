@@ -128,6 +128,7 @@
 		84A62E532175CD95009C38E5 /* ForgotPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A62E522175CD95009C38E5 /* ForgotPasswordPresenter.swift */; };
 		84A62E552175CDFB009C38E5 /* ForgotPasswordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A62E542175CDFB009C38E5 /* ForgotPasswordInteractor.swift */; };
 		84F348582181F4E300F00E37 /* BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F348572181F4E300F00E37 /* BlurEffect.swift */; };
+		84FF7E37219D662300E3E56A /* UserMyself.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF7E36219D662300E3E56A /* UserMyself.swift */; };
 		8895AB178CEFEFB8A9DCD62B /* Pods_Ctemplar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B8DB58A9BFE099948CF3E1 /* Pods_Ctemplar.framework */; };
 /* End PBXBuildFile section */
 
@@ -260,6 +261,7 @@
 		84F348532181B20C00F00E37 /* MoreActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreActionsView.swift; sourceTree = "<group>"; };
 		84F348552181B21C00F00E37 /* MoreActions.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreActions.xib; sourceTree = "<group>"; };
 		84F348572181F4E300F00E37 /* BlurEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurEffect.swift; sourceTree = "<group>"; };
+		84FF7E36219D662300E3E56A /* UserMyself.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMyself.swift; sourceTree = "<group>"; };
 		8C75257603640BC3576C9BB5 /* Pods-Ctemplar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ctemplar/Pods-Ctemplar.debug.xcconfig"; sourceTree = "<group>"; };
 		A9B8DB58A9BFE099948CF3E1 /* Pods_Ctemplar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6F0F7014DAB1A09E4C0F5D2 /* Pods-Ctemplar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ctemplar/Pods-Ctemplar.release.xcconfig"; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				8406B2152193FD8A009F0375 /* UnreadMessagesCounter.swift */,
 				8402497E21916D3200CDDB0F /* FoldersList.swift */,
 				8402498021916D8E00CDDB0F /* Folder.swift */,
+				84FF7E36219D662300E3E56A /* UserMyself.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -936,6 +939,7 @@
 				8434D9B8219C4E3900D2C3A5 /* ContactsDataSource.swift in Sources */,
 				84F348582181F4E300F00E37 /* BlurEffect.swift in Sources */,
 				84A62E4B2175C3CF009C38E5 /* NewPasswordViewController.swift in Sources */,
+				84FF7E37219D662300E3E56A /* UserMyself.swift in Sources */,
 				84525F17219568D900CA732E /* SearchConfigurator.swift in Sources */,
 				8437103D217465A700DAE4BA /* ForgotPasswordNavigationController.swift in Sources */,
 				8430429E217D9D5100DB5787 /* InboxSideMenuInteractor.swift in Sources */,
