@@ -19,8 +19,15 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating {
     var sideMenuViewController : InboxSideMenuViewController?
     
     var contactsList : Array<Contact> = []
-
+    
     @IBOutlet var contactsTableView        : UITableView!
+    
+    @IBOutlet var leftBarButtonItem     : UIBarButtonItem!
+    @IBOutlet var rightBarButtonItem    : UIBarButtonItem!
+    
+    @IBOutlet var selectAllBar          : UIView!
+    @IBOutlet var bottomToolBar         : UIView!
+    @IBOutlet var undoBar               : UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +58,7 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating {
     
     @IBAction func addContactButtonPressed(_ sender: AnyObject) {
         
-       
+        presenter?.addContactButtonPressed(sender: self)
     }
     
     //MARK: - Search delegate

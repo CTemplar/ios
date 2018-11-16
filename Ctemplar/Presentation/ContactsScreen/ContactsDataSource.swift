@@ -12,6 +12,7 @@ import UIKit
 class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     var contactsArray           : Array<Contact> = []
+    var selectedContactsArray   : Array<Contact> = []
     
     var searchText              : String = ""
     
@@ -20,6 +21,7 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     var formatterService        : FormatterService?
     
     var filtered : Bool = false
+    var selectionMode : Bool = false
     
     func initWith(parent: ContactsViewController, tableView: UITableView) {
         
@@ -28,6 +30,9 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         self.tableView.delegate = self
         self.tableView.dataSource = self
 //        self.contactsArray = array
+        
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(sender:)))
+        self.tableView.addGestureRecognizer(longPressRecognizer)
         
         registerTableViewCell()
     }
@@ -54,14 +59,83 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         let cell : ContactTableViewCell = tableView.dequeueReusableCell(withIdentifier: k_ContactTableViewCellIdentifier)! as! ContactTableViewCell
         
         let contact = contactsArray[indexPath.row]
+        let isSelected = self.isContactSelected(contact: contact)
         
-        (cell as ContactTableViewCell).setupCellWithData(contact: contact, isSelectionMode: false, isSelected: false)
+        (cell as ContactTableViewCell).setupCellWithData(contact: contact, isSelectionMode: self.selectionMode, isSelected: isSelected)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let contact = contactsArray[indexPath.row]
+        
+        if self.selectionMode == false {
+            
+        } else {
+            
+            let selected = isContactSelected(contact: contact)
+            
+            if selected {
+                if let index = selectedContactsArray.index(where: {$0.contactID == contact.contactID}) {
+                    selectedContactsArray.remove(at: index)
+                }      
+                
+            } else {
+                print("selected")
+                selectedContactsArray.append(contact)               
+            }
+            
+            if selectedContactsArray.count == 0 {
+                self.parentViewController.presenter?.disableSelectionMode()
+            }
+            
+            self.reloadData()
+            
+            self.parentViewController.presenter?.setupNavigationItemTitle(selectedContacts: selectedContactsArray.count, selectionMode: selectionMode)
+        }
     }
     
     func reloadData() {
         
         self.tableView.reloadData()
+    }
+    
+    // MARK: Actions
+    
+    @objc func longPressed(sender: UILongPressGestureRecognizer) {
+        
+        if sender.state == UIGestureRecognizer.State.began {
+            
+            let touchPoint = sender.location(in: self.tableView)
+            if let indexPath = tableView.indexPathForRow(at: touchPoint) {
+                
+                let contact = contactsArray[indexPath.row]
+                
+                print("Long pressed row: \(indexPath.row)")
+                if self.selectionMode == false {
+                    self.selectedContactsArray.removeAll()
+                    self.selectedContactsArray.append(contact)
+                    self.parentViewController.presenter?.enableSelectionMode()
+                }
+            }
+        }
+    }
+    
+    // MARK: local methods
+    
+    func isContactSelected(contact: Contact) -> Bool {
+        
+        for contactItem in selectedContactsArray {
+            if let contactItemID = contactItem.contactID {
+                if contactItemID == contact.contactID {
+                    return true
+                }
+            }
+        }
+        
+        return false
     }
 }

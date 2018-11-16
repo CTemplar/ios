@@ -221,6 +221,8 @@ let k_redCheckIconImageName         = "redCheck"
 let k_emptyInboxIconImageName         = "EmptyInboxIcon"
 let k_emptyFilterInboxIconImageName   = "EmptyFilterInboxIcon"
 
+let k_darkPlusIconImageName         = "PlusButton"
+
 // fonts
 
 let k_latoRegularFontName = "Lato-Regular"

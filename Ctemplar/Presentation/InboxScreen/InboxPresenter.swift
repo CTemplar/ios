@@ -123,7 +123,7 @@ class InboxPresenter {
         
         moreItem.isEnabled = moreButtonEnabled
         
-        let cancelItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelButtonPresed))
+        let cancelItem = UIBarButtonItem(title: "cancelButton".localized(), style: .plain, target: self, action: #selector(cancelButtonPresed))
         cancelItem.tintColor = UIColor.darkGray
         
         if searchMode {
