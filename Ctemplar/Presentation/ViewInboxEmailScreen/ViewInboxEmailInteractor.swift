@@ -27,9 +27,15 @@ class ViewInboxEmailInteractor {
                     self.viewController?.message = message
                     self.viewController?.messageIsRead = message.read
                     self.viewController?.messageIsStarred = message.starred
-                
+                    
+                    if (message.children?.count)! > 0 {
+                        self.viewController?.messagesTableView.isHidden = false
+                        
+                    } else {
+                        self.presenter?.setupMessageContent(message: message)
+                    }
+                    
                     self.presenter?.setupMessageHeader(message: message)
-                    self.presenter?.setupMessageContent(message: message)
                     self.presenter?.setupNavigationBar(enabled: true)
                     self.presenter?.setupBottomBar(enabled: true)
                 }

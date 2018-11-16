@@ -41,6 +41,7 @@
 		8433A53C21897595008E1C85 /* InboxFilter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8433A53B21897595008E1C85 /* InboxFilter.xib */; };
 		8433A53F2189DD33008E1C85 /* MoveToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433A53E2189DD33008E1C85 /* MoveToViewController.swift */; };
 		8433A5412189DE17008E1C85 /* MoveTo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433A5402189DE17008E1C85 /* MoveTo.storyboard */; };
+		8433DFB7219EC92100375609 /* ViewInboxEmailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433DFB6219EC92100375609 /* ViewInboxEmailDataSource.swift */; };
 		8433FF1A216201A300C57DC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF19216201A300C57DC8 /* AppDelegate.swift */; };
 		8433FF1C216201A300C57DC8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF1B216201A300C57DC8 /* MainViewController.swift */; };
 		8433FF1F216201A300C57DC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF1D216201A300C57DC8 /* Main.storyboard */; };
@@ -170,6 +171,7 @@
 		8433A53B21897595008E1C85 /* InboxFilter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InboxFilter.xib; sourceTree = "<group>"; };
 		8433A53E2189DD33008E1C85 /* MoveToViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToViewController.swift; sourceTree = "<group>"; };
 		8433A5402189DE17008E1C85 /* MoveTo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MoveTo.storyboard; sourceTree = "<group>"; };
+		8433DFB6219EC92100375609 /* ViewInboxEmailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewInboxEmailDataSource.swift; sourceTree = "<group>"; };
 		8433FF16216201A300C57DC8 /* Ctemplar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ctemplar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8433FF19216201A300C57DC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8433FF1B216201A300C57DC8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -608,6 +610,7 @@
 				84312189218AF80E0014560D /* ViewInboxEmailRouter.swift */,
 				8431218B218AF81B0014560D /* ViewInboxEmailPresenter.swift */,
 				8431218D218AF82C0014560D /* ViewInboxEmailInteractor.swift */,
+				8433DFB6219EC92100375609 /* ViewInboxEmailDataSource.swift */,
 				8441098F217723CE00F0BE18 /* ViewInboxEmail.storyboard */,
 			);
 			path = ViewInboxEmailScreen;
@@ -904,6 +907,7 @@
 				844655BC218C264200B2F2E4 /* MoreActionsView.swift in Sources */,
 				8432B300218709C9006C901C /* SideMenuTableViewCell.swift in Sources */,
 				843FA928216BA39C00355849 /* FormatterService.swift in Sources */,
+				8433DFB7219EC92100375609 /* ViewInboxEmailDataSource.swift in Sources */,
 				8433FF57216212D500C57DC8 /* AplicationManager.swift in Sources */,
 				8437103F217465DD00DAE4BA /* ForgotPasswordViewController.swift in Sources */,
 				8402498121916D8E00CDDB0F /* Folder.swift in Sources */,

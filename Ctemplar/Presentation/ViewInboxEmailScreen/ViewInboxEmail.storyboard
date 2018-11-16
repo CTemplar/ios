@@ -68,6 +68,17 @@
                                     <constraint firstAttribute="bottom" secondItem="O3z-ha-xta" secondAttribute="bottom" constant="13" id="v2O-8R-kBB"/>
                                     <constraint firstAttribute="trailing" secondItem="iev-lH-mPM" secondAttribute="trailing" constant="19" id="wLg-Q2-1f9"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8rf-rG-IDF">
                                 <rect key="frame" x="0.0" y="67" width="375" height="146"/>
@@ -188,6 +199,11 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </scrollView>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WOC-HY-kqY">
+                                <rect key="frame" x="0.0" y="67" width="375" height="551"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableView>
                             <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z5N-8m-C3L">
                                 <rect key="frame" x="0.0" y="618" width="375" height="49"/>
                                 <subviews>
@@ -273,6 +289,15 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                                     <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                         <color key="value" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
@@ -281,13 +306,17 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                             <constraint firstItem="8rf-rG-IDF" firstAttribute="top" secondItem="Bdn-cE-JGF" secondAttribute="bottom" id="06h-tD-oRW"/>
                             <constraint firstItem="Z5N-8m-C3L" firstAttribute="trailing" secondItem="qXm-fw-lAQ" secondAttribute="trailing" id="7QF-jK-K9X"/>
                             <constraint firstItem="8rf-rG-IDF" firstAttribute="trailing" secondItem="qXm-fw-lAQ" secondAttribute="trailing" id="B7E-RR-zTh"/>
+                            <constraint firstItem="WOC-HY-kqY" firstAttribute="trailing" secondItem="qXm-fw-lAQ" secondAttribute="trailing" id="HTM-5H-0Co"/>
                             <constraint firstItem="pMK-H7-dDA" firstAttribute="leading" secondItem="qXm-fw-lAQ" secondAttribute="leading" id="O9W-7X-280"/>
                             <constraint firstItem="8rf-rG-IDF" firstAttribute="leading" secondItem="qXm-fw-lAQ" secondAttribute="leading" id="T1S-bF-BFb"/>
                             <constraint firstItem="pMK-H7-dDA" firstAttribute="top" secondItem="8rf-rG-IDF" secondAttribute="bottom" id="TYW-xV-dxj"/>
+                            <constraint firstItem="Z5N-8m-C3L" firstAttribute="top" secondItem="WOC-HY-kqY" secondAttribute="bottom" id="USf-Ca-gQp"/>
                             <constraint firstItem="Z5N-8m-C3L" firstAttribute="top" secondItem="pMK-H7-dDA" secondAttribute="bottom" id="bqG-g5-kG1"/>
                             <constraint firstItem="Z5N-8m-C3L" firstAttribute="bottom" secondItem="qXm-fw-lAQ" secondAttribute="bottom" id="fZp-UU-9Px"/>
                             <constraint firstItem="Z5N-8m-C3L" firstAttribute="leading" secondItem="qXm-fw-lAQ" secondAttribute="leading" id="gBM-9A-myK"/>
                             <constraint firstItem="Bdn-cE-JGF" firstAttribute="trailing" secondItem="qXm-fw-lAQ" secondAttribute="trailing" id="iF8-rE-7Gp"/>
+                            <constraint firstItem="WOC-HY-kqY" firstAttribute="leading" secondItem="qXm-fw-lAQ" secondAttribute="leading" id="m5z-5P-saR"/>
+                            <constraint firstItem="WOC-HY-kqY" firstAttribute="top" secondItem="Bdn-cE-JGF" secondAttribute="bottom" id="qyo-wv-eRt"/>
                             <constraint firstItem="Bdn-cE-JGF" firstAttribute="top" secondItem="qXm-fw-lAQ" secondAttribute="top" id="s0v-0d-2Nn"/>
                             <constraint firstItem="Bdn-cE-JGF" firstAttribute="leading" secondItem="qXm-fw-lAQ" secondAttribute="leading" id="tgp-Ud-Ack"/>
                             <constraint firstItem="pMK-H7-dDA" firstAttribute="trailing" secondItem="qXm-fw-lAQ" secondAttribute="trailing" id="wai-cS-jJM"/>
@@ -302,6 +331,7 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                         <outlet property="fromToViewHeightConstraint" destination="RzV-fy-BrA" id="0vD-0n-SXW"/>
                         <outlet property="headerLabel" destination="O3z-ha-xta" id="1qi-xM-bvq"/>
                         <outlet property="headerLabelWidthConstraint" destination="haR-mM-ync" id="F1F-UW-NRW"/>
+                        <outlet property="messagesTableView" destination="WOC-HY-kqY" id="B45-AC-eHe"/>
                         <outlet property="replyAllButton" destination="1u4-Uf-KqQ" id="N8I-IS-316"/>
                         <outlet property="replyButton" destination="b2m-Xp-8JM" id="Mny-gG-aMw"/>
                         <outlet property="scrollView" destination="pMK-H7-dDA" id="HV7-sq-6KY"/>

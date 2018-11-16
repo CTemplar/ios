@@ -14,6 +14,7 @@ class ViewInboxEmailViewController: UIViewController {
     
     var presenter   : ViewInboxEmailPresenter?
     var router      : ViewInboxEmailRouter?
+    var dataSource  : ViewInboxEmailDataSource?
         
     @IBOutlet var headerLabelWidthConstraint : NSLayoutConstraint!
     @IBOutlet var fromToViewHeightConstraint : NSLayoutConstraint!
@@ -39,6 +40,8 @@ class ViewInboxEmailViewController: UIViewController {
     @IBOutlet var replyAllButton        : UIButton!
     @IBOutlet var forwardButton         : UIButton!
     
+    @IBOutlet var messagesTableView     : UITableView!
+    
     var moreActionsView : MoreActionsView?
     
     var currentFolderFilter : String?
@@ -62,6 +65,9 @@ class ViewInboxEmailViewController: UIViewController {
         self.presenter?.setupNavigationBar(enabled: false)
         self.presenter?.setupBottomBar(enabled: false)
         //self.presenter?.setupMessageHeader(message: self.message!)
+        
+        dataSource?.initWith(parent: self, tableView: messagesTableView)
+        self.messagesTableView.isHidden = true
         
         self.presenter?.initMoreActionsView()
     }

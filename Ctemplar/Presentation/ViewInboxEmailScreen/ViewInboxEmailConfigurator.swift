@@ -33,5 +33,9 @@ class ViewInboxEmailConfigurator {
         viewController.presenter = presenter
         viewController.router = router
         
+        let dataSource = ViewInboxEmailDataSource()
+        viewController.dataSource = dataSource
+        
+        dataSource.formatterService = appDelegate.applicationManager.formatterService
     }
 }
