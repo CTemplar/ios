@@ -79,6 +79,22 @@ class SearchDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        var message : EmailMessage
+        
+        if self.filtered {
+            message = filteredArray[indexPath.row]
+        } else {
+            message = messagesArray[indexPath.row]
+        }
+        
+        self.parentViewController.router?.showViewInboxEmailViewController(message: message)
+        
+    }
+    
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
