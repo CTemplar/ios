@@ -17,15 +17,7 @@ class ContactsInteractor {
     var apiService      : APIService?
 
     func setFilteredList(searchText: String) {
-        
-        //var contacts : Array<Contact> = []
-        /*
-        if (self.viewController?.isFiltering())! {
-            contacts = (self.viewController?.dataSource?.filterdContactsArray)!
-        } else {
-            contacts = (self.viewController?.dataSource?.contactsArray)!
-        }*/
-        
+
         let contacts = (self.viewController?.dataSource?.contactsArray)!
         
         let filteredContactNamesList = (contacts.filter({( contact : Contact) -> Bool in
@@ -36,7 +28,13 @@ class ContactsInteractor {
             return (contact.email?.lowercased().contains(searchText.lowercased()))!
         }))
         
-        let filteredList = filteredContactNamesList + filteredEmailsList
+        var filteredDuplicatesEmailsList : Array<Contact> = []
+        
+        for contact in filteredContactNamesList {
+            filteredDuplicatesEmailsList = filteredEmailsList.filter { $0.contactID != contact.contactID }
+        }
+        
+        let filteredList = filteredContactNamesList + filteredDuplicatesEmailsList
         
         updateDataSource(searchText: searchText, filteredList: filteredList)
     }
