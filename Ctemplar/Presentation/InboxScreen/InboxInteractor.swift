@@ -54,8 +54,8 @@ class InboxInteractor {
     
     func setSideMenuData(array: Array<UnreadMessagesCounter>) {
         
-        self.viewController?.inboxSideMenuViewController?.dataSource?.unreadMessagesArray = array
-        self.viewController?.inboxSideMenuViewController?.dataSource?.reloadData()
+       // self.viewController?.inboxSideMenuViewController?.dataSource?.unreadMessagesArray = array
+       // self.viewController?.inboxSideMenuViewController?.dataSource?.reloadData()
     }
     
     func setSideMenuData(messages: EmailMessagesList) {
@@ -119,15 +119,15 @@ class InboxInteractor {
                     self.presenter?.showUndoBar(text: withUndo)
                 }
                 
-                self.unreadMessagesCounter() //need to Side Menu unread msg counters
-                //self.userMyself()//temp for debug
+               // self.unreadMessagesCounter() //need to Side Menu unread msg counters
+               // self.userMyself()//temp for debug
                 
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
-            //HUD.hide()
+            HUD.hide()
         }
     }
     
@@ -190,7 +190,7 @@ class InboxInteractor {
             self.mailboxesList(storeKeys: true)
         } else {
             print("local PGPKeys exist")
-            self.mailboxesList(storeKeys: false)            
+            //self.mailboxesList(storeKeys: false)
             return true
         }
         
@@ -241,12 +241,27 @@ class InboxInteractor {
     
     func userMyself() {
         
-        apiService?.mailboxesList() {(result) in
+        apiService?.userMyself() {(result) in
             
             switch(result) {
                 
             case .success(let value):
-                print("userMyself value:", value)
+                //print("userMyself value:", value)
+                
+                let userMyself = value as! UserMyself
+                
+                if let contacts = userMyself.contactsList {
+                    self.viewController?.contactsList = contacts
+                }
+                
+                //print("userMyself:", userMyself)
+                //print("mailboxesList:", userMyself.mailboxesList)
+                //print("foldersList:", userMyself.foldersList)
+                //print("contactsList:", userMyself.contactsList)
+                
+                self.viewController?.leftBarButtonItem.isEnabled = true
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: value)
                 
             case .failure(let error):
                 print("error:", error)
@@ -256,17 +271,6 @@ class InboxInteractor {
     }
     
     //MARK: - message headers
-/*
-    func decryptMessage(content: String) -> String {
-        
-        if let message = self.pgpService?.decryptMessage(encryptedContet: content) {
-            //print("decrypt message: ", message)
-            return message
-        }
-        
-        return ""
-    }
-    */
     
     func headerOfMessage(content: String) -> String {
         
@@ -317,8 +321,10 @@ class InboxInteractor {
         
         let header = self.headerOfMessage(content: content)
         
-        self.viewController?.dataSource?.messagesHeaderArray[index] = header
-        self.viewController?.dataSource?.reloadData()
+        if (self.viewController?.dataSource?.messagesHeaderArray.count)! > index {
+            self.viewController?.dataSource?.messagesHeaderArray[index] = header
+            self.viewController?.dataSource?.reloadData()
+        }
     }
     
     func updateMessagesHeader(emailsArray: Array<EmailMessage>) {

@@ -37,7 +37,7 @@ class PGPService {
     func decrypt(encryptedData: Data) -> Data? {
         
         if Armor.isArmoredData(encryptedData)  {
-            print("encryptedData is armored")
+            //print("encryptedData is armored")
         }
 
         let password = keychainService.getPassword()

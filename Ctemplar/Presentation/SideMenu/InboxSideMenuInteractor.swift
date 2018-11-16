@@ -30,6 +30,15 @@ class InboxSideMenuInteractor {
         }
     }
     
+    func setCustomFoldersData(folderList: FolderList) {
+        
+        if let folders = folderList.foldersList {
+            
+            self.viewController?.dataSource?.customFoldersArray = folders
+            self.viewController?.dataSource?.reloadData()
+        }
+    }
+    
     func customFoldersList() {
         
         HUD.show(.progress)
@@ -45,6 +54,8 @@ class InboxSideMenuInteractor {
                 
                 self.setCustomFoldersData(folderList: folderList)
                 
+                self.unreadMessagesCounter()
+                
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
@@ -54,16 +65,68 @@ class InboxSideMenuInteractor {
         }
     }
     
-    func setCustomFoldersData(folderList: FolderList) {
+    func userMyself() {
         
-         if let folders = folderList.foldersList {
-         
-            self.viewController?.dataSource?.customFoldersArray = folders
-            self.viewController?.dataSource?.reloadData()
-         }
+        apiService?.userMyself() {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("userMyself value:", value)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "User Myself Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
     }
     
-    func selectAction(optionName: String) {
+    func setUnreadCounters(array: Array<UnreadMessagesCounter>) {
+        
+         self.viewController?.dataSource?.unreadMessagesArray = array
+         self.viewController?.dataSource?.reloadData()
+    }
+    
+    func unreadMessagesCounter() {
+        
+        //HUD.show(.progress)
+        
+        apiService?.unreadMessagesCounter() {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("unreadMessagesCounter value:", value)
+                
+                var unreadMessagesCounterArray: Array<UnreadMessagesCounter> = []
+                
+                for objectDictionary in (value as? Dictionary<String, Any>)! {
+                    
+                    let unreadMessageCounter = UnreadMessagesCounter(key: objectDictionary.key, value: objectDictionary.value)
+                    unreadMessagesCounterArray.append(unreadMessageCounter)
+                }
+                
+                self.setUnreadCounters(array: unreadMessagesCounterArray)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+            
+            HUD.hide()
+        }
+    }
+    
+    func dismissSideMenuAndTopController() {
+        
+        self.viewController?.dismiss(animated: true, completion: {
+            if let parentViewController = self.viewController?.currentParentViewController {
+                parentViewController.navigationController?.popViewController(animated: true)
+            }
+        })
+    }
+    
+    func selectSideMenuAction(optionName: String) {
         
         switch optionName {
         case InboxSideMenuOptionsName.inbox.rawValue :
@@ -93,12 +156,27 @@ class InboxSideMenuInteractor {
         case InboxSideMenuOptionsName.allMails.rawValue :
             self.applyFirstSectionAction(folder: optionName, filter: "")
             break
+        case InboxSideMenuOptionsName.contacts.rawValue :
+            self.viewController?.router?.showContactsViewController()
+            break
         case InboxSideMenuOptionsName.logout.rawValue :
             self.viewController?.presenter?.logOut()
             break
         default:
             print("do nothing")
         }
+    }
+    
+    func applyFirstSectionAction(folder: String, filter: String) {
+        
+        let currentViewController = self.viewController?.inboxViewController
+        
+        currentViewController?.currentFolder = folder
+        currentViewController?.currentFolderFilter = filter
+        currentViewController?.presenter?.interactor?.updateMessages(withUndo: "")//loadMessages(folder: filter)
+        currentViewController?.presenter?.interactor?.clearFilters()
+        
+        self.dismissSideMenuAndTopController()
     }
     
     func applyCustomFolderAction(folderName: String) {
@@ -113,29 +191,6 @@ class InboxSideMenuInteractor {
         let formattedFolderName = folderName.replacingOccurrences(of: " ", with: "%20")
         
         return formattedFolderName
-    }
-    
-    func applyFirstSectionAction(folder: String, filter: String) {
-        
-        self.viewController?.currentParentViewController.currentFolder = folder
-        self.viewController?.currentParentViewController.currentFolderFilter = filter
-        self.viewController?.currentParentViewController.presenter?.interactor?.updateMessages(withUndo: "")//loadMessages(folder: filter)
-        self.viewController?.currentParentViewController.presenter?.interactor?.clearFilters()
-        self.viewController?.dismiss(animated: true, completion: nil)
-    }
-    
-    func getUnreadMessagesCount(folderName: String) -> Int {
-        
-        var unreadMessagesCount = 0
-        
-        for object in (self.viewController?.dataSource?.unreadMessagesArray)! {
-            
-            if object.folderName == self.apiFolderName(folderName: folderName) {
-                unreadMessagesCount = object.unreadMessagesCount!
-            }
-        }
-        
-        return unreadMessagesCount
     }
     
     func apiFolderName(folderName: String) -> String {
@@ -173,5 +228,19 @@ class InboxSideMenuInteractor {
         }
         
         return apiFolderName
+    }
+    
+    func getUnreadMessagesCount(folderName: String) -> Int {
+        
+        var unreadMessagesCount = 0
+        
+        for object in (self.viewController?.dataSource?.unreadMessagesArray)! {
+            
+            if object.folderName == self.apiFolderName(folderName: folderName) {
+                unreadMessagesCount = object.unreadMessagesCount!
+            }
+        }
+        
+        return unreadMessagesCount
     }
 }

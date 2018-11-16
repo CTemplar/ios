@@ -383,18 +383,16 @@ class APIService {
                             
                             print("userMyself success:", value)
                             
-                            if let response = value as? Dictionary<String, Any> {
+                            if let response = value as? Dictionary<String, Any> {                            
                                 
-                                completionHandler(APIResult.success(response))
-                                /*
                                 if let message = self.parseServerResponse(response:response) {
                                     print("userMyself message:", message)
                                     let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
                                     completionHandler(APIResult.failure(error))
                                 } else {
-                                    let emailMessages = EmailMessagesList(dictionary: response)
-                                    completionHandler(APIResult.success(emailMessages))
-                                }*/
+                                    let userMyself = UserMyself(dictionary: response)
+                                    completionHandler(APIResult.success(userMyself))
+                                }
                             } else {
                                 let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
                                 completionHandler(APIResult.failure(error))
@@ -940,36 +938,7 @@ class APIService {
         
         return ""
     }
-/*
-    func autologinWhenTokenExpired() {
-        
-        let storedUserName = keychainService?.getUserName()
-        let storedPassword = keychainService?.getPassword()
-        
-        if (storedUserName?.count)! < 1 || (storedPassword?.count)! < 1 {
-            print("wrong stored credentials!")
-            showLoginViewController()
-            return
-        }
-        
-        self.authenticateUser(userName: storedUserName!, password: storedPassword!) {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                print("autologin success value:", value)
-                //need repeat request
-              
-            case .failure(let error):
-                print("autologin error:", error)
-                
-                if let topViewController = UIApplication.topViewController() {
-                    AlertHelperKit().showAlert(topViewController, title: "Autologin Error", message: error.localizedDescription, button: "closeButton".localized())
-                }
-            }
-        }
-    }
-    */
+
     func showLoginViewController() {
         
         if let topViewController = UIApplication.topViewController() {

@@ -28,6 +28,7 @@ let k_ViewInboxEmailViewControllerID        = "ViewInboxEmailViewController"
 let k_ComposeViewControllerID               = "ComposeViewController"
 let k_SearchViewControllerID                = "SearchViewController"
 let k_MoveToViewControllerID                = "MoveToViewController"
+let k_ContactsViewControllerID              = "ContactsViewController"
 let k_AboutAsViewControllerID               = "AboutAsViewController"
 
 // view controllers storyboards name
@@ -40,6 +41,7 @@ let k_InboxSideMenuStoryboardName          = "InboxSideMenu"
 let k_ComposeStoryboardName                = "Compose"
 let k_SearchStoryboardName                 = "Search"
 let k_AboutAsStoryboardName                = "AboutAs"
+let k_ContactsStoryboardName               = "Contacts"
 let k_MoveToStoryboardName                 = "MoveTo"
 let k_ViewInboxEmailStoryboardName         = "ViewInboxEmail"
 
@@ -51,6 +53,7 @@ let k_SideMenuTableViewCellXibName         = "SideMenuTableViewCell"
 let k_CustomFolderCellXibName              = "CustomFolderTableViewCell"
 let k_MoveToFolderCellXibName              = "MoveToFolderTableViewCell"
 let k_SearchCellXibName                    = "SearchTableViewCell"
+let k_ContactCellXibName                   = "ContactTableViewCell"
 
 // cell identifier
 
@@ -60,11 +63,16 @@ let k_SideMenuTableViewCellIdentifier           = "sideMenuTableViewCellIdentifi
 let k_CustomFolderTableViewCellIdentifier       = "customFolderTableViewCellIdentifier"
 let k_MoveToFolderTableViewCellIdentifier       = "moveToFolderTableViewCellIdentifier"
 let k_SearchTableViewCellIdentifier             = "searchTableViewCellIdentifier"
+let k_ContactTableViewCellIdentifier            = "contactTableViewCellIdentifier"
 
 // view controllers iPad storyboards name
 
 let k_LoginStoryboardName_iPad             = "Login-iPad"
 
+
+// notifications
+
+let k_updateUserDataNotificationID       = "UpdateUserDataNotificationIdentifier"
 
 // colors
 
@@ -90,6 +98,8 @@ let k_selectedFolderColor: UIColor = UIColor(red: 18.0 / 255.0, green: 45.0 / 25
 let k_unreadMessageColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 0.02)
 
 let k_actionMessageColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 1.0)
+
+let k_contactsBarTintColor : UIColor = UIColor(red: 44.0 / 255.0, green: 62.0 / 255.0, blue: 80.0 / 255.0, alpha: 1.0)
 
 let k_mainFolderTextColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 0.5)
 
@@ -147,6 +157,9 @@ let k_dateLabelOffsetHeight     : CGFloat = 52.0
 let k_InsetsForFromTo           : CGFloat = 26.0
 let k_lineSpaceSizeForFromToText    = 10
 let k_lineHeightForFromToText   : CGFloat = 26.0
+
+let k_contactsBottomBarHeight       : CGFloat = 49.0
+let k_contactsSelectAllBarHeight    : CGFloat = 50.0
 
 //images
 
@@ -213,6 +226,8 @@ let k_redCheckIconImageName         = "redCheck"
 let k_emptyInboxIconImageName         = "EmptyInboxIcon"
 let k_emptyFilterInboxIconImageName   = "EmptyFilterInboxIcon"
 
+let k_darkPlusIconImageName         = "PlusButton"
+
 // fonts
 
 let k_latoRegularFontName = "Lato-Regular"
@@ -238,7 +253,7 @@ let k_tokenMinutesExpiration       = 170
 
 let k_undoActionBarShowingSecs     = 5.0
 
-let k_numberOfCustomFoldersShowing = 2
+let k_numberOfCustomFoldersShowing = 3
 
 enum InboxSideMenuOptionsName: String {
     
@@ -251,7 +266,7 @@ enum InboxSideMenuOptionsName: String {
     case spam             = "Spam"
     case trash            = "Trash"
     case allMails         = "All Mails"
-    case contact          = "Contact"
+    case contacts         = "Contacts"
     case settings         = "Settings"
     case help             = "Help"
     case logout           = "Logout"

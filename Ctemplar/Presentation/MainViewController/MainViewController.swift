@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 import PKHUD
 import AlertHelperKit
+import SideMenu
 
 class MainViewController: UIViewController { 
     
@@ -26,6 +27,7 @@ class MainViewController: UIViewController {
         
         //showLoginViewController()
         showInboxNavigationController()
+       
         //messagesList()
         //mailboxesList()
         
@@ -104,7 +106,32 @@ class MainViewController: UIViewController {
             let storyboard: UIStoryboard = UIStoryboard(name: k_InboxStoryboardName, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: k_InboxNavigationControllerID) as! InboxNavigationController
             self.show(vc, sender: self)
+            
+            self.initAndSetupInboxSideMenuController(inboxViewController: vc.viewControllers.first as! InboxViewController)
         }
+    }
+    
+    //MARK: - Side Menu
+    
+    func initAndSetupInboxSideMenuController(inboxViewController: InboxViewController) {
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: k_InboxSideMenuStoryboardName, bundle: nil)
+        
+        let inboxSideMenuViewController = storyboard.instantiateViewController(withIdentifier: k_InboxSideMenuViewControllerID) as? InboxSideMenuViewController
+        
+        inboxSideMenuViewController?.inboxViewController = inboxViewController
+        inboxSideMenuViewController?.dataSource?.selectedIndexPath = IndexPath(row: MessagesFoldersName.inbox.hashValue, section: SideMenuSectionIndex.mainFolders.rawValue)
+        
+        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: (inboxSideMenuViewController)!)
+        
+        SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
+        SideMenuManager.default.menuFadeStatusBar = false
+        SideMenuManager.default.menuAnimationFadeStrength = 0.5
+        SideMenuManager.default.menuAnimationBackgroundColor = k_sideMenuFadeColor
+        
+        SideMenuManager.default.menuPresentMode = .menuSlideIn
+        let frame = self.view.frame
+        SideMenuManager.default.menuWidth = max(round(min((frame.width), (frame.height)) * 0.67), 240)
     }
     
     func messagesList() {

@@ -28,6 +28,8 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     
     var showAllFolders : Bool = false
     
+    var selectedIndexPath : IndexPath = IndexPath(row: 0, section: SideMenuSectionIndex.mainFolders.rawValue)
+    
     func initWith(parent: InboxSideMenuViewController, tableView: UITableView) {
         
         self.parentViewController = parent
@@ -136,7 +138,8 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             cell = tableView.dequeueReusableCell(withIdentifier: k_SideMenuTableViewCellIdentifier)! as! SideMenuTableViewCell
             
             let folderName = self.mainFoldersArray[indexPath.row]
-            let selected = self.isSelected(folderName: folderName)
+            //let selected = self.isSelected(folderName: folderName)
+            let selected = isSelected(section: indexPath.section, row: indexPath.row)
             let iconName = self.mainFoldersImageNameList[indexPath.row]
 
             let unreadCount = self.parentViewController?.presenter?.interactor?.getUnreadMessagesCount(folderName: folderName)
@@ -150,8 +153,9 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             
             let optionName = self.optionsArray[indexPath.row]
             let iconName = self.optionsImageNameList[indexPath.row]
+            let selected = isSelected(section: indexPath.section, row: indexPath.row)
             
-            (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: false, iconName: iconName, title: optionName, unreadCount: 0)
+            (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: selected, iconName: iconName, title: optionName, unreadCount: 0)
             
             break
         case SideMenuSectionIndex.customFolders.rawValue:
@@ -160,28 +164,33 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
                 
                 cell = tableView.dequeueReusableCell(withIdentifier: k_CustomFolderTableViewCellIdentifier)! as! CustomFolderTableViewCell
                 
-                let folder = self.customFoldersArray[indexPath.row]
-                let folderName = folder.folderName
-                let selected = self.isSelected(folderName: folderName!)
-                let folderColor = folder.color
-                
-                let unreadCount = self.parentViewController?.presenter?.interactor?.getUnreadMessagesCount(folderName: folderName!)
-                
-                (cell as! CustomFolderTableViewCell).setupCustomFolderTableCell(selected: selected, iconColor: folderColor!, title: folderName!, unreadCount: unreadCount!)
-            } else {
-                
-                if indexPath.row < k_numberOfCustomFoldersShowing {
-                    
-                    cell = tableView.dequeueReusableCell(withIdentifier: k_CustomFolderTableViewCellIdentifier)! as! CustomFolderTableViewCell
+                if self.customFoldersArray.count > indexPath.row {
                     
                     let folder = self.customFoldersArray[indexPath.row]
                     let folderName = folder.folderName
-                    let selected = self.isSelected(folderName: folderName!)
+                    let selected = isSelected(section: indexPath.section, row: indexPath.row)
                     let folderColor = folder.color
                     
                     let unreadCount = self.parentViewController?.presenter?.interactor?.getUnreadMessagesCount(folderName: folderName!)
                     
                     (cell as! CustomFolderTableViewCell).setupCustomFolderTableCell(selected: selected, iconColor: folderColor!, title: folderName!, unreadCount: unreadCount!)
+                }
+            } else {
+                
+                if indexPath.row < k_numberOfCustomFoldersShowing {
+                    
+                    if self.customFoldersArray.count > indexPath.row {
+                        cell = tableView.dequeueReusableCell(withIdentifier: k_CustomFolderTableViewCellIdentifier)! as! CustomFolderTableViewCell
+                        
+                        let folder = self.customFoldersArray[indexPath.row]
+                        let folderName = folder.folderName
+                        let selected = self.isSelected(folderName: folderName!)
+                        let folderColor = folder.color
+                        
+                        let unreadCount = self.parentViewController?.presenter?.interactor?.getUnreadMessagesCount(folderName: folderName!)
+                        
+                        (cell as! CustomFolderTableViewCell).setupCustomFolderTableCell(selected: selected, iconColor: folderColor!, title: folderName!, unreadCount: unreadCount!)
+                    }
                 } else {
                   
                     if indexPath.row == k_numberOfCustomFoldersShowing {
@@ -202,14 +211,24 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         
         tableView.deselectRow(at: indexPath, animated: true)
         
+        if self.selectedIndexPath == indexPath {
+            self.parentViewController?.dismiss(animated: true, completion: nil)
+            return
+        }
+        
+        self.selectedIndexPath = indexPath
+        
+        self.reloadData()//for update Selection Status of Rows
+        
         switch indexPath.section {
             case SideMenuSectionIndex.mainFolders.rawValue:
                 let optionName = self.mainFoldersArray[indexPath.row]
-                self.parentViewController?.presenter?.interactor?.selectAction(optionName: optionName)
+                self.parentViewController?.presenter?.interactor?.selectSideMenuAction(optionName: optionName)
+                
             break
             case SideMenuSectionIndex.options.rawValue:
                 let optionName = self.optionsArray[indexPath.row]
-                self.parentViewController?.presenter?.interactor?.selectAction(optionName: optionName)
+                self.parentViewController?.presenter?.interactor?.selectSideMenuAction(optionName: optionName)
                 break
             case SideMenuSectionIndex.customFolders.rawValue:
                 
@@ -247,7 +266,18 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     
     func isSelected(folderName: String) -> Bool {
         
-        if folderName == self.parentViewController?.currentParentViewController.currentFolder {
+        //if folderName == self.parentViewController?.currentParentViewController.currentFolder {
+        //    return true
+        //}
+        
+        return false
+    }
+    
+    func isSelected(section: Int, row: Int) -> Bool {
+        
+        print("selectedIndexPath:", self.selectedIndexPath.row, "/", self.selectedIndexPath.section)
+        
+        if self.selectedIndexPath.row == row && self.selectedIndexPath.section == section {
             return true
         }
         
