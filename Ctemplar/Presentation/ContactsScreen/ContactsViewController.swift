@@ -19,6 +19,7 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating {
     var sideMenuViewController : InboxSideMenuViewController?
     
     var contactsList : Array<Contact> = []
+    var filterdContactsList : Array<Contact> = []
     
     @IBOutlet var contactsTableView        : UITableView!
     
@@ -34,6 +35,8 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating {
     
     @IBOutlet var selectedAllViewHeightConstraint    : NSLayoutConstraint!
     @IBOutlet var bottomBarHeightConstraint          : NSLayoutConstraint!
+    
+    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,5 +89,18 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating {
         
         guard let text = searchController.searchBar.text else { return }
         print("searched text:", text)
+        
+        self.presenter?.interactor?.setFilteredList(searchText: text)
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        // Returns true if the text is empty or nil
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    
+    func isFiltering() -> Bool {
+        
+        return searchController.isActive && !searchBarIsEmpty()
     }
 }

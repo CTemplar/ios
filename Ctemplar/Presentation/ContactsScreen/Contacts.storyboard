@@ -185,13 +185,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Contacts" id="ufM-BZ-lkb">
                         <barButtonItem key="leftBarButtonItem" image="MenuButton" id="Bv7-Oq-GVT">
-                            <color key="tintColor" red="0.17254901960784313" green="0.24313725490196078" blue="0.31372549019607843" alpha="0.865509463028169" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.17254901960784313" green="0.24313725490196078" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="menuButtonPressed:" destination="2vi-x4-vcD" id="FTd-Ri-qUF"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="PlusButton" id="pxo-NY-zSu">
-                            <color key="tintColor" red="0.17254901960784313" green="0.24313725490196078" blue="0.31372549019607843" alpha="0.865509463028169" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.17254901960784313" green="0.24313725490196078" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="addContactButtonPressed:" destination="2vi-x4-vcD" id="kVJ-Uc-iqR"/>
                             </connections>

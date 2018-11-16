@@ -13,6 +13,8 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     var contactsArray           : Array<Contact> = []
     var selectedContactsArray   : Array<Contact> = []
+    var filteredContactsArray    : Array<Contact> = []
+    var selectedFilteredContactsArray   : Array<Contact> = []
     
     var searchText              : String = ""
     
@@ -51,14 +53,25 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-       return contactsArray.count
+        if self.filtered {
+            return filteredContactsArray.count
+        }
+        
+        return contactsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell : ContactTableViewCell = tableView.dequeueReusableCell(withIdentifier: k_ContactTableViewCellIdentifier)! as! ContactTableViewCell
         
-        let contact = contactsArray[indexPath.row]
+        var contact : Contact
+        
+        if self.filtered {
+            contact = filteredContactsArray[indexPath.row]
+        } else {
+            contact = contactsArray[indexPath.row]
+        }
+        
         let isSelected = self.isContactSelected(contact: contact)
         
         (cell as ContactTableViewCell).setupCellWithData(contact: contact, isSelectionMode: self.selectionMode, isSelected: isSelected)
@@ -70,7 +83,15 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let contact = contactsArray[indexPath.row]
+        //let contact = contactsArray[indexPath.row]
+        
+        var contact : Contact
+        
+        if self.filtered {
+            contact = filteredContactsArray[indexPath.row]
+        } else {
+            contact = contactsArray[indexPath.row]
+        }
         
         if self.selectionMode == false {
             
@@ -112,7 +133,14 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             let touchPoint = sender.location(in: self.tableView)
             if let indexPath = tableView.indexPathForRow(at: touchPoint) {
                 
-                let contact = contactsArray[indexPath.row]
+                //let contact = contactsArray[indexPath.row]
+                var contact : Contact
+                
+                if self.filtered {
+                    contact = filteredContactsArray[indexPath.row]
+                } else {
+                    contact = contactsArray[indexPath.row]
+                }
                 
                 print("Long pressed row: \(indexPath.row)")
                 if self.selectionMode == false {

@@ -17,21 +17,20 @@ class ContactsPresenter {
 
     func setupSearchController() {
         
-        self.viewController?.definesPresentationContext = true
+        self.viewController?.definesPresentationContext = true        
         
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self.viewController
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.tintColor = k_actionMessageColor
-        searchController.searchBar.placeholder = "search".localized()
-        self.viewController?.navigationItem.searchController = searchController
+        self.viewController?.searchController.searchResultsUpdater = self.viewController
+        self.viewController?.searchController.obscuresBackgroundDuringPresentation = false
+        self.viewController?.searchController.hidesNavigationBarDuringPresentation = false
+        self.viewController?.searchController.searchBar.tintColor = k_contactsBarTintColor
+        self.viewController?.searchController.searchBar.placeholder = "search".localized()
+        self.viewController?.navigationItem.searchController = self.viewController?.searchController
         
         //UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).leftViewMode = .never
         UISearchBar.appearance().searchTextPositionAdjustment = UIOffset(horizontal: 10, vertical: 0)
        // UISearchBar.appearance().searchFieldBackgroundPositionAdjustment = UIOffset(horizontal: 0, vertical: 8)
         
-        if let searchTextField = searchController.searchBar.value(forKey: "_searchField") as? UITextField {
+        if let searchTextField = self.viewController?.searchController.searchBar.value(forKey: "_searchField") as? UITextField {
             searchTextField.borderStyle = .none
             //searchTextField.backgroundColor = self.viewController?.navigationItem.titleView?.backgroundColor
             //searchTextField.background = UIImage()
@@ -50,7 +49,13 @@ class ContactsPresenter {
     func selectAllButtonPressed(sender: AnyObject) {
         
         let selectedContactsCount = self.viewController?.dataSource?.selectedContactsArray.count
-        let overallContactsCount = self.viewController?.dataSource?.contactsArray.count
+        var overallContactsCount = self.viewController?.dataSource?.contactsArray.count
+        
+        if (self.viewController?.dataSource?.filtered)! {
+            overallContactsCount = self.viewController?.dataSource?.filteredContactsArray.count
+        } else {
+            overallContactsCount = self.viewController?.dataSource?.contactsArray.count
+        }
     
         if  selectedContactsCount == overallContactsCount {
             self.viewController?.dataSource?.selectedContactsArray.removeAll()
@@ -84,6 +89,9 @@ class ContactsPresenter {
         self.viewController?.selectedAllViewHeightConstraint.constant = k_contactsSelectAllBarHeight
         self.viewController?.bottomBarHeightConstraint.constant = k_contactsBottomBarHeight
         self.viewController?.view.layoutIfNeeded()
+        
+        self.viewController?.selectAllImageView.image = UIImage(named: k_checkBoxUncheckedImageName)
+        self.viewController?.selectAllLabel.text = "selectAll".localized()
     }
     
     func disableSelectionMode() {
