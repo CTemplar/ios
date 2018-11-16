@@ -33,7 +33,7 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
     
     func registerTableViewCell() {
         
-        //self.tableView.register(UINib(nibName: k_SearchCellXibName, bundle: nil), forCellReuseIdentifier: k_SearchTableViewCellIdentifier)
+        self.tableView.register(UINib(nibName: k_ChildMessageCellXibName, bundle: nil), forCellReuseIdentifier: k_ChildMessageTableViewCellIdentifier)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -48,15 +48,19 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell : SearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: k_SearchTableViewCellIdentifier)! as! SearchTableViewCell
+        let cell : ChildMessageTableViewCell = tableView.dequeueReusableCell(withIdentifier: k_ChildMessageTableViewCellIdentifier)! as! ChildMessageTableViewCell
         
-        //cell.parentController = self
+        let message = messagesArray[indexPath.row]
+        let sender = message.sender
         
-
-        //let message = messagesArray[indexPath.row]
-//        cell.setupCellWithData(message: message, foundText: searchText)
-       
-
+        var header = ""
+        
+        if let messageContent = self.parentViewController?.presenter?.interactor?.extractMessageContent(message: message) {
+            header = (self.parentViewController?.presenter?.interactor?.headerOfMessage(content: messageContent))!
+        }
+        
+        //let header = message.content
+        cell.setupCellWithData(sender: sender!, header: header)
         
         return cell
     }

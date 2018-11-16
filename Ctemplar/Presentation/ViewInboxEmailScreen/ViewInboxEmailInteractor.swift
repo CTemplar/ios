@@ -30,7 +30,9 @@ class ViewInboxEmailInteractor {
                     
                     if (message.children?.count)! > 0 {
                         self.viewController?.messagesTableView.isHidden = false
-                        
+                        self.viewController?.dataSource?.messagesArray = message.children!
+                        self.viewController?.dataSource?.messagesArray.append(message) //add parent Message
+                        self.viewController?.dataSource?.reloadData()
                     } else {
                         self.presenter?.setupMessageContent(message: message)
                     }
@@ -76,6 +78,29 @@ class ViewInboxEmailInteractor {
         }
         
         return "Error"
+    }
+    
+    func headerOfMessage(content: String) -> String {
+        
+        var header : String = ""
+        var message : String = ""
+        
+        message = content
+        message = message.removeHTMLTag
+        
+        if message.count > 0 {
+            
+            if message.count > k_firstCharsForHeader {
+                let index = message.index(message.startIndex, offsetBy: k_firstCharsForHeader)
+                header = String(message.prefix(upTo: index))
+            } else {
+                header = message
+            }
+        }
+        
+        header = header.replacingOccurrences(of: "\\s", with: " ", options: String.CompareOptions.regularExpression)
+        
+        return header
     }
     
     func moveMessageToTrash(message: EmailMessage, withUndo: String) {

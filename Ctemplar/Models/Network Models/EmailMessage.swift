@@ -13,7 +13,7 @@ struct EmailMessage {
     var attachments: Array<Any>? = nil
     var bcc: Array<Any>? = nil
     var cc: Array<Any>? = nil
-    var children: Array<Any>? = nil
+    var children: Array<EmailMessage>? = nil
     var content : String? = nil
     var createdAt : String? = nil
     var deadManDuration : String? = nil

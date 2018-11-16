@@ -42,6 +42,8 @@
 		8433A53F2189DD33008E1C85 /* MoveToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433A53E2189DD33008E1C85 /* MoveToViewController.swift */; };
 		8433A5412189DE17008E1C85 /* MoveTo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433A5402189DE17008E1C85 /* MoveTo.storyboard */; };
 		8433DFB7219EC92100375609 /* ViewInboxEmailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433DFB6219EC92100375609 /* ViewInboxEmailDataSource.swift */; };
+		8433DFBA219ECD7000375609 /* ChildMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433DFB9219ECD7000375609 /* ChildMessageTableViewCell.swift */; };
+		8433DFBC219ECDC600375609 /* ChildMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8433DFBB219ECDC600375609 /* ChildMessageTableViewCell.xib */; };
 		8433FF1A216201A300C57DC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF19216201A300C57DC8 /* AppDelegate.swift */; };
 		8433FF1C216201A300C57DC8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF1B216201A300C57DC8 /* MainViewController.swift */; };
 		8433FF1F216201A300C57DC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF1D216201A300C57DC8 /* Main.storyboard */; };
@@ -172,6 +174,8 @@
 		8433A53E2189DD33008E1C85 /* MoveToViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToViewController.swift; sourceTree = "<group>"; };
 		8433A5402189DE17008E1C85 /* MoveTo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MoveTo.storyboard; sourceTree = "<group>"; };
 		8433DFB6219EC92100375609 /* ViewInboxEmailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewInboxEmailDataSource.swift; sourceTree = "<group>"; };
+		8433DFB9219ECD7000375609 /* ChildMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildMessageTableViewCell.swift; sourceTree = "<group>"; };
+		8433DFBB219ECDC600375609 /* ChildMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChildMessageTableViewCell.xib; sourceTree = "<group>"; };
 		8433FF16216201A300C57DC8 /* Ctemplar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ctemplar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8433FF19216201A300C57DC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8433FF1B216201A300C57DC8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -349,6 +353,7 @@
 				840249822191737B00CDDB0F /* CustomFolderCells */,
 				840249912191C1E800CDDB0F /* MoveToFolderCells */,
 				84FF7E3A219DB6ED00E3E56A /* ContactCell */,
+				8433DFB8219ECD4400375609 /* ChildMessageCell */,
 			);
 			path = TableCells;
 			sourceTree = "<group>";
@@ -385,6 +390,15 @@
 				8433A5402189DE17008E1C85 /* MoveTo.storyboard */,
 			);
 			path = MoveToViewController;
+			sourceTree = "<group>";
+		};
+		8433DFB8219ECD4400375609 /* ChildMessageCell */ = {
+			isa = PBXGroup;
+			children = (
+				8433DFB9219ECD7000375609 /* ChildMessageTableViewCell.swift */,
+				8433DFBB219ECDC600375609 /* ChildMessageTableViewCell.xib */,
+			);
+			path = ChildMessageCell;
 			sourceTree = "<group>";
 		};
 		8433FF0D216201A300C57DC8 = {
@@ -792,6 +806,7 @@
 				845E64402170A4A2008612FE /* Compose.storyboard in Resources */,
 				8433FF24216201A500C57DC8 /* LaunchScreen.storyboard in Resources */,
 				8436AD532180663800D16008 /* Localizable.strings in Resources */,
+				8433DFBC219ECDC600375609 /* ChildMessageTableViewCell.xib in Resources */,
 				844655BD218C264E00B2F2E4 /* MoreActions.xib in Resources */,
 				8434D9AE219BFD3300D2C3A5 /* Contacts.storyboard in Resources */,
 				8435685B216F2748002101D3 /* Inbox.storyboard in Resources */,
@@ -937,6 +952,7 @@
 				8402497F21916D3200CDDB0F /* FoldersList.swift in Sources */,
 				843E973B2163701B00147CBE /* LoginInteractor.swift in Sources */,
 				8431218E218AF82C0014560D /* ViewInboxEmailInteractor.swift in Sources */,
+				8433DFBA219ECD7000375609 /* ChildMessageTableViewCell.swift in Sources */,
 				843E97392163700900147CBE /* LoginRouter.swift in Sources */,
 				843FC3952164D1E3000CFEA9 /* SignUpPagePassword.swift in Sources */,
 				845E643E2170A46C008612FE /* ComposeViewController.swift in Sources */,

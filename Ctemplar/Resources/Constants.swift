@@ -54,6 +54,7 @@ let k_CustomFolderCellXibName              = "CustomFolderTableViewCell"
 let k_MoveToFolderCellXibName              = "MoveToFolderTableViewCell"
 let k_SearchCellXibName                    = "SearchTableViewCell"
 let k_ContactCellXibName                   = "ContactTableViewCell"
+let k_ChildMessageCellXibName              = "ChildMessageTableViewCell"
 
 // cell identifier
 
@@ -64,6 +65,7 @@ let k_CustomFolderTableViewCellIdentifier       = "customFolderTableViewCellIden
 let k_MoveToFolderTableViewCellIdentifier       = "moveToFolderTableViewCellIdentifier"
 let k_SearchTableViewCellIdentifier             = "searchTableViewCellIdentifier"
 let k_ContactTableViewCellIdentifier            = "contactTableViewCellIdentifier"
+let k_ChildMessageTableViewCellIdentifier       = "childMessageTableViewCellIdentifier"
 
 // view controllers iPad storyboards name
 
