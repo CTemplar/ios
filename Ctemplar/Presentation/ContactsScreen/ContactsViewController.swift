@@ -29,6 +29,12 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating {
     @IBOutlet var bottomToolBar         : UIView!
     @IBOutlet var undoBar               : UIView!
     
+    @IBOutlet var selectAllImageView    : UIImageView!
+    @IBOutlet var selectAllLabel        : UILabel!
+    
+    @IBOutlet var selectedAllViewHeightConstraint    : NSLayoutConstraint!
+    @IBOutlet var bottomBarHeightConstraint          : NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,6 +46,10 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating {
         dataSource?.initWith(parent: self, tableView: contactsTableView)
         
         contactsTableView.isHidden = true
+        
+        self.selectedAllViewHeightConstraint.constant = 0.0
+        self.bottomBarHeightConstraint.constant = 0.0
+        self.view.layoutIfNeeded()
         
         //temp
         contactsTableView.isHidden = false
@@ -59,6 +69,15 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating {
     @IBAction func addContactButtonPressed(_ sender: AnyObject) {
         
         presenter?.addContactButtonPressed(sender: self)
+    }
+    
+    @IBAction func selectAllButtonPressed(_ sender: AnyObject) {
+        
+        presenter?.selectAllButtonPressed(sender: self)
+    }
+    
+    @IBAction func trashButtonPressed(_ sender: AnyObject) {
+        
     }
     
     //MARK: - Search delegate

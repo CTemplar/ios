@@ -156,6 +156,9 @@ let k_InsetsForFromTo           : CGFloat = 26.0
 let k_lineSpaceSizeForFromToText    = 10
 let k_lineHeightForFromToText   : CGFloat = 26.0
 
+let k_contactsBottomBarHeight       : CGFloat = 49.0
+let k_contactsSelectAllBarHeight    : CGFloat = 50.0
+
 //images
 
 let k_eyeOffIconImageName           = "EyeIcon"

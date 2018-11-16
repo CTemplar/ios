@@ -47,6 +47,27 @@ class ContactsPresenter {
         }
     }
     
+    func selectAllButtonPressed(sender: AnyObject) {
+        
+        let selectedContactsCount = self.viewController?.dataSource?.selectedContactsArray.count
+        let overallContactsCount = self.viewController?.dataSource?.contactsArray.count
+    
+        if  selectedContactsCount == overallContactsCount {
+            self.viewController?.dataSource?.selectedContactsArray.removeAll()
+            
+            self.viewController?.selectAllImageView.image = UIImage(named: k_checkBoxUncheckedImageName)
+            self.viewController?.selectAllLabel.text = "selectAll".localized()
+        } else {
+            self.viewController?.dataSource?.selectedContactsArray.removeAll()
+            self.viewController?.dataSource?.selectedContactsArray = (self.viewController?.dataSource?.contactsArray)!
+            
+            self.viewController?.selectAllImageView.image = UIImage(named: k_checkBoxSelectedImageName)
+            self.viewController?.selectAllLabel.text = "deselectAll".localized()
+        }
+        
+        self.viewController?.dataSource?.reloadData()
+    }
+    
     func enableSelectionMode() {
         
         self.viewController?.dataSource?.selectionMode = true
@@ -59,6 +80,10 @@ class ContactsPresenter {
         self.viewController?.rightBarButtonItem.title = "cancelButton".localized()
         
         self.setupNavigationItemTitle(selectedContacts: (self.viewController?.dataSource?.selectedContactsArray.count)!, selectionMode: true)
+        
+        self.viewController?.selectedAllViewHeightConstraint.constant = k_contactsSelectAllBarHeight
+        self.viewController?.bottomBarHeightConstraint.constant = k_contactsBottomBarHeight
+        self.viewController?.view.layoutIfNeeded()
     }
     
     func disableSelectionMode() {
@@ -74,6 +99,10 @@ class ContactsPresenter {
         self.viewController?.rightBarButtonItem.title = nil
         
         self.setupNavigationItemTitle(selectedContacts: 0, selectionMode: false)
+        
+        self.viewController?.selectedAllViewHeightConstraint.constant = 0.0
+        self.viewController?.bottomBarHeightConstraint.constant = 0.0
+        self.viewController?.view.layoutIfNeeded()
     }
     
     func setupNavigationItemTitle(selectedContacts: Int, selectionMode: Bool) {

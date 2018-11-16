@@ -71,3 +71,5 @@
 //contacts
 
 "contacts" = "Contacts";
+"selectAll" = "Select all";
+"deselectAll" = "Deselect all";
