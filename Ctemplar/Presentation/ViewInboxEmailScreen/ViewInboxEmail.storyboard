@@ -54,10 +54,19 @@
                                             <constraint firstAttribute="width" secondItem="P88-l5-8f4" secondAttribute="height" multiplier="1:1" id="vpM-51-GDZ"/>
                                         </constraints>
                                     </imageView>
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SecureIcon" translatesAutoresizingMaskIntoConstraints="NO" id="D9Y-RI-udI">
+                                        <rect key="frame" x="214" y="15" width="16" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="D9Y-RI-udI" secondAttribute="height" multiplier="1:1" id="HVT-cT-Slp"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="P88-l5-8f4" secondAttribute="bottom" constant="16" id="0tJ-J1-J92"/>
+                                    <constraint firstAttribute="bottom" secondItem="D9Y-RI-udI" secondAttribute="bottom" constant="16" id="E3O-Aa-DPc"/>
+                                    <constraint firstItem="D9Y-RI-udI" firstAttribute="leading" secondItem="P88-l5-8f4" secondAttribute="trailing" constant="10" id="Kl7-Pd-enJ"/>
+                                    <constraint firstItem="D9Y-RI-udI" firstAttribute="top" secondItem="Bdn-cE-JGF" secondAttribute="top" constant="15" id="LtD-wE-hu3"/>
                                     <constraint firstItem="O3z-ha-xta" firstAttribute="leading" secondItem="Bdn-cE-JGF" secondAttribute="leading" constant="16" id="YHm-Jr-fcm"/>
                                     <constraint firstAttribute="bottom" secondItem="iev-lH-mPM" secondAttribute="bottom" constant="16" id="YSz-gr-my4"/>
                                     <constraint firstItem="O3z-ha-xta" firstAttribute="top" secondItem="Bdn-cE-JGF" secondAttribute="top" constant="12" id="e1z-CG-QWD"/>
@@ -303,7 +312,7 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                         <outlet property="headerLabel" destination="O3z-ha-xta" id="1qi-xM-bvq"/>
                         <outlet property="headerLabelWidthConstraint" destination="haR-mM-ync" id="F1F-UW-NRW"/>
                         <outlet property="scrollView" destination="pMK-H7-dDA" id="HV7-sq-6KY"/>
-                        <outlet property="securedImageView" destination="P88-l5-8f4" id="Wja-H7-2kr"/>
+                        <outlet property="securedImageView" destination="P88-l5-8f4" id="hyc-yJ-hBj"/>
                         <outlet property="starredButton" destination="iev-lH-mPM" id="gXL-6t-7no"/>
                         <outlet property="topViewHeightConstraint" destination="MuL-GH-Djg" id="kSK-Sa-u1o"/>
                         <outlet property="undoBar" destination="XUa-dI-sHj" id="tVt-15-w8Q"/>

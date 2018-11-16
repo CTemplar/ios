@@ -77,8 +77,6 @@ class ViewInboxEmailPresenter {
         
         self.setupFromToHeaderHeight(message: message)
         
-        
-        
         if let messageContent = self.interactor?.extractMessageContent(message: message) {
         
             self.viewController?.contentTextView.isHidden = false
