@@ -191,30 +191,6 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                             <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z5N-8m-C3L">
                                 <rect key="frame" x="0.0" y="618" width="375" height="49"/>
                                 <subviews>
-                                    <view hidden="YES" alpha="0.89999997615814209" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XUa-dI-sHj">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vCM-qe-6hi">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="48" id="mAv-sW-wSd"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
-                                                <state key="normal" title="Undo delete">
-                                                    <color key="titleColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="undoButtonPressed:" destination="eXb-8R-FAT" eventType="touchUpInside" id="cqu-om-Qih"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="vCM-qe-6hi" firstAttribute="top" secondItem="XUa-dI-sHj" secondAttribute="top" id="8md-au-3jl"/>
-                                            <constraint firstItem="vCM-qe-6hi" firstAttribute="leading" secondItem="XUa-dI-sHj" secondAttribute="leading" id="KKZ-DV-I6o"/>
-                                            <constraint firstAttribute="trailing" secondItem="vCM-qe-6hi" secondAttribute="trailing" id="aqa-16-ak2"/>
-                                        </constraints>
-                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2m-Xp-8JM">
                                         <rect key="frame" x="48" y="6" width="46" height="35"/>
                                         <constraints>
@@ -245,6 +221,31 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                                             <action selector="forwardButtonPressed:" destination="eXb-8R-FAT" eventType="touchUpInside" id="ORI-u4-esL"/>
                                         </connections>
                                     </button>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XUa-dI-sHj">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vCM-qe-6hi">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="mAv-sW-wSd"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                                <state key="normal" title="Undo delete">
+                                                    <color key="titleColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="undoButtonPressed:" destination="eXb-8R-FAT" eventType="touchUpInside" id="cqu-om-Qih"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="vCM-qe-6hi" firstAttribute="top" secondItem="XUa-dI-sHj" secondAttribute="top" id="8md-au-3jl"/>
+                                            <constraint firstItem="vCM-qe-6hi" firstAttribute="leading" secondItem="XUa-dI-sHj" secondAttribute="leading" id="KKZ-DV-I6o"/>
+                                            <constraint firstAttribute="trailing" secondItem="vCM-qe-6hi" secondAttribute="trailing" id="aqa-16-ak2"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
