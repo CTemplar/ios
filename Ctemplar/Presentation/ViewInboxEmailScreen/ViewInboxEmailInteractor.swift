@@ -31,7 +31,7 @@ class ViewInboxEmailInteractor {
                     if (message.children?.count)! > 0 {
                         self.viewController?.messagesTableView.isHidden = false
                         self.viewController?.dataSource?.messagesArray = message.children!
-                        self.viewController?.dataSource?.messagesArray.append(message) //add parent Message
+                        self.viewController?.dataSource?.messagesArray.insert(message, at: 0) //add parent Message
                         self.viewController?.dataSource?.reloadData()
                     } else {
                         self.presenter?.setupMessageContent(message: message)

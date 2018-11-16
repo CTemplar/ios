@@ -48,7 +48,12 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        
         let cell : ChildMessageTableViewCell = tableView.dequeueReusableCell(withIdentifier: k_ChildMessageTableViewCellIdentifier)! as! ChildMessageTableViewCell
+        
+        cell.preservesSuperviewLayoutMargins = false
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets.zero
         
         let message = messagesArray[indexPath.row]
         let sender = message.sender
@@ -63,6 +68,10 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
         cell.setupCellWithData(sender: sender!, header: header)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
     
     func reloadData() {

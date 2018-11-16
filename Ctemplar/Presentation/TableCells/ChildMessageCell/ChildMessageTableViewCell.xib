@@ -42,6 +42,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="c2n-1O-iSo" firstAttribute="leading" secondItem="bxD-Rq-TQN" secondAttribute="leading" constant="16" id="1s1-sM-csm"/>
                     <constraint firstAttribute="trailing" secondItem="qE4-lX-lK8" secondAttribute="trailing" constant="16" id="7pp-wt-cHU"/>
@@ -52,6 +53,18 @@
                     <constraint firstAttribute="bottom" secondItem="c2n-1O-iSo" secondAttribute="bottom" constant="15.5" id="uYF-7B-3G3"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="0.0"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                    <real key="value" value="1"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                    <color key="value" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="headerLabel" destination="c2n-1O-iSo" id="IRx-Oi-wn0"/>
                 <outlet property="senderLabel" destination="qE4-lX-lK8" id="9Tb-wK-Pqf"/>
