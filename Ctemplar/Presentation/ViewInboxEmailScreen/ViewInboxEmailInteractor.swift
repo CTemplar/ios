@@ -85,19 +85,33 @@ class ViewInboxEmailInteractor {
         
         self.viewController?.dataSource?.dercyptedMessagesArray.removeAll()
         
+        /*
         for (index, message) in emailsArray.enumerated() {
             if let messageContent = message.content {
-                self.viewController?.dataSource?.dercyptedMessagesArray.append("decoding...")
-                self.decryptMessage(content: messageContent, index: index)
+                //self.viewController?.dataSource?.dercyptedMessagesArray.append("decoding...")
+                //self.decryptMessage(content: messageContent, index: index)
             } else {
                 self.viewController?.dataSource?.dercyptedMessagesArray.append("Empty content")
             }
+        }*/
+        
+        HUD.show(.progress)
+        
+        for message in emailsArray {
+            //DispatchQueue.main.async {
+                let messageContent = self.extractMessageContent(message: message)
+                self.viewController?.dataSource?.dercyptedMessagesArray.append(messageContent)
+           // }
         }
+        
+        self.viewController?.dataSource?.reloadData(scrollToLastMessage: false)
+        
+        HUD.hide()
     }
     
     func decryptMessage(content: String, index: Int) {
         
-        let queue = DispatchQueue.global(qos: .utility)
+        let queue = DispatchQueue.global(qos: .userInitiated)
         
         queue.async {
             

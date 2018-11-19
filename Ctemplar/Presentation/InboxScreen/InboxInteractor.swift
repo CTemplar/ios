@@ -304,7 +304,7 @@ class InboxInteractor {
     
     func decryptHeader(content: String, index: Int) {
      
-        let queue = DispatchQueue.global(qos: .utility)
+        let queue = DispatchQueue.global(qos: .userInitiated)
 
         queue.async {
             

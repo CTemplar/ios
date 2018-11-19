@@ -53,6 +53,13 @@ class APIService {
         DispatchQueue.main.async {
             if let salt = self.formatterService?.generateSaltFrom(userName: userName) {
                 print("salt:", salt)
+                
+                if self.hashedPassword != nil {
+                    print("already hashedPassword:", self.hashedPassword as Any)
+                    completion(true)
+                    return
+                }
+                
                 self.hashedPassword = self.formatterService?.hash(password: password, salt: salt)
                 print("hashedPassword:", self.hashedPassword as Any)
             }

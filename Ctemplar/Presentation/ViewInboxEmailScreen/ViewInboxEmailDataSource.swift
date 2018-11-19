@@ -114,7 +114,7 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
             
             if self.messagesArray.count > 3 {
                 let lastIndex : IndexPath = IndexPath(row: self.messagesArray.count - 1, section: 0)
-                self.tableView.scrollToRow(at: lastIndex as IndexPath, at: UITableView.ScrollPosition.bottom, animated: true)
+                self.tableView.scrollToRow(at: lastIndex as IndexPath, at: UITableView.ScrollPosition.top, animated: true)
             }
         }
     }
