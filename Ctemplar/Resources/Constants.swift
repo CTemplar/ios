@@ -55,6 +55,7 @@ let k_MoveToFolderCellXibName              = "MoveToFolderTableViewCell"
 let k_SearchCellXibName                    = "SearchTableViewCell"
 let k_ContactCellXibName                   = "ContactTableViewCell"
 let k_ChildMessageCellXibName              = "ChildMessageTableViewCell"
+let k_ChildMessageExpandedCellXibName      = "ChildMessageExpandedTableViewCell"
 
 // cell identifier
 
@@ -66,6 +67,7 @@ let k_MoveToFolderTableViewCellIdentifier       = "moveToFolderTableViewCellIden
 let k_SearchTableViewCellIdentifier             = "searchTableViewCellIdentifier"
 let k_ContactTableViewCellIdentifier            = "contactTableViewCellIdentifier"
 let k_ChildMessageTableViewCellIdentifier       = "childMessageTableViewCellIdentifier"
+let k_ChildMessageExpandedTableViewCellIdentifier       = "childMessageExpandedTableViewCellIdentifier"
 
 // view controllers iPad storyboards name
 

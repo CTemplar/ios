@@ -69,8 +69,7 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
     
     func setupLabelsAndImages(message: EmailMessage, header : String) {
         
-        if let sender = message.sender {
-            
+        if let sender = message.sender {            
             senderLabel.text = sender
         }
         

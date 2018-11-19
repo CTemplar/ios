@@ -123,6 +123,8 @@
 		845E64472170CA6F008612FE /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 843E972C2163494400147CBE /* Lato-Regular.ttf */; };
 		845E64482170CAEF008612FE /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 845E64442170BF8F008612FE /* Lato-Black.ttf */; };
 		845E64492170CAF2008612FE /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 843E973521635F6D00147CBE /* Roboto-Bold.ttf */; };
+		846EDE9221A284C200EE9A88 /* ChildMessageExpandedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EDE9121A284C200EE9A88 /* ChildMessageExpandedTableViewCell.swift */; };
+		846EDE9421A284D400EE9A88 /* ChildMessageExpandedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846EDE9321A284D400EE9A88 /* ChildMessageExpandedTableViewCell.xib */; };
 		84A62E492175B508009C38E5 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A62E482175B508009C38E5 /* ResetPasswordViewController.swift */; };
 		84A62E4B2175C3CF009C38E5 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A62E4A2175C3CF009C38E5 /* NewPasswordViewController.swift */; };
 		84A62E4D2175C6EB009C38E5 /* ForgotUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A62E4C2175C6EB009C38E5 /* ForgotUsernameViewController.swift */; };
@@ -260,6 +262,8 @@
 		845E64422170BD21008612FE /* AboutAs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutAs.storyboard; sourceTree = "<group>"; };
 		845E64442170BF8F008612FE /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
 		845E64452170C5A4008612FE /* AboutAsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAsViewController.swift; sourceTree = "<group>"; };
+		846EDE9121A284C200EE9A88 /* ChildMessageExpandedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildMessageExpandedTableViewCell.swift; sourceTree = "<group>"; };
+		846EDE9321A284D400EE9A88 /* ChildMessageExpandedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChildMessageExpandedTableViewCell.xib; sourceTree = "<group>"; };
 		84A62E482175B508009C38E5 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		84A62E4A2175C3CF009C38E5 /* NewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
 		84A62E4C2175C6EB009C38E5 /* ForgotUsernameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewController.swift; sourceTree = "<group>"; };
@@ -397,6 +401,8 @@
 			children = (
 				8433DFB9219ECD7000375609 /* ChildMessageTableViewCell.swift */,
 				8433DFBB219ECDC600375609 /* ChildMessageTableViewCell.xib */,
+				846EDE9121A284C200EE9A88 /* ChildMessageExpandedTableViewCell.swift */,
+				846EDE9321A284D400EE9A88 /* ChildMessageExpandedTableViewCell.xib */,
 			);
 			path = ChildMessageCell;
 			sourceTree = "<group>";
@@ -804,6 +810,7 @@
 				845E643B21709330008612FE /* InboxSideMenu.storyboard in Resources */,
 				8441099221776B5100F0BE18 /* Lato-Bold.ttf in Resources */,
 				845E64402170A4A2008612FE /* Compose.storyboard in Resources */,
+				846EDE9421A284D400EE9A88 /* ChildMessageExpandedTableViewCell.xib in Resources */,
 				8433FF24216201A500C57DC8 /* LaunchScreen.storyboard in Resources */,
 				8436AD532180663800D16008 /* Localizable.strings in Resources */,
 				8433DFBC219ECDC600375609 /* ChildMessageTableViewCell.xib in Resources */,
@@ -951,6 +958,7 @@
 				843FBF19216E4FE500148FC1 /* DeviceScreenConstants.swift in Sources */,
 				8402497F21916D3200CDDB0F /* FoldersList.swift in Sources */,
 				843E973B2163701B00147CBE /* LoginInteractor.swift in Sources */,
+				846EDE9221A284C200EE9A88 /* ChildMessageExpandedTableViewCell.swift in Sources */,
 				8431218E218AF82C0014560D /* ViewInboxEmailInteractor.swift in Sources */,
 				8433DFBA219ECD7000375609 /* ChildMessageTableViewCell.swift in Sources */,
 				843E97392163700900147CBE /* LoginRouter.swift in Sources */,

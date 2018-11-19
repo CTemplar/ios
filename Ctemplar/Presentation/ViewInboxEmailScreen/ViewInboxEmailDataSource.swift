@@ -34,6 +34,8 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
     func registerTableViewCell() {
         
         self.tableView.register(UINib(nibName: k_ChildMessageCellXibName, bundle: nil), forCellReuseIdentifier: k_ChildMessageTableViewCellIdentifier)
+        
+        self.tableView.register(UINib(nibName: k_ChildMessageExpandedCellXibName, bundle: nil), forCellReuseIdentifier: k_ChildMessageExpandedTableViewCellIdentifier)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -48,12 +50,9 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        //let cell : ChildMessageTableViewCell = tableView.dequeueReusableCell(withIdentifier: k_ChildMessageTableViewCellIdentifier)! as! ChildMessageTableViewCell
         
-        let cell : ChildMessageTableViewCell = tableView.dequeueReusableCell(withIdentifier: k_ChildMessageTableViewCellIdentifier)! as! ChildMessageTableViewCell
-        
-        cell.preservesSuperviewLayoutMargins = false
-        cell.separatorInset = UIEdgeInsets.zero
-        cell.layoutMargins = UIEdgeInsets.zero
+        var cell : UITableViewCell
         
         let message = messagesArray[indexPath.row]
         let sender = message.sender
@@ -64,8 +63,17 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
             header = (self.parentViewController?.presenter?.interactor?.headerOfMessage(content: messageContent))!
         }
         
-        //let header = message.content
-        cell.setupCellWithData(sender: sender!, header: header)
+        if messagesArray.count == indexPath.row + 1 { //temp last message open
+            cell = tableView.dequeueReusableCell(withIdentifier: k_ChildMessageExpandedTableViewCellIdentifier)! as! ChildMessageExpandedTableViewCell
+            (cell as! ChildMessageExpandedTableViewCell).setupCellWithData(message: message)
+        } else {
+            cell = tableView.dequeueReusableCell(withIdentifier: k_ChildMessageTableViewCellIdentifier)! as! ChildMessageTableViewCell
+            (cell as! ChildMessageTableViewCell).setupCellWithData(sender: sender!, header: header)
+        }
+        
+        cell.preservesSuperviewLayoutMargins = false
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets.zero
         
         return cell
     }
