@@ -11,7 +11,9 @@ import UIKit
 
 class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
-    var messagesArray           : Array<EmailMessage> = []
+    var messagesArray                     : Array<EmailMessage> = []
+    var dercyptedMessagesArray            : Array<String> = []
+    var dercyptedHeadersArray             : Array<String> = []
     var showDetailMessagesArray           : Array<Bool> = []
     var showContentMessagesArray          : Array<Bool> = []
     
@@ -62,7 +64,10 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
         var header = ""
         var messageText = ""
         
-        if let messageContent = self.parentViewController?.presenter?.interactor?.extractMessageContent(message: message) {
+        //if let messageContent = self.parentViewController?.presenter?.interactor?.extractMessageContent(message: message) {
+        if dercyptedMessagesArray.count > indexPath.row {
+            let messageContent = dercyptedMessagesArray[indexPath.row]
+        
             header = (self.parentViewController?.presenter?.interactor?.headerOfMessage(content: messageContent))!
             messageText = messageContent
         }

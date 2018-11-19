@@ -38,6 +38,8 @@ class ViewInboxEmailInteractor {
                             self.viewController?.dataSource?.showContentMessagesArray.append(false)
                         }
                         
+                        self.updateMessageContent(emailsArray: (self.viewController?.dataSource?.messagesArray)!)
+                        
                         if let messagesCount = self.viewController?.dataSource?.messagesArray.count {
                             self.viewController?.dataSource?.showContentMessagesArray[messagesCount - 1] = true
                         }
@@ -76,6 +78,43 @@ class ViewInboxEmailInteractor {
             }
             
             HUD.hide()
+        }
+    }
+    
+    func updateMessageContent(emailsArray: Array<EmailMessage>) {
+        
+        self.viewController?.dataSource?.dercyptedMessagesArray.removeAll()
+        
+        for (index, message) in emailsArray.enumerated() {
+            if let messageContent = message.content {
+                self.viewController?.dataSource?.dercyptedMessagesArray.append("decoding...")
+                self.decryptMessage(content: messageContent, index: index)
+            } else {
+                self.viewController?.dataSource?.dercyptedMessagesArray.append("Empty content")
+            }
+        }
+    }
+    
+    func decryptMessage(content: String, index: Int) {
+        
+        let queue = DispatchQueue.global(qos: .utility)
+        
+        queue.async {
+            
+            if let message = self.pgpService?.decryptMessage(encryptedContet: content) {
+                DispatchQueue.main.async {
+                    //print("message:", message)
+                    self.setDecryptedContent(content: message, index: index)
+                }
+            }
+        }
+    }
+    
+    func setDecryptedContent(content: String, index: Int) {
+        
+        if (self.viewController?.dataSource?.dercyptedMessagesArray.count)! > index {
+            self.viewController?.dataSource?.dercyptedMessagesArray[index] = content
+            self.viewController?.dataSource?.reloadData(scrollToLastMessage: false)
         }
     }
     
