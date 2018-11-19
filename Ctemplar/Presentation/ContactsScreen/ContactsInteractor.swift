@@ -43,7 +43,7 @@ class ContactsInteractor {
         
         self.viewController?.dataSource?.filtered =  (self.viewController?.isFiltering())!
         self.viewController?.dataSource?.filteredContactsArray = filteredList
-        //self.viewController?.dataSource?.searchText = searchText
+        self.viewController?.dataSource?.searchText = searchText
         self.viewController?.dataSource?.reloadData()
     }
 }

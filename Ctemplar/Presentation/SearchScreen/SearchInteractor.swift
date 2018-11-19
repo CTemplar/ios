@@ -95,7 +95,14 @@ class SearchInteractor {
             return (message.sender?.lowercased().contains(searchText.lowercased()))!
         }))!
         
-        let filteredList = filteredSendersList + filteredSubjectsList
+        var filteredDuplicatesMessagesList : Array<EmailMessage> = []
+        
+        for message in filteredSendersList {
+            filteredDuplicatesMessagesList = filteredSubjectsList.filter { $0.messsageID != message.messsageID }
+        }
+        
+        let filteredList = filteredSendersList + filteredDuplicatesMessagesList
+        //let filteredList = filteredSendersList + filteredSubjectsList
         
         updateDataSource(searchText: searchText, filteredList: filteredList)
     }

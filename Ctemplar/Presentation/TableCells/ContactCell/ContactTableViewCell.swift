@@ -32,15 +32,21 @@ class ContactTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setupCellWithData(contact: Contact, isSelectionMode: Bool, isSelected: Bool) {        
+    func setupCellWithData(contact: Contact, isSelectionMode: Bool, isSelected: Bool, foundText: String) {        
         
         if let userName = contact.contactName {
-            self.nameLabel.text = userName
+            let subjectAttributedString = NSMutableAttributedString(string: userName)
+            let range = subjectAttributedString.foundRangeFor(lowercasedString: userName.lowercased(), textToFind: foundText)
+            _ = subjectAttributedString.setBackgroundColor(range: range, color: k_foundTextBackgroundColor)
+            self.nameLabel.attributedText = subjectAttributedString
             self.initialsLabel.text = self.formatInitials(name: userName)
         }
         
         if let email = contact.email {
-            self.emailLabel.text = email
+            let subjectAttributedString = NSMutableAttributedString(string: email)
+            let range = subjectAttributedString.foundRangeFor(lowercasedString: email.lowercased(), textToFind: foundText)
+            _ = subjectAttributedString.setBackgroundColor(range: range, color: k_foundTextBackgroundColor)
+            self.emailLabel.attributedText = subjectAttributedString           
         }
         
         if isSelectionMode {

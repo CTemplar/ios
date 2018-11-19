@@ -74,7 +74,7 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         
         let isSelected = self.isContactSelected(contact: contact)
         
-        (cell as ContactTableViewCell).setupCellWithData(contact: contact, isSelectionMode: self.selectionMode, isSelected: isSelected)
+        (cell as ContactTableViewCell).setupCellWithData(contact: contact, isSelectionMode: self.selectionMode, isSelected: isSelected, foundText: self.searchText)
         
         return cell
     }
