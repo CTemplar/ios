@@ -12,11 +12,12 @@ import UIKit
 class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     var messagesArray           : Array<EmailMessage> = []
+    var showDetailMessagesArray           : Array<Bool> = []
+    var showContentMessagesArray          : Array<Bool> = []
     
     var tableView               : UITableView!
     var parentViewController    : ViewInboxEmailViewController!
     var formatterService        : FormatterService?
-    
     
     func initWith(parent: ViewInboxEmailViewController, tableView: UITableView) {
         
@@ -58,14 +59,19 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
         let sender = message.sender
         
         var header = ""
+        var messageText = ""
         
         if let messageContent = self.parentViewController?.presenter?.interactor?.extractMessageContent(message: message) {
             header = (self.parentViewController?.presenter?.interactor?.headerOfMessage(content: messageContent))!
+            messageText = messageContent
         }
+        
+        let showDetails = self.showDetailMessagesArray[indexPath.row]
         
         if messagesArray.count == indexPath.row + 1 { //temp last message open
             cell = tableView.dequeueReusableCell(withIdentifier: k_ChildMessageExpandedTableViewCellIdentifier)! as! ChildMessageExpandedTableViewCell
-            (cell as! ChildMessageExpandedTableViewCell).setupCellWithData(message: message)
+            (cell as! ChildMessageExpandedTableViewCell).parentController = self
+            (cell as! ChildMessageExpandedTableViewCell).setupCellWithData(message: message, contentMessage: messageText, showDetails: showDetails, showContent: false, index: indexPath.row)
         } else {
             cell = tableView.dequeueReusableCell(withIdentifier: k_ChildMessageTableViewCellIdentifier)! as! ChildMessageTableViewCell
             (cell as! ChildMessageTableViewCell).setupCellWithData(sender: sender!, header: header)

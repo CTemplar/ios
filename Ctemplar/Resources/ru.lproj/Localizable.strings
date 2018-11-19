@@ -78,3 +78,8 @@
 "contacts" = "Contacts";
 "selectAll" = "Select all";
 "deselectAll" = "Deselect all";
+
+//view message
+
+"viewDetails" = "View details";
+"hideDetails" = "Hide details";

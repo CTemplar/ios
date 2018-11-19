@@ -32,6 +32,15 @@ class ViewInboxEmailInteractor {
                         self.viewController?.messagesTableView.isHidden = false
                         self.viewController?.dataSource?.messagesArray = message.children!
                         self.viewController?.dataSource?.messagesArray.insert(message, at: 0) //add parent Message
+                        
+                        for _ in (self.viewController?.dataSource?.messagesArray)! {
+                            self.viewController?.dataSource?.showDetailMessagesArray.append(false)
+                        }
+                        
+                        //if let messagesCount = self.viewController?.dataSource?.messagesArray.count {
+                        //    self.viewController?.dataSource?.showDetailMessagesArray[messagesCount - 1] = true
+                        //}
+                        
                         self.viewController?.dataSource?.reloadData()
                     } else {
                         self.presenter?.setupMessageContent(message: message)
@@ -72,7 +81,7 @@ class ViewInboxEmailInteractor {
         
         if let content = message.content {            
             if let message = self.pgpService?.decryptMessage(encryptedContet: content) {
-                print("decrypt viewed message: ", message)
+                //print("decrypt viewed message: ", message)
                 return message
             }
         }

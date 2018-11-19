@@ -110,6 +110,7 @@ let k_mainFolderTextColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 25
 let k_orangeColor : UIColor = UIColor(red: 255.0 / 255.0, green: 170.0 / 255.0, blue: 14.0 / 255.0, alpha: 1.0)
 let k_greenColor : UIColor = UIColor(red: 0.0 / 255.0, green: 116.0 / 255.0, blue: 33.0 / 255.0, alpha: 1.0)
 
+let k_blueColor : UIColor = UIColor(red: 52.0 / 255.0, green: 152.0 / 255.0, blue: 219.0 / 255.0, alpha: 1.0)
 
 //size constants
 
@@ -161,6 +162,7 @@ let k_dateLabelOffsetHeight     : CGFloat = 52.0
 let k_InsetsForFromTo           : CGFloat = 26.0
 let k_lineSpaceSizeForFromToText    = 10
 let k_lineHeightForFromToText   : CGFloat = 26.0
+let k_lineHeightForMessageText  : CGFloat = 24.0
 
 let k_contactsBottomBarHeight       : CGFloat = 49.0
 let k_contactsSelectAllBarHeight    : CGFloat = 50.0
