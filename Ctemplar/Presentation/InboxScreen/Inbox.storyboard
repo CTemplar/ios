@@ -297,7 +297,7 @@
                                             <constraint firstItem="mgD-Xo-90y" firstAttribute="top" secondItem="1ig-SZ-idl" secondAttribute="top" constant="2" id="tdW-uG-xIP"/>
                                         </constraints>
                                     </view>
-                                    <view hidden="YES" alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZfK-Hc-Mvt">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZfK-Hc-Mvt">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RR2-8x-5m3">

@@ -237,7 +237,7 @@ class ViewInboxEmailPresenter {
         
         counter +=  1
         let alpha = 1.0/Double(counter)
-        self.viewController?.undoBar.alpha = CGFloat(alpha)
+        self.viewController?.undoButton.alpha = CGFloat(alpha)
         
         if counter == Int(k_undoActionBarShowingSecs) {
             self.hideUndoBar()
@@ -249,7 +249,7 @@ class ViewInboxEmailPresenter {
         counter = 0
         timer.invalidate()
         self.viewController?.undoBar.isHidden = true
-        self.viewController?.undoBar.alpha = 1.0
+        self.viewController?.undoButton.alpha = 1.0
     }
     
     //MARK: - More Actions

@@ -107,4 +107,15 @@ class SearchInteractor {
         self.viewController?.dataSource?.searchText = searchText
         self.viewController?.dataSource?.reloadData()
     }
+    
+    func folderFilterByFolderName(folder: String) -> String  {
+        
+        for folderName in MessagesFoldersName.allCases {
+            if folderName.rawValue == folder {
+               return folderName.rawValue
+            }
+        }
+        
+        return ""
+    }
 }
