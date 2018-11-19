@@ -121,4 +121,24 @@ class ContactsPresenter {
             self.viewController?.navigationItem.title = "contacts".localized()
         }
     }
+        
+    func deleteContactPermanently() {
+        
+        let params = Parameters(
+            title: "deleteTitle".localized(),
+            message: "deleteContact".localized(),
+            cancelButton: "cancelButton".localized(),
+            otherButtons: ["deleteButton".localized()]
+        )
+        
+        AlertHelperKit().showAlertWithHandler(self.viewController!, parameters: params) { buttonIndex in
+            switch buttonIndex {
+            case 0:
+                print("Cancel Delete")
+            default:
+                print("Delete")
+               // self.interactor?.deleteMessagesList(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, withUndo: "")
+            }
+        }
+    }
 }

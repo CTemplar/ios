@@ -80,7 +80,8 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating {
     }
     
     @IBAction func trashButtonPressed(_ sender: AnyObject) {
-        
+     
+        presenter?.deleteContactPermanently()
     }
     
     //MARK: - Search delegate
