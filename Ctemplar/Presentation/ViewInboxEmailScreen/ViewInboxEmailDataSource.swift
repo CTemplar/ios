@@ -28,6 +28,7 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
         //self.messagesArray = array
         
         registerTableViewCell()
+        
     }
     
     //MARK: - table view
@@ -67,16 +68,17 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
         }
         
         let showDetails = self.showDetailMessagesArray[indexPath.row]
+        let showContent = self.showContentMessagesArray[indexPath.row]
         
-        if messagesArray.count == indexPath.row + 1 { //temp last message open
+        if showContent {
             cell = tableView.dequeueReusableCell(withIdentifier: k_ChildMessageExpandedTableViewCellIdentifier)! as! ChildMessageExpandedTableViewCell
             (cell as! ChildMessageExpandedTableViewCell).parentController = self
-            (cell as! ChildMessageExpandedTableViewCell).setupCellWithData(message: message, contentMessage: messageText, showDetails: showDetails, showContent: false, index: indexPath.row)
+            (cell as! ChildMessageExpandedTableViewCell).setupCellWithData(message: message, contentMessage: messageText, showDetails: showDetails, index: indexPath.row)
         } else {
             cell = tableView.dequeueReusableCell(withIdentifier: k_ChildMessageTableViewCellIdentifier)! as! ChildMessageTableViewCell
             (cell as! ChildMessageTableViewCell).setupCellWithData(sender: sender!, header: header)
         }
-        
+         
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
@@ -84,12 +86,31 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let showContent = self.showContentMessagesArray[indexPath.row]
+        self.showContentMessagesArray[indexPath.row] = !showContent
+        
+        self.reloadData(scrollToLastMessage: false)
+        
+    }
+    
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
     
-    func reloadData() {
+    func reloadData(scrollToLastMessage : Bool) {
         
         self.tableView.reloadData()
+        
+        if scrollToLastMessage {
+            
+            if self.messagesArray.count > 3 {
+                let lastIndex : IndexPath = IndexPath(row: self.messagesArray.count - 1, section: 0)
+                self.tableView.scrollToRow(at: lastIndex as IndexPath, at: UITableView.ScrollPosition.bottom, animated: true)
+            }
+        }
     }
 }

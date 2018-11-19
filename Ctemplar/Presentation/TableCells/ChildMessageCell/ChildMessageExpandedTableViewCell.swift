@@ -28,7 +28,7 @@ class ChildMessageExpandedTableViewCell: UITableViewCell {
     @IBOutlet var messageContentTextViewHeightConstraint        : NSLayoutConstraint!
     
     var showDetails : Bool = false
-    var showContent : Bool = false
+    //var showContent : Bool = false
     var index : Int = 0
     
     override func awakeFromNib() {
@@ -42,10 +42,10 @@ class ChildMessageExpandedTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setupCellWithData(message: EmailMessage, contentMessage: String, showDetails: Bool, showContent: Bool, index: Int) {
+    func setupCellWithData(message: EmailMessage, contentMessage: String, showDetails: Bool, index: Int) {
         
         self.showDetails = showDetails
-        self.showContent = showContent
+        //self.showContent = showContent
         self.index = index
         
         if let sender = message.sender {
@@ -176,6 +176,6 @@ class ChildMessageExpandedTableViewCell: UITableViewCell {
         self.showDetails = !self.showDetails
         
         self.parentController?.showDetailMessagesArray[self.index] = self.showDetails
-        self.parentController?.reloadData()
+        self.parentController?.reloadData(scrollToLastMessage: false)
     }
 }

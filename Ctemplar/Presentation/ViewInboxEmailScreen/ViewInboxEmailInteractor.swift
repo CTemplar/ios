@@ -35,13 +35,14 @@ class ViewInboxEmailInteractor {
                         
                         for _ in (self.viewController?.dataSource?.messagesArray)! {
                             self.viewController?.dataSource?.showDetailMessagesArray.append(false)
+                            self.viewController?.dataSource?.showContentMessagesArray.append(false)
                         }
                         
-                        //if let messagesCount = self.viewController?.dataSource?.messagesArray.count {
-                        //    self.viewController?.dataSource?.showDetailMessagesArray[messagesCount - 1] = true
-                        //}
+                        if let messagesCount = self.viewController?.dataSource?.messagesArray.count {
+                            self.viewController?.dataSource?.showContentMessagesArray[messagesCount - 1] = true
+                        }
                         
-                        self.viewController?.dataSource?.reloadData()
+                        self.viewController?.dataSource?.reloadData(scrollToLastMessage: true)
                     } else {
                         self.presenter?.setupMessageContent(message: message)
                     }
