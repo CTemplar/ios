@@ -44,17 +44,21 @@ class ChildMessageExpandedTableViewCell: UITableViewCell {
     
     func setupCellWithData(message: EmailMessage, contentMessage: String, showDetails: Bool, index: Int) {
         
-        self.showDetails = showDetails
-        //self.showContent = showContent
+        self.showDetails = showDetails     
         self.index = index
         
         if let sender = message.sender {
             senderLabel.text = sender
         }
+                
+        var toEmailsArray : Array<String> = []
         
-        if let reciever = message.receiver { //temp
-            self.recieverLabel.text = "Reciever Temp Text"//reciever
+        if let recieversArray = message.receiver {
+            toEmailsArray = recieversArray as! Array<String>
         }
+        
+        let toText = self.parentController?.formatterService!.formatToString(toEmailsArray: toEmailsArray)
+        self.recieverLabel.text = toText
         
         if let createdDate = message.createdAt {            
             if  let date = parentController?.formatterService!.formatStringToDate(date: createdDate) {

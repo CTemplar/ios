@@ -111,6 +111,22 @@ class FormatterService
     
     //MARK: - Message String formatter
     
+    func formatToString(toEmailsArray: Array<String>) -> String {
+        
+        var toEmailsText : String = "To: "
+        
+        for toEmail in toEmailsArray {
+            toEmailsText = toEmailsText + "<" + toEmail + ">,\n"
+        }
+        
+        if toEmailsText.count > 0 {
+            toEmailsText = String(toEmailsText.dropLast(2))
+        }
+                
+        return toEmailsText
+        
+    }
+    
      func formatFromToString(fromName: String, fromEmail: String, toNamesArray: Array<String>, toEmailsArray: Array<String>, ccArray: Array<String>) -> String {
         
         var toEmailsText : String = "\nTo: "
