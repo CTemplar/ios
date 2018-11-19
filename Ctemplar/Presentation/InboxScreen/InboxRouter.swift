@@ -39,7 +39,7 @@ class InboxRouter {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_ViewInboxEmailStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_ViewInboxEmailViewControllerID) as! ViewInboxEmailViewController
-        //vc.message = message
+        vc.message = message
         vc.messageID = message.messsageID
         vc.currentFolderFilter = self.viewController?.currentFolderFilter
         //self.viewController?.show(vc, sender: self)

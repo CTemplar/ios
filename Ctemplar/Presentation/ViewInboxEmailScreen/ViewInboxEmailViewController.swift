@@ -64,10 +64,14 @@ class ViewInboxEmailViewController: UIViewController {
         
         self.presenter?.setupNavigationBar(enabled: false)
         self.presenter?.setupBottomBar(enabled: false)
-        //self.presenter?.setupMessageHeader(message: self.message!)
+        
+        //temp previously setup Subject
+        self.messageIsRead = self.message!.read
+        self.messageIsStarred = self.message!.starred
+        self.presenter?.setupMessageHeader(message: self.message!)
         
         dataSource?.initWith(parent: self, tableView: messagesTableView)
-        self.messagesTableView.isHidden = true
+        self.messagesTableView.isHidden = false
         
         self.presenter?.initMoreActionsView()
     }

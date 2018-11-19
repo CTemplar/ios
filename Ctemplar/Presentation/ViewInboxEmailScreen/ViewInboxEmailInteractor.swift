@@ -44,6 +44,7 @@ class ViewInboxEmailInteractor {
                         
                         self.viewController?.dataSource?.reloadData(scrollToLastMessage: true)
                     } else {
+                        self.viewController?.messagesTableView.isHidden = true
                         self.presenter?.setupMessageContent(message: message)
                     }
                     
