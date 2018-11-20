@@ -841,14 +841,14 @@ class APIService {
         }
     }
     
-    func createContacts(name: String, email: String, phone: String, address: String, note: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func createContact(name: String, email: String, phone: String, address: String, note: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         self.checkTokenExpiration(){ (complete) in
             if complete {
                 
                 if let token = self.getToken() {
                     
-                    self.restAPIService?.createContacts(token: token, name: name, email: email, phone: phone, address: address, note: note)                    {(result) in
+                    self.restAPIService?.createContact(token: token, name: name, email: email, phone: phone, address: address, note: note)                    {(result) in
                         
                         switch(result) {
                             
@@ -872,6 +872,48 @@ class APIService {
                                 completionHandler(APIResult.failure(error))
                             }
                             
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+    
+    func updateContact(contactID: String, name: String, email: String, phone: String, address: String, note: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    
+                    self.restAPIService?.updateContact(token: token, contactID: contactID, name: name, email: email, phone: phone, address: address, note: note) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            
+                            print("updateContact success:", value)
+                            completionHandler(APIResult.success(value))
+                            /*
+                            if let response = value as? Dictionary<String, Any> {
+                                
+                                if let message = self.parseServerResponse(response:response) {
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    let contact = Contact(dictionary: response)
+                                    completionHandler(APIResult.success(contact))
+                                }
+                                
+                            } else {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
+                            }
+                            */
                         case .failure(let error):
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                             completionHandler(APIResult.failure(error))

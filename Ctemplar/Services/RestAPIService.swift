@@ -553,7 +553,7 @@ class RestAPIService {
         }
     }
     
-    func createContacts(token: String, name: String, email: String, phone: String, address: String, note: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func createContact(token: String, name: String, email: String, phone: String, address: String, note: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -568,15 +568,49 @@ class RestAPIService {
             JSONKey.note.rawValue: note
         ]
         
-        print("createContacts parameters:", parameters)
+        print("createContact parameters:", parameters)
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.contact.rawValue
         
-        print("createContacts url:", url)
+        print("createContact url:", url)
         
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
             
-            print("createContacts responce:", response)
+            print("createContact responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func updateContact(token: String, contactID: String, name: String, email: String, phone: String, address: String, note: String, completionHandler: @escaping (APIResult<Any>) -> Void) {        
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.folderName.rawValue: name,
+            JSONKey.email.rawValue: email,
+            JSONKey.phone.rawValue: phone,
+            JSONKey.address.rawValue: address,
+            JSONKey.note.rawValue: note
+        ]
+        
+        print("updateContact parameters:", parameters)
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.contact.rawValue + "?id__in=" + contactID
+        
+        print("updateContact url:", url)
+        
+        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("updateContact responce:", response)
             
             switch(response.result) {
             case .success(let value):
