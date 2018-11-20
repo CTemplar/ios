@@ -122,7 +122,7 @@ class ContactsPresenter {
         }
     }
         
-    func deleteContactPermanently() {
+    func deleteContactPermanently(selectedContactsArray: Array<Contact>) {
         
         let params = Parameters(
             title: "deleteTitle".localized(),
@@ -137,7 +137,7 @@ class ContactsPresenter {
                 print("Cancel Delete")
             default:
                 print("Delete")
-               // self.interactor?.deleteMessagesList(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, withUndo: "")
+                self.interactor?.deleteContactsList(selectedContactsArray:selectedContactsArray, withUndo: "")
             }
         }
     }

@@ -81,7 +81,7 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating {
     
     @IBAction func trashButtonPressed(_ sender: AnyObject) {
      
-        presenter?.deleteContactPermanently()
+        presenter?.deleteContactPermanently(selectedContactsArray: (self.dataSource?.selectedContactsArray)!)
     }
     
     //MARK: - Search delegate

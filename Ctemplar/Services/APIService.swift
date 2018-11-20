@@ -794,6 +794,44 @@ class APIService {
         }
     }
     
+    //MARK: - Contacts
+    
+    func deleteContacts(contactsIDIn: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        var contactsIDInParameter = ""
+        
+        if contactsIDIn.count > 0 {
+            contactsIDInParameter = "?id__in=" + contactsIDIn
+        }
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    
+                    //HUD.show(.progress)
+                    
+                    self.restAPIService?.deleteContacts(token: token, contactsIDIn: contactsIDInParameter) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            
+                            //print("deleteContact success:", value)
+                            completionHandler(APIResult.success(value))
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                        
+                        //HUD.hide()
+                    }
+                }
+            }
+        }
+    }
+    
     //MARK: - Local services
     
     func saveToken(token: String) {

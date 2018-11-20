@@ -133,6 +133,10 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
+            
+            let contact = contactsArray[indexPath.row]
+            
+            self.parentViewController.presenter?.deleteContactPermanently(selectedContactsArray: [contact])
         }
     }
     

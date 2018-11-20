@@ -46,4 +46,30 @@ class ContactsInteractor {
         self.viewController?.dataSource?.searchText = searchText
         self.viewController?.dataSource?.reloadData()
     }
+    
+    func deleteContactsList(selectedContactsArray: Array<Contact>, withUndo: String) {
+        
+        var contactsIDList : String = ""
+        
+        for contact in selectedContactsArray {
+            contactsIDList = contactsIDList + contact.contactID!.description + ","
+        }
+        
+        contactsIDList.remove(at: contactsIDList.index(before: contactsIDList.endIndex)) //remove last ","
+        
+        apiService?.deleteContacts(contactsIDIn: contactsIDList) {(result) in
+            
+            switch(result) {
+                
+            case .success( _):
+              
+                print("deleteContactsList")
+
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
 }
