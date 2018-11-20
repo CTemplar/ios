@@ -123,6 +123,7 @@ let k_signUpPageKeyboardOffsetSmall     = 32.0
 let k_signUpPageKeyboardOffsetMedium    = 64.0
 let k_signUpPageKeyboardOffsetBig       = 96.0
 let k_signUpPageKeyboardOffsetLarge     = 160.0
+let k_signUpPageKeyboardOffsetExtraLarge     = 210.0
 
 let k_triangleOffset                    = 16.0 + 5.0 + 5.0
 let k_navBarButtonSize                  = 32.0

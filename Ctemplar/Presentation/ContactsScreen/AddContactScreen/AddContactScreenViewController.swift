@@ -28,6 +28,8 @@ class AddContactViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var contactAddressTextField   : UITextField!
     @IBOutlet var contactNoteTextField      : UITextField!
     
+    var keyboardOffset = 0.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,6 +39,17 @@ class AddContactViewController: UIViewController, UITextFieldDelegate {
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         self.navigationItem.rightBarButtonItem = nil
         self.navigationItem.title = navBarTitle
+        
+        if (Device.IS_IPHONE_5) {
+            keyboardOffset = k_signUpPageKeyboardOffsetLarge
+        } else {
+            keyboardOffset = 0.0
+        }
+        
+        let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
+        self.view.addGestureRecognizer(freeSpaceViewGesture)
+        
+        adddNotificationObserver()
     }
     
     //MARK: - IBActions
@@ -59,5 +72,54 @@ class AddContactViewController: UIViewController, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         //print("input:", textField.text as Any)
+    }
+    
+    @objc func tappedViewAction(sender : UITapGestureRecognizer) {
+        
+        view.endEditing(true)
+    }
+    
+    //MARK: - notification
+    
+    func adddNotificationObserver() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        
+        if contactNoteTextField.isEditing {
+        
+            if (Device.IS_IPHONE_5) {
+                keyboardOffset = k_signUpPageKeyboardOffsetExtraLarge
+            } else {
+                keyboardOffset = k_signUpPageKeyboardOffsetLarge
+            }
+        }
+        
+        if contactAddressTextField.isEditing {
+            
+            if (Device.IS_IPHONE_5) {
+                keyboardOffset = k_signUpPageKeyboardOffsetExtraLarge
+            } else {
+                keyboardOffset = k_signUpPageKeyboardOffsetMedium
+            }
+        }
+        
+        if contactPhoneTextField.isEditing || contactAddressTextField.isEditing || contactNoteTextField.isEditing {
+        
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= CGFloat(keyboardOffset)
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y += CGFloat(keyboardOffset)
+        }
     }
 }
