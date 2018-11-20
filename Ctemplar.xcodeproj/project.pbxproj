@@ -25,6 +25,7 @@
 		8403BDE621A4050C00EE8DCD /* AddContactRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403BDE521A4050C00EE8DCD /* AddContactRouter.swift */; };
 		8403BDE821A4051A00EE8DCD /* AddContactPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403BDE721A4051A00EE8DCD /* AddContactPresenter.swift */; };
 		8403BDEA21A4052800EE8DCD /* AddContactInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403BDE921A4052800EE8DCD /* AddContactInteractor.swift */; };
+		8403BDEC21A452AB00EE8DCD /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403BDEB21A452AB00EE8DCD /* Attachment.swift */; };
 		8406B2162193FD8A009F0375 /* UnreadMessagesCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406B2152193FD8A009F0375 /* UnreadMessagesCounter.swift */; };
 		8407AD92216CC61600AF2E7B /* EmailMessagesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407AD91216CC61600AF2E7B /* EmailMessagesList.swift */; };
 		8407AD94216CC98900AF2E7B /* EmailMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407AD93216CC98900AF2E7B /* EmailMessage.swift */; };
@@ -166,6 +167,7 @@
 		8403BDE521A4050C00EE8DCD /* AddContactRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactRouter.swift; sourceTree = "<group>"; };
 		8403BDE721A4051A00EE8DCD /* AddContactPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactPresenter.swift; sourceTree = "<group>"; };
 		8403BDE921A4052800EE8DCD /* AddContactInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactInteractor.swift; sourceTree = "<group>"; };
+		8403BDEB21A452AB00EE8DCD /* Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
 		8406B2152193FD8A009F0375 /* UnreadMessagesCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadMessagesCounter.swift; sourceTree = "<group>"; };
 		8407AD91216CC61600AF2E7B /* EmailMessagesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailMessagesList.swift; sourceTree = "<group>"; };
 		8407AD93216CC98900AF2E7B /* EmailMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailMessage.swift; sourceTree = "<group>"; };
@@ -372,6 +374,7 @@
 				84FF7E36219D662300E3E56A /* UserMyself.swift */,
 				8403BDDC21A3DD2100EE8DCD /* ContactsList.swift */,
 				84FF7E38219DB21E00E3E56A /* Contact.swift */,
+				8403BDEB21A452AB00EE8DCD /* Attachment.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -976,6 +979,7 @@
 				84A62E4D2175C6EB009C38E5 /* ForgotUsernameViewController.swift in Sources */,
 				84525F222195710D00CA732E /* SearchTableViewCell.swift in Sources */,
 				84A62E492175B508009C38E5 /* ResetPasswordViewController.swift in Sources */,
+				8403BDEC21A452AB00EE8DCD /* Attachment.swift in Sources */,
 				84525F1D219568FF00CA732E /* SearchInteractor.swift in Sources */,
 				840249862191758D00CDDB0F /* CustomFolderTableViewCell.swift in Sources */,
 				8433FF532162128200C57DC8 /* APIService.swift in Sources */,
