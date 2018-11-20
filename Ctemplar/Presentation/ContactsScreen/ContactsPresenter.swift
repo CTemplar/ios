@@ -52,7 +52,7 @@ class ContactsPresenter {
         self.viewController?.dataSource?.contactsArray =  (self.viewController?.contactsList)!
         self.viewController?.dataSource?.reloadData()
         
-        self.interactor?.userContactsList()
+        //self.interactor?.userContactsList()
     }
     
     func addContactButtonPressed(sender: AnyObject) {

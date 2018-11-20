@@ -51,6 +51,12 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating {
         presenter?.setupTable()
         presenter?.getContactsList()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.presenter?.interactor?.userContactsList()
+    }
         
     //MARK: - IBActions
     

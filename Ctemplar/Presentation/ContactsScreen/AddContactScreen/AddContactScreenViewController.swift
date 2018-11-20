@@ -37,7 +37,7 @@ class AddContactViewController: UIViewController, UITextFieldDelegate {
         configurator.configure(viewController: self)
         
         self.navigationItem.rightBarButtonItem?.isEnabled = false
-        self.navigationItem.rightBarButtonItem = nil
+        //self.navigationItem.rightBarButtonItem = nil
         self.navigationItem.title = navBarTitle
         
         if (Device.IS_IPHONE_5) {
@@ -60,7 +60,8 @@ class AddContactViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func saveButtonPressed(_ sender: AnyObject) {
-  
+        
+        presenter?.saveButtonPressed()
     }
     
     @IBAction func textFieldTyped(_ sender: UITextField) {

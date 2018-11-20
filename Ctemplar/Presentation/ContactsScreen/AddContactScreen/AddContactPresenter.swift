@@ -14,6 +14,7 @@ class AddContactPresenter {
     
     var viewController   : AddContactViewController?
     var interactor       : AddContactInteractor?
+    var formatterService : FormatterService?
 
     func setInputs(sender: UITextField) {
         
@@ -36,5 +37,29 @@ class AddContactPresenter {
         default:
             print("unknown textfield")
         }
+        
+        self.setupSaveButton(contactName: (self.viewController?.contactName)!, contactEmail: (self.viewController?.contactEmail)!)
+    }
+    
+    func setupSaveButton(contactName: String, contactEmail: String) {
+        
+        var saveButtonEnable : Bool = false
+        
+        if (formatterService?.validateNameLench(enteredName: contactName))! {
+            if (formatterService?.validateEmailFormat(enteredEmail: contactEmail))! {
+                saveButtonEnable = true
+            } else {
+                saveButtonEnable = false
+            }
+        } else {
+            saveButtonEnable = false
+        }
+        
+        self.viewController?.navigationItem.rightBarButtonItem?.isEnabled = saveButtonEnable
+    }
+    
+    func saveButtonPressed() {
+        
+        self.interactor?.createContact(name: (self.viewController?.contactName)!, email: (self.viewController?.contactEmail)!, phone: (self.viewController?.contactPhone)!, address: (self.viewController?.contactAddress)!, note: (self.viewController?.contactNote)!)
     }
 }

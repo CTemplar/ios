@@ -77,7 +77,7 @@ class ContactsInteractor {
             HUD.hide()
         }
     }
-    
+    /*
     func createContact() {
         
         HUD.show(.progress)
@@ -100,7 +100,7 @@ class ContactsInteractor {
             
             HUD.hide()
         }
-    }
+    }*/
     
     func deleteContactsList(selectedContactsArray: Array<Contact>, withUndo: String) {
         

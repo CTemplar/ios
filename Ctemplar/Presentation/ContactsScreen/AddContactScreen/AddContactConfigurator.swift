@@ -20,6 +20,7 @@ class AddContactConfigurator {
         
         let presenter = AddContactPresenter()
         presenter.viewController = viewController
+        presenter.formatterService = appDelegate.applicationManager.formatterService
         
         let interactor = AddContactInteractor()
         interactor.presenter = presenter
