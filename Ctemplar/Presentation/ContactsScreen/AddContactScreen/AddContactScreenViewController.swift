@@ -14,7 +14,8 @@ class AddContactViewController: UIViewController, UITextFieldDelegate {
     var presenter   : AddContactPresenter?
     var router      : AddContactRouter?
     
-    var navBarTitle: String? = ""
+    var contact: Contact!
+    var editMode: Bool? = false
     
     var contactName     : String? = ""
     var contactEmail    : String? = ""
@@ -36,10 +37,18 @@ class AddContactViewController: UIViewController, UITextFieldDelegate {
         let configurator =  AddContactConfigurator()
         configurator.configure(viewController: self)
         
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
-        //self.navigationItem.rightBarButtonItem = nil
-        self.navigationItem.title = navBarTitle
-        
+        if self.editMode == true {
+            self.navigationItem.title = "editContact".localized()
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+            
+            if (self.contact != nil) {
+                presenter?.setEditContact(contact: self.contact)
+            }
+        } else {
+            self.navigationItem.title = "addContact".localized()
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
+        }
+                
         if (Device.IS_IPHONE_5) {
             keyboardOffset = k_signUpPageKeyboardOffsetLarge
         } else {

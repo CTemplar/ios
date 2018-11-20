@@ -60,9 +60,8 @@ class ContactsPresenter {
         if self.viewController?.dataSource?.selectionMode == true {
             self.disableSelectionMode()
         } else {
-            //temp
-            //self.interactor?.createContact()
-            self.viewController?.router?.showAddContactViewController(title: "Add Contact")
+            let contact = Contact.init()
+            self.viewController?.router?.showAddContactViewController(editMode: false, contact: contact)
         }
     }
     

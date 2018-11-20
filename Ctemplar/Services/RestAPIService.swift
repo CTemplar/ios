@@ -542,7 +542,7 @@ class RestAPIService {
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
             
-            //print("userContacts responce:", response)
+            print("userContacts responce:", response)
             
             switch(response.result) {
             case .success(let value):

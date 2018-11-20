@@ -21,11 +21,12 @@ class ContactsRouter {
         self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
-    func showAddContactViewController(title: String) {
+    func showAddContactViewController(editMode: Bool, contact: Contact) {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_AddContactStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_AddContactViewControllerID) as! AddContactViewController
-        vc.navBarTitle = title
+        vc.editMode = editMode
+        vc.contact = contact
         self.viewController?.show(vc, sender: self)        
     }
 }

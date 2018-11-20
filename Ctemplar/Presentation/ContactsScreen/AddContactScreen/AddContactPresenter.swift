@@ -41,6 +41,34 @@ class AddContactPresenter {
         self.setupSaveButton(contactName: (self.viewController?.contactName)!, contactEmail: (self.viewController?.contactEmail)!)
     }
     
+    func setEditContact(contact: Contact) {
+        
+        if let name = contact.contactName {
+            self.viewController?.contactName = name
+            self.viewController?.contactNameTextField.text = name
+        }
+        
+        if let email = contact.email {
+            self.viewController?.contactEmail = email
+            self.viewController?.contactEmailTextField.text = email
+        }
+        
+        if let phone = contact.phone {
+            self.viewController?.contactPhone = phone
+            self.viewController?.contactPhoneTextField.text = phone
+        }
+     
+        if let address = contact.address {
+            self.viewController?.contactAddress = address
+            self.viewController?.contactAddressTextField.text = address
+        }
+        
+        if let note = contact.note {
+            self.viewController?.contactNote = note
+            self.viewController?.contactNoteTextField.text = note
+        }
+    }
+    
     func setupSaveButton(contactName: String, contactEmail: String) {
         
         var saveButtonEnable : Bool = false
@@ -60,6 +88,10 @@ class AddContactPresenter {
     
     func saveButtonPressed() {
         
-        self.interactor?.createContact(name: (self.viewController?.contactName)!, email: (self.viewController?.contactEmail)!, phone: (self.viewController?.contactPhone)!, address: (self.viewController?.contactAddress)!, note: (self.viewController?.contactNote)!)
+        if (self.viewController?.editMode)! {
+            
+        } else {
+            self.interactor?.createContact(name: (self.viewController?.contactName)!, email: (self.viewController?.contactEmail)!, phone: (self.viewController?.contactPhone)!, address: (self.viewController?.contactAddress)!, note: (self.viewController?.contactNote)!)
+        }
     }
 }

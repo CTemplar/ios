@@ -77,31 +77,7 @@ class ContactsInteractor {
             HUD.hide()
         }
     }
-    /*
-    func createContact() {
-        
-        HUD.show(.progress)
-        
-        apiService?.createContacts(name: "TestContact4", email: "test4@test.com", phone: "123456", address: "test address4", note: "test note4") {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                print("createContact:", value)
-                
-                //let contact = value as! Contact
-                //print("createContact:", contact)
-                self.userContactsList()
-                
-            case .failure(let error):
-                print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
-            }
-            
-            HUD.hide()
-        }
-    }*/
-    
+       
     func deleteContactsList(selectedContactsArray: Array<Contact>, withUndo: String) {
         
         var contactsIDList : String = ""

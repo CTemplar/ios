@@ -94,7 +94,7 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         }
         
         if self.selectionMode == false {
-            
+            self.parentViewController?.router?.showAddContactViewController(editMode: true, contact: contact)
         } else {
             
             let selected = isContactSelected(contact: contact)
