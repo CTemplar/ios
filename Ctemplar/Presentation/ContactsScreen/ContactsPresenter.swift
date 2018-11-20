@@ -62,6 +62,7 @@ class ContactsPresenter {
         } else {
             //temp
             //self.interactor?.createContact()
+            self.viewController?.router?.showAddContactViewController(title: "Add Contact")
         }
     }
     

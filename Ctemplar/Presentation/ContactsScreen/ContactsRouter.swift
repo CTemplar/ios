@@ -20,4 +20,12 @@ class ContactsRouter {
         //inboxSideMenuViewController.currentParentViewController = self.viewController
         self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
+    
+    func showAddContactViewController(title: String) {
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: k_AddContactStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_AddContactViewControllerID) as! AddContactViewController
+        vc.navBarTitle = title
+        self.viewController?.show(vc, sender: self)        
+    }
 }
