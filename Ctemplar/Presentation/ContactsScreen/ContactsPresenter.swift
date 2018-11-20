@@ -37,6 +37,24 @@ class ContactsPresenter {
         }
     }
     
+    func setupTable() {
+        
+        self.viewController?.contactsTableView.isHidden = true
+        
+        self.viewController?.selectedAllViewHeightConstraint.constant = 0.0
+        self.viewController?.bottomBarHeightConstraint.constant = 0.0
+        self.viewController?.view.layoutIfNeeded()
+    }
+    
+    func getContactsList() {
+        
+        self.viewController?.contactsTableView.isHidden = false
+        self.viewController?.dataSource?.contactsArray =  (self.viewController?.contactsList)!
+        self.viewController?.dataSource?.reloadData()
+        
+        self.interactor?.userContactsList()
+    }
+    
     func addContactButtonPressed(sender: AnyObject) {
         
         if self.viewController?.dataSource?.selectionMode == true {

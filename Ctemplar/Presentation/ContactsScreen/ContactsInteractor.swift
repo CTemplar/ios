@@ -47,6 +47,40 @@ class ContactsInteractor {
         self.viewController?.dataSource?.reloadData()
     }
     
+    func setContactsData(contactsList: ContactsList) {
+        
+        if let contacts = contactsList.contactsList {
+            self.viewController?.dataSource?.contactsArray = contacts
+            self.viewController?.dataSource?.reloadData()
+        }
+    }
+    
+    func userContactsList() {
+        
+        HUD.show(.progress)
+        
+        apiService?.userContacts(contactsIDIn: "") {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                //print("userContactsList:", value)
+                
+                let contactsList = value as! ContactsList
+                self.setContactsData(contactsList: contactsList)
+                
+                //self.viewController?.dataSource?.contactsArray =  (self.viewController?.contactsList)!
+                //self.viewController?.dataSource?.reloadData()
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+            
+            HUD.hide()
+        }
+    }
+    
     func deleteContactsList(selectedContactsArray: Array<Contact>, withUndo: String) {
         
         var contactsIDList : String = ""
@@ -57,6 +91,8 @@ class ContactsInteractor {
         
         contactsIDList.remove(at: contactsIDList.index(before: contactsIDList.endIndex)) //remove last ","
         
+        HUD.show(.progress)
+        
         apiService?.deleteContacts(contactsIDIn: contactsIDList) {(result) in
             
             switch(result) {
@@ -64,12 +100,14 @@ class ContactsInteractor {
             case .success( _):
               
                 print("deleteContactsList")
-
+                self.userContactsList()
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
             }
+            
+            HUD.hide()
         }
     }
 }

@@ -796,7 +796,7 @@ class APIService {
     
     //MARK: - Contacts
     
-    func deleteContacts(contactsIDIn: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func userContacts(contactsIDIn: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         var contactsIDInParameter = ""
         
@@ -809,7 +809,53 @@ class APIService {
                 
                 if let token = self.getToken() {
                     
-                    //HUD.show(.progress)
+                    self.restAPIService?.userContacts(token: token, contactsIDIn: contactsIDInParameter) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            
+                            //print("userContact success:", value)
+                           // completionHandler(APIResult.success(value))
+                            
+                            if let response = value as? Dictionary<String, Any> {
+                                
+                                if let message = self.parseServerResponse(response:response) {
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    let contactsList = ContactsList(dictionary: response)
+                                    completionHandler(APIResult.success(contactsList))
+                                }
+                                
+                            } else {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
+                            }
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+    
+    func deleteContacts(contactsIDIn: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        var contactsIDInParameter = ""
+        
+        if contactsIDIn.count > 0 {
+            contactsIDInParameter = "?id__in=" + contactsIDIn
+        }
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
                     
                     self.restAPIService?.deleteContacts(token: token, contactsIDIn: contactsIDInParameter) {(result) in
                         
@@ -824,8 +870,6 @@ class APIService {
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                             completionHandler(APIResult.failure(error))
                         }
-                        
-                        //HUD.hide()
                     }
                 }
             }

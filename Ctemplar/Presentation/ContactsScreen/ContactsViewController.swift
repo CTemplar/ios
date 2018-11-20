@@ -48,16 +48,8 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating {
         
         dataSource?.initWith(parent: self, tableView: contactsTableView)
         
-        contactsTableView.isHidden = true
-        
-        self.selectedAllViewHeightConstraint.constant = 0.0
-        self.bottomBarHeightConstraint.constant = 0.0
-        self.view.layoutIfNeeded()
-        
-        //temp
-        contactsTableView.isHidden = false
-        dataSource?.contactsArray = contactsList
-        dataSource?.reloadData()
+        presenter?.setupTable()
+        presenter?.getContactsList()
     }
         
     //MARK: - IBActions

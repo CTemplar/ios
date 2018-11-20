@@ -18,6 +18,7 @@
 		840249902191A02800CDDB0F /* MoveToDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8402498F2191A02800CDDB0F /* MoveToDataSource.swift */; };
 		840249942191C23800CDDB0F /* MoveToFolderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840249922191C23800CDDB0F /* MoveToFolderTableViewCell.swift */; };
 		840249952191C23800CDDB0F /* MoveToFolderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840249932191C23800CDDB0F /* MoveToFolderTableViewCell.xib */; };
+		8403BDDD21A3DD2100EE8DCD /* ContactsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403BDDC21A3DD2100EE8DCD /* ContactsList.swift */; };
 		8406B2162193FD8A009F0375 /* UnreadMessagesCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406B2152193FD8A009F0375 /* UnreadMessagesCounter.swift */; };
 		8407AD92216CC61600AF2E7B /* EmailMessagesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407AD91216CC61600AF2E7B /* EmailMessagesList.swift */; };
 		8407AD94216CC98900AF2E7B /* EmailMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407AD93216CC98900AF2E7B /* EmailMessage.swift */; };
@@ -152,6 +153,7 @@
 		8402498F2191A02800CDDB0F /* MoveToDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToDataSource.swift; sourceTree = "<group>"; };
 		840249922191C23800CDDB0F /* MoveToFolderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveToFolderTableViewCell.swift; sourceTree = "<group>"; };
 		840249932191C23800CDDB0F /* MoveToFolderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoveToFolderTableViewCell.xib; sourceTree = "<group>"; };
+		8403BDDC21A3DD2100EE8DCD /* ContactsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsList.swift; sourceTree = "<group>"; };
 		8406B2152193FD8A009F0375 /* UnreadMessagesCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadMessagesCounter.swift; sourceTree = "<group>"; };
 		8407AD91216CC61600AF2E7B /* EmailMessagesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailMessagesList.swift; sourceTree = "<group>"; };
 		8407AD93216CC98900AF2E7B /* EmailMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailMessage.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 				8402497E21916D3200CDDB0F /* FoldersList.swift */,
 				8402498021916D8E00CDDB0F /* Folder.swift */,
 				84FF7E36219D662300E3E56A /* UserMyself.swift */,
+				8403BDDC21A3DD2100EE8DCD /* ContactsList.swift */,
 				84FF7E38219DB21E00E3E56A /* Contact.swift */,
 			);
 			path = "Network Models";
@@ -914,6 +917,7 @@
 				843FC38C2164CA27000CFEA9 /* SignUpPresenter.swift in Sources */,
 				843042A0217D9D5D00DB5787 /* InboxSideMenuDataSource.swift in Sources */,
 				8434D9B4219C4E1200D2C3A5 /* ContactsPresenter.swift in Sources */,
+				8403BDDD21A3DD2100EE8DCD /* ContactsList.swift in Sources */,
 				84525F19219568E700CA732E /* SearchRouter.swift in Sources */,
 				84A62E532175CD95009C38E5 /* ForgotPasswordPresenter.swift in Sources */,
 				843E973221635BEB00147CBE /* LoginViewController.swift in Sources */,
