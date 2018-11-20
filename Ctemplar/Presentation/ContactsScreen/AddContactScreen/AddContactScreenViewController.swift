@@ -11,6 +11,9 @@ import UIKit
 
 class AddContactViewController: UIViewController, UITextFieldDelegate {
     
+    var presenter   : AddContactPresenter?
+    var router      : AddContactRouter?
+    
     var navBarTitle: String? = ""
     
     var contactName     : String? = ""
@@ -27,6 +30,9 @@ class AddContactViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let configurator =  AddContactConfigurator()
+        configurator.configure(viewController: self)
         
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         self.navigationItem.rightBarButtonItem = nil
@@ -46,7 +52,8 @@ class AddContactViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func textFieldTyped(_ sender: UITextField) {
         
-        print("typed:", sender.text as Any)
+//        print("typed:", sender.text as Any)
+        presenter?.setInputs(sender: sender)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
