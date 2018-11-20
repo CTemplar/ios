@@ -60,7 +60,8 @@ class ContactsPresenter {
         if self.viewController?.dataSource?.selectionMode == true {
             self.disableSelectionMode()
         } else {
-            
+            //temp
+            //self.interactor?.createContact()
         }
     }
     

@@ -57,6 +57,10 @@ class RestAPIService {
         case mailbox = "mailbox"
         case send = "send"
         case subject = "subject"
+        case email = "email"
+        case address = "address"
+        case note = "note"
+        case phone = "phone"
     }
         
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -539,6 +543,40 @@ class RestAPIService {
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
             
             //print("userContacts responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func createContacts(token: String, name: String, email: String, phone: String, address: String, note: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.folderName.rawValue: name,
+            JSONKey.email.rawValue: email,
+            JSONKey.phone.rawValue: phone,
+            JSONKey.address.rawValue: address,
+            JSONKey.note.rawValue: note
+        ]
+        
+        print("createContacts parameters:", parameters)
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.contact.rawValue
+        
+        print("createContacts url:", url)
+        
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("createContacts responce:", response)
             
             switch(response.result) {
             case .success(let value):
