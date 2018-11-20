@@ -77,6 +77,10 @@ class InboxViewController: UIViewController {
         presenter?.setupUI(emailsCount: 0, unreadEmails: 0, filterEnabled: false)
         presenter?.initFilterView()
         presenter?.initMoreActionsView()
+    
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5), execute: {
+            self.presenter?.interactor?.publicKeyList()
+        })
         
         adddNotificationObserver()
         

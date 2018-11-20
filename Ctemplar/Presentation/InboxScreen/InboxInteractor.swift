@@ -253,15 +253,26 @@ class InboxInteractor {
                 if let contacts = userMyself.contactsList {
                     self.viewController?.contactsList = contacts
                 }
-                
-                //print("userMyself:", userMyself)
-                //print("mailboxesList:", userMyself.mailboxesList)
-                //print("foldersList:", userMyself.foldersList)
-                //print("contactsList:", userMyself.contactsList)
-                
+                                
                 self.viewController?.leftBarButtonItem.isEnabled = true
                 
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: value)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "User Myself Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
+    func publicKeyList() {
+        
+        apiService?.publicKeyList() {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("publicKeyList value:", value)
                 
             case .failure(let error):
                 print("error:", error)

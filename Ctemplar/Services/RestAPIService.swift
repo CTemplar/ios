@@ -21,6 +21,7 @@ class RestAPIService {
         case verifyToken = "auth/verify/"
         case messages = "emails/messages/"
         case mailboxes = "emails/mailboxes/"
+        case publicKeys = "emails/keys/"
         case unreadCounter = "emails/unread/"
         case customFolders = "emails/custom-folder/"
         case userMyself = "users/myself/"
@@ -453,6 +454,30 @@ class RestAPIService {
         Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
             
             print("deleteMessages responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func publicKeyList(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.publicKeys.rawValue
+        
+        print("publicKeyList url:", url)
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("publicKeyList responce:", response)
             
             switch(response.result) {
             case .success(let value):

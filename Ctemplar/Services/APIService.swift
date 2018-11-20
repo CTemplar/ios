@@ -702,6 +702,36 @@ class APIService {
         }
     }
     
+    func publicKeyList(completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    
+                    //HUD.show(.progress)
+                    
+                    self.restAPIService?.publicKeyList(token: token) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            
+                            //print("publicKeyList success:", value)
+                            completionHandler(APIResult.success(value))
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                        
+                        //HUD.hide()
+                    }
+                }
+            }
+        }
+    }
+    
     //MARK: - Folders
     
     func customFoldersList(limit: Int, offset: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
