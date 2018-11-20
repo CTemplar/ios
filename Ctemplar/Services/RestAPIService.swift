@@ -604,7 +604,7 @@ class RestAPIService {
         
         print("updateContact parameters:", parameters)
         
-        let url = EndPoint.baseUrl.rawValue + EndPoint.contact.rawValue + "?id__in=" + contactID
+        let url = EndPoint.baseUrl.rawValue + EndPoint.contact.rawValue + contactID + "/"
         
         print("updateContact url:", url)
         
