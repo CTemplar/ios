@@ -338,6 +338,8 @@ class ViewInboxEmailInteractor {
     
     func postUpdateInbox() {
         
-        NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil, userInfo: nil)
+        let silent = true
+        
+        NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: silent, userInfo: nil)
     }
 }

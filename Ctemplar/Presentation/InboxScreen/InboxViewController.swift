@@ -171,7 +171,13 @@ class InboxViewController: UIViewController {
     
     @objc func reciveUpdateNotification(notification: Notification) {
         
-        self.presenter?.interactor?.updateMessages(withUndo: "", silent: true)
+        var silent : Bool = false
+        
+        if notification.object != nil {
+            silent = notification.object as! Bool
+        }
+        
+        self.presenter?.interactor?.updateMessages(withUndo: "", silent: silent)
     }    
 }
 
