@@ -33,7 +33,7 @@ class InboxInteractor {
         
         if let emailsArray = messages.messagesList {
             
-            //self.viewController?.allMessagesArray = emailsArray
+            self.viewController?.allMessagesArray = emailsArray
             
             let currentFolderMessages = self.filterInboxMessages(array: emailsArray, filter: folderFilter)
             
