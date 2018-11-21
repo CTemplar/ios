@@ -19,10 +19,10 @@ class InboxInteractor {
     
     //MARK: - data
 
-    func updateMessages(withUndo: String) {
+    func updateMessages(withUndo: String, silent: Bool) {
         
         if self.checkStoredPGPKeys() {
-            self.messagesList(folder: (self.viewController?.currentFolderFilter)!, withUndo: withUndo)
+            self.messagesList(folder: (self.viewController?.currentFolderFilter)!, withUndo: withUndo, silent: silent)
         }
     }
     
@@ -106,9 +106,11 @@ class InboxInteractor {
     
     //MARK: - API
     
-    func messagesList(folder: String, withUndo: String) {
+    func messagesList(folder: String, withUndo: String, silent: Bool) {
         
-        HUD.show(.progress)
+        if !silent {
+            HUD.show(.progress)
+        }
         
         apiService?.messagesList(folder: ""/*folder*/, messagesIDIn: "", seconds: 0) {(result) in
             
@@ -230,7 +232,7 @@ class InboxInteractor {
                             }
                             
                             //load messages after keys storred
-                            self.messagesList(folder: (self.viewController?.currentFolderFilter)!, withUndo: "")
+                            self.messagesList(folder: (self.viewController?.currentFolderFilter)!, withUndo: "", silent: false)
                         }
                     }
                 }
@@ -579,7 +581,7 @@ class InboxInteractor {
                 //print("value:", value)
                 print("marked list as spam")
                 self.viewController?.lastAction = ActionsIndex.markAsSpam
-                self.updateMessages(withUndo: withUndo)
+                self.updateMessages(withUndo: withUndo, silent: false)
                 
             case .failure(let error):
                 print("error:", error)
@@ -608,7 +610,7 @@ class InboxInteractor {
                 //print("value:", value)
                 print("marked list as read/unread")
                 self.viewController?.lastAction = ActionsIndex.markAsRead
-                self.updateMessages(withUndo: withUndo)
+                self.updateMessages(withUndo: withUndo, silent: false)
                 
             case .failure(let error):
                 print("error:", error)
@@ -641,7 +643,7 @@ class InboxInteractor {
                 //print("value:", value)
                 print("marked list as trash")
                 self.viewController?.lastAction = ActionsIndex.moveToTrach
-                self.updateMessages(withUndo: withUndo)
+                self.updateMessages(withUndo: withUndo, silent: false)
                 
             case .failure(let error):
                 print("error:", error)
@@ -674,7 +676,7 @@ class InboxInteractor {
                 //print("value:", value)
                 print("move list to archive")
                 self.viewController?.lastAction = ActionsIndex.moveToArchive
-                self.updateMessages(withUndo: withUndo)
+                self.updateMessages(withUndo: withUndo, silent: false)
                 
             case .failure(let error):
                 print("error:", error)
@@ -707,7 +709,7 @@ class InboxInteractor {
                 //print("value:", value)
                 print("move list to inbox")
                 self.viewController?.lastAction = ActionsIndex.moveToArchive
-                self.updateMessages(withUndo: withUndo)
+                self.updateMessages(withUndo: withUndo, silent: false)
                 
             case .failure(let error):
                 print("error:", error)
@@ -736,7 +738,7 @@ class InboxInteractor {
                 //print("value:", value)
                 print("deleteMessagesList")
                 self.viewController?.lastAction = ActionsIndex.moveToArchive
-                self.updateMessages(withUndo: withUndo)
+                self.updateMessages(withUndo: withUndo, silent: false)
                 
             case .failure(let error):
                 print("error:", error)

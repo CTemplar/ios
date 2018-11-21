@@ -84,7 +84,8 @@ class InboxViewController: UIViewController {
         self.navigationItem.title = currentFolder
         self.leftBarButtonItem.isEnabled = true
         
-        self.presenter?.interactor?.updateMessages(withUndo: "")
+        self.presenter?.interactor?.updateMessages(withUndo: "", silent: false)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -170,7 +171,7 @@ class InboxViewController: UIViewController {
     
     @objc func reciveUpdateNotification(notification: Notification) {
         
-        self.presenter?.interactor?.updateMessages(withUndo: "")
+        self.presenter?.interactor?.updateMessages(withUndo: "", silent: true)
     }    
 }
 

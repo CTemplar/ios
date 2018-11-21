@@ -225,6 +225,8 @@ class ViewInboxEmailInteractor {
         
     }*/
     
+    //MARK: - API requests
+    
     func moveMessageTo(message: EmailMessage, folder: String, withUndo: String) {
         
         apiService?.updateMessages(messageID: (message.messsageID?.description)!, messagesIDIn: "", folder: folder, starred: false, read: false, updateFolder: true, updateStarred: false, updateRead: false)  {(result) in
@@ -234,6 +236,8 @@ class ViewInboxEmailInteractor {
             case .success( _):
                 //print("value:", value)
                 print("move message to:", folder)
+                
+                self.postUpdateInbox()
                 
                 if withUndo.count > 0 {
                     self.presenter?.showUndoBar(text: withUndo)
@@ -259,6 +263,8 @@ class ViewInboxEmailInteractor {
                 print("mark message as read:", asRead)
                 
                 self.viewController?.messageIsRead = asRead
+                
+                self.postUpdateInbox()
                 
                 if withUndo.count > 0 {
                     self.presenter?.showUndoBar(text: withUndo)
@@ -287,6 +293,7 @@ class ViewInboxEmailInteractor {
                 
                 self.presenter?.setupStarredButton(starred: starred)
                 
+                self.postUpdateInbox()
                 /*
                 if withUndo.count > 0 {
                     self.presenter?.showUndoBar(text: withUndo)
@@ -327,5 +334,10 @@ class ViewInboxEmailInteractor {
         default:
             print("unknown undo action")
         }
+    }
+    
+    func postUpdateInbox() {
+        
+        NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil, userInfo: nil)
     }
 }

@@ -20,24 +20,11 @@ class InboxPresenter {
     var counter = 0
     
     //MARK: - API Requests
-    
+    /*
     func loadMessages(folder: String) {
         
-        self.interactor?.messagesList(folder: folder, withUndo: "")
-      
-        // temp
-        /*
-        var messagesArray : Array<Any> = []
-        let message : [String: Any] = ["sender" : "Dmitry3@dev.cetemplar.com", "id" : 1, "destruct_date" : "date"]
-        messagesArray.append(message)
-        
-        let emailMessages = EmailMessagesList(dictionary: ["results" : messagesArray, "total_count" : 1])
-        self.interactor?.setInboxData(messages: emailMessages)
-        
-        self.viewController?.dataSource?.reloadData()
- */
-        //
-    }
+        self.interactor?.messagesList(folder: folder, withUndo: "", silent: false)
+    }*/
     
     //MARK: - setup UI
     
