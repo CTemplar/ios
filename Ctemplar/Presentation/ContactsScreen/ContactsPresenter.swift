@@ -17,7 +17,7 @@ class ContactsPresenter {
 
     func setupSearchController() {
         
-        self.viewController?.definesPresentationContext = true        
+        self.viewController?.definesPresentationContext = true
         
         self.viewController?.searchController.searchResultsUpdater = self.viewController
         self.viewController?.searchController.obscuresBackgroundDuringPresentation = false
@@ -25,6 +25,8 @@ class ContactsPresenter {
         self.viewController?.searchController.searchBar.tintColor = k_contactsBarTintColor
         self.viewController?.searchController.searchBar.placeholder = "search".localized()
         self.viewController?.navigationItem.searchController = self.viewController?.searchController
+        self.viewController?.searchController.searchBar.delegate = self.viewController
+        self.viewController?.searchController.searchBar.returnKeyType = .done
         
         //UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).leftViewMode = .never
         UISearchBar.appearance().searchTextPositionAdjustment = UIOffset(horizontal: 10, vertical: 0)
