@@ -352,9 +352,20 @@ class InboxInteractor {
         
         var inboxMessagesArray : Array<EmailMessage> = []
         
-        for message in array {
-            if message.folder == filter {
-                inboxMessagesArray.append(message)
+        if filter == MessagesFoldersName.starred.rawValue {
+            
+            for message in array {
+                if message.starred == true {
+                    inboxMessagesArray.append(message)
+                }
+            }
+            
+        } else {
+        
+            for message in array {
+                if message.folder == filter {
+                    inboxMessagesArray.append(message)
+                }
             }
         }
         
