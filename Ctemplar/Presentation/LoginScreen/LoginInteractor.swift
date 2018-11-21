@@ -28,7 +28,10 @@ class LoginInteractor {
                 
                 NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil, userInfo: nil)
                 
-                self.viewController?.dismiss(animated: true, completion: nil)
+                //self.viewController?.dismiss(animated: true, completion: nil)
+                self.viewController?.dismiss(animated: true, completion: {
+                    self.viewController?.mainViewController?.showInboxNavigationController()
+                })
                 
             case .failure(let error):
                 print("login error:", error)

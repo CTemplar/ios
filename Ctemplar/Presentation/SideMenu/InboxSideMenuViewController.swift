@@ -12,6 +12,8 @@ import AlertHelperKit //temp
 
 class InboxSideMenuViewController: UIViewController {
     
+    var mainViewController: MainViewController?
+    
     var presenter   : InboxSideMenuPresenter?
     var router      : InboxSideMenuRouter?
     var dataSource  : InboxSideMenuDataSource?

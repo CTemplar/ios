@@ -17,6 +17,8 @@ class MainViewController: UIViewController {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var apiService      : APIService?
     
+    var inboxNavigationController: InboxNavigationController! = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -26,47 +28,30 @@ class MainViewController: UIViewController {
         configurePKHUD()
         
         //showLoginViewController()
-        showInboxNavigationController()
+        //showInboxNavigationController()
+        
+        initInboxNavigationController()
        
+        let keyChainService = apiService?.keychainService
+        let storedUserName = keyChainService?.getUserName()
+        let storedPassword = keyChainService?.getPassword()
+        
+        if (storedUserName?.count)! < 1 || (storedPassword?.count)! < 1 {
+            print("MainViewController: wrong stored credentials!")
+            DispatchQueue.main.async {
+            //    self.apiService?.showLoginViewController()
+            }
+            showLoginViewController()
+            //showInboxNavigationController()
+        } else {
+            showInboxNavigationController()
+        }
+        
+        
+        
         //messagesList()
         //mailboxesList()
-        
-        /*
-        apiService?.verifyToken() {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                print("value:", value)
-                
-            case .failure(let error):
-                print("error:", error)
-            }
-        }*/
-        
-        /*
-        let keyChainService = apiService?.keychainService
-        let formatterService = apiService?.formatterService
-        
-        if let tokenSavedTime = keyChainService?.getTokenSavedTime() {
-            if tokenSavedTime.count > 0 {
-                //2018-10-24 05:51:21 +0000
-                if let tokenSavedDate = formatterService?.formatTokenTimeStringToDate(date: tokenSavedTime) {
-                    print("tokenSavedDate:", tokenSavedDate)
-                
-                    let minutesCount = tokenSavedDate.minutesCountForTokenExpiration()
-                    print("minutesCount", minutesCount)
-                    
-                    /*
-                    if let hoursCount = formatterService?.calculateHoursCountFor(date: tokenSavedDate) {
-                        print("hoursCount", hoursCount)
-                        if hoursCount > 2 {
-                            //
-                        }
-                    }*/
-                }
-            }
-        }*/
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -85,6 +70,8 @@ class MainViewController: UIViewController {
     
     func showLoginViewController() {
         
+        print("show login VC")
+        
         DispatchQueue.main.async {
             
             var storyboardName : String? = k_LoginStoryboardName
@@ -95,10 +82,28 @@ class MainViewController: UIViewController {
             
             let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: k_LoginViewControllerID) as! LoginViewController
+            vc.mainViewController = self
             self.show(vc, sender: self)
         }
     }
     
+    func showInboxNavigationController() {
+        DispatchQueue.main.async {
+            self.show(self.inboxNavigationController, sender: self)
+        }
+    }
+    
+    func initInboxNavigationController() {
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: k_InboxStoryboardName, bundle: nil)
+        self.inboxNavigationController = storyboard.instantiateViewController(withIdentifier: k_InboxNavigationControllerID) as? InboxNavigationController
+       
+        let inboxViewController = self.inboxNavigationController.viewControllers.first as! InboxViewController
+        
+        self.initAndSetupInboxSideMenuController(inboxViewController: inboxViewController)
+    }
+    
+    /*
     func showInboxNavigationController() {
         
         DispatchQueue.main.async {
@@ -109,7 +114,7 @@ class MainViewController: UIViewController {
             
             self.initAndSetupInboxSideMenuController(inboxViewController: vc.viewControllers.first as! InboxViewController)
         }
-    }
+    }*/
     
     //MARK: - Side Menu
     
@@ -119,6 +124,7 @@ class MainViewController: UIViewController {
         
         let inboxSideMenuViewController = storyboard.instantiateViewController(withIdentifier: k_InboxSideMenuViewControllerID) as? InboxSideMenuViewController
         
+        inboxSideMenuViewController?.mainViewController = self
         inboxSideMenuViewController?.inboxViewController = inboxViewController
         inboxSideMenuViewController?.dataSource?.selectedIndexPath = IndexPath(row: MessagesFoldersName.inbox.hashValue, section: SideMenuSectionIndex.mainFolders.rawValue)
         

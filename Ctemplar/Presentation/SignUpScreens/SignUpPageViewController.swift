@@ -11,6 +11,8 @@ import Foundation
 
 class SignUpPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
    
+    var mainViewController: MainViewController?
+    
     var userName        : String? = ""
     var password        : String? = ""
     var recoveryEmail   : String? = ""

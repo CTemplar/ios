@@ -18,11 +18,26 @@ class InboxSideMenuInteractor {
 
     func logOut() {
         
+        self.viewController?.dataSource?.selectedIndexPath = IndexPath(row: 0, section: SideMenuSectionIndex.mainFolders.rawValue)
+        self.viewController?.inboxViewController.currentFolder  = InboxSideMenuOptionsName.inbox.rawValue
+        self.viewController?.inboxViewController.currentFolderFilter = MessagesFoldersName.inbox.rawValue
+        
+        self.viewController?.dismiss(animated: true, completion: {
+            if let parentViewController = self.viewController?.currentParentViewController {
+                parentViewController.navigationController?.popViewController(animated: true)
+            }
+        })
+        
+        self.viewController?.inboxViewController.dismiss(animated: false, completion: {
+            self.viewController?.mainViewController?.showLoginViewController()
+        })
+        
         apiService?.logOut()  {(result) in
             switch(result) {
                 
             case .success(let value):
                 print("value:", value)
+                
             case .failure(let error):
                 print("error:", error)
                 
