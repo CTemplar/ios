@@ -26,29 +26,33 @@ class InboxInteractor {
         }
     }
     
-    func setInboxData(messages: EmailMessagesList) {
+    func setInboxData(messages: EmailMessagesList, folderFilter: String) {
         
         var readEmails = 0
         var unreadEmails = 0
         
         if let emailsArray = messages.messagesList {
             
-            self.viewController?.dataSource?.messagesArray = emailsArray
-            self.updateMessagesHeader(emailsArray: emailsArray)
+            //self.viewController?.allMessagesArray = emailsArray
+            
+            let currentFolderMessages = self.filterInboxMessages(array: emailsArray, filter: folderFilter)
+            
+            self.viewController?.dataSource?.messagesArray = currentFolderMessages
+            self.updateMessagesHeader(emailsArray: currentFolderMessages)
             self.viewController?.dataSource?.reloadData()
             
             if self.viewController?.dataSource?.selectionMode == true {
                 self.viewController?.presenter?.disableSelectionMode()
             }
             
-            readEmails = calculateReadEmails(array: emailsArray)
-            unreadEmails = emailsArray.count - readEmails
+            readEmails = calculateReadEmails(array: currentFolderMessages)
+            unreadEmails = currentFolderMessages.count - readEmails
             
-            self.viewController?.emailsCount = emailsArray.count
+            self.viewController?.emailsCount = currentFolderMessages.count
             self.viewController?.unreadEmails = unreadEmails
             
             let filterEnabled = self.filterEnabled()
-            self.presenter?.setupUI(emailsCount: emailsArray.count, unreadEmails: unreadEmails, filterEnabled: filterEnabled)
+            self.presenter?.setupUI(emailsCount: currentFolderMessages.count, unreadEmails: unreadEmails, filterEnabled: filterEnabled)
         }
     }
     
@@ -59,7 +63,7 @@ class InboxInteractor {
     }
     
     func setSideMenuData(messages: EmailMessagesList) {
-        
+        /*
         var readEmails = 0
         var unreadEmails = 0
         
@@ -80,7 +84,7 @@ class InboxInteractor {
             }
             
             self.viewController?.inboxSideMenuViewController?.dataSource?.reloadData()
-        }
+        }*/
     }
     
     func calculateReadEmails(array: Array<EmailMessage>) -> Int {
@@ -104,7 +108,7 @@ class InboxInteractor {
         
         HUD.show(.progress)
         
-        apiService?.messagesList(folder: folder, messagesIDIn: "", seconds: 0) {(result) in
+        apiService?.messagesList(folder: ""/*folder*/, messagesIDIn: "", seconds: 0) {(result) in
             
             switch(result) {
                 
@@ -112,15 +116,12 @@ class InboxInteractor {
                 //print("value:", value)
                 
                 let emailMessages = value as! EmailMessagesList
-                self.viewController?.currentMessagesList = emailMessages
-                self.setInboxData(messages: emailMessages)
+                self.viewController?.allMessagesList = emailMessages
+                self.setInboxData(messages: emailMessages, folderFilter: folder)
                 
                 if withUndo.count > 0 {
                     self.presenter?.showUndoBar(text: withUndo)
                 }
-                
-               // self.unreadMessagesCounter() //need to Side Menu unread msg counters
-               // self.userMyself()//temp for debug
                 
             case .failure(let error):
                 print("error:", error)
@@ -377,7 +378,7 @@ class InboxInteractor {
     
     func applyFilters() {
         
-        var filteredMessagesArray : Array<EmailMessage> = (self.viewController?.currentMessagesList?.messagesList)!
+        var filteredMessagesArray : Array<EmailMessage> = (self.viewController?.dataSource?.messagesArray)!//(self.viewController?.currentMessagesList?.messagesList)!
         
         for (index, filterApplied) in (self.viewController?.appliedFilters)!.enumerated() {
                  

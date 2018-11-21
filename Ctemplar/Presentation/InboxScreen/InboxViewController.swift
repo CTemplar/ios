@@ -21,10 +21,11 @@ class InboxViewController: UIViewController {
     var inboxSideMenuViewController: InboxSideMenuViewController?
     
     var currentMessagesList : EmailMessagesList?
+    var allMessagesList : EmailMessagesList?
     
-    var messagesList    : Array<EmailMessage> = []
-    var mailboxesList   : Array<Mailbox> = []
-    var contactsList    : Array<Contact> = []
+    var allMessagesArray : Array<EmailMessage> = []
+    var mailboxesList    : Array<Mailbox> = []
+    var contactsList     : Array<Contact> = []
     
     var currentFolder       : String = InboxSideMenuOptionsName.inbox.rawValue
     var currentFolderFilter : String = MessagesFoldersName.inbox.rawValue
@@ -72,7 +73,7 @@ class InboxViewController: UIViewController {
         let configurator = InboxConfigurator()
         configurator.configure(viewController: self)
         
-        dataSource?.initWith(parent: self, tableView: inboxTableView, array: messagesList)
+        dataSource?.initWith(parent: self, tableView: inboxTableView, array: allMessagesArray)
         
         presenter?.setupUI(emailsCount: 0, unreadEmails: 0, filterEnabled: false)
         presenter?.initFilterView()
@@ -82,12 +83,14 @@ class InboxViewController: UIViewController {
         
         self.navigationItem.title = currentFolder
         self.leftBarButtonItem.isEnabled = true
+        
+        self.presenter?.interactor?.updateMessages(withUndo: "")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.presenter?.interactor?.updateMessages(withUndo: "")
+        //self.presenter?.interactor?.updateMessages(withUndo: "")
         self.presenter?.interactor?.userMyself()
         
         navigationController?.navigationBar.backgroundColor = k_whiteColor

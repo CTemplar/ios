@@ -173,7 +173,9 @@ class InboxSideMenuInteractor {
         
         currentViewController?.currentFolder = folder
         currentViewController?.currentFolderFilter = filter
-        currentViewController?.presenter?.interactor?.updateMessages(withUndo: "")//loadMessages(folder: filter)
+        //currentViewController?.presenter?.interactor?.updateMessages(withUndo: "")//loadMessages(folder: filter)
+        
+        currentViewController?.presenter?.interactor?.setInboxData(messages: (currentViewController?.allMessagesList)!, folderFilter: filter)
         currentViewController?.presenter?.interactor?.clearFilters()
         
         self.dismissSideMenuAndTopController()
@@ -181,9 +183,9 @@ class InboxSideMenuInteractor {
     
     func applyCustomFolderAction(folderName: String) {
         
-        let formattedFolderName = self.formatFolderNameLikeUrl(folderName: folderName)
+        //let formattedFolderName = self.formatFolderNameLikeUrl(folderName: folderName)
         
-        self.applyFirstSectionAction(folder: folderName, filter: formattedFolderName)
+        self.applyFirstSectionAction(folder: folderName, filter: folderName)
     }
     
     func formatFolderNameLikeUrl(folderName: String) -> String {
