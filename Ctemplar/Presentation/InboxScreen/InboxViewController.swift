@@ -20,10 +20,10 @@ class InboxViewController: UIViewController {
     
     var inboxSideMenuViewController: InboxSideMenuViewController?
     
-    var currentMessagesList : EmailMessagesList?
     var allMessagesList : EmailMessagesList?
     
     var allMessagesArray : Array<EmailMessage> = []
+    var currentFolderMessagesArray : Array<EmailMessage> = []
     var mailboxesList    : Array<Mailbox> = []
     var contactsList     : Array<Contact> = []
     

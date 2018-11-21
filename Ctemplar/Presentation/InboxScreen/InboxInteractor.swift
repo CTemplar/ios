@@ -37,6 +37,8 @@ class InboxInteractor {
             
             let currentFolderMessages = self.filterInboxMessages(array: emailsArray, filter: folderFilter)
             
+            self.viewController?.currentFolderMessagesArray = currentFolderMessages
+            
             self.viewController?.dataSource?.messagesArray = currentFolderMessages
             self.updateMessagesHeader(emailsArray: currentFolderMessages)
             self.viewController?.dataSource?.reloadData()
@@ -378,7 +380,7 @@ class InboxInteractor {
     
     func applyFilters() {
         
-        var filteredMessagesArray : Array<EmailMessage> = (self.viewController?.dataSource?.messagesArray)!//(self.viewController?.currentMessagesList?.messagesList)!
+        var filteredMessagesArray : Array<EmailMessage> = (self.viewController?.currentFolderMessagesArray)!
         
         for (index, filterApplied) in (self.viewController?.appliedFilters)!.enumerated() {
                  
