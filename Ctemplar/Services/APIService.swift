@@ -50,7 +50,8 @@ class APIService {
     
     @objc func getHashedPassword(userName: String, password: String, completion:@escaping (Bool) -> () ) {
         
-        DispatchQueue.main.async {
+        //DispatchQueue.main.async {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
             if let salt = self.formatterService?.generateSaltFrom(userName: userName) {
                 print("salt:", salt)
                 
@@ -65,7 +66,7 @@ class APIService {
             }
             completion(true)
         }
-        
+        )
     }
     
     @objc func autologin(completion:@escaping (Bool) -> () ) {

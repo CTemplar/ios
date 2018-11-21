@@ -49,11 +49,11 @@ class InboxPresenter {
         var moreButtonEnabled: Bool = false
         
         if emailsCount > 0 {
-            viewController?.emptyInbox.isHidden = true
+            //viewController?.emptyInbox.isHidden = true
             viewController?.advancedToolBar.isHidden = false
             moreButtonEnabled = true
         } else {
-            viewController?.emptyInbox.isHidden = false
+            //viewController?.emptyInbox.isHidden = false
             viewController?.advancedToolBar.isHidden = true
         }
         
@@ -82,7 +82,7 @@ class InboxPresenter {
             viewController?.emptyInbox.isHidden = true
         } else {
             viewController?.emptyInbox.isHidden = false
-        }
+       }
     }
     
     func setupNavigationItemTitle(selectedMessages: Int, selectionMode: Bool, currentFolder: String) {

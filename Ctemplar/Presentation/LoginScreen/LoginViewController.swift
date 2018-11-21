@@ -52,10 +52,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func loginButtonPressed(_ sender: AnyObject) {
         
         self.presenter?.buttonLoginPressed(userEmail: userEmail!, password: password!)
-        /*
-        self.dismiss(animated: true, completion: {
-            self.mainViewController?.showInboxNavigationController()
-        })*/
     }
     
     @IBAction func forgotPasswordButtonPressed(_ sender: AnyObject) {
