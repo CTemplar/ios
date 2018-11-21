@@ -37,6 +37,10 @@ class ContactsInteractor {
         let filteredList = filteredContactNamesList + filteredDuplicatesEmailsList
         
         updateDataSource(searchText: searchText, filteredList: filteredList)
+        
+        let show = !filteredList.isEmpty
+        
+        presenter?.setSelectAllBar(show: show)
     }
     
     func updateDataSource(searchText: String, filteredList: Array<Contact>) {
