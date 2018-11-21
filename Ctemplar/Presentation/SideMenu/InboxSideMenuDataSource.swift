@@ -118,9 +118,12 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             if self.showAllFolders {
                 return self.customFoldersArray.count
             } else {
-                return k_numberOfCustomFoldersShowing + 1
+                if self.customFoldersArray.count > k_numberOfCustomFoldersShowing {
+                    return k_numberOfCustomFoldersShowing + 1
+                } else {
+                    return self.customFoldersArray.count
+                }
             }
-            //return self.customFoldersArray.count
         default:
             return 0
         }
@@ -183,8 +186,8 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
                         cell = tableView.dequeueReusableCell(withIdentifier: k_CustomFolderTableViewCellIdentifier)! as! CustomFolderTableViewCell
                         
                         let folder = self.customFoldersArray[indexPath.row]
-                        let folderName = folder.folderName
-                        let selected = self.isSelected(folderName: folderName!)
+                        let folderName = folder.folderName                       
+                        let selected = isSelected(section: indexPath.section, row: indexPath.row)
                         let folderColor = folder.color
                         
                         let unreadCount = self.parentViewController?.presenter?.interactor?.getUnreadMessagesCount(folderName: folderName!)
@@ -216,9 +219,9 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             return
         }
         
+        let currentSelectedIndexPath = self.selectedIndexPath
         self.selectedIndexPath = indexPath
-        
-        self.reloadData()//for update Selection Status of Rows
+        self.tableView.reloadData()//for update Selection Status of Rows
         
         switch indexPath.section {
             case SideMenuSectionIndex.mainFolders.rawValue:
@@ -239,6 +242,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
                 } else {
                     if indexPath.row == k_numberOfCustomFoldersShowing {
                         self.showAllFolders = true
+                        self.selectedIndexPath = currentSelectedIndexPath
                         self.tableView.reloadData()
                     } else {
                         let folder = self.customFoldersArray[indexPath.row]
@@ -251,15 +255,18 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             default:
                 print("selected unknown section")
         }
+        
+        //self.selectedIndexPath = indexPath
+        //self.reloadData()//for update Selection Status of Rows
     }
     
     func reloadData() {
-        
+        /*
         if self.customFoldersArray.count > k_numberOfCustomFoldersShowing {
             self.showAllFolders = false
         } else {
             self.showAllFolders = true
-        }
+        }*/
         
         self.tableView.reloadData()
     }
