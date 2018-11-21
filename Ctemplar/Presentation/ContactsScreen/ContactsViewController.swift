@@ -106,6 +106,9 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating, UISearc
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         
         self.rightBarButtonItem.isEnabled = true
+        
+        let show = dataSource?.selectionMode
+        presenter?.setSelectAllBar(show: show!)
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {

@@ -38,9 +38,12 @@ class ContactsInteractor {
         
         updateDataSource(searchText: searchText, filteredList: filteredList)
         
-        let show = !filteredList.isEmpty
-        
-        presenter?.setSelectAllBar(show: show)
+        if searchText.count > 0 {
+            let show = !filteredList.isEmpty
+            presenter?.setSelectAllBar(show: show)
+        } else {
+            presenter?.setSelectAllBar(show: true)
+        }
     }
     
     func updateDataSource(searchText: String, filteredList: Array<Contact>) {

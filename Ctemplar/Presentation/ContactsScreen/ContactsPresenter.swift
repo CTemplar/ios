@@ -81,17 +81,30 @@ class ContactsPresenter {
         if  selectedContactsCount == overallContactsCount {
             self.viewController?.dataSource?.selectedContactsArray.removeAll()
             
-            self.viewController?.selectAllImageView.image = UIImage(named: k_checkBoxUncheckedImageName)
-            self.viewController?.selectAllLabel.text = "selectAll".localized()
+            //self.viewController?.selectAllImageView.image = UIImage(named: k_checkBoxUncheckedImageName)
+            //self.viewController?.selectAllLabel.text = "selectAll".localized()
+            self.setSelectAllBarMode(selectAll: true)
         } else {
             self.viewController?.dataSource?.selectedContactsArray.removeAll()
             self.viewController?.dataSource?.selectedContactsArray = (self.viewController?.dataSource?.contactsArray)!
             
-            self.viewController?.selectAllImageView.image = UIImage(named: k_checkBoxSelectedImageName)
-            self.viewController?.selectAllLabel.text = "deselectAll".localized()
+            //self.viewController?.selectAllImageView.image = UIImage(named: k_checkBoxSelectedImageName)
+            //self.viewController?.selectAllLabel.text = "deselectAll".localized()
+            self.setSelectAllBarMode(selectAll: false)
         }
         
         self.viewController?.dataSource?.reloadData()
+    }
+    
+    func setSelectAllBarMode(selectAll: Bool) {
+        
+        if selectAll {
+            self.viewController?.selectAllImageView.image = UIImage(named: k_checkBoxUncheckedImageName)
+            self.viewController?.selectAllLabel.text = "selectAll".localized()
+        } else {
+            self.viewController?.selectAllImageView.image = UIImage(named: k_checkBoxSelectedImageName)
+            self.viewController?.selectAllLabel.text = "deselectAll".localized()
+        }
     }
     
     func enableSelectionMode() {
@@ -141,6 +154,8 @@ class ContactsPresenter {
         } else {
             self.viewController?.selectedAllViewHeightConstraint.constant = 0.0
         }
+        
+        self.viewController?.view.layoutIfNeeded()
     }
     
     func setupNavigationItemTitle(selectedContacts: Int, selectionMode: Bool) {
