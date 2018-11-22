@@ -58,6 +58,7 @@ let k_SearchCellXibName                    = "SearchTableViewCell"
 let k_ContactCellXibName                   = "ContactTableViewCell"
 let k_ChildMessageCellXibName              = "ChildMessageTableViewCell"
 let k_ChildMessageExpandedCellXibName      = "ChildMessageExpandedTableViewCell"
+let k_ChildMessageExpandedWithAttachmentCellXibName      = "ChildMessageExpandedWithAttachmentTableViewCell"
 
 // cell identifier
 
@@ -70,6 +71,7 @@ let k_SearchTableViewCellIdentifier             = "searchTableViewCellIdentifier
 let k_ContactTableViewCellIdentifier            = "contactTableViewCellIdentifier"
 let k_ChildMessageTableViewCellIdentifier       = "childMessageTableViewCellIdentifier"
 let k_ChildMessageExpandedTableViewCellIdentifier       = "childMessageExpandedTableViewCellIdentifier"
+let k_ChildMessageExpandedWithAttachmentTableViewCellIdentifier       = "childMessageExpandedWithAttachmentTableViewCellIdentifier"
 
 // view controllers iPad storyboards name
 

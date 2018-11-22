@@ -10,7 +10,7 @@ import Foundation
 
 struct EmailMessage {
     
-    var attachments: Array<Any>? = nil
+    var attachments: Array<Attachment>? = nil
     var bcc: Array<Any>? = nil
     var cc: Array<Any>? = nil
     var children: Array<EmailMessage>? = nil

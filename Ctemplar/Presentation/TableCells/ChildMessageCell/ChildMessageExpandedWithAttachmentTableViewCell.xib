@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="childMessageExpandedWithAttachmentTableViewCellIdentifier" id="D3R-Kt-pfv" customClass="ChildMessageExpandedWithAttachmentTableViewCell" customModule="Ctemplar" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="360"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D3R-Kt-pfv" id="X0Y-7y-urH">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="359.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="me" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvS-7Z-HOi">
+                        <rect key="frame" x="16" y="16" width="343" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="5qq-8f-w79"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                        <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to CTemplar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jwl-0g-LzY">
+                        <rect key="frame" x="16" y="40" width="343" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="Box-po-dWv"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                        <color key="textColor" red="0.57647058823529407" green="0.56862745098039214" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apr 6, 2018" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LTG-Sh-vfM">
+                        <rect key="frame" x="16" y="64" width="252" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="fWM-vE-Mto"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                        <color key="textColor" red="0.57647058819999997" green="0.56862745100000001" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PHV-at-ZCc">
+                        <rect key="frame" x="284" y="64" width="75" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="75" id="PRa-Of-vSo"/>
+                            <constraint firstAttribute="height" constant="16" id="dGO-0u-U5e"/>
+                        </constraints>
+                        <state key="normal">
+                            <attributedString key="attributedTitle">
+                                <fragment content="View details">
+                                    <attributes>
+                                        <font key="NSFont" size="14" name="Lato-Regular"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
+                        </state>
+                        <connections>
+                            <action selector="detailsButtonPressed:" destination="D3R-Kt-pfv" eventType="touchUpInside" id="vUp-Z6-Vtl"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ESj-7u-Wsm">
+                        <rect key="frame" x="0.0" y="96" width="375" height="94"/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="94" id="Gdu-Pq-iFQ"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7nB-s8-qhz">
+                        <rect key="frame" x="16" y="96" width="343" height="94"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="94" id="md8-6P-Nyo"/>
+                        </constraints>
+                        <attributedString key="attributedText">
+                            <fragment>
+                                <string key="content">From: Ctemplar &lt;contact@ctemplar.ch&gt;
+To: John Doe &lt;johndoe@gmail.com&gt;
+CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
+                                <attributes>
+                                    <font key="NSFont" metaFont="system" size="14"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oeh-eb-MhL">
+                        <rect key="frame" x="16" y="190" width="343" height="53.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="53.5" id="7vD-W9-lVk"/>
+                        </constraints>
+                        <attributedString key="attributedText">
+                            <fragment>
+                                <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <attributes>
+                                    <font key="NSFont" metaFont="system" size="14"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Ohz-Ep-u46">
+                        <rect key="frame" x="0.0" y="259.5" width="375" height="100"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="100" id="UPo-lM-t8R"/>
+                        </constraints>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sgL-Rv-LyV">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Oeh-eb-MhL" firstAttribute="top" secondItem="ESj-7u-Wsm" secondAttribute="bottom" id="09v-RK-pk7"/>
+                    <constraint firstItem="7nB-s8-qhz" firstAttribute="top" secondItem="LTG-Sh-vfM" secondAttribute="bottom" constant="16" id="15C-dA-psM"/>
+                    <constraint firstAttribute="trailing" secondItem="Oeh-eb-MhL" secondAttribute="trailing" constant="16" id="5FZ-M7-KH1"/>
+                    <constraint firstItem="QvS-7Z-HOi" firstAttribute="leading" secondItem="X0Y-7y-urH" secondAttribute="leading" constant="16" id="5Ir-Lf-Gyj"/>
+                    <constraint firstAttribute="trailing" secondItem="ESj-7u-Wsm" secondAttribute="trailing" id="8CX-ru-K4M"/>
+                    <constraint firstItem="QvS-7Z-HOi" firstAttribute="top" secondItem="X0Y-7y-urH" secondAttribute="top" constant="16" id="9Zh-08-VF1"/>
+                    <constraint firstItem="Ohz-Ep-u46" firstAttribute="leading" secondItem="X0Y-7y-urH" secondAttribute="leading" id="Cpt-1R-OIU"/>
+                    <constraint firstItem="LTG-Sh-vfM" firstAttribute="leading" secondItem="X0Y-7y-urH" secondAttribute="leading" constant="16" id="EaO-gw-hO2"/>
+                    <constraint firstItem="PHV-at-ZCc" firstAttribute="leading" secondItem="LTG-Sh-vfM" secondAttribute="trailing" constant="16" id="GLA-sC-F5u"/>
+                    <constraint firstAttribute="trailing" secondItem="PHV-at-ZCc" secondAttribute="trailing" constant="16" id="HlO-nA-oqA"/>
+                    <constraint firstItem="LTG-Sh-vfM" firstAttribute="top" secondItem="Jwl-0g-LzY" secondAttribute="bottom" constant="8" id="K6w-1A-wZ2"/>
+                    <constraint firstAttribute="trailing" secondItem="Ohz-Ep-u46" secondAttribute="trailing" id="KN8-Jc-Swc"/>
+                    <constraint firstItem="Jwl-0g-LzY" firstAttribute="leading" secondItem="X0Y-7y-urH" secondAttribute="leading" constant="16" id="O7p-Qx-1SL"/>
+                    <constraint firstItem="Jwl-0g-LzY" firstAttribute="top" secondItem="QvS-7Z-HOi" secondAttribute="bottom" constant="8" id="RJe-4B-nho"/>
+                    <constraint firstItem="PHV-at-ZCc" firstAttribute="top" secondItem="Jwl-0g-LzY" secondAttribute="bottom" constant="8" id="ULA-Pd-iva"/>
+                    <constraint firstItem="Ohz-Ep-u46" firstAttribute="top" secondItem="Oeh-eb-MhL" secondAttribute="bottom" constant="16" id="Uuw-b3-nMc"/>
+                    <constraint firstAttribute="trailing" secondItem="Jwl-0g-LzY" secondAttribute="trailing" constant="16" id="cXJ-Tv-lWX"/>
+                    <constraint firstItem="ESj-7u-Wsm" firstAttribute="leading" secondItem="X0Y-7y-urH" secondAttribute="leading" id="kEL-Qi-Cbh"/>
+                    <constraint firstAttribute="trailing" secondItem="7nB-s8-qhz" secondAttribute="trailing" constant="16" id="lX9-uj-iBz"/>
+                    <constraint firstAttribute="bottom" secondItem="Ohz-Ep-u46" secondAttribute="bottom" id="mQ3-Kx-xd8"/>
+                    <constraint firstItem="ESj-7u-Wsm" firstAttribute="top" secondItem="LTG-Sh-vfM" secondAttribute="bottom" constant="16" id="pfh-x1-dVQ"/>
+                    <constraint firstItem="Oeh-eb-MhL" firstAttribute="leading" secondItem="X0Y-7y-urH" secondAttribute="leading" constant="16" id="tu5-Az-xgr"/>
+                    <constraint firstAttribute="trailing" secondItem="QvS-7Z-HOi" secondAttribute="trailing" constant="16" id="wWp-pg-hA8"/>
+                    <constraint firstItem="7nB-s8-qhz" firstAttribute="leading" secondItem="X0Y-7y-urH" secondAttribute="leading" constant="16" id="zTc-r2-hru"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="contentTextView" destination="Oeh-eb-MhL" id="6f6-AB-WHB"/>
+                <outlet property="dateLabel" destination="LTG-Sh-vfM" id="6JX-pY-HJm"/>
+                <outlet property="detailsButton" destination="PHV-at-ZCc" id="mM8-Ey-g19"/>
+                <outlet property="fromToBarTextView" destination="7nB-s8-qhz" id="UII-F8-eZc"/>
+                <outlet property="fromToBarTextViewHeightConstraint" destination="md8-6P-Nyo" id="0v5-85-DKO"/>
+                <outlet property="fromToViewHeightConstraint" destination="Gdu-Pq-iFQ" id="a7A-Y3-No9"/>
+                <outlet property="messageContentTextViewHeightConstraint" destination="7vD-W9-lVk" id="dVg-cm-mvz"/>
+                <outlet property="recieverLabel" destination="Jwl-0g-LzY" id="UZW-mM-Ws6"/>
+                <outlet property="senderLabel" destination="QvS-7Z-HOi" id="q9v-BA-CFH"/>
+            </connections>
+            <point key="canvasLocation" x="72.799999999999997" y="30.584707646176913"/>
+        </tableViewCell>
+    </objects>
+</document>
