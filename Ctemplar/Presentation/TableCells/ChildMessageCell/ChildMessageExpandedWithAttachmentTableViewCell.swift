@@ -186,9 +186,14 @@ class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell, UICollec
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: k_AttachmentCollcetionViewCellIdentifier, for: indexPath) as! AttachmentCollectionViewCell
         
-        let attacment = attachmentsArray[indexPath.row]
+        let attacment = attachmentsArray[indexPath.item]
         cell.setupCellWithData(attachment: attacment)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        print("tapped for Attachment item:", indexPath.item)
     }
 }
