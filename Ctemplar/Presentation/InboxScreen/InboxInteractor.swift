@@ -276,7 +276,7 @@ class InboxInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "User Myself Error", message: error.localizedDescription, button: "closeButton".localized())
+                AlertHelperKit().showAlert(self.viewController!, title: "Public Key Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
     }

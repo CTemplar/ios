@@ -19,7 +19,7 @@ class ComposeViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        //self.navigationItem.rightBarButtonItem?.isEnabled = false
         self.navigationItem.title = navBarTitle
     }
     
@@ -30,8 +30,8 @@ class ComposeViewController: UIViewController {
     
     @IBAction func sendButtonPressed(_ sender: AnyObject) {
         
-        sendMail() //temp
-        
+        //sendMail() //temp
+        publicKeyFor(userEmail: "dmitry5@dev.ctemplar.com")
     }
     
     //temp
@@ -56,6 +56,35 @@ class ComposeViewController: UIViewController {
             case .failure(let error):
                 print("error:", error)
                 //AlertHelperKit().showAlert(self.viewController!, title: "Mailboxes Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
+    func publicKeyFor(userEmail: String) {
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let apiService = appDelegate.applicationManager.apiService
+        
+        let pgpService = appDelegate.applicationManager.pgpService
+        
+        apiService.publicKeyFor(userEmail: userEmail) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                //print("publicKey value:", value)
+                
+                let publicKey = value as! String
+                print("publicKey:", publicKey)
+                
+               //pgpService.readPGPKeysFromString(key: publicKey)
+                pgpService.extractAndSavePGPKeyFromString(key: publicKey)
+                pgpService.getStoredPGPKeys()
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self, title: "Public Key Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
     }

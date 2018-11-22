@@ -28,36 +28,10 @@ struct ContactsList {
         self.pageConut = dictionary["page_count"] as? Int
         self.previous = dictionary["previous"] as? String
         
-        if let resultsArray = dictionary["results"] as? Array<Any> {
-            //self.parsResults(array: resultsArray)
+        if let resultsArray = dictionary["results"] as? Array<Any> {        
             self.contactsList = self.parsResultsFromList(array: resultsArray)            
         }
     }
-    /*
-    mutating func parsResults(array: Array<Any>) {
-        
-        var localContactsList : Array<Contact>? = []
-        
-        for item in array {
-            
-            let dictionary = item as! Dictionary<String, Any>
-            print("dict keys:", dictionary.keys)
-            
-            for (key, value) in dictionary {
-                
-                if key == "contacts" {
-                    let array = value as! Array<Any>
-                    for item in array {
-                        let contactDict = item as! [String : Any]
-                        let contact = Contact(dictionary: contactDict)
-                        localContactsList?.append(contact)
-                    }
-                }
-            }
-        }
-        
-        self.contactsList = localContactsList
-    }*/
     
     func parsResultsFromList(array: Array<Any>) -> Array<Contact>{
         

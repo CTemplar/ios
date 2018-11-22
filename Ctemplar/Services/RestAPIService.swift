@@ -470,14 +470,38 @@ class RestAPIService {
             "Authorization": "JWT " + token,
             "Accept": "application/json"
         ]
-        
-        let url = EndPoint.baseUrl.rawValue + EndPoint.publicKeys.rawValue
+        //?email__in=atif2@ctemplar.com,atif3@ctemplar.com
+        let url = EndPoint.baseUrl.rawValue + EndPoint.publicKeys.rawValue + "?email__in=dmitry5@dev.ctemplar.com"
         
         print("publicKeyList url:", url)
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
             
             print("publicKeyList responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func publicKeyFor(userEmail: String, token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.publicKeys.rawValue + "?email__in=" + userEmail
+        
+        print("publicKeyFor url:", url)
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("publicKeyFor responce:", response)
             
             switch(response.result) {
             case .success(let value):
