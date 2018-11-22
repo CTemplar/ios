@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell {
+class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var parentController : ViewInboxEmailDataSource?
     
@@ -22,6 +22,8 @@ class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell {
     @IBOutlet var fromToBarTextView    : UITextView!
     @IBOutlet var contentTextView      : UITextView!
     
+    @IBOutlet var collectionView       : UICollectionView!
+    
     @IBOutlet var fromToViewHeightConstraint        : NSLayoutConstraint!
     @IBOutlet var fromToBarTextViewHeightConstraint : NSLayoutConstraint!
     
@@ -30,9 +32,13 @@ class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell {
     var showDetails : Bool = false
     var index : Int = 0
     
+    var attachmentsArray : Array<Attachment> = []
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        self.registerCollectionViewCell()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -70,6 +76,11 @@ class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell {
         self.setupDetailsButton()
         
         self.setupMessageContentTextView(messageContent: contentMessage)
+        
+        if let attachments = message.attachments {
+            self.attachmentsArray = attachments
+            self.collectionView.reloadData()
+        }
     }
     
     func setupFromToHeaderHeight(message: EmailMessage) {
@@ -145,6 +156,7 @@ class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell {
         
         contentTextView.attributedText = messageContent.html2AttributedString
         contentTextView.sizeToFit()
+        //contentTextView.backgroundColor = UIColor.yellow
         
         messageContentTextViewHeightConstraint.constant = contentTextView.frame.height
     }
@@ -157,5 +169,26 @@ class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell {
         
         self.parentController?.showDetailMessagesArray[self.index] = self.showDetails
         self.parentController?.reloadData(scrollToLastMessage: false)
+    }
+    
+    //MARK: - Collection
+    
+    func registerCollectionViewCell() {
+        
+        self.collectionView.register(UINib(nibName: k_AttachmentCollcetionViewCellXibName, bundle: nil), forCellWithReuseIdentifier: k_AttachmentCollcetionViewCellIdentifier)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return attachmentsArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: k_AttachmentCollcetionViewCellIdentifier, for: indexPath) as! AttachmentCollectionViewCell
+        
+        let attacment = attachmentsArray[indexPath.row]
+        cell.setupCellWithData(attachment: attacment)
+        
+        return cell
     }
 }

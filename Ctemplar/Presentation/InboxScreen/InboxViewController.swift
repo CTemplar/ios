@@ -82,7 +82,7 @@ class InboxViewController: UIViewController {
         adddNotificationObserver()
         
         self.navigationItem.title = currentFolder
-        self.leftBarButtonItem.isEnabled = true
+        self.leftBarButtonItem.isEnabled = false
         
         self.presenter?.interactor?.updateMessages(withUndo: "", silent: false)
         
