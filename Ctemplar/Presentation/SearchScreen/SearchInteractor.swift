@@ -98,12 +98,11 @@ class SearchInteractor {
         var filteredDuplicatesMessagesList : Array<EmailMessage> = []
         
         for message in filteredSendersList {
-            filteredDuplicatesMessagesList = filteredSubjectsList.filter { $0.messsageID != message.messsageID }
+            filteredDuplicatesMessagesList = filteredSendersList.filter { $0.messsageID != message.messsageID }
         }
         
-        let filteredList = filteredSendersList + filteredDuplicatesMessagesList
-        //let filteredList = filteredSendersList + filteredSubjectsList
-        
+        let filteredList = filteredSubjectsList + filteredDuplicatesMessagesList
+            
         updateDataSource(searchText: searchText, filteredList: filteredList)
     }
     
