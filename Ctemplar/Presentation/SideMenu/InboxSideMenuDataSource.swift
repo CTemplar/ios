@@ -99,6 +99,9 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             return separatorLineHeaderView
         case SideMenuSectionIndex.customFolders.rawValue:
             headerView.setupHeader(iconName: k_darkFoldersIconImageName, title: "manageFolders".localized(), foldersCount: self.customFoldersArray.count, hideBottomLine: false)
+            let headerTapGesture = UITapGestureRecognizer()
+            headerTapGesture.addTarget(self, action: #selector(self.tappedHeaderAction(sender:)))
+            headerView.addGestureRecognizer(headerTapGesture)
             break
         default:
             print("unknown header section")
@@ -289,5 +292,10 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         }
         
         return false
+    }
+    
+    @objc func tappedHeaderAction(sender : UITapGestureRecognizer) {
+        
+        print("tap to Manage Folders")
     }
 }
