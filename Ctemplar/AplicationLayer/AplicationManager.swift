@@ -42,6 +42,7 @@ class ApplicationManager
     lazy var pgpService: PGPService = {
         
         let service = PGPService()
+        service.initialize()
         
         return service
         

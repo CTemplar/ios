@@ -7,12 +7,23 @@
 //
 
 import Foundation
+import UIKit
 import ObjectivePGP
 
 class PGPService {
     
-    let keyring = Keyring()
-    let keychainService = KeychainService()
+    //let keyring = Keyring()
+    //let keychainService = KeychainService()
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    var keyring : Keyring!
+    var keychainService: KeychainService!
+    
+    func initialize() {
+        
+        self.keyring = Keyring()
+        self.keychainService = appDelegate.applicationManager.keychainService
+    }
     
     func encodeString(message: String) -> Data {
         
@@ -162,7 +173,7 @@ class PGPService {
         let keyRingFileUrl = getDocumentsDirectory().appendingPathComponent(k_keyringFileName)
         
         guard let keys = try? ObjectivePGP.readKeys(fromPath: keyRingFileUrl.path) else {return nil}
-        //print("get stored PGP key:", keys)
+        print("get stored PGP keys:", keys)
         
         return keys
     }
