@@ -89,8 +89,11 @@ class ViewInboxEmailViewController: UIViewController {
                 self.messageIsStarred = message.starred
                 
                 self.messagesTableView.isHidden = true
-                self.presenter?.setupMessageContent(message: message)
-            
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
+                    self.presenter?.setupMessageContent(message: message)
+                })
+                
                 self.presenter?.setupMessageHeader(message: message)
                 self.presenter?.setupNavigationBar(enabled: true)
                 self.presenter?.setupBottomBar(enabled: true)

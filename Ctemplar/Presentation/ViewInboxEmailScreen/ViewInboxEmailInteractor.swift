@@ -144,6 +144,22 @@ class ViewInboxEmailInteractor {
         return "Error"
     }
     
+    func extractMessageContentAsync(message: EmailMessage) {
+        
+        let queue = DispatchQueue.global(qos: .userInitiated)
+        
+        queue.async {
+            if let content = message.content {
+                if let decryptedMessage = self.pgpService?.decryptMessage(encryptedContet: content) {
+                    DispatchQueue.main.async {
+                        //print("message:", message)
+                       self.viewController?.contentTextView.attributedText = decryptedMessage.html2AttributedString
+                    }
+                }
+            }
+        }
+    }
+    
     func headerOfMessage(content: String) -> String {
         
         var header : String = ""
