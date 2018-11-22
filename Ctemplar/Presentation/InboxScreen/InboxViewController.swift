@@ -65,6 +65,8 @@ class InboxViewController: UIViewController {
     @IBOutlet var rightBarButtonItem    : UIBarButtonItem!
     @IBOutlet var moreBarButtonItem     : UIBarButtonItem!
     
+    var runOnce : Bool = true
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -85,14 +87,17 @@ class InboxViewController: UIViewController {
         self.leftBarButtonItem.isEnabled = false
         
         self.presenter?.interactor?.updateMessages(withUndo: "", silent: false)
-        self.presenter?.interactor?.userMyself()
+        //self.presenter?.interactor?.userMyself()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         //self.presenter?.interactor?.updateMessages(withUndo: "")
-       // self.presenter?.interactor?.userMyself()
+        if self.runOnce == true { //optimization for showing table already 
+            self.presenter?.interactor?.userMyself()
+            self.runOnce = false
+        }
         
         navigationController?.navigationBar.backgroundColor = k_whiteColor
     }

@@ -332,18 +332,59 @@ class InboxInteractor {
         }
     }
     
+    func decryptHeader(content: String, messageID: Int) {
+        
+        let queue = DispatchQueue.global(qos: .userInitiated)
+        
+        queue.async {
+            
+            if let message = self.pgpService?.decryptMessage(encryptedContet: content) {
+                DispatchQueue.main.async {
+                    //print("message:", message)
+                    self.setDecryptedHeader(content: message, messageID: messageID)
+                }
+            }
+        }
+    }
+    
+    func setDecryptedHeader(content: String, messageID: Int) {
+        
+        let header = self.headerOfMessage(content: content)
+     
+        self.viewController?.dataSource?.messagesHeaderDictionary[messageID] = header
+        self.viewController?.dataSource?.reloadData()
+    }
+    
+    func checkIsMessageHeaderDecrypted(messageID: Int) -> Bool {
+        
+        if (self.viewController?.dataSource?.messagesHeaderDictionary[messageID]) != nil {
+            return true
+        }
+        
+        return false
+    }
+    
     func updateMessagesHeader(emailsArray: Array<EmailMessage>) {
         
         self.viewController?.dataSource?.messagesHeaderArray.removeAll()
-        
+        /*
         for (index, message) in emailsArray.enumerated() {
             if let messageContent = message.content {
                 //let header = self.headerOfMessage(content: messageContent)
                 //self.viewController?.dataSource?.messagesHeaderArray.append(header)
                 self.viewController?.dataSource?.messagesHeaderArray.append("decoding...")
                 self.decryptHeader(content: messageContent, index: index)
+                //self.viewController?.dataSource?.messagesHeaderDictionary[message.messsageID!] = "decoding..."
             } else {
                 self.viewController?.dataSource?.messagesHeaderArray.append("Empty content")
+            }
+        }*/
+        
+        for message in emailsArray {
+            if let messageContent = message.content {
+                if !self.checkIsMessageHeaderDecrypted(messageID: message.messsageID!) {
+                    self.decryptHeader(content: messageContent, messageID: message.messsageID!)
+                }
             }
         }
     }
