@@ -64,7 +64,7 @@ class ContactsInteractor {
     
     func userContactsList() {
         
-        HUD.show(.progress)
+        //HUD.show(.progress)
         
         apiService?.userContacts(contactsIDIn: "") {(result) in
             
@@ -81,7 +81,7 @@ class ContactsInteractor {
                 AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
-            HUD.hide()
+            //HUD.hide()
         }
     }
        

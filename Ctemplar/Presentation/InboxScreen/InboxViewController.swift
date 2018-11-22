@@ -85,14 +85,14 @@ class InboxViewController: UIViewController {
         self.leftBarButtonItem.isEnabled = false
         
         self.presenter?.interactor?.updateMessages(withUndo: "", silent: false)
-        
+        self.presenter?.interactor?.userMyself()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         //self.presenter?.interactor?.updateMessages(withUndo: "")
-        self.presenter?.interactor?.userMyself()
+       // self.presenter?.interactor?.userMyself()
         
         navigationController?.navigationBar.backgroundColor = k_whiteColor
     }
@@ -178,6 +178,7 @@ class InboxViewController: UIViewController {
         }
         
         self.presenter?.interactor?.updateMessages(withUndo: "", silent: silent)
+        self.presenter?.interactor?.userMyself()
     }    
 }
 

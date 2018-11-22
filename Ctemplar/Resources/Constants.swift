@@ -83,7 +83,8 @@ let k_LoginStoryboardName_iPad             = "Login-iPad"
 
 // notifications
 
-let k_updateUserDataNotificationID       = "UpdateUserDataNotificationIdentifier"
+let k_updateUserDataNotificationID          = "UpdateUserDataNotificationIdentifier"
+let k_updateInboxMessagesNotificationID     = "updateInboxMessagesNotification"
 
 // colors
 
@@ -246,10 +247,6 @@ let k_darkPlusIconImageName         = "PlusButton"
 
 let k_latoRegularFontName = "Lato-Regular"
 let k_latoBoldFontName    = "Lato-Bold"
-
-// notifications
-
-let k_updateInboxMessagesNotificationID       = "updateInboxMessagesNotification"
 
 // other
 

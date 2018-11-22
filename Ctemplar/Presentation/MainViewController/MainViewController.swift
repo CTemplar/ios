@@ -27,9 +27,6 @@ class MainViewController: UIViewController {
         
         configurePKHUD()
         
-        //showLoginViewController()
-        //showInboxNavigationController()
-        
         initInboxNavigationController()
        
         let keyChainService = apiService?.keychainService
@@ -38,20 +35,12 @@ class MainViewController: UIViewController {
         
         if (storedUserName?.count)! < 1 || (storedPassword?.count)! < 1 {
             print("MainViewController: wrong stored credentials!")
-            DispatchQueue.main.async {
-            //    self.apiService?.showLoginViewController()
-            }
             showLoginViewController()
-            //showInboxNavigationController()
         } else {
             showInboxNavigationController()
         }
         
-        
-        
-        //messagesList()
-        //mailboxesList()
-
+        setAutoUpdaterTimer()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -60,6 +49,22 @@ class MainViewController: UIViewController {
         DispatchQueue.main.async {
         //    self.apiService?.messagesList(viewController: self)
         }
+    }
+    
+    func setAutoUpdaterTimer() {
+        
+        Timer.scheduledTimer(timeInterval: 30,
+                             target: self,
+                             selector: #selector(self.sendUpdateNotification),
+                             userInfo: nil,
+                             repeats: true)
+    }
+    
+    @objc func sendUpdateNotification() {
+        
+        let silent = true
+        NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: silent, userInfo: nil)
+        print("sendUpdateNotification")
     }
     
     func configurePKHUD() {
@@ -103,19 +108,6 @@ class MainViewController: UIViewController {
         self.initAndSetupInboxSideMenuController(inboxViewController: inboxViewController)
     }
     
-    /*
-    func showInboxNavigationController() {
-        
-        DispatchQueue.main.async {
-            
-            let storyboard: UIStoryboard = UIStoryboard(name: k_InboxStoryboardName, bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: k_InboxNavigationControllerID) as! InboxNavigationController
-            self.show(vc, sender: self)
-            
-            self.initAndSetupInboxSideMenuController(inboxViewController: vc.viewControllers.first as! InboxViewController)
-        }
-    }*/
-    
     //MARK: - Side Menu
     
     func initAndSetupInboxSideMenuController(inboxViewController: InboxViewController) {
@@ -138,89 +130,6 @@ class MainViewController: UIViewController {
         SideMenuManager.default.menuPresentMode = .menuSlideIn
         let frame = self.view.frame
         SideMenuManager.default.menuWidth = max(round(min((frame.width), (frame.height)) * 0.67), 240)
-    }
-    
-    func messagesList() {
-        
-        apiService?.messagesList(folder: "inbox", messagesIDIn: "", seconds: 0) {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                //print("value:", value)
-                
-                let emailMessages = value as! EmailMessagesList
-                
-                for result in emailMessages.messagesList! {
-                    //print("result", result)
-                    
-                    if let content = result.content {
-                        print("content:", content)
-                        self.decryptMessage(encryptedContet: content)
-                    }
-                }
-                
-            case .failure(let error):
-                print("error:", error)
-                AlertHelperKit().showAlert(self, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
-            }
-        }
-    }
-    
-    func mailboxesList() {
-        
-        apiService?.mailboxesList() {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                print("Mailboxes value:", value)
-                
-                let mailboxes = value as! Mailboxes
-                
-                for result in mailboxes.mailboxesResultsList! {
-                    //print("result", result)
-                    print("privateKey:", result.privateKey as Any)
-                    print("publicKey:", result.publicKey as Any)
-                    
-                    self.getPGPKeyFromString(key: result.privateKey!)
-                    self.getPGPKeyFromString(key: result.publicKey!)
-                }
-                
-            case .failure(let error):
-                print("error:", error)
-                AlertHelperKit().showAlert(self, title: "Mailboxes Error", message: error.localizedDescription, button: "closeButton".localized())
-            }
-        }
-    }
-    
-    func decryptMessage(encryptedContet: String) {
-        
-        let pgpService = appDelegate.applicationManager.pgpService
-        
-        if let contentData = encryptedContet.data(using: .ascii) {
-            if let decodedData = pgpService.decrypt(encryptedData: contentData) {
-                let decryptedMessage = pgpService.decodeData(decryptedData: decodedData)
-                print("decryptedMessage:", decryptedMessage)
-            } else {
-                print("decrypting failed")
-            }
-        }
-    }
-    
-    func getPGPKeyFromString(key: String) {
-        
-        let pgpService = appDelegate.applicationManager.pgpService
-        
-        if let pgpKeys = pgpService.readPGPKeysFromString(key: key) {            
-            for pgpKey in pgpKeys {
-                pgpService.savePGPKey(pgpKey: pgpKey)
-            }
-        }
-        /*
-        if let storedKey = pgpService.getStoredPGPKey() {
-            print("stored key", storedKey)
-        }*/
     }
 }
 
