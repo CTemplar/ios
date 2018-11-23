@@ -58,6 +58,8 @@ let k_SearchCellXibName                    = "SearchTableViewCell"
 let k_ContactCellXibName                   = "ContactTableViewCell"
 let k_ChildMessageCellXibName              = "ChildMessageTableViewCell"
 let k_ChildMessageExpandedCellXibName      = "ChildMessageExpandedTableViewCell"
+let k_ChildMessageExpandedWithAttachmentCellXibName      = "ChildMessageExpandedWithAttachmentTableViewCell"
+let k_AttachmentCollcetionViewCellXibName  = "AttachmentCollcetionViewCell"
 
 // cell identifier
 
@@ -70,6 +72,9 @@ let k_SearchTableViewCellIdentifier             = "searchTableViewCellIdentifier
 let k_ContactTableViewCellIdentifier            = "contactTableViewCellIdentifier"
 let k_ChildMessageTableViewCellIdentifier       = "childMessageTableViewCellIdentifier"
 let k_ChildMessageExpandedTableViewCellIdentifier       = "childMessageExpandedTableViewCellIdentifier"
+let k_ChildMessageExpandedWithAttachmentTableViewCellIdentifier       = "childMessageExpandedWithAttachmentTableViewCellIdentifier"
+let k_AttachmentCollcetionViewCellIdentifier = "attachmentCollcetionViewCellIdentifier"
+
 
 // view controllers iPad storyboards name
 
@@ -78,7 +83,8 @@ let k_LoginStoryboardName_iPad             = "Login-iPad"
 
 // notifications
 
-let k_updateUserDataNotificationID       = "UpdateUserDataNotificationIdentifier"
+let k_updateUserDataNotificationID          = "UpdateUserDataNotificationIdentifier"
+let k_updateInboxMessagesNotificationID     = "updateInboxMessagesNotification"
 
 // colors
 
@@ -96,7 +102,7 @@ let k_lightGrayColor: UIColor = UIColor(white: 0.0, alpha: 0.54)
 let k_lightGrayTextColor: UIColor = UIColor(red: 147.0 / 255.0, green: 145.0 / 255.0, blue: 145.0 / 255.0, alpha: 1.0)
 
 let k_mainInboxColor: UIColor = UIColor(red: 242.0 / 255.0, green: 240.0 / 255.0, blue: 240.0 / 255.0, alpha: 1.0)
-let k_foundTextBackgroundColor: UIColor = UIColor(red: 240.0 / 255.0, green: 243.0 / 255.0, blue: 245.0 / 255.0, alpha: 1.0)
+let k_foundTextBackgroundColor: UIColor = UIColor(red: 217.0 / 255.0, green: 235.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
 
 let k_whiteColor: UIColor = UIColor(red: 250.0 / 255.0, green: 251.0 / 255.0, blue: 251.0 / 255.0, alpha: 1.0)
 let k_selectedFolderColor: UIColor = UIColor(red: 18.0 / 255.0, green: 45.0 / 255.0, blue: 71.0 / 255.0, alpha: 0.1)
@@ -241,10 +247,6 @@ let k_darkPlusIconImageName         = "PlusButton"
 
 let k_latoRegularFontName = "Lato-Regular"
 let k_latoBoldFontName    = "Lato-Bold"
-
-// notifications
-
-let k_updateInboxMessagesNotificationID       = "updateInboxMessagesNotification"
 
 // other
 

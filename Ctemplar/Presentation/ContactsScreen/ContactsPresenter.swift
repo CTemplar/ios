@@ -17,7 +17,7 @@ class ContactsPresenter {
 
     func setupSearchController() {
         
-        self.viewController?.definesPresentationContext = true        
+        self.viewController?.definesPresentationContext = true
         
         self.viewController?.searchController.searchResultsUpdater = self.viewController
         self.viewController?.searchController.obscuresBackgroundDuringPresentation = false
@@ -25,6 +25,8 @@ class ContactsPresenter {
         self.viewController?.searchController.searchBar.tintColor = k_contactsBarTintColor
         self.viewController?.searchController.searchBar.placeholder = "search".localized()
         self.viewController?.navigationItem.searchController = self.viewController?.searchController
+        self.viewController?.searchController.searchBar.delegate = self.viewController
+        self.viewController?.searchController.searchBar.returnKeyType = .done
         
         //UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).leftViewMode = .never
         UISearchBar.appearance().searchTextPositionAdjustment = UIOffset(horizontal: 10, vertical: 0)
@@ -79,17 +81,30 @@ class ContactsPresenter {
         if  selectedContactsCount == overallContactsCount {
             self.viewController?.dataSource?.selectedContactsArray.removeAll()
             
-            self.viewController?.selectAllImageView.image = UIImage(named: k_checkBoxUncheckedImageName)
-            self.viewController?.selectAllLabel.text = "selectAll".localized()
+            //self.viewController?.selectAllImageView.image = UIImage(named: k_checkBoxUncheckedImageName)
+            //self.viewController?.selectAllLabel.text = "selectAll".localized()
+            self.setSelectAllBarMode(selectAll: true)
         } else {
             self.viewController?.dataSource?.selectedContactsArray.removeAll()
             self.viewController?.dataSource?.selectedContactsArray = (self.viewController?.dataSource?.contactsArray)!
             
-            self.viewController?.selectAllImageView.image = UIImage(named: k_checkBoxSelectedImageName)
-            self.viewController?.selectAllLabel.text = "deselectAll".localized()
+            //self.viewController?.selectAllImageView.image = UIImage(named: k_checkBoxSelectedImageName)
+            //self.viewController?.selectAllLabel.text = "deselectAll".localized()
+            self.setSelectAllBarMode(selectAll: false)
         }
         
         self.viewController?.dataSource?.reloadData()
+    }
+    
+    func setSelectAllBarMode(selectAll: Bool) {
+        
+        if selectAll {
+            self.viewController?.selectAllImageView.image = UIImage(named: k_checkBoxUncheckedImageName)
+            self.viewController?.selectAllLabel.text = "selectAll".localized()
+        } else {
+            self.viewController?.selectAllImageView.image = UIImage(named: k_checkBoxSelectedImageName)
+            self.viewController?.selectAllLabel.text = "deselectAll".localized()
+        }
     }
     
     func enableSelectionMode() {
@@ -129,6 +144,17 @@ class ContactsPresenter {
         
         self.viewController?.selectedAllViewHeightConstraint.constant = 0.0
         self.viewController?.bottomBarHeightConstraint.constant = 0.0
+        self.viewController?.view.layoutIfNeeded()
+    }
+    
+    func setSelectAllBar(show : Bool) {
+        
+        if show {
+            self.viewController?.selectedAllViewHeightConstraint.constant = k_contactsSelectAllBarHeight
+        } else {
+            self.viewController?.selectedAllViewHeightConstraint.constant = 0.0
+        }
+        
         self.viewController?.view.layoutIfNeeded()
     }
     

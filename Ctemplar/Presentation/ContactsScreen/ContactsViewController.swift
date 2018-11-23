@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import SideMenu
 
-class ContactsViewController: UIViewController, UISearchResultsUpdating {
+class ContactsViewController: UIViewController, UISearchResultsUpdating, UISearchBarDelegate {
     
     var presenter   : ContactsPresenter?
     var router      : ContactsRouter?
@@ -102,4 +102,18 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating {
         
         return searchController.isActive && !searchBarIsEmpty()
     }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+        self.rightBarButtonItem.isEnabled = true
+        
+        let show = dataSource?.selectionMode
+        presenter?.setSelectAllBar(show: show!)
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+        self.rightBarButtonItem.isEnabled = false
+    }
+    
 }

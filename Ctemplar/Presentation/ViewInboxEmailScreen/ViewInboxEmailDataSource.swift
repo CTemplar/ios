@@ -40,6 +40,8 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
         self.tableView.register(UINib(nibName: k_ChildMessageCellXibName, bundle: nil), forCellReuseIdentifier: k_ChildMessageTableViewCellIdentifier)
         
         self.tableView.register(UINib(nibName: k_ChildMessageExpandedCellXibName, bundle: nil), forCellReuseIdentifier: k_ChildMessageExpandedTableViewCellIdentifier)
+        
+        self.tableView.register(UINib(nibName: k_ChildMessageExpandedWithAttachmentCellXibName, bundle: nil), forCellReuseIdentifier: k_ChildMessageExpandedWithAttachmentTableViewCellIdentifier)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -76,9 +78,24 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
         let showContent = self.showContentMessagesArray[indexPath.row]
         
         if showContent {
-            cell = tableView.dequeueReusableCell(withIdentifier: k_ChildMessageExpandedTableViewCellIdentifier)! as! ChildMessageExpandedTableViewCell
-            (cell as! ChildMessageExpandedTableViewCell).parentController = self
-            (cell as! ChildMessageExpandedTableViewCell).setupCellWithData(message: message, contentMessage: messageText, showDetails: showDetails, index: indexPath.row)
+            var hasAttachments : Bool = false
+            
+            if let attachments = message.attachments {
+                if attachments.count > 0 {
+                    hasAttachments = true
+                }
+            }
+            
+            if hasAttachments {
+                cell = tableView.dequeueReusableCell(withIdentifier: k_ChildMessageExpandedWithAttachmentTableViewCellIdentifier)! as! ChildMessageExpandedWithAttachmentTableViewCell
+                (cell as! ChildMessageExpandedWithAttachmentTableViewCell).parentController = self
+                (cell as! ChildMessageExpandedWithAttachmentTableViewCell).setupCellWithData(message: message, contentMessage: messageText, showDetails: showDetails, index: indexPath.row)
+            } else {
+                cell = tableView.dequeueReusableCell(withIdentifier: k_ChildMessageExpandedTableViewCellIdentifier)! as! ChildMessageExpandedTableViewCell
+                (cell as! ChildMessageExpandedTableViewCell).parentController = self
+                (cell as! ChildMessageExpandedTableViewCell).setupCellWithData(message: message, contentMessage: messageText, showDetails: showDetails, index: indexPath.row)
+            }
+
         } else {
             cell = tableView.dequeueReusableCell(withIdentifier: k_ChildMessageTableViewCellIdentifier)! as! ChildMessageTableViewCell
             (cell as! ChildMessageTableViewCell).setupCellWithData(sender: sender!, header: header)

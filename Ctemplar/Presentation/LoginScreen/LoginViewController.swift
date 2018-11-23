@@ -11,6 +11,8 @@ import Foundation
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
+    var mainViewController: MainViewController?
+    
     var passwordTextFieldSecure   : Bool = true
     
     var presenter   : LoginPresenter?

@@ -144,6 +144,22 @@ class ViewInboxEmailInteractor {
         return "Error"
     }
     
+    func extractMessageContentAsync(message: EmailMessage) {
+        
+        let queue = DispatchQueue.global(qos: .userInitiated)
+        
+        queue.async {
+            if let content = message.content {
+                if let decryptedMessage = self.pgpService?.decryptMessage(encryptedContet: content) {
+                    DispatchQueue.main.async {
+                        //print("message:", message)
+                       self.viewController?.contentTextView.attributedText = decryptedMessage.html2AttributedString
+                    }
+                }
+            }
+        }
+    }
+    
     func headerOfMessage(content: String) -> String {
         
         var header : String = ""
@@ -225,6 +241,8 @@ class ViewInboxEmailInteractor {
         
     }*/
     
+    //MARK: - API requests
+    
     func moveMessageTo(message: EmailMessage, folder: String, withUndo: String) {
         
         apiService?.updateMessages(messageID: (message.messsageID?.description)!, messagesIDIn: "", folder: folder, starred: false, read: false, updateFolder: true, updateStarred: false, updateRead: false)  {(result) in
@@ -234,6 +252,8 @@ class ViewInboxEmailInteractor {
             case .success( _):
                 //print("value:", value)
                 print("move message to:", folder)
+                
+                self.postUpdateInbox()
                 
                 if withUndo.count > 0 {
                     self.presenter?.showUndoBar(text: withUndo)
@@ -259,6 +279,8 @@ class ViewInboxEmailInteractor {
                 print("mark message as read:", asRead)
                 
                 self.viewController?.messageIsRead = asRead
+                
+                self.postUpdateInbox()
                 
                 if withUndo.count > 0 {
                     self.presenter?.showUndoBar(text: withUndo)
@@ -287,6 +309,7 @@ class ViewInboxEmailInteractor {
                 
                 self.presenter?.setupStarredButton(starred: starred)
                 
+                self.postUpdateInbox()
                 /*
                 if withUndo.count > 0 {
                     self.presenter?.showUndoBar(text: withUndo)
@@ -327,5 +350,12 @@ class ViewInboxEmailInteractor {
         default:
             print("unknown undo action")
         }
+    }
+    
+    func postUpdateInbox() {
+        
+        let silent = true
+        
+        NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: silent, userInfo: nil)
     }
 }

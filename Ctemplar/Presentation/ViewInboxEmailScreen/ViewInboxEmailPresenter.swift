@@ -85,7 +85,7 @@ class ViewInboxEmailPresenter {
     }
     
     func setupMessageContent(message: EmailMessage) {
-        
+        /*
         if let messageContent = self.interactor?.extractMessageContent(message: message) {
             
             //self.viewController?.contentTextView.isHidden = true
@@ -97,7 +97,13 @@ class ViewInboxEmailPresenter {
             self.viewController?.contentTextView.attributedText = messageContent.html2AttributedString
             //self.viewController?.contentTextView.text = messageContent.html2String
             self.viewController?.webView.loadHTMLString(messageContent, baseURL: nil)
-        }
+        }*/
+        
+        self.viewController?.contentTextView.attributedText = NSAttributedString(string: "decrypting...")
+        
+        self.interactor?.extractMessageContentAsync(message: message)
+        self.viewController?.contentTextView.isHidden = false
+        self.viewController?.webView.isHidden = true
     }
     
     func setupFromToHeaderHeight(message: EmailMessage) {

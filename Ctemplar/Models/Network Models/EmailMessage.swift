@@ -10,7 +10,7 @@ import Foundation
 
 struct EmailMessage {
     
-    var attachments: Array<Any>? = nil
+    var attachments: Array<Attachment>? = nil
     var bcc: Array<Any>? = nil
     var cc: Array<Any>? = nil
     var children: Array<EmailMessage>? = nil
@@ -44,12 +44,14 @@ struct EmailMessage {
     
     init(dictionary: [String: Any]) {
         
-        self.attachments = dictionary["attachments"] as? Array<Any>
+        if let attachmentsArray = dictionary["attachments"] as? Array<Any> {
+            self.attachments = self.parsAttachmentsFromList(array: attachmentsArray)
+        }
         self.bcc = dictionary["bcc"] as? Array<Any>
         self.cc = dictionary["cc"] as? Array<Any>
-        //self.children = dictionary["children"] as? Array<Any>
+        
         if let childrenArray = dictionary["children"] as? Array<Any> {
-            self.children  = self.parsResultsFromList(array: childrenArray)
+            self.children = self.parsResultsFromList(array: childrenArray)
         }
         self.content = dictionary["content"] as? String
         self.createdAt = dictionary["created_at"] as? String
@@ -84,6 +86,20 @@ struct EmailMessage {
             if let objectDictionary = object as? Dictionary<String, Any> {
                 let messageResult = EmailMessage(dictionary: objectDictionary)
                 objectsArray.append(messageResult)
+            }
+        }
+        
+        return objectsArray
+    }
+    
+    func parsAttachmentsFromList(array: Array<Any>) -> Array<Attachment>{
+        
+        var objectsArray: Array<Attachment> = []
+        
+        for object in array {
+            if let objectDictionary = object as? Dictionary<String, Any> {
+                let attachmentResult = Attachment(dictionary: objectDictionary)
+                objectsArray.append(attachmentResult)
             }
         }
         

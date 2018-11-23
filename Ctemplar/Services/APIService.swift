@@ -50,7 +50,8 @@ class APIService {
     
     @objc func getHashedPassword(userName: String, password: String, completion:@escaping (Bool) -> () ) {
         
-        DispatchQueue.main.async {
+        //DispatchQueue.main.async {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
             if let salt = self.formatterService?.generateSaltFrom(userName: userName) {
                 print("salt:", salt)
                 
@@ -65,7 +66,7 @@ class APIService {
             }
             completion(true)
         }
-        
+        )
     }
     
     @objc func autologin(completion:@escaping (Bool) -> () ) {
@@ -330,10 +331,13 @@ class APIService {
     
     func logOut(completionHandler: @escaping (APIResult<Any>) -> Void) {
         
+        self.hashedPassword = nil
+        
         keychainService?.deleteUserCredentialsAndToken()
         pgpService?.deleteStoredPGPKeys()
         
-        showLoginViewController()
+        completionHandler(APIResult.success("success"))
+        //showLoginViewController()
     }
     
     func verifyToken(completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -1210,7 +1214,7 @@ class APIService {
     }
 
     func showLoginViewController() {
-        
+        /*
         if let topViewController = UIApplication.topViewController() {
             
             var storyboardName : String? = k_LoginStoryboardName
@@ -1223,5 +1227,6 @@ class APIService {
             let vc = storyboard.instantiateViewController(withIdentifier: k_LoginViewControllerID) as! LoginViewController
             topViewController.present(vc, animated: false, completion: nil)
         }
+ */
     }
 }

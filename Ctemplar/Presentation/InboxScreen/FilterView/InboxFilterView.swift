@@ -57,7 +57,6 @@ class InboxFilterView: UIView {
         self.parentFilters = appliedFilters
         
         self.setupLocal(appliedFilters: appliedFilters)
-        
 
     }
     

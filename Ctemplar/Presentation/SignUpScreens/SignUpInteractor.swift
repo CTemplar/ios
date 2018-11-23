@@ -30,7 +30,11 @@ class SignUpInteractor {
                 let currentPresentingViewController = self.viewController?.presentingViewController as? LoginViewController
                 
                 self.viewController?.dismiss(animated: true) {
-                    currentPresentingViewController?.dismiss(animated: false, completion: nil) //hide Login View Controller
+                    //currentPresentingViewController?.dismiss(animated: false, completion: nil) //hide Login View Controller
+                    
+                    currentPresentingViewController?.dismiss(animated: true, completion: {
+                        self.viewController?.mainViewController?.showInboxNavigationController()
+                    })
                 }
                 
                 NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil, userInfo: nil)

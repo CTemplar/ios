@@ -54,7 +54,7 @@
                                             <constraint firstAttribute="width" secondItem="P88-l5-8f4" secondAttribute="height" multiplier="1:1" id="vpM-51-GDZ"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SecureIcon" translatesAutoresizingMaskIntoConstraints="NO" id="D9Y-RI-udI">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProtectOn" translatesAutoresizingMaskIntoConstraints="NO" id="D9Y-RI-udI">
                                         <rect key="frame" x="214" y="15" width="16" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="D9Y-RI-udI" secondAttribute="height" multiplier="1:1" id="HVT-cT-Slp"/>
@@ -357,6 +357,7 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
         </scene>
     </scenes>
     <resources>
+        <image name="ProtectOn" width="24" height="24"/>
         <image name="SecureIcon" width="16" height="16"/>
         <image name="StarOn" width="24" height="24"/>
         <image name="forwardButton" width="44" height="31"/>

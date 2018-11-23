@@ -20,11 +20,12 @@ class InboxViewController: UIViewController {
     
     var inboxSideMenuViewController: InboxSideMenuViewController?
     
-    var currentMessagesList : EmailMessagesList?
+    var allMessagesList : EmailMessagesList = EmailMessagesList.init()
     
-    var messagesList    : Array<EmailMessage> = []
-    var mailboxesList   : Array<Mailbox> = []
-    var contactsList    : Array<Contact> = []
+    var allMessagesArray : Array<EmailMessage> = []
+    var currentFolderMessagesArray : Array<EmailMessage> = []
+    var mailboxesList    : Array<Mailbox> = []
+    var contactsList     : Array<Contact> = []
     
     var currentFolder       : String = InboxSideMenuOptionsName.inbox.rawValue
     var currentFolderFilter : String = MessagesFoldersName.inbox.rawValue
@@ -64,6 +65,8 @@ class InboxViewController: UIViewController {
     @IBOutlet var rightBarButtonItem    : UIBarButtonItem!
     @IBOutlet var moreBarButtonItem     : UIBarButtonItem!
     
+    var runOnce : Bool = true
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -72,7 +75,7 @@ class InboxViewController: UIViewController {
         let configurator = InboxConfigurator()
         configurator.configure(viewController: self)
         
-        dataSource?.initWith(parent: self, tableView: inboxTableView, array: messagesList)
+        dataSource?.initWith(parent: self, tableView: inboxTableView, array: allMessagesArray)
         
         presenter?.setupUI(emailsCount: 0, unreadEmails: 0, filterEnabled: false)
         presenter?.initFilterView()
@@ -85,14 +88,20 @@ class InboxViewController: UIViewController {
         adddNotificationObserver()
         
         self.navigationItem.title = currentFolder
-        self.leftBarButtonItem.isEnabled = true
+        self.leftBarButtonItem.isEnabled = false
+        
+        self.presenter?.interactor?.updateMessages(withUndo: "", silent: false)
+        //self.presenter?.interactor?.userMyself()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.presenter?.interactor?.updateMessages(withUndo: "")
-        self.presenter?.interactor?.userMyself()
+        //self.presenter?.interactor?.updateMessages(withUndo: "")
+        if self.runOnce == true { //optimization for showing table already 
+            self.presenter?.interactor?.userMyself()
+            self.runOnce = false
+        }
         
         navigationController?.navigationBar.backgroundColor = k_whiteColor
     }
@@ -171,7 +180,14 @@ class InboxViewController: UIViewController {
     
     @objc func reciveUpdateNotification(notification: Notification) {
         
-        self.presenter?.interactor?.updateMessages(withUndo: "")
+        var silent : Bool = false
+        
+        if notification.object != nil {
+            silent = notification.object as! Bool
+        }
+        
+        self.presenter?.interactor?.updateMessages(withUndo: "", silent: silent)
+        self.presenter?.interactor?.userMyself()
     }    
 }
 

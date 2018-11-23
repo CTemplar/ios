@@ -79,9 +79,26 @@ class ViewInboxEmailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let messageID = self.messageID {
-            self.presenter?.interactor?.getMessage(messageID: messageID)
-        }        
+        //temp - wait resolution about UI
+        if let message = self.message {
+            if message.hasChildren! {
+                self.presenter?.interactor?.getMessage(messageID: message.messsageID!)
+            } else {
+                
+                self.messageIsRead = message.read
+                self.messageIsStarred = message.starred
+                
+                self.messagesTableView.isHidden = true
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
+                    self.presenter?.setupMessageContent(message: message)
+                })
+                
+                self.presenter?.setupMessageHeader(message: message)
+                self.presenter?.setupNavigationBar(enabled: true)
+                self.presenter?.setupBottomBar(enabled: true)
+            }
+        }
     }
     
     //MARK: - IBActions

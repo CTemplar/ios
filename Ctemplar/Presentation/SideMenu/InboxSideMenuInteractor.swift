@@ -18,11 +18,26 @@ class InboxSideMenuInteractor {
 
     func logOut() {
         
+        self.viewController?.dataSource?.selectedIndexPath = IndexPath(row: 0, section: SideMenuSectionIndex.mainFolders.rawValue)
+        self.viewController?.inboxViewController.currentFolder  = InboxSideMenuOptionsName.inbox.rawValue
+        self.viewController?.inboxViewController.currentFolderFilter = MessagesFoldersName.inbox.rawValue
+        
+        self.viewController?.dismiss(animated: true, completion: {
+            if let parentViewController = self.viewController?.currentParentViewController {
+                parentViewController.navigationController?.popViewController(animated: true)
+            }
+        })
+        
+        self.viewController?.inboxViewController.dismiss(animated: false, completion: {
+            self.viewController?.mainViewController?.showLoginViewController()
+        })
+        
         apiService?.logOut()  {(result) in
             switch(result) {
                 
             case .success(let value):
                 print("value:", value)
+                
             case .failure(let error):
                 print("error:", error)
                 
@@ -173,7 +188,9 @@ class InboxSideMenuInteractor {
         
         currentViewController?.currentFolder = folder
         currentViewController?.currentFolderFilter = filter
-        currentViewController?.presenter?.interactor?.updateMessages(withUndo: "")//loadMessages(folder: filter)
+        //currentViewController?.presenter?.interactor?.updateMessages(withUndo: "")//loadMessages(folder: filter)
+        
+        currentViewController?.presenter?.interactor?.setInboxData(messages: (currentViewController?.allMessagesList)!, folderFilter: filter)
         currentViewController?.presenter?.interactor?.clearFilters()
         
         self.dismissSideMenuAndTopController()
@@ -181,9 +198,9 @@ class InboxSideMenuInteractor {
     
     func applyCustomFolderAction(folderName: String) {
         
-        let formattedFolderName = self.formatFolderNameLikeUrl(folderName: folderName)
+        //let formattedFolderName = self.formatFolderNameLikeUrl(folderName: folderName)
         
-        self.applyFirstSectionAction(folder: folderName, filter: formattedFolderName)
+        self.applyFirstSectionAction(folder: folderName, filter: folderName)
     }
     
     func formatFolderNameLikeUrl(folderName: String) -> String {

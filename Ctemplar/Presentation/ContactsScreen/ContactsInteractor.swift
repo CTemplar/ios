@@ -37,6 +37,13 @@ class ContactsInteractor {
         let filteredList = filteredContactNamesList + filteredDuplicatesEmailsList
         
         updateDataSource(searchText: searchText, filteredList: filteredList)
+        
+        if searchText.count > 0 {
+            let show = !filteredList.isEmpty
+            presenter?.setSelectAllBar(show: show)
+        } else {
+            presenter?.setSelectAllBar(show: true)
+        }
     }
     
     func updateDataSource(searchText: String, filteredList: Array<Contact>) {
@@ -57,7 +64,7 @@ class ContactsInteractor {
     
     func userContactsList() {
         
-        HUD.show(.progress)
+        //HUD.show(.progress)
         
         apiService?.userContacts(contactsIDIn: "") {(result) in
             
@@ -74,7 +81,7 @@ class ContactsInteractor {
                 AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
-            HUD.hide()
+            //HUD.hide()
         }
     }
        

@@ -82,16 +82,16 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        //let contact = contactsArray[indexPath.row]
-        
-        var contact : Contact
+                
+        var currentContactsArray : Array<Contact> = []
         
         if self.filtered {
-            contact = filteredContactsArray[indexPath.row]
+            currentContactsArray = filteredContactsArray
         } else {
-            contact = contactsArray[indexPath.row]
+            currentContactsArray = contactsArray
         }
+        
+        let contact = currentContactsArray[indexPath.row]
         
         if self.selectionMode == false {
             self.parentViewController?.router?.showAddContactViewController(editMode: true, contact: contact)
@@ -113,15 +113,24 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
                 self.parentViewController.presenter?.disableSelectionMode()
             }
             
+            var selectedAll : Bool = false
+            if selectedContactsArray.count != currentContactsArray.count {
+                selectedAll = true
+            }
+            
+            self.parentViewController.presenter?.setSelectAllBarMode(selectAll: selectedAll)
+            
             self.reloadData()
             
-            self.parentViewController.presenter?.setupNavigationItemTitle(selectedContacts: selectedContactsArray.count, selectionMode: selectionMode)
+           // self.parentViewController.presenter?.setupNavigationItemTitle(selectedContacts: selectedContactsArray.count, selectionMode: selectionMode)
         }
     }
     
     func reloadData() {
         
         self.tableView.reloadData()
+        
+        self.parentViewController.presenter?.setupNavigationItemTitle(selectedContacts: selectedContactsArray.count, selectionMode: selectionMode)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

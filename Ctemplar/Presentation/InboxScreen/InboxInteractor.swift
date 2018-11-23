@@ -19,36 +19,42 @@ class InboxInteractor {
     
     //MARK: - data
 
-    func updateMessages(withUndo: String) {
+    func updateMessages(withUndo: String, silent: Bool) {
         
         if self.checkStoredPGPKeys() {
-            self.messagesList(folder: (self.viewController?.currentFolderFilter)!, withUndo: withUndo)
+            self.messagesList(folder: (self.viewController?.currentFolderFilter)!, withUndo: withUndo, silent: silent)
         }
     }
     
-    func setInboxData(messages: EmailMessagesList) {
+    func setInboxData(messages: EmailMessagesList, folderFilter: String) {
         
         var readEmails = 0
         var unreadEmails = 0
         
         if let emailsArray = messages.messagesList {
             
-            self.viewController?.dataSource?.messagesArray = emailsArray
-            self.updateMessagesHeader(emailsArray: emailsArray)
+            self.viewController?.allMessagesArray = emailsArray
+            
+            let currentFolderMessages = self.filterInboxMessages(array: emailsArray, filter: folderFilter)
+            
+            self.viewController?.currentFolderMessagesArray = currentFolderMessages
+            
+            self.viewController?.dataSource?.messagesArray = currentFolderMessages
+            self.updateMessagesHeader(emailsArray: currentFolderMessages)
             self.viewController?.dataSource?.reloadData()
             
             if self.viewController?.dataSource?.selectionMode == true {
                 self.viewController?.presenter?.disableSelectionMode()
             }
             
-            readEmails = calculateReadEmails(array: emailsArray)
-            unreadEmails = emailsArray.count - readEmails
+            readEmails = calculateReadEmails(array: currentFolderMessages)
+            unreadEmails = currentFolderMessages.count - readEmails
             
-            self.viewController?.emailsCount = emailsArray.count
+            self.viewController?.emailsCount = currentFolderMessages.count
             self.viewController?.unreadEmails = unreadEmails
             
             let filterEnabled = self.filterEnabled()
-            self.presenter?.setupUI(emailsCount: emailsArray.count, unreadEmails: unreadEmails, filterEnabled: filterEnabled)
+            self.presenter?.setupUI(emailsCount: currentFolderMessages.count, unreadEmails: unreadEmails, filterEnabled: filterEnabled)
         }
     }
     
@@ -59,7 +65,7 @@ class InboxInteractor {
     }
     
     func setSideMenuData(messages: EmailMessagesList) {
-        
+        /*
         var readEmails = 0
         var unreadEmails = 0
         
@@ -80,7 +86,7 @@ class InboxInteractor {
             }
             
             self.viewController?.inboxSideMenuViewController?.dataSource?.reloadData()
-        }
+        }*/
     }
     
     func calculateReadEmails(array: Array<EmailMessage>) -> Int {
@@ -100,11 +106,13 @@ class InboxInteractor {
     
     //MARK: - API
     
-    func messagesList(folder: String, withUndo: String) {
+    func messagesList(folder: String, withUndo: String, silent: Bool) {
         
-        HUD.show(.progress)
+        if !silent {
+            HUD.show(.progress)
+        }
         
-        apiService?.messagesList(folder: folder, messagesIDIn: "", seconds: 0) {(result) in
+        apiService?.messagesList(folder: ""/*folder*/, messagesIDIn: "", seconds: 0) {(result) in
             
             switch(result) {
                 
@@ -112,15 +120,12 @@ class InboxInteractor {
                 //print("value:", value)
                 
                 let emailMessages = value as! EmailMessagesList
-                self.viewController?.currentMessagesList = emailMessages
-                self.setInboxData(messages: emailMessages)
+                self.viewController?.allMessagesList = emailMessages
+                self.setInboxData(messages: emailMessages, folderFilter: folder)
                 
                 if withUndo.count > 0 {
                     self.presenter?.showUndoBar(text: withUndo)
                 }
-                
-               // self.unreadMessagesCounter() //need to Side Menu unread msg counters
-               // self.userMyself()//temp for debug
                 
             case .failure(let error):
                 print("error:", error)
@@ -227,7 +232,7 @@ class InboxInteractor {
                             }
                             
                             //load messages after keys storred
-                            self.messagesList(folder: (self.viewController?.currentFolderFilter)!, withUndo: "")
+                            self.messagesList(folder: (self.viewController?.currentFolderFilter)!, withUndo: "", silent: false)
                         }
                     }
                 }
@@ -338,18 +343,59 @@ class InboxInteractor {
         }
     }
     
+    func decryptHeader(content: String, messageID: Int) {
+        
+        let queue = DispatchQueue.global(qos: .userInitiated)
+        
+        queue.async {
+            
+            if let message = self.pgpService?.decryptMessage(encryptedContet: content) {
+                DispatchQueue.main.async {
+                    //print("message:", message)
+                    self.setDecryptedHeader(content: message, messageID: messageID)
+                }
+            }
+        }
+    }
+    
+    func setDecryptedHeader(content: String, messageID: Int) {
+        
+        let header = self.headerOfMessage(content: content)
+     
+        self.viewController?.dataSource?.messagesHeaderDictionary[messageID] = header
+        self.viewController?.dataSource?.reloadData()
+    }
+    
+    func checkIsMessageHeaderDecrypted(messageID: Int) -> Bool {
+        
+        if (self.viewController?.dataSource?.messagesHeaderDictionary[messageID]) != nil {
+            return true
+        }
+        
+        return false
+    }
+    
     func updateMessagesHeader(emailsArray: Array<EmailMessage>) {
         
         self.viewController?.dataSource?.messagesHeaderArray.removeAll()
-        
+        /*
         for (index, message) in emailsArray.enumerated() {
             if let messageContent = message.content {
                 //let header = self.headerOfMessage(content: messageContent)
                 //self.viewController?.dataSource?.messagesHeaderArray.append(header)
                 self.viewController?.dataSource?.messagesHeaderArray.append("decoding...")
                 self.decryptHeader(content: messageContent, index: index)
+                //self.viewController?.dataSource?.messagesHeaderDictionary[message.messsageID!] = "decoding..."
             } else {
                 self.viewController?.dataSource?.messagesHeaderArray.append("Empty content")
+            }
+        }*/
+        
+        for message in emailsArray {
+            if let messageContent = message.content {
+                if !self.checkIsMessageHeaderDecrypted(messageID: message.messsageID!) {
+                    self.decryptHeader(content: messageContent, messageID: message.messsageID!)
+                }
             }
         }
     }
@@ -360,9 +406,20 @@ class InboxInteractor {
         
         var inboxMessagesArray : Array<EmailMessage> = []
         
-        for message in array {
-            if message.folder == filter {
-                inboxMessagesArray.append(message)
+        if filter == MessagesFoldersName.starred.rawValue {
+            
+            for message in array {
+                if message.starred == true {
+                    inboxMessagesArray.append(message)
+                }
+            }
+            
+        } else {
+        
+            for message in array {
+                if message.folder == filter {
+                    inboxMessagesArray.append(message)
+                }
             }
         }
         
@@ -388,7 +445,7 @@ class InboxInteractor {
     
     func applyFilters() {
         
-        var filteredMessagesArray : Array<EmailMessage> = (self.viewController?.currentMessagesList?.messagesList)!
+        var filteredMessagesArray : Array<EmailMessage> = (self.viewController?.currentFolderMessagesArray)!
         
         for (index, filterApplied) in (self.viewController?.appliedFilters)!.enumerated() {
                  
@@ -576,7 +633,7 @@ class InboxInteractor {
                 //print("value:", value)
                 print("marked list as spam")
                 self.viewController?.lastAction = ActionsIndex.markAsSpam
-                self.updateMessages(withUndo: withUndo)
+                self.updateMessages(withUndo: withUndo, silent: false)
                 
             case .failure(let error):
                 print("error:", error)
@@ -605,7 +662,7 @@ class InboxInteractor {
                 //print("value:", value)
                 print("marked list as read/unread")
                 self.viewController?.lastAction = ActionsIndex.markAsRead
-                self.updateMessages(withUndo: withUndo)
+                self.updateMessages(withUndo: withUndo, silent: false)
                 
             case .failure(let error):
                 print("error:", error)
@@ -638,7 +695,7 @@ class InboxInteractor {
                 //print("value:", value)
                 print("marked list as trash")
                 self.viewController?.lastAction = ActionsIndex.moveToTrach
-                self.updateMessages(withUndo: withUndo)
+                self.updateMessages(withUndo: withUndo, silent: false)
                 
             case .failure(let error):
                 print("error:", error)
@@ -671,7 +728,7 @@ class InboxInteractor {
                 //print("value:", value)
                 print("move list to archive")
                 self.viewController?.lastAction = ActionsIndex.moveToArchive
-                self.updateMessages(withUndo: withUndo)
+                self.updateMessages(withUndo: withUndo, silent: false)
                 
             case .failure(let error):
                 print("error:", error)
@@ -704,7 +761,7 @@ class InboxInteractor {
                 //print("value:", value)
                 print("move list to inbox")
                 self.viewController?.lastAction = ActionsIndex.moveToArchive
-                self.updateMessages(withUndo: withUndo)
+                self.updateMessages(withUndo: withUndo, silent: false)
                 
             case .failure(let error):
                 print("error:", error)
@@ -733,7 +790,7 @@ class InboxInteractor {
                 //print("value:", value)
                 print("deleteMessagesList")
                 self.viewController?.lastAction = ActionsIndex.moveToArchive
-                self.updateMessages(withUndo: withUndo)
+                self.updateMessages(withUndo: withUndo, silent: false)
                 
             case .failure(let error):
                 print("error:", error)
