@@ -9,11 +9,6 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Lato-Regular.ttf">
-            <string>Lato-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--New Message-->
         <scene sceneID="4gn-nZ-Baf">
@@ -36,46 +31,7 @@
                                                 <attributes>
                                                     <color key="NSColor" red="0.33333000000000002" green="0.30196000000000001" blue="0.33724999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <font key="NSFont" size="14" name="Lato-Regular"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                        <tabStops>
-                                                            <textTab alignment="left" location="28">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="56">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="84">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="112">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="140">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="168">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="196">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="224">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="252">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="280">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="308">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="336">
-                                                                <options/>
-                                                            </textTab>
-                                                        </tabStops>
-                                                    </paragraphStyle>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                     <integer key="NSUnderline" value="1"/>
                                                     <color key="NSUnderlineColor" red="0.050979999999999998" green="0.81176000000000004" blue="0.85489999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </attributes>
@@ -84,46 +40,7 @@
                                                 <attributes>
                                                     <color key="NSColor" red="0.33333000000000002" green="0.30196000000000001" blue="0.33724999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <font key="NSFont" size="14" name="Lato-Regular"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                        <tabStops>
-                                                            <textTab alignment="left" location="28">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="56">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="84">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="112">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="140">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="168">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="196">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="224">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="252">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="280">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="308">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="336">
-                                                                <options/>
-                                                            </textTab>
-                                                        </tabStops>
-                                                    </paragraphStyle>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                     <integer key="NSUnderline" value="1"/>
                                                     <color key="NSUnderlineColor" red="0.25490000000000002" green="0.60784000000000005" blue="0.97646999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </attributes>
@@ -132,46 +49,7 @@
                                                 <attributes>
                                                     <color key="NSColor" red="0.33333000000000002" green="0.30196000000000001" blue="0.33724999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <font key="NSFont" size="14" name="Lato-Regular"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                        <tabStops>
-                                                            <textTab alignment="left" location="28">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="56">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="84">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="112">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="140">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="168">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="196">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="224">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="252">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="280">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="308">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="336">
-                                                                <options/>
-                                                            </textTab>
-                                                        </tabStops>
-                                                    </paragraphStyle>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                     <color key="NSUnderlineColor" red="0.25490000000000002" green="0.60784000000000005" blue="0.97646999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </attributes>
                                             </fragment>
@@ -226,18 +104,6 @@
                                         </attributedString>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JMZ-bQ-YAX" customClass="InputEmailToTextField" customModule="Ctemplar" customModuleProvider="target">
-                                        <rect key="frame" x="44" y="14" width="97" height="16"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="textColor" red="0.035294117647058823" green="0.12156862745098039" blue="0.20784313725490194" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <action selector="emailTyped:" destination="Paf-AF-Vql" eventType="editingChanged" id="81l-cQ-AtP"/>
-                                            <action selector="emailTyped:" destination="Paf-AF-Vql" eventType="editingDidEndOnExit" id="nmU-6K-brk"/>
-                                            <outlet property="delegate" destination="Paf-AF-Vql" id="R1U-hD-And"/>
-                                        </connections>
-                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0QO-oA-I6g">
                                         <rect key="frame" x="331" y="0.0" width="44" height="44"/>
                                         <constraints>
@@ -306,7 +172,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <attributedString key="attributedText">
                                     <fragment>
-                                        <mutableString key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                        <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <attributes>
                                             <font key="NSFont" size="15" name="Lato-Regular"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
@@ -378,7 +244,6 @@
                         <outlet property="fromView" destination="HDc-VP-u4e" id="NXG-g5-Vmo"/>
                         <outlet property="messageTextView" destination="v4G-Sq-GK2" id="ccT-mo-A2A"/>
                         <outlet property="subjectView" destination="JlZ-Fv-gSA" id="Drc-GR-uOC"/>
-                        <outlet property="toEmailTextField" destination="JMZ-bQ-YAX" id="YW7-2a-XDq"/>
                         <outlet property="toView" destination="o09-Ex-Zdt" id="0Dx-MK-5y8"/>
                         <outlet property="toViewHeightConstraint" destination="lOT-Tm-3c1" id="Lhe-QL-pkX"/>
                         <outlet property="toolBarView" destination="SvU-Rf-Cm0" id="iBA-04-aBo"/>

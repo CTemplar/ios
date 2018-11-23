@@ -34,8 +34,6 @@ class ComposeViewController: UIViewController, UITextFieldDelegate {
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         self.navigationItem.title = navBarTitle
         
-        
-        
         setupEmailToSection(emailToText: "To: djhbrhibjhjsjpsjnbsnb toEmailTextField toEmailTextbd djhbrhibjhjsjpsjnbsnb djhbrhibjhjsjpsjnbsn") //djhbrhibjhjsjpsjnbsnb
     }
     
