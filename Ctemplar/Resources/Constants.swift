@@ -243,6 +243,9 @@ let k_emptyFilterInboxIconImageName   = "EmptyFilterInboxIcon"
 
 let k_darkPlusIconImageName         = "PlusButton"
 
+let k_downArrowImageName            = "downArrow"
+let k_upArrowImageName              = "upArrow"
+
 // fonts
 
 let k_latoRegularFontName = "Lato-Regular"
