@@ -154,7 +154,7 @@ let k_folderNameLabelOffset     : CGFloat = 12.0
 
 let k_inboxFilterViewCenterY    : CGFloat = 430.0
 
-let k_rightOffsetForSubjectLabel : CGFloat = 90.0//126
+let k_rightOffsetForSubjectLabel : CGFloat = 116.0//126
 
 let k_sideMenuSectionHeaderHeight  : CGFloat = 49
 let k_sideMenuSeparatorHeight      : CGFloat = 1
