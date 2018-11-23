@@ -11,21 +11,7 @@ import Foundation
 import PKHUD
 import AlertHelperKit
 
-protocol InputEmailToTextFieldDelegate {
-    func textFieldDidDelete()
-}
-
-class InputEmailToTextField: UITextField {
-    
-    var inputEmailToTextFieldDelegate: InputEmailToTextFieldDelegate?
-    
-    override func deleteBackward() {
-        super.deleteBackward()
-        inputEmailToTextFieldDelegate?.textFieldDidDelete()
-    }
-}
-
-class ComposeViewController: UIViewController, UITextFieldDelegate, InputEmailToTextFieldDelegate {
+class ComposeViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var fromView            : UIView!
     @IBOutlet var toView              : UIView!
@@ -36,7 +22,6 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, InputEmailTo
     @IBOutlet var messageTextView     : UITextView!
     
     @IBOutlet var emailToTextView     : UITextView!
-    @IBOutlet var toEmailTextField    : InputEmailToTextField!
     
     @IBOutlet var toViewHeightConstraint    : NSLayoutConstraint!
     
@@ -49,8 +34,6 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, InputEmailTo
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         self.navigationItem.title = navBarTitle
         
-        toEmailTextField.delegate = self
-        toEmailTextField.inputEmailToTextFieldDelegate = self
         
         
         setupEmailToSection(emailToText: "To: djhbrhibjhjsjpsjnbsnb toEmailTextField toEmailTextbd djhbrhibjhjsjpsjnbsnb djhbrhibjhjsjpsjnbsn") //djhbrhibjhjsjpsjnbsnb
@@ -94,75 +77,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, InputEmailTo
         print("self.emailToTextView.frame.height", self.emailToTextView.frame.height)
         
         toViewHeightConstraint.constant = self.emailToTextView.frame.height + 6 + 6//14
-        
-        //toEmailTextField
     }
-    
-    @IBAction func emailTyped(_ sender: UITextField) {
-        
-        print("typed:", sender.text )
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-       
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        
-        print("end:", textField.text )
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        print("return pressed:", textField.text )
-        return true
-    }
-    
-    func textFieldDidDelete() {
-        print("delete")
-    }
-    /*
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        
-        //print("Backspace was pressed!!")
-        return true
-    }
-    
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-     
-        let  char = string.cString(using: String.Encoding.utf8)!
-        if (char.elementsEqual([0])) {
-            print("Backspace was pressed")
-        }
-        else {
-            print("WHAT DOES THE FOX SAY ?\n")
-            print(char)
-        }
- 
-        if range.length == 1 {
-            print("Backspace was pressed !!")
-        }
-        
-        return true
-    }
-    
-    func keyboardInputShouldDelete(_ textField: UITextField) -> Bool {
-        print("Backspace was pressed !")
-        return true
-    }
-    */
-    /*
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let  char = string.cString(using: String.Encoding.utf8)!
-        let isBackSpace = strcmp(char, "\\b")
-        
-        if (isBackSpace == -92) {
-            print("Backspace was pressed")
-        }
-        return true
-    }*/
     
     //temp
     
