@@ -11,7 +11,7 @@ import Foundation
 import PKHUD
 import AlertHelperKit
 
-class ComposeViewController: UIViewController, UITextFieldDelegate {
+class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
     @IBOutlet var fromView            : UIView!
     @IBOutlet var toView              : UIView!
@@ -34,6 +34,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate {
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         self.navigationItem.title = navBarTitle
         
+        emailToTextView.delegate = self
+        
         setupEmailToSection(emailToText: "To: djhbrhibjhjsjpsjnbsnb toEmailTextField toEmailTextbd djhbrhibjhjsjpsjnbsnb djhbrhibjhjsjpsjnbsn") //djhbrhibjhjsjpsjnbsnb
     }
     
@@ -50,31 +52,85 @@ class ComposeViewController: UIViewController, UITextFieldDelegate {
     
     func setupEmailToSection(emailToText: String) {
         
-        self.emailToTextView.backgroundColor = UIColor.yellow
+        self.emailToTextView.backgroundColor = UIColor.yellow//debug
         
-        let width = self.view.frame.width - 16 - 44 //- 16
-        self.emailToTextView.frame = CGRect(x: 16, y: 6, width: width, height: 28)
+        self.setupEmailToViewText(emailToText: emailToText)
+        
+        let emailToViewHeight = self.setupEmailToViewSize()
+        
+        toViewHeightConstraint.constant = emailToViewHeight + k_emailToTextViewTopOffset + k_emailToTextViewTopOffset
+    }
+    
+    func setupEmailToViewText(emailToText: String) {
         
         let style = NSMutableParagraphStyle()
-        style.lineSpacing = 10.0//CGFloat(k_lineSpaceSizeForFromToText) //?
+        style.lineSpacing = CGFloat(k_lineSpaceSizeForFromToText)
         
         let font : UIFont = UIFont(name: k_latoRegularFontName, size: 14.0)!
         
         let attributedString = NSMutableAttributedString(string: emailToText, attributes: [
             .font: font,
-            .foregroundColor: k_actionMessageColor,//UIColor(white: 0.0, alpha: 1.0),
+            .foregroundColor: k_emailToColor,//k_actionMessageColor,
             .kern: 0.0,
             .paragraphStyle: style
             ])
-                
-        _ = attributedString.setForgroundColor(textToFind: "To:", color: UIColor(white: 158.0 / 255.0, alpha: 1.0))
         
-        self.emailToTextView.attributedText = attributedString//NSAttributedString(string: emailToText)
-        self.emailToTextView.sizeToFit()
+        //_ = attributedString.setForgroundColor(textToFind: "To:", color: k_emailToColor)
         
-        print("self.emailToTextView.frame.height", self.emailToTextView.frame.height)
+        self.emailToTextView.attributedText = attributedString
+    }
+    
+    func setupEmailToViewSize() -> CGFloat {
         
-        toViewHeightConstraint.constant = self.emailToTextView.frame.height + 6 + 6//14
+        let fixedWidth = self.view.frame.width - k_emailToTextViewLeftOffset - k_expandDetailsButtonWidth
+              
+        self.emailToTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        let newEmailToTextViewSize = self.emailToTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        var newEmailToTextViewFrame = self.emailToTextView.frame
+        newEmailToTextViewFrame.size = CGSize(width: max(newEmailToTextViewSize.width, fixedWidth), height: newEmailToTextViewSize.height)
+        self.emailToTextView.frame = newEmailToTextViewFrame;
+        
+        return self.emailToTextView.frame.height
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        
+        self.setupEmailToSection(emailToText: textView.text)
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        //print("range location:", range.location, "length:", range.length)
+        
+        if self.forbidDeletion(range: range) {
+            return false
+        }
+        
+        if self.returnPressed(input: text) {
+            print("range location:", range.location, "length:", range.length)
+            return false
+        }
+        
+        return true
+    }
+    
+    func forbidDeletion(range: NSRange) -> Bool {
+        
+        if range.location == 3 && range.length == 1 { //forbid to delete "To: "
+            return true
+        }
+        
+        return false
+    }
+    
+    func returnPressed(input: String) -> Bool {
+        
+        if input == "\n" {
+            print("need to add as contact and fade rectangle")
+            return true
+        }
+        
+        return false
     }
     
     //temp

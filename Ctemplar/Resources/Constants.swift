@@ -99,6 +99,8 @@ let k_sideMenuTextFadeColor: UIColor = UIColor(red: 52.0/255.0, green: 73.0/255.
 let k_urlColor: UIColor = UIColor(red: 74.0 / 255.0, green: 144.0 / 255.0, blue: 226.0 / 255.0, alpha: 1.0)
 let k_lightGrayColor: UIColor = UIColor(white: 0.0, alpha: 0.54)
 
+let k_emailToColor: UIColor = UIColor(white: 158.0 / 255.0, alpha: 1.0)
+
 let k_lightGrayTextColor: UIColor = UIColor(red: 147.0 / 255.0, green: 145.0 / 255.0, blue: 145.0 / 255.0, alpha: 1.0)
 
 let k_mainInboxColor: UIColor = UIColor(red: 242.0 / 255.0, green: 240.0 / 255.0, blue: 240.0 / 255.0, alpha: 1.0)
@@ -175,6 +177,10 @@ let k_lineHeightForMessageText  : CGFloat = 24.0
 
 let k_contactsBottomBarHeight       : CGFloat = 49.0
 let k_contactsSelectAllBarHeight    : CGFloat = 50.0
+
+let k_expandDetailsButtonWidth      : CGFloat = 44.0
+let k_emailToTextViewLeftOffset     : CGFloat = 16.0
+let k_emailToTextViewTopOffset      : CGFloat = 6.0
 
 //images
 
