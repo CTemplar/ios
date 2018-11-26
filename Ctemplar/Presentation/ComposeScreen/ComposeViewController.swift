@@ -29,7 +29,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     var emailsToArray = Array<String>()
     var emailToAttributtedSting : NSAttributedString!
-    var emailToSting : String = "To: "
+    var emailToSting : String = "emailToPrefix".localized()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,8 +59,6 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         self.emailToTextView.backgroundColor = UIColor.yellow//debug
         
-        //elf.emailToTextView.
-        
         self.setupEmailToViewText(emailToText: emailToText)
         
         let emailToViewHeight = self.setupEmailToViewSize()
@@ -87,8 +85,6 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             _ = attributedString.setForgroundColor(textToFind: email, color: k_emailToInputColor)
         }
         
-        //_ = attributedString.setForgroundColor(textToFind: "To:", color: k_emailToColor)
-        
         self.emailToTextView.attributedText = attributedString
     }
     
@@ -107,12 +103,16 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         
-        self.setCursorPositionToEnd(textView: textView)
+        if textView == self.emailToTextView {
+            if self.getCursorPosition(textView: textView) < "emailToPrefix".localized().count {
+                self.setCursorPositionToEnd(textView: textView)
+            }
+        }
     }
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         
-         self.setCursorPositionToEnd(textView: textView)
+        //self.setCursorPositionToEnd(textView: textView)
         
         return true
     }
@@ -123,7 +123,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         if textView == self.emailToTextView {
             self.setupEmailToSection(emailToText: textView.text)
-            print("textView text:", textView.text)
+            //print("textView text:", textView.text)
         }
     }
     
@@ -131,31 +131,35 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         //print("range location:", range.location, "length:", range.length)
         
-        if self.getCursorPosition(textView: textView) < 3 {
-            self.setCursorPositionToEnd(textView: textView)
+        //forbid to delete Prefix "
+        if self.forbidDeletion(range: range) {
             return false
         }
         
-        if textView == self.emailToTextView { //forbid to delete "To: "
-            if self.forbidDeletionTo(range: range) {
+        if textView == self.emailToTextView {
+            
+            if self.getCursorPosition(textView: textView) < "emailToPrefix".localized().count {
+                self.setCursorPositionToEnd(textView: textView)
                 return false
             }
         }
         
-        //print("input text:", text)
-        
         if self.returnPressed(input: text) {
-            print("range location:", range.location, "length:", range.length)
+            //print("range location:", range.location, "length:", range.length)
             
             if textView == self.emailToTextView {
-                let inputEmail = self.getLastInputEmail(input: textView.text, prevText: self.emailToSting)
+                let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "emailToPrefix".localized())
+                let emailsDroppedPrefixText = self.dropPrefix(text: self.emailToSting, prefix: "emailToPrefix".localized())
+                let inputEmail = self.getLastInputEmail(input: inputDroppedPrefixText, prevText: emailsDroppedPrefixText)
                 //print("textView.text:", textView.text)
                 //print("self.emailToSting:", self.emailToSting)
                 print("inputEmail:", inputEmail)
                 self.emailsToArray.append(inputEmail)
                 self.emailToSting = textView.text + " "
-                self.setupEmailToSection(emailToText: textView.text)
+                self.setupEmailToViewText(emailToText: self.emailToSting)
             }
+            
+            self.setCursorPositionToEnd(textView: textView)
             
             return false
         }
@@ -194,9 +198,9 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         })
     }
     
-    func forbidDeletionTo(range: NSRange) -> Bool {
+    func forbidDeletion(range: NSRange) -> Bool {
         
-        if range.location == 3 && range.length == 1 {
+        if range.location == "emailToPrefix".localized().count - 1 && range.length == 1 {
             return true
         }
         
@@ -232,6 +236,13 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         guard input.hasPrefix(prevText) else { return input }
         
         return String(input.dropFirst(prevText.count))
+    }
+    
+    func dropPrefix(text: String, prefix: String) -> String {
+        
+        guard text.hasPrefix(prefix) else { return text }
+        
+        return String(text.dropFirst(prefix.count))
     }
     
     //temp

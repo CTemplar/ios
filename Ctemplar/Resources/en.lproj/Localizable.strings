@@ -83,3 +83,7 @@
 
 "viewDetails" = "View details";
 "hideDetails" = "Hide details";
+
+//compose
+
+"emailToPrefix" = "To: ";
