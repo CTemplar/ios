@@ -45,9 +45,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         //temp
         emailsToArray.append("test@mega.com")
+        emailsToArray.append("dima@tatarinov.com")
         
         for email in emailsToArray {
-            self.emailToSting = self.emailToSting + email
+            self.emailToSting = self.emailToSting + email + " "
         }
         
         setupEmailToSection(emailToText: self.emailToSting)
@@ -77,9 +78,9 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         toViewHeightConstraint.constant = emailToViewHeight + k_emailToTextViewTopOffset + k_emailToTextViewTopOffset
         
-       // let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapOnEmailToTextView(_:)))
-       // tapGesture.delegate = self
-       // emailToTextView.addGestureRecognizer(tapGesture)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapOnEmailToTextView(_:)))
+        tapGesture.delegate = self
+        emailToTextView.addGestureRecognizer(tapGesture)
     }
     
     func setupEmailToViewText(emailToText: String) {
@@ -131,7 +132,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         //self.setCursorPositionToEnd(textView: textView)
         print("textViewShouldBeginEditing")
-        
+        /*
         if textView == self.emailToTextView {
             if self.getCursorPosition(textView: textView) < "emailToPrefix".localized().count {
                 self.setCursorPositionToEnd(textView: textView)
@@ -142,7 +143,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
                 self.tapSelectedEmail = selectedEmail
                 self.setupEmailToViewText(emailToText: self.emailToSting)
             }
-        }
+        }*/
         
         return true
     }
@@ -186,7 +187,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
                 print("inputEmail:", inputEmail)
                 self.emailsToArray.append(inputEmail)
                 self.emailToSting = textView.text + " "
-                self.setupEmailToViewText(emailToText: self.emailToSting)
+                //self.setupEmailToViewText(emailToText: self.emailToSting)
+                self.setupEmailToSection(emailToText: self.emailToSting)
             }
             
             self.setCursorPositionToEnd(textView: textView)
@@ -196,12 +198,26 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         if self.backspacePressed(input: text, range: range) {
             
-            if let editingWord = self.getLastWord(textView: textView) {
-
+            if self.tapSelectedEmail.count > 0 {
                 if textView == self.emailToTextView {
-                    print("editingWord:", editingWord)
-                    self.emailsToArray.removeAll{ $0 == editingWord }
+                    self.emailsToArray.removeAll{ $0 == self.tapSelectedEmail }
                     print("self.emailsToArray.count:", self.emailsToArray.count)
+                    
+                    self.emailToSting = self.emailToSting.replacingOccurrences(of: self.tapSelectedEmail, with: "")
+                    self.tapSelectedEmail = ""
+                    
+                    self.setupEmailToSection(emailToText: self.emailToSting)
+                    view.endEditing(true)
+                }
+            } else {
+            
+                if let editingWord = self.getLastWord(textView: textView) {
+
+                    if textView == self.emailToTextView {
+                        print("editingWord:", editingWord)
+                        self.emailsToArray.removeAll{ $0 == editingWord }
+                        print("self.emailsToArray.count:", self.emailsToArray.count)
+                    }
                 }
             }
         }
@@ -306,27 +322,47 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     }
     
     func getWordAtPosition(_ point: CGPoint, textView: UITextView) -> String? {
-        /*
+        
         let position: CGPoint = CGPoint(x: point.x, y: point.y)
         let tapPosition: UITextPosition? = textView.closestPosition(to: position)
+    
+        let cursorPosition = textView.offset(from: textView.beginningOfDocument, to: tapPosition!)
+    
+        //print("tapPosition:", tapPosition)
+        print("cursorPosition:", cursorPosition)
         
-        if tapPosition != nil {
-            let textRange: UITextRange? = textView.tokenizer.rangeEnclosingPosition(tapPosition!, with: UITextGranularity.word, inDirection: UITextDirection(rawValue: 1))
-            if textRange != nil {
-                let tappedWord: String? = textView.text(in: textRange!)
-                print("tapped word : ", tappedWord!)
+        if cursorPosition < "emailToPrefix".localized().count {
+            return nil
+        }
+        
+        let text = textView.text
+        let substrings = text?.split(separator: " ")
+        
+        print("substrings:", substrings as Any)
+        
+        var index = 0
+        
+        var selectedWord = ""
+        
+        for sub in substrings! {
+            index = index + sub.count
+            print("sub:", sub, "index: ", index)
+            if cursorPosition < index {
+                selectedWord = String(sub)
+                print("selectedWord0:", selectedWord)
+                return selectedWord
             }
         }
         
-        return nil
-        */
+        print("selectedWord:", selectedWord)
         
+        /*
         if let textPosition = textView.closestPosition(to: point) {
             if let range = textView.tokenizer.rangeEnclosingPosition(textPosition, with: .word, inDirection: UITextDirection(rawValue: 1)) {
                 
                 return textView.text(in: range)
             }
-        }
+        }*/
         
         return nil
     }
@@ -335,18 +371,46 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         let cursorOffset = self.getCursorPosition(textView: textView)
         
+        print("cursorOffset:", cursorOffset)
+        
         let text = textView.text
-        let substring = text?.prefix(cursorOffset)
-     
-     //   let nextSubstring = text?.suffix(cursorOffset)
-     //   let rightPart = nextSubstring?.components(separatedBy: " ").first
+       //let substring = text?.prefix(cursorOffset)
         
-        let editedWord = substring?.components(separatedBy: " ").last
+        //let rightPartText = text?.suffix(cursorOffset)
+        //print("rightPartText:", rightPartText)
         
-       // print("leftPart:", editedWord)
-       // print("rightPart:", rightPart)
         
-        return editedWord
+        //let str = wordRangeAtIndex(index: cursorOffset, inString: text!)
+       // print("str:", str)
+        
+        let substrings = text?.split(separator: " ")
+        
+        print("substrings:", substrings as Any)
+        
+        var index = 0
+        
+        var selectedWord = ""
+        
+        for sub in substrings! {
+            index = index + sub.count
+            print("sub:", sub, "index: ", index)
+            if cursorOffset < index {
+                selectedWord = String(sub)
+            }
+        }
+        
+       
+        //let nextSubstring = text?.suffix(cursorOffset)
+        //let rightPart = nextSubstring?.components(separatedBy: " ").first
+        
+        //let editedWord = substring?.components(separatedBy: " ").last
+        
+       //print("sub:", substrings)
+        print("selectedWord:", selectedWord)
+        //print("leftPart:", editedWord)
+        //print("rightPart:", rightPart)
+        
+        return selectedWord
     }
     
     func getLastWord(textView: UITextView) -> String? {
