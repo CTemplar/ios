@@ -82,6 +82,11 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             .paragraphStyle: style
             ])
         
+        for email in self.emailsToArray {
+            _ = attributedString.setBackgroundColor(textToFind: email, color: k_mainInboxColor)
+            _ = attributedString.setForgroundColor(textToFind: email, color: k_emailToInputColor)
+        }
+        
         //_ = attributedString.setForgroundColor(textToFind: "To:", color: k_emailToColor)
         
         self.emailToTextView.attributedText = attributedString
@@ -141,6 +146,17 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         if self.returnPressed(input: text) {
             print("range location:", range.location, "length:", range.length)
+            
+            if textView == self.emailToTextView {
+                let inputEmail = self.getLastInputEmail(input: textView.text, prevText: self.emailToSting)
+                //print("textView.text:", textView.text)
+                //print("self.emailToSting:", self.emailToSting)
+                print("inputEmail:", inputEmail)
+                self.emailsToArray.append(inputEmail)
+                self.emailToSting = textView.text + " "
+                self.setupEmailToSection(emailToText: textView.text)
+            }
+            
             return false
         }
         
@@ -209,6 +225,13 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         if input == " " {
             print("space pressed")
         }
+    }
+    
+    func getLastInputEmail(input: String, prevText: String) -> String {
+        
+        guard input.hasPrefix(prevText) else { return input }
+        
+        return String(input.dropFirst(prevText.count))
     }
     
     //temp

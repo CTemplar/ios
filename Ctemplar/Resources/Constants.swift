@@ -100,6 +100,7 @@ let k_urlColor: UIColor = UIColor(red: 74.0 / 255.0, green: 144.0 / 255.0, blue:
 let k_lightGrayColor: UIColor = UIColor(white: 0.0, alpha: 0.54)
 
 let k_emailToColor: UIColor = UIColor(white: 158.0 / 255.0, alpha: 1.0)
+let k_emailToInputColor: UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 0.5)
 
 let k_lightGrayTextColor: UIColor = UIColor(red: 147.0 / 255.0, green: 145.0 / 255.0, blue: 145.0 / 255.0, alpha: 1.0)
 
