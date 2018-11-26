@@ -11,7 +11,7 @@ import Foundation
 import PKHUD
 import AlertHelperKit
 
-class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate {
     
     @IBOutlet var fromView            : UIView!
     @IBOutlet var toView              : UIView!
@@ -31,6 +31,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var emailToAttributtedSting : NSAttributedString!
     var emailToSting : String = "emailToPrefix".localized()
     
+    var tapSelectedEmail : String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -41,7 +43,17 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         emailToTextView.delegate = self
         emailToTextView.autocorrectionType = .no
         
-        setupEmailToSection(emailToText: self.emailToSting)//"To: djhbrhibjhjsjpsjnbsnb toEmailTextField toEmailTextbd djhbrhibjhjsjpsjnbsnb djhbrhibjhjsjpsjnbsn") //djhbrhibjhjsjpsjnbsnb
+        //temp
+        emailsToArray.append("test@mega.com")
+        
+        for email in emailsToArray {
+            self.emailToSting = self.emailToSting + email
+        }
+        
+        setupEmailToSection(emailToText: self.emailToSting)
+        
+        let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
+        self.view.addGestureRecognizer(freeSpaceViewGesture)
     }
     
     @IBAction func backButtonPressed(_ sender: AnyObject) {
@@ -57,13 +69,17 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     func setupEmailToSection(emailToText: String) {
         
-        self.emailToTextView.backgroundColor = UIColor.yellow//debug
+        //self.emailToTextView.backgroundColor = UIColor.yellow//debug
         
         self.setupEmailToViewText(emailToText: emailToText)
         
         let emailToViewHeight = self.setupEmailToViewSize()
         
         toViewHeightConstraint.constant = emailToViewHeight + k_emailToTextViewTopOffset + k_emailToTextViewTopOffset
+        
+       // let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapOnEmailToTextView(_:)))
+       // tapGesture.delegate = self
+       // emailToTextView.addGestureRecognizer(tapGesture)
     }
     
     func setupEmailToViewText(emailToText: String) {
@@ -85,6 +101,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             _ = attributedString.setForgroundColor(textToFind: email, color: k_emailToInputColor)
         }
         
+        if tapSelectedEmail.count > 0 {
+            _ = attributedString.setBackgroundColor(textToFind: tapSelectedEmail, color: k_foundTextBackgroundColor)
+        }
+        
         self.emailToTextView.attributedText = attributedString
     }
     
@@ -103,16 +123,26 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         
-        if textView == self.emailToTextView {
-            if self.getCursorPosition(textView: textView) < "emailToPrefix".localized().count {
-                self.setCursorPositionToEnd(textView: textView)
-            }
-        }
+        print("textViewDidBeginEditing")
+    
     }
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         
         //self.setCursorPositionToEnd(textView: textView)
+        print("textViewShouldBeginEditing")
+        
+        if textView == self.emailToTextView {
+            if self.getCursorPosition(textView: textView) < "emailToPrefix".localized().count {
+                self.setCursorPositionToEnd(textView: textView)
+            }
+            
+            if let selectedEmail = self.getCurrentEditingWord(textView: textView) {
+                print("selectedEmail", selectedEmail)
+                self.tapSelectedEmail = selectedEmail
+                self.setupEmailToViewText(emailToText: self.emailToSting)
+            }
+        }
         
         return true
     }
@@ -166,7 +196,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         if self.backspacePressed(input: text, range: range) {
             
-            if let editingWord = self.getCurrentEditingWord(textView: textView) {
+            if let editingWord = self.getLastWord(textView: textView) {
 
                 if textView == self.emailToTextView {
                     print("editingWord:", editingWord)
@@ -259,15 +289,37 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         return String(text.dropFirst(prefix.count))
     }
     
-    func deleteWipedEmail() {
-        
-    }
     
     func checkEnteredEmailsValidation() {
         
     }
     
+    @objc private final func tapOnEmailToTextView(_ tapGesture: UITapGestureRecognizer){
+        
+        let point = tapGesture.location(in: emailToTextView)
+        
+        if let selectedEmail = getWordAtPosition(point, textView: emailToTextView) {
+            print("tap selectedEmail:", selectedEmail)
+            self.tapSelectedEmail = selectedEmail
+            self.setupEmailToViewText(emailToText: self.emailToSting)
+        }
+    }
+    
     func getWordAtPosition(_ point: CGPoint, textView: UITextView) -> String? {
+        /*
+        let position: CGPoint = CGPoint(x: point.x, y: point.y)
+        let tapPosition: UITextPosition? = textView.closestPosition(to: position)
+        
+        if tapPosition != nil {
+            let textRange: UITextRange? = textView.tokenizer.rangeEnclosingPosition(tapPosition!, with: UITextGranularity.word, inDirection: UITextDirection(rawValue: 1))
+            if textRange != nil {
+                let tappedWord: String? = textView.text(in: textRange!)
+                print("tapped word : ", tappedWord!)
+            }
+        }
+        
+        return nil
+        */
         
         if let textPosition = textView.closestPosition(to: point) {
             if let range = textView.tokenizer.rangeEnclosingPosition(textPosition, with: .word, inDirection: UITextDirection(rawValue: 1)) {
@@ -281,20 +333,44 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     func getCurrentEditingWord(textView: UITextView) -> String? {
         
-        let selectedRange: UITextRange? = textView.selectedTextRange
-        
-        var cursorOffset: Int? = nil
-        
-        if let aStart = selectedRange?.start {
-            cursorOffset = textView.offset(from: textView.beginningOfDocument, to: aStart)
-        }
+        let cursorOffset = self.getCursorPosition(textView: textView)
         
         let text = textView.text
-        let substring = (text as NSString?)?.substring(to: cursorOffset!)
+        let substring = text?.prefix(cursorOffset)
+     
+     //   let nextSubstring = text?.suffix(cursorOffset)
+     //   let rightPart = nextSubstring?.components(separatedBy: " ").first
+        
+        let editedWord = substring?.components(separatedBy: " ").last
+        
+       // print("leftPart:", editedWord)
+       // print("rightPart:", rightPart)
+        
+        return editedWord
+    }
+    
+    func getLastWord(textView: UITextView) -> String? {
+        
+        let cursorOffset = self.getCursorPosition(textView: textView)
+        
+        let text = textView.text
+        let substring = (text as NSString?)?.substring(to: cursorOffset)
         
         let editedWord = substring?.components(separatedBy: " ").last
         
         return editedWord
+    }
+    
+    @objc func tappedViewAction(sender : UITapGestureRecognizer) {
+        
+        self.tapSelectedEmail = ""
+        self.setupEmailToViewText(emailToText: self.emailToSting)
+        view.endEditing(true)
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        
+        return true
     }
     
     //temp
