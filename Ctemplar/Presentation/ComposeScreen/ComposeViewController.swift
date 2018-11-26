@@ -95,15 +95,19 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     func textViewDidChange(_ textView: UITextView) {
         
-        self.setupEmailToSection(emailToText: textView.text)
+        if textView == self.emailToTextView {
+            self.setupEmailToSection(emailToText: textView.text)
+        }
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
         //print("range location:", range.location, "length:", range.length)
         
-        if self.forbidDeletion(range: range) {
-            return false
+        if textView == self.emailToTextView { //forbid to delete "To: "
+            if self.forbidDeletionTo(range: range) {
+                return false
+            }
         }
         
         if self.returnPressed(input: text) {
@@ -111,12 +115,15 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             return false
         }
         
+        self.backspacePressed(input: text, range: range)
+        self.spacePressed(input: text)
+        
         return true
     }
     
-    func forbidDeletion(range: NSRange) -> Bool {
+    func forbidDeletionTo(range: NSRange) -> Bool {
         
-        if range.location == 3 && range.length == 1 { //forbid to delete "To: "
+        if range.location == 3 && range.length == 1 {
             return true
         }
         
@@ -131,6 +138,20 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         }
         
         return false
+    }
+    
+    func backspacePressed(input: String, range: NSRange) {
+        
+        if input == "" && range.length > 0 {
+            print("backspace pressed")
+        }
+    }
+    
+    func spacePressed(input: String) {
+        
+        if input == " " {
+            print("space pressed")
+        }
     }
     
     //temp
