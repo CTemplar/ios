@@ -164,7 +164,18 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             return false
         }
         
-        self.backspacePressed(input: text, range: range)
+        if self.backspacePressed(input: text, range: range) {
+            
+            if let editingWord = self.getCurrentEditingWord(textView: textView) {
+
+                if textView == self.emailToTextView {
+                    print("editingWord:", editingWord)
+                    self.emailsToArray.removeAll{ $0 == editingWord }
+                    print("self.emailsToArray.count:", self.emailsToArray.count)
+                }
+            }
+        }
+        
         self.spacePressed(input: text)
         
         return true
@@ -210,18 +221,21 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     func returnPressed(input: String) -> Bool {
         
         if input == "\n" {
-            print("need to add as contact and fade rectangle")
+            print("return pressed")
             return true
         }
         
         return false
     }
     
-    func backspacePressed(input: String, range: NSRange) {
+    func backspacePressed(input: String, range: NSRange)  -> Bool {
         
         if input == "" && range.length > 0 {
             print("backspace pressed")
+            return true
         }
+        
+        return false
     }
     
     func spacePressed(input: String) {
@@ -243,6 +257,44 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         guard text.hasPrefix(prefix) else { return text }
         
         return String(text.dropFirst(prefix.count))
+    }
+    
+    func deleteWipedEmail() {
+        
+    }
+    
+    func checkEnteredEmailsValidation() {
+        
+    }
+    
+    func getWordAtPosition(_ point: CGPoint, textView: UITextView) -> String? {
+        
+        if let textPosition = textView.closestPosition(to: point) {
+            if let range = textView.tokenizer.rangeEnclosingPosition(textPosition, with: .word, inDirection: UITextDirection(rawValue: 1)) {
+                
+                return textView.text(in: range)
+            }
+        }
+        
+        return nil
+    }
+    
+    func getCurrentEditingWord(textView: UITextView) -> String? {
+        
+        let selectedRange: UITextRange? = textView.selectedTextRange
+        
+        var cursorOffset: Int? = nil
+        
+        if let aStart = selectedRange?.start {
+            cursorOffset = textView.offset(from: textView.beginningOfDocument, to: aStart)
+        }
+        
+        let text = textView.text
+        let substring = (text as NSString?)?.substring(to: cursorOffset!)
+        
+        let editedWord = substring?.components(separatedBy: " ").last
+        
+        return editedWord
     }
     
     //temp
