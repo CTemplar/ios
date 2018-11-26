@@ -27,6 +27,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     var navBarTitle: String? = ""
     
+    var emailsToArray = Array<String>()
+    var emailToAttributtedSting : NSAttributedString!
+    var emailToSting : String = "To: "
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -35,8 +39,9 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.navigationItem.title = navBarTitle
         
         emailToTextView.delegate = self
+        emailToTextView.autocorrectionType = .no
         
-        setupEmailToSection(emailToText: "To: djhbrhibjhjsjpsjnbsnb toEmailTextField toEmailTextbd djhbrhibjhjsjpsjnbsnb djhbrhibjhjsjpsjnbsn") //djhbrhibjhjsjpsjnbsnb
+        setupEmailToSection(emailToText: self.emailToSting)//"To: djhbrhibjhjsjpsjnbsnb toEmailTextField toEmailTextbd djhbrhibjhjsjpsjnbsnb djhbrhibjhjsjpsjnbsn") //djhbrhibjhjsjpsjnbsnb
     }
     
     @IBAction func backButtonPressed(_ sender: AnyObject) {
@@ -53,6 +58,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     func setupEmailToSection(emailToText: String) {
         
         self.emailToTextView.backgroundColor = UIColor.yellow//debug
+        
+        //elf.emailToTextView.
         
         self.setupEmailToViewText(emailToText: emailToText)
         
@@ -93,10 +100,25 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         return self.emailToTextView.frame.height
     }
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        
+        self.setCursorPositionToEnd(textView: textView)
+    }
+    
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        
+         self.setCursorPositionToEnd(textView: textView)
+        
+        return true
+    }
+    
     func textViewDidChange(_ textView: UITextView) {
+        
+        //self.setCursorPositionToEnd(textView: textView)
         
         if textView == self.emailToTextView {
             self.setupEmailToSection(emailToText: textView.text)
+            print("textView text:", textView.text)
         }
     }
     
@@ -104,11 +126,18 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         //print("range location:", range.location, "length:", range.length)
         
+        if self.getCursorPosition(textView: textView) < 3 {
+            self.setCursorPositionToEnd(textView: textView)
+            return false
+        }
+        
         if textView == self.emailToTextView { //forbid to delete "To: "
             if self.forbidDeletionTo(range: range) {
                 return false
             }
         }
+        
+        //print("input text:", text)
         
         if self.returnPressed(input: text) {
             print("range location:", range.location, "length:", range.length)
@@ -119,6 +148,34 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.spacePressed(input: text)
         
         return true
+    }
+    
+    override public func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        return false //disable cut/copy
+    }
+    
+    func getCursorPosition(textView: UITextView) -> Int {
+        
+        if let selectedRange = textView.selectedTextRange {
+            
+            let cursorPosition = textView.offset(from: textView.beginningOfDocument, to: selectedRange.start)
+            print("cusor Pos:" + "\(cursorPosition)")
+            return cursorPosition
+        }
+        
+        return 0
+    }
+    
+    func setCursorPositionToEnd(textView: UITextView) {
+        
+        //print("set cursor:", textView.text.count)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(10), execute: {
+            textView.selectedRange = NSRange(location: textView.text.count, length: 0)
+            
+            let newPosition = textView.endOfDocument
+            textView.selectedTextRange = textView.textRange(from: newPosition, to: newPosition)
+        })
     }
     
     func forbidDeletionTo(range: NSRange) -> Bool {
