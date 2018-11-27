@@ -41,6 +41,13 @@
                         <color key="textColor" red="0.57647058823529407" green="0.56862745098039214" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gX2-3E-TTc">
+                        <rect key="frame" x="0.0" y="70.5" width="375" height="1"/>
+                        <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="ECa-Df-cB4"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
@@ -48,9 +55,12 @@
                     <constraint firstAttribute="trailing" secondItem="qE4-lX-lK8" secondAttribute="trailing" constant="16" id="7pp-wt-cHU"/>
                     <constraint firstItem="qE4-lX-lK8" firstAttribute="top" secondItem="bxD-Rq-TQN" secondAttribute="top" constant="16" id="PhG-Y7-8mD"/>
                     <constraint firstItem="qE4-lX-lK8" firstAttribute="leading" secondItem="bxD-Rq-TQN" secondAttribute="leading" constant="16" id="RQM-M5-mW2"/>
+                    <constraint firstAttribute="bottom" secondItem="gX2-3E-TTc" secondAttribute="bottom" id="Zx2-Iq-Yet"/>
                     <constraint firstAttribute="trailing" secondItem="c2n-1O-iSo" secondAttribute="trailing" constant="16" id="b1Y-6C-u71"/>
+                    <constraint firstItem="gX2-3E-TTc" firstAttribute="leading" secondItem="bxD-Rq-TQN" secondAttribute="leading" id="bAa-Tt-uKt"/>
                     <constraint firstItem="c2n-1O-iSo" firstAttribute="top" secondItem="qE4-lX-lK8" secondAttribute="bottom" constant="8" id="e8Y-ec-dda"/>
                     <constraint firstAttribute="bottom" secondItem="c2n-1O-iSo" secondAttribute="bottom" constant="15.5" id="uYF-7B-3G3"/>
+                    <constraint firstAttribute="trailing" secondItem="gX2-3E-TTc" secondAttribute="trailing" id="wf8-1W-QoK"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -59,7 +69,7 @@
                     <real key="value" value="0.0"/>
                 </userDefinedRuntimeAttribute>
                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                    <real key="value" value="1"/>
+                    <real key="value" value="0.0"/>
                 </userDefinedRuntimeAttribute>
                 <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                     <color key="value" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
