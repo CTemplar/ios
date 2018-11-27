@@ -19,41 +19,50 @@ class ViewInboxEmailInteractor {
     var formatterService    : FormatterService?
     
 
-    func setMessageData(messages: EmailMessagesList) {
+    func setMessageData(message: EmailMessage) {
+        
+        self.viewController?.message = message
+        self.viewController?.messageIsRead = message.read
+        self.viewController?.messageIsStarred = message.starred
+        
+        if let children = message.children {
+
+            if children.count > 0 {
+                self.viewController?.messagesTableView.isHidden = false
+                self.viewController?.dataSource?.messagesArray = message.children!
+                self.viewController?.dataSource?.messagesArray.insert(message, at: 0) //add parent Message
+                
+                for _ in (self.viewController?.dataSource?.messagesArray)! {
+                    self.viewController?.dataSource?.showDetailMessagesArray.append(false)
+                    self.viewController?.dataSource?.showContentMessagesArray.append(false)
+                }
+                
+                self.updateMessageContent(emailsArray: (self.viewController?.dataSource?.messagesArray)!)
+                
+                if let messagesCount = self.viewController?.dataSource?.messagesArray.count {
+                    self.viewController?.dataSource?.showContentMessagesArray[messagesCount - 1] = true
+                }
+                
+                self.viewController?.dataSource?.reloadData(scrollToLastMessage: true)
+            }
+        } else {
+            self.viewController?.dataSource?.messagesArray.append(message)
+            self.viewController?.dataSource?.showDetailMessagesArray.append(false)
+            self.viewController?.dataSource?.showContentMessagesArray.append(true)
+            self.updateMessageContent(emailsArray: (self.viewController?.dataSource?.messagesArray)!)
+            self.viewController?.dataSource?.reloadData(scrollToLastMessage: false)
+        }
+        
+        self.presenter?.setupMessageHeader(message: message)
+        self.presenter?.setupNavigationBar(enabled: true)
+        self.presenter?.setupBottomBar(enabled: true)     
+    }
+    
+    func setMessages(messages: EmailMessagesList) {
         
         if let emailsArray = messages.messagesList {
             if emailsArray.count > 0 {
-                if let message = emailsArray.first {
-                    self.viewController?.message = message
-                    self.viewController?.messageIsRead = message.read
-                    self.viewController?.messageIsStarred = message.starred
-                    
-                    if (message.children?.count)! > 0 {
-                        self.viewController?.messagesTableView.isHidden = false
-                        self.viewController?.dataSource?.messagesArray = message.children!
-                        self.viewController?.dataSource?.messagesArray.insert(message, at: 0) //add parent Message
-                        
-                        for _ in (self.viewController?.dataSource?.messagesArray)! {
-                            self.viewController?.dataSource?.showDetailMessagesArray.append(false)
-                            self.viewController?.dataSource?.showContentMessagesArray.append(false)
-                        }
-                        
-                        self.updateMessageContent(emailsArray: (self.viewController?.dataSource?.messagesArray)!)
-                        
-                        if let messagesCount = self.viewController?.dataSource?.messagesArray.count {
-                            self.viewController?.dataSource?.showContentMessagesArray[messagesCount - 1] = true
-                        }
-                        
-                        self.viewController?.dataSource?.reloadData(scrollToLastMessage: true)
-                    } else {
-                        self.viewController?.messagesTableView.isHidden = true
-                        self.presenter?.setupMessageContent(message: message)
-                    }
-                    
-                    self.presenter?.setupMessageHeader(message: message)
-                    self.presenter?.setupNavigationBar(enabled: true)
-                    self.presenter?.setupBottomBar(enabled: true)
-                }
+                self.setMessageData(message: emailsArray.first!)
             }
         }
     }
@@ -70,7 +79,7 @@ class ViewInboxEmailInteractor {
                 //print("value:", value)
   
                 let emailMessages = value as! EmailMessagesList
-                self.setMessageData(messages: emailMessages)
+                self.setMessages(messages: emailMessages)
                                 
             case .failure(let error):
                 print("error:", error)
