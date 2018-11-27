@@ -20,6 +20,7 @@ class AttachmentCollectionViewCell: UICollectionViewCell {
         if let fileUrl = attachment.contentUrl {
             self.fileNameLabel.text = self.fileName(fileUrl: fileUrl)
             self.fileExtensionLabel.text = self.fileExtension(fileUrl: fileUrl)
+            self.setFileExtensionColor(ext: self.fileExtension(fileUrl: fileUrl)!)
         }
     }
     
@@ -39,5 +40,28 @@ class AttachmentCollectionViewCell: UICollectionViewCell {
         fileExtension = URL(fileURLWithPath: fileUrl).pathExtension
         
         return fileExtension.uppercased()
+    }
+    
+    func setFileExtensionColor(ext: String) {
+        
+        var color : UIColor = k_otherColor
+        
+        if ext.count > 0 {
+        
+            switch ext.lowercased() {
+            case DocumentsExtension.doc.rawValue:
+                color = k_docColor
+            case DocumentsExtension.pdf.rawValue:
+                color = k_pdfColor
+            case DocumentsExtension.png.rawValue:
+                color = k_pngColor
+            case DocumentsExtension.jpg.rawValue:
+                color = k_jpgColor
+            default:
+                color = k_otherColor
+            }
+        }
+        
+        self.fileExtensionView.backgroundColor = color
     }
 }
