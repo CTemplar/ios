@@ -798,6 +798,7 @@
 				8433FF13216201A300C57DC8 /* Frameworks */,
 				8433FF14216201A300C57DC8 /* Resources */,
 				1B9415C320226EBF1E9E13BE /* [CP] Embed Pods Frameworks */,
+				84405BB021AD09290048D8AC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -931,6 +932,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ctemplar/Pods-Ctemplar-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		84405BB021AD09290048D8AC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" ae275793b27694227e56433d8b6312c21196ecd1 ff3c364d767c460bac9c33cfc5386793b8caecc261ddf24294d6d2e1d4e4fc03\n";
 		};
 		E5597037CAA107E8BD1A2772 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
