@@ -19,6 +19,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet var toolBarView         : UIView!
     @IBOutlet var bottomBarView       : UIView!
     
+    @IBOutlet var emailFrom           : UILabel!
+    
     @IBOutlet var messageTextView     : UITextView!
     
     @IBOutlet var emailToTextView     : UITextView!
@@ -30,15 +32,14 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var router      : ComposeRouter?
     var dataSource  : ComposeDataSource?
     
-    var navBarTitle: String? = ""
+    var navBarTitle: String = ""
+    var senderEmail: String = ""
     
     var emailsToArray = Array<String>()
     var emailToAttributtedSting : NSAttributedString!
     var emailToSting : String = "emailToPrefix".localized()
     
     var tapSelectedEmail : String = ""
-    
-    var tapGesture : UITapGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,15 +63,21 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         }
         //========
         
+        
+        self.presenter?.setupEmailFromSection(emailFromText: self.senderEmail)
         self.presenter?.setupEmailToSection(emailToText: self.emailToSting)
+        
+        self.addGesureRecognizers()        
+    }
+    
+    func addGesureRecognizers() {
         
         let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
         self.view.addGestureRecognizer(freeSpaceViewGesture)
         
-        self.tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapOnEmailToTextView(_:)))
-        self.tapGesture.delegate = self
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapOnEmailToTextView(_:)))
+        tapGesture.delegate = self
         self.emailToTextView.addGestureRecognizer(tapGesture)
-        
     }
     
     @IBAction func backButtonPressed(_ sender: AnyObject) {

@@ -53,6 +53,7 @@ class ViewInboxEmailViewController: UIViewController {
     
     var message : EmailMessage?
     var messageID  : Int?
+    var senderEmail: String = ""
     
     //MARK: - Lifecycle
     
@@ -66,6 +67,7 @@ class ViewInboxEmailViewController: UIViewController {
         self.presenter?.setupBottomBar(enabled: false)
         
         //temp previously setup Subject
+        self.senderEmail = self.message!.sender!
         self.messageIsRead = self.message!.read
         self.messageIsStarred = self.message!.starred
         self.presenter?.setupMessageHeader(message: self.message!)
@@ -81,6 +83,7 @@ class ViewInboxEmailViewController: UIViewController {
         
         //temp - wait resolution about UI
         if let message = self.message {
+            
             if message.hasChildren! {
                 self.presenter?.interactor?.getMessage(messageID: message.messsageID!)
             } else {
@@ -105,17 +108,17 @@ class ViewInboxEmailViewController: UIViewController {
     
     @IBAction func replyButtonPressed(_ sender: AnyObject) {
         
-        self.router?.showComposeViewController(title: "reply".localized())
+        self.router?.showComposeViewController(title: "reply".localized(), sender: self.senderEmail)
     }
     
     @IBAction func replyAllButtonPressed(_ sender: AnyObject) {
         
-        self.router?.showComposeViewController(title: "relpyAll".localized())
+        self.router?.showComposeViewController(title: "relpyAll".localized(), sender: self.senderEmail)
     }
     
     @IBAction func forwardButtonPressed(_ sender: AnyObject) {
         
-        self.router?.showComposeViewController(title: "forward".localized())
+        self.router?.showComposeViewController(title: "forward".localized(), sender: self.senderEmail)
     }
     
     @IBAction func undoButtonPressed(_ sender: AnyObject) {

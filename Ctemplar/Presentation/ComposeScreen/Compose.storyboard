@@ -240,6 +240,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bottomBarView" destination="mnP-Oe-gne" id="7uK-F1-3S1"/>
+                        <outlet property="emailFrom" destination="lcj-LT-m7M" id="J7R-t9-V0v"/>
                         <outlet property="emailToTextView" destination="fOd-3g-3mu" id="Cka-Qe-k2A"/>
                         <outlet property="fromView" destination="HDc-VP-u4e" id="NXG-g5-Vmo"/>
                         <outlet property="messageTextView" destination="v4G-Sq-GK2" id="ccT-mo-A2A"/>

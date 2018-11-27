@@ -41,6 +41,8 @@ class InboxViewController: UIViewController {
     var emailsCount : Int = 0
     var unreadEmails: Int = 0
     
+    var senderEmail: String = ""
+    
     @IBOutlet var inboxTableView        : UITableView!
     
     @IBOutlet var messagesLabel         : UILabel!
@@ -125,7 +127,7 @@ class InboxViewController: UIViewController {
     
     @IBAction func composeButtonPressed(_ sender: AnyObject) {
         
-        router?.showComposeViewController(title: "newMessage".localized())
+        router?.showComposeViewController(title: "newMessage".localized(), sender: self.senderEmail)
     }
     
     @IBAction func filterButtonPressed(_ sender: AnyObject) {

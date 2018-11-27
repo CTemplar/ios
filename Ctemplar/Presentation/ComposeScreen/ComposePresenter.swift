@@ -14,6 +14,23 @@ class ComposePresenter {
     var viewController   : ComposeViewController?
     var interactor       : ComposeInteractor?
     
+    func setupEmailFromSection(emailFromText: String) {
+        
+        let emailFromString = "emailFromPrefix".localized() + emailFromText
+        
+        let font : UIFont = UIFont(name: k_latoRegularFontName, size: 14.0)!
+        
+        let attributedString = NSMutableAttributedString(string: emailFromString, attributes: [
+            .font: font,
+            .foregroundColor: k_actionMessageColor,
+            .kern: 0.0
+            ])
+        
+        _ = attributedString.setForgroundColor(textToFind: "emailFromPrefix".localized(), color: k_emailToColor)
+        
+        self.viewController?.emailFrom.attributedText = attributedString
+    }
+    
     func setupEmailToViewText(emailToText: String) {
         
         let style = NSMutableParagraphStyle()
