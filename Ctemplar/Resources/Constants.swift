@@ -243,7 +243,10 @@ let k_redCheckIconImageName         = "redCheck"
 let k_emptyInboxIconImageName         = "EmptyInboxIcon"
 let k_emptyFilterInboxIconImageName   = "EmptyFilterInboxIcon"
 
-let k_darkPlusIconImageName         = "PlusButton"
+let k_plusButtonIconImageName       = "PlusButton"
+
+let k_darkPlusIconImageName          = "DarkPlus"
+let k_redMinusIconImageName         = "RedMinus"
 
 // fonts
 
