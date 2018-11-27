@@ -31,6 +31,7 @@ class ComposeConfigurator {
         
         viewController.presenter = presenter
         viewController.router = router
+        viewController.interactor = interactor
         
         let dataSource = ComposeDataSource()
         viewController.dataSource = dataSource
