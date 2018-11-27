@@ -84,4 +84,15 @@ class ComposePresenter {
         self.viewController!.toViewHeightConstraint.constant = emailToViewHeight + k_emailToTextViewTopOffset + k_emailToTextViewTopOffset
         
     }
+    
+    func setupSubject(subjectText: String) {
+        
+        var subject: String = ""
+        
+        if subjectText.count > 0 {
+            subject = "Re: " + subjectText
+        }
+        
+        self.viewController!.subjectTextField.text = subject
+    }
 }

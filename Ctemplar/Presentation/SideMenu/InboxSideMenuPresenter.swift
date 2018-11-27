@@ -24,6 +24,7 @@ class InboxSideMenuPresenter {
                         self.viewController!.emailLabel.text = defaultEmail
                         //self.viewController!.nameLabel.text = mailbox.displayName
                         self.viewController!.nameLabel.text = userName
+                        self.viewController!.inboxViewController.senderEmail = defaultEmail
                     }
                 }
             }

@@ -20,6 +20,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet var bottomBarView       : UIView!
     
     @IBOutlet var emailFrom           : UILabel!
+    @IBOutlet var subjectTextField    : UITextField!
     
     @IBOutlet var messageTextView     : UITextView!
     
@@ -34,6 +35,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     var navBarTitle: String = ""
     var senderEmail: String = ""
+    var subject    : String = ""
     
     var emailsToArray = Array<String>()
     var emailToAttributtedSting : NSAttributedString!
@@ -54,6 +56,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         emailToTextView.delegate = self
         emailToTextView.autocorrectionType = .no
         
+        subjectTextField.delegate = self
+        
         //temp =========
         emailsToArray.append("test@mega.com")
         emailsToArray.append("dima@tatarinov.com")
@@ -66,6 +70,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         self.presenter?.setupEmailFromSection(emailFromText: self.senderEmail)
         self.presenter?.setupEmailToSection(emailToText: self.emailToSting)
+        self.presenter?.setupSubject(subjectText: self.subject)
         
         self.addGesureRecognizers()        
     }
@@ -200,6 +205,23 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         return true
     }
+    
+    //MARK: - textField delegate
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        self.subject = textField.text!
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        self.subject = textField.text!
+        textField.resignFirstResponder()
+        
+        return true;
+    }
+    
+    //MARK: - other
     
     override public func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         return false //disable cut/copy

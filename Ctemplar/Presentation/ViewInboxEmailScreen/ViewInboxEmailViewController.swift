@@ -84,7 +84,7 @@ class ViewInboxEmailViewController: UIViewController {
         //temp - wait resolution about UI
         if let message = self.message {
             
-            if message.hasChildren! {
+            if message.hasChildren! { //crashed when backing from Compose Screen
                 self.presenter?.interactor?.getMessage(messageID: message.messsageID!)
             } else {
                 
@@ -108,17 +108,17 @@ class ViewInboxEmailViewController: UIViewController {
     
     @IBAction func replyButtonPressed(_ sender: AnyObject) {
         
-        self.router?.showComposeViewController(title: "reply".localized(), sender: self.senderEmail)
+        self.router?.showComposeViewController(title: "reply".localized(), sender: self.senderEmail, subject: self.headerLabel.text!)
     }
     
     @IBAction func replyAllButtonPressed(_ sender: AnyObject) {
         
-        self.router?.showComposeViewController(title: "relpyAll".localized(), sender: self.senderEmail)
+        self.router?.showComposeViewController(title: "relpyAll".localized(), sender: self.senderEmail, subject: self.headerLabel.text!)
     }
     
     @IBAction func forwardButtonPressed(_ sender: AnyObject) {
         
-        self.router?.showComposeViewController(title: "forward".localized(), sender: self.senderEmail)
+        self.router?.showComposeViewController(title: "forward".localized(), sender: self.senderEmail, subject: self.headerLabel.text!)
     }
     
     @IBAction func undoButtonPressed(_ sender: AnyObject) {
