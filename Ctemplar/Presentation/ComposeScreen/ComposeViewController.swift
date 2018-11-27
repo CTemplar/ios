@@ -26,6 +26,12 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     @IBOutlet var emailToTextView     : UITextView!
     
+    @IBOutlet var attachmentButton    : UIButton!
+    @IBOutlet var encryptedButton     : UIButton!
+    @IBOutlet var selfDestructedButton  : UIButton!
+    @IBOutlet var delayedDeliveryButton : UIButton!
+    @IBOutlet var deadManButton       : UIButton!
+    
     @IBOutlet var toViewHeightConstraint    : NSLayoutConstraint!
     
     var presenter   : ComposePresenter?
@@ -85,6 +91,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.emailToTextView.addGestureRecognizer(tapGesture)
     }
     
+    //MARK: - IBActions
+    
     @IBAction func backButtonPressed(_ sender: AnyObject) {
         
         self.navigationController?.popViewController(animated: true)
@@ -94,6 +102,26 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         //sendMail() //temp
         //publicKeyFor(userEmail: "dmitry5@dev.ctemplar.com")
+    }
+    
+    @IBAction func attachmentButtonPressed(_ sender: AnyObject) {
+        
+    }
+    
+    @IBAction func encryptedButtonPressed(_ sender: AnyObject) {
+        
+    }
+    
+    @IBAction func selfDestructedButtonPressed(_ sender: AnyObject) {
+        
+    }
+    
+    @IBAction func delayedDeliveryButtonPressed(_ sender: AnyObject) {
+        
+    }
+    
+    @IBAction func deadManButtonPressed(_ sender: AnyObject) {
+        
     }
         
     //MARK: - textView delegate

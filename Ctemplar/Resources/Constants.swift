@@ -253,6 +253,22 @@ let k_darkPlusIconImageName         = "PlusButton"
 let k_downArrowImageName            = "downArrow"
 let k_upArrowImageName              = "upArrow"
 
+let k_attachImageName               = "Attach"
+let k_attachApliedImageName         = "AttachAplied"
+
+let k_deadManImageName              = "deadMan"
+let k_deadManApliedImageName        = "deadManAplied"
+
+let k_delayedDeliveryImageName      = "delayedDelivery"
+let k_delayedDeliveryApliedImageName              = "delayedDeliveryAplied"
+
+let k_encryptImageName              = "encrypt"
+let k_encryptApliedImageName        = "encryptAplied"
+
+let k_selfDestructedImageName       = "selfDestructed"
+let k_selfDestructedApliedImageName              = "selfDestructedAplied"
+
+
 // fonts
 
 let k_latoRegularFontName = "Lato-Regular"

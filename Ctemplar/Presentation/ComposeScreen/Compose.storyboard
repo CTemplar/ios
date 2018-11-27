@@ -173,9 +173,101 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SvU-Rf-Cm0">
                                 <rect key="frame" x="0.0" y="149" width="375" height="50"/>
-                                <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zrF-Lt-kem">
+                                        <rect key="frame" x="8" y="3" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="lz3-T4-mcn"/>
+                                            <constraint firstAttribute="width" secondItem="zrF-Lt-kem" secondAttribute="height" multiplier="1:1" id="tdP-up-axa"/>
+                                        </constraints>
+                                        <state key="normal" title="A" image="Attach"/>
+                                        <connections>
+                                            <action selector="attachmentButtonPressed:" destination="Paf-AF-Vql" eventType="touchUpInside" id="8AD-n9-yV3"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfp-cE-HcJ">
+                                        <rect key="frame" x="52" y="0.0" width="113.5" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w6J-GM-YcY">
+                                                <rect key="frame" x="35" y="3" width="44" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="w6J-GM-YcY" secondAttribute="height" multiplier="1:1" id="Hzd-vP-nvY"/>
+                                                    <constraint firstAttribute="width" constant="44" id="yU0-3w-c7Y"/>
+                                                </constraints>
+                                                <state key="normal" title="E" image="encrypt"/>
+                                                <connections>
+                                                    <action selector="encryptedButtonPressed:" destination="Paf-AF-Vql" eventType="touchUpInside" id="08Z-qc-vhg"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="w6J-GM-YcY" firstAttribute="centerX" secondItem="gfp-cE-HcJ" secondAttribute="centerX" id="GLa-Yx-Sgb"/>
+                                            <constraint firstItem="w6J-GM-YcY" firstAttribute="centerY" secondItem="gfp-cE-HcJ" secondAttribute="centerY" id="z1G-c9-MaA"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sck-AS-lTR">
+                                        <rect key="frame" x="165.5" y="3" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="SHx-Rh-Omb"/>
+                                            <constraint firstAttribute="width" secondItem="sck-AS-lTR" secondAttribute="height" multiplier="1:1" id="lz4-KN-pec"/>
+                                        </constraints>
+                                        <state key="normal" title="SD" image="selfDestructed"/>
+                                        <connections>
+                                            <action selector="selfDestructedButtonPressed:" destination="Paf-AF-Vql" eventType="touchUpInside" id="3Vi-SV-pkU"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CwU-he-D7r">
+                                        <rect key="frame" x="209.5" y="0.0" width="113.5" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wnv-Br-gKa">
+                                                <rect key="frame" x="35" y="3" width="44" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="wnv-Br-gKa" secondAttribute="height" multiplier="1:1" id="AgV-c8-agp"/>
+                                                    <constraint firstAttribute="width" constant="44" id="JHd-6H-Xzr"/>
+                                                </constraints>
+                                                <state key="normal" title="DD" image="delayedDelivery"/>
+                                                <connections>
+                                                    <action selector="delayedDeliveryButtonPressed:" destination="Paf-AF-Vql" eventType="touchUpInside" id="vMo-xv-nMn"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="wnv-Br-gKa" firstAttribute="centerY" secondItem="CwU-he-D7r" secondAttribute="centerY" id="boX-QJ-WKM"/>
+                                            <constraint firstItem="wnv-Br-gKa" firstAttribute="centerX" secondItem="CwU-he-D7r" secondAttribute="centerX" id="zn5-1I-ZMk"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7U3-xX-q7Y">
+                                        <rect key="frame" x="323" y="3" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="nCV-5I-b3u"/>
+                                            <constraint firstAttribute="width" secondItem="7U3-xX-q7Y" secondAttribute="height" multiplier="1:1" id="zf6-4m-7IK"/>
+                                        </constraints>
+                                        <state key="normal" title="DM" image="deadMan"/>
+                                        <connections>
+                                            <action selector="deadManButtonPressed:" destination="Paf-AF-Vql" eventType="touchUpInside" id="iHB-cC-iXI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="sck-AS-lTR" firstAttribute="leading" secondItem="gfp-cE-HcJ" secondAttribute="trailing" id="1db-o3-0EB"/>
+                                    <constraint firstAttribute="trailing" secondItem="7U3-xX-q7Y" secondAttribute="trailing" constant="8" id="381-ed-l3J"/>
+                                    <constraint firstAttribute="bottom" secondItem="CwU-he-D7r" secondAttribute="bottom" id="4DE-h9-UMs"/>
+                                    <constraint firstItem="zrF-Lt-kem" firstAttribute="leading" secondItem="SvU-Rf-Cm0" secondAttribute="leading" constant="8" id="EdV-xt-IRp"/>
+                                    <constraint firstItem="7U3-xX-q7Y" firstAttribute="width" secondItem="7U3-xX-q7Y" secondAttribute="height" multiplier="1:1" id="N0t-g7-2Zf"/>
+                                    <constraint firstItem="sck-AS-lTR" firstAttribute="centerX" secondItem="SvU-Rf-Cm0" secondAttribute="centerX" id="NId-th-k38"/>
+                                    <constraint firstAttribute="bottom" secondItem="gfp-cE-HcJ" secondAttribute="bottom" id="NP3-sy-XJp"/>
+                                    <constraint firstItem="7U3-xX-q7Y" firstAttribute="leading" secondItem="CwU-he-D7r" secondAttribute="trailing" id="OdO-BC-iMR"/>
+                                    <constraint firstItem="zrF-Lt-kem" firstAttribute="top" secondItem="SvU-Rf-Cm0" secondAttribute="top" constant="3" id="WMk-l5-8pf"/>
+                                    <constraint firstItem="gfp-cE-HcJ" firstAttribute="top" secondItem="SvU-Rf-Cm0" secondAttribute="top" id="X5M-G9-bDW"/>
+                                    <constraint firstItem="CwU-he-D7r" firstAttribute="top" secondItem="SvU-Rf-Cm0" secondAttribute="top" id="ZmB-Z6-GQu"/>
                                     <constraint firstAttribute="height" constant="50" id="h4W-1M-hbU"/>
+                                    <constraint firstItem="gfp-cE-HcJ" firstAttribute="leading" secondItem="zrF-Lt-kem" secondAttribute="trailing" id="km3-Xv-SPY"/>
+                                    <constraint firstItem="sck-AS-lTR" firstAttribute="centerY" secondItem="SvU-Rf-Cm0" secondAttribute="centerY" id="kuY-ma-F0L"/>
+                                    <constraint firstItem="CwU-he-D7r" firstAttribute="leading" secondItem="sck-AS-lTR" secondAttribute="trailing" id="nig-84-OxM"/>
+                                    <constraint firstItem="7U3-xX-q7Y" firstAttribute="top" secondItem="SvU-Rf-Cm0" secondAttribute="top" constant="3" id="wmi-kx-VaU"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -261,11 +353,16 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="attachmentButton" destination="zrF-Lt-kem" id="lPE-RJ-6An"/>
                         <outlet property="bottomBarView" destination="mnP-Oe-gne" id="7uK-F1-3S1"/>
+                        <outlet property="deadManButton" destination="7U3-xX-q7Y" id="n99-jv-vcQ"/>
+                        <outlet property="delayedDeliveryButton" destination="wnv-Br-gKa" id="4wB-Td-n6T"/>
                         <outlet property="emailFrom" destination="lcj-LT-m7M" id="J7R-t9-V0v"/>
                         <outlet property="emailToTextView" destination="fOd-3g-3mu" id="Cka-Qe-k2A"/>
+                        <outlet property="encryptedButton" destination="w6J-GM-YcY" id="hzN-1G-inK"/>
                         <outlet property="fromView" destination="HDc-VP-u4e" id="NXG-g5-Vmo"/>
                         <outlet property="messageTextView" destination="v4G-Sq-GK2" id="ccT-mo-A2A"/>
+                        <outlet property="selfDestructedButton" destination="sck-AS-lTR" id="KBg-aS-4vE"/>
                         <outlet property="subjectTextField" destination="MBF-I2-36Z" id="6KP-KW-D84"/>
                         <outlet property="subjectView" destination="JlZ-Fv-gSA" id="Drc-GR-uOC"/>
                         <outlet property="toView" destination="o09-Ex-Zdt" id="0Dx-MK-5y8"/>
@@ -279,9 +376,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Attach" width="44" height="44"/>
         <image name="BackArrowDark" width="11" height="20"/>
         <image name="SendButton" width="22" height="18"/>
+        <image name="deadMan" width="44" height="44"/>
+        <image name="delayedDelivery" width="44" height="44"/>
         <image name="downArrow" width="29" height="29"/>
+        <image name="encrypt" width="44" height="44"/>
         <image name="redPlus" width="18" height="18"/>
+        <image name="selfDestructed" width="44" height="44"/>
     </resources>
 </document>
