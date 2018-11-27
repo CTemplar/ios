@@ -102,6 +102,9 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             _ = attributedString.setForgroundColor(textToFind: email, color: k_emailToInputColor)
         }
         
+        //let attachment = NSTextAttachment()
+    
+        
         if tapSelectedEmail.count > 0 {
             _ = attributedString.setBackgroundColor(textToFind: tapSelectedEmail, color: k_foundTextBackgroundColor)
         }
@@ -220,6 +223,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
                     }
                 }
             }
+        } else {
+            if self.tapSelectedEmail.count > 0 {
+                return false //disable edit if Email selected, only delete by Backspace
+            }
         }
         
         self.spacePressed(input: text)
@@ -245,7 +252,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     func setCursorPositionToEnd(textView: UITextView) {
         
-        //print("set cursor:", textView.text.count)
+        print("set cursor:", textView.text.count)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(10), execute: {
             textView.selectedRange = NSRange(location: textView.text.count, length: 0)
@@ -317,7 +324,11 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         if let selectedEmail = getWordAtPosition(point, textView: emailToTextView) {
             print("tap selectedEmail:", selectedEmail)
             self.tapSelectedEmail = selectedEmail
-            self.setupEmailToViewText(emailToText: self.emailToSting)
+            //self.setupEmailToViewText(emailToText: self.emailToSting)
+            self.setupEmailToSection(emailToText: self.emailToSting)
+        } else {
+            self.tapSelectedEmail = ""
+            self.setupEmailToSection(emailToText: self.emailToSting)
         }
     }
     
@@ -428,7 +439,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @objc func tappedViewAction(sender : UITapGestureRecognizer) {
         
         self.tapSelectedEmail = ""
-        self.setupEmailToViewText(emailToText: self.emailToSting)
+        //self.setupEmailToViewText(emailToText: self.emailToSting)
+        self.setupEmailToSection(emailToText: self.emailToSting)
         view.endEditing(true)
     }
     
