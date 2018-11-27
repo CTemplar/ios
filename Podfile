@@ -14,6 +14,8 @@ target 'Ctemplar' do
 	pod "BCryptSwift"
 	pod 'SideMenu', '~> 4.0.0'
 	pod 'MGSwipeTableCell'
+	pod 'Fabric'
+	pod 'Crashlytics'
     
     post_install do |installer|
         installer.pods_project.targets.each do |target|

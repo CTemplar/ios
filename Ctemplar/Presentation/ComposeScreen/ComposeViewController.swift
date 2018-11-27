@@ -25,6 +25,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     @IBOutlet var toViewHeightConstraint    : NSLayoutConstraint!
     
+    var presenter   : ComposePresenter?
+    var router      : ComposeRouter?
+    var dataSource  : ComposeDataSource?
+    
     var navBarTitle: String? = ""
     
     var emailsToArray = Array<String>()
@@ -36,6 +40,9 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let configurator = ComposeConfigurator()
+        configurator.configure(viewController: self)
         
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         self.navigationItem.title = navBarTitle
