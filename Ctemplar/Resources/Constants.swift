@@ -211,6 +211,8 @@ let k_witeMoveToImageName           = "whiteMoveTo"
 
 let k_starOnImageName               = "StarOn"
 let k_starOffImageName              = "StarOff"
+let k_starOnBigImageName            = "StarOnBig"
+let k_starOffBigImageName           = "StarOffBig"
 let k_secureOnImageName             = "SecureOn"
 let k_secureOffImageName            = "SecureOff"
 

@@ -177,9 +177,9 @@ class ViewInboxEmailPresenter {
     func setupStarredButton(starred: Bool) {
         
         if starred {
-            self.viewController?.starredButton.setImage(UIImage(named: k_starOnImageName), for: .normal)
+            self.viewController?.starredButton.setImage(UIImage(named: k_starOnBigImageName), for: .normal)
         } else {
-            self.viewController?.starredButton.setImage(UIImage(named: k_starOffImageName), for: .normal)
+            self.viewController?.starredButton.setImage(UIImage(named: k_starOffBigImageName), for: .normal)
         }
     }
     
