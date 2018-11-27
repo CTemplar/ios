@@ -196,6 +196,21 @@ class ViewInboxEmailPresenter {
         }
     }
     
+    func checkMessaseReadStatus(message: EmailMessage) {
+        
+        if let read = message.read {
+            
+            if read == false {
+                self.setMessageAsRead()
+            }
+        }
+    }
+    
+    func setMessageAsRead() {
+        
+        self.interactor?.markMessageAsRead(message: (self.viewController?.message)!, asRead: true, withUndo: "")
+    }
+    
     //MARK: - NavBar Actions
     
     @objc func garbageButtonPresed() {
