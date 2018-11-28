@@ -168,8 +168,7 @@ class ComposeInteractor {
                     
                     print("removed Word:", editingWord)
                     self.viewController!.ccToArray.removeAll{ $0 == editingWord }
-                    print("ccToArray count:", self.viewController!.ccToArray.count)
-                    
+                    print("ccToArray count:", self.viewController!.ccToArray.count)                    
                 }
             }
         } else {
@@ -227,7 +226,6 @@ class ComposeInteractor {
                     print("removed Word:", editingWord)
                     self.viewController!.bccToArray.removeAll{ $0 == editingWord }
                     print("bccToArray count:", self.viewController!.bccToArray.count)
-                    
                 }
             }
         } else {

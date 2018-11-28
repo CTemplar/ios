@@ -95,3 +95,4 @@
 "emailToPrefix" = "To: ";
 "ccToPrefix" = "Cc: ";
 "bccToPrefix" = "Bcc: ";
+"composeEmail" = "Compose email";

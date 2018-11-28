@@ -68,6 +68,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var tapSelectedCcEmail  : String = ""
     var tapSelectedBccEmail : String = ""
     
+    var messageAttributedText : NSAttributedString = NSAttributedString(string: "")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -89,9 +91,12 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         subjectTextField.delegate = self
         
+        messageTextView.delegate = self
+        
         ccToSubSectionView.isHidden = true
         bccToSubSectionView.isHidden = true
         
+        /*
         //temp =========
         emailsToArray.append("test@mega.com")
         emailsToArray.append("dima@tatarinov.com")
@@ -116,11 +121,18 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             self.bccToSting = self.bccToSting + email + " "
         }
         //========
-        
+        */
         
         self.presenter?.setupEmailFromSection(emailFromText: self.senderEmail)
         self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
         self.presenter?.setupSubject(subjectText: self.subject)
+        
+        //temp
+        if self.messageTextView.text.count == 0 {
+            self.messageTextView.font = UIFont(name: k_latoRegularFontName, size: 14.0)
+            self.messageTextView.text = "composeEmail".localized()
+            self.messageTextView.textColor = UIColor.lightGray
+        }
         
         self.addGesureRecognizers()        
     }
@@ -187,24 +199,16 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     func textViewDidBeginEditing(_ textView: UITextView) {
         
         print("textViewDidBeginEditing")
+        
+        if self.messageTextView.textColor == UIColor.lightGray {
+            self.messageTextView.text = nil
+            self.messageTextView.textColor = UIColor.black
+        }
     }
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        
-        //self.setCursorPositionToEnd(textView: textView)
+  
         print("textViewShouldBeginEditing")
-        /*
-        if textView == self.emailToTextView {
-            if self.getCursorPosition(textView: textView) < "emailToPrefix".localized().count {
-                self.setCursorPositionToEnd(textView: textView)
-            }
-            
-            if let selectedEmail = self.getCurrentEditingWord(textView: textView) {
-                print("selectedEmail", selectedEmail)
-                self.tapSelectedEmail = selectedEmail
-                self.setupEmailToViewText(emailToText: self.emailToSting)
-            }
-        }*/
         
         return true
     }
@@ -212,6 +216,11 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     func textViewDidEndEditing(_ textView: UITextView) {
         
         print("textViewDidEndEditing")
+        
+        if self.messageTextView.text.isEmpty {
+            self.messageTextView.text = "composeEmail".localized()
+            self.messageTextView.textColor = UIColor.lightGray
+        }
         
         self.tapSelectedEmail = ""
         self.tapSelectedCcEmail = ""
@@ -232,6 +241,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: textView.text, bccToText: self.bccToSting)
         case self.bccToTextView:
             self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: textView.text)
+        case self.messageTextView:
+             self.messageAttributedText = self.messageTextView.attributedText
         default:
             break
         }
