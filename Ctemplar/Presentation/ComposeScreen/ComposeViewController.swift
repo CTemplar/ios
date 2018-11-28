@@ -25,6 +25,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet var messageTextView     : UITextView!
     
     @IBOutlet var emailToTextView     : UITextView!
+    @IBOutlet var ccToTextView        : UITextView!
+    @IBOutlet var bccToTextView       : UITextView!
     
     @IBOutlet var expandButton        : UIButton!
     
@@ -38,6 +40,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet var toViewSubsectionHeightConstraint       : NSLayoutConstraint!
     @IBOutlet var ccViewSubsectionHeightConstraint       : NSLayoutConstraint!
     @IBOutlet var bccViewSubsectionHeightConstraint      : NSLayoutConstraint!
+    
+    var expandedSectionHeight: CGFloat = 0.0
     
     var presenter   : ComposePresenter?
     var interactor  : ComposeInteractor?
@@ -105,7 +109,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     @IBAction func expandButtonPressed(_ sender: AnyObject) {
         
-   
+        self.presenter?.expandButtonPressed()
     }
     
     

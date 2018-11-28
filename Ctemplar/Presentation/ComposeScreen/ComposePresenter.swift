@@ -83,8 +83,7 @@ class ComposePresenter {
         
         self.viewController!.toViewSubsectionHeightConstraint.constant = emailToViewHeight + k_emailToTextViewTopOffset + k_emailToTextViewTopOffset
         
-        self.viewController!.toViewSectionHeightConstraint.constant = self.viewController!.toViewSubsectionHeightConstraint.constant
-        //emailToViewHeight + k_emailToTextViewTopOffset + k_emailToTextViewTopOffset
+        self.viewController!.toViewSectionHeightConstraint.constant = self.viewController!.toViewSubsectionHeightConstraint.constant + self.viewController!.expandedSectionHeight
         
     }
     
@@ -97,5 +96,16 @@ class ComposePresenter {
         }
         
         self.viewController!.subjectTextField.text = subject
+    }
+    
+    func expandButtonPressed() {
+        
+        if self.viewController!.expandedSectionHeight == 0 {
+            self.viewController!.expandedSectionHeight = self.viewController!.ccViewSubsectionHeightConstraint.constant //+ self.viewController!.bccViewSubsectionHeightConstraint.constant
+        } else {
+            self.viewController!.expandedSectionHeight = 0
+        }
+        
+        self.setupEmailToSection(emailToText: self.viewController!.emailToSting)
     }
 }
