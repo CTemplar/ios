@@ -88,3 +88,5 @@
 
 "emailFromPrefix" = "From: ";
 "emailToPrefix" = "To: ";
+"ccToPrefix" = "Cc: ";
+"bccToPrefix" = "Bcc: ";

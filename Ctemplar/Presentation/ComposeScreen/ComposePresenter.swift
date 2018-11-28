@@ -14,6 +14,8 @@ class ComposePresenter {
     var viewController   : ComposeViewController?
     var interactor       : ComposeInteractor?
     
+    //MARK: - Setup Email From Section
+    
     func setupEmailFromSection(emailFromText: String) {
         
         let emailFromString = "emailFromPrefix".localized() + emailFromText
@@ -30,6 +32,8 @@ class ComposePresenter {
         
         self.viewController?.emailFrom.attributedText = attributedString
     }
+    
+    //MARK: - Setup Email To Subsection
     
     func setupEmailToViewText(emailToText: String) {
         
@@ -73,19 +77,145 @@ class ComposePresenter {
         return self.viewController!.emailToTextView.frame.height
     }
     
-    func setupEmailToSection(emailToText: String) {
+    func expandButtonPressed() {
         
-        //self.emailToTextView.backgroundColor = UIColor.yellow//debug
+        var expandButtonImage = UIImage()
+        
+        if self.viewController!.expandedSectionHeight == 0 {
+            self.viewController!.expandedSectionHeight = self.viewController!.ccViewSubsectionHeightConstraint.constant + self.viewController!.bccViewSubsectionHeightConstraint.constant
+
+            self.viewController!.ccToSubSectionView.isHidden = false
+            self.viewController!.bccToSubSectionView.isHidden = false
+            
+            expandButtonImage = UIImage(named: k_redMinusBigIconImageName)!
+        } else {
+            self.viewController!.ccToSubSectionView.isHidden = true
+            self.viewController!.bccToSubSectionView.isHidden = true
+            self.viewController!.expandedSectionHeight = 0
+            
+            expandButtonImage = UIImage(named: k_darkPlusBigIconImageName)!
+        }
+        
+        self.viewController!.expandButton .setImage(expandButtonImage, for: .normal)
+        
+        self.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
+    }
+    
+    //MARK: - Setup Cc To Subsection
+    
+    func setupCcToViewText(ccToText: String) {
+        
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = CGFloat(k_lineSpaceSizeForFromToText)
+        
+        let font : UIFont = UIFont(name: k_latoRegularFontName, size: 14.0)!
+        
+        let attributedString = NSMutableAttributedString(string: ccToText, attributes: [
+            .font: font,
+            .foregroundColor: k_emailToColor,//k_actionMessageColor,
+            .kern: 0.0,
+            .paragraphStyle: style
+            ])
+        
+        for email in self.viewController!.ccToArray {
+            _ = attributedString.setBackgroundColor(textToFind: email, color: k_mainInboxColor)
+            _ = attributedString.setForgroundColor(textToFind: email, color: k_emailToInputColor)
+        }
+        
+        if self.viewController!.tapSelectedCcEmail.count > 0 {
+            _ = attributedString.setBackgroundColor(textToFind: self.viewController!.tapSelectedCcEmail, color: k_foundTextBackgroundColor)
+        }
+        
+        self.viewController!.ccToTextView.attributedText = attributedString
+    }
+    
+    func setupCcToViewSize() -> CGFloat {
+        
+        let fixedWidth = self.viewController!.view.frame.width - k_emailToTextViewLeftOffset - k_emailToTextViewLeftOffset
+        
+        self.viewController!.ccToTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        let newEmailToTextViewSize = self.viewController!.ccToTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        var newEmailToTextViewFrame = self.viewController!.ccToTextView.frame
+        newEmailToTextViewFrame.size = CGSize(width: max(newEmailToTextViewSize.width, fixedWidth), height: newEmailToTextViewSize.height)
+        self.viewController!.ccToTextView.frame = newEmailToTextViewFrame;
+        
+        return self.viewController!.ccToTextView.frame.height
+    }
+    
+    //MARK: - Setup Bcc To Subsection
+    
+    func setupBccToViewText(bccToText: String) {
+        
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = CGFloat(k_lineSpaceSizeForFromToText)
+        
+        let font : UIFont = UIFont(name: k_latoRegularFontName, size: 14.0)!
+        
+        let attributedString = NSMutableAttributedString(string: bccToText, attributes: [
+            .font: font,
+            .foregroundColor: k_emailToColor,//k_actionMessageColor,
+            .kern: 0.0,
+            .paragraphStyle: style
+            ])
+        
+        for email in self.viewController!.bccToArray {
+            _ = attributedString.setBackgroundColor(textToFind: email, color: k_mainInboxColor)
+            _ = attributedString.setForgroundColor(textToFind: email, color: k_emailToInputColor)
+        }
+        
+        if self.viewController!.tapSelectedBccEmail.count > 0 {
+            _ = attributedString.setBackgroundColor(textToFind: self.viewController!.tapSelectedBccEmail, color: k_foundTextBackgroundColor)
+        }
+        
+        self.viewController!.bccToTextView.attributedText = attributedString
+    }
+    
+    func setupBccToViewSize() -> CGFloat {
+        
+        let fixedWidth = self.viewController!.view.frame.width - k_emailToTextViewLeftOffset - k_emailToTextViewLeftOffset
+        
+        self.viewController!.bccToTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        let newEmailToTextViewSize = self.viewController!.bccToTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        var newEmailToTextViewFrame = self.viewController!.bccToTextView.frame
+        newEmailToTextViewFrame.size = CGSize(width: max(newEmailToTextViewSize.width, fixedWidth), height: newEmailToTextViewSize.height)
+        self.viewController!.bccToTextView.frame = newEmailToTextViewFrame;
+        
+        return self.viewController!.bccToTextView.frame.height
+    }
+    
+    //MARK: - Setup Email To Section
+    
+    func setupEmailToSection(emailToText: String, ccToText: String, bccToText: String) {
+        
+        //self.viewController!.backgroundColor = UIColor.yellow//debug
+        //self.viewController!.ccToTextView.backgroundColor = UIColor.yellow
+        //self.viewController!.bccToTextView.backgroundColor = UIColor.yellow
         
         self.setupEmailToViewText(emailToText: emailToText)
-        
         let emailToViewHeight = self.setupEmailToViewSize()
         
         self.viewController!.toViewSubsectionHeightConstraint.constant = emailToViewHeight + k_emailToTextViewTopOffset + k_emailToTextViewTopOffset
         
+        self.setupCcToViewText(ccToText: ccToText)
+        let ccToViewHeight = self.setupCcToViewSize()
+        
+        self.viewController!.ccViewSubsectionHeightConstraint.constant = ccToViewHeight + k_emailToTextViewTopOffset + k_emailToTextViewTopOffset
+        
+        self.setupBccToViewText(bccToText: bccToText)
+        let bccToViewHeight = self.setupBccToViewSize()
+        
+        self.viewController!.bccViewSubsectionHeightConstraint.constant = bccToViewHeight + k_emailToTextViewTopOffset + k_emailToTextViewTopOffset
+        
+        if self.viewController!.expandedSectionHeight != 0 {
+        
+            self.viewController!.expandedSectionHeight =  self.viewController!.ccViewSubsectionHeightConstraint.constant +  self.viewController!.bccViewSubsectionHeightConstraint.constant
+        }
+        
         self.viewController!.toViewSectionHeightConstraint.constant = self.viewController!.toViewSubsectionHeightConstraint.constant + self.viewController!.expandedSectionHeight
         
     }
+    
+    //MARK: - Setup Subject Section
     
     func setupSubject(subjectText: String) {
         
@@ -96,16 +226,5 @@ class ComposePresenter {
         }
         
         self.viewController!.subjectTextField.text = subject
-    }
-    
-    func expandButtonPressed() {
-        
-        if self.viewController!.expandedSectionHeight == 0 {
-            self.viewController!.expandedSectionHeight = self.viewController!.ccViewSubsectionHeightConstraint.constant //+ self.viewController!.bccViewSubsectionHeightConstraint.constant
-        } else {
-            self.viewController!.expandedSectionHeight = 0
-        }
-        
-        self.setupEmailToSection(emailToText: self.viewController!.emailToSting)
     }
 }

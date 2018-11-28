@@ -179,16 +179,57 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dHS-5H-Asp">
+                                        <rect key="frame" x="0.0" y="87" width="375" height="45"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3bd-UD-qSZ">
+                                                <rect key="frame" x="15" y="8" width="345" height="28"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Bcc:">
+                                                        <attributes>
+                                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                            <font key="NSFont" metaFont="system" size="14"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Paf-AF-Vql" id="OJ1-cY-dND"/>
+                                                </connections>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="ty1-0H-OkN"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="8q3-3o-rcs" firstAttribute="leading" secondItem="o09-Ex-Zdt" secondAttribute="leading" id="62H-tJ-3nZ"/>
+                                    <constraint firstItem="dHS-5H-Asp" firstAttribute="leading" secondItem="o09-Ex-Zdt" secondAttribute="leading" id="7dn-qu-alc"/>
                                     <constraint firstItem="BsK-Bo-ihc" firstAttribute="top" secondItem="o09-Ex-Zdt" secondAttribute="top" id="IA8-Si-EtC"/>
+                                    <constraint firstAttribute="trailing" secondItem="dHS-5H-Asp" secondAttribute="trailing" id="VpF-BD-Mw3"/>
                                     <constraint firstAttribute="trailing" secondItem="8q3-3o-rcs" secondAttribute="trailing" id="cBb-TL-fLq"/>
                                     <constraint firstItem="BsK-Bo-ihc" firstAttribute="leading" secondItem="o09-Ex-Zdt" secondAttribute="leading" id="cEP-Sr-kDH"/>
                                     <constraint firstAttribute="height" constant="132" id="lOT-Tm-3c1"/>
                                     <constraint firstAttribute="trailing" secondItem="BsK-Bo-ihc" secondAttribute="trailing" id="t5w-et-lBI"/>
                                     <constraint firstItem="8q3-3o-rcs" firstAttribute="top" secondItem="BsK-Bo-ihc" secondAttribute="bottom" constant="-1" id="u3Y-MJ-17x"/>
+                                    <constraint firstItem="dHS-5H-Asp" firstAttribute="top" secondItem="8q3-3o-rcs" secondAttribute="bottom" constant="-1" id="xW5-W9-Utz"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -203,7 +244,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JlZ-Fv-gSA">
-                                <rect key="frame" x="0.0" y="194" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="192" width="375" height="44"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Subject" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="MBF-I2-36Z">
                                         <rect key="frame" x="16" y="14" width="343" height="16"/>
@@ -238,7 +279,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SvU-Rf-Cm0">
-                                <rect key="frame" x="0.0" y="237" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="235" width="375" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zrF-Lt-kem">
                                         <rect key="frame" x="8" y="3" width="44" height="44"/>
@@ -348,7 +389,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4G-Sq-GK2">
-                                <rect key="frame" x="16" y="297" width="343" height="370"/>
+                                <rect key="frame" x="16" y="295" width="343" height="372"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <attributedString key="attributedText">
                                     <fragment>
@@ -382,7 +423,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="JlZ-Fv-gSA" firstAttribute="top" secondItem="o09-Ex-Zdt" secondAttribute="bottom" constant="-1" id="2bZ-nC-Nip"/>
+                            <constraint firstItem="JlZ-Fv-gSA" firstAttribute="top" secondItem="o09-Ex-Zdt" secondAttribute="bottom" constant="-3" id="2bZ-nC-Nip"/>
                             <constraint firstItem="SvU-Rf-Cm0" firstAttribute="trailing" secondItem="0Fb-Xb-J8e" secondAttribute="trailing" id="BJc-Od-JUW"/>
                             <constraint firstItem="mnP-Oe-gne" firstAttribute="leading" secondItem="0Fb-Xb-J8e" secondAttribute="leading" id="GjR-KG-ThB"/>
                             <constraint firstItem="o09-Ex-Zdt" firstAttribute="trailing" secondItem="0Fb-Xb-J8e" secondAttribute="trailing" id="IpJ-eC-IT8"/>
@@ -420,7 +461,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="attachmentButton" destination="zrF-Lt-kem" id="lPE-RJ-6An"/>
+                        <outlet property="bccToSubSectionView" destination="dHS-5H-Asp" id="lFO-ez-ovI"/>
+                        <outlet property="bccToTextView" destination="3bd-UD-qSZ" id="Uge-cn-rvS"/>
+                        <outlet property="bccViewSubsectionHeightConstraint" destination="ty1-0H-OkN" id="2Dr-rl-w4W"/>
                         <outlet property="bottomBarView" destination="mnP-Oe-gne" id="7uK-F1-3S1"/>
+                        <outlet property="ccToSubSectionView" destination="8q3-3o-rcs" id="Oyd-c8-4N7"/>
                         <outlet property="ccToTextView" destination="B63-yb-luf" id="5d9-Ms-9bs"/>
                         <outlet property="ccViewSubsectionHeightConstraint" destination="v49-If-loW" id="ib2-hI-X4k"/>
                         <outlet property="deadManButton" destination="7U3-xX-q7Y" id="n99-jv-vcQ"/>

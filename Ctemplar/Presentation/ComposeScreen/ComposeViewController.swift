@@ -15,6 +15,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     @IBOutlet var fromView            : UIView!
     @IBOutlet var emailToSectionView  : UIView!
+    @IBOutlet var ccToSubSectionView  : UIView!
+    @IBOutlet var bccToSubSectionView : UIView!
     @IBOutlet var subjectView         : UIView!
     @IBOutlet var toolBarView         : UIView!
     @IBOutlet var bottomBarView       : UIView!
@@ -53,10 +55,18 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var subject    : String = ""
     
     var emailsToArray = Array<String>()
-    var emailToAttributtedSting : NSAttributedString!
+    //var emailToAttributtedSting : NSAttributedString!
     var emailToSting : String = "emailToPrefix".localized()
     
-    var tapSelectedEmail : String = ""
+    var ccToArray = Array<String>()
+    var ccToSting : String = "ccToPrefix".localized()
+    
+    var bccToArray = Array<String>()
+    var bccToSting : String = "bccToPrefix".localized()
+    
+    var tapSelectedEmail    : String = ""
+    var tapSelectedCcEmail  : String = ""
+    var tapSelectedBccEmail : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +81,16 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         emailToTextView.delegate = self
         emailToTextView.autocorrectionType = .no
         
+        ccToTextView.delegate = self
+        ccToTextView.autocorrectionType = .no
+        
+        bccToTextView.delegate = self
+        bccToTextView.autocorrectionType = .no        
+        
         subjectTextField.delegate = self
+        
+        ccToSubSectionView.isHidden = true
+        bccToSubSectionView.isHidden = true
         
         //temp =========
         emailsToArray.append("test@mega.com")
@@ -80,11 +99,14 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         for email in emailsToArray {
             self.emailToSting = self.emailToSting + email + " "
         }
+        
+        self.ccToSting = self.ccToSting  + "test@mega.com" + " " + "dima@tatarinov.com" + " " + "hulygun@mail.net"
+        self.bccToSting = self.bccToSting  + "testX@mega.com" + " " + "dmitry@tatarinov.com" + " " + "hulygunHyper@mail.net"
         //========
         
         
         self.presenter?.setupEmailFromSection(emailFromText: self.senderEmail)
-        self.presenter?.setupEmailToSection(emailToText: self.emailToSting)
+        self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
         self.presenter?.setupSubject(subjectText: self.subject)
         
         self.addGesureRecognizers()        
@@ -172,7 +194,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         //self.setCursorPositionToEnd(textView: textView)
         
         if textView == self.emailToTextView {
-            self.presenter?.setupEmailToSection(emailToText: textView.text)
+            self.presenter?.setupEmailToSection(emailToText: textView.text, ccToText: self.ccToSting, bccToText: self.bccToSting)
             //print("textView text:", textView.text)
         }
     }
@@ -206,7 +228,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
                 print("inputEmail:", inputEmail as Any)
                 self.emailsToArray.append(inputEmail!)
                 self.emailToSting = textView.text + " "
-                self.presenter?.setupEmailToSection(emailToText: self.emailToSting)
+                self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
             }
             
             self.interactor?.setCursorPositionToEnd(textView: textView)
@@ -224,7 +246,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
                     self.emailToSting = self.emailToSting.replacingOccurrences(of: self.tapSelectedEmail, with: "")
                     self.tapSelectedEmail = ""
                     
-                    self.presenter?.setupEmailToSection(emailToText: self.emailToSting)
+                    self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
                     view.endEditing(true)
                 }
             } else {
@@ -277,17 +299,17 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         if let selectedEmail = self.interactor?.getWordAtPosition(point, textView: emailToTextView) {
             print("tap selectedEmail:", selectedEmail)
             self.tapSelectedEmail = selectedEmail
-            self.presenter?.setupEmailToSection(emailToText: self.emailToSting)
+            self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
         } else {
             self.tapSelectedEmail = ""
-            self.presenter?.setupEmailToSection(emailToText: self.emailToSting)
+            self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
         }
     }
     
     @objc func tappedViewAction(sender : UITapGestureRecognizer) {
         
         self.tapSelectedEmail = ""
-        self.presenter?.setupEmailToSection(emailToText: self.emailToSting)
+        self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
         view.endEditing(true)
     }
     
