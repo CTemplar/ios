@@ -80,11 +80,9 @@ class ComposeInteractor {
         if self.returnPressed(input: text) {
            
             let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "emailToPrefix".localized())
-            let emailsDroppedPrefixText = self.dropPrefix(text: self.viewController!.emailToSting, prefix: "emailToPrefix".localized())
-            let inputEmail = self.getLastInputEmail(input: inputDroppedPrefixText, prevText: emailsDroppedPrefixText)
-            //print("textView.text:", textView.text)
-            //print("self.emailToSting:", self.emailToSting)
+            let inputEmail = self.getLastInputEmail(input: inputDroppedPrefixText)  
             print("inputEmail:", inputEmail as Any)
+ 
             self.viewController!.emailsToArray.append(inputEmail)
             self.viewController!.emailToSting = textView.text + " "
             self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
@@ -112,7 +110,7 @@ class ComposeInteractor {
                 if let editingWord = self.getLastWord(textView: textView) {
                     
                     if textView == self.viewController!.emailToTextView {
-                        print("editingWord:", editingWord)
+                        print("removed Word:", editingWord)
                         self.viewController!.emailsToArray.removeAll{ $0 == editingWord }
                         print("self.emailsToArray.count:", self.viewController!.emailsToArray.count)
                     }
@@ -189,6 +187,17 @@ class ComposeInteractor {
         }
     }
     
+    func getLastInputEmail(input: String) -> String {
+        
+        let substrings = input.split(separator: " ")
+        
+        if let sub = substrings.last {
+            return String(sub)
+        }
+        
+        return ""
+    }
+    
     func getLastInputEmail(input: String, prevText: String) -> String {
         
         guard input.hasPrefix(prevText) else { return input }
@@ -202,7 +211,6 @@ class ComposeInteractor {
         
         return String(text.dropFirst(prefix.count))
     }
-    
     
     func checkEnteredEmailsValidation() {
         

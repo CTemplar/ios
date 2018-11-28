@@ -193,7 +193,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         //self.setCursorPositionToEnd(textView: textView)
         
-        print("textView text:", textView.text)
+        print("textViewDidChange text:", textView.text)
         
         switch textView {
         case self.emailToTextView:
@@ -222,75 +222,6 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             break
         }
         
-        
-        /*
-        //print("range location:", range.location, "length:", range.length)
-        
-        //forbid to delete Prefix "
-        if (self.interactor?.forbidDeletion(range: range))! {
-            return false
-        }
-        
-        if textView == self.emailToTextView {
-            
-            if (self.interactor?.getCursorPosition(textView: textView))! < "emailToPrefix".localized().count {
-                self.interactor?.setCursorPositionToEnd(textView: textView)
-                return false
-            }
-        }
-        
-        if (self.interactor?.returnPressed(input: text))! {
-            //print("range location:", range.location, "length:", range.length)
-            
-            if textView == self.emailToTextView {
-                let inputDroppedPrefixText = self.interactor?.dropPrefix(text: textView.text, prefix: "emailToPrefix".localized())
-                let emailsDroppedPrefixText = self.interactor?.dropPrefix(text: self.emailToSting, prefix: "emailToPrefix".localized())
-                let inputEmail = self.interactor?.getLastInputEmail(input: inputDroppedPrefixText!, prevText: emailsDroppedPrefixText!)
-                //print("textView.text:", textView.text)
-                //print("self.emailToSting:", self.emailToSting)
-                print("inputEmail:", inputEmail as Any)
-                self.emailsToArray.append(inputEmail!)
-                self.emailToSting = textView.text + " "
-                self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
-            }
-            
-            self.interactor?.setCursorPositionToEnd(textView: textView)
-            
-            return false
-        }
-        
-        if (self.interactor?.backspacePressed(input: text, range: range))! {
-            
-            if self.tapSelectedEmail.count > 0 {
-                if textView == self.emailToTextView {
-                    self.emailsToArray.removeAll{ $0 == self.tapSelectedEmail }
-                    print("self.emailsToArray.count:", self.emailsToArray.count)
-                    
-                    self.emailToSting = self.emailToSting.replacingOccurrences(of: self.tapSelectedEmail, with: "")
-                    self.tapSelectedEmail = ""
-                    
-                    self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
-                    view.endEditing(true)
-                }
-            } else {
-            
-                if let editingWord = self.interactor?.getLastWord(textView: textView) {
-
-                    if textView == self.emailToTextView {
-                        print("editingWord:", editingWord)
-                        self.emailsToArray.removeAll{ $0 == editingWord }
-                        print("self.emailsToArray.count:", self.emailsToArray.count)
-                    }
-                }
-            }
-        } else {
-            if self.tapSelectedEmail.count > 0 {
-                return false //disable edit if Email selected, only delete by Backspace
-            }
-        }
-        
-        self.interactor?.spacePressed(input: text)
-        */
         return true
     }
     
