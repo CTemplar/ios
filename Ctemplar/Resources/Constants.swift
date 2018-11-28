@@ -123,6 +123,12 @@ let k_greenColor : UIColor = UIColor(red: 0.0 / 255.0, green: 116.0 / 255.0, blu
 
 let k_blueColor : UIColor = UIColor(red: 52.0 / 255.0, green: 152.0 / 255.0, blue: 219.0 / 255.0, alpha: 1.0)
 
+let k_docColor : UIColor = UIColor(red: 0.0 / 255.0, green: 150.0 / 255.0, blue: 230.0 / 255.0, alpha: 1.0)
+let k_pdfColor : UIColor = UIColor(red: 204.0 / 255.0, green: 75.0 / 255.0, blue: 76.0 / 255.0, alpha: 1.0)
+let k_pngColor : UIColor = UIColor(red: 101.0 / 255.0, green: 156.0 / 255.0, blue: 53.0 / 255.0, alpha: 1.0)
+let k_jpgColor : UIColor = UIColor(red: 19.0 / 255.0, green: 160.0 / 255.0, blue: 133.0 / 255.0, alpha: 1.0)
+let k_otherColor : UIColor = UIColor(red: 148.0 / 255.0, green: 165.0 / 255.0, blue: 165.0 / 255.0, alpha: 1.0)
+
 //size constants
 
 let k_pageControlBottomOffset           = 30.0
@@ -218,6 +224,8 @@ let k_witeMoveToImageName           = "whiteMoveTo"
 
 let k_starOnImageName               = "StarOn"
 let k_starOffImageName              = "StarOff"
+let k_starOnBigImageName            = "StarOnBig"
+let k_starOffBigImageName           = "StarOffBig"
 let k_secureOnImageName             = "SecureOn"
 let k_secureOffImageName            = "SecureOff"
 
@@ -248,7 +256,10 @@ let k_redCheckIconImageName         = "redCheck"
 let k_emptyInboxIconImageName         = "EmptyInboxIcon"
 let k_emptyFilterInboxIconImageName   = "EmptyFilterInboxIcon"
 
-let k_darkPlusIconImageName         = "PlusButton"
+let k_plusButtonIconImageName       = "PlusButton"
+
+let k_darkPlusIconImageName          = "DarkPlus"
+let k_redMinusIconImageName         = "RedMinus"
 
 let k_downArrowImageName            = "downArrow"
 let k_upArrowImageName              = "upArrow"
@@ -394,3 +405,12 @@ enum ActionsIndex: Int, CaseIterable {
     case delete           = 8
     case noAction         = 9
 }
+
+enum DocumentsExtension: String, CaseIterable {
+    
+    case doc       = "doc"
+    case pdf       = "pdf"
+    case png       = "png"
+    case jpg       = "jpg"
+}
+

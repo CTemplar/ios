@@ -137,7 +137,7 @@ class ContactsPresenter {
         self.viewController?.leftBarButtonItem.image = UIImage(named: k_menuImageName)
         self.viewController?.leftBarButtonItem.isEnabled = true
         
-        self.viewController?.rightBarButtonItem.image = UIImage(named: k_darkPlusIconImageName)
+        self.viewController?.rightBarButtonItem.image = UIImage(named: k_plusButtonIconImageName)
         self.viewController?.rightBarButtonItem.title = nil
         
         self.setupNavigationItemTitle(selectedContacts: 0, selectionMode: false)

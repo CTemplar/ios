@@ -177,9 +177,9 @@ class ViewInboxEmailPresenter {
     func setupStarredButton(starred: Bool) {
         
         if starred {
-            self.viewController?.starredButton.setImage(UIImage(named: k_starOnImageName), for: .normal)
+            self.viewController?.starredButton.setImage(UIImage(named: k_starOnBigImageName), for: .normal)
         } else {
-            self.viewController?.starredButton.setImage(UIImage(named: k_starOffImageName), for: .normal)
+            self.viewController?.starredButton.setImage(UIImage(named: k_starOffBigImageName), for: .normal)
         }
     }
     
@@ -194,6 +194,21 @@ class ViewInboxEmailPresenter {
         } else {
             self.viewController?.headerLabelWidthConstraint.constant = (self.viewController?.view.frame.width)! - k_rightOffsetForSubjectLabel
         }
+    }
+    
+    func checkMessaseReadStatus(message: EmailMessage) {
+        
+        if let read = message.read {
+            
+            if read == false {
+                self.setMessageAsRead()
+            }
+        }
+    }
+    
+    func setMessageAsRead() {
+        
+        self.interactor?.markMessageAsRead(message: (self.viewController?.message)!, asRead: true, withUndo: "")
     }
     
     //MARK: - NavBar Actions

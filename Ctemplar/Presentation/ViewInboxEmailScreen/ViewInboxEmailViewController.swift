@@ -66,14 +66,11 @@ class ViewInboxEmailViewController: UIViewController {
         self.presenter?.setupNavigationBar(enabled: false)
         self.presenter?.setupBottomBar(enabled: false)
         
-        //temp previously setup Subject
-        self.senderEmail = self.message!.sender!
-        self.messageIsRead = self.message!.read
-        self.messageIsStarred = self.message!.starred
-        self.presenter?.setupMessageHeader(message: self.message!)
+        self.messagesTableView.isHidden = false
         
         dataSource?.initWith(parent: self, tableView: messagesTableView)
-        self.messagesTableView.isHidden = false
+        
+        self.initShowingMessage()
         
         self.presenter?.initMoreActionsView()
     }
@@ -81,26 +78,31 @@ class ViewInboxEmailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //temp - wait resolution about UI
+    }
+    
+    func initShowingMessage() {
+        
         if let message = self.message {
             
-            if message.hasChildren! { //crashed when backing from Compose Screen
-                self.presenter?.interactor?.getMessage(messageID: message.messsageID!)
-            } else {
+            if let hasChildren = message.hasChildren {
                 
-                self.messageIsRead = message.read
-                self.messageIsStarred = message.starred
-                
-                self.messagesTableView.isHidden = true
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
-                    self.presenter?.setupMessageContent(message: message)
-                })
-                
-                self.presenter?.setupMessageHeader(message: message)
-                self.presenter?.setupNavigationBar(enabled: true)
-                self.presenter?.setupBottomBar(enabled: true)
+                if hasChildren == true {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
+                        self.presenter?.interactor?.getMessage(messageID: message.messsageID!)
+                    })
+                    
+                    self.messageIsRead = true//message.read
+                    self.messageIsStarred = message.starred
+                    self.presenter?.setupMessageHeader(message: message)
+                    
+                } else {
+                    self.presenter?.interactor?.setMessageData(message: message)
+                }
             }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
+                self.presenter?.checkMessaseReadStatus(message: message)
+            })
         }
     }
     
