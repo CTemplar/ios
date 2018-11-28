@@ -14,7 +14,7 @@ import AlertHelperKit
 class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate {
     
     @IBOutlet var fromView            : UIView!
-    @IBOutlet var toView              : UIView!
+    @IBOutlet var emailToSectionView  : UIView!
     @IBOutlet var subjectView         : UIView!
     @IBOutlet var toolBarView         : UIView!
     @IBOutlet var bottomBarView       : UIView!
@@ -26,13 +26,18 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     @IBOutlet var emailToTextView     : UITextView!
     
+    @IBOutlet var expandButton        : UIButton!
+    
     @IBOutlet var attachmentButton    : UIButton!
     @IBOutlet var encryptedButton     : UIButton!
     @IBOutlet var selfDestructedButton  : UIButton!
     @IBOutlet var delayedDeliveryButton : UIButton!
     @IBOutlet var deadManButton       : UIButton!
     
-    @IBOutlet var toViewHeightConstraint    : NSLayoutConstraint!
+    @IBOutlet var toViewSectionHeightConstraint          : NSLayoutConstraint!
+    @IBOutlet var toViewSubsectionHeightConstraint       : NSLayoutConstraint!
+    @IBOutlet var ccViewSubsectionHeightConstraint       : NSLayoutConstraint!
+    @IBOutlet var bccViewSubsectionHeightConstraint      : NSLayoutConstraint!
     
     var presenter   : ComposePresenter?
     var interactor  : ComposeInteractor?
@@ -97,6 +102,12 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         self.navigationController?.popViewController(animated: true)
     }
+    
+    @IBAction func expandButtonPressed(_ sender: AnyObject) {
+        
+   
+    }
+    
     
     @IBAction func sendButtonPressed(_ sender: AnyObject) {
         

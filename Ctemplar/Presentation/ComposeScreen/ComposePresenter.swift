@@ -81,7 +81,10 @@ class ComposePresenter {
         
         let emailToViewHeight = self.setupEmailToViewSize()
         
-        self.viewController!.toViewHeightConstraint.constant = emailToViewHeight + k_emailToTextViewTopOffset + k_emailToTextViewTopOffset
+        self.viewController!.toViewSubsectionHeightConstraint.constant = emailToViewHeight + k_emailToTextViewTopOffset + k_emailToTextViewTopOffset
+        
+        self.viewController!.toViewSectionHeightConstraint.constant = self.viewController!.toViewSubsectionHeightConstraint.constant
+        //emailToViewHeight + k_emailToTextViewTopOffset + k_emailToTextViewTopOffset
         
     }
     

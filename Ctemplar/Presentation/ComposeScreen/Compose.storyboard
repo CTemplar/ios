@@ -92,44 +92,70 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o09-Ex-Zdt">
-                                <rect key="frame" x="0.0" y="63" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="63" width="375" height="132"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fOd-3g-3mu">
-                                        <rect key="frame" x="14" y="6" width="130" height="28"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BsK-Bo-ihc">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fOd-3g-3mu">
+                                                <rect key="frame" x="14" y="8" width="130" height="28"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="To:">
+                                                        <attributes>
+                                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                            <font key="NSFont" metaFont="system" size="14"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0QO-oA-I6g">
+                                                <rect key="frame" x="331" y="0.0" width="44" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="0QO-oA-I6g" secondAttribute="height" multiplier="1:1" id="tsO-vg-h9x"/>
+                                                    <constraint firstAttribute="width" constant="44" id="xdX-37-rSm"/>
+                                                </constraints>
+                                                <state key="normal" image="DarkPlusBig"/>
+                                                <connections>
+                                                    <action selector="expandButtonPressed:" destination="Paf-AF-Vql" eventType="touchUpInside" id="qTl-eL-NzC"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <attributedString key="attributedText">
-                                            <fragment content="To:">
-                                                <attributes>
-                                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <font key="NSFont" metaFont="system" size="14"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" tighteningFactorForTruncation="0.0"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0QO-oA-I6g">
-                                        <rect key="frame" x="331" y="0.0" width="44" height="44"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="0QO-oA-I6g" secondAttribute="height" multiplier="1:1" id="tsO-vg-h9x"/>
-                                            <constraint firstAttribute="width" constant="44" id="xdX-37-rSm"/>
+                                            <constraint firstAttribute="trailing" secondItem="0QO-oA-I6g" secondAttribute="trailing" id="L3Y-42-CKV"/>
+                                            <constraint firstAttribute="height" constant="44" id="c6v-iT-6BX"/>
+                                            <constraint firstItem="0QO-oA-I6g" firstAttribute="top" secondItem="BsK-Bo-ihc" secondAttribute="top" id="rqa-PY-ahR"/>
                                         </constraints>
-                                        <state key="normal" image="DarkPlusBig"/>
-                                    </button>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="0QO-oA-I6g" secondAttribute="trailing" id="76U-Wg-Z2U"/>
-                                    <constraint firstItem="0QO-oA-I6g" firstAttribute="top" secondItem="o09-Ex-Zdt" secondAttribute="top" id="MlD-eS-ApK"/>
-                                    <constraint firstAttribute="height" constant="44" id="lOT-Tm-3c1"/>
+                                    <constraint firstItem="BsK-Bo-ihc" firstAttribute="top" secondItem="o09-Ex-Zdt" secondAttribute="top" id="IA8-Si-EtC"/>
+                                    <constraint firstItem="BsK-Bo-ihc" firstAttribute="leading" secondItem="o09-Ex-Zdt" secondAttribute="leading" id="cEP-Sr-kDH"/>
+                                    <constraint firstAttribute="height" constant="132" id="lOT-Tm-3c1"/>
+                                    <constraint firstAttribute="trailing" secondItem="BsK-Bo-ihc" secondAttribute="trailing" id="t5w-et-lBI"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -137,7 +163,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JlZ-Fv-gSA">
-                                <rect key="frame" x="0.0" y="106" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="194" width="375" height="44"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Subject" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="MBF-I2-36Z">
                                         <rect key="frame" x="16" y="14" width="343" height="16"/>
@@ -172,7 +198,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SvU-Rf-Cm0">
-                                <rect key="frame" x="0.0" y="149" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="237" width="375" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zrF-Lt-kem">
                                         <rect key="frame" x="8" y="3" width="44" height="44"/>
@@ -282,7 +308,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4G-Sq-GK2">
-                                <rect key="frame" x="16" y="209" width="343" height="458"/>
+                                <rect key="frame" x="16" y="297" width="343" height="370"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <attributedString key="attributedText">
                                     <fragment>
@@ -358,15 +384,17 @@
                         <outlet property="deadManButton" destination="7U3-xX-q7Y" id="n99-jv-vcQ"/>
                         <outlet property="delayedDeliveryButton" destination="wnv-Br-gKa" id="4wB-Td-n6T"/>
                         <outlet property="emailFrom" destination="lcj-LT-m7M" id="J7R-t9-V0v"/>
+                        <outlet property="emailToSectionView" destination="o09-Ex-Zdt" id="C2M-4f-3iW"/>
                         <outlet property="emailToTextView" destination="fOd-3g-3mu" id="Cka-Qe-k2A"/>
                         <outlet property="encryptedButton" destination="w6J-GM-YcY" id="hzN-1G-inK"/>
+                        <outlet property="expandButton" destination="0QO-oA-I6g" id="xfr-20-M50"/>
                         <outlet property="fromView" destination="HDc-VP-u4e" id="NXG-g5-Vmo"/>
                         <outlet property="messageTextView" destination="v4G-Sq-GK2" id="ccT-mo-A2A"/>
                         <outlet property="selfDestructedButton" destination="sck-AS-lTR" id="KBg-aS-4vE"/>
                         <outlet property="subjectTextField" destination="MBF-I2-36Z" id="6KP-KW-D84"/>
                         <outlet property="subjectView" destination="JlZ-Fv-gSA" id="Drc-GR-uOC"/>
-                        <outlet property="toView" destination="o09-Ex-Zdt" id="0Dx-MK-5y8"/>
-                        <outlet property="toViewHeightConstraint" destination="lOT-Tm-3c1" id="Lhe-QL-pkX"/>
+                        <outlet property="toViewSectionHeightConstraint" destination="lOT-Tm-3c1" id="ssz-zA-yrQ"/>
+                        <outlet property="toViewSubsectionHeightConstraint" destination="c6v-iT-6BX" id="Eua-aW-JNM"/>
                         <outlet property="toolBarView" destination="SvU-Rf-Cm0" id="iBA-04-aBo"/>
                     </connections>
                 </viewController>
