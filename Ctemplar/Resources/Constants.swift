@@ -258,8 +258,11 @@ let k_emptyFilterInboxIconImageName   = "EmptyFilterInboxIcon"
 
 let k_plusButtonIconImageName       = "PlusButton"
 
-let k_darkPlusIconImageName          = "DarkPlus"
+let k_darkPlusIconImageName         = "DarkPlus"
 let k_redMinusIconImageName         = "RedMinus"
+
+let k_darkPlusBigIconImageName      = "DarkPlusBig"
+let k_redMinusBigIconImageName      = "RedMinusBig"
 
 let k_downArrowImageName            = "downArrow"
 let k_upArrowImageName              = "upArrow"
