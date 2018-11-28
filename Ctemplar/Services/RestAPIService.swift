@@ -62,6 +62,7 @@ class RestAPIService {
         case address = "address"
         case note = "note"
         case phone = "phone"
+        case encrypted = "is_encrypted"
     }
         
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -418,7 +419,8 @@ class RestAPIService {
             //JSONKey.sender.rawValue: "dmitry5@dev.ctemplar.com",
             JSONKey.folder.rawValue: folder,
             JSONKey.mailbox.rawValue: mailboxID,
-            JSONKey.send.rawValue: send
+            JSONKey.send.rawValue: send,
+            JSONKey.encrypted.rawValue : "1"
         ]
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue
@@ -471,7 +473,7 @@ class RestAPIService {
             "Accept": "application/json"
         ]
         //?email__in=atif2@ctemplar.com,atif3@ctemplar.com
-        let url = EndPoint.baseUrl.rawValue + EndPoint.publicKeys.rawValue + "?email__in=dmitry5@dev.ctemplar.com"
+        let url = EndPoint.baseUrl.rawValue + EndPoint.publicKeys.rawValue //+ "?email__in=dmitry5@dev.ctemplar.com"
         
         print("publicKeyList url:", url)
         

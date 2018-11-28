@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 import PKHUD
 import AlertHelperKit
+import ObjectivePGP
 
 class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate {
     
@@ -68,6 +69,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var tapSelectedCcEmail  : String = ""
     var tapSelectedBccEmail : String = ""
     
+    var usersPublicKeys = Array<Key>()
+    
     var messageAttributedText : NSAttributedString = NSAttributedString(string: "")
     
     override func viewDidLoad() {
@@ -77,7 +80,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         let configurator = ComposeConfigurator()
         configurator.configure(viewController: self)
         
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        //self.navigationItem.rightBarButtonItem?.isEnabled = false
         self.navigationItem.title = navBarTitle
         
         emailToTextView.delegate = self
@@ -96,15 +99,21 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         ccToSubSectionView.isHidden = true
         bccToSubSectionView.isHidden = true
         
-        /*
+        
         //temp =========
-        emailsToArray.append("test@mega.com")
-        emailsToArray.append("dima@tatarinov.com")
+        //emailsToArray.append("test@mega.com")
+        //emailsToArray.append("dima@tatarinov.com")
+        
+        emailsToArray.append("dmitry5@dev.ctemplar.com")
+        emailsToArray.append("dmitry8@dev.ctemplar.com")
         
         for email in emailsToArray {
             self.emailToSting = self.emailToSting + email + " "
         }
         
+        subject = "Test encrypted email for contact users"
+        
+        /*
         ccToArray.append("supertest@mega.com")
         ccToArray.append("dimon@tatarinov.com")
         ccToArray.append("hulygun@mail.net")
@@ -165,13 +174,11 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBAction func expandButtonPressed(_ sender: AnyObject) {
         
         self.presenter?.expandButtonPressed()
-    }
-    
+    }    
     
     @IBAction func sendButtonPressed(_ sender: AnyObject) {
-        
-        //sendMail() //temp
-        //publicKeyFor(userEmail: "dmitry5@dev.ctemplar.com")
+                
+        self.interactor!.prepareMessadgeToSend()
     }
     
     @IBAction func attachmentButtonPressed(_ sender: AnyObject) {

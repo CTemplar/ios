@@ -721,7 +721,7 @@ class APIService {
                             
                         case .success(let value):
                             
-                            //print("publicKeyList success:", value)
+                            print("publicKeyList success:", value)
                             completionHandler(APIResult.success(value))
                             
                         case .failure(let error):
@@ -736,7 +736,7 @@ class APIService {
         }
     }
     
-    func publicKeyFor(userEmail: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func publicKeyFor(userEmailsArray: Array<String>, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         self.checkTokenExpiration(){ (complete) in
             if complete {
@@ -745,7 +745,19 @@ class APIService {
                     
                     //HUD.show(.progress)
                     
-                    self.restAPIService?.publicKeyFor(userEmail: userEmail, token: token) {(result) in
+                    var userEmailParameters = ""
+                    
+                    for email in userEmailsArray {
+                        userEmailParameters = userEmailParameters + email + ","
+                    }
+                    
+                    if userEmailsArray.count > 0 {
+                        userEmailParameters = String(userEmailParameters.dropLast())
+                    }
+                    
+                    //print("userEmailParameters", userEmailParameters)
+                    
+                    self.restAPIService?.publicKeyFor(userEmail: userEmailParameters, token: token) {(result) in
                         
                         switch(result) {
                             
@@ -765,6 +777,8 @@ class APIService {
                                         if dictionary.key == "results" {
                                             //print("dictionary:", dictionary.value)
                                             
+                                            var publicKeysArray = Array<Any>()
+                                            
                                             let array = dictionary.value as! Array<Any>
                                             for item in array {
                                                 //print("item:", item)
@@ -772,17 +786,17 @@ class APIService {
                                                 
                                                 for (key, value) in keysDictionary {
                                                     if key == "public_key" {
-                                                        //print("publik Key:", value)
-                                                        completionHandler(APIResult.success(value))
-                                                        return
+                                                        print("public Key:", value)
+                                                        publicKeysArray.append(value)
+                                                        //completionHandler(APIResult.success(value))
+                                                        //return
                                                     }
                                                 }
                                             }
+                                            
+                                            completionHandler(APIResult.success(publicKeysArray))
                                         }
-                                    }
-                                    
-                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
-                                    completionHandler(APIResult.failure(error))
+                                    }                                    
                                 }
                                 
                             } else {

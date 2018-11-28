@@ -20,11 +20,11 @@ class ComposeInteractor {
 
     //MARK: - API
     
-    func sendMail() {
+    func sendMail(content: String, subject: String, recievers: Array<String>) {
         
-        let recievers : Array<String> = ["dmitry3@dev.ctemplar.com"] //temp
+        //let recievers : Array<String> = ["dmitry3@dev.ctemplar.com"] //temp
         
-        apiService?.createMessage(content: "Non encrypted content for sended message", subject: "Send Test with Sent folder", recieversList: recievers, folder: MessagesFoldersName.sent.rawValue, mailboxID: 44, send: true) {(result) in
+        apiService?.createMessage(content: content, subject: subject, recieversList: recievers, folder: MessagesFoldersName.sent.rawValue, mailboxID: 44, send: true) {(result) in
             
             switch(result) {
                 
@@ -40,19 +40,29 @@ class ComposeInteractor {
         }
     }
     
-    func publicKeyFor(userEmail: String) {
+    func publicKeyFor(userEmailsArray: Array<String>) {
         
-        apiService?.publicKeyFor(userEmail: userEmail) {(result) in
+        apiService?.publicKeyFor(userEmailsArray: userEmailsArray) {(result) in
             
             switch(result) {
                 
             case .success(let value):
                 //print("publicKey value:", value)
                 
-                let publicKey = value as! String
-                print("publicKey:", publicKey)
+                let publicKeysArray = value as! Array<String>
+                print("publicKeys:", publicKeysArray)
                 
-                //pgpService.readPGPKeysFromString(key: publicKey)
+                for publicKey in publicKeysArray {
+                    let userPublicKey = self.pgpService?.readPGPKeysFromString(key: publicKey)
+                    self.viewController!.usersPublicKeys = self.viewController!.usersPublicKeys + userPublicKey!
+                }
+
+                print("keys: ", self.viewController!.usersPublicKeys.count)
+                
+                let encryptMessage = self.encryptMessage()
+                
+                self.sendMail(content: encryptMessage, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray)
+                
                 //pgpService.extractAndSavePGPKeyFromString(key: publicKey)
                 //pgpService.getStoredPGPKeys()
                 
@@ -61,6 +71,32 @@ class ComposeInteractor {
                 AlertHelperKit().showAlert(self.viewController!, title: "Public Key Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
+    }
+    
+    //MARK: - prepared to send
+    
+    func prepareMessadgeToSend() {
+        
+        self.getPublicKeysForEmails()
+
+    }
+    
+    func encryptMessage() -> String {
+        
+        if let messageData = pgpService?.encodeString(message: self.viewController!.messageTextView.text) { //temp
+            
+            if let encryptedMessage = self.pgpService?.encrypt(data: messageData, keys: self.viewController!.usersPublicKeys) {
+                print("encryptedMessage:", encryptedMessage)
+                return encryptedMessage
+            }
+        }
+        
+        return ""
+    }
+    
+    func getPublicKeysForEmails() {
+        
+        self.publicKeyFor(userEmailsArray: self.viewController!.emailsToArray)
     }
     
     //MARK: - textView delegate

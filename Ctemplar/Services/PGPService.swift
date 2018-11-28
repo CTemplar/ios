@@ -45,6 +45,15 @@ class PGPService {
         return ""
     }
     
+    func encrypt(data: Data, keys: Array<Key>) -> String? {
+        
+        guard let encryptedBin = try? ObjectivePGP.encrypt(data, addSignature: false, using: keys) else {return ""}
+            
+        let encrypted = Armor.armored(encryptedBin, as: .message)
+            
+        return encrypted
+    }
+    
     func decrypt(encryptedData: Data) -> Data? {
         
         if Armor.isArmoredData(encryptedData)  {
