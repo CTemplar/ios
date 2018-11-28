@@ -193,14 +193,37 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         //self.setCursorPositionToEnd(textView: textView)
         
-        if textView == self.emailToTextView {
+        print("textView text:", textView.text)
+        
+        switch textView {
+        case self.emailToTextView:
             self.presenter?.setupEmailToSection(emailToText: textView.text, ccToText: self.ccToSting, bccToText: self.bccToSting)
-            //print("textView text:", textView.text)
+        case self.ccToTextView:
+            self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: textView.text, bccToText: self.bccToSting)
+        case self.bccToTextView:
+            self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: textView.text)
+        default:
+            break
         }
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
+        switch textView {
+        case self.emailToTextView:
+            return (self.interactor?.holdEmailToTextViewInput(textView: self.emailToTextView, shouldChangeTextIn: range, replacementText: text))!
+        case self.ccToTextView:
+            
+            break
+        case self.bccToTextView:
+            
+            break
+        default:
+            break
+        }
+        
+        
+        /*
         //print("range location:", range.location, "length:", range.length)
         
         //forbid to delete Prefix "
@@ -267,7 +290,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         }
         
         self.interactor?.spacePressed(input: text)
-        
+        */
         return true
     }
     

@@ -63,7 +63,71 @@ class ComposeInteractor {
         }
     }
     
-    //MARK: - textView
+    //MARK: - textView delegate
+    
+    func holdEmailToTextViewInput(textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        //forbid to delete Prefix "
+        if self.forbidDeletion(range: range, prefix: "emailToPrefix".localized()) {
+            return false
+        }
+        
+        if self.getCursorPosition(textView: textView) < "emailToPrefix".localized().count {
+            self.setCursorPositionToEnd(textView: textView)
+            return false
+        }
+                
+        if self.returnPressed(input: text) {
+           
+            let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "emailToPrefix".localized())
+            let emailsDroppedPrefixText = self.dropPrefix(text: self.viewController!.emailToSting, prefix: "emailToPrefix".localized())
+            let inputEmail = self.getLastInputEmail(input: inputDroppedPrefixText, prevText: emailsDroppedPrefixText)
+            //print("textView.text:", textView.text)
+            //print("self.emailToSting:", self.emailToSting)
+            print("inputEmail:", inputEmail as Any)
+            self.viewController!.emailsToArray.append(inputEmail)
+            self.viewController!.emailToSting = textView.text + " "
+            self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
+            
+            self.setCursorPositionToEnd(textView: textView)
+            
+            return false
+        }
+        
+        if self.backspacePressed(input: text, range: range) {
+            
+            if self.viewController!.tapSelectedEmail.count > 0 {
+                
+                self.viewController!.emailsToArray.removeAll{ $0 == self.viewController!.tapSelectedEmail }
+                print("self.emailsToArray.count after Taped Email deleted:", self.viewController!.emailsToArray.count)
+                
+                self.viewController!.emailToSting = self.viewController!.emailToSting.replacingOccurrences(of: self.viewController!.tapSelectedEmail, with: "")
+                self.viewController!.tapSelectedEmail = ""
+                
+                self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
+                self.viewController!.view.endEditing(true)
+                
+            } else {
+                
+                if let editingWord = self.getLastWord(textView: textView) {
+                    
+                    if textView == self.viewController!.emailToTextView {
+                        print("editingWord:", editingWord)
+                        self.viewController!.emailsToArray.removeAll{ $0 == editingWord }
+                        print("self.emailsToArray.count:", self.viewController!.emailsToArray.count)
+                    }
+                }
+            }
+        } else {
+            if self.viewController!.tapSelectedEmail.count > 0 {
+                return false //disable edit if Email selected, only delete by Backspace
+            }
+        }
+        
+        return true
+    }
+    
+    //MARK: - textView private methods
     
     func getCursorPosition(textView: UITextView) -> Int {
         
@@ -89,9 +153,9 @@ class ComposeInteractor {
         })
     }
     
-    func forbidDeletion(range: NSRange) -> Bool {
+    func forbidDeletion(range: NSRange, prefix: String) -> Bool {
         
-        if range.location == "emailToPrefix".localized().count - 1 && range.length == 1 {
+        if range.location == prefix.count - 1 && range.length == 1 {
             return true
         }
         
