@@ -33,6 +33,11 @@ class InboxRouter {
         let storyboard: UIStoryboard = UIStoryboard(name: k_SearchStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_SearchViewControllerID) as! SearchViewController
         vc.messagesList = (self.viewController?.allMessagesArray)!//(self.viewController?.dataSource?.messagesArray)!
+        
+        if let sender = self.viewController?.senderEmail {
+            vc.senderEmail = sender
+        }
+        
         self.viewController?.show(vc, sender: self)
     }
     
@@ -43,6 +48,11 @@ class InboxRouter {
         vc.message = message
         vc.messageID = message.messsageID
         vc.currentFolderFilter = self.viewController?.currentFolderFilter
+        
+        if let sender = self.viewController?.senderEmail {
+            vc.senderEmail = sender
+        }
+        
         //self.viewController?.show(vc, sender: self)
         //self.viewController?.present(vc, animated: true, completion: nil)
         self.viewController?.navigationController?.pushViewController(vc, animated: true)

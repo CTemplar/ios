@@ -20,6 +20,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     var messagesList    : Array<EmailMessage> = []
     var filteredArray   : Array<EmailMessage> = []
     
+    var senderEmail: String = ""
+    
     lazy var searchBar = UISearchBar(frame: CGRect.zero)
     
     var searchActive : Bool = false
