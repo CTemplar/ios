@@ -100,8 +100,21 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             self.emailToSting = self.emailToSting + email + " "
         }
         
-        self.ccToSting = self.ccToSting  + "test@mega.com" + " " + "dima@tatarinov.com" + " " + "hulygun@mail.net"
-        self.bccToSting = self.bccToSting  + "testX@mega.com" + " " + "dmitry@tatarinov.com" + " " + "hulygunHyper@mail.net"
+        ccToArray.append("supertest@mega.com")
+        ccToArray.append("dimon@tatarinov.com")
+        ccToArray.append("hulygun@mail.net")
+        
+        for email in ccToArray {
+            self.ccToSting = self.ccToSting + email + " "
+        }
+        
+        bccToArray.append("testX@mega.com")
+        bccToArray.append("dmitry@tatarinov.com")
+        bccToArray.append("hulygunHyper@mail.net")
+        
+        for email in bccToArray {
+            self.bccToSting = self.bccToSting + email + " "
+        }
         //========
         
         
@@ -120,6 +133,14 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapOnEmailToTextView(_:)))
         tapGesture.delegate = self
         self.emailToTextView.addGestureRecognizer(tapGesture)
+        
+        let tapCcToGesture = UITapGestureRecognizer(target: self, action: #selector(tapOnCcToTextView(_:)))
+        tapCcToGesture.delegate = self
+        self.ccToTextView.addGestureRecognizer(tapCcToGesture)
+        
+        let tapBccToGesture = UITapGestureRecognizer(target: self, action: #selector(tapOnBccToTextView(_:)))
+        tapBccToGesture.delegate = self
+        self.bccToTextView.addGestureRecognizer(tapBccToGesture)
     }
     
     //MARK: - IBActions
@@ -166,7 +187,6 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     func textViewDidBeginEditing(_ textView: UITextView) {
         
         print("textViewDidBeginEditing")
-    
     }
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
@@ -187,6 +207,16 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         }*/
         
         return true
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        
+        print("textViewDidEndEditing")
+        
+        self.tapSelectedEmail = ""
+        self.tapSelectedCcEmail = ""
+        self.tapSelectedBccEmail = ""
+        self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
     }
     
     func textViewDidChange(_ textView: UITextView) {
@@ -213,11 +243,9 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         case self.emailToTextView:
             return (self.interactor?.holdEmailToTextViewInput(textView: self.emailToTextView, shouldChangeTextIn: range, replacementText: text))!
         case self.ccToTextView:
-            
-            break
+            return (self.interactor?.holdCcToTextViewInput(textView: self.ccToTextView, shouldChangeTextIn: range, replacementText: text))!
         case self.bccToTextView:
-            
-            break
+            return (self.interactor?.holdBccToTextViewInput(textView: self.bccToTextView, shouldChangeTextIn: range, replacementText: text))!            
         default:
             break
         }
@@ -251,18 +279,48 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         let point = tapGesture.location(in: emailToTextView)
         
         if let selectedEmail = self.interactor?.getWordAtPosition(point, textView: emailToTextView) {
-            print("tap selectedEmail:", selectedEmail)
+            print("tap To Email:", selectedEmail)
             self.tapSelectedEmail = selectedEmail
-            self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
         } else {
             self.tapSelectedEmail = ""
-            self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
         }
+        
+        self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
+    }
+    
+    @objc private final func tapOnCcToTextView(_ tapGesture: UITapGestureRecognizer){
+        
+        let point = tapGesture.location(in: ccToTextView)
+        
+        if let selectedEmail = self.interactor?.getWordAtPosition(point, textView: ccToTextView) {
+            print("tap CC Email:", selectedEmail)
+            self.tapSelectedCcEmail = selectedEmail
+        } else {
+            self.tapSelectedCcEmail = ""
+        }
+        
+        self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
+    }
+    
+    @objc private final func tapOnBccToTextView(_ tapGesture: UITapGestureRecognizer){
+        
+        let point = tapGesture.location(in: bccToTextView)
+        
+        if let selectedEmail = self.interactor?.getWordAtPosition(point, textView: bccToTextView) {
+            print("tap BCC Email:", selectedEmail)
+            self.tapSelectedBccEmail = selectedEmail            
+        } else {
+            self.tapSelectedBccEmail = ""
+        }
+        
+        self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
     }
     
     @objc func tappedViewAction(sender : UITapGestureRecognizer) {
         
         self.tapSelectedEmail = ""
+        self.tapSelectedCcEmail = ""
+        self.tapSelectedBccEmail = ""
         self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
         view.endEditing(true)
     }

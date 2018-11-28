@@ -80,7 +80,7 @@ class ComposeInteractor {
         if self.returnPressed(input: text) {
            
             let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "emailToPrefix".localized())
-            let inputEmail = self.getLastInputEmail(input: inputDroppedPrefixText)  
+            let inputEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
             print("inputEmail:", inputEmail as Any)
  
             self.viewController!.emailsToArray.append(inputEmail)
@@ -108,16 +108,130 @@ class ComposeInteractor {
             } else {
                 
                 if let editingWord = self.getLastWord(textView: textView) {
-                    
-                    if textView == self.viewController!.emailToTextView {
-                        print("removed Word:", editingWord)
-                        self.viewController!.emailsToArray.removeAll{ $0 == editingWord }
-                        print("self.emailsToArray.count:", self.viewController!.emailsToArray.count)
-                    }
+                   
+                    print("removed Word:", editingWord)
+                    self.viewController!.emailsToArray.removeAll{ $0 == editingWord }
+                    print("emailsToArray count:", self.viewController!.emailsToArray.count)
                 }
             }
         } else {
             if self.viewController!.tapSelectedEmail.count > 0 {
+                return false //disable edit if Email selected, only delete by Backspace
+            }
+        }
+        
+        return true
+    }
+    
+    func holdCcToTextViewInput(textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        if self.forbidDeletion(range: range, prefix: "ccToPrefix".localized()) {
+            return false
+        }
+        
+        if self.getCursorPosition(textView: textView) < "ccToPrefix".localized().count {
+            self.setCursorPositionToEnd(textView: textView)
+            return false
+        }
+        
+        if self.returnPressed(input: text) {
+            
+            let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "ccToPrefix".localized())
+            let inputCcEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
+            print("inputCcEmail:", inputCcEmail as Any)
+            
+            self.viewController!.ccToArray.append(inputCcEmail)
+            self.viewController!.ccToSting = textView.text + " "
+            self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
+            
+            self.setCursorPositionToEnd(textView: textView)
+            
+            return false
+        }
+        
+        if self.backspacePressed(input: text, range: range) {
+            
+            if self.viewController!.tapSelectedCcEmail.count > 0 {
+                
+                self.viewController!.ccToArray.removeAll{ $0 == self.viewController!.tapSelectedCcEmail }
+                print("ccToArray count after Taped Email deleted:", self.viewController!.ccToArray.count)
+                
+                self.viewController!.ccToSting = self.viewController!.ccToSting.replacingOccurrences(of: self.viewController!.tapSelectedCcEmail, with: "")
+                self.viewController!.tapSelectedCcEmail = ""
+                
+                self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
+                self.viewController!.view.endEditing(true)
+                
+            } else {
+                
+                if let editingWord = self.getLastWord(textView: textView) {
+                    
+                    print("removed Word:", editingWord)
+                    self.viewController!.ccToArray.removeAll{ $0 == editingWord }
+                    print("ccToArray count:", self.viewController!.ccToArray.count)
+                    
+                }
+            }
+        } else {
+            if self.viewController!.tapSelectedCcEmail.count > 0 {
+                return false //disable edit if Email selected, only delete by Backspace
+            }
+        }
+        
+        return true
+    }
+    
+    func holdBccToTextViewInput(textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        if self.forbidDeletion(range: range, prefix: "bccToPrefix".localized()) {
+            return false
+        }
+        
+        if self.getCursorPosition(textView: textView) < "bccToPrefix".localized().count {
+            self.setCursorPositionToEnd(textView: textView)
+            return false
+        }
+        
+        if self.returnPressed(input: text) {
+            
+            let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "bccToPrefix".localized())
+            let inputBccEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
+            print("inputBccEmail:", inputBccEmail as Any)
+            
+            self.viewController!.bccToArray.append(inputBccEmail)
+            self.viewController!.bccToSting = textView.text + " "
+            self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
+            
+            self.setCursorPositionToEnd(textView: textView)
+            
+            return false
+        }
+        
+        if self.backspacePressed(input: text, range: range) {
+            
+            if self.viewController!.tapSelectedBccEmail.count > 0 {
+                
+                self.viewController!.bccToArray.removeAll{ $0 == self.viewController!.tapSelectedBccEmail }
+                print("bccToArray count after Taped Email deleted:", self.viewController!.bccToArray.count)
+                
+                self.viewController!.bccToSting = self.viewController!.bccToSting.replacingOccurrences(of: self.viewController!.tapSelectedBccEmail, with: "")
+                self.viewController!.tapSelectedBccEmail = ""
+                
+                self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
+                self.viewController!.view.endEditing(true)
+                
+            } else {
+                
+                if let editingWord = self.getLastWord(textView: textView) {
+                    
+                    print("removed Word:", editingWord)
+                    self.viewController!.bccToArray.removeAll{ $0 == editingWord }
+                    print("bccToArray count:", self.viewController!.bccToArray.count)
+                    
+                }
+            }
+        } else {
+            if self.viewController!.tapSelectedBccEmail.count > 0 {
                 return false //disable edit if Email selected, only delete by Backspace
             }
         }
