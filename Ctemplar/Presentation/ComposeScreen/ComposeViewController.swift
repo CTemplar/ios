@@ -31,6 +31,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet var ccToTextView        : UITextView!
     @IBOutlet var bccToTextView       : UITextView!
     
+    @IBOutlet var mailboxesButton     : UIButton!
+    
     @IBOutlet var expandButton        : UIButton!
     
     @IBOutlet var attachmentButton    : UIButton!
@@ -52,8 +54,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var dataSource  : ComposeDataSource?
     
     var navBarTitle: String = ""
-    var senderEmail: String = ""
     var subject    : String = ""
+    
+    var mailboxesList    : Array<Mailbox> = []
+    var mailboxID : Int = 0
     
     var emailsToArray = Array<String>()
     //var emailToAttributtedSting : NSAttributedString!
@@ -134,7 +138,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         //========
         */
         
-        self.presenter?.setupEmailFromSection(emailFromText: self.senderEmail)
+        self.presenter?.setMailboxes(mailboxes: mailboxesList)
         self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
         self.presenter?.setupSubject(subjectText: self.subject)
         
@@ -171,6 +175,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBAction func backButtonPressed(_ sender: AnyObject) {
         
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func mailboxesButtonPressed(_ sender: AnyObject) {
+        
     }
     
     @IBAction func expandButtonPressed(_ sender: AnyObject) {

@@ -53,7 +53,8 @@ class ViewInboxEmailViewController: UIViewController {
     
     var message : EmailMessage?
     var messageID  : Int?
-    var senderEmail: String = ""
+    
+    var mailboxesList    : Array<Mailbox> = []
     
     //MARK: - Lifecycle
     
@@ -110,17 +111,17 @@ class ViewInboxEmailViewController: UIViewController {
     
     @IBAction func replyButtonPressed(_ sender: AnyObject) {
         
-        self.router?.showComposeViewController(title: "reply".localized(), sender: self.senderEmail, subject: self.headerLabel.text!)
+        self.router?.showComposeViewController(title: "reply".localized(), subject: self.headerLabel.text!)
     }
     
     @IBAction func replyAllButtonPressed(_ sender: AnyObject) {
         
-        self.router?.showComposeViewController(title: "relpyAll".localized(), sender: self.senderEmail, subject: self.headerLabel.text!)
+        self.router?.showComposeViewController(title: "relpyAll".localized(), subject: self.headerLabel.text!)
     }
     
     @IBAction func forwardButtonPressed(_ sender: AnyObject) {
         
-        self.router?.showComposeViewController(title: "forward".localized(), sender: self.senderEmail, subject: self.headerLabel.text!)
+        self.router?.showComposeViewController(title: "forward".localized(), subject: self.headerLabel.text!)
     }
     
     @IBAction func undoButtonPressed(_ sender: AnyObject) {

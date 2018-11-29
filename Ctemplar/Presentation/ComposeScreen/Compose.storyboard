@@ -67,6 +67,9 @@
                                             <constraint firstAttribute="width" constant="44" id="2BK-gK-Gz4"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="downArrow"/>
+                                        <connections>
+                                            <action selector="mailboxesButtonPressed:" destination="Paf-AF-Vql" eventType="touchUpInside" id="Far-8p-wMQ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -468,6 +471,7 @@
                         <outlet property="encryptedButton" destination="w6J-GM-YcY" id="hzN-1G-inK"/>
                         <outlet property="expandButton" destination="0QO-oA-I6g" id="xfr-20-M50"/>
                         <outlet property="fromView" destination="HDc-VP-u4e" id="NXG-g5-Vmo"/>
+                        <outlet property="mailboxesButton" destination="Z1z-H2-Y3M" id="SnP-Nr-5hJ"/>
                         <outlet property="messageTextView" destination="v4G-Sq-GK2" id="ccT-mo-A2A"/>
                         <outlet property="selfDestructedButton" destination="sck-AS-lTR" id="KBg-aS-4vE"/>
                         <outlet property="subjectTextField" destination="MBF-I2-36Z" id="6KP-KW-D84"/>

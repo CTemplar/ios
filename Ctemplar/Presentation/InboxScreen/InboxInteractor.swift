@@ -258,6 +258,10 @@ class InboxInteractor {
                 if let contacts = userMyself.contactsList {
                     self.viewController?.contactsList = contacts
                 }
+                
+                if let mailboxes = userMyself.mailboxesList {
+                    self.viewController?.mailboxesList = mailboxes
+                }
                                 
                 self.viewController?.leftBarButtonItem.isEnabled = true
                 

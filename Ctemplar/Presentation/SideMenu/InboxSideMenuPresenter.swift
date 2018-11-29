@@ -23,8 +23,7 @@ class InboxSideMenuPresenter {
                     if let defaultEmail = mailbox.email {
                         self.viewController!.emailLabel.text = defaultEmail
                         //self.viewController!.nameLabel.text = mailbox.displayName
-                        self.viewController!.nameLabel.text = userName
-                        self.viewController!.inboxViewController.senderEmail = defaultEmail
+                        self.viewController!.nameLabel.text = userName                        
                     }
                 }
             }

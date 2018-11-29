@@ -13,7 +13,7 @@ struct Mailbox {
     var displayName : String? = nil
     var email : String? = nil
     var fingerprint : String? = nil
-    var resultID : Int? = nil
+    var mailboxID : Int? = nil
     var isDefault : Bool? = nil
     var isEnabled : Bool? = nil
     var privateKey : String? = nil
@@ -29,7 +29,7 @@ struct Mailbox {
         self.displayName = dictionary["display_name"] as? String
         self.email = dictionary["email"] as? String
         self.fingerprint = dictionary["fingerprint"] as? String
-        self.resultID = dictionary["id"] as? Int
+        self.mailboxID = dictionary["id"] as? Int
         self.isDefault = dictionary["is_default"] as? Bool
         self.isEnabled = dictionary["is_enabled"] as? Bool
         self.privateKey = dictionary["private_key"] as? String

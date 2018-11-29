@@ -21,11 +21,9 @@ class ComposeInteractor {
 
     //MARK: - API
     
-    func sendMail(content: String, subject: String, recievers: Array<String>, encrypted: Bool) {
+    func sendMail(content: String, subject: String, recievers: Array<String>, mailboxID: Int, encrypted: Bool) {
         
-        //let recievers : Array<String> = ["dmitry3@dev.ctemplar.com"] //temp
-        
-        apiService?.createMessage(content: content, subject: subject, recieversList: recievers, folder: MessagesFoldersName.sent.rawValue, mailboxID: 44, send: true, encrypted: encrypted) {(result) in
+        apiService?.createMessage(content: content, subject: subject, recieversList: recievers, folder: MessagesFoldersName.sent.rawValue, mailboxID: mailboxID, send: true, encrypted: encrypted) {(result) in
             
             switch(result) {
                 
@@ -96,7 +94,7 @@ class ComposeInteractor {
                 
                 let encryptMessage = self.encryptMessage(publicKeys: keys)
                 
-                self.sendMail(content: encryptMessage, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, encrypted: (self.viewController?.encryptedMail)!)
+                self.sendMail(content: encryptMessage, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, mailboxID: (self.viewController?.mailboxID)!, encrypted: (self.viewController?.encryptedMail)!)
              }
         }
     }

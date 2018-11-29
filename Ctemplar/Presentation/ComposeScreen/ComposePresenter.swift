@@ -16,6 +16,25 @@ class ComposePresenter {
     
     //MARK: - Setup Email From Section
     
+    func setMailboxes(mailboxes: Array<Mailbox>) {
+        
+        for mailbox in mailboxes {
+            if let defaultMailbox = mailbox.isDefault {
+                if defaultMailbox {
+                    if let defaultEmail = mailbox.email {
+                        self.setupEmailFromSection(emailFromText: defaultEmail)
+                    }
+                    
+                    self.viewController!.mailboxID = mailbox.mailboxID!
+                }
+            }
+        }
+        
+        if mailboxes.count < 2 {
+            self.viewController!.mailboxesButton.isEnabled = false
+        }
+    }
+    
     func setupEmailFromSection(emailFromText: String) {
         
         let emailFromString = "emailFromPrefix".localized() + emailFromText

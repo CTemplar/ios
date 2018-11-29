@@ -19,12 +19,12 @@ class InboxRouter {
         viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
-    func showComposeViewController(title: String, sender: String) {
+    func showComposeViewController(title: String) {
  
         let storyboard: UIStoryboard = UIStoryboard(name: k_ComposeStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_ComposeViewControllerID) as! ComposeViewController
         vc.navBarTitle = title
-        vc.senderEmail = sender
+        vc.mailboxesList = (self.viewController?.mailboxesList)!
         self.viewController?.show(vc, sender: self)   
     }
     
@@ -33,11 +33,7 @@ class InboxRouter {
         let storyboard: UIStoryboard = UIStoryboard(name: k_SearchStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_SearchViewControllerID) as! SearchViewController
         vc.messagesList = (self.viewController?.allMessagesArray)!//(self.viewController?.dataSource?.messagesArray)!
-        
-        if let sender = self.viewController?.senderEmail {
-            vc.senderEmail = sender
-        }
-        
+        vc.mailboxesList = (self.viewController?.mailboxesList)!
         self.viewController?.show(vc, sender: self)
     }
     
@@ -48,10 +44,7 @@ class InboxRouter {
         vc.message = message
         vc.messageID = message.messsageID
         vc.currentFolderFilter = self.viewController?.currentFolderFilter
-        
-        if let sender = self.viewController?.senderEmail {
-            vc.senderEmail = sender
-        }
+        vc.mailboxesList = (self.viewController?.mailboxesList)!
         
         //self.viewController?.show(vc, sender: self)
         //self.viewController?.present(vc, animated: true, completion: nil)
