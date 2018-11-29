@@ -95,7 +95,7 @@ class ComposePresenter {
             ])
         
         for email in self.viewController!.emailsToArray {
-            _ = attributedString.setBackgroundColor(textToFind: email, color: k_mainInboxColor)
+            //_ = attributedString.setBackgroundColor(textToFind: email, color: k_mainInboxColor)
             _ = attributedString.setForgroundColor(textToFind: email, color: k_emailToInputColor)
         }
         
@@ -107,6 +107,56 @@ class ComposePresenter {
         }
         
         self.viewController!.emailToTextView.attributedText = attributedString
+        //self.viewController!.emailToTextView.text = emailToText
+    }
+    
+    func setRect(textView: UITextView) {
+        
+        let text = textView.text!
+        /*
+        text?.enumerateSubstrings(in: text?.startIndex ..< text?.endIndex, options: .byWords) {
+            (substring, substringRange, _, _) in
+            if substring == "saying" {
+                //attributedString.addAttribute(.foregroundColor, value: NSColor.red, range: NSRange(substringRange, in: text))
+            }
+        }*/
+        
+        let textRange = text.startIndex..<text.endIndex
+        
+        text.enumerateSubstrings(in: textRange, options: NSString.EnumerationOptions.byWords, { (substring, substringRange, enclosingRange, stop) -> () in
+            //let start = distance(text.startIndex, substringRange.startIndex)
+            //let length = distance(substringRange.startIndex, substringRange.endIndex)
+            //let range = NSMakeRange(start, length)
+        })
+        
+        
+        let substrings = textView.text.split(separator: " ")
+        
+        for sub in substrings {
+            
+            let wordRange = (textView.text as NSString).range(of: String(sub))
+        
+            let textContainer = textView.textContainer
+            
+            let glyphRange = textView.layoutManager.glyphRange(forCharacterRange: wordRange, actualCharacterRange: nil)
+            
+            var glyphRect = textView.layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
+            
+            glyphRect.origin.y += textView.textContainerInset.top
+            glyphRect.origin.x += textView.textContainerInset.left
+            
+            print("rect:", glyphRect.origin.x, glyphRect.origin.y)
+            print("rect size:", glyphRect.size.width, glyphRect.size.height)
+            
+            let rect = CGRect(x: glyphRect.origin.x, y: glyphRect.origin.y + 0.0, width: glyphRect.size.width, height: glyphRect.size.height - 0.0)
+            
+            //let label = UILabel(frame: rect)
+            let view = UIView(frame: rect)
+            view.backgroundColor = UIColor.red
+            view.alpha = 0.4
+            
+            textView.add(subview: view)
+        }
     }
     
     func setupEmailToViewSize() -> CGFloat {
@@ -258,6 +308,9 @@ class ComposePresenter {
         
         self.viewController!.toViewSectionHeightConstraint.constant = self.viewController!.toViewSubsectionHeightConstraint.constant + self.viewController!.expandedSectionHeight
         
+        //=========
+        self.setRect(textView: self.viewController!.emailToTextView)
+        //========
     }
     
     //MARK: - Setup Subject Section
