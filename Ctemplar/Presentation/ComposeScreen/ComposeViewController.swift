@@ -14,6 +14,8 @@ import ObjectivePGP
 
 class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate {
     
+    @IBOutlet var tableView           : UITableView!
+    
     @IBOutlet var fromView            : UIView!
     @IBOutlet var emailToSectionView  : UIView!
     @IBOutlet var ccToSubSectionView  : UIView!
@@ -142,6 +144,9 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
         self.presenter?.setupSubject(subjectText: self.subject)
         
+        self.dataSource?.initWith(parent: self, tableView: tableView)
+        self.presenter?.setMailboxDataSource(mailboxes: mailboxesList)
+        
         //temp
         if self.messageTextView.text.count == 0 {
             self.messageTextView.font = UIFont(name: k_latoRegularFontName, size: 14.0)
@@ -149,12 +154,13 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             self.messageTextView.textColor = UIColor.lightGray
         }
         
-        self.addGesureRecognizers()        
+        self.addGesureRecognizers()
     }
     
     func addGesureRecognizers() {
         
         let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
+        freeSpaceViewGesture.cancelsTouchesInView = false //for tap to TableView and TextView simultaniously
         self.view.addGestureRecognizer(freeSpaceViewGesture)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapOnEmailToTextView(_:)))
@@ -179,6 +185,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     @IBAction func mailboxesButtonPressed(_ sender: AnyObject) {
         
+        self.presenter?.mailboxesButtonPressed()
     }
     
     @IBAction func expandButtonPressed(_ sender: AnyObject) {

@@ -31,7 +31,7 @@ class ComposePresenter {
         }
         
         if mailboxes.count < 2 {
-            self.viewController!.mailboxesButton.isEnabled = false
+            //self.viewController!.mailboxesButton.isEnabled = false
         }
     }
     
@@ -50,6 +50,32 @@ class ComposePresenter {
         _ = attributedString.setForgroundColor(textToFind: "emailFromPrefix".localized(), color: k_emailToColor)
         
         self.viewController?.emailFrom.attributedText = attributedString
+    }
+    
+    func mailboxesButtonPressed() {
+        
+        let hideTableView = self.viewController?.dataSource?.tableView.isHidden
+        
+        self.viewController?.dataSource?.tableView.isHidden = !hideTableView!
+        
+        var buttonImage = UIImage()
+        
+        if !hideTableView! {
+            buttonImage = UIImage(named: k_downArrowImageName)!
+        } else {
+            buttonImage = UIImage(named: k_upArrowImageName)!
+        }
+        
+        self.viewController!.mailboxesButton.setBackgroundImage(buttonImage, for: .normal)
+        
+        self.viewController?.dataSource?.reloadData(setMailboxData: true)
+    }
+    
+    func setMailboxDataSource(mailboxes: Array<Mailbox>) {
+        
+        self.viewController?.dataSource?.mailboxesArray = mailboxes
+        
+        //self.viewController?.dataSource?.reloadData(setMailboxData: true)
     }
     
     //MARK: - Setup Email To Subsection
