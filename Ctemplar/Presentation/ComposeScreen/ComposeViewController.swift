@@ -111,7 +111,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         //temp =========
         //emailsToArray.append("test@mega.com")
         //emailsToArray.append("dima@tatarinov.com")
-        
+        /*
         emailsToArray.append("dmitry5@dev.ctemplar.com")
         emailsToArray.append("dmitry8@dev.ctemplar.com")
         
@@ -120,7 +120,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         }
         
         subject = "Test encrypted email for contact users"
-        
+        */
         /*
         ccToArray.append("supertest@mega.com")
         ccToArray.append("dimon@tatarinov.com")
