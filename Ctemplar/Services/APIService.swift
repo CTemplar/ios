@@ -627,7 +627,7 @@ class APIService {
         }
     }
     
-    func createMessage(content: String, subject: String, recieversList: Array<String>, folder: String, mailboxID: Int, send: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func createMessage(content: String, subject: String, recieversList: Array<String>, folder: String, mailboxID: Int, send: Bool, encrypted: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         self.checkTokenExpiration(){ (complete) in
             if complete {
@@ -636,7 +636,7 @@ class APIService {
                     
                     //HUD.show(.progress)
                     
-                    self.restAPIService?.createMessage(token: token, content: content, subject: subject, recieversList: recieversList, folder: folder, mailboxID: mailboxID, send: send) {(result) in
+                    self.restAPIService?.createMessage(token: token, content: content, subject: subject, recieversList: recieversList, folder: folder, mailboxID: mailboxID, send: send, encrypted: encrypted) {(result) in
                         
                         switch(result) {
                             

@@ -405,7 +405,7 @@ class RestAPIService {
         }
     }
     
-    func createMessage(token: String, content: String, subject: String, recieversList: Array<String>, folder: String, mailboxID: Int, send: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func createMessage(token: String, content: String, subject: String, recieversList: Array<String>, folder: String, mailboxID: Int, send: Bool, encrypted: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
     
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -420,7 +420,7 @@ class RestAPIService {
             JSONKey.folder.rawValue: folder,
             JSONKey.mailbox.rawValue: mailboxID,
             JSONKey.send.rawValue: send,
-            JSONKey.encrypted.rawValue : "1"
+            JSONKey.encrypted.rawValue : encrypted
         ]
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue

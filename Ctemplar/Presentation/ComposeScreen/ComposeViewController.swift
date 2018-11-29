@@ -71,6 +71,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     var usersPublicKeys = Array<Key>()
     
+    var encryptedMail : Bool = true
+    
     var messageAttributedText : NSAttributedString = NSAttributedString(string: "")
     
     override func viewDidLoad() {
