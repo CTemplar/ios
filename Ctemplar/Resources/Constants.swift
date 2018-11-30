@@ -59,6 +59,7 @@ let k_ContactCellXibName                   = "ContactTableViewCell"
 let k_ChildMessageCellXibName              = "ChildMessageTableViewCell"
 let k_ChildMessageExpandedCellXibName      = "ChildMessageExpandedTableViewCell"
 let k_ChildMessageExpandedWithAttachmentCellXibName      = "ChildMessageExpandedWithAttachmentTableViewCell"
+let k_UserMailboxCellXibName               = "UserMailboxTableViewCell"
 let k_AttachmentCollcetionViewCellXibName  = "AttachmentCollcetionViewCell"
 
 // cell identifier
@@ -73,6 +74,7 @@ let k_ContactTableViewCellIdentifier            = "contactTableViewCellIdentifie
 let k_ChildMessageTableViewCellIdentifier       = "childMessageTableViewCellIdentifier"
 let k_ChildMessageExpandedTableViewCellIdentifier       = "childMessageExpandedTableViewCellIdentifier"
 let k_ChildMessageExpandedWithAttachmentTableViewCellIdentifier       = "childMessageExpandedWithAttachmentTableViewCellIdentifier"
+let k_UserMailboxTableViewCellIdentifier        = "userMailboxTableViewCellIdentifier"
 let k_AttachmentCollcetionViewCellIdentifier = "attachmentCollcetionViewCellIdentifier"
 
 

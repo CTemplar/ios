@@ -34,7 +34,7 @@ class ComposeDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func registerTableViewCell() {
         
-        //self.tableView.register(UINib(nibName: k_ChildMessageCellXibName, bundle: nil), forCellReuseIdentifier: k_ChildMessageTableViewCellIdentifier)
+        self.tableView.register(UINib(nibName: k_UserMailboxCellXibName, bundle: nil), forCellReuseIdentifier: k_UserMailboxTableViewCellIdentifier)
         
     }
     
@@ -54,18 +54,19 @@ class ComposeDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-       //let cell : ChildMessageTableViewCell = tableView.dequeueReusableCell(withIdentifier: k_ChildMessageTableViewCellIdentifier)! as! ChildMessageTableViewCell
+       let cell : UserMailboxTableViewCell = tableView.dequeueReusableCell(withIdentifier: k_UserMailboxTableViewCellIdentifier)! as! UserMailboxTableViewCell
         
-        let cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "mailboxcellidentifier")!
+        //let cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "mailboxcellidentifier")!
         
-        cell.textLabel?.font = UIFont(name: k_latoRegularFontName, size: 14.0)
-        cell.textLabel?.textColor = k_actionMessageColor
+        //cell.textLabel?.font = UIFont(name: k_latoRegularFontName, size: 14.0)
+        //cell.textLabel?.textColor = k_actionMessageColor
+                
         
         if self.isMailboxDataSource {
             let mailbox = self.mailboxesArray[indexPath.row]
             
             if let email = mailbox.email {
-                cell.textLabel?.text = email
+                cell.emailLabel.text = email
             }
         }
         
