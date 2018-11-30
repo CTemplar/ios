@@ -634,7 +634,7 @@ class APIService {
                 
                 if let token = self.getToken() {
                     
-                    //HUD.show(.progress)
+                    HUD.show(.progress)
                     
                     self.restAPIService?.createMessage(token: token, content: content, subject: subject, recieversList: recieversList, folder: folder, mailboxID: mailboxID, send: send, encrypted: encrypted) {(result) in
                         
@@ -663,7 +663,7 @@ class APIService {
                             completionHandler(APIResult.failure(error))
                         }
                         
-                        //HUD.hide()
+                        HUD.hide()
                     }
                 }
             }

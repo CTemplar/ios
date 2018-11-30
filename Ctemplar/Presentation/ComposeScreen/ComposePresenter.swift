@@ -85,12 +85,12 @@ class ComposePresenter {
                 let formattedDate = self.formatterService!.formatReplyDate(date: date)
                 let formattedTime = self.formatterService!.formatDateToStringTimeFull(date: date)
             
-                replyHeader = "\n\n" + "On: " + replyHeader + formattedDate + " at " + formattedTime + "\n"
+                replyHeader = "\n\n" + "replyOn".localized() + replyHeader + formattedDate + "atTime".localized() + formattedTime + "\n"
             }
         }
         
         if let sender = message.sender {
-            replyHeader = replyHeader + "<" + sender + "> " + "wrote:" + "\n\n"
+            replyHeader = replyHeader + "<" + sender + "> " + "wroteBy".localized() + "\n\n"
         }
         
         let font : UIFont = UIFont(name: k_latoRegularFontName, size: 14.0)!

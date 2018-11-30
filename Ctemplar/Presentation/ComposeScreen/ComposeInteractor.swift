@@ -30,7 +30,7 @@ class ComposeInteractor {
             case .success(let value):
                 print("createMessage value:", value)
                 
-                
+                self.mailWasSent()
                 
             case .failure(let error):
                 print("error:", error)
@@ -75,7 +75,20 @@ class ComposeInteractor {
                 AlertHelperKit().showAlert(self.viewController!, title: "Public Key Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
+    }
+    
+    func mailWasSent() {
         
+        let params = Parameters(
+            title: "infoTitle".localized(),
+            message: "mailSendMessage".localized(),
+            cancelButton: "closeButton".localized()
+        )
+        
+        AlertHelperKit().showAlertWithHandler(self.viewController!, parameters: params) { buttonIndex in
+            print("close Coppose")
+            self.viewController!.navigationController?.popViewController(animated: true)
+        }
     }
     
     //MARK: - prepared to send

@@ -228,10 +228,15 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         print("textViewDidBeginEditing")
         
-        if textView == self.messageTextView {
+        if textView != self.messageTextView {
             if self.messageTextView.text.isEmpty {
                 self.messageTextView.text = "composeEmail".localized()
                 self.messageTextView.textColor = UIColor.lightGray
+            }
+        } else {
+            if self.messageTextView.text.isEmpty {
+                self.messageTextView.text = ""
+                self.messageTextView.textColor = UIColor.darkText //temp
             }
         }
     }
