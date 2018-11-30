@@ -14,41 +14,74 @@ class ComposePresenter {
     
     var viewController   : ComposeViewController?
     var interactor       : ComposeInteractor?
+    var formatterService        : FormatterService?
     
     func setupMessageSection(emailsArray: Array<EmailMessage>) {
         
+        //self.viewController?.dercyptedMessagesArray.removeAll()
+        
         if emailsArray.count > 0 {
+            
+            var dercyptedMessagesArray = Array<String>()
+            
+            let firstMessage = emailsArray.first
             let lastMessage = emailsArray.last
-            self.fillAllEmailsFields(message: lastMessage!)
-        }
-        
-        self.viewController?.dercyptedMessagesArray.removeAll()
-        
-        HUD.show(.progress)
-        
-        for message in emailsArray {
             
-            if let messageContent = self.interactor?.extractMessageContent(message: message) {
-                self.viewController?.dercyptedMessagesArray.append(messageContent)
+            self.fillAllEmailsFields(message: firstMessage!)
+            
+            //HUD.show(.progress)
+            if let messageContent = self.interactor?.extractMessageContent(message: lastMessage!) {
+                dercyptedMessagesArray.append(messageContent)
             }
-        }
-        
-        HUD.hide()
-        
-        if (self.viewController?.dercyptedMessagesArray.count)! > 0 {
-        
-            var lastMessageContent = self.viewController?.dercyptedMessagesArray.last
+            //HUD.hide()
             
-            lastMessageContent = "" + lastMessageContent!
+            if dercyptedMessagesArray.count > 0 {
+        
+                let lastMessageContent = dercyptedMessagesArray.last
             
-            self.viewController?.messageTextView.attributedText = lastMessageContent!.html2AttributedString
-            self.viewController?.messageTextView.sizeToFit()
-            self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
+                let replyHeader = self.generateReplyHeader(message: lastMessage!)
+                let lastMessageContentAttributedString = lastMessageContent!.html2AttributedString
+                let mutableAttributedString = NSMutableAttributedString(attributedString: replyHeader)
+                mutableAttributedString.append(lastMessageContentAttributedString!)
+                
+                self.viewController?.messageTextView.attributedText = mutableAttributedString//lastMessageContent!.html2AttributedString
+                //self.viewController?.messageTextView.sizeToFit()
+                self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
+            }
         } else {
             self.viewController?.messageTextView.font = UIFont(name: k_latoRegularFontName, size: 14.0)
             self.viewController?.messageTextView.text = "composeEmail".localized()
             self.viewController?.messageTextView.textColor = UIColor.lightGray
         }
+    }
+    
+    func generateReplyHeader(message: EmailMessage) -> NSAttributedString {
+        
+        var replyHeader : String = ""
+ 
+        if let sentAtDate = message.updated { //message.sentAt
+            
+            if  let date = self.formatterService!.formatStringToDate(date: sentAtDate) {
+                let formattedDate = self.formatterService!.formatReplyDate(date: date)
+                let formattedTime = self.formatterService!.formatDateToStringTimeFull(date: date)
+            
+                replyHeader = "\n\n" + "On: " + replyHeader + formattedDate + " at " + formattedTime + "\n"
+            }
+        }
+        
+        if let sender = message.sender {
+            replyHeader = replyHeader + "<" + sender + "> " + "wrote:" + "\n\n"
+        }
+        
+        let font : UIFont = UIFont(name: k_latoRegularFontName, size: 14.0)!
+        
+        let attributedString = NSMutableAttributedString(string: replyHeader, attributes: [
+            .font: font,
+            .foregroundColor: k_actionMessageColor,
+            .kern: 0.0
+            ])
+        
+        return attributedString
     }
     
     //MARK: - Setup Email From Section
@@ -116,13 +149,17 @@ class ComposePresenter {
     //MARK: - Setup Email To Subsection
     
     func fillAllEmailsFields(message: EmailMessage) {
-        
+        /*
         if let recieversArray = message.receivers {
             self.viewController!.emailsToArray = recieversArray as! [String]
             
             for email in self.viewController!.emailsToArray {
                 self.viewController!.emailToSting = self.viewController!.emailToSting + email + " "
             }
+        }*/
+        
+        if let sender = message.sender {
+             self.viewController!.emailToSting = self.viewController!.emailToSting + sender
         }
         
         if let ccArray = message.cc {

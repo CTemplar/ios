@@ -181,6 +181,15 @@ class FormatterService
     
     //MARK: - Date String formatter
     
+    func formatReplyDate(date: Date) -> String {
+        
+        var dateString : String = ""
+        
+        dateString = formatDateToStringFull(date: date)
+        
+        return dateString
+    }
+    
     func formatCreationDate(date: Date) -> String {
         
         var dateString : String = ""
@@ -270,10 +279,31 @@ class FormatterService
         return dateString
     }
     
+    func formatDateToStringTimeFull(date: Date) -> String {
+        
+        let dateFormatter = DateFormatter()        
+        dateFormatter.dateFormat = "HH:mm:ss a"
+        
+        let dateString = dateFormatter.string(from:date as Date)
+        
+        return dateString
+    }
+    
     func formatDateToStringMonthAndDate(date: Date) -> String {
         
         let dateFormatter = DateFormatter()       
         dateFormatter.dateFormat = "MMM dd"
+        
+        let dateString = dateFormatter.string(from:date as Date)
+        
+        return dateString
+    }
+    
+    func formatDateToStringFull(date: Date) -> String {
+        
+        //Thu, November 22, 2018 at 10:10:10 AM
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E, MMMM dd, yyyy"// HH:mm:ss a"
         
         let dateString = dateFormatter.string(from:date as Date)
         
