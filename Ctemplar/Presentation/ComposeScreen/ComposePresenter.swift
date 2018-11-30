@@ -14,6 +14,8 @@ class ComposePresenter {
     var viewController   : ComposeViewController?
     var interactor       : ComposeInteractor?
     
+    var emailToSubViewsArray = Array<Int>()
+    
     //MARK: - Setup Email From Section
     
     func setMailboxes(mailboxes: Array<Mailbox>) {
@@ -99,42 +101,30 @@ class ComposePresenter {
             _ = attributedString.setForgroundColor(textToFind: email, color: k_emailToInputColor)
         }
         
-        //let attachment = NSTextAttachment()
-        
-        
         if self.viewController!.tapSelectedEmail.count > 0 {
-            _ = attributedString.setBackgroundColor(textToFind: self.viewController!.tapSelectedEmail, color: k_foundTextBackgroundColor)
+       //     _ = attributedString.setBackgroundColor(textToFind: self.viewController!.tapSelectedEmail, color: k_foundTextBackgroundColor)
         }
         
         self.viewController!.emailToTextView.attributedText = attributedString
         //self.viewController!.emailToTextView.text = emailToText
     }
     
-    func setRect(textView: UITextView) {
+    func setRect(textView: UITextView, tag: Int) {
+        
+        self.removeSubviews(textView: textView, array:  self.emailToSubViewsArray, tag: tag)
+        
+        self.emailToSubViewsArray.removeAll()
         
         let text = textView.text!
-        /*
-        text?.enumerateSubstrings(in: text?.startIndex ..< text?.endIndex, options: .byWords) {
-            (substring, substringRange, _, _) in
-            if substring == "saying" {
-                //attributedString.addAttribute(.foregroundColor, value: NSColor.red, range: NSRange(substringRange, in: text))
-            }
-        }*/
         
-        let textRange = text.startIndex..<text.endIndex
+        var substrings = textView.text.split(separator: " ")
+        substrings.removeFirst()
         
-        text.enumerateSubstrings(in: textRange, options: NSString.EnumerationOptions.byWords, { (substring, substringRange, enclosingRange, stop) -> () in
-            //let start = distance(text.startIndex, substringRange.startIndex)
-            //let length = distance(substringRange.startIndex, substringRange.endIndex)
-            //let range = NSMakeRange(start, length)
-        })
-        
-        
-        let substrings = textView.text.split(separator: " ")
+        var index = tag
         
         for sub in substrings {
-            
-            let wordRange = (textView.text as NSString).range(of: String(sub))
+        
+            let wordRange = (text as NSString).range(of: String(sub))
         
             let textContainer = textView.textContainer
             
@@ -142,20 +132,62 @@ class ComposePresenter {
             
             var glyphRect = textView.layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
             
-            glyphRect.origin.y += textView.textContainerInset.top
+            //glyphRect.origin.y += textView.textContainerInset.top
             glyphRect.origin.x += textView.textContainerInset.left
             
-            print("rect:", glyphRect.origin.x, glyphRect.origin.y)
-            print("rect size:", glyphRect.size.width, glyphRect.size.height)
+            //print("rect:", glyphRect.origin.x, glyphRect.origin.y)
+            //print("rect size:", glyphRect.size.width, glyphRect.size.height)
+            print("textView.textContainerInset.top:", textView.textContainerInset.top) // 8 - 2
             
-            let rect = CGRect(x: glyphRect.origin.x, y: glyphRect.origin.y + 0.0, width: glyphRect.size.width, height: glyphRect.size.height - 0.0)
+            let rect = CGRect(x: glyphRect.origin.x, y: glyphRect.origin.y + 6.0, width: glyphRect.size.width, height: 22.0)
             
-            //let label = UILabel(frame: rect)
-            let view = UIView(frame: rect)
-            view.backgroundColor = UIColor.red
-            view.alpha = 0.4
+            index = index + 1
             
-            textView.add(subview: view)
+            print("add with index", index)
+            self.emailToSubViewsArray.append(index)
+            
+            self.addEmailLabelWith(text: String(sub), rect: rect, index: index, textView: textView)
+        }
+    }
+    
+    func addEmailLabelWith(text: String, rect: CGRect, index: Int, textView: UITextView) {
+        
+        let view = UIView(frame: rect)
+        view.backgroundColor = k_mainInboxColor
+        
+        view.layer.cornerRadius = 4.0
+        view.layer.borderColor = UIColor.white.cgColor
+        view.layer.borderWidth = 1.0
+  
+        let labelRect = CGRect(x: 0.0, y: 0.0, width: rect.size.width, height: rect.size.height)
+        let label = UILabel(frame: labelRect)
+        label.font = UIFont(name: k_latoRegularFontName, size: 14.0)
+        label.textColor = k_emailToInputColor
+        label.text = text
+        label.backgroundColor = UIColor.clear
+        
+        //label.alpha = 0.4
+        //view.alpha = 0.4
+        
+        view.tag = index
+        
+        view.add(subview: label)
+        textView.add(subview: view)
+        //textView.add(subview: label)
+    }
+    
+    func removeSubviews(textView: UITextView, array: Array<Int>, tag: Int) {
+        
+        for index in array {
+            print("remove at index:", index)
+            self.removeEmailLabels(textView: textView, index: index)
+        }
+    }
+    
+    func removeEmailLabels(textView: UITextView, index: Int) {
+        
+        if let subview = textView.viewWithTag(index) {
+            subview.removeFromSuperview()
         }
     }
     
@@ -282,7 +314,7 @@ class ComposePresenter {
     
     func setupEmailToSection(emailToText: String, ccToText: String, bccToText: String) {
         
-        //self.viewController!.backgroundColor = UIColor.yellow//debug
+        //self.viewController!.emailToTextView.backgroundColor = UIColor.yellow//debug
         //self.viewController!.ccToTextView.backgroundColor = UIColor.yellow
         //self.viewController!.bccToTextView.backgroundColor = UIColor.yellow
         
@@ -309,7 +341,7 @@ class ComposePresenter {
         self.viewController!.toViewSectionHeightConstraint.constant = self.viewController!.toViewSubsectionHeightConstraint.constant + self.viewController!.expandedSectionHeight
         
         //=========
-        self.setRect(textView: self.viewController!.emailToTextView)
+        self.setRect(textView: self.viewController!.emailToTextView, tag: 200)
         //========
     }
     

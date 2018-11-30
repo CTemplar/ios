@@ -187,7 +187,7 @@ let k_contactsSelectAllBarHeight    : CGFloat = 50.0
 
 let k_expandDetailsButtonWidth      : CGFloat = 44.0
 let k_emailToTextViewLeftOffset     : CGFloat = 16.0
-let k_emailToTextViewTopOffset      : CGFloat = 6.0
+let k_emailToTextViewTopOffset      : CGFloat = 8.0
 
 //images
 
