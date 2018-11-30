@@ -117,6 +117,18 @@ class ComposeInteractor {
 
     }
     
+    func extractMessageContent(message: EmailMessage) -> String {
+        
+        if let content = message.content {
+            if let message = self.pgpService?.decryptMessage(encryptedContet: content) {
+                //print("decrypt viewed message: ", message)
+                return message
+            }
+        }
+        
+        return "Error"
+    }
+    
     //MARK: - textView delegate
     
     func holdEmailToTextViewInput(textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {

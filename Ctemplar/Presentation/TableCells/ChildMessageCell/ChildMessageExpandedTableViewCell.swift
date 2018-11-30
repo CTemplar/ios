@@ -53,7 +53,7 @@ class ChildMessageExpandedTableViewCell: UITableViewCell {
                 
         var toEmailsArray : Array<String> = []
         
-        if let recieversArray = message.receiver {
+        if let recieversArray = message.receivers {
             toEmailsArray = recieversArray as! Array<String>
         }
         
@@ -85,7 +85,7 @@ class ChildMessageExpandedTableViewCell: UITableViewCell {
             fromEmail = sender
         }
         
-        if let recieversArray = message.receiver {
+        if let recieversArray = message.receivers {
             toEmailsArray = recieversArray as! Array<String>
         }
         

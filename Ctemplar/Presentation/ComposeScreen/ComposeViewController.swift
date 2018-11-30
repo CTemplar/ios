@@ -81,6 +81,9 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     var messageAttributedText : NSAttributedString = NSAttributedString(string: "")
     
+    var messagesArray                     : Array<EmailMessage> = []
+    var dercyptedMessagesArray            : Array<String> = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -88,7 +91,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         let configurator = ComposeConfigurator()
         configurator.configure(viewController: self)
         
-        //self.navigationItem.rightBarButtonItem?.isEnabled = false
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
         self.navigationItem.title = navBarTitle
         
         emailToTextView.delegate = self
@@ -140,21 +143,22 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         //========
         */
         
+        //self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
+        
         self.presenter?.setMailboxes(mailboxes: mailboxesList)
         self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
         self.presenter?.setupSubject(subjectText: self.subject)
         
         self.dataSource?.initWith(parent: self, tableView: tableView)
-        self.presenter?.setMailboxDataSource(mailboxes: mailboxesList)
-        
-        //temp
-        if self.messageTextView.text.count == 0 {
-            self.messageTextView.font = UIFont(name: k_latoRegularFontName, size: 14.0)
-            self.messageTextView.text = "composeEmail".localized()
-            self.messageTextView.textColor = UIColor.lightGray
-        }
+        self.presenter?.setMailboxDataSource(mailboxes: mailboxesList)        
         
         self.addGesureRecognizers()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
     }
     
     func addGesureRecognizers() {

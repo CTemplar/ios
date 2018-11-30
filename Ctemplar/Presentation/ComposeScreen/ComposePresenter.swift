@@ -8,11 +8,48 @@
 
 import Foundation
 import UIKit
+import PKHUD
 
 class ComposePresenter {
     
     var viewController   : ComposeViewController?
     var interactor       : ComposeInteractor?
+    
+    func setupMessageSection(emailsArray: Array<EmailMessage>) {
+        
+        if emailsArray.count > 0 {
+            let lastMessage = emailsArray.last
+            self.fillAllEmailsFields(message: lastMessage!)
+        }
+        
+        self.viewController?.dercyptedMessagesArray.removeAll()
+        
+        HUD.show(.progress)
+        
+        for message in emailsArray {
+            
+            if let messageContent = self.interactor?.extractMessageContent(message: message) {
+                self.viewController?.dercyptedMessagesArray.append(messageContent)
+            }
+        }
+        
+        HUD.hide()
+        
+        if (self.viewController?.dercyptedMessagesArray.count)! > 0 {
+        
+            var lastMessageContent = self.viewController?.dercyptedMessagesArray.last
+            
+            lastMessageContent = "" + lastMessageContent!
+            
+            self.viewController?.messageTextView.attributedText = lastMessageContent!.html2AttributedString
+            self.viewController?.messageTextView.sizeToFit()
+            self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
+        } else {
+            self.viewController?.messageTextView.font = UIFont(name: k_latoRegularFontName, size: 14.0)
+            self.viewController?.messageTextView.text = "composeEmail".localized()
+            self.viewController?.messageTextView.textColor = UIColor.lightGray
+        }
+    }
     
     //MARK: - Setup Email From Section
     
@@ -73,12 +110,39 @@ class ComposePresenter {
     
     func setMailboxDataSource(mailboxes: Array<Mailbox>) {
         
-        self.viewController?.dataSource?.mailboxesArray = mailboxes
-        
-        //self.viewController?.dataSource?.reloadData(setMailboxData: true)
+        self.viewController?.dataSource?.mailboxesArray = mailboxes        
     }
     
     //MARK: - Setup Email To Subsection
+    
+    func fillAllEmailsFields(message: EmailMessage) {
+        
+        if let recieversArray = message.receivers {
+            self.viewController!.emailsToArray = recieversArray as! [String]
+            
+            for email in self.viewController!.emailsToArray {
+                self.viewController!.emailToSting = self.viewController!.emailToSting + email + " "
+            }
+        }
+        
+        if let ccArray = message.cc {
+            self.viewController!.ccToArray = ccArray as! [String]
+            
+            for email in self.viewController!.ccToArray {
+                self.viewController!.ccToSting = self.viewController!.ccToSting + email + " "
+            }
+        }
+        
+        if let bccArray = message.bcc {
+            self.viewController!.bccToArray = bccArray as! [String]
+            
+            for email in self.viewController!.bccToArray {
+                self.viewController!.bccToSting = self.viewController!.bccToSting + email + " "
+            }
+        }
+        
+        self.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
+    }
     
     func setupEmailToViewText(emailToText: String) {
         

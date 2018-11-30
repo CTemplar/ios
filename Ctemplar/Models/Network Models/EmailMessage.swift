@@ -30,7 +30,7 @@ struct EmailMessage {
     var mailbox : String? = nil
     var parent : String? = nil
     var read : Bool? = nil
-    var receiver : Array<Any>? = nil
+    var receivers : Array<Any>? = nil
     var send : String? = nil
     var sender : String? = nil
     var sentAt : String? = nil
@@ -69,7 +69,7 @@ struct EmailMessage {
         self.mailbox = dictionary["mailbox"] as? String        
         self.parent = dictionary["parent"] as? String
         self.read = dictionary["read"] as? Bool
-        self.receiver = dictionary["receiver"] as? Array<Any>
+        self.receivers = dictionary["receiver"] as? Array<Any>
         self.send = dictionary["send"] as? String
         self.sender = dictionary["sender"] as? String
         self.sentAt = dictionary["sent_at"] as? String
