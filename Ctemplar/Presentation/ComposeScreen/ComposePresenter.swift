@@ -16,6 +16,23 @@ class ComposePresenter {
     var interactor       : ComposeInteractor?
     var formatterService        : FormatterService?
     
+    func enabledSendButton() {
+        
+        var messageContentIsEmpty : Bool = true
+        
+        if self.viewController!.messageTextView.text.count > 0 {
+            if self.viewController!.messageTextView.text != "composeEmail".localized() {
+                messageContentIsEmpty = false
+            }
+        }
+        
+        if self.viewController!.emailsToArray.count > 0 && self.viewController!.subject.count > 0 && !messageContentIsEmpty {
+            self.viewController!.navigationItem.rightBarButtonItem?.isEnabled = true
+        } else {
+            self.viewController!.navigationItem.rightBarButtonItem?.isEnabled = false
+        }
+    }
+    
     func setupMessageSection(emailsArray: Array<EmailMessage>) {
         
         //self.viewController?.dercyptedMessagesArray.removeAll()
@@ -48,6 +65,9 @@ class ComposePresenter {
                 //self.viewController?.messageTextView.sizeToFit()
                 self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
             }
+            
+            self.enabledSendButton()
+            
         } else {
             self.viewController?.messageTextView.font = UIFont(name: k_latoRegularFontName, size: 14.0)
             self.viewController?.messageTextView.text = "composeEmail".localized()
@@ -159,7 +179,8 @@ class ComposePresenter {
         }*/
         
         if let sender = message.sender {
-             self.viewController!.emailToSting = self.viewController!.emailToSting + sender
+            self.viewController!.emailToSting = self.viewController!.emailToSting + sender
+            self.viewController!.emailsToArray.append(sender)
         }
         
         if let ccArray = message.cc {

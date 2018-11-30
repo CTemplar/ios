@@ -228,9 +228,11 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         print("textViewDidBeginEditing")
         
-        if self.messageTextView.textColor == UIColor.lightGray {
-            self.messageTextView.text = nil
-            self.messageTextView.textColor = UIColor.black
+        if textView == self.messageTextView {
+            if self.messageTextView.text.isEmpty {
+                self.messageTextView.text = "composeEmail".localized()
+                self.messageTextView.textColor = UIColor.lightGray
+            }
         }
     }
     
@@ -245,15 +247,19 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         print("textViewDidEndEditing")
         
-        if self.messageTextView.text.isEmpty {
-            self.messageTextView.text = "composeEmail".localized()
-            self.messageTextView.textColor = UIColor.lightGray
+        if textView == self.messageTextView {
+            if self.messageTextView.text.isEmpty {
+                self.messageTextView.text = "composeEmail".localized()
+                self.messageTextView.textColor = UIColor.lightGray
+            }
         }
         
         self.tapSelectedEmail = ""
         self.tapSelectedCcEmail = ""
         self.tapSelectedBccEmail = ""
+        
         self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
+        self.presenter!.enabledSendButton()
     }
     
     func textViewDidChange(_ textView: UITextView) {
@@ -270,10 +276,13 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         case self.bccToTextView:
             self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: textView.text)
         case self.messageTextView:
-             self.messageAttributedText = self.messageTextView.attributedText
+             //self.messageAttributedText = self.messageTextView.attributedText
+            break
         default:
             break
         }
+        
+        self.presenter!.enabledSendButton()
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -294,14 +303,24 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     //MARK: - textField delegate
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        self.subject = textField.text!
+        self.presenter!.enabledSendButton()
+        
+        return true
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         self.subject = textField.text!
+        self.presenter!.enabledSendButton()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         self.subject = textField.text!
+        self.presenter!.enabledSendButton()
         textField.resignFirstResponder()
         
         return true;

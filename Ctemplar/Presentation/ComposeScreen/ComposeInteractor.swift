@@ -135,11 +135,13 @@ class ComposeInteractor {
         
         //forbid to delete Prefix "
         if self.forbidDeletion(range: range, prefix: "emailToPrefix".localized()) {
+            self.presenter!.enabledSendButton()
             return false
         }
         
         if self.getCursorPosition(textView: textView) < "emailToPrefix".localized().count {
             self.setCursorPositionToEnd(textView: textView)
+            self.presenter!.enabledSendButton()
             return false
         }
                 
@@ -154,6 +156,8 @@ class ComposeInteractor {
             self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
             
             self.setCursorPositionToEnd(textView: textView)
+            
+            self.presenter!.enabledSendButton()
             
             return false
         }
@@ -182,9 +186,12 @@ class ComposeInteractor {
             }
         } else {
             if self.viewController!.tapSelectedEmail.count > 0 {
+                self.presenter!.enabledSendButton()
                 return false //disable edit if Email selected, only delete by Backspace
             }
         }
+        
+        self.presenter!.enabledSendButton()
         
         return true
     }
