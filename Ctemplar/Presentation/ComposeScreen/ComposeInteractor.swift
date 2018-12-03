@@ -57,7 +57,7 @@ class ComposeInteractor {
                     recieversUsersPublicKeys = recieversUsersPublicKeys + userPublicKey!
                 }
                 
-                if let userKeys = self.pgpService?.getStoredPGPKeys() {
+                if let userKeys = self.pgpService?.getStoredPGPKeys() { //add logged user public key
                     if userKeys.count > 0 {
                         recieversUsersPublicKeys.append(userKeys.first!)
                     }
@@ -100,17 +100,34 @@ class ComposeInteractor {
         self.publicKeysFor(userEmailsArray: self.viewController!.emailsToArray) { (keys) in
             print("publicKeys:", keys)
             
-             if keys.count == 0 { //Temp
-                //self.viewController?.encryptedMail = false
-                //need to show warning
+             if keys.count < 2 { //just logged user key or non
+                self.sendEmailForNonCtemplarUser()
              } else {
-                //self.viewController?.encryptedMail = true
-                
-                let encryptMessage = self.encryptMessage(publicKeys: keys)
-                
-                self.sendMail(content: encryptMessage, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, mailboxID: (self.viewController?.mailboxID)!, encrypted: true)
+                self.sendEncryptedEmailForCtemplarUser(publicKeys: keys)
              }
         }
+    }
+    
+    func sendEncryptedEmailForCtemplarUser(publicKeys: Array<Key>) {
+        
+        let encryptedMessage = self.encryptMessage(publicKeys: publicKeys)
+        
+        self.sendMail(content: encryptedMessage, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, mailboxID: (self.viewController?.mailboxID)!, encrypted: true)
+    }
+    
+    func sendEmailForNonCtemplarUser() {
+        
+        var message : String = ""
+        
+        if self.viewController?.encryptedMail == true {
+            
+        } else {
+            message = self.viewController!.messageTextView.text
+        }
+        
+        //let encryptMessage = self.encryptMessage(publicKeys: publicKeys)
+        
+        self.sendMail(content: message, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, mailboxID: (self.viewController?.mailboxID)!, encrypted: (self.viewController?.encryptedMail)!)
     }
     
     func encryptMessage(publicKeys: Array<Key>) -> String {
