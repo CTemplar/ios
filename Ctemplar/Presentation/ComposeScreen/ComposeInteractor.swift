@@ -21,9 +21,9 @@ class ComposeInteractor {
 
     //MARK: - API
     
-    func sendMail(content: String, subject: String, recievers: Array<String>, mailboxID: Int, encrypted: Bool) {
+    func sendMail(content: String, subject: String, recievers: Array<String>, folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String]) {
         
-        apiService?.createMessage(content: content, subject: subject, recieversList: recievers, folder: MessagesFoldersName.sent.rawValue, mailboxID: mailboxID, send: true, encrypted: encrypted) {(result) in
+        apiService?.createMessage(content: content, subject: subject, recieversList: recievers, folder: folder, mailboxID: mailboxID, send: send, encrypted: encrypted, encryptionObject: encryptionObject) {(result) in
             
             switch(result) {
                 
@@ -112,12 +112,17 @@ class ComposeInteractor {
         
         let encryptedMessage = self.encryptMessage(publicKeys: publicKeys)
         
-        self.sendMail(content: encryptedMessage, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, mailboxID: (self.viewController?.mailboxID)!, encrypted: true)
+        //let encryptionObject = EncryptionObject.init().encodeToJson()
+        
+        self.sendMail(content: encryptedMessage, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, folder: MessagesFoldersName.sent.rawValue, mailboxID: (self.viewController?.mailboxID)!, send: true, encrypted: true, encryptionObject: [:])
     }
     
     func sendEmailForNonCtemplarUser() {
         
         var message : String = ""
+        var encryptionObject =  [String : String]()
+        var folder : String = MessagesFoldersName.sent.rawValue
+        var send : Bool = false
         
         if self.viewController?.encryptedMail == true {
             if let userKeys = self.pgpService?.getStoredPGPKeys() {
@@ -125,11 +130,15 @@ class ComposeInteractor {
                     message = self.encryptMessage(publicKeys: userKeys)
                 }
             }
+            send = false
+            encryptionObject = EncryptionObject.init(password: "123", passwordHint: "123").toDictionary()
+            folder = MessagesFoldersName.draft.rawValue
         } else {
+            send = true
             message = self.viewController!.messageTextView.text
         }
         
-        self.sendMail(content: message, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, mailboxID: (self.viewController?.mailboxID)!, encrypted: (self.viewController?.encryptedMail)!)
+        self.sendMail(content: message, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, folder: folder, mailboxID: (self.viewController?.mailboxID)!, send: send, encrypted: (self.viewController?.encryptedMail)!, encryptionObject: encryptionObject)
     }
     
     func encryptMessage(publicKeys: Array<Key>) -> String {
