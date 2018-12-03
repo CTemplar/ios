@@ -394,4 +394,21 @@ class ComposePresenter {
         
         self.viewController!.subjectTextField.text = subject
     }
+    
+    //MARK: - ToolBar Actions
+    
+    func encryptedButtonPressed() {
+        
+        self.viewController?.encryptedMail = !(self.viewController?.encryptedMail)!
+        
+        var buttonImage = UIImage()
+        
+        if (self.viewController?.encryptedMail)! {
+            buttonImage = UIImage(named: k_encryptApliedImageName)!
+        } else {
+            buttonImage = UIImage(named: k_encryptImageName)!
+        }
+        
+        self.viewController?.encryptedButton .setImage(buttonImage, for: .normal)
+    }
 }

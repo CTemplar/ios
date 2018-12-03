@@ -101,13 +101,14 @@ class ComposeInteractor {
             print("publicKeys:", keys)
             
              if keys.count == 0 { //Temp
-                self.viewController?.encryptedMail = false
+                //self.viewController?.encryptedMail = false
+                //need to show warning
              } else {
-                self.viewController?.encryptedMail = true
+                //self.viewController?.encryptedMail = true
                 
                 let encryptMessage = self.encryptMessage(publicKeys: keys)
                 
-                self.sendMail(content: encryptMessage, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, mailboxID: (self.viewController?.mailboxID)!, encrypted: (self.viewController?.encryptedMail)!)
+                self.sendMail(content: encryptMessage, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, mailboxID: (self.viewController?.mailboxID)!, encrypted: true)
              }
         }
     }

@@ -77,7 +77,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     var usersPublicKeys = Array<Key>()
     
-    var encryptedMail : Bool = true
+    var encryptedMail : Bool = false
     
     var messageAttributedText : NSAttributedString = NSAttributedString(string: "")
     
@@ -208,6 +208,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     @IBAction func encryptedButtonPressed(_ sender: AnyObject) {
         
+        self.presenter!.encryptedButtonPressed()
     }
     
     @IBAction func selfDestructedButtonPressed(_ sender: AnyObject) {
