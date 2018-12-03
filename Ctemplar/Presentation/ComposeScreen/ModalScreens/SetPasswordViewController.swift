@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 class SetPasswordViewController: UIViewController {
+    
+    @IBOutlet var applyButton           : UIButton!
 
     //MARK: - Lifecycle
     
@@ -25,7 +27,7 @@ class SetPasswordViewController: UIViewController {
     
     @IBAction func applyButtonPressed(_ sender: AnyObject) {
         
-       
+        self.dismiss(animated: true, completion: nil)//temp
     }
     
     @IBAction func cancelButtonPressed(_ sender: AnyObject) {
