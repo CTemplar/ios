@@ -66,7 +66,7 @@ struct EncryptionObject: Encodable {
         return ["password"          : self.password ?? "",
                 "password_hint"     : self.passwordHint ?? "",
                 "created"           : self.created ?? "",
-                "expires"           : self.expires ?? "",
+                //"expires"           : self.expires ?? "",
                 "id"                : self.encryptionObjectID?.description ?? "",
                 "message"           : self.messageID?.description ?? "",
                 "private_key"       : self.privateKey ?? "",

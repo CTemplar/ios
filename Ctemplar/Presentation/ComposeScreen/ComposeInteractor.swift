@@ -18,6 +18,8 @@ class ComposeInteractor {
     var apiService          : APIService?
     var pgpService          : PGPService?
     var formatterService    : FormatterService?
+    
+    var sendingMessage : EmailMessage = EmailMessage.init()
 
     //MARK: - API
     
@@ -30,7 +32,11 @@ class ComposeInteractor {
             case .success(let value):
                 print("createMessage value:", value)
                 
-                self.mailWasSent()
+                if send {
+                    self.mailWasSent()
+                } else {
+                    self.sendingMessage = value as! EmailMessage
+                }
                 
             case .failure(let error):
                 print("error:", error)

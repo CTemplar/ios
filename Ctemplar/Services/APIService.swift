@@ -35,6 +35,8 @@ enum APIResponse: String {
     //email messages
     case pageConut         = "page_count"
     case results           = "results"
+    case error             = "error"
+    case expires           = "expires"
 }
 
 class APIService {
@@ -651,7 +653,10 @@ class APIService {
                                     let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
                                     completionHandler(APIResult.failure(error))
                                 } else {
-                                    completionHandler(APIResult.success(response))
+                                    //completionHandler(APIResult.success(response))
+                                    
+                                    let emailMessage = EmailMessage(dictionary: response)
+                                    completionHandler(APIResult.success(emailMessage))
                                 }
                             } else {
                                 let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
@@ -1197,6 +1202,10 @@ class APIService {
                 break
             case APIResponse.results.rawValue :
                 //do nothing
+                break
+            case APIResponse.expires.rawValue :
+                print("expires APIResponce key:", dictionary.key, "value:", dictionary.value)
+                message = extractErrorTextFrom(value: dictionary.value)
                 break
             default:
                 print("Default case APIResponce key:", dictionary.key, "value:", dictionary.value)
