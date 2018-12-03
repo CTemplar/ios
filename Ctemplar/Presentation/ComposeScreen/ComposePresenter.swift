@@ -410,5 +410,8 @@ class ComposePresenter {
         }
         
         self.viewController?.encryptedButton .setImage(buttonImage, for: .normal)
+        
+        //temp for debug:
+        self.interactor?.sendPasswordForCreatingMessage()
     }
 }

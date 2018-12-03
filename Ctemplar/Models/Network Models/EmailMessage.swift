@@ -19,7 +19,7 @@ struct EmailMessage {
     var deadManDuration : String? = nil
     var delayedDelivery : String? = nil
     var destructDay : String? = nil
-    var encryption : String? = nil
+    var encryption : EncryptionObject? = nil
     var folder : String? = nil
     var hasChildren : Bool? = nil
     var childrenCount: Int? = nil
@@ -58,7 +58,12 @@ struct EmailMessage {
         self.deadManDuration = dictionary["dead_man_duration"] as? String
         self.delayedDelivery = dictionary["delayed_delivery"] as? String
         self.destructDay = dictionary["destruct_date"] as? String
-        self.encryption = dictionary["encryption"] as? String
+        //self.encryption = dictionary["encryption"] as? String
+        let encryptionDictionary = dictionary["encryption"] as? Dictionary<String, Any>
+        if encryptionDictionary != nil {
+            print("encryptionDictionary:", encryptionDictionary as Any)
+            self.encryption = self.parsEncryptionFrom(dictionary: encryptionDictionary!)
+        }
         self.folder = dictionary["folder"] as? String
         self.hasChildren = dictionary["has_children"] as? Bool
         self.childrenCount = dictionary["children_count"] as? Int
@@ -104,5 +109,11 @@ struct EmailMessage {
         }
         
         return objectsArray
+    }
+    
+    func parsEncryptionFrom(dictionary: Dictionary<String, Any>) -> EncryptionObject {
+        
+        let attachmentResult = EncryptionObject(dictionary: dictionary)
+        return attachmentResult
     }
 }

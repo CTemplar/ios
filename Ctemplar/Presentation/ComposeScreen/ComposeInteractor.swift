@@ -125,6 +125,7 @@ class ComposeInteractor {
         var send : Bool = false
         
         if self.viewController?.encryptedMail == true {
+            /*
             if let userKeys = self.pgpService?.getStoredPGPKeys() {
                 if userKeys.count > 0 {
                     message = self.encryptMessage(publicKeys: userKeys)
@@ -133,6 +134,7 @@ class ComposeInteractor {
             send = false
             encryptionObject = EncryptionObject.init(password: "123", passwordHint: "123").toDictionary()
             folder = MessagesFoldersName.draft.rawValue
+             */
         } else {
             send = true
             message = self.viewController!.messageTextView.text
@@ -152,6 +154,21 @@ class ComposeInteractor {
         }
         
         return ""
+    }
+    
+    func sendPasswordForCreatingMessage() {
+        
+        var message : String = ""
+        
+        if let userKeys = self.pgpService?.getStoredPGPKeys() {
+            if userKeys.count > 0 {
+                message = self.encryptMessage(publicKeys: userKeys)
+            }
+        }
+        
+        let encryptionObject = EncryptionObject.init(password: "123", passwordHint: "123").toDictionary()
+        
+        self.sendMail(content: message, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, folder: MessagesFoldersName.draft.rawValue, mailboxID: (self.viewController?.mailboxID)!, send: false, encrypted: (self.viewController?.encryptedMail)!, encryptionObject: encryptionObject)
     }
     
     func getPublicKeysForEmails() {
