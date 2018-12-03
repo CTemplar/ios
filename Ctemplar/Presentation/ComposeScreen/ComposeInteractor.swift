@@ -120,12 +120,14 @@ class ComposeInteractor {
         var message : String = ""
         
         if self.viewController?.encryptedMail == true {
-            
+            if let userKeys = self.pgpService?.getStoredPGPKeys() {
+                if userKeys.count > 0 {
+                    message = self.encryptMessage(publicKeys: userKeys)
+                }
+            }
         } else {
             message = self.viewController!.messageTextView.text
         }
-        
-        //let encryptMessage = self.encryptMessage(publicKeys: publicKeys)
         
         self.sendMail(content: message, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, mailboxID: (self.viewController?.mailboxID)!, encrypted: (self.viewController?.encryptedMail)!)
     }
