@@ -542,6 +542,50 @@ class APIService {
         }
     }
     
+    func updateSendingMessage(messageID: String, folder: String, encryptionObject: [String : String], completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    
+                    HUD.show(.progress)
+                    
+                    self.restAPIService?.updateSendingMessage(token: token, messageID: messageID, folder: folder, encryptionObject: encryptionObject) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            
+                            print("updateSendingMessages success:", value)
+                            
+                            if let response = value as? Dictionary<String, Any> {
+                                
+                                if let message = self.parseServerResponse(response:response) {
+                                    print("updateSendingMessages message:", message)
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    completionHandler(APIResult.success(value))
+                                }
+                            } else {
+                                 let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                 completionHandler(APIResult.failure(error))
+                                //completionHandler(APIResult.success(value))
+                            }
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                        
+                        HUD.hide()
+                    }
+                }
+            }
+        }
+    }
+    
     func mailboxesList(completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         self.checkTokenExpiration(){ (complete) in

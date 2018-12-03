@@ -355,7 +355,6 @@ class RestAPIService {
                 completionHandler(APIResult.failure(error))
             }
         }
-        
     }
     
     func mailboxesList(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -432,6 +431,37 @@ class RestAPIService {
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
             
             print("createMessage responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func updateSendingMessage(token: String, messageID: String, folder: String, encryptionObject: [String : String], completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.folder.rawValue: folder,
+            JSONKey.send.rawValue: true,
+            JSONKey.encryption.rawValue : encryptionObject
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messageID + "/"
+        
+        print("updateSendingMessage parameters:", parameters)
+        print("updateSendingMessage url:", url)
+        
+        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("updateSendingMessage responce:", response)
             
             switch(response.result) {
             case .success(let value):

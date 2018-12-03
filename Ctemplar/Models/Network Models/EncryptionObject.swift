@@ -43,6 +43,12 @@ struct EncryptionObject: Encodable {
         self.passwordHint = passwordHint
     }
     
+    mutating func setPGPKeys(publicKey: String, privateKey: String) {
+        
+        self.publicKey = publicKey
+        self.privateKey = privateKey
+    }
+    
     func encodeToJson() -> String {
     
         var encodedString : String = ""
@@ -66,12 +72,19 @@ struct EncryptionObject: Encodable {
         return ["password"          : self.password ?? "",
                 "password_hint"     : self.passwordHint ?? "",
                 "created"           : self.created ?? "",
-                //"expires"           : self.expires ?? "",
+                "expires"           : self.expires ?? "", //formatDateToStringExpirationTime
                 "id"                : self.encryptionObjectID?.description ?? "",
                 "message"           : self.messageID?.description ?? "",
                 "private_key"       : self.privateKey ?? "",
                 "public_key"        : self.publicKey ?? "",
                 "random_secret"     : self.randomSecret ?? ""
                 ]
+    }
+    
+    func toShortDictionary() -> [String : String] {
+        
+        return ["password"          : self.password ?? "",
+                "password_hint"     : self.passwordHint ?? "",
+        ]
     }
 }

@@ -279,6 +279,16 @@ class FormatterService
         return dateString
     }
     
+    func formatDateToStringExpirationTime(date: Date) -> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        let dateString = dateFormatter.string(from:date as Date)
+        
+        return dateString
+    }
+    
     func formatDateToStringTimeFull(date: Date) -> String {
         
         let dateFormatter = DateFormatter()        
