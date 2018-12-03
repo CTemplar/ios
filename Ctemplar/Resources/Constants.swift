@@ -30,6 +30,7 @@ let k_SearchViewControllerID                = "SearchViewController"
 let k_MoveToViewControllerID                = "MoveToViewController"
 let k_ContactsViewControllerID              = "ContactsViewController"
 let k_AddContactViewControllerID            = "AddContactViewController"
+let k_SetPasswordViewControllerID           = "SetPasswordViewController"
 let k_AboutAsViewControllerID               = "AboutAsViewController"
 
 // view controllers storyboards name
@@ -45,6 +46,7 @@ let k_AboutAsStoryboardName                = "AboutAs"
 let k_ContactsStoryboardName               = "Contacts"
 let k_MoveToStoryboardName                 = "MoveTo"
 let k_ViewInboxEmailStoryboardName         = "ViewInboxEmail"
+let k_SetPasswordStoryboardName            = "SetPassword"
 let k_AddContactStoryboardName             = "AddContact"
 
 let k_InboxMessageTableViewCellXibName     = "InboxMessageTableViewCell"
