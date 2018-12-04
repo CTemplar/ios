@@ -406,8 +406,6 @@ class ComposePresenter {
         if (self.viewController?.encryptedMail)! {
             buttonImage = UIImage(named: k_encryptApliedImageName)!
             self.viewController?.router?.showSetPasswordViewController()
-            //temp for debug:
-            //self.interactor?.sendPasswordForCreatingMessage()
         } else {
             buttonImage = UIImage(named: k_encryptImageName)!
         }

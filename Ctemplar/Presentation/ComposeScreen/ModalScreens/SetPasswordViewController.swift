@@ -9,11 +9,18 @@
 import Foundation
 import UIKit
 
+protocol SetPasswordDelegate {
+    func applyAction(password: String, passwordHint: String)
+    func cancelAction()
+}
+
 class SetPasswordViewController: UIViewController, UITextFieldDelegate {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     var formatterService : FormatterService?
+    
+    var delegate    : SetPasswordDelegate?
     
     @IBOutlet var applyButton           : UIButton!
     @IBOutlet var mainView              : UIView!
@@ -64,17 +71,20 @@ class SetPasswordViewController: UIViewController, UITextFieldDelegate {
         super.viewDidAppear(animated)
         
         self.setPasswordTextField.becomeFirstResponder()
+        //self.view.frame.origin.y -= CGFloat(keyboardOffset)
     }
     
     //MARK: - IBActions
     
     @IBAction func applyButtonPressed(_ sender: AnyObject) {
         
-        self.dismiss(animated: true, completion: nil)//temp
+        self.delegate?.applyAction(password: self.password, passwordHint: self.passwordHint)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancelButtonPressed(_ sender: AnyObject) {
         
+        self.delegate?.cancelAction()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -107,6 +117,7 @@ class SetPasswordViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     
         self.view.endEditing(true)
+        //textField.resignFirstResponder()
         return true
     }
     
@@ -177,6 +188,7 @@ class SetPasswordViewController: UIViewController, UITextFieldDelegate {
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         
         if gesture.direction == UISwipeGestureRecognizer.Direction.down {
+            self.delegate?.cancelAction()
             self.dismiss(animated: true, completion: nil)
         }
     }

@@ -18,6 +18,7 @@ class ComposeRouter {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_SetPasswordStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_SetPasswordViewControllerID) as! SetPasswordViewController
+        vc.delegate = self.viewController
         self.viewController?.present(vc, animated: true, completion: nil)
     }
 }

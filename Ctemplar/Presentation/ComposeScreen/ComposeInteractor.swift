@@ -190,7 +190,7 @@ class ComposeInteractor {
         return ""
     }
     
-    func sendPasswordForCreatingMessage() {
+    func sendPasswordForCreatingMessage(password: String, passwordHint: String) {
         
         var message : String = ""
         
@@ -200,7 +200,7 @@ class ComposeInteractor {
             }
         }
         
-        let encryptionObject = EncryptionObject.init(password: "test456", passwordHint: "test456").toShortDictionary()
+        let encryptionObject = EncryptionObject.init(password: password, passwordHint: passwordHint).toShortDictionary()
         
         self.sendMail(content: message, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, folder: MessagesFoldersName.draft.rawValue, mailboxID: (self.viewController?.mailboxID)!, send: false, encrypted: (self.viewController?.encryptedMail)!, encryptionObject: encryptionObject)
     }

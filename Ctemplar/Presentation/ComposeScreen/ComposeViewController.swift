@@ -394,3 +394,16 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         return true
     }
 }
+
+extension ComposeViewController: SetPasswordDelegate {
+
+    func applyAction(password: String, passwordHint: String) {
+        
+        self.interactor?.sendPasswordForCreatingMessage(password: password, passwordHint: passwordHint)
+    }
+    
+    func cancelAction() {
+        
+        self.presenter!.encryptedButtonPressed()
+    }
+}
