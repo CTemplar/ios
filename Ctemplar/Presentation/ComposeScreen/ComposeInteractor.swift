@@ -328,6 +328,8 @@ class ComposeInteractor {
             
             self.presenter!.enabledSendButton()
             
+            self.viewController!.tableView.isHidden = true
+            
             return false
         }
         
@@ -352,6 +354,8 @@ class ComposeInteractor {
                     self.viewController!.emailsToArray.removeAll{ $0 == editingWord }
                     print("emailsToArray count:", self.viewController!.emailsToArray.count)
                 }
+                
+                self.viewController!.tableView.isHidden = false
             }
         } else {
             if self.viewController!.tapSelectedEmail.count > 0 {
@@ -388,6 +392,8 @@ class ComposeInteractor {
             
             self.setCursorPositionToEnd(textView: textView)
             
+            self.viewController!.tableView.isHidden = true
+            
             return false
         }
         
@@ -412,6 +418,8 @@ class ComposeInteractor {
                     self.viewController!.ccToArray.removeAll{ $0 == editingWord }
                     print("ccToArray count:", self.viewController!.ccToArray.count)                    
                 }
+                
+                self.viewController!.tableView.isHidden = false
             }
         } else {
             if self.viewController!.tapSelectedCcEmail.count > 0 {
@@ -445,6 +453,8 @@ class ComposeInteractor {
             
             self.setCursorPositionToEnd(textView: textView)
             
+            self.viewController!.tableView.isHidden = true
+            
             return false
         }
         
@@ -469,6 +479,8 @@ class ComposeInteractor {
                     self.viewController!.bccToArray.removeAll{ $0 == editingWord }
                     print("bccToArray count:", self.viewController!.bccToArray.count)
                 }
+                
+                self.viewController!.tableView.isHidden = false
             }
         } else {
             if self.viewController!.tapSelectedBccEmail.count > 0 {

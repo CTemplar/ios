@@ -164,6 +164,8 @@ class ComposePresenter {
         
         self.viewController!.mailboxesButton.setBackgroundImage(buttonImage, for: .normal)
         
+        self.setupTableView(topOffset: k_composeTableViewTopOffset)
+        
         self.viewController?.dataSource?.reloadData(setMailboxData: true)
     }
     

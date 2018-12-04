@@ -90,6 +90,11 @@ class ComposeDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             }
             
             self.parentViewController.mailboxID = mailbox.mailboxID!
+        } else {
+            
+            let contact = contactsArray[indexPath.row]
+            let email = contact.email
+            
         }
         
         self.tableView.isHidden = true
