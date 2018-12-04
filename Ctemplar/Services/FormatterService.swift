@@ -88,6 +88,15 @@ class FormatterService
         }
     }
     
+    func comparePasswordsLench(enteredPassword: String, password: String) -> Bool {
+        
+        if (enteredPassword.count >= password.count)  {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     func validatePasswordFormat(enteredPassword: String) -> Bool {
         
         let passwordFormat = "[A-Z0-9a-z._%+-]{1,64}"//"^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()\\-_=+{}|?>.<,:;~`’]{8,64}$"
