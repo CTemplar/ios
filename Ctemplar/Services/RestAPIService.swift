@@ -451,7 +451,8 @@ class RestAPIService {
         let parameters: Parameters = [
             JSONKey.folder.rawValue: folder,
             JSONKey.send.rawValue: true,
-            JSONKey.encryption.rawValue : encryptionObject
+            JSONKey.encryption.rawValue : encryptionObject,
+            JSONKey.content.rawValue : encryptedMessage
         ]
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messageID + "/"

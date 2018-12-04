@@ -153,12 +153,14 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.presenter?.setMailboxDataSource(mailboxes: mailboxesList)        
         
         self.addGesureRecognizers()
+        
+        self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
+        //self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
     }
     
     func addGesureRecognizers() {

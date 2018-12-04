@@ -169,19 +169,19 @@ class ComposePresenter {
     //MARK: - Setup Email To Subsection
     
     func fillAllEmailsFields(message: EmailMessage) {
-        /*
+        
         if let recieversArray = message.receivers {
             self.viewController!.emailsToArray = recieversArray as! [String]
             
             for email in self.viewController!.emailsToArray {
                 self.viewController!.emailToSting = self.viewController!.emailToSting + email + " "
             }
-        }*/
-        
+        }
+        /*
         if let sender = message.sender {
             self.viewController!.emailToSting = self.viewController!.emailToSting + sender
             self.viewController!.emailsToArray.append(sender)
-        }
+        }*/
         
         if let ccArray = message.cc {
             self.viewController!.ccToArray = ccArray as! [String]
@@ -410,7 +410,6 @@ class ComposePresenter {
             buttonImage = UIImage(named: k_encryptImageName)!
         }
         
-        self.viewController?.encryptedButton .setImage(buttonImage, for: .normal)
-        
+        self.viewController?.encryptedButton .setImage(buttonImage, for: .normal)        
     }
 }

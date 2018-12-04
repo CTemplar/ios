@@ -20,6 +20,8 @@ class ComposeInteractor {
     var formatterService    : FormatterService?
     
     var sendingMessage : EmailMessage = EmailMessage.init()
+    
+    var setPassword : String = ""
 
     //MARK: - API
     
@@ -148,8 +150,10 @@ class ComposeInteractor {
         if self.viewController?.encryptedMail == true {
             
             if let encryptionObject = self.sendingMessage.encryption {
+                
+                let userName = self.sendingMessage.messsageID?.description
             
-                if let nonCtemplarPGPKey = pgpService?.generatePGPKey(userName: "support@hypertunnels3d.com", password: "test456") {
+                if let nonCtemplarPGPKey = pgpService?.generatePGPKey(userName: userName!, password: self.setPassword) {
                 
                     encryptionObjectDictionary = self.setPGPKeysForEncryptionObject(object: encryptionObject, pgpKey: nonCtemplarPGPKey)
                     
@@ -191,6 +195,8 @@ class ComposeInteractor {
     }
     
     func sendPasswordForCreatingMessage(password: String, passwordHint: String) {
+        
+        self.setPassword = password
         
         var message : String = ""
         
