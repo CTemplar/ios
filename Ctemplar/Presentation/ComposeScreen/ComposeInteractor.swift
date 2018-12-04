@@ -45,9 +45,9 @@ class ComposeInteractor {
         }
     }
     
-    func updateSendingMessage(messsageID: String, encryptionObject: [String : String]) {
+    func updateSendingMessage(messsageID: String, encryptedMessage: String, encryptionObject: [String : String]) {
         
-        apiService?.updateSendingMessage(messageID: messsageID, folder: MessagesFoldersName.sent.rawValue, encryptionObject: encryptionObject) {(result) in
+        apiService?.updateSendingMessage(messageID: messsageID, encryptedMessage: encryptedMessage, folder: MessagesFoldersName.sent.rawValue, encryptionObject: encryptionObject) {(result) in
             
             switch(result) {
                 
@@ -134,9 +134,7 @@ class ComposeInteractor {
     
     func sendEncryptedEmailForCtemplarUser(publicKeys: Array<Key>) {
         
-        let encryptedMessage = self.encryptMessage(publicKeys: publicKeys)
-        
-        //let encryptionObject = EncryptionObject.init().encodeToJson()
+        let encryptedMessage = self.encryptMessage(publicKeys: publicKeys, message: self.viewController!.messageTextView.text)
         
         self.sendMail(content: encryptedMessage, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, folder: MessagesFoldersName.sent.rawValue, mailboxID: (self.viewController?.mailboxID)!, send: true, encrypted: true, encryptionObject: [:])
     }
@@ -146,28 +144,42 @@ class ComposeInteractor {
         var message : String = ""
         var encryptionObjectDictionary =  [String : String]()
         let folder : String = MessagesFoldersName.sent.rawValue
-        var send : Bool = false
         
         if self.viewController?.encryptedMail == true {
             
             if let encryptionObject = self.sendingMessage.encryption {
             
-                encryptionObjectDictionary = self.setPGPKeysForEncryptionObject(object: encryptionObject)
+                if let nonCtemplarPGPKey = pgpService?.generatePGPKey(userName: "support@hypertunnels3d.com", password: "test456") {
+                
+                    encryptionObjectDictionary = self.setPGPKeysForEncryptionObject(object: encryptionObject, pgpKey: nonCtemplarPGPKey)
                     
-                self.updateSendingMessage(messsageID: (self.sendingMessage.messsageID?.description)!, encryptionObject: encryptionObjectDictionary)
+                    var pgpKeys = Array<Key>()
+                    
+                    if let userKeys = self.pgpService?.getStoredPGPKeys() {
+                        if userKeys.count > 0 {
+                            pgpKeys = userKeys
+                        }
+                    }
+                    
+                    pgpKeys.append(nonCtemplarPGPKey)
+                    
+                    message = self.encryptMessage(publicKeys: pgpKeys, message: self.viewController!.messageTextView.text)
+                    
+                    self.updateSendingMessage(messsageID: (self.sendingMessage.messsageID?.description)!, encryptedMessage: message, encryptionObject: encryptionObjectDictionary)
+                }
             }
             
         } else {
-            send = true
+            
             message = self.viewController!.messageTextView.text
-        }
         
-        self.sendMail(content: message, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, folder: folder, mailboxID: (self.viewController?.mailboxID)!, send: send, encrypted: (self.viewController?.encryptedMail)!, encryptionObject: encryptionObjectDictionary)
+            self.sendMail(content: message, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, folder: folder, mailboxID: (self.viewController?.mailboxID)!, send: true, encrypted: false, encryptionObject: encryptionObjectDictionary)
+        }
     }
     
-    func encryptMessage(publicKeys: Array<Key>) -> String {
+    func encryptMessage(publicKeys: Array<Key>, message: String) -> String {
         
-        if let messageData = pgpService?.encodeString(message: self.viewController!.messageTextView.text) { //temp
+        if let messageData = pgpService?.encodeString(message: message) {
             
             if let encryptedMessage = self.pgpService?.encrypt(data: messageData, keys: publicKeys) {
                 print("encryptedMessage:", encryptedMessage)
@@ -184,28 +196,25 @@ class ComposeInteractor {
         
         if let userKeys = self.pgpService?.getStoredPGPKeys() {
             if userKeys.count > 0 {
-                message = self.encryptMessage(publicKeys: userKeys)
+                message = self.encryptMessage(publicKeys: userKeys, message: self.viewController!.messageTextView.text)
             }
         }
         
-        let encryptionObject = EncryptionObject.init(password: "test1234", passwordHint: "test1234").toShortDictionary()
+        let encryptionObject = EncryptionObject.init(password: "test456", passwordHint: "test456").toShortDictionary()
         
         self.sendMail(content: message, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, folder: MessagesFoldersName.draft.rawValue, mailboxID: (self.viewController?.mailboxID)!, send: false, encrypted: (self.viewController?.encryptedMail)!, encryptionObject: encryptionObject)
     }
     
-    func setPGPKeysForEncryptionObject(object: EncryptionObject) -> [String : String] {
+    func setPGPKeysForEncryptionObject(object: EncryptionObject, pgpKey: Key) -> [String : String] {
         
         var encryptionObjectDictionary =  [String : String]()
         var encryptionObject = object
         
-        if let nonCtemplarPGPKey = pgpService?.generatePGPKey(userName: "userName", password: "test1234") {
+        let publicKey = self.pgpService?.generateArmoredPublicKey(pgpKey: pgpKey)
+        let privateKey = self.pgpService?.generateArmoredPrivateKey(pgpKey: pgpKey)
             
-            let publicKey = self.pgpService?.generateArmoredPublicKey(pgpKey: nonCtemplarPGPKey)
-            let privateKey = self.pgpService?.generateArmoredPrivateKey(pgpKey: nonCtemplarPGPKey)
-            
-            encryptionObject.setPGPKeys(publicKey: publicKey!, privateKey: privateKey!)
-            encryptionObjectDictionary = encryptionObject.toDictionary()
-        }
+        encryptionObject.setPGPKeys(publicKey: publicKey!, privateKey: privateKey!)
+        encryptionObjectDictionary = encryptionObject.toDictionary()
         
         return encryptionObjectDictionary
     }

@@ -441,7 +441,7 @@ class RestAPIService {
         }
     }
     
-    func updateSendingMessage(token: String, messageID: String, folder: String, encryptionObject: [String : String], completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateSendingMessage(token: String, messageID: String, encryptedMessage: String, folder: String, encryptionObject: [String : String], completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
