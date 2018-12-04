@@ -394,7 +394,7 @@ class APIService {
                             
                         case .success(let value):
                             
-                            print("userMyself success:", value)
+                           // print("userMyself success:", value)
                             
                             if let response = value as? Dictionary<String, Any> {                            
                                 
