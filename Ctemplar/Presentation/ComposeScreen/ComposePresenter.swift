@@ -104,6 +104,12 @@ class ComposePresenter {
         return attributedString
     }
     
+    func setupTableView(topOffset: CGFloat) {
+        
+        self.viewController!.tableViewTopOffsetConstraint.constant = topOffset//k_composeTableViewTopOffset
+        self.viewController!.view.layoutIfNeeded()
+    }
+    
     //MARK: - Setup Email From Section
     
     func setMailboxes(mailboxes: Array<Mailbox>) {
@@ -164,6 +170,11 @@ class ComposePresenter {
     func setMailboxDataSource(mailboxes: Array<Mailbox>) {
         
         self.viewController?.dataSource?.mailboxesArray = mailboxes        
+    }
+    
+    func setContactsDataSource(contacts: Array<Contact>) {
+        
+        self.viewController?.dataSource?.contactsArray = contacts
     }
     
     //MARK: - Setup Email To Subsection
@@ -266,6 +277,8 @@ class ComposePresenter {
         self.viewController!.expandButton .setImage(expandButtonImage, for: .normal)
         
         self.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
+        
+        self.setupTableView(topOffset: k_composeTableViewTopOffset + self.viewController!.toViewSectionHeightConstraint.constant - 5.0)
     }
     
     //MARK: - Setup Cc To Subsection

@@ -13,7 +13,7 @@ class ComposeDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     var isMailboxDataSource     : Bool = true
     
-    var itemsArray              : Array<Any> = []
+    var contactsArray           : Array<Contact> = []
     var mailboxesArray          : Array<Mailbox> = []
     
     var tableView               : UITableView!
@@ -35,7 +35,7 @@ class ComposeDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     func registerTableViewCell() {
         
         self.tableView.register(UINib(nibName: k_UserMailboxCellXibName, bundle: nil), forCellReuseIdentifier: k_UserMailboxTableViewCellIdentifier)
-        
+        self.tableView.register(UINib(nibName: k_ContactCellXibName, bundle: nil), forCellReuseIdentifier: k_ContactTableViewCellIdentifier)        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -49,25 +49,29 @@ class ComposeDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             return mailboxesArray.count
         }
         
-        return self.itemsArray.count
+        return self.contactsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-       let cell : UserMailboxTableViewCell = tableView.dequeueReusableCell(withIdentifier: k_UserMailboxTableViewCellIdentifier)! as! UserMailboxTableViewCell
         
-        //let cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "mailboxcellidentifier")!
-        
-        //cell.textLabel?.font = UIFont(name: k_latoRegularFontName, size: 14.0)
-        //cell.textLabel?.textColor = k_actionMessageColor
-                
+        var cell : UITableViewCell!// = tableView.dequeueReusableCell(withIdentifier: "mailboxcellidentifier")!
         
         if self.isMailboxDataSource {
+            
+            cell = tableView.dequeueReusableCell(withIdentifier: k_UserMailboxTableViewCellIdentifier)! as! UserMailboxTableViewCell
+            
             let mailbox = self.mailboxesArray[indexPath.row]
             
             if let email = mailbox.email {
-                cell.emailLabel.text = email
+                (cell as! UserMailboxTableViewCell).emailLabel.text = email
             }
+        } else {
+            
+            cell = tableView.dequeueReusableCell(withIdentifier: k_ContactTableViewCellIdentifier)! as! ContactTableViewCell
+            
+            let contact = contactsArray[indexPath.row]
+            
+            (cell as! ContactTableViewCell).setupCellWithData(contact: contact, isSelectionMode: false, isSelected: false, foundText: "")
         }
         
         return cell

@@ -48,6 +48,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet var ccViewSubsectionHeightConstraint       : NSLayoutConstraint!
     @IBOutlet var bccViewSubsectionHeightConstraint      : NSLayoutConstraint!
     
+    @IBOutlet var tableViewTopOffsetConstraint           : NSLayoutConstraint!
+    
     var expandedSectionHeight: CGFloat = 0.0
     
     var presenter   : ComposePresenter?
@@ -60,6 +62,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     var mailboxesList    : Array<Mailbox> = []
     var mailboxID : Int = 0
+    
+    var contactsList    : Array<Contact> = []
     
     var emailsToArray = Array<String>()
     //var emailToAttributtedSting : NSAttributedString!
@@ -150,7 +154,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.presenter?.setupSubject(subjectText: self.subject)
         
         self.dataSource?.initWith(parent: self, tableView: tableView)
-        self.presenter?.setMailboxDataSource(mailboxes: mailboxesList)        
+        self.presenter?.setMailboxDataSource(mailboxes: mailboxesList)
+        //self.presenter?.setContactsDataSource(contacts: contactsList)
+        self.interactor?.userContactsList()
+        self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset)
         
         self.addGesureRecognizers()
         
@@ -232,6 +239,13 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         print("textViewDidBeginEditing")
         
         if textView != self.messageTextView {
+            
+            //temp
+            self.tableView.isHidden = false
+            self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset + self.toViewSectionHeightConstraint.constant - 5.0)
+            self.dataSource?.reloadData(setMailboxData: false)
+            //
+            
             if self.messageTextView.text.isEmpty {
                 self.messageTextView.text = "composeEmail".localized()
                 self.messageTextView.textColor = UIColor.lightGray
@@ -274,20 +288,32 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         //self.setCursorPositionToEnd(textView: textView)
         
+        var inputText : String = ""
+        
         print("textViewDidChange text:", textView.text)
         
         switch textView {
         case self.emailToTextView:
+            let inputDroppedPrefixText = self.interactor?.dropPrefix(text: textView.text, prefix: "emailToPrefix".localized())
+            inputText =  (self.interactor?.getLastInputEmail(input: inputDroppedPrefixText!))!
             self.presenter?.setupEmailToSection(emailToText: textView.text, ccToText: self.ccToSting, bccToText: self.bccToSting)
         case self.ccToTextView:
+            let inputDroppedPrefixText = self.interactor?.dropPrefix(text: textView.text, prefix: "ccToPrefix".localized())
+            inputText =  (self.interactor?.getLastInputEmail(input: inputDroppedPrefixText!))!
             self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: textView.text, bccToText: self.bccToSting)
         case self.bccToTextView:
+            let inputDroppedPrefixText = self.interactor?.dropPrefix(text: textView.text, prefix: "bccToPrefix".localized())
+            inputText =  (self.interactor?.getLastInputEmail(input: inputDroppedPrefixText!))!
             self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: textView.text)
         case self.messageTextView:
              //self.messageAttributedText = self.messageTextView.attributedText
             break
         default:
             break
+        }
+        
+        if textView != self.messageTextView {
+            self.interactor?.setFilteredList(searchText: inputText)
         }
         
         self.presenter!.enabledSendButton()

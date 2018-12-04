@@ -103,6 +103,67 @@ class ComposeInteractor {
         }
     }
     
+    func setContactsData(contactsList: ContactsList) {
+        
+        if let contacts = contactsList.contactsList {
+            self.viewController?.contactsList = contacts
+            self.viewController?.presenter?.setContactsDataSource(contacts: contacts)
+        }
+    }
+    
+    func userContactsList() {
+        
+        //HUD.show(.progress)
+        
+        apiService?.userContacts(contactsIDIn: "") {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                //print("userContactsList:", value)
+                
+                let contactsList = value as! ContactsList
+                self.setContactsData(contactsList: contactsList)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+            
+            //HUD.hide()
+        }
+    }
+    
+    func setFilteredList(searchText: String) {
+        
+        print("searchText:",searchText)
+        
+        let contacts = (self.viewController?.contactsList)!
+        
+        let filteredContactNamesList = (contacts.filter({( contact : Contact) -> Bool in
+            return (contact.contactName?.lowercased().contains(searchText.lowercased()))!
+        }))
+        
+        let filteredEmailsList = (contacts.filter({( contact : Contact) -> Bool in
+            return (contact.email?.lowercased().contains(searchText.lowercased()))!
+        }))
+        
+        var filteredDuplicatesEmailsList : Array<Contact> = []
+        
+        for contact in filteredContactNamesList {
+            filteredDuplicatesEmailsList = filteredEmailsList.filter { $0.contactID != contact.contactID }
+        }
+        
+        var filteredList = filteredContactNamesList + filteredDuplicatesEmailsList
+        
+        if searchText.count == 0 {
+            filteredList = contacts
+        }
+        
+        self.presenter?.setContactsDataSource(contacts: filteredList)
+        self.viewController?.dataSource?.reloadData(setMailboxData: false)
+    }
+    
     func mailWasSent() {
         
         let params = Parameters(
@@ -240,7 +301,7 @@ class ComposeInteractor {
     //MARK: - textView delegate
     
     func holdEmailToTextViewInput(textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        
+                
         //forbid to delete Prefix "
         if self.forbidDeletion(range: range, prefix: "emailToPrefix".localized()) {
             self.presenter!.enabledSendButton()

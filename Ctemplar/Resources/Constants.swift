@@ -195,6 +195,8 @@ let k_expandDetailsButtonWidth      : CGFloat = 44.0
 let k_emailToTextViewLeftOffset     : CGFloat = 16.0
 let k_emailToTextViewTopOffset      : CGFloat = 6.0
 
+let k_composeTableViewTopOffset     : CGFloat = 43.0
+
 //images
 
 let k_eyeOffIconImageName           = "EyeIcon"

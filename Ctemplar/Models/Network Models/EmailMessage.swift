@@ -61,7 +61,7 @@ struct EmailMessage {
         //self.encryption = dictionary["encryption"] as? String
         let encryptionDictionary = dictionary["encryption"] as? Dictionary<String, Any>
         if encryptionDictionary != nil {
-            print("encryptionDictionary:", encryptionDictionary as Any)
+            //print("encryptionDictionary:", encryptionDictionary as Any)
             self.encryption = self.parsEncryptionFrom(dictionary: encryptionDictionary!)
         }
         self.folder = dictionary["folder"] as? String
