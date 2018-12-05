@@ -281,6 +281,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.tapSelectedCcEmail = ""
         self.tapSelectedBccEmail = ""
         
+        self.tableView.isHidden = true
+        
         self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
         self.presenter!.enabledSendButton()
     }
