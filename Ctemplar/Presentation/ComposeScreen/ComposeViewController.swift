@@ -242,9 +242,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             
             //temp
             self.tableView.isHidden = false
-            self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset + self.toViewSectionHeightConstraint.constant - 5.0)
+            self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset + self.emailToSectionView.frame.height/*self.toViewSectionHeightConstraint.constant*/ - 5.0)
             self.dataSource?.currentTextView = textView
             self.dataSource?.reloadData(setMailboxData: false)
+            self.interactor?.setFilteredList(searchText: "")
             //
             
             if self.messageTextView.text.isEmpty {
@@ -282,6 +283,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.tapSelectedBccEmail = ""
         
         self.tableView.isHidden = true
+        //self.interactor?.setFilteredList(searchText: "")
         
         self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
         self.presenter!.enabledSendButton()
@@ -319,6 +321,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             self.interactor?.setFilteredList(searchText: inputText)
         }
         
+        self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset + self.emailToSectionView.frame.height/*self.toViewSectionHeightConstraint.constant*/ - 5.0)
         self.presenter!.enabledSendButton()
     }
     

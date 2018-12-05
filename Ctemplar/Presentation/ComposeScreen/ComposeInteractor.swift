@@ -161,6 +161,7 @@ class ComposeInteractor {
         }
         
         self.presenter?.setContactsDataSource(contacts: filteredList)
+        self.viewController?.dataSource?.searchText = searchText
         self.viewController?.dataSource?.reloadData(setMailboxData: false)
     }
     
@@ -315,21 +316,6 @@ class ComposeInteractor {
         }
                 
         if self.returnPressed(input: text) {
-           /*
-            let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "emailToPrefix".localized())
-            let inputEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
-            print("inputEmail:", inputEmail as Any)
- 
-            self.viewController!.emailsToArray.append(inputEmail)
-            self.viewController!.emailToSting = textView.text + " "
-            self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
-            
-            self.setCursorPositionToEnd(textView: textView)
-            
-            self.presenter!.enabledSendButton()
-            
-            self.viewController!.tableView.isHidden = true
-             */
             
             let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "emailToPrefix".localized())
             let inputEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
@@ -360,6 +346,8 @@ class ComposeInteractor {
                     self.viewController!.emailsToArray.removeAll{ $0 == editingWord }
                     print("emailsToArray count:", self.viewController!.emailsToArray.count)
                 }
+                
+                self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset + self.viewController!.emailToSectionView.frame.height - 5.0)
                 
                 self.viewController!.tableView.isHidden = false
             }
@@ -392,19 +380,7 @@ class ComposeInteractor {
             let inputCcEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
             
             self.setEmail(textView: textView, inputEmail: inputCcEmail, addSelected: false)
-            /*
-            let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "ccToPrefix".localized())
-            let inputCcEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
-            print("inputCcEmail:", inputCcEmail as Any)
-            
-            self.viewController!.ccToArray.append(inputCcEmail)
-            self.viewController!.ccToSting = textView.text + " "
-            self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
-            
-            self.setCursorPositionToEnd(textView: textView)
-            
-            self.viewController!.tableView.isHidden = true
-            */
+
             return false
         }
         
@@ -458,19 +434,7 @@ class ComposeInteractor {
             let inputBccEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
             
             self.setEmail(textView: textView, inputEmail: inputBccEmail, addSelected: false)
-            /*
-            let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "bccToPrefix".localized())
-            let inputBccEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
-            print("inputBccEmail:", inputBccEmail as Any)
-            
-            self.viewController!.bccToArray.append(inputBccEmail)
-            self.viewController!.bccToSting = textView.text + " "
-            self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
-            
-            self.setCursorPositionToEnd(textView: textView)
-            
-            self.viewController!.tableView.isHidden = true
-            */
+
             return false
         }
         
@@ -512,6 +476,7 @@ class ComposeInteractor {
         var inputText : String = ""
         
         if addSelected {
+            self.setFilteredList(searchText: "")
             inputText = textView.text + inputEmail + " "
         } else {
             inputText = textView.text + " "

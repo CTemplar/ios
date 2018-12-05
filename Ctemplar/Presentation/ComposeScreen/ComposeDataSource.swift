@@ -16,6 +16,8 @@ class ComposeDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     var contactsArray           : Array<Contact> = []
     var mailboxesArray          : Array<Mailbox> = []
     
+    var searchText              : String = ""
+    
     var currentTextView         : UITextView!
     
     var tableView               : UITableView!
@@ -73,7 +75,7 @@ class ComposeDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             
             let contact = contactsArray[indexPath.row]
             
-            (cell as! ContactTableViewCell).setupCellWithData(contact: contact, isSelectionMode: false, isSelected: false, foundText: "")
+            (cell as! ContactTableViewCell).setupCellWithData(contact: contact, isSelectionMode: false, isSelected: false, foundText: self.searchText)
         }
         
         return cell
