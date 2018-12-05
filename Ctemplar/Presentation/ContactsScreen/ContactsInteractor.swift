@@ -28,15 +28,9 @@ class ContactsInteractor {
             return (contact.email?.lowercased().contains(searchText.lowercased()))!
         }))
         
-        var filteredDuplicatesEmailsList : Array<Contact> = []
+        let filteredList = filteredContactNamesList + filteredEmailsList
         
-        for contact in filteredContactNamesList {
-            filteredDuplicatesEmailsList = filteredEmailsList.filter { $0.contactID != contact.contactID }
-        }
-        
-        let filteredList = filteredContactNamesList + filteredDuplicatesEmailsList
-        
-        updateDataSource(searchText: searchText, filteredList: filteredList)
+        updateDataSource(searchText: searchText, filteredList: filteredList.removingDuplicates())
         
         if searchText.count > 0 {
             let show = !filteredList.isEmpty

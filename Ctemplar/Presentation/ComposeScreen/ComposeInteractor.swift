@@ -148,19 +148,13 @@ class ComposeInteractor {
             return (contact.email?.lowercased().contains(searchText.lowercased()))!
         }))
         
-        var filteredDuplicatesEmailsList : Array<Contact> = []
-        
-        for contact in filteredContactNamesList {
-            filteredDuplicatesEmailsList = filteredEmailsList.filter { $0.contactID != contact.contactID }
-        }
-        
-        var filteredList = filteredContactNamesList + filteredDuplicatesEmailsList
+        var filteredList = filteredContactNamesList + filteredEmailsList      
         
         if searchText.count == 0 {
             filteredList = contacts
         }
         
-        self.presenter?.setContactsDataSource(contacts: filteredList)
+        self.presenter?.setContactsDataSource(contacts: filteredList.removingDuplicates())
         self.viewController?.dataSource?.searchText = searchText
         self.viewController?.dataSource?.reloadData(setMailboxData: false)
     }
