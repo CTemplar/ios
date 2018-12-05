@@ -119,14 +119,15 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         //emailsToArray.append("test@mega.com")
         //emailsToArray.append("dima@tatarinov.com")
         
-        emailsToArray.append("dmitry5@dev.ctemplar.com")
-        emailsToArray.append("dmitry8@dev.ctemplar.com")
+        //emailsToArray.append("dmitry5@dev.ctemplar.com")
+        //emailsToArray.append("dmitry8@dev.ctemplar.com")
+        //emailsToArray.append("huly-gun@white-zebra.net")
         
         for email in emailsToArray {
             self.emailToSting = self.emailToSting + email + " "
         }
         
-        subject = "Test encrypted email for contact users"
+        //subject = "Test encrypted email for contact users"
  
         /*
         ccToArray.append("supertest@mega.com")
@@ -384,6 +385,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         }
         
         self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
+        
+        emailToTextView.becomeFirstResponder()
     }
     
     @objc private final func tapOnCcToTextView(_ tapGesture: UITapGestureRecognizer){
@@ -398,6 +401,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         }
         
         self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
+        
+        ccToTextView.becomeFirstResponder()
     }
     
     @objc private final func tapOnBccToTextView(_ tapGesture: UITapGestureRecognizer){
@@ -412,6 +417,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         }
         
         self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
+        
+        bccToTextView.becomeFirstResponder()
     }
     
     @objc func tappedViewAction(sender : UITapGestureRecognizer) {
@@ -421,6 +428,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.tapSelectedBccEmail = ""
         self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
         //self.tableView.isHidden = true
+        print("sender:", sender)
         view.endEditing(true)
     }
     

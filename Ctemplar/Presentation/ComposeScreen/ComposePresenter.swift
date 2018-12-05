@@ -111,6 +111,8 @@ class ComposePresenter {
     }
     
     var emailToSubViewsArray = Array<Int>()
+    var ccToSubViewsArray = Array<Int>()
+    var bccToSubViewsArray = Array<Int>()
     
     //MARK: - Setup Email From Section
     
@@ -244,51 +246,35 @@ class ComposePresenter {
         //self.viewController!.emailToTextView.text = emailToText
     }
     
-    func setRect(textView: UITextView, tag: Int) {
-        
-        self.removeSubviews(textView: textView, array:  self.emailToSubViewsArray, tag: tag)
-        
-        self.emailToSubViewsArray.removeAll()
+    func setRect(textView: UITextView, email: String, tag: Int, selected: Bool) {
         
         let text = textView.text!
         
-        var substrings = textView.text.split(separator: " ")
-        substrings.removeFirst()
+        let wordRange = (text as NSString).range(of: email)
         
-        var index = tag
+        let textContainer = textView.textContainer
         
-        for sub in substrings {
+        let glyphRange = textView.layoutManager.glyphRange(forCharacterRange: wordRange, actualCharacterRange: nil)
         
-            let wordRange = (text as NSString).range(of: String(sub))
+        var glyphRect = textView.layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
         
-            let textContainer = textView.textContainer
-            
-            let glyphRange = textView.layoutManager.glyphRange(forCharacterRange: wordRange, actualCharacterRange: nil)
-            
-            var glyphRect = textView.layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
-            
-            //glyphRect.origin.y += textView.textContainerInset.top
-            glyphRect.origin.x += textView.textContainerInset.left
-            
-            //print("rect:", glyphRect.origin.x, glyphRect.origin.y)
-            //print("rect size:", glyphRect.size.width, glyphRect.size.height)
-            print("textView.textContainerInset.top:", textView.textContainerInset.top) // 8 - 2
-            
-            let rect = CGRect(x: glyphRect.origin.x, y: glyphRect.origin.y + 6.0, width: glyphRect.size.width, height: 22.0)
-            
-            index = index + 1
-            
-            print("add with index", index)
-            self.emailToSubViewsArray.append(index)
-            
-            self.addEmailLabelWith(text: String(sub), rect: rect, index: index, textView: textView)
-        }
+        glyphRect.origin.x += textView.textContainerInset.left
+        
+        print("textView.textContainerInset.top:", textView.textContainerInset.top) // 8 - 2
+        
+        let rect = CGRect(x: glyphRect.origin.x, y: glyphRect.origin.y + 6.0, width: glyphRect.size.width, height: 22.0)
+        
+        self.addEmailLabelWith(text: email, rect: rect, index: tag, textView: textView, selected: selected)
     }
     
-    func addEmailLabelWith(text: String, rect: CGRect, index: Int, textView: UITextView) {
+    func addEmailLabelWith(text: String, rect: CGRect, index: Int, textView: UITextView, selected: Bool) {
         
         let view = UIView(frame: rect)
-        view.backgroundColor = k_mainInboxColor
+        if selected {
+            view.backgroundColor = k_foundTextBackgroundColor
+        } else {
+            view.backgroundColor = k_mainInboxColor
+        }
         
         view.layer.cornerRadius = 4.0
         view.layer.borderColor = UIColor.white.cgColor
@@ -300,9 +286,6 @@ class ComposePresenter {
         label.textColor = k_emailToInputColor
         label.text = text
         label.backgroundColor = UIColor.clear
-        
-        //label.alpha = 0.4
-        //view.alpha = 0.4
         
         view.tag = index
         
@@ -477,9 +460,40 @@ class ComposePresenter {
         
         self.viewController!.toViewSectionHeightConstraint.constant = self.viewController!.toViewSubsectionHeightConstraint.constant + self.viewController!.expandedSectionHeight
         
-        //=========
-        self.setRect(textView: self.viewController!.emailToTextView, tag: 200)
-        //========
+        //set rects
+        
+        self.emailToSubViewsArray = self.setRecanglesFor(textView: self.viewController!.emailToTextView, emailArray: self.viewController!.emailsToArray, selectedEmail: self.viewController!.tapSelectedEmail, subViewsArray: self.emailToSubViewsArray, subViewTag: ComposeSubViewTags.emailToTextViewTag.rawValue)
+        
+        self.ccToSubViewsArray = self.setRecanglesFor(textView: self.viewController!.ccToTextView, emailArray: self.viewController!.ccToArray, selectedEmail: self.viewController!.tapSelectedCcEmail, subViewsArray: self.ccToSubViewsArray, subViewTag: ComposeSubViewTags.ccToTextViewTag.rawValue)
+        
+        self.bccToSubViewsArray = self.setRecanglesFor(textView: self.viewController!.bccToTextView, emailArray: self.viewController!.bccToArray, selectedEmail: self.viewController!.tapSelectedBccEmail, subViewsArray: self.bccToSubViewsArray, subViewTag: ComposeSubViewTags.bccToTextViewTag.rawValue)
+        
+    }
+    
+    func setRecanglesFor(textView: UITextView, emailArray: Array<String>, selectedEmail: String, subViewsArray: Array<Int>, subViewTag: Int) -> Array<Int> {
+        
+        var tag = subViewTag
+        var localSubViewsArray = subViewsArray
+        
+        self.removeSubviews(textView: textView, array:  localSubViewsArray, tag: tag)
+        localSubViewsArray.removeAll()
+        
+        var selected = false
+        
+        for email in emailArray {
+            tag = tag + 1
+            
+            if selectedEmail.count > 0 {
+                if email == selectedEmail {
+                    selected = true
+                }
+            }
+            
+            self.setRect(textView: self.viewController!.emailToTextView, email: email, tag: tag, selected: selected)
+            localSubViewsArray.append(tag)
+        }
+        
+        return localSubViewsArray
     }
     
     //MARK: - Setup Subject Section

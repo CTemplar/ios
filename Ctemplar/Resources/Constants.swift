@@ -425,3 +425,9 @@ enum DocumentsExtension: String, CaseIterable {
     case jpg       = "jpg"
 }
 
+enum ComposeSubViewTags: Int {
+    
+    case emailToTextViewTag  = 200
+    case ccToTextViewTag     = 300
+    case bccToTextViewTag    = 400
+}
