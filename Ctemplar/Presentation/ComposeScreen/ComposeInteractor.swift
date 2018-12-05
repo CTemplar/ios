@@ -18,22 +18,48 @@ class ComposeInteractor {
     var apiService          : APIService?
     var pgpService          : PGPService?
     var formatterService    : FormatterService?
+    
+    var sendingMessage : EmailMessage = EmailMessage.init()
+    
+    var setPassword : String = ""
 
     //MARK: - API
     
-    func sendMail(content: String, subject: String, recievers: Array<String>, mailboxID: Int, encrypted: Bool) {
+    func sendMail(content: String, subject: String, recievers: Array<String>, folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String]) {
         
-        apiService?.createMessage(content: content, subject: subject, recieversList: recievers, folder: MessagesFoldersName.sent.rawValue, mailboxID: mailboxID, send: true, encrypted: encrypted) {(result) in
+        apiService?.createMessage(content: content, subject: subject, recieversList: recievers, folder: folder, mailboxID: mailboxID, send: send, encrypted: encrypted, encryptionObject: encryptionObject) {(result) in
             
             switch(result) {
                 
             case .success(let value):
                 print("createMessage value:", value)
                 
-                
+                if send {
+                    self.mailWasSent()
+                } else {
+                    self.sendingMessage = value as! EmailMessage
+                }
                 
             case .failure(let error):
                 print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Send Mail Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
+    func updateSendingMessage(messsageID: String, encryptedMessage: String, encryptionObject: [String : String]) {
+        
+        apiService?.updateSendingMessage(messageID: messsageID, encryptedMessage: encryptedMessage, folder: MessagesFoldersName.sent.rawValue, encryptionObject: encryptionObject) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("updateSendingMessage value:", value)
+                
+                self.mailWasSent()
+                
+            case .failure(let error):
+                print("updateSendingMessage error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Send Mail Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
@@ -57,7 +83,7 @@ class ComposeInteractor {
                     recieversUsersPublicKeys = recieversUsersPublicKeys + userPublicKey!
                 }
                 
-                if let userKeys = self.pgpService?.getStoredPGPKeys() {
+                if let userKeys = self.pgpService?.getStoredPGPKeys() { //add logged user public key
                     if userKeys.count > 0 {
                         recieversUsersPublicKeys.append(userKeys.first!)
                     }
@@ -75,7 +101,76 @@ class ComposeInteractor {
                 AlertHelperKit().showAlert(self.viewController!, title: "Public Key Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
+    }
+    
+    func setContactsData(contactsList: ContactsList) {
         
+        if let contacts = contactsList.contactsList {
+            self.viewController?.contactsList = contacts
+            self.viewController?.presenter?.setContactsDataSource(contacts: contacts)
+        }
+    }
+    
+    func userContactsList() {
+        
+        //HUD.show(.progress)
+        
+        apiService?.userContacts(contactsIDIn: "") {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                //print("userContactsList:", value)
+                
+                let contactsList = value as! ContactsList
+                self.setContactsData(contactsList: contactsList)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+            
+            //HUD.hide()
+        }
+    }
+    
+    func setFilteredList(searchText: String) {
+        
+        print("searchText:",searchText)
+        
+        let contacts = (self.viewController?.contactsList)!
+        
+        let filteredContactNamesList = (contacts.filter({( contact : Contact) -> Bool in
+            return (contact.contactName?.lowercased().contains(searchText.lowercased()))!
+        }))
+        
+        let filteredEmailsList = (contacts.filter({( contact : Contact) -> Bool in
+            return (contact.email?.lowercased().contains(searchText.lowercased()))!
+        }))
+        
+        var filteredList = filteredContactNamesList + filteredEmailsList      
+        
+        if searchText.count == 0 {
+            filteredList = contacts
+        }
+        
+        self.presenter?.setContactsDataSource(contacts: filteredList.removingDuplicates())
+        self.viewController?.dataSource?.searchText = searchText
+        self.viewController?.dataSource?.reloadData(setMailboxData: false)
+    }
+    
+    func mailWasSent() {
+        
+        let params = Parameters(
+            title: "infoTitle".localized(),
+            message: "mailSendMessage".localized(),
+            cancelButton: "closeButton".localized()
+        )
+        
+        AlertHelperKit().showAlertWithHandler(self.viewController!, parameters: params) { buttonIndex in
+            print("close Coppose")
+            self.viewController!.navigationController?.popViewController(animated: true)
+        }
     }
     
     //MARK: - prepared to send
@@ -87,21 +182,64 @@ class ComposeInteractor {
         self.publicKeysFor(userEmailsArray: self.viewController!.emailsToArray) { (keys) in
             print("publicKeys:", keys)
             
-             if keys.count == 0 { //Temp
-                self.viewController?.encryptedMail = false
+             if keys.count < 2 { //just logged user key or non
+                self.sendEmailForNonCtemplarUser()
              } else {
-                self.viewController?.encryptedMail = true
-                
-                let encryptMessage = self.encryptMessage(publicKeys: keys)
-                
-                self.sendMail(content: encryptMessage, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, mailboxID: (self.viewController?.mailboxID)!, encrypted: (self.viewController?.encryptedMail)!)
+                self.sendEncryptedEmailForCtemplarUser(publicKeys: keys)
              }
         }
     }
     
-    func encryptMessage(publicKeys: Array<Key>) -> String {
+    func sendEncryptedEmailForCtemplarUser(publicKeys: Array<Key>) {
         
-        if let messageData = pgpService?.encodeString(message: self.viewController!.messageTextView.text) { //temp
+        let encryptedMessage = self.encryptMessage(publicKeys: publicKeys, message: self.viewController!.messageTextView.text)
+        
+        self.sendMail(content: encryptedMessage, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, folder: MessagesFoldersName.sent.rawValue, mailboxID: (self.viewController?.mailboxID)!, send: true, encrypted: true, encryptionObject: [:])
+    }
+    
+    func sendEmailForNonCtemplarUser() {
+        
+        var message : String = ""
+        var encryptionObjectDictionary =  [String : String]()
+        let folder : String = MessagesFoldersName.sent.rawValue
+        
+        if self.viewController?.encryptedMail == true {
+            
+            if let encryptionObject = self.sendingMessage.encryption {
+                
+                let userName = self.sendingMessage.messsageID?.description
+            
+                if let nonCtemplarPGPKey = pgpService?.generatePGPKey(userName: userName!, password: self.setPassword) {
+                
+                    encryptionObjectDictionary = self.setPGPKeysForEncryptionObject(object: encryptionObject, pgpKey: nonCtemplarPGPKey)
+                    
+                    var pgpKeys = Array<Key>()
+                    
+                    if let userKeys = self.pgpService?.getStoredPGPKeys() {
+                        if userKeys.count > 0 {
+                            pgpKeys = userKeys
+                        }
+                    }
+                    
+                    pgpKeys.append(nonCtemplarPGPKey)
+                    
+                    message = self.encryptMessage(publicKeys: pgpKeys, message: self.viewController!.messageTextView.text)
+                    
+                    self.updateSendingMessage(messsageID: (self.sendingMessage.messsageID?.description)!, encryptedMessage: message, encryptionObject: encryptionObjectDictionary)
+                }
+            }
+            
+        } else {
+            
+            message = self.viewController!.messageTextView.text
+        
+            self.sendMail(content: message, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, folder: folder, mailboxID: (self.viewController?.mailboxID)!, send: true, encrypted: false, encryptionObject: encryptionObjectDictionary)
+        }
+    }
+    
+    func encryptMessage(publicKeys: Array<Key>, message: String) -> String {
+        
+        if let messageData = pgpService?.encodeString(message: message) {
             
             if let encryptedMessage = self.pgpService?.encrypt(data: messageData, keys: publicKeys) {
                 print("encryptedMessage:", encryptedMessage)
@@ -112,36 +250,71 @@ class ComposeInteractor {
         return ""
     }
     
-    func getPublicKeysForEmails() {
+    func sendPasswordForCreatingMessage(password: String, passwordHint: String) {
         
-
+        self.setPassword = password
+        
+        var message : String = ""
+        
+        if let userKeys = self.pgpService?.getStoredPGPKeys() {
+            if userKeys.count > 0 {
+                message = self.encryptMessage(publicKeys: userKeys, message: self.viewController!.messageTextView.text)
+            }
+        }
+        
+        let encryptionObject = EncryptionObject.init(password: password, passwordHint: passwordHint).toShortDictionary()
+        
+        self.sendMail(content: message, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, folder: MessagesFoldersName.draft.rawValue, mailboxID: (self.viewController?.mailboxID)!, send: false, encrypted: (self.viewController?.encryptedMail)!, encryptionObject: encryptionObject)
+    }
+    
+    func setPGPKeysForEncryptionObject(object: EncryptionObject, pgpKey: Key) -> [String : String] {
+        
+        var encryptionObjectDictionary =  [String : String]()
+        var encryptionObject = object
+        
+        let publicKey = self.pgpService?.generateArmoredPublicKey(pgpKey: pgpKey)
+        let privateKey = self.pgpService?.generateArmoredPrivateKey(pgpKey: pgpKey)
+            
+        encryptionObject.setPGPKeys(publicKey: publicKey!, privateKey: privateKey!)
+        encryptionObjectDictionary = encryptionObject.toDictionary()
+        
+        return encryptionObjectDictionary
+    }
+    
+    func extractMessageContent(message: EmailMessage) -> String {
+        
+        if let content = message.content {
+            if let message = self.pgpService?.decryptMessage(encryptedContet: content) {
+                //print("decrypt viewed message: ", message)
+                return message
+            }
+        }
+        
+        return "Error"
     }
     
     //MARK: - textView delegate
     
     func holdEmailToTextViewInput(textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        
+                
         //forbid to delete Prefix "
         if self.forbidDeletion(range: range, prefix: "emailToPrefix".localized()) {
+            self.presenter!.enabledSendButton()
             return false
         }
         
         if self.getCursorPosition(textView: textView) < "emailToPrefix".localized().count {
             self.setCursorPositionToEnd(textView: textView)
+            self.presenter!.enabledSendButton()
             return false
         }
                 
         if self.returnPressed(input: text) {
-           
+            
             let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "emailToPrefix".localized())
             let inputEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
-            print("inputEmail:", inputEmail as Any)
- 
-            self.viewController!.emailsToArray.append(inputEmail)
-            self.viewController!.emailToSting = textView.text + " "
-            self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
             
-            self.setCursorPositionToEnd(textView: textView)
+            self.setEmail(textView: textView, inputEmail: inputEmail, addSelected: false)
             
             return false
         }
@@ -167,12 +340,19 @@ class ComposeInteractor {
                     self.viewController!.emailsToArray.removeAll{ $0 == editingWord }
                     print("emailsToArray count:", self.viewController!.emailsToArray.count)
                 }
+                
+                self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset + self.viewController!.emailToSectionView.frame.height - 5.0)
+                
+                self.viewController!.tableView.isHidden = false
             }
         } else {
             if self.viewController!.tapSelectedEmail.count > 0 {
+                self.presenter!.enabledSendButton()
                 return false //disable edit if Email selected, only delete by Backspace
             }
         }
+        
+        self.presenter!.enabledSendButton()
         
         return true
     }
@@ -192,14 +372,9 @@ class ComposeInteractor {
             
             let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "ccToPrefix".localized())
             let inputCcEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
-            print("inputCcEmail:", inputCcEmail as Any)
             
-            self.viewController!.ccToArray.append(inputCcEmail)
-            self.viewController!.ccToSting = textView.text + " "
-            self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
-            
-            self.setCursorPositionToEnd(textView: textView)
-            
+            self.setEmail(textView: textView, inputEmail: inputCcEmail, addSelected: false)
+
             return false
         }
         
@@ -224,6 +399,8 @@ class ComposeInteractor {
                     self.viewController!.ccToArray.removeAll{ $0 == editingWord }
                     print("ccToArray count:", self.viewController!.ccToArray.count)                    
                 }
+                
+                self.viewController!.tableView.isHidden = false
             }
         } else {
             if self.viewController!.tapSelectedCcEmail.count > 0 {
@@ -249,14 +426,9 @@ class ComposeInteractor {
             
             let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "bccToPrefix".localized())
             let inputBccEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
-            print("inputBccEmail:", inputBccEmail as Any)
             
-            self.viewController!.bccToArray.append(inputBccEmail)
-            self.viewController!.bccToSting = textView.text + " "
-            self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
-            
-            self.setCursorPositionToEnd(textView: textView)
-            
+            self.setEmail(textView: textView, inputEmail: inputBccEmail, addSelected: false)
+
             return false
         }
         
@@ -281,6 +453,8 @@ class ComposeInteractor {
                     self.viewController!.bccToArray.removeAll{ $0 == editingWord }
                     print("bccToArray count:", self.viewController!.bccToArray.count)
                 }
+                
+                self.viewController!.tableView.isHidden = false
             }
         } else {
             if self.viewController!.tapSelectedBccEmail.count > 0 {
@@ -289,6 +463,47 @@ class ComposeInteractor {
         }
         
         return true
+    }
+    
+    func setEmail(textView: UITextView, inputEmail: String, addSelected: Bool) {
+        
+        var inputText : String = ""
+        
+        if addSelected {
+            self.setFilteredList(searchText: "")
+            inputText = textView.text + inputEmail + " "
+        } else {
+            inputText = textView.text + " "
+        }
+        
+        switch textView {
+        case self.viewController!.emailToTextView:
+            print("inputEmail:", inputEmail as Any)
+            self.viewController!.emailsToArray.append(inputEmail)
+            self.viewController!.emailToSting = inputText
+          
+            break
+        case self.viewController!.ccToTextView:
+            print("inputCcEmail:", inputEmail as Any)
+            self.viewController!.ccToArray.append(inputEmail)
+            self.viewController!.ccToSting = inputText
+            break
+        case self.viewController!.bccToTextView:
+            print("inputBccEmail:", inputEmail as Any)
+            self.viewController!.bccToArray.append(inputEmail)
+            self.viewController!.bccToSting = inputText
+            break
+        default:
+            break
+        }
+        
+        self.setCursorPositionToEnd(textView: textView)
+        
+        self.presenter!.enabledSendButton()
+        
+        self.viewController!.tableView.isHidden = true
+        
+        self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
     }
     
     //MARK: - textView private methods

@@ -428,6 +428,17 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -495,6 +506,7 @@
                         <outlet property="subjectTextField" destination="MBF-I2-36Z" id="6KP-KW-D84"/>
                         <outlet property="subjectView" destination="JlZ-Fv-gSA" id="Drc-GR-uOC"/>
                         <outlet property="tableView" destination="Tnr-NY-PEc" id="UTG-az-HsZ"/>
+                        <outlet property="tableViewTopOffsetConstraint" destination="xRo-tu-AUz" id="f8V-Lj-e7q"/>
                         <outlet property="toViewSectionHeightConstraint" destination="lOT-Tm-3c1" id="ssz-zA-yrQ"/>
                         <outlet property="toViewSubsectionHeightConstraint" destination="c6v-iT-6BX" id="Eua-aW-JNM"/>
                         <outlet property="toolBarView" destination="SvU-Rf-Cm0" id="iBA-04-aBo"/>

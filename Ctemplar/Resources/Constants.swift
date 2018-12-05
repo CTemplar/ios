@@ -30,6 +30,7 @@ let k_SearchViewControllerID                = "SearchViewController"
 let k_MoveToViewControllerID                = "MoveToViewController"
 let k_ContactsViewControllerID              = "ContactsViewController"
 let k_AddContactViewControllerID            = "AddContactViewController"
+let k_SetPasswordViewControllerID           = "SetPasswordViewController"
 let k_AboutAsViewControllerID               = "AboutAsViewController"
 
 // view controllers storyboards name
@@ -45,6 +46,7 @@ let k_AboutAsStoryboardName                = "AboutAs"
 let k_ContactsStoryboardName               = "Contacts"
 let k_MoveToStoryboardName                 = "MoveTo"
 let k_ViewInboxEmailStoryboardName         = "ViewInboxEmail"
+let k_SetPasswordStoryboardName            = "SetPassword"
 let k_AddContactStoryboardName             = "AddContact"
 
 let k_InboxMessageTableViewCellXibName     = "InboxMessageTableViewCell"
@@ -59,6 +61,7 @@ let k_ContactCellXibName                   = "ContactTableViewCell"
 let k_ChildMessageCellXibName              = "ChildMessageTableViewCell"
 let k_ChildMessageExpandedCellXibName      = "ChildMessageExpandedTableViewCell"
 let k_ChildMessageExpandedWithAttachmentCellXibName      = "ChildMessageExpandedWithAttachmentTableViewCell"
+let k_UserMailboxCellXibName               = "UserMailboxTableViewCell"
 let k_AttachmentCollcetionViewCellXibName  = "AttachmentCollcetionViewCell"
 
 // cell identifier
@@ -73,6 +76,7 @@ let k_ContactTableViewCellIdentifier            = "contactTableViewCellIdentifie
 let k_ChildMessageTableViewCellIdentifier       = "childMessageTableViewCellIdentifier"
 let k_ChildMessageExpandedTableViewCellIdentifier       = "childMessageExpandedTableViewCellIdentifier"
 let k_ChildMessageExpandedWithAttachmentTableViewCellIdentifier       = "childMessageExpandedWithAttachmentTableViewCellIdentifier"
+let k_UserMailboxTableViewCellIdentifier        = "userMailboxTableViewCellIdentifier"
 let k_AttachmentCollcetionViewCellIdentifier = "attachmentCollcetionViewCellIdentifier"
 
 
@@ -140,6 +144,8 @@ let k_signUpPageKeyboardOffsetBig       = 96.0
 let k_signUpPageKeyboardOffsetLarge     = 160.0
 let k_signUpPageKeyboardOffsetExtraLarge     = 210.0
 
+let k_setPasswordKeyboardOffset         = 80.0
+
 let k_triangleOffset                    = 16.0 + 5.0 + 5.0
 let k_navBarButtonSize                  = 32.0
 
@@ -188,6 +194,8 @@ let k_contactsSelectAllBarHeight    : CGFloat = 50.0
 let k_expandDetailsButtonWidth      : CGFloat = 44.0
 let k_emailToTextViewLeftOffset     : CGFloat = 16.0
 let k_emailToTextViewTopOffset      : CGFloat = 8.0
+
+let k_composeTableViewTopOffset     : CGFloat = 43.0
 
 //images
 

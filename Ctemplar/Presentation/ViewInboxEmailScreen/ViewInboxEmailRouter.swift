@@ -31,6 +31,7 @@ class ViewInboxEmailRouter {
         let vc = storyboard.instantiateViewController(withIdentifier: k_ComposeViewControllerID) as! ComposeViewController
         vc.navBarTitle = title
         vc.mailboxesList = (self.viewController?.mailboxesList)!
+        vc.messagesArray = (self.viewController?.dataSource?.messagesArray)!
         vc.subject = subject
         self.viewController?.show(vc, sender: self)        
     }

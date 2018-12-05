@@ -19,7 +19,7 @@ struct EmailMessage {
     var deadManDuration : String? = nil
     var delayedDelivery : String? = nil
     var destructDay : String? = nil
-    var encryption : String? = nil
+    var encryption : EncryptionObject? = nil
     var folder : String? = nil
     var hasChildren : Bool? = nil
     var childrenCount: Int? = nil
@@ -30,7 +30,7 @@ struct EmailMessage {
     var mailbox : String? = nil
     var parent : String? = nil
     var read : Bool? = nil
-    var receiver : Array<Any>? = nil
+    var receivers : Array<Any>? = nil
     var send : String? = nil
     var sender : String? = nil
     var sentAt : String? = nil
@@ -58,7 +58,12 @@ struct EmailMessage {
         self.deadManDuration = dictionary["dead_man_duration"] as? String
         self.delayedDelivery = dictionary["delayed_delivery"] as? String
         self.destructDay = dictionary["destruct_date"] as? String
-        self.encryption = dictionary["encryption"] as? String
+        //self.encryption = dictionary["encryption"] as? String
+        let encryptionDictionary = dictionary["encryption"] as? Dictionary<String, Any>
+        if encryptionDictionary != nil {
+            //print("encryptionDictionary:", encryptionDictionary as Any)
+            self.encryption = self.parsEncryptionFrom(dictionary: encryptionDictionary!)
+        }
         self.folder = dictionary["folder"] as? String
         self.hasChildren = dictionary["has_children"] as? Bool
         self.childrenCount = dictionary["children_count"] as? Int
@@ -69,7 +74,7 @@ struct EmailMessage {
         self.mailbox = dictionary["mailbox"] as? String        
         self.parent = dictionary["parent"] as? String
         self.read = dictionary["read"] as? Bool
-        self.receiver = dictionary["receiver"] as? Array<Any>
+        self.receivers = dictionary["receiver"] as? Array<Any>
         self.send = dictionary["send"] as? String
         self.sender = dictionary["sender"] as? String
         self.sentAt = dictionary["sent_at"] as? String
@@ -104,5 +109,11 @@ struct EmailMessage {
         }
         
         return objectsArray
+    }
+    
+    func parsEncryptionFrom(dictionary: Dictionary<String, Any>) -> EncryptionObject {
+        
+        let attachmentResult = EncryptionObject(dictionary: dictionary)
+        return attachmentResult
     }
 }

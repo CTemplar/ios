@@ -58,7 +58,7 @@ class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell, UICollec
                 
         var toEmailsArray : Array<String> = []
         
-        if let recieversArray = message.receiver {
+        if let recieversArray = message.receivers {
             toEmailsArray = recieversArray as! Array<String>
         }
         
@@ -95,7 +95,7 @@ class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell, UICollec
             fromEmail = sender
         }
         
-        if let recieversArray = message.receiver {
+        if let recieversArray = message.receivers {
             toEmailsArray = recieversArray as! Array<String>
         }
         

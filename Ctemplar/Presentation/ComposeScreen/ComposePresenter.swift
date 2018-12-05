@@ -8,11 +8,107 @@
 
 import Foundation
 import UIKit
+import PKHUD
 
 class ComposePresenter {
     
     var viewController   : ComposeViewController?
     var interactor       : ComposeInteractor?
+    var formatterService        : FormatterService?
+    
+    func enabledSendButton() {
+        
+        var messageContentIsEmpty : Bool = true
+        
+        if self.viewController!.messageTextView.text.count > 0 {
+            if self.viewController!.messageTextView.text != "composeEmail".localized() {
+                messageContentIsEmpty = false
+            }
+        }
+        
+        if self.viewController!.emailsToArray.count > 0 && self.viewController!.subject.count > 0 && !messageContentIsEmpty {
+            self.viewController!.navigationItem.rightBarButtonItem?.isEnabled = true
+        } else {
+            self.viewController!.navigationItem.rightBarButtonItem?.isEnabled = false
+        }
+    }
+    
+    func setupMessageSection(emailsArray: Array<EmailMessage>) {
+        
+        //self.viewController?.dercyptedMessagesArray.removeAll()
+        
+        if emailsArray.count > 0 {
+            
+            var dercyptedMessagesArray = Array<String>()
+            
+            let firstMessage = emailsArray.first
+            let lastMessage = emailsArray.last
+            
+            self.fillAllEmailsFields(message: firstMessage!)
+            
+            //HUD.show(.progress)
+            if let messageContent = self.interactor?.extractMessageContent(message: lastMessage!) {
+                dercyptedMessagesArray.append(messageContent)
+            }
+            //HUD.hide()
+            
+            if dercyptedMessagesArray.count > 0 {
+        
+                let lastMessageContent = dercyptedMessagesArray.last
+            
+                let replyHeader = self.generateReplyHeader(message: lastMessage!)
+                let lastMessageContentAttributedString = lastMessageContent!.html2AttributedString
+                let mutableAttributedString = NSMutableAttributedString(attributedString: replyHeader)
+                mutableAttributedString.append(lastMessageContentAttributedString!)
+                
+                self.viewController?.messageTextView.attributedText = mutableAttributedString//lastMessageContent!.html2AttributedString
+                //self.viewController?.messageTextView.sizeToFit()
+                self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
+            }
+            
+            self.enabledSendButton()
+            
+        } else {
+            self.viewController?.messageTextView.font = UIFont(name: k_latoRegularFontName, size: 14.0)
+            self.viewController?.messageTextView.text = "composeEmail".localized()
+            self.viewController?.messageTextView.textColor = UIColor.lightGray
+        }
+    }
+    
+    func generateReplyHeader(message: EmailMessage) -> NSAttributedString {
+        
+        var replyHeader : String = ""
+ 
+        if let sentAtDate = message.updated { //message.sentAt
+            
+            if  let date = self.formatterService!.formatStringToDate(date: sentAtDate) {
+                let formattedDate = self.formatterService!.formatReplyDate(date: date)
+                let formattedTime = self.formatterService!.formatDateToStringTimeFull(date: date)
+            
+                replyHeader = "\n\n" + "replyOn".localized() + replyHeader + formattedDate + "atTime".localized() + formattedTime + "\n"
+            }
+        }
+        
+        if let sender = message.sender {
+            replyHeader = replyHeader + "<" + sender + "> " + "wroteBy".localized() + "\n\n"
+        }
+        
+        let font : UIFont = UIFont(name: k_latoRegularFontName, size: 14.0)!
+        
+        let attributedString = NSMutableAttributedString(string: replyHeader, attributes: [
+            .font: font,
+            .foregroundColor: k_actionMessageColor,
+            .kern: 0.0
+            ])
+        
+        return attributedString
+    }
+    
+    func setupTableView(topOffset: CGFloat) {
+        
+        self.viewController!.tableViewTopOffsetConstraint.constant = topOffset//k_composeTableViewTopOffset
+        self.viewController!.view.layoutIfNeeded()
+    }
     
     var emailToSubViewsArray = Array<Int>()
     
@@ -70,17 +166,56 @@ class ComposePresenter {
         
         self.viewController!.mailboxesButton.setBackgroundImage(buttonImage, for: .normal)
         
+        self.setupTableView(topOffset: k_composeTableViewTopOffset)
+        
         self.viewController?.dataSource?.reloadData(setMailboxData: true)
     }
     
     func setMailboxDataSource(mailboxes: Array<Mailbox>) {
         
-        self.viewController?.dataSource?.mailboxesArray = mailboxes
+        self.viewController?.dataSource?.mailboxesArray = mailboxes        
+    }
+    
+    func setContactsDataSource(contacts: Array<Contact>) {
         
-        //self.viewController?.dataSource?.reloadData(setMailboxData: true)
+        self.viewController?.dataSource?.contactsArray = contacts
     }
     
     //MARK: - Setup Email To Subsection
+    
+    func fillAllEmailsFields(message: EmailMessage) {
+        
+        if let recieversArray = message.receivers {
+            self.viewController!.emailsToArray = recieversArray as! [String]
+            
+            for email in self.viewController!.emailsToArray {
+                self.viewController!.emailToSting = self.viewController!.emailToSting + email + " "
+            }
+        }
+        /*
+        if let sender = message.sender {
+            self.viewController!.emailToSting = self.viewController!.emailToSting + sender
+            self.viewController!.emailsToArray.append(sender)
+        }*/
+        
+        if let ccArray = message.cc {
+            self.viewController!.ccToArray = ccArray as! [String]
+            
+            for email in self.viewController!.ccToArray {
+                self.viewController!.ccToSting = self.viewController!.ccToSting + email + " "
+            }
+        }
+        
+        if let bccArray = message.bcc {
+            self.viewController!.bccToArray = bccArray as! [String]
+            
+            for email in self.viewController!.bccToArray {
+                self.viewController!.bccToSting = self.viewController!.bccToSting + email + " "
+            }
+        }
+        
+        self.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
+    }
     
     func setupEmailToViewText(emailToText: String) {
         
@@ -226,6 +361,8 @@ class ComposePresenter {
         self.viewController!.expandButton .setImage(expandButtonImage, for: .normal)
         
         self.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
+        
+        self.setupTableView(topOffset: k_composeTableViewTopOffset + self.viewController!.toViewSectionHeightConstraint.constant - 5.0)
     }
     
     //MARK: - Setup Cc To Subsection
@@ -356,5 +493,23 @@ class ComposePresenter {
         }
         
         self.viewController!.subjectTextField.text = subject
+    }
+    
+    //MARK: - ToolBar Actions
+    
+    func encryptedButtonPressed() {
+        
+        self.viewController?.encryptedMail = !(self.viewController?.encryptedMail)!
+        
+        var buttonImage = UIImage()
+        
+        if (self.viewController?.encryptedMail)! {
+            buttonImage = UIImage(named: k_encryptApliedImageName)!
+            self.viewController?.router?.showSetPasswordViewController()
+        } else {
+            buttonImage = UIImage(named: k_encryptImageName)!
+        }
+        
+        self.viewController?.encryptedButton .setImage(buttonImage, for: .normal)        
     }
 }

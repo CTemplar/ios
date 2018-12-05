@@ -63,6 +63,7 @@ class RestAPIService {
         case note = "note"
         case phone = "phone"
         case encrypted = "is_encrypted"
+        case encryption = "encryption"
     }
         
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -297,7 +298,7 @@ class RestAPIService {
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
             
-            print("messagesList responce:", response)
+            //print("messagesList responce:", response)
             
             switch(response.result) {
             case .success(let value):
@@ -354,7 +355,6 @@ class RestAPIService {
                 completionHandler(APIResult.failure(error))
             }
         }
-        
     }
     
     func mailboxesList(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -405,7 +405,7 @@ class RestAPIService {
         }
     }
     
-    func createMessage(token: String, content: String, subject: String, recieversList: Array<String>, folder: String, mailboxID: Int, send: Bool, encrypted: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func createMessage(token: String, content: String, subject: String, recieversList: Array<String>, folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String], completionHandler: @escaping (APIResult<Any>) -> Void) {
     
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -416,11 +416,11 @@ class RestAPIService {
             JSONKey.content.rawValue: content,
             JSONKey.subject.rawValue: subject,
             JSONKey.receiver.rawValue: recieversList,
-            //JSONKey.sender.rawValue: "dmitry5@dev.ctemplar.com",
             JSONKey.folder.rawValue: folder,
             JSONKey.mailbox.rawValue: mailboxID,
             JSONKey.send.rawValue: send,
-            JSONKey.encrypted.rawValue : encrypted
+            JSONKey.encrypted.rawValue : encrypted,
+            JSONKey.encryption.rawValue : encryptionObject
         ]
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue
@@ -431,6 +431,38 @@ class RestAPIService {
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
             
             print("createMessage responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func updateSendingMessage(token: String, messageID: String, encryptedMessage: String, folder: String, encryptionObject: [String : String], completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.folder.rawValue: folder,
+            JSONKey.send.rawValue: true,
+            JSONKey.encryption.rawValue : encryptionObject,
+            JSONKey.content.rawValue : encryptedMessage
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messageID + "/"
+        
+        print("updateSendingMessage parameters:", parameters)
+        print("updateSendingMessage url:", url)
+        
+        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("updateSendingMessage responce:", response)
             
             switch(response.result) {
             case .success(let value):

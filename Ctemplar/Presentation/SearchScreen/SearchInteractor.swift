@@ -98,7 +98,7 @@ class SearchInteractor {
         var filteredDuplicatesMessagesList : Array<EmailMessage> = []
         
         for message in filteredSendersList {
-            filteredDuplicatesMessagesList = filteredSendersList.filter { $0.messsageID != message.messsageID }
+            filteredDuplicatesMessagesList = filteredSendersList.filter { $0.messsageID != message.messsageID } //need to check for valid results
         }
         
         let filteredList = filteredSubjectsList + filteredDuplicatesMessagesList

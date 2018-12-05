@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Contact {
+struct Contact: Hashable {
     
     var email : String? = nil
     var contactName : String? = nil

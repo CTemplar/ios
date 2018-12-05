@@ -88,6 +88,15 @@ class FormatterService
         }
     }
     
+    func comparePasswordsLench(enteredPassword: String, password: String) -> Bool {
+        
+        if (enteredPassword.count >= password.count)  {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     func validatePasswordFormat(enteredPassword: String) -> Bool {
         
         let passwordFormat = "[A-Z0-9a-z._%+-]{1,64}"//"^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()\\-_=+{}|?>.<,:;~`’]{8,64}$"
@@ -181,6 +190,15 @@ class FormatterService
     
     //MARK: - Date String formatter
     
+    func formatReplyDate(date: Date) -> String {
+        
+        var dateString : String = ""
+        
+        dateString = formatDateToStringFull(date: date)
+        
+        return dateString
+    }
+    
     func formatCreationDate(date: Date) -> String {
         
         var dateString : String = ""
@@ -270,10 +288,41 @@ class FormatterService
         return dateString
     }
     
+    func formatDateToStringExpirationTime(date: Date) -> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        let dateString = dateFormatter.string(from:date as Date)
+        
+        return dateString
+    }
+    
+    func formatDateToStringTimeFull(date: Date) -> String {
+        
+        let dateFormatter = DateFormatter()        
+        dateFormatter.dateFormat = "HH:mm:ss a"
+        
+        let dateString = dateFormatter.string(from:date as Date)
+        
+        return dateString
+    }
+    
     func formatDateToStringMonthAndDate(date: Date) -> String {
         
         let dateFormatter = DateFormatter()       
         dateFormatter.dateFormat = "MMM dd"
+        
+        let dateString = dateFormatter.string(from:date as Date)
+        
+        return dateString
+    }
+    
+    func formatDateToStringFull(date: Date) -> String {
+        
+        //Thu, November 22, 2018 at 10:10:10 AM
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E, MMMM dd, yyyy"// HH:mm:ss a"
         
         let dateString = dateFormatter.string(from:date as Date)
         
@@ -658,6 +707,21 @@ extension UITextView {
         }
         
         return numberOfLines
+    }
+}
+
+extension Array where Element: Hashable {
+    
+    func removingDuplicates() -> [Element] {
+        var addedDict = [Element: Bool]()
+        
+        return filter {
+            addedDict.updateValue(true, forKey: $0) == nil
+        }
+    }
+    
+    mutating func removeDuplicates() {
+        self = self.removingDuplicates()
     }
 }
 

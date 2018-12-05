@@ -91,3 +91,10 @@
 "ccToPrefix" = "Cc: ";
 "bccToPrefix" = "Bcc: ";
 "composeEmail" = "Compose email";
+
+"replyOn" = "On: ";
+"wroteBy" = "wrote:";
+"atTime" = " at ";
+
+"infoTitle" = "Information:";
+"mailSendMessage" = "Mail was sent successfully";

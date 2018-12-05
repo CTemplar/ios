@@ -35,6 +35,8 @@ enum APIResponse: String {
     //email messages
     case pageConut         = "page_count"
     case results           = "results"
+    case error             = "error"
+    case expires           = "expires"
 }
 
 class APIService {
@@ -392,7 +394,7 @@ class APIService {
                             
                         case .success(let value):
                             
-                            print("userMyself success:", value)
+                           // print("userMyself success:", value)
                             
                             if let response = value as? Dictionary<String, Any> {                            
                                 
@@ -540,6 +542,50 @@ class APIService {
         }
     }
     
+    func updateSendingMessage(messageID: String, encryptedMessage: String, folder: String, encryptionObject: [String : String], completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    
+                    HUD.show(.progress)
+                    
+                    self.restAPIService?.updateSendingMessage(token: token, messageID: messageID, encryptedMessage: encryptedMessage, folder: folder, encryptionObject: encryptionObject) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            
+                            print("updateSendingMessages success:", value)
+                            
+                            if let response = value as? Dictionary<String, Any> {
+                                
+                                if let message = self.parseServerResponse(response:response) {
+                                    print("updateSendingMessages message:", message)
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    completionHandler(APIResult.success(value))
+                                }
+                            } else {
+                                 let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                 completionHandler(APIResult.failure(error))
+                                //completionHandler(APIResult.success(value))
+                            }
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                        
+                        HUD.hide()
+                    }
+                }
+            }
+        }
+    }
+    
     func mailboxesList(completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         self.checkTokenExpiration(){ (complete) in
@@ -627,16 +673,16 @@ class APIService {
         }
     }
     
-    func createMessage(content: String, subject: String, recieversList: Array<String>, folder: String, mailboxID: Int, send: Bool, encrypted: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func createMessage(content: String, subject: String, recieversList: Array<String>, folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String], completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         self.checkTokenExpiration(){ (complete) in
             if complete {
                 
                 if let token = self.getToken() {
                     
-                    //HUD.show(.progress)
+                    HUD.show(.progress)
                     
-                    self.restAPIService?.createMessage(token: token, content: content, subject: subject, recieversList: recieversList, folder: folder, mailboxID: mailboxID, send: send, encrypted: encrypted) {(result) in
+                    self.restAPIService?.createMessage(token: token, content: content, subject: subject, recieversList: recieversList, folder: folder, mailboxID: mailboxID, send: send, encrypted: encrypted, encryptionObject: encryptionObject) {(result) in
                         
                         switch(result) {
                             
@@ -651,7 +697,10 @@ class APIService {
                                     let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
                                     completionHandler(APIResult.failure(error))
                                 } else {
-                                    completionHandler(APIResult.success(response))
+                                    //completionHandler(APIResult.success(response))
+                                    
+                                    let emailMessage = EmailMessage(dictionary: response)
+                                    completionHandler(APIResult.success(emailMessage))
                                 }
                             } else {
                                 let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
@@ -663,7 +712,7 @@ class APIService {
                             completionHandler(APIResult.failure(error))
                         }
                         
-                        //HUD.hide()
+                        HUD.hide()
                     }
                 }
             }
@@ -1197,6 +1246,10 @@ class APIService {
                 break
             case APIResponse.results.rawValue :
                 //do nothing
+                break
+            case APIResponse.expires.rawValue :
+                print("expires APIResponce key:", dictionary.key, "value:", dictionary.value)
+                message = extractErrorTextFrom(value: dictionary.value)
                 break
             default:
                 print("Default case APIResponce key:", dictionary.key, "value:", dictionary.value)

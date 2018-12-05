@@ -79,6 +79,9 @@ class ViewInboxEmailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        let arrowBackImage = UIImage(named: k_darkBackArrowImageName)
+        self.navigationController?.navigationBar.backIndicatorImage = arrowBackImage
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = arrowBackImage
     }
     
     func initShowingMessage() {

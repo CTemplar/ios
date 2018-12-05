@@ -48,6 +48,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet var ccViewSubsectionHeightConstraint       : NSLayoutConstraint!
     @IBOutlet var bccViewSubsectionHeightConstraint      : NSLayoutConstraint!
     
+    @IBOutlet var tableViewTopOffsetConstraint           : NSLayoutConstraint!
+    
     var expandedSectionHeight: CGFloat = 0.0
     
     var presenter   : ComposePresenter?
@@ -60,6 +62,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     var mailboxesList    : Array<Mailbox> = []
     var mailboxID : Int = 0
+    
+    var contactsList    : Array<Contact> = []
     
     var emailsToArray = Array<String>()
     //var emailToAttributtedSting : NSAttributedString!
@@ -77,9 +81,12 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     var usersPublicKeys = Array<Key>()
     
-    var encryptedMail : Bool = true
+    var encryptedMail : Bool = false
     
     var messageAttributedText : NSAttributedString = NSAttributedString(string: "")
+    
+    var messagesArray                     : Array<EmailMessage> = []
+    //var dercyptedMessagesArray            : Array<String> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,7 +95,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         let configurator = ComposeConfigurator()
         configurator.configure(viewController: self)
         
-        //self.navigationItem.rightBarButtonItem?.isEnabled = false
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
         self.navigationItem.title = navBarTitle
         
         emailToTextView.delegate = self
@@ -140,21 +147,27 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         //========
         */
         
+        //self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
+        
         self.presenter?.setMailboxes(mailboxes: mailboxesList)
         self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
         self.presenter?.setupSubject(subjectText: self.subject)
         
         self.dataSource?.initWith(parent: self, tableView: tableView)
         self.presenter?.setMailboxDataSource(mailboxes: mailboxesList)
-        
-        //temp
-        if self.messageTextView.text.count == 0 {
-            self.messageTextView.font = UIFont(name: k_latoRegularFontName, size: 14.0)
-            self.messageTextView.text = "composeEmail".localized()
-            self.messageTextView.textColor = UIColor.lightGray
-        }
+        //self.presenter?.setContactsDataSource(contacts: contactsList)
+        self.interactor?.userContactsList()
+        self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset)
         
         self.addGesureRecognizers()
+        
+        self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        //self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
     }
     
     func addGesureRecognizers() {
@@ -204,6 +217,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     @IBAction func encryptedButtonPressed(_ sender: AnyObject) {
         
+        self.presenter!.encryptedButtonPressed()
     }
     
     @IBAction func selfDestructedButtonPressed(_ sender: AnyObject) {
@@ -224,9 +238,25 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         print("textViewDidBeginEditing")
         
-        if self.messageTextView.textColor == UIColor.lightGray {
-            self.messageTextView.text = nil
-            self.messageTextView.textColor = UIColor.black
+        if textView != self.messageTextView {
+            
+            //temp
+            self.tableView.isHidden = false
+            self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset + self.emailToSectionView.frame.height/*self.toViewSectionHeightConstraint.constant*/ - 5.0)
+            self.dataSource?.currentTextView = textView
+            self.dataSource?.reloadData(setMailboxData: false)
+            self.interactor?.setFilteredList(searchText: "")
+            //
+            
+            if self.messageTextView.text.isEmpty {
+                self.messageTextView.text = "composeEmail".localized()
+                self.messageTextView.textColor = UIColor.lightGray
+            }
+        } else {
+            if self.messageTextView.text == "composeEmail".localized() {
+                self.messageTextView.text = ""
+                self.messageTextView.textColor = UIColor.darkText //temp
+            }
         }
     }
     
@@ -241,35 +271,58 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         print("textViewDidEndEditing")
         
-        if self.messageTextView.text.isEmpty {
-            self.messageTextView.text = "composeEmail".localized()
-            self.messageTextView.textColor = UIColor.lightGray
+        if textView == self.messageTextView {
+            if self.messageTextView.text.isEmpty {
+                self.messageTextView.text = "composeEmail".localized()
+                self.messageTextView.textColor = UIColor.lightGray
+            }
         }
         
         self.tapSelectedEmail = ""
         self.tapSelectedCcEmail = ""
         self.tapSelectedBccEmail = ""
+        
+        self.tableView.isHidden = true
+        //self.interactor?.setFilteredList(searchText: "")
+        
         self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
+        self.presenter!.enabledSendButton()
     }
     
     func textViewDidChange(_ textView: UITextView) {
         
         //self.setCursorPositionToEnd(textView: textView)
         
+        var inputText : String = ""
+        
         print("textViewDidChange text:", textView.text)
         
         switch textView {
         case self.emailToTextView:
+            let inputDroppedPrefixText = self.interactor?.dropPrefix(text: textView.text, prefix: "emailToPrefix".localized())
+            inputText =  (self.interactor?.getLastInputEmail(input: inputDroppedPrefixText!))!
             self.presenter?.setupEmailToSection(emailToText: textView.text, ccToText: self.ccToSting, bccToText: self.bccToSting)
         case self.ccToTextView:
+            let inputDroppedPrefixText = self.interactor?.dropPrefix(text: textView.text, prefix: "ccToPrefix".localized())
+            inputText =  (self.interactor?.getLastInputEmail(input: inputDroppedPrefixText!))!
             self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: textView.text, bccToText: self.bccToSting)
         case self.bccToTextView:
+            let inputDroppedPrefixText = self.interactor?.dropPrefix(text: textView.text, prefix: "bccToPrefix".localized())
+            inputText =  (self.interactor?.getLastInputEmail(input: inputDroppedPrefixText!))!
             self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: textView.text)
         case self.messageTextView:
-             self.messageAttributedText = self.messageTextView.attributedText
+             //self.messageAttributedText = self.messageTextView.attributedText
+            break
         default:
             break
         }
+        
+        if textView != self.messageTextView {
+            self.interactor?.setFilteredList(searchText: inputText)
+        }
+        
+        self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset + self.emailToSectionView.frame.height/*self.toViewSectionHeightConstraint.constant*/ - 5.0)
+        self.presenter!.enabledSendButton()
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -290,14 +343,24 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     //MARK: - textField delegate
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        self.subject = textField.text!
+        self.presenter!.enabledSendButton()
+        
+        return true
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         self.subject = textField.text!
+        self.presenter!.enabledSendButton()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         self.subject = textField.text!
+        self.presenter!.enabledSendButton()
         textField.resignFirstResponder()
         
         return true;
@@ -357,11 +420,25 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.tapSelectedCcEmail = ""
         self.tapSelectedBccEmail = ""
         self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
+        //self.tableView.isHidden = true
         view.endEditing(true)
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         
         return true
+    }
+}
+
+extension ComposeViewController: SetPasswordDelegate {
+
+    func applyAction(password: String, passwordHint: String) {
+        
+        self.interactor?.sendPasswordForCreatingMessage(password: password, passwordHint: passwordHint)
+    }
+    
+    func cancelAction() {
+        
+        self.presenter!.encryptedButtonPressed()
     }
 }

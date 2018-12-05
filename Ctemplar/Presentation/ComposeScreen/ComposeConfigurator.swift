@@ -28,6 +28,7 @@ class ComposeConfigurator {
         interactor.pgpService = appDelegate.applicationManager.pgpService
         
         presenter.interactor = interactor
+        presenter.formatterService = appDelegate.applicationManager.formatterService
         
         viewController.presenter = presenter
         viewController.router = router

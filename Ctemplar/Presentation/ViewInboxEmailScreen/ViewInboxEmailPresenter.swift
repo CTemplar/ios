@@ -118,7 +118,7 @@ class ViewInboxEmailPresenter {
             fromEmail = sender
         }
         
-        if let recieversArray = message.receiver {
+        if let recieversArray = message.receivers {
             toEmailsArray = recieversArray as! Array<String>
         }
         
