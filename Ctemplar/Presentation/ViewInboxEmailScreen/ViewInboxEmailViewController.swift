@@ -56,6 +56,8 @@ class ViewInboxEmailViewController: UIViewController {
     
     var mailboxesList    : Array<Mailbox> = []
     
+    let documentInteractionController = UIDocumentInteractionController()
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -74,6 +76,8 @@ class ViewInboxEmailViewController: UIViewController {
         self.initShowingMessage()
         
         self.presenter?.initMoreActionsView()
+        
+        documentInteractionController.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -143,5 +147,24 @@ extension ViewInboxEmailViewController: MoreActionsDelegate {
     func applyAction(_ sender: AnyObject, isButton: Bool) {
         
         presenter?.applyMoreAction(sender, isButton: isButton)
+    }
+}
+
+extension ViewInboxEmailViewController: UIDocumentInteractionControllerDelegate {
+    /// If presenting atop a navigation stack, provide the navigation controller in order to animate in a manner consistent with the rest of the platform
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+        guard let navVC = self.navigationController else {
+            return self
+        }
+        return navVC
+    }
+}
+
+extension URL {
+    var typeIdentifier: String? {
+        return (try? resourceValues(forKeys: [.typeIdentifierKey]))?.typeIdentifier
+    }
+    var localizedName: String? {
+        return (try? resourceValues(forKeys: [.localizedNameKey]))?.localizedName
     }
 }

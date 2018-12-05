@@ -135,4 +135,9 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
             }
         }
     }
+    
+    func attachSelected(itemUrlString: String) {
+        
+        self.parentViewController.presenter?.showShareScreen(itemUrlString: itemUrlString)
+    }
 }

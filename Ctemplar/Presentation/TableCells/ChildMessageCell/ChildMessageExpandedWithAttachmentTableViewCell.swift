@@ -195,5 +195,12 @@ class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell, UICollec
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         print("tapped for Attachment item:", indexPath.item)
+        
+        let attach = self.attachmentsArray[indexPath.item]
+        
+        if let urlString = attach.contentUrl {
+            //let url = URL(string: urlString)
+            self.parentController?.attachSelected(itemUrlString: urlString)
+        }
     }
 }
