@@ -176,9 +176,7 @@ class ComposeInteractor {
     //MARK: - prepared to send
     
     func prepareMessadgeToSend() {
-        
-        //self.getPublicKeysForEmails()
-        
+                    
         self.publicKeysFor(userEmailsArray: self.viewController!.emailsToArray) { (keys) in
             print("publicKeys:", keys)
             
@@ -372,7 +370,8 @@ class ComposeInteractor {
         if self.returnPressed(input: text) {
             
             let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "ccToPrefix".localized())
-            let inputCcEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
+            //let inputCcEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
+            let inputCcEmail = self.getLastInputText(input: inputDroppedPrefixText, emailsArray: self.viewController!.ccToArray)
             
             self.setEmail(textView: textView, inputEmail: inputCcEmail, addSelected: false)
 
@@ -426,7 +425,8 @@ class ComposeInteractor {
         if self.returnPressed(input: text) {
             
             let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "bccToPrefix".localized())
-            let inputBccEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
+            //let inputBccEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
+            let inputBccEmail = self.getLastInputText(input: inputDroppedPrefixText, emailsArray: self.viewController!.bccToArray)
             
             self.setEmail(textView: textView, inputEmail: inputBccEmail, addSelected: false)
 
@@ -473,9 +473,14 @@ class ComposeInteractor {
         if addSelected {
             self.setFilteredList(searchText: "")
             inputText = textView.text + inputEmail + " "
+            //inputText = textView.text + " <" + inputEmail + "> "
         } else {
             if inputEmail.count > 0 {
                 inputText = textView.text + " "
+                //let textBefore = String(textView.text.dropLast(inputEmail.count))
+                //print("textBefore", textBefore)
+                //inputText = textBefore + " <" + inputEmail + "> "
+                
             } else {
                 inputText = textView.text
                 //hide keyboard?

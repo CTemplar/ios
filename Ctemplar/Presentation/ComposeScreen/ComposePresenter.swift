@@ -284,6 +284,9 @@ class ComposePresenter {
         let label = UILabel(frame: labelRect)
         label.font = UIFont(name: k_latoRegularFontName, size: 14.0)
         label.textColor = k_emailToInputColor
+        //var formattedText = text.dropLast().dropFirst()
+        //formattedText = "_" + formattedText + "_"
+        //label.text = String(formattedText)
         label.text = text
         label.backgroundColor = UIColor.clear
         
@@ -488,6 +491,8 @@ class ComposePresenter {
                     selected = true
                 }
             }
+            
+            //let formattedEmail = "<" + email + ">"
             
             self.setRect(textView: self.viewController!.emailToTextView, email: email, tag: tag, selected: selected)
             localSubViewsArray.append(tag)
