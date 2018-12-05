@@ -395,7 +395,7 @@
                                 <rect key="frame" x="16" y="295" width="343" height="372"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <attributedString key="attributedText"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
                             </textView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mnP-Oe-gne">
                                 <rect key="frame" x="0.0" y="618" width="375" height="49"/>
@@ -506,6 +506,7 @@
                         <outlet property="subjectTextField" destination="MBF-I2-36Z" id="6KP-KW-D84"/>
                         <outlet property="subjectView" destination="JlZ-Fv-gSA" id="Drc-GR-uOC"/>
                         <outlet property="tableView" destination="Tnr-NY-PEc" id="UTG-az-HsZ"/>
+                        <outlet property="tableViewBottomOffsetConstraint" destination="40c-GB-BoZ" id="8b3-hh-t1i"/>
                         <outlet property="tableViewTopOffsetConstraint" destination="xRo-tu-AUz" id="f8V-Lj-e7q"/>
                         <outlet property="toViewSectionHeightConstraint" destination="lOT-Tm-3c1" id="ssz-zA-yrQ"/>
                         <outlet property="toViewSubsectionHeightConstraint" destination="c6v-iT-6BX" id="Eua-aW-JNM"/>

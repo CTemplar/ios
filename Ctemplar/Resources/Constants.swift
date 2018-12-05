@@ -143,6 +143,7 @@ let k_signUpPageKeyboardOffsetMedium    = 64.0
 let k_signUpPageKeyboardOffsetBig       = 96.0
 let k_signUpPageKeyboardOffsetLarge     = 160.0
 let k_signUpPageKeyboardOffsetExtraLarge     = 210.0
+let k_KeyboardHeight                    = 216.0
 
 let k_setPasswordKeyboardOffset         = 80.0
 

@@ -49,8 +49,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet var bccViewSubsectionHeightConstraint      : NSLayoutConstraint!
     
     @IBOutlet var tableViewTopOffsetConstraint           : NSLayoutConstraint!
+    @IBOutlet var tableViewBottomOffsetConstraint        : NSLayoutConstraint!
     
     var expandedSectionHeight: CGFloat = 0.0
+    var keyboardOffset = 0.0
     
     var presenter   : ComposePresenter?
     var interactor  : ComposeInteractor?
@@ -163,6 +165,14 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.addGesureRecognizers()
         
         self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
+        
+        if (Device.IS_IPHONE_5) {
+            keyboardOffset = k_KeyboardHeight - 80.0
+        } else {
+            keyboardOffset = 0.0
+        }
+        
+        self.addNotificationObserver()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -435,6 +445,35 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         
         return true
+    }
+    
+    //MARK: - notification
+    
+    func addNotificationObserver() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        
+        if self.messageTextView.isFirstResponder {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= CGFloat(keyboardOffset)
+            }
+        }
+        
+        tableViewBottomOffsetConstraint.constant = CGFloat(k_KeyboardHeight)
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y += CGFloat(keyboardOffset)
+        }
+        
+        tableViewBottomOffsetConstraint.constant = 0.0
     }
 }
 

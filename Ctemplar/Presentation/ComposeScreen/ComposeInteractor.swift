@@ -312,7 +312,8 @@ class ComposeInteractor {
         if self.returnPressed(input: text) {
             
             let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "emailToPrefix".localized())
-            let inputEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
+            //let inputEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
+            let inputEmail = self.getLastInputText(input: inputDroppedPrefixText, emailsArray: self.viewController!.emailsToArray)
             
             self.setEmail(textView: textView, inputEmail: inputEmail, addSelected: false)
             
@@ -473,24 +474,34 @@ class ComposeInteractor {
             self.setFilteredList(searchText: "")
             inputText = textView.text + inputEmail + " "
         } else {
-            inputText = textView.text + " "
+            if inputEmail.count > 0 {
+                inputText = textView.text + " "
+            } else {
+                inputText = textView.text
+                //hide keyboard?
+            }
         }
         
         switch textView {
         case self.viewController!.emailToTextView:
             print("inputEmail:", inputEmail as Any)
-            self.viewController!.emailsToArray.append(inputEmail)
+            if inputEmail.count > 0 {
+                self.viewController!.emailsToArray.append(inputEmail)
+            }
             self.viewController!.emailToSting = inputText
-          
             break
         case self.viewController!.ccToTextView:
             print("inputCcEmail:", inputEmail as Any)
-            self.viewController!.ccToArray.append(inputEmail)
+            if inputEmail.count > 0 {
+                self.viewController!.ccToArray.append(inputEmail)
+            }
             self.viewController!.ccToSting = inputText
             break
         case self.viewController!.bccToTextView:
             print("inputBccEmail:", inputEmail as Any)
-            self.viewController!.bccToArray.append(inputEmail)
+            if inputEmail.count > 0 {
+                self.viewController!.bccToArray.append(inputEmail)
+            }
             self.viewController!.bccToSting = inputText
             break
         default:
@@ -571,6 +582,21 @@ class ComposeInteractor {
     func getLastInputEmail(input: String) -> String {
         
         let substrings = input.split(separator: " ")
+        
+        if let sub = substrings.last {
+            return String(sub)
+        }
+        
+        return ""
+    }
+    
+    func getLastInputText(input: String, emailsArray: Array<String>) -> String {
+        
+        let substrings = input.split(separator: " ")
+        
+        if emailsArray.count == substrings.count {
+            return ""
+        }
         
         if let sub = substrings.last {
             return String(sub)
