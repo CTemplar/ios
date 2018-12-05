@@ -315,7 +315,7 @@ class ComposeInteractor {
         }
                 
         if self.returnPressed(input: text) {
-           
+           /*
             let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "emailToPrefix".localized())
             let inputEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
             print("inputEmail:", inputEmail as Any)
@@ -329,6 +329,12 @@ class ComposeInteractor {
             self.presenter!.enabledSendButton()
             
             self.viewController!.tableView.isHidden = true
+             */
+            
+            let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "emailToPrefix".localized())
+            let inputEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
+            
+            self.setEmail(textView: textView, inputEmail: inputEmail, addSelected: false)
             
             return false
         }
@@ -384,6 +390,11 @@ class ComposeInteractor {
             
             let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "ccToPrefix".localized())
             let inputCcEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
+            
+            self.setEmail(textView: textView, inputEmail: inputCcEmail, addSelected: false)
+            /*
+            let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "ccToPrefix".localized())
+            let inputCcEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
             print("inputCcEmail:", inputCcEmail as Any)
             
             self.viewController!.ccToArray.append(inputCcEmail)
@@ -393,7 +404,7 @@ class ComposeInteractor {
             self.setCursorPositionToEnd(textView: textView)
             
             self.viewController!.tableView.isHidden = true
-            
+            */
             return false
         }
         
@@ -445,6 +456,11 @@ class ComposeInteractor {
             
             let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "bccToPrefix".localized())
             let inputBccEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
+            
+            self.setEmail(textView: textView, inputEmail: inputBccEmail, addSelected: false)
+            /*
+            let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "bccToPrefix".localized())
+            let inputBccEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
             print("inputBccEmail:", inputBccEmail as Any)
             
             self.viewController!.bccToArray.append(inputBccEmail)
@@ -454,7 +470,7 @@ class ComposeInteractor {
             self.setCursorPositionToEnd(textView: textView)
             
             self.viewController!.tableView.isHidden = true
-            
+            */
             return false
         }
         
@@ -489,6 +505,46 @@ class ComposeInteractor {
         }
         
         return true
+    }
+    
+    func setEmail(textView: UITextView, inputEmail: String, addSelected: Bool) {
+        
+        var inputText : String = ""
+        
+        if addSelected {
+            inputText = textView.text + inputEmail + " "
+        } else {
+            inputText = textView.text + " "
+        }
+        
+        switch textView {
+        case self.viewController!.emailToTextView:
+            print("inputEmail:", inputEmail as Any)
+            self.viewController!.emailsToArray.append(inputEmail)
+            self.viewController!.emailToSting = inputText
+          
+            break
+        case self.viewController!.ccToTextView:
+            print("inputCcEmail:", inputEmail as Any)
+            self.viewController!.ccToArray.append(inputEmail)
+            self.viewController!.ccToSting = inputText
+            break
+        case self.viewController!.bccToTextView:
+            print("inputBccEmail:", inputEmail as Any)
+            self.viewController!.bccToArray.append(inputEmail)
+            self.viewController!.bccToSting = inputText
+            break
+        default:
+            break
+        }
+        
+        self.setCursorPositionToEnd(textView: textView)
+        
+        self.presenter!.enabledSendButton()
+        
+        self.viewController!.tableView.isHidden = true
+        
+        self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
     }
     
     //MARK: - textView private methods

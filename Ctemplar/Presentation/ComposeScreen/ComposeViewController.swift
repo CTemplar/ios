@@ -243,6 +243,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             //temp
             self.tableView.isHidden = false
             self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset + self.toViewSectionHeightConstraint.constant - 5.0)
+            self.dataSource?.currentTextView = textView
             self.dataSource?.reloadData(setMailboxData: false)
             //
             
@@ -414,6 +415,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.tapSelectedCcEmail = ""
         self.tapSelectedBccEmail = ""
         self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
+        //self.tableView.isHidden = true
         view.endEditing(true)
     }
     

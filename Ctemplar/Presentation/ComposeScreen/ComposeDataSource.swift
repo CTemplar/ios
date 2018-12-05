@@ -16,6 +16,8 @@ class ComposeDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     var contactsArray           : Array<Contact> = []
     var mailboxesArray          : Array<Mailbox> = []
     
+    var currentTextView         : UITextView!
+    
     var tableView               : UITableView!
     var parentViewController    : ComposeViewController!
     var formatterService        : FormatterService?
@@ -93,8 +95,12 @@ class ComposeDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         } else {
             
             let contact = contactsArray[indexPath.row]
-            let email = contact.email
             
+            if  let email = contact.email {
+                if (self.currentTextView != nil) {
+                    self.parentViewController.interactor?.setEmail(textView: self.currentTextView, inputEmail: email, addSelected: true)
+                }
+            }
         }
         
         self.tableView.isHidden = true
