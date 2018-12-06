@@ -97,8 +97,15 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
             }
 
         } else {
+            
+            var lastMessage = false
+            
+            if indexPath.row == messagesArray.count - 1 {
+                lastMessage = true
+            }
+            
             cell = tableView.dequeueReusableCell(withIdentifier: k_ChildMessageTableViewCellIdentifier)! as! ChildMessageTableViewCell
-            (cell as! ChildMessageTableViewCell).setupCellWithData(sender: sender!, header: header)
+            (cell as! ChildMessageTableViewCell).setupCellWithData(sender: sender!, header: header, isLast: lastMessage)
         }
          
         cell.preservesSuperviewLayoutMargins = false

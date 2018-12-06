@@ -141,16 +141,25 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                             <outlet property="delegate" destination="D3R-Kt-pfv" id="RBZ-69-ite"/>
                         </connections>
                     </collectionView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WKV-YE-4cH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                        <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="i8o-B5-kqf"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Oeh-eb-MhL" firstAttribute="top" secondItem="ESj-7u-Wsm" secondAttribute="bottom" id="09v-RK-pk7"/>
                     <constraint firstItem="7nB-s8-qhz" firstAttribute="top" secondItem="LTG-Sh-vfM" secondAttribute="bottom" constant="16" id="15C-dA-psM"/>
                     <constraint firstAttribute="trailing" secondItem="Oeh-eb-MhL" secondAttribute="trailing" constant="16" id="5FZ-M7-KH1"/>
                     <constraint firstItem="QvS-7Z-HOi" firstAttribute="leading" secondItem="X0Y-7y-urH" secondAttribute="leading" constant="16" id="5Ir-Lf-Gyj"/>
+                    <constraint firstAttribute="trailing" secondItem="WKV-YE-4cH" secondAttribute="trailing" id="85S-Py-PZ6"/>
                     <constraint firstAttribute="trailing" secondItem="ESj-7u-Wsm" secondAttribute="trailing" id="8CX-ru-K4M"/>
                     <constraint firstItem="QvS-7Z-HOi" firstAttribute="top" secondItem="X0Y-7y-urH" secondAttribute="top" constant="16" id="9Zh-08-VF1"/>
                     <constraint firstItem="Ohz-Ep-u46" firstAttribute="leading" secondItem="X0Y-7y-urH" secondAttribute="leading" id="Cpt-1R-OIU"/>
                     <constraint firstItem="LTG-Sh-vfM" firstAttribute="leading" secondItem="X0Y-7y-urH" secondAttribute="leading" constant="16" id="EaO-gw-hO2"/>
+                    <constraint firstItem="WKV-YE-4cH" firstAttribute="top" secondItem="X0Y-7y-urH" secondAttribute="top" id="Fh6-gB-e1X"/>
                     <constraint firstItem="PHV-at-ZCc" firstAttribute="leading" secondItem="LTG-Sh-vfM" secondAttribute="trailing" constant="16" id="GLA-sC-F5u"/>
                     <constraint firstAttribute="trailing" secondItem="PHV-at-ZCc" secondAttribute="trailing" constant="16" id="HlO-nA-oqA"/>
                     <constraint firstItem="LTG-Sh-vfM" firstAttribute="top" secondItem="Jwl-0g-LzY" secondAttribute="bottom" constant="8" id="K6w-1A-wZ2"/>
@@ -160,6 +169,7 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                     <constraint firstItem="PHV-at-ZCc" firstAttribute="top" secondItem="Jwl-0g-LzY" secondAttribute="bottom" constant="8" id="ULA-Pd-iva"/>
                     <constraint firstItem="Ohz-Ep-u46" firstAttribute="top" secondItem="Oeh-eb-MhL" secondAttribute="bottom" constant="16" id="Uuw-b3-nMc"/>
                     <constraint firstAttribute="trailing" secondItem="Jwl-0g-LzY" secondAttribute="trailing" constant="16" id="cXJ-Tv-lWX"/>
+                    <constraint firstItem="WKV-YE-4cH" firstAttribute="leading" secondItem="X0Y-7y-urH" secondAttribute="leading" id="czL-td-YrA"/>
                     <constraint firstItem="ESj-7u-Wsm" firstAttribute="leading" secondItem="X0Y-7y-urH" secondAttribute="leading" id="kEL-Qi-Cbh"/>
                     <constraint firstAttribute="trailing" secondItem="7nB-s8-qhz" secondAttribute="trailing" constant="16" id="lX9-uj-iBz"/>
                     <constraint firstAttribute="bottom" secondItem="Ohz-Ep-u46" secondAttribute="bottom" constant="15" id="mQ3-Kx-xd8"/>

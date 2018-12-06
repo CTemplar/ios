@@ -14,6 +14,7 @@ class ChildMessageTableViewCell: UITableViewCell {
     
     @IBOutlet weak var senderLabel     : UILabel!
     @IBOutlet weak var headerLabel     : UILabel!
+    @IBOutlet weak var bottomLine      : UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,9 +27,11 @@ class ChildMessageTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setupCellWithData(sender: String, header: String) {
+    func setupCellWithData(sender: String, header: String, isLast: Bool) {
         
         self.senderLabel.text = sender
         self.headerLabel.text = header
+        
+        self.bottomLine.isHidden = !isLast
     }
 }

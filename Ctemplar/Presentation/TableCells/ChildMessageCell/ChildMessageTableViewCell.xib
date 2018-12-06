@@ -42,10 +42,17 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gX2-3E-TTc">
-                        <rect key="frame" x="0.0" y="70.5" width="375" height="1"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
                         <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="ECa-Df-cB4"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VTi-6k-viA">
+                        <rect key="frame" x="0.0" y="70.5" width="375" height="1"/>
+                        <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="3CN-Ih-P0Y"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -53,12 +60,15 @@
                 <constraints>
                     <constraint firstItem="c2n-1O-iSo" firstAttribute="leading" secondItem="bxD-Rq-TQN" secondAttribute="leading" constant="16" id="1s1-sM-csm"/>
                     <constraint firstAttribute="trailing" secondItem="qE4-lX-lK8" secondAttribute="trailing" constant="16" id="7pp-wt-cHU"/>
+                    <constraint firstAttribute="trailing" secondItem="VTi-6k-viA" secondAttribute="trailing" id="MOV-9K-Pnt"/>
                     <constraint firstItem="qE4-lX-lK8" firstAttribute="top" secondItem="bxD-Rq-TQN" secondAttribute="top" constant="16" id="PhG-Y7-8mD"/>
+                    <constraint firstAttribute="bottom" secondItem="VTi-6k-viA" secondAttribute="bottom" id="PxK-Gu-lIh"/>
                     <constraint firstItem="qE4-lX-lK8" firstAttribute="leading" secondItem="bxD-Rq-TQN" secondAttribute="leading" constant="16" id="RQM-M5-mW2"/>
-                    <constraint firstAttribute="bottom" secondItem="gX2-3E-TTc" secondAttribute="bottom" id="Zx2-Iq-Yet"/>
+                    <constraint firstItem="VTi-6k-viA" firstAttribute="leading" secondItem="bxD-Rq-TQN" secondAttribute="leading" id="TC7-IU-J10"/>
                     <constraint firstAttribute="trailing" secondItem="c2n-1O-iSo" secondAttribute="trailing" constant="16" id="b1Y-6C-u71"/>
                     <constraint firstItem="gX2-3E-TTc" firstAttribute="leading" secondItem="bxD-Rq-TQN" secondAttribute="leading" id="bAa-Tt-uKt"/>
                     <constraint firstItem="c2n-1O-iSo" firstAttribute="top" secondItem="qE4-lX-lK8" secondAttribute="bottom" constant="8" id="e8Y-ec-dda"/>
+                    <constraint firstItem="gX2-3E-TTc" firstAttribute="top" secondItem="bxD-Rq-TQN" secondAttribute="top" id="eYa-1J-Yis"/>
                     <constraint firstAttribute="bottom" secondItem="c2n-1O-iSo" secondAttribute="bottom" constant="15.5" id="uYF-7B-3G3"/>
                     <constraint firstAttribute="trailing" secondItem="gX2-3E-TTc" secondAttribute="trailing" id="wf8-1W-QoK"/>
                 </constraints>
@@ -76,6 +86,7 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="bottomLine" destination="VTi-6k-viA" id="IpT-zg-GZc"/>
                 <outlet property="headerLabel" destination="c2n-1O-iSo" id="IRx-Oi-wn0"/>
                 <outlet property="senderLabel" destination="qE4-lX-lK8" id="9Tb-wK-Pqf"/>
             </connections>
