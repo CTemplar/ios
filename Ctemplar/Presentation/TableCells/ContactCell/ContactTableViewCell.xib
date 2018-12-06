@@ -74,9 +74,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="andrewsmith@gmail.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWr-mH-zUE">
-                        <rect key="frame" x="96" y="38" width="235" height="16"/>
+                        <rect key="frame" x="96" y="36" width="235" height="18"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="16" id="l9J-b9-pN7"/>
+                            <constraint firstAttribute="height" constant="18" id="l9J-b9-pN7"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.37942891725352113" colorSpace="calibratedRGB"/>
@@ -86,7 +86,7 @@
                 <constraints>
                     <constraint firstItem="VZo-LW-zfY" firstAttribute="top" secondItem="m34-gc-9jC" secondAttribute="top" constant="24" id="517-Br-V3I"/>
                     <constraint firstItem="PBv-Zb-b4C" firstAttribute="top" secondItem="CDl-f3-UZk" secondAttribute="top" id="5q6-Ra-Fqs"/>
-                    <constraint firstItem="BWr-mH-zUE" firstAttribute="top" secondItem="DDr-ca-wu2" secondAttribute="bottom" constant="7" id="9zZ-rH-9JA"/>
+                    <constraint firstItem="BWr-mH-zUE" firstAttribute="top" secondItem="DDr-ca-wu2" secondAttribute="bottom" constant="5" id="9zZ-rH-9JA"/>
                     <constraint firstAttribute="bottom" secondItem="CDl-f3-UZk" secondAttribute="bottom" constant="12.5" id="FrY-gz-ay0"/>
                     <constraint firstItem="DDr-ca-wu2" firstAttribute="leading" secondItem="CDl-f3-UZk" secondAttribute="trailing" constant="10" id="JGj-kl-vlR"/>
                     <constraint firstItem="CDl-f3-UZk" firstAttribute="leading" secondItem="VZo-LW-zfY" secondAttribute="trailing" constant="12" id="ZCN-fQ-UlU"/>
@@ -114,6 +114,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="roundDark" width="17" height="17"/>
+        <image name="roundDark" width="29" height="29"/>
     </resources>
 </document>
