@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import PKHUD
+import MobileCoreServices
 
 class ComposePresenter {
     
@@ -530,5 +531,16 @@ class ComposePresenter {
         }
         
         self.viewController?.encryptedButton .setImage(buttonImage, for: .normal)        
+    }
+    
+    //MARK: - Attach Picker
+    
+    func showAttachPicker() {
+        
+        let documentPicker = UIDocumentPickerViewController(documentTypes: [String(kUTTypeText), String(kUTTypeContent), String(kUTTypeItem), String(kUTTypeData), String(kUTTypePDF), String(kUTTypeImage)], in: .import)
+        
+        documentPicker.delegate = self.viewController
+        
+        self.viewController!.present(documentPicker, animated: true)
     }
 }

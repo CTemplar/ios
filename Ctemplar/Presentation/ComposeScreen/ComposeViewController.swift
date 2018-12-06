@@ -12,7 +12,7 @@ import PKHUD
 import AlertHelperKit
 import ObjectivePGP
 
-class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate {
+class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate, UIDocumentPickerDelegate {
     
     @IBOutlet var tableView           : UITableView!
     
@@ -224,6 +224,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     @IBAction func attachmentButtonPressed(_ sender: AnyObject) {
         
+        self.presenter!.showAttachPicker()
     }
     
     @IBAction func encryptedButtonPressed(_ sender: AnyObject) {
@@ -445,6 +446,13 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         
         return true
+    }
+    
+    //MARK: - document Picker delegate
+    
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        
+        print("picked urls:", urls)
     }
     
     //MARK: - notification
