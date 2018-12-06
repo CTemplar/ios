@@ -150,7 +150,7 @@ class PGPService {
         
         keyring.import(keys: [pgpKey])
         
-        let keyRingFileUrl = getDocumentsDirectory().appendingPathComponent(k_keyringFileName)
+        let keyRingFileUrl = getApplicationSupportDirectoryDirectory().appendingPathComponent(k_keyringFileName)
         
         do {
             try keyring.export().write(to: keyRingFileUrl)
@@ -165,7 +165,7 @@ class PGPService {
         
         keyring.import(keys: pgpKeys)
         
-        let keyRingFileUrl = getDocumentsDirectory().appendingPathComponent(k_keyringFileName)
+        let keyRingFileUrl = getApplicationSupportDirectoryDirectory().appendingPathComponent(k_keyringFileName)
         
         do {
             try keyring.export().write(to: keyRingFileUrl)
@@ -175,11 +175,10 @@ class PGPService {
         
         print("save PGP Keys:", pgpKeys)
     }
-
     
     func getStoredPGPKeys() -> [Key]? {
         
-        let keyRingFileUrl = getDocumentsDirectory().appendingPathComponent(k_keyringFileName)
+        let keyRingFileUrl = getApplicationSupportDirectoryDirectory().appendingPathComponent(k_keyringFileName)
         
         guard let keys = try? ObjectivePGP.readKeys(fromPath: keyRingFileUrl.path) else {return nil}
         print("get stored PGP keys:", keys)
@@ -201,9 +200,6 @@ class PGPService {
     func extractAndSavePGPKeyFromString(key: String) {
         
         if let pgpKeys = self.readPGPKeysFromString(key: key) {
-            //for pgpKey in pgpKeys {
-            //    self.savePGPKey(pgpKey: pgpKey)
-            //}
             self.savePGPKeys(pgpKeys: pgpKeys)
         } else {
             print("can not read keys from string!!!")
@@ -214,7 +210,7 @@ class PGPService {
         
         keyring.deleteAll()
         
-        let keyRingFileUrl = getDocumentsDirectory().appendingPathComponent(k_keyringFileName)
+        let keyRingFileUrl = getApplicationSupportDirectoryDirectory().appendingPathComponent(k_keyringFileName)
         
         /*
         do {
@@ -235,8 +231,9 @@ class PGPService {
         print("delete PGP Key")
     }
     
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    func getApplicationSupportDirectoryDirectory() -> URL {
+        
+        let paths = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask) //.documentDirectory
         return paths[0]
     }
 }
