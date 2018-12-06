@@ -1124,6 +1124,25 @@ class APIService {
         }
     }
     
+    //MARK: - Download
+    
+    func loadAttachFile(url: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        self.restAPIService?.loadAttachFile(url: url) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+              
+                completionHandler(APIResult.success(value))
+                
+            case .failure(let error):
+                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
     //MARK: - Local services
     
     func saveToken(token: String) {

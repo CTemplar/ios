@@ -370,37 +370,64 @@ class ViewInboxEmailInteractor {
     
     //MARK: - Share Attachment
     
-    func showShareScreen(url: URL) {
+    func showPreviewScreen(url: URL) {
         
         self.viewController?.documentInteractionController.url = url
         self.viewController?.documentInteractionController.uti = url.typeIdentifier ?? "public.data, public.content"
         self.viewController?.documentInteractionController.name = url.localizedName ?? url.lastPathComponent
-        self.viewController?.documentInteractionController.presentPreview(animated: true)
-    }
-    
-    func downloadAndStoreAttachment(withURLString: String) {
         
-        guard let url = URL(string: withURLString) else { return }
+        DispatchQueue.main.async {
+            self.viewController?.documentInteractionController.presentPreview(animated: true)
+        }
         
         HUD.show(.progress)
+    }
+    
+    func checkIsFileExist(url: URL) -> Bool {
         
-        URLSession.shared.dataTask(with: url) { data, response, error in
+        let filePath = url.path
+        let fileManager = FileManager.default
+        
+        if fileManager.fileExists(atPath: filePath) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func getFileUrlDocuments(withURLString: String) -> URL {
+        
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! + "/" + (withURLString as NSString).lastPathComponent
+        
+        let url = URL(fileURLWithPath: path)
+        
+        return url
+    }
+        
+    func loadAttachFile(url: String) {
+     
+        HUD.show(.progress)
+        
+        apiService?.loadAttachFile(url: url) {(result) in
             
-            guard let data = data, error == nil else { return }
+            HUD.hide()
             
-            let tempLocalURL = FileManager.default.temporaryDirectory
-                .appendingPathComponent(response?.suggestedFilename ?? "default")
-            do {
-                try data.write(to: tempLocalURL)
-            } catch {
-                print(error)
+            switch(result) {
+                
+            case .success(let value):
+                //print("load value:", value)
+                let savedFileUrl = value as! URL
+                self.showPreviewScreen(url: savedFileUrl)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Download File Error", message: error.localizedDescription, button: "closeButton".localized())
             }
-            
-            DispatchQueue.main.async {
-                HUD.hide()
-                self.showShareScreen(url: tempLocalURL)
-            }
-            
-        }.resume()
+        }
+    }
+    
+    func hideProgressIndicator() {
+        
+        HUD.hide()
     }
 }

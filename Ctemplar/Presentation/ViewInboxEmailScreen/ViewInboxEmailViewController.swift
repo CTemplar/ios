@@ -153,9 +153,16 @@ extension ViewInboxEmailViewController: MoreActionsDelegate {
 extension ViewInboxEmailViewController: UIDocumentInteractionControllerDelegate {
 
     func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+        
         guard let navigationViewController = self.navigationController else {
             return self
         }
+        
         return navigationViewController
+    }
+    
+    func documentInteractionControllerWillBeginPreview(_ controller: UIDocumentInteractionController) {
+        
+        self.presenter!.interactor?.hideProgressIndicator()
     }
 }

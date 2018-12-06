@@ -201,7 +201,13 @@ class ViewInboxEmailPresenter {
     
     func showShareScreen(itemUrlString: String) {
         
-        self.interactor?.downloadAndStoreAttachment(withURLString: itemUrlString)
+        let url = self.interactor?.getFileUrlDocuments(withURLString: itemUrlString)
+    
+        if (self.interactor?.checkIsFileExist(url: url!))! {            
+            self.interactor?.showPreviewScreen(url: url!)
+        } else {
+            self.interactor?.loadAttachFile(url: itemUrlString)
+        }
     }
         
     //MARK: - Read Actions

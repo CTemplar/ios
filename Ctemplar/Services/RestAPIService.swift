@@ -727,4 +727,20 @@ class RestAPIService {
             }
         }
     }
+    
+    //MARK: - Download
+    
+    func loadAttachFile(url: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+ 
+        print("load Attach file at url:", url)
+        
+        let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory)
+        
+        Alamofire.download(url, to: destination).downloadProgress(queue: DispatchQueue.global(qos: .utility)) { (progress) in
+            print("Progress: \(progress.fractionCompleted)")
+            } /*.validate()*/.responseData { ( response ) in
+                print(response.destinationURL!)
+                completionHandler(APIResult.success(response.destinationURL!/*.lastPathComponent*/))
+        }
+    }
 }
