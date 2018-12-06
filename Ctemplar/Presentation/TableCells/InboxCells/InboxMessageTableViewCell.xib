@@ -34,9 +34,9 @@
                         <rect key="frame" x="47" y="13" width="288" height="64"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCp-iz-PG3">
-                                <rect key="frame" x="0.0" y="0.0" width="107.5" height="16"/>
+                                <rect key="frame" x="0.0" y="0.0" width="107.5" height="18"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="16" id="Xe5-Ad-9fW"/>
+                                    <constraint firstAttribute="height" constant="18" id="Xe5-Ad-9fW"/>
                                     <constraint firstAttribute="width" constant="107.5" id="xY5-Q2-hWG"/>
                                 </constraints>
                                 <attributedString key="attributedText">
@@ -240,6 +240,6 @@
         <image name="RedDot" width="8" height="8"/>
         <image name="SecureIcon" width="16" height="16"/>
         <image name="StarIcon" width="16" height="16"/>
-        <image name="roundDark" width="17" height="17"/>
+        <image name="roundDark" width="29" height="29"/>
     </resources>
 </document>
