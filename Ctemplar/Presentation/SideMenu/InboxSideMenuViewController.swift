@@ -86,21 +86,23 @@ class InboxSideMenuViewController: UIViewController {
         
         self.navigationController?.navigationBar.isHidden = true
         
-        //DispatchQueue.main.async {
-        //    self.presenter?.interactor?.customFoldersList()
-        //}
-        
         NotificationCenter.default.addObserver(self, selector: #selector(userDataUpdate), name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        //self.presenter?.interactor?.customFoldersList()
         DispatchQueue.main.async {
             self.presenter?.interactor?.unreadMessagesCounter()
         }
-        //self.presenter?.interactor?.userMyself()
+        
+        self.scrollTableToTop()
+    }
+    
+    func scrollTableToTop() {
+        
+        let firstIndexPath = IndexPath(row: 0, section: 0)
+        self.inboxSideMenuTableView.scrollToRow(at: firstIndexPath, at: .top, animated: true)
     }
     
     //MARK: - IBActions
