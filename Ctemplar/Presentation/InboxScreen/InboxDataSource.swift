@@ -35,6 +35,8 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(sender:)))
         self.tableView.addGestureRecognizer(longPressRecognizer)
         
+        self.tableView.tableFooterView = UIView()
+        
         registerTableViewCell()
     }
     
