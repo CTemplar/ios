@@ -196,7 +196,7 @@ let k_expandDetailsButtonWidth      : CGFloat = 44.0
 let k_emailToTextViewLeftOffset     : CGFloat = 16.0
 let k_emailToTextViewTopOffset      : CGFloat = 8.0
 
-let k_composeTableViewTopOffset     : CGFloat = 43.0
+let k_composeTableViewTopOffset     : CGFloat = 45.0
 
 //images
 
