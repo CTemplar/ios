@@ -201,39 +201,9 @@ class ViewInboxEmailPresenter {
     
     func showShareScreen(itemUrlString: String) {
         
-        self.storeAndShare(withURLString: itemUrlString)
+        self.interactor?.downloadAndStoreAttachment(withURLString: itemUrlString)
     }
-    
-    func share(url: URL) {
         
-        self.viewController?.documentInteractionController.url = url
-        self.viewController?.documentInteractionController.uti = url.typeIdentifier ?? "public.data, public.content"
-        self.viewController?.documentInteractionController.name = url.localizedName ?? url.lastPathComponent
-        self.viewController?.documentInteractionController.presentPreview(animated: true)
-    }
-    
-    func storeAndShare(withURLString: String) {
-        
-        guard let url = URL(string: withURLString) else { return }
-        
-        HUD.show(.progress)
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else { return }
-            let tmpURL = FileManager.default.temporaryDirectory
-                .appendingPathComponent(response?.suggestedFilename ?? "fileName.png")
-            do {
-                try data.write(to: tmpURL)
-            } catch {
-                print(error)
-            }
-            DispatchQueue.main.async {
-                HUD.hide()
-                self.share(url: tmpURL)
-            }
-        }.resume()
-    }
-    
     //MARK: - Read Actions
     
     func checkMessaseReadStatus(message: EmailMessage) {

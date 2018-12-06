@@ -151,20 +151,11 @@ extension ViewInboxEmailViewController: MoreActionsDelegate {
 }
 
 extension ViewInboxEmailViewController: UIDocumentInteractionControllerDelegate {
-    /// If presenting atop a navigation stack, provide the navigation controller in order to animate in a manner consistent with the rest of the platform
+
     func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
-        guard let navVC = self.navigationController else {
+        guard let navigationViewController = self.navigationController else {
             return self
         }
-        return navVC
-    }
-}
-
-extension URL {
-    var typeIdentifier: String? {
-        return (try? resourceValues(forKeys: [.typeIdentifierKey]))?.typeIdentifier
-    }
-    var localizedName: String? {
-        return (try? resourceValues(forKeys: [.localizedNameKey]))?.localizedName
+        return navigationViewController
     }
 }

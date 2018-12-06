@@ -262,7 +262,7 @@ class ViewInboxEmailInteractor {
                 //print("value:", value)
                 print("move message to:", folder)
                 
-                self.postUpdateInbox()
+                self.postUpdateInboxNotification()
                 
                 if withUndo.count > 0 {
                     self.presenter?.showUndoBar(text: withUndo)
@@ -289,7 +289,7 @@ class ViewInboxEmailInteractor {
                 
                 self.viewController?.messageIsRead = asRead
                 
-                self.postUpdateInbox()
+                self.postUpdateInboxNotification()
                 
                 if withUndo.count > 0 {
                     self.presenter?.showUndoBar(text: withUndo)
@@ -318,7 +318,7 @@ class ViewInboxEmailInteractor {
                 
                 self.presenter?.setupStarredButton(starred: starred)
                 
-                self.postUpdateInbox()
+                self.postUpdateInboxNotification()
                 /*
                 if withUndo.count > 0 {
                     self.presenter?.showUndoBar(text: withUndo)
@@ -361,10 +361,46 @@ class ViewInboxEmailInteractor {
         }
     }
     
-    func postUpdateInbox() {
+    func postUpdateInboxNotification() {
         
         let silent = true
         
         NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: silent, userInfo: nil)
+    }
+    
+    //MARK: - Share Attachment
+    
+    func showShareScreen(url: URL) {
+        
+        self.viewController?.documentInteractionController.url = url
+        self.viewController?.documentInteractionController.uti = url.typeIdentifier ?? "public.data, public.content"
+        self.viewController?.documentInteractionController.name = url.localizedName ?? url.lastPathComponent
+        self.viewController?.documentInteractionController.presentPreview(animated: true)
+    }
+    
+    func downloadAndStoreAttachment(withURLString: String) {
+        
+        guard let url = URL(string: withURLString) else { return }
+        
+        HUD.show(.progress)
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            
+            guard let data = data, error == nil else { return }
+            
+            let tempLocalURL = FileManager.default.temporaryDirectory
+                .appendingPathComponent(response?.suggestedFilename ?? "default")
+            do {
+                try data.write(to: tempLocalURL)
+            } catch {
+                print(error)
+            }
+            
+            DispatchQueue.main.async {
+                HUD.hide()
+                self.showShareScreen(url: tempLocalURL)
+            }
+            
+        }.resume()
     }
 }
