@@ -112,11 +112,13 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let showContent = self.showContentMessagesArray[indexPath.row]
-        self.showContentMessagesArray[indexPath.row] = !showContent
+        if self.messagesArray.count > 1 { //expand/close only for chain of messages
         
-        self.reloadData(scrollToLastMessage: false)
+            let showContent = self.showContentMessagesArray[indexPath.row]
+            self.showContentMessagesArray[indexPath.row] = !showContent
         
+            self.reloadData(scrollToLastMessage: false)
+        }
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
