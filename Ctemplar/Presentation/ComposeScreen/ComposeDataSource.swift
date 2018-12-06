@@ -94,6 +94,8 @@ class ComposeDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             }
             
             self.parentViewController.mailboxID = mailbox.mailboxID!
+            
+            self.parentViewController.presenter?.mailboxesButtonPressed()
         } else {
             
             let contact = contactsArray[indexPath.row]
@@ -103,9 +105,9 @@ class ComposeDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
                     self.parentViewController.interactor?.setEmail(textView: self.currentTextView, inputEmail: email, addSelected: true)
                 }
             }
+            
+            self.tableView.isHidden = true
         }
-        
-        self.tableView.isHidden = true
     }
     
     func reloadData(setMailboxData: Bool) {

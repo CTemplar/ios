@@ -69,7 +69,7 @@ class ComposePresenter {
             self.enabledSendButton()
             
         } else {
-            self.viewController?.messageTextView.font = UIFont(name: k_latoRegularFontName, size: 14.0)
+            self.viewController?.messageTextView.font = UIFont(name: k_latoRegularFontName, size: 16.0)
             self.viewController?.messageTextView.text = "composeEmail".localized()
             self.viewController?.messageTextView.textColor = UIColor.lightGray
         }
@@ -368,12 +368,12 @@ class ComposePresenter {
             ])
         
         for email in self.viewController!.ccToArray {
-            _ = attributedString.setBackgroundColor(textToFind: email, color: k_mainInboxColor)
+          //  _ = attributedString.setBackgroundColor(textToFind: email, color: k_mainInboxColor)
             _ = attributedString.setForgroundColor(textToFind: email, color: k_emailToInputColor)
         }
         
         if self.viewController!.tapSelectedCcEmail.count > 0 {
-            _ = attributedString.setBackgroundColor(textToFind: self.viewController!.tapSelectedCcEmail, color: k_foundTextBackgroundColor)
+          //  _ = attributedString.setBackgroundColor(textToFind: self.viewController!.tapSelectedCcEmail, color: k_foundTextBackgroundColor)
         }
         
         self.viewController!.ccToTextView.attributedText = attributedString
@@ -409,12 +409,12 @@ class ComposePresenter {
             ])
         
         for email in self.viewController!.bccToArray {
-            _ = attributedString.setBackgroundColor(textToFind: email, color: k_mainInboxColor)
+          //  _ = attributedString.setBackgroundColor(textToFind: email, color: k_mainInboxColor)
             _ = attributedString.setForgroundColor(textToFind: email, color: k_emailToInputColor)
         }
         
         if self.viewController!.tapSelectedBccEmail.count > 0 {
-            _ = attributedString.setBackgroundColor(textToFind: self.viewController!.tapSelectedBccEmail, color: k_foundTextBackgroundColor)
+         //   _ = attributedString.setBackgroundColor(textToFind: self.viewController!.tapSelectedBccEmail, color: k_foundTextBackgroundColor)
         }
         
         self.viewController!.bccToTextView.attributedText = attributedString
@@ -494,7 +494,7 @@ class ComposePresenter {
             
             //let formattedEmail = "<" + email + ">"
             
-            self.setRect(textView: self.viewController!.emailToTextView, email: email, tag: tag, selected: selected)
+            self.setRect(textView: textView, email: email, tag: tag, selected: selected)
             localSubViewsArray.append(tag)
         }
         

@@ -95,10 +95,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o09-Ex-Zdt">
-                                <rect key="frame" x="0.0" y="65" width="375" height="132"/>
+                                <rect key="frame" x="0.0" y="65" width="375" height="135"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BsK-Bo-ihc">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fOd-3g-3mu">
                                                 <rect key="frame" x="12" y="8" width="130" height="26"/>
@@ -113,10 +113,10 @@
                                                         </attributes>
                                                     </fragment>
                                                 </attributedString>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert"/>
                                             </textView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0QO-oA-I6g">
-                                                <rect key="frame" x="331" y="0.0" width="44" height="44"/>
+                                                <rect key="frame" x="331" y="2" width="44" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="0QO-oA-I6g" secondAttribute="height" multiplier="1:1" id="tsO-vg-h9x"/>
                                                     <constraint firstAttribute="width" constant="44" id="xdX-37-rSm"/>
@@ -130,8 +130,8 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="0QO-oA-I6g" secondAttribute="trailing" id="L3Y-42-CKV"/>
-                                            <constraint firstAttribute="height" constant="44" id="c6v-iT-6BX"/>
-                                            <constraint firstItem="0QO-oA-I6g" firstAttribute="top" secondItem="BsK-Bo-ihc" secondAttribute="top" id="rqa-PY-ahR"/>
+                                            <constraint firstAttribute="height" constant="46" id="c6v-iT-6BX"/>
+                                            <constraint firstItem="0QO-oA-I6g" firstAttribute="top" secondItem="BsK-Bo-ihc" secondAttribute="top" constant="2" id="rqa-PY-ahR"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -146,10 +146,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8q3-3o-rcs">
-                                        <rect key="frame" x="0.0" y="43" width="375" height="45"/>
+                                        <rect key="frame" x="0.0" y="45" width="375" height="48"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B63-yb-luf">
-                                                <rect key="frame" x="12" y="8" width="345" height="28"/>
+                                                <rect key="frame" x="12" y="9" width="345" height="28"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <attributedString key="attributedText">
@@ -160,7 +160,7 @@
                                                         </attributes>
                                                     </fragment>
                                                 </attributedString>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="Paf-AF-Vql" id="uHq-qd-EfO"/>
                                                 </connections>
@@ -168,7 +168,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="45" id="v49-If-loW"/>
+                                            <constraint firstAttribute="height" constant="48" id="v49-If-loW"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -183,7 +183,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dHS-5H-Asp">
-                                        <rect key="frame" x="0.0" y="87" width="375" height="45"/>
+                                        <rect key="frame" x="0.0" y="92" width="375" height="47"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3bd-UD-qSZ">
                                                 <rect key="frame" x="12" y="8" width="345" height="28"/>
@@ -198,7 +198,7 @@
                                                         </attributes>
                                                     </fragment>
                                                 </attributedString>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="Paf-AF-Vql" id="OJ1-cY-dND"/>
                                                 </connections>
@@ -206,7 +206,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="45" id="ty1-0H-OkN"/>
+                                            <constraint firstAttribute="height" constant="47" id="ty1-0H-OkN"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -229,7 +229,7 @@
                                     <constraint firstAttribute="trailing" secondItem="dHS-5H-Asp" secondAttribute="trailing" id="VpF-BD-Mw3"/>
                                     <constraint firstAttribute="trailing" secondItem="8q3-3o-rcs" secondAttribute="trailing" id="cBb-TL-fLq"/>
                                     <constraint firstItem="BsK-Bo-ihc" firstAttribute="leading" secondItem="o09-Ex-Zdt" secondAttribute="leading" id="cEP-Sr-kDH"/>
-                                    <constraint firstAttribute="height" constant="132" id="lOT-Tm-3c1"/>
+                                    <constraint firstAttribute="height" constant="135" id="lOT-Tm-3c1"/>
                                     <constraint firstAttribute="trailing" secondItem="BsK-Bo-ihc" secondAttribute="trailing" id="t5w-et-lBI"/>
                                     <constraint firstItem="8q3-3o-rcs" firstAttribute="top" secondItem="BsK-Bo-ihc" secondAttribute="bottom" constant="-1" id="u3Y-MJ-17x"/>
                                     <constraint firstItem="dHS-5H-Asp" firstAttribute="top" secondItem="8q3-3o-rcs" secondAttribute="bottom" constant="-1" id="xW5-W9-Utz"/>
@@ -247,16 +247,16 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JlZ-Fv-gSA">
-                                <rect key="frame" x="0.0" y="194" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="197" width="375" height="46"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Subject" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="MBF-I2-36Z">
-                                        <rect key="frame" x="16" y="14" width="343" height="16"/>
+                                        <rect key="frame" x="16" y="15" width="343" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="Dis-u0-e7B"/>
                                         </constraints>
                                         <color key="textColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
                                         <connections>
                                             <outlet property="delegate" destination="Paf-AF-Vql" id="915-zL-89X"/>
                                         </connections>
@@ -264,8 +264,8 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="EJb-My-FE7"/>
-                                    <constraint firstItem="MBF-I2-36Z" firstAttribute="top" secondItem="JlZ-Fv-gSA" secondAttribute="top" constant="14" id="cTc-sK-qY4"/>
+                                    <constraint firstAttribute="height" constant="46" id="EJb-My-FE7"/>
+                                    <constraint firstItem="MBF-I2-36Z" firstAttribute="top" secondItem="JlZ-Fv-gSA" secondAttribute="top" constant="15" id="cTc-sK-qY4"/>
                                     <constraint firstAttribute="trailing" secondItem="MBF-I2-36Z" secondAttribute="trailing" constant="16" id="oVS-Fe-IxD"/>
                                     <constraint firstItem="MBF-I2-36Z" firstAttribute="leading" secondItem="JlZ-Fv-gSA" secondAttribute="leading" constant="16" id="z3N-2A-n8C"/>
                                 </constraints>
@@ -282,7 +282,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SvU-Rf-Cm0">
-                                <rect key="frame" x="0.0" y="237" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="242" width="375" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zrF-Lt-kem">
                                         <rect key="frame" x="8" y="3" width="44" height="44"/>
@@ -392,10 +392,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v4G-Sq-GK2">
-                                <rect key="frame" x="16" y="297" width="343" height="370"/>
+                                <rect key="frame" x="16" y="302" width="343" height="365"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <attributedString key="attributedText"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" keyboardAppearance="alert"/>
                             </textView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mnP-Oe-gne">
                                 <rect key="frame" x="0.0" y="618" width="375" height="49"/>
