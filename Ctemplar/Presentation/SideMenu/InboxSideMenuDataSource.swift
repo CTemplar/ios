@@ -88,6 +88,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         
         let separatorLineHeaderView: UIView =  UIView()
         separatorLineHeaderView.backgroundColor = k_sideMenuSeparatorColor
+        header?.contentView.backgroundColor = k_whiteColor
         
         switch section {
         case SideMenuSectionIndex.mainFolders.rawValue:
