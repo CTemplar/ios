@@ -120,7 +120,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             return self.optionsArray.count
         case SideMenuSectionIndex.customFolders.rawValue:
             if self.showAllFolders {
-                return self.customFoldersArray.count
+                return self.customFoldersArray.count + 1
             } else {
                 if self.customFoldersArray.count > k_numberOfCustomFoldersShowing {
                     return k_numberOfCustomFoldersShowing + 1
@@ -136,6 +136,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "sideMenuCellIdentifier")!
+        cell.contentView.backgroundColor = k_whiteColor
         
         //cell.selectionStyle = .gray
         
@@ -169,9 +170,9 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             
             if self.showAllFolders {
                 
-                cell = tableView.dequeueReusableCell(withIdentifier: k_CustomFolderTableViewCellIdentifier)! as! CustomFolderTableViewCell
-                
                 if self.customFoldersArray.count > indexPath.row {
+                    
+                    cell = tableView.dequeueReusableCell(withIdentifier: k_CustomFolderTableViewCellIdentifier)! as! CustomFolderTableViewCell
                     
                     let folder = self.customFoldersArray[indexPath.row]
                     let folderName = folder.folderName
@@ -181,7 +182,14 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
                     let unreadCount = self.parentViewController?.presenter?.interactor?.getUnreadMessagesCount(folderName: folderName!)
                     
                     (cell as! CustomFolderTableViewCell).setupCustomFolderTableCell(selected: selected, iconColor: folderColor!, title: folderName!, unreadCount: unreadCount!)
+                } else {
+                
+                    if indexPath.row == self.customFoldersArray.count{
+                        cell.textLabel?.textColor = k_sideMenuColor
+                        cell.textLabel?.text = "hideFolders".localized()
+                    }
                 }
+                
             } else {
                 
                 if indexPath.row < k_numberOfCustomFoldersShowing {
@@ -201,7 +209,8 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
                 } else {
                   
                     if indexPath.row == k_numberOfCustomFoldersShowing {
-                        cell.textLabel?.text = "Show More Folders"
+                        cell.textLabel?.textColor = k_redColor
+                        cell.textLabel?.text = "showMoreFolders".localized()
                     }
                 }
             }
@@ -240,9 +249,15 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             case SideMenuSectionIndex.customFolders.rawValue:
                 
                 if self.showAllFolders {
-                    let folder = self.customFoldersArray[indexPath.row]
-                    let folderName = folder.folderName
-                    self.parentViewController?.presenter?.interactor?.applyCustomFolderAction(folderName: folderName!)
+                    if indexPath.row < self.customFoldersArray.count {
+                        let folder = self.customFoldersArray[indexPath.row]
+                        let folderName = folder.folderName
+                        self.parentViewController?.presenter?.interactor?.applyCustomFolderAction(folderName: folderName!)
+                    } else {
+                        self.showAllFolders = false
+                        self.selectedIndexPath = currentSelectedIndexPath
+                        self.tableView.reloadData()
+                    }
                 } else {
                     if indexPath.row == k_numberOfCustomFoldersShowing {
                         self.showAllFolders = true

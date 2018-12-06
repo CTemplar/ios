@@ -103,3 +103,8 @@
 
 "infoTitle" = "Information:";
 "mailSendMessage" = "Mail was sent successfully";
+
+
+//Side Menu Cells
+"showMoreFolders" = "Show More Folders";
+"hideFolders" = "Hide Folders";
