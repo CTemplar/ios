@@ -64,6 +64,10 @@ class MoreActionsView: UIView {
                 bottomButton.setTitleColor(k_redColor, for: .normal)
             }
             
+            if buttonName == "discardDraft".localized() {
+                bottomButton.setTitleColor(k_redColor, for: .normal)
+            }
+            
             switch index + MoreViewButtonsTag.cancel.rawValue {
                 
             case MoreViewButtonsTag.cancel.rawValue:

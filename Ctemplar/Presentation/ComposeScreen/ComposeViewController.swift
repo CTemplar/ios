@@ -59,6 +59,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var router      : ComposeRouter?
     var dataSource  : ComposeDataSource?
     
+    var draftActionsView : MoreActionsView?
+    
     var navBarTitle: String = ""
     var subject    : String = ""
     var sender     : String = ""
@@ -100,6 +102,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         self.navigationItem.title = navBarTitle
+        
+        self.presenter!.initDraftActionsView()
         
         emailToTextView.delegate = self
         emailToTextView.autocorrectionType = .no
@@ -160,7 +164,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.dataSource?.initWith(parent: self, tableView: tableView)
         self.presenter?.setMailboxDataSource(mailboxes: mailboxesList)
         //self.presenter?.setContactsDataSource(contacts: contactsList)
-        self.interactor?.userContactsList()
+        
         self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset)
         
         self.addGesureRecognizers()
@@ -168,7 +172,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
-            self.interactor?.createDraft()
+            //self.interactor?.createDraft()
+            self.interactor?.userContactsList()
         })
         
         if (Device.IS_IPHONE_5) {
@@ -209,7 +214,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     @IBAction func backButtonPressed(_ sender: AnyObject) {
         
-        self.navigationController?.popViewController(animated: true)
+        //self.navigationController?.popViewController(animated: true)
+        self.presenter?.backButtonPressed()
     }
     
     @IBAction func mailboxesButtonPressed(_ sender: AnyObject) {
@@ -509,5 +515,13 @@ extension ComposeViewController: SetPasswordDelegate {
     func cancelAction() {
         
         self.presenter!.encryptedButtonPressed()
+    }
+}
+
+extension ComposeViewController: MoreActionsDelegate {
+    
+    func applyAction(_ sender: AnyObject, isButton: Bool) {
+        
+        self.presenter?.applyDraftAction(sender, isButton: isButton)
     }
 }

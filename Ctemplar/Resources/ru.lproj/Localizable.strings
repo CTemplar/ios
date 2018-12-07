@@ -104,6 +104,8 @@
 "infoTitle" = "Information:";
 "mailSendMessage" = "Mail was sent successfully";
 
+"saveDraft" = "Save draft";
+"discardDraft" = "Discard draft";
 
 //Side Menu Cells
 "showMoreFolders" = "Show More Folders";

@@ -34,6 +34,13 @@ class ComposePresenter {
         }
     }
     
+    func backButtonPressed() {
+        
+        self.showDraftActionsView()
+        
+        //self.viewController!.navigationController?.popViewController(animated: true)
+    }
+    
     func setupMessageSection(emailsArray: Array<EmailMessage>) {
         
         //self.viewController?.dercyptedMessagesArray.removeAll()
@@ -550,5 +557,70 @@ class ComposePresenter {
         documentPicker.delegate = self.viewController
         
         self.viewController!.present(documentPicker, animated: true)
+    }
+    
+    //MARK: - Draft Actions
+    
+    func initDraftActionsView() {
+        
+        self.viewController?.draftActionsView = Bundle.main.loadNibNamed(k_MoreActionsViewXibName, owner: nil, options: nil)?.first as? MoreActionsView
+        self.viewController?.draftActionsView?.frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
+        self.viewController?.draftActionsView?.delegate = self.viewController
+        
+        self.viewController?.navigationController!.view.addSubview((self.viewController?.draftActionsView)!)
+        
+        self.viewController?.draftActionsView?.isHidden = true
+    }
+    
+    func showDraftActionsView() {
+        
+        var moreActionsButtonsName: Array<String> = []
+
+        moreActionsButtonsName = self.setupDraftActionsButtons()
+        
+        self.viewController?.draftActionsView?.setup(buttonsNameArray: moreActionsButtonsName)
+        
+        let hidden = self.viewController?.draftActionsView?.isHidden
+        
+        self.viewController?.draftActionsView?.isHidden = !hidden!
+    }
+    
+    func setupDraftActionsButtons() -> Array<String> {
+        
+        let moreActionsButtonsName: Array<String> = ["cancel".localized(), "discardDraft".localized(), "saveDraft".localized()]
+        
+        return moreActionsButtonsName
+    }
+    
+    func applyDraftAction(_ sender: AnyObject, isButton: Bool) {
+        
+        if isButton {
+            
+            let button = sender as! UIButton
+            
+            let title = button.title(for: .normal)
+            
+            print("title:", title as Any)
+            
+            switch title {
+            case MoreActionsTitles.cancel.rawValue.localized():
+                print("cancel btn Draft action")
+                
+                break
+            case "discardDraft".localized():
+                print("discardDraft btn Draft action")
+                
+                break
+            case "saveDraft".localized():
+                print("saveDraft btn Draft action")
+                self.viewController!.navigationController?.popViewController(animated: true)
+                break
+
+            default:
+                print("more actions: default")
+            }
+        }
+        
+        self.showDraftActionsView()
     }
 }
