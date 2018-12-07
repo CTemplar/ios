@@ -166,6 +166,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
+            self.interactor?.createDraft()
+        })
+        
         if (Device.IS_IPHONE_5) {
             keyboardOffset = k_KeyboardHeight - 80.0
         } else {
@@ -453,6 +457,15 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         
         print("picked urls:", urls)
+        
+        self.interactor?.attachFileToDraftMessage(url: urls.first!)
+    }
+    
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+        
+        print("picked url:", url)
+        
+        //self.interactor?.attachFileToDraftMessage(url: url)
     }
     
     //MARK: - notification

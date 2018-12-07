@@ -134,6 +134,23 @@ class ComposeInteractor {
         }
     }
     
+    func uploadAttach(fileData: Data, messageID : String) {
+        
+        apiService?.createAttachment(file: fileData, messageID: messageID) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("createAttachment value:", value)
+                
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Attach File Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
     func setFilteredList(searchText: String) {
         
         print("searchText:",searchText)
@@ -186,6 +203,19 @@ class ComposeInteractor {
                 self.sendEncryptedEmailForCtemplarUser(publicKeys: keys)
              }
         }
+    }
+    
+    func createDraft() {
+        
+        var message : String = ""
+        
+        if let userKeys = self.pgpService?.getStoredPGPKeys() {
+            if userKeys.count > 0 {
+                message = self.encryptMessage(publicKeys: userKeys, message: self.viewController!.messageTextView.text)
+            }
+        }
+        
+        self.sendMail(content: message, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, folder: MessagesFoldersName.draft.rawValue, mailboxID: (self.viewController?.mailboxID)!, send: false, encrypted: true, encryptionObject: [:])
     }
     
     func sendEncryptedEmailForCtemplarUser(publicKeys: Array<Key>) {
@@ -289,6 +319,19 @@ class ComposeInteractor {
         }
         
         return "Error"
+    }
+    
+    //MARK: - Attachments
+    
+    func attachFileToDraftMessage(url: URL) {
+        
+        let fileData = try? Data(contentsOf: url)
+        
+        if (fileData != nil) {
+            if let messageID = self.sendingMessage.messsageID {
+                self.uploadAttach(fileData: fileData!, messageID: messageID.description)
+            }
+        }
     }
     
     //MARK: - textView delegate
