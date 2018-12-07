@@ -542,7 +542,7 @@ class APIService {
         }
     }
     
-    func updateSendingMessage(messageID: String, encryptedMessage: String, subject: String, recieversList: Array<String>, folder: String, encryptionObject: [String : String], completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateSendingMessage(messageID: String, encryptedMessage: String, subject: String, recieversList: Array<String>, folder: String, send: Bool, encryptionObject: [String : String], encrypted: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         self.checkTokenExpiration(){ (complete) in
             if complete {
@@ -551,7 +551,7 @@ class APIService {
                     
                     HUD.show(.progress)
                     
-                    self.restAPIService?.updateSendingMessage(token: token, messageID: messageID, encryptedMessage: encryptedMessage, subject: subject, recieversList: recieversList, folder: folder, encryptionObject: encryptionObject) {(result) in
+                    self.restAPIService?.updateSendingMessage(token: token, messageID: messageID, encryptedMessage: encryptedMessage, subject: subject, recieversList: recieversList, folder: folder, send: send, encryptionObject: encryptionObject, encrypted: encrypted) {(result) in
                         
                         switch(result) {
                             
@@ -566,12 +566,13 @@ class APIService {
                                     let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
                                     completionHandler(APIResult.failure(error))
                                 } else {
-                                    completionHandler(APIResult.success(value))
+                                    //completionHandler(APIResult.success(value))
+                                    let emailMessage = EmailMessage(dictionary: response)
+                                    completionHandler(APIResult.success(emailMessage))
                                 }
                             } else {
                                  let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
                                  completionHandler(APIResult.failure(error))
-                                //completionHandler(APIResult.success(value))
                             }
                             
                         case .failure(let error):

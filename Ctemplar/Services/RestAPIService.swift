@@ -444,7 +444,7 @@ class RestAPIService {
         }
     }
     
-    func updateSendingMessage(token: String, messageID: String, encryptedMessage: String, subject: String, recieversList: Array<String>, folder: String, encryptionObject: [String : String], completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateSendingMessage(token: String, messageID: String, encryptedMessage: String, subject: String, recieversList: Array<String>, folder: String, send: Bool, encryptionObject: [String : String], encrypted: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -452,12 +452,13 @@ class RestAPIService {
         ]
         
         let parameters: Parameters = [
+            JSONKey.content.rawValue : encryptedMessage,
             JSONKey.folder.rawValue: folder,
             JSONKey.subject.rawValue: subject,
             JSONKey.receiver.rawValue: recieversList,
-            JSONKey.send.rawValue: true,
+            JSONKey.send.rawValue: send,
             JSONKey.encryption.rawValue : encryptionObject,
-            JSONKey.content.rawValue : encryptedMessage
+            JSONKey.encrypted.rawValue : encrypted
         ]
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messageID + "/"
