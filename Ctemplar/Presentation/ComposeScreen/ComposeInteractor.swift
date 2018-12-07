@@ -47,9 +47,9 @@ class ComposeInteractor {
         }
     }
     
-    func updateSendingMessage(messsageID: String, encryptedMessage: String, encryptionObject: [String : String]) {
+    func updateSendingMessage(messsageID: String, encryptedMessage: String, encryptionObject: [String : String], subject: String, recieversList: Array<String>) {
         
-        apiService?.updateSendingMessage(messageID: messsageID, encryptedMessage: encryptedMessage, folder: MessagesFoldersName.sent.rawValue, encryptionObject: encryptionObject) {(result) in
+        apiService?.updateSendingMessage(messageID: messsageID, encryptedMessage: encryptedMessage, subject: subject, recieversList: recieversList, folder: MessagesFoldersName.sent.rawValue, encryptionObject: encryptionObject) {(result) in
             
             switch(result) {
                 
@@ -222,7 +222,11 @@ class ComposeInteractor {
         
         let encryptedMessage = self.encryptMessage(publicKeys: publicKeys, message: self.viewController!.messageTextView.text)
         
-        self.sendMail(content: encryptedMessage, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, folder: MessagesFoldersName.sent.rawValue, mailboxID: (self.viewController?.mailboxID)!, send: true, encrypted: true, encryptionObject: [:])
+        //self.sendMail(content: encryptedMessage, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, folder: MessagesFoldersName.sent.rawValue, mailboxID: (self.viewController?.mailboxID)!, send: true, encrypted: true, encryptionObject: [:])
+        
+        if let messageID = self.sendingMessage.messsageID {
+            self.updateSendingMessage(messsageID: messageID.description, encryptedMessage: encryptedMessage, encryptionObject: [:], subject: self.viewController!.subject, recieversList: self.viewController!.emailsToArray)
+        }
     }
     
     func sendEmailForNonCtemplarUser() {
@@ -253,7 +257,7 @@ class ComposeInteractor {
                     
                     message = self.encryptMessage(publicKeys: pgpKeys, message: self.viewController!.messageTextView.text)
                     
-                    self.updateSendingMessage(messsageID: (self.sendingMessage.messsageID?.description)!, encryptedMessage: message, encryptionObject: encryptionObjectDictionary)
+                    //self.updateSendingMessage(messsageID: (self.sendingMessage.messsageID?.description)!, encryptedMessage: message, encryptionObject: encryptionObjectDictionary)
                 }
             }
             

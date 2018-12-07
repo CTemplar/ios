@@ -542,7 +542,7 @@ class APIService {
         }
     }
     
-    func updateSendingMessage(messageID: String, encryptedMessage: String, folder: String, encryptionObject: [String : String], completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateSendingMessage(messageID: String, encryptedMessage: String, subject: String, recieversList: Array<String>, folder: String, encryptionObject: [String : String], completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         self.checkTokenExpiration(){ (complete) in
             if complete {
@@ -551,7 +551,7 @@ class APIService {
                     
                     HUD.show(.progress)
                     
-                    self.restAPIService?.updateSendingMessage(token: token, messageID: messageID, encryptedMessage: encryptedMessage, folder: folder, encryptionObject: encryptionObject) {(result) in
+                    self.restAPIService?.updateSendingMessage(token: token, messageID: messageID, encryptedMessage: encryptedMessage, subject: subject, recieversList: recieversList, folder: folder, encryptionObject: encryptionObject) {(result) in
                         
                         switch(result) {
                             
