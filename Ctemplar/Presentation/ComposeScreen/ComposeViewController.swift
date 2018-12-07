@@ -61,6 +61,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     var navBarTitle: String = ""
     var subject    : String = ""
+    var sender     : String = ""
     
     var mailboxesList    : Array<Mailbox> = []
     var mailboxID : Int = 0

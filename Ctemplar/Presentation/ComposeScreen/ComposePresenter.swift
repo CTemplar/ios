@@ -138,6 +138,8 @@ class ComposePresenter {
     
     func setupEmailFromSection(emailFromText: String) {
         
+        self.viewController!.sender = emailFromText
+        
         let emailFromString = "emailFromPrefix".localized() + emailFromText
         
         let font : UIFont = UIFont(name: k_latoRegularFontName, size: 14.0)!
@@ -188,18 +190,23 @@ class ComposePresenter {
     
     func fillAllEmailsFields(message: EmailMessage) {
         
-        if let recieversArray = message.receivers {
-            self.viewController!.emailsToArray = recieversArray as! [String]
+        if let sender = message.sender {
             
-            for email in self.viewController!.emailsToArray {
-                self.viewController!.emailToSting = self.viewController!.emailToSting + email + " "
+            if sender == self.viewController!.sender {
+        
+                if let recieversArray = message.receivers {
+                    self.viewController!.emailsToArray = recieversArray as! [String]
+                    
+                    for email in self.viewController!.emailsToArray {
+                        self.viewController!.emailToSting = self.viewController!.emailToSting + email + " "
+                    }
+                }
+            } else {
+            
+                self.viewController!.emailToSting = self.viewController!.emailToSting + sender
+                self.viewController!.emailsToArray.append(sender)
             }
         }
-        /*
-        if let sender = message.sender {
-            self.viewController!.emailToSting = self.viewController!.emailToSting + sender
-            self.viewController!.emailsToArray.append(sender)
-        }*/
         
         if let ccArray = message.cc {
             self.viewController!.ccToArray = ccArray as! [String]
@@ -482,9 +489,10 @@ class ComposePresenter {
         self.removeSubviews(textView: textView, array:  localSubViewsArray, tag: tag)
         localSubViewsArray.removeAll()
         
-        var selected = false
-        
         for email in emailArray {
+            
+            var selected = false
+            
             tag = tag + 1
             
             if selectedEmail.count > 0 {

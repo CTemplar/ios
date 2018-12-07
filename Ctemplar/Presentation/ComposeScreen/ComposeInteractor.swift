@@ -53,10 +53,9 @@ class ComposeInteractor {
  
                 if send {
                     self.mailWasSent()
+                    self.postUpdateInboxNotification()
                 } else {
                     self.sendingMessage = value as! EmailMessage
-                    //let draftMessage = value as! EmailMessage
-                    //self.sendingMessage.encryption = draftMessage.encryption
                 }
                 
             case .failure(let error):
@@ -188,8 +187,6 @@ class ComposeInteractor {
         AlertHelperKit().showAlertWithHandler(self.viewController!, parameters: params) { buttonIndex in
             print("close Coppose")
             self.viewController!.navigationController?.popViewController(animated: true)
-            
-            self.postUpdateInboxNotification()
         }
     }
     
