@@ -26,6 +26,7 @@ class RestAPIService {
         case customFolders = "emails/custom-folder/"
         case userMyself = "users/myself/"
         case contact = "users/contacts/"
+        case createAttachment = "emails/attachments/create/"
     }
     
     enum JSONKey: String {
@@ -64,6 +65,8 @@ class RestAPIService {
         case phone = "phone"
         case encrypted = "is_encrypted"
         case encryption = "encryption"
+        case messageID = "message"
+        case fileData = "document"
     }
         
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -741,6 +744,39 @@ class RestAPIService {
             } /*.validate()*/.responseData { ( response ) in
                 print(response.destinationURL!)
                 completionHandler(APIResult.success(response.destinationURL!/*.lastPathComponent*/))
+        }
+    }
+    
+    //MARK: - Attachments
+    
+    func createAttachment(token: String, file: String, messageID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.messageID.rawValue: messageID,
+            JSONKey.fileData.rawValue: file
+        ]
+        
+        print("createAttachment parameters:", parameters)
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.createAttachment.rawValue
+        
+        print("createAttachment url:", url)
+        
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("createAttachment responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
         }
     }
 }
