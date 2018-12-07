@@ -42,6 +42,23 @@ class ComposeInteractor {
         }
     }
     
+    func deleteDraftMessage(messageID: String) {
+        
+        apiService?.deleteMessages(messagesIDIn: messageID) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("delete Draft value:", value)
+                //self.postUpdateInboxNotification()
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
     func updateSendingMessage(messsageID: String, encryptedMessage: String, encryptionObject: [String : String], subject: String, send: Bool, recieversList: Array<String>, encrypted: Bool) {
         
         apiService?.updateSendingMessage(messageID: messsageID, encryptedMessage: encryptedMessage, subject: subject, recieversList: recieversList, folder: MessagesFoldersName.sent.rawValue, send: send, encryptionObject: encryptionObject, encrypted: encrypted) {(result) in
@@ -223,6 +240,13 @@ class ComposeInteractor {
         }
         
         self.createDraftMessage(content: message, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, folder: MessagesFoldersName.draft.rawValue, mailboxID: (self.viewController?.mailboxID)!, send: false, encrypted: false, encryptionObject: [:])
+    }
+    
+    func deleteDraft() {
+        
+        if let messageID = self.sendingMessage.messsageID {
+            self.deleteDraftMessage(messageID: messageID.description)
+        }
     }
     
     func sendEncryptedEmailForCtemplarUser(publicKeys: Array<Key>) {

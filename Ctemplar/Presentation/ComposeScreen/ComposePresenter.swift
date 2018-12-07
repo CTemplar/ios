@@ -609,10 +609,13 @@ class ComposePresenter {
                 break
             case "discardDraft".localized():
                 print("discardDraft btn Draft action")
-                
+                self.interactor?.deleteDraft()
+                self.interactor?.postUpdateInboxNotification()
+                self.viewController!.navigationController?.popViewController(animated: true)
                 break
             case "saveDraft".localized():
                 print("saveDraft btn Draft action")
+                self.interactor?.postUpdateInboxNotification()
                 self.viewController!.navigationController?.popViewController(animated: true)
                 break
 
