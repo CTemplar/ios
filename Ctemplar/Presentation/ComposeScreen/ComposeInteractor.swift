@@ -158,7 +158,7 @@ class ComposeInteractor {
             switch(result) {
                 
             case .success(let value):
-                print("createAttachment value:", value)
+                print("create Attachment value:", value)
                 
                 
             case .failure(let error):

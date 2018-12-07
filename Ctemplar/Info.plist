@@ -74,5 +74,10 @@
 	<true/>
 	<key>UISupportsDocumentBrowser</key>
 	<true/>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
 </dict>
 </plist>

@@ -67,6 +67,7 @@ class RestAPIService {
         case encryption = "encryption"
         case messageID = "message"
         case fileData = "document"
+        case inline = "is_inline"
     }
         
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -752,7 +753,7 @@ class RestAPIService {
     
     //MARK: - Attachments
     
-    func createAttachment(token: String, file: String, messageID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func createAttachment(token: String, file: Data, messageID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -761,7 +762,8 @@ class RestAPIService {
         
         let parameters: Parameters = [
             JSONKey.messageID.rawValue: messageID,
-            JSONKey.fileData.rawValue: file
+            JSONKey.fileData.rawValue: file,
+            //JSONKey.inline.rawValue: false
         ]
         
         print("createAttachment parameters:", parameters)
@@ -770,6 +772,36 @@ class RestAPIService {
         
         print("createAttachment url:", url)
         
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            
+            for param in parameters {
+                if let value = param.value as? String {
+                    multipartFormData.append(value.data(using: .utf8)!, withName: param.key)
+                }
+            }
+            
+            multipartFormData.append(file, withName: "new", fileName: "new", mimeType: "image/jpg")
+            
+        }, to: url, method: .post , headers: headers, encodingCompletion: { (result) in
+            
+            print("upload Data result:", result)
+            
+            switch result {
+            case .success(let upload, _, _):
+                
+                upload.uploadProgress(closure: { (progress) in
+                    print("upload Data", progress.fractionCompleted * 100)
+                })
+                
+                upload.responseJSON(completionHandler: { (response) in
+                    completionHandler(APIResult.success(response))
+                })
+            case .failure(let error):
+                print("upload Data error:", error)
+            }
+        })
+        
+        /*
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
             
             print("createAttachment responce:", response)
@@ -780,6 +812,6 @@ class RestAPIService {
             case .failure(let error):
                 completionHandler(APIResult.failure(error))
             }
-        }
+        }*/
     }
 }

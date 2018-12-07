@@ -1151,12 +1151,21 @@ class APIService {
         let bytes : Data = file
         let fileStringData = String(decoding: bytes, as: UTF8.self)
         
+        let base64EncodingStringData = file.base64EncodedString(options: NSData.Base64EncodingOptions())
+        
+        //detail = "Unsupported media type \"application/json\" in request.";
+        /*
+        document =     (
+            "No file was submitted."
+        );
+        */
+        
         self.checkTokenExpiration(){ (complete) in
             if complete {
                 
                 if let token = self.getToken() {
                     
-                    self.restAPIService?.createAttachment(token: token, file: fileStringData, messageID: messageID) {(result) in
+                    self.restAPIService?.createAttachment(token: token, file: file, messageID: messageID) {(result) in
                         
                         switch(result) {
                             
