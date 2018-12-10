@@ -53,6 +53,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet var tableViewBottomOffsetConstraint        : NSLayoutConstraint!
     
     @IBOutlet var messageTextViewHeightConstraint        : NSLayoutConstraint!
+    @IBOutlet var scrollViewBottomOffsetConstraint       : NSLayoutConstraint!
     
     //var scrollViewContentSize
     
@@ -182,13 +183,13 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             //self.interactor?.createDraft()
             self.interactor?.userContactsList()
         })
-        
+        /*
         if (Device.IS_IPHONE_5) {
             keyboardOffset = k_KeyboardHeight - 80.0
         } else {
             keyboardOffset = 0.0
         }
-        
+        */
         self.addNotificationObserver()
     }
     
@@ -496,7 +497,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         if self.messageTextView.isFirstResponder {
             if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= CGFloat(keyboardOffset)
+                //self.view.frame.origin.y -= CGFloat(keyboardOffset)
+                
+                scrollViewBottomOffsetConstraint.constant = CGFloat(k_KeyboardHeight)
+                self.presenter?.setupMessageSectionSize()
             }
         }
         
@@ -506,9 +510,11 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @objc func keyboardWillHide(notification: Notification) {
         
         if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y += CGFloat(keyboardOffset)
+            self.view.frame.origin.y += CGFloat(k_KeyboardHeight)
         }
         
+        scrollViewBottomOffsetConstraint.constant = 0.0
+        self.presenter?.setupMessageSectionSize()
         tableViewBottomOffsetConstraint.constant = 0.0
     }
 }
