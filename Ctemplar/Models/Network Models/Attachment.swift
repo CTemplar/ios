@@ -14,7 +14,7 @@ struct Attachment {
     var contentUrl : String? = nil
     var attachmentID : Int? = nil
     var inline : Bool? = nil
-    var message : String? = nil
+    var messageID : String? = nil
     
     init() {
         
@@ -26,6 +26,16 @@ struct Attachment {
         self.contentUrl = dictionary["document"] as? String
         self.attachmentID = dictionary["id"] as? Int
         self.inline = dictionary["is_inline"] as? Bool
-        self.message = dictionary["message"] as? String
+        self.messageID = dictionary["message"] as? String
+    }
+    
+    func toDictionary() -> [String : String] {
+        
+        return ["content_id"        : self.contentID?.description ?? "",
+                "document"          : self.contentUrl ?? "",
+                "is_inline"         : self.inline?.description ?? "",
+                "id"                : self.attachmentID?.description ?? "",
+                "message"           : self.messageID?.description ?? ""
+        ]
     }
 }

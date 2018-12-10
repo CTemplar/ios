@@ -68,6 +68,7 @@ class RestAPIService {
         case messageID = "message"
         case fileData = "document"
         case inline = "is_inline"
+        case attachments = "attachments"
     }
         
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -445,7 +446,7 @@ class RestAPIService {
         }
     }
     
-    func updateSendingMessage(token: String, messageID: String, encryptedMessage: String, subject: String, recieversList: Array<String>, folder: String, send: Bool, encryptionObject: [String : String], encrypted: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateSendingMessage(token: String, messageID: String, encryptedMessage: String, subject: String, recieversList: Array<String>, folder: String, send: Bool, encryptionObject: [String : String], encrypted: Bool, attachments: Array<[String : String]>, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -459,7 +460,8 @@ class RestAPIService {
             JSONKey.receiver.rawValue: recieversList,
             JSONKey.send.rawValue: send,
             JSONKey.encryption.rawValue : encryptionObject,
-            JSONKey.encrypted.rawValue : encrypted
+            JSONKey.encrypted.rawValue : encrypted,
+            JSONKey.attachments.rawValue : attachments
         ]
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messageID + "/"

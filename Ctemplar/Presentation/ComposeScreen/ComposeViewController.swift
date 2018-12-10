@@ -86,7 +86,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     var usersPublicKeys = Array<Key>()
     
-    var mailAttachmentsList = Array<Attachment>()
+    var mailAttachmentsList = Array<[String : String]>()
     
     var encryptedMail : Bool = false
     
