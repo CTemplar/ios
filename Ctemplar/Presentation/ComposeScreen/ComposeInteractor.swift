@@ -151,9 +151,9 @@ class ComposeInteractor {
         }
     }
     
-    func uploadAttach(fileData: Data, messageID : String) {
+    func uploadAttach(fileUrl: URL, messageID : String) {
         
-        apiService?.createAttachment(file: fileData, messageID: messageID) {(result) in
+        apiService?.createAttachment(fileUrl: fileUrl, messageID: messageID) {(result) in
             
             switch(result) {
                 
@@ -372,13 +372,16 @@ class ComposeInteractor {
     
     func attachFileToDraftMessage(url: URL) {
         
-        let fileData = try? Data(contentsOf: url)
+       // let fileData = try? Data(contentsOf: url)
+       // let fileName = url.lastPathComponent
         
-        if (fileData != nil) {
+       // print("picked fileName:", fileName)
+        
+       // if (fileData != nil) {
             if let messageID = self.sendingMessage.messsageID {
-                self.uploadAttach(fileData: fileData!, messageID: messageID.description)
+                self.uploadAttach(fileUrl: url, messageID: messageID.description)
             }
-        }
+       // }
     }
     
     //MARK: - textView delegate

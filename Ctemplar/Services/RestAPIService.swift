@@ -753,7 +753,7 @@ class RestAPIService {
     
     //MARK: - Attachments
     
-    func createAttachment(token: String, file: Data, messageID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func createAttachment(token: String, file: Data, fileName: String, mimeType: String, messageID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -762,8 +762,8 @@ class RestAPIService {
         
         let parameters: Parameters = [
             JSONKey.messageID.rawValue: messageID,
-            JSONKey.fileData.rawValue: file,
-            //JSONKey.inline.rawValue: false
+            //JSONKey.fileData.rawValue: file,
+            JSONKey.inline.rawValue: false
         ]
         
         print("createAttachment parameters:", parameters)
@@ -780,7 +780,7 @@ class RestAPIService {
                 }
             }
             
-            multipartFormData.append(file, withName: "new", fileName: "new", mimeType: "image/jpg")
+            multipartFormData.append(file, withName: JSONKey.fileData.rawValue, fileName: fileName, mimeType: mimeType) //"image/jpg"
             
         }, to: url, method: .post , headers: headers, encodingCompletion: { (result) in
             
@@ -800,18 +800,5 @@ class RestAPIService {
                 print("upload Data error:", error)
             }
         })
-        
-        /*
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("createAttachment responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }*/
     }
 }

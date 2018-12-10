@@ -9,6 +9,7 @@
 import Foundation
 import PKHUD
 import AlertHelperKit
+import MobileCoreServices
 
 enum APIResult<T>
 {
@@ -1146,26 +1147,22 @@ class APIService {
     
     //MARK: - Attachments
     
-    func createAttachment(file: Data, messageID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func createAttachment(fileUrl: URL, messageID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
-        let bytes : Data = file
-        let fileStringData = String(decoding: bytes, as: UTF8.self)
+        let fileData = try? Data(contentsOf: fileUrl)
+        let fileName = fileUrl.lastPathComponent
+        let mimeType = self.mimeTypeForURL(url: fileUrl)
         
-        let base64EncodingStringData = file.base64EncodedString(options: NSData.Base64EncodingOptions())
-        
-        //detail = "Unsupported media type \"application/json\" in request.";
-        /*
-        document =     (
-            "No file was submitted."
-        );
-        */
+        if (fileData == nil) {
+            return
+        }        
         
         self.checkTokenExpiration(){ (complete) in
             if complete {
                 
                 if let token = self.getToken() {
                     
-                    self.restAPIService?.createAttachment(token: token, file: file, messageID: messageID) {(result) in
+                    self.restAPIService?.createAttachment(token: token, file: fileData!, fileName: fileName, mimeType: mimeType, messageID: messageID) {(result) in
                         
                         switch(result) {
                             
@@ -1181,6 +1178,18 @@ class APIService {
                 }
             }
         }
+    }
+    
+    func mimeTypeForURL(url: URL) -> String {
+        
+        let pathExtension = url.pathExtension
+        
+        if let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension as NSString, nil)?.takeRetainedValue() {
+            if let mimetype = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType)?.takeRetainedValue() {
+                return mimetype as String
+            }
+        }
+        return "application/octet-stream"
     }
     
     //MARK: - Local services
