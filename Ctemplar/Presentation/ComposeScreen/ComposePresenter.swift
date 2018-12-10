@@ -17,6 +17,8 @@ class ComposePresenter {
     var interactor       : ComposeInteractor?
     var formatterService        : FormatterService?
     
+    //MARK: - Setup Buttons
+    
     func enabledSendButton() {
         
         var messageContentIsEmpty : Bool = true
@@ -37,46 +39,28 @@ class ComposePresenter {
     func backButtonPressed() {
         
         self.showDraftActionsView()
-        
-        //self.viewController!.navigationController?.popViewController(animated: true)
     }
+    
+    //MARK: - Setup Message Section
     
     func setupMessageSectionSize() {
                         
-        self.viewController?.messageTextView.backgroundColor = UIColor.yellow
+       // self.viewController?.messageTextView.backgroundColor = UIColor.yellow
         
-        let messageContentHeight = self.viewController?.messageTextView.frame.size.height
+        let fixedWidth = self.viewController!.view.frame.width - k_emailToTextViewLeftOffset - k_emailToTextViewLeftOffset
+        let messageContentHeight = self.sizeThatFits(textView: self.viewController!.messageTextView, fixedWidth: fixedWidth)
         
         let scrollViewHeight = self.viewController?.scrollView.frame.size.height
         
-        print("scrollview height: ", scrollViewHeight)
- 
-        //print("message height: ", messageContentHeight)
-        //print("scroll content height: ", self.viewController?.scrollView.contentSize.height)
-        
-        //self.viewController?.messageTextViewHeightConstraint.constant = (self.viewController?.messageTextView.frame.size.height)!
-        
-        //self.viewController?.messageTextView.sizeToFit()
-        
-        
-        
-        if Int(messageContentHeight!) < Int((scrollViewHeight! - 10 - 10 )) {
-            self.viewController?.messageTextViewHeightConstraint.constant = scrollViewHeight! - 10 - 10
+        if Int(messageContentHeight) < Int((scrollViewHeight! - k_messageTextViewTopOffset - k_messageTextViewTopOffset )) {
+            self.viewController?.messageTextViewHeightConstraint.constant = scrollViewHeight! - k_messageTextViewTopOffset - k_messageTextViewTopOffset
+            self.viewController?.scrollView.contentSize = CGSize(width: (self.viewController?.view.frame.size.width)!, height: (self.viewController?.messageTextViewHeightConstraint.constant)!)
+        } else {
+            self.viewController!.messageTextViewHeightConstraint.constant = self.viewController!.messageTextView.frame.size.height
+            self.viewController?.scrollView.contentSize = CGSize(width: (self.viewController?.view.frame.size.width)!, height: (self.viewController?.messageTextViewHeightConstraint.constant)! + k_messageTextViewTopOffset + k_messageTextViewTopOffset)
         }
         
         self.viewController?.view.layoutIfNeeded()
-        
-        //print("SizeToFit message height: ", messageContentHeight)
-        //print("SizeToFit scroll content height: ", self.viewController?.scrollView.contentSize.height)
-        
-        //self.viewController?.messageTextViewHeightConstraint.constant = messageContentHeight!
-        
-        self.viewController?.scrollView.contentSize = CGSize(width: (self.viewController?.view.frame.size.width)!, height: (self.viewController?.messageTextViewHeightConstraint.constant)!)
-        
-        
-        //print("SizeToFit message height layout: ", self.viewController?.messageTextView.frame.size.height)
-       // print("SizeToFit scroll content height layout: ", self.viewController?.scrollView.contentSize.height)
-        
     }
     
     func setupMessageSection(emailsArray: Array<EmailMessage>) {
@@ -118,9 +102,22 @@ class ComposePresenter {
             self.viewController?.messageTextView.text = "composeEmail".localized()
             self.viewController?.messageTextView.textColor = UIColor.lightGray
             
+            //self.viewController?.messageTextView.text = "xxssss xxssss xxssssxxssss xxssss xxssss xxssssvvvvvvvvvvv      fedfsdf dfgsdgsd gs gsd gsd gs s sgds gsdgssdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjpsogjsdpo gpsdojg gs dgpogj sg \n\n\n\n\n dgjsdpogj sgjgposgj sogogjo sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg  sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjp sdogjsd g dsgjsgjosgpg g sdpgojsdog sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjp gpsodgj opg sdjp gogjodp gs   000000000 000000000 00000000"
+            
         }
         
         self.setupMessageSectionSize()
+    }
+    
+    func sizeThatFits(textView: UITextView, fixedWidth: CGFloat) -> CGFloat {
+        
+        textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        let newTextViewSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        var newTextViewFrame = textView.frame
+        newTextViewFrame.size = CGSize(width: max(newTextViewSize.width, fixedWidth), height: newTextViewSize.height)
+        textView.frame = newTextViewFrame
+        
+        return newTextViewFrame.height
     }
     
     func generateReplyHeader(message: EmailMessage) -> NSAttributedString {
@@ -375,7 +372,7 @@ class ComposePresenter {
         let newEmailToTextViewSize = self.viewController!.emailToTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
         var newEmailToTextViewFrame = self.viewController!.emailToTextView.frame
         newEmailToTextViewFrame.size = CGSize(width: max(newEmailToTextViewSize.width, fixedWidth), height: newEmailToTextViewSize.height)
-        self.viewController!.emailToTextView.frame = newEmailToTextViewFrame;
+        self.viewController!.emailToTextView.frame = newEmailToTextViewFrame
         
         return self.viewController!.emailToTextView.frame.height
     }

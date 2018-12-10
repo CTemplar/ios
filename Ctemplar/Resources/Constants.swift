@@ -198,6 +198,8 @@ let k_emailToTextViewTopOffset      : CGFloat = 9.0
 
 let k_composeTableViewTopOffset     : CGFloat = 45.0
 
+let k_messageTextViewTopOffset      : CGFloat = 10.0
+
 //images
 
 let k_eyeOffIconImageName           = "EyeIcon"

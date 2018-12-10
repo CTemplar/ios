@@ -395,21 +395,21 @@
                                 <rect key="frame" x="0.0" y="292" width="375" height="375"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v4G-Sq-GK2">
-                                        <rect key="frame" x="16" y="10" width="343" height="30"/>
+                                        <rect key="frame" x="16" y="10" width="343" height="355"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="p6L-y9-2aK"/>
+                                            <constraint firstAttribute="height" constant="355" id="p2x-by-MRe"/>
                                         </constraints>
                                         <attributedString key="attributedText"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" keyboardAppearance="alert"/>
                                     </textView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="v4G-Sq-GK2" secondAttribute="bottom" constant="16" id="Ivr-KV-iAp"/>
-                                    <constraint firstAttribute="trailing" secondItem="v4G-Sq-GK2" secondAttribute="trailing" constant="16" id="bP2-x0-Ope"/>
-                                    <constraint firstItem="v4G-Sq-GK2" firstAttribute="top" secondItem="NRs-SL-oAk" secondAttribute="top" constant="10" id="eVv-NX-B3x"/>
-                                    <constraint firstItem="v4G-Sq-GK2" firstAttribute="leading" secondItem="NRs-SL-oAk" secondAttribute="leading" constant="16" id="hIW-Gb-h08"/>
-                                    <constraint firstItem="v4G-Sq-GK2" firstAttribute="centerX" secondItem="NRs-SL-oAk" secondAttribute="centerX" id="hRL-c5-cxV"/>
+                                    <constraint firstItem="v4G-Sq-GK2" firstAttribute="leading" secondItem="NRs-SL-oAk" secondAttribute="leading" constant="16" id="RBM-Kt-HwN"/>
+                                    <constraint firstItem="v4G-Sq-GK2" firstAttribute="centerX" secondItem="NRs-SL-oAk" secondAttribute="centerX" id="aic-Is-BZf"/>
+                                    <constraint firstAttribute="trailing" secondItem="v4G-Sq-GK2" secondAttribute="trailing" constant="16" id="dnB-Qc-Duo"/>
+                                    <constraint firstItem="v4G-Sq-GK2" firstAttribute="top" secondItem="NRs-SL-oAk" secondAttribute="top" constant="10" id="sAi-ic-USd"/>
+                                    <constraint firstAttribute="bottom" secondItem="v4G-Sq-GK2" secondAttribute="bottom" constant="10" id="xPX-vV-sSY"/>
                                 </constraints>
                             </scrollView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mnP-Oe-gne">
@@ -517,7 +517,7 @@
                         <outlet property="fromView" destination="HDc-VP-u4e" id="NXG-g5-Vmo"/>
                         <outlet property="mailboxesButton" destination="Z1z-H2-Y3M" id="SnP-Nr-5hJ"/>
                         <outlet property="messageTextView" destination="v4G-Sq-GK2" id="ccT-mo-A2A"/>
-                        <outlet property="messageTextViewHeightConstraint" destination="p6L-y9-2aK" id="fmX-ka-zAU"/>
+                        <outlet property="messageTextViewHeightConstraint" destination="p2x-by-MRe" id="Ojm-XN-qLX"/>
                         <outlet property="scrollView" destination="NRs-SL-oAk" id="dK3-kt-QvR"/>
                         <outlet property="selfDestructedButton" destination="sck-AS-lTR" id="KBg-aS-4vE"/>
                         <outlet property="subjectTextField" destination="MBF-I2-36Z" id="6KP-KW-D84"/>
