@@ -28,6 +28,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet var subjectTextField    : UITextField!
     
     @IBOutlet var messageTextView     : UITextView!
+    @IBOutlet var scrollView          : UIScrollView!
     
     @IBOutlet var emailToTextView     : UITextView!
     @IBOutlet var ccToTextView        : UITextView!
@@ -50,6 +51,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     @IBOutlet var tableViewTopOffsetConstraint           : NSLayoutConstraint!
     @IBOutlet var tableViewBottomOffsetConstraint        : NSLayoutConstraint!
+    
+    @IBOutlet var messageTextViewHeightConstraint        : NSLayoutConstraint!
+    
+    //var scrollViewContentSize
     
     var expandedSectionHeight: CGFloat = 0.0
     var keyboardOffset = 0.0
@@ -174,7 +179,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
-            self.interactor?.createDraft()
+            //self.interactor?.createDraft()
             self.interactor?.userContactsList()
         })
         
@@ -191,6 +196,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         super.viewDidAppear(animated)
         
         //self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
+        self.presenter?.setupMessageSectionSize()
     }
     
     func addGesureRecognizers() {

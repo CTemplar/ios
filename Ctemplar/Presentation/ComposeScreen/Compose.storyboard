@@ -391,12 +391,27 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v4G-Sq-GK2">
-                                <rect key="frame" x="16" y="302" width="343" height="365"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <attributedString key="attributedText"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" keyboardAppearance="alert"/>
-                            </textView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NRs-SL-oAk">
+                                <rect key="frame" x="0.0" y="292" width="375" height="375"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v4G-Sq-GK2">
+                                        <rect key="frame" x="16" y="10" width="343" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="p6L-y9-2aK"/>
+                                        </constraints>
+                                        <attributedString key="attributedText"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" keyboardAppearance="alert"/>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="v4G-Sq-GK2" secondAttribute="bottom" constant="16" id="Ivr-KV-iAp"/>
+                                    <constraint firstAttribute="trailing" secondItem="v4G-Sq-GK2" secondAttribute="trailing" constant="16" id="bP2-x0-Ope"/>
+                                    <constraint firstItem="v4G-Sq-GK2" firstAttribute="top" secondItem="NRs-SL-oAk" secondAttribute="top" constant="10" id="eVv-NX-B3x"/>
+                                    <constraint firstItem="v4G-Sq-GK2" firstAttribute="leading" secondItem="NRs-SL-oAk" secondAttribute="leading" constant="16" id="hIW-Gb-h08"/>
+                                    <constraint firstItem="v4G-Sq-GK2" firstAttribute="centerX" secondItem="NRs-SL-oAk" secondAttribute="centerX" id="hRL-c5-cxV"/>
+                                </constraints>
+                            </scrollView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mnP-Oe-gne">
                                 <rect key="frame" x="0.0" y="618" width="375" height="49"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -450,22 +465,22 @@
                             <constraint firstItem="o09-Ex-Zdt" firstAttribute="trailing" secondItem="0Fb-Xb-J8e" secondAttribute="trailing" id="IpJ-eC-IT8"/>
                             <constraint firstItem="Tnr-NY-PEc" firstAttribute="leading" secondItem="0Fb-Xb-J8e" secondAttribute="leading" id="KR3-d5-KSm"/>
                             <constraint firstItem="HDc-VP-u4e" firstAttribute="trailing" secondItem="0Fb-Xb-J8e" secondAttribute="trailing" id="Lwg-sQ-h4z"/>
-                            <constraint firstItem="v4G-Sq-GK2" firstAttribute="leading" secondItem="0Fb-Xb-J8e" secondAttribute="leading" constant="16" id="NIT-WV-xmy"/>
                             <constraint firstItem="mnP-Oe-gne" firstAttribute="trailing" secondItem="0Fb-Xb-J8e" secondAttribute="trailing" id="NqF-Zj-jI6"/>
                             <constraint firstItem="o09-Ex-Zdt" firstAttribute="leading" secondItem="0Fb-Xb-J8e" secondAttribute="leading" id="OVR-rH-afO"/>
                             <constraint firstItem="HDc-VP-u4e" firstAttribute="top" secondItem="0Fb-Xb-J8e" secondAttribute="top" id="Ob6-Bg-iqd"/>
+                            <constraint firstItem="NRs-SL-oAk" firstAttribute="top" secondItem="SvU-Rf-Cm0" secondAttribute="bottom" id="Prl-tV-UPU"/>
+                            <constraint firstItem="NRs-SL-oAk" firstAttribute="leading" secondItem="0Fb-Xb-J8e" secondAttribute="leading" id="Xj5-Yi-awU"/>
                             <constraint firstItem="SvU-Rf-Cm0" firstAttribute="leading" secondItem="0Fb-Xb-J8e" secondAttribute="leading" id="bpp-i8-pCV"/>
                             <constraint firstItem="JlZ-Fv-gSA" firstAttribute="leading" secondItem="0Fb-Xb-J8e" secondAttribute="leading" id="ctA-lk-SIg"/>
-                            <constraint firstItem="v4G-Sq-GK2" firstAttribute="top" secondItem="SvU-Rf-Cm0" secondAttribute="bottom" constant="10" id="fFf-rw-rHs"/>
-                            <constraint firstItem="0Fb-Xb-J8e" firstAttribute="bottom" secondItem="v4G-Sq-GK2" secondAttribute="bottom" id="ge0-PY-T3M"/>
-                            <constraint firstItem="0Fb-Xb-J8e" firstAttribute="trailing" secondItem="v4G-Sq-GK2" secondAttribute="trailing" constant="16" id="i8T-V4-e0i"/>
                             <constraint firstItem="HDc-VP-u4e" firstAttribute="leading" secondItem="0Fb-Xb-J8e" secondAttribute="leading" id="lCq-Yr-3It"/>
                             <constraint firstItem="JlZ-Fv-gSA" firstAttribute="trailing" secondItem="0Fb-Xb-J8e" secondAttribute="trailing" id="lsW-eR-Dvu"/>
                             <constraint firstItem="o09-Ex-Zdt" firstAttribute="top" secondItem="HDc-VP-u4e" secondAttribute="bottom" constant="-1" id="nG1-I0-vsA"/>
                             <constraint firstItem="SvU-Rf-Cm0" firstAttribute="top" secondItem="JlZ-Fv-gSA" secondAttribute="bottom" constant="-1" id="ocn-bq-SDv"/>
+                            <constraint firstItem="NRs-SL-oAk" firstAttribute="trailing" secondItem="0Fb-Xb-J8e" secondAttribute="trailing" id="q0e-Uq-Qo9"/>
                             <constraint firstItem="0Fb-Xb-J8e" firstAttribute="trailing" secondItem="Tnr-NY-PEc" secondAttribute="trailing" id="st6-ff-ea8"/>
                             <constraint firstItem="0Fb-Xb-J8e" firstAttribute="bottom" secondItem="mnP-Oe-gne" secondAttribute="bottom" id="v13-JW-5Rc"/>
                             <constraint firstItem="Tnr-NY-PEc" firstAttribute="top" secondItem="0Fb-Xb-J8e" secondAttribute="top" constant="43" id="xRo-tu-AUz"/>
+                            <constraint firstItem="0Fb-Xb-J8e" firstAttribute="bottom" secondItem="NRs-SL-oAk" secondAttribute="bottom" id="zdm-Hn-rVo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0Fb-Xb-J8e"/>
                     </view>
@@ -502,6 +517,8 @@
                         <outlet property="fromView" destination="HDc-VP-u4e" id="NXG-g5-Vmo"/>
                         <outlet property="mailboxesButton" destination="Z1z-H2-Y3M" id="SnP-Nr-5hJ"/>
                         <outlet property="messageTextView" destination="v4G-Sq-GK2" id="ccT-mo-A2A"/>
+                        <outlet property="messageTextViewHeightConstraint" destination="p6L-y9-2aK" id="fmX-ka-zAU"/>
+                        <outlet property="scrollView" destination="NRs-SL-oAk" id="dK3-kt-QvR"/>
                         <outlet property="selfDestructedButton" destination="sck-AS-lTR" id="KBg-aS-4vE"/>
                         <outlet property="subjectTextField" destination="MBF-I2-36Z" id="6KP-KW-D84"/>
                         <outlet property="subjectView" destination="JlZ-Fv-gSA" id="Drc-GR-uOC"/>

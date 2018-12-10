@@ -41,10 +41,48 @@ class ComposePresenter {
         //self.viewController!.navigationController?.popViewController(animated: true)
     }
     
+    func setupMessageSectionSize() {
+                        
+        self.viewController?.messageTextView.backgroundColor = UIColor.yellow
+        
+        let messageContentHeight = self.viewController?.messageTextView.frame.size.height
+        
+        let scrollViewHeight = self.viewController?.scrollView.frame.size.height
+        
+        print("scrollview height: ", scrollViewHeight)
+ 
+        //print("message height: ", messageContentHeight)
+        //print("scroll content height: ", self.viewController?.scrollView.contentSize.height)
+        
+        //self.viewController?.messageTextViewHeightConstraint.constant = (self.viewController?.messageTextView.frame.size.height)!
+        
+        //self.viewController?.messageTextView.sizeToFit()
+        
+        
+        
+        if Int(messageContentHeight!) < Int((scrollViewHeight! - 10 - 10 )) {
+            self.viewController?.messageTextViewHeightConstraint.constant = scrollViewHeight! - 10 - 10
+        }
+        
+        self.viewController?.view.layoutIfNeeded()
+        
+        //print("SizeToFit message height: ", messageContentHeight)
+        //print("SizeToFit scroll content height: ", self.viewController?.scrollView.contentSize.height)
+        
+        //self.viewController?.messageTextViewHeightConstraint.constant = messageContentHeight!
+        
+        self.viewController?.scrollView.contentSize = CGSize(width: (self.viewController?.view.frame.size.width)!, height: (self.viewController?.messageTextViewHeightConstraint.constant)!)
+        
+        
+        //print("SizeToFit message height layout: ", self.viewController?.messageTextView.frame.size.height)
+       // print("SizeToFit scroll content height layout: ", self.viewController?.scrollView.contentSize.height)
+        
+    }
+    
     func setupMessageSection(emailsArray: Array<EmailMessage>) {
         
         //self.viewController?.dercyptedMessagesArray.removeAll()
-        
+    
         if emailsArray.count > 0 {
             
             var dercyptedMessagesArray = Array<String>()
@@ -70,7 +108,6 @@ class ComposePresenter {
                 mutableAttributedString.append(lastMessageContentAttributedString!)
                 
                 self.viewController?.messageTextView.attributedText = mutableAttributedString//lastMessageContent!.html2AttributedString
-                //self.viewController?.messageTextView.sizeToFit()
                 self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
             }
             
@@ -80,7 +117,10 @@ class ComposePresenter {
             self.viewController?.messageTextView.font = UIFont(name: k_latoRegularFontName, size: 16.0)
             self.viewController?.messageTextView.text = "composeEmail".localized()
             self.viewController?.messageTextView.textColor = UIColor.lightGray
+            
         }
+        
+        self.setupMessageSectionSize()
     }
     
     func generateReplyHeader(message: EmailMessage) -> NSAttributedString {
@@ -364,6 +404,7 @@ class ComposePresenter {
         self.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
         
         self.setupTableView(topOffset: k_composeTableViewTopOffset + self.viewController!.toViewSectionHeightConstraint.constant - 5.0)
+        self.setupMessageSectionSize()
     }
     
     //MARK: - Setup Cc To Subsection
@@ -486,6 +527,7 @@ class ComposePresenter {
         
         self.bccToSubViewsArray = self.setRecanglesFor(textView: self.viewController!.bccToTextView, emailArray: self.viewController!.bccToArray, selectedEmail: self.viewController!.tapSelectedBccEmail, subViewsArray: self.bccToSubViewsArray, subViewTag: ComposeSubViewTags.bccToTextViewTag.rawValue)
         
+       // self.setupMessageSectionSize()
     }
     
     func setRecanglesFor(textView: UITextView, emailArray: Array<String>, selectedEmail: String, subViewsArray: Array<Int>, subViewTag: Int) -> Array<Int> {
