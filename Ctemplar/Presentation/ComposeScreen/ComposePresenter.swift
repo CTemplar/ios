@@ -45,22 +45,55 @@ class ComposePresenter {
     
     func setupMessageSectionSize() {
                         
-       // self.viewController?.messageTextView.backgroundColor = UIColor.yellow
+        //self.viewController?.messageTextView.backgroundColor = UIColor.yellow
         
         let fixedWidth = self.viewController!.view.frame.width - k_emailToTextViewLeftOffset - k_emailToTextViewLeftOffset
         let messageContentHeight = self.sizeThatFits(textView: self.viewController!.messageTextView, fixedWidth: fixedWidth)
         
-        let scrollViewHeight = self.viewController?.scrollView.frame.size.height
+        //let scrollViewHeight = self.viewController?.scrollView.frame.size.height
         
-        if Int(messageContentHeight) < Int((scrollViewHeight! - k_messageTextViewTopOffset - k_messageTextViewTopOffset )) {
-            self.viewController?.messageTextViewHeightConstraint.constant = scrollViewHeight! - k_messageTextViewTopOffset - k_messageTextViewTopOffset
-            self.viewController?.scrollView.contentSize = CGSize(width: (self.viewController?.view.frame.size.width)!, height: (self.viewController?.messageTextViewHeightConstraint.constant)!)
-        } else {
-            self.viewController!.messageTextViewHeightConstraint.constant = self.viewController!.messageTextView.frame.size.height
-            self.viewController?.scrollView.contentSize = CGSize(width: (self.viewController?.view.frame.size.width)!, height: (self.viewController?.messageTextViewHeightConstraint.constant)! + k_messageTextViewTopOffset + k_messageTextViewTopOffset)
+        self.removeAttachmentsView()
+        
+        var attachmentsHeight : CGFloat = k_attachmentViewTopOffset
+        
+       // let contentViewHeight = self.viewController?.scrollView.contentSize.height
+        
+        var tag = ComposeSubViewTags.attachmentsViewTag.rawValue
+        
+        for _ in (self.viewController?.mailAttachmentsList)! {
+            
+            let view = UIView(frame: CGRect(x: k_emailToTextViewLeftOffset, y: messageContentHeight + attachmentsHeight, width: (self.viewController?.view.frame.size.width)! - k_emailToTextViewLeftOffset - k_emailToTextViewLeftOffset, height: k_attachmentViewHeight))
+            tag = tag + 1
+            view.tag = tag
+            view.backgroundColor = UIColor.red
+            self.viewController?.scrollView.add(subview: view)
+            
+            attachmentsHeight = attachmentsHeight + k_attachmentViewHeight + k_messageTextViewTopOffset
         }
         
+        //if Int(messageContentHeight) < Int((scrollViewHeight! - k_messageTextViewTopOffset - k_messageTextViewTopOffset )) {
+        //    self.viewController?.messageTextViewHeightConstraint.constant = scrollViewHeight! - k_messageTextViewTopOffset - k_messageTextViewTopOffset
+        //    self.viewController?.scrollView.contentSize = CGSize(width: (self.viewController?.view.frame.size.width)!, height: (self.viewController?.messageTextViewHeightConstraint.constant)! + attachmentsHeight)
+       // } else {
+            self.viewController!.messageTextViewHeightConstraint.constant = self.viewController!.messageTextView.frame.size.height
+            self.viewController?.scrollView.contentSize = CGSize(width: (self.viewController?.view.frame.size.width)!, height: (self.viewController?.messageTextViewHeightConstraint.constant)! + k_messageTextViewTopOffset + k_messageTextViewTopOffset + attachmentsHeight)
+       // }
+        
         self.viewController?.view.layoutIfNeeded()
+    }
+    
+    func removeAttachmentsView() {
+        
+        var tag = 500
+        
+        for _ in (self.viewController?.mailAttachmentsList)! {
+            
+            tag = tag + 1
+            
+            if let subview = self.viewController?.scrollView.viewWithTag(tag) {
+                subview.removeFromSuperview()
+            }
+        }
     }
     
     func setupMessageSection(emailsArray: Array<EmailMessage>) {
@@ -622,6 +655,8 @@ class ComposePresenter {
         let hidden = self.viewController?.draftActionsView?.isHidden
         
         self.viewController?.draftActionsView?.isHidden = !hidden!
+        
+        self.viewController!.view.endEditing(true)
     }
     
     func setupDraftActionsButtons() -> Array<String> {

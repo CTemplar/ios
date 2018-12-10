@@ -200,6 +200,9 @@ let k_composeTableViewTopOffset     : CGFloat = 45.0
 
 let k_messageTextViewTopOffset      : CGFloat = 10.0
 
+let k_attachmentViewHeight          : CGFloat = 44.0
+let k_attachmentViewTopOffset       : CGFloat = 25.0
+
 //images
 
 let k_eyeOffIconImageName           = "EyeIcon"
@@ -433,4 +436,5 @@ enum ComposeSubViewTags: Int {
     case emailToTextViewTag  = 200
     case ccToTextViewTag     = 300
     case bccToTextViewTag    = 400
+    case attachmentsViewTag  = 500
 }

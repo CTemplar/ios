@@ -163,7 +163,8 @@ class ComposeInteractor {
                 print("create Attachment value:", value)
                 
                 let attachment = value as! Attachment
-                self.viewController?.mailAttachmentsList.append(attachment.toDictionary())
+                self.viewController?.mailAttachmentsList.append(attachment.toDictionary())                
+                self.presenter?.setupMessageSectionSize()
                 
             case .failure(let error):
                 print("error:", error)
