@@ -1151,7 +1151,7 @@ class APIService {
         
         let fileData = try? Data(contentsOf: fileUrl)
         let fileName = fileUrl.lastPathComponent
-        let mimeType = self.mimeTypeForURL(url: fileUrl)
+        let mimeType = self.mimeTypeForFileAt(url: fileUrl)
         
         if (fileData == nil) {
             return
@@ -1167,8 +1167,21 @@ class APIService {
                         switch(result) {
                             
                         case .success(let value):
-                   
-                            completionHandler(APIResult.success(value))
+                            
+                            if let response = value as? Dictionary<String, Any> {
+                                
+                                if let message = self.parseServerResponse(response:response) {
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    let attachment = Attachment(dictionary: value as! [String : Any])
+                                    completionHandler(APIResult.success(attachment))
+                                }
+                                
+                            } else {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
+                            }
                             
                         case .failure(let error):
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
@@ -1180,7 +1193,7 @@ class APIService {
         }
     }
     
-    func mimeTypeForURL(url: URL) -> String {
+    func mimeTypeForFileAt(url: URL) -> String {
         
         let pathExtension = url.pathExtension
         

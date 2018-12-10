@@ -86,6 +86,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     var usersPublicKeys = Array<Key>()
     
+    var mailAttachmentsList = Array<Attachment>()
+    
     var encryptedMail : Bool = false
     
     var messageAttributedText : NSAttributedString = NSAttributedString(string: "")
@@ -465,14 +467,14 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         print("picked urls:", urls)
         
+        self.attachmentButton.isEnabled = false
+        
         self.interactor?.attachFileToDraftMessage(url: urls.first!)
     }
     
-    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
         
-        print("picked url:", url)
-        
-        //self.interactor?.attachFileToDraftMessage(url: url)
+        self.attachmentButton.isEnabled = true
     }
     
     //MARK: - notification

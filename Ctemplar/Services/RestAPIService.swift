@@ -794,8 +794,15 @@ class RestAPIService {
                 })
                 
                 upload.responseJSON(completionHandler: { (response) in
-                    completionHandler(APIResult.success(response))
+                   
+                    switch(response.result) {
+                    case .success(let value):
+                        completionHandler(APIResult.success(value))
+                    case .failure(let error):
+                        completionHandler(APIResult.failure(error))
+                    }
                 })
+                
             case .failure(let error):
                 print("upload Data error:", error)
             }

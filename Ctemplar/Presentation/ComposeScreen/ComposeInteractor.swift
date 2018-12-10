@@ -155,11 +155,15 @@ class ComposeInteractor {
         
         apiService?.createAttachment(fileUrl: fileUrl, messageID: messageID) {(result) in
             
+            self.viewController?.attachmentButton.isEnabled = true
+            
             switch(result) {
                 
             case .success(let value):
                 print("create Attachment value:", value)
                 
+                let attachment = value as! Attachment                
+                self.viewController?.mailAttachmentsList.append(attachment)
                 
             case .failure(let error):
                 print("error:", error)
