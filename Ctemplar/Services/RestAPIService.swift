@@ -27,6 +27,7 @@ class RestAPIService {
         case userMyself = "users/myself/"
         case contact = "users/contacts/"
         case createAttachment = "emails/attachments/create/"
+        case deleteAttachment = "emails/attachments/"
     }
     
     enum JSONKey: String {
@@ -841,5 +842,29 @@ class RestAPIService {
                 print("upload Data error:", error)
             }
         })
+    }
+    
+    func deleteAttachment(token: String, attachmentID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.deleteAttachment.rawValue + attachmentID + "/"
+        
+        print("deleteAttachment url:", url)
+        
+        Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("deleteAttachment responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
     }
 }

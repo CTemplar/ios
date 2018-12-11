@@ -190,6 +190,23 @@ class ComposeInteractor {
         }
     }
     
+    func deleteAttach(attachID : String) {
+        
+        apiService?.deleteAttachment(attachmentID: attachID) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("deleteAttach value:", value)
+         
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Delete Attach File Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
     func setFilteredList(searchText: String) {
         
         print("searchText:",searchText)
@@ -392,11 +409,8 @@ class ComposeInteractor {
     }
     
     func removeAttachFromMailAttachmentList(file: URL) {
-        
+          
         for (index, attach) in self.viewController!.mailAttachmentsList.enumerated() {
-           
-            //print("attach document URL:", attach["document"] as Any)
-            //print("file URL:", file.absoluteString)
             
             let fileName = file.lastPathComponent
             print("fileName:", fileName)
@@ -404,13 +418,13 @@ class ComposeInteractor {
             let attachFileName = (attach["document"]! as NSString).lastPathComponent
             print("attachFileName:", attachFileName)
             
+            let attachID = attach["id"]
+            print("attachID:", attachID as Any)
+            
             if attachFileName == fileName {
                 self.viewController!.mailAttachmentsList.remove(at: index)
+                self.deleteAttach(attachID: attachID!)
             }
-        }
-        
-        if let messageID = self.sendingMessage.messsageID {
-            self.updateAttachmentsForMessage(messsageID: messageID.description, attachments: self.viewController!.mailAttachmentsList)
         }
     }
     

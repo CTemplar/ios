@@ -1237,6 +1237,31 @@ class APIService {
         }
     }
     
+    func deleteAttachment(attachmentID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    
+                    self.restAPIService?.deleteAttachment(token: token, attachmentID: attachmentID) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            print("deleted attach:", value)
+                            completionHandler(APIResult.success(value))
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     func mimeTypeForFileAt(url: URL) -> String {
         
         let pathExtension = url.pathExtension
