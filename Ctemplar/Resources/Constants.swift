@@ -63,6 +63,7 @@ let k_ChildMessageExpandedCellXibName      = "ChildMessageExpandedTableViewCell"
 let k_ChildMessageExpandedWithAttachmentCellXibName      = "ChildMessageExpandedWithAttachmentTableViewCell"
 let k_UserMailboxCellXibName               = "UserMailboxTableViewCell"
 let k_AttachmentCollcetionViewCellXibName  = "AttachmentCollcetionViewCell"
+let k_AttachmentViewXibName                = "Attachment"
 
 // cell identifier
 

@@ -122,6 +122,8 @@
 		8441227E21A66E3A00B56857 /* ChildMessageExpandedWithAttachmentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441227C21A66E3A00B56857 /* ChildMessageExpandedWithAttachmentTableViewCell.xib */; };
 		8441228121A67A5D00B56857 /* AttachmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441228021A67A5D00B56857 /* AttachmentCollectionViewCell.swift */; };
 		8441228321A6823F00B56857 /* AttachmentCollcetionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441228221A6823F00B56857 /* AttachmentCollcetionViewCell.xib */; };
+		8441559321BF8AA90053C39F /* AttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441559221BF8AA90053C39F /* AttachmentView.swift */; };
+		8441559521BF8CF90053C39F /* Attachment.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441559421BF8CF90053C39F /* Attachment.xib */; };
 		844655BC218C264200B2F2E4 /* MoreActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F348532181B20C00F00E37 /* MoreActionsView.swift */; };
 		844655BD218C264E00B2F2E4 /* MoreActions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F348552181B21C00F00E37 /* MoreActions.xib */; };
 		844F4B5A216B3A380057C758 /* UserPGPKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F4B59216B3A380057C758 /* UserPGPKey.swift */; };
@@ -287,6 +289,8 @@
 		8441227C21A66E3A00B56857 /* ChildMessageExpandedWithAttachmentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChildMessageExpandedWithAttachmentTableViewCell.xib; sourceTree = "<group>"; };
 		8441228021A67A5D00B56857 /* AttachmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCollectionViewCell.swift; sourceTree = "<group>"; };
 		8441228221A6823F00B56857 /* AttachmentCollcetionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AttachmentCollcetionViewCell.xib; sourceTree = "<group>"; };
+		8441559221BF8AA90053C39F /* AttachmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentView.swift; sourceTree = "<group>"; };
+		8441559421BF8CF90053C39F /* Attachment.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Attachment.xib; sourceTree = "<group>"; };
 		844F4B59216B3A380057C758 /* UserPGPKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPGPKey.swift; sourceTree = "<group>"; };
 		84525F12219549B100CA732E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		84525F14219549C100CA732E /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
@@ -411,6 +415,8 @@
 		8430C29121B5546200ACB559 /* ModalScreens */ = {
 			isa = PBXGroup;
 			children = (
+				8441559221BF8AA90053C39F /* AttachmentView.swift */,
+				8441559421BF8CF90053C39F /* Attachment.xib */,
 				8430C29221B554F100ACB559 /* SetPasswordViewController.swift */,
 				8430C29421B5566D00ACB559 /* SetPassword.storyboard */,
 			);
@@ -906,6 +912,7 @@
 				84732CA221B17B8D00B6F799 /* UserMailboxTableViewCell.xib in Resources */,
 				843FBF17216E3D2400148FC1 /* Login-iPad.storyboard in Resources */,
 				8433A5412189DE17008E1C85 /* MoveTo.storyboard in Resources */,
+				8441559521BF8CF90053C39F /* Attachment.xib in Resources */,
 				843710412174661000DAE4BA /* ForgotPassword.storyboard in Resources */,
 				8441228321A6823F00B56857 /* AttachmentCollcetionViewCell.xib in Resources */,
 				845E643B21709330008612FE /* InboxSideMenu.storyboard in Resources */,
@@ -1122,6 +1129,7 @@
 				8434D9B8219C4E3900D2C3A5 /* ContactsDataSource.swift in Sources */,
 				84F348582181F4E300F00E37 /* BlurEffect.swift in Sources */,
 				84A62E4B2175C3CF009C38E5 /* NewPasswordViewController.swift in Sources */,
+				8441559321BF8AA90053C39F /* AttachmentView.swift in Sources */,
 				84FF7E37219D662300E3E56A /* UserMyself.swift in Sources */,
 				84525F17219568D900CA732E /* SearchConfigurator.swift in Sources */,
 				8437103D217465A700DAE4BA /* ForgotPasswordNavigationController.swift in Sources */,

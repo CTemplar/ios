@@ -183,9 +183,12 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
-            self.interactor?.createDraft()            
-            self.interactor?.userContactsList()
+            self.interactor?.createDraft()
+            //self.interactor?.userContactsList()
         })
+        
+  //      viewAttachmentsList.append(1) //for debug
+        
         /*
         if (Device.IS_IPHONE_5) {
             keyboardOffset = k_KeyboardHeight - 80.0
@@ -492,7 +495,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.interactor?.attachFileToDraftMessage(url: urls.first!)
         
         let newIndex = self.viewAttachmentsList.count
-        self.viewAttachmentsList.append(newIndex)
+        self.viewAttachmentsList.append(newIndex + 1)
         self.presenter?.setupMessageSectionSize()
     }
     
@@ -559,5 +562,23 @@ extension ComposeViewController: MoreActionsDelegate {
     func applyAction(_ sender: AnyObject, isButton: Bool) {
         
         self.presenter?.applyDraftAction(sender, isButton: isButton)
+    }
+}
+
+extension ComposeViewController: AttachmentDelegate {
+    
+    func deleteAttach(tag: Int) {
+        
+        let viewTag = tag - ComposeSubViewTags.attachmentsViewTag.rawValue
+        
+        for (index, attachmentViewTag) in self.viewAttachmentsList.enumerated() {
+            if attachmentViewTag == viewTag {
+                self.viewAttachmentsList.remove(at: index)
+            }
+        }
+  
+        //self.presenter?.removeAttachmentView(tag: tag)
+        self.presenter?.removeAttachmentsView()
+        self.presenter?.setupMessageSectionSize()
     }
 }

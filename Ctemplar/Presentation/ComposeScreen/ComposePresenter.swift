@@ -62,11 +62,11 @@ class ComposePresenter {
         
         for _ in (self.viewController?.viewAttachmentsList)! {
             
-            let view = UIView(frame: CGRect(x: k_emailToTextViewLeftOffset, y: messageContentHeight + attachmentsHeight, width: (self.viewController?.view.frame.size.width)! - k_emailToTextViewLeftOffset - k_emailToTextViewLeftOffset, height: k_attachmentViewHeight))
+            let frame = CGRect(x: k_emailToTextViewLeftOffset, y: messageContentHeight + attachmentsHeight, width: (self.viewController?.view.frame.size.width)! - k_emailToTextViewLeftOffset - k_emailToTextViewLeftOffset, height: k_attachmentViewHeight)
+            
             tag = tag + 1
-            view.tag = tag
-            view.backgroundColor = UIColor.red
-            self.viewController?.scrollView.add(subview: view)
+            
+            self.createAttachment(frame: frame, tag: tag)
             
             attachmentsHeight = attachmentsHeight + k_attachmentViewHeight + k_messageTextViewTopOffset
         }
@@ -80,20 +80,6 @@ class ComposePresenter {
        // }
         
         self.viewController?.view.layoutIfNeeded()
-    }
-    
-    func removeAttachmentsView() {
-        
-        var tag = 500
-        
-        for _ in (self.viewController?.viewAttachmentsList)! {
-            
-            tag = tag + 1
-            
-            if let subview = self.viewController?.scrollView.viewWithTag(tag) {
-                subview.removeFromSuperview()
-            }
-        }
     }
     
     func setupMessageSection(emailsArray: Array<EmailMessage>) {
@@ -727,5 +713,46 @@ class ComposePresenter {
         }
  
         self.viewController?.draftActionsView?.isHidden = true
+    }
+    
+    //MARK: - Attachment View
+    
+    func createAttachment(frame: CGRect, tag: Int) {
+        
+        let attachmentView = Bundle.main.loadNibNamed(k_AttachmentViewXibName, owner: nil, options: nil)?.first as? AttachmentView
+        attachmentView?.frame = frame
+        attachmentView?.tag = tag
+        attachmentView?.delegate = self.viewController
+        self.viewController!.scrollView.add(subview: attachmentView!)
+    }
+    
+    func removeAttachmentsView() {
+        
+        var tag = ComposeSubViewTags.attachmentsViewTag.rawValue
+        
+        for _ in (self.viewController?.viewAttachmentsList)! {
+            
+            tag = tag + 1
+            
+            if let subview = self.viewController?.scrollView.viewWithTag(tag) {
+                subview.removeFromSuperview()
+            }
+        }
+    }
+    
+    func removeAttachmentView(tag: Int) {
+        
+        if let subview = self.viewController?.scrollView.viewWithTag(tag) {
+            subview.removeFromSuperview()
+        }
+    }
+    
+    func attachmentView(tag: Int) -> AttachmentView? {
+        
+        if let subview = self.viewController?.scrollView.viewWithTag(tag) {
+            return subview as? AttachmentView
+        }
+        
+        return nil
     }
 }
