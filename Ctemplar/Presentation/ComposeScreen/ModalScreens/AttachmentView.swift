@@ -24,6 +24,8 @@ class AttachmentView: UIView {
     
     @IBOutlet var backgroundProgressView    : UIView!
     @IBOutlet var progressView    : UIView!
+    
+    var indexTag : Int = 0
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,6 +41,15 @@ class AttachmentView: UIView {
      
     }
     
+    func setup(fileUrl: URL) {
+        
+        let fileData = try? Data(contentsOf: fileUrl)
+        let fileSize = fileData?.sizeData()
+        let fileName = fileUrl.lastPathComponent
+        
+        
+        titleLabel.text = fileName + " " + "(" + fileSize! + ")"
+    }
     
     //MARK: - IBActions
     

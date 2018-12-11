@@ -57,16 +57,14 @@ class ComposePresenter {
         var attachmentsHeight : CGFloat = k_attachmentViewTopOffset
         
        // let contentViewHeight = self.viewController?.scrollView.contentSize.height
-        
-        var tag = ComposeSubViewTags.attachmentsViewTag.rawValue
-        
-        for _ in (self.viewController?.viewAttachmentsList)! {
+             
+        for attachmentView in (self.viewController?.viewAttachmentsList)! {
             
             let frame = CGRect(x: k_emailToTextViewLeftOffset, y: messageContentHeight + attachmentsHeight, width: (self.viewController?.view.frame.size.width)! - k_emailToTextViewLeftOffset - k_emailToTextViewLeftOffset, height: k_attachmentViewHeight)
+    
             
-            tag = tag + 1
-            
-            self.createAttachment(frame: frame, tag: tag)
+            attachmentView.frame = frame
+            self.viewController!.scrollView.add(subview: attachmentView)
             
             attachmentsHeight = attachmentsHeight + k_attachmentViewHeight + k_messageTextViewTopOffset
         }
@@ -717,13 +715,15 @@ class ComposePresenter {
     
     //MARK: - Attachment View
     
-    func createAttachment(frame: CGRect, tag: Int) {
+    func createAttachment(frame: CGRect, tag: Int, fileUrl: URL) -> AttachmentView {
         
         let attachmentView = Bundle.main.loadNibNamed(k_AttachmentViewXibName, owner: nil, options: nil)?.first as? AttachmentView
-        attachmentView?.frame = frame
+//        attachmentView?.frame = frame
         attachmentView?.tag = tag
         attachmentView?.delegate = self.viewController
-        self.viewController!.scrollView.add(subview: attachmentView!)
+        attachmentView?.setup(fileUrl: fileUrl)
+        
+        return attachmentView!
     }
     
     func removeAttachmentsView() {
@@ -733,6 +733,18 @@ class ComposePresenter {
         for _ in (self.viewController?.viewAttachmentsList)! {
             
             tag = tag + 1
+            
+            if let subview = self.viewController?.scrollView.viewWithTag(tag) {
+                subview.removeFromSuperview()
+            }
+        }
+    }
+    
+    func removeAllAttachmentsView() {
+        
+        for attachmentView in (self.viewController?.viewAttachmentsList)! {
+            
+            let tag = attachmentView.tag
             
             if let subview = self.viewController?.scrollView.viewWithTag(tag) {
                 subview.removeFromSuperview()

@@ -93,7 +93,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var usersPublicKeys = Array<Key>()
     
     var mailAttachmentsList = Array<[String : String]>()
-    var viewAttachmentsList = Array<Int>()
+    var viewAttachmentsList = Array<AttachmentView>()
     
     var encryptedMail : Bool = false
     
@@ -490,13 +490,28 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         print("picked urls:", urls)
         
+        let fileUrl = urls.first!
+        
         self.attachmentButton.isEnabled = false
         
-        self.interactor?.attachFileToDraftMessage(url: urls.first!)
+        self.interactor?.attachFileToDraftMessage(url: fileUrl)
         
-        let newIndex = self.viewAttachmentsList.count
-        self.viewAttachmentsList.append(newIndex + 1)
+        var lastTag = ComposeSubViewTags.attachmentsViewTag.rawValue
+        
+        if self.viewAttachmentsList.count > 0 {
+        
+            let lastAttachmentView = self.viewAttachmentsList.max(by: {$0.tag < $1.tag} )
+            lastTag = (lastAttachmentView?.tag)!
+        }
+        
+        let newIndexTag = lastTag + 1
+        
+        let attachmentView  = self.presenter?.createAttachment(frame: CGRect.zero, tag: newIndexTag, fileUrl: fileUrl)
+        
+        self.viewAttachmentsList.append(attachmentView!)
+        
         self.presenter?.setupMessageSectionSize()
+  
     }
     
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
@@ -569,16 +584,14 @@ extension ComposeViewController: AttachmentDelegate {
     
     func deleteAttach(tag: Int) {
         
-        let viewTag = tag - ComposeSubViewTags.attachmentsViewTag.rawValue
+        self.presenter?.removeAllAttachmentsView()
         
-        for (index, attachmentViewTag) in self.viewAttachmentsList.enumerated() {
-            if attachmentViewTag == viewTag {
+        for (index, attachmentView) in self.viewAttachmentsList.enumerated() {
+            if attachmentView.tag == tag {
                 self.viewAttachmentsList.remove(at: index)
             }
         }
-  
-        //self.presenter?.removeAttachmentView(tag: tag)
-        self.presenter?.removeAttachmentsView()
-        self.presenter?.setupMessageSectionSize()
+        
+        self.presenter?.setupMessageSectionSize()        
     }
 }
