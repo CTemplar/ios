@@ -186,7 +186,13 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.presenter?.setupMessageSection(emailsArray: self.messagesArray)  
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
-            self.interactor?.createDraft()
+            
+            if self.message != nil {
+                self.interactor?.sendingMessage = self.message!
+            } else {
+                self.interactor?.createDraft()
+            }
+            
             self.interactor?.userContactsList()
         })
         
