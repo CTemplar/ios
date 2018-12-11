@@ -118,17 +118,17 @@ class ViewInboxEmailViewController: UIViewController {
     
     @IBAction func replyButtonPressed(_ sender: AnyObject) {
         
-        self.router?.showComposeViewController(title: "reply".localized(), subject: self.headerLabel.text!)
+        self.router?.showComposeViewController(answerMode: AnswerMessageMode.reply, subject: self.headerLabel.text!)
     }
     
     @IBAction func replyAllButtonPressed(_ sender: AnyObject) {
         
-        self.router?.showComposeViewController(title: "relpyAll".localized(), subject: self.headerLabel.text!)
+        self.router?.showComposeViewController(answerMode: AnswerMessageMode.replyAll, subject: self.headerLabel.text!)
     }
     
     @IBAction func forwardButtonPressed(_ sender: AnyObject) {
         
-        self.router?.showComposeViewController(title: "forward".localized(), subject: self.headerLabel.text!)
+        self.router?.showComposeViewController(answerMode: AnswerMessageMode.forward, subject: self.headerLabel.text!)
     }
     
     @IBAction func undoButtonPressed(_ sender: AnyObject) {

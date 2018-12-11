@@ -67,6 +67,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     var draftActionsView : MoreActionsView?
     
+    var answerMode : AnswerMessageMode!
     var navBarTitle: String = ""
     var subject    : String = ""
     var sender     : String = ""
@@ -113,8 +114,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         let configurator = ComposeConfigurator()
         configurator.configure(viewController: self)
         
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
-        self.navigationItem.title = navBarTitle
+        self.navigationItem.rightBarButtonItem?.isEnabled = false        
+        self.presenter?.setupNavigationBarTitle(mode: self.answerMode)
         
         self.presenter!.initDraftActionsView()
         

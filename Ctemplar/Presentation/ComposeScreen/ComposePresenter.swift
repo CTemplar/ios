@@ -17,6 +17,26 @@ class ComposePresenter {
     var interactor       : ComposeInteractor?
     var formatterService        : FormatterService?
     
+    //MARK: - Setup Answer Mode
+    
+    func setupNavigationBarTitle(mode: AnswerMessageMode) {
+        
+        switch mode {
+        case AnswerMessageMode.newMessage:
+            self.viewController!.navigationItem.title = "newMessage".localized()
+            break
+        case AnswerMessageMode.reply:
+            self.viewController!.navigationItem.title = "reply".localized()
+            break
+        case AnswerMessageMode.replyAll:
+            self.viewController!.navigationItem.title = "relpyAll".localized()
+            break
+        case AnswerMessageMode.forward:
+            self.viewController!.navigationItem.title = "forward".localized()
+            break
+        }
+    }
+    
     //MARK: - Setup Buttons
     
     func enabledSendButton() {
@@ -142,7 +162,8 @@ class ComposePresenter {
         
                 let lastMessageContent = dercyptedMessagesArray.last
             
-                let replyHeader = self.generateReplyHeader(message: lastMessage!)
+                let replyHeader = self.generateHeader(message: lastMessage!, answerMode: self.viewController!.answerMode)
+                
                 let lastMessageContentAttributedString = lastMessageContent!.html2AttributedString
                 let mutableAttributedString = NSMutableAttributedString(attributedString: replyHeader)
                 mutableAttributedString.append(lastMessageContentAttributedString!)
@@ -176,6 +197,28 @@ class ComposePresenter {
         return newTextViewFrame.height
     }
     
+    func generateHeader(message: EmailMessage, answerMode: AnswerMessageMode) -> NSAttributedString {
+        
+        var attributedString = NSAttributedString()
+        
+        switch answerMode {
+        case AnswerMessageMode.newMessage:
+           
+            break
+        case AnswerMessageMode.reply:
+            attributedString = self.generateReplyHeader(message: message)
+            break
+        case AnswerMessageMode.replyAll:
+            attributedString = self.generateReplyHeader(message: message)
+            break
+        case AnswerMessageMode.forward:
+            attributedString = self.generateForwardHeader(message: message)
+            break
+        }
+        
+        return attributedString
+    }
+    
     func generateReplyHeader(message: EmailMessage) -> NSAttributedString {
         
         var replyHeader : String = ""
@@ -197,6 +240,21 @@ class ComposePresenter {
         let font : UIFont = UIFont(name: k_latoRegularFontName, size: 14.0)!
         
         let attributedString = NSMutableAttributedString(string: replyHeader, attributes: [
+            .font: font,
+            .foregroundColor: k_actionMessageColor,
+            .kern: 0.0
+            ])
+        
+        return attributedString
+    }
+    
+    func generateForwardHeader(message: EmailMessage) -> NSAttributedString {
+        
+        var forwardHeader : String = ""
+        
+        let font : UIFont = UIFont(name: k_latoRegularFontName, size: 14.0)!
+        
+        let attributedString = NSMutableAttributedString(string: forwardHeader, attributes: [
             .font: font,
             .foregroundColor: k_actionMessageColor,
             .kern: 0.0

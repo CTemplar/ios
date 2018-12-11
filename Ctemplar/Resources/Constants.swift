@@ -442,3 +442,11 @@ enum ComposeSubViewTags: Int {
     case bccToTextViewTag    = 400
     case attachmentsViewTag  = 500
 }
+
+enum AnswerMessageMode: String {
+    
+    case newMessage = "New Message"
+    case reply      = "Reply"
+    case replyAll   = "Reply All"
+    case forward    = "Forward"
+}
