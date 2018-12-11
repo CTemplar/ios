@@ -41,10 +41,25 @@ class ComposePresenter {
         self.showDraftActionsView()
     }
     
+    func setupAttachmentButton() {
+        
+        var attachmentButtonImage = UIImage()
+        
+        if (self.viewController?.viewAttachmentsList.count)! > 0 {
+            attachmentButtonImage = UIImage(named: k_attachApliedImageName)!
+        } else {
+            attachmentButtonImage = UIImage(named: k_attachImageName)!
+        }
+        
+        self.viewController!.attachmentButton .setImage(attachmentButtonImage, for: .normal)
+    }
+    
     //MARK: - Setup Message Section
     
     func setupMessageSectionSize() {
-                        
+        
+        self.setupAttachmentButton()
+        
         //self.viewController?.messageTextView.backgroundColor = UIColor.yellow
         
         let fixedWidth = self.viewController!.view.frame.width - k_emailToTextViewLeftOffset - k_emailToTextViewLeftOffset

@@ -180,7 +180,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         self.addGesureRecognizers()
         
-        self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
+        self.presenter?.setupMessageSection(emailsArray: self.messagesArray)  
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
             self.interactor?.createDraft()
