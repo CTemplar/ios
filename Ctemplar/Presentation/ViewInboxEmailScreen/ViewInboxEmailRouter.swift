@@ -33,6 +33,7 @@ class ViewInboxEmailRouter {
         vc.mailboxesList = (self.viewController?.mailboxesList)!
         vc.messagesArray = (self.viewController?.dataSource?.messagesArray)!
         vc.subject = subject
+        vc.message = self.viewController?.message
         self.viewController?.show(vc, sender: self)        
     }
 }

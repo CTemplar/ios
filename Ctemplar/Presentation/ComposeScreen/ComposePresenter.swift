@@ -56,6 +56,30 @@ class ComposePresenter {
     
     //MARK: - Setup Message Section
     
+    func setupAttachments() {
+        
+        if let draftMessage = self.viewController!.message {
+        
+            if let attachments = draftMessage.attachments {
+                
+                var tag = ComposeSubViewTags.attachmentsViewTag.rawValue
+                
+                for attachment in attachments {
+                    self.viewController?.mailAttachmentsList.append(attachment.toDictionary())
+                    
+                    let urlString = attachment.contentUrl
+                    let url = URL(string: urlString!)
+                    
+                    tag = tag + 1
+                    
+                    let attachmentView  = self.viewController!.presenter?.createAttachment(frame: CGRect.zero, tag: tag, fileUrl: url!)
+                    
+                    self.viewController!.viewAttachmentsList.append(attachmentView!)
+                }
+            }
+        }
+    }
+    
     func setupMessageSectionSize() {
         
         self.setupAttachmentButton()

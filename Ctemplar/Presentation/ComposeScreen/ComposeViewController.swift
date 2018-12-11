@@ -102,6 +102,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var messagesArray                     : Array<EmailMessage> = []
     //var dercyptedMessagesArray            : Array<String> = []
     
+    var message : EmailMessage?
+    
     var runOnce : Bool = true
     
     override func viewDidLoad() {
@@ -180,6 +182,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         self.addGesureRecognizers()
         
+        self.presenter?.setupAttachments()
         self.presenter?.setupMessageSection(emailsArray: self.messagesArray)  
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
