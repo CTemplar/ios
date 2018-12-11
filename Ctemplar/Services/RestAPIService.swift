@@ -483,7 +483,7 @@ class RestAPIService {
         }
     }
     
-    func updateAttachmentsForMessage(token: String, messageID: String, folder: String, attachments: Array<[String : String]>, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func saveDraftMesssage(token: String, messageID: String, encryptedMessage: String, subject: String, recieversList: Array<String>, folder: String, encryptionObject: [String : String], encrypted: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -491,19 +491,23 @@ class RestAPIService {
         ]
         
         let parameters: Parameters = [
-            
+            JSONKey.content.rawValue : encryptedMessage,
             JSONKey.folder.rawValue: folder,
-            JSONKey.attachments.rawValue : attachments
+            JSONKey.subject.rawValue: subject,
+            JSONKey.receiver.rawValue: recieversList,
+            JSONKey.send.rawValue: false,
+            JSONKey.encryption.rawValue : encryptionObject,
+            JSONKey.encrypted.rawValue : encrypted
         ]
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messageID + "/"
         
-        print("updateAttachmentsForMessage parameters:", parameters)
-        print("updateAttachmentsForMessage url:", url)
+        print("saveDraftMesssage parameters:", parameters)
+        print("saveDraftMesssage url:", url)
         
         Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
             
-            print("updateAttachmentsForMessage responce:", response)
+            print("saveDraftMesssage responce:", response)
             
             switch(response.result) {
             case .success(let value):

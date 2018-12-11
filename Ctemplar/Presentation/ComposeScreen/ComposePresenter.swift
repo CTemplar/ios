@@ -695,7 +695,8 @@ class ComposePresenter {
                 break
             case "saveDraft".localized():
                 print("saveDraft btn Draft action")
-                self.interactor?.postUpdateInboxNotification()
+                //self.interactor?.postUpdateInboxNotification()
+                self.interactor?.saveDraft()
                 self.viewController!.navigationController?.popViewController(animated: true)
                 break
             case "fromAnotherApp".localized():

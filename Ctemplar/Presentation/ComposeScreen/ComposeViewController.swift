@@ -184,10 +184,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
             self.interactor?.createDraft()
-            //self.interactor?.userContactsList()
+            self.interactor?.userContactsList()
         })
-        
-  //      viewAttachmentsList.append(1) //for debug
         
         /*
         if (Device.IS_IPHONE_5) {

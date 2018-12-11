@@ -588,50 +588,6 @@ class APIService {
         }
     }
     
-    func updateAttachmentsForMessage(messageID: String, folder: String, attachments: Array<[String : String]>, completionHandler: @escaping (APIResult<Any>) -> Void) {
-        
-        self.checkTokenExpiration(){ (complete) in
-            if complete {
-                
-                if let token = self.getToken() {
-                    
-                    HUD.show(.progress)
-                    
-                    self.restAPIService?.updateAttachmentsForMessage(token: token, messageID: messageID, folder: folder, attachments: attachments)  {(result) in
-                        
-                        switch(result) {
-                            
-                        case .success(let value):
-                            
-                            print("updateAttachmentsForMessage success:", value)
-                            
-                            if let response = value as? Dictionary<String, Any> {
-                                
-                                if let message = self.parseServerResponse(response:response) {
-                                    print("updateAttachmentsForMessage message:", message)
-                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
-                                    completionHandler(APIResult.failure(error))
-                                } else {                                    
-                                    let emailMessage = EmailMessage(dictionary: response)
-                                    completionHandler(APIResult.success(emailMessage))
-                                }
-                            } else {
-                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
-                                completionHandler(APIResult.failure(error))
-                            }
-                            
-                        case .failure(let error):
-                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
-                            completionHandler(APIResult.failure(error))
-                        }
-                        
-                        HUD.hide()
-                    }
-                }
-            }
-        }
-    }
-    
     func mailboxesList(completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         self.checkTokenExpiration(){ (complete) in
@@ -788,6 +744,51 @@ class APIService {
                             
                             print("deleteMessages success:", value)
                             completionHandler(APIResult.success(value))
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                        
+                        //HUD.hide()
+                    }
+                }
+            }
+        }
+    }
+    
+    func saveDraftMesssage(messageID: String, encryptedMessage: String, subject: String, recieversList: Array<String>, folder: String, encryptionObject: [String : String], encrypted: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    
+                    //HUD.show(.progress)
+                    
+                    self.restAPIService?.saveDraftMesssage(token: token, messageID: messageID, encryptedMessage: encryptedMessage, subject: subject, recieversList: recieversList, folder: folder, encryptionObject: encryptionObject, encrypted: encrypted) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            
+                            print("saveDraftMesssage success:", value)
+                            
+                            if let response = value as? Dictionary<String, Any> {
+                                
+                                if let message = self.parseServerResponse(response:response) {
+                                    print("saveDraftMesssage message:", message)
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    //completionHandler(APIResult.success(value))
+                                    let emailMessage = EmailMessage(dictionary: response)
+                                    completionHandler(APIResult.success(emailMessage))
+                                }
+                            } else {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
+                            }
                             
                         case .failure(let error):
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
