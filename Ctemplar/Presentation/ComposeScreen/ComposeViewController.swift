@@ -314,6 +314,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             if self.messageTextView.text.isEmpty {
                 self.messageTextView.text = "composeEmail".localized()
                 self.messageTextView.textColor = UIColor.lightGray
+            } else {
+                //self.presenter!.setupMessageSectionSize()
             }
         }
         
@@ -351,6 +353,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: textView.text)
         case self.messageTextView:
              //self.messageAttributedText = self.messageTextView.attributedText
+            self.presenter!.setupMessageSectionSize()
             break
         default:
             break
@@ -372,7 +375,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         case self.ccToTextView:
             return (self.interactor?.holdCcToTextViewInput(textView: self.ccToTextView, shouldChangeTextIn: range, replacementText: text))!
         case self.bccToTextView:
-            return (self.interactor?.holdBccToTextViewInput(textView: self.bccToTextView, shouldChangeTextIn: range, replacementText: text))!            
+            return (self.interactor?.holdBccToTextViewInput(textView: self.bccToTextView, shouldChangeTextIn: range, replacementText: text))!
+        case self.messageTextView:
+            //self.presenter!.setupMessageSectionSize()
+            break
         default:
             break
         }
