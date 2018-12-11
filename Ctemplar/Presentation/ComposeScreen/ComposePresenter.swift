@@ -60,7 +60,7 @@ class ComposePresenter {
         
         var tag = ComposeSubViewTags.attachmentsViewTag.rawValue
         
-        for _ in (self.viewController?.mailAttachmentsList)! {
+        for _ in (self.viewController?.viewAttachmentsList)! {
             
             let view = UIView(frame: CGRect(x: k_emailToTextViewLeftOffset, y: messageContentHeight + attachmentsHeight, width: (self.viewController?.view.frame.size.width)! - k_emailToTextViewLeftOffset - k_emailToTextViewLeftOffset, height: k_attachmentViewHeight))
             tag = tag + 1
@@ -86,7 +86,7 @@ class ComposePresenter {
         
         var tag = 500
         
-        for _ in (self.viewController?.mailAttachmentsList)! {
+        for _ in (self.viewController?.viewAttachmentsList)! {
             
             tag = tag + 1
             
@@ -646,11 +646,11 @@ class ComposePresenter {
     
     func showDraftActionsView() {
         
-        var moreActionsButtonsName: Array<String> = []
+        var actionsButtonsName: Array<String> = []
 
-        moreActionsButtonsName = self.setupDraftActionsButtons()
+        actionsButtonsName = self.setupDraftActionsButtons()
         
-        self.viewController?.draftActionsView?.setup(buttonsNameArray: moreActionsButtonsName)
+        self.viewController?.draftActionsView?.setup(buttonsNameArray: actionsButtonsName)
         
         let hidden = self.viewController?.draftActionsView?.isHidden
         
@@ -661,9 +661,31 @@ class ComposePresenter {
     
     func setupDraftActionsButtons() -> Array<String> {
         
-        let moreActionsButtonsName: Array<String> = ["cancel".localized(), "discardDraft".localized(), "saveDraft".localized()]
+        let actionsButtonsName: Array<String> = ["cancel".localized(), "discardDraft".localized(), "saveDraft".localized()]
         
-        return moreActionsButtonsName
+        return actionsButtonsName
+    }
+    
+    func showAttachActionsView() {
+        
+        var actionsButtonsName: Array<String> = []
+        
+        actionsButtonsName = self.setupAttachActionsButtons()
+        
+        self.viewController?.draftActionsView?.setup(buttonsNameArray: actionsButtonsName)
+        
+        let hidden = self.viewController?.draftActionsView?.isHidden
+        
+        self.viewController?.draftActionsView?.isHidden = !hidden!
+        
+        self.viewController!.view.endEditing(true)
+    }
+    
+    func setupAttachActionsButtons() -> Array<String> {
+        
+        let actionsButtonsName: Array<String> = ["cancel".localized(), "fromAnotherApp".localized(), "photoLibrary".localized()]
+        
+        return actionsButtonsName
     }
     
     func applyDraftAction(_ sender: AnyObject, isButton: Bool) {
@@ -674,7 +696,7 @@ class ComposePresenter {
             
             let title = button.title(for: .normal)
             
-            print("title:", title as Any)
+            //print("title:", title as Any)
             
             switch title {
             case MoreActionsTitles.cancel.rawValue.localized():
@@ -692,12 +714,18 @@ class ComposePresenter {
                 self.interactor?.postUpdateInboxNotification()
                 self.viewController!.navigationController?.popViewController(animated: true)
                 break
+            case "fromAnotherApp".localized():
+                self.showAttachPicker()
+                break
+            case "photoLibrary".localized():
+                
+                break
 
             default:
                 print("more actions: default")
             }
         }
-        
-        self.showDraftActionsView()
+ 
+        self.viewController?.draftActionsView?.isHidden = true
     }
 }

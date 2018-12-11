@@ -107,6 +107,9 @@
 "saveDraft" = "Save draft";
 "discardDraft" = "Discard draft";
 
+"fromAnotherApp" = "From another app";
+"photoLibrary" = "Photo library";
+
 //Side Menu Cells
 "showMoreFolders" = "Show More Folders";
 "hideFolders" = "Hide Folders";

@@ -93,6 +93,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var usersPublicKeys = Array<Key>()
     
     var mailAttachmentsList = Array<[String : String]>()
+    var viewAttachmentsList = Array<Int>()
     
     var encryptedMail : Bool = false
     
@@ -100,6 +101,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     var messagesArray                     : Array<EmailMessage> = []
     //var dercyptedMessagesArray            : Array<String> = []
+    
+    var runOnce : Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -180,7 +183,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
-            //self.interactor?.createDraft()
+            self.interactor?.createDraft()            
             self.interactor?.userContactsList()
         })
         /*
@@ -197,7 +200,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         super.viewDidAppear(animated)
         
         //self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
-        self.presenter?.setupMessageSectionSize()
+        if self.runOnce == true { 
+            self.presenter?.setupMessageSectionSize()
+            self.runOnce = false
+        }
     }
     
     func addGesureRecognizers() {
@@ -244,7 +250,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     @IBAction func attachmentButtonPressed(_ sender: AnyObject) {
         
-        self.presenter!.showAttachPicker()
+        //self.presenter!.showAttachPicker()
+        self.presenter!.showAttachActionsView()
     }
     
     @IBAction func encryptedButtonPressed(_ sender: AnyObject) {
@@ -477,11 +484,20 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.attachmentButton.isEnabled = false
         
         self.interactor?.attachFileToDraftMessage(url: urls.first!)
+        
+        let newIndex = self.viewAttachmentsList.count
+        self.viewAttachmentsList.append(newIndex)
+        self.presenter?.setupMessageSectionSize()
     }
     
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
         
         self.attachmentButton.isEnabled = true
+        
+        //if self.viewAttachmentsList.count > 0 {
+        //    self.viewAttachmentsList.removeLast()
+       // }
+       // self.presenter?.setupMessageSectionSize()
     }
     
     //MARK: - notification
