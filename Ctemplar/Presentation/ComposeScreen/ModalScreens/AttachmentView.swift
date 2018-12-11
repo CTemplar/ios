@@ -25,7 +25,7 @@ class AttachmentView: UIView {
     @IBOutlet var backgroundProgressView    : UIView!
     @IBOutlet var progressView    : UIView!
     
-    var indexTag : Int = 0
+    var fileUrl : URL!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,6 +42,8 @@ class AttachmentView: UIView {
     }
     
     func setup(fileUrl: URL) {
+        
+        self.fileUrl = fileUrl
         
         let fileData = try? Data(contentsOf: fileUrl)
         let fileSize = fileData?.sizeData()

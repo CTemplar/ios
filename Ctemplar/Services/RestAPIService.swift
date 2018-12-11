@@ -482,6 +482,37 @@ class RestAPIService {
         }
     }
     
+    func updateAttachmentsForMessage(token: String, messageID: String, folder: String, attachments: Array<[String : String]>, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            
+            JSONKey.folder.rawValue: folder,
+            JSONKey.attachments.rawValue : attachments
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messageID + "/"
+        
+        print("updateAttachmentsForMessage parameters:", parameters)
+        print("updateAttachmentsForMessage url:", url)
+        
+        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("updateAttachmentsForMessage responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
     func deleteMessages(token: String, messagesIDIn: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [

@@ -589,6 +589,7 @@ extension ComposeViewController: AttachmentDelegate {
         for (index, attachmentView) in self.viewAttachmentsList.enumerated() {
             if attachmentView.tag == tag {
                 self.viewAttachmentsList.remove(at: index)
+                self.interactor?.removeAttachFromMailAttachmentList(file: attachmentView.fileUrl)
             }
         }
         

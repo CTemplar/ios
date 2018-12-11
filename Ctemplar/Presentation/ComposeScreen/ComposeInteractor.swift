@@ -82,6 +82,24 @@ class ComposeInteractor {
         }
     }
     
+    func updateAttachmentsForMessage(messsageID: String, attachments: Array<[String : String]>) {
+        
+        apiService?.updateAttachmentsForMessage(messageID: messsageID, folder: MessagesFoldersName.draft.rawValue, attachments: attachments) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("updateAttachmentsForMessage value:", value)
+   
+                self.sendingMessage = value as! EmailMessage
+                
+            case .failure(let error):
+                print("updateSendingMessage error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Send Mail Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
     func publicKeysFor(userEmailsArray: Array<String>, completion:@escaping (Array<Key>) -> () ) {
         
         var recieversUsersPublicKeys = Array<Key>()
@@ -163,8 +181,7 @@ class ComposeInteractor {
                 print("create Attachment value:", value)
                 
                 let attachment = value as! Attachment
-                self.viewController?.mailAttachmentsList.append(attachment.toDictionary())                
-                //self.presenter?.setupMessageSectionSize()
+                self.viewController?.mailAttachmentsList.append(attachment.toDictionary())
                 
             case .failure(let error):
                 print("error:", error)
@@ -291,8 +308,6 @@ class ComposeInteractor {
                     
                     message = self.encryptMessage(publicKeys: pgpKeys, message: self.viewController!.messageTextView.text)
                     
-                    //self.updateSendingMessage(messsageID: (self.sendingMessage.messsageID?.description)!, encryptedMessage: message, encryptionObject: encryptionObjectDictionary)
-                    
                     if let messageID = self.sendingMessage.messsageID {
                         self.updateSendingMessage(messsageID: messageID.description, encryptedMessage: message, encryptionObject: encryptionObjectDictionary, subject: self.viewController!.subject, send: true, recieversList: self.viewController!.emailsToArray, encrypted: true, attachments: self.viewController!.mailAttachmentsList)
                     }
@@ -373,6 +388,29 @@ class ComposeInteractor {
         
         if let messageID = self.sendingMessage.messsageID {
             self.uploadAttach(fileUrl: url, messageID: messageID.description)
+        }
+    }
+    
+    func removeAttachFromMailAttachmentList(file: URL) {
+        
+        for (index, attach) in self.viewController!.mailAttachmentsList.enumerated() {
+           
+            //print("attach document URL:", attach["document"] as Any)
+            //print("file URL:", file.absoluteString)
+            
+            let fileName = file.lastPathComponent
+            print("fileName:", fileName)
+            
+            let attachFileName = (attach["document"]! as NSString).lastPathComponent
+            print("attachFileName:", attachFileName)
+            
+            if attachFileName == fileName {
+                self.viewController!.mailAttachmentsList.remove(at: index)
+            }
+        }
+        
+        if let messageID = self.sendingMessage.messsageID {
+            self.updateAttachmentsForMessage(messsageID: messageID.description, attachments: self.viewController!.mailAttachmentsList)
         }
     }
     
