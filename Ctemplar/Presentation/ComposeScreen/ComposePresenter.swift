@@ -722,6 +722,7 @@ class ComposePresenter {
         attachmentView?.tag = tag
         attachmentView?.delegate = self.viewController
         attachmentView?.setup(fileUrl: fileUrl)
+        attachmentView?.backgroundProgressView.isHidden = true
         
         return attachmentView!
     }

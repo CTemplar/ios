@@ -531,6 +531,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.attachDownloadUpdate), name: NSNotification.Name(rawValue: k_attachUploadUpdateNotificationID), object: nil)
     }
     
     @objc func keyboardWillShow(notification: Notification) {
@@ -556,6 +557,26 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         scrollViewBottomOffsetConstraint.constant = 0.0
         self.presenter?.setupMessageSectionSize()
         tableViewBottomOffsetConstraint.constant = 0.0
+    }
+    
+    @objc func attachDownloadUpdate(notification: Notification) {
+        
+        let uploadValue = notification.object
+        
+        let procent = uploadValue as! Double * 100
+        
+        print("procent:", procent)
+        
+        if self.viewAttachmentsList.count > 0 {
+        
+            let attachment = self.viewAttachmentsList.last
+            attachment?.backgroundProgressView.isHidden = false
+            attachment?.progressViewWidthConstraint.constant = CGFloat(procent)
+        
+            if procent == 100 {
+                attachment?.backgroundProgressView.isHidden = true
+            }
+        }
     }
 }
 

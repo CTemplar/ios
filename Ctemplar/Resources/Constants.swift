@@ -90,6 +90,7 @@ let k_LoginStoryboardName_iPad             = "Login-iPad"
 
 let k_updateUserDataNotificationID          = "UpdateUserDataNotificationIdentifier"
 let k_updateInboxMessagesNotificationID     = "updateInboxMessagesNotification"
+let k_attachUploadUpdateNotificationID      = "attachUploadUpdateNotificationIdentifier"
 
 // colors
 
@@ -133,6 +134,8 @@ let k_pdfColor : UIColor = UIColor(red: 204.0 / 255.0, green: 75.0 / 255.0, blue
 let k_pngColor : UIColor = UIColor(red: 101.0 / 255.0, green: 156.0 / 255.0, blue: 53.0 / 255.0, alpha: 1.0)
 let k_jpgColor : UIColor = UIColor(red: 19.0 / 255.0, green: 160.0 / 255.0, blue: 133.0 / 255.0, alpha: 1.0)
 let k_otherColor : UIColor = UIColor(red: 148.0 / 255.0, green: 165.0 / 255.0, blue: 165.0 / 255.0, alpha: 1.0)
+
+let k_fileNameColor : UIColor = UIColor(red: 90.0 / 255.0, green: 90.0 / 255.0, blue: 90.0 / 255.0, alpha: 1.0)
 
 //size constants
 

@@ -824,6 +824,7 @@ class RestAPIService {
                 
                 upload.uploadProgress(closure: { (progress) in
                     print("upload Data", progress.fractionCompleted * 100)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_attachUploadUpdateNotificationID), object: progress.fractionCompleted)
                 })
                 
                 upload.responseJSON(completionHandler: { (response) in

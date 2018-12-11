@@ -49,8 +49,24 @@ class AttachmentView: UIView {
         let fileSize = fileData?.sizeData()
         let fileName = fileUrl.lastPathComponent
         
+        self.formatFileTitle(fileName: fileName, fileSize: fileSize!)       
+    }
+    
+    func formatFileTitle(fileName: String, fileSize: String) {
         
-        titleLabel.text = fileName + " " + "(" + fileSize! + ")"
+        let sizeText = "(" + fileSize + ")"
+        let titleText = fileName + " " + sizeText
+        
+        let attributedString = NSMutableAttributedString(string: titleText, attributes: [
+            .font: UIFont(name: k_latoRegularFontName, size: 14.0)!,
+            .foregroundColor: k_fileNameColor,
+            .kern: 0.0
+            ])
+   
+        _ = attributedString.setForgroundColor(textToFind: sizeText, color: k_otherColor)
+        _ = attributedString.setFont(textToFind: sizeText, font: UIFont(name: k_latoBoldFontName, size: 14.0)!)
+        
+        titleLabel.attributedText = attributedString
     }
     
     //MARK: - IBActions
