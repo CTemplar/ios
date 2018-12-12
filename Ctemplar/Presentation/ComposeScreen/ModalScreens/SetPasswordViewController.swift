@@ -159,15 +159,15 @@ class SetPasswordViewController: UIViewController, UITextFieldDelegate {
             self.passWarningLabel.isHidden = true
         }
         
-        if (self.formatterService?.validatePasswordLench(enteredPassword: self.passwordHint))! {
+        //if (self.formatterService?.validatePasswordLench(enteredPassword: self.passwordHint))! {
             if passwordMatched {
                 self.setApplyButton(enabel: true)
             } else {
                 self.setApplyButton(enabel: false)
             }
-        } else {
-            self.setApplyButton(enabel: false)
-        }
+        //} else {
+        //    self.setApplyButton(enabel: false)
+        //}
         
         self.darkLineView.isHidden = true
         self.redLineView.isHidden = true
