@@ -68,7 +68,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var draftActionsView : MoreActionsView?
     
     var answerMode : AnswerMessageMode!
-    var navBarTitle: String = ""
+    //var navBarTitle: String = ""
     var subject    : String = ""
     var sender     : String = ""
     
@@ -175,7 +175,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.presenter?.setMailboxDataSource(mailboxes: mailboxesList)
         
         self.dataSource?.initWith(parent: self, tableView: tableView)
-        self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset)        
+        self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset)
             
         if self.message != nil {
             
@@ -190,6 +190,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
                 self.presenter?.setupEncryptedButton()
                 
             } else {
+                self.presenter?.fillAllEmailsFields(message: self.message!)
                 DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100), execute: {
                     self.interactor?.createDraftWithParent(message: self.message!)
                 })
@@ -492,13 +493,25 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
         //self.tableView.isHidden = true
         print("sender:", sender)
-        view.endEditing(true)
+        
+        //if sender != self.tableView {
+            view.endEditing(true)
+       // }
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         
         return true
     }
+    /*
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        
+        if touch.view?.isDescendant(of: self.tableView) == true {
+            return false
+        }
+        
+        return true
+    }*/
     
     //MARK: - document Picker delegate
     

@@ -38,7 +38,7 @@ class ComposeInteractor {
                 self.presenter?.setupAttachments()
                 //self.presenter?.setupMessageSectionSize()
                 //self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
-                self.presenter?.fillAllEmailsFields(message: self.sendingMessage)
+                //self.presenter?.fillAllEmailsFields(message: self.sendingMessage)
                 self.presenter?.setupMessageSection(message: self.sendingMessage)
                 self.presenter?.setupEncryptedButton()
                 
@@ -310,11 +310,11 @@ class ComposeInteractor {
             
             var encryptionObjectDictionary =  [String : String]()
             
-            let encrypted = self.sendingMessage.isEncrypted
+            let encrypted = true//self.viewController!.encryptedMail //self.sendingMessage.isEncrypted
             
             var messageContent = self.getEnteredMessageContent()
             
-            if encrypted! {
+            if encrypted {
                 messageContent = self.encryptMessageWithOwnPublicKey(message: messageContent)
                 
                 if let encryptionObject = self.sendingMessage.encryption {
@@ -322,7 +322,7 @@ class ComposeInteractor {
                 }
             }
             
-            self.saveDraftMessage(messageID: messageID, messageContent: messageContent, encryptionObject: encryptionObjectDictionary, subject: self.viewController!.subject, send: false, recieversList: self.viewController!.emailsToArray, encrypted: encrypted!)
+            self.saveDraftMessage(messageID: messageID, messageContent: messageContent, encryptionObject: encryptionObjectDictionary, subject: self.viewController!.subject, send: false, recieversList: self.viewController!.emailsToArray, encrypted: encrypted)
         }
     }
     
