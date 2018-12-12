@@ -73,8 +73,10 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             return 0//k_sideMenuSeparatorHeight
         case SideMenuSectionIndex.options.rawValue:
             return k_sideMenuSeparatorHeight
+        case SideMenuSectionIndex.manageFolders.rawValue:
+            return k_sideMenuSeparatorHeight
         case SideMenuSectionIndex.customFolders.rawValue:
-            return k_sideMenuSectionHeaderHeight
+            return k_sideMenuSeparatorHeight//k_sideMenuSectionHeaderHeight
         default:
             return 0
         }
@@ -83,13 +85,16 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         // Dequeue with the reuse identifier
-        let header = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: k_SideMenuTableSectionHeaderViewIdentifier)
-        let headerView = header as! SideMenuTableSectionHeaderView
+        //let header = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: k_SideMenuTableSectionHeaderViewIdentifier)
+        //let headerView = header as! SideMenuTableSectionHeaderView
         
         let separatorLineHeaderView: UIView =  UIView()
         separatorLineHeaderView.backgroundColor = k_sideMenuSeparatorColor
-        header?.contentView.backgroundColor = k_whiteColor
+        //header?.contentView.backgroundColor = k_whiteColor
         
+        return separatorLineHeaderView
+        
+        /*
         switch section {
         case SideMenuSectionIndex.mainFolders.rawValue:
             headerView.setupHeader(iconName: "", title: "", foldersCount: 0, hideBottomLine: false)
@@ -98,17 +103,23 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             //headerView.setupHeader(iconName: "", title: "", hideBottomLine: false)
             //break
             return separatorLineHeaderView
+        case SideMenuSectionIndex.manageFolders.rawValue:
+            //break
+            return separatorLineHeaderView
         case SideMenuSectionIndex.customFolders.rawValue:
+            /*
             headerView.setupHeader(iconName: k_darkFoldersIconImageName, title: "manageFolders".localized(), foldersCount: self.customFoldersArray.count, hideBottomLine: false)
             let headerTapGesture = UITapGestureRecognizer()
             headerTapGesture.addTarget(self, action: #selector(self.tappedHeaderAction(sender:)))
             headerView.addGestureRecognizer(headerTapGesture)
-            break
+            break*/
+            
+            return separatorLineHeaderView
         default:
             print("unknown header section")
-        }
+        }*/
         
-        return headerView
+       // return headerView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -118,6 +129,8 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             return mainFoldersArray.count
         case SideMenuSectionIndex.options.rawValue:
             return self.optionsArray.count
+        case SideMenuSectionIndex.manageFolders.rawValue:
+            return 1
         case SideMenuSectionIndex.customFolders.rawValue:
             if self.showAllFolders {
                 return self.customFoldersArray.count + 1
@@ -166,6 +179,17 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: selected, iconName: iconName, title: optionName, unreadCount: 0)
             
             break
+        case SideMenuSectionIndex.manageFolders.rawValue:
+            //cell.textLabel?.text = "Manage Folers"
+            cell = tableView.dequeueReusableCell(withIdentifier: k_SideMenuTableViewCellIdentifier)! as! SideMenuTableViewCell
+            
+            let optionName = "Manage Folders"
+            let iconName = k_darkFoldersIconImageName
+            let selected = isSelected(section: indexPath.section, row: indexPath.row)
+            
+            (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: selected, iconName: iconName, title: optionName, unreadCount: 0)
+            
+            break
         case SideMenuSectionIndex.customFolders.rawValue:
             
             if self.showAllFolders {
@@ -184,7 +208,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
                     (cell as! CustomFolderTableViewCell).setupCustomFolderTableCell(selected: selected, iconColor: folderColor!, title: folderName!, unreadCount: unreadCount!)
                 } else {
                 
-                    if indexPath.row == self.customFoldersArray.count{
+                    if indexPath.row == self.customFoldersArray.count {
                         cell.textLabel?.textColor = k_sideMenuColor
                         cell.textLabel?.text = "hideFolders".localized()
                     }
@@ -241,10 +265,13 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
                 let optionName = self.mainFoldersArray[indexPath.row]
                 self.parentViewController?.presenter?.interactor?.selectSideMenuAction(optionName: optionName)
                 
-            break
+                break
             case SideMenuSectionIndex.options.rawValue:
                 let optionName = self.optionsArray[indexPath.row]
                 self.parentViewController?.presenter?.interactor?.selectSideMenuAction(optionName: optionName)
+                break
+            case SideMenuSectionIndex.manageFolders.rawValue:
+                
                 break
             case SideMenuSectionIndex.customFolders.rawValue:
                 

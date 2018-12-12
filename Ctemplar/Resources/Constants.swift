@@ -387,8 +387,9 @@ enum SideMenuSectionIndex: Int {
     
     case mainFolders      = 0
     case options          = 1
-    case customFolders    = 2    
-    case sectionsCount    = 3
+    case manageFolders    = 2
+    case customFolders    = 3
+    case sectionsCount    = 4
 }
 
 enum MoreViewButtonsTag: Int, CaseIterable {
