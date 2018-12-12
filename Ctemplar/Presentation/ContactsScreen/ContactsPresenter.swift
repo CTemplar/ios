@@ -28,9 +28,16 @@ class ContactsPresenter {
         self.viewController?.searchController.searchBar.delegate = self.viewController
         self.viewController?.searchController.searchBar.returnKeyType = .done
         
-        //UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).leftViewMode = .never
-        UISearchBar.appearance().searchTextPositionAdjustment = UIOffset(horizontal: 10, vertical: 0)
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).leftViewMode = .never
+        
+        UISearchBar.appearance().searchTextPositionAdjustment = UIOffset(horizontal: 34, vertical: 0) //10
        // UISearchBar.appearance().searchFieldBackgroundPositionAdjustment = UIOffset(horizontal: 0, vertical: 8)
+        
+        //self.viewController?.searchController.searchBar.setImage(UIImage(named: "SearchButton"), for: .search, state: .normal)
+  
+        let imageView = UIImageView(image: UIImage(named: "SearchButton"))
+        imageView.frame = CGRect(x: 16, y: 5, width: 22, height: 28)
+        self.viewController?.searchController.searchBar.add(subview: imageView)
         
         if let searchTextField = self.viewController?.searchController.searchBar.value(forKey: "_searchField") as? UITextField {
             searchTextField.borderStyle = .none
