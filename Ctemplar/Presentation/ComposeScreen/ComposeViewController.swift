@@ -168,34 +168,44 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         }
         //========
         */
-        
-        //self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
-        
+          
         self.presenter?.setMailboxes(mailboxes: mailboxesList)
         self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
-        self.presenter?.setupSubject(subjectText: self.subject)
+        
+        self.presenter?.setMailboxDataSource(mailboxes: mailboxesList)
         
         self.dataSource?.initWith(parent: self, tableView: tableView)
-        self.presenter?.setMailboxDataSource(mailboxes: mailboxesList)
-        //self.presenter?.setContactsDataSource(contacts: contactsList)
-        
-        self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset)
-        
-        self.addGesureRecognizers()
-        
-        self.presenter?.setupAttachments()
-        self.presenter?.setupMessageSection(emailsArray: self.messagesArray)  
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
+        self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset)        
             
-            if self.message != nil {
-                self.interactor?.sendingMessage = self.message!
+        if self.message != nil {
+            
+            if message?.folder == MessagesFoldersName.draft.rawValue { //if message is already in Draft folder we do not need to create new Draft instance
+                self.interactor?.sendingMessage = message!
+                
+                self.answerMode = AnswerMessageMode.newMessage
+                
+                self.presenter?.setupAttachments()               
+                self.presenter?.fillAllEmailsFields(message: self.message!)
+                self.presenter?.setupMessageSection(message: self.message!)
+                self.presenter?.setupEncryptedButton()
+                
             } else {
-                self.interactor?.createDraft()
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100), execute: {
+                    self.interactor?.createDraftWithParent(message: self.message!)
+                })
             }
-            
+
+        } else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100), execute: {
+                self.interactor?.createDraft()
+            })
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
             self.interactor?.userContactsList()
         })
+        
+        self.presenter?.setupSubject(subjectText: self.subject, answerMode: self.answerMode)
         
         /*
         if (Device.IS_IPHONE_5) {
@@ -204,6 +214,9 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             keyboardOffset = 0.0
         }
         */
+        
+        self.addGesureRecognizers()
+        
         self.addNotificationObserver()
     }
     
@@ -299,14 +312,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             //
             
             if self.messageTextView.text.isEmpty {
-                self.messageTextView.text = "composeEmail".localized()
-                self.messageTextView.textColor = UIColor.lightGray
+                self.presenter?.setPlaceholderToMessageTextView(show: true)
             }
         } else {
-            if self.messageTextView.text == "composeEmail".localized() {
-                self.messageTextView.text = ""
-                self.messageTextView.textColor = UIColor.darkText //temp
-            }
+            self.presenter?.setPlaceholderToMessageTextView(show: false)
         }
     }
     
@@ -323,8 +332,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         if textView == self.messageTextView {
             if self.messageTextView.text.isEmpty {
-                self.messageTextView.text = "composeEmail".localized()
-                self.messageTextView.textColor = UIColor.lightGray
+                self.presenter?.setPlaceholderToMessageTextView(show: true)
             } else {
                 //self.presenter!.setupMessageSectionSize()
             }

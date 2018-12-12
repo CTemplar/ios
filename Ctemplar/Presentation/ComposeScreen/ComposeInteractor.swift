@@ -32,12 +32,19 @@ class ComposeInteractor {
             switch(result) {
                 
             case .success(let value):
-                print("createMessage value:", value)
+                print("create Draft Message value:", value)
                 self.sendingMessage = value as! EmailMessage
+                
+                self.presenter?.setupAttachments()
+                //self.presenter?.setupMessageSectionSize()
+                //self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
+                self.presenter?.fillAllEmailsFields(message: self.sendingMessage)
+                self.presenter?.setupMessageSection(message: self.sendingMessage)
+                self.presenter?.setupEncryptedButton()
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Send Mail Error", message: error.localizedDescription, button: "closeButton".localized())
+                AlertHelperKit().showAlert(self.viewController!, title: "Create Draft Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
     }
@@ -59,9 +66,9 @@ class ComposeInteractor {
         }
     }
     
-    func saveDraftMessage(messageID: Int, encryptedMessage: String, encryptionObject: [String : String], subject: String, send: Bool, recieversList: Array<String>, encrypted: Bool) {
+    func saveDraftMessage(messageID: Int, messageContent: String, encryptionObject: [String : String], subject: String, send: Bool, recieversList: Array<String>, encrypted: Bool) {
         
-        apiService?.saveDraftMesssage(messageID: messageID.description, encryptedMessage: encryptedMessage, subject: subject, recieversList: recieversList, folder: MessagesFoldersName.draft.rawValue, encryptionObject: encryptionObject, encrypted: encrypted)  {(result) in
+        apiService?.saveDraftMesssage(messageID: messageID.description, messageContent: messageContent, subject: subject, recieversList: recieversList, folder: MessagesFoldersName.draft.rawValue, encryptionObject: encryptionObject, encrypted: encrypted)  {(result) in
             
             switch(result) {
                 
@@ -269,15 +276,25 @@ class ComposeInteractor {
     
     func createDraft() {
         
-        var message : String = ""
+        var messageContent : String = ""
         
-        if let userKeys = self.pgpService?.getStoredPGPKeys() {
-            if userKeys.count > 0 {
-                message = self.encryptMessage(publicKeys: userKeys, message: message/*self.viewController!.messageTextView.text*/)
-            }
+        messageContent = self.encryptMessageWithOwnPublicKey(message: messageContent)
+        
+        self.createDraftMessage(content: messageContent, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, folder: MessagesFoldersName.draft.rawValue, mailboxID: (self.viewController?.mailboxID)!, send: false, encrypted: false, encryptionObject: [:])
+    }
+    
+    func createDraftWithParent(message: EmailMessage) {
+        
+        let recievers = message.receivers as! Array<String>
+        let mailboxID = (self.viewController?.mailboxID)!
+        
+        var encryptionObjectDictionary =  [String : String]()
+        
+        if let encryptionObject = message.encryption {
+            encryptionObjectDictionary = encryptionObject.toDictionary()
         }
         
-        self.createDraftMessage(content: message, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, folder: MessagesFoldersName.draft.rawValue, mailboxID: (self.viewController?.mailboxID)!, send: false, encrypted: false, encryptionObject: [:])
+        self.createDraftMessage(content: message.content!, subject: message.subject!, recievers: recievers, folder: MessagesFoldersName.draft.rawValue, mailboxID: mailboxID, send: false, encrypted: message.isEncrypted!, encryptionObject: encryptionObjectDictionary)
     }
     
     func deleteDraft() {
@@ -293,17 +310,38 @@ class ComposeInteractor {
             
             var encryptionObjectDictionary =  [String : String]()
             
-            //encryptionObjectDictionary = (self.sendingMessage.encryption?.toDictionary())!
-            
             let encrypted = self.sendingMessage.isEncrypted
             
-            self.saveDraftMessage(messageID: messageID, encryptedMessage: self.sendingMessage.content!, encryptionObject: encryptionObjectDictionary, subject: self.viewController!.subject, send: false, recieversList: self.viewController!.emailsToArray, encrypted: encrypted!)
+            var messageContent = self.getEnteredMessageContent()
+            
+            if encrypted! {
+                messageContent = self.encryptMessageWithOwnPublicKey(message: messageContent)
+                
+                if let encryptionObject = self.sendingMessage.encryption {
+                    encryptionObjectDictionary = encryptionObject.toDictionary()
+                }
+            }
+            
+            self.saveDraftMessage(messageID: messageID, messageContent: messageContent, encryptionObject: encryptionObjectDictionary, subject: self.viewController!.subject, send: false, recieversList: self.viewController!.emailsToArray, encrypted: encrypted!)
         }
+    }
+    
+    func getEnteredMessageContent() -> String {
+        
+        var messageContent = self.viewController!.messageTextView.text
+        
+        if messageContent == "composeEmail".localized() {
+            messageContent = ""
+        }
+        
+        return messageContent!
     }
     
     func sendEncryptedEmailForCtemplarUser(publicKeys: Array<Key>) {
         
-        let encryptedMessage = self.encryptMessage(publicKeys: publicKeys, message: self.viewController!.messageTextView.text)
+        let messageContent = self.getEnteredMessageContent()
+        
+        let encryptedMessage = self.encryptMessage(publicKeys: publicKeys, message: messageContent)
         
         if let messageID = self.sendingMessage.messsageID {
             self.updateSendingMessage(messageID: messageID.description, encryptedMessage: encryptedMessage, encryptionObject: [:], subject: self.viewController!.subject, send: true, recieversList: self.viewController!.emailsToArray, encrypted: true, attachments: self.viewController!.mailAttachmentsList)
@@ -312,9 +350,8 @@ class ComposeInteractor {
     
     func sendEmailForNonCtemplarUser() {
         
-        var message : String = ""
+        var messageContent = self.getEnteredMessageContent()
         var encryptionObjectDictionary =  [String : String]()
-        //let folder : String = MessagesFoldersName.sent.rawValue
         
         if self.viewController?.encryptedMail == true {
             
@@ -336,22 +373,33 @@ class ComposeInteractor {
                     
                     pgpKeys.append(nonCtemplarPGPKey)
                     
-                    message = self.encryptMessage(publicKeys: pgpKeys, message: self.viewController!.messageTextView.text)
+                    messageContent = self.encryptMessage(publicKeys: pgpKeys, message: messageContent)
                     
                     if let messageID = self.sendingMessage.messsageID {
-                        self.updateSendingMessage(messageID: messageID.description, encryptedMessage: message, encryptionObject: encryptionObjectDictionary, subject: self.viewController!.subject, send: true, recieversList: self.viewController!.emailsToArray, encrypted: true, attachments: self.viewController!.mailAttachmentsList)
+                        self.updateSendingMessage(messageID: messageID.description, encryptedMessage: messageContent, encryptionObject: encryptionObjectDictionary, subject: self.viewController!.subject, send: true, recieversList: self.viewController!.emailsToArray, encrypted: true, attachments: self.viewController!.mailAttachmentsList)
                     }
                 }
             }
             
         } else {
             
-            message = self.viewController!.messageTextView.text
-        
             if let messageID = self.sendingMessage.messsageID {
-                self.updateSendingMessage(messageID: messageID.description, encryptedMessage: message, encryptionObject: [:], subject: self.viewController!.subject, send: true, recieversList: self.viewController!.emailsToArray, encrypted: false, attachments: self.viewController!.mailAttachmentsList)
+                self.updateSendingMessage(messageID: messageID.description, encryptedMessage: messageContent, encryptionObject: [:], subject: self.viewController!.subject, send: true, recieversList: self.viewController!.emailsToArray, encrypted: false, attachments: self.viewController!.mailAttachmentsList)
             }
         }
+    }
+    
+    func encryptMessageWithOwnPublicKey(message: String) -> String {
+        
+        var encryptedMessage: String = message
+        
+        if let userKeys = self.pgpService?.getStoredPGPKeys() {
+            if userKeys.count > 0 {
+                encryptedMessage = self.encryptMessage(publicKeys: userKeys, message: message)
+            }
+        }
+        
+        return encryptedMessage
     }
     
     func encryptMessage(publicKeys: Array<Key>, message: String) -> String {
@@ -370,19 +418,15 @@ class ComposeInteractor {
     func sendPasswordForCreatingMessage(password: String, passwordHint: String) {
         
         self.setPassword = password
+  
+        var messageContent : String = self.getEnteredMessageContent()
         
-        var message : String = ""
-        
-        if let userKeys = self.pgpService?.getStoredPGPKeys() {
-            if userKeys.count > 0 {
-                message = self.encryptMessage(publicKeys: userKeys, message: self.viewController!.messageTextView.text)
-            }
-        }
+        messageContent = self.encryptMessageWithOwnPublicKey(message: messageContent)
         
         let encryptionObject = EncryptionObject.init(password: password, passwordHint: passwordHint).toShortDictionary()
         
         if let messageID = self.sendingMessage.messsageID {
-            self.updateSendingMessage(messageID: messageID.description, encryptedMessage: message, encryptionObject: encryptionObject, subject: self.viewController!.subject, send: false, recieversList: self.viewController!.emailsToArray, encrypted: true, attachments: self.viewController!.mailAttachmentsList)
+            self.updateSendingMessage(messageID: messageID.description, encryptedMessage: messageContent, encryptionObject: encryptionObject, subject: self.viewController!.subject, send: false, recieversList: self.viewController!.emailsToArray, encrypted: true, attachments: self.viewController!.mailAttachmentsList)
         }
     }
     

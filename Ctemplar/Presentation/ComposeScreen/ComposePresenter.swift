@@ -74,11 +74,34 @@ class ComposePresenter {
         self.viewController!.attachmentButton .setImage(attachmentButtonImage, for: .normal)
     }
     
+    func setupEncryptedButton() {
+        
+        if let draftMessage = self.viewController!.interactor?.sendingMessage {
+            
+            self.viewController?.encryptedMail = draftMessage.isEncrypted!
+            self.setEncryptedButtonMode(enabled: (self.viewController?.encryptedMail)!)
+        }
+    }
+    
+    func setEncryptedButtonMode(enabled: Bool) {
+        
+        var buttonImage = UIImage()
+        
+        if enabled {
+            buttonImage = UIImage(named: k_encryptApliedImageName)!
+            
+        } else {
+            buttonImage = UIImage(named: k_encryptImageName)!
+        }
+        
+        self.viewController?.encryptedButton .setImage(buttonImage, for: .normal)
+    }
+    
     //MARK: - Setup Message Section
     
     func setupAttachments() {
         
-        if let draftMessage = self.viewController!.message {
+        if let draftMessage = self.viewController!.interactor?.sendingMessage {
         
             if let attachments = draftMessage.attachments {
                 
@@ -100,17 +123,39 @@ class ComposePresenter {
         }
     }
     
+    func setAttachmentsToMessage( topOffset: CGFloat) -> CGFloat {
+        
+        //self.removeAttachmentsView()
+        self.removeAllAttachmentsView()
+        
+        var attachmentsHeight : CGFloat = k_attachmentViewTopOffset
+        
+        for attachmentView in (self.viewController?.viewAttachmentsList)! {
+            
+            let frame = CGRect(x: k_emailToTextViewLeftOffset, y: topOffset + attachmentsHeight, width: (self.viewController?.view.frame.size.width)! - k_emailToTextViewLeftOffset - k_emailToTextViewLeftOffset, height: k_attachmentViewHeight)
+            
+            attachmentView.frame = frame
+            
+            self.viewController!.scrollView.add(subview: attachmentView)
+            
+            attachmentsHeight = attachmentsHeight + k_attachmentViewHeight + k_messageTextViewTopOffset
+        }
+        
+        return attachmentsHeight
+    }
+    
     func setupMessageSectionSize() {
         
         self.setupAttachmentButton()
         
-        //self.viewController?.messageTextView.backgroundColor = UIColor.yellow
+        self.viewController?.messageTextView.backgroundColor = UIColor.yellow
         
         let fixedWidth = self.viewController!.view.frame.width - k_emailToTextViewLeftOffset - k_emailToTextViewLeftOffset
         let messageContentHeight = self.sizeThatFits(textView: self.viewController!.messageTextView, fixedWidth: fixedWidth)
         
         //let scrollViewHeight = self.viewController?.scrollView.frame.size.height
         
+        /*
         self.removeAttachmentsView()
         
         var attachmentsHeight : CGFloat = k_attachmentViewTopOffset
@@ -127,6 +172,9 @@ class ComposePresenter {
             
             attachmentsHeight = attachmentsHeight + k_attachmentViewHeight + k_messageTextViewTopOffset
         }
+        */
+        
+        let attachmentsHeight = self.setAttachmentsToMessage(topOffset: messageContentHeight)
         
         //if Int(messageContentHeight) < Int((scrollViewHeight! - k_messageTextViewTopOffset - k_messageTextViewTopOffset )) {
         //    self.viewController?.messageTextViewHeightConstraint.constant = scrollViewHeight! - k_messageTextViewTopOffset - k_messageTextViewTopOffset
@@ -139,6 +187,47 @@ class ComposePresenter {
         self.viewController?.view.layoutIfNeeded()
     }
     
+    func setupMessageSection(message: EmailMessage) {
+    
+        if let messageContent = self.interactor?.extractMessageContent(message: message) {
+            
+            if messageContent.count > 0 {
+            
+                let replyHeader = self.generateHeader(message: message, answerMode: self.viewController!.answerMode)
+            
+                let messageContentAttributedString = messageContent.html2AttributedString
+                let mutableAttributedString = NSMutableAttributedString(attributedString: replyHeader)
+                mutableAttributedString.append(messageContentAttributedString!)
+            
+                self.viewController?.messageTextView.attributedText = mutableAttributedString
+                self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
+            } else {
+                self.setPlaceholderToMessageTextView(show: true)
+                //self.viewController?.messageTextView.text = "xxssss xxssss xxssssxxssss xxssss xxssss xxssssvvvvvvvvvvv      fedfsdf dfgsdgsd gs gsd gsd gs s sgds gsdgssdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjpsogjsdpo gpsdojg gs dgpogj sg \n\n\n\n\n dgjsdpogj sgjgposgj sogogjo sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg  sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjp sdogjsd g dsgjsgjosgpg g sdpgojsdog sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjp gpsodgj opg sdjp gogjodp gs   000000000 000000000 00000000"
+            }
+        } else {
+            self.setPlaceholderToMessageTextView(show: true)
+        }
+        
+        self.enabledSendButton()
+        self.setupMessageSectionSize()
+    }
+    
+    func setPlaceholderToMessageTextView(show: Bool) {
+        
+        if show {
+            self.viewController?.messageTextView.font = UIFont(name: k_latoRegularFontName, size: 16.0)
+            self.viewController?.messageTextView.text = "composeEmail".localized()
+            self.viewController?.messageTextView.textColor = UIColor.lightGray
+        } else {
+            if self.viewController?.messageTextView.text == "composeEmail".localized() {
+                self.viewController?.messageTextView.text = ""
+                self.viewController?.messageTextView.textColor = UIColor.darkText //temp
+            }
+        }
+    }
+    
+    /*
     func setupMessageSection(emailsArray: Array<EmailMessage>) {
         
         //self.viewController?.dercyptedMessagesArray.removeAll()
@@ -185,7 +274,7 @@ class ComposePresenter {
         
         self.setupMessageSectionSize()
     }
-    
+    */
     func sizeThatFits(textView: UITextView, fixedWidth: CGFloat) -> CGFloat {
         
         textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
@@ -672,13 +761,30 @@ class ComposePresenter {
     
     //MARK: - Setup Subject Section
     
-    func setupSubject(subjectText: String) {
+    func setupSubject(subjectText: String, answerMode: AnswerMessageMode) {
         
         var subject: String = ""
+        var prefix: String = ""
+        
+        switch answerMode {
+        case AnswerMessageMode.newMessage:
+            prefix = ""
+            break
+        case AnswerMessageMode.reply:
+            prefix = "Re: "
+            break
+        case AnswerMessageMode.replyAll:
+            prefix = "Re: "
+            break
+        case AnswerMessageMode.forward:
+            prefix = "Fwd: "
+            break
+        }
         
         if subjectText.count > 0 {
-            subject = "Re: " + subjectText
+            subject = prefix + subjectText
         }
+        
         
         self.viewController!.subjectTextField.text = subject
     }
@@ -689,16 +795,17 @@ class ComposePresenter {
         
         self.viewController?.encryptedMail = !(self.viewController?.encryptedMail)!
         
-        var buttonImage = UIImage()
+        //var buttonImage = UIImage()
         
         if (self.viewController?.encryptedMail)! {
-            buttonImage = UIImage(named: k_encryptApliedImageName)!
+            //buttonImage = UIImage(named: k_encryptApliedImageName)!
             self.viewController?.router?.showSetPasswordViewController()
         } else {
-            buttonImage = UIImage(named: k_encryptImageName)!
+           // buttonImage = UIImage(named: k_encryptImageName)!
         }
         
-        self.viewController?.encryptedButton .setImage(buttonImage, for: .normal)        
+        //self.viewController?.encryptedButton .setImage(buttonImage, for: .normal)
+        self.setEncryptedButtonMode(enabled: (self.viewController?.encryptedMail)!)
     }
     
     //MARK: - Attach Picker

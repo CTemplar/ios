@@ -483,7 +483,7 @@ class RestAPIService {
         }
     }
     
-    func saveDraftMesssage(token: String, messageID: String, encryptedMessage: String, subject: String, recieversList: Array<String>, folder: String, encryptionObject: [String : String], encrypted: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func saveDraftMesssage(token: String, messageID: String, messageContent: String, subject: String, recieversList: Array<String>, folder: String, encryptionObject: [String : String], encrypted: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -491,7 +491,7 @@ class RestAPIService {
         ]
         
         let parameters: Parameters = [
-            JSONKey.content.rawValue : encryptedMessage,
+            JSONKey.content.rawValue : messageContent,
             JSONKey.folder.rawValue: folder,
             JSONKey.subject.rawValue: subject,
             JSONKey.receiver.rawValue: recieversList,
