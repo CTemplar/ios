@@ -25,9 +25,9 @@ class ComposeInteractor {
 
     //MARK: - API
     
-    func createDraftMessage(content: String, subject: String, recievers: Array<String>, folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String]) {
+    func createDraftMessage(content: String, subject: String, recievers: Array<String>, folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String], attachments: Array<[String : String]>) {
         
-        apiService?.createMessage(content: content, subject: subject, recieversList: recievers, folder: folder, mailboxID: mailboxID, send: send, encrypted: encrypted, encryptionObject: encryptionObject) {(result) in
+        apiService?.createMessage(content: content, subject: subject, recieversList: recievers, folder: folder, mailboxID: mailboxID, send: send, encrypted: encrypted, encryptionObject: encryptionObject, attachments: attachments) {(result) in
             
             switch(result) {
                 
@@ -35,7 +35,7 @@ class ComposeInteractor {
                 print("create Draft Message value:", value)
                 self.sendingMessage = value as! EmailMessage
                 
-                self.presenter?.setupAttachments()
+                //self.presenter?.setupAttachments(message: self.sendingMessage) //need investigate attachment_forward
                 //self.presenter?.setupMessageSectionSize()
                 //self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
                 //self.presenter?.fillAllEmailsFields(message: self.sendingMessage)
@@ -280,7 +280,7 @@ class ComposeInteractor {
         
         messageContent = self.encryptMessageWithOwnPublicKey(message: messageContent)
         
-        self.createDraftMessage(content: messageContent, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, folder: MessagesFoldersName.draft.rawValue, mailboxID: (self.viewController?.mailboxID)!, send: false, encrypted: false, encryptionObject: [:])
+        self.createDraftMessage(content: messageContent, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, folder: MessagesFoldersName.draft.rawValue, mailboxID: (self.viewController?.mailboxID)!, send: false, encrypted: false, encryptionObject: [:], attachments: self.viewController!.mailAttachmentsList)
     }
     
     func createDraftWithParent(message: EmailMessage) {
@@ -294,7 +294,21 @@ class ComposeInteractor {
             encryptionObjectDictionary = encryptionObject.toDictionary()
         }
         
-        self.createDraftMessage(content: message.content!, subject: message.subject!, recievers: recievers, folder: MessagesFoldersName.draft.rawValue, mailboxID: mailboxID, send: false, encrypted: message.isEncrypted!, encryptionObject: encryptionObjectDictionary)
+        //temp
+        self.presenter?.setupAttachments(message: message)
+        self.presenter?.setupMessageSectionSize()
+        
+        /*
+        if let attachments = message.attachments {
+            
+            self.viewController?.mailAttachmentsList.removeAll()
+            
+            for attachment in attachments {
+                self.viewController?.mailAttachmentsList.append(attachment.toDictionary())
+            }
+        }*/
+        
+        self.createDraftMessage(content: message.content!, subject: message.subject!, recievers: recievers, folder: MessagesFoldersName.draft.rawValue, mailboxID: mailboxID, send: false, encrypted: message.isEncrypted!, encryptionObject: encryptionObjectDictionary, attachments: self.viewController!.mailAttachmentsList)
     }
     
     func deleteDraft() {

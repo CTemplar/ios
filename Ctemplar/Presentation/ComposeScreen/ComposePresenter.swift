@@ -99,11 +99,14 @@ class ComposePresenter {
     
     //MARK: - Setup Message Section
     
-    func setupAttachments() {
+    func setupAttachments(message: EmailMessage) {
         
-        if let draftMessage = self.viewController!.interactor?.sendingMessage {
+        //if let draftMessage = self.viewController!.interactor?.sendingMessage {
         
-            if let attachments = draftMessage.attachments {
+            if let attachments = message.attachments {
+                
+                self.viewController?.mailAttachmentsList.removeAll()
+                self.viewController?.viewAttachmentsList.removeAll()
                 
                 var tag = ComposeSubViewTags.attachmentsViewTag.rawValue
                 
@@ -120,7 +123,7 @@ class ComposePresenter {
                     self.viewController!.viewAttachmentsList.append(attachmentView!)
                 }
             }
-        }
+       // }
     }
     
     func setAttachmentsToMessage( topOffset: CGFloat) -> CGFloat {
@@ -148,7 +151,7 @@ class ComposePresenter {
         
         self.setupAttachmentButton()
         
-        self.viewController?.messageTextView.backgroundColor = UIColor.yellow
+        //self.viewController?.messageTextView.backgroundColor = UIColor.yellow
         
         let fixedWidth = self.viewController!.view.frame.width - k_emailToTextViewLeftOffset - k_emailToTextViewLeftOffset
         let messageContentHeight = self.sizeThatFits(textView: self.viewController!.messageTextView, fixedWidth: fixedWidth)

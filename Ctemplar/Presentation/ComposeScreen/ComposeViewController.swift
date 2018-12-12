@@ -184,7 +184,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
                 
                 self.answerMode = AnswerMessageMode.newMessage
                 
-                self.presenter?.setupAttachments()               
+                self.presenter?.setupAttachments(message: self.message!)               
                 self.presenter?.fillAllEmailsFields(message: self.message!)
                 self.presenter?.setupMessageSection(message: self.message!)
                 self.presenter?.setupEncryptedButton()
