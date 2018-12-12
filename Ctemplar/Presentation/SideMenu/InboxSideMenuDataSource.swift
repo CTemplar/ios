@@ -56,7 +56,9 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         
         self.tableView.register(UINib(nibName: k_SideMenuTableViewCellXibName, bundle: nil), forCellReuseIdentifier: k_SideMenuTableViewCellIdentifier)
         
-        self.tableView.register(UINib(nibName: k_SideMenuTableSectionHeaderViewXibName, bundle: nil), forHeaderFooterViewReuseIdentifier: k_SideMenuTableSectionHeaderViewIdentifier)
+        //self.tableView.register(UINib(nibName: k_SideMenuTableSectionHeaderViewXibName, bundle: nil), forHeaderFooterViewReuseIdentifier: k_SideMenuTableSectionHeaderViewIdentifier)
+        
+        self.tableView.register(UINib(nibName: k_SideMenuTableManageFolderXibName, bundle: nil), forCellReuseIdentifier: k_SideMenuTableManageFolderCellIdentifier)
         
         self.tableView.register(UINib(nibName: k_CustomFolderCellXibName, bundle: nil), forCellReuseIdentifier: k_CustomFolderTableViewCellIdentifier)
     }
@@ -181,6 +183,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             break
         case SideMenuSectionIndex.manageFolders.rawValue:
             //cell.textLabel?.text = "Manage Folers"
+            /*
             cell = tableView.dequeueReusableCell(withIdentifier: k_SideMenuTableViewCellIdentifier)! as! SideMenuTableViewCell
             
             let optionName = "Manage Folders"
@@ -188,7 +191,13 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             let selected = isSelected(section: indexPath.section, row: indexPath.row)
             
             (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: selected, iconName: iconName, title: optionName, unreadCount: 0)
+            */
             
+            cell = tableView.dequeueReusableCell(withIdentifier: k_SideMenuTableManageFolderCellIdentifier)! as! SideMenuTableManageFolderCell
+           
+            let selected = isSelected(section: indexPath.section, row: indexPath.row)
+            
+            (cell as! SideMenuTableManageFolderCell).setupCell(selected: selected, iconName: k_darkFoldersIconImageName, title: "manageFolders".localized(), foldersCount: self.customFoldersArray.count)
             break
         case SideMenuSectionIndex.customFolders.rawValue:
             

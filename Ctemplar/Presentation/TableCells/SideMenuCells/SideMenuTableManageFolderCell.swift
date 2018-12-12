@@ -1,26 +1,34 @@
 //
-//  SideMenuTableSectionHeaderView.swift
+//  SideMenuTableManageFolderCell.swift
 //  Ctemplar
 //
-//  Created by Tatarinov Dmitry on 29.10.2018.
+//  Created by Tatarinov Dmitry on 12.12.2018.
 //  Copyright © 2018 ComeOnSoftware. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class SideMenuTableSectionHeaderView: UITableViewHeaderFooterView {
-
+class SideMenuTableManageFolderCell: UITableViewCell {
+    
+    @IBOutlet weak var leftSelectionView : UIView!
     @IBOutlet weak var iconImageView     : UIImageView!
     @IBOutlet weak var titleLabel        : UILabel!
-    @IBOutlet weak var bottomSeparatorView      : UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
     
-    func setupHeader(iconName: String, title: String, foldersCount: Int, hideBottomLine: Bool) {
+    func setupCell(selected: Bool, iconName: String, title: String, foldersCount: Int) {
+        
+        if selected {
+            self.backgroundColor = k_selectedFolderColor
+        } else {
+            self.backgroundColor = k_whiteColor
+        }
+        
+        self.leftSelectionView.isHidden = !selected
         
         var folderText = "folders"
         
@@ -40,9 +48,7 @@ class SideMenuTableSectionHeaderView: UITableViewHeaderFooterView {
         _ = attributedString.setFont(textToFind: title, font: UIFont(name: k_latoRegularFontName, size: 16.0)!)
         
         self.iconImageView.image = UIImage(named: iconName)
-       
+        
         self.titleLabel.attributedText = attributedString
-        self.bottomSeparatorView.isHidden = hideBottomLine
-        self.backgroundColor = k_whiteColor
     }
 }
