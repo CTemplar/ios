@@ -106,6 +106,8 @@ class SetPasswordViewController: UIViewController, UITextFieldDelegate {
         
         //print("textFieldDidBeginEditing:", textField.text as Any)
         self.setInputText(textField: textField)
+        
+        self.setUnderlines(textField: textField)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -140,7 +142,29 @@ class SetPasswordViewController: UIViewController, UITextFieldDelegate {
         self.setupHints()
     }
     
+    func setUnderlines(textField: UITextField) {
+        
+        switch textField {
+        case self.setPasswordTextField:
+            self.darkLineView.isHidden = false
+            self.redLineView.isHidden = true
+            break
+        case self.confirmPasswordTextField:
+            self.darkLineView.isHidden = true
+            self.redLineView.isHidden = false
+            break
+        case self.hintPasswordTextField:
+            self.darkLineView.isHidden = true
+            self.redLineView.isHidden = true
+            break
+        default:
+            break
+        }
+    }
+    
     func setupHints() {
+        
+        self.redLineView.backgroundColor = k_sideMenuColor
         
         var passwordMatched: Bool = false
         
@@ -151,6 +175,7 @@ class SetPasswordViewController: UIViewController, UITextFieldDelegate {
                     passwordMatched = true
                 } else {
                     self.passWarningLabel.isHidden = false
+                    self.redLineView.backgroundColor = k_redColor
                 }
             } else {
                 self.passWarningLabel.isHidden = true
@@ -168,10 +193,6 @@ class SetPasswordViewController: UIViewController, UITextFieldDelegate {
         //} else {
         //    self.setApplyButton(enabel: false)
         //}
-        
-        self.darkLineView.isHidden = true
-        self.redLineView.isHidden = true
-
     }
     
     func setApplyButton(enabel: Bool) {
