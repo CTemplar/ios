@@ -196,7 +196,7 @@ class ComposePresenter {
                 self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
             } else {
                 self.setPlaceholderToMessageTextView(show: true)
-                self.viewController?.messageTextView.text = "xxssss xxssss xxssssxxssss xxssss xxssss xxssssvvvvvvvvvvv      fedfsdf dfgsdgsd gs gsd gsd gs s sgds gsdgssdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjpsogjsdpo gpsdojg gs dgpogj sg \n\n\n\n\n dgjsdpogj sgjgposgj sogogjo sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg  sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjp sdogjsd g dsgjsgjosgpg g sdpgojsdog sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjp gpsodgj opg sdjp gogjodp gs   000000000 000000000 00000000"
+                //self.viewController?.messageTextView.text = "xxssss xxssss xxssssxxssss xxssss xxssss xxssssvvvvvvvvvvv      fedfsdf dfgsdgsd gs gsd gsd gs s sgds gsdgssdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjpsogjsdpo gpsdojg gs dgpogj sg \n\n\n\n\n dgjsdpogj sgjgposgj sogogjo sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg  sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjp sdogjsd g dsgjsgjosgpg g sdpgojsdog sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjp gpsodgj opg sdjp gogjodp gs   000000000 000000000 00000000"
             }
         } else {
             self.setPlaceholderToMessageTextView(show: true)
@@ -219,55 +219,7 @@ class ComposePresenter {
             }
         }
     }
-    
-    /*
-    func setupMessageSection(emailsArray: Array<EmailMessage>) {
-        
-        //self.viewController?.dercyptedMessagesArray.removeAll()
-    
-        if emailsArray.count > 0 {
-            
-            var dercyptedMessagesArray = Array<String>()
-            
-            let firstMessage = emailsArray.first
-            let lastMessage = emailsArray.last
-            
-            self.fillAllEmailsFields(message: firstMessage!)
-            
-            //HUD.show(.progress)
-            if let messageContent = self.interactor?.extractMessageContent(message: lastMessage!) {
-                dercyptedMessagesArray.append(messageContent)
-            }
-            //HUD.hide()
-            
-            if dercyptedMessagesArray.count > 0 {
-        
-                let lastMessageContent = dercyptedMessagesArray.last
-            
-                let replyHeader = self.generateHeader(message: lastMessage!, answerMode: self.viewController!.answerMode)
-                
-                let lastMessageContentAttributedString = lastMessageContent!.html2AttributedString
-                let mutableAttributedString = NSMutableAttributedString(attributedString: replyHeader)
-                mutableAttributedString.append(lastMessageContentAttributedString!)
-                
-                self.viewController?.messageTextView.attributedText = mutableAttributedString//lastMessageContent!.html2AttributedString
-                self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
-            }
-            
-            self.enabledSendButton()
-            
-        } else {
-            self.viewController?.messageTextView.font = UIFont(name: k_latoRegularFontName, size: 16.0)
-            self.viewController?.messageTextView.text = "composeEmail".localized()
-            self.viewController?.messageTextView.textColor = UIColor.lightGray
-            
-            //self.viewController?.messageTextView.text = "xxssss xxssss xxssssxxssss xxssss xxssss xxssssvvvvvvvvvvv      fedfsdf dfgsdgsd gs gsd gsd gs s sgds gsdgssdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjpsogjsdpo gpsdojg gs dgpogj sg \n\n\n\n\n dgjsdpogj sgjgposgj sogogjo sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg  sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjp sdogjsd g dsgjsgjosgpg g sdpgojsdog sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjp gpsodgj opg sdjp gogjodp gs   000000000 000000000 00000000"
-            
-        }
-        
-        self.setupMessageSectionSize()
-    }
-    */
+   
     func sizeThatFits(textView: UITextView, fixedWidth: CGFloat) -> CGFloat {
         
         textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
@@ -788,16 +740,9 @@ class ComposePresenter {
         
         self.viewController?.encryptedMail = !(self.viewController?.encryptedMail)!
         
-        //var buttonImage = UIImage()
-        
         if (self.viewController?.encryptedMail)! {
-            //buttonImage = UIImage(named: k_encryptApliedImageName)!
             self.viewController?.router?.showSetPasswordViewController()
-        } else {
-           // buttonImage = UIImage(named: k_encryptImageName)!
         }
-        
-        //self.viewController?.encryptedButton .setImage(buttonImage, for: .normal)
         self.setEncryptedButtonMode(enabled: (self.viewController?.encryptedMail)!)
     }
     
