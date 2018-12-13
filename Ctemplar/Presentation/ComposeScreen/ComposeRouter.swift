@@ -22,11 +22,12 @@ class ComposeRouter: NSObject, UIImagePickerControllerDelegate, UINavigationCont
         self.viewController?.present(vc, animated: true, completion: nil)
     }
     
-    func showSchedulerViewController() {
+    func showSchedulerViewController(mode: SchedulerMode) {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_SchedulerStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_SchedulerViewControllerID) as! SchedulerViewController
-        //vc.delegate = self.viewController
+        vc.delegate = self.viewController
+        vc.mode = mode
         self.viewController?.present(vc, animated: true, completion: nil)
     }
     

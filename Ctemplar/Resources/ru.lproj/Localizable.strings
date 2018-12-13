@@ -114,3 +114,12 @@
 //Side Menu Cells
 "showMoreFolders" = "Show More Folders";
 "hideFolders" = "Hide Folders";
+
+//Scheduler Screen
+"selfDestructTimer" = "Self-destructing Timer";
+"deadManTimer"      = "Dead Man's Timer";
+"delayedDelivery"   = "Delayed delivery";
+
+"selfDestructTimerText" = "This email deletes itself from the receivers account after";
+"deadManTimerText"      = "If you do not log into your account after the set time email will be sent after ";
+"delayedDeliveryText"   = "Email will be send automatically at the set time";

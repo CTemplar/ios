@@ -456,3 +456,10 @@ enum AnswerMessageMode: String {
     case replyAll   = "Reply All"
     case forward    = "Forward"
 }
+
+enum SchedulerMode: String {
+    
+    case selfDestructTimer = "Self-destructing Timer"
+    case deadManTimer      = "Dead Man's Timer"
+    case delayedDelivery   = "Delayed delivery"
+}

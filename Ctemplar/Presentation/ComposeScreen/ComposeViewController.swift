@@ -285,15 +285,17 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     @IBAction func selfDestructedButtonPressed(_ sender: AnyObject) {
         
-        self.router?.showSchedulerViewController()
+        self.router?.showSchedulerViewController(mode: SchedulerMode.selfDestructTimer)
     }
     
     @IBAction func delayedDeliveryButtonPressed(_ sender: AnyObject) {
         
+        self.router?.showSchedulerViewController(mode: SchedulerMode.delayedDelivery)
     }
     
     @IBAction func deadManButtonPressed(_ sender: AnyObject) {
         
+        self.router?.showSchedulerViewController(mode: SchedulerMode.deadManTimer)
     }
         
     //MARK: - textView delegate
@@ -599,6 +601,17 @@ extension ComposeViewController: SetPasswordDelegate {
     func cancelAction() {
         
         self.presenter!.encryptedButtonPressed()
+    }
+}
+
+extension ComposeViewController: SchedulerDelegate {
+    
+    func applyAction(date: Date) {
+        print("scheduledDate:", date)
+    }
+    
+    func cancelSchedulerAction() {
+        
     }
 }
 

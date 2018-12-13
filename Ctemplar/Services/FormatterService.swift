@@ -339,6 +339,26 @@ class FormatterService
         return dateString
     }
     
+    func formatDateToDelayedDeliveryString(date: Date) -> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E dd MMM HH:MM"
+        
+        let dateString = dateFormatter.string(from:date as Date)
+        
+        return dateString
+    }
+    
+    func formatDateToDelayedDeliveryDateString(date: Date) -> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E dd MMM HH:mm"
+        
+        let dateString = dateFormatter.string(from:date as Date)
+        
+        return dateString
+    }
+    
     func calculateDaysCountFromCreate(date: Date) -> Int? {
         
         let calendar = NSCalendar.current
@@ -474,6 +494,58 @@ extension Date {
         attributedString.addAttribute(.font, value: UIFont(name: k_latoBoldFontName, size: 9.0)!, range: NSRange(location: location, length: length))
         
         return attributedString
+    }
+    
+    func scheduleTimeCountForDestruct() -> String {
+        
+        let secondsAgo = Int(Date().timeIntervalSince(self))
+        let minute = 60
+        let hour = 60 * minute
+        let day = 24 * hour
+        
+        let remainDays = secondsAgo / day
+        
+        let remainHoursInDay = (secondsAgo - remainDays * day) / hour
+        
+        let remainMinutesInHour = (secondsAgo - remainDays * day - remainHoursInDay * hour) / minute
+    
+        
+        let timeString = formatScheduleDestructionTimeToString(days: abs(remainDays), hours: abs(remainHoursInDay), minutes: abs(remainMinutesInHour))
+        
+        return timeString
+    }
+    
+    func formatScheduleDestructionTimeToString(days: Int, hours: Int, minutes: Int) -> String {
+        
+        var destructionLabelText = ""
+        var dateString : String = ""
+        var daysSuffix: String = ""
+        var hoursSuffix: String = ""
+        
+        if days > 0 {
+            
+            if days > 1 {
+                daysSuffix = " days "
+            } else {
+                daysSuffix = " day "
+            }
+            
+            dateString = dateString + String(format: "%d", days) + daysSuffix
+        }
+        
+        if hours > 1 {
+            hoursSuffix = " hours"
+        } else {
+            hoursSuffix = " hour"
+        }
+        
+        dateString = dateString + String(format: "%02d", hours) + hoursSuffix
+        
+        destructionLabelText = destructionLabelText + dateString
+        
+        print("destructionLabelText:", destructionLabelText)
+        
+        return destructionLabelText
     }
     
     func minutesCountForTokenExpiration() -> Int {
