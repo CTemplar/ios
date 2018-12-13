@@ -329,6 +329,16 @@ class FormatterService
         return dateString
     }
     
+    func formatDateToStringDateWithTime(date: Date) -> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy_MM_dd_HH_mm_ss"
+        
+        let dateString = dateFormatter.string(from:date as Date)
+        
+        return dateString
+    }
+    
     func calculateDaysCountFromCreate(date: Date) -> Int? {
         
         let calendar = NSCalendar.current

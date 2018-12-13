@@ -836,7 +836,7 @@ class ComposePresenter {
     
     func setupAttachActionsButtons() -> Array<String> {
         
-        let actionsButtonsName: Array<String> = ["cancel".localized(), "fromAnotherApp".localized(), "photoLibrary".localized()]
+        let actionsButtonsName: Array<String> = ["cancel".localized(), "fromAnotherApp".localized(), "photoLibrary".localized(), "camera".localized()]
         
         return actionsButtonsName
     }
@@ -874,6 +874,8 @@ class ComposePresenter {
             case "photoLibrary".localized():
                 self.viewController!.router?.showImagePickerWithLibrary()
                 break
+            case "camera".localized():
+                self.viewController!.router?.showImagePickerWithCamera()
 
             default:
                 print("more actions: default")

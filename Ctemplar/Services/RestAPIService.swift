@@ -831,7 +831,7 @@ class RestAPIService {
             case .success(let upload, _, _):
                 
                 upload.uploadProgress(closure: { (progress) in
-                    print("upload Data", progress.fractionCompleted * 100)
+                    print("upload Data:", progress.fractionCompleted * 100)
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_attachUploadUpdateNotificationID), object: progress.fractionCompleted)
                 })
                 

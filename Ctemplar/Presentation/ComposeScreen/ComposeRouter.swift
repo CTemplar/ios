@@ -52,11 +52,31 @@ class ComposeRouter: NSObject, UIImagePickerControllerDelegate, UINavigationCont
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
+        print("info:", info)
+        
         if let imageUrl = info[UIImagePickerController.InfoKey.imageURL] as? URL {
             
             self.viewController?.presenter?.getPickedImage(imageUrl: imageUrl)
             
             print("imgUrl:", imageUrl)
+        } else {
+            
+            guard let image = info[.originalImage] as? UIImage else { return }
+            
+            let date = Date()
+            let dateString = self.viewController?.presenter?.formatterService?.formatDateToStringDateWithTime(date: date)
+            
+            let imageName = "Created_with_camera_" + dateString! + ".jpg"
+            
+            let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let imageUrl = path.appendingPathComponent(imageName)
+            
+            if let jpegData = image.jpegData(compressionQuality: 0.5) {
+                try? jpegData.write(to: imageUrl)
+            }
+
+            print("imageUrl:", imageUrl)
+            self.viewController?.presenter?.getPickedImage(imageUrl: imageUrl)
         }
         
         viewController?.dismiss(animated: true, completion: nil)
