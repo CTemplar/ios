@@ -226,7 +226,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         //self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
         if self.runOnce == true { 
-            self.presenter?.setupMessageSectionSize()
+        //    self.presenter?.setupMessageSectionSize()
             self.runOnce = false
         }
     }

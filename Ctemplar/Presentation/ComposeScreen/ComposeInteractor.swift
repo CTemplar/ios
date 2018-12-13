@@ -295,7 +295,7 @@ class ComposeInteractor {
         }
         
         //temp
-        self.presenter?.setupAttachments(message: message)
+        //self.presenter?.setupAttachments(message: message)
         self.presenter?.setupMessageSectionSize()
         
         /*

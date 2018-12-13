@@ -156,36 +156,26 @@ class ComposePresenter {
         let fixedWidth = self.viewController!.view.frame.width - k_emailToTextViewLeftOffset - k_emailToTextViewLeftOffset
         let messageContentHeight = self.sizeThatFits(textView: self.viewController!.messageTextView, fixedWidth: fixedWidth)
         
-        //let scrollViewHeight = self.viewController?.scrollView.frame.size.height
-        
-        /*
-        self.removeAttachmentsView()
-        
-        var attachmentsHeight : CGFloat = k_attachmentViewTopOffset
-        
-       // let contentViewHeight = self.viewController?.scrollView.contentSize.height
-             
-        for attachmentView in (self.viewController?.viewAttachmentsList)! {
-            
-            let frame = CGRect(x: k_emailToTextViewLeftOffset, y: messageContentHeight + attachmentsHeight, width: (self.viewController?.view.frame.size.width)! - k_emailToTextViewLeftOffset - k_emailToTextViewLeftOffset, height: k_attachmentViewHeight)
-    
-            
-            attachmentView.frame = frame
-            self.viewController!.scrollView.add(subview: attachmentView)
-            
-            attachmentsHeight = attachmentsHeight + k_attachmentViewHeight + k_messageTextViewTopOffset
-        }
-        */
+        let scrollViewHeight = self.viewController?.scrollView.frame.size.height
         
         let attachmentsHeight = self.setAttachmentsToMessage(topOffset: messageContentHeight)
         
-        //if Int(messageContentHeight) < Int((scrollViewHeight! - k_messageTextViewTopOffset - k_messageTextViewTopOffset )) {
-        //    self.viewController?.messageTextViewHeightConstraint.constant = scrollViewHeight! - k_messageTextViewTopOffset - k_messageTextViewTopOffset
-        //    self.viewController?.scrollView.contentSize = CGSize(width: (self.viewController?.view.frame.size.width)!, height: (self.viewController?.messageTextViewHeightConstraint.constant)! + attachmentsHeight)
-       // } else {
+        if attachmentsHeight > k_attachmentViewTopOffset {
+            
             self.viewController!.messageTextViewHeightConstraint.constant = self.viewController!.messageTextView.frame.size.height
             self.viewController?.scrollView.contentSize = CGSize(width: (self.viewController?.view.frame.size.width)!, height: (self.viewController?.messageTextViewHeightConstraint.constant)! + k_messageTextViewTopOffset + k_messageTextViewTopOffset + attachmentsHeight)
-       // }
+            
+        } else { //without attachments
+            
+            let content = self.interactor?.getEnteredMessageContent()
+            if content?.count == 0 { //empty message
+                self.viewController?.messageTextViewHeightConstraint.constant = scrollViewHeight! - k_messageTextViewTopOffset - k_messageTextViewTopOffset
+                self.viewController?.scrollView.contentSize = CGSize(width: (self.viewController?.view.frame.size.width)!, height: (self.viewController?.messageTextViewHeightConstraint.constant)! + k_messageTextViewTopOffset + k_messageTextViewTopOffset)
+            } else {
+                self.viewController!.messageTextViewHeightConstraint.constant = self.viewController!.messageTextView.frame.size.height
+                self.viewController?.scrollView.contentSize = CGSize(width: (self.viewController?.view.frame.size.width)!, height: (self.viewController?.messageTextViewHeightConstraint.constant)! + k_messageTextViewTopOffset + k_messageTextViewTopOffset + attachmentsHeight)
+            }
+        }
         
         self.viewController?.view.layoutIfNeeded()
     }
@@ -206,7 +196,7 @@ class ComposePresenter {
                 self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
             } else {
                 self.setPlaceholderToMessageTextView(show: true)
-                //self.viewController?.messageTextView.text = "xxssss xxssss xxssssxxssss xxssss xxssss xxssssvvvvvvvvvvv      fedfsdf dfgsdgsd gs gsd gsd gs s sgds gsdgssdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjpsogjsdpo gpsdojg gs dgpogj sg \n\n\n\n\n dgjsdpogj sgjgposgj sogogjo sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg  sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjp sdogjsd g dsgjsgjosgpg g sdpgojsdog sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjp gpsodgj opg sdjp gogjodp gs   000000000 000000000 00000000"
+                self.viewController?.messageTextView.text = "xxssss xxssss xxssssxxssss xxssss xxssss xxssssvvvvvvvvvvv      fedfsdf dfgsdgsd gs gsd gsd gs s sgds gsdgssdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjpsogjsdpo gpsdojg gs dgpogj sg \n\n\n\n\n dgjsdpogj sgjgposgj sogogjo sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg  sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjp sdogjsd g dsgjsgjosgpg g sdpgojsdog sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjp gpsodgj opg sdjp gogjodp gs   000000000 000000000 00000000"
             }
         } else {
             self.setPlaceholderToMessageTextView(show: true)
