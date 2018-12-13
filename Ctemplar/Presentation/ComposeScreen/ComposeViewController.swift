@@ -274,8 +274,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     }
     
     @IBAction func attachmentButtonPressed(_ sender: AnyObject) {
-        
-        //self.presenter!.showAttachPicker()
+ 
         self.presenter!.showAttachActionsView()
     }
     
@@ -286,6 +285,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     @IBAction func selfDestructedButtonPressed(_ sender: AnyObject) {
         
+        self.router?.showSchedulerViewController()
     }
     
     @IBAction func delayedDeliveryButtonPressed(_ sender: AnyObject) {

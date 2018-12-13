@@ -22,6 +22,14 @@ class ComposeRouter: NSObject, UIImagePickerControllerDelegate, UINavigationCont
         self.viewController?.present(vc, animated: true, completion: nil)
     }
     
+    func showSchedulerViewController() {
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: k_SchedulerStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_SchedulerViewControllerID) as! SchedulerViewController
+        //vc.delegate = self.viewController
+        self.viewController?.present(vc, animated: true, completion: nil)
+    }
+    
     func showImagePickerWithCamera() {
         
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
