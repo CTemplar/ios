@@ -525,32 +525,12 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         self.interactor?.attachFileToDraftMessage(url: fileUrl)
         
-        var lastTag = ComposeSubViewTags.attachmentsViewTag.rawValue
-        
-        if self.viewAttachmentsList.count > 0 {
-        
-            let lastAttachmentView = self.viewAttachmentsList.max(by: {$0.tag < $1.tag} )
-            lastTag = (lastAttachmentView?.tag)!
-        }
-        
-        let newIndexTag = lastTag + 1
-        
-        let attachmentView  = self.presenter?.createAttachment(frame: CGRect.zero, tag: newIndexTag, fileUrl: fileUrl)
-        
-        self.viewAttachmentsList.append(attachmentView!)
-        
-        self.presenter?.setupMessageSectionSize()
-  
+        self.presenter?.addAttachToList(url: fileUrl)  
     }
     
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
         
         self.attachmentButton.isEnabled = true
-        
-        //if self.viewAttachmentsList.count > 0 {
-        //    self.viewAttachmentsList.removeLast()
-       // }
-       // self.presenter?.setupMessageSectionSize()
     }
     
     //MARK: - notification

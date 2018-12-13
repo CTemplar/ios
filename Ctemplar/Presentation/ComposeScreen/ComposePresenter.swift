@@ -100,30 +100,46 @@ class ComposePresenter {
     //MARK: - Setup Message Section
     
     func setupAttachments(message: EmailMessage) {
-        
-        //if let draftMessage = self.viewController!.interactor?.sendingMessage {
-        
-            if let attachments = message.attachments {
+         
+        if let attachments = message.attachments {
+            
+            self.viewController?.mailAttachmentsList.removeAll()
+            self.viewController?.viewAttachmentsList.removeAll()
+            
+            var tag = ComposeSubViewTags.attachmentsViewTag.rawValue
+            
+            for attachment in attachments {
+                self.viewController?.mailAttachmentsList.append(attachment.toDictionary())
                 
-                self.viewController?.mailAttachmentsList.removeAll()
-                self.viewController?.viewAttachmentsList.removeAll()
+                let urlString = attachment.contentUrl
+                let url = URL(string: urlString!)
                 
-                var tag = ComposeSubViewTags.attachmentsViewTag.rawValue
+                tag = tag + 1
                 
-                for attachment in attachments {
-                    self.viewController?.mailAttachmentsList.append(attachment.toDictionary())
-                    
-                    let urlString = attachment.contentUrl
-                    let url = URL(string: urlString!)
-                    
-                    tag = tag + 1
-                    
-                    let attachmentView  = self.viewController!.presenter?.createAttachment(frame: CGRect.zero, tag: tag, fileUrl: url!)
-                    
-                    self.viewController!.viewAttachmentsList.append(attachmentView!)
-                }
+                let attachmentView  = self.viewController!.presenter?.createAttachment(frame: CGRect.zero, tag: tag, fileUrl: url!)
+                
+                self.viewController!.viewAttachmentsList.append(attachmentView!)
             }
-       // }
+        }
+    }
+    
+    func addAttachToList(url: URL) {
+        
+        var lastTag = ComposeSubViewTags.attachmentsViewTag.rawValue
+        
+        if self.viewController!.viewAttachmentsList.count > 0 {
+            
+            let lastAttachmentView = self.viewController!.viewAttachmentsList.max(by: {$0.tag < $1.tag} )
+            lastTag = (lastAttachmentView?.tag)!
+        }
+        
+        let newIndexTag = lastTag + 1
+        
+        let attachmentView  = self.createAttachment(frame: CGRect.zero, tag: newIndexTag, fileUrl: url)
+        
+        self.viewController!.viewAttachmentsList.append(attachmentView)
+        
+        self.setupMessageSectionSize()
     }
     
     func setAttachmentsToMessage( topOffset: CGFloat) -> CGFloat {
@@ -757,6 +773,17 @@ class ComposePresenter {
         self.viewController!.present(documentPicker, animated: true)
     }
     
+    //MARK: - Image Picker
+    
+    func getPickedImage(imageUrl: URL) {
+        
+        self.viewController!.attachmentButton.isEnabled = false
+        
+        self.interactor?.attachFileToDraftMessage(url: imageUrl)
+        
+        self.addAttachToList(url: imageUrl)
+    }
+    
     //MARK: - Draft Actions
     
     func initDraftActionsView() {
@@ -845,7 +872,7 @@ class ComposePresenter {
                 self.showAttachPicker()
                 break
             case "photoLibrary".localized():
-                
+                self.viewController!.router?.showImagePickerWithLibrary()
                 break
 
             default:

@@ -79,5 +79,7 @@
         <key>NSAllowsArbitraryLoads</key>
         <true/>
     </dict>
+    <key>NSCameraUsageDescription</key>
+    <string>Need camera access for uploading Images</string>
 </dict>
 </plist>
