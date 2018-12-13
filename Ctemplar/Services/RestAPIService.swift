@@ -70,6 +70,7 @@ class RestAPIService {
         case fileData = "document"
         case inline = "is_inline"
         case attachments = "attachments"
+        case parent = "parent"
     }
         
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -411,7 +412,7 @@ class RestAPIService {
         }
     }
     
-    func createMessage(token: String, content: String, subject: String, recieversList: Array<String>, folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String], attachments: Array<[String : String]>, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func createMessage(token: String, parentID: String, content: String, subject: String, recieversList: Array<String>, folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String], attachments: Array<[String : String]>, completionHandler: @escaping (APIResult<Any>) -> Void) {
     
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -427,7 +428,8 @@ class RestAPIService {
             JSONKey.send.rawValue: send,
             JSONKey.encrypted.rawValue : encrypted,
             JSONKey.encryption.rawValue : encryptionObject,
-            JSONKey.attachments.rawValue : attachments
+            JSONKey.attachments.rawValue : attachments,
+            JSONKey.parent.rawValue : parentID
         ]
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue
