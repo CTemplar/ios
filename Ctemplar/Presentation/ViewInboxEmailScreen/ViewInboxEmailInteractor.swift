@@ -143,16 +143,21 @@ class ViewInboxEmailInteractor {
     
     func extractMessageContent(message: EmailMessage) -> String {
         
-        if let content = message.content {            
-            if let message = self.pgpService?.decryptMessage(encryptedContet: content) {
-                //print("decrypt viewed message: ", message)
-                return message
+        if let content = message.content {
+            //if message.isEncrypted == true {
+              if (apiService?.isMessageEncrypted(message: message))! {
+                if let decryptedContent = self.pgpService?.decryptMessage(encryptedContet: content) {
+                    //print("decrypt viewed message: ", message)
+                    return decryptedContent
+                }
+            } else {
+                return content
             }
         }
         
         return "Error"
     }
-    
+        
     func extractMessageContentAsync(message: EmailMessage) {
         
         let queue = DispatchQueue.global(qos: .userInitiated)

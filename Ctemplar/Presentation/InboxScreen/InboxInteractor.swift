@@ -397,8 +397,13 @@ class InboxInteractor {
         
         for message in emailsArray {
             if let messageContent = message.content {
-                if !self.checkIsMessageHeaderDecrypted(messageID: message.messsageID!) {
-                    self.decryptHeader(content: messageContent, messageID: message.messsageID!)
+               // if message.isEncrypted! {
+                if (apiService?.isMessageEncrypted(message: message))! {
+                    if !self.checkIsMessageHeaderDecrypted(messageID: message.messsageID!) {
+                        self.decryptHeader(content: messageContent, messageID: message.messsageID!)
+                    }
+                } else {
+                    self.setDecryptedHeader(content: messageContent, messageID: message.messsageID!)
                 }
             }
         }
