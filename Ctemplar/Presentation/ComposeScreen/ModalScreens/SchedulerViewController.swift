@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol SchedulerDelegate {
-    func applyAction(date: Date)
+    func applyAction(date: Date, mode: SchedulerMode)
     func cancelSchedulerAction()
 }
 
@@ -37,7 +37,8 @@ class SchedulerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         self.formatterService = appDelegate.applicationManager.formatterService
+        self.formatterService = appDelegate.applicationManager.formatterService
+        
         
         let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture(gesture:)))
         swipeDownGesture.direction = .down
@@ -48,6 +49,7 @@ class SchedulerViewController: UIViewController {
         super.viewWillAppear(animated)
         
         self.setupScreen()
+        self.setupPicker()
     }
     
     func setupScreen() {
@@ -77,7 +79,7 @@ class SchedulerViewController: UIViewController {
             self.dateLabel.text = self.scheduledDate.scheduleTimeCountForDestruct()
             break
         case SchedulerMode.deadManTimer:
-            self.dateLabel.text = self.formatterService?.formatDateToDelayedDeliveryDateString(date: self.scheduledDate)
+            self.dateLabel.text = self.scheduledDate.scheduleTimeCountForDestruct()
             break
         case SchedulerMode.delayedDelivery:
             self.dateLabel.text = self.formatterService?.formatDateToDelayedDeliveryDateString(date: self.scheduledDate)
@@ -85,11 +87,34 @@ class SchedulerViewController: UIViewController {
         }
     }
     
+    func setupPicker() {
+        
+        switch self.mode! {
+        case SchedulerMode.selfDestructTimer:
+            self.datePicker.datePickerMode = .date
+            break
+        case SchedulerMode.deadManTimer:
+            self.datePicker.datePickerMode = .countDownTimer
+            break
+        case SchedulerMode.delayedDelivery:
+            self.datePicker.datePickerMode = .dateAndTime
+            break
+        }
+        
+        self.datePicker.date = self.scheduledDate
+    }
+    
     //MARK: - IBActions
+    
+    @IBAction func datePickerValueChanged(sender: UIDatePicker) {
+        
+        self.scheduledDate = sender.date
+        self.setDateLabel()
+    }
     
     @IBAction func scheduleButtonPressed(_ sender: AnyObject) {
         
-        self.delegate?.applyAction(date: self.scheduledDate)
+        self.delegate?.applyAction(date: self.scheduledDate, mode: self.mode)
         self.dismiss(animated: true, completion: nil)
     }
     

@@ -105,6 +105,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     var message : EmailMessage?
     
+    var selfDestructionDate : Date!
+    var deadManDate : Date!
+    var delayedDeliveryDate : Date!
+    
     var runOnce : Bool = true
     
     override func viewDidLoad() {
@@ -208,13 +212,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         self.presenter?.setupSubject(subjectText: self.subject, answerMode: self.answerMode)
         
-        /*
-        if (Device.IS_IPHONE_5) {
-            keyboardOffset = k_KeyboardHeight - 80.0
-        } else {
-            keyboardOffset = 0.0
-        }
-        */
+        self.presenter?.setupSchedulersButton() //temp disable
         
         self.addGesureRecognizers()
         
@@ -285,17 +283,17 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     @IBAction func selfDestructedButtonPressed(_ sender: AnyObject) {
         
-        self.router?.showSchedulerViewController(mode: SchedulerMode.selfDestructTimer)
+        self.presenter!.showScheduler(mode: SchedulerMode.selfDestructTimer)
     }
     
     @IBAction func delayedDeliveryButtonPressed(_ sender: AnyObject) {
         
-        self.router?.showSchedulerViewController(mode: SchedulerMode.delayedDelivery)
+        self.presenter!.showScheduler(mode: SchedulerMode.delayedDelivery)
     }
     
     @IBAction func deadManButtonPressed(_ sender: AnyObject) {
         
-        self.router?.showSchedulerViewController(mode: SchedulerMode.deadManTimer)
+        self.presenter!.showScheduler(mode: SchedulerMode.deadManTimer)
     }
         
     //MARK: - textView delegate
@@ -606,8 +604,23 @@ extension ComposeViewController: SetPasswordDelegate {
 
 extension ComposeViewController: SchedulerDelegate {
     
-    func applyAction(date: Date) {
+    func applyAction(date: Date, mode: SchedulerMode) {
         print("scheduledDate:", date)
+        
+        switch mode {
+        case SchedulerMode.selfDestructTimer:
+            self.selfDestructionDate = date
+            self.presenter?.setSelfDestructionButtonMode(applied: true)
+            break
+        case SchedulerMode.deadManTimer:
+            self.deadManDate = date
+            self.presenter?.setDeadManButtonMode(applied: true)
+            break
+        case SchedulerMode.delayedDelivery:
+            self.delayedDeliveryDate = date
+            self.presenter?.setDelayedDeliveryButtonMode(applied: true)
+            break
+        }
     }
     
     func cancelSchedulerAction() {

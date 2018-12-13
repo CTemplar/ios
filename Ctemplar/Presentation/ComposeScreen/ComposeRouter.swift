@@ -28,7 +28,33 @@ class ComposeRouter: NSObject, UIImagePickerControllerDelegate, UINavigationCont
         let vc = storyboard.instantiateViewController(withIdentifier: k_SchedulerViewControllerID) as! SchedulerViewController
         vc.delegate = self.viewController
         vc.mode = mode
+        vc.scheduledDate = self.scheduledDate(mode: mode)
         self.viewController?.present(vc, animated: true, completion: nil)
+    }
+    
+    func scheduledDate(mode:SchedulerMode) -> Date {
+        
+        var date = Date()
+        
+        switch mode {
+        case SchedulerMode.selfDestructTimer:
+            if self.viewController?.selfDestructionDate != nil {
+                date = (self.viewController?.selfDestructionDate)!
+            }
+            break
+        case SchedulerMode.deadManTimer:
+            if self.viewController?.deadManDate != nil {
+                date = (self.viewController?.deadManDate)!
+            }
+            break
+        case SchedulerMode.delayedDelivery:
+            if self.viewController?.delayedDeliveryDate != nil {
+                date = (self.viewController?.delayedDeliveryDate)!
+            }
+            break
+        }
+        
+        return date
     }
     
     func showImagePickerWithCamera() {

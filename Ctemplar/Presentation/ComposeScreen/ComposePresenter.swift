@@ -79,22 +79,101 @@ class ComposePresenter {
         if let draftMessage = self.viewController!.interactor?.sendingMessage {
             
             self.viewController?.encryptedMail = draftMessage.isEncrypted!
-            self.setEncryptedButtonMode(enabled: (self.viewController?.encryptedMail)!)
+            self.setEncryptedButtonMode(applied: (self.viewController?.encryptedMail)!)
         }
     }
     
-    func setEncryptedButtonMode(enabled: Bool) {
+    func setEncryptedButtonMode(applied: Bool) {
         
         var buttonImage = UIImage()
         
-        if enabled {
+        if applied {
             buttonImage = UIImage(named: k_encryptApliedImageName)!
             
         } else {
             buttonImage = UIImage(named: k_encryptImageName)!
         }
         
-        self.viewController?.encryptedButton .setImage(buttonImage, for: .normal)
+        self.viewController?.encryptedButton.setImage(buttonImage, for: .normal)
+    }
+    
+    func setSelfDestructionButtonMode(applied: Bool) {
+        
+        var buttonImage = UIImage()
+        
+        if applied {
+            buttonImage = UIImage(named: k_selfDestructedApliedImageName)!
+            
+        } else {
+            buttonImage = UIImage(named: k_selfDestructedImageName)!
+        }
+        
+        self.viewController?.selfDestructedButton.setImage(buttonImage, for: .normal)
+    }
+    
+    func setDelayedDeliveryButtonMode(applied: Bool) {
+        
+        var buttonImage = UIImage()
+        
+        if applied {
+            buttonImage = UIImage(named: k_delayedDeliveryApliedImageName)!
+            
+        } else {
+            buttonImage = UIImage(named: k_delayedDeliveryImageName)!
+        }
+        
+        self.viewController?.delayedDeliveryButton.setImage(buttonImage, for: .normal)
+    }
+    
+    func setDeadManButtonMode(applied: Bool) {
+        
+        var buttonImage = UIImage()
+        
+        if applied {
+            buttonImage = UIImage(named: k_deadManApliedImageName)!
+            
+        } else {
+            buttonImage = UIImage(named: k_deadManImageName)!
+        }
+        
+        self.viewController?.deadManButton.setImage(buttonImage, for: .normal)
+    }
+    
+    func showScheduler(mode: SchedulerMode) {
+        
+        switch mode {
+        case SchedulerMode.selfDestructTimer:
+            if self.viewController?.selfDestructionDate == nil {
+                self.viewController?.router?.showSchedulerViewController(mode: mode)
+            } else {
+                self.viewController?.selfDestructionDate = nil
+                self.setSelfDestructionButtonMode(applied: false)
+            }
+            break
+        case SchedulerMode.deadManTimer:
+            if self.viewController?.deadManDate == nil {
+                self.viewController?.router?.showSchedulerViewController(mode: mode)
+            } else {
+                self.viewController?.deadManDate = nil
+                self.setDeadManButtonMode(applied: false)
+            }
+            break
+        case SchedulerMode.delayedDelivery:
+            if self.viewController?.delayedDeliveryDate == nil {
+                self.viewController?.router?.showSchedulerViewController(mode: mode)
+            } else {
+                self.viewController?.delayedDeliveryDate = nil
+                self.setDelayedDeliveryButtonMode(applied: false)
+            }
+            break
+        }
+    }
+    
+    func setupSchedulersButton() {
+        
+        self.viewController?.selfDestructedButton.isEnabled = false
+        self.viewController?.delayedDeliveryButton.isEnabled = false
+        self.viewController?.deadManButton.isEnabled = false
     }
     
     //MARK: - Setup Message Section
@@ -759,7 +838,7 @@ class ComposePresenter {
         if (self.viewController?.encryptedMail)! {
             self.viewController?.router?.showSetPasswordViewController()
         }
-        self.setEncryptedButtonMode(enabled: (self.viewController?.encryptedMail)!)
+        self.setEncryptedButtonMode(applied: (self.viewController?.encryptedMail)!)
     }
     
     //MARK: - Attach Picker
