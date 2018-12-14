@@ -255,9 +255,11 @@ class InboxInteractor {
                 
                 let userMyself = value as! UserMyself
                 
-                if let contacts = userMyself.contactsList {
-                    self.viewController?.contactsList = contacts
-                }
+                self.viewController?.user = userMyself
+                
+               // if let contacts = userMyself.contactsList {
+                    //self.viewController?.contactsList = contacts
+                //}
                 
                 if let mailboxes = userMyself.mailboxesList {
                     self.viewController?.mailboxesList = mailboxes

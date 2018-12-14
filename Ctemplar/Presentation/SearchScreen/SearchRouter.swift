@@ -21,8 +21,8 @@ class SearchRouter {
         vc.message = message
         vc.messageID = message.messsageID
         vc.currentFolderFilter = message.folder
-        vc.mailboxesList = (self.viewController?.mailboxesList)!
-                
+        //vc.mailboxesList = (self.viewController?.mailboxesList)!
+        vc.user = (self.viewController?.user)!
         self.viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 

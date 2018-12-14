@@ -31,7 +31,8 @@ class ViewInboxEmailRouter {
         let vc = storyboard.instantiateViewController(withIdentifier: k_ComposeViewControllerID) as! ComposeViewController
         
         vc.answerMode = answerMode
-        vc.mailboxesList = (self.viewController?.mailboxesList)!
+        //vc.mailboxesList = (self.viewController?.mailboxesList)!
+        vc.user = (self.viewController?.user)!
         vc.message = self.viewController?.message
         vc.messagesArray = (self.viewController?.dataSource?.messagesArray)!
         vc.subject = subject

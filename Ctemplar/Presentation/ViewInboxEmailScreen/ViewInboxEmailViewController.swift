@@ -54,7 +54,8 @@ class ViewInboxEmailViewController: UIViewController {
     var message : EmailMessage?
     var messageID  : Int?
     
-    var mailboxesList    : Array<Mailbox> = []
+    //var mailboxesList    : Array<Mailbox> = []
+    var user = UserMyself()
     
     let documentInteractionController = UIDocumentInteractionController()
     

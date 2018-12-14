@@ -20,6 +20,9 @@ struct UserMyself {
     var contactsList : Array<Contact>? = nil
     
     var username : String? = nil
+    
+    var isTrial : Bool? = nil
+    var isPrime : Bool? = nil
         
     init() {
         
@@ -78,6 +81,14 @@ struct UserMyself {
                         let contact = Contact(dictionary: contactDict)
                         localContactsList?.append(contact)
                     }
+                }
+                
+                if key == "is_trial" {
+                    self.isTrial = value as? Bool
+                }
+                
+                if key == "is_prime" {
+                    self.isPrime = value as? Bool
                 }
             }
         }

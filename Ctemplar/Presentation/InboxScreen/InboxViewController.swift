@@ -25,7 +25,8 @@ class InboxViewController: UIViewController {
     var allMessagesArray : Array<EmailMessage> = []
     var currentFolderMessagesArray : Array<EmailMessage> = []
     var mailboxesList    : Array<Mailbox> = []
-    var contactsList     : Array<Contact> = []
+    //var contactsList     : Array<Contact> = []
+    var user = UserMyself()
     
     var currentFolder       : String = InboxSideMenuOptionsName.inbox.rawValue
     var currentFolderFilter : String = MessagesFoldersName.inbox.rawValue

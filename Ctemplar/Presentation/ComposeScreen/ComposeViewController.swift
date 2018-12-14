@@ -72,8 +72,9 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var subject    : String = ""
     var sender     : String = ""
     
-    var mailboxesList    : Array<Mailbox> = []
+    //var mailboxesList    : Array<Mailbox> = []
     var mailboxID : Int = 0
+    var user = UserMyself()
     
     var contactsList    : Array<Contact> = []
     
@@ -173,10 +174,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         //========
         */
           
-        self.presenter?.setMailboxes(mailboxes: mailboxesList)
+        self.presenter?.setMailboxes(mailboxes: self.user.mailboxesList!)
         self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
         
-        self.presenter?.setMailboxDataSource(mailboxes: mailboxesList)
+        self.presenter?.setMailboxDataSource(mailboxes: self.user.mailboxesList!)
         
         self.dataSource?.initWith(parent: self, tableView: tableView)
         self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset)
@@ -212,7 +213,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         self.presenter?.setupSubject(subjectText: self.subject, answerMode: self.answerMode)
         
-        //self.presenter?.setupSchedulersButton() //temp disable
+        //self.presenter?.setupSchedulersButtons() //temp disable
         
         self.addGesureRecognizers()
         
@@ -621,6 +622,8 @@ extension ComposeViewController: SchedulerDelegate {
             self.presenter?.setDelayedDeliveryButtonMode(applied: true)
             break
         }
+        
+        self.presenter?.setupSchedulersButtons()
     }
     
     func cancelSchedulerAction() {
