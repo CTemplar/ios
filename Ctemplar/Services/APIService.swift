@@ -547,10 +547,22 @@ class APIService {
         
         var setFolder : String = folder
         var setSend : Bool = send
+        var deadManTimer : Int = 0
         
         if delayedDeliveryDate.count > 0 {
             setFolder = MessagesFoldersName.outbox.rawValue
             setSend = false
+        }
+        
+        print("deadManDate:", deadManDate)
+        print("deadManDate cnt:", deadManDate.count)
+        
+        if deadManDate.count > 0 {
+            setFolder = MessagesFoldersName.outbox.rawValue
+            setSend = false
+            
+            deadManTimer = Int(deadManDate)!
+            print("deadManTimer:", deadManTimer)
         }
         
         self.checkTokenExpiration(){ (complete) in
@@ -560,7 +572,7 @@ class APIService {
                     
                     HUD.show(.progress)
                     
-                    self.restAPIService?.updateSendingMessage(token: token, messageID: messageID, encryptedMessage: encryptedMessage, subject: subject, recieversList: recieversList, folder: setFolder, send: setSend, encryptionObject: encryptionObject, encrypted: encrypted, attachments: attachments, selfDestructionDate: selfDestructionDate, delayedDeliveryDate: delayedDeliveryDate, deadManDate: deadManDate) {(result) in
+                    self.restAPIService?.updateSendingMessage(token: token, messageID: messageID, encryptedMessage: encryptedMessage, subject: subject, recieversList: recieversList, folder: setFolder, send: setSend, encryptionObject: encryptionObject, encrypted: encrypted, attachments: attachments, selfDestructionDate: selfDestructionDate, delayedDeliveryDate: delayedDeliveryDate, deadManTimer: deadManTimer) {(result) in
                         
                         switch(result) {
                             

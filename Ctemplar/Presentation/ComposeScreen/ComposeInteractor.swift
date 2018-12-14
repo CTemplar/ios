@@ -363,7 +363,8 @@ class ComposeInteractor {
             break
         case SchedulerMode.deadManTimer:
             if self.viewController?.deadManDate != nil {
-                
+                let hoursCount = self.viewController?.deadManDate.hoursCountFromNow()
+                scheduledDateString = hoursCount!.description
             }
             break
         case SchedulerMode.delayedDelivery:
@@ -383,7 +384,7 @@ class ComposeInteractor {
         let encryptedMessage = self.encryptMessage(publicKeys: publicKeys, message: messageContent)        
         
         if let messageID = self.sendingMessage.messsageID {
-            self.updateSendingMessage(messageID: messageID.description, encryptedMessage: encryptedMessage, encryptionObject: [:], subject: self.viewController!.subject, send: true, recieversList: self.viewController!.emailsToArray, encrypted: true, attachments: self.viewController!.mailAttachmentsList, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: "")
+            self.updateSendingMessage(messageID: messageID.description, encryptedMessage: encryptedMessage, encryptionObject: [:], subject: self.viewController!.subject, send: true, recieversList: self.viewController!.emailsToArray, encrypted: true, attachments: self.viewController!.mailAttachmentsList, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: self.getScheduledDateFor(mode: SchedulerMode.deadManTimer))
         }
     }
     
@@ -415,7 +416,7 @@ class ComposeInteractor {
                     messageContent = self.encryptMessage(publicKeys: pgpKeys, message: messageContent)
                     
                     if let messageID = self.sendingMessage.messsageID {
-                        self.updateSendingMessage(messageID: messageID.description, encryptedMessage: messageContent, encryptionObject: encryptionObjectDictionary, subject: self.viewController!.subject, send: true, recieversList: self.viewController!.emailsToArray, encrypted: true, attachments: self.viewController!.mailAttachmentsList, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: "")
+                        self.updateSendingMessage(messageID: messageID.description, encryptedMessage: messageContent, encryptionObject: encryptionObjectDictionary, subject: self.viewController!.subject, send: true, recieversList: self.viewController!.emailsToArray, encrypted: true, attachments: self.viewController!.mailAttachmentsList, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: self.getScheduledDateFor(mode: SchedulerMode.deadManTimer))
                     }
                 }
             }
@@ -423,7 +424,7 @@ class ComposeInteractor {
         } else {
             
             if let messageID = self.sendingMessage.messsageID {
-                self.updateSendingMessage(messageID: messageID.description, encryptedMessage: messageContent, encryptionObject: [:], subject: self.viewController!.subject, send: true, recieversList: self.viewController!.emailsToArray, encrypted: false, attachments: self.viewController!.mailAttachmentsList, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: "")
+                self.updateSendingMessage(messageID: messageID.description, encryptedMessage: messageContent, encryptionObject: [:], subject: self.viewController!.subject, send: true, recieversList: self.viewController!.emailsToArray, encrypted: false, attachments: self.viewController!.mailAttachmentsList, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: self.getScheduledDateFor(mode: SchedulerMode.deadManTimer))
             }
         }
     }
@@ -465,7 +466,7 @@ class ComposeInteractor {
         let encryptionObject = EncryptionObject.init(password: password, passwordHint: passwordHint).toShortDictionary()
         
         if let messageID = self.sendingMessage.messsageID {
-            self.updateSendingMessage(messageID: messageID.description, encryptedMessage: messageContent, encryptionObject: encryptionObject, subject: self.viewController!.subject, send: false, recieversList: self.viewController!.emailsToArray, encrypted: true, attachments: self.viewController!.mailAttachmentsList, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: "")
+            self.updateSendingMessage(messageID: messageID.description, encryptedMessage: messageContent, encryptionObject: encryptionObject, subject: self.viewController!.subject, send: false, recieversList: self.viewController!.emailsToArray, encrypted: true, attachments: self.viewController!.mailAttachmentsList, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: self.getScheduledDateFor(mode: SchedulerMode.deadManTimer))
         }
     }
     

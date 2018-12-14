@@ -94,7 +94,7 @@ class SchedulerViewController: UIViewController {
             self.datePicker.datePickerMode = .date
             break
         case SchedulerMode.deadManTimer:
-            self.datePicker.datePickerMode = .countDownTimer
+            self.datePicker.datePickerMode = .dateAndTime
             break
         case SchedulerMode.delayedDelivery:
             self.datePicker.datePickerMode = .dateAndTime
@@ -110,6 +110,8 @@ class SchedulerViewController: UIViewController {
         
         self.scheduledDate = sender.date
         self.setDateLabel()
+        
+        self.scheduledDate.hoursCountFromNow() //debug
     }
     
     @IBAction func scheduleButtonPressed(_ sender: AnyObject) {

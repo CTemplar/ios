@@ -453,7 +453,7 @@ class RestAPIService {
         }
     }
     
-    func updateSendingMessage(token: String, messageID: String, encryptedMessage: String, subject: String, recieversList: Array<String>, folder: String, send: Bool, encryptionObject: [String : String], encrypted: Bool, attachments: Array<[String : String]>, selfDestructionDate: String, delayedDeliveryDate: String, deadManDate: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateSendingMessage(token: String, messageID: String, encryptedMessage: String, subject: String, recieversList: Array<String>, folder: String, send: Bool, encryptionObject: [String : String], encrypted: Bool, attachments: Array<[String : String]>, selfDestructionDate: String, delayedDeliveryDate: String, deadManTimer: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -480,6 +480,10 @@ class RestAPIService {
         
         if delayedDeliveryDate.count > 0 {
             parameters[JSONKey.delayedDeliveryDate.rawValue] = delayedDeliveryDate
+        }
+        
+        if deadManTimer > 0 {
+            parameters[JSONKey.deadManDate.rawValue] = deadManTimer
         }
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messageID + "/"

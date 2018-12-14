@@ -573,6 +573,18 @@ extension Date {
         
         return minutesCount
     }
+    
+    func hoursCountFromNow() -> Int {
+        
+        let secondsAgo = Int(Date().timeIntervalSince(self))
+        let minute = 60
+        let hour = 60 * minute
+        
+        let hoursCount = secondsAgo / hour
+        
+        print("hoursCount:", -hoursCount)
+        return -hoursCount
+    }
 }
 
 extension Data {
