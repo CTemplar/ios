@@ -460,7 +460,7 @@ class RestAPIService {
             "Accept": "application/json"
         ]
         
-        let parameters: Parameters = [
+        var parameters: Parameters = [
             JSONKey.content.rawValue : encryptedMessage,
             JSONKey.folder.rawValue: folder,
             JSONKey.subject.rawValue: subject,
@@ -469,10 +469,18 @@ class RestAPIService {
             JSONKey.encryption.rawValue : encryptionObject,
             JSONKey.encrypted.rawValue : encrypted,
             JSONKey.attachments.rawValue : attachments,
-            JSONKey.selfDestructionDate.rawValue : selfDestructionDate,
+            //JSONKey.selfDestructionDate.rawValue : selfDestructionDate,
             //JSONKey.delayedDeliveryDate.rawValue : delayedDeliveryDate,
             //JSONKey.deadManDate.rawValue : deadManDate
         ]
+        
+        if selfDestructionDate.count > 0 {
+            parameters[JSONKey.selfDestructionDate.rawValue] = selfDestructionDate
+        }
+        
+        if delayedDeliveryDate.count > 0 {
+            parameters[JSONKey.delayedDeliveryDate.rawValue] = delayedDeliveryDate
+        }
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messageID + "/"
         

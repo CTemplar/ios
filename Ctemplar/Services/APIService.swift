@@ -545,6 +545,14 @@ class APIService {
     
     func updateSendingMessage(messageID: String, encryptedMessage: String, subject: String, recieversList: Array<String>, folder: String, send: Bool, encryptionObject: [String : String], encrypted: Bool, attachments: Array<[String : String]>, selfDestructionDate: String, delayedDeliveryDate: String, deadManDate: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
+        var setFolder : String = folder
+        var setSend : Bool = send
+        
+        if delayedDeliveryDate.count > 0 {
+            setFolder = MessagesFoldersName.outbox.rawValue
+            setSend = false
+        }
+        
         self.checkTokenExpiration(){ (complete) in
             if complete {
                 
@@ -552,7 +560,7 @@ class APIService {
                     
                     HUD.show(.progress)
                     
-                    self.restAPIService?.updateSendingMessage(token: token, messageID: messageID, encryptedMessage: encryptedMessage, subject: subject, recieversList: recieversList, folder: folder, send: send, encryptionObject: encryptionObject, encrypted: encrypted, attachments: attachments, selfDestructionDate: selfDestructionDate, delayedDeliveryDate: delayedDeliveryDate, deadManDate: deadManDate) {(result) in
+                    self.restAPIService?.updateSendingMessage(token: token, messageID: messageID, encryptedMessage: encryptedMessage, subject: subject, recieversList: recieversList, folder: setFolder, send: setSend, encryptionObject: encryptionObject, encrypted: encrypted, attachments: attachments, selfDestructionDate: selfDestructionDate, delayedDeliveryDate: delayedDeliveryDate, deadManDate: deadManDate) {(result) in
                         
                         switch(result) {
                             
