@@ -167,13 +167,31 @@ class ComposePresenter {
             }
             break
         }
+        
+        self.setupSchedulersButtons()
     }
     
-    func setupSchedulersButton() {
+    func setupSchedulersButtons() {
         
-        self.viewController?.selfDestructedButton.isEnabled = false
-        self.viewController?.delayedDeliveryButton.isEnabled = false
-        self.viewController?.deadManButton.isEnabled = false
+        self.viewController?.selfDestructedButton.isEnabled = true
+        
+        if (self.viewController?.user.isPrime)! {
+        
+            if self.viewController?.deadManDate != nil {
+                self.viewController?.delayedDeliveryButton.isEnabled = false
+            } else {
+                self.viewController?.delayedDeliveryButton.isEnabled = true
+            }
+            
+            if self.viewController?.delayedDeliveryDate != nil {
+                self.viewController?.deadManButton.isEnabled = false
+            } else {
+                self.viewController?.deadManButton.isEnabled = true
+            }
+        } else {
+            self.viewController?.delayedDeliveryButton.isEnabled = false
+            self.viewController?.deadManButton.isEnabled = false
+        }
     }
     
     //MARK: - Setup Message Section

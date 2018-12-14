@@ -213,7 +213,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         self.presenter?.setupSubject(subjectText: self.subject, answerMode: self.answerMode)
         
-        //self.presenter?.setupSchedulersButtons() //temp disable
+        self.presenter?.setupSchedulersButtons()
         
         self.addGesureRecognizers()
         
