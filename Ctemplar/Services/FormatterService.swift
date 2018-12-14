@@ -406,6 +406,21 @@ class FormatterService
         
         return 0
     }
+    
+    func formatSelfDestructionDateToSringForAPI(date: Date) -> String {
+        
+        //"2018-12-30T19:00:00.000+00:00" web
+        let dateFormatter = DateFormatter()
+        //dateFormatter.dateFormat = "YYYY-MM-DD'T'hh:mm" //"2018-12-358T10:27"
+        dateFormatter.dateFormat = "YYYY-MM-dd'T'hh:mm:ss.SSSZZZZZ" //"2018-12-22T10:53:17.000+03:00"
+        //"yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        //"2018-12-28T10:13:41.00+0300"  result
+        //"2018-12-27T10:19:39.000+0300"
+        
+        let dateString = dateFormatter.string(from: date)
+        
+        return dateString
+    }
 }
 
 extension Date {

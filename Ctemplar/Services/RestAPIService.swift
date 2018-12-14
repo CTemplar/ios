@@ -71,6 +71,9 @@ class RestAPIService {
         case inline = "is_inline"
         case attachments = "attachments"
         case parent = "parent"
+        case selfDestructionDate = "destruct_date"
+        case delayedDeliveryDate = "delayed_delivery"
+        case deadManDate = "dead_man_duration"
     }
         
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -450,7 +453,7 @@ class RestAPIService {
         }
     }
     
-    func updateSendingMessage(token: String, messageID: String, encryptedMessage: String, subject: String, recieversList: Array<String>, folder: String, send: Bool, encryptionObject: [String : String], encrypted: Bool, attachments: Array<[String : String]>, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateSendingMessage(token: String, messageID: String, encryptedMessage: String, subject: String, recieversList: Array<String>, folder: String, send: Bool, encryptionObject: [String : String], encrypted: Bool, attachments: Array<[String : String]>, selfDestructionDate: String, delayedDeliveryDate: String, deadManDate: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -465,7 +468,10 @@ class RestAPIService {
             JSONKey.send.rawValue: send,
             JSONKey.encryption.rawValue : encryptionObject,
             JSONKey.encrypted.rawValue : encrypted,
-            JSONKey.attachments.rawValue : attachments
+            JSONKey.attachments.rawValue : attachments,
+            JSONKey.selfDestructionDate.rawValue : selfDestructionDate,
+            //JSONKey.delayedDeliveryDate.rawValue : delayedDeliveryDate,
+            //JSONKey.deadManDate.rawValue : deadManDate
         ]
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messageID + "/"

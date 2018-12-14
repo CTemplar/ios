@@ -378,7 +378,17 @@ class ComposePresenter {
     }
     
     func generateForwardHeader(message: EmailMessage) -> NSAttributedString {
+        /*
+        ---------- Forwarded message ----------
+            
+        From: <atif1@dev.ctemplar.com>
         
+        Date: Dec 14, 2018, 11:10:23 AM
+        
+        Subject: Self-destructing Msg
+        
+        To: <dmitry3@dev.ctemplar.com>
+        */
         var forwardHeader : String = ""
         
         let font : UIFont = UIFont(name: k_latoRegularFontName, size: 14.0)!
