@@ -244,6 +244,50 @@ class FormatterService
         return dateString
     }
     
+    func formatDeadManDateString(duration: String, short: Bool) -> NSMutableAttributedString {
+        
+        var dateString : String = ""
+        var location = 0
+        var length = 5
+        
+        if !short {
+            dateString = dateString + "Dead mans "//"Delete In "
+            location = 10
+        }
+        
+        if let durationValue = Int(duration) {
+            if durationValue > 0 {
+                if durationValue > 24 {
+                    length = 8
+                    
+                    let days = durationValue / 24
+                    
+                    if days > 10 {
+                        length = 9
+                    }
+                    
+                    dateString = dateString + String(format: "%d", days) + "d "
+                    
+                    let hours = durationValue - (days * 24)
+                    dateString = dateString + String(format: "%02d", hours) + ":00"
+                } else {
+                    let hours = durationValue
+                    dateString = dateString + String(format: "%02d", hours) + ":00"
+                }
+            }
+        }
+        
+        let attributedString = NSMutableAttributedString(string: dateString, attributes: [
+            .font: UIFont(name: k_latoRegularFontName, size: 9.0)!,
+            .foregroundColor: UIColor.white,
+            .kern: 0.0
+            ])
+        
+        attributedString.addAttribute(.font, value: UIFont(name: k_latoBoldFontName, size: 9.0)!, range: NSRange(location: location, length: length))
+        
+        return attributedString
+    }
+    
     func formatStringToDate(date: String) -> Date? {
         
         let dateFormatter = DateFormatter()
@@ -410,7 +454,7 @@ class FormatterService
 
 extension Date {
     
-    func timeCountForDelivery() -> NSMutableAttributedString {
+    func timeCountForDelivery(short: Bool) -> NSMutableAttributedString {
         
         let secondsAgo = Int(Date().timeIntervalSince(self))
         let minute = 60
@@ -428,12 +472,12 @@ extension Date {
         //print("remainHoursInDay", remainHoursInDay)
         //print("remainMinutesInHour", remainMinutesInHour)
         
-        let timeString = formatDestructionTimeToString(days: abs(remainDays), hours: abs(remainHoursInDay), minutes: abs(remainMinutesInHour))
+        let timeString = formatDelayDeliveryTimeToString(days: abs(remainDays), hours: abs(remainHoursInDay), minutes: abs(remainMinutesInHour), short: short)
         
         return timeString
     }
     
-    func timeCountForDestruct() -> NSMutableAttributedString {
+    func timeCountForDestruct(short: Bool) -> NSMutableAttributedString {
         
         let secondsAgo = Int(Date().timeIntervalSince(self))
         let minute = 60
@@ -451,23 +495,63 @@ extension Date {
         //print("remainHoursInDay", remainHoursInDay)
         //print("remainMinutesInHour", remainMinutesInHour)
         
-        let timeString = formatDestructionTimeToString(days: abs(remainDays), hours: abs(remainHoursInDay), minutes: abs(remainMinutesInHour))
+        let timeString = formatDestructionTimeToString(days: abs(remainDays), hours: abs(remainHoursInDay), minutes: abs(remainMinutesInHour), short: short)
         
         return timeString
     }
     
-    func formatDestructionTimeToString(days: Int, hours: Int, minutes: Int) -> NSMutableAttributedString {
+    func formatDestructionTimeToString(days: Int, hours: Int, minutes: Int, short: Bool) -> NSMutableAttributedString {
         
         var destructionLabelAttributedText = ""
         var dateString : String = ""
         var location = 0
         var length = 5
         
-        if !Device.IS_IPHONE_5 {
+        if !short {
             location = 10
             destructionLabelAttributedText = destructionLabelAttributedText + "Delete In "
         }
             
+        if days > 0 {
+            
+            length = 8
+            
+            if days > 10 {
+                length = 9
+            }
+            
+            dateString = dateString + String(format: "%d", days) + "d " //%02d
+        }
+        
+        dateString = dateString + String(format: "%02d:%02d", hours, minutes)
+        
+        destructionLabelAttributedText = destructionLabelAttributedText + dateString
+        
+        //print("destructionLabelAttributedText", destructionLabelAttributedText)
+        
+        let attributedString = NSMutableAttributedString(string: destructionLabelAttributedText, attributes: [
+            .font: UIFont(name: k_latoRegularFontName, size: 9.0)!,
+            .foregroundColor: UIColor.white,
+            .kern: 0.0
+            ])
+        
+        attributedString.addAttribute(.font, value: UIFont(name: k_latoBoldFontName, size: 9.0)!, range: NSRange(location: location, length: length))
+        
+        return attributedString
+    }
+    
+    func formatDelayDeliveryTimeToString(days: Int, hours: Int, minutes: Int, short: Bool) -> NSMutableAttributedString {
+        
+        var destructionLabelAttributedText = ""
+        var dateString : String = ""
+        var location = 0
+        var length = 5
+        
+        if !short {
+            location = 11
+            destructionLabelAttributedText = destructionLabelAttributedText + "Delay time "//"Delete In "
+        }
+        
         if days > 0 {
             
             length = 8
