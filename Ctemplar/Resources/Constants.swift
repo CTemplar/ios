@@ -29,6 +29,7 @@ let k_ComposeViewControllerID               = "ComposeViewController"
 let k_SearchViewControllerID                = "SearchViewController"
 let k_MoveToViewControllerID                = "MoveToViewController"
 let k_ContactsViewControllerID              = "ContactsViewController"
+let k_ManageFoldersViewControllerID         = "ManageFoldersViewController"
 let k_AddContactViewControllerID            = "AddContactViewController"
 let k_SetPasswordViewControllerID           = "SetPasswordViewController"
 let k_SchedulerViewControllerID             = "SchedulerViewController"
@@ -45,6 +46,7 @@ let k_ComposeStoryboardName                = "Compose"
 let k_SearchStoryboardName                 = "Search"
 let k_AboutAsStoryboardName                = "AboutAs"
 let k_ContactsStoryboardName               = "Contacts"
+let k_ManageFoldersStoryboardName          = "ManageFolders"
 let k_MoveToStoryboardName                 = "MoveTo"
 let k_ViewInboxEmailStoryboardName         = "ViewInboxEmail"
 let k_SetPasswordStoryboardName            = "SetPassword"
@@ -344,6 +346,7 @@ enum InboxSideMenuOptionsName: String {
     case settings         = "Settings"
     case help             = "Help"
     case logout           = "Logout"
+    case manageFolders    = "Manage Folders"
 }
 
 enum MessagesFoldersName: String, CaseIterable {

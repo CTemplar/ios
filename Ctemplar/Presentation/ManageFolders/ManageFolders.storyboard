@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Manage folders-->
+        <scene sceneID="9Cb-MT-7gO">
+            <objects>
+                <viewController storyboardIdentifier="ManageFoldersViewController" id="YA6-S9-hED" customClass="ManageFoldersViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Cbc-XY-WZW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZTJ-4c-Jty">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyFoldersIcon" translatesAutoresizingMaskIntoConstraints="NO" id="JC6-mY-11G">
+                                        <rect key="frame" x="137.5" y="186.5" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="JC6-mY-11G" secondAttribute="height" multiplier="1:1" id="7ZV-d3-Dda"/>
+                                            <constraint firstAttribute="height" constant="100" id="xHK-7g-rTr"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have no folders" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="28f-Nz-aId">
+                                        <rect key="frame" x="27.5" y="298.5" width="320" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="320" id="99O-P1-aKt"/>
+                                            <constraint firstAttribute="width" secondItem="28f-Nz-aId" secondAttribute="height" multiplier="160:9" id="Fme-iX-BAL"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="079-Sd-bkO">
+                                        <rect key="frame" x="0.0" y="598" width="375" height="85"/>
+                                        <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GaK-rp-BiU">
+                                        <rect key="frame" x="0.0" y="598" width="375" height="49"/>
+                                        <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="49" id="mt8-vc-WkR"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                        <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Add folder" image="WhitePlus">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="079-Sd-bkO" firstAttribute="leading" secondItem="ZTJ-4c-Jty" secondAttribute="leading" id="6O5-pi-GIl"/>
+                                    <constraint firstItem="GaK-rp-BiU" firstAttribute="top" secondItem="079-Sd-bkO" secondAttribute="top" id="DPL-fI-Pud"/>
+                                    <constraint firstAttribute="trailing" secondItem="GaK-rp-BiU" secondAttribute="trailing" id="GMB-aQ-8tp"/>
+                                    <constraint firstItem="28f-Nz-aId" firstAttribute="centerX" secondItem="ZTJ-4c-Jty" secondAttribute="centerX" id="QBB-ye-FXv"/>
+                                    <constraint firstAttribute="bottom" secondItem="GaK-rp-BiU" secondAttribute="bottom" id="QJM-oX-I2y"/>
+                                    <constraint firstItem="JC6-mY-11G" firstAttribute="centerX" secondItem="ZTJ-4c-Jty" secondAttribute="centerX" id="TUu-tW-e5U"/>
+                                    <constraint firstAttribute="bottom" secondItem="079-Sd-bkO" secondAttribute="bottom" constant="-36" id="WpC-16-nrx"/>
+                                    <constraint firstItem="JC6-mY-11G" firstAttribute="top" secondItem="ZTJ-4c-Jty" secondAttribute="centerY" constant="-137" id="ds4-5s-Ff3"/>
+                                    <constraint firstAttribute="trailing" secondItem="079-Sd-bkO" secondAttribute="trailing" id="ko6-Jw-Epg"/>
+                                    <constraint firstItem="28f-Nz-aId" firstAttribute="top" secondItem="JC6-mY-11G" secondAttribute="bottom" constant="12" id="uck-BE-Rzq"/>
+                                    <constraint firstItem="GaK-rp-BiU" firstAttribute="leading" secondItem="ZTJ-4c-Jty" secondAttribute="leading" id="xa2-eA-em4"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QZM-cZ-HkL">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ZTJ-4c-Jty" firstAttribute="top" secondItem="Pif-uN-fdq" secondAttribute="top" id="9Tx-Yn-u0H"/>
+                            <constraint firstItem="QZM-cZ-HkL" firstAttribute="leading" secondItem="Pif-uN-fdq" secondAttribute="leading" id="DRC-TJ-0pd"/>
+                            <constraint firstItem="ZTJ-4c-Jty" firstAttribute="leading" secondItem="Pif-uN-fdq" secondAttribute="leading" id="G0K-wW-quM"/>
+                            <constraint firstItem="ZTJ-4c-Jty" firstAttribute="bottom" secondItem="Pif-uN-fdq" secondAttribute="bottom" id="OhN-Xx-YnK"/>
+                            <constraint firstItem="QZM-cZ-HkL" firstAttribute="trailing" secondItem="Pif-uN-fdq" secondAttribute="trailing" id="jS5-77-dVI"/>
+                            <constraint firstItem="ZTJ-4c-Jty" firstAttribute="trailing" secondItem="Pif-uN-fdq" secondAttribute="trailing" id="qTI-ko-glM"/>
+                            <constraint firstItem="Pif-uN-fdq" firstAttribute="bottom" secondItem="QZM-cZ-HkL" secondAttribute="bottom" id="uMr-Xn-O81"/>
+                            <constraint firstItem="QZM-cZ-HkL" firstAttribute="top" secondItem="Pif-uN-fdq" secondAttribute="top" id="yCl-lL-OZ0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Pif-uN-fdq"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Manage folders" id="cJG-jK-wJr">
+                        <barButtonItem key="leftBarButtonItem" image="MenuButton" id="4TW-th-Nws">
+                            <color key="tintColor" red="0.17254901960784313" green="0.24313725490196078" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="menuButtonPressed:" destination="YA6-S9-hED" id="bbf-Ne-N1G"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VHe-42-zlu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-290" y="14"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="EmptyFoldersIcon" width="100" height="100"/>
+        <image name="MenuButton" width="20" height="14"/>
+        <image name="WhitePlus" width="18" height="18"/>
+    </resources>
+</document>

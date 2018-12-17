@@ -113,6 +113,8 @@
 		843FC3932164D1B2000CFEA9 /* SignUpPageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3922164D1B2000CFEA9 /* SignUpPageName.swift */; };
 		843FC3952164D1E3000CFEA9 /* SignUpPagePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3942164D1E3000CFEA9 /* SignUpPagePassword.swift */; };
 		843FC3972164D20E000CFEA9 /* SignUpPageEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3962164D20E000CFEA9 /* SignUpPageEmail.swift */; };
+		8440466B21C7E8C700CDEB3F /* ManageFolders.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8440466A21C7E8C700CDEB3F /* ManageFolders.storyboard */; };
+		8440466D21C7E8DE00CDEB3F /* ManageFoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440466C21C7E8DE00CDEB3F /* ManageFoldersViewController.swift */; };
 		84405BB221AD0CA40048D8AC /* ComposeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84405BB121AD0CA40048D8AC /* ComposeConfigurator.swift */; };
 		84405BB421AD0CB20048D8AC /* ComposeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84405BB321AD0CB20048D8AC /* ComposeRouter.swift */; };
 		84405BB621AD0CBE0048D8AC /* ComposePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84405BB521AD0CBE0048D8AC /* ComposePresenter.swift */; };
@@ -284,6 +286,8 @@
 		843FC3922164D1B2000CFEA9 /* SignUpPageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageName.swift; sourceTree = "<group>"; };
 		843FC3942164D1E3000CFEA9 /* SignUpPagePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPagePassword.swift; sourceTree = "<group>"; };
 		843FC3962164D20E000CFEA9 /* SignUpPageEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageEmail.swift; sourceTree = "<group>"; };
+		8440466A21C7E8C700CDEB3F /* ManageFolders.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ManageFolders.storyboard; sourceTree = "<group>"; };
+		8440466C21C7E8DE00CDEB3F /* ManageFoldersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageFoldersViewController.swift; sourceTree = "<group>"; };
 		84405BB121AD0CA40048D8AC /* ComposeConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeConfigurator.swift; sourceTree = "<group>"; };
 		84405BB321AD0CB20048D8AC /* ComposeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeRouter.swift; sourceTree = "<group>"; };
 		84405BB521AD0CBE0048D8AC /* ComposePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposePresenter.swift; sourceTree = "<group>"; };
@@ -586,6 +590,7 @@
 				84525F112195498F00CA732E /* SearchScreen */,
 				8433A53D2189DCB4008E1C85 /* MoveToViewController */,
 				8441098C2177233800F0BE18 /* ViewInboxEmailScreen */,
+				8440466921C7E89E00CDEB3F /* ManageFolders */,
 				845E643721708453008612FE /* SideMenu */,
 				8434D9AA219BFCE700D2C3A5 /* ContactsScreen */,
 				845E64412170BD08008612FE /* AboutAsScreen */,
@@ -712,6 +717,15 @@
 				843FC3962164D20E000CFEA9 /* SignUpPageEmail.swift */,
 			);
 			path = SignUpScreenPages;
+			sourceTree = "<group>";
+		};
+		8440466921C7E89E00CDEB3F /* ManageFolders */ = {
+			isa = PBXGroup;
+			children = (
+				8440466C21C7E8DE00CDEB3F /* ManageFoldersViewController.swift */,
+				8440466A21C7E8C700CDEB3F /* ManageFolders.storyboard */,
+			);
+			path = ManageFolders;
 			sourceTree = "<group>";
 		};
 		8441098C2177233800F0BE18 /* ViewInboxEmailScreen */ = {
@@ -924,6 +938,7 @@
 				8435900821C2912300F7D34D /* Scheduler.storyboard in Resources */,
 				84732CA221B17B8D00B6F799 /* UserMailboxTableViewCell.xib in Resources */,
 				843FBF17216E3D2400148FC1 /* Login-iPad.storyboard in Resources */,
+				8440466B21C7E8C700CDEB3F /* ManageFolders.storyboard in Resources */,
 				8433A5412189DE17008E1C85 /* MoveTo.storyboard in Resources */,
 				8441559521BF8CF90053C39F /* Attachment.xib in Resources */,
 				843710412174661000DAE4BA /* ForgotPassword.storyboard in Resources */,
@@ -1085,6 +1100,7 @@
 				8433DFB7219EC92100375609 /* ViewInboxEmailDataSource.swift in Sources */,
 				8433FF57216212D500C57DC8 /* AplicationManager.swift in Sources */,
 				8437103F217465DD00DAE4BA /* ForgotPasswordViewController.swift in Sources */,
+				8440466D21C7E8DE00CDEB3F /* ManageFoldersViewController.swift in Sources */,
 				8402498121916D8E00CDDB0F /* Folder.swift in Sources */,
 				8402498821919FEB00CDDB0F /* MoveToConfigurator.swift in Sources */,
 				8403BDE021A3EEB100EE8DCD /* AddContactScreenViewController.swift in Sources */,

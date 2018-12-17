@@ -22,4 +22,12 @@ class InboxSideMenuRouter {
         //vc.sideMenuViewController = self.viewController
         self.viewController?.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func showManageFoldersViewController() {
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: k_ManageFoldersStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_ManageFoldersViewControllerID) as! ManageFoldersViewController
+        self.viewController?.currentParentViewController = vc //?
+        self.viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
 }

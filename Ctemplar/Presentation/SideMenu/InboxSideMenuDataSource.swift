@@ -280,7 +280,8 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
                 self.parentViewController?.presenter?.interactor?.selectSideMenuAction(optionName: optionName)
                 break
             case SideMenuSectionIndex.manageFolders.rawValue:
-                
+                let optionName = InboxSideMenuOptionsName.manageFolders.rawValue 
+                self.parentViewController?.presenter?.interactor?.selectSideMenuAction(optionName: optionName)
                 break
             case SideMenuSectionIndex.customFolders.rawValue:
                 
