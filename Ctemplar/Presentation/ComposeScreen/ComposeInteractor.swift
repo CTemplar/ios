@@ -41,6 +41,7 @@ class ComposeInteractor {
                 //self.presenter?.fillAllEmailsFields(message: self.sendingMessage)
                 self.presenter?.setupMessageSection(message: self.sendingMessage)
                 self.presenter?.setupEncryptedButton()
+                //self.presenter?.setSchedulerTimersForMessage(message: self.sendingMessage)
                 
             case .failure(let error):
                 print("error:", error)

@@ -193,6 +193,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
                 self.presenter?.fillAllEmailsFields(message: self.message!)
                 self.presenter?.setupMessageSection(message: self.message!)
                 self.presenter?.setupEncryptedButton()
+                self.presenter?.setSchedulerTimersForMessage(message: self.message!)
                 
             } else {
                 self.presenter?.fillAllEmailsFields(message: self.message!)

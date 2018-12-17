@@ -244,36 +244,34 @@ class FormatterService
         return dateString
     }
     
-    func formatDeadManDateString(duration: String, short: Bool) -> NSMutableAttributedString {
+    func formatDeadManDateString(duration: Int, short: Bool) -> NSMutableAttributedString {
         
         var dateString : String = ""
         var location = 0
         var length = 5
         
         if !short {
-            dateString = dateString + "Dead mans "//"Delete In "
+            dateString = dateString + "Dead mans "
             location = 10
         }
         
-        if let durationValue = Int(duration) {
-            if durationValue > 0 {
-                if durationValue > 24 {
-                    length = 8
-                    
-                    let days = durationValue / 24
-                    
-                    if days > 10 {
-                        length = 9
-                    }
-                    
-                    dateString = dateString + String(format: "%d", days) + "d "
-                    
-                    let hours = durationValue - (days * 24)
-                    dateString = dateString + String(format: "%02d", hours) + ":00"
-                } else {
-                    let hours = durationValue
-                    dateString = dateString + String(format: "%02d", hours) + ":00"
+        if duration > 0 {
+            if duration > 24 {
+                length = 8
+                
+                let days = duration / 24
+                
+                if days > 10 {
+                    length = 9
                 }
+                
+                dateString = dateString + String(format: "%d", days) + "d "
+                
+                let hours = duration - (days * 24)
+                dateString = dateString + String(format: "%02d", hours) + ":00"
+            } else {
+                let hours = duration
+                dateString = dateString + String(format: "%02d", hours) + ":00"
             }
         }
         
@@ -308,6 +306,14 @@ class FormatterService
         let formattedDate = dateFormatter.date(from: date)
         
         return formattedDate
+    }
+    
+    func formatDeadManDurationToDate(duration: Int) -> Date? {
+        
+        let calendar = Calendar.current
+        let date = calendar.date(byAdding: .hour, value: duration, to: Date())
+        
+        return date
     }
     
     func formatTokenTimeStringToDate(date: String) -> Date? {

@@ -16,7 +16,7 @@ struct EmailMessage {
     var children: Array<EmailMessage>? = nil
     var content : String? = nil
     var createdAt : String? = nil
-    var deadManDuration : String? = nil
+    var deadManDuration : Int? = nil
     var delayedDelivery : String? = nil
     var destructDay : String? = nil
     var encryption : EncryptionObject? = nil
@@ -55,7 +55,7 @@ struct EmailMessage {
         }
         self.content = dictionary["content"] as? String
         self.createdAt = dictionary["created_at"] as? String
-        self.deadManDuration = dictionary["dead_man_duration"] as? String
+        self.deadManDuration = dictionary["dead_man_duration"] as? Int
         self.delayedDelivery = dictionary["delayed_delivery"] as? String
         self.destructDay = dictionary["destruct_date"] as? String
         //self.encryption = dictionary["encryption"] as? String
