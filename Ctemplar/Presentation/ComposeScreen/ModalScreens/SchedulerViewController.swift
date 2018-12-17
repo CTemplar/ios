@@ -34,6 +34,9 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     var scheduledDate = Date()
     var pickerData: [[String]] = [[String]]()
     
+    var days = 0
+    var hours = 0
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -41,7 +44,6 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         
         self.formatterService = appDelegate.applicationManager.formatterService
         
-        //pickerData = [["1", "2", "3", "4"],["a", "b", "c", "d"]]
         self.setupCustomPickerData()
         
         let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture(gesture:)))
@@ -116,10 +118,10 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         
         switch self.mode! {
         case SchedulerMode.selfDestructTimer:
-            self.dateLabel.text = self.scheduledDate.scheduleTimeCountForDestruct()
+            self.dateLabel.text = self.scheduledDate.formatScheduleDestructionTimeToString(days: self.days, hours: self.hours, minutes: 0)
             break
         case SchedulerMode.deadManTimer:
-            self.dateLabel.text = self.scheduledDate.scheduleTimeCountForDestruct()
+            self.dateLabel.text = self.scheduledDate.formatScheduleDestructionTimeToString(days: self.days, hours: self.hours, minutes: 0)
             break
         case SchedulerMode.delayedDelivery:
             self.dateLabel.text = self.formatterService?.formatDateToDelayedDeliveryDateString(date: self.scheduledDate)
@@ -131,12 +133,10 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         
         switch self.mode! {
         case SchedulerMode.selfDestructTimer:
-            //self.datePicker.datePickerMode = .date
             self.datePicker.isHidden = true
             self.customDatePicker.isHidden = false
             break
         case SchedulerMode.deadManTimer:
-            //self.datePicker.datePickerMode = .dateAndTime
             self.datePicker.isHidden = true
             self.customDatePicker.isHidden = false
             break
@@ -156,8 +156,6 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         
         self.scheduledDate = sender.date
         self.setDateLabel()
-        
-        self.scheduledDate.hoursCountFromNow() //debug
     }
     
     @IBAction func scheduleButtonPressed(_ sender: AnyObject) {
@@ -184,7 +182,7 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         
-        return 2
+        return pickerData.count
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -199,5 +197,35 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
+        switch component {
+        case 0:
+             let pickedDaysString = pickerData[component][row]
+             let pickedDays = pickedDaysString.components(separatedBy: NSCharacterSet.decimalDigits.inverted)
+             if pickedDays.count > 0 {
+                self.days = Int(pickedDays.first!)!
+             }
+        case 1:
+            let pickedHoursString = pickerData[component][row]
+            let pickedHours = pickedHoursString.components(separatedBy: NSCharacterSet.decimalDigits.inverted)
+            if pickedHours.count > 0 {
+                self.hours = Int(pickedHours.first!)!
+            }
+        default:
+            break
+        }
+        
+        print("days:", days, "hours:", hours)
+        
+        self.scheduledDate = self.formatScheduledDateWith(days: self.days, hours: self.hours)
+        self.setDateLabel()
+    }
+    
+    func formatScheduledDateWith(days: Int, hours: Int) -> Date {
+        
+        let hoursTotal = (self.days * 24) + self.hours
+        
+        let date = self.formatterService?.formatDeadManDurationToDate(duration: hoursTotal)
+        
+        return date!
     }
 }

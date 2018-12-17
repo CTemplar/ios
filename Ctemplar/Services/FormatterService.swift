@@ -609,7 +609,6 @@ extension Date {
         let remainHoursInDay = (secondsAgo - remainDays * day) / hour
         
         let remainMinutesInHour = (secondsAgo - remainDays * day - remainHoursInDay * hour) / minute
-    
         
         let timeString = formatScheduleDestructionTimeToString(days: abs(remainDays), hours: abs(remainHoursInDay), minutes: abs(remainMinutesInHour))
         
