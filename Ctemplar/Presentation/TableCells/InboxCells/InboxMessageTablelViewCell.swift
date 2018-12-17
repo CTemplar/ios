@@ -20,6 +20,7 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
     @IBOutlet weak var headMessageLabel        : UILabel!
     @IBOutlet weak var countLabel              : UILabel!
     @IBOutlet weak var deleteLabel             : UILabel!
+    @IBOutlet weak var leftLabel               : UILabel!
     @IBOutlet weak var timeLabel               : UILabel!
     
     @IBOutlet weak var isSelectedImageView     : UIImageView!
@@ -28,6 +29,9 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
     @IBOutlet weak var isStaredImageView       : UIImageView!
     @IBOutlet weak var hasAttachmentImageView  : UIImageView!
     @IBOutlet weak var badgesView              : UIView!
+    @IBOutlet weak var timerlabelsView         : UIView!
+    @IBOutlet weak var leftlabelView           : UIView!
+    @IBOutlet weak var rightlabelView          : UIView!
     
     @IBOutlet var senderLabelWidthConstraint            : NSLayoutConstraint!
     @IBOutlet var isSelectedImageTrailingConstraint     : NSLayoutConstraint!
@@ -38,6 +42,9 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
     @IBOutlet var countLabelTrailingConstraint          : NSLayoutConstraint!
     @IBOutlet var deleteLabelWidthConstraint            : NSLayoutConstraint!
     @IBOutlet var badgesViewWidthConstraint             : NSLayoutConstraint!
+    @IBOutlet var timerlabelsViewWidthConstraint        : NSLayoutConstraint!
+    @IBOutlet var leftlabelViewWidthConstraint          : NSLayoutConstraint!
+    @IBOutlet var rightlabelViewWidthConstraint         : NSLayoutConstraint!
     
     var cellWidth : CGFloat = 0.0
 
@@ -108,27 +115,36 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
             }
         }
         
-        //let testDate = "2018-10-26T13:00:00Z"
-        if let destructionDate = message.destructDay {
-            deleteLabel.isHidden = false
-            deleteLabel.backgroundColor = k_orangeColor
-            if  let date = parentController?.formatterService!.formatDestructionTimeStringToDate(date: destructionDate) {
-                deleteLabel.attributedText = date.timeCountForDestruct()                
+        leftlabelView.isHidden = true
+        
+        let short = self.isShortNeed(message: message)
+        
+        if let delayedDelivery = message.delayedDelivery {
+            leftlabelView.isHidden = false
+            leftlabelView.backgroundColor = k_greenColor
+            if  let date = parentController?.formatterService!.formatDestructionTimeStringToDate(date: delayedDelivery) {
+                leftLabel.attributedText = date.timeCountForDelivery(short: short)
             }
-        } else {
-            deleteLabel.isHidden = true
         }
         
-        /*
-        if let delayedDelivery = message.delayedDelivery {
-            deleteLabel.isHidden = false
-            deleteLabel.backgroundColor = k_greenColor
-            if  let date = parentController?.formatterService!.formatDestructionTimeStringToDate(date: delayedDelivery) {
-                deleteLabel.attributedText = date.timeCountForDelivery()
+        if let deadManDuration = message.deadManDuration {
+            leftlabelView.isHidden = false
+            leftlabelView.backgroundColor = k_redColor
+            if  let date = parentController?.formatterService!.formatDeadManDateString(duration: deadManDuration, short: short) {
+                leftLabel.attributedText = date
+            }
+        }
+        
+        //let testDate = "2018-10-26T13:00:00Z"
+        if let destructionDate = message.destructDay {
+            rightlabelView.isHidden = false
+            rightlabelView.backgroundColor = k_orangeColor
+            if  let date = parentController?.formatterService!.formatDestructionTimeStringToDate(date: destructionDate) {
+                deleteLabel.attributedText = date.timeCountForDestruct(short: short)
             }
         } else {
-            deleteLabel.isHidden = true
-        }*/
+            rightlabelView.isHidden = true
+        }
         
         if let isSecured = message.isEncrypted {
             if isSecured {
@@ -184,23 +200,37 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
             countLabelTrailingConstraint.constant = k_countLabelTrailing
         }
 
-        if Device.IS_IPHONE_5 {
-            deleteLabelWidthConstraint.constant = k_deleteLabelSEWidth
+        let short = self.isShortNeed(message: message)
+        
+        if short {
+            leftlabelViewWidthConstraint.constant = k_deleteLabelSEWidth
+            rightlabelViewWidthConstraint.constant = k_deleteLabelSEWidth
         } else {
-            deleteLabelWidthConstraint.constant = k_deleteLabelWidth
+            leftlabelViewWidthConstraint.constant = k_deleteLabelWidth
+            rightlabelViewWidthConstraint.constant = k_deleteLabelWidth
         }
+        
+        if leftlabelView.isHidden {
+            leftlabelViewWidthConstraint.constant = 0.0
+        }
+
+        if deleteLabel.isHidden {
+            rightlabelViewWidthConstraint.constant = 0.0
+        }
+        
+        timerlabelsViewWidthConstraint.constant = leftlabelViewWidthConstraint.constant + rightlabelViewWidthConstraint.constant
   
-        setupSenderLabelsAndBadgesView()
+        setupSenderLabelsAndBadgesView(short: short)
         
         self.layoutIfNeeded()
     }
     
-    func setupSenderLabelsAndBadgesView() {
+    func setupSenderLabelsAndBadgesView(short: Bool) {
         
         let sender = senderLabel.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         let senderTextWidth : CGFloat  = (sender?.widthOfString(usingFont: senderLabel.font))!
         
-        let badgesViewWidth = calculateBadgesViewWidth()
+        let badgesViewWidth = calculateBadgesViewWidth(short: short)
         
         badgesViewWidthConstraint.constant = badgesViewWidth
         
@@ -217,26 +247,61 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
         }
     }
     
-    func calculateBadgesViewWidth() -> CGFloat {
+    func calculateBadgesViewWidth(short: Bool) -> CGFloat {
         
+        var leftLabelWidth : CGFloat = 0.0
         var deleteLabelWidth : CGFloat = 0.0
         
-        if deleteLabel.isHidden {
+        if rightlabelView.isHidden {
             deleteLabelWidth = 0.0
         } else {
-            if Device.IS_IPHONE_5 {
+            if short {
                 deleteLabelWidth = k_deleteLabelSEWidth
             } else {
                 deleteLabelWidth = k_deleteLabelWidth
             }
         }
         
+        if leftlabelView.isHidden {
+            leftLabelWidth = 0.0
+        } else {
+            if short {
+                leftLabelWidth = k_deleteLabelSEWidth
+            } else {
+                leftLabelWidth = k_deleteLabelWidth
+            }
+        }
+        
+        let labelsViewWidth = leftLabelWidth + deleteLabelWidth
+        
         var badgesViewWidth = dotImageWidthConstraint.constant  + dotImageTrailingConstraint.constant  + countLabelWidthConstraint.constant + countLabelTrailingConstraint.constant
         
-        badgesViewWidth = badgesViewWidth + deleteLabelWidth
+        badgesViewWidth = badgesViewWidth + labelsViewWidth
         
         //print("badgesViewWidth:", badgesViewWidth)
         
         return badgesViewWidth
+    }
+    
+    func isShortNeed(message: EmailMessage) -> Bool {
+        
+        var short : Bool = false
+        var leftLabelShowing : Bool = false
+        
+        if Device.IS_IPHONE_5 {
+            short = true
+        } else {
+            if message.delayedDelivery != nil || message.deadManDuration != nil {
+                leftLabelShowing = true
+            }
+            
+            if message.destructDay != nil {
+                if leftLabelShowing {
+                    short = true
+                }
+            }
+        }
+        
+        return short
     }
 }
