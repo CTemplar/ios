@@ -124,6 +124,12 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
             leftlabelView.backgroundColor = k_greenColor
             if  let date = parentController?.formatterService!.formatDestructionTimeStringToDate(date: delayedDelivery) {
                 leftLabel.attributedText = date.timeCountForDelivery(short: short)
+            } else {
+                if let date = parentController?.formatterService!.formatDestructionTimeStringToDateTest(date: delayedDelivery) {
+                    leftLabel.attributedText = date.timeCountForDelivery(short: short)
+                } else {
+                    leftLabel.attributedText = NSAttributedString(string: "Error")
+                }
             }
         }
         
@@ -132,15 +138,28 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
             leftlabelView.backgroundColor = k_redColor
             if  let date = parentController?.formatterService!.formatDeadManDateString(duration: deadManDuration, short: short) {
                 leftLabel.attributedText = date
+            } else {
+                leftLabel.attributedText = NSAttributedString(string: "Error")
             }
         }
         
         //let testDate = "2018-10-26T13:00:00Z"
+        //2018-12-18T05:18:17.919000Z error
+        //web 2018-12-30T19:00:00Z
         if let destructionDate = message.destructDay {
             rightlabelView.isHidden = false
             rightlabelView.backgroundColor = k_orangeColor
+            print("destructionDate:", destructionDate)
             if  let date = parentController?.formatterService!.formatDestructionTimeStringToDate(date: destructionDate) {
                 deleteLabel.attributedText = date.timeCountForDestruct(short: short)
+            } else {
+                print("erorr formatting destructionDate:", destructionDate)
+                if let date = parentController?.formatterService!.formatDestructionTimeStringToDateTest(date: destructionDate) {
+                    print("new format date:", date)
+                    deleteLabel.attributedText = date.timeCountForDestruct(short: short)
+                } else {
+                    deleteLabel.attributedText = NSAttributedString(string: "Error")
+                }
             }
         } else {
             rightlabelView.isHidden = true

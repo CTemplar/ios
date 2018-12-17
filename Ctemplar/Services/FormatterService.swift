@@ -308,6 +308,19 @@ class FormatterService
         return formattedDate
     }
     
+    func formatDestructionTimeStringToDateTest(date: String) -> Date? {
+        
+        let dateFormatter = DateFormatter()
+        //"YYYY-MM-dd'T'hh:mm:ss.SSSZZZZZ" //"2018-12-22T10:53:17.000+03:00"
+        //2018-12-18T05:18:17.919000Z
+        //2018-12-17T22:29:39.619000Z
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        let formattedDate = dateFormatter.date(from: date)
+        
+        return formattedDate
+    }
+    
     func formatDeadManDurationToDate(duration: Int) -> Date? {
         
         let calendar = Calendar.current
