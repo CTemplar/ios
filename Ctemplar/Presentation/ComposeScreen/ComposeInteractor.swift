@@ -66,9 +66,9 @@ class ComposeInteractor {
         }
     }
     
-    func saveDraftMessage(messageID: Int, messageContent: String, encryptionObject: [String : String], subject: String, send: Bool, recieversList: Array<String>, encrypted: Bool) {
+    func saveDraftMessage(messageID: Int, messageContent: String, encryptionObject: [String : String], subject: String, send: Bool, recieversList: Array<String>, encrypted: Bool, selfDestructionDate: String, delayedDeliveryDate: String, deadManDate: String) {
         
-        apiService?.saveDraftMesssage(messageID: messageID.description, messageContent: messageContent, subject: subject, recieversList: recieversList, folder: MessagesFoldersName.draft.rawValue, encryptionObject: encryptionObject, encrypted: encrypted)  {(result) in
+        apiService?.saveDraftMesssage(messageID: messageID.description, messageContent: messageContent, subject: subject, recieversList: recieversList, folder: MessagesFoldersName.draft.rawValue, encryptionObject: encryptionObject, encrypted: encrypted, selfDestructionDate: selfDestructionDate, delayedDeliveryDate: delayedDeliveryDate, deadManDate: deadManDate)  {(result) in
             
             switch(result) {
                 
@@ -336,7 +336,7 @@ class ComposeInteractor {
                 }
             }
             
-            self.saveDraftMessage(messageID: messageID, messageContent: messageContent, encryptionObject: encryptionObjectDictionary, subject: self.viewController!.subject, send: false, recieversList: self.viewController!.emailsToArray, encrypted: encrypted)
+            self.saveDraftMessage(messageID: messageID, messageContent: messageContent, encryptionObject: encryptionObjectDictionary, subject: self.viewController!.subject, send: false, recieversList: self.viewController!.emailsToArray, encrypted: encrypted, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: self.getScheduledDateFor(mode: SchedulerMode.deadManTimer))
         }
     }
     

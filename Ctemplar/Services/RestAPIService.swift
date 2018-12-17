@@ -504,14 +504,14 @@ class RestAPIService {
         }
     }
     
-    func saveDraftMesssage(token: String, messageID: String, messageContent: String, subject: String, recieversList: Array<String>, folder: String, encryptionObject: [String : String], encrypted: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func saveDraftMesssage(token: String, messageID: String, messageContent: String, subject: String, recieversList: Array<String>, folder: String, encryptionObject: [String : String], encrypted: Bool, selfDestructionDate: String, delayedDeliveryDate: String, deadManTimer: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
             "Accept": "application/json"
         ]
         
-        let parameters: Parameters = [
+        var parameters: Parameters = [
             JSONKey.content.rawValue : messageContent,
             JSONKey.folder.rawValue: folder,
             JSONKey.subject.rawValue: subject,
@@ -520,6 +520,18 @@ class RestAPIService {
             JSONKey.encryption.rawValue : encryptionObject,
             JSONKey.encrypted.rawValue : encrypted
         ]
+        
+        if selfDestructionDate.count > 0 {
+            parameters[JSONKey.selfDestructionDate.rawValue] = selfDestructionDate
+        }
+        
+        if delayedDeliveryDate.count > 0 {
+            parameters[JSONKey.delayedDeliveryDate.rawValue] = delayedDeliveryDate
+        }
+        
+        if deadManTimer > 0 {
+            parameters[JSONKey.deadManDate.rawValue] = deadManTimer
+        }
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messageID + "/"
         

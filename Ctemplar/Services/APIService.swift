@@ -777,7 +777,13 @@ class APIService {
         }
     }
     
-    func saveDraftMesssage(messageID: String, messageContent: String, subject: String, recieversList: Array<String>, folder: String, encryptionObject: [String : String], encrypted: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func saveDraftMesssage(messageID: String, messageContent: String, subject: String, recieversList: Array<String>, folder: String, encryptionObject: [String : String], encrypted: Bool, selfDestructionDate: String, delayedDeliveryDate: String, deadManDate: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        var deadManTimer = 0
+        
+        if deadManDate.count > 0 {
+            deadManTimer = Int(deadManDate)!
+        }
         
         self.checkTokenExpiration(){ (complete) in
             if complete {
@@ -786,7 +792,7 @@ class APIService {
                     
                     //HUD.show(.progress)
                     
-                    self.restAPIService?.saveDraftMesssage(token: token, messageID: messageID, messageContent: messageContent, subject: subject, recieversList: recieversList, folder: folder, encryptionObject: encryptionObject, encrypted: encrypted) {(result) in
+                    self.restAPIService?.saveDraftMesssage(token: token, messageID: messageID, messageContent: messageContent, subject: subject, recieversList: recieversList, folder: folder, encryptionObject: encryptionObject, encrypted: encrypted, selfDestructionDate: selfDestructionDate, delayedDeliveryDate: delayedDeliveryDate, deadManTimer: deadManTimer) {(result) in
                         
                         switch(result) {
                             
