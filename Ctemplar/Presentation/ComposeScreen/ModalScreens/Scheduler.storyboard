@@ -161,13 +161,22 @@
                                     <action selector="datePickerValueChangedWithSender:" destination="Tbh-3a-1e6" eventType="valueChanged" id="8fV-L7-9LU"/>
                                 </connections>
                             </datePicker>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2FM-YG-0lR">
+                                <rect key="frame" x="0.0" y="451" width="375" height="216"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Tbh-3a-1e6" id="fPa-Dy-BE1"/>
+                                    <outlet property="delegate" destination="Tbh-3a-1e6" id="s7S-DS-eai"/>
+                                </connections>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6AV-7J-xIE" firstAttribute="top" secondItem="6Ns-hh-tWy" secondAttribute="top" constant="60" id="BYR-rp-mkb"/>
                             <constraint firstItem="Jn7-ai-7uh" firstAttribute="trailing" secondItem="6Ns-hh-tWy" secondAttribute="trailing" id="Jgf-Vv-ouJ"/>
+                            <constraint firstItem="2FM-YG-0lR" firstAttribute="bottom" secondItem="6Ns-hh-tWy" secondAttribute="bottom" id="Oj5-rZ-AZF"/>
                             <constraint firstItem="QhJ-l3-SH4" firstAttribute="trailing" secondItem="6Ns-hh-tWy" secondAttribute="trailing" id="RXf-8R-vRB"/>
                             <constraint firstItem="QhJ-l3-SH4" firstAttribute="top" secondItem="Jn7-ai-7uh" secondAttribute="bottom" id="S28-Xr-JXN"/>
+                            <constraint firstItem="2FM-YG-0lR" firstAttribute="leading" secondItem="6Ns-hh-tWy" secondAttribute="leading" id="WRe-dX-7AL"/>
                             <constraint firstItem="PWB-q6-4c4" firstAttribute="leading" secondItem="6Ns-hh-tWy" secondAttribute="leading" id="ZlS-ZD-ikz"/>
                             <constraint firstItem="QhJ-l3-SH4" firstAttribute="leading" secondItem="6Ns-hh-tWy" secondAttribute="leading" id="bWt-SQ-X1d"/>
                             <constraint firstItem="6Ns-hh-tWy" firstAttribute="bottom" secondItem="QhJ-l3-SH4" secondAttribute="bottom" id="euo-uS-RmS"/>
@@ -180,11 +189,14 @@
                             <constraint firstItem="2Fj-i8-reS" firstAttribute="leading" secondItem="6Ns-hh-tWy" secondAttribute="leading" id="o0y-kO-hAR"/>
                             <constraint firstItem="6Ns-hh-tWy" firstAttribute="bottom" secondItem="6AV-7J-xIE" secondAttribute="bottom" id="p40-Rm-duS"/>
                             <constraint firstItem="PWB-q6-4c4" firstAttribute="bottom" secondItem="6Ns-hh-tWy" secondAttribute="bottom" id="pdD-Bm-pew"/>
+                            <constraint firstItem="2FM-YG-0lR" firstAttribute="top" secondItem="Jn7-ai-7uh" secondAttribute="bottom" id="qSz-sk-0XD"/>
+                            <constraint firstItem="2FM-YG-0lR" firstAttribute="trailing" secondItem="6Ns-hh-tWy" secondAttribute="trailing" id="w2u-Zb-VhS"/>
                             <constraint firstItem="2Fj-i8-reS" firstAttribute="top" secondItem="6Ns-hh-tWy" secondAttribute="top" constant="1" id="wUS-bZ-kHL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Ns-hh-tWy"/>
                     </view>
                     <connections>
+                        <outlet property="customDatePicker" destination="2FM-YG-0lR" id="bxA-to-gmp"/>
                         <outlet property="dateLabel" destination="PsJ-ik-uBH" id="xq2-gH-pdc"/>
                         <outlet property="datePicker" destination="QhJ-l3-SH4" id="mBz-9P-Nz3"/>
                         <outlet property="textLabel" destination="taU-8K-Coy" id="h6Z-dM-eqf"/>

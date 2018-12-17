@@ -14,7 +14,7 @@ protocol SchedulerDelegate {
     func cancelSchedulerAction()
 }
 
-class SchedulerViewController: UIViewController {
+class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -27,10 +27,12 @@ class SchedulerViewController: UIViewController {
     @IBOutlet var textLabel             : UILabel!
     @IBOutlet var dateLabel             : UILabel!
     @IBOutlet var datePicker            : UIDatePicker!
+    @IBOutlet var customDatePicker      : UIPickerView!
     @IBOutlet var mainView              : UIView!
     
     var mode: SchedulerMode!
     var scheduledDate = Date()
+    var pickerData: [[String]] = [[String]]()
     
     //MARK: - Lifecycle
     
@@ -39,6 +41,8 @@ class SchedulerViewController: UIViewController {
         
         self.formatterService = appDelegate.applicationManager.formatterService
         
+        //pickerData = [["1", "2", "3", "4"],["a", "b", "c", "d"]]
+        self.setupCustomPickerData()
         
         let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture(gesture:)))
         swipeDownGesture.direction = .down
@@ -50,6 +54,42 @@ class SchedulerViewController: UIViewController {
         
         self.setupScreen()
         self.setupPicker()
+    }
+    
+    func setupCustomPickerData() {
+        
+        var daysList = [String]()
+        var hoursist = [String]()
+        
+        var daySuffix = ""
+        var hourSuffix = ""
+        
+        for day in 0...99 {
+            
+            if day == 1 {
+                daySuffix = "day"
+            } else {
+                daySuffix = "days"
+            }
+            
+            let dayString = String(format: "%i ", day) + daySuffix
+            daysList.append(dayString)
+        }
+        
+        for hour in 0...24 {
+            
+            if hour == 1 {
+                hourSuffix = "hour"
+            } else {
+                hourSuffix = "hours"
+            }
+            
+            let hourString = String(format: "%i ", hour) + hourSuffix
+            hoursist.append(hourString)
+        }
+        
+        self.pickerData.append(daysList)
+        self.pickerData.append(hoursist)
     }
     
     func setupScreen() {
@@ -91,13 +131,19 @@ class SchedulerViewController: UIViewController {
         
         switch self.mode! {
         case SchedulerMode.selfDestructTimer:
-            self.datePicker.datePickerMode = .date
+            //self.datePicker.datePickerMode = .date
+            self.datePicker.isHidden = true
+            self.customDatePicker.isHidden = false
             break
         case SchedulerMode.deadManTimer:
-            self.datePicker.datePickerMode = .dateAndTime
+            //self.datePicker.datePickerMode = .dateAndTime
+            self.datePicker.isHidden = true
+            self.customDatePicker.isHidden = false
             break
         case SchedulerMode.delayedDelivery:
             self.datePicker.datePickerMode = .dateAndTime
+            self.datePicker.isHidden = false
+            self.customDatePicker.isHidden = true
             break
         }
         
@@ -132,5 +178,26 @@ class SchedulerViewController: UIViewController {
             self.delegate?.cancelSchedulerAction()
             self.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    //MARK: - Custom Date Picker Delegate
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        
+        return 2
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        return pickerData[component].count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        return pickerData[component][row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
     }
 }
