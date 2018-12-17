@@ -110,6 +110,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="foldersTableView" destination="QZM-cZ-HkL" id="T5Y-ts-xXx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VHe-42-zlu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

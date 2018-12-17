@@ -12,11 +12,30 @@ import SideMenu
 
 class ManageFoldersViewController: UIViewController {
     
-    @IBOutlet var leftBarButtonItem     : UIBarButtonItem!
+    var presenter   : ManageFoldersPresenter?
+    var router      : ManageFoldersRouter?
+    var dataSource  : ManageFoldersDataSource?
+    
+    var foldersList : Array<Folder> = []
+    
+    @IBOutlet var foldersTableView         : UITableView!
+    
+    @IBOutlet var leftBarButtonItem        : UIBarButtonItem!
    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let configurator = ManageFoldersConfigurator()
+        configurator.configure(viewController: self)
+        
+        dataSource?.initWith(parent: self, tableView: foldersTableView)
+        
+        //temp
+        dataSource?.foldersArray = foldersList
+        dataSource?.reloadData()
+        if foldersList.count > 0 {
+            self.foldersTableView.isHidden = false
+        }
     }
     
     //MARK: - IBActions
