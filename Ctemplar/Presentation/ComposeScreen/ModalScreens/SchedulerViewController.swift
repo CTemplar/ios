@@ -56,6 +56,7 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         
         self.setupScreen()
         self.setupPicker()
+        self.validateScheduledDate()
     }
     
     func setupCustomPickerData() {
@@ -148,6 +149,7 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         }
         
         self.datePicker.date = self.scheduledDate
+        self.setCustomPickerScheduledDate()
     }
     
     //MARK: - IBActions
@@ -156,6 +158,7 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         
         self.scheduledDate = sender.date
         self.setDateLabel()
+        self.validateScheduledDate()
     }
     
     @IBAction func scheduleButtonPressed(_ sender: AnyObject) {
@@ -214,10 +217,11 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             break
         }
         
-        print("days:", days, "hours:", hours)
+        //print("days:", days, "hours:", hours)
         
         self.scheduledDate = self.formatScheduledDateWith(days: self.days, hours: self.hours)
         self.setDateLabel()
+        self.validateScheduledDate()
     }
     
     func formatScheduledDateWith(days: Int, hours: Int) -> Date {
@@ -227,5 +231,45 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         let date = self.formatterService?.formatDeadManDurationToDate(duration: hoursTotal)
         
         return date!
+    }
+    
+    func setCustomPickerScheduledDate() {
+        
+        if let minutes = self.formatterService?.calculateMinutesCountFor(date: self.scheduledDate) {
+            let hours = lroundf(Float(minutes)/60.0)
+            
+            var currentDay = 0
+            var currentHour = 0
+            
+            if hours > 24 {
+                currentDay = hours / 24
+                currentHour = hours - currentDay * 24
+            } else {
+                currentHour = hours
+            }
+            
+            print("currentDay:", currentDay)
+            print("currentHour:", currentHour)
+            
+            self.customDatePicker.selectRow(currentDay, inComponent: 0, animated: false)
+            self.customDatePicker.selectRow(currentHour, inComponent: 1, animated: false)
+        }
+    }
+    
+    func validateScheduledDate() {
+        
+        //setCustomPickerScheduledDate() //temp
+        
+        if let minutes = self.formatterService?.calculateMinutesCountFor(date: self.scheduledDate) {
+            print("minutes from now:", minutes)
+        
+            if minutes > 0 {
+                scheduleButton.isEnabled = true
+                scheduleButton.alpha = 1.0
+            } else {
+                scheduleButton.isEnabled = false
+                scheduleButton.alpha = 0.6
+            }
+        }
     }
 }

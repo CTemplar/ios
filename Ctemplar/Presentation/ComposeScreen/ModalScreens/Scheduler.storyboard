@@ -199,6 +199,7 @@
                         <outlet property="customDatePicker" destination="2FM-YG-0lR" id="bxA-to-gmp"/>
                         <outlet property="dateLabel" destination="PsJ-ik-uBH" id="xq2-gH-pdc"/>
                         <outlet property="datePicker" destination="QhJ-l3-SH4" id="mBz-9P-Nz3"/>
+                        <outlet property="scheduleButton" destination="Jn7-ai-7uh" id="AgM-DF-6D9"/>
                         <outlet property="textLabel" destination="taU-8K-Coy" id="h6Z-dM-eqf"/>
                         <outlet property="titleLabel" destination="3lR-GF-ZIw" id="bDH-Z7-l2V"/>
                     </connections>

@@ -441,17 +441,16 @@ class FormatterService
         return 0
     }
     
-    func calculateHoursCountFor(date: Date) -> Int? {
+    func calculateMinutesCountFor(date: Date) -> Int? {
         
         let calendar = NSCalendar.current
         
-        let date1 = calendar.startOfDay(for: date)
-        let date2 = calendar.startOfDay(for: Date())
+        let dateNow = Date()
         
-        let components = calendar.dateComponents([.hour], from: date2, to: date1)
+        let components = calendar.dateComponents([.minute], from: dateNow, to: date)
         
-        if let hours = components.hour {
-            return hours
+        if let minutes = components.minute {
+            return minutes
         }
         
         return 0
