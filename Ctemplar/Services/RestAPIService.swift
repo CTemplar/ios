@@ -688,6 +688,30 @@ class RestAPIService {
         }
     }
     
+    func updateCustomFolder(token: String, folderID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.customFolders.rawValue + folderID + "/"
+        
+        print("updateCustomFolder url:", url)
+        
+        Alamofire.request(url, method: .patch, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("updateCustomFolder responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
     func deleteCustomFolder(token: String, folderID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
@@ -710,7 +734,6 @@ class RestAPIService {
                 completionHandler(APIResult.failure(error))
             }
         }
-        
     }
     
     //MARK: - Contacts

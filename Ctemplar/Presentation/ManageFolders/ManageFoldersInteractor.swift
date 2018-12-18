@@ -63,10 +63,7 @@ class ManageFoldersInteractor {
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Delete Folder Error", message: error.localizedDescription, button: "closeButton".localized())
-            }
-            
-            //HUD.hide()
+            }           
         }
-        
     }
 }
