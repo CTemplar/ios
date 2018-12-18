@@ -580,6 +580,16 @@ class ComposeInteractor {
             return false
         }
         
+        if self.spacePressed(input: text) {
+            
+            let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "emailToPrefix".localized())
+            let inputEmail = self.getLastInputText(input: inputDroppedPrefixText, emailsArray: self.viewController!.emailsToArray)
+            
+            self.setEmail(textView: textView, inputEmail: inputEmail, addSelected: false)
+            
+            return false
+        }
+        
         if self.backspacePressed(input: text, range: range) {
             
             if self.viewController!.tapSelectedEmail.count > 0 {
@@ -597,9 +607,15 @@ class ComposeInteractor {
                 
                 if let editingWord = self.getLastWord(textView: textView) {
                    
-                    print("removed Word:", editingWord)
-                    self.viewController!.emailsToArray.removeAll{ $0 == editingWord }
-                    print("emailsToArray count:", self.viewController!.emailsToArray.count)
+                    if editingWord == "" {
+                        print("delete space")
+                        self.viewController!.tapSelectedEmail = self.viewController!.emailsToArray.last!
+                        self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
+                    } else {
+                        print("removed Word:", editingWord)
+                        self.viewController!.emailsToArray.removeAll{ $0 == editingWord }
+                        print("emailsToArray count:", self.viewController!.emailsToArray.count)
+                    }
                 }
                 
                 self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset + self.viewController!.emailToSectionView.frame.height - 5.0)
@@ -640,6 +656,16 @@ class ComposeInteractor {
             return false
         }
         
+        if self.spacePressed(input: text) {
+            
+            let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "ccToPrefix".localized())
+            let inputCcEmail = self.getLastInputText(input: inputDroppedPrefixText, emailsArray: self.viewController!.ccToArray)
+            
+            self.setEmail(textView: textView, inputEmail: inputCcEmail, addSelected: false)
+            
+            return false
+        }
+        
         if self.backspacePressed(input: text, range: range) {
             
             if self.viewController!.tapSelectedCcEmail.count > 0 {
@@ -657,10 +683,18 @@ class ComposeInteractor {
                 
                 if let editingWord = self.getLastWord(textView: textView) {
                     
-                    print("removed Word:", editingWord)
-                    self.viewController!.ccToArray.removeAll{ $0 == editingWord }
-                    print("ccToArray count:", self.viewController!.ccToArray.count)                    
+                    if editingWord == "" {
+                        print("delete space")
+                        self.viewController!.tapSelectedCcEmail = self.viewController!.ccToArray.last!
+                        self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
+                    } else {
+                        print("removed Word:", editingWord)
+                        self.viewController!.ccToArray.removeAll{ $0 == editingWord }
+                        print("ccToArray count:", self.viewController!.ccToArray.count)
+                    }
                 }
+                
+                self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset + self.viewController!.emailToSectionView.frame.height - 5.0)
                 
                 self.viewController!.tableView.isHidden = false
             }
@@ -695,6 +729,16 @@ class ComposeInteractor {
             return false
         }
         
+        if self.spacePressed(input: text) {
+            
+            let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "bccToPrefix".localized())
+            let inputBccEmail = self.getLastInputText(input: inputDroppedPrefixText, emailsArray: self.viewController!.bccToArray)
+            
+            self.setEmail(textView: textView, inputEmail: inputBccEmail, addSelected: false)
+            
+            return false
+        }
+        
         if self.backspacePressed(input: text, range: range) {
             
             if self.viewController!.tapSelectedBccEmail.count > 0 {
@@ -712,11 +756,18 @@ class ComposeInteractor {
                 
                 if let editingWord = self.getLastWord(textView: textView) {
                     
-                    print("removed Word:", editingWord)
-                    self.viewController!.bccToArray.removeAll{ $0 == editingWord }
-                    print("bccToArray count:", self.viewController!.bccToArray.count)
+                    if editingWord == "" {
+                        print("delete space")
+                        self.viewController!.tapSelectedBccEmail = self.viewController!.bccToArray.last!
+                        self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
+                    } else {
+                        print("removed Word:", editingWord)
+                        self.viewController!.bccToArray.removeAll{ $0 == editingWord }
+                        print("bccToArray count:", self.viewController!.bccToArray.count)
+                    }
                 }
                 
+                self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset + self.viewController!.emailToSectionView.frame.height - 5.0)
                 self.viewController!.tableView.isHidden = false
             }
         } else {
@@ -839,11 +890,14 @@ class ComposeInteractor {
         return false
     }
     
-    func spacePressed(input: String) {
+    func spacePressed(input: String) -> Bool {
         
         if input == " " {
             print("space pressed")
+            return true
         }
+        
+        return false
     }
     
     func getLastInputEmail(input: String) -> String {
