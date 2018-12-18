@@ -830,7 +830,8 @@ class ComposeInteractor {
         
         self.presenter!.enabledSendButton()
         
-        self.viewController!.tableView.isHidden = true
+        //self.viewController!.tableView.isHidden = true
+        self.viewController!.view.endEditing(true)
         
         self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
     }

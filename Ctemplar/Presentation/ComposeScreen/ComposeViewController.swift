@@ -493,12 +493,13 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.tapSelectedCcEmail = ""
         self.tapSelectedBccEmail = ""
         self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
-        //self.tableView.isHidden = true
-        print("sender:", sender)
         
-        //if sender != self.tableView {
+        let location = sender.location(in: self.tableView)
+        let locationYCoordinate = location.y
+        
+        if locationYCoordinate < 0 { //tapped under TableView
             view.endEditing(true)
-       // }
+        }
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
