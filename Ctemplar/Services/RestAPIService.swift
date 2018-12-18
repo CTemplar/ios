@@ -56,6 +56,8 @@ class RestAPIService {
         case folderName = "name"
         case folderColor = "color"
         case receiver = "receiver"
+        case carbonCopy = "cc"
+        case blindCarbonCopy = "bcc"
         case sender = "sender"
         case mailbox = "mailbox"
         case send = "send"
@@ -415,17 +417,17 @@ class RestAPIService {
         }
     }
     
-    func createMessage(token: String, parentID: String, content: String, subject: String, recieversList: Array<String>, folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String], attachments: Array<[String : String]>, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func createMessage(token: String, parentID: String, content: String, subject: String, recieversList: [[String]], folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String], attachments: Array<[String : String]>, completionHandler: @escaping (APIResult<Any>) -> Void) {
     
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
             "Accept": "application/json"
         ]
         
-        let parameters: Parameters = [
+        var parameters: Parameters = [
             JSONKey.content.rawValue: content,
             JSONKey.subject.rawValue: subject,
-            JSONKey.receiver.rawValue: recieversList,
+            JSONKey.receiver.rawValue: recieversList[0],
             JSONKey.folder.rawValue: folder,
             JSONKey.mailbox.rawValue: mailboxID,
             JSONKey.send.rawValue: send,
@@ -434,6 +436,14 @@ class RestAPIService {
             JSONKey.attachments.rawValue : attachments,
             JSONKey.parent.rawValue : parentID
         ]
+        
+        if recieversList[1].count > 0 {
+            parameters[JSONKey.carbonCopy.rawValue] = recieversList[1]
+        }
+        
+        if recieversList[2].count > 0 {
+            parameters[JSONKey.blindCarbonCopy.rawValue] = recieversList[2]
+        }
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue
         
@@ -453,7 +463,7 @@ class RestAPIService {
         }
     }
     
-    func updateSendingMessage(token: String, messageID: String, encryptedMessage: String, subject: String, recieversList: Array<String>, folder: String, send: Bool, encryptionObject: [String : String], encrypted: Bool, attachments: Array<[String : String]>, selfDestructionDate: String, delayedDeliveryDate: String, deadManTimer: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateSendingMessage(token: String, messageID: String, encryptedMessage: String, subject: String, recieversList: [[String]], folder: String, send: Bool, encryptionObject: [String : String], encrypted: Bool, attachments: Array<[String : String]>, selfDestructionDate: String, delayedDeliveryDate: String, deadManTimer: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -464,7 +474,7 @@ class RestAPIService {
             JSONKey.content.rawValue : encryptedMessage,
             JSONKey.folder.rawValue: folder,
             JSONKey.subject.rawValue: subject,
-            JSONKey.receiver.rawValue: recieversList,
+            JSONKey.receiver.rawValue: recieversList[0],
             JSONKey.send.rawValue: send,
             JSONKey.encryption.rawValue : encryptionObject,
             JSONKey.encrypted.rawValue : encrypted,
@@ -486,6 +496,14 @@ class RestAPIService {
             parameters[JSONKey.deadManDate.rawValue] = deadManTimer
         }
         
+        if recieversList[1].count > 0 {
+            parameters[JSONKey.carbonCopy.rawValue] = recieversList[1]
+        }
+        
+        if recieversList[2].count > 0 {
+            parameters[JSONKey.blindCarbonCopy.rawValue] = recieversList[2]
+        }
+        
         let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messageID + "/"
         
         print("updateSendingMessage parameters:", parameters)
@@ -504,7 +522,7 @@ class RestAPIService {
         }
     }
     
-    func saveDraftMesssage(token: String, messageID: String, messageContent: String, subject: String, recieversList: Array<String>, folder: String, encryptionObject: [String : String], encrypted: Bool, selfDestructionDate: String, delayedDeliveryDate: String, deadManTimer: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func saveDraftMesssage(token: String, messageID: String, messageContent: String, subject: String, recieversList: [[String]], folder: String, encryptionObject: [String : String], encrypted: Bool, selfDestructionDate: String, delayedDeliveryDate: String, deadManTimer: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -515,7 +533,7 @@ class RestAPIService {
             JSONKey.content.rawValue : messageContent,
             JSONKey.folder.rawValue: folder,
             JSONKey.subject.rawValue: subject,
-            JSONKey.receiver.rawValue: recieversList,
+            JSONKey.receiver.rawValue: recieversList[0],
             JSONKey.send.rawValue: false,
             JSONKey.encryption.rawValue : encryptionObject,
             JSONKey.encrypted.rawValue : encrypted
@@ -531,6 +549,14 @@ class RestAPIService {
         
         if deadManTimer > 0 {
             parameters[JSONKey.deadManDate.rawValue] = deadManTimer
+        }
+        
+        if recieversList[1].count > 0 {
+            parameters[JSONKey.carbonCopy.rawValue] = recieversList[1]
+        }
+        
+        if recieversList[2].count > 0 {
+            parameters[JSONKey.blindCarbonCopy.rawValue] = recieversList[2]
         }
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messageID + "/"

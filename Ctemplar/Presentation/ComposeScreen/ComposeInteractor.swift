@@ -25,7 +25,7 @@ class ComposeInteractor {
 
     //MARK: - API
     
-    func createDraftMessage(parentID: String, content: String, subject: String, recievers: Array<String>, folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String], attachments: Array<[String : String]>) {
+    func createDraftMessage(parentID: String, content: String, subject: String, recievers: [[String]], folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String], attachments: Array<[String : String]>) {
         
         apiService?.createMessage(parentID: parentID, content: content, subject: subject, recieversList: recievers, folder: folder, mailboxID: mailboxID, send: send, encrypted: encrypted, encryptionObject: encryptionObject, attachments: attachments) {(result) in
             
@@ -67,7 +67,7 @@ class ComposeInteractor {
         }
     }
     
-    func saveDraftMessage(messageID: Int, messageContent: String, encryptionObject: [String : String], subject: String, send: Bool, recieversList: Array<String>, encrypted: Bool, selfDestructionDate: String, delayedDeliveryDate: String, deadManDate: String) {
+    func saveDraftMessage(messageID: Int, messageContent: String, encryptionObject: [String : String], subject: String, send: Bool, recieversList: [[String]], encrypted: Bool, selfDestructionDate: String, delayedDeliveryDate: String, deadManDate: String) {
         
         apiService?.saveDraftMesssage(messageID: messageID.description, messageContent: messageContent, subject: subject, recieversList: recieversList, folder: MessagesFoldersName.draft.rawValue, encryptionObject: encryptionObject, encrypted: encrypted, selfDestructionDate: selfDestructionDate, delayedDeliveryDate: delayedDeliveryDate, deadManDate: deadManDate)  {(result) in
             
@@ -84,7 +84,7 @@ class ComposeInteractor {
         }
     }
     
-    func updateSendingMessage(messageID: String, encryptedMessage: String, encryptionObject: [String : String], subject: String, send: Bool, recieversList: Array<String>, encrypted: Bool, attachments: Array<[String : String]>, selfDestructionDate: String, delayedDeliveryDate: String, deadManDate: String) {
+    func updateSendingMessage(messageID: String, encryptedMessage: String, encryptionObject: [String : String], subject: String, send: Bool, recieversList: [[String]], encrypted: Bool, attachments: Array<[String : String]>, selfDestructionDate: String, delayedDeliveryDate: String, deadManDate: String) {
         
         apiService?.updateSendingMessage(messageID: messageID, encryptedMessage: encryptedMessage, subject: subject, recieversList: recieversList, folder: MessagesFoldersName.sent.rawValue, send: send, encryptionObject: encryptionObject, encrypted: encrypted, attachments: attachments, selfDestructionDate: selfDestructionDate, delayedDeliveryDate: delayedDeliveryDate, deadManDate: deadManDate) {(result) in
             
@@ -281,12 +281,16 @@ class ComposeInteractor {
         
         messageContent = self.encryptMessageWithOwnPublicKey(message: messageContent)
         
-        self.createDraftMessage(parentID: "", content: messageContent, subject: self.viewController!.subject, recievers: self.viewController!.emailsToArray, folder: MessagesFoldersName.draft.rawValue, mailboxID: (self.viewController?.mailboxID)!, send: false, encrypted: false, encryptionObject: [:], attachments: self.viewController!.mailAttachmentsList)
+        let recieversList = self.setRecieversList()
+        
+        self.createDraftMessage(parentID: "", content: messageContent, subject: self.viewController!.subject, recievers: recieversList, folder: MessagesFoldersName.draft.rawValue, mailboxID: (self.viewController?.mailboxID)!, send: false, encrypted: false, encryptionObject: [:], attachments: self.viewController!.mailAttachmentsList)
     }
     
     func createDraftWithParent(message: EmailMessage) {
         
-        let recievers = message.receivers as! Array<String>
+        //let recievers = message.receivers as! Array<String>
+        let recieversList = self.setRecieversList()
+        
         let mailboxID = (self.viewController?.mailboxID)!
         
         var encryptionObjectDictionary =  [String : String]()
@@ -309,7 +313,7 @@ class ComposeInteractor {
             }
         }*/
         
-        self.createDraftMessage(parentID: (message.messsageID?.description)!, content: message.content!, subject: message.subject!, recievers: recievers, folder: MessagesFoldersName.draft.rawValue, mailboxID: mailboxID, send: false, encrypted: message.isEncrypted!, encryptionObject: encryptionObjectDictionary, attachments: self.viewController!.mailAttachmentsList)
+        self.createDraftMessage(parentID: (message.messsageID?.description)!, content: message.content!, subject: message.subject!, recievers: recieversList, folder: MessagesFoldersName.draft.rawValue, mailboxID: mailboxID, send: false, encrypted: message.isEncrypted!, encryptionObject: encryptionObjectDictionary, attachments: self.viewController!.mailAttachmentsList)
     }
     
     func deleteDraft() {
@@ -337,8 +341,20 @@ class ComposeInteractor {
                 }
             }
             
-            self.saveDraftMessage(messageID: messageID, messageContent: messageContent, encryptionObject: encryptionObjectDictionary, subject: self.viewController!.subject, send: false, recieversList: self.viewController!.emailsToArray, encrypted: encrypted, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: self.getScheduledDateFor(mode: SchedulerMode.deadManTimer))
+            let recieversList = self.setRecieversList()
+            
+            self.saveDraftMessage(messageID: messageID, messageContent: messageContent, encryptionObject: encryptionObjectDictionary, subject: self.viewController!.subject, send: false, recieversList: recieversList, encrypted: encrypted, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: self.getScheduledDateFor(mode: SchedulerMode.deadManTimer))
         }
+    }
+    
+    func setRecieversList() -> [[String]] {
+        
+        var recieversList = [[String]]()
+        recieversList.append(self.viewController!.emailsToArray)
+        recieversList.append(self.viewController!.ccToArray)
+        recieversList.append(self.viewController!.bccToArray)
+        
+        return recieversList
     }
     
     func getEnteredMessageContent() -> String {
@@ -386,8 +402,10 @@ class ComposeInteractor {
         
         let encryptedMessage = self.encryptMessage(publicKeys: publicKeys, message: messageContent)        
         
+        let recieversList = self.setRecieversList()
+        
         if let messageID = self.sendingMessage.messsageID {
-            self.updateSendingMessage(messageID: messageID.description, encryptedMessage: encryptedMessage, encryptionObject: [:], subject: self.viewController!.subject, send: true, recieversList: self.viewController!.emailsToArray, encrypted: true, attachments: self.viewController!.mailAttachmentsList, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: self.getScheduledDateFor(mode: SchedulerMode.deadManTimer))
+            self.updateSendingMessage(messageID: messageID.description, encryptedMessage: encryptedMessage, encryptionObject: [:], subject: self.viewController!.subject, send: true, recieversList: recieversList, encrypted: true, attachments: self.viewController!.mailAttachmentsList, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: self.getScheduledDateFor(mode: SchedulerMode.deadManTimer))
         }
     }
     
@@ -418,8 +436,10 @@ class ComposeInteractor {
                     
                     messageContent = self.encryptMessage(publicKeys: pgpKeys, message: messageContent)
                     
+                    let recieversList = self.setRecieversList()
+                    
                     if let messageID = self.sendingMessage.messsageID {
-                        self.updateSendingMessage(messageID: messageID.description, encryptedMessage: messageContent, encryptionObject: encryptionObjectDictionary, subject: self.viewController!.subject, send: true, recieversList: self.viewController!.emailsToArray, encrypted: true, attachments: self.viewController!.mailAttachmentsList, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: self.getScheduledDateFor(mode: SchedulerMode.deadManTimer))
+                        self.updateSendingMessage(messageID: messageID.description, encryptedMessage: messageContent, encryptionObject: encryptionObjectDictionary, subject: self.viewController!.subject, send: true, recieversList: recieversList, encrypted: true, attachments: self.viewController!.mailAttachmentsList, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: self.getScheduledDateFor(mode: SchedulerMode.deadManTimer))
                     }
                 }
             }
@@ -427,7 +447,10 @@ class ComposeInteractor {
         } else {
             
             if let messageID = self.sendingMessage.messsageID {
-                self.updateSendingMessage(messageID: messageID.description, encryptedMessage: messageContent, encryptionObject: [:], subject: self.viewController!.subject, send: true, recieversList: self.viewController!.emailsToArray, encrypted: false, attachments: self.viewController!.mailAttachmentsList, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: self.getScheduledDateFor(mode: SchedulerMode.deadManTimer))
+                
+                let recieversList = self.setRecieversList()
+                
+                self.updateSendingMessage(messageID: messageID.description, encryptedMessage: messageContent, encryptionObject: [:], subject: self.viewController!.subject, send: true, recieversList: recieversList, encrypted: false, attachments: self.viewController!.mailAttachmentsList, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: self.getScheduledDateFor(mode: SchedulerMode.deadManTimer))
             }
         }
     }
@@ -468,8 +491,10 @@ class ComposeInteractor {
         
         let encryptionObject = EncryptionObject.init(password: password, passwordHint: passwordHint).toShortDictionary()
         
+        let recieversList = self.setRecieversList()
+        
         if let messageID = self.sendingMessage.messsageID {
-            self.updateSendingMessage(messageID: messageID.description, encryptedMessage: messageContent, encryptionObject: encryptionObject, subject: self.viewController!.subject, send: false, recieversList: self.viewController!.emailsToArray, encrypted: true, attachments: self.viewController!.mailAttachmentsList, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: self.getScheduledDateFor(mode: SchedulerMode.deadManTimer))
+            self.updateSendingMessage(messageID: messageID.description, encryptedMessage: messageContent, encryptionObject: encryptionObject, subject: self.viewController!.subject, send: false, recieversList: recieversList, encrypted: true, attachments: self.viewController!.mailAttachmentsList, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: self.getScheduledDateFor(mode: SchedulerMode.deadManTimer))
         }
     }
     
