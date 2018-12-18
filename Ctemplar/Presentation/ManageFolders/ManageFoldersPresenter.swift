@@ -15,9 +15,9 @@ class ManageFoldersPresenter {
     var viewController   : ManageFoldersViewController?
     var interactor       : ManageFoldersInteractor?
 
-    func setupTableView() {
+    func setupTable(foldersList: Array<Folder>) {
   
-        self.viewController!.dataSource?.foldersArray = self.viewController!.foldersList
+        self.viewController!.dataSource?.foldersArray = foldersList
         self.viewController!.dataSource?.reloadData()
         
         if self.viewController!.foldersList.count > 0 {

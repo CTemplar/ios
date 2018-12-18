@@ -33,7 +33,7 @@ class MoveToInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                AlertHelperKit().showAlert(self.viewController!, title: "Get Folders Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
             HUD.hide()

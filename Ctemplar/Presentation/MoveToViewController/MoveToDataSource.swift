@@ -24,6 +24,8 @@ class MoveToDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
+        self.tableView.tableFooterView = UIView()
+        
         registerTableViewCell()
     }
     

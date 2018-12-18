@@ -24,6 +24,8 @@ class ManageFoldersDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         self.tableView = tableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        self.tableView.tableFooterView = UIView()
            
         registerTableViewCell()
     }
