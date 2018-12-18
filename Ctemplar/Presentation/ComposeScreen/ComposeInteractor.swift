@@ -364,8 +364,10 @@ class ComposeInteractor {
             break
         case SchedulerMode.deadManTimer:
             if self.viewController?.deadManDate != nil {
-                let hoursCount = self.viewController?.deadManDate.hoursCountFromNow()
-                scheduledDateString = hoursCount!.description
+                if let minutesCount = self.viewController?.deadManDate.minutesCountFromNow() {
+                    let hoursCount = lroundf(Float(minutesCount)/60.0)                
+                    scheduledDateString = hoursCount.description
+                }
             }
             break
         case SchedulerMode.delayedDelivery:

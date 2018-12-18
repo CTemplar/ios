@@ -474,7 +474,7 @@ class FormatterService
         //"2018-12-30T19:00:00.000+00:00" web
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd'T'hh:mm:ss.SSSZZZZZ" //"2018-12-22T10:53:17.000+03:00"
-        
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
         let dateString = dateFormatter.string(from: date)
         
         return dateString
@@ -685,6 +685,17 @@ extension Date {
         
         print("hoursCount:", -hoursCount)
         return -hoursCount
+    }
+    
+    func minutesCountFromNow() -> Int {
+        
+        let secondsAgo = Int(Date().timeIntervalSince(self))
+        let minute = 60
+        
+        let minutesCount = secondsAgo / minute
+        
+        print("minutesCount:", -minutesCount)
+        return -minutesCount
     }
 }
 

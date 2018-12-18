@@ -257,9 +257,7 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     func validateScheduledDate() {
-        
-        //setCustomPickerScheduledDate() //temp
-        
+                
         if let minutes = self.formatterService?.calculateMinutesCountFor(date: self.scheduledDate) {
             print("minutes from now:", minutes)
         
