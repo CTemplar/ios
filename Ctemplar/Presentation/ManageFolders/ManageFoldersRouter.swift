@@ -18,4 +18,9 @@ class ManageFoldersRouter {
         
         self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
+    
+    func backAction() {
+        
+        self.viewController?.dismiss(animated: true, completion: nil)
+    }
 }

@@ -61,5 +61,6 @@ class InboxRouter {
             vc.selectedMessagesIDArray = selectedMessages
         }
         self.viewController?.present(vc, animated: true, completion: nil)
+        //self.viewController?.show(vc, sender: self)
     }
 }

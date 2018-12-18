@@ -16,6 +16,8 @@ class ManageFoldersViewController: UIViewController {
     var router      : ManageFoldersRouter?
     var dataSource  : ManageFoldersDataSource?
     
+    var showFromSideMenu : Bool = true
+    
     var foldersList : Array<Folder> = []
     
     @IBOutlet var foldersTableView         : UITableView!
@@ -31,6 +33,10 @@ class ManageFoldersViewController: UIViewController {
         let configurator = ManageFoldersConfigurator()
         configurator.configure(viewController: self)
         
+        if !self.showFromSideMenu {
+            self.presenter?.setupBackButton()
+        }
+        
         self.dataSource?.initWith(parent: self, tableView: foldersTableView)
         
         self.presenter?.setupTableView()
@@ -40,7 +46,11 @@ class ManageFoldersViewController: UIViewController {
     
     @IBAction func menuButtonPressed(_ sender: AnyObject) {
         
-        self.router?.showInboxSideMenu()        
+        if self.showFromSideMenu {
+            self.router?.showInboxSideMenu()
+        } else {
+            self.router?.backAction()
+        }
     }
     
     @IBAction func addFolderButtonPressed(_ sender: AnyObject) {

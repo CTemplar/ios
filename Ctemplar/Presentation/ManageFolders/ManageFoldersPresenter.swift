@@ -25,4 +25,16 @@ class ManageFoldersPresenter {
             self.viewController!.addFolderView.isHidden = false
         }
     }
+    
+    func setupBackButton() {
+        
+        let backButton = UIBarButtonItem(image: UIImage(named: k_darkBackArrowImageName), style: .done, target: self, action: #selector(backAction))
+        
+        self.viewController!.navigationController?.navigationBar.tintColor = k_contactsBarTintColor
+        self.viewController!.navigationItem.leftBarButtonItem = backButton
+    }
+    
+    @objc func backAction() {
+        self.viewController?.router?.backAction()
+    }
 }
