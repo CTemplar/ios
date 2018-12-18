@@ -39,7 +39,7 @@ class ManageFoldersViewController: UIViewController {
         
         self.dataSource?.initWith(parent: self, tableView: foldersTableView)
         
-        self.presenter?.setupTable(foldersList: self.foldersList)
+        self.presenter?.setDataSource(folders: self.foldersList)
         
         self.presenter?.interactor?.foldersList()
     }

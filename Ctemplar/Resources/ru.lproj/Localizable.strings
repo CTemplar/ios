@@ -123,3 +123,7 @@
 "selfDestructTimerText" = "This email deletes itself from the receivers account after";
 "deadManTimerText"      = "If you do not log into your account after the set time email will be sent after ";
 "delayedDeliveryText"   = "Email will be send automatically at the set time";
+
+//Manage Folders
+"deleteFolderTitle" = "Delete folder?";
+"deleteFolder" = "Are you sure you want to delete folder?";

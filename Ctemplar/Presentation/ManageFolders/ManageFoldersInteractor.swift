@@ -27,8 +27,7 @@ class ManageFoldersInteractor {
             case .success(let value):
                 //print("value:", value)
                 
-                let folderList = value as! FolderList
-                
+                let folderList = value as! FolderList                
                 self.setFoldersData(folderList: folderList)
                 
             case .failure(let error):
@@ -43,10 +42,8 @@ class ManageFoldersInteractor {
     func setFoldersData(folderList: FolderList) {
         
         if let folders = folderList.foldersList {
-            
-            if folders.count > 0 {
-                self.presenter?.setupTable(foldersList: folders)
-            }
+
+            self.presenter?.setDataSource(folders: folders)
         }
     }
     

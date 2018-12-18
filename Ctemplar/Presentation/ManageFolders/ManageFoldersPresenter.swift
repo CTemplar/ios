@@ -14,15 +14,23 @@ class ManageFoldersPresenter {
     
     var viewController   : ManageFoldersViewController?
     var interactor       : ManageFoldersInteractor?
-
-    func setupTable(foldersList: Array<Folder>) {
-  
-        self.viewController!.dataSource?.foldersArray = foldersList
+    
+    func setDataSource(folders: Array<Folder>) {
+    
+        self.viewController!.dataSource?.foldersArray = folders
         self.viewController!.dataSource?.reloadData()
+    
+        self.setupTable(folders: folders)
+    }
+
+    func setupTable(folders: Array<Folder>) {
         
-        if self.viewController!.foldersList.count > 0 {
+        if folders.count > 0 {
             self.viewController!.foldersTableView.isHidden = false
             self.viewController!.addFolderView.isHidden = false
+        } else {
+            self.viewController!.foldersTableView.isHidden = true
+            self.viewController!.addFolderView.isHidden = true
         }
     }
     
@@ -36,5 +44,25 @@ class ManageFoldersPresenter {
     
     @objc func backAction() {
         self.viewController?.router?.backAction()
+    }
+    
+    func showDeleteFolderAlert(folderID: Int) {
+        
+        let params = Parameters(
+            title: "deleteFolderTitle".localized(),
+            message: "deleteFolder".localized(),
+            cancelButton: "cancelButton".localized(),
+            otherButtons: ["deleteButton".localized()]
+        )
+        
+        AlertHelperKit().showAlertWithHandler(self.viewController!, parameters: params) { buttonIndex in
+            switch buttonIndex {
+            case 0:
+                print("Cancel Delete")
+            default:
+                print("Delete")
+                self.interactor?.deleteFolder(folderID: folderID)
+            }
+        }
     }
 }

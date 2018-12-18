@@ -77,4 +77,15 @@ class ManageFoldersDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         
         return true
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        let folder = foldersArray[indexPath.row]
+        
+        if (editingStyle == .delete) {
+            if let folderID = folder.folderID {
+                self.parentViewController?.presenter?.showDeleteFolderAlert(folderID: folderID)
+            }
+        }
+    }
 }
