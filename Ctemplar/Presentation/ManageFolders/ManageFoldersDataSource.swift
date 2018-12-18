@@ -52,9 +52,9 @@ class ManageFoldersDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         let folderName = folder.folderName
         
         let cell = tableView.dequeueReusableCell(withIdentifier: k_MoveToFolderTableViewCellIdentifier)! as! MoveToFolderTableViewCell
-        (cell as MoveToFolderTableViewCell).setupMoveToFolderTableCell(checked: false, iconColor: color!, title: folderName!)
+        (cell as MoveToFolderTableViewCell).setupMoveToFolderTableCell(checked: false, iconColor: color!, title: folderName!, showCheckBox: false)
         
-        cell.selectionStyle = UITableViewCell.SelectionStyle.none        
+        cell.accessoryType = .disclosureIndicator
         
         return cell
     }

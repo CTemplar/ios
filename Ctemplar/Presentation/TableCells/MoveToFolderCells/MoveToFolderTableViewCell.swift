@@ -27,13 +27,15 @@ class MoveToFolderTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setupMoveToFolderTableCell(checked: Bool, iconColor: String, title: String) {
+    func setupMoveToFolderTableCell(checked: Bool, iconColor: String, title: String, showCheckBox: Bool) {
         
         if checked {
             checkImageView.image = UIImage(named: k_roundSelectedImageName)
         } else {
             checkImageView.image = UIImage(named: k_checkBoxUncheckedImageName)
         }
+        
+        checkImageView.isHidden = !showCheckBox
                 
         let imageIcon = UIImage(named: k_folderIconImageName)?.withRenderingMode(.alwaysTemplate)
         self.iconImageView.tintColor = self.hexStringToUIColor(hex: iconColor)

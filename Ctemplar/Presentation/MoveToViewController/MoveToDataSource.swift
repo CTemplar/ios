@@ -52,7 +52,7 @@ class MoveToDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: k_MoveToFolderTableViewCellIdentifier)! as! MoveToFolderTableViewCell
-        (cell as MoveToFolderTableViewCell).setupMoveToFolderTableCell(checked: selected, iconColor: color!, title: folderName!)
+        (cell as MoveToFolderTableViewCell).setupMoveToFolderTableCell(checked: selected, iconColor: color!, title: folderName!, showCheckBox: true)
         
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         

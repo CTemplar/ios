@@ -14,4 +14,8 @@ class ManageFoldersRouter {
     
     var viewController: ManageFoldersViewController?
 
+    func showInboxSideMenu() {
+        
+        self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+    }
 }

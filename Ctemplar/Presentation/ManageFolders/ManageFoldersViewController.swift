@@ -19,8 +19,11 @@ class ManageFoldersViewController: UIViewController {
     var foldersList : Array<Folder> = []
     
     @IBOutlet var foldersTableView         : UITableView!
+    @IBOutlet var addFolderView            : UIView!
     
     @IBOutlet var leftBarButtonItem        : UIBarButtonItem!
+    
+    @IBOutlet var addFolderViewHeightConstraint          : NSLayoutConstraint!
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,22 +31,19 @@ class ManageFoldersViewController: UIViewController {
         let configurator = ManageFoldersConfigurator()
         configurator.configure(viewController: self)
         
-        dataSource?.initWith(parent: self, tableView: foldersTableView)
+        self.dataSource?.initWith(parent: self, tableView: foldersTableView)
         
-        //temp
-        dataSource?.foldersArray = foldersList
-        dataSource?.reloadData()
-        if foldersList.count > 0 {
-            self.foldersTableView.isHidden = false
-        }
+        self.presenter?.setupTableView()
     }
     
     //MARK: - IBActions
     
     @IBAction func menuButtonPressed(_ sender: AnyObject) {
         
-        //self.router?.showInboxSideMenu()
-        self.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+        self.router?.showInboxSideMenu()        
     }
     
+    @IBAction func addFolderButtonPressed(_ sender: AnyObject) {
+        
+    }
 }
