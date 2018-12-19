@@ -47,4 +47,21 @@ class AddFolderInteractor {
             self.viewController?.addButton.alpha = 0.6
         }
     }
+    
+    func createCustomFolder(name: String, colorHex: String) {
+        
+        apiService?.createCustomFolder(name: name, color: colorHex) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("value:", value)
+                self.viewController?.dismiss(animated: true, completion: nil)
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Create Folder Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+
 }

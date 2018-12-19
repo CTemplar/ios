@@ -54,7 +54,7 @@ class AddFolderViewController: UIViewController {
     
     @IBAction func addButtonPressed(_ sender: AnyObject) {
         
-        self.dismiss(animated: true, completion: nil)
+        self.interactor?.createCustomFolder(name: self.folderName, colorHex: self.selectedHexColor)
     }
     
     @IBAction func cancelButtonPressed(_ sender: AnyObject) {

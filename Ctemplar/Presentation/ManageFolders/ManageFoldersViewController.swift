@@ -41,6 +41,12 @@ class ManageFoldersViewController: UIViewController {
         
         self.presenter?.setDataSource(folders: self.foldersList)
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.presenter?.interactor?.foldersList()
     }
     
