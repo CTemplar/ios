@@ -333,14 +333,6 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         print("textViewDidEndEditing")
         
-        if textView == self.messageTextView {
-            if self.messageTextView.text.isEmpty {
-                self.presenter?.setPlaceholderToMessageTextView(show: true)
-            } else {
-                //self.presenter!.setupMessageSectionSize()
-            }
-        }
-        
         self.tapSelectedEmail = ""
         self.tapSelectedCcEmail = ""
         self.tapSelectedBccEmail = ""
@@ -348,7 +340,35 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.tableView.isHidden = true
         //self.interactor?.setFilteredList(searchText: "")
         
-        self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
+        //self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
+        
+        var inputText : String = ""
+        
+        switch textView {
+        case self.emailToTextView:
+            let inputDroppedPrefixText = self.interactor?.dropPrefix(text: textView.text, prefix: "emailToPrefix".localized())
+            inputText =  (self.interactor?.getLastInputEmail(input: inputDroppedPrefixText!))!
+            self.interactor?.setEmail(textView: self.emailToTextView, inputEmail: inputText, addSelected: false)
+            //self.presenter?.setupEmailToSection(emailToText: textView.text, ccToText: self.ccToSting, bccToText: self.bccToSting)
+        case self.ccToTextView:
+            let inputDroppedPrefixText = self.interactor?.dropPrefix(text: textView.text, prefix: "ccToPrefix".localized())
+            inputText =  (self.interactor?.getLastInputEmail(input: inputDroppedPrefixText!))!
+            self.interactor?.setEmail(textView: self.ccToTextView, inputEmail: inputText, addSelected: false)
+            //self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: textView.text, bccToText: self.bccToSting)
+        case self.bccToTextView:
+            let inputDroppedPrefixText = self.interactor?.dropPrefix(text: textView.text, prefix: "bccToPrefix".localized())
+            inputText =  (self.interactor?.getLastInputEmail(input: inputDroppedPrefixText!))!
+            self.interactor?.setEmail(textView: self.bccToTextView, inputEmail: inputText, addSelected: false)
+            //self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: textView.text)
+        case self.messageTextView:
+            if self.messageTextView.text.isEmpty {
+                self.presenter?.setPlaceholderToMessageTextView(show: true)
+            }
+            break
+        default:
+            break
+        }
+        
         self.presenter!.enabledSendButton()
     }
     
@@ -492,29 +512,31 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.tapSelectedEmail = ""
         self.tapSelectedCcEmail = ""
         self.tapSelectedBccEmail = ""
-        self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
         
-        let location = sender.location(in: self.tableView)
-        let locationYCoordinate = location.y
-        
-        if locationYCoordinate < 0 { //tapped under TableView
+        if !self.tableView.isHidden {
+            
+            if self.dataSource?.contactsArray.count == 0 { //tap to TableView with empty cells
+                view.endEditing(true)
+            }
+            
+            let location = sender.location(in: self.tableView)
+            let locationYCoordinate = location.y
+            
+            if locationYCoordinate < 0 { //tapped under TableView
+                view.endEditing(true)
+            }
+            
+        } else {
             view.endEditing(true)
         }
+        
+        //self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         
         return true
     }
-    /*
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        
-        if touch.view?.isDescendant(of: self.tableView) == true {
-            return false
-        }
-        
-        return true
-    }*/
     
     //MARK: - document Picker delegate
     

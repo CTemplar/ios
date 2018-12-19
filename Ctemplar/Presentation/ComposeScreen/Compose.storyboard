@@ -250,9 +250,9 @@
                                 <rect key="frame" x="0.0" y="197" width="375" height="46"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Subject" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="MBF-I2-36Z">
-                                        <rect key="frame" x="16" y="15" width="343" height="16"/>
+                                        <rect key="frame" x="16" y="13" width="343" height="18"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="16" id="Dis-u0-e7B"/>
+                                            <constraint firstAttribute="height" constant="18" id="Dis-u0-e7B"/>
                                         </constraints>
                                         <color key="textColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
@@ -265,7 +265,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="EJb-My-FE7"/>
-                                    <constraint firstItem="MBF-I2-36Z" firstAttribute="top" secondItem="JlZ-Fv-gSA" secondAttribute="top" constant="15" id="cTc-sK-qY4"/>
+                                    <constraint firstItem="MBF-I2-36Z" firstAttribute="top" secondItem="JlZ-Fv-gSA" secondAttribute="top" constant="13" id="cTc-sK-qY4"/>
                                     <constraint firstAttribute="trailing" secondItem="MBF-I2-36Z" secondAttribute="trailing" constant="16" id="oVS-Fe-IxD"/>
                                     <constraint firstItem="MBF-I2-36Z" firstAttribute="leading" secondItem="JlZ-Fv-gSA" secondAttribute="leading" constant="16" id="z3N-2A-n8C"/>
                                 </constraints>

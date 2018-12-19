@@ -609,8 +609,12 @@ class ComposeInteractor {
                    
                     if editingWord == "" {
                         print("delete space")
-                        self.viewController!.tapSelectedEmail = self.viewController!.emailsToArray.last!
-                        self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
+                        if let lastEmail =  self.viewController!.emailsToArray.last {
+                            self.viewController!.tapSelectedEmail = lastEmail
+                            self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
+                        } else {
+                            //return false //jest delete space
+                        }
                     } else {
                         print("removed Word:", editingWord)
                         self.viewController!.emailsToArray.removeAll{ $0 == editingWord }
@@ -685,8 +689,12 @@ class ComposeInteractor {
                     
                     if editingWord == "" {
                         print("delete space")
-                        self.viewController!.tapSelectedCcEmail = self.viewController!.ccToArray.last!
-                        self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
+                        if let lastEmail =  self.viewController!.ccToArray.last {
+                            self.viewController!.tapSelectedCcEmail = lastEmail
+                            self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
+                        } else {
+                            //return false
+                        }
                     } else {
                         print("removed Word:", editingWord)
                         self.viewController!.ccToArray.removeAll{ $0 == editingWord }
@@ -758,8 +766,12 @@ class ComposeInteractor {
                     
                     if editingWord == "" {
                         print("delete space")
-                        self.viewController!.tapSelectedBccEmail = self.viewController!.bccToArray.last!
-                        self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
+                        if let lastEmail =  self.viewController!.bccToArray.last {
+                            self.viewController!.tapSelectedBccEmail = lastEmail
+                            self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
+                        } else {
+                            //return false
+                        }
                     } else {
                         print("removed Word:", editingWord)
                         self.viewController!.bccToArray.removeAll{ $0 == editingWord }
@@ -826,14 +838,12 @@ class ComposeInteractor {
             break
         }
         
-        self.setCursorPositionToEnd(textView: textView)
+        self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
         
+        self.setCursorPositionToEnd(textView: textView)
         self.presenter!.enabledSendButton()
         
-        //self.viewController!.tableView.isHidden = true
         self.viewController!.view.endEditing(true)
-        
-        self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
     }
     
     //MARK: - textView private methods
