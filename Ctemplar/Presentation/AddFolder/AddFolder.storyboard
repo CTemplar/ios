@@ -222,6 +222,7 @@
                     </view>
                     <connections>
                         <outlet property="addButton" destination="cG4-CR-m8K" id="dfh-uQ-ZlR"/>
+                        <outlet property="colorPickerSuperView" destination="VyG-aG-Jlh" id="HCa-r0-cUv"/>
                         <outlet property="darkLineView" destination="V2y-0R-uTt" id="kmX-Sz-4uK"/>
                         <outlet property="folderNameTextField" destination="2Cn-KY-Ch2" id="Deu-aS-kLC"/>
                     </connections>

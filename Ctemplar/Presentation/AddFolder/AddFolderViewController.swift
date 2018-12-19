@@ -15,13 +15,25 @@ class AddFolderViewController: UIViewController {
     
     @IBOutlet var folderNameTextField       : UITextField!    
     @IBOutlet var darkLineView              : UIView!
+    @IBOutlet var colorPickerSuperView           : UIView!
+    
+    var colorPicker : ColorPickerView!
 
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
+        
+        self.colorPicker = ColorPickerView()
+        self.colorPickerSuperView.add(subview: colorPicker)
         
         let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture(gesture:)))
         swipeDownGesture.direction = .down
         self.view.addGestureRecognizer(swipeDownGesture)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.colorPicker.setupColorPicker(width: self.colorPickerSuperView.bounds.width, height: self.colorPickerSuperView.bounds.height)
     }
     
     //MARK: - IBActions
