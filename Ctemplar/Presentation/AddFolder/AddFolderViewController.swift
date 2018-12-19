@@ -11,20 +11,30 @@ import UIKit
 
 class AddFolderViewController: UIViewController {
     
+    var interactor       : AddFolderInteractor?
+    
     @IBOutlet var addButton                 : UIButton!
     
     @IBOutlet var folderNameTextField       : UITextField!    
     @IBOutlet var darkLineView              : UIView!
-    @IBOutlet var colorPickerSuperView           : UIView!
+    @IBOutlet var colorPickerSuperView      : UIView!
+    
+    var selectedHexColor : String = ""
+    var folderName : String = ""
     
     var colorPicker : ColorPickerView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let configurator = AddFolderConfigurator()
+        configurator.configure(viewController: self)
+        
         self.colorPicker = ColorPickerView()
         self.colorPicker.delegate = self
         self.colorPickerSuperView.add(subview: colorPicker)
+        
+        self.interactor?.validateFolderName(text: self.folderName)
         
         let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture(gesture:)))
         swipeDownGesture.direction = .down
@@ -36,6 +46,8 @@ class AddFolderViewController: UIViewController {
         
         //self.colorPicker.selectedButtonTag = k_colorButtonsTag + 4
         self.colorPicker.setupColorPicker(width: self.colorPickerSuperView.bounds.width, height: self.colorPickerSuperView.bounds.height)
+        
+        self.folderNameTextField.becomeFirstResponder()
     }
     
     //MARK: - IBActions
@@ -52,7 +64,7 @@ class AddFolderViewController: UIViewController {
     
     @IBAction func textTyped(_ sender: UITextField) {
         
-       // self.setInputText(textField: sender)
+        self.interactor?.validateFolderName(text: sender.text!)
     }
     
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
@@ -68,5 +80,7 @@ extension AddFolderViewController: ColorPickerViewDelegate {
     
     func selectColorAction(colorHex: String) {
         print("selected colorHex:", colorHex)
+        self.selectedHexColor = colorHex
+        self.interactor?.validateFolderName(text: self.folderName)
     }
 }
