@@ -23,6 +23,7 @@ class AddFolderViewController: UIViewController {
         super.viewDidLoad()
         
         self.colorPicker = ColorPickerView()
+        self.colorPicker.delegate = self
         self.colorPickerSuperView.add(subview: colorPicker)
         
         let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture(gesture:)))
@@ -60,5 +61,12 @@ class AddFolderViewController: UIViewController {
             
             self.dismiss(animated: true, completion: nil)
         }
+    }
+}
+
+extension AddFolderViewController: ColorPickerViewDelegate {
+    
+    func selectColorAction(colorHex: String) {
+        print("selected colorHex:", colorHex)
     }
 }

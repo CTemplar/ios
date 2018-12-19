@@ -632,12 +632,20 @@
 		84344D3221CA308000A5D9A0 /* AddFolder */ = {
 			isa = PBXGroup;
 			children = (
+				84344D3B21CA871D00A5D9A0 /* ColorPickerView */,
 				84344D3321CA30AD00A5D9A0 /* AddFolderViewController.swift */,
 				84344D3521CA30BA00A5D9A0 /* AddFolder.storyboard */,
+			);
+			path = AddFolder;
+			sourceTree = "<group>";
+		};
+		84344D3B21CA871D00A5D9A0 /* ColorPickerView */ = {
+			isa = PBXGroup;
+			children = (
 				84344D3921CA44BA00A5D9A0 /* ColorPickerView.swift */,
 				84344D3721CA44AD00A5D9A0 /* ColorPicker.xib */,
 			);
-			path = AddFolder;
+			path = ColorPickerView;
 			sourceTree = "<group>";
 		};
 		8434D9AA219BFCE700D2C3A5 /* ContactsScreen */ = {

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol ColorPickerViewDelegate {
-    func selectAction(_ sender: UIButton)
+    func selectColorAction(colorHex: String)
 }
 
 class ColorPickerView: UIView {
@@ -131,12 +131,16 @@ class ColorPickerView: UIView {
         }
     }
     
+    //MARK: - IBActions
+    
     @objc func buttonPressed(_ sender: UIButton) {
         
         let tag = sender.tag
         self.setButtonSelected(tag: tag)
         self.selectedButtonTag = tag
         self.selectedHexColor = self.getSelectedColor(tag: tag).hexString
+        
+        delegate?.selectColorAction(colorHex: self.selectedHexColor)
     }
     
     func getSelectedColor(tag: Int) -> UIColor {
@@ -149,12 +153,6 @@ class ColorPickerView: UIView {
         } else {
             return UIColor.black
         }
-    }
-     
-    //MARK: - IBActions
-    
-    @IBAction func tappedAction(_ sender: UIButton) {
-        delegate?.selectAction(sender)
     }
 }
 
