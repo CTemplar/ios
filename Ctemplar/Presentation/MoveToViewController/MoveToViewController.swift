@@ -52,6 +52,7 @@ class MoveToViewController: UIViewController {
     
     @IBAction func addButtonPressed(_ sender: AnyObject) {
         
+        self.router?.showAddFolderViewController()
     }
     
     @IBAction func manageFoldersButtonPressed(_ sender: AnyObject) {

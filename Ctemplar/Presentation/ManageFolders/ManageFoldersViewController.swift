@@ -57,5 +57,6 @@ class ManageFoldersViewController: UIViewController {
     
     @IBAction func addFolderButtonPressed(_ sender: AnyObject) {
         
+        self.router?.showAddFolderViewController()
     }
 }
