@@ -308,6 +308,7 @@ let k_encryptApliedImageName        = "encryptAplied"
 let k_selfDestructedImageName       = "selfDestructed"
 let k_selfDestructedApliedImageName              = "selfDestructedAplied"
 
+let k_selectedColorImageName        = "SelectedColor"
 
 // fonts
 

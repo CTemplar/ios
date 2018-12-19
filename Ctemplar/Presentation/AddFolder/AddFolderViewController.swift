@@ -33,6 +33,7 @@ class AddFolderViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        //self.colorPicker.selectedButtonTag = k_colorButtonsTag + 4
         self.colorPicker.setupColorPicker(width: self.colorPickerSuperView.bounds.width, height: self.colorPickerSuperView.bounds.height)
     }
     

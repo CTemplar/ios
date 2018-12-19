@@ -17,9 +17,14 @@ class ColorPickerView: UIView {
     
     var delegate    : ColorPickerViewDelegate?
     
+    var selectedButtonTag : Int = -1
+    var selectedHexColor : String = ""
+    
     let k_buttonsInRow = 7
     let k_buttonsRows = 2
     let k_spaceBetweenButtons : CGFloat = 10.0
+    
+    let k_colorButtonsTag = 200
     
     let k_color1: UIColor = UIColor(red: 114.0 / 255.0, green: 114.0 / 255.0, blue: 168.0 / 255.0, alpha: 1.0)
     let k_color2: UIColor = UIColor(red: 208.0 / 255.0, green: 88.0 / 255.0, blue: 89.0 / 255.0, alpha: 1.0)
@@ -59,18 +64,27 @@ class ColorPickerView: UIView {
         
         let buttonWidth = self.calculateButtonWidth(viewWidth: width)
         
+        self.setButtons(buttonWidth: buttonWidth)
+        
+        if self.selectedButtonTag > 0 {
+            self.setButtonSelected(tag: self.selectedButtonTag)
+        }
+    }
+    
+    func setButtons(buttonWidth: CGFloat) {
+        
         var index = 0
         
         for indexY in 0...k_buttonsRows - 1 {
             
             let yPosition = (buttonWidth + k_spaceBetweenButtons) * CGFloat(indexY)
-        
+            
             for indexX in 0...k_buttonsInRow - 1 {
-            
+                
                 let xPosition = (buttonWidth + k_spaceBetweenButtons) * CGFloat(indexX)
-   
-                index = index + 1        
-            
+                
+                index = index + 1
+                
                 self.createButton(x: xPosition, y: yPosition, buttonWidth: buttonWidth, tag: index)
             }
         }
@@ -92,13 +106,80 @@ class ColorPickerView: UIView {
         button.layer.cornerRadius = buttonWidth / 2
         button.layer.borderWidth = 0
         button.layer.borderColor = UIColor.black.cgColor
-        button.tag = tag
+        button.tag = k_colorButtonsTag + tag
+        button.addTarget(self, action:#selector(buttonPressed(_:)), for: .touchUpInside)
         self.add(subview: button)
     }
     
+    func setButtonSelected(tag: Int) {
+        
+        self.clearSelection()
+        
+        if let button = self.viewWithTag(tag) {
+            (button as! UIButton).setImage(UIImage(named: k_selectedColorImageName), for: .normal)
+        }
+    }
+    
+    func clearSelection() {
+        
+        for index in 1...colorsArray.count {
+            
+            let tag = index + k_colorButtonsTag
+            if let button = self.viewWithTag(tag) {
+                (button as! UIButton).setImage(UIImage(), for: .normal)
+            }
+        }
+    }
+    
+    @objc func buttonPressed(_ sender: UIButton) {
+        
+        let tag = sender.tag
+        self.setButtonSelected(tag: tag)
+        self.selectedButtonTag = tag
+        self.selectedHexColor = self.getSelectedColor(tag: tag).hexString
+    }
+    
+    func getSelectedColor(tag: Int) -> UIColor {
+        
+        let index = tag - k_colorButtonsTag
+        
+        if index < self.colorsArray.count {
+            let selectedColor = self.colorsArray[index - 1]
+            return selectedColor
+        } else {
+            return UIColor.black
+        }
+    }
+     
     //MARK: - IBActions
     
     @IBAction func tappedAction(_ sender: UIButton) {
         delegate?.selectAction(sender)
+    }
+}
+
+extension UIColor {
+    
+    var hexString: String {
+        
+        let colorRef = cgColor.components
+        let r = colorRef?[0] ?? 0
+        let g = colorRef?[1] ?? 0
+        let b = ((colorRef?.count ?? 0) > 2 ? colorRef?[2] : g) ?? 0
+        let a = cgColor.alpha
+        
+        var color = String(
+            
+            format: "#%02lX%02lX%02lX",
+            lroundf(Float(r * 255)),
+            lroundf(Float(g * 255)),
+            lroundf(Float(b * 255))
+        )
+        
+        if a < 1 {
+            color += String(format: "%02lX", lroundf(Float(a)))
+        }
+        
+        return color
     }
 }
