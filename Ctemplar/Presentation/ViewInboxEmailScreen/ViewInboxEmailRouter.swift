@@ -21,6 +21,7 @@ class ViewInboxEmailRouter {
         
         let selectedMessages: Array<Int> = [(self.viewController?.message?.messsageID)!]
         vc.selectedMessagesIDArray = selectedMessages
+        vc.user = (self.viewController?.user)!
         
         self.viewController?.present(vc, animated: true, completion: nil)
     }

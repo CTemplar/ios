@@ -24,6 +24,8 @@ class MoveToViewController: UIViewController {
     @IBOutlet var moveToTableView       : UITableView!
     
     var selectedMessagesIDArray : Array<Int> = []
+    
+    var user = UserMyself()
 
     //MARK: - Lifecycle
     
