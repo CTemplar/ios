@@ -20,6 +20,7 @@ class MoveToViewController: UIViewController {
     
     @IBOutlet var addFolderButton       : UIButton!
     @IBOutlet var manageFolderButton    : UIButton!
+    @IBOutlet var manageFolderView      : UIView!
     
     @IBOutlet var moveToTableView       : UITableView!
     

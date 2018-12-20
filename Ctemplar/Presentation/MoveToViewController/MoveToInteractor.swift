@@ -46,10 +46,10 @@ class MoveToInteractor {
             
             if folders.count > 0 {
                 self.viewController?.addFolderButton.isHidden = true
-                self.viewController?.manageFolderButton.isHidden = false
+                self.viewController?.manageFolderView.isHidden = false
             } else {
                 self.viewController?.addFolderButton.isHidden = false
-                self.viewController?.manageFolderButton.isHidden = true
+                self.viewController?.manageFolderView.isHidden = true
             }
             
             self.viewController?.dataSource?.customFoldersArray = folders

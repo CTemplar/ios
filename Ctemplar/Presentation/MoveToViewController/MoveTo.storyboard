@@ -121,7 +121,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P36-9T-3rm">
                                 <rect key="frame" x="0.0" y="136" width="375" height="531"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8r-20-gvx">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8r-20-gvx">
                                         <rect key="frame" x="0.0" y="-1" width="375" height="45"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1AQ-Zz-7IY">
@@ -131,7 +131,7 @@
                                                     <constraint firstAttribute="height" constant="20" id="Ev8-gj-arP"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
-                                                <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <inset key="titleEdgeInsets" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <inset key="imageEdgeInsets" minX="-12" minY="1" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="Manage folders" image="redFolder">
                                                     <color key="titleColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -259,6 +259,7 @@
                         <outlet property="addFolderButton" destination="bXl-sY-7ce" id="iOm-Bw-p7L"/>
                         <outlet property="applyButton" destination="Xxy-Hd-3eK" id="XFz-8G-tfh"/>
                         <outlet property="manageFolderButton" destination="1AQ-Zz-7IY" id="nnH-MW-aFx"/>
+                        <outlet property="manageFolderView" destination="S8r-20-gvx" id="lyY-5s-bNp"/>
                         <outlet property="moveToTableView" destination="FNs-U3-Y0L" id="9O6-hl-fHQ"/>
                     </connections>
                 </viewController>
