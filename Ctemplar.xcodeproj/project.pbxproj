@@ -141,6 +141,9 @@
 		8441228321A6823F00B56857 /* AttachmentCollcetionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441228221A6823F00B56857 /* AttachmentCollcetionViewCell.xib */; };
 		8441559321BF8AA90053C39F /* AttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441559221BF8AA90053C39F /* AttachmentView.swift */; };
 		8441559521BF8CF90053C39F /* Attachment.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441559421BF8CF90053C39F /* Attachment.xib */; };
+		8443D21321CB6A0F002AD54B /* EditFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443D21221CB6A0F002AD54B /* EditFolderViewController.swift */; };
+		8443D21521CB6AC4002AD54B /* EditFolderConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443D21421CB6AC4002AD54B /* EditFolderConfigurator.swift */; };
+		8443D21721CB6AFB002AD54B /* EditFolderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443D21621CB6AFB002AD54B /* EditFolderInteractor.swift */; };
 		844655BC218C264200B2F2E4 /* MoreActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F348532181B20C00F00E37 /* MoreActionsView.swift */; };
 		844655BD218C264E00B2F2E4 /* MoreActions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F348552181B21C00F00E37 /* MoreActions.xib */; };
 		844F4B5A216B3A380057C758 /* UserPGPKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F4B59216B3A380057C758 /* UserPGPKey.swift */; };
@@ -325,6 +328,9 @@
 		8441228221A6823F00B56857 /* AttachmentCollcetionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AttachmentCollcetionViewCell.xib; sourceTree = "<group>"; };
 		8441559221BF8AA90053C39F /* AttachmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentView.swift; sourceTree = "<group>"; };
 		8441559421BF8CF90053C39F /* Attachment.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Attachment.xib; sourceTree = "<group>"; };
+		8443D21221CB6A0F002AD54B /* EditFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFolderViewController.swift; sourceTree = "<group>"; };
+		8443D21421CB6AC4002AD54B /* EditFolderConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFolderConfigurator.swift; sourceTree = "<group>"; };
+		8443D21621CB6AFB002AD54B /* EditFolderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFolderInteractor.swift; sourceTree = "<group>"; };
 		844F4B59216B3A380057C758 /* UserPGPKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPGPKey.swift; sourceTree = "<group>"; };
 		84525F12219549B100CA732E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		84525F14219549C100CA732E /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
@@ -614,6 +620,7 @@
 				8441098C2177233800F0BE18 /* ViewInboxEmailScreen */,
 				8440466921C7E89E00CDEB3F /* ManageFolders */,
 				84344D3221CA308000A5D9A0 /* AddFolder */,
+				8443D21121CB697B002AD54B /* EditFolder */,
 				845E643721708453008612FE /* SideMenu */,
 				8434D9AA219BFCE700D2C3A5 /* ContactsScreen */,
 				845E64412170BD08008612FE /* AboutAsScreen */,
@@ -798,6 +805,16 @@
 				8441228221A6823F00B56857 /* AttachmentCollcetionViewCell.xib */,
 			);
 			path = CollectionCells;
+			sourceTree = "<group>";
+		};
+		8443D21121CB697B002AD54B /* EditFolder */ = {
+			isa = PBXGroup;
+			children = (
+				8443D21221CB6A0F002AD54B /* EditFolderViewController.swift */,
+				8443D21421CB6AC4002AD54B /* EditFolderConfigurator.swift */,
+				8443D21621CB6AFB002AD54B /* EditFolderInteractor.swift */,
+			);
+			path = EditFolder;
 			sourceTree = "<group>";
 		};
 		844F4B58216B330E0057C758 /* MainViewController */ = {
@@ -1181,6 +1198,7 @@
 				843E973D2163703100147CBE /* LoginPresenter.swift in Sources */,
 				843FC3862164C9EE000CFEA9 /* SignUpPageViewController.swift in Sources */,
 				843FBF15216DF0A000148FC1 /* Mailbox.swift in Sources */,
+				8443D21521CB6AC4002AD54B /* EditFolderConfigurator.swift in Sources */,
 				843FBF19216E4FE500148FC1 /* DeviceScreenConstants.swift in Sources */,
 				8402497F21916D3200CDDB0F /* FoldersList.swift in Sources */,
 				843E973B2163701B00147CBE /* LoginInteractor.swift in Sources */,
@@ -1227,9 +1245,11 @@
 				8433FF5A2162181E00C57DC8 /* Constants.swift in Sources */,
 				8441098E2177238A00F0BE18 /* ViewInboxEmailViewController.swift in Sources */,
 				84FF7E3C219DB71500E3E56A /* ContactTableViewCell.swift in Sources */,
+				8443D21721CB6AFB002AD54B /* EditFolderInteractor.swift in Sources */,
 				8435685D216F2DB3002101D3 /* InboxViewController.swift in Sources */,
 				8430C29321B554F100ACB559 /* SetPasswordViewController.swift in Sources */,
 				8403BDE821A4051A00EE8DCD /* AddContactPresenter.swift in Sources */,
+				8443D21321CB6A0F002AD54B /* EditFolderViewController.swift in Sources */,
 				8440467321C7F85700CDEB3F /* ManageFoldersPresenter.swift in Sources */,
 				843207152178C75000F18E5A /* InboxMessageTablelViewCell.swift in Sources */,
 				84344D3421CA30AD00A5D9A0 /* AddFolderViewController.swift in Sources */,
