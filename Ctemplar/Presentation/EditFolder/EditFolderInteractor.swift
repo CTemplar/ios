@@ -25,32 +25,31 @@ class EditFolderInteractor {
             self.viewController?.darkLineView.backgroundColor = k_sideMenuColor
             nameValid = true
         } else {
-            self.viewController?.darkLineView.backgroundColor = k_redColor
-            self.setAddButton(enable: true)
+            self.viewController?.darkLineView.backgroundColor = k_redColor           
             nameValid = false
         }
         
         if (self.viewController?.selectedHexColor.count)! > 0 && nameValid {
-            self.setAddButton(enable: true)
+            self.setSaveButton(enable: true)
         } else {
-            self.setAddButton(enable: false)
+            self.setSaveButton(enable: false)
         }
     }
     
-    func setAddButton(enable: Bool) {
+    func setSaveButton(enable: Bool) {
         
         if enable {
-            //self.viewController?.addButton.isEnabled = true
-            //self.viewController?.addButton.alpha = 1.0
+            self.viewController?.saveBarButtonItem.isEnabled = true
+            //self.viewController?.saveBarButtonItem.alpha = 1.0
         } else {
-            //self.viewController?.addButton.isEnabled = false
-           //self.viewController?.addButton.alpha = 0.6
+            self.viewController?.saveBarButtonItem.isEnabled = false
+            //self.viewController?.saveBarButtonItem.alpha = 0.6
         }
     }
     
-    func createCustomFolder(name: String, colorHex: String) {
+    func updateCustomFolder(name: String, colorHex: String) {
         
-        apiService?.createCustomFolder(name: name, color: colorHex) {(result) in
+        apiService?.updateCustomFolder(folderID: (self.viewController!.folder!.folderID?.description)!, name: name, color: colorHex) {(result) in
             
             switch(result) {
                 

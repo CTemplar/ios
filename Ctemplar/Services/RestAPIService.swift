@@ -714,7 +714,7 @@ class RestAPIService {
         }
     }
     
-    func updateCustomFolder(token: String, folderID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateCustomFolder(token: String, folderID: String,  name: String, color: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,

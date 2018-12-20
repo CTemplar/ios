@@ -1034,7 +1034,7 @@ class APIService {
         }
     }
     
-    func updateCustomFolder(folderID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateCustomFolder(folderID: String, name: String, color: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         self.checkTokenExpiration(){ (complete) in
             if complete {
@@ -1043,7 +1043,7 @@ class APIService {
                     
                     //HUD.show(.progress)
                     
-                    self.restAPIService?.updateCustomFolder(token: token, folderID: folderID) {(result) in
+                    self.restAPIService?.updateCustomFolder(token: token, folderID: folderID, name: name, color: color) {(result) in
                         
                         switch(result) {
                             

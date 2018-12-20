@@ -13,7 +13,11 @@ class EditFolderViewController: UIViewController {
     
     var interactor       : EditFolderInteractor?
     
+    var folder : Folder!
+    
     @IBOutlet var deleteButton              : UIButton!
+    
+    @IBOutlet var saveBarButtonItem         : UIBarButtonItem!
     
     @IBOutlet var folderNameTextField       : UITextField!
     @IBOutlet var darkLineView              : UIView!
@@ -34,6 +38,14 @@ class EditFolderViewController: UIViewController {
         self.colorPicker.delegate = self
         self.colorPickerSuperView.add(subview: colorPicker)
         
+        if let name = self.folder.folderName {
+            self.folderName = name
+        }
+        
+        if let color = self.folder.color {
+            self.selectedHexColor = color
+        }
+        
         self.interactor?.validateFolderName(text: self.folderName)        
     }
     
@@ -42,7 +54,7 @@ class EditFolderViewController: UIViewController {
         
         self.colorPicker.setupColorPicker(width: self.colorPickerSuperView.bounds.width, height: self.colorPickerSuperView.bounds.height)
         
-        self.folderNameTextField.becomeFirstResponder()
+        //self.folderNameTextField.becomeFirstResponder()
     }
     
     //MARK: - IBActions
@@ -51,7 +63,7 @@ class EditFolderViewController: UIViewController {
         
        
     }
-        
+    
     @IBAction func saveButtonPressed(_ sender: AnyObject) {
         
         
