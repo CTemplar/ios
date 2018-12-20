@@ -6,12 +6,11 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "folder@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "folder@3x.png",
+      "filename" : "folder60red.png",
       "scale" : "3x"
     }
   ],
