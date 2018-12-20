@@ -46,6 +46,30 @@ class ManageFoldersPresenter {
         self.viewController?.router?.backAction()
     }
     
+    func setupAddFolderButton() {
+        
+        if (self.viewController?.dataSource?.foldersArray.count)! > k_customFoldersLimitForNonPremium - 1 {            
+            if (self.viewController?.user.isPrime)! {
+                self.setAddFolderButton(enable: true)
+            } else {
+                self.setAddFolderButton(enable: false)
+            }
+        } else {
+            self.setAddFolderButton(enable: true)
+        }
+    }
+    
+    func setAddFolderButton(enable: Bool) {
+        
+        if enable {
+            self.viewController?.addFolderButton.isEnabled = true
+            self.viewController?.addFolderButton.alpha = 1.0
+        } else {
+            self.viewController?.addFolderButton.isEnabled = false
+            self.viewController?.addFolderButton.alpha = 0.6
+        }
+    }
+    
     func showDeleteFolderAlert(folderID: Int) {
         
         let params = Parameters(

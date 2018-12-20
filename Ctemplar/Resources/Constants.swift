@@ -335,6 +335,7 @@ let k_tokenMinutesExpiration       = 170
 let k_undoActionBarShowingSecs     = 5.0
 
 let k_numberOfCustomFoldersShowing = 3
+let k_customFoldersLimitForNonPremium = 3
 
 let k_colorButtonsTag = 200
 

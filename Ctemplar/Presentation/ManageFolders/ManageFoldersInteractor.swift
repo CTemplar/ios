@@ -44,6 +44,7 @@ class ManageFoldersInteractor {
         if let folders = folderList.foldersList {
 
             self.presenter?.setDataSource(folders: folders)
+            self.presenter?.setupAddFolderButton()
         }
     }
     

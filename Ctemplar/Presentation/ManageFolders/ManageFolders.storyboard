@@ -155,6 +155,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addFolderButton" destination="jwR-aO-ca4" id="FlI-tu-0LI"/>
                         <outlet property="addFolderView" destination="q9E-Bf-SvX" id="Ad4-od-SGg"/>
                         <outlet property="addFolderViewHeightConstraint" destination="LV1-xN-D73" id="NFj-nN-aTd"/>
                         <outlet property="foldersTableView" destination="QZM-cZ-HkL" id="T5Y-ts-xXx"/>

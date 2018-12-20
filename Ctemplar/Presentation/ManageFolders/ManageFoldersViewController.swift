@@ -20,10 +20,13 @@ class ManageFoldersViewController: UIViewController {
     
     var foldersList : Array<Folder> = []
     
+    var user = UserMyself()
+    
     @IBOutlet var foldersTableView         : UITableView!
     @IBOutlet var addFolderView            : UIView!
     
     @IBOutlet var leftBarButtonItem        : UIBarButtonItem!
+    @IBOutlet var addFolderButton          : UIButton!
     
     @IBOutlet var addFolderViewHeightConstraint          : NSLayoutConstraint!
    
@@ -40,8 +43,7 @@ class ManageFoldersViewController: UIViewController {
         self.dataSource?.initWith(parent: self, tableView: foldersTableView)
         
         self.presenter?.setDataSource(folders: self.foldersList)
-        
-        
+        self.presenter?.setupAddFolderButton()        
     }
     
     override func viewWillAppear(_ animated: Bool) {
