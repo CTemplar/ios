@@ -42,7 +42,10 @@ class EditFolderViewController: UIViewController {
             self.interactor?.setFolderProperties(folder: self.folder!)
         }
         
-        self.interactor?.validateFolderName(text: self.folderName)        
+        self.interactor?.validateFolderName(text: self.folderName)
+        
+        let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
+        self.view.addGestureRecognizer(freeSpaceViewGesture)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -75,6 +78,11 @@ class EditFolderViewController: UIViewController {
     @IBAction func textTyped(_ sender: UITextField) {
         
         self.interactor?.validateFolderName(text: sender.text!)
+    }
+    
+    @objc func tappedViewAction(sender : UITapGestureRecognizer) {
+        
+        self.folderNameTextField.resignFirstResponder()
     }
 }
 
