@@ -217,6 +217,9 @@ let k_messageTextViewTopOffset      : CGFloat = 10.0
 let k_attachmentViewHeight          : CGFloat = 44.0
 let k_attachmentViewTopOffset       : CGFloat = 25.0
 
+let k_iphoneSEBottomButtonsOffset   : CGFloat = 222.0
+let k_iphoneAllBottomButtonsOffset  : CGFloat = 277.0
+
 //images
 
 let k_eyeOffIconImageName           = "EyeIcon"

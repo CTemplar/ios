@@ -52,7 +52,7 @@ class ManageFoldersPresenter {
             if (self.viewController?.user.isPrime)! {
                 self.setAddFolderButton(enable: true)
             } else {
-                self.setAddFolderButton(enable: false)
+               // self.setAddFolderButton(enable: false)
             }
         } else {
             self.setAddFolderButton(enable: true)
