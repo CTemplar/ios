@@ -28,9 +28,11 @@ class ManageFoldersPresenter {
         if folders.count > 0 {
             self.viewController!.foldersTableView.isHidden = false
             self.viewController!.addFolderView.isHidden = false
+            self.viewController!.redBottomView.isHidden = true
         } else {
             self.viewController!.foldersTableView.isHidden = true
             self.viewController!.addFolderView.isHidden = true
+            self.viewController!.redBottomView.isHidden = false
         }
     }
     
@@ -52,7 +54,7 @@ class ManageFoldersPresenter {
             if (self.viewController?.user.isPrime)! {
                 self.setAddFolderButton(enable: true)
             } else {
-               // self.setAddFolderButton(enable: false)
+                self.setAddFolderButton(enable: false)
             }
         } else {
             self.setAddFolderButton(enable: true)
