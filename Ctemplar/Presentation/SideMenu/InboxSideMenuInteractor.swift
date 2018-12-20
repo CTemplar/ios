@@ -173,6 +173,8 @@ class InboxSideMenuInteractor {
             break
         case InboxSideMenuOptionsName.contacts.rawValue :
             self.viewController?.router?.showContactsViewController()
+        case InboxSideMenuOptionsName.settings.rawValue :
+            self.viewController?.router?.showSettingsViewController()
             break
         case InboxSideMenuOptionsName.manageFolders.rawValue :
             self.viewController?.router?.showManageFoldersViewController()
