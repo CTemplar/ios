@@ -191,6 +191,9 @@ let k_rightOffsetForSubjectLabel : CGFloat = 116.0//126
 let k_sideMenuSectionHeaderHeight  : CGFloat = 49
 let k_sideMenuSeparatorHeight      : CGFloat = 1
 
+let k_settingsHeaderViewHeight     : CGFloat = 40
+let k_logoutHeaderViewHeight       : CGFloat = 50
+
 let k_moreActionsButtonsViewFullContstraint   : CGFloat = 206
 let k_moreActionsButtonsViewMiddleContstraint : CGFloat = 154
 let k_moreActionsButtonsViewSmallContstraint  : CGFloat = 102
@@ -478,4 +481,24 @@ enum SchedulerMode: String {
     case selfDestructTimer = "Self-destructing Timer"
     case deadManTimer      = "Dead Man's Timer"
     case delayedDelivery   = "Delayed delivery"
+}
+
+enum SettingsSectionsName: String, CaseIterable {
+    
+    case general           = "General settings"
+    case folders           = "Folders"
+    case mail              = "Mail"
+    case about             = "About"
+    case storage           = "Storage"
+    case logout            = "Log out"
+}
+
+enum SettingsSections: Int, CaseIterable {
+    
+    case general           = 0
+    case folders           = 1
+    case mail              = 2
+    case about             = 3
+    case storage           = 4
+    case logout            = 5
 }

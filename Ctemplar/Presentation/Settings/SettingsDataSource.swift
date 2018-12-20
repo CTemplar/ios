@@ -36,12 +36,54 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
-        return 1
+        return SettingsSectionsName.allCases.count
+    }
+    
+    func tableView( _ tableView : UITableView,  titleForHeaderInSection section: Int) -> String? {
+     
+        switch section {
+        case SettingsSections.general.rawValue:
+            return SettingsSectionsName.general.rawValue
+        case SettingsSections.folders.rawValue:
+            return SettingsSectionsName.folders.rawValue
+        case SettingsSections.mail.rawValue:
+            return SettingsSectionsName.mail.rawValue
+        case SettingsSections.about.rawValue:
+            return SettingsSectionsName.about.rawValue
+        case SettingsSections.storage.rawValue:
+            return SettingsSectionsName.storage.rawValue
+        case SettingsSections.logout.rawValue:
+            return SettingsSectionsName.logout.rawValue
+        default:
+            return ""
+        }
+    }
+    
+    //func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+    //}
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.font = UIFont(name: k_latoRegularFontName, size: 14)!
+        header.textLabel?.textColor = k_sideMenuTextFadeColor
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        switch section {
+        case SettingsSections.logout.rawValue:
+            return k_logoutHeaderViewHeight
+       
+        default:
+            return k_settingsHeaderViewHeight
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return settingsArray.count
+        return 1//settingsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

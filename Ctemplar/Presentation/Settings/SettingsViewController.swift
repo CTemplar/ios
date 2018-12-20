@@ -27,7 +27,7 @@ class  SettingsViewController: UIViewController {
         let configurator =  SettingsConfigurator()
         configurator.configure(viewController: self)
         
-        //dataSource?.initWith(parent: self, tableView: settingsTableView)
+        dataSource?.initWith(parent: self, tableView: settingsTableView)
     }
     
     //MARK: - IBActions
