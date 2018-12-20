@@ -37,7 +37,7 @@ class ColorPickerView: UIView {
     let k_color11: UIColor = UIColor(red: 207.0 / 255.0, green: 126.0 / 255.0, blue: 125.0 / 255.0, alpha: 1.0)
     let k_color12: UIColor = UIColor(red: 200.0 / 255.0, green: 147.0 / 255.0, blue: 203.0 / 255.0, alpha: 1.0)
     let k_color13: UIColor = UIColor(red: 156.0 / 255.0, green: 148.0 / 255.0, blue: 208.0 / 255.0, alpha: 1.0)
-    let k_color14: UIColor = UIColor(red: 169.0 / 255.0, green: 196.0 / 255.0, blue: 213.0 / 255.0, alpha: 1.0)
+    let k_color14: UIColor = UIColor(red: 169.0 / 255.0, green: 196.0 / 255.0, blue: 213.0 / 255.0, alpha: 1.0)    
     
     var colorsArray = [UIColor]()
     
@@ -143,10 +143,10 @@ class ColorPickerView: UIView {
     
     func getSelectedColor(tag: Int) -> UIColor {
         
-        let index = tag - k_colorButtonsTag
+        let index = tag - k_colorButtonsTag - 1
         
         if index < self.colorsArray.count {
-            let selectedColor = self.colorsArray[index - 1]
+            let selectedColor = self.colorsArray[index]
             return selectedColor
         } else {
             return UIColor.black

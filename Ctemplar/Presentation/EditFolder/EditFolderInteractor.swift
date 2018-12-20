@@ -67,18 +67,55 @@ class EditFolderInteractor {
         }
     }
     
-    func updateCustomFolder(name: String, colorHex: String) {
+    func updateCustomFolder(folderID: Int, name: String, colorHex: String) {
         
-        apiService?.updateCustomFolder(folderID: (self.viewController!.folder!.folderID?.description)!, name: name, color: colorHex) {(result) in
+        apiService?.updateCustomFolder(folderID: folderID.description, name: name, color: colorHex) {(result) in
             
             switch(result) {
                 
             case .success(let value):
                 print("value:", value)
-                self.viewController?.dismiss(animated: true, completion: nil)
+                self.viewController!.navigationController?.popViewController(animated: true)
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Create Folder Error", message: error.localizedDescription, button: "closeButton".localized())
+                AlertHelperKit().showAlert(self.viewController!, title: "Update Folder Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
+    func deleteFolder(folderID: Int) {
+        
+        apiService?.deleteCustomFolder(folderID: folderID.description) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("value:", value)
+                self.viewController!.navigationController?.popViewController(animated: true)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Delete Folder Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
+    func showDeleteFolderAlert(folderID: Int) {
+        
+        let params = Parameters(
+            title: "deleteFolderTitle".localized(),
+            message: "deleteFolder".localized(),
+            cancelButton: "cancelButton".localized(),
+            otherButtons: ["deleteButton".localized()]
+        )
+        
+        AlertHelperKit().showAlertWithHandler(self.viewController!, parameters: params) { buttonIndex in
+            switch buttonIndex {
+            case 0:
+                print("Cancel Delete")
+            default:
+                print("Delete")
+                self.deleteFolder(folderID: folderID)
             }
         }
     }

@@ -55,12 +55,16 @@ class EditFolderViewController: UIViewController {
     
     @IBAction func deleteButtonPressed(_ sender: AnyObject) {
         
-       
+        if let folderID = self.folder.folderID {
+            self.interactor?.showDeleteFolderAlert(folderID: folderID)
+        }
     }
     
     @IBAction func saveButtonPressed(_ sender: AnyObject) {
         
-        
+        if let folderID = self.folder.folderID {
+            self.interactor?.updateCustomFolder(folderID: folderID, name: self.folderName, colorHex: self.selectedHexColor)
+        }
     }
     
     @IBAction func cancelButtonPressed(_ sender: AnyObject) {

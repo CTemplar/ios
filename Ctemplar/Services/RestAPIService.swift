@@ -721,11 +721,16 @@ class RestAPIService {
             "Accept": "application/json"
         ]
         
+        let parameters: Parameters = [
+            JSONKey.folderName.rawValue: name,
+            JSONKey.folderColor.rawValue: color
+        ]
+        
         let url = EndPoint.baseUrl.rawValue + EndPoint.customFolders.rawValue + folderID + "/"
         
         print("updateCustomFolder url:", url)
         
-        Alamofire.request(url, method: .patch, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
             
             print("updateCustomFolder responce:", response)
             
