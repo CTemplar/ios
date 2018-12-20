@@ -38,12 +38,15 @@ class EditFolderViewController: UIViewController {
         self.colorPicker.delegate = self
         self.colorPickerSuperView.add(subview: colorPicker)
         
-        if let name = self.folder.folderName {
-            self.folderName = name
-        }
+        if self.folder != nil {
         
-        if let color = self.folder.color {
-            self.selectedHexColor = color
+            if let name = self.folder.folderName {
+                self.folderName = name
+            }
+        
+            if let color = self.folder.color {
+                self.selectedHexColor = color
+            }
         }
         
         self.interactor?.validateFolderName(text: self.folderName)        
@@ -71,7 +74,7 @@ class EditFolderViewController: UIViewController {
     
     @IBAction func cancelButtonPressed(_ sender: AnyObject) {
         
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func textTyped(_ sender: UITextField) {

@@ -65,7 +65,9 @@ class ManageFoldersDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-      
+        let folder = foldersArray[indexPath.row]
+        
+        self.parentViewController?.router?.showEditFolderViewController(folder: folder)
     }
     
     func reloadData() {

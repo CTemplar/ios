@@ -30,4 +30,12 @@ class ManageFoldersRouter {
         let vc = storyboard.instantiateViewController(withIdentifier: k_AddFolderViewControllerID) as! AddFolderViewController
         self.viewController?.present(vc, animated: true, completion: nil)
     }
+    
+    func showEditFolderViewController(folder: Folder) {
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: k_EditFolderStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_EditFolderViewControllerID) as! EditFolderViewController
+        vc.folder = folder
+        self.viewController?.show(vc, sender: self)
+    }
 }
