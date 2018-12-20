@@ -16,6 +16,26 @@ class EditFolderInteractor {
     var apiService      : APIService?
     var formatterService        : FormatterService?
     
+    func setFolderProperties(folder: Folder) {
+        
+        if let name = folder.folderName {
+            self.viewController!.folderName = name
+            self.viewController?.folderNameTextField.text = name
+        }
+        
+        if let color = folder.color {
+            self.viewController!.selectedHexColor = color
+            let index = self.viewController!.colorPicker.findColorIndexTag(colorHex: color)
+            if index > -1 {
+                let tag = index + k_colorButtonsTag + 1
+                self.viewController!.colorPicker.selectedButtonTag = tag
+                self.viewController!.colorPicker.setButtonSelected(tag: tag)
+            }
+        }
+        
+        self.viewController?.navigationItem.title = self.viewController!.folderName
+    }
+    
     func validateFolderName(text: String) {
         
         var nameValid : Bool = false

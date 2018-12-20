@@ -24,8 +24,6 @@ class ColorPickerView: UIView {
     let k_buttonsRows = 2
     let k_spaceBetweenButtons : CGFloat = 10.0
     
-    let k_colorButtonsTag = 200
-    
     let k_color1: UIColor = UIColor(red: 114.0 / 255.0, green: 114.0 / 255.0, blue: 168.0 / 255.0, alpha: 1.0)
     let k_color2: UIColor = UIColor(red: 208.0 / 255.0, green: 88.0 / 255.0, blue: 89.0 / 255.0, alpha: 1.0)
     let k_color3: UIColor = UIColor(red: 194.0 / 255.0, green: 108.0 / 255.0, blue: 199.0 / 255.0, alpha: 1.0)
@@ -153,6 +151,21 @@ class ColorPickerView: UIView {
         } else {
             return UIColor.black
         }
+    }
+    
+    func findColorIndexTag(colorHex: String) -> Int {
+        
+        var colorIndex = -1
+        
+        for (index, color) in self.colorsArray.enumerated() {
+            
+            let arrayColorHex = color.hexString
+            if arrayColorHex == colorHex {
+                colorIndex = index
+            }
+        }
+        
+        return colorIndex
     }
 }
 

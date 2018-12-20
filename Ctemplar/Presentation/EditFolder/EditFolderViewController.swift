@@ -39,14 +39,7 @@ class EditFolderViewController: UIViewController {
         self.colorPickerSuperView.add(subview: colorPicker)
         
         if self.folder != nil {
-        
-            if let name = self.folder.folderName {
-                self.folderName = name
-            }
-        
-            if let color = self.folder.color {
-                self.selectedHexColor = color
-            }
+            self.interactor?.setFolderProperties(folder: self.folder!)
         }
         
         self.interactor?.validateFolderName(text: self.folderName)        
@@ -55,9 +48,7 @@ class EditFolderViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.colorPicker.setupColorPicker(width: self.colorPickerSuperView.bounds.width, height: self.colorPickerSuperView.bounds.height)
-        
-        //self.folderNameTextField.becomeFirstResponder()
+        self.colorPicker.setupColorPicker(width: self.colorPickerSuperView.bounds.width, height: self.colorPickerSuperView.bounds.height)        
     }
     
     //MARK: - IBActions
