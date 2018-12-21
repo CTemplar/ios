@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 class SettingsBaseTableViewCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel        : UILabel!
@@ -33,7 +32,7 @@ class SettingsBaseTableViewCell: UITableViewCell {
         self.titleLabel.text = title
         self.valueLabel.text = value
         
-        if value.count > 0 {            
+        if value.count > 0 {
             let valueTextWidth = value.widthOfString(usingFont: self.valueLabel.font)
             self.valueLableWidthConstraint.constant = valueTextWidth
         } else {

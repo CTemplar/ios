@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+
+let k_storageSectionsRowsCount = 1
+let k_logoutSectionsRowsCount = 0
+
 class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     var generalSettingsArray           : Array<Any> = []
@@ -34,6 +38,8 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     func registerTableViewCell() {
         
         self.tableView.register(UINib(nibName: k_SettingsBaseTableViewCellXibName, bundle: nil), forCellReuseIdentifier: k_SettingsBaseTableViewCellIdentifier)
+        
+        self.tableView.register(UINib(nibName: k_SettingsStorageTableViewCellXibName, bundle: nil), forCellReuseIdentifier: k_SettingsStorageTableViewCellIdentifier)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -88,9 +94,9 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         case SettingsSections.about.rawValue:
             return 1
         case SettingsSections.storage.rawValue:
-            return 1
+            return k_storageSectionsRowsCount
         case SettingsSections.logout.rawValue:
-            return 0
+            return k_logoutSectionsRowsCount
         default:
             return 0
         }
@@ -112,6 +118,8 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             self.setupAppVersionCell(cell: cell)
             break
         case SettingsSections.storage.rawValue:
+            cell = tableView.dequeueReusableCell(withIdentifier: k_SettingsStorageTableViewCellIdentifier)!
+            (cell as! SettingsStorageTableViewCell).setupCellWithData(usedStorageSpace: 14172, totalStorageSpace: 204800)
             break
         case SettingsSections.logout.rawValue:
             break

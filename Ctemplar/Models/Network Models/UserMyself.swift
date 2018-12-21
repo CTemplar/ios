@@ -90,6 +90,10 @@ struct UserMyself {
                 if key == "is_prime" {
                     self.isPrime = value as? Bool
                 }
+                
+                if key == "settings" {
+                    print("settings value:", value)
+                }
             }
         }
         
@@ -98,3 +102,28 @@ struct UserMyself {
         self.contactsList = localContactsList
     }
 }
+
+/*
+ "allocated_storage" = 204800;
+ autoresponder = 0;
+ "default_font" = "<null>";
+ "display_name" = dmitry8;
+ "domain_count" = 0;
+ "email_count" = 1;
+ "emails_per_page" = 20;
+ "embed_content" = 1;
+ "from_address" = "<null>";
+ id = 173;
+ "is_pending_payment" = 0;
+ language = English;
+ newsletter = 1;
+ "recovery_email" = "";
+ "recurrence_billing" = 0;
+ "redeem_code" = "<null>";
+ "save_contacts" = 1;
+ "show_snippets" = 1;
+ "stripe_customer_code" = "<null>";
+ timezone = "<null>";
+ "used_storage" = 14172;
+ 
+ */

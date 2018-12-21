@@ -76,6 +76,7 @@ let k_UserMailboxCellXibName               = "UserMailboxTableViewCell"
 let k_AttachmentCollcetionViewCellXibName  = "AttachmentCollcetionViewCell"
 let k_AttachmentViewXibName                = "Attachment"
 let k_SettingsBaseTableViewCellXibName     = "SettingsBaseTableViewCell"
+let k_SettingsStorageTableViewCellXibName  = "SettingsStorageTableViewCell"
 
 // cell identifier
 
@@ -94,6 +95,7 @@ let k_UserMailboxTableViewCellIdentifier        = "userMailboxTableViewCellIdent
 let k_AttachmentCollcetionViewCellIdentifier    = "attachmentCollcetionViewCellIdentifier"
 let k_SettingsBaseTableViewCellIdentifier       = "settingsBaseTableViewCellIdentifier"
 let k_SettingsAppVersionTableViewCellIdentifier         = "settingsAppVersuinCellIdentifier"
+let k_SettingsStorageTableViewCellIdentifier       = "settingsStorageTableViewCellIdentifier"
 
 // view controllers iPad storyboards name
 

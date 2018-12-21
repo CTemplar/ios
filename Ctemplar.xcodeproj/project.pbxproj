@@ -175,6 +175,8 @@
 		845E64492170CAF2008612FE /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 843E973521635F6D00147CBE /* Roboto-Bold.ttf */; };
 		8462C62421CCC15C005B3D74 /* SettingsBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462C62321CCC15C005B3D74 /* SettingsBaseTableViewCell.swift */; };
 		8462C62621CCC16C005B3D74 /* SettingsBaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8462C62521CCC16C005B3D74 /* SettingsBaseTableViewCell.xib */; };
+		8462C62921CCD570005B3D74 /* SettingsStorageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8462C62821CCD570005B3D74 /* SettingsStorageTableViewCell.xib */; };
+		8462C62B21CCD57C005B3D74 /* SettingsStorageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462C62A21CCD57C005B3D74 /* SettingsStorageTableViewCell.swift */; };
 		846EDE9221A284C200EE9A88 /* ChildMessageExpandedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EDE9121A284C200EE9A88 /* ChildMessageExpandedTableViewCell.swift */; };
 		846EDE9421A284D400EE9A88 /* ChildMessageExpandedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846EDE9321A284D400EE9A88 /* ChildMessageExpandedTableViewCell.xib */; };
 		84732CA021B17B3F00B6F799 /* UserMailboxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84732C9F21B17B3F00B6F799 /* UserMailboxTableViewCell.swift */; };
@@ -368,6 +370,8 @@
 		845E64452170C5A4008612FE /* AboutAsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAsViewController.swift; sourceTree = "<group>"; };
 		8462C62321CCC15C005B3D74 /* SettingsBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBaseTableViewCell.swift; sourceTree = "<group>"; };
 		8462C62521CCC16C005B3D74 /* SettingsBaseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsBaseTableViewCell.xib; sourceTree = "<group>"; };
+		8462C62821CCD570005B3D74 /* SettingsStorageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsStorageTableViewCell.xib; sourceTree = "<group>"; };
+		8462C62A21CCD57C005B3D74 /* SettingsStorageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStorageTableViewCell.swift; sourceTree = "<group>"; };
 		846EDE9121A284C200EE9A88 /* ChildMessageExpandedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildMessageExpandedTableViewCell.swift; sourceTree = "<group>"; };
 		846EDE9321A284D400EE9A88 /* ChildMessageExpandedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChildMessageExpandedTableViewCell.xib; sourceTree = "<group>"; };
 		84732C9F21B17B3F00B6F799 /* UserMailboxTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMailboxTableViewCell.swift; sourceTree = "<group>"; };
@@ -497,6 +501,7 @@
 				8433DFB8219ECD4400375609 /* ChildMessageCell */,
 				84732C9E21B17A3200B6F799 /* UserMailboxCell */,
 				8462C62221CCC0E5005B3D74 /* SettingsBaseCell */,
+				8462C62721CCD547005B3D74 /* SetttingsStorageCell */,
 			);
 			path = TableCells;
 			sourceTree = "<group>";
@@ -940,6 +945,15 @@
 			path = SettingsBaseCell;
 			sourceTree = "<group>";
 		};
+		8462C62721CCD547005B3D74 /* SetttingsStorageCell */ = {
+			isa = PBXGroup;
+			children = (
+				8462C62A21CCD57C005B3D74 /* SettingsStorageTableViewCell.swift */,
+				8462C62821CCD570005B3D74 /* SettingsStorageTableViewCell.xib */,
+			);
+			path = SetttingsStorageCell;
+			sourceTree = "<group>";
+		};
 		84732C9E21B17A3200B6F799 /* UserMailboxCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1051,6 +1065,7 @@
 				8443D22821CBDFEC002AD54B /* Settings.storyboard in Resources */,
 				84732CA221B17B8D00B6F799 /* UserMailboxTableViewCell.xib in Resources */,
 				843FBF17216E3D2400148FC1 /* Login-iPad.storyboard in Resources */,
+				8462C62921CCD570005B3D74 /* SettingsStorageTableViewCell.xib in Resources */,
 				8440466B21C7E8C700CDEB3F /* ManageFolders.storyboard in Resources */,
 				8433A5412189DE17008E1C85 /* MoveTo.storyboard in Resources */,
 				8441559521BF8CF90053C39F /* Attachment.xib in Resources */,
@@ -1202,6 +1217,7 @@
 				8403BDE621A4050C00EE8DCD /* AddContactRouter.swift in Sources */,
 				843E973221635BEB00147CBE /* LoginViewController.swift in Sources */,
 				8433FF552162129800C57DC8 /* RestAPIService.swift in Sources */,
+				8462C62B21CCD57C005B3D74 /* SettingsStorageTableViewCell.swift in Sources */,
 				84304298217D9D1C00DB5787 /* InboxSideMenuConfigurator.swift in Sources */,
 				84FF7E39219DB21E00E3E56A /* Contact.swift in Sources */,
 				84405BB221AD0CA40048D8AC /* ComposeConfigurator.swift in Sources */,
