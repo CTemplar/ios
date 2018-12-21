@@ -33,7 +33,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func registerTableViewCell() {
         
-        //self.tableView.register(UINib(nibName: k_ContactCellXibName, bundle: nil), forCellReuseIdentifier: k_ContactTableViewCellIdentifier)
+        self.tableView.register(UINib(nibName: k_SettingsBaseTableViewCellXibName, bundle: nil), forCellReuseIdentifier: k_SettingsBaseTableViewCellIdentifier)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -98,9 +98,24 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "settingsCellIdentifier")!
+        let cell : SettingsBaseTableViewCell = tableView.dequeueReusableCell(withIdentifier: k_SettingsBaseTableViewCellIdentifier) as! SettingsBaseTableViewCell
         
-        cell.textLabel?.text = "1"
+        switch indexPath.section {
+        case SettingsSections.general.rawValue:
+            break
+        case SettingsSections.folders.rawValue:
+            break
+        case SettingsSections.mail.rawValue:
+            break
+        case SettingsSections.about.rawValue:
+            break
+        case SettingsSections.storage.rawValue:
+            break
+        case SettingsSections.logout.rawValue:
+            break
+        default:
+            break
+        }
         
         return cell
     }
@@ -139,12 +154,12 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         
         var frame = CGRect(x: 0, y: 0, width: header.frame.width, height: 1.0)
         let upperlineView = UIView(frame: frame)
-        upperlineView.backgroundColor = k_mainInboxColor
+        upperlineView.backgroundColor = k_settingHeaderLineColor
         header.add(subview: upperlineView)
         
         frame = CGRect(x: 0, y: header.frame.height - 1.0, width: header.frame.width, height: 1.0)
         let bottomlineView = UIView(frame: frame)
-        bottomlineView.backgroundColor = k_mainInboxColor
+        bottomlineView.backgroundColor = k_settingHeaderLineColor
         header.add(subview: bottomlineView)
     }
     

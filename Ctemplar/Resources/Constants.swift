@@ -75,6 +75,7 @@ let k_ChildMessageExpandedWithAttachmentCellXibName      = "ChildMessageExpanded
 let k_UserMailboxCellXibName               = "UserMailboxTableViewCell"
 let k_AttachmentCollcetionViewCellXibName  = "AttachmentCollcetionViewCell"
 let k_AttachmentViewXibName                = "Attachment"
+let k_SettingsBaseTableViewCellXibName     = "SettingsBaseTableViewCell"
 
 // cell identifier
 
@@ -90,7 +91,8 @@ let k_ChildMessageTableViewCellIdentifier       = "childMessageTableViewCellIden
 let k_ChildMessageExpandedTableViewCellIdentifier       = "childMessageExpandedTableViewCellIdentifier"
 let k_ChildMessageExpandedWithAttachmentTableViewCellIdentifier       = "childMessageExpandedWithAttachmentTableViewCellIdentifier"
 let k_UserMailboxTableViewCellIdentifier        = "userMailboxTableViewCellIdentifier"
-let k_AttachmentCollcetionViewCellIdentifier = "attachmentCollcetionViewCellIdentifier"
+let k_AttachmentCollcetionViewCellIdentifier    = "attachmentCollcetionViewCellIdentifier"
+let k_SettingsBaseTableViewCellIdentifier       = "settingsBaseTableViewCellIdentifier"
 
 
 // view controllers iPad storyboards name
@@ -148,6 +150,8 @@ let k_jpgColor : UIColor = UIColor(red: 19.0 / 255.0, green: 160.0 / 255.0, blue
 let k_otherColor : UIColor = UIColor(red: 148.0 / 255.0, green: 165.0 / 255.0, blue: 165.0 / 255.0, alpha: 1.0)
 
 let k_fileNameColor : UIColor = UIColor(red: 90.0 / 255.0, green: 90.0 / 255.0, blue: 90.0 / 255.0, alpha: 1.0)
+
+let k_settingHeaderLineColor: UIColor = UIColor(red: 235.0 / 255.0, green: 235.0 / 255.0, blue: 235.0 / 255.0, alpha: 1.0)
 
 //size constants
 
