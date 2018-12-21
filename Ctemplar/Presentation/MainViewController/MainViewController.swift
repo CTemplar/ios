@@ -118,7 +118,7 @@ class MainViewController: UIViewController {
         
         inboxSideMenuViewController?.mainViewController = self
         inboxSideMenuViewController?.inboxViewController = inboxViewController
-        inboxSideMenuViewController?.dataSource?.selectedIndexPath = IndexPath(row: MessagesFoldersName.inbox.hashValue, section: SideMenuSectionIndex.mainFolders.rawValue)
+        inboxSideMenuViewController?.dataSource?.selectedIndexPath = IndexPath(row: 0, section: SideMenuSectionIndex.mainFolders.rawValue)
         
         let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: (inboxSideMenuViewController)!)
         

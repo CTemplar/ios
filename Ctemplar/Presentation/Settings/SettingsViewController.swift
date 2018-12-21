@@ -15,6 +15,8 @@ class  SettingsViewController: UIViewController {
     var router      : SettingsRouter?
     var dataSource  : SettingsDataSource?
     
+    var sideMenuViewController : InboxSideMenuViewController?
+    
     @IBOutlet var leftBarButtonItem        : UIBarButtonItem!
     
     @IBOutlet var settingsTableView        : UITableView!

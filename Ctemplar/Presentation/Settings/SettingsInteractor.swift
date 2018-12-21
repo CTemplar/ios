@@ -16,4 +16,9 @@ class SettingsInteractor {
     var presenter       : SettingsPresenter?
     var apiService      : APIService?
 
+    func logOut() {
+        
+        self.viewController?.navigationController?.popViewController(animated: true)
+        self.viewController?.sideMenuViewController?.presenter?.interactor?.logOut()
+    }
 }
