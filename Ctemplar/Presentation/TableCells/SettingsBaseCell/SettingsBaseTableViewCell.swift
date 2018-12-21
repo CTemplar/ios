@@ -34,7 +34,7 @@ class SettingsBaseTableViewCell: UITableViewCell {
         
         if value.count > 0 {
             let valueTextWidth = value.widthOfString(usingFont: self.valueLabel.font)
-            self.valueLableWidthConstraint.constant = valueTextWidth
+            self.valueLableWidthConstraint.constant = valueTextWidth * 1.05
         } else {
             self.valueLableWidthConstraint.constant = 0.0
         }

@@ -15,7 +15,9 @@ let k_logoutSectionsRowsCount = 0
 
 class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
-    var generalSettingsArray           : Array<Any> = []
+    var generalSettingsArray    : Array<String> = [
+        "Recovery email", "Password", "Language", "Notifications", "Saving contacts", "Whitelist / Blacklist"
+    ]
     
     var tableView               : UITableView!
     var parentViewController    : SettingsViewController!
@@ -104,10 +106,30 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        let settings = self.parentViewController?.user.settings
+        
         var cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: k_SettingsBaseTableViewCellIdentifier) as! SettingsBaseTableViewCell
         
         switch indexPath.section {
         case SettingsSections.general.rawValue:
+            
+            let index = indexPath.row
+            
+            if index < generalSettingsArray.count {
+            
+                let cellTitle = generalSettingsArray[indexPath.row]
+                
+                var value : String = ""
+                
+                if cellTitle == "Language" { //temp
+                    if let language = settings?.language {
+                        value = language
+                    }
+                }
+                
+                (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: value)
+            }
+            
             break
         case SettingsSections.folders.rawValue:
             break
@@ -120,8 +142,6 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         case SettingsSections.storage.rawValue:
             cell = tableView.dequeueReusableCell(withIdentifier: k_SettingsStorageTableViewCellIdentifier)!
             
-            let settings = self.parentViewController?.user.settings
-            
             var usedStorageSpace = 0
             var totalStorageSpace = 0
             
@@ -132,7 +152,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             if let totalSpace = settings?.allocatedStorage {
                 totalStorageSpace = totalSpace
             }
-                        
+            
             (cell as! SettingsStorageTableViewCell).setupCellWithData(usedStorageSpace: usedStorageSpace, totalStorageSpace: totalStorageSpace)
             break
         case SettingsSections.logout.rawValue:

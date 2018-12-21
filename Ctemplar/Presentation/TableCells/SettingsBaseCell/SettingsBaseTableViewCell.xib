@@ -24,7 +24,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIn-Qq-owb">
-                        <rect key="frame" x="16" y="10" width="244" height="32"/>
+                        <rect key="frame" x="16" y="9" width="244" height="32"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="32" id="ldl-z5-bbn"/>
                         </constraints>
@@ -33,7 +33,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5iv-AL-Gdk">
-                        <rect key="frame" x="270" y="10" width="60" height="32"/>
+                        <rect key="frame" x="270" y="9" width="60" height="0.0"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="ziU-wl-6O2"/>
                         </constraints>
@@ -44,12 +44,12 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="5iv-AL-Gdk" firstAttribute="leading" secondItem="cIn-Qq-owb" secondAttribute="trailing" constant="10" id="BKM-F0-xhP"/>
-                    <constraint firstAttribute="bottom" secondItem="cIn-Qq-owb" secondAttribute="bottom" constant="7.5" id="IwD-sD-46L"/>
-                    <constraint firstItem="5iv-AL-Gdk" firstAttribute="top" secondItem="jOn-Ge-1Nl" secondAttribute="top" constant="10" id="X5g-jS-OLt"/>
-                    <constraint firstAttribute="bottom" secondItem="5iv-AL-Gdk" secondAttribute="bottom" constant="7.5" id="Z6k-sL-735"/>
+                    <constraint firstAttribute="bottom" secondItem="cIn-Qq-owb" secondAttribute="bottom" constant="9" id="IwD-sD-46L"/>
+                    <constraint firstItem="5iv-AL-Gdk" firstAttribute="top" secondItem="jOn-Ge-1Nl" secondAttribute="top" constant="9" id="X5g-jS-OLt"/>
+                    <constraint firstAttribute="bottom" secondItem="5iv-AL-Gdk" secondAttribute="bottom" constant="9" id="Z6k-sL-735"/>
                     <constraint firstItem="cIn-Qq-owb" firstAttribute="leading" secondItem="jOn-Ge-1Nl" secondAttribute="leading" constant="16" id="c5g-Zx-Jn7"/>
                     <constraint firstAttribute="trailing" secondItem="5iv-AL-Gdk" secondAttribute="trailing" constant="11" id="glG-Lg-HNM"/>
-                    <constraint firstItem="cIn-Qq-owb" firstAttribute="top" secondItem="jOn-Ge-1Nl" secondAttribute="top" constant="10" id="kDu-XX-QTq"/>
+                    <constraint firstItem="cIn-Qq-owb" firstAttribute="top" secondItem="jOn-Ge-1Nl" secondAttribute="top" constant="9" id="kDu-XX-QTq"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
