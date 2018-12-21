@@ -16,8 +16,12 @@ let k_logoutSectionsRowsCount = 0
 class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     var generalSettingsArray    : Array<String> = [
-        "Recovery email", "Password", "Language", "Notifications", "Saving contacts", "Whitelist / Blacklist"
+        "recoveryEmail".localized(), "password".localized(), "language".localized(), "notifications".localized(), "savingContact".localized(), "whiteBlackList".localized()
     ]
+    
+    var folderSettingsArray    : Array<String> = [
+        "manageFolders".localized()
+        ]
     
     var tableView               : UITableView!
     var parentViewController    : SettingsViewController!
@@ -90,7 +94,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         case SettingsSections.general.rawValue:
             return self.generalSettingsArray.count
         case SettingsSections.folders.rawValue:
-            return 1
+            return self.folderSettingsArray.count
         case SettingsSections.mail.rawValue:
             return 1
         case SettingsSections.about.rawValue:
@@ -107,19 +111,16 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let settings = self.parentViewController?.user.settings
+        let index = indexPath.row
+        var value : String = ""
         
         var cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: k_SettingsBaseTableViewCellIdentifier) as! SettingsBaseTableViewCell
         
         switch indexPath.section {
         case SettingsSections.general.rawValue:
-            
-            let index = indexPath.row
-            
             if index < generalSettingsArray.count {
             
                 let cellTitle = generalSettingsArray[indexPath.row]
-                
-                var value : String = ""
                 
                 if cellTitle == "Language" { //temp
                     if let language = settings?.language {
@@ -129,9 +130,13 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
                 
                 (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: value)
             }
-            
             break
         case SettingsSections.folders.rawValue:
+            if index < folderSettingsArray.count {
+                
+                let cellTitle = folderSettingsArray[indexPath.row]
+                (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: value)
+            }
             break
         case SettingsSections.mail.rawValue:
             break

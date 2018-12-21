@@ -127,3 +127,14 @@
 //Manage Folders
 "deleteFolderTitle" = "Delete folder?";
 "deleteFolder" = "Are you sure you want to delete folder?";
+
+//Settings
+
+"recoveryEmail" = "Recovery email";
+"password" = "Password";
+"language" = "Language";
+"notifications" = "Notifications";
+"savingContact" = "Saving contacts";
+"whiteBlackList" = "Whitelist / Blacklist";
+
+"manageFolders" = "Manage folders";
