@@ -137,3 +137,7 @@
 "signature" = "Signature";
 "mobileSignature" = "Mobile signature";
 "default" = "Default";
+
+"aboutUs" = "About us";
+"privacyPolicy" = "Privacy Policy";
+"terms" = "Terms & Conditions";

@@ -512,9 +512,32 @@ enum SettingsSections: Int, CaseIterable {
     case logout            = 5
 }
 
+enum SettingsGeneralSection: Int, CaseIterable {
+    
+    case recovery          = 0
+    case password          = 1
+    case language          = 2
+    case notification      = 3
+    case contacts          = 4
+    case whiteBlackList    = 5
+}
+
+enum SettingsFoldersSection: Int, CaseIterable {
+    
+    case folder            = 0
+}
+
 enum SettingsMailSection: Int, CaseIterable {
     
     case mail              = 0
     case signature         = 1
     case mobileSignature   = 2
+}
+
+enum SettingsAboutSection: Int, CaseIterable {
+    
+    case aboutAs           = 0
+    case privacy           = 1
+    case terms             = 2
+    case appVersion        = 3
 }

@@ -15,15 +15,6 @@ let k_logoutSectionsRowsCount = 0
 
 class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
-    var generalSettingsArray    : Array<String> = [
-        "recoveryEmail".localized(), "password".localized(), "language".localized(), "notifications".localized(), "savingContact".localized(), "whiteBlackList".localized()
-        ]
-    
-    var folderSettingsArray    : Array<String> = [
-        "manageFolders".localized()
-        ]
-    
-    
     var tableView               : UITableView!
     var parentViewController    : SettingsViewController!
     var formatterService        : FormatterService?
@@ -93,13 +84,13 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         
         switch section {
         case SettingsSections.general.rawValue:
-            return self.generalSettingsArray.count
+            return SettingsGeneralSection.allCases.count
         case SettingsSections.folders.rawValue:
-            return self.folderSettingsArray.count
+            return SettingsFoldersSection.allCases.count
         case SettingsSections.mail.rawValue:
             return SettingsMailSection.allCases.count
         case SettingsSections.about.rawValue:
-            return 1
+            return SettingsAboutSection.allCases.count
         case SettingsSections.storage.rawValue:
             return k_storageSectionsRowsCount
         case SettingsSections.logout.rawValue:
@@ -113,54 +104,28 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         
         let settings = self.parentViewController?.user.settings
         let index = indexPath.row
-        var value : String = ""
         
         var cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: k_SettingsBaseTableViewCellIdentifier) as! SettingsBaseTableViewCell
         
         switch indexPath.section {
         case SettingsSections.general.rawValue:
-            if index < generalSettingsArray.count {
-            
-                let cellTitle = generalSettingsArray[index]
-                
-                if cellTitle == "language".localized() { //temp
-                    if let language = settings?.language {
-                        value = language
-                    }
-                }
-                
-                (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: value)
-            }
+            self.setupGeneralSectionsCell(index: index, cell: cell, settings: settings!)
             break
         case SettingsSections.folders.rawValue:
-            if index < folderSettingsArray.count {
-                
-                let cellTitle = folderSettingsArray[index]
-                (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: value)
-            }
+            self.setupFoldersSectionCell(index: index, cell: cell)
             break
         case SettingsSections.mail.rawValue:
             self.setupMailSectionCell(index: index, cell: cell)
             break
         case SettingsSections.about.rawValue:
-            cell = tableView.dequeueReusableCell(withIdentifier: k_SettingsAppVersionTableViewCellIdentifier)!
-            self.setupAppVersionCell(cell: cell)
+            if index == SettingsAboutSection.appVersion.rawValue {
+                cell = tableView.dequeueReusableCell(withIdentifier: k_SettingsAppVersionTableViewCellIdentifier)!
+            }
+            self.setupAboutSectionCell(index: index, cell: cell)
             break
         case SettingsSections.storage.rawValue:
             cell = tableView.dequeueReusableCell(withIdentifier: k_SettingsStorageTableViewCellIdentifier)!
-            
-            var usedStorageSpace = 0
-            var totalStorageSpace = 0
-            
-            if let usedSpace = settings?.usedStorage {
-                usedStorageSpace = usedSpace
-            }
-            
-            if let totalSpace = settings?.allocatedStorage {
-                totalStorageSpace = totalSpace
-            }
-            
-            (cell as! SettingsStorageTableViewCell).setupCellWithData(usedStorageSpace: usedStorageSpace, totalStorageSpace: totalStorageSpace)
+            self.setupStorageSectionCell(cell: cell, settings: settings!)
             break
         case SettingsSections.logout.rawValue:
             break
@@ -191,6 +156,8 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         
         self.tableView.reloadData()
     }
+    
+    //MARK: - setup Headers and Cells
     
     func setupHeader(view: UIView, section: Int) {
         
@@ -224,17 +191,53 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         header.add(subview: bottomlineView)
     }
     
-    func setupAppVersionCell(cell: UITableViewCell) {
+    func setupGeneralSectionsCell(index: Int, cell: UITableViewCell, settings: Settings) {
         
-        let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
-        let buildNumber = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
+        var cellTitle : String = ""
+        var value : String = ""
         
-        cell.textLabel?.font = UIFont(name: k_latoRegularFontName, size: 16)!
-        cell.textLabel?.textColor = k_sideMenuTextFadeColor
-        cell.textLabel?.textAlignment = .center
-        cell.textLabel?.text = "AppVersion " + appVersion + " (" + buildNumber + ")"
+        switch index {
+        case SettingsGeneralSection.recovery.rawValue:
+            cellTitle = "recoveryEmail".localized()
+            break
+        case SettingsGeneralSection.password.rawValue:
+            cellTitle = "password".localized()
+            break
+        case SettingsGeneralSection.language.rawValue:
+            cellTitle = "language".localized()
+            if let language = settings.language {
+                value = language
+            }
+            break
+        case SettingsGeneralSection.notification.rawValue:
+            cellTitle = "notifications".localized()
+            break
+        case SettingsGeneralSection.contacts.rawValue:
+            cellTitle = "savingContact".localized()
+            break
+        case SettingsGeneralSection.whiteBlackList.rawValue:
+            cellTitle = "whiteBlackList".localized()
+            break
+        default:
+            break
+        }
         
-        cell.selectionStyle = .none
+        (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: value)
+    }
+    
+    func setupFoldersSectionCell(index: Int, cell: UITableViewCell) {
+        
+        var cellTitle : String = ""
+        
+        switch index {
+        case SettingsFoldersSection.folder.rawValue:
+            cellTitle = "manageFolders".localized()
+            break
+        default:
+            break
+        }
+        
+        (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: "")
     }
     
     func setupMailSectionCell(index: Int, cell: UITableViewCell) {
@@ -269,6 +272,60 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         }
         
         (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: value)
+    }
+    
+    func setupAboutSectionCell(index: Int, cell: UITableViewCell) {
+        
+        var cellTitle : String = ""
+        
+        switch index {
+        case SettingsAboutSection.aboutAs.rawValue:
+            cellTitle = "aboutUs".localized()
+            (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: "")
+            break
+        case SettingsAboutSection.privacy.rawValue:
+            cellTitle = "privacyPolicy".localized()
+            (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: "")
+            break
+        case SettingsAboutSection.terms.rawValue:
+            cellTitle = "terms".localized()
+            (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: "")
+            break
+        case SettingsAboutSection.appVersion.rawValue:
+            self.setupAppVersionCell(cell: cell)
+            break
+        default:
+            break
+        }
+    }
+    
+    func setupAppVersionCell(cell: UITableViewCell) {
+        
+        let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+        let buildNumber = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
+        
+        cell.textLabel?.font = UIFont(name: k_latoRegularFontName, size: 16)!
+        cell.textLabel?.textColor = k_sideMenuTextFadeColor
+        cell.textLabel?.textAlignment = .center
+        cell.textLabel?.text = "AppVersion " + appVersion + " (" + buildNumber + ")"
+        
+        cell.selectionStyle = .none
+    }
+    
+    func setupStorageSectionCell(cell: UITableViewCell, settings: Settings) {
+        
+        var usedStorageSpace = 0
+        var totalStorageSpace = 0
+        
+        if let usedSpace = settings.usedStorage {
+            usedStorageSpace = usedSpace
+        }
+        
+        if let totalSpace = settings.allocatedStorage {
+            totalStorageSpace = totalSpace
+        }
+        
+        (cell as! SettingsStorageTableViewCell).setupCellWithData(usedStorageSpace: usedStorageSpace, totalStorageSpace: totalStorageSpace)
     }
     
     @objc func tappedHeaderAction(sender : UITapGestureRecognizer) {
