@@ -98,7 +98,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell : SettingsBaseTableViewCell = tableView.dequeueReusableCell(withIdentifier: k_SettingsBaseTableViewCellIdentifier) as! SettingsBaseTableViewCell
+        var cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: k_SettingsBaseTableViewCellIdentifier) as! SettingsBaseTableViewCell
         
         switch indexPath.section {
         case SettingsSections.general.rawValue:
@@ -108,6 +108,8 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         case SettingsSections.mail.rawValue:
             break
         case SettingsSections.about.rawValue:
+            cell = tableView.dequeueReusableCell(withIdentifier: k_SettingsAppVersionTableViewCellIdentifier)!
+            self.setupAppVersionCell(cell: cell)
             break
         case SettingsSections.storage.rawValue:
             break
@@ -118,6 +120,16 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        switch indexPath.section {
+        case SettingsSections.storage.rawValue:
+            return k_settingsStorageCellHeight
+        default:
+            return k_settingsBaseCellHeight
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -161,6 +173,17 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         let bottomlineView = UIView(frame: frame)
         bottomlineView.backgroundColor = k_settingHeaderLineColor
         header.add(subview: bottomlineView)
+    }
+    
+    func setupAppVersionCell(cell: UITableViewCell) {
+        
+        let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+        let buildNumber = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
+        
+        cell.textLabel?.font = UIFont(name: k_latoRegularFontName, size: 16)!
+        cell.textLabel?.textColor = k_sideMenuTextFadeColor
+        cell.textLabel?.textAlignment = .center
+        cell.textLabel?.text = "AppVersion " + appVersion + " (" + buildNumber + ")"
     }
     
     @objc func tappedHeaderAction(sender : UITapGestureRecognizer) {

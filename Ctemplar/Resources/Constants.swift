@@ -93,7 +93,7 @@ let k_ChildMessageExpandedWithAttachmentTableViewCellIdentifier       = "childMe
 let k_UserMailboxTableViewCellIdentifier        = "userMailboxTableViewCellIdentifier"
 let k_AttachmentCollcetionViewCellIdentifier    = "attachmentCollcetionViewCellIdentifier"
 let k_SettingsBaseTableViewCellIdentifier       = "settingsBaseTableViewCellIdentifier"
-
+let k_SettingsAppVersionTableViewCellIdentifier         = "settingsAppVersuinCellIdentifier"
 
 // view controllers iPad storyboards name
 
@@ -228,6 +228,9 @@ let k_attachmentViewTopOffset       : CGFloat = 25.0
 
 let k_iphoneSEBottomButtonsOffset   : CGFloat = 222.0
 let k_iphoneAllBottomButtonsOffset  : CGFloat = 277.0
+
+let k_settingsBaseCellHeight        : CGFloat = 50.0
+let k_settingsStorageCellHeight     : CGFloat = 78.0
 
 //images
 
