@@ -21,4 +21,101 @@ class SettingsInteractor {
         self.viewController?.navigationController?.popViewController(animated: true)
         self.viewController?.sideMenuViewController?.presenter?.interactor?.logOut()
     }
+    
+    func SettingsCellPressed(indexPath: IndexPath) {
+        
+        let section = indexPath.section
+        let row = indexPath.row
+        
+        switch section {
+        case SettingsSections.general.rawValue:
+            self.SettingsGeneralCellPressed(index: row)
+            break
+        case SettingsSections.folders.rawValue:
+            self.SettingsFoldersCellPressed(index: row)
+            break
+        case SettingsSections.mail.rawValue:
+            self.SettingsMailCellPressed(index: row)
+            break
+        case SettingsSections.about.rawValue:
+            self.SettingsAboutCellPressed(index: row)
+            break
+        default:
+            break
+        }
+    }
+    
+    func SettingsGeneralCellPressed(index: Int) {
+        
+        switch index {
+        case SettingsGeneralSection.recovery.rawValue:
+            
+            break
+        case SettingsGeneralSection.password.rawValue:
+            
+            break
+        case SettingsGeneralSection.language.rawValue:
+
+            break
+        case SettingsGeneralSection.notification.rawValue:
+            
+            break
+        case SettingsGeneralSection.contacts.rawValue:
+            
+            break
+        case SettingsGeneralSection.whiteBlackList.rawValue:
+            
+            break
+        default:
+            break
+        }
+    }
+    
+    func SettingsFoldersCellPressed(index: Int) {
+        
+        switch index {
+        case SettingsFoldersSection.folder.rawValue:
+            self.viewController?.router?.showManageFoldersViewController()
+            break
+        default:
+            break
+        }
+    }
+    
+    func SettingsMailCellPressed(index: Int) {
+        
+        switch index {
+        case SettingsMailSection.mail.rawValue:
+ 
+            break
+        case SettingsMailSection.signature.rawValue:
+ 
+            break
+        case SettingsMailSection.mobileSignature.rawValue:
+            
+            break
+        default:
+            break
+        }
+    }
+    
+    func SettingsAboutCellPressed(index: Int) {
+        
+        switch index {
+        case SettingsAboutSection.aboutAs.rawValue:
+
+            break
+        case SettingsAboutSection.privacy.rawValue:
+
+            break
+        case SettingsAboutSection.terms.rawValue:
+
+            break
+        case SettingsAboutSection.appVersion.rawValue:
+         
+            break
+        default:
+            break
+        }
+    }
 }

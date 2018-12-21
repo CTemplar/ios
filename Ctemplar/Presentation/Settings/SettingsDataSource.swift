@@ -150,6 +150,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         
         tableView.deselectRow(at: indexPath, animated: true)
         
+        self.parentViewController.presenter?.interactor?.SettingsCellPressed(indexPath: indexPath)        
     }
     
     func reloadData() {
