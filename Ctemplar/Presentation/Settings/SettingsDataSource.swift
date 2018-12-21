@@ -17,11 +17,12 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     var generalSettingsArray    : Array<String> = [
         "recoveryEmail".localized(), "password".localized(), "language".localized(), "notifications".localized(), "savingContact".localized(), "whiteBlackList".localized()
-    ]
+        ]
     
     var folderSettingsArray    : Array<String> = [
         "manageFolders".localized()
         ]
+    
     
     var tableView               : UITableView!
     var parentViewController    : SettingsViewController!
@@ -96,7 +97,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         case SettingsSections.folders.rawValue:
             return self.folderSettingsArray.count
         case SettingsSections.mail.rawValue:
-            return 1
+            return SettingsMailSection.allCases.count
         case SettingsSections.about.rawValue:
             return 1
         case SettingsSections.storage.rawValue:
@@ -120,9 +121,9 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         case SettingsSections.general.rawValue:
             if index < generalSettingsArray.count {
             
-                let cellTitle = generalSettingsArray[indexPath.row]
+                let cellTitle = generalSettingsArray[index]
                 
-                if cellTitle == "Language" { //temp
+                if cellTitle == "language".localized() { //temp
                     if let language = settings?.language {
                         value = language
                     }
@@ -134,11 +135,12 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         case SettingsSections.folders.rawValue:
             if index < folderSettingsArray.count {
                 
-                let cellTitle = folderSettingsArray[indexPath.row]
+                let cellTitle = folderSettingsArray[index]
                 (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: value)
             }
             break
         case SettingsSections.mail.rawValue:
+            self.setupMailSectionCell(index: index, cell: cell)
             break
         case SettingsSections.about.rawValue:
             cell = tableView.dequeueReusableCell(withIdentifier: k_SettingsAppVersionTableViewCellIdentifier)!
@@ -233,6 +235,40 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         cell.textLabel?.text = "AppVersion " + appVersion + " (" + buildNumber + ")"
         
         cell.selectionStyle = .none
+    }
+    
+    func setupMailSectionCell(index: Int, cell: UITableViewCell) {
+        
+        var cellTitle : String = ""
+        var value : String = ""
+        
+        let mailbox = self.parentViewController!.user.mailboxesList!.first! //temp need get current mailbox
+        
+        switch index {
+        case SettingsMailSection.mail.rawValue:
+            if let email = mailbox.email {
+                cellTitle = email
+            }
+            
+            if mailbox.isDefault! {
+                value = "default".localized()
+            }
+            break
+        case SettingsMailSection.signature.rawValue:
+            if let signature = mailbox.signature {
+                cellTitle = signature
+            } else {
+                cellTitle = "signature".localized()
+            }
+            break
+        case SettingsMailSection.mobileSignature.rawValue:
+            cellTitle = "mobileSignature".localized() //API required
+            break
+        default:
+            break
+        }
+        
+        (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: value)
     }
     
     @objc func tappedHeaderAction(sender : UITapGestureRecognizer) {

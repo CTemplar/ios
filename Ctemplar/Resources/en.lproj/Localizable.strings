@@ -133,3 +133,7 @@
 "whiteBlackList" = "Whitelist / Blacklist";
 
 "manageFolders" = "Manage folders";
+
+"signature" = "Signature";
+"mobileSignature" = "Mobile signature";
+"default" = "Default";

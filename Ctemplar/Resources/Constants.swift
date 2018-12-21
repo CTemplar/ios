@@ -511,3 +511,10 @@ enum SettingsSections: Int, CaseIterable {
     case storage           = 4
     case logout            = 5
 }
+
+enum SettingsMailSection: Int, CaseIterable {
+    
+    case mail              = 0
+    case signature         = 1
+    case mobileSignature   = 2
+}
