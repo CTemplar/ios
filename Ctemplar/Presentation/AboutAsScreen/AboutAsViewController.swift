@@ -16,6 +16,11 @@ class AboutAsViewController: UIViewController {
         
     }
     
+    @IBAction func backButtonPressed(_ sender: AnyObject) {
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func goToWebButtonPressed(_ sender: AnyObject) {
        
        

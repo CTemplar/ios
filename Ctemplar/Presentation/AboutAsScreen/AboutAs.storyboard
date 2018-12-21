@@ -38,6 +38,9 @@
                                     <constraint firstAttribute="width" secondItem="uzq-s5-EC0" secondAttribute="height" multiplier="1:1" id="Q99-S8-blK"/>
                                 </constraints>
                                 <state key="normal" image="BackArrowDark"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="wsN-BH-Ykk" eventType="touchUpInside" id="JPo-6u-gce"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="gxg-ap-Z5U">
                                 <rect key="frame" x="155.5" y="64" width="64" height="63"/>

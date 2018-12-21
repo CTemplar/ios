@@ -26,7 +26,14 @@ class SettingsRouter {
         vc.foldersList = (self.viewController?.user.foldersList)!
         vc.user = (self.viewController?.user)!
         vc.showFromSideMenu = false
-        let navigationController = UINavigationController(rootViewController: vc) 
+        let navigationController = UINavigationController(rootViewController: vc)
         self.viewController?.present(navigationController, animated: true, completion: nil)
+    }
+    
+    func showAboutAsViewController() {
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: k_AboutAsStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_AboutAsViewControllerID) as! AboutAsViewController
+        self.viewController?.present(vc, animated: true, completion: nil)
     }
 }

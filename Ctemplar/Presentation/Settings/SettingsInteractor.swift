@@ -103,7 +103,7 @@ class SettingsInteractor {
         
         switch index {
         case SettingsAboutSection.aboutAs.rawValue:
-
+            self.viewController?.router?.showAboutAsViewController()
             break
         case SettingsAboutSection.privacy.rawValue:
 
