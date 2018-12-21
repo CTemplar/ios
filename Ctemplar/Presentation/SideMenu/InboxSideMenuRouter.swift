@@ -39,6 +39,7 @@ class InboxSideMenuRouter {
         let vc = storyboard.instantiateViewController(withIdentifier: k_SettingsViewControllerID) as! SettingsViewController
         self.viewController?.currentParentViewController = vc
         vc.sideMenuViewController = self.viewController
+        vc.user = (self.viewController?.inboxViewController?.user)!
         self.viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -119,7 +119,21 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             break
         case SettingsSections.storage.rawValue:
             cell = tableView.dequeueReusableCell(withIdentifier: k_SettingsStorageTableViewCellIdentifier)!
-            (cell as! SettingsStorageTableViewCell).setupCellWithData(usedStorageSpace: 14172, totalStorageSpace: 204800)
+            
+            let settings = self.parentViewController?.user.settings
+            
+            var usedStorageSpace = 0
+            var totalStorageSpace = 0
+            
+            if let usedSpace = settings?.usedStorage {
+                usedStorageSpace = usedSpace
+            }
+            
+            if let totalSpace = settings?.allocatedStorage {
+                totalStorageSpace = totalSpace
+            }
+                        
+            (cell as! SettingsStorageTableViewCell).setupCellWithData(usedStorageSpace: usedStorageSpace, totalStorageSpace: totalStorageSpace)
             break
         case SettingsSections.logout.rawValue:
             break
@@ -192,6 +206,8 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         cell.textLabel?.textColor = k_sideMenuTextFadeColor
         cell.textLabel?.textAlignment = .center
         cell.textLabel?.text = "AppVersion " + appVersion + " (" + buildNumber + ")"
+        
+        cell.selectionStyle = .none
     }
     
     @objc func tappedHeaderAction(sender : UITapGestureRecognizer) {

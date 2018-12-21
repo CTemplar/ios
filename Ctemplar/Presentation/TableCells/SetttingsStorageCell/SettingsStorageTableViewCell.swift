@@ -31,6 +31,8 @@ class SettingsStorageTableViewCell: UITableViewCell {
     
     func setupCellWithData(usedStorageSpace: Int, totalStorageSpace: Int) {
         
+        self.selectionStyle = .none
+        
         self.setupValuesLabel(usedStorageSpace: usedStorageSpace, totalStorageSpace: totalStorageSpace)
         
         let ratio = CGFloat(totalStorageSpace/usedStorageSpace)

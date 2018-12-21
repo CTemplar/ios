@@ -21,6 +21,8 @@ class  SettingsViewController: UIViewController {
     
     @IBOutlet var settingsTableView        : UITableView!
     
+    var user = UserMyself()
+    
     //MARK: - Lifecycle
 
     override func viewDidLoad() {
