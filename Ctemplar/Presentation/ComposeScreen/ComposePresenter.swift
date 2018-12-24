@@ -600,7 +600,7 @@ class ComposePresenter {
         //self.viewController!.emailToTextView.text = emailToText
     }
     
-    func setRect(textView: UITextView, email: String, tag: Int, selected: Bool) {
+    func setRect(textView: UITextView, email: String, tag: Int, color: UIColor) {
         
         let text = textView.text!
         
@@ -618,17 +618,19 @@ class ComposePresenter {
         
         let rect = CGRect(x: glyphRect.origin.x, y: glyphRect.origin.y + 6.0, width: glyphRect.size.width, height: 22.0)
         
-        self.addEmailLabelWith(text: email, rect: rect, index: tag, textView: textView, selected: selected)
+        self.addEmailLabelWith(text: email, rect: rect, index: tag, textView: textView, color: color)
     }
     
-    func addEmailLabelWith(text: String, rect: CGRect, index: Int, textView: UITextView, selected: Bool) {
+    func addEmailLabelWith(text: String, rect: CGRect, index: Int, textView: UITextView, color: UIColor) {
         
         let view = UIView(frame: rect)
+        /*
         if selected {
             view.backgroundColor = k_foundTextBackgroundColor
         } else {
             view.backgroundColor = k_mainInboxColor
-        }
+        }*/
+        view.backgroundColor = color
         
         view.layer.cornerRadius = 4.0
         view.layer.borderColor = UIColor.white.cgColor
@@ -648,7 +650,6 @@ class ComposePresenter {
         
         view.add(subview: label)
         textView.add(subview: view)
-        //textView.add(subview: label)
     }
     
     func removeSubviews(textView: UITextView, array: Array<Int>, tag: Int) {
@@ -866,13 +867,54 @@ class ComposePresenter {
                 }
             }
             
+            //temp, need to refactored
+            var color : UIColor = k_mainInboxColor
+            
+            if self.findDuplicatedEmails(emailArray: emailArray, currentEmail: email) {
+                color = UIColor.orange
+            }
+            
+            if !self.validateEmail(currentEmail: email) {
+                color = k_redColor
+            }
+            
+            if selected {
+                color = k_foundTextBackgroundColor
+            }
+            
             //let formattedEmail = "<" + email + ">"
             
-            self.setRect(textView: textView, email: email, tag: tag, selected: selected)
+            self.setRect(textView: textView, email: email, tag: tag, color: color)
             localSubViewsArray.append(tag)
         }
         
         return localSubViewsArray
+    }
+    
+    func findDuplicatedEmails(emailArray: Array<String>, currentEmail: String) -> Bool {
+        
+        var find = 0
+        
+        for email in emailArray {
+            if email == currentEmail {
+                find = find + 1
+            }
+        }
+        
+        if find > 1 {
+            return true
+        }
+        
+        return false
+    }
+    
+    func validateEmail(currentEmail: String) -> Bool {
+     
+        if (formatterService?.validateEmailFormat(enteredEmail: currentEmail))! {
+            return true
+        }
+        
+        return false
     }
     
     //MARK: - Setup Subject Section
