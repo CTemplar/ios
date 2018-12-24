@@ -19,6 +19,14 @@ class SettingsRouter {
         self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
+    func showRecoveryEmailViewController() {
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: k_RecoveryEmailStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_RecoveryEmailViewControllerID) as! RecoveryEmailViewController
+        let navigationController = UINavigationController(rootViewController: vc)
+        self.viewController?.present(navigationController, animated: true, completion: nil)
+    }
+    
     func showManageFoldersViewController() {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_ManageFoldersStoryboardName, bundle: nil)

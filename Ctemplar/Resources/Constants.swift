@@ -36,6 +36,7 @@ let k_AddContactViewControllerID            = "AddContactViewController"
 let k_SettingsViewControllerID              = "SettingsViewController"
 let k_SetPasswordViewControllerID           = "SetPasswordViewController"
 let k_SchedulerViewControllerID             = "SchedulerViewController"
+let k_RecoveryEmailViewControllerID         = "RecoveryEmailViewController"
 let k_AboutAsViewControllerID               = "AboutAsViewController"
 
 // view controllers storyboards name
@@ -57,6 +58,7 @@ let k_ViewInboxEmailStoryboardName         = "ViewInboxEmail"
 let k_SettingsStoryboardName               = "Settings"
 let k_SetPasswordStoryboardName            = "SetPassword"
 let k_SchedulerStoryboardName              = "Scheduler"
+let k_RecoveryEmailStoryboardName          = "RecoveryEmail"
 let k_AddContactStoryboardName             = "AddContact"
 
 let k_InboxMessageTableViewCellXibName     = "InboxMessageTableViewCell"

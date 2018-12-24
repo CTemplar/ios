@@ -49,7 +49,7 @@ class SettingsInteractor {
         
         switch index {
         case SettingsGeneralSection.recovery.rawValue:
-            
+            self.viewController?.router?.showRecoveryEmailViewController()
             break
         case SettingsGeneralSection.password.rawValue:
             

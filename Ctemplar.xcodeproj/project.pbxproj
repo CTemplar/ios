@@ -43,6 +43,8 @@
 		8431218A218AF80E0014560D /* ViewInboxEmailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84312189218AF80E0014560D /* ViewInboxEmailRouter.swift */; };
 		8431218C218AF81B0014560D /* ViewInboxEmailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431218B218AF81B0014560D /* ViewInboxEmailPresenter.swift */; };
 		8431218E218AF82C0014560D /* ViewInboxEmailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431218D218AF82C0014560D /* ViewInboxEmailInteractor.swift */; };
+		8431B08721D10F7400A73D39 /* RecoveryEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431B08621D10F7400A73D39 /* RecoveryEmailViewController.swift */; };
+		8431B08921D10F9700A73D39 /* RecoveryEmail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8431B08821D10F9700A73D39 /* RecoveryEmail.storyboard */; };
 		8432070B21784B0100F18E5A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8432070A21784B0100F18E5A /* WebKit.framework */; };
 		8432071321785F8400F18E5A /* InboxMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8432071221785F8400F18E5A /* InboxMessageTableViewCell.xib */; };
 		843207152178C75000F18E5A /* InboxMessageTablelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843207142178C75000F18E5A /* InboxMessageTablelViewCell.swift */; };
@@ -234,6 +236,8 @@
 		84312189218AF80E0014560D /* ViewInboxEmailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewInboxEmailRouter.swift; sourceTree = "<group>"; };
 		8431218B218AF81B0014560D /* ViewInboxEmailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewInboxEmailPresenter.swift; sourceTree = "<group>"; };
 		8431218D218AF82C0014560D /* ViewInboxEmailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewInboxEmailInteractor.swift; sourceTree = "<group>"; };
+		8431B08621D10F7400A73D39 /* RecoveryEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryEmailViewController.swift; sourceTree = "<group>"; };
+		8431B08821D10F9700A73D39 /* RecoveryEmail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecoveryEmail.storyboard; sourceTree = "<group>"; };
 		8432070A21784B0100F18E5A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		8432071221785F8400F18E5A /* InboxMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InboxMessageTableViewCell.xib; sourceTree = "<group>"; };
 		843207142178C75000F18E5A /* InboxMessageTablelViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageTablelViewCell.swift; sourceTree = "<group>"; };
@@ -492,6 +496,15 @@
 			path = ModalScreens;
 			sourceTree = "<group>";
 		};
+		8431B08521D10F5000A73D39 /* RecoveryEmail */ = {
+			isa = PBXGroup;
+			children = (
+				8431B08621D10F7400A73D39 /* RecoveryEmailViewController.swift */,
+				8431B08821D10F9700A73D39 /* RecoveryEmail.storyboard */,
+			);
+			path = RecoveryEmail;
+			sourceTree = "<group>";
+		};
 		8432070C21785E0D00F18E5A /* TableCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -653,6 +666,7 @@
 				8434D9AA219BFCE700D2C3A5 /* ContactsScreen */,
 				845E643721708453008612FE /* SideMenu */,
 				8443D21A21CBDB43002AD54B /* Settings */,
+				8431B08521D10F5000A73D39 /* RecoveryEmail */,
 				845E64412170BD08008612FE /* AboutAsScreen */,
 			);
 			path = Presentation;
@@ -1063,6 +1077,7 @@
 				84410990217723CE00F0BE18 /* ViewInboxEmail.storyboard in Resources */,
 				845E64482170CAEF008612FE /* Lato-Black.ttf in Resources */,
 				845E64432170BD21008612FE /* AboutAs.storyboard in Resources */,
+				8431B08921D10F9700A73D39 /* RecoveryEmail.storyboard in Resources */,
 				845E64492170CAF2008612FE /* Roboto-Bold.ttf in Resources */,
 				8435900821C2912300F7D34D /* Scheduler.storyboard in Resources */,
 				8443D22821CBDFEC002AD54B /* Settings.storyboard in Resources */,
@@ -1320,6 +1335,7 @@
 				84FF7E3C219DB71500E3E56A /* ContactTableViewCell.swift in Sources */,
 				8443D21721CB6AFB002AD54B /* EditFolderInteractor.swift in Sources */,
 				8435685D216F2DB3002101D3 /* InboxViewController.swift in Sources */,
+				8431B08721D10F7400A73D39 /* RecoveryEmailViewController.swift in Sources */,
 				8462C62421CCC15C005B3D74 /* SettingsBaseTableViewCell.swift in Sources */,
 				8430C29321B554F100ACB559 /* SetPasswordViewController.swift in Sources */,
 				8403BDE821A4051A00EE8DCD /* AddContactPresenter.swift in Sources */,
