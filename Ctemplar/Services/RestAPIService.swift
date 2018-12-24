@@ -63,6 +63,7 @@ class RestAPIService {
         case send = "send"
         case subject = "subject"
         case email = "email"
+        case emails = "emails"
         case address = "address"
         case note = "note"
         case phone = "phone"
@@ -626,18 +627,24 @@ class RestAPIService {
         }
     }
     
-    func publicKeyFor(userEmail: String, token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func publicKeyFor(userEmails: Array<String>, token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
             "Accept": "application/json"
         ]
         
-        let url = EndPoint.baseUrl.rawValue + EndPoint.publicKeys.rawValue + "?email__in=" + userEmail
+        let parameters: Parameters = [
+            JSONKey.emails.rawValue: userEmails
+        ]
+        
+        print("publicKeyFor parameters:", parameters)
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.publicKeys.rawValue + "/"//+ "?email__in=" + userEmail
         
         print("publicKeyFor url:", url)
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
             
             print("publicKeyFor responce:", response)
             

@@ -866,26 +866,16 @@ class APIService {
                 if let token = self.getToken() {
                     
                     //HUD.show(.progress)
-                    
-                    var userEmailParameters = ""
-                    
-                    for email in userEmailsArray {
-                        userEmailParameters = userEmailParameters + email + ","
-                    }
-                    
-                    if userEmailsArray.count > 0 {
-                        userEmailParameters = String(userEmailParameters.dropLast())
-                    }
-                    
+       
                     //print("userEmailParameters", userEmailParameters)
                     
-                    self.restAPIService?.publicKeyFor(userEmail: userEmailParameters, token: token) {(result) in
+                    self.restAPIService?.publicKeyFor(userEmails: userEmailsArray, token: token) {(result) in
                         
                         switch(result) {
                             
                         case .success(let value):
                             
-                            //print("publicKeyFor success:", value)
+                            print("publicKeyFor success:", value)
                             
                             if let response = value as? Dictionary<String, Any> {
                                 
@@ -896,8 +886,8 @@ class APIService {
                                     
                                     for dictionary in response {
                                         
-                                        if dictionary.key == "results" {
-                                            //print("dictionary:", dictionary.value)
+                                        if dictionary.key == "keys" {
+                                            //print("dictionary values:", dictionary.value)
                                             
                                             var publicKeysArray = Array<Any>()
                                             
@@ -908,17 +898,15 @@ class APIService {
                                                 
                                                 for (key, value) in keysDictionary {
                                                     if key == "public_key" {
-                                                        print("public Key:", value)
-                                                        publicKeysArray.append(value)
-                                                        //completionHandler(APIResult.success(value))
-                                                        //return
+                                                        //print("public Key:", value)
+                                                        publicKeysArray.append(value)                                                        
                                                     }
                                                 }
                                             }
                                             
                                             completionHandler(APIResult.success(publicKeysArray))
                                         }
-                                    }                                    
+                                    }
                                 }
                                 
                             } else {
