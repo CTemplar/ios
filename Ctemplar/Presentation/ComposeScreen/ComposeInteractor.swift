@@ -570,22 +570,26 @@ class ComposeInteractor {
         }
                 
         if self.returnPressed(input: text) {
-            
+            /*
             let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "emailToPrefix".localized())
             //let inputEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
             let inputEmail = self.getLastInputText(input: inputDroppedPrefixText, emailsArray: self.viewController!.emailsToArray)
             
-            self.setEmail(textView: textView, inputEmail: inputEmail, addSelected: false)
+            self.setEmail(textView: textView, inputEmail: inputEmail, clearInputtedChars: false)
+            */
+            self.viewController?.view.endEditing(true)
             
             return false
         }
         
         if self.spacePressed(input: text) {
-            
+            /*
             let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "emailToPrefix".localized())
             let inputEmail = self.getLastInputText(input: inputDroppedPrefixText, emailsArray: self.viewController!.emailsToArray)
             
-            self.setEmail(textView: textView, inputEmail: inputEmail, addSelected: false)
+            self.setEmail(textView: textView, inputEmail: inputEmail, clearInputtedChars: false)
+            */
+            self.viewController?.view.endEditing(true)
             
             return false
         }
@@ -650,23 +654,26 @@ class ComposeInteractor {
         }
         
         if self.returnPressed(input: text) {
-            
+            /*
             let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "ccToPrefix".localized())
             //let inputCcEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
             let inputCcEmail = self.getLastInputText(input: inputDroppedPrefixText, emailsArray: self.viewController!.ccToArray)
             
-            self.setEmail(textView: textView, inputEmail: inputCcEmail, addSelected: false)
-
+            self.setEmail(textView: textView, inputEmail: inputCcEmail, clearInputtedChars: false)
+             */
+            self.viewController?.view.endEditing(true)
             return false
         }
         
         if self.spacePressed(input: text) {
-            
+            /*
             let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "ccToPrefix".localized())
             let inputCcEmail = self.getLastInputText(input: inputDroppedPrefixText, emailsArray: self.viewController!.ccToArray)
             
-            self.setEmail(textView: textView, inputEmail: inputCcEmail, addSelected: false)
+            self.setEmail(textView: textView, inputEmail: inputCcEmail, clearInputtedChars: false)
+            */
             
+            self.viewController?.view.endEditing(true)
             return false
         }
         
@@ -727,23 +734,25 @@ class ComposeInteractor {
         }
         
         if self.returnPressed(input: text) {
-            
+            /*
             let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "bccToPrefix".localized())
             //let inputBccEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
             let inputBccEmail = self.getLastInputText(input: inputDroppedPrefixText, emailsArray: self.viewController!.bccToArray)
             
-            self.setEmail(textView: textView, inputEmail: inputBccEmail, addSelected: false)
-
+            self.setEmail(textView: textView, inputEmail: inputBccEmail, clearInputtedChars: false)
+            */
+            self.viewController?.view.endEditing(true)
             return false
         }
         
         if self.spacePressed(input: text) {
-            
+            /*
             let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "bccToPrefix".localized())
             let inputBccEmail = self.getLastInputText(input: inputDroppedPrefixText, emailsArray: self.viewController!.bccToArray)
             
-            self.setEmail(textView: textView, inputEmail: inputBccEmail, addSelected: false)
-            
+            self.setEmail(textView: textView, inputEmail: inputBccEmail, clearInputtedChars: false)
+            */
+            self.viewController?.view.endEditing(true)
             return false
         }
         
@@ -791,13 +800,15 @@ class ComposeInteractor {
         return true
     }
     
-    func setEmail(textView: UITextView, inputEmail: String, addSelected: Bool) {
+    func setEmail(textView: UITextView, inputEmail: String, clearInputtedChars: Bool) {
         
         var inputText : String = ""
         
-        if addSelected {
+        if clearInputtedChars {
             self.setFilteredList(searchText: "")
-            inputText = textView.text + inputEmail + " "
+            let lastInput = self.getLastWord(textView: textView)
+            let text = textView.text.dropLast((lastInput?.count)!)
+            inputText = text + inputEmail + " "
             //inputText = textView.text + " <" + inputEmail + "> "
         } else {
             if inputEmail.count > 0 {

@@ -113,7 +113,7 @@
                                                         </attributes>
                                                     </fragment>
                                                 </attributedString>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="emailAddress" keyboardAppearance="alert"/>
                                             </textView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0QO-oA-I6g">
                                                 <rect key="frame" x="331" y="2" width="44" height="44"/>
@@ -160,7 +160,7 @@
                                                         </attributes>
                                                     </fragment>
                                                 </attributedString>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="emailAddress" keyboardAppearance="alert"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="Paf-AF-Vql" id="uHq-qd-EfO"/>
                                                 </connections>
@@ -198,7 +198,7 @@
                                                         </attributes>
                                                     </fragment>
                                                 </attributedString>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="emailAddress" keyboardAppearance="alert"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="Paf-AF-Vql" id="OJ1-cY-dND"/>
                                                 </connections>

@@ -348,17 +348,17 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         case self.emailToTextView:
             let inputDroppedPrefixText = self.interactor?.dropPrefix(text: textView.text, prefix: "emailToPrefix".localized())
             inputText =  (self.interactor?.getLastInputEmail(input: inputDroppedPrefixText!))!
-            self.interactor?.setEmail(textView: self.emailToTextView, inputEmail: inputText, addSelected: false)
+            self.interactor?.setEmail(textView: self.emailToTextView, inputEmail: inputText, clearInputtedChars: false)
             //self.presenter?.setupEmailToSection(emailToText: textView.text, ccToText: self.ccToSting, bccToText: self.bccToSting)
         case self.ccToTextView:
             let inputDroppedPrefixText = self.interactor?.dropPrefix(text: textView.text, prefix: "ccToPrefix".localized())
             inputText =  (self.interactor?.getLastInputEmail(input: inputDroppedPrefixText!))!
-            self.interactor?.setEmail(textView: self.ccToTextView, inputEmail: inputText, addSelected: false)
+            self.interactor?.setEmail(textView: self.ccToTextView, inputEmail: inputText, clearInputtedChars: false)
             //self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: textView.text, bccToText: self.bccToSting)
         case self.bccToTextView:
             let inputDroppedPrefixText = self.interactor?.dropPrefix(text: textView.text, prefix: "bccToPrefix".localized())
             inputText =  (self.interactor?.getLastInputEmail(input: inputDroppedPrefixText!))!
-            self.interactor?.setEmail(textView: self.bccToTextView, inputEmail: inputText, addSelected: false)
+            self.interactor?.setEmail(textView: self.bccToTextView, inputEmail: inputText, clearInputtedChars: false)
             //self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: textView.text)
         case self.messageTextView:
             if self.messageTextView.text.isEmpty {
