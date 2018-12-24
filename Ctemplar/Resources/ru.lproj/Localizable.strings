@@ -15,6 +15,7 @@
 "closeButton" = "Закрыть";
 "cancelButton" = "Отмена";
 "logotButton" = "Выйти";
+"saveButton" = "Сохранить";
 
 "termsAndConditionsFullText" = "Пожалуста, поставьте галочку если вы согласны с нашими Условиями и Положениями";
 "termsAndConditionsPhrase" = "Условия и Положения";

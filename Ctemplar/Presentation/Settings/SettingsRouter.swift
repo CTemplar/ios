@@ -23,6 +23,7 @@ class SettingsRouter {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_RecoveryEmailStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_RecoveryEmailViewControllerID) as! RecoveryEmailViewController
+        vc.user = (self.viewController?.user)!
         let navigationController = UINavigationController(rootViewController: vc)
         self.viewController?.present(navigationController, animated: true, completion: nil)
     }
