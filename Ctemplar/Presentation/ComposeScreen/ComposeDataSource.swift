@@ -102,7 +102,8 @@ class ComposeDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             
             if  let email = contact.email {
                 if (self.currentTextView != nil) {
-                    self.parentViewController.interactor?.setEmail(textView: self.currentTextView, inputEmail: email, clearInputtedChars: true)
+                    //self.parentViewController.interactor?.setEmail(textView: self.currentTextView, inputEmail: email, clearInputtedChars: true)
+                    self.parentViewController.interactor?.addEmailTo(textView: self.currentTextView, inputEmail: email)
                 }
             }
             

@@ -807,6 +807,16 @@ class ComposeInteractor {
         return true
     }
     
+    func addEmailTo(textView: UITextView, inputEmail: String) {
+        
+        self.setFilteredList(searchText: "")
+        let lastInput = self.getLastWord(textView: textView)
+        let text = textView.text.dropLast((lastInput?.count)!) //remove inputted chars
+        textView.text = text + inputEmail
+        
+        self.viewController!.view.endEditing(true)
+    }
+    
     func setEmail(textView: UITextView, inputEmail: String, clearInputtedChars: Bool) {
         
         var inputText : String = ""
@@ -837,6 +847,9 @@ class ComposeInteractor {
                 self.viewController!.emailsToArray.append(inputEmail)
             }
             self.viewController!.emailToSting = inputText
+            self.viewController!.emailToSting = self.viewController!.emailToSting.replacingOccurrences(of: "  ", with: " ")//remove double spaces
+            
+            
             break
         case self.viewController!.ccToTextView:
             print("inputCcEmail:", inputEmail as Any)
@@ -844,6 +857,7 @@ class ComposeInteractor {
                 self.viewController!.ccToArray.append(inputEmail)
             }
             self.viewController!.ccToSting = inputText
+            self.viewController!.ccToSting = self.viewController!.ccToSting.replacingOccurrences(of: "  ", with: " ")//remove double spaces
             break
         case self.viewController!.bccToTextView:
             print("inputBccEmail:", inputEmail as Any)
@@ -851,6 +865,7 @@ class ComposeInteractor {
                 self.viewController!.bccToArray.append(inputEmail)
             }
             self.viewController!.bccToSting = inputText
+            self.viewController!.bccToSting = self.viewController!.bccToSting.replacingOccurrences(of: "  ", with: " ")//remove double spaces
             break
         default:
             break
@@ -862,7 +877,7 @@ class ComposeInteractor {
         self.presenter!.enabledSendButton()
         
         if clearInputtedChars {
-            self.viewController!.view.endEditing(true)
+            //self.viewController!.view.endEditing(true)
             //textView.becomeFirstResponder()
         }
     }

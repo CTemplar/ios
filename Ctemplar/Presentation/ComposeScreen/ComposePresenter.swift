@@ -614,7 +614,7 @@ class ComposePresenter {
         
         glyphRect.origin.x += textView.textContainerInset.left
         
-        print("textView.textContainerInset.top:", textView.textContainerInset.top) // 8 - 2
+        //print("textView.textContainerInset.top:", textView.textContainerInset.top) // 8 - 2
         
         let rect = CGRect(x: glyphRect.origin.x, y: glyphRect.origin.y + 6.0, width: glyphRect.size.width, height: 22.0)
         
@@ -831,6 +831,13 @@ class ComposePresenter {
         self.bccToSubViewsArray = self.setRecanglesFor(textView: self.viewController!.bccToTextView, emailArray: self.viewController!.bccToArray, selectedEmail: self.viewController!.tapSelectedBccEmail, subViewsArray: self.bccToSubViewsArray, subViewTag: ComposeSubViewTags.bccToTextViewTag.rawValue)
         
         //self.setupMessageSectionSize()
+        //debug:
+        
+        print("emailsToArray count:", self.viewController!.emailsToArray.count)
+        
+        for email in self.viewController!.emailsToArray {
+            print("emailTo:", email)
+        }
     }
     
     func updateContentOffset(textView: UITextView) {
