@@ -197,18 +197,18 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
                 
             } else {
                 self.presenter?.fillAllEmailsFields(message: self.message!)
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100), execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: {
                     self.interactor?.createDraftWithParent(message: self.message!)
                 })
             }
 
         } else {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100), execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: {
                 self.interactor?.createDraft()
             })
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100), execute: {
             self.interactor?.userContactsList()
         })
         

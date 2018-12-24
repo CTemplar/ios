@@ -457,10 +457,6 @@ class ComposePresenter {
         self.viewController!.view.layoutIfNeeded()
     }
     
-    var emailToSubViewsArray = Array<Int>()
-    var ccToSubViewsArray = Array<Int>()
-    var bccToSubViewsArray = Array<Int>()
-    
     //MARK: - Setup Email From Section
     
     func setMailboxes(mailboxes: Array<Mailbox>) {
@@ -533,6 +529,10 @@ class ComposePresenter {
     }
     
     //MARK: - Setup Email To Subsection
+    
+    var emailToSubViewsArray = Array<Int>()
+    var ccToSubViewsArray = Array<Int>()
+    var bccToSubViewsArray = Array<Int>()
     
     func fillAllEmailsFields(message: EmailMessage) {
         
@@ -818,6 +818,10 @@ class ComposePresenter {
         
         self.viewController!.toViewSectionHeightConstraint.constant = self.viewController!.toViewSubsectionHeightConstraint.constant + self.viewController!.expandedSectionHeight
         
+        self.updateContentOffset(textView: self.viewController!.emailToTextView)
+        self.updateContentOffset(textView: self.viewController!.ccToTextView)
+        self.updateContentOffset(textView: self.viewController!.bccToTextView)
+        
         //set rects
         
         self.emailToSubViewsArray = self.setRecanglesFor(textView: self.viewController!.emailToTextView, emailArray: self.viewController!.emailsToArray, selectedEmail: self.viewController!.tapSelectedEmail, subViewsArray: self.emailToSubViewsArray, subViewTag: ComposeSubViewTags.emailToTextViewTag.rawValue)
@@ -826,7 +830,13 @@ class ComposePresenter {
         
         self.bccToSubViewsArray = self.setRecanglesFor(textView: self.viewController!.bccToTextView, emailArray: self.viewController!.bccToArray, selectedEmail: self.viewController!.tapSelectedBccEmail, subViewsArray: self.bccToSubViewsArray, subViewTag: ComposeSubViewTags.bccToTextViewTag.rawValue)
         
-       // self.setupMessageSectionSize()
+        //self.setupMessageSectionSize()
+    }
+    
+    func updateContentOffset(textView: UITextView) {
+        
+        let offset = CGPoint(x: 0, y: textView.contentSize.height - textView.bounds.size.height)        
+        textView.setContentOffset(offset, animated: true)
     }
     
     func setRecanglesFor(textView: UITextView, emailArray: Array<String>, selectedEmail: String, subViewsArray: Array<Int>, subViewTag: Int) -> Array<Int> {

@@ -150,6 +150,7 @@ class ComposeInteractor {
         if let contacts = contactsList.contactsList {
             self.viewController?.contactsList = contacts
             self.viewController?.presenter?.setContactsDataSource(contacts: contacts)
+            self.viewController?.dataSource?.reloadData(setMailboxData: false)
         }
     }
     
@@ -604,6 +605,8 @@ class ComposeInteractor {
                 self.viewController!.emailToSting = self.viewController!.emailToSting.replacingOccurrences(of: self.viewController!.tapSelectedEmail, with: "")
                 self.viewController!.tapSelectedEmail = ""
                 
+                self.viewController!.emailToSting = self.viewController!.emailToSting.replacingOccurrences(of: "  ", with: " ")//remove double spaces
+                
                 self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
                 self.viewController!.view.endEditing(true)
                 
@@ -687,6 +690,8 @@ class ComposeInteractor {
                 self.viewController!.ccToSting = self.viewController!.ccToSting.replacingOccurrences(of: self.viewController!.tapSelectedCcEmail, with: "")
                 self.viewController!.tapSelectedCcEmail = ""
                 
+                self.viewController!.emailToSting = self.viewController!.emailToSting.replacingOccurrences(of: "  ", with: " ")//remove double spaces
+                
                 self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
                 self.viewController!.view.endEditing(true)
                 
@@ -765,6 +770,8 @@ class ComposeInteractor {
                 
                 self.viewController!.bccToSting = self.viewController!.bccToSting.replacingOccurrences(of: self.viewController!.tapSelectedBccEmail, with: "")
                 self.viewController!.tapSelectedBccEmail = ""
+                
+                self.viewController!.emailToSting = self.viewController!.emailToSting.replacingOccurrences(of: "  ", with: " ")//remove double spaces
                 
                 self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
                 self.viewController!.view.endEditing(true)
@@ -854,7 +861,10 @@ class ComposeInteractor {
         self.setCursorPositionToEnd(textView: textView)
         self.presenter!.enabledSendButton()
         
-        self.viewController!.view.endEditing(true)
+        if clearInputtedChars {
+            self.viewController!.view.endEditing(true)
+            //textView.becomeFirstResponder()
+        }
     }
     
     //MARK: - textView private methods
