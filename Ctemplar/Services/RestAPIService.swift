@@ -407,7 +407,7 @@ class RestAPIService {
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
             
-            print("unreadMessagesCounter responce:", response)
+            //print("unreadMessagesCounter responce:", response)
             
             switch(response.result) {
             case .success(let value):

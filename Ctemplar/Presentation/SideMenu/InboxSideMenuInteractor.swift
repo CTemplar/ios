@@ -111,7 +111,7 @@ class InboxSideMenuInteractor {
             switch(result) {
                 
             case .success(let value):
-                print("unreadMessagesCounter value:", value)
+                //print("unreadMessagesCounter value:", value)
                 
                 var unreadMessagesCounterArray: Array<UnreadMessagesCounter> = []
                 
@@ -256,11 +256,36 @@ class InboxSideMenuInteractor {
         
         var unreadMessagesCount = 0
         
+        var selfDestructUnreadMessagesCount = 0
+        var delayedDeliveryUnreadMessagesCount = 0
+        var deadManUnreadMessagesCount = 0
+        
         for object in (self.viewController?.dataSource?.unreadMessagesArray)! {
             
             if object.folderName == self.apiFolderName(folderName: folderName) {
                 unreadMessagesCount = object.unreadMessagesCount!
             }
+            
+            //avoid API problem
+            if object.folderName == MessagesFoldersName.outboxSD.rawValue {
+                selfDestructUnreadMessagesCount = object.unreadMessagesCount!
+            }
+            
+            if object.folderName == MessagesFoldersName.outboxDD.rawValue {
+                delayedDeliveryUnreadMessagesCount = object.unreadMessagesCount!
+            }
+            
+            if object.folderName == MessagesFoldersName.outboxDM.rawValue {
+                deadManUnreadMessagesCount = object.unreadMessagesCount!
+            }
+        }
+        
+        if self.apiFolderName(folderName: folderName) == MessagesFoldersName.draft.rawValue { //avoid API problem
+            unreadMessagesCount = 0
+        }
+        
+        if self.apiFolderName(folderName: folderName) == MessagesFoldersName.outbox.rawValue { //avoid API problem
+            unreadMessagesCount = selfDestructUnreadMessagesCount + delayedDeliveryUnreadMessagesCount + deadManUnreadMessagesCount
         }
         
         return unreadMessagesCount

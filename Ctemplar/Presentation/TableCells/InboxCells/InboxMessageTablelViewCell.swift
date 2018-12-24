@@ -149,11 +149,11 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
         if let destructionDate = message.destructDay {
             rightlabelView.isHidden = false
             rightlabelView.backgroundColor = k_orangeColor
-            print("destructionDate:", destructionDate)
+            //print("destructionDate:", destructionDate)
             if  let date = parentController?.formatterService!.formatDestructionTimeStringToDate(date: destructionDate) {
                 deleteLabel.attributedText = date.timeCountForDestruct(short: short)
             } else {
-                print("erorr formatting destructionDate:", destructionDate)
+                //print("erorr formatting destructionDate:", destructionDate)
                 if let date = parentController?.formatterService!.formatDestructionTimeStringToDateTest(date: destructionDate) {
                     print("new format date:", date)
                     deleteLabel.attributedText = date.timeCountForDestruct(short: short)

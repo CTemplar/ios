@@ -168,7 +168,7 @@ class InboxInteractor {
             switch(result) {
                 
             case .success(let value):
-                print("unreadMessagesCounter value:", value)
+                //print("unreadMessagesCounter value:", value)
                 
                 var unreadMessagesCounterArray: Array<UnreadMessagesCounter> = []
                 

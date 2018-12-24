@@ -181,7 +181,7 @@ class PGPService {
         let keyRingFileUrl = getApplicationSupportDirectoryDirectory().appendingPathComponent(k_keyringFileName)
         
         guard let keys = try? ObjectivePGP.readKeys(fromPath: keyRingFileUrl.path) else {return nil}
-        print("get stored PGP keys:", keys)
+        //print("get stored PGP keys:", keys)
         
         return keys
     }

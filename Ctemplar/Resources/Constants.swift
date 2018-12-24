@@ -385,6 +385,9 @@ enum MessagesFoldersName: String, CaseIterable {
     case spam             = "spam"
     case trash            = "trash"
     //case foldersCount     = "foldersCount"
+    case outboxSD         = "outbox_self_destruct_counter"
+    case outboxDD         = "outbox_delayed_delivery_counter"
+    case outboxDM         = "outbox_dead_man_counter"
 }
 
 enum InboxCellButtonsIndex: Int {

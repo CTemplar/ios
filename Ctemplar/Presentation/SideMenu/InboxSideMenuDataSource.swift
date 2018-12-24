@@ -182,16 +182,6 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             
             break
         case SideMenuSectionIndex.manageFolders.rawValue:
-            //cell.textLabel?.text = "Manage Folers"
-            /*
-            cell = tableView.dequeueReusableCell(withIdentifier: k_SideMenuTableViewCellIdentifier)! as! SideMenuTableViewCell
-            
-            let optionName = "Manage Folders"
-            let iconName = k_darkFoldersIconImageName
-            let selected = isSelected(section: indexPath.section, row: indexPath.row)
-            
-            (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: selected, iconName: iconName, title: optionName, unreadCount: 0)
-            */
             
             cell = tableView.dequeueReusableCell(withIdentifier: k_SideMenuTableManageFolderCellIdentifier)! as! SideMenuTableManageFolderCell
            
@@ -338,7 +328,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     
     func isSelected(section: Int, row: Int) -> Bool {
         
-        print("selectedIndexPath:", self.selectedIndexPath.row, "/", self.selectedIndexPath.section)
+        //print("selectedIndexPath:", self.selectedIndexPath.row, "/", self.selectedIndexPath.section)
         
         if self.selectedIndexPath.row == row && self.selectedIndexPath.section == section {
             return true
