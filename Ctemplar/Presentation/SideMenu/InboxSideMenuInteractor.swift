@@ -179,6 +179,7 @@ class InboxSideMenuInteractor {
             self.viewController?.router?.showSettingsViewController()
             break
         case InboxSideMenuOptionsName.manageFolders.rawValue :
+            self.dismissSideMenuAndTopController()
             self.viewController?.router?.showManageFoldersViewController()
             break
         case InboxSideMenuOptionsName.logout.rawValue :
