@@ -134,9 +134,9 @@ class InboxSideMenuInteractor {
     
     func dismissSideMenuAndTopController() {
         
-        self.viewController?.dismiss(animated: true, completion: {
+        self.viewController?.dismiss(animated: true, completion: { 
             if let parentViewController = self.viewController?.currentParentViewController {
-                parentViewController.navigationController?.popViewController(animated: true)
+                parentViewController.navigationController?.popToRootViewController(animated: true)
             }
         })
     }
@@ -172,8 +172,10 @@ class InboxSideMenuInteractor {
             self.applyFirstSectionAction(folder: optionName, filter: "")
             break
         case InboxSideMenuOptionsName.contacts.rawValue :
+            self.dismissSideMenuAndTopController()
             self.viewController?.router?.showContactsViewController()
         case InboxSideMenuOptionsName.settings.rawValue :
+            self.dismissSideMenuAndTopController()
             self.viewController?.router?.showSettingsViewController()
             break
         case InboxSideMenuOptionsName.manageFolders.rawValue :
