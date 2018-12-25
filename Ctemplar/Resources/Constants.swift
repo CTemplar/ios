@@ -107,6 +107,7 @@ let k_LoginStoryboardName_iPad             = "Login-iPad"
 // notifications
 
 let k_updateUserDataNotificationID          = "UpdateUserDataNotificationIdentifier"
+let k_updateUserSettingsNotificationID      = "UpdateUserSettingsNotificationIdentifier"
 let k_updateInboxMessagesNotificationID     = "updateInboxMessagesNotification"
 let k_attachUploadUpdateNotificationID      = "attachUploadUpdateNotificationIdentifier"
 

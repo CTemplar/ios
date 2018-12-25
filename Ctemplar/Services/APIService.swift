@@ -1380,7 +1380,7 @@ class APIService {
     
     //MARK: - Settings
     
-    func updateSettings(token: String, settingsID: String, recoveryEmail: String, dispalyName: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateSettings(settingsID: String, recoveryEmail: String, dispalyName: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         self.checkTokenExpiration(){ (complete) in
             if complete {
@@ -1392,7 +1392,7 @@ class APIService {
                         switch(result) {
                             
                         case .success(let value):
-                            print("updateSettings:", value)
+                            //print("updateSettings:", value)
                             completionHandler(APIResult.success(value))
                             
                         case .failure(let error):

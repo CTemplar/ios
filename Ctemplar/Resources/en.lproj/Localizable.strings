@@ -142,3 +142,5 @@
 "aboutUs" = "About us";
 "privacyPolicy" = "Privacy Policy";
 "terms" = "Terms & Conditions";
+
+"recoveryEmailUpdatedMessage" = "Recovery Email was updated successfully";

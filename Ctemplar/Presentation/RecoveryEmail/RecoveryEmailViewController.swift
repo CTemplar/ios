@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import AlertHelperKit
+import PKHUD
 
 class RecoveryEmailViewController: UIViewController {
     
@@ -19,6 +21,7 @@ class RecoveryEmailViewController: UIViewController {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     var recoveryEmail : String = ""
+    var apiService      : APIService?
     
     var user = UserMyself()
     
@@ -28,7 +31,8 @@ class RecoveryEmailViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.formatterService = appDelegate.applicationManager.formatterService
+        self.formatterService = appDelegate.applicationManager.formatterService        
+        self.apiService = appDelegate.applicationManager.apiService
         
         self.setupScreen()
     }
@@ -40,7 +44,7 @@ class RecoveryEmailViewController: UIViewController {
     
     @IBAction func saveButtonPressed(_ sender: AnyObject) {
         
-        self.dismiss(animated: true, completion: nil)
+        self.updateRecoveryEmail(settingsID: self.user.settings.settingsID!.description, recoveryEmail: self.recoveryEmail)        
     }
     
     @IBAction func textTyped(_ sender: UITextField) {
@@ -85,10 +89,9 @@ class RecoveryEmailViewController: UIViewController {
     func setupRightBarButton(show: Bool) {
                 
         if show {
-            let cancelItem = UIBarButtonItem(title: "saveButton".localized(), style: .plain, target: self, action: #selector(cancelButtonPressed))
-            
-            cancelItem.tintColor = UIColor.darkGray
-            self.navigationItem.rightBarButtonItem = cancelItem
+            let saveItem = UIBarButtonItem(title: "saveButton".localized(), style: .plain, target: self, action: #selector(saveButtonPressed))
+            saveItem.tintColor = UIColor.darkGray
+            self.navigationItem.rightBarButtonItem = saveItem
         } else {
             self.navigationItem.rightBarButtonItem = nil
         }
@@ -110,5 +113,42 @@ class RecoveryEmailViewController: UIViewController {
         }
         
         return false
+    }
+    
+    func updateRecoveryEmail(settingsID: String, recoveryEmail: String) {
+        
+        apiService?.updateSettings(settingsID: settingsID, recoveryEmail: recoveryEmail, dispalyName: "") {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("updateRecoveryEmail value:", value)
+                self.postUpdateUserSettingsNotification()
+                self.recoveryEmailWasUpdated()
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self, title: "Update Settings Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
+    func postUpdateUserSettingsNotification() {
+        
+        NotificationCenter.default.post(name: Notification.Name(k_updateUserSettingsNotificationID), object: nil, userInfo: nil)
+    }
+    
+    func recoveryEmailWasUpdated() {
+        
+        let params = Parameters(
+            title: "infoTitle".localized(),
+            message: "recoveryEmailUpdatedMessage".localized(),
+            cancelButton: "closeButton".localized()
+        )
+        
+        AlertHelperKit().showAlertWithHandler(self, parameters: params) { buttonIndex in
+            
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }

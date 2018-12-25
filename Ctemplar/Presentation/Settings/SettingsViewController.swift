@@ -32,6 +32,8 @@ class  SettingsViewController: UIViewController {
         configurator.configure(viewController: self)
         
         dataSource?.initWith(parent: self, tableView: settingsTableView)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(userSettingsUpdate), name: NSNotification.Name(rawValue: k_updateUserSettingsNotificationID), object: nil)
     }
     
     //MARK: - IBActions
@@ -39,5 +41,10 @@ class  SettingsViewController: UIViewController {
     @IBAction func menuButtonPressed(_ sender: AnyObject) {
         
         self.router?.showInboxSideMenu()  
+    }
+    
+    @objc func userSettingsUpdate(notification: Notification) {
+        
+        self.presenter?.interactor?.userMyself()
     }
 }

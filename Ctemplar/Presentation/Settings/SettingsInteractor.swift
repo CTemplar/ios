@@ -118,4 +118,25 @@ class SettingsInteractor {
             break
         }
     }
+    
+    func userMyself() {
+        
+        apiService?.userMyself() {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                //print("userMyself value:", value)
+                
+                let userMyself = value as! UserMyself
+                self.viewController?.user = userMyself
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: value)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "User Myself Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
 }
