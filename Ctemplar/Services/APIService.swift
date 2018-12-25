@@ -693,50 +693,6 @@ class APIService {
         }
     }
     
-    func mailboxesList(completionHandler: @escaping (APIResult<Any>) -> Void) {
-        
-        self.checkTokenExpiration(){ (complete) in
-            if complete {
-                
-                if let token = self.getToken() {
-                    
-                    //HUD.show(.progress) //crashed when method used in root view controller
-                    
-                    self.restAPIService?.mailboxesList(token: token) {(result) in
-                        
-                        switch(result) {
-                            
-                        case .success(let value):
-                            
-                            //print("mailboxesList success:", value)
-                            
-                            if let response = value as? Dictionary<String, Any> {
-                                
-                                if let message = self.parseServerResponse(response:response) {
-                                    //print("mailboxesList message:", message)
-                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
-                                    completionHandler(APIResult.failure(error))
-                                } else {
-                                    let mailboxes = Mailboxes(dictionary: response)
-                                    completionHandler(APIResult.success(mailboxes))
-                                }
-                            } else {
-                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
-                                completionHandler(APIResult.failure(error))
-                            }
-                            
-                        case .failure(let error):
-                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
-                            completionHandler(APIResult.failure(error))
-                        }
-                        
-                        //HUD.hide()
-                    }
-                }
-            }
-        }
-    }
-    
     func unreadMessagesCounter(completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         self.checkTokenExpiration(){ (complete) in
@@ -907,6 +863,94 @@ class APIService {
                         }
                         
                         //HUD.hide()
+                    }
+                }
+            }
+        }
+    }
+    
+    //MARK: - Mailbox
+    
+    func mailboxesList(completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    
+                    //HUD.show(.progress) //crashed when method used in root view controller
+                    
+                    self.restAPIService?.mailboxesList(token: token) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            
+                            //print("mailboxesList success:", value)
+                            
+                            if let response = value as? Dictionary<String, Any> {
+                                
+                                if let message = self.parseServerResponse(response:response) {
+                                    //print("mailboxesList message:", message)
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    let mailboxes = Mailboxes(dictionary: response)
+                                    completionHandler(APIResult.success(mailboxes))
+                                }
+                            } else {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
+                            }
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                        
+                        //HUD.hide()
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    func updateMailbox(mailboxID: String, userSignature: String, displayName: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+            
+                    
+                    self.restAPIService?.updateMailbox(token: token, mailboxID: mailboxID, userSignature: userSignature, displayName: displayName) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            
+                            print("updateMailbox success:", value)
+                            
+                            if let response = value as? Dictionary<String, Any> {
+                                
+                                if let message = self.parseServerResponse(response:response) {
+                                    //print("mailboxesList message:", message)
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    let mailbox = Mailbox(dictionary: response)
+                                    completionHandler(APIResult.success(mailbox))
+                                }
+                            } else {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
+                            }
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
                     }
                 }
             }

@@ -44,7 +44,8 @@ class SetSignatureViewController: UIViewController {
     
     @IBAction func saveButtonPressed(_ sender: AnyObject) {
         
-        self.updateUserSignature(settingsID: self.user.settings.settingsID!.description, userSignature: self.userSignature)
+        let mailbox = self.user.mailboxesList!.first! //temp need get current mailbox
+        self.updateUserSignature(mailboxID: (mailbox.mailboxID?.description)!, userSignature: self.userSignature)
     }
     
     @IBAction func textTyped(_ sender: UITextField) {
@@ -119,22 +120,22 @@ class SetSignatureViewController: UIViewController {
         return false
     }
     
-    func updateUserSignature(settingsID: String, userSignature: String) {
-        /*
-        apiService?.updateSettings(settingsID: settingsID, recoveryEmail: "", dispalyName: "") {(result) in
+    func updateUserSignature(mailboxID: String, userSignature: String) {
+        
+        apiService?.updateMailbox(mailboxID: mailboxID, userSignature: userSignature, displayName: "") {(result) in
             
             switch(result) {
                 
             case .success(let value):
                 print("updateUserSignature value:", value)
-                self.postUpdateUserSettingsNotification()
+                self.postUpdateUserSettingsNotification()                
                 self.userSignatureWasUpdated()
                 
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self, title: "Update Settings Error", message: error.localizedDescription, button: "closeButton".localized())
             }
-        }*/
+        }
     }
     
     func postUpdateUserSettingsNotification() {

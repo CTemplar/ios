@@ -82,6 +82,7 @@ class RestAPIService {
         case delayedDeliveryDate = "delayed_delivery"
         case deadManDate = "dead_man_duration"
         case displayName = "display_name"
+        case userSignature = "signature"
     }
         
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -411,30 +412,6 @@ class RestAPIService {
         }
     }
     
-    func mailboxesList(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
-        
-        let headers: HTTPHeaders = [
-            "Authorization": "JWT " + token,
-            "Accept": "application/json"
-        ]
-        
-        let url = EndPoint.baseUrl.rawValue + EndPoint.mailboxes.rawValue
-     
-        print("mailboxes url:", url)
-        
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
-            
-            print("mailboxes responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
-    }
-    
     func unreadMessagesCounter(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
@@ -634,6 +611,67 @@ class RestAPIService {
         Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
             
             print("deleteMessages responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    //MARK: - Mailbox
+    
+    func mailboxesList(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.mailboxes.rawValue
+        
+        print("mailboxes url:", url)
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+            
+            print("mailboxes responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func updateMailbox(token: String, mailboxID: String, userSignature: String, displayName: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        var parameters: Parameters = [:]
+        
+        if userSignature.count > 0 {
+            parameters[JSONKey.userSignature.rawValue] = userSignature
+        }
+     
+        if displayName.count > 0 {
+            parameters[JSONKey.displayName.rawValue] = displayName
+        }
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.mailboxes.rawValue + mailboxID + "/"
+        
+        print("updateMailbox parameters:", parameters)
+        print("updateMailbox url:", url)
+        
+        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("updateMailbox responce:", response)
             
             switch(response.result) {
             case .success(let value):

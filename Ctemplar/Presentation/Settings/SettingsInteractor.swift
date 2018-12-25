@@ -131,6 +131,8 @@ class SettingsInteractor {
                 let userMyself = value as! UserMyself
                 self.viewController?.user = userMyself
                 
+                self.viewController?.dataSource?.reloadData()
+                
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: value)
                 
             case .failure(let error):
