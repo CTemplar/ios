@@ -28,6 +28,7 @@ class RestAPIService {
         case contact = "users/contacts/"
         case createAttachment = "emails/attachments/create/"
         case deleteAttachment = "emails/attachments/"
+        case settings = "users/settings/"
     }
     
     enum JSONKey: String {
@@ -77,6 +78,7 @@ class RestAPIService {
         case selfDestructionDate = "destruct_date"
         case delayedDeliveryDate = "delayed_delivery"
         case deadManDate = "dead_man_duration"
+        case displayName = "display_name"
     }
         
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -981,6 +983,44 @@ class RestAPIService {
         Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
             
             print("deleteAttachment responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    //MARK: - Settings
+    
+    func updateSettings(token: String, settingsID: String, recoveryEmail: String, dispalyName: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        var parameters: Parameters = [:]
+        
+        if recoveryEmail.count > 0 {
+            parameters[JSONKey.recoveryEmail.rawValue] = recoveryEmail
+        }
+        
+        if dispalyName.count > 0 {
+            parameters[JSONKey.displayName.rawValue] = dispalyName
+        }
+        
+        print("updateSettings parameters:", parameters)
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.settings.rawValue + settingsID + "/"
+        
+        print("updateSettings url:", url)
+        
+        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("updateSettings responce:", response)
             
             switch(response.result) {
             case .success(let value):
