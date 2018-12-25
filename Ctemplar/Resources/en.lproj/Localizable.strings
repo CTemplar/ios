@@ -144,6 +144,7 @@
 "terms" = "Terms & Conditions";
 
 "recoveryEmailUpdatedMessage" = "Recovery Email was updated successfully";
+"passwordUpdatedMessage" = "Password was updated successfully";
 
 "currentPasswordPlaceholder" = "Current password";
 "newPasswordPlaceholder" = "New password";

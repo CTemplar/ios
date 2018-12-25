@@ -117,7 +117,7 @@ class PGPService {
         return pgpKey
     }
     
-    func generateArmoredPrivateKey(pgpKey: Key) -> String? {
+    func exportArmoredPrivateKey(pgpKey: Key) -> String? {
         
         guard let privateKey = try? pgpKey.export(keyType: .secret) else {return nil}
         let armoredPrivateKey = Armor.armored(privateKey, as: .secretKey)
@@ -127,7 +127,7 @@ class PGPService {
         return armoredPrivateKey
     }
     
-    func generateArmoredPublicKey(pgpKey: Key) -> String? {
+    func exportArmoredPublicKey(pgpKey: Key) -> String? {
         
         guard let publicKey = try? pgpKey.export(keyType: .public) else {return nil}
         let armoredPublicKey = Armor.armored(publicKey, as: .publicKey)

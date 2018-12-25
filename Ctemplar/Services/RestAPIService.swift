@@ -18,6 +18,7 @@ class RestAPIService {
         case checkUsername = "auth/check-username/"
         case recoveryCode = "auth/recover/"
         case resetPassword = "auth/reset/"
+        case changePassword = "auth/change-password/"
         case verifyToken = "auth/verify/"
         case messages = "emails/messages/"
         case mailboxes = "emails/mailboxes/"
@@ -34,6 +35,8 @@ class RestAPIService {
     enum JSONKey: String {
         case userName = "username"
         case password = "password"
+        case oldPassword = "old_password"
+        case confirmPassword = "confirm_password"
         case privateKey = "private_key"
         case publicKey = "public_key"
         case fingerprint = "fingerprint"
@@ -230,6 +233,42 @@ class RestAPIService {
             }
         }
     }
+    
+    func changePassword(token: String, oldPassword: String, newPassword: String, privateKey: String, publicKey: String, fingerprint: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.oldPassword.rawValue: oldPassword,
+            JSONKey.password.rawValue: newPassword,
+            JSONKey.confirmPassword.rawValue: newPassword,
+            JSONKey.privateKey.rawValue: privateKey,
+            JSONKey.publicKey.rawValue: publicKey,
+            JSONKey.fingerprint.rawValue: fingerprint.lowercased()
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.changePassword.rawValue
+        
+        print("changePassword parameters:", parameters)
+        print("changePassword url:", url)
+        
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("changePassword responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    //FAILURE: Error Domain=kCFErrorDomainCFNetwork Code=303 "(null)" UserInfo={NSErrorPeerAddressKey=<CFData 0x604000292b10 [0x1137a5c80]>{length = 16, capacity = 16, bytes = 0x100201bb681237e50000000000000000}, _kCFStreamErrorCodeKey=-2201, _kCFStreamErrorDomainKey=4}
     
     func verifyToken(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         

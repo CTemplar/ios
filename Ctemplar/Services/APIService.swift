@@ -53,7 +53,6 @@ class APIService {
     
     @objc func getHashedPassword(userName: String, password: String, completion:@escaping (Bool) -> () ) {
         
-        //DispatchQueue.main.async {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
             if let salt = self.formatterService?.generateSaltFrom(userName: userName) {
                 print("salt:", salt)
@@ -68,8 +67,20 @@ class APIService {
                 print("hashedPassword:", self.hashedPassword as Any)
             }
             completion(true)
-        }
-        )
+        })
+    }
+    
+    @objc func getNewHashedPassword(userName: String, password: String, completion:@escaping (String) -> () ) {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
+            if let salt = self.formatterService?.generateSaltFrom(userName: userName) {
+                print("salt:", salt)
+                
+                let newHashedPassword = self.formatterService?.hash(password: password, salt: salt)
+                print("newHashedPassword:", newHashedPassword as Any)
+                completion(newHashedPassword!)
+            }
+        })
     }
     
     @objc func autologin(completion:@escaping (Bool) -> () ) {
@@ -327,6 +338,80 @@ class APIService {
                     }
                     
                     HUD.hide()
+                }
+            }
+        }
+    }
+    
+    func changePassword(newPassword: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        print("newPassword:", newPassword)
+        
+        var publicKey : String = ""
+        var privateKey : String = ""
+        var fingerprint : String = ""
+        
+        let storedUserName = self.keychainService?.getUserName()
+        let storedPassword = self.keychainService?.getPassword()
+        
+        if let userKey = self.pgpService?.getStoredPGPKeys()?.first {
+            
+            let userPGPKey = UserPGPKey.init(pgpService: self.pgpService!, pgpKey: userKey)
+            
+            publicKey = userPGPKey.publicKey!
+            privateKey = userPGPKey.publicKey!
+            fingerprint = userPGPKey.fingerprint!
+            
+            print("fingerprint:", fingerprint)
+        }
+        
+        HUD.show(.progress)
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+        
+                    self.getHashedPassword(userName: storedUserName!, password: storedPassword!) { (complete) in
+                        if complete {
+                            
+                            self.getNewHashedPassword(userName: storedUserName!, password: newPassword) { (newHashedPassword) in
+
+                                if newHashedPassword.count > 0 {
+                     
+                                    self.restAPIService?.changePassword(token: token, oldPassword: self.hashedPassword!, newPassword: newHashedPassword, privateKey: privateKey, publicKey: publicKey, fingerprint: fingerprint)  {(result) in
+                                        
+                                        HUD.hide()
+                                        
+                                        switch(result) {
+                                            
+                                        case .success(let value):
+                                            
+                                            if let response = value as? Dictionary<String, Any> {
+                                                print("changePassword response", response)
+                                                if let message = self.parseServerResponse(response:response) {
+                                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                                    completionHandler(APIResult.failure(error))
+                                                } else {
+                                                    completionHandler(APIResult.success("success"))
+                                                }
+                                            } else {
+                                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                                completionHandler(APIResult.failure(error))
+                                            }
+                                            
+                                        case .failure(let error):
+                                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                                            completionHandler(APIResult.failure(error))
+                                        }
+                                    }
+                            
+                                } else {
+                                    HUD.hide()
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -41,6 +41,7 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
     
     var recoveryEmail : String = ""
     var apiService      : APIService?
+    var keychainService : KeychainService?
     
     var user = UserMyself()
     
@@ -51,6 +52,7 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
         
         self.formatterService = appDelegate.applicationManager.formatterService
         self.apiService = appDelegate.applicationManager.apiService
+        self.keychainService = appDelegate.applicationManager.keychainService
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: k_passwordBarTintColor]
         
@@ -68,6 +70,7 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func changeButtonPressed(_ sender: AnyObject) {
         
+        self.changePassword()
     }
     
     @IBAction func backButtonPressed(_ sender: AnyObject) {
@@ -232,5 +235,40 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         self.passwordsHintLabel(show: false, sender: textField)
+    }
+    
+    //MARK: - API request
+    
+    func changePassword() {
+        
+        self.apiService?.changePassword(newPassword: self.newPassword)  {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("changePassword value:", value)
+
+                let storedUserName = self.keychainService?.getUserName()
+                self.keychainService?.saveUserCredentials(userName: storedUserName!, password: self.newPassword)
+                self.passwordWasUpdated()
+                
+            case .failure(let error):
+                AlertHelperKit().showAlert(self, title: "Change Password Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
+    func passwordWasUpdated() {
+        
+        let params = Parameters(
+            title: "infoTitle".localized(),
+            message: "passwordUpdatedMessage".localized(),
+            cancelButton: "closeButton".localized()
+        )
+        
+        AlertHelperKit().showAlertWithHandler(self, parameters: params) { buttonIndex in
+            
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }

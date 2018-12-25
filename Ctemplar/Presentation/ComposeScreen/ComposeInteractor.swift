@@ -504,8 +504,8 @@ class ComposeInteractor {
         var encryptionObjectDictionary =  [String : String]()
         var encryptionObject = object
         
-        let publicKey = self.pgpService?.generateArmoredPublicKey(pgpKey: pgpKey)
-        let privateKey = self.pgpService?.generateArmoredPrivateKey(pgpKey: pgpKey)
+        let publicKey = self.pgpService?.exportArmoredPublicKey(pgpKey: pgpKey)
+        let privateKey = self.pgpService?.exportArmoredPrivateKey(pgpKey: pgpKey)
             
         encryptionObject.setPGPKeys(publicKey: publicKey!, privateKey: privateKey!)
         encryptionObjectDictionary = encryptionObject.toDictionary()
