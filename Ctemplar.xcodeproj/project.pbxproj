@@ -50,6 +50,8 @@
 		843207152178C75000F18E5A /* InboxMessageTablelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843207142178C75000F18E5A /* InboxMessageTablelViewCell.swift */; };
 		8432870921D2034F00A66DBF /* ChangePassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8432870821D2034F00A66DBF /* ChangePassword.storyboard */; };
 		8432870B21D2036A00A66DBF /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8432870A21D2036A00A66DBF /* ChangePasswordViewController.swift */; };
+		8432870E21D25BB100A66DBF /* SetSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8432870D21D25BB100A66DBF /* SetSignature.swift */; };
+		8432871021D25BBD00A66DBF /* SetSignature.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8432870F21D25BBD00A66DBF /* SetSignature.storyboard */; };
 		8432B2FC2186F39F006C901C /* SideMenuTableSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8432B2FB2186F39F006C901C /* SideMenuTableSectionHeaderView.swift */; };
 		8432B2FE2186F403006C901C /* SideMenuTableSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8432B2FD2186F403006C901C /* SideMenuTableSectionHeader.xib */; };
 		8432B300218709C9006C901C /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8432B2FF218709C9006C901C /* SideMenuTableViewCell.swift */; };
@@ -245,6 +247,8 @@
 		843207142178C75000F18E5A /* InboxMessageTablelViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageTablelViewCell.swift; sourceTree = "<group>"; };
 		8432870821D2034F00A66DBF /* ChangePassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChangePassword.storyboard; sourceTree = "<group>"; };
 		8432870A21D2036A00A66DBF /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		8432870D21D25BB100A66DBF /* SetSignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetSignature.swift; sourceTree = "<group>"; };
+		8432870F21D25BBD00A66DBF /* SetSignature.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetSignature.storyboard; sourceTree = "<group>"; };
 		8432B2FB2186F39F006C901C /* SideMenuTableSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableSectionHeaderView.swift; sourceTree = "<group>"; };
 		8432B2FD2186F403006C901C /* SideMenuTableSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuTableSectionHeader.xib; sourceTree = "<group>"; };
 		8432B2FF218709C9006C901C /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
@@ -544,6 +548,15 @@
 			path = ChangePassword;
 			sourceTree = "<group>";
 		};
+		8432870C21D25B8F00A66DBF /* SetSignature */ = {
+			isa = PBXGroup;
+			children = (
+				8432870D21D25BB100A66DBF /* SetSignature.swift */,
+				8432870F21D25BBD00A66DBF /* SetSignature.storyboard */,
+			);
+			path = SetSignature;
+			sourceTree = "<group>";
+		};
 		8432B2FA2186DC1C006C901C /* SideMenuCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -681,6 +694,7 @@
 				8443D21A21CBDB43002AD54B /* Settings */,
 				8431B08521D10F5000A73D39 /* RecoveryEmail */,
 				8432870721D2033100A66DBF /* ChangePassword */,
+				8432870C21D25B8F00A66DBF /* SetSignature */,
 				845E64412170BD08008612FE /* AboutAsScreen */,
 			);
 			path = Presentation;
@@ -1087,6 +1101,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8432871021D25BBD00A66DBF /* SetSignature.storyboard in Resources */,
 				840249952191C23800CDDB0F /* MoveToFolderTableViewCell.xib in Resources */,
 				84410990217723CE00F0BE18 /* ViewInboxEmail.storyboard in Resources */,
 				845E64482170CAEF008612FE /* Lato-Black.ttf in Resources */,
@@ -1331,6 +1346,7 @@
 				845E64462170C5A4008612FE /* AboutAsViewController.swift in Sources */,
 				84525F1B219568F200CA732E /* SearchPresenter.swift in Sources */,
 				8434D9B6219C4E2800D2C3A5 /* ContactsInteractor.swift in Sources */,
+				8432870E21D25BB100A66DBF /* SetSignature.swift in Sources */,
 				840249942191C23800CDDB0F /* MoveToFolderTableViewCell.swift in Sources */,
 				8433A53F2189DD33008E1C85 /* MoveToViewController.swift in Sources */,
 				8431218C218AF81B0014560D /* ViewInboxEmailPresenter.swift in Sources */,
