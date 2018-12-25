@@ -28,6 +28,15 @@ class SettingsRouter {
         self.viewController?.present(navigationController, animated: true, completion: nil)
     }
     
+    func showChangePasswordViewController() {
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: k_ChangePasswordStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_ChangePasswordViewControllerID) as! ChangePasswordViewController
+        vc.user = (self.viewController?.user)!
+        let navigationController = UINavigationController(rootViewController: vc)
+        self.viewController?.present(navigationController, animated: true, completion: nil)
+    }
+    
     func showManageFoldersViewController() {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_ManageFoldersStoryboardName, bundle: nil)

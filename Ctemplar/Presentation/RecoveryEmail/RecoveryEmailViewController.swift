@@ -67,6 +67,8 @@ class RecoveryEmailViewController: UIViewController {
     
     func setupScreen() {
         
+        //self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: k_contactsBarTintColor]
+        
         if let recoveryEmail = user.settings.recoveryEmail {
             if recoveryEmail.count > 0 {
                 self.recoveryEmail = recoveryEmail

@@ -52,7 +52,7 @@ class SettingsInteractor {
             self.viewController?.router?.showRecoveryEmailViewController()
             break
         case SettingsGeneralSection.password.rawValue:
-            
+            self.viewController?.router?.showChangePasswordViewController()
             break
         case SettingsGeneralSection.language.rawValue:
 

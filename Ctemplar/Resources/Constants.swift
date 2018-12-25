@@ -37,6 +37,7 @@ let k_SettingsViewControllerID              = "SettingsViewController"
 let k_SetPasswordViewControllerID           = "SetPasswordViewController"
 let k_SchedulerViewControllerID             = "SchedulerViewController"
 let k_RecoveryEmailViewControllerID         = "RecoveryEmailViewController"
+let k_ChangePasswordViewControllerID        = "ChangePasswordViewController"
 let k_AboutAsViewControllerID               = "AboutAsViewController"
 
 // view controllers storyboards name
@@ -59,6 +60,7 @@ let k_SettingsStoryboardName               = "Settings"
 let k_SetPasswordStoryboardName            = "SetPassword"
 let k_SchedulerStoryboardName              = "Scheduler"
 let k_RecoveryEmailStoryboardName          = "RecoveryEmail"
+let k_ChangePasswordStoryboardName         = "ChangePassword"
 let k_AddContactStoryboardName             = "AddContact"
 
 let k_InboxMessageTableViewCellXibName     = "InboxMessageTableViewCell"
@@ -140,6 +142,7 @@ let k_unreadMessageColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255
 let k_actionMessageColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 1.0)
 
 let k_contactsBarTintColor : UIColor = UIColor(red: 44.0 / 255.0, green: 62.0 / 255.0, blue: 80.0 / 255.0, alpha: 1.0)
+let k_passwordBarTintColor : UIColor = UIColor(red: 44.0 / 255.0, green: 62.0 / 255.0, blue: 80.0 / 255.0, alpha: 0.87)
 
 let k_mainFolderTextColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 0.5)
 
