@@ -1378,6 +1378,33 @@ class APIService {
         return "application/octet-stream"
     }
     
+    //MARK: - Settings
+    
+    func updateSettings(token: String, settingsID: String, recoveryEmail: String, dispalyName: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    
+                    self.restAPIService?.updateSettings(token: token, settingsID: settingsID, recoveryEmail: recoveryEmail, dispalyName: dispalyName) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            print("updateSettings:", value)
+                            completionHandler(APIResult.success(value))
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     //MARK: - Local services
     
     func saveToken(token: String) {
