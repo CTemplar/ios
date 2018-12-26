@@ -106,10 +106,10 @@ class SettingsInteractor {
             self.viewController?.router?.showAboutAsViewController()
             break
         case SettingsAboutSection.privacy.rawValue:
-
+            self.viewController?.router?.showPrivacyAndTermsViewController(mode: TextControllerMode.privacyPolicy)
             break
         case SettingsAboutSection.terms.rawValue:
-
+            self.viewController?.router?.showPrivacyAndTermsViewController(mode: TextControllerMode.termsAndConditions)
             break
         case SettingsAboutSection.appVersion.rawValue:
          

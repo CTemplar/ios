@@ -66,6 +66,15 @@ class SettingsRouter {
         self.viewController?.present(navigationController, animated: true, completion: nil)
     }
     
+    func showPrivacyAndTermsViewController(mode: TextControllerMode) {
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: k_PrivacyAndTermsStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_PrivacyAndTermsViewControllerID) as! PrivacyAndTermsViewController
+        vc.mode = mode
+        let navigationController = UINavigationController(rootViewController: vc)
+        self.viewController?.present(navigationController, animated: true, completion: nil)
+    }
+    
     func showAboutAsViewController() {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_AboutAsStoryboardName, bundle: nil)

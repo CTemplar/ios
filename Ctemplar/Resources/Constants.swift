@@ -40,6 +40,7 @@ let k_RecoveryEmailViewControllerID         = "RecoveryEmailViewController"
 let k_ChangePasswordViewControllerID        = "ChangePasswordViewController"
 let k_SetMailboxViewControllerID            = "SetMailboxViewController"
 let k_SetSignatureViewControllerID          = "SetSignatureViewController"
+let k_PrivacyAndTermsViewControllerID       = "PrivacyAndTermsViewController"
 let k_AboutAsViewControllerID               = "AboutAsViewController"
 
 // view controllers storyboards name
@@ -65,6 +66,7 @@ let k_RecoveryEmailStoryboardName          = "RecoveryEmail"
 let k_ChangePasswordStoryboardName         = "ChangePassword"
 let k_SetMailboxStoryboardName             = "SetMailbox"
 let k_SetSignatureStoryboardName           = "SetSignature"
+let k_PrivacyAndTermsStoryboardName        = "PrivacyAndTerms"
 let k_AddContactStoryboardName             = "AddContact"
 
 let k_InboxMessageTableViewCellXibName     = "InboxMessageTableViewCell"
@@ -358,6 +360,7 @@ let k_saltPrefix                   = "$2a$10$"
 
 let k_keyringFileName              = "keyring.gpg"
 
+let k_privacyURL                   = "https://ctemplar.com/privacy"
 let k_termsURL                     = "https://ctemplar.com/terms"
 
 let k_firstCharsForHeader          = 50
@@ -560,4 +563,10 @@ enum SettingsAboutSection: Int, CaseIterable {
     case privacy           = 1
     case terms             = 2
     case appVersion        = 3
+}
+
+enum TextControllerMode: Int, CaseIterable {
+    
+    case privacyPolicy      = 0
+    case termsAndConditions = 1
 }
