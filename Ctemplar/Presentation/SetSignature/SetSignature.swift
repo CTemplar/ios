@@ -24,6 +24,7 @@ class SetSignatureViewController: UIViewController {
     var apiService      : APIService?
     
     var user = UserMyself()
+    var mailbox = Mailbox()
     
     var formatterService        : FormatterService?
     
@@ -33,6 +34,8 @@ class SetSignatureViewController: UIViewController {
         
         self.formatterService = appDelegate.applicationManager.formatterService
         self.apiService = appDelegate.applicationManager.apiService
+        
+        self.mailbox = (self.apiService?.defaultMailbox(mailboxes: self.user.mailboxesList!))!
         
         self.setupScreen()
     }
@@ -44,8 +47,7 @@ class SetSignatureViewController: UIViewController {
     
     @IBAction func saveButtonPressed(_ sender: AnyObject) {
         
-        let mailbox = self.user.mailboxesList!.first! //temp need get current mailbox
-        self.updateUserSignature(mailboxID: (mailbox.mailboxID?.description)!, userSignature: self.userSignature)
+        self.updateUserSignature(mailbox: self.mailbox, userSignature: self.userSignature)
     }
     
     @IBAction func textTyped(_ sender: UITextField) {
@@ -70,9 +72,7 @@ class SetSignatureViewController: UIViewController {
         
         //self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: k_contactsBarTintColor]
        
-        let mailbox = self.user.mailboxesList!.first! //temp need get current mailbox
-        
-        if let signature = mailbox.signature {
+        if let signature = self.mailbox.signature {
             if signature.count > 0 {
                 self.userSignature = signature
                 self.textFieldView.isHidden = false
@@ -120,9 +120,12 @@ class SetSignatureViewController: UIViewController {
         return false
     }
     
-    func updateUserSignature(mailboxID: String, userSignature: String) {
+    func updateUserSignature(mailbox: Mailbox, userSignature: String) {
         
-        apiService?.updateMailbox(mailboxID: mailboxID, userSignature: userSignature, displayName: "") {(result) in
+        let mailboxID = mailbox.mailboxID?.description
+        let isDefault = mailbox.isDefault
+        
+        apiService?.updateMailbox(mailboxID: mailboxID!, userSignature: userSignature, displayName: "", isDefault: isDefault!) {(result) in
             
             switch(result) {
                 

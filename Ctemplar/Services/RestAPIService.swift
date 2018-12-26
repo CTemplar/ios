@@ -82,6 +82,7 @@ class RestAPIService {
         case delayedDeliveryDate = "delayed_delivery"
         case deadManDate = "dead_man_duration"
         case displayName = "display_name"
+        case isDefault = "is_default"
         case userSignature = "signature"
     }
         
@@ -647,14 +648,16 @@ class RestAPIService {
         }
     }
     
-    func updateMailbox(token: String, mailboxID: String, userSignature: String, displayName: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateMailbox(token: String, mailboxID: String, userSignature: String, displayName: String, isDefault: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
             "Accept": "application/json"
         ]
         
-        var parameters: Parameters = [:]
+        var parameters: Parameters = [
+            JSONKey.isDefault.rawValue : isDefault
+        ]
         
         if userSignature.count > 0 {
             parameters[JSONKey.userSignature.rawValue] = userSignature

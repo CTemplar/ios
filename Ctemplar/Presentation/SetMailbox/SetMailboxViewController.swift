@@ -76,4 +76,81 @@ class SetMailboxViewController: UIViewController, UITableViewDataSource, UITable
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if self.mailboxesArray.count > 1 {
+        
+            let mailbox = self.mailboxesArray[indexPath.row]
+        
+            self.setDefaultMailbox(mailbox: mailbox)
+        }
+    }
+    
+    func reloadData() {
+        
+        self.tableView.reloadData()
+    }
+    
+    //MARK: - API
+    
+    func setDefaultMailbox(mailbox: Mailbox) {
+        
+        let mailboxID = mailbox.mailboxID?.description
+        let isDefault = true
+        
+        HUD.show(.progress)
+        
+        apiService?.updateMailbox(mailboxID: mailboxID!, userSignature: "", displayName: "", isDefault: isDefault) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("setDefaultMailbox value:", value)
+                self.userMyself()
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self, title: "Update Settings Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+            
+            HUD.hide()
+        }
+    }
+    
+    func userMyself() {
+        
+        HUD.show(.progress)
+        
+        apiService?.userMyself() {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                //print("userMyself value:", value)
+                
+                let userMyself = value as! UserMyself
+                
+                if let mailboxes = userMyself.mailboxesList {
+                    self.mailboxesArray = mailboxes
+                }
+                
+                self.reloadData()
+                self.postUpdateUserSettingsNotification()
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self, title: "User Myself Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+            
+            HUD.hide()
+        }
+    }
+    
+    func postUpdateUserSettingsNotification() {
+        
+        NotificationCenter.default.post(name: Notification.Name(k_updateUserSettingsNotificationID), object: nil, userInfo: nil)
+    }
 }

@@ -916,7 +916,7 @@ class APIService {
     }
     
     
-    func updateMailbox(mailboxID: String, userSignature: String, displayName: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateMailbox(mailboxID: String, userSignature: String, displayName: String, isDefault: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         self.checkTokenExpiration(){ (complete) in
             if complete {
@@ -924,7 +924,7 @@ class APIService {
                 if let token = self.getToken() {
             
                     
-                    self.restAPIService?.updateMailbox(token: token, mailboxID: mailboxID, userSignature: userSignature, displayName: displayName) {(result) in
+                    self.restAPIService?.updateMailbox(token: token, mailboxID: mailboxID, userSignature: userSignature, displayName: displayName, isDefault: isDefault) {(result) in
                         
                         switch(result) {
                             
