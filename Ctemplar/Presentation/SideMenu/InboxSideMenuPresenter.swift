@@ -16,27 +16,20 @@ class InboxSideMenuPresenter {
     var interactor       : InboxSideMenuInteractor?
         
     func setupUserProfileBar(mailboxes: Array<Mailbox>, userName: String) {
- 
-        for mailbox in mailboxes {
-            if let defaultMailbox = mailbox.isDefault {
-                if defaultMailbox {
-                    if let defaultEmail = mailbox.email {
-                        self.viewController!.emailLabel.text = defaultEmail
-                        //self.viewController!.nameLabel.text = mailbox.displayName
-                        self.viewController!.nameLabel.text = userName                        
-                    }
-                }
-            }
+        
+        let mailbox = self.viewController?.presenter!.interactor!.apiService!.defaultMailbox(mailboxes: mailboxes)
+        
+        self.viewController!.emailLabel.text = mailbox?.email
+        self.viewController!.nameLabel.text = userName
+         
+        let emailTextWidth = self.viewController!.emailLabel.text?.widthOfString(usingFont: viewController!.emailLabel.font)
+         
+        let triangleTrailingConstraintWidth = self.viewController!.view.frame.width - emailTextWidth! - CGFloat(k_triangleOffset)
+        self.updateTriangleTrailingConstraint(value: triangleTrailingConstraintWidth )
+         
+        if mailboxes.count < 2 {
+           self.viewController?.triangle.isHidden = true
         }
-         
-         let emailTextWidth = self.viewController!.emailLabel.text?.widthOfString(usingFont: viewController!.emailLabel.font)
-         
-         let triangleTrailingConstraintWidth = self.viewController!.view.frame.width - emailTextWidth! - CGFloat(k_triangleOffset)
-         self.updateTriangleTrailingConstraint(value: triangleTrailingConstraintWidth )
-         
-         if mailboxes.count < 2 {
-            self.viewController?.triangle.isHidden = true
-         }
     }
     
     func updateTriangleTrailingConstraint(value: CGFloat) {

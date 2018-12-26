@@ -957,6 +957,19 @@ class APIService {
         }
     }
     
+    func defaultMailbox(mailboxes: Array<Mailbox>) -> Mailbox {
+        
+        for mailbox in mailboxes {
+            if let defaultMailbox = mailbox.isDefault {
+                if defaultMailbox {
+                    return mailbox
+                }
+            }
+        }
+        
+        return mailboxes.first!
+    }
+    
     func publicKeyList(completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         self.checkTokenExpiration(){ (complete) in

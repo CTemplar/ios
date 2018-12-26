@@ -246,7 +246,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         var cellTitle : String = ""
         var value : String = ""
         
-        let mailbox = self.parentViewController!.user.mailboxesList!.first! //temp need get current mailbox
+        let mailbox = self.parentViewController.presenter!.interactor!.apiService!.defaultMailbox(mailboxes: self.parentViewController!.user.mailboxesList!)
         
         switch index {
         case SettingsMailSection.mail.rawValue:
