@@ -44,7 +44,7 @@ class RecoveryEmailViewController: UIViewController {
     
     @IBAction func saveButtonPressed(_ sender: AnyObject) {
         
-        self.updateRecoveryEmail(settingsID: self.user.settings.settingsID!.description, recoveryEmail: self.recoveryEmail)        
+        self.updateRecoveryEmail(settings: self.user.settings, recoveryEmail: self.recoveryEmail)
     }
     
     @IBAction func textTyped(_ sender: UITextField) {
@@ -117,9 +117,12 @@ class RecoveryEmailViewController: UIViewController {
         return false
     }
     
-    func updateRecoveryEmail(settingsID: String, recoveryEmail: String) {
+    func updateRecoveryEmail(settings: Settings, recoveryEmail: String) {
         
-        apiService?.updateSettings(settingsID: settingsID, recoveryEmail: recoveryEmail, dispalyName: "") {(result) in
+        let settingsID = settings.settingsID
+        let savingContacts = settings.saveContacts
+        
+        apiService?.updateSettings(settingsID: (settingsID?.description)!, recoveryEmail: recoveryEmail, dispalyName: "", savingContacts: savingContacts!) {(result) in
             
             switch(result) {
                 

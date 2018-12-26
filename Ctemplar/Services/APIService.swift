@@ -1522,14 +1522,14 @@ class APIService {
     
     //MARK: - Settings
     
-    func updateSettings(settingsID: String, recoveryEmail: String, dispalyName: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateSettings(settingsID: String, recoveryEmail: String, dispalyName: String, savingContacts: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         self.checkTokenExpiration(){ (complete) in
             if complete {
                 
                 if let token = self.getToken() {
                     
-                    self.restAPIService?.updateSettings(token: token, settingsID: settingsID, recoveryEmail: recoveryEmail, dispalyName: dispalyName) {(result) in
+                    self.restAPIService?.updateSettings(token: token, settingsID: settingsID, recoveryEmail: recoveryEmail, dispalyName: dispalyName, savingContacts: savingContacts) {(result) in
                         
                         switch(result) {
                             

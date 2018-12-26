@@ -82,6 +82,7 @@ class RestAPIService {
         case delayedDeliveryDate = "delayed_delivery"
         case deadManDate = "dead_man_duration"
         case displayName = "display_name"
+        case savingContacts = "save_contacts"
         case isDefault = "is_default"
         case userSignature = "signature"
     }
@@ -1075,14 +1076,16 @@ class RestAPIService {
     
     //MARK: - Settings
     
-    func updateSettings(token: String, settingsID: String, recoveryEmail: String, dispalyName: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateSettings(token: String, settingsID: String, recoveryEmail: String, dispalyName: String, savingContacts: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
             "Accept": "application/json"
         ]
         
-        var parameters: Parameters = [:]
+        var parameters: Parameters = [
+            JSONKey.savingContacts.rawValue : savingContacts
+        ]
         
         if recoveryEmail.count > 0 {
             parameters[JSONKey.recoveryEmail.rawValue] = recoveryEmail
