@@ -105,7 +105,6 @@
 		84371043217491F100DAE4BA /* ConfirmResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84371042217491F100DAE4BA /* ConfirmResetPasswordViewController.swift */; };
 		843E972F21634E7900147CBE /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E972E21634E7800147CBE /* LaunchScreenViewController.swift */; };
 		843E973221635BEB00147CBE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973121635BEB00147CBE /* LoginViewController.swift */; };
-		843E973421635C3B00147CBE /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843E973321635C3B00147CBE /* Login.storyboard */; };
 		843E973721636FF200147CBE /* LoginConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973621636FF200147CBE /* LoginConfigurator.swift */; };
 		843E97392163700900147CBE /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E97382163700900147CBE /* LoginRouter.swift */; };
 		843E973B2163701B00147CBE /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973A2163701B00147CBE /* LoginInteractor.swift */; };
@@ -133,6 +132,7 @@
 		8440141C21D377E400FC450C /* PrivacyAndTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440141B21D377E400FC450C /* PrivacyAndTermsViewController.swift */; };
 		8440141F21D39F7700FC450C /* SavingContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440141E21D39F7700FC450C /* SavingContactsViewController.swift */; };
 		8440142121D39F8B00FC450C /* SavingContacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8440142021D39F8B00FC450C /* SavingContacts.storyboard */; };
+		8440142221D3B74100FC450C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8440142421D3B74100FC450C /* Login.storyboard */; };
 		8440466B21C7E8C700CDEB3F /* ManageFolders.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8440466A21C7E8C700CDEB3F /* ManageFolders.storyboard */; };
 		8440466D21C7E8DE00CDEB3F /* ManageFoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440466C21C7E8DE00CDEB3F /* ManageFoldersViewController.swift */; };
 		8440466F21C7F84000CDEB3F /* ManageFoldersConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440466E21C7F84000CDEB3F /* ManageFoldersConfigurator.swift */; };
@@ -309,7 +309,6 @@
 		8436AD502180650A00D16008 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		8436AD542180663800D16008 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8436AD562180664100D16008 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		8436AD5821806D3400D16008 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		8437103C217465A700DAE4BA /* ForgotPasswordNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordNavigationController.swift; sourceTree = "<group>"; };
 		8437103E217465DD00DAE4BA /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		843710402174661000DAE4BA /* ForgotPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ForgotPassword.storyboard; sourceTree = "<group>"; };
@@ -317,7 +316,6 @@
 		843E972C2163494400147CBE /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		843E972E21634E7800147CBE /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		843E973121635BEB00147CBE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		843E973321635C3B00147CBE /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		843E973521635F6D00147CBE /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		843E973621636FF200147CBE /* LoginConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConfigurator.swift; sourceTree = "<group>"; };
 		843E97382163700900147CBE /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
@@ -347,6 +345,8 @@
 		8440141B21D377E400FC450C /* PrivacyAndTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyAndTermsViewController.swift; sourceTree = "<group>"; };
 		8440141E21D39F7700FC450C /* SavingContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingContactsViewController.swift; sourceTree = "<group>"; };
 		8440142021D39F8B00FC450C /* SavingContacts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SavingContacts.storyboard; sourceTree = "<group>"; };
+		8440142321D3B74100FC450C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
+		8440142621D3B74400FC450C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Login.strings; sourceTree = "<group>"; };
 		8440466A21C7E8C700CDEB3F /* ManageFolders.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ManageFolders.storyboard; sourceTree = "<group>"; };
 		8440466C21C7E8DE00CDEB3F /* ManageFoldersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageFoldersViewController.swift; sourceTree = "<group>"; };
 		8440466E21C7F84000CDEB3F /* ManageFoldersConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageFoldersConfigurator.swift; sourceTree = "<group>"; };
@@ -831,7 +831,7 @@
 				843E97382163700900147CBE /* LoginRouter.swift */,
 				843E973C2163703100147CBE /* LoginPresenter.swift */,
 				843E973A2163701B00147CBE /* LoginInteractor.swift */,
-				843E973321635C3B00147CBE /* Login.storyboard */,
+				8440142421D3B74100FC450C /* Login.storyboard */,
 				843FBF16216E3D2400148FC1 /* Login-iPad.storyboard */,
 			);
 			path = LoginScreen;
@@ -1133,6 +1133,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 8433FF0D216201A300C57DC8;
 			productRefGroup = 8433FF17216201A300C57DC8 /* Products */;
@@ -1192,7 +1193,7 @@
 				8441227E21A66E3A00B56857 /* ChildMessageExpandedWithAttachmentTableViewCell.xib in Resources */,
 				8432870921D2034F00A66DBF /* ChangePassword.storyboard in Resources */,
 				8432B302218709F5006C901C /* SideMenuTableViewCell.xib in Resources */,
-				843E973421635C3B00147CBE /* Login.storyboard in Resources */,
+				8440142221D3B74100FC450C /* Login.storyboard in Resources */,
 				8432071321785F8400F18E5A /* InboxMessageTableViewCell.xib in Resources */,
 				8441099421776B6400F0BE18 /* README.md in Resources */,
 				8440141721D35D5D00FC450C /* UserMailboxBigTableViewCell.xib in Resources */,
@@ -1459,7 +1460,6 @@
 			children = (
 				8433FF23216201A500C57DC8 /* Base */,
 				8436AD4F2180650900D16008 /* ru */,
-				8436AD5821806D3400D16008 /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1471,6 +1471,15 @@
 				8436AD562180664100D16008 /* en */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		8440142421D3B74100FC450C /* Login.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8440142321D3B74100FC450C /* Base */,
+				8440142621D3B74400FC450C /* ru */,
+			);
+			name = Login.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
