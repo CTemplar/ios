@@ -36,6 +36,8 @@ class SetMailboxViewController: UIViewController, UITableViewDataSource, UITable
         self.formatterService = appDelegate.applicationManager.formatterService
         self.apiService = appDelegate.applicationManager.apiService
        
+        self.tableView.tableFooterView = UIView()
+        
         self.registerTableViewCell() 
     }
     
@@ -48,7 +50,7 @@ class SetMailboxViewController: UIViewController, UITableViewDataSource, UITable
     
     func registerTableViewCell() {
         
-        self.tableView.register(UINib(nibName: k_UserMailboxCellXibName, bundle: nil), forCellReuseIdentifier: k_UserMailboxTableViewCellIdentifier)
+        self.tableView.register(UINib(nibName: k_UserMailboxBigCellXibName, bundle: nil), forCellReuseIdentifier: k_UserMailboxBigTableViewCellIdentifier)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,12 +60,18 @@ class SetMailboxViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: k_UserMailboxTableViewCellIdentifier)! as! UserMailboxTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: k_UserMailboxBigTableViewCellIdentifier)! as! UserMailboxBigTableViewCell
         
         let mailbox = self.mailboxesArray[indexPath.row]
         
+        var selected = false
+        
+        if mailbox.isDefault! {
+            selected = true
+        }
+        
         if let email = mailbox.email {
-            cell.emailLabel.text = email
+            cell.setupCellWithData(email: email, seleted: selected)
         }
         
         return cell

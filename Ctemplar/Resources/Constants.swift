@@ -81,6 +81,7 @@ let k_ChildMessageCellXibName              = "ChildMessageTableViewCell"
 let k_ChildMessageExpandedCellXibName      = "ChildMessageExpandedTableViewCell"
 let k_ChildMessageExpandedWithAttachmentCellXibName      = "ChildMessageExpandedWithAttachmentTableViewCell"
 let k_UserMailboxCellXibName               = "UserMailboxTableViewCell"
+let k_UserMailboxBigCellXibName            = "UserMailboxBigTableViewCell"
 let k_AttachmentCollcetionViewCellXibName  = "AttachmentCollcetionViewCell"
 let k_AttachmentViewXibName                = "Attachment"
 let k_SettingsBaseTableViewCellXibName     = "SettingsBaseTableViewCell"
@@ -100,6 +101,7 @@ let k_ChildMessageTableViewCellIdentifier       = "childMessageTableViewCellIden
 let k_ChildMessageExpandedTableViewCellIdentifier       = "childMessageExpandedTableViewCellIdentifier"
 let k_ChildMessageExpandedWithAttachmentTableViewCellIdentifier       = "childMessageExpandedWithAttachmentTableViewCellIdentifier"
 let k_UserMailboxTableViewCellIdentifier        = "userMailboxTableViewCellIdentifier"
+let k_UserMailboxBigTableViewCellIdentifier        = "userMailboxBigTableViewCellIdentifier"
 let k_AttachmentCollcetionViewCellIdentifier    = "attachmentCollcetionViewCellIdentifier"
 let k_SettingsBaseTableViewCellIdentifier       = "settingsBaseTableViewCellIdentifier"
 let k_SettingsAppVersionTableViewCellIdentifier         = "settingsAppVersuinCellIdentifier"
@@ -164,6 +166,8 @@ let k_otherColor : UIColor = UIColor(red: 148.0 / 255.0, green: 165.0 / 255.0, b
 let k_fileNameColor : UIColor = UIColor(red: 90.0 / 255.0, green: 90.0 / 255.0, blue: 90.0 / 255.0, alpha: 1.0)
 
 let k_settingHeaderLineColor: UIColor = UIColor(red: 235.0 / 255.0, green: 235.0 / 255.0, blue: 235.0 / 255.0, alpha: 1.0)
+
+let k_mailboxTextColor: UIColor = UIColor(red: 52.0/255.0, green: 73.0/255.0, blue: 94.0/255.0, alpha: 1.0)
 
 //size constants
 
@@ -338,6 +342,9 @@ let k_selfDestructedImageName       = "selfDestructed"
 let k_selfDestructedApliedImageName              = "selfDestructedAplied"
 
 let k_selectedColorImageName        = "SelectedColor"
+
+let k_redSelectedImageName          = "RedSelection"
+
 
 // fonts
 

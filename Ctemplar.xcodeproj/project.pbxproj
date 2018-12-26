@@ -127,6 +127,8 @@
 		843FC3972164D20E000CFEA9 /* SignUpPageEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3962164D20E000CFEA9 /* SignUpPageEmail.swift */; };
 		8440141121D34A8100FC450C /* SetMailbox.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8440141021D34A8100FC450C /* SetMailbox.storyboard */; };
 		8440141321D34A9600FC450C /* SetMailboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440141221D34A9600FC450C /* SetMailboxViewController.swift */; };
+		8440141521D35D5200FC450C /* UserMailboxBigTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440141421D35D5200FC450C /* UserMailboxBigTableViewCell.swift */; };
+		8440141721D35D5D00FC450C /* UserMailboxBigTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8440141621D35D5D00FC450C /* UserMailboxBigTableViewCell.xib */; };
 		8440466B21C7E8C700CDEB3F /* ManageFolders.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8440466A21C7E8C700CDEB3F /* ManageFolders.storyboard */; };
 		8440466D21C7E8DE00CDEB3F /* ManageFoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440466C21C7E8DE00CDEB3F /* ManageFoldersViewController.swift */; };
 		8440466F21C7F84000CDEB3F /* ManageFoldersConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440466E21C7F84000CDEB3F /* ManageFoldersConfigurator.swift */; };
@@ -335,6 +337,8 @@
 		843FC3962164D20E000CFEA9 /* SignUpPageEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageEmail.swift; sourceTree = "<group>"; };
 		8440141021D34A8100FC450C /* SetMailbox.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetMailbox.storyboard; sourceTree = "<group>"; };
 		8440141221D34A9600FC450C /* SetMailboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetMailboxViewController.swift; sourceTree = "<group>"; };
+		8440141421D35D5200FC450C /* UserMailboxBigTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMailboxBigTableViewCell.swift; sourceTree = "<group>"; };
+		8440141621D35D5D00FC450C /* UserMailboxBigTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserMailboxBigTableViewCell.xib; sourceTree = "<group>"; };
 		8440466A21C7E8C700CDEB3F /* ManageFolders.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ManageFolders.storyboard; sourceTree = "<group>"; };
 		8440466C21C7E8DE00CDEB3F /* ManageFoldersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageFoldersViewController.swift; sourceTree = "<group>"; };
 		8440466E21C7F84000CDEB3F /* ManageFoldersConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageFoldersConfigurator.swift; sourceTree = "<group>"; };
@@ -1018,6 +1022,8 @@
 			children = (
 				84732C9F21B17B3F00B6F799 /* UserMailboxTableViewCell.swift */,
 				84732CA121B17B8D00B6F799 /* UserMailboxTableViewCell.xib */,
+				8440141421D35D5200FC450C /* UserMailboxBigTableViewCell.swift */,
+				8440141621D35D5D00FC450C /* UserMailboxBigTableViewCell.xib */,
 			);
 			path = UserMailboxCell;
 			sourceTree = "<group>";
@@ -1159,6 +1165,7 @@
 				843E973421635C3B00147CBE /* Login.storyboard in Resources */,
 				8432071321785F8400F18E5A /* InboxMessageTableViewCell.xib in Resources */,
 				8441099421776B6400F0BE18 /* README.md in Resources */,
+				8440141721D35D5D00FC450C /* UserMailboxBigTableViewCell.xib in Resources */,
 				84525F15219549C100CA732E /* Search.storyboard in Resources */,
 				84FF7E3E219DB7E600E3E56A /* ContactTableViewCell.xib in Resources */,
 				843FC3902164CBFA000CFEA9 /* SignUp.storyboard in Resources */,
@@ -1270,6 +1277,7 @@
 				8430429C217D9D3F00DB5787 /* InboxSideMenuPresenter.swift in Sources */,
 				84405BB821AD0CCB0048D8AC /* ComposeInteractor.swift in Sources */,
 				8440467521C7F86700CDEB3F /* ManageFoldersInteractor.swift in Sources */,
+				8440141521D35D5200FC450C /* UserMailboxBigTableViewCell.swift in Sources */,
 				843FC38C2164CA27000CFEA9 /* SignUpPresenter.swift in Sources */,
 				8432870B21D2036A00A66DBF /* ChangePasswordViewController.swift in Sources */,
 				843042A0217D9D5D00DB5787 /* InboxSideMenuDataSource.swift in Sources */,
