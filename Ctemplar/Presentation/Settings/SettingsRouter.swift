@@ -37,6 +37,15 @@ class SettingsRouter {
         self.viewController?.present(navigationController, animated: true, completion: nil)
     }
     
+    func showSetMailboxViewController() {
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: k_SetMailboxStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_SetMailboxViewControllerID) as! SetMailboxViewController
+        vc.user = (self.viewController?.user)!
+        let navigationController = UINavigationController(rootViewController: vc)
+        self.viewController?.present(navigationController, animated: true, completion: nil)
+    }
+    
     func showManageFoldersViewController() {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_ManageFoldersStoryboardName, bundle: nil)

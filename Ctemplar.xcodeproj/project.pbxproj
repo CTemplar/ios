@@ -125,6 +125,8 @@
 		843FC3932164D1B2000CFEA9 /* SignUpPageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3922164D1B2000CFEA9 /* SignUpPageName.swift */; };
 		843FC3952164D1E3000CFEA9 /* SignUpPagePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3942164D1E3000CFEA9 /* SignUpPagePassword.swift */; };
 		843FC3972164D20E000CFEA9 /* SignUpPageEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3962164D20E000CFEA9 /* SignUpPageEmail.swift */; };
+		8440141121D34A8100FC450C /* SetMailbox.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8440141021D34A8100FC450C /* SetMailbox.storyboard */; };
+		8440141321D34A9600FC450C /* SetMailboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440141221D34A9600FC450C /* SetMailboxViewController.swift */; };
 		8440466B21C7E8C700CDEB3F /* ManageFolders.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8440466A21C7E8C700CDEB3F /* ManageFolders.storyboard */; };
 		8440466D21C7E8DE00CDEB3F /* ManageFoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440466C21C7E8DE00CDEB3F /* ManageFoldersViewController.swift */; };
 		8440466F21C7F84000CDEB3F /* ManageFoldersConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440466E21C7F84000CDEB3F /* ManageFoldersConfigurator.swift */; };
@@ -331,6 +333,8 @@
 		843FC3922164D1B2000CFEA9 /* SignUpPageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageName.swift; sourceTree = "<group>"; };
 		843FC3942164D1E3000CFEA9 /* SignUpPagePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPagePassword.swift; sourceTree = "<group>"; };
 		843FC3962164D20E000CFEA9 /* SignUpPageEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageEmail.swift; sourceTree = "<group>"; };
+		8440141021D34A8100FC450C /* SetMailbox.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetMailbox.storyboard; sourceTree = "<group>"; };
+		8440141221D34A9600FC450C /* SetMailboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetMailboxViewController.swift; sourceTree = "<group>"; };
 		8440466A21C7E8C700CDEB3F /* ManageFolders.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ManageFolders.storyboard; sourceTree = "<group>"; };
 		8440466C21C7E8DE00CDEB3F /* ManageFoldersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageFoldersViewController.swift; sourceTree = "<group>"; };
 		8440466E21C7F84000CDEB3F /* ManageFoldersConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageFoldersConfigurator.swift; sourceTree = "<group>"; };
@@ -694,6 +698,7 @@
 				8443D21A21CBDB43002AD54B /* Settings */,
 				8431B08521D10F5000A73D39 /* RecoveryEmail */,
 				8432870721D2033100A66DBF /* ChangePassword */,
+				8440140F21D34A6500FC450C /* SetMailbox */,
 				8432870C21D25B8F00A66DBF /* SetSignature */,
 				845E64412170BD08008612FE /* AboutAsScreen */,
 			);
@@ -840,6 +845,15 @@
 				843FC3962164D20E000CFEA9 /* SignUpPageEmail.swift */,
 			);
 			path = SignUpScreenPages;
+			sourceTree = "<group>";
+		};
+		8440140F21D34A6500FC450C /* SetMailbox */ = {
+			isa = PBXGroup;
+			children = (
+				8440141221D34A9600FC450C /* SetMailboxViewController.swift */,
+				8440141021D34A8100FC450C /* SetMailbox.storyboard */,
+			);
+			path = SetMailbox;
 			sourceTree = "<group>";
 		};
 		8440466921C7E89E00CDEB3F /* ManageFolders */ = {
@@ -1120,6 +1134,7 @@
 				84344D3621CA30BA00A5D9A0 /* AddFolder.storyboard in Resources */,
 				8441228321A6823F00B56857 /* AttachmentCollcetionViewCell.xib in Resources */,
 				845E643B21709330008612FE /* InboxSideMenu.storyboard in Resources */,
+				8440141121D34A8100FC450C /* SetMailbox.storyboard in Resources */,
 				8441099221776B5100F0BE18 /* Lato-Bold.ttf in Resources */,
 				845E64402170A4A2008612FE /* Compose.storyboard in Resources */,
 				846EDE9421A284D400EE9A88 /* ChildMessageExpandedTableViewCell.xib in Resources */,
@@ -1320,6 +1335,7 @@
 				8431218E218AF82C0014560D /* ViewInboxEmailInteractor.swift in Sources */,
 				8433DFBA219ECD7000375609 /* ChildMessageTableViewCell.swift in Sources */,
 				843E97392163700900147CBE /* LoginRouter.swift in Sources */,
+				8440141321D34A9600FC450C /* SetMailboxViewController.swift in Sources */,
 				8443D22621CBDD88002AD54B /* SettingsDataSource.swift in Sources */,
 				843FC3952164D1E3000CFEA9 /* SignUpPagePassword.swift in Sources */,
 				845E643E2170A46C008612FE /* ComposeViewController.swift in Sources */,

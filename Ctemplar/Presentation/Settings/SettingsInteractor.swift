@@ -86,7 +86,7 @@ class SettingsInteractor {
         
         switch index {
         case SettingsMailSection.mail.rawValue:
- 
+            self.viewController?.router?.showSetMailboxViewController()
             break
         case SettingsMailSection.signature.rawValue:
             self.viewController?.router?.showSetSignatureViewController() 
