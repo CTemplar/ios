@@ -12,4 +12,14 @@ import UIKit
 class WhiteBlackListsViewController: UIViewController {
     
     var user = UserMyself()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
+    @IBAction func backButtonPressed(_ sender: AnyObject) {
+        
+        self.dismiss(animated: true, completion: nil)
+    }
 }

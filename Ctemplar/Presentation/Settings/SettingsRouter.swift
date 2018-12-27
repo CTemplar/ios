@@ -49,9 +49,17 @@ class SettingsRouter {
     func showWhiteBlackListsViewController() {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_WhiteBlackListsStoryboardName, bundle: nil)
+        /*
         let vc = storyboard.instantiateViewController(withIdentifier: k_WhiteBlackListsViewControllerID) as! WhiteBlackListsViewController
         vc.user = (self.viewController?.user)!
         let navigationController = UINavigationController(rootViewController: vc)
+        self.viewController?.present(navigationController, animated: true, completion: nil)*/
+        
+        let navigationController = storyboard.instantiateViewController(withIdentifier: k_WhiteBlackListsNavigationControllerID) as! WhiteBlackListsNavigationController
+        
+        let whiteBlackListsViewController = navigationController.viewControllers.first as! WhiteBlackListsViewController
+        whiteBlackListsViewController.user = (self.viewController?.user)!
+        
         self.viewController?.present(navigationController, animated: true, completion: nil)
     }
     

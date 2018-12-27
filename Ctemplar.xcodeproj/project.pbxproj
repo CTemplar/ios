@@ -105,6 +105,7 @@
 		84371043217491F100DAE4BA /* ConfirmResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84371042217491F100DAE4BA /* ConfirmResetPasswordViewController.swift */; };
 		843E1DC021D49BAF001B89D6 /* WhiteBlackLists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843E1DBF21D49BAF001B89D6 /* WhiteBlackLists.storyboard */; };
 		843E1DC221D49BCA001B89D6 /* WhiteBlackListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E1DC121D49BCA001B89D6 /* WhiteBlackListsViewController.swift */; };
+		843E1DC421D4A25D001B89D6 /* WhiteBlackListsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E1DC321D4A25D001B89D6 /* WhiteBlackListsNavigationController.swift */; };
 		843E972F21634E7900147CBE /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E972E21634E7800147CBE /* LaunchScreenViewController.swift */; };
 		843E973221635BEB00147CBE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973121635BEB00147CBE /* LoginViewController.swift */; };
 		843E973721636FF200147CBE /* LoginConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973621636FF200147CBE /* LoginConfigurator.swift */; };
@@ -317,6 +318,7 @@
 		84371042217491F100DAE4BA /* ConfirmResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmResetPasswordViewController.swift; sourceTree = "<group>"; };
 		843E1DBF21D49BAF001B89D6 /* WhiteBlackLists.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WhiteBlackLists.storyboard; sourceTree = "<group>"; };
 		843E1DC121D49BCA001B89D6 /* WhiteBlackListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBlackListsViewController.swift; sourceTree = "<group>"; };
+		843E1DC321D4A25D001B89D6 /* WhiteBlackListsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBlackListsNavigationController.swift; sourceTree = "<group>"; };
 		843E972C2163494400147CBE /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		843E972E21634E7800147CBE /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		843E973121635BEB00147CBE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -810,6 +812,7 @@
 		843E1DBE21D49B87001B89D6 /* WhiteBlackLists */ = {
 			isa = PBXGroup;
 			children = (
+				843E1DC321D4A25D001B89D6 /* WhiteBlackListsNavigationController.swift */,
 				843E1DC121D49BCA001B89D6 /* WhiteBlackListsViewController.swift */,
 				843E1DBF21D49BAF001B89D6 /* WhiteBlackLists.storyboard */,
 			);
@@ -1340,6 +1343,7 @@
 				84FF7E39219DB21E00E3E56A /* Contact.swift in Sources */,
 				84405BB221AD0CA40048D8AC /* ComposeConfigurator.swift in Sources */,
 				84356861216F2DE3002101D3 /* InboxConfigurator.swift in Sources */,
+				843E1DC421D4A25D001B89D6 /* WhiteBlackListsNavigationController.swift in Sources */,
 				84405BBA21AD0CD90048D8AC /* ComposeDataSource.swift in Sources */,
 				8433FF5C216246DC00C57DC8 /* PGPService.swift in Sources */,
 				843E972F21634E7900147CBE /* LaunchScreenViewController.swift in Sources */,

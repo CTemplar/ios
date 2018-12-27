@@ -10,7 +10,26 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--White Black Lists View Controller-->
+        <!--White Black Lists Navigation Controller-->
+        <scene sceneID="yKW-3c-xWW">
+            <objects>
+                <navigationController storyboardIdentifier="WhiteBlackListsNavigationController" id="gt7-0v-kII" customClass="WhiteBlackListsNavigationController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QAv-Tj-Jhn">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="prK-33-FMA" kind="relationship" relationship="rootViewController" id="kzp-ze-w65"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sge-fy-e6E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-834" y="27"/>
+        </scene>
+        <!--Whitelist / Blacklist-->
         <scene sceneID="hZm-zP-iyW">
             <objects>
                 <viewController storyboardIdentifier="WhiteBlackListsViewController" id="prK-33-FMA" customClass="WhiteBlackListsViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
@@ -20,10 +39,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="VBR-N5-6Yp"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Whitelist / Blacklist" id="5lK-pZ-Wdy">
+                        <barButtonItem key="leftBarButtonItem" image="BackArrowDark" id="uQo-tF-HCl">
+                            <color key="tintColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="backButtonPressed:" destination="prK-33-FMA" id="2OY-8m-ZFN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mkj-61-6qZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="73.75" y="118.94833333333332"/>
+            <point key="canvasLocation" x="-38" y="27"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="BackArrowDark" width="11" height="20"/>
+    </resources>
 </document>
