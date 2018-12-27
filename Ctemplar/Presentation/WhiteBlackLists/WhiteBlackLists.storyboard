@@ -17,6 +17,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QAv-Tj-Jhn">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                         </textAttributes>
@@ -36,7 +37,66 @@
                     <view key="view" contentMode="scaleToFill" id="dDG-Z3-okC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HSp-xv-6xx">
+                                <rect key="frame" x="0.0" y="64" width="375" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="oMH-wJ-DhF"/>
+                                </constraints>
+                                <items/>
+                            </toolbar>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="i5b-Pm-DAE">
+                                <rect key="frame" x="0.0" y="65" width="375" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <segments>
+                                    <segment title="WHITELIST"/>
+                                    <segment title="BLACKLIST"/>
+                                </segments>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="segmentedControlValueChanged:" destination="prK-33-FMA" eventType="valueChanged" id="aNP-6H-FiL"/>
+                                </connections>
+                            </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jck-yp-Ur1">
+                                <rect key="frame" x="0.0" y="94" width="187.5" height="2"/>
+                                <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="dPy-HX-uLM"/>
+                                    <constraint firstAttribute="width" constant="187.5" id="sY2-s4-S0i"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bJ2-uC-cHN">
+                                <rect key="frame" x="0.0" y="96" width="375" height="571"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.81568627449999997" green="0.81568627449999997" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HSp-xv-6xx" firstAttribute="top" secondItem="VBR-N5-6Yp" secondAttribute="top" id="0dw-bx-KqH"/>
+                            <constraint firstItem="VBR-N5-6Yp" firstAttribute="bottom" secondItem="bJ2-uC-cHN" secondAttribute="bottom" id="DaM-N0-mjP"/>
+                            <constraint firstItem="Jck-yp-Ur1" firstAttribute="top" secondItem="i5b-Pm-DAE" secondAttribute="bottom" id="Lgk-eE-YLY"/>
+                            <constraint firstItem="HSp-xv-6xx" firstAttribute="leading" secondItem="VBR-N5-6Yp" secondAttribute="leading" id="Rc0-TC-tZe"/>
+                            <constraint firstItem="i5b-Pm-DAE" firstAttribute="top" secondItem="VBR-N5-6Yp" secondAttribute="top" constant="1" id="TYJ-WJ-6zN"/>
+                            <constraint firstItem="i5b-Pm-DAE" firstAttribute="leading" secondItem="VBR-N5-6Yp" secondAttribute="leading" id="Zdb-Qz-FAP"/>
+                            <constraint firstItem="HSp-xv-6xx" firstAttribute="trailing" secondItem="VBR-N5-6Yp" secondAttribute="trailing" id="cp8-9R-Z4n"/>
+                            <constraint firstItem="bJ2-uC-cHN" firstAttribute="leading" secondItem="VBR-N5-6Yp" secondAttribute="leading" id="l9r-aF-hde"/>
+                            <constraint firstItem="VBR-N5-6Yp" firstAttribute="trailing" secondItem="bJ2-uC-cHN" secondAttribute="trailing" id="rg8-Rq-Qu3"/>
+                            <constraint firstItem="Jck-yp-Ur1" firstAttribute="leading" secondItem="VBR-N5-6Yp" secondAttribute="leading" id="sFC-zH-xAI"/>
+                            <constraint firstItem="VBR-N5-6Yp" firstAttribute="trailing" secondItem="i5b-Pm-DAE" secondAttribute="trailing" id="uKJ-ZD-yaR"/>
+                            <constraint firstItem="bJ2-uC-cHN" firstAttribute="top" secondItem="HSp-xv-6xx" secondAttribute="bottom" id="v8e-Xj-9Jv"/>
+                            <constraint firstItem="Jck-yp-Ur1" firstAttribute="top" secondItem="HSp-xv-6xx" secondAttribute="bottom" constant="-2" id="wJG-rZ-umY"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="VBR-N5-6Yp"/>
                     </view>
                     <navigationItem key="navigationItem" title="Whitelist / Blacklist" id="5lK-pZ-Wdy">
@@ -47,6 +107,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="segmentedControl" destination="i5b-Pm-DAE" id="TLd-KE-jQR"/>
+                        <outlet property="underlineLeftOffsetConstraint" destination="sFC-zH-xAI" id="pRY-ZS-1SN"/>
+                        <outlet property="underlineView" destination="Jck-yp-Ur1" id="tuA-f4-yi7"/>
+                        <outlet property="underlineWidthConstraint" destination="sY2-s4-S0i" id="Nox-kt-HaB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mkj-61-6qZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
