@@ -31,6 +31,7 @@ class RestAPIService {
         case deleteAttachment = "emails/attachments/"
         case settings = "users/settings/"
         case blackList = "/users/blacklist/"
+        case whiteList = "/users/whitelist/"
     }
     
     enum JSONKey: String {
@@ -999,6 +1000,85 @@ class RestAPIService {
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
             
             print("addContactToBlackList responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func deleteContactFromBlackList(token: String, contactID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.blackList.rawValue + contactID + "/"
+        
+        print("deleteContactFromBlackList url:", url)
+        
+        Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("deleteContactFromBlackList responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func addContactToWhiteList(token: String, name: String, email: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.folderName.rawValue: name,
+            JSONKey.email.rawValue: email,
+            ]
+        
+        print("addContactToWhiteList parameters:", parameters)
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.whiteList.rawValue
+        
+        print("addContactToWhiteList url:", url)
+        
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("addContactToWhiteList responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func deleteContactFromWhiteList(token: String, contactID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.whiteList.rawValue + contactID + "/"
+        
+        print("deleteContactFromWhiteList url:", url)
+        
+        Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("deleteContactFromWhiteList responce:", response)
             
             switch(response.result) {
             case .success(let value):

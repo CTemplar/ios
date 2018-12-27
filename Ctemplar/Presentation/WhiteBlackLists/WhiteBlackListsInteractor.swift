@@ -57,4 +57,21 @@ class WhiteBlackListsInteractor {
             }
         }
     }
+    
+    func addContactToWhiteList(name: String, email: String) {
+        
+        apiService?.addContactToWhiteList(name: name, email: email) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("value:", value)
+                
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Add contact to BlackList Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
 }

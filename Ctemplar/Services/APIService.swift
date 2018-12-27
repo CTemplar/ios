@@ -1442,6 +1442,78 @@ class APIService {
         }
     }
     
+    func deleteContactFromBlackList(contactID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    self.restAPIService?.deleteContactFromBlackList(token: token, contactID: contactID) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            
+                            completionHandler(APIResult.success(value))
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func addContactToWhiteList(name: String, email: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    self.restAPIService?.addContactToWhiteList(token: token, name: name, email: email) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            
+                            completionHandler(APIResult.success(value))
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func deleteContactFromWhiteList(contactID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    self.restAPIService?.deleteContactFromWhiteList(token: token, contactID: contactID) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            
+                            completionHandler(APIResult.success(value))
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     //MARK: - Download
     
     func loadAttachFile(url: String, completionHandler: @escaping (APIResult<Any>) -> Void) {

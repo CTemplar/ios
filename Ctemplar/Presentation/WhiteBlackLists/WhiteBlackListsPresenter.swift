@@ -166,6 +166,7 @@ class WhiteBlackListsPresenter {
         case WhiteBlackListsMode.whiteList:
             //temp
             //self.interactor?.addContactToBlackList(name: "atif", email: "atif.saddique4@outlook.com")
+            //self.interactor?.addContactToWhiteList(name: "dmitry3", email: "dmitry3@dev.ctemplar.com")
             break
         case WhiteBlackListsMode.blackList:
             
