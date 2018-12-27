@@ -69,6 +69,7 @@ class WhiteBlackListsViewController: UIViewController, UISearchBarDelegate {
     
     @IBAction func addContactButtonPressed(_ sender: AnyObject) {
         
+        self.presenter?.addContactButtonPressed(listMode: self.listMode)
     }
     
     @IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {

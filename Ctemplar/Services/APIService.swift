@@ -1416,6 +1416,32 @@ class APIService {
         }
     }
     
+    //MARK: - White/Black lists
+    
+    func addContactToBlackList(name: String, email: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    self.restAPIService?.addContactToBlackList(token: token, name: name, email: email) {(result) in
+            
+                        switch(result) {
+                
+                        case .success(let value):
+                
+                            completionHandler(APIResult.success(value))
+                
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     //MARK: - Download
     
     func loadAttachFile(url: String, completionHandler: @escaping (APIResult<Any>) -> Void) {

@@ -40,4 +40,21 @@ class WhiteBlackListsInteractor {
         self.viewController?.dataSource?.searchText = searchText
         self.viewController?.dataSource?.reloadData()
     }
+    
+    func addContactToBlackList(name: String, email: String) {
+        
+        apiService?.addContactToBlackList(name: name, email: email) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("value:", value)
+       
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Add contact to BlackList Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
 }

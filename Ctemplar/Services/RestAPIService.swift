@@ -30,6 +30,7 @@ class RestAPIService {
         case createAttachment = "emails/attachments/create/"
         case deleteAttachment = "emails/attachments/"
         case settings = "users/settings/"
+        case blackList = "/users/blacklist/"
     }
     
     enum JSONKey: String {
@@ -965,6 +966,39 @@ class RestAPIService {
         Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
             
             print("deleteContact responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    //MARK: - White/Black lists
+    
+    func addContactToBlackList(token: String, name: String, email: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.folderName.rawValue: name,
+            JSONKey.email.rawValue: email,
+        ]
+        
+        print("addContactToBlackList parameters:", parameters)
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.blackList.rawValue
+        
+        print("addContactToBlackList url:", url)
+        
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("addContactToBlackList responce:", response)
             
             switch(response.result) {
             case .success(let value):

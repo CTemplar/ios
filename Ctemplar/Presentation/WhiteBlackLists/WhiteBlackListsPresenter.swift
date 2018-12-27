@@ -49,7 +49,7 @@ class WhiteBlackListsPresenter {
             break
         }
         
-        contactsList = user.contactsList!//for debug
+        //contactsList = user.contactsList!//for debug
         
         if contactsList.count > 0 {
             self.viewController?.tableView.isHidden = false
@@ -158,5 +158,18 @@ class WhiteBlackListsPresenter {
         }
         
         self.viewController!.addContactButton .setTitle(text, for: .normal)
+    }
+    
+    func addContactButtonPressed(listMode: WhiteBlackListsMode) {
+        
+        switch listMode {
+        case WhiteBlackListsMode.whiteList:
+            //temp
+            //self.interactor?.addContactToBlackList(name: "atif", email: "atif.saddique4@outlook.com")
+            break
+        case WhiteBlackListsMode.blackList:
+            
+            break
+        }
     }
 }
