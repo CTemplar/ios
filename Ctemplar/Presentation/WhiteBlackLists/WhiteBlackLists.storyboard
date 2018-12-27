@@ -260,16 +260,24 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="m5L-YR-Jtb">
+                                <rect key="frame" x="0.0" y="96" width="375" height="571"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="VBR-N5-6Yp" firstAttribute="trailing" secondItem="m5L-YR-Jtb" secondAttribute="trailing" id="0S4-s8-E6X"/>
                             <constraint firstItem="HSp-xv-6xx" firstAttribute="top" secondItem="VBR-N5-6Yp" secondAttribute="top" id="0dw-bx-KqH"/>
+                            <constraint firstItem="m5L-YR-Jtb" firstAttribute="top" secondItem="HSp-xv-6xx" secondAttribute="bottom" id="7kk-6L-86z"/>
                             <constraint firstItem="VBR-N5-6Yp" firstAttribute="bottom" secondItem="bJ2-uC-cHN" secondAttribute="bottom" id="DaM-N0-mjP"/>
                             <constraint firstItem="Jck-yp-Ur1" firstAttribute="top" secondItem="i5b-Pm-DAE" secondAttribute="bottom" id="Lgk-eE-YLY"/>
                             <constraint firstItem="HSp-xv-6xx" firstAttribute="leading" secondItem="VBR-N5-6Yp" secondAttribute="leading" id="Rc0-TC-tZe"/>
                             <constraint firstItem="i5b-Pm-DAE" firstAttribute="top" secondItem="VBR-N5-6Yp" secondAttribute="top" constant="1" id="TYJ-WJ-6zN"/>
                             <constraint firstItem="i5b-Pm-DAE" firstAttribute="leading" secondItem="VBR-N5-6Yp" secondAttribute="leading" id="Zdb-Qz-FAP"/>
                             <constraint firstItem="HSp-xv-6xx" firstAttribute="trailing" secondItem="VBR-N5-6Yp" secondAttribute="trailing" id="cp8-9R-Z4n"/>
+                            <constraint firstItem="m5L-YR-Jtb" firstAttribute="bottom" secondItem="VBR-N5-6Yp" secondAttribute="bottom" id="fOQ-bo-Psj"/>
+                            <constraint firstItem="m5L-YR-Jtb" firstAttribute="leading" secondItem="VBR-N5-6Yp" secondAttribute="leading" id="gPU-pI-Etl"/>
                             <constraint firstItem="bJ2-uC-cHN" firstAttribute="leading" secondItem="VBR-N5-6Yp" secondAttribute="leading" id="l9r-aF-hde"/>
                             <constraint firstItem="VBR-N5-6Yp" firstAttribute="trailing" secondItem="bJ2-uC-cHN" secondAttribute="trailing" id="rg8-Rq-Qu3"/>
                             <constraint firstItem="Jck-yp-Ur1" firstAttribute="leading" secondItem="VBR-N5-6Yp" secondAttribute="leading" id="sFC-zH-xAI"/>
@@ -290,6 +298,7 @@
                     <connections>
                         <outlet property="addContactButton" destination="FeD-AX-ae7" id="FNW-lT-qxw"/>
                         <outlet property="segmentedControl" destination="i5b-Pm-DAE" id="TLd-KE-jQR"/>
+                        <outlet property="tableView" destination="m5L-YR-Jtb" id="gvE-4m-IkG"/>
                         <outlet property="textLabel" destination="hFx-Ek-ScQ" id="JlX-U5-ffX"/>
                         <outlet property="underlineLeftOffsetConstraint" destination="sFC-zH-xAI" id="pRY-ZS-1SN"/>
                         <outlet property="underlineView" destination="Jck-yp-Ur1" id="tuA-f4-yi7"/>

@@ -106,6 +106,11 @@
 		843E1DC021D49BAF001B89D6 /* WhiteBlackLists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843E1DBF21D49BAF001B89D6 /* WhiteBlackLists.storyboard */; };
 		843E1DC221D49BCA001B89D6 /* WhiteBlackListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E1DC121D49BCA001B89D6 /* WhiteBlackListsViewController.swift */; };
 		843E1DC421D4A25D001B89D6 /* WhiteBlackListsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E1DC321D4A25D001B89D6 /* WhiteBlackListsNavigationController.swift */; };
+		843E1DC621D4CBCA001B89D6 /* WhiteBlackListsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E1DC521D4CBCA001B89D6 /* WhiteBlackListsConfigurator.swift */; };
+		843E1DC821D4CBD5001B89D6 /* WhiteBlackListsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E1DC721D4CBD5001B89D6 /* WhiteBlackListsRouter.swift */; };
+		843E1DCA21D4CBE2001B89D6 /* WhiteBlackListsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E1DC921D4CBE2001B89D6 /* WhiteBlackListsPresenter.swift */; };
+		843E1DCC21D4CBF6001B89D6 /* WhiteBlackListsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E1DCB21D4CBF6001B89D6 /* WhiteBlackListsInteractor.swift */; };
+		843E1DCE21D4CC02001B89D6 /* WhiteBlackListsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E1DCD21D4CC02001B89D6 /* WhiteBlackListsDataSource.swift */; };
 		843E972F21634E7900147CBE /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E972E21634E7800147CBE /* LaunchScreenViewController.swift */; };
 		843E973221635BEB00147CBE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973121635BEB00147CBE /* LoginViewController.swift */; };
 		843E973721636FF200147CBE /* LoginConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973621636FF200147CBE /* LoginConfigurator.swift */; };
@@ -319,6 +324,11 @@
 		843E1DBF21D49BAF001B89D6 /* WhiteBlackLists.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WhiteBlackLists.storyboard; sourceTree = "<group>"; };
 		843E1DC121D49BCA001B89D6 /* WhiteBlackListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBlackListsViewController.swift; sourceTree = "<group>"; };
 		843E1DC321D4A25D001B89D6 /* WhiteBlackListsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBlackListsNavigationController.swift; sourceTree = "<group>"; };
+		843E1DC521D4CBCA001B89D6 /* WhiteBlackListsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBlackListsConfigurator.swift; sourceTree = "<group>"; };
+		843E1DC721D4CBD5001B89D6 /* WhiteBlackListsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBlackListsRouter.swift; sourceTree = "<group>"; };
+		843E1DC921D4CBE2001B89D6 /* WhiteBlackListsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBlackListsPresenter.swift; sourceTree = "<group>"; };
+		843E1DCB21D4CBF6001B89D6 /* WhiteBlackListsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBlackListsInteractor.swift; sourceTree = "<group>"; };
+		843E1DCD21D4CC02001B89D6 /* WhiteBlackListsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBlackListsDataSource.swift; sourceTree = "<group>"; };
 		843E972C2163494400147CBE /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		843E972E21634E7800147CBE /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		843E973121635BEB00147CBE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -814,6 +824,11 @@
 			children = (
 				843E1DC321D4A25D001B89D6 /* WhiteBlackListsNavigationController.swift */,
 				843E1DC121D49BCA001B89D6 /* WhiteBlackListsViewController.swift */,
+				843E1DC521D4CBCA001B89D6 /* WhiteBlackListsConfigurator.swift */,
+				843E1DC721D4CBD5001B89D6 /* WhiteBlackListsRouter.swift */,
+				843E1DC921D4CBE2001B89D6 /* WhiteBlackListsPresenter.swift */,
+				843E1DCB21D4CBF6001B89D6 /* WhiteBlackListsInteractor.swift */,
+				843E1DCD21D4CC02001B89D6 /* WhiteBlackListsDataSource.swift */,
 				843E1DBF21D49BAF001B89D6 /* WhiteBlackLists.storyboard */,
 			);
 			path = WhiteBlackLists;
@@ -1366,6 +1381,7 @@
 				84525F1F2195690A00CA732E /* SearchDataSource.swift in Sources */,
 				843FC38A2164CA1A000CFEA9 /* SignUpRouter.swift in Sources */,
 				8440141C21D377E400FC450C /* PrivacyAndTermsViewController.swift in Sources */,
+				843E1DCC21D4CBF6001B89D6 /* WhiteBlackListsInteractor.swift in Sources */,
 				84A62E552175CDFB009C38E5 /* ForgotPasswordInteractor.swift in Sources */,
 				8434D9AC219BFD1E00D2C3A5 /* ContactsViewController.swift in Sources */,
 				84A62E4D2175C6EB009C38E5 /* ForgotUsernameViewController.swift in Sources */,
@@ -1417,7 +1433,9 @@
 				8403BDEA21A4052800EE8DCD /* AddContactInteractor.swift in Sources */,
 				843E973721636FF200147CBE /* LoginConfigurator.swift in Sources */,
 				8432B2FC2186F39F006C901C /* SideMenuTableSectionHeaderView.swift in Sources */,
+				843E1DCE21D4CC02001B89D6 /* WhiteBlackListsDataSource.swift in Sources */,
 				8435685F216F2DCD002101D3 /* InboxDataSource.swift in Sources */,
+				843E1DC821D4CBD5001B89D6 /* WhiteBlackListsRouter.swift in Sources */,
 				8441228121A67A5D00B56857 /* AttachmentCollectionViewCell.swift in Sources */,
 				8443D22221CBDD71002AD54B /* SettingsPresenter.swift in Sources */,
 				845E64462170C5A4008612FE /* AboutAsViewController.swift in Sources */,
@@ -1427,6 +1445,7 @@
 				840249942191C23800CDDB0F /* MoveToFolderTableViewCell.swift in Sources */,
 				8433A53F2189DD33008E1C85 /* MoveToViewController.swift in Sources */,
 				8431218C218AF81B0014560D /* ViewInboxEmailPresenter.swift in Sources */,
+				843E1DCA21D4CBE2001B89D6 /* WhiteBlackListsPresenter.swift in Sources */,
 				8434D9B8219C4E3900D2C3A5 /* ContactsDataSource.swift in Sources */,
 				84085B3321C15216002733DE /* SideMenuTableManageFolderCell.swift in Sources */,
 				84F348582181F4E300F00E37 /* BlurEffect.swift in Sources */,
@@ -1456,6 +1475,7 @@
 				84344D3421CA30AD00A5D9A0 /* AddFolderViewController.swift in Sources */,
 				843FC3972164D20E000CFEA9 /* SignUpPageEmail.swift in Sources */,
 				840249902191A02800CDDB0F /* MoveToDataSource.swift in Sources */,
+				843E1DC621D4CBCA001B89D6 /* WhiteBlackListsConfigurator.swift in Sources */,
 				8434D9B2219C4E0200D2C3A5 /* ContactsRouter.swift in Sources */,
 				84A62E512175CD40009C38E5 /* ForgotPasswordRouter.swift in Sources */,
 				843FBF13216DEFBD00148FC1 /* Mailboxes.swift in Sources */,
