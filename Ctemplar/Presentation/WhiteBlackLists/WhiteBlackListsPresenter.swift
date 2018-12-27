@@ -15,6 +15,33 @@ class WhiteBlackListsPresenter {
     var viewController   : WhiteBlackListsViewController?
     var interactor       : WhiteBlackListsInteractor?
     
+    func setupTableAndDataSource(user: UserMyself, listMode: WhiteBlackListsMode) {
+        
+        var contactsList = Array<Contact>()
+        
+        switch listMode {
+        case WhiteBlackListsMode.whiteList:
+            if let whiteListContacts = user.contactsWhiteList {
+                contactsList = whiteListContacts
+            }
+            break
+        case WhiteBlackListsMode.blackList:
+            if let blackListContacts = user.contactsBlackList {
+                contactsList = blackListContacts
+            }
+            break
+        }
+        
+        if contactsList.count > 0 {
+            self.viewController?.tableView.isHidden = false
+        } else {
+            self.viewController?.tableView.isHidden = true
+        }
+        
+        self.viewController?.dataSource?.contactsArray = contactsList
+        self.viewController?.dataSource?.reloadData()
+    }
+    
     func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         
         let selectedIndex = self.viewController!.segmentedControl.selectedSegmentIndex
@@ -33,6 +60,7 @@ class WhiteBlackListsPresenter {
         self.setupUnderlineView(listMode: self.viewController!.listMode)
         self.setupLabelText(listMode: self.viewController!.listMode)
         self.setupAddContactButton(listMode: self.viewController!.listMode)
+        self.setupTableAndDataSource(user: self.viewController!.user, listMode: self.viewController!.listMode)
     }
 
     func setupSegmentedControl() {

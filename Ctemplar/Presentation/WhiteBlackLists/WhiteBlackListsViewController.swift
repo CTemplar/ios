@@ -42,10 +42,11 @@ class WhiteBlackListsViewController: UIViewController {
         let configurator =  WhiteBlackListsConfigurator()
         configurator.configure(viewController: self)
         
-        dataSource?.initWith(parent: self, tableView: tableView)
+        self.dataSource?.initWith(parent: self, tableView: tableView)
         
         self.presenter?.setupSegmentedControl()
-        self.segmentedControl.sendActions(for: UIControl.Event.valueChanged)
+        self.segmentedControl.sendActions(for: UIControl.Event.valueChanged)        
+        self.presenter?.setupTableAndDataSource(user: self.user, listMode: self.listMode)
     }
     
     override func viewWillAppear(_ animated: Bool) {

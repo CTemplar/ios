@@ -15,6 +15,12 @@ class  WhiteBlackListsDataSource: NSObject, UITableViewDataSource, UITableViewDe
     var parentViewController    : WhiteBlackListsViewController!
     var formatterService        : FormatterService?
     
+    var contactsArray           : Array<Contact> = []
+    var filteredContactsArray   : Array<Contact> = []
+    
+    var searchText              : String = ""
+    var filtered : Bool = false
+    
     func initWith(parent: WhiteBlackListsViewController, tableView: UITableView) {
         
         self.parentViewController = parent
@@ -37,13 +43,32 @@ class  WhiteBlackListsDataSource: NSObject, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 0
+        if self.filtered {
+            return filteredContactsArray.count
+        }
+        
+        return contactsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell : ContactTableViewCell = tableView.dequeueReusableCell(withIdentifier: k_ContactTableViewCellIdentifier)! as! ContactTableViewCell
         
+        var contact : Contact
+        
+        if self.filtered {
+            contact = filteredContactsArray[indexPath.row]
+        } else {
+            contact = contactsArray[indexPath.row]
+        }
+        
+        (cell as ContactTableViewCell).setupCellWithData(contact: contact, isSelectionMode: false, isSelected: false, foundText: self.searchText)
+        
         return cell
+    }
+    
+    func reloadData() {
+        
+        self.tableView.reloadData()        
     }
 }

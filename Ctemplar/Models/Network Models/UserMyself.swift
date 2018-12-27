@@ -18,6 +18,8 @@ struct UserMyself {
     var mailboxesList : Array<Mailbox>? = nil
     var foldersList : Array<Folder>? = nil
     var contactsList : Array<Contact>? = nil
+    var contactsWhiteList : Array<Contact>? = nil
+    var contactsBlackList : Array<Contact>? = nil
     
     var username : String? = nil
     
@@ -47,6 +49,8 @@ struct UserMyself {
         var localMailboxesList : Array<Mailbox>? = []
         var localFoldersList : Array<Folder>? = []
         var localContactsList : Array<Contact>? = []
+        var localWhiteContactsList : Array<Contact>? = []
+        var localBlackContactsList : Array<Contact>? = []
         
         for item in array {
             
@@ -85,6 +89,24 @@ struct UserMyself {
                     }
                 }
                 
+                if key == "blacklist" {
+                    let array = value as! Array<Any>
+                    for item in array {
+                        let contactDict = item as! [String : Any]
+                        let contact = Contact(dictionary: contactDict)
+                        localBlackContactsList?.append(contact)
+                    }
+                }
+                
+                if key == "whitelist" {
+                    let array = value as! Array<Any>
+                    for item in array {
+                        let contactDict = item as! [String : Any]
+                        let contact = Contact(dictionary: contactDict)
+                        localWhiteContactsList?.append(contact)
+                    }
+                }
+                
                 if key == "is_trial" {
                     self.isTrial = value as? Bool
                 }
@@ -103,5 +125,7 @@ struct UserMyself {
         self.mailboxesList = localMailboxesList
         self.foldersList = localFoldersList
         self.contactsList = localContactsList
+        self.contactsWhiteList = localWhiteContactsList
+        self.contactsBlackList = localBlackContactsList
     }
 }
