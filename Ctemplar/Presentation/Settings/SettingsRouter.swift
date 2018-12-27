@@ -46,6 +46,15 @@ class SettingsRouter {
         self.viewController?.present(navigationController, animated: true, completion: nil)
     }
     
+    func showWhiteBlackListsViewController() {
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: k_WhiteBlackListsStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_WhiteBlackListsViewControllerID) as! WhiteBlackListsViewController
+        vc.user = (self.viewController?.user)!
+        let navigationController = UINavigationController(rootViewController: vc)
+        self.viewController?.present(navigationController, animated: true, completion: nil)
+    }
+    
     func showSetMailboxViewController() {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_SetMailboxStoryboardName, bundle: nil)

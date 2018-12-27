@@ -64,7 +64,7 @@ class SettingsInteractor {
             self.viewController?.router?.showSavingContactsViewController()
             break
         case SettingsGeneralSection.whiteBlackList.rawValue:
-            
+            self.viewController?.router?.showWhiteBlackListsViewController()
             break
         default:
             break

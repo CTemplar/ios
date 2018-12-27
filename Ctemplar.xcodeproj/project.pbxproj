@@ -103,6 +103,8 @@
 		8437103F217465DD00DAE4BA /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437103E217465DD00DAE4BA /* ForgotPasswordViewController.swift */; };
 		843710412174661000DAE4BA /* ForgotPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843710402174661000DAE4BA /* ForgotPassword.storyboard */; };
 		84371043217491F100DAE4BA /* ConfirmResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84371042217491F100DAE4BA /* ConfirmResetPasswordViewController.swift */; };
+		843E1DC021D49BAF001B89D6 /* WhiteBlackLists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843E1DBF21D49BAF001B89D6 /* WhiteBlackLists.storyboard */; };
+		843E1DC221D49BCA001B89D6 /* WhiteBlackListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E1DC121D49BCA001B89D6 /* WhiteBlackListsViewController.swift */; };
 		843E972F21634E7900147CBE /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E972E21634E7800147CBE /* LaunchScreenViewController.swift */; };
 		843E973221635BEB00147CBE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973121635BEB00147CBE /* LoginViewController.swift */; };
 		843E973721636FF200147CBE /* LoginConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973621636FF200147CBE /* LoginConfigurator.swift */; };
@@ -313,6 +315,8 @@
 		8437103E217465DD00DAE4BA /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		843710402174661000DAE4BA /* ForgotPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ForgotPassword.storyboard; sourceTree = "<group>"; };
 		84371042217491F100DAE4BA /* ConfirmResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmResetPasswordViewController.swift; sourceTree = "<group>"; };
+		843E1DBF21D49BAF001B89D6 /* WhiteBlackLists.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WhiteBlackLists.storyboard; sourceTree = "<group>"; };
+		843E1DC121D49BCA001B89D6 /* WhiteBlackListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBlackListsViewController.swift; sourceTree = "<group>"; };
 		843E972C2163494400147CBE /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		843E972E21634E7800147CBE /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		843E973121635BEB00147CBE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -711,6 +715,7 @@
 				8431B08521D10F5000A73D39 /* RecoveryEmail */,
 				8432870721D2033100A66DBF /* ChangePassword */,
 				8440141D21D39F5700FC450C /* SavingContacts */,
+				843E1DBE21D49B87001B89D6 /* WhiteBlackLists */,
 				8440140F21D34A6500FC450C /* SetMailbox */,
 				8432870C21D25B8F00A66DBF /* SetSignature */,
 				8440141821D377AE00FC450C /* PrivacyAndTerms */,
@@ -800,6 +805,15 @@
 				843710402174661000DAE4BA /* ForgotPassword.storyboard */,
 			);
 			path = ForgotPasswordsScreens;
+			sourceTree = "<group>";
+		};
+		843E1DBE21D49B87001B89D6 /* WhiteBlackLists */ = {
+			isa = PBXGroup;
+			children = (
+				843E1DC121D49BCA001B89D6 /* WhiteBlackListsViewController.swift */,
+				843E1DBF21D49BAF001B89D6 /* WhiteBlackLists.storyboard */,
+			);
+			path = WhiteBlackLists;
 			sourceTree = "<group>";
 		};
 		843E972B2163493800147CBE /* Fonts */ = {
@@ -1153,6 +1167,7 @@
 				8432871021D25BBD00A66DBF /* SetSignature.storyboard in Resources */,
 				840249952191C23800CDDB0F /* MoveToFolderTableViewCell.xib in Resources */,
 				84410990217723CE00F0BE18 /* ViewInboxEmail.storyboard in Resources */,
+				843E1DC021D49BAF001B89D6 /* WhiteBlackLists.storyboard in Resources */,
 				845E64482170CAEF008612FE /* Lato-Black.ttf in Resources */,
 				845E64432170BD21008612FE /* AboutAs.storyboard in Resources */,
 				8431B08921D10F9700A73D39 /* RecoveryEmail.storyboard in Resources */,
@@ -1367,6 +1382,7 @@
 				843E973D2163703100147CBE /* LoginPresenter.swift in Sources */,
 				843FC3862164C9EE000CFEA9 /* SignUpPageViewController.swift in Sources */,
 				843FBF15216DF0A000148FC1 /* Mailbox.swift in Sources */,
+				843E1DC221D49BCA001B89D6 /* WhiteBlackListsViewController.swift in Sources */,
 				8443D21521CB6AC4002AD54B /* EditFolderConfigurator.swift in Sources */,
 				843FBF19216E4FE500148FC1 /* DeviceScreenConstants.swift in Sources */,
 				8402497F21916D3200CDDB0F /* FoldersList.swift in Sources */,
