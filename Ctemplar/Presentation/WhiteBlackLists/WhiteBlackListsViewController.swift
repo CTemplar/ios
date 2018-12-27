@@ -15,7 +15,7 @@ enum WhiteBlackListsMode: Int {
     case blackList   = 1
 }
 
-class WhiteBlackListsViewController: UIViewController {
+class WhiteBlackListsViewController: UIViewController, UISearchBarDelegate {
     
     @IBOutlet var tableView             : UITableView!
     
@@ -25,12 +25,16 @@ class WhiteBlackListsViewController: UIViewController {
     @IBOutlet var addContactButton      : UIButton!
     @IBOutlet var textLabel             : UILabel!
     
+    @IBOutlet var searchBar             : UISearchBar!
+    
     @IBOutlet var underlineWidthConstraint              : NSLayoutConstraint!
     @IBOutlet var underlineLeftOffsetConstraint         : NSLayoutConstraint!
     
     var user = UserMyself()
     
     var listMode = WhiteBlackListsMode.whiteList
+    
+    var searchActive : Bool = false
     
     var presenter   : WhiteBlackListsPresenter?
     var router      : WhiteBlackListsRouter?
@@ -45,7 +49,8 @@ class WhiteBlackListsViewController: UIViewController {
         self.dataSource?.initWith(parent: self, tableView: tableView)
         
         self.presenter?.setupSegmentedControl()
-        self.segmentedControl.sendActions(for: UIControl.Event.valueChanged)        
+        self.segmentedControl.sendActions(for: UIControl.Event.valueChanged)
+        self.presenter?.setupSearchBar(searchBar: self.searchBar)
         self.presenter?.setupTableAndDataSource(user: self.user, listMode: self.listMode)
     }
     
@@ -69,5 +74,43 @@ class WhiteBlackListsViewController: UIViewController {
     @IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         
         self.presenter?.segmentedControlValueChanged(sender)
+    }
+    
+    // MARK: SearchBar delegate
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+        searchActive = true
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        
+        searchActive = false
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchActive = false;
+        searchBar.endEditing(true)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchActive = false
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        
+        return searchBar.text?.isEmpty ?? true
+    }
+    
+    func isFiltering() -> Bool {
+        
+        return searchActive && !searchBarIsEmpty()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        self.presenter?.interactor?.setFilteredList(searchText: searchText)
     }
 }

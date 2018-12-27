@@ -15,6 +15,23 @@ class WhiteBlackListsPresenter {
     var viewController   : WhiteBlackListsViewController?
     var interactor       : WhiteBlackListsInteractor?
     
+    func setupSearchBar(searchBar: UISearchBar) {
+        
+        searchBar.delegate = self.viewController
+        
+        searchBar.placeholder = "search".localized()
+        
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).leftViewMode = .never
+        
+        if let searchTextField = searchBar.value(forKey: "_searchField") as? UITextField {
+            searchTextField.borderStyle = .none
+        }
+        
+        let imageView = UIImageView(image: UIImage(named: "SearchButton"))
+        imageView.frame = CGRect(x: 16, y: 14, width: 22, height: 28)
+        searchBar.add(subview: imageView)
+    }
+    
     func setupTableAndDataSource(user: UserMyself, listMode: WhiteBlackListsMode) {
         
         var contactsList = Array<Contact>()
@@ -32,10 +49,14 @@ class WhiteBlackListsPresenter {
             break
         }
         
+        contactsList = user.contactsList!//for debug
+        
         if contactsList.count > 0 {
             self.viewController?.tableView.isHidden = false
+            self.viewController?.searchBar.isHidden = false
         } else {
             self.viewController?.tableView.isHidden = true
+            self.viewController?.searchBar.isHidden = true
         }
         
         self.viewController?.dataSource?.contactsArray = contactsList
@@ -56,6 +77,10 @@ class WhiteBlackListsPresenter {
         default:
             break
         }
+        
+        self.viewController?.searchBarCancelButtonClicked((self.viewController?.searchBar)!)
+        self.viewController?.searchBar.text = ""
+        self.viewController?.presenter?.interactor?.setFilteredList(searchText: "")
         
         self.setupUnderlineView(listMode: self.viewController!.listMode)
         self.setupLabelText(listMode: self.viewController!.listMode)
