@@ -163,7 +163,7 @@ class WhiteBlackListsPresenter {
     }
     
     func addContactButtonPressed(listMode: WhiteBlackListsMode) {
-        
+        /*
         switch listMode {
         case WhiteBlackListsMode.whiteList:
             //temp
@@ -173,7 +173,9 @@ class WhiteBlackListsPresenter {
         case WhiteBlackListsMode.blackList:
             
             break
-        }
+        }*/
+        
+        self.viewController?.router?.showAddContactToWhiteBlackList(mode: listMode)
     }
     
     func deleteContactFromList(contactID: String, listMode: WhiteBlackListsMode) {

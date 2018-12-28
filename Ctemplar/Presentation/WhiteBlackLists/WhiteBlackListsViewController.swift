@@ -116,3 +116,14 @@ class WhiteBlackListsViewController: UIViewController, UISearchBarDelegate {
         self.presenter?.interactor?.setFilteredList(searchText: searchText)
     }
 }
+
+extension WhiteBlackListsViewController: AddContactToWhiteBlackListDelegate {
+    
+    func applyAction() {
+        
+    }
+    
+    func cancelAction() {
+        
+    }
+}

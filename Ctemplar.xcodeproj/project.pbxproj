@@ -177,6 +177,8 @@
 		844655BC218C264200B2F2E4 /* MoreActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F348532181B20C00F00E37 /* MoreActionsView.swift */; };
 		844655BD218C264E00B2F2E4 /* MoreActions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F348552181B21C00F00E37 /* MoreActions.xib */; };
 		844F4B5A216B3A380057C758 /* UserPGPKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F4B59216B3A380057C758 /* UserPGPKey.swift */; };
+		8451BEB421D5FD03009B1C8C /* AddContactToWhiteBlackListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451BEB321D5FD03009B1C8C /* AddContactToWhiteBlackListViewController.swift */; };
+		8451BEB621D5FD16009B1C8C /* AddContactToWhiteBlackList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8451BEB521D5FD16009B1C8C /* AddContactToWhiteBlackList.storyboard */; };
 		84525F13219549B100CA732E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84525F12219549B100CA732E /* SearchViewController.swift */; };
 		84525F15219549C100CA732E /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84525F14219549C100CA732E /* Search.storyboard */; };
 		84525F17219568D900CA732E /* SearchConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84525F16219568D900CA732E /* SearchConfigurator.swift */; };
@@ -397,6 +399,8 @@
 		8443D22521CBDD88002AD54B /* SettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDataSource.swift; sourceTree = "<group>"; };
 		8443D22721CBDFEC002AD54B /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		844F4B59216B3A380057C758 /* UserPGPKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPGPKey.swift; sourceTree = "<group>"; };
+		8451BEB321D5FD03009B1C8C /* AddContactToWhiteBlackListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactToWhiteBlackListViewController.swift; sourceTree = "<group>"; };
+		8451BEB521D5FD16009B1C8C /* AddContactToWhiteBlackList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddContactToWhiteBlackList.storyboard; sourceTree = "<group>"; };
 		84525F12219549B100CA732E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		84525F14219549C100CA732E /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		84525F16219568D900CA732E /* SearchConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConfigurator.swift; sourceTree = "<group>"; };
@@ -822,6 +826,7 @@
 		843E1DBE21D49B87001B89D6 /* WhiteBlackLists */ = {
 			isa = PBXGroup;
 			children = (
+				8451BEB221D5FBDB009B1C8C /* AddContactToWhiteBlackList */,
 				843E1DC321D4A25D001B89D6 /* WhiteBlackListsNavigationController.swift */,
 				843E1DC121D49BCA001B89D6 /* WhiteBlackListsViewController.swift */,
 				843E1DC521D4CBCA001B89D6 /* WhiteBlackListsConfigurator.swift */,
@@ -996,6 +1001,15 @@
 				844F4B59216B3A380057C758 /* UserPGPKey.swift */,
 			);
 			path = "Local Models";
+			sourceTree = "<group>";
+		};
+		8451BEB221D5FBDB009B1C8C /* AddContactToWhiteBlackList */ = {
+			isa = PBXGroup;
+			children = (
+				8451BEB321D5FD03009B1C8C /* AddContactToWhiteBlackListViewController.swift */,
+				8451BEB521D5FD16009B1C8C /* AddContactToWhiteBlackList.storyboard */,
+			);
+			path = AddContactToWhiteBlackList;
 			sourceTree = "<group>";
 		};
 		84525F112195498F00CA732E /* SearchScreen */ = {
@@ -1238,6 +1252,7 @@
 				840249852191758D00CDDB0F /* CustomFolderTableViewCell.xib in Resources */,
 				8433FF5E21626D0600C57DC8 /* LaunchScreen-iPad.storyboard in Resources */,
 				8433FF1F216201A300C57DC8 /* Main.storyboard in Resources */,
+				8451BEB621D5FD16009B1C8C /* AddContactToWhiteBlackList.storyboard in Resources */,
 				84525F242195718200CA732E /* SearchTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1389,6 +1404,7 @@
 				84A62E492175B508009C38E5 /* ResetPasswordViewController.swift in Sources */,
 				8403BDEC21A452AB00EE8DCD /* Attachment.swift in Sources */,
 				84525F1D219568FF00CA732E /* SearchInteractor.swift in Sources */,
+				8451BEB421D5FD03009B1C8C /* AddContactToWhiteBlackListViewController.swift in Sources */,
 				840249862191758D00CDDB0F /* CustomFolderTableViewCell.swift in Sources */,
 				8433FF532162128200C57DC8 /* APIService.swift in Sources */,
 				84356867216F2E20002101D3 /* InboxInteractor.swift in Sources */,
