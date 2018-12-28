@@ -71,4 +71,19 @@ class  WhiteBlackListsDataSource: NSObject, UITableViewDataSource, UITableViewDe
         
         self.tableView.reloadData()        
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if (editingStyle == .delete) {
+            
+            let contact = contactsArray[indexPath.row]
+            let contactID = contact.contactID?.description
+            self.parentViewController.presenter?.deleteContactFromList(contactID: contactID!, listMode: (self.parentViewController?.listMode)!)
+        }
+    }
 }

@@ -64,7 +64,7 @@ class WhiteBlackListsViewController: UIViewController, UISearchBarDelegate {
     
     @IBAction func backButtonPressed(_ sender: AnyObject) {
         
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)       
     }
     
     @IBAction func addContactButtonPressed(_ sender: AnyObject) {

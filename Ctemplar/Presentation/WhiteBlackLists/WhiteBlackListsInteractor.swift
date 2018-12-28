@@ -43,22 +43,28 @@ class WhiteBlackListsInteractor {
     
     func addContactToBlackList(name: String, email: String) {
         
+        HUD.show(.progress)
+        
         apiService?.addContactToBlackList(name: name, email: email) {(result) in
             
             switch(result) {
                 
             case .success(let value):
                 print("value:", value)
-       
+                self.updateUserMyself()
                 
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Add contact to BlackList Error", message: error.localizedDescription, button: "closeButton".localized())
             }
+            
+             HUD.hide()
         }
     }
     
     func addContactToWhiteList(name: String, email: String) {
+        
+        HUD.show(.progress)
         
         apiService?.addContactToWhiteList(name: name, email: email) {(result) in
             
@@ -66,12 +72,87 @@ class WhiteBlackListsInteractor {
                 
             case .success(let value):
                 print("value:", value)
-                
+                self.updateUserMyself()
                 
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Add contact to BlackList Error", message: error.localizedDescription, button: "closeButton".localized())
             }
+            
+            HUD.hide()
         }
+    }
+    
+    
+    func deleteContactsFromWhiteList(contactID: String) {
+        
+        HUD.show(.progress)
+        
+        apiService?.deleteContactFromWhiteList(contactID: contactID) {(result) in
+            
+            switch(result) {
+                
+            case .success( _):
+                
+                print("deleteContactsFromWhiteList")
+                self.updateUserMyself()
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Delete Contact Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+            
+            HUD.hide()
+        }
+    }
+    
+    func deleteContactsFromBlacklList(contactID: String) {
+        
+        HUD.show(.progress)
+        
+        apiService?.deleteContactFromBlackList(contactID: contactID) {(result) in
+            
+            switch(result) {
+                
+            case .success( _):
+                
+                print("deleteContactsFromBlacklList")
+                self.updateUserMyself()
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Delete Contact Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+            
+            HUD.hide()
+        }
+    }
+    
+    func updateUserMyself() {
+        
+        apiService?.userMyself() {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                //print("userMyself value:", value)
+                
+                let userMyself = value as! UserMyself
+                self.viewController?.user = userMyself
+                
+                self.viewController?.presenter?.setupTableAndDataSource(user: userMyself, listMode: (self.viewController?.listMode)!)                
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: value)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "User Myself Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
+    func postUpdateUserSettingsNotification() {
+        
+        NotificationCenter.default.post(name: Notification.Name(k_updateUserSettingsNotificationID), object: nil, userInfo: nil)
     }
 }

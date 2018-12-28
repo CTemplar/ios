@@ -166,11 +166,49 @@ class WhiteBlackListsPresenter {
         case WhiteBlackListsMode.whiteList:
             //temp
             //self.interactor?.addContactToBlackList(name: "atif", email: "atif.saddique4@outlook.com")
-            //self.interactor?.addContactToWhiteList(name: "dmitry3", email: "dmitry3@dev.ctemplar.com")
+            //self.interactor?.addContactToWhiteList(name: "dmitry3", email: "dmitry3@dev.ctemplar.com")            
             break
         case WhiteBlackListsMode.blackList:
             
             break
+        }
+    }
+    
+    func deleteContactFromList(contactID: String, listMode: WhiteBlackListsMode) {
+   
+        var message: String = ""
+        
+        switch listMode {
+        case WhiteBlackListsMode.whiteList:
+            message = "deleteContactFromWhiteList".localized()
+            break
+        case WhiteBlackListsMode.blackList:
+            message = "deleteContactFromBlackList".localized()
+            break
+        }
+        
+        let params = Parameters(
+            title: "deleteTitle".localized(),
+            message: message,
+            cancelButton: "cancelButton".localized(),
+            otherButtons: ["deleteButton".localized()]
+        )
+        
+        AlertHelperKit().showAlertWithHandler(self.viewController!, parameters: params) { buttonIndex in
+            switch buttonIndex {
+            case 0:
+                print("Cancel Delete")
+            default:
+                print("Delete")
+                switch listMode {
+                case WhiteBlackListsMode.whiteList:
+                    self.interactor?.deleteContactsFromWhiteList(contactID: contactID)
+                    break
+                case WhiteBlackListsMode.blackList:
+                    self.interactor?.deleteContactsFromBlacklList(contactID: contactID)
+                    break
+                }
+            }
         }
     }
 }
