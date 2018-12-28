@@ -579,3 +579,15 @@ enum TextControllerMode: Int, CaseIterable {
     case privacyPolicy      = 0
     case termsAndConditions = 1
 }
+
+enum Languages: Int, CaseIterable {
+    
+    case english            = 0
+    case russian            = 1
+}
+
+enum LanguagesName: String {
+    
+    case english            = "English"
+    case russian            = "Русский"
+}
