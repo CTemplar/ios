@@ -55,7 +55,7 @@ class SettingsInteractor {
             self.viewController?.router?.showChangePasswordViewController()
             break
         case SettingsGeneralSection.language.rawValue:
-
+            self.viewController?.router?.showSelectLanguageViewController()
             break
         case SettingsGeneralSection.notification.rawValue:
             UIApplication.openAppSettings()
