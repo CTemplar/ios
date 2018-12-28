@@ -26,6 +26,7 @@ class WhiteBlackListsViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet var textLabel             : UILabel!
     
     @IBOutlet var searchBar             : UISearchBar!
+    @IBOutlet var addButtonView         : UIView!
     
     @IBOutlet var underlineWidthConstraint              : NSLayoutConstraint!
     @IBOutlet var underlineLeftOffsetConstraint         : NSLayoutConstraint!

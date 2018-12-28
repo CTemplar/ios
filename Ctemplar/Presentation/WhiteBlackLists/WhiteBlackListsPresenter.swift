@@ -54,9 +54,11 @@ class WhiteBlackListsPresenter {
         if contactsList.count > 0 {
             self.viewController?.tableView.isHidden = false
             self.viewController?.searchBar.isHidden = false
+            self.viewController?.addButtonView.isHidden = false
         } else {
             self.viewController?.tableView.isHidden = true
             self.viewController?.searchBar.isHidden = true
+            self.viewController?.addButtonView.isHidden = true
         }
         
         self.viewController?.dataSource?.contactsArray = contactsList
