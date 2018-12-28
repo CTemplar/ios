@@ -726,10 +726,27 @@ extension Data {
 }
 
 extension String {
-    
+    /*
     func localized(bundle: Bundle = .main, tableName: String = "Localizable") -> String {
         
         return NSLocalizedString(self, tableName: tableName, value: "**\(self)**", comment: "")
+    }
+    */
+    func localized() -> String {
+   
+        return NSLocalizedString(self, tableName: nil, bundle: Bundle.localizedBundle(), value: "", comment: "")
+    }
+    
+    func localized(lang: String) -> String {
+        
+        let path = Bundle.main.path(forResource: lang, ofType: "lproj")
+        let bundle = Bundle(path: path!)
+        return NSLocalizedString(self, tableName: nil, bundle: bundle!, value: "", comment: "")
+    }
+    
+    func localizeWithFormat(arguments: CVarArg...) -> String{
+        
+        return String(format: self.localized(), arguments: arguments)
     }
     
     func widthOfString(usingFont font: UIFont) -> CGFloat {

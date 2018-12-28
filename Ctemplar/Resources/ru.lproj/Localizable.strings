@@ -22,9 +22,9 @@
 
 //login
 
-"emailPlaceholder" = "Email";
-"passwordPlaceholder" = "Password";
-"usernamePlaceholder" = "Username";
+"emailPlaceholder" = "Почта";
+"passwordPlaceholder" = "Пароль";
+"usernamePlaceholder" = "Имя";
 "choosePasswordPlaceholder" = "Choose password";
 "confirmPasswordPlaceholder" = "Confirm password";
 "recoveryEmailPlaceholder" = "Recovery email";
