@@ -18,7 +18,7 @@ class SelectLanguageViewController: UIViewController, UITableViewDataSource, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: k_passwordBarTintColor]
+        self.setNavigationBarTitle()
         
         self.registerTableViewCell()
     }
@@ -59,7 +59,7 @@ class SelectLanguageViewController: UIViewController, UITableViewDataSource, UIT
             break
         }
         
-        var selected = false
+        let selected = self.isLanguageSelected(index: indexPath.row)
         
         cell.setupCellWithData(email: languageName, seleted: selected)
         
@@ -69,11 +69,70 @@ class SelectLanguageViewController: UIViewController, UITableViewDataSource, UIT
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
-
+        
+        var languagePrefix : LanguagesBundlePrefix!
+        
+        switch indexPath.row {
+        case Languages.english.rawValue:
+            languagePrefix = LanguagesBundlePrefix.english
+            break
+        case Languages.russian.rawValue:
+            languagePrefix = LanguagesBundlePrefix.russian
+            break
+        default:
+            languagePrefix = LanguagesBundlePrefix.english
+            break
+        }
+        
+        self.selectLangage(language: languagePrefix)
     }
     
     func reloadData() {
         
         self.tableView.reloadData()
+    }
+    
+    func selectLangage(language: LanguagesBundlePrefix) {
+    
+        Bundle.setLanguage(lang: language.rawValue)
+        
+        self.reloadViewController()
+    }
+    
+    func setNavigationBarTitle() {
+  
+        self.navigationItem.title = "languageTitle".localized()
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: k_passwordBarTintColor]
+    }
+    
+    func reloadViewController() {
+        
+        self.viewDidLoad()
+        self.viewWillAppear(true)
+        self.reloadData()
+        
+        NotificationCenter.default.post(name: Notification.Name(k_reloadViewControllerNotificationID), object: nil, userInfo: nil)
+    }
+    
+    func isLanguageSelected(index: Int) -> Bool {
+        
+        var language : String = ""
+        let currentLanguage = Bundle.getLanguage()
+        
+        switch index {
+        case Languages.english.rawValue:
+            language = LanguagesBundlePrefix.english.rawValue
+        case Languages.russian.rawValue:
+            language = LanguagesBundlePrefix.russian.rawValue
+        default:
+            language = LanguagesBundlePrefix.english.rawValue
+        }
+        
+        if language == currentLanguage {
+            return true
+        }
+        
+        return false
     }
 }

@@ -34,6 +34,13 @@ class  SettingsViewController: UIViewController {
         dataSource?.initWith(parent: self, tableView: settingsTableView)
         
         NotificationCenter.default.addObserver(self, selector: #selector(userSettingsUpdate), name: NSNotification.Name(rawValue: k_updateUserSettingsNotificationID), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadViewController), name: NSNotification.Name(rawValue: k_reloadViewControllerNotificationID), object: nil)
+    }
+    
+    @objc func reloadViewController() {
+        
+        self.viewDidLoad()
+        self.viewWillAppear(false)
     }
     
     //MARK: - IBActions

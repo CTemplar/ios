@@ -110,16 +110,25 @@ extension Bundle {
             let path = Bundle.main.path(forResource: appLang, ofType: "lproj")
             bundle = Bundle(path: path!)
         }
-        
-        print("localizations:", bundle.localizations)
+
+        print("bundlePath:", NSString(string: bundle.bundlePath).lastPathComponent)
         
         return bundle;
     }
     
     public static func setLanguage(lang: String) {
         
+        print("set language:", lang)
+        
         UserDefaults.standard.set(lang, forKey: "app_lang")
         let path = Bundle.main.path(forResource: lang, ofType: "lproj")
         bundle = Bundle(path: path!)
+    }
+    
+    public static func getLanguage() -> String {
+        
+        let appLang = UserDefaults.standard.string(forKey: "app_lang") ?? "en"
+        
+        return appLang
     }
 }

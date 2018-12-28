@@ -129,6 +129,7 @@ let k_updateUserDataNotificationID          = "UpdateUserDataNotificationIdentif
 let k_updateUserSettingsNotificationID      = "UpdateUserSettingsNotificationIdentifier"
 let k_updateInboxMessagesNotificationID     = "updateInboxMessagesNotification"
 let k_attachUploadUpdateNotificationID      = "attachUploadUpdateNotificationIdentifier"
+let k_reloadViewControllerNotificationID    = "ReloadViewControllerNotificationIdentifier"
 
 // colors
 
@@ -590,4 +591,10 @@ enum LanguagesName: String {
     
     case english            = "English"
     case russian            = "Русский"
+}
+
+enum LanguagesBundlePrefix: String {
+    
+    case english            = "en"
+    case russian            = "ru"
 }

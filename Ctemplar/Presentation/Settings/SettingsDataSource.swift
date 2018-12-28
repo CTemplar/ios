@@ -206,9 +206,11 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             break
         case SettingsGeneralSection.language.rawValue:
             cellTitle = "language".localized()
-            if let language = settings.language {
-                value = language
-            }
+            //if let language = settings.language {
+            //    value = language
+            //}
+            value = (self.parentViewController?.presenter?.interactor?.getLanguageName())!
+            
             break
         case SettingsGeneralSection.notification.rawValue:
             cellTitle = "notifications".localized()
