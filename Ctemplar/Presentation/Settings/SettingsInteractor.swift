@@ -58,7 +58,7 @@ class SettingsInteractor {
 
             break
         case SettingsGeneralSection.notification.rawValue:
-            
+            UIApplication.openAppSettings()
             break
         case SettingsGeneralSection.contacts.rawValue:
             self.viewController?.router?.showSavingContactsViewController()
