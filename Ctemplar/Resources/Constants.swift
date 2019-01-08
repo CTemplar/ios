@@ -193,6 +193,7 @@ let k_signUpPageKeyboardOffsetExtraLarge     = 210.0
 let k_KeyboardHeight                    = 216.0
 
 let k_setPasswordKeyboardOffset         = 80.0
+let k_addContactKeyboardOffset          = 71.0
 
 let k_triangleOffset                    = 16.0 + 5.0 + 5.0
 let k_navBarButtonSize                  = 32.0

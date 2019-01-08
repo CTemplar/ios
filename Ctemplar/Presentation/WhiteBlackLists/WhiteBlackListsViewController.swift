@@ -119,11 +119,7 @@ class WhiteBlackListsViewController: UIViewController, UISearchBarDelegate {
 
 extension WhiteBlackListsViewController: AddContactToWhiteBlackListDelegate {
     
-    func applyAction() {
-        
-    }
-    
-    func cancelAction() {
+    func addAction() {
         
     }
 }
