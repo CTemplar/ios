@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol AddContactToWhiteBlackListDelegate {
-    func addAction()
+    func addAction(name: String, email: String)
 }
 
 class AddContactToWhiteBlackListViewController: UIViewController, UITextFieldDelegate {
@@ -70,7 +70,7 @@ class AddContactToWhiteBlackListViewController: UIViewController, UITextFieldDel
     
     @IBAction func addButtonPressed(_ sender: AnyObject) {
         
-        self.delegate?.addAction()
+        self.delegate?.addAction(name: self.name, email: self.email)
         self.dismiss(animated: true, completion: nil)
     }
     

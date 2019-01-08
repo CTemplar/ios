@@ -119,7 +119,15 @@ class WhiteBlackListsViewController: UIViewController, UISearchBarDelegate {
 
 extension WhiteBlackListsViewController: AddContactToWhiteBlackListDelegate {
     
-    func addAction() {
+    func addAction(name: String, email: String) {
         
+        switch listMode {
+        case WhiteBlackListsMode.whiteList:
+            self.presenter?.interactor?.addContactToWhiteList(name: name, email: email)
+            break
+        case WhiteBlackListsMode.blackList:
+            self.presenter?.interactor?.addContactToBlackList(name: name, email: email)
+            break
+        }
     }
 }
