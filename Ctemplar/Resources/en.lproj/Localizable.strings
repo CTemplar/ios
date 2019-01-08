@@ -153,6 +153,18 @@
 "privacyPolicy" = "Privacy Policy";
 "termsAndConditions" = "Terms & Conditions";
 
+"appVersion" = "AppVersion ";
+
+"settings" = "Settings";
+
+"generalSettings"           = "General settings";
+"foldersSettings"           = "Folders";
+"mailSettings"              = "Mail";
+"aboutSettings"             = "About";
+"storageSettings"           = "Storage";
+"logoutSettings"            = "Log out";
+
+//White/Black List
 
 "whiteListText" = "Messages from contacts in the whitelist always go to Inbox folder. Marking a message as not spam adds the address to the Whitelist";
 "blackListText" = "Messages from contacts in the blacklist always go to Spam folder. Marking a message as spam adds the address to the Blacklist";

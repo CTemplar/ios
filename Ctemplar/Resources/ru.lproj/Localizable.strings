@@ -138,15 +138,15 @@
 "savingContact" = "Сохранять контакты";
 "whiteBlackList" = "Белый список / Черный список";
 
-"manageFolders" = "Manage folders";
+"manageFolders" = "Управление папками";
 
-"signature" = "Signature";
-"mobileSignature" = "Mobile signature";
-"default" = "Default";
+"signature" = "Подпись";
+"mobileSignature" = "Мобильная подпись";
+"default" = "Основная";
 
-"aboutUs" = "About us";
-"privacyPolicy" = "Privacy Policy";
-"terms" = "Terms & Conditions";
+"aboutUs" = "О нас";
+"privacyPolicy" = "Политика конфиденциальности";
+"terms" = "Условия использования";
 
 "recoveryEmailUpdatedMessage" = "Recovery Email was updated successfully";
 "passwordUpdatedMessage" = "Password was updated successfully";
@@ -155,8 +155,21 @@
 "currentPasswordPlaceholder" = "Current password";
 "newPasswordPlaceholder" = "New password";
 
-"privacyPolicy" = "Privacy Policy";
-"termsAndConditions" = "Terms & Conditions";
+"privacyPolicy" = "Политика конфиденциальности";
+"termsAndConditions" = "Условия использования";
+
+"appVersion" = "Версия приложения ";
+
+"settings" = "Настройки";
+
+"generalSettings"           = "Основные настройки";
+"foldersSettings"           = "Папки";
+"mailSettings"              = "Почта";
+"aboutSettings"             = "О приложении";
+"storageSettings"           = "Хранилище";
+"logoutSettings"            = "Выйти";
+
+//White/Black List
 
 "whiteListText" = "Messages from contacts in the whitelist always go to Inbox folder. Marking a message as not spam adds the address to the Whitelist";
 "blackListText" = "Messages from contacts in the blacklist always go to Spam folder. Marking a message as spam adds the address to the Blacklist";

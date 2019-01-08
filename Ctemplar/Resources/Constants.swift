@@ -527,12 +527,12 @@ enum SchedulerMode: String {
 
 enum SettingsSectionsName: String, CaseIterable {
     
-    case general           = "General settings"
-    case folders           = "Folders"
-    case mail              = "Mail"
-    case about             = "About"
-    case storage           = "Storage"
-    case logout            = "Log out"
+    case general           = "generalSettings"
+    case folders           = "foldersSettings"
+    case mail              = "mailSettings"
+    case about             = "aboutSettings"
+    case storage           = "storageSettings"
+    case logout            = "logoutSettings"
 }
 
 enum SettingsSections: Int, CaseIterable {

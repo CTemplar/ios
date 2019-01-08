@@ -31,6 +31,8 @@ class  SettingsViewController: UIViewController {
         let configurator =  SettingsConfigurator()
         configurator.configure(viewController: self)
         
+        self.navigationItem.title = "settings".localized()
+        
         dataSource?.initWith(parent: self, tableView: settingsTableView)
         
         NotificationCenter.default.addObserver(self, selector: #selector(userSettingsUpdate), name: NSNotification.Name(rawValue: k_updateUserSettingsNotificationID), object: nil)

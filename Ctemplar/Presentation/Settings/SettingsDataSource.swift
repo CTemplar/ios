@@ -49,17 +49,17 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
      
         switch section {
         case SettingsSections.general.rawValue:
-            return SettingsSectionsName.general.rawValue
+            return SettingsSectionsName.general.rawValue.localized()
         case SettingsSections.folders.rawValue:
-            return SettingsSectionsName.folders.rawValue
+            return SettingsSectionsName.folders.rawValue.localized()
         case SettingsSections.mail.rawValue:
-            return SettingsSectionsName.mail.rawValue
+            return SettingsSectionsName.mail.rawValue.localized()
         case SettingsSections.about.rawValue:
-            return SettingsSectionsName.about.rawValue
+            return SettingsSectionsName.about.rawValue.localized()
         case SettingsSections.storage.rawValue:
-            return SettingsSectionsName.storage.rawValue
+            return SettingsSectionsName.storage.rawValue.localized()
         case SettingsSections.logout.rawValue:
-            return SettingsSectionsName.logout.rawValue
+            return SettingsSectionsName.logout.rawValue.localized()
         default:
             return ""
         }
@@ -310,7 +310,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         cell.textLabel?.font = UIFont(name: k_latoRegularFontName, size: 16)!
         cell.textLabel?.textColor = k_sideMenuTextFadeColor
         cell.textLabel?.textAlignment = .center
-        cell.textLabel?.text = "AppVersion " + appVersion + " (" + buildNumber + ")"
+        cell.textLabel?.text = "appVersion".localized() + appVersion + " (" + buildNumber + ")"
         
         cell.selectionStyle = .none
     }
