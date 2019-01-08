@@ -108,10 +108,27 @@
 "camera" = "Camera";
 
 //Side Menu Cells
+
+"inbox"            = "Inbox";
+"draft"            = "Draft";
+"sent"             = "Sent";
+"outbox"           = "Outbox";
+"starred"          = "Starred";
+"archive"          = "Archive";
+"spam"             = "Spam";
+"trash"            = "Trash";
+"allMails"         = "All Mails";
+"contacts"         = "Contacts";
+"settings"         = "Settings";
+"help"             = "Help";
+"logout"           = "Logout";
+"manageFolders"    = "Manage Folders";
+
 "showMoreFolders" = "Show More Folders";
 "hideFolders" = "Hide Folders";
 
 //Scheduler Screen
+
 "selfDestructTimer" = "Self-destructing Timer";
 "deadManTimer"      = "Dead Man's Timer";
 "delayedDelivery"   = "Delayed delivery";

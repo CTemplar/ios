@@ -387,7 +387,7 @@ let k_customFoldersLimitForNonPremium = 3
 let k_colorButtonsTag = 200
 
 enum InboxSideMenuOptionsName: String {
-    
+    /*
     case inbox            = "Inbox"
     case draft            = "Draft"
     case sent             = "Sent"
@@ -401,7 +401,22 @@ enum InboxSideMenuOptionsName: String {
     case settings         = "Settings"
     case help             = "Help"
     case logout           = "Logout"
-    case manageFolders    = "Manage Folders"
+    case manageFolders    = "Manage Folders"*/
+    
+    case inbox            = "inbox"
+    case draft            = "draft"
+    case sent             = "sent"
+    case outbox           = "outbox"
+    case starred          = "starred"
+    case archive          = "archive"
+    case spam             = "spam"
+    case trash            = "trash"
+    case allMails         = "allMails"
+    case contacts         = "contacts"
+    case settings         = "settings"
+    case help             = "help"
+    case logout           = "logout"
+    case manageFolders    = "manageFolders"    
 }
 
 enum MessagesFoldersName: String, CaseIterable {

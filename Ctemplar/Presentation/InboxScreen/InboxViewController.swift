@@ -83,24 +83,19 @@ class InboxViewController: UIViewController {
         presenter?.setupUI(emailsCount: 0, unreadEmails: 0, filterEnabled: false)
         presenter?.initFilterView()
         presenter?.initMoreActionsView()
-    
-        //DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5), execute: {
-        //    self.presenter?.interactor?.publicKeyList()
-        //})
         
         adddNotificationObserver()
-        
-        self.navigationItem.title = currentFolder
+
         self.leftBarButtonItem.isEnabled = false
         
-        self.presenter?.interactor?.updateMessages(withUndo: "", silent: false)
-        //self.presenter?.interactor?.userMyself()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100), execute: {
+            self.presenter?.interactor?.updateMessages(withUndo: "", silent: false)
+        })       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        //self.presenter?.interactor?.updateMessages(withUndo: "")
+                
         if self.runOnce == true { //optimization for showing table already 
             self.presenter?.interactor?.userMyself()
             self.runOnce = false

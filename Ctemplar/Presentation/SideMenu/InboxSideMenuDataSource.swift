@@ -167,7 +167,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
 
             let unreadCount = self.parentViewController?.presenter?.interactor?.getUnreadMessagesCount(folderName: folderName)
             
-            (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: selected, iconName: iconName, title: folderName, unreadCount: unreadCount!)
+            (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: selected, iconName: iconName, title: folderName.localized(), unreadCount: unreadCount!)
             
             break
         case SideMenuSectionIndex.options.rawValue:
@@ -178,7 +178,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             let iconName = self.optionsImageNameList[indexPath.row]
             let selected = isSelected(section: indexPath.section, row: indexPath.row)
             
-            (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: selected, iconName: iconName, title: optionName, unreadCount: 0)
+            (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: selected, iconName: iconName, title: optionName.localized(), unreadCount: 0)
             
             break
         case SideMenuSectionIndex.manageFolders.rawValue:

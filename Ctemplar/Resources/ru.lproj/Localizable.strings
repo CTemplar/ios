@@ -113,10 +113,27 @@
 "camera" = "Camera";
 
 //Side Menu Cells
-"showMoreFolders" = "Show More Folders";
-"hideFolders" = "Hide Folders";
+
+"inbox"            = "Входящие";
+"draft"            = "Черновик";
+"sent"             = "Отправленные";
+"outbox"           = "Исходящие";
+"starred"          = "Избранные";
+"archive"          = "Архив";
+"spam"             = "Спам";
+"trash"            = "Корзина";
+"allMails"         = "Все письма";
+"contacts"         = "Контакты";
+"settings"         = "Настройки";
+"help"             = "Помощь";
+"logout"           = "Выйти";
+"manageFolders"    = "Управление Папками";
+
+"showMoreFolders" = "Показать больше папок";
+"hideFolders" = "Скрыть папки";
 
 //Scheduler Screen
+
 "selfDestructTimer" = "Self-destructing Timer";
 "deadManTimer"      = "Dead Man's Timer";
 "delayedDelivery"   = "Delayed delivery";
@@ -126,6 +143,7 @@
 "delayedDeliveryText"   = "Email will be send automatically at the set time";
 
 //Manage Folders
+
 "deleteFolderTitle" = "Delete folder?";
 "deleteFolder" = "Are you sure you want to delete folder?";
 

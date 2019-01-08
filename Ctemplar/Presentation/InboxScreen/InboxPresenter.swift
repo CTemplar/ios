@@ -90,7 +90,7 @@ class InboxPresenter {
         if selectionMode == true {
             self.viewController?.navigationItem.title = String(format: "%d Selected", selectedMessages)
         } else {
-            self.viewController?.navigationItem.title = currentFolder
+            self.viewController?.navigationItem.title = currentFolder.localized()
         }
     }
     
