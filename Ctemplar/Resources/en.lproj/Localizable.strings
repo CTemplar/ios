@@ -37,6 +37,25 @@
 
 "manageFolders" = "Manage Folders";
 
+// inbox
+"selected" = "Selected";
+"emails" = "emails";
+"email" = "email";
+"emailsx" = "emails";
+"unread" = "unread";
+
+"filtered" = "Filtered";
+"noInboxMessage" = "You have no Inbox messages";
+"noFilteredMessage" = "There are no messages match the filter";
+
+"starredFilter" = "Starred";
+"ureadFilter" = "Unread";
+"attachmentsFilter" = "With attachments";
+
+"decrypting" = "decrypting...";
+
+"compose" = "Compose";
+
 //more actions buttons
 "markAsSpam" = "Mark as spam";
 "markAsRead" = "Mark as read";

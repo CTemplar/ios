@@ -978,3 +978,28 @@ extension URL {
         return (try? resourceValues(forKeys: [.localizedNameKey]))?.localizedName
     }
 }
+
+// localized Classes
+
+final class UILocalizedButton: UIButton {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        let title = self.title(for: .normal)?.localized()
+        setTitle(title, for: .normal)
+    }
+}
+
+final class UILocalizedLabel: UILabel {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        text = text?.localized()
+    }
+}
+
+final class UILocalizedTextField: UITextField {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        text = text?.localized()
+    }
+}

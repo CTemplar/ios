@@ -107,13 +107,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OxM-zC-5gC">
                                 <rect key="frame" x="0.0" y="618" width="375" height="83"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4R-qn-ZRa">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4R-qn-ZRa" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="122" y="0.0" width="131" height="49"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="K4R-qn-ZRa" secondAttribute="height" multiplier="131:49" id="2IU-tt-9Fw"/>
                                             <constraint firstAttribute="height" constant="49" id="iAa-XT-DhY"/>
                                         </constraints>
-                                        <state key="normal" title="Compose" image="ComposeButton">
+                                        <state key="normal" title="compose" image="ComposeButton">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>

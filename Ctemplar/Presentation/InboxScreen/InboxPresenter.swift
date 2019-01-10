@@ -31,18 +31,18 @@ class InboxPresenter {
     func setupUI(emailsCount: Int, unreadEmails: Int, filterEnabled: Bool) {
         
         if filterEnabled {
-            viewController?.messagesLabel.text = "Filtered"
+            viewController?.messagesLabel.text = "filtered".localized()
             viewController?.unreadMessagesLabel.text = self.formatAppliedFilters()
             viewController?.unreadMessagesLabel.textColor = k_redColor
             
-            viewController?.inboxEmptyLabel.text = "There are no messages match the filter"
+            viewController?.inboxEmptyLabel.text = "noFilteredMessage".localized()
             viewController?.inboxEmptyImageView.image =  UIImage(named: k_emptyFilterInboxIconImageName)
         } else {
             viewController?.messagesLabel.text = formatEmailsCountText(emailsCount: emailsCount)
             viewController?.unreadMessagesLabel.text = formatUreadEmailsCountText(emailsCount: unreadEmails)
             viewController?.unreadMessagesLabel.textColor = k_lightGrayTextColor
             
-            viewController?.inboxEmptyLabel.text = "You have no Inbox messages"
+            viewController?.inboxEmptyLabel.text = "noInboxMessage".localized()
             viewController?.inboxEmptyImageView.image =  UIImage(named: k_emptyInboxIconImageName)
         }
         
@@ -88,7 +88,7 @@ class InboxPresenter {
     func setupNavigationItemTitle(selectedMessages: Int, selectionMode: Bool, currentFolder: String) {
         
         if selectionMode == true {
-            self.viewController?.navigationItem.title = String(format: "%d Selected", selectedMessages)
+            self.viewController?.navigationItem.title = String(format: "%d " + "selected".localized() , selectedMessages)
         } else {
             self.viewController?.navigationItem.title = currentFolder.localized()
         }
@@ -149,10 +149,19 @@ class InboxPresenter {
     
     func formatEmailsCountText(emailsCount: Int) -> String {
         
-        var emailsCountString : String = "emails"
+        var emailsCountString : String = "emails".localized()
         
         if emailsCount == 1 {
-            emailsCountString = "email"
+            emailsCountString = "email".localized()
+        }
+        
+        let emailsString = emailsCount.description
+        
+        let lastChar = emailsString.last
+        let lastDigit = Int(String(lastChar!))
+        
+        if lastDigit! > 1 && lastDigit! < 5 {
+            emailsCountString = "emailsx".localized()
         }
         
         emailsCountString = emailsCount.description + " " + emailsCountString
@@ -162,7 +171,7 @@ class InboxPresenter {
     
     func formatUreadEmailsCountText(emailsCount: Int) -> String {
         
-        var emailsCountString : String = "unread"
+        var emailsCountString : String = "unread".localized()
         
         emailsCountString = emailsCount.description + " " + emailsCountString
         
@@ -305,16 +314,16 @@ class InboxPresenter {
             case InboxFilterButtonsTag.starred.rawValue:
                 //print("starred filtered")
                 if filterApplied == true {
-                   appliedFiltersText = "Starred"
+                   appliedFiltersText = "starredFilter".localized()
                 }
                 break
             case InboxFilterButtonsTag.unread.rawValue:
                 //print("unread filtered")
                 if filterApplied == true {
                     if appliedFiltersText.count > 0 {
-                        appliedFiltersText = appliedFiltersText + ", Unread"
+                        appliedFiltersText = appliedFiltersText + ", " + "ureadFilter".localized()
                     } else {
-                        appliedFiltersText = "Unread"
+                        appliedFiltersText = "ureadFilter".localized()
                     }
                 }
                 break
@@ -322,9 +331,9 @@ class InboxPresenter {
                 //print("with attachment filtered")
                 if filterApplied == true {
                     if appliedFiltersText.count > 0 {
-                        appliedFiltersText = appliedFiltersText + ", With attachments"
+                        appliedFiltersText = appliedFiltersText + ", " + "attachmentsFilter".localized()
                     } else {
-                        appliedFiltersText = "With attachments"
+                        appliedFiltersText = "attachmentsFilter".localized()
                     }
                 }
                 break

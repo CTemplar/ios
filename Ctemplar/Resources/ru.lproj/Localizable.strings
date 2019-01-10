@@ -37,6 +37,24 @@
 
 "manageFolders" = "Папки";
 
+// inbox
+"selected" = "Выбрано";
+"emails" = "писем";
+"email" = "письмо";
+"emailsx" = "письма";
+"unread" = "непрочитано";
+
+"filtered" = "Отфильтровано";
+"noInboxMessage" = "У вас нет входящих сообщений";
+"noFilteredMessage" = "Нет писем по такому фильтру";
+
+"starredFilter" = "Избранные";
+"ureadFilter" = "Непрочтенные";
+"attachmentsFilter" = "С вложениями";
+
+"decrypting" = "дешифруется...";
+
+"compose" = "Написать";
 
 //more actions buttons
 "markAsSpam" = "Пометить как спам";
