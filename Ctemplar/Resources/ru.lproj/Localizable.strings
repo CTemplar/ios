@@ -229,3 +229,24 @@
 //language
 
 "languageTitle" = "Язык";
+
+//formatter
+
+"toPrefix" = "Кому: ";
+"ccPrefix" = "Копия: ";
+"fromPrefix" = "От: ";
+
+"yesterday" = "Вчера";
+
+"deleteIn" = "Удалить в ";
+"daySuffix" = "д ";
+
+"deadMans" = "Удалится ";
+"delayTime" = "Отправка ";
+
+"manyDays" = " дней ";
+"manyDaysx" = " дня ";
+"oneDay" = " день ";
+"manyHours" = " часов";
+"manyHoursx" = " часа";
+"oneHour" = " час";

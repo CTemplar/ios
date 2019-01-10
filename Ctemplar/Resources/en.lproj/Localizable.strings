@@ -224,3 +224,24 @@
 //language
 
 "languageTitle" = "Language";
+
+//formatter
+
+"toPrefix" = "To: ";
+"ccPrefix" = "CC: ";
+"fromPrefix" = "From: ";
+
+"yesterday" = "Yesterday";
+
+"deleteIn" = "Delete In ";
+"daySuffix" = "d ";
+
+"deadMans" = "Dead mans ";
+"delayTime" = "Delay time ";
+
+"manyDays" = " days ";
+"manyDaysx" = " days ";
+"oneDay" = " day ";
+"manyHours" = " hours";
+"manyHoursx" = " hours";
+"oneHour" = " hour";
