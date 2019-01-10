@@ -16,6 +16,7 @@
 "cancelButton" = "Отмена";
 "logotButton" = "Выйти";
 "saveButton" = "Сохранить";
+"applyButton" = "Применить";
 
 "termsAndConditionsFullText" = "Пожалуста, поставьте галочку если вы согласны с нашими Условиями и Положениями";
 "termsAndConditionsPhrase" = "Условия и Положения";
@@ -55,6 +56,12 @@
 "decrypting" = "дешифруется...";
 
 "compose" = "Написать";
+
+//Filter
+
+"filters" = "Фильтры";
+"clearAll" = "Очистить";
+"selectedFilters" = "Выбрать фильтры";
 
 //more actions buttons
 "markAsSpam" = "Пометить как спам";

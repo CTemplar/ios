@@ -21,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UserDefaults.standard.setValue(false, forKey:"_UIConstraintBasedLayoutLogUnsatisfiable")
         
+        print("currentDeviceLanguageCode:", Locale.current.languageCode as Any)
+        print("currentAppLanguage:", Locale.preferredLanguages[0])
+        
         Fabric.with([Crashlytics.self])
         
         return true

@@ -111,7 +111,7 @@ extension Bundle {
             bundle = Bundle(path: path!)
         }
 
-        print("bundlePath:", NSString(string: bundle.bundlePath).lastPathComponent)
+        //print("bundlePath:", NSString(string: bundle.bundlePath).lastPathComponent)
         
         return bundle;
     }
@@ -130,5 +130,19 @@ extension Bundle {
         let appLang = UserDefaults.standard.string(forKey: "app_lang") ?? "en"
         
         return appLang
+    }
+    
+    public static func currentDeviceLanguageCode() -> String? {
+        
+        let locale = Locale.current.languageCode
+        
+        return locale
+    }
+    
+    public static func currentAppLanguage() -> String? {
+        
+        let preferredLanguages = Locale.preferredLanguages[0]
+        
+        return preferredLanguages
     }
 }
