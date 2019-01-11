@@ -870,9 +870,9 @@ class ComposePresenter {
             //temp, need to refactored
             var color : UIColor = k_mainInboxColor
             
-            if self.findDuplicatedEmails(emailArray: emailArray, currentEmail: email) {
-                color = UIColor.orange
-            }
+            //if self.findDuplicatedEmails(emailArray: emailArray, currentEmail: email) {
+            //    color = UIColor.orange
+            //}
             
             if !self.validateEmail(currentEmail: email) {
                 color = k_redColor
@@ -901,7 +901,7 @@ class ComposePresenter {
             }
         }
         
-        if find > 1 {
+        if find > 0 {
             return true
         }
         

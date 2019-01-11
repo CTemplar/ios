@@ -840,7 +840,7 @@ class ComposeInteractor {
                 inputText = textBefore + " <" + inputEmail + "> "
                 
             } else {
-                inputText = textView.text
+                inputText = textView.text + " " //if user want to delete email, delete backspace after input, but change self mind
                 //hide keyboard?
             }
         }
@@ -848,28 +848,48 @@ class ComposeInteractor {
         switch textView {
         case self.viewController!.emailToTextView:
             print("inputEmail:", inputEmail as Any)
-            if inputEmail.count > 0 {
-                self.viewController!.emailsToArray.append(inputEmail)
-            }
-            self.viewController!.emailToSting = inputText
-            self.viewController!.emailToSting = self.viewController!.emailToSting.replacingOccurrences(of: "  ", with: " ")//remove double spaces
             
+            if (self.presenter?.findDuplicatedEmails(emailArray: self.viewController!.emailsToArray, currentEmail: inputEmail))! {
+                let textBefore = String(textView.text.dropLast(inputEmail.count))
+                self.viewController!.emailToSting = textBefore
+            } else {
+                if inputEmail.count > 0 {
+                    self.viewController!.emailsToArray.append(inputEmail)
+                }
+                self.viewController!.emailToSting = inputText
+            }
+            
+            self.viewController!.emailToSting = self.viewController!.emailToSting.replacingOccurrences(of: "  ", with: " ")//remove double spaces
             
             break
         case self.viewController!.ccToTextView:
             print("inputCcEmail:", inputEmail as Any)
-            if inputEmail.count > 0 {
-                self.viewController!.ccToArray.append(inputEmail)
+            
+            if (self.presenter?.findDuplicatedEmails(emailArray: self.viewController!.ccToArray, currentEmail: inputEmail))! {
+                let textBefore = String(textView.text.dropLast(inputEmail.count))
+                self.viewController!.ccToSting = textBefore
+            } else {
+                if inputEmail.count > 0 {
+                    self.viewController!.ccToArray.append(inputEmail)
+                }
+                self.viewController!.ccToSting = inputText
             }
-            self.viewController!.ccToSting = inputText
+     
             self.viewController!.ccToSting = self.viewController!.ccToSting.replacingOccurrences(of: "  ", with: " ")//remove double spaces
             break
         case self.viewController!.bccToTextView:
             print("inputBccEmail:", inputEmail as Any)
-            if inputEmail.count > 0 {
-                self.viewController!.bccToArray.append(inputEmail)
+            
+            if (self.presenter?.findDuplicatedEmails(emailArray: self.viewController!.bccToArray, currentEmail: inputEmail))! {
+                let textBefore = String(textView.text.dropLast(inputEmail.count))
+                self.viewController!.bccToSting = textBefore
+            } else {
+                if inputEmail.count > 0 {
+                    self.viewController!.bccToArray.append(inputEmail)
+                }
+                self.viewController!.bccToSting = inputText
             }
-            self.viewController!.bccToSting = inputText
+
             self.viewController!.bccToSting = self.viewController!.bccToSting.replacingOccurrences(of: "  ", with: " ")//remove double spaces
             break
         default:
