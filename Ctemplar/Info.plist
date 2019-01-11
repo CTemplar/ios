@@ -17,7 +17,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>15</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -34,6 +34,19 @@
 	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Need camera access for uploading Images</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Allows saving photos to the Photo Library</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allows share and save photos</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Lato-Regular.ttf</string>
@@ -41,6 +54,8 @@
 		<string>Lato-Bold.ttf</string>
 		<string>Roboto-Bold.ttf</string>
 	</array>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UILaunchStoryboardName~ipad</key>
@@ -64,22 +79,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Allows share and save photos</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Allows saving photos to the Photo Library</string>
-	<key>LSSupportsOpeningDocumentsInPlace</key>
-	<true/>
-	<key>UIFileSharingEnabled</key>
-	<true/>
 	<key>UISupportsDocumentBrowser</key>
 	<true/>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
-    </dict>
-    <key>NSCameraUsageDescription</key>
-    <string>Need camera access for uploading Images</string>
 </dict>
 </plist>
