@@ -46,8 +46,8 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zyc-Qa-hyt">
-                                <rect key="frame" x="33" y="184" width="29" height="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="usernamePlaceholder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zyc-Qa-hyt" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                <rect key="frame" x="33" y="184" width="113" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="sqo-Ti-Psh"/>
                                 </constraints>
@@ -55,7 +55,7 @@
                                 <color key="textColor" white="1" alpha="0.67649647887323938" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t1J-Gy-OcL">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="usernamePlaceholder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t1J-Gy-OcL" customClass="UILocalizedTextField" customModule="Ctemplar" customModuleProvider="target">
                                 <rect key="frame" x="33" y="200" width="212" height="23"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="19"/>
@@ -87,13 +87,13 @@
                                     <constraint firstAttribute="height" constant="2" id="j7z-Rf-UtH"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ip-E3-IDL">
-                                <rect key="frame" x="33" y="248" width="50.5" height="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="passwordPlaceholder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ip-E3-IDL" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                <rect key="frame" x="33" y="248" width="112" height="15"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="0.67649647889999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S0R-MO-LOs">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="passwordPlaceholder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S0R-MO-LOs" customClass="UILocalizedTextField" customModule="Ctemplar" customModuleProvider="target">
                                 <rect key="frame" x="33" y="269" width="284" height="23"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -128,41 +128,41 @@
                                     <action selector="passwordEyeButtonPressed:" destination="k7s-rE-KqE" eventType="touchUpInside" id="T83-gN-vM4"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o29-J4-Ta5">
-                                <rect key="frame" x="249" y="307" width="94" height="15"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o29-J4-Ta5" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
+                                <rect key="frame" x="260" y="307" width="83" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="LNi-zR-ixM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
-                                <state key="normal" title="Forgot Password?">
+                                <state key="normal" title="forgotPassword">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="forgotPasswordButtonPressed:" destination="k7s-rE-KqE" eventType="touchUpInside" id="MNv-Ze-zhq"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8NZ-9j-UFf">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8NZ-9j-UFf" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
                                 <rect key="frame" x="33" y="348" width="310" height="48"/>
                                 <color key="backgroundColor" red="0.90588235294117647" green="0.29803921568627451" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="8NZ-9j-UFf" secondAttribute="height" multiplier="155:24" id="oio-cG-S6k"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                <state key="normal" title="Log in">
+                                <state key="normal" title="login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="loginButtonPressed:" destination="k7s-rE-KqE" eventType="touchUpInside" id="n2X-KL-Nkg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpe-KA-Ad9">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpe-KA-Ad9" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
                                 <rect key="frame" x="128" y="617" width="119" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="I97-q6-dqN"/>
                                     <constraint firstAttribute="width" secondItem="kpe-KA-Ad9" secondAttribute="height" multiplier="119:19" id="Tnf-QL-UgI"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
-                                <state key="normal" title="Create account">
+                                <state key="normal" title="createAccount">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>

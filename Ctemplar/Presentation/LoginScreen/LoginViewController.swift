@@ -40,6 +40,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         presenter!.setupEmailTextFieldsAndHintLabel(userEmail: userEmail!)
         presenter!.setupPasswordTextFieldsAndHintLabel(password: password!)
         
+        presenter!.hintLabel(show: false, sender: userNameTextField)
+        presenter!.hintLabel(show: false, sender: passwordTextField)
+        
         userNameTextField.delegate = self
         passwordTextField.delegate = self
         

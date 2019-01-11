@@ -366,7 +366,6 @@
 		8440141E21D39F7700FC450C /* SavingContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingContactsViewController.swift; sourceTree = "<group>"; };
 		8440142021D39F8B00FC450C /* SavingContacts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SavingContacts.storyboard; sourceTree = "<group>"; };
 		8440142321D3B74100FC450C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
-		8440142621D3B74400FC450C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Login.strings; sourceTree = "<group>"; };
 		8440466A21C7E8C700CDEB3F /* ManageFolders.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ManageFolders.storyboard; sourceTree = "<group>"; };
 		8440466C21C7E8DE00CDEB3F /* ManageFoldersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageFoldersViewController.swift; sourceTree = "<group>"; };
 		8440466E21C7F84000CDEB3F /* ManageFoldersConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageFoldersConfigurator.swift; sourceTree = "<group>"; };
@@ -1549,7 +1548,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				8440142321D3B74100FC450C /* Base */,
-				8440142621D3B74400FC450C /* ru */,
 			);
 			name = Login.storyboard;
 			sourceTree = "<group>";

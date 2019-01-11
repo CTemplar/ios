@@ -34,6 +34,10 @@
 "newPasswordPlaceholder" = "New password";
 "confirmNewPasswordPlaceholder" = "Confirm new password";
 
+"forgotPassword" = "Forgot Password?";
+"login" = "Log in";
+"createAccount" = "Create account";
+
 //side menu
 
 "manageFolders" = "Manage Folders";

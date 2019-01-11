@@ -26,13 +26,17 @@
 "emailPlaceholder" = "Почта";
 "passwordPlaceholder" = "Пароль";
 "usernamePlaceholder" = "Имя";
-"choosePasswordPlaceholder" = "Choose password";
-"confirmPasswordPlaceholder" = "Confirm password";
-"recoveryEmailPlaceholder" = "Recovery email";
-"usernameResetPlaceholder" = "Ctemplar username to reset";
-"resetCodePlaceholder" = "Reset Code";
-"newPasswordPlaceholder" = "New password";
-"confirmNewPasswordPlaceholder" = "Confirm new password";
+"choosePasswordPlaceholder" = "Выбрать пароль";
+"confirmPasswordPlaceholder" = "Подтвердить пароль";
+"recoveryEmailPlaceholder" = "Запасная почта";
+"usernameResetPlaceholder" = "Ctemplar Имя для сброса";
+"resetCodePlaceholder" = "Код для сброса";
+"newPasswordPlaceholder" = "Новый пароль";
+"confirmNewPasswordPlaceholder" = "Подтверидить новый пароль";
+
+"forgotPassword" = "Забыли пароль?";
+"login" = "Войти";
+"createAccount" = "Создать аккаунт";
 
 //side menu
 
