@@ -46,11 +46,10 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         searchBar.delegate = self        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        //self.presenter?.interactor?.allMessagesList()
-        //self.dataSource?.messagesArray = self.messagesList
+        presenter?.setupNavigationBarItem(searchBar: searchBar)
         self.dataSource?.reloadData()
     }
     

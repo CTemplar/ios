@@ -124,12 +124,10 @@
 
 
 //compose message titles
-"newMessage" = "New Message";
-"reply" = "Reply";
-"relpyAll" = "Reply All";
-"forward" = "Forward";
-
-"search" = "Search";
+"newMessage" = "Новое Сообщение";
+"reply" = "Ответить";
+"relpyAll" = "Ответить Всем";
+"forward" = "Переслать";
 
 //delete
 
@@ -179,6 +177,13 @@
 "reply" = "Re: ";
 
 "subject" = "Тема";
+
+// Search Screen
+
+"noResults" = "Нет результатов";
+
+"search" = "Поиск";
+
 
 //Side Menu Cells
 

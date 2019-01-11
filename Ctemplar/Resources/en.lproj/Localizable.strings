@@ -126,8 +126,6 @@
 "relpyAll" = "Reply All";
 "forward" = "Forward";
 
-"search" = "Search";
-
 //delete
 
 "deleteTitle" = "Warning!";
@@ -176,6 +174,12 @@
 "reply" = "Re: ";
 
 "subject" = "Subject";
+
+// Search Screen
+
+"noResults" = "No results found";
+
+"search" = "Search";
 
 //Side Menu Cells
 
