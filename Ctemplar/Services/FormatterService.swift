@@ -634,11 +634,20 @@ extension Date {
         var daysSuffix: String = ""
         var hoursSuffix: String = ""
         
-        if days > 0 {
+        var daysLastDigit = 0
+        
+        if days < 10 || days > 19 {
+            let daysString = days.description
+            daysLastDigit = Int(String(daysString.last!))!
+        } else {
+            daysLastDigit = days
+        }
+        
+        if daysLastDigit > 0 {
             
-            if days > 1 {
+            if daysLastDigit > 1 {
                 daysSuffix = "manyDays".localized()
-                if days < 4 {
+                if daysLastDigit < 5 {
                     daysSuffix = "manyDaysx".localized()
                 }
             } else {
@@ -648,14 +657,23 @@ extension Date {
             dateString = dateString + String(format: "%d", days) + daysSuffix
         }
         
-        if hours > 1 {
+        var hoursLastDigit = 0
+        
+        if hours < 10 || hours > 19 {
+            let hoursString = hours.description
+            hoursLastDigit = Int(String(hoursString.last!))!
+        } else {
+            hoursLastDigit = hours
+        }
+        
+        if hoursLastDigit > 1 {
             hoursSuffix = "manyHours".localized()
-            if hours < 4 {
+            if hoursLastDigit < 5 {
                 hoursSuffix = "manyHoursx".localized()
             }
         } else {
             hoursSuffix = "oneHour".localized()
-            if hours < 1 {
+            if hoursLastDigit < 1 {
                 hoursSuffix = "manyHours".localized()
             }
         }

@@ -207,13 +207,13 @@
 
 //Scheduler Screen
 
-"selfDestructTimer" = "Self-destructing Timer";
-"deadManTimer"      = "Dead Man's Timer";
-"delayedDelivery"   = "Delayed delivery";
+"selfDestructTimer" = "Время самоудаления";
+"deadManTimer"      = "Таймер мертвеца";
+"delayedDelivery"   = "Отправка с задержкой";
 
-"selfDestructTimerText" = "This email deletes itself from the receivers account after";
-"deadManTimerText"      = "If you do not log into your account after the set time email will be sent after ";
-"delayedDeliveryText"   = "Email will be send automatically at the set time";
+"selfDestructTimerText" = "Это письмо удаляется из учетной записи получателя после";
+"deadManTimerText"      = "Если вы не войдете в свою учетную запись после установленного времени, электронное письмо будет отправлено после ";
+"delayedDeliveryText"   = "Электронная почта будет отправлена автоматически в установленное время";
 
 //Manage Folders
 

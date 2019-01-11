@@ -46,10 +46,10 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         searchBar.delegate = self        
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        presenter?.setupNavigationBarItem(searchBar: searchBar)
+        //presenter?.setupNavigationBarItem(searchBar: searchBar)
         self.dataSource?.reloadData()
     }
     
