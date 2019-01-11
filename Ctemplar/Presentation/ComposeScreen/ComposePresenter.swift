@@ -640,10 +640,10 @@ class ComposePresenter {
         let label = UILabel(frame: labelRect)
         label.font = UIFont(name: k_latoRegularFontName, size: 14.0)
         label.textColor = k_emailToInputColor
-        //var formattedText = text.dropLast().dropFirst()
-        //formattedText = "_" + formattedText + "_"
-        //label.text = String(formattedText)
-        label.text = text
+        let formattedText = text.dropLast().dropFirst()        
+        label.text = String(formattedText)
+        label.textAlignment = .center
+        //label.text = text
         label.backgroundColor = UIColor.clear
         
         view.tag = index
@@ -870,9 +870,9 @@ class ComposePresenter {
             //temp, need to refactored
             var color : UIColor = k_mainInboxColor
             
-            if self.findDuplicatedEmails(emailArray: emailArray, currentEmail: email) {
-                color = UIColor.orange
-            }
+            //if self.findDuplicatedEmails(emailArray: emailArray, currentEmail: email) {
+            //    color = UIColor.orange
+            //}
             
             if !self.validateEmail(currentEmail: email) {
                 color = k_redColor
@@ -882,9 +882,9 @@ class ComposePresenter {
                 color = k_foundTextBackgroundColor
             }
             
-            //let formattedEmail = "<" + email + ">"
+            let formattedEmail = "<" + email + ">"
             
-            self.setRect(textView: textView, email: email, tag: tag, color: color)
+            self.setRect(textView: textView, email: formattedEmail, tag: tag, color: color)
             localSubViewsArray.append(tag)
         }
         
@@ -901,7 +901,7 @@ class ComposePresenter {
             }
         }
         
-        if find > 1 {
+        if find > 0 {
             return true
         }
         

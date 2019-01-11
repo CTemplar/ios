@@ -163,17 +163,6 @@ class WhiteBlackListsPresenter {
     }
     
     func addContactButtonPressed(listMode: WhiteBlackListsMode) {
-        /*
-        switch listMode {
-        case WhiteBlackListsMode.whiteList:
-            //temp
-            //self.interactor?.addContactToBlackList(name: "atif", email: "atif.saddique4@outlook.com")
-            //self.interactor?.addContactToWhiteList(name: "dmitry3", email: "dmitry3@dev.ctemplar.com")            
-            break
-        case WhiteBlackListsMode.blackList:
-            
-            break
-        }*/
         
         self.viewController?.router?.showAddContactToWhiteBlackList(mode: listMode)
     }

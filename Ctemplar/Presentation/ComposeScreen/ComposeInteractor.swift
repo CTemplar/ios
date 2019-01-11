@@ -602,7 +602,9 @@ class ComposeInteractor {
                 self.viewController!.emailsToArray.removeAll{ $0 == self.viewController!.tapSelectedEmail }
                 print("self.emailsToArray.count after Taped Email deleted:", self.viewController!.emailsToArray.count)
                 
-                self.viewController!.emailToSting = self.viewController!.emailToSting.replacingOccurrences(of: self.viewController!.tapSelectedEmail, with: "")
+                let formattedEmail = "<" + self.viewController!.tapSelectedEmail + ">"
+                
+                self.viewController!.emailToSting = self.viewController!.emailToSting.replacingOccurrences(of: formattedEmail, with: "")
                 self.viewController!.tapSelectedEmail = ""
                 
                 self.viewController!.emailToSting = self.viewController!.emailToSting.replacingOccurrences(of: "  ", with: " ")//remove double spaces
@@ -617,15 +619,16 @@ class ComposeInteractor {
                     if editingWord == "" {
                         print("delete space")
                         if let lastEmail =  self.viewController!.emailsToArray.last {
+                            print("removed lastEmail:", lastEmail)
                             self.viewController!.tapSelectedEmail = lastEmail
                             self.presenter?.setupEmailToSection(emailToText: self.viewController!.emailToSting, ccToText: self.viewController!.ccToSting, bccToText: self.viewController!.bccToSting)
                         } else {
-                            //return false //jest delete space
+                            //return false //just delete space
                         }
                     } else {
                         print("removed Word:", editingWord)
-                        self.viewController!.emailsToArray.removeAll{ $0 == editingWord }
-                        print("emailsToArray count:", self.viewController!.emailsToArray.count)
+                        //self.viewController!.emailsToArray.removeAll{ $0 == editingWord }
+                        //print("emailsToArray count:", self.viewController!.emailsToArray.count)
                     }
                 }
                 
@@ -687,7 +690,8 @@ class ComposeInteractor {
                 self.viewController!.ccToArray.removeAll{ $0 == self.viewController!.tapSelectedCcEmail }
                 print("ccToArray count after Taped Email deleted:", self.viewController!.ccToArray.count)
                 
-                self.viewController!.ccToSting = self.viewController!.ccToSting.replacingOccurrences(of: self.viewController!.tapSelectedCcEmail, with: "")
+                let formattedEmail = "<" + self.viewController!.tapSelectedCcEmail + ">"
+                self.viewController!.ccToSting = self.viewController!.ccToSting.replacingOccurrences(of: formattedEmail, with: "")
                 self.viewController!.tapSelectedCcEmail = ""
                 
                 self.viewController!.emailToSting = self.viewController!.emailToSting.replacingOccurrences(of: "  ", with: " ")//remove double spaces
@@ -768,7 +772,8 @@ class ComposeInteractor {
                 self.viewController!.bccToArray.removeAll{ $0 == self.viewController!.tapSelectedBccEmail }
                 print("bccToArray count after Taped Email deleted:", self.viewController!.bccToArray.count)
                 
-                self.viewController!.bccToSting = self.viewController!.bccToSting.replacingOccurrences(of: self.viewController!.tapSelectedBccEmail, with: "")
+                let formattedEmail = "<" + self.viewController!.tapSelectedBccEmail + ">"
+                self.viewController!.bccToSting = self.viewController!.bccToSting.replacingOccurrences(of: formattedEmail, with: "")
                 self.viewController!.tapSelectedBccEmail = ""
                 
                 self.viewController!.emailToSting = self.viewController!.emailToSting.replacingOccurrences(of: "  ", with: " ")//remove double spaces
@@ -825,17 +830,17 @@ class ComposeInteractor {
             self.setFilteredList(searchText: "")
             let lastInput = self.getLastWord(textView: textView)
             let text = textView.text.dropLast((lastInput?.count)!)
-            inputText = text + inputEmail + " "
-            //inputText = textView.text + " <" + inputEmail + "> "
+            //inputText = text + inputEmail + " "
+            inputText = text + " <" + inputEmail + "> "
         } else {
             if inputEmail.count > 0 {
-                inputText = textView.text + " "
-                //let textBefore = String(textView.text.dropLast(inputEmail.count))
-                //print("textBefore", textBefore)
-                //inputText = textBefore + " <" + inputEmail + "> "
+                //inputText = textView.text + " "
+                let textBefore = String(textView.text.dropLast(inputEmail.count))
+                print("textBefore", textBefore)
+                inputText = textBefore + " <" + inputEmail + "> "
                 
             } else {
-                inputText = textView.text
+                inputText = textView.text + " " //if user want to delete email, delete backspace after input, but change self mind
                 //hide keyboard?
             }
         }
@@ -843,28 +848,48 @@ class ComposeInteractor {
         switch textView {
         case self.viewController!.emailToTextView:
             print("inputEmail:", inputEmail as Any)
-            if inputEmail.count > 0 {
-                self.viewController!.emailsToArray.append(inputEmail)
-            }
-            self.viewController!.emailToSting = inputText
-            self.viewController!.emailToSting = self.viewController!.emailToSting.replacingOccurrences(of: "  ", with: " ")//remove double spaces
             
+            if (self.presenter?.findDuplicatedEmails(emailArray: self.viewController!.emailsToArray, currentEmail: inputEmail))! {
+                let textBefore = String(textView.text.dropLast(inputEmail.count))
+                self.viewController!.emailToSting = textBefore
+            } else {
+                if inputEmail.count > 0 {
+                    self.viewController!.emailsToArray.append(inputEmail)
+                }
+                self.viewController!.emailToSting = inputText
+            }
+            
+            self.viewController!.emailToSting = self.viewController!.emailToSting.replacingOccurrences(of: "  ", with: " ")//remove double spaces
             
             break
         case self.viewController!.ccToTextView:
             print("inputCcEmail:", inputEmail as Any)
-            if inputEmail.count > 0 {
-                self.viewController!.ccToArray.append(inputEmail)
+            
+            if (self.presenter?.findDuplicatedEmails(emailArray: self.viewController!.ccToArray, currentEmail: inputEmail))! {
+                let textBefore = String(textView.text.dropLast(inputEmail.count))
+                self.viewController!.ccToSting = textBefore
+            } else {
+                if inputEmail.count > 0 {
+                    self.viewController!.ccToArray.append(inputEmail)
+                }
+                self.viewController!.ccToSting = inputText
             }
-            self.viewController!.ccToSting = inputText
+     
             self.viewController!.ccToSting = self.viewController!.ccToSting.replacingOccurrences(of: "  ", with: " ")//remove double spaces
             break
         case self.viewController!.bccToTextView:
             print("inputBccEmail:", inputEmail as Any)
-            if inputEmail.count > 0 {
-                self.viewController!.bccToArray.append(inputEmail)
+            
+            if (self.presenter?.findDuplicatedEmails(emailArray: self.viewController!.bccToArray, currentEmail: inputEmail))! {
+                let textBefore = String(textView.text.dropLast(inputEmail.count))
+                self.viewController!.bccToSting = textBefore
+            } else {
+                if inputEmail.count > 0 {
+                    self.viewController!.bccToArray.append(inputEmail)
+                }
+                self.viewController!.bccToSting = inputText
             }
-            self.viewController!.bccToSting = inputText
+
             self.viewController!.bccToSting = self.viewController!.bccToSting.replacingOccurrences(of: "  ", with: " ")//remove double spaces
             break
         default:
@@ -1020,7 +1045,8 @@ class ComposeInteractor {
             if cursorPosition < index {
                 selectedWord = String(sub)
                 print("selectedWord0:", selectedWord)
-                return selectedWord
+                let formattedWord = selectedWord.dropLast().dropFirst()
+                return String(formattedWord)
             }
         }
         

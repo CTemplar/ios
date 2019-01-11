@@ -43,7 +43,7 @@ class SetMailboxViewController: UIViewController, UITableViewDataSource, UITable
     
     @IBAction func backButtonPressed(_ sender: AnyObject) {
         
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     //MARK: - table view

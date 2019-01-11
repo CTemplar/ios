@@ -188,6 +188,8 @@ class InboxPresenter {
     @objc func cancelButtonPresed() {
         
         disableSelectionMode()
+        self.viewController?.appliedActionMessage = nil
+        self.viewController?.dataSource?.selectedMessagesIDArray.removeAll()
     }
     
     @objc func moreButtonPresed() {
@@ -237,9 +239,9 @@ class InboxPresenter {
         
         var moreButtonEnabled: Bool = false
         
-        self.viewController?.appliedActionMessage = nil
         self.viewController?.dataSource?.selectionMode = false
-        self.viewController?.dataSource?.selectedMessagesIDArray.removeAll()
+        //self.viewController?.appliedActionMessage = nil
+        //self.viewController?.dataSource?.selectedMessagesIDArray.removeAll()
         self.viewController?.dataSource?.reloadData()
         
         if (self.viewController?.dataSource?.messagesArray.count)! > 0 {
@@ -376,6 +378,8 @@ class InboxPresenter {
         
         if counter == Int(k_undoActionBarShowingSecs) {
             self.hideUndoBar()
+            self.viewController?.appliedActionMessage = nil
+            self.viewController?.dataSource?.selectedMessagesIDArray.removeAll()
         }
     }
     

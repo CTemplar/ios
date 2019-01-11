@@ -36,7 +36,7 @@ class SavingContastsViewController: UIViewController {
     
     @IBAction func cancelButtonPressed(_ sender: AnyObject) {
         
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func setupScreen() {

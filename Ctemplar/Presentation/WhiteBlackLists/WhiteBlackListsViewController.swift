@@ -65,7 +65,7 @@ class WhiteBlackListsViewController: UIViewController, UISearchBarDelegate {
     
     @IBAction func backButtonPressed(_ sender: AnyObject) {
         
-        self.dismiss(animated: true, completion: nil)       
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func addContactButtonPressed(_ sender: AnyObject) {
@@ -119,11 +119,15 @@ class WhiteBlackListsViewController: UIViewController, UISearchBarDelegate {
 
 extension WhiteBlackListsViewController: AddContactToWhiteBlackListDelegate {
     
-    func applyAction() {
+    func addAction(name: String, email: String) {
         
-    }
-    
-    func cancelAction() {
-        
+        switch listMode {
+        case WhiteBlackListsMode.whiteList:
+            self.presenter?.interactor?.addContactToWhiteList(name: name, email: email)
+            break
+        case WhiteBlackListsMode.blackList:
+            self.presenter?.interactor?.addContactToBlackList(name: name, email: email)
+            break
+        }
     }
 }

@@ -75,7 +75,7 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func backButtonPressed(_ sender: AnyObject) {
         
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func currentPasswordEyeButtonPressed(_ sender: AnyObject) {
@@ -268,7 +268,7 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
         
         AlertHelperKit().showAlertWithHandler(self, parameters: params) { buttonIndex in
             
-            self.dismiss(animated: true, completion: nil)
+            self.backButtonPressed(self)
         }
     }
 }

@@ -29,7 +29,7 @@ class PrivacyAndTermsViewController: UIViewController, WKNavigationDelegate, WKU
     
     @IBAction func backButtonPressed(_ sender: AnyObject) {
         
-        self.dismiss(animated: true, completion: nil)        
+        self.navigationController?.popViewController(animated: true)
     }
     
     func setupScreen() {
