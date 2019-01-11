@@ -151,6 +151,28 @@ class InboxPresenter {
         
         var emailsCountString : String = "emails".localized()
         
+        var lastDigit = 0
+        
+        if emailsCount < 10 || emailsCount > 19 {
+            let daysString = emailsCount.description
+            lastDigit = Int(String(daysString.last!))!
+        } else {
+            lastDigit = emailsCount
+        }
+        
+        if lastDigit > 0 {
+            
+            if lastDigit > 1 {
+                emailsCountString = "emails".localized()
+                if lastDigit < 5 {
+                    emailsCountString = "emailsx".localized()
+                }
+            } else {
+                emailsCountString = "email".localized()
+            }
+        }
+        
+        /*
         if emailsCount == 1 {
             emailsCountString = "email".localized()
         }
@@ -162,7 +184,7 @@ class InboxPresenter {
         
         if lastDigit! > 1 && lastDigit! < 5 {
             emailsCountString = "emailsx".localized()
-        }
+        }*/
         
         emailsCountString = emailsCount.description + " " + emailsCountString
         
