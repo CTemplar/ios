@@ -416,6 +416,8 @@ class FormatterService
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "E dd MMM HH:mm"
+        let appLang = UserDefaults.standard.string(forKey: "app_lang") ?? "en"
+        dateFormatter.locale = Locale.init(identifier: appLang)        
         
         let dateString = dateFormatter.string(from:date as Date)
         

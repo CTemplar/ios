@@ -180,6 +180,8 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             break
         }
         
+        let appLang = UserDefaults.standard.string(forKey: "app_lang") ?? "en"
+        self.datePicker.locale = Locale.init(identifier: appLang)
         self.datePicker.date = self.scheduledDate
         self.setCustomPickerScheduledDate()
     }
