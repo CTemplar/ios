@@ -27,7 +27,7 @@ class SelectLanguageViewController: UIViewController, UITableViewDataSource, UIT
     
     @IBAction func backButtonPressed(_ sender: AnyObject) {
         
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     //MARK: - table view

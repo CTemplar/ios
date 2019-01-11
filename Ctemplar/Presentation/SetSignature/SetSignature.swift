@@ -42,7 +42,7 @@ class SetSignatureViewController: UIViewController {
     
     @IBAction func cancelButtonPressed(_ sender: AnyObject) {
         
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func saveButtonPressed(_ sender: AnyObject) {
