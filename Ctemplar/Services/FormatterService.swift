@@ -1010,6 +1010,8 @@ final class UILocalizedTextField: UITextField {
         super.awakeFromNib()
         
         text = text?.localized()
+        
+        placeholder = placeholder?.localized()
     }
 }
 final class UILocalizedTextView: UITextField {

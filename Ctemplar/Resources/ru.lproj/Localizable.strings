@@ -155,25 +155,30 @@
 
 //compose
 
-"emailFromPrefix" = "From: ";
-"emailToPrefix" = "To: ";
-"ccToPrefix" = "Cc: ";
-"bccToPrefix" = "Bcc: ";
-"composeEmail" = "Compose email";
+"emailFromPrefix" = "От: ";
+"emailToPrefix" = "Кому: ";
+"ccToPrefix" = "Копия: ";
+"bccToPrefix" = "Скрытая: ";
+"composeEmail" = "Написать письмо";
 
-"replyOn" = "On: ";
-"wroteBy" = "wrote:";
-"atTime" = " at ";
+"replyOn" = "На: ";
+"wroteBy" = "писал:";
+"atTime" = " от ";
 
-"infoTitle" = "Information:";
-"mailSendMessage" = "Mail was sent successfully";
+"infoTitle" = "Информация:";
+"mailSendMessage" = "Письмо успешно отправлено";
 
-"saveDraft" = "Save draft";
-"discardDraft" = "Discard draft";
+"saveDraft" = "Сохранить черновик";
+"discardDraft" = "Удалить черновик";
 
-"fromAnotherApp" = "From another app";
-"photoLibrary" = "Photo library";
-"camera" = "Camera";
+"fromAnotherApp" = "Импортировать из...";
+"photoLibrary" = "Медиатека";
+"camera" = "Камера";
+
+"forward" = "Fwd: ";
+"reply" = "Re: ";
+
+"subject" = "Тема";
 
 //Side Menu Cells
 

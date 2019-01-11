@@ -172,6 +172,11 @@
 "photoLibrary" = "Photo library";
 "camera" = "Camera";
 
+"forward" = "Fwd: ";
+"reply" = "Re: ";
+
+"subject" = "Subject";
+
 //Side Menu Cells
 
 "inbox"            = "Inbox";
