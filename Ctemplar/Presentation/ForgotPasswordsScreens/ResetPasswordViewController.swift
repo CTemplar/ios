@@ -58,16 +58,16 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         let style = NSMutableParagraphStyle()
         style.alignment = NSTextAlignment.center
         
-        let attributedString = NSMutableAttributedString(string: "We have sent a reset code to your\nrecovery email to reset your password. ", attributes: [
+        let attributedString = NSMutableAttributedString(string: "weHave".localized(), attributes: [
             .font: UIFont(name: k_latoRegularFontName, size: 14.0)!,
             .foregroundColor: k_lightGrayColor,
             .paragraphStyle: style,
             .kern: 0.0
             ])
         
-        _ = attributedString.setUnderline(textToFind: "recovery email ")
+        _ = attributedString.setUnderline(textToFind: "recoveryEmailAttr".localized())
         
-        _ = attributedString.setForgroundColor(textToFind: "recovery email ", color: k_urlColor)
+        _ = attributedString.setForgroundColor(textToFind: "recoveryEmailAttr".localized(), color: k_urlColor)
 
         
         recoveryEmailTextView.attributedText = attributedString

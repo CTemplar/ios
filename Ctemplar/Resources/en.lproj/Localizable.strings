@@ -18,6 +18,8 @@
 "saveButton" = "Save";
 "applyButton" = "Apply";
 "nextButton" = "Next";
+"resetPasswordButton" = "Reset password";
+"confirmButton" = "Confirm";
 
 "termsAndConditionsFullText" = "Please check this box if you agree to abide by our Terms and Conditions";
 "termsAndConditionsPhrase" = "Terms and Conditions";
@@ -40,14 +42,33 @@
 "choosePasswordPlaceholder" = "Choose password";
 "confirmPasswordPlaceholder" = "Confirm password";
 "recoveryEmailPlaceholder" = "Recovery email";
+
+"passwordMust" = "Your password must be at least 10 characters. Password can contain only latin letters and cannot contain symbols such «-+!@. etc.";
+
+"thisIsUsed" = "This is used to recover your account if you get locked out or forget your password";
+
+"usernameResetHint" = "Ctemplar username to reset";
 "usernameResetPlaceholder" = "Ctemplar username to reset";
 "resetCodePlaceholder" = "Reset Code";
 "newPasswordPlaceholder" = "New password";
 "confirmNewPasswordPlaceholder" = "Confirm new password";
 
-"passwordMust" = "Your password must be at least 10 characters. Password can contain only latin letters and cannot contain symbols such «-+!@. etc.";
+"resetLink" = "We will send reset link to your recovery email";
 
-"thisIsUsed" = "This is used to recover your account if you get locked out or forget your password";
+"confirmResetPassword" = "Confirm Reset Password";
+
+"areYouSure" = "Are you sure you want to reset your password?";
+
+"supportDescription" = "Your encryption key is connected to your password. Because of this you will not be able to decrypt old messages, attachments and contacts if you reset your password. \nIf you have further questions please email support@ctemplar.com.";
+
+"supportDescriptionAttr" = "you will not be able to decrypt old messages, attachments and contacts";
+
+"resetPassword" = "Reset Password";
+
+"weHave" = "We have sent a reset code to your\nrecovery email to reset your password. ";
+"recoveryEmailAttr" = "recovery email ";
+
+"enterIt" = "Enter it below for confirmation.";
 
 //side menu
 

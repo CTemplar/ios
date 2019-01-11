@@ -1012,3 +1012,10 @@ final class UILocalizedTextField: UITextField {
         text = text?.localized()
     }
 }
+final class UILocalizedTextView: UITextField {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        text = text?.localized()
+    }
+}
