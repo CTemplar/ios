@@ -268,7 +268,7 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
         
         AlertHelperKit().showAlertWithHandler(self, parameters: params) { buttonIndex in
             
-            self.dismiss(animated: true, completion: nil)
+            self.backButtonPressed(self)
         }
     }
 }

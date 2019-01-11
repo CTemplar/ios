@@ -260,7 +260,11 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             break
         case SettingsMailSection.signature.rawValue:
             if let signature = mailbox.signature {
-                cellTitle = signature
+                if signature.count > 0 {
+                    cellTitle = signature
+                } else {
+                    cellTitle = "signature".localized()
+                }
             } else {
                 cellTitle = "signature".localized()
             }

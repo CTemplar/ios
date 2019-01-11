@@ -60,11 +60,18 @@ class SetSignatureViewController: UIViewController {
         
         if (sender.isOn == true) {
             self.textFieldView.isHidden = false
+            self.userSignature = self.inputTextField.text!
             self.setupRightBarButton(show: true)
             self.rigthBarButtonEnabled()
         } else {
             self.textFieldView.isHidden = true
-            self.setupRightBarButton(show: false)
+            if let signature = self.mailbox.signature {
+                if signature.count > 0 {
+                    self.userSignature = " "
+                } else {
+                    self.setupRightBarButton(show: false)
+                }
+            }
         }
     }
     
@@ -156,7 +163,7 @@ class SetSignatureViewController: UIViewController {
         
         AlertHelperKit().showAlertWithHandler(self, parameters: params) { buttonIndex in
             
-            self.dismiss(animated: true, completion: nil)
+            self.cancelButtonPressed(self)
         }
     }
 }
