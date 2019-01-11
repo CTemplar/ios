@@ -51,7 +51,7 @@
 "usernameResetPlaceholder" = "Ctemplar имя для сброса";
 "resetCodePlaceholder" = "Код для сброса";
 "newPasswordPlaceholder" = "Новый пароль";
-"confirmNewPasswordPlaceholder" = "Подтвердить новый пароль";
+"confirmNewPasswordPlaceholder" = "Подтвердите новый пароль";
 
 "resetLink" = "Мы отправим вам линк для восстановления почты";
 
@@ -69,6 +69,8 @@
 "recoveryEmailAttr" = "запасную почту";
 
 "enterIt" = "Введите его ниже для подтверждения.";
+
+"forgetPass" = "Не забудьте этот пароль, его невозможно будет восстановить.";
 
 //side menu
 
@@ -231,8 +233,8 @@
 "passwordUpdatedMessage" = "Password was updated successfully";
 "userSignature" = "Signature was updated successfully";
 
-"currentPasswordPlaceholder" = "Current password";
-"newPasswordPlaceholder" = "New password";
+"currentPasswordPlaceholder" = "Текущий пароль";
+"newPasswordPlaceholder" = "Новый пароль";
 
 "privacyPolicy" = "Политика конфиденциальности";
 "termsAndConditions" = "Условия использования";

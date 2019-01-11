@@ -70,6 +70,9 @@
 
 "enterIt" = "Enter it below for confirmation.";
 
+"forgetPass" = "Don’t forget this password, it can’t be restored.";
+
+
 //side menu
 
 "manageFolders" = "Manage Folders";
