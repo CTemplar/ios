@@ -17,6 +17,7 @@
 "logotButton" = "Выйти";
 "saveButton" = "Сохранить";
 "applyButton" = "Применить";
+"nextButton" = "Дальше";
 
 "termsAndConditionsFullText" = "Пожалуста, поставьте галочку если вы согласны с нашими Условиями и Положениями";
 "termsAndConditionsPhrase" = "Условия и Положения";
@@ -26,17 +27,27 @@
 "emailPlaceholder" = "Почта";
 "passwordPlaceholder" = "Пароль";
 "usernamePlaceholder" = "Имя";
-"choosePasswordPlaceholder" = "Выбрать пароль";
-"confirmPasswordPlaceholder" = "Подтвердить пароль";
-"recoveryEmailPlaceholder" = "Запасная почта";
-"usernameResetPlaceholder" = "Ctemplar Имя для сброса";
-"resetCodePlaceholder" = "Код для сброса";
-"newPasswordPlaceholder" = "Новый пароль";
-"confirmNewPasswordPlaceholder" = "Подтверидить новый пароль";
 
 "forgotPassword" = "Забыли пароль?";
 "login" = "Войти";
 "createAccount" = "Создать аккаунт";
+
+//Sign Up
+
+"usernameAndDomain" = "Имя и домен";
+"ctemplarEmailAddress" = "Это будет ваш новый Ctemplar почтовый адрес.";
+
+"choosePasswordPlaceholder" = "Выберите пароль";
+"confirmPasswordPlaceholder" = "Подтвердите пароль";
+"recoveryEmailPlaceholder" = "Запасная почта";
+"usernameResetPlaceholder" = "Ctemplar Имя для сброса";
+"resetCodePlaceholder" = "Код для сброса";
+"newPasswordPlaceholder" = "Новый пароль";
+"confirmNewPasswordPlaceholder" = "Подтвердить новый пароль";
+
+"passwordMust" = "Ваш пароль должен быть длинне 10 символов. Пароль может содержать только латинские буквы и не может содержать символы типа «-+!@. etc.";
+
+"thisIsUsed" = "Необходимо для восстановления вашей учетной записи, если вы заблокированы или забыли пароль";
 
 //side menu
 
