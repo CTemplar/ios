@@ -283,6 +283,9 @@
 
 "saveContacts" = "Automatically save contacts";
 
+"selectDefaulfAddress" = "Select default address";
+"addresses" = "Addresses";
+
 "privacyPolicy" = "Privacy Policy";
 "termsAndConditions" = "Terms & Conditions";
 

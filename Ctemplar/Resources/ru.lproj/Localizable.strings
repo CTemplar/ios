@@ -285,6 +285,9 @@
 
 "saveContacts" = "Автоматически сохранять контакты";
 
+"selectDefaulfAddress" = "Выберите почтовый ящик по умолчанию";
+"addresses" = "Адреса";
+
 "privacyPolicy" = "Политика конфиденциальности";
 "termsAndConditions" = "Условия использования";
 
