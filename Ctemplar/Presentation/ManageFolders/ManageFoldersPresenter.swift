@@ -59,6 +59,19 @@ class ManageFoldersPresenter {
         self.viewController?.router?.backAction()
     }
     
+    func addFolderButtonPressed() {
+        
+        if (self.viewController?.dataSource?.foldersArray.count)! > k_customFoldersLimitForNonPremium - 1 {
+            if (self.viewController?.user.isPrime)! {
+                self.viewController?.router?.showAddFolderViewController()
+            } else {
+                self.showAddFolderLimitAlert()
+            }
+        } else {
+            self.viewController?.router?.showAddFolderViewController()
+        }
+    }
+    
     func setupAddFolderButton() {
         
         if (self.viewController?.dataSource?.foldersArray.count)! > k_customFoldersLimitForNonPremium - 1 {            
@@ -99,6 +112,24 @@ class ManageFoldersPresenter {
             default:
                 print("Delete")
                 self.interactor?.deleteFolder(folderID: folderID)
+            }
+        }
+    }
+    
+    func showAddFolderLimitAlert() {
+        
+        let params = Parameters(
+            title: "infoTitle".localized(),
+            message: "addFolderLimit".localized(),
+            cancelButton: "closeButton".localized()
+        )
+        
+        AlertHelperKit().showAlertWithHandler(self.viewController!, parameters: params) { buttonIndex in
+            switch buttonIndex {
+            case 0:
+                print("Close")
+            default:
+                print("Other")
             }
         }
     }

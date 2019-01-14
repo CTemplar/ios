@@ -237,6 +237,9 @@
 
 "noFolders" = "У вас еще нет папок";
 
+"addFolderLimit" = " Upgrade to premium";
+
+
 //Settings
 
 "recoveryEmail" = "Почта для восстановления";

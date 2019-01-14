@@ -232,6 +232,8 @@
 
 "noFolders" = "You have no folders";
 
+"addFolderLimit" = " Upgrade to premium";
+
 //Settings
 
 "recoveryEmail" = "Recovery email";

@@ -75,6 +75,7 @@ class SettingsRouter {
         vc.foldersList = (self.viewController?.user.foldersList)!
         vc.user = (self.viewController?.user)!
         vc.showFromSideMenu = false
+        vc.showFromSettings = true
         self.viewController?.show(vc, sender: self)
     }
     

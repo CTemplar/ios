@@ -17,6 +17,7 @@ class ManageFoldersViewController: UIViewController {
     var dataSource  : ManageFoldersDataSource?
     
     var showFromSideMenu : Bool = true
+    var showFromSettings : Bool = false
     
     var foldersList : Array<Folder> = []
     
@@ -50,8 +51,10 @@ class ManageFoldersViewController: UIViewController {
         self.dataSource?.initWith(parent: self, tableView: foldersTableView)
         
         self.presenter?.setDataSource(folders: self.foldersList)
-        self.presenter?.setupAddFolderButton()
+
         self.presenter?.setupAddFolderButtonLabel()
+        //self.presenter?.setupAddFolderButton()
+        self.presenter?.setAddFolderButton(enable: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,6 +76,6 @@ class ManageFoldersViewController: UIViewController {
     
     @IBAction func addFolderButtonPressed(_ sender: AnyObject) {
         
-        self.router?.showAddFolderViewController()
+        self.presenter?.addFolderButtonPressed()
     }
 }
