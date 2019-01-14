@@ -150,6 +150,12 @@
 
 "addContacts" = "Add contacts";
 
+"contactName" = "Contact Name";
+"emailAddress" = "Email Address";
+"phoneNumber" = "Phone Number";
+"address" = "Address";
+"note" = "Note";
+
 //view message
 
 "viewDetails" = "View details";

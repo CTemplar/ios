@@ -15,7 +15,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Add Contact-->
+        <!--addContact-->
         <scene sceneID="g0b-XO-7TY">
             <objects>
                 <viewController storyboardIdentifier="AddContactViewController" id="bT9-sz-av7" customClass="AddContactViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
@@ -23,7 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWL-O9-KTk">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="contactName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWL-O9-KTk" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                 <rect key="frame" x="16" y="45" width="343" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="oZg-ea-KMI"/>
@@ -35,7 +35,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="giN-dS-aRt">
                                 <rect key="frame" x="16" y="68" width="343" height="45"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Contact name" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="RtV-gC-w6f">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="contactName" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="RtV-gC-w6f" customClass="UILocalizedTextField" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="16" y="0.0" width="311" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="uW9-AU-AAu"/>
@@ -77,7 +77,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vzd-7t-tyM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="emailAddress" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vzd-7t-tyM" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                 <rect key="frame" x="16" y="135" width="343" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="H0a-zK-C6g"/>
@@ -89,7 +89,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Lo-3B-inf">
                                 <rect key="frame" x="16" y="158" width="343" height="45"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="kBS-f8-CqE">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="emailAddress" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="kBS-f8-CqE" customClass="UILocalizedTextField" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="16" y="0.0" width="311" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="3fw-kB-eNd"/>
@@ -131,7 +131,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R3p-ZP-OAY">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="phoneNumber" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R3p-ZP-OAY" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                 <rect key="frame" x="16" y="225" width="343" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="18r-8a-LUv"/>
@@ -143,7 +143,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="21s-gL-4Dx">
                                 <rect key="frame" x="16" y="248" width="343" height="45"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="bWY-gX-r4G">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="phoneNumber" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="bWY-gX-r4G" customClass="UILocalizedTextField" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="16" y="0.0" width="311" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="w2W-qu-Pq3"/>
@@ -185,7 +185,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jiu-jF-DKQ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jiu-jF-DKQ" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                 <rect key="frame" x="16" y="315" width="343" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="Vx6-O1-0wQ"/>
@@ -197,7 +197,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fpO-ja-peX">
                                 <rect key="frame" x="16" y="338" width="343" height="45"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="X1g-SK-B04">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="address" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="X1g-SK-B04" customClass="UILocalizedTextField" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="16" y="0.0" width="311" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="icd-Yj-AVN"/>
@@ -239,7 +239,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bea-m8-9IP">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="note" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bea-m8-9IP" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                 <rect key="frame" x="16" y="405" width="343" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="HZc-la-aR3"/>
@@ -251,7 +251,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R0P-Xh-bEV">
                                 <rect key="frame" x="16" y="428" width="343" height="45"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Note" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="hKH-ff-dM0">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="note" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="hKH-ff-dM0" customClass="UILocalizedTextField" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="16" y="0.0" width="311" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="P5I-Ah-Wth"/>
@@ -329,14 +329,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="M1x-kH-ZvB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Contact" id="hcu-aO-B1J">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="dwb-0F-1tB">
+                    <navigationItem key="navigationItem" title="addContact" id="hcu-aO-B1J" customClass="UILocalizedUINavigationItem" customModule="Ctemplar" customModuleProvider="target">
+                        <barButtonItem key="leftBarButtonItem" title="cancelButton" id="dwb-0F-1tB">
                             <color key="tintColor" red="0.17254901960784313" green="0.24313725490196078" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="bT9-sz-av7" id="Wb4-iB-MBq"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="e2h-rI-tTx">
+                        <barButtonItem key="rightBarButtonItem" title="saveButton" id="e2h-rI-tTx">
                             <color key="tintColor" red="0.17254901960784313" green="0.24313725490196078" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="saveButtonPressed:" destination="bT9-sz-av7" id="jJ4-Yu-Gpm"/>
