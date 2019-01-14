@@ -15,7 +15,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Contacts-->
+        <!--contacts-->
         <scene sceneID="wK6-LK-jzi">
             <objects>
                 <viewController storyboardIdentifier="ContactsViewController" id="2vi-x4-vcD" customClass="ContactsViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
@@ -33,7 +33,7 @@
                                             <constraint firstAttribute="width" secondItem="VIS-Uv-COX" secondAttribute="height" multiplier="1:1" id="r3O-GU-Kfq"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have no contacts yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="bHr-zi-ycR">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="noContacts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="bHr-zi-ycR" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="27.5" y="258.5" width="320" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="320" id="AgM-c5-YNg"/>
@@ -45,9 +45,46 @@
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gEa-jr-Tvw">
                                         <rect key="frame" x="0.0" y="598" width="375" height="85"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jdu-YA-ZOz">
+                                                <rect key="frame" x="67.5" y="0.0" width="240" height="49"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhitePlus" translatesAutoresizingMaskIntoConstraints="NO" id="RXt-ml-DY4">
+                                                        <rect key="frame" x="0.0" y="14" width="20" height="20"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="20" id="llc-Rm-2FV"/>
+                                                            <constraint firstAttribute="width" secondItem="RXt-ml-DY4" secondAttribute="height" multiplier="1:1" id="rcL-73-qDW"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="addContacts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QO4-tB-y8n" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                                        <rect key="frame" x="30" y="14" width="210" height="19"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="19" id="S85-Kg-dqj"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="RXt-ml-DY4" firstAttribute="top" secondItem="jdu-YA-ZOz" secondAttribute="top" constant="14" id="6zn-ah-uLk"/>
+                                                    <constraint firstItem="RXt-ml-DY4" firstAttribute="leading" secondItem="jdu-YA-ZOz" secondAttribute="leading" id="EYj-t3-BKo"/>
+                                                    <constraint firstItem="QO4-tB-y8n" firstAttribute="leading" secondItem="RXt-ml-DY4" secondAttribute="trailing" constant="10" id="M8D-rR-cdl"/>
+                                                    <constraint firstAttribute="trailing" secondItem="QO4-tB-y8n" secondAttribute="trailing" id="TTB-Rr-cud"/>
+                                                    <constraint firstAttribute="width" constant="240" id="Wxj-bC-LSp"/>
+                                                    <constraint firstAttribute="height" constant="49" id="ZAo-LA-Qf6"/>
+                                                    <constraint firstItem="QO4-tB-y8n" firstAttribute="top" secondItem="jdu-YA-ZOz" secondAttribute="top" constant="14" id="tWt-yA-pvh"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
                                         <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="jdu-YA-ZOz" firstAttribute="centerX" secondItem="gEa-jr-Tvw" secondAttribute="centerX" id="ELI-lC-AOA"/>
+                                            <constraint firstItem="jdu-YA-ZOz" firstAttribute="top" secondItem="gEa-jr-Tvw" secondAttribute="top" id="akw-dF-anS"/>
+                                        </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzb-ZQ-8jY">
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzb-ZQ-8jY">
                                         <rect key="frame" x="0.0" y="598" width="375" height="49"/>
                                         <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -55,7 +92,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="Add contacts" image="WhitePlus">
+                                        <state key="normal">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -96,7 +133,7 @@
                                             <constraint firstAttribute="width" secondItem="KYN-CJ-sLW" secondAttribute="height" multiplier="1:1" id="pZl-AQ-nKF"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select all" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFR-Wl-g6e">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="selectAll" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFR-Wl-g6e" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="46" y="15" width="312" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="8TA-tb-7TQ"/>
@@ -183,7 +220,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xAf-DS-WX6"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Contacts" id="ufM-BZ-lkb">
+                    <navigationItem key="navigationItem" title="contacts" id="ufM-BZ-lkb" customClass="UILocalizedUINavigationItem" customModule="Ctemplar" customModuleProvider="target">
                         <barButtonItem key="leftBarButtonItem" image="MenuButton" id="Bv7-Oq-GVT">
                             <color key="tintColor" red="0.17254901960784313" green="0.24313725490196078" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <connections>
@@ -198,6 +235,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addContactsLabel" destination="QO4-tB-y8n" id="od1-g5-yrA"/>
+                        <outlet property="addContactsViewWithConstraint" destination="Wxj-bC-LSp" id="6fY-uC-fo2"/>
                         <outlet property="bottomBarHeightConstraint" destination="3i2-Tk-BOf" id="bJq-sR-l8L"/>
                         <outlet property="bottomToolBar" destination="6Sw-jN-jMH" id="bZD-Bl-BKL"/>
                         <outlet property="contactsTableView" destination="fnW-W7-n63" id="6Mc-0y-xaV"/>
@@ -220,6 +259,6 @@
         <image name="MenuButton" width="20" height="14"/>
         <image name="PlusButton" width="24" height="24"/>
         <image name="WhitePlus" width="18" height="18"/>
-        <image name="roundDark" width="17" height="17"/>
+        <image name="roundDark" width="29" height="29"/>
     </resources>
 </document>

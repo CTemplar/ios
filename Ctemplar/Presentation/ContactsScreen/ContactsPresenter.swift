@@ -55,6 +55,17 @@ class ContactsPresenter {
         self.viewController?.view.layoutIfNeeded()
     }
     
+    func setupAddContactsButtonLabel() {
+        
+        let labelText = self.viewController?.addContactsLabel.text?.localized()
+        
+        let textWidth = labelText?.widthOfString(usingFont: (self.viewController?.addContactsLabel.font)!)
+        
+        let viewWidth = k_plusImageWidth + k_addButtonLeftOffet + textWidth! + 3.0 //sometimes width calculation is small
+        
+        self.viewController?.addContactsViewWithConstraint.constant = viewWidth
+    }
+    
     func getContactsList() {
         
         self.viewController?.contactsTableView.isHidden = false
@@ -168,7 +179,7 @@ class ContactsPresenter {
     func setupNavigationItemTitle(selectedContacts: Int, selectionMode: Bool) {
         
         if selectionMode == true {
-            self.viewController?.navigationItem.title = String(format: "%d Selected", selectedContacts)
+            self.viewController?.navigationItem.title = String(format: "%d " + "selected".localized(), selectedContacts)
         } else {
             self.viewController?.navigationItem.title = "contacts".localized()
         }

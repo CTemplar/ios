@@ -137,14 +137,18 @@
 
 //contacts
 
-"contacts" = "Contacts";
-"selectAll" = "Select all";
-"deselectAll" = "Deselect all";
+"contacts" = "Контакты";
+"selectAll" = "Выбрать все";
+"deselectAll" = "Отменить выбор всех";
 
-"deleteContact" = "Do you want to delete this contact(s) permanently?";
+"deleteContact" = "Вы действительно хотите удалить контакт(ы) окончательно?";
 
-"addContact" = "Add Contact";
-"editContact" = "Edit Contact";
+"addContact" = "Добавить";
+"editContact" = "Редактировать";
+
+"noContacts" = "У вас пока нет контактов";
+
+"addContacts" = "Добавить контакты";
 
 //view message
 

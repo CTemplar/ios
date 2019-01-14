@@ -146,6 +146,10 @@
 "addContact" = "Add Contact";
 "editContact" = "Edit Contact";
 
+"noContacts" = "You have no contacts yet";
+
+"addContacts" = "Add contacts";
+
 //view message
 
 "viewDetails" = "View details";
