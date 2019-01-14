@@ -29,7 +29,13 @@ class ManageFoldersViewController: UIViewController {
     @IBOutlet var leftBarButtonItem        : UIBarButtonItem!
     @IBOutlet var addFolderButton          : UIButton!
     
+    @IBOutlet var addFolderLabel           : UILabel!
+    @IBOutlet var addFolderImage           : UIImageView!
+    
     @IBOutlet var addFolderViewHeightConstraint          : NSLayoutConstraint!
+    
+    @IBOutlet var addFolderViewWithConstraint            : NSLayoutConstraint!
+    @IBOutlet var addFolderLabelWidthConstraint          : NSLayoutConstraint!
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +50,8 @@ class ManageFoldersViewController: UIViewController {
         self.dataSource?.initWith(parent: self, tableView: foldersTableView)
         
         self.presenter?.setDataSource(folders: self.foldersList)
-        self.presenter?.setupAddFolderButton()        
+        self.presenter?.setupAddFolderButton()
+        self.presenter?.setupAddFolderButtonLabel()
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -44,6 +44,17 @@ class ManageFoldersPresenter {
         self.viewController!.navigationItem.leftBarButtonItem = backButton
     }
     
+    func setupAddFolderButtonLabel() {
+        
+        let labelText = self.viewController?.addFolderLabel.text?.localized()
+        
+        let textWidth = labelText?.widthOfString(usingFont: (self.viewController?.addFolderLabel.font)!)
+        
+        let viewWidth = k_plusImageWidth + k_addButtonLeftOffet + textWidth! + 3.0 //sometimes width calculation is small
+        
+        self.viewController?.addFolderViewWithConstraint.constant = viewWidth        
+    }
+    
     @objc func backAction() {
         self.viewController?.router?.backAction()
     }

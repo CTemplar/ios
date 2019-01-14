@@ -230,6 +230,8 @@
 
 "moveTo" = "Move to...";
 
+"noFolders" = "You have no folders";
+
 //Settings
 
 "recoveryEmail" = "Recovery email";

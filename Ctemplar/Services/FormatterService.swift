@@ -1034,10 +1034,20 @@ final class UILocalizedTextField: UITextField {
         placeholder = placeholder?.localized()
     }
 }
+
 final class UILocalizedTextView: UITextField {
     override func awakeFromNib() {
         super.awakeFromNib()
         
         text = text?.localized()
+    }
+}
+
+
+final class UILocalizedUINavigationItem: UINavigationItem {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        title = title?.localized()
     }
 }

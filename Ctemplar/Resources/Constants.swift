@@ -261,6 +261,9 @@ let k_iphoneAllBottomButtonsOffset  : CGFloat = 277.0
 let k_settingsBaseCellHeight        : CGFloat = 50.0
 let k_settingsStorageCellHeight     : CGFloat = 78.0
 
+let k_plusImageWidth                : CGFloat = 20.0
+let k_addButtonLeftOffet            : CGFloat = 10.0
+
 //images
 
 let k_eyeOffIconImageName           = "EyeIcon"
