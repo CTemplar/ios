@@ -20,6 +20,7 @@
 "nextButton" = "Дальше";
 "resetPasswordButton" = "Сбросить пароль";
 "confirmButton" = "Подтвердить";
+"addButton" = "Add";
 
 "deleteRow" = "Удалить";
 
@@ -241,6 +242,8 @@
 
 "addFolderLimit" = " Купите премиум аккаунт";
 
+"folderName" = "Имя папки";
+"chooseColor" = "Выбрать цвет";
 
 //Settings
 

@@ -20,6 +20,7 @@
 "nextButton" = "Next";
 "resetPasswordButton" = "Reset password";
 "confirmButton" = "Confirm";
+"addButton" = "Add";
 
 "deleteRow" = "Delete";
 
@@ -235,6 +236,9 @@
 "noFolders" = "You have no folders";
 
 "addFolderLimit" = " Upgrade to premium";
+
+"folderName" = "Folder name";
+"chooseColor" = "Choose color";
 
 //Settings
 
