@@ -112,9 +112,6 @@
 "moveToArchive" = "Переместить в архив";
 "moveToInbox" = "Переместить в inbox";
 "emptyFolder" = "Очистить папку";
-"cancel" = "Cancel";
-
-
 "cancel" = "Отмена";
 
 //undo actions buttons
@@ -244,6 +241,8 @@
 
 "folderName" = "Имя папки";
 "chooseColor" = "Выбрать цвет";
+
+"deleteFolder" = "Удалить папку";
 
 //Settings
 

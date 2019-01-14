@@ -23,7 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Folder name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGD-8a-GTk">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="folderName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGD-8a-GTk" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                 <rect key="frame" x="16" y="39" width="199" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="9rI-ZH-h24"/>
@@ -75,7 +75,7 @@
                                     <constraint firstAttribute="height" constant="2" id="4HJ-OE-DPA"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose color" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rwp-PH-zVE">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="chooseColor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rwp-PH-zVE" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                 <rect key="frame" x="16" y="133" width="343" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="YZP-nb-L6s"/>
@@ -98,13 +98,13 @@
                                     <constraint firstAttribute="height" constant="1" id="VoP-X9-LNF"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" tag="206" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lIL-cN-Nds">
+                            <button opaque="NO" tag="206" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lIL-cN-Nds" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
                                 <rect key="frame" x="16" y="610" width="343" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="Cck-af-Rhr"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                <state key="normal" title="Delete folder">
+                                <state key="normal" title="deleteFolder">
                                     <color key="titleColor" red="0.090196078430000007" green="0.1960784314" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -149,14 +149,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Xqt-m1-AcI"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Folder" id="2TK-Ts-GWR">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="pwL-uY-dpy">
+                    <navigationItem key="navigationItem" title="Folder" id="2TK-Ts-GWR" customClass="UILocalizedUINavigationItem" customModule="Ctemplar" customModuleProvider="target">
+                        <barButtonItem key="leftBarButtonItem" title="cancelButton" id="pwL-uY-dpy">
                             <color key="tintColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="f4S-vX-Ehj" id="GGg-dh-v8h"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="n5H-Dj-A8M">
+                        <barButtonItem key="rightBarButtonItem" title="saveButton" id="n5H-Dj-A8M">
                             <color key="tintColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="saveButtonPressed:" destination="f4S-vX-Ehj" id="LSI-7Y-FNc"/>

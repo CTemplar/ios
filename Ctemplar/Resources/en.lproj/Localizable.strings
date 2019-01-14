@@ -240,6 +240,8 @@
 "folderName" = "Folder name";
 "chooseColor" = "Choose color";
 
+"deleteFolder" = "Delete folder";
+
 //Settings
 
 "recoveryEmail" = "Recovery email";
