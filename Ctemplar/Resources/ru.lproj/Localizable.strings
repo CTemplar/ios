@@ -301,17 +301,21 @@
 
 //White/Black List
 
-"whiteListText" = "Messages from contacts in the whitelist always go to Inbox folder. Marking a message as not spam adds the address to the Whitelist";
-"blackListText" = "Messages from contacts in the blacklist always go to Spam folder. Marking a message as spam adds the address to the Blacklist";
+"whiteListText" = "Сообщения от контактов в белом списке всегда отправляются в папку Входящие. Пометка сообщения как не-спам добавляет адрес в белый список";
+"blackListText" = "Сообщения от контактов из черного списка всегда отправляются в папку Спам. Пометка сообщения как спам добавляет адрес в черный список";
 
-"whiteListAttributedText" = "Inbox folder";
-"blackListAttributedText" = "Spam folder";
+"whiteListAttributedText" = "папку Входящие";
+"blackListAttributedText" = "папку Спам";
 
-"addWhiteList" = "Add whitelist contact";
-"addBlackList" = "Add blacklist contact";
+"addWhiteList" = "Добавить контакт в белый список";
+"addBlackList" = "Добавить контакт в черный список";
 
-"deleteContactFromBlackList" = "Do you want to delete this contact from Blacklist?";
-"deleteContactFromWhiteList" = "Do you want to delete this contact from Whitelist?";
+"deleteContactFromBlackList" = "Вы хотите удалить контакт из Белого списка?";
+"deleteContactFromWhiteList" = "Вы хотите удалить контакт из Черного списка?";
+
+"whitelistBlacklist" = "Черный / Белый списки";
+"whitelist" = "БЕЛЫЙ СПИСОК";
+"blacklist" = "ЧЕРНЫЙ СПИСОК";
 
 //language
 

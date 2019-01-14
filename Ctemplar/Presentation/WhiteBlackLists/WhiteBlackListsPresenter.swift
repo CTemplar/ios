@@ -92,6 +92,9 @@ class WhiteBlackListsPresenter {
 
     func setupSegmentedControl() {
         
+        self.viewController!.segmentedControl.setTitle("whitelist".localized(), forSegmentAt: 0)
+        self.viewController!.segmentedControl.setTitle("blacklist".localized(), forSegmentAt: 1)
+        
         self.viewController!.segmentedControl.setTitleTextAttributes([
             NSAttributedString.Key.font : UIFont(name: k_latoRegularFontName, size: 14)!,
             NSAttributedString.Key.foregroundColor: k_sideMenuTextFadeColor
@@ -159,7 +162,8 @@ class WhiteBlackListsPresenter {
             break
         }
         
-        self.viewController!.addContactButton .setTitle(text, for: .normal)
+        self.viewController!.addContactBottomButton.setTitle(text, for: .normal)
+        self.viewController!.addContactButton.setTitle(text, for: .normal)
     }
     
     func addContactButtonPressed(listMode: WhiteBlackListsMode) {

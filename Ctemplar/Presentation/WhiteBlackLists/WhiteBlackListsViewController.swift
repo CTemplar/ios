@@ -23,6 +23,7 @@ class WhiteBlackListsViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet var underlineView         : UIView!
     
     @IBOutlet var addContactButton      : UIButton!
+    @IBOutlet var addContactBottomButton      : UIButton!
     @IBOutlet var textLabel             : UILabel!
     
     @IBOutlet var searchBar             : UISearchBar!
