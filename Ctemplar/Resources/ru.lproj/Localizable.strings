@@ -288,12 +288,17 @@
 "selectDefaulfAddress" = "Выберите почтовый ящик по умолчанию";
 "addresses" = "Адреса";
 
+"signature" = "Подпись";
+
 "privacyPolicy" = "Политика конфиденциальности";
 "termsAndConditions" = "Условия использования";
 
 "appVersion" = "Версия приложения ";
 
 "settings" = "Настройки";
+
+"enableSignature" = "Включить подпись";
+"typeSignature" = "Введите вашу подпись";
 
 "generalSettings"           = "Основные настройки";
 "foldersSettings"           = "Папки";

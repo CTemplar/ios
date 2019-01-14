@@ -286,6 +286,11 @@
 "selectDefaulfAddress" = "Select default address";
 "addresses" = "Addresses";
 
+"signature" = "Signature";
+
+"enableSignature" = "Enable signature";
+"typeSignature" = "Type your signature";
+
 "privacyPolicy" = "Privacy Policy";
 "termsAndConditions" = "Terms & Conditions";
 
