@@ -281,6 +281,8 @@
 "currentPasswordPlaceholder" = "Current password";
 "newPasswordPlaceholder" = "New password";
 
+"saveContacts" = "Automatically save contacts";
+
 "privacyPolicy" = "Privacy Policy";
 "termsAndConditions" = "Terms & Conditions";
 

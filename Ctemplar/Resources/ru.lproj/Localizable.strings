@@ -283,6 +283,8 @@
 "currentPasswordPlaceholder" = "Текущий пароль";
 "newPasswordPlaceholder" = "Новый пароль";
 
+"saveContacts" = "Автоматически сохранять контакты";
+
 "privacyPolicy" = "Политика конфиденциальности";
 "termsAndConditions" = "Условия использования";
 

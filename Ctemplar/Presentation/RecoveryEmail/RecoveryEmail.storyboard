@@ -26,7 +26,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wen-2V-5If">
                                 <rect key="frame" x="0.0" y="20" width="375" height="50"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="enableRecoveryEmail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNr-ET-30P" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="enableRecoveryEmail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="vNr-ET-30P" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="16" y="9" width="278" height="32"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                         <color key="textColor" red="0.20392156862745098" green="0.28627450980392155" blue="0.36862745098039218" alpha="1" colorSpace="calibratedRGB"/>
@@ -101,7 +101,7 @@
                         <constraints>
                             <constraint firstItem="FMx-NN-yTI" firstAttribute="trailing" secondItem="gMM-AN-cST" secondAttribute="trailing" id="hFY-Tx-GXd"/>
                             <constraint firstItem="gMM-AN-cST" firstAttribute="top" secondItem="wen-2V-5If" secondAttribute="bottom" constant="-1" id="hGh-60-7TT"/>
-                            <constraint firstItem="FMx-NN-yTI" firstAttribute="trailing" secondItem="wen-2V-5If" secondAttribute="trailing" id="kEp-aW-HuU"/>
+                            <constraint firstAttribute="trailing" secondItem="wen-2V-5If" secondAttribute="trailing" id="kEp-aW-HuU"/>
                             <constraint firstItem="wen-2V-5If" firstAttribute="top" secondItem="FMx-NN-yTI" secondAttribute="top" id="kN6-T7-mOh"/>
                             <constraint firstItem="wen-2V-5If" firstAttribute="leading" secondItem="vYk-sx-lWr" secondAttribute="leading" id="mJz-v6-bey"/>
                             <constraint firstItem="gMM-AN-cST" firstAttribute="leading" secondItem="FMx-NN-yTI" secondAttribute="leading" id="q6j-L6-cgb"/>
