@@ -211,6 +211,15 @@
 "deadManTimerText"      = "If you do not log into your account after the set time email will be sent after ";
 "delayedDeliveryText"   = "Email will be send automatically at the set time";
 
+"setPassword" = "Set Password";
+"encryptForNon" = "Encrypt for non-Ctemplar Mail Users";
+"messagePassword" = "Message Password";
+
+"passwordsMustMatch" = "Passwords must match";
+"passwordHint" = "Password Hint";
+
+"encryptedMessagesTo" = "Encrypted messages to non-Ctemplar recipients will expire in 28 days unless a shorter expiration time is set.";
+
 //Manage Folders
 "deleteFolderTitle" = "Delete folder?";
 "deleteFolder" = "Are you sure you want to delete folder?";
