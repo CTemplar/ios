@@ -229,6 +229,12 @@
 "deleteFolderTitle" = "Delete folder?";
 "deleteFolder" = "Are you sure you want to delete folder?";
 
+"addFolder" = "Добавить папку";
+
+"selectfolder" = "Выбрать папку";
+
+"moveTo" = "Перенести в...";
+
 //Settings
 
 "recoveryEmail" = "Почта для восстановления";

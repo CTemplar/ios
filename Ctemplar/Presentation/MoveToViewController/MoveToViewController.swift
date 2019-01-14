@@ -22,6 +22,9 @@ class MoveToViewController: UIViewController {
     @IBOutlet var manageFolderButton    : UIButton!
     @IBOutlet var manageFolderView      : UIView!
     
+    @IBOutlet var addFolderLabel        : UILabel!
+    @IBOutlet var addFolderImage        : UIImageView!
+    
     @IBOutlet var moveToTableView       : UITableView!
     
     var selectedMessagesIDArray : Array<Int> = []

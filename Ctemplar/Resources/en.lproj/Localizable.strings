@@ -224,6 +224,12 @@
 "deleteFolderTitle" = "Delete folder?";
 "deleteFolder" = "Are you sure you want to delete folder?";
 
+"addFolder" = "Add folder";
+
+"selectfolder" = "Select folder";
+
+"moveTo" = "Move to...";
+
 //Settings
 
 "recoveryEmail" = "Recovery email";
