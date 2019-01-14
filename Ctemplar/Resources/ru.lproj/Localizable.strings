@@ -20,7 +20,8 @@
 "nextButton" = "Дальше";
 "resetPasswordButton" = "Сбросить пароль";
 "confirmButton" = "Подтвердить";
-"addButton" = "Add";
+"addButton" = "Добавить";
+"changeButton" = "Изменить";
 
 "deleteRow" = "Удалить";
 

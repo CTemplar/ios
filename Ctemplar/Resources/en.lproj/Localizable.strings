@@ -21,6 +21,7 @@
 "resetPasswordButton" = "Reset password";
 "confirmButton" = "Confirm";
 "addButton" = "Add";
+"changeButton" = "Change";
 
 "deleteRow" = "Delete";
 
