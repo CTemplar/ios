@@ -141,10 +141,14 @@ class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell, UICollec
             text = "viewDetails".localized()
         }
         
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.alignment = .right
+        
         let attributedString = NSMutableAttributedString(string: text, attributes: [
             .font: UIFont(name: k_latoRegularFontName, size: 14.0)!,
             .foregroundColor: k_blueColor,
-            .kern: 0.0
+            .kern: 0.0,
+            .paragraphStyle: paragraph
             ])
         
         _ = attributedString.setUnderline(textToFind: text)

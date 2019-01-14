@@ -158,8 +158,8 @@
 
 //view message
 
-"viewDetails" = "View details";
-"hideDetails" = "Hide details";
+"viewDetails" = "Показать детали";
+"hideDetails" = "Скрыть детали";
 
 //compose
 
