@@ -129,6 +129,8 @@
 "deleteFolderTitle" = "Delete folder?";
 "deleteFolder" = "Are you sure you want to delete folder?";
 
+"addFolder" = " Upgrade to premium";
+
 //Settings
 
 "recoveryEmail" = "Recovery email";
