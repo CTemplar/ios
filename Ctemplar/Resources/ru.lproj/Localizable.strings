@@ -256,6 +256,8 @@
 
 //Settings
 
+"enableRecoveryEmail" = "Включить почту для восстановленя";
+"typeRecoveryEmail" = "Введите почту для восстановления";
 "recoveryEmail" = "Почта для восстановления";
 "password" = "Пароль";
 "language" = "Язык";

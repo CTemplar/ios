@@ -15,7 +15,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Recovery email-->
+        <!--recoveryEmailPlaceholder-->
         <scene sceneID="ggb-PZ-B3Q">
             <objects>
                 <viewController storyboardIdentifier="RecoveryEmailViewController" id="vsO-ey-vRX" customClass="RecoveryEmailViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
@@ -26,7 +26,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wen-2V-5If">
                                 <rect key="frame" x="0.0" y="20" width="375" height="50"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable recovery email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNr-ET-30P">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="enableRecoveryEmail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNr-ET-30P" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="16" y="9" width="278" height="32"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                         <color key="textColor" red="0.20392156862745098" green="0.28627450980392155" blue="0.36862745098039218" alpha="1" colorSpace="calibratedRGB"/>
@@ -65,7 +65,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMM-AN-cST">
                                 <rect key="frame" x="0.0" y="69" width="375" height="50"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type your recovery email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BJf-1V-pnh">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="typeRecoveryEmail" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BJf-1V-pnh" customClass="UILocalizedTextField" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="16" y="8" width="343" height="34"/>
                                         <color key="textColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
@@ -108,14 +108,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FMx-NN-yTI"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Recovery email" id="vjm-cv-fqn">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="lfM-d5-obb">
+                    <navigationItem key="navigationItem" title="recoveryEmailPlaceholder" id="vjm-cv-fqn" customClass="UILocalizedUINavigationItem" customModule="Ctemplar" customModuleProvider="target">
+                        <barButtonItem key="leftBarButtonItem" title="cancelButton" id="lfM-d5-obb">
                             <color key="tintColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="vsO-ey-vRX" id="Wcd-6q-RmC"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="9qb-2Z-Eoy">
+                        <barButtonItem key="rightBarButtonItem" title="saveButton" id="9qb-2Z-Eoy">
                             <color key="tintColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="saveButtonPressed:" destination="vsO-ey-vRX" id="Trg-cW-gPY"/>
