@@ -17,6 +17,7 @@ class ManageFoldersViewController: UIViewController {
     var dataSource  : ManageFoldersDataSource?
     
     var showFromSideMenu : Bool = true
+    var showFromSettings : Bool = false
     
     var foldersList : Array<Folder> = []
     

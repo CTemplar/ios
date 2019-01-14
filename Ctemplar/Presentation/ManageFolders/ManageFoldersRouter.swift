@@ -21,7 +21,11 @@ class ManageFoldersRouter {
     
     func backAction() {
         
-        self.viewController?.navigationController?.popViewController(animated: true)
+        if (self.viewController?.showFromSettings)! {
+            self.viewController?.navigationController?.popViewController(animated: true)
+        } else {
+            self.viewController?.dismiss(animated: true, completion: nil)
+        }
     }
     
     func showAddFolderViewController() {
