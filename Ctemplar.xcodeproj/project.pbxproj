@@ -190,6 +190,7 @@
 		84525F1F2195690A00CA732E /* SearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84525F1E2195690A00CA732E /* SearchDataSource.swift */; };
 		84525F222195710D00CA732E /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84525F212195710D00CA732E /* SearchTableViewCell.swift */; };
 		84525F242195718200CA732E /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84525F232195718200CA732E /* SearchTableViewCell.xib */; };
+		84527B9121EE13B300FF87AA /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84527B9021EE13B300FF87AA /* SplitViewController.swift */; };
 		845E64392170849C008612FE /* InboxSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E64382170849C008612FE /* InboxSideMenuViewController.swift */; };
 		845E643B21709330008612FE /* InboxSideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845E643A21709330008612FE /* InboxSideMenu.storyboard */; };
 		845E643E2170A46C008612FE /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E643D2170A46C008612FE /* ComposeViewController.swift */; };
@@ -413,6 +414,7 @@
 		84525F1E2195690A00CA732E /* SearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataSource.swift; sourceTree = "<group>"; };
 		84525F212195710D00CA732E /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		84525F232195718200CA732E /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
+		84527B9021EE13B300FF87AA /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		845E64382170849C008612FE /* InboxSideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuViewController.swift; sourceTree = "<group>"; };
 		845E643A21709330008612FE /* InboxSideMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InboxSideMenu.storyboard; sourceTree = "<group>"; };
 		845E643D2170A46C008612FE /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
@@ -730,6 +732,8 @@
 				8443D21121CB697B002AD54B /* EditFolder */,
 				8434D9AA219BFCE700D2C3A5 /* ContactsScreen */,
 				845E643721708453008612FE /* SideMenu */,
+				84527B8E21EE12D000FF87AA /* SideMenuTableViewController */,
+				84527B8F21EE139100FF87AA /* SplitViewController */,
 				8443D21A21CBDB43002AD54B /* Settings */,
 				8431B08521D10F5000A73D39 /* RecoveryEmail */,
 				8432870721D2033100A66DBF /* ChangePassword */,
@@ -1046,6 +1050,21 @@
 				84525F232195718200CA732E /* SearchTableViewCell.xib */,
 			);
 			path = SearchCells;
+			sourceTree = "<group>";
+		};
+		84527B8E21EE12D000FF87AA /* SideMenuTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SideMenuTableViewController;
+			sourceTree = "<group>";
+		};
+		84527B8F21EE139100FF87AA /* SplitViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84527B9021EE13B300FF87AA /* SplitViewController.swift */,
+			);
+			path = SplitViewController;
 			sourceTree = "<group>";
 		};
 		845E643721708453008612FE /* SideMenu */ = {
@@ -1415,6 +1434,7 @@
 				8434D9AC219BFD1E00D2C3A5 /* ContactsViewController.swift in Sources */,
 				84A62E4D2175C6EB009C38E5 /* ForgotUsernameViewController.swift in Sources */,
 				84525F222195710D00CA732E /* SearchTableViewCell.swift in Sources */,
+				84527B9121EE13B300FF87AA /* SplitViewController.swift in Sources */,
 				84A62E492175B508009C38E5 /* ResetPasswordViewController.swift in Sources */,
 				8403BDEC21A452AB00EE8DCD /* Attachment.swift in Sources */,
 				84525F1D219568FF00CA732E /* SearchInteractor.swift in Sources */,

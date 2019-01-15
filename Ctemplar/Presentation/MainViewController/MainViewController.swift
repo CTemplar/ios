@@ -38,7 +38,7 @@ class MainViewController: UIViewController {
             showLoginViewController()
         } else {
             if (Device.IS_IPAD) {
-                
+                showInboxNavigationController()
             } else {
                 showInboxNavigationController()
             }
@@ -109,7 +109,11 @@ class MainViewController: UIViewController {
        
         let inboxViewController = self.inboxNavigationController.viewControllers.first as! InboxViewController
         
-        self.initAndSetupInboxSideMenuController(inboxViewController: inboxViewController)
+        if (!Device.IS_IPAD) {
+            self.initAndSetupInboxSideMenuController(inboxViewController: inboxViewController)
+        } else {
+            self.initAndSetupIpadInboxSideMenuController(inboxViewController: inboxViewController)
+        }
     }
     
     //MARK: - Side Menu
@@ -134,14 +138,18 @@ class MainViewController: UIViewController {
         SideMenuManager.default.menuPresentMode = .menuSlideIn
         let frame = self.view.frame
         SideMenuManager.default.menuWidth = max(round(min((frame.width), (frame.height)) * 0.67), 240)
-        
+        /*
         if (Device.IS_IPAD) {
-            //SideMenuManager.default.menuPresentMode = .viewSlideInOut
+            SideMenuManager.default.menuPresentMode = .viewSlideOut
             SideMenuManager.default.menuAnimationFadeStrength = 0
             SideMenuManager.default.menuWidth = max(round(min((frame.width), (frame.height)) * 0.33), 240)
         }
         
-        print("SideMenuManager.default.menuWidth:", SideMenuManager.default.menuWidth)
+        print("SideMenuManager.default.menuWidth:", SideMenuManager.default.menuWidth)*/
+    }
+    
+    func initAndSetupIpadInboxSideMenuController(inboxViewController: InboxViewController) {
+        
     }
 }
 
