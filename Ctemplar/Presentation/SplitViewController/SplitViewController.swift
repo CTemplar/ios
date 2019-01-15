@@ -16,5 +16,22 @@ class SplitViewController: UISplitViewController {
         
         self.preferredDisplayMode = .automatic       
         //self.primaryEdge = .leading
+        
+        /*
+        let navigationController = self.viewControllers.last as? UINavigationController
+        
+        navigationController?.topViewController?.navigationItem.leftBarButtonItem = self.displayModeButtonItem
+        navigationController?.topViewController?.navigationItem.leftItemsSupplementBackButton = true
+        */
+        /*
+        let detailViewController = self.viewControllers.first as! UINavigationController
+        
+        detailViewController.navigationItem.leftBarButtonItem = self.displayModeButtonItem
+        detailViewController.navigationItem.leftItemsSupplementBackButton = true
+        
+        for vc in self.viewControllers {
+            print("vc:", vc)
+        }*/
+        
     }
 }

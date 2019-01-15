@@ -112,7 +112,7 @@ class MainViewController: UIViewController {
         if (!Device.IS_IPAD) {
             self.initAndSetupInboxSideMenuController(inboxViewController: inboxViewController)
         } else {
-            self.initAndSetupIpadInboxSideMenuController(inboxViewController: inboxViewController)
+            //self.initAndSetupIpadInboxSideMenuController(inboxViewController: inboxViewController)
         }
     }
     
@@ -138,18 +138,28 @@ class MainViewController: UIViewController {
         SideMenuManager.default.menuPresentMode = .menuSlideIn
         let frame = self.view.frame
         SideMenuManager.default.menuWidth = max(round(min((frame.width), (frame.height)) * 0.67), 240)
-        /*
-        if (Device.IS_IPAD) {
-            SideMenuManager.default.menuPresentMode = .viewSlideOut
-            SideMenuManager.default.menuAnimationFadeStrength = 0
-            SideMenuManager.default.menuWidth = max(round(min((frame.width), (frame.height)) * 0.33), 240)
-        }
-        
-        print("SideMenuManager.default.menuWidth:", SideMenuManager.default.menuWidth)*/
     }
     
     func initAndSetupIpadInboxSideMenuController(inboxViewController: InboxViewController) {
         
+        let storyboard: UIStoryboard = UIStoryboard(name: k_InboxSideMenuStoryboardName, bundle: nil)
+        
+        let inboxSideMenuViewController = storyboard.instantiateViewController(withIdentifier: k_InboxSideMenuViewControllerID) as? InboxSideMenuViewController
+        
+        inboxSideMenuViewController?.mainViewController = self
+        inboxSideMenuViewController?.inboxViewController = inboxViewController
+        inboxSideMenuViewController?.dataSource?.selectedIndexPath = IndexPath(row: 0, section: SideMenuSectionIndex.mainFolders.rawValue)
+        
+        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: (inboxSideMenuViewController)!)
+        
+        SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
+        SideMenuManager.default.menuFadeStatusBar = false        
+        SideMenuManager.default.menuAnimationBackgroundColor = k_sideMenuFadeColor
+        
+        SideMenuManager.default.menuPresentMode = .viewSlideOut
+        SideMenuManager.default.menuAnimationFadeStrength = 0
+        let frame = self.view.frame
+        SideMenuManager.default.menuWidth = max(round(min((frame.width), (frame.height)) * 0.33), 240)
     }
 }
 
