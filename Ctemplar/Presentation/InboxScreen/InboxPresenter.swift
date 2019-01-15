@@ -123,28 +123,7 @@ class InboxPresenter {
             }
         }
     }
-    
-    //MARK: - Side Menu
-    
-    func initAndSetupInboxSideMenuController() {
-        
-        let storyboard: UIStoryboard = UIStoryboard(name: k_InboxSideMenuStoryboardName, bundle: nil)
-       
-        self.viewController?.inboxSideMenuViewController = storyboard.instantiateViewController(withIdentifier: k_InboxSideMenuViewControllerID) as? InboxSideMenuViewController
-        
-        self.viewController?.inboxSideMenuViewController?.currentParentViewController = self.viewController
-        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: (self.viewController?.inboxSideMenuViewController)!)
-        
-        SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
-        SideMenuManager.default.menuFadeStatusBar = false
-        SideMenuManager.default.menuAnimationFadeStrength = 0.5
-        SideMenuManager.default.menuAnimationBackgroundColor = k_sideMenuFadeColor
-        
-        SideMenuManager.default.menuPresentMode = .menuSlideIn
-        let frame = self.viewController?.view.frame
-        SideMenuManager.default.menuWidth = max(round(min((frame!.width), (frame!.height)) * 0.67), 240)
-    }
-        
+            
     //MARK: - formatting
     
     func formatEmailsCountText(emailsCount: Int) -> String {

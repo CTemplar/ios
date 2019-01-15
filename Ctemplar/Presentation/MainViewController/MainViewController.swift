@@ -37,7 +37,11 @@ class MainViewController: UIViewController {
             print("MainViewController: wrong stored credentials!")
             showLoginViewController()
         } else {
-            showInboxNavigationController()
+            if (Device.IS_IPAD) {
+                
+            } else {
+                showInboxNavigationController()
+            }
         }
         
         setAutoUpdaterTimer()
@@ -130,6 +134,14 @@ class MainViewController: UIViewController {
         SideMenuManager.default.menuPresentMode = .menuSlideIn
         let frame = self.view.frame
         SideMenuManager.default.menuWidth = max(round(min((frame.width), (frame.height)) * 0.67), 240)
+        
+        if (Device.IS_IPAD) {
+            //SideMenuManager.default.menuPresentMode = .viewSlideInOut
+            SideMenuManager.default.menuAnimationFadeStrength = 0
+            SideMenuManager.default.menuWidth = max(round(min((frame.width), (frame.height)) * 0.33), 240)
+        }
+        
+        print("SideMenuManager.default.menuWidth:", SideMenuManager.default.menuWidth)
     }
 }
 

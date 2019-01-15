@@ -277,7 +277,7 @@
 "terms" = "Условия использования";
 
 "recoveryEmailUpdatedMessage" = "Запасной почтовый ящик был успешно обновлен";
-"passwordUpdatedMessage" = "Пароль был успешно обновлен;
+"passwordUpdatedMessage" = "Пароль был успешно обновлен";
 "userSignature" = "Подпись была успешно обновлена";
 
 "currentPasswordPlaceholder" = "Текущий пароль";
