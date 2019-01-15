@@ -296,6 +296,11 @@
 
 "appVersion" = "AppVersion ";
 
+"takeBack" = "Take Back Your Liberty";
+"withEncrypted" = "with Encrypted Communication";
+"sendUnbreakable" = "Send unbreakable emails and protect your key professional and personal details trough next-gen encryption. End-to-end PKI encription keeps your private information safe from governments, corporations and hackers-for-hire.";
+"goToWebVersion" = "GO TO WEB VERSION";
+
 "settings" = "Settings";
 
 "generalSettings"           = "General settings";

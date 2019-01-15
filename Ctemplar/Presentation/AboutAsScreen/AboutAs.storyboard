@@ -59,19 +59,17 @@
                                 <color key="textColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="QQ0-hf-uHY">
-                                <rect key="frame" x="39" y="201" width="297" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="takeBack" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="QQ0-hf-uHY" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                <rect key="frame" x="39" y="201" width="297" height="27"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="QQ0-hf-uHY" secondAttribute="height" multiplier="37:3" id="7hC-JI-uaM"/>
+                                    <constraint firstAttribute="width" secondItem="QQ0-hf-uHY" secondAttribute="height" multiplier="111:10" id="7hC-JI-uaM"/>
                                 </constraints>
-                                <string key="text">Take Back Your Liberty
-with Encrypted Communication</string>
                                 <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="24"/>
                                 <color key="textColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="with Encrypted Communication" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="Rz6-I5-qKa">
-                                <rect key="frame" x="40" y="233" width="295" height="60"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="withEncrypted" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="Rz6-I5-qKa" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                <rect key="frame" x="40" y="236" width="295" height="59.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Rz6-I5-qKa" secondAttribute="height" multiplier="74:15" id="Zlm-Y7-1Fq"/>
                                 </constraints>
@@ -79,24 +77,23 @@ with Encrypted Communication</string>
                                 <color key="textColor" red="0.035294117647058823" green="0.12156862745098039" blue="0.20784313725490194" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="2yH-wS-caA">
-                                <rect key="frame" x="33.5" y="324" width="308" height="130"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sendUnbreakable" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="2yH-wS-caA" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                <rect key="frame" x="33.5" y="326.5" width="308" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="2yH-wS-caA" secondAttribute="height" multiplier="154:65" id="mg1-uI-xQr"/>
                                 </constraints>
-                                <string key="text">Send unbreakable emails and protect your key professional and personal details trough next-gen encryption. End-to-end PKI encription keeps your private information safe from governments, corporations and hackers-for-hire.</string>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                 <color key="textColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83Q-lg-pJS">
-                                <rect key="frame" x="32.5" y="519" width="310" height="48"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83Q-lg-pJS" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
+                                <rect key="frame" x="63" y="521.5" width="249" height="48"/>
                                 <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="83Q-lg-pJS" secondAttribute="height" multiplier="155:24" id="GF7-g6-EEI"/>
+                                    <constraint firstAttribute="height" constant="48" id="yb0-3E-8HV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
-                                <state key="normal" title="GO TO WEB VERSION">
+                                <state key="normal" title="goToWebVersion">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -120,7 +117,7 @@ with Encrypted Communication</string>
                             <constraint firstAttribute="bottom" secondItem="jnj-Qb-bCY" secondAttribute="bottom" id="YmE-tw-7I8"/>
                             <constraint firstItem="83Q-lg-pJS" firstAttribute="centerX" secondItem="Zwi-YN-9pa" secondAttribute="centerX" id="aKB-Pt-hhB"/>
                             <constraint firstItem="Aqa-Ov-QAM" firstAttribute="trailing" secondItem="QQ0-hf-uHY" secondAttribute="trailing" constant="39" id="cpJ-uY-cIe"/>
-                            <constraint firstItem="83Q-lg-pJS" firstAttribute="leading" secondItem="Aqa-Ov-QAM" secondAttribute="leading" constant="32.5" id="eK6-rT-yNg"/>
+                            <constraint firstItem="83Q-lg-pJS" firstAttribute="leading" secondItem="Aqa-Ov-QAM" secondAttribute="leading" constant="63" id="eK6-rT-yNg"/>
                             <constraint firstItem="jnj-Qb-bCY" firstAttribute="trailing" secondItem="Aqa-Ov-QAM" secondAttribute="trailing" id="fyV-IY-eNb"/>
                             <constraint firstItem="gxg-ap-Z5U" firstAttribute="top" secondItem="Aqa-Ov-QAM" secondAttribute="top" constant="44" id="g0h-4r-K1L"/>
                             <constraint firstItem="83Q-lg-pJS" firstAttribute="top" secondItem="2yH-wS-caA" secondAttribute="bottom" constant="65" id="lpV-JU-MPm"/>
