@@ -331,6 +331,10 @@
 "whitelist" = "БЕЛЫЙ СПИСОК";
 "blacklist" = "ЧЕРНЫЙ СПИСОК";
 
+"addContactW" = "Добавить Контакт";
+"name" = "Имя";
+"email" = "Почта";
+
 //language
 
 "languageTitle" = "Язык";

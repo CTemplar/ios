@@ -328,6 +328,11 @@
 "whitelist" = "WHITELIST";
 "blacklist" = "BLACKLIST";
 
+"addContactW" = "Add Contact";
+"name" = "Name";
+"email" = "Email";
+
+
 //language
 
 "languageTitle" = "Language";
