@@ -68,7 +68,7 @@
 		8433FF1F216201A300C57DC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF1D216201A300C57DC8 /* Main.storyboard */; };
 		8433FF21216201A500C57DC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF20216201A500C57DC8 /* Assets.xcassets */; };
 		8433FF24216201A500C57DC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF22216201A500C57DC8 /* LaunchScreen.storyboard */; };
-		8433FF4C21620DBD00C57DC8 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF4B21620DBD00C57DC8 /* Main-iPad.storyboard */; };
+		8433FF4C21620DBD00C57DC8 /* SplitiPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF4B21620DBD00C57DC8 /* SplitiPad.storyboard */; };
 		8433FF532162128200C57DC8 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF522162128200C57DC8 /* APIService.swift */; };
 		8433FF552162129800C57DC8 /* RestAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF542162129800C57DC8 /* RestAPIService.swift */; };
 		8433FF57216212D500C57DC8 /* AplicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF56216212D500C57DC8 /* AplicationManager.swift */; };
@@ -88,6 +88,7 @@
 		8434D9B4219C4E1200D2C3A5 /* ContactsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D9B3219C4E1200D2C3A5 /* ContactsPresenter.swift */; };
 		8434D9B6219C4E2800D2C3A5 /* ContactsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D9B5219C4E2800D2C3A5 /* ContactsInteractor.swift */; };
 		8434D9B8219C4E3900D2C3A5 /* ContactsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D9B7219C4E3900D2C3A5 /* ContactsDataSource.swift */; };
+		8434E18B21EF175600E15766 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8434E18A21EF175600E15766 /* Main-iPad.storyboard */; };
 		84356859216F2736002101D3 /* InboxNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84356858216F2736002101D3 /* InboxNavigationController.swift */; };
 		8435685B216F2748002101D3 /* Inbox.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8435685A216F2748002101D3 /* Inbox.storyboard */; };
 		8435685D216F2DB3002101D3 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8435685C216F2DB3002101D3 /* InboxViewController.swift */; };
@@ -288,7 +289,7 @@
 		8433FF20216201A500C57DC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8433FF23216201A500C57DC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8433FF25216201A500C57DC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8433FF4B21620DBD00C57DC8 /* Main-iPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Main-iPad.storyboard"; sourceTree = "<group>"; };
+		8433FF4B21620DBD00C57DC8 /* SplitiPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplitiPad.storyboard; sourceTree = "<group>"; };
 		8433FF522162128200C57DC8 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		8433FF542162129800C57DC8 /* RestAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPIService.swift; sourceTree = "<group>"; };
 		8433FF56216212D500C57DC8 /* AplicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AplicationManager.swift; sourceTree = "<group>"; };
@@ -308,6 +309,7 @@
 		8434D9B3219C4E1200D2C3A5 /* ContactsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsPresenter.swift; sourceTree = "<group>"; };
 		8434D9B5219C4E2800D2C3A5 /* ContactsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsInteractor.swift; sourceTree = "<group>"; };
 		8434D9B7219C4E3900D2C3A5 /* ContactsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsDataSource.swift; sourceTree = "<group>"; };
+		8434E18A21EF175600E15766 /* Main-iPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Main-iPad.storyboard"; sourceTree = "<group>"; };
 		84356858216F2736002101D3 /* InboxNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxNavigationController.swift; sourceTree = "<group>"; };
 		8435685A216F2748002101D3 /* Inbox.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Inbox.storyboard; sourceTree = "<group>"; };
 		8435685C216F2DB3002101D3 /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
@@ -676,7 +678,7 @@
 			isa = PBXGroup;
 			children = (
 				8433FF1D216201A300C57DC8 /* Main.storyboard */,
-				8433FF4B21620DBD00C57DC8 /* Main-iPad.storyboard */,
+				8434E18A21EF175600E15766 /* Main-iPad.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1063,6 +1065,7 @@
 			isa = PBXGroup;
 			children = (
 				84527B9021EE13B300FF87AA /* SplitViewController.swift */,
+				8433FF4B21620DBD00C57DC8 /* SplitiPad.storyboard */,
 			);
 			path = SplitViewController;
 			sourceTree = "<group>";
@@ -1263,7 +1266,7 @@
 				8443D21921CB6F36002AD54B /* EditFolder.storyboard in Resources */,
 				8435685B216F2748002101D3 /* Inbox.storyboard in Resources */,
 				8403BDE221A3F00B00EE8DCD /* AddContact.storyboard in Resources */,
-				8433FF4C21620DBD00C57DC8 /* Main-iPad.storyboard in Resources */,
+				8433FF4C21620DBD00C57DC8 /* SplitiPad.storyboard in Resources */,
 				8462C62621CCC16C005B3D74 /* SettingsBaseTableViewCell.xib in Resources */,
 				8432B2FE2186F403006C901C /* SideMenuTableSectionHeader.xib in Resources */,
 				84344D3821CA44AD00A5D9A0 /* ColorPicker.xib in Resources */,
@@ -1275,6 +1278,7 @@
 				8432B302218709F5006C901C /* SideMenuTableViewCell.xib in Resources */,
 				8440142221D3B74100FC450C /* Login.storyboard in Resources */,
 				8432071321785F8400F18E5A /* InboxMessageTableViewCell.xib in Resources */,
+				8434E18B21EF175600E15766 /* Main-iPad.storyboard in Resources */,
 				8441099421776B6400F0BE18 /* README.md in Resources */,
 				8440141721D35D5D00FC450C /* UserMailboxBigTableViewCell.xib in Resources */,
 				84525F15219549C100CA732E /* Search.storyboard in Resources */,

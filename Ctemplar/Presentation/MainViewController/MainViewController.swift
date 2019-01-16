@@ -18,6 +18,7 @@ class MainViewController: UIViewController {
     var apiService      : APIService?
     
     var inboxNavigationController: InboxNavigationController! = nil
+    var iPadSplitViewController : SplitViewController! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +28,11 @@ class MainViewController: UIViewController {
         
         configurePKHUD()
         
-        initInboxNavigationController()
+        if (!Device.IS_IPAD) {
+            initInboxNavigationController()
+        } else {
+            initSplitViewController()
+        }
        
         let keyChainService = apiService?.keychainService
         let storedUserName = keyChainService?.getUserName()
@@ -37,22 +42,20 @@ class MainViewController: UIViewController {
             print("MainViewController: wrong stored credentials!")
             showLoginViewController()
         } else {
-            if (Device.IS_IPAD) {
+            if (!Device.IS_IPAD) {
                 showInboxNavigationController()
             } else {
-                showInboxNavigationController()
+                showSplitViewController()
             }
         }
+        
         
         setAutoUpdaterTimer()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        DispatchQueue.main.async {
-        //    self.apiService?.messagesList(viewController: self)
-        }
+ 
     }
     
     func setAutoUpdaterTimer() {
@@ -112,13 +115,7 @@ class MainViewController: UIViewController {
         if (!Device.IS_IPAD) {
             self.initAndSetupInboxSideMenuController(inboxViewController: inboxViewController)
         } else {
-            //self.initAndSetupIpadInboxSideMenuController(inboxViewController: inboxViewController)
-            
-            //if let splitViewController = self.window?.rootViewController as? UISplitViewController {
-                
-            //}
-            
-            
+                        
         }
     }
     
@@ -146,26 +143,17 @@ class MainViewController: UIViewController {
         SideMenuManager.default.menuWidth = max(round(min((frame.width), (frame.height)) * 0.67), 240)
     }
     
-    func initAndSetupIpadInboxSideMenuController(inboxViewController: InboxViewController) {
+    func initSplitViewController() {
         
-        let storyboard: UIStoryboard = UIStoryboard(name: k_InboxSideMenuStoryboardName, bundle: nil)
+        let storyboard: UIStoryboard = UIStoryboard(name: k_SplitStoryboardName, bundle: nil)
+        self.iPadSplitViewController = storyboard.instantiateViewController(withIdentifier: k_SplitViewControllerID) as? SplitViewController
+    }
+    
+    func showSplitViewController() {
         
-        let inboxSideMenuViewController = storyboard.instantiateViewController(withIdentifier: k_InboxSideMenuViewControllerID) as? InboxSideMenuViewController
-        
-        inboxSideMenuViewController?.mainViewController = self
-        inboxSideMenuViewController?.inboxViewController = inboxViewController
-        inboxSideMenuViewController?.dataSource?.selectedIndexPath = IndexPath(row: 0, section: SideMenuSectionIndex.mainFolders.rawValue)
-        
-        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: (inboxSideMenuViewController)!)
-        
-        SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
-        SideMenuManager.default.menuFadeStatusBar = false        
-        SideMenuManager.default.menuAnimationBackgroundColor = k_sideMenuFadeColor
-        
-        SideMenuManager.default.menuPresentMode = .viewSlideOut
-        SideMenuManager.default.menuAnimationFadeStrength = 0
-        let frame = self.view.frame
-        SideMenuManager.default.menuWidth = max(round(min((frame.width), (frame.height)) * 0.33), 240)
+        DispatchQueue.main.async {
+            self.show(self.iPadSplitViewController , sender: self)
+        }
     }
 }
 

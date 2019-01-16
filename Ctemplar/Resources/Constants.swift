@@ -11,6 +11,7 @@ import Foundation
 
 // view controllers ID
 
+let k_SplitViewControllerID                 = "SplitViewController"
 let k_LoginViewControllerID                 = "LoginViewController"
 let k_SignUpPageViewControllerID            = "SignUpPageViewController"
 let k_SignUpPageNameViewControllerID        = "SignUpPageNameViewController"
@@ -50,6 +51,7 @@ let k_AboutAsViewControllerID               = "AboutAsViewController"
 
 // view controllers storyboards name
 
+let k_SplitStoryboardName                  = "SplitiPad"
 let k_LoginStoryboardName                  = "Login"
 let k_SignUpStoryboardName                 = "SignUp"
 let k_ForgotPasswordStoryboardName         = "ForgotPassword"

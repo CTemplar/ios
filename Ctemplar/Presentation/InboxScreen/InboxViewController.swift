@@ -189,7 +189,7 @@ class InboxViewController: UIViewController {
     }
     
     //MARK: - Orientation
-    /*
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
         super.viewWillTransition(to: size, with: coordinator)
@@ -201,7 +201,7 @@ class InboxViewController: UIViewController {
             print("Portrait")
             self.presenter?.setupNavigationLeftItem(show: true)
         }
-    }*/
+    }
 }
 
 extension InboxViewController: InboxFilterDelegate {
