@@ -155,7 +155,12 @@ class InboxViewController: UIViewController {
     
     @IBAction func moreButtonPressed(_ sender: AnyObject) {
         
-        self.presenter?.showMoreActionsView(emptyFolder: false)
+        //self.presenter?.showMoreActionsView(emptyFolder: false)
+        if (!Device.IS_IPAD) {
+            self.presenter?.showMoreActionsView(emptyFolder: false)
+        } else {
+            self.presenter?.showMoreActionsActionSheet()
+        }
     }
     
     @IBAction func undoButtonPressed(_ sender: AnyObject) {

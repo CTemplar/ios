@@ -13,6 +13,9 @@ import SideMenu
 
 class InboxPresenter {
     
+    var k_popoverSourceRectX          = 0
+    var k_popoverSourceRectY          = 0
+    
     var viewController   : InboxViewController?
     var interactor       : InboxInteractor?
     
@@ -29,6 +32,9 @@ class InboxPresenter {
     //MARK: - setup UI
     
     func setupUI(emailsCount: Int, unreadEmails: Int, filterEnabled: Bool) {
+        
+        k_popoverSourceRectX = Int((self.viewController?.view.frame.width)! - 44.0)
+        k_popoverSourceRectY = Int((self.viewController?.view.frame.height)! - 44.0)
         
         if filterEnabled {
             viewController?.messagesLabel.text = "filtered".localized()
@@ -212,19 +218,13 @@ class InboxPresenter {
     
     @objc func moreButtonPresed() {
         
-        showMoreActionsView(emptyFolder: true)
-    }
-    
-    /*
-    func searchButtonPressed(sender: AnyObject) {
-        
-        if self.viewController?.dataSource?.selectionMode == true {
-            disableSelectionMode()
+        if (!Device.IS_IPAD) {
+            self.showMoreActionsView(emptyFolder: true)
         } else {
-            //self.viewController?.router?.showMoveToViewController()//temp
+            //self.showMoreActionsActionSheet()
         }
-    }*/
-    
+    }
+     
     func enableSelectionMode() {
         
         var moreButtonEnabled: Bool = false
@@ -236,8 +236,10 @@ class InboxPresenter {
             moreButtonEnabled = true
         }
         
-        self.viewController?.leftBarButtonItem.image = nil
-        self.viewController?.leftBarButtonItem.isEnabled = false
+        if self.viewController?.leftBarButtonItem != nil {
+            self.viewController?.leftBarButtonItem.image = nil
+            self.viewController?.leftBarButtonItem.isEnabled = false
+        }
         
         setupNavigationRightItems(searchMode: true, moreButtonEnabled: moreButtonEnabled)
         
@@ -266,8 +268,10 @@ class InboxPresenter {
             moreButtonEnabled = true
         }
         
-        self.viewController?.leftBarButtonItem.image = UIImage(named: k_menuImageName)
-        self.viewController?.leftBarButtonItem.isEnabled = true
+        if self.viewController?.leftBarButtonItem != nil {
+            self.viewController?.leftBarButtonItem.image = UIImage(named: k_menuImageName)
+            self.viewController?.leftBarButtonItem.isEnabled = true
+        }
                 
         setupNavigationRightItems(searchMode: false, moreButtonEnabled: moreButtonEnabled)
         
@@ -584,6 +588,85 @@ class InboxPresenter {
         }
         
         return false
+    }
+    
+    func showMoreActionsActionSheet() {
+        
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        self.configureMoreActionsActionSheet(alertController: alertController)
+        
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = viewController?.view
+            popoverController.sourceRect = CGRect(x: k_popoverSourceRectX, y: k_popoverSourceRectY, width: 0, height: 0)
+        }
+        
+        viewController?.present(alertController, animated: true, completion: nil)
+    }
+    
+    func configureMoreActionsActionSheet(alertController: UIAlertController) {
+        
+        let currentFolder = self.viewController?.currentFolderFilter
+        
+        let read = self.needReadAction()
+        var readButton : String = ""
+        
+        if read {
+            readButton = "markAsRead".localized()
+        } else {
+            readButton = "markAsUnread".localized()
+        }
+        
+        var actionsList: Array<UIAlertAction> = []
+        
+        let readMessageAction = UIAlertAction(title: readButton, style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.markSelectedMessagesAsRead()
+        })
+        
+        let moveToInboxAction = UIAlertAction(title: readButton, style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.moveSelectedMessagesToInbox()
+        })
+        
+        let moveToArchiveAction = UIAlertAction(title: readButton, style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.moveSelectedMessagesToArchive()
+        })
+        
+        switch currentFolder {
+        case MessagesFoldersName.inbox.rawValue:
+            actionsList = [readMessageAction, moveToArchiveAction]
+            break
+        case MessagesFoldersName.draft.rawValue:
+            
+            break
+        case MessagesFoldersName.sent.rawValue:
+            actionsList = [readMessageAction, moveToArchiveAction]
+            break
+        case MessagesFoldersName.outbox.rawValue:
+            actionsList = [readMessageAction, moveToArchiveAction, moveToInboxAction]
+            break
+        case MessagesFoldersName.starred.rawValue:
+            actionsList = [readMessageAction, moveToArchiveAction, moveToInboxAction]
+            break
+        case MessagesFoldersName.archive.rawValue:
+            actionsList = [readMessageAction, moveToInboxAction]
+            break
+        case MessagesFoldersName.spam.rawValue:
+            actionsList = [readMessageAction, moveToArchiveAction, moveToInboxAction]
+            break
+        case MessagesFoldersName.trash.rawValue:
+           
+            break
+        default:
+            actionsList = [readMessageAction, moveToArchiveAction, moveToInboxAction]
+            break
+        }
+        
+        for action in actionsList {
+            alertController.addAction(action)
+        }
     }
     
     //MARK: - Actions with Selected Messages
