@@ -251,7 +251,13 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         tableView.deselectRow(at: indexPath, animated: true)
         
         if self.selectedIndexPath == indexPath {
-            self.parentViewController?.dismiss(animated: true, completion: nil)
+            
+            if (!Device.IS_IPAD) {
+                self.parentViewController?.dismiss(animated: true, completion: nil)
+            } else {
+                self.parentViewController?.splitViewController?.toggleMasterView()
+            }
+            
             return
         }
         

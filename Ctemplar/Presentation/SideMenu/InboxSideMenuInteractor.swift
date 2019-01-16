@@ -207,7 +207,11 @@ class InboxSideMenuInteractor {
         currentViewController?.presenter?.interactor?.setInboxData(messages: (currentViewController?.allMessagesList)!, folderFilter: filter)
         currentViewController?.presenter?.interactor?.clearFilters()
         
-        self.dismissSideMenuAndTopController()
+        if (!Device.IS_IPAD) {
+            self.dismissSideMenuAndTopController()
+        } else {
+            self.viewController?.splitViewController?.toggleMasterView()
+        }
     }
     
     func applyCustomFolderAction(folderName: String) {
