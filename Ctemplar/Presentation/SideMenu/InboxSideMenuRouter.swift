@@ -13,6 +13,14 @@ class InboxSideMenuRouter {
     
     var viewController: InboxSideMenuViewController?
     
+    func showInboxViewController() {
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: k_InboxStoryboardName, bundle: nil)
+        let inboxNavigationController = storyboard.instantiateViewController(withIdentifier: k_InboxNavigationControllerID) as? InboxNavigationController
+        
+        self.viewController?.splitViewController?.showDetailViewController(inboxNavigationController!, sender: self)
+    }
+    
     func showContactsViewController() {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_ContactsStoryboardName, bundle: nil)
@@ -20,7 +28,15 @@ class InboxSideMenuRouter {
         self.viewController?.currentParentViewController = vc
         vc.contactsList = (self.viewController?.inboxViewController?.user.contactsList)! //temp
         //vc.sideMenuViewController = self.viewController
-        self.viewController?.navigationController?.pushViewController(vc, animated: true)
+       
+        if (!Device.IS_IPAD) {
+            self.viewController?.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            //let navigationController = UINavigationController(rootViewController: vc)
+            //self.viewController?.splitViewController?.showDetailViewController(navigationController, sender: self)
+            self.viewController?.splitViewController?.secondaryViewController?.show(vc, sender: self)
+            self.viewController?.splitViewController?.toggleMasterView()
+        }
     }
     
     func showManageFoldersViewController() {
@@ -30,7 +46,14 @@ class InboxSideMenuRouter {
         self.viewController?.currentParentViewController = vc
         vc.foldersList = (self.viewController?.inboxViewController?.user.foldersList)!
         vc.user = (self.viewController?.inboxViewController?.user)!
-        self.viewController?.navigationController?.pushViewController(vc, animated: true)
+        if (!Device.IS_IPAD) {
+            self.viewController?.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            //let navigationController = UINavigationController(rootViewController: vc)
+            //self.viewController?.splitViewController?.showDetailViewController(navigationController, sender: self)
+            self.viewController?.splitViewController?.secondaryViewController?.show(vc, sender: self)
+            self.viewController?.splitViewController?.toggleMasterView()
+        }
     }
     
     func showSettingsViewController() {
@@ -40,6 +63,14 @@ class InboxSideMenuRouter {
         self.viewController?.currentParentViewController = vc
         vc.sideMenuViewController = self.viewController
         vc.user = (self.viewController?.inboxViewController?.user)!
-        self.viewController?.navigationController?.pushViewController(vc, animated: true)
+        if (!Device.IS_IPAD) {
+            self.viewController?.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            //let navigationController = UINavigationController(rootViewController: vc)
+            //self.viewController?.splitViewController?.showDetailViewController(navigationController, sender: self)
+            self.viewController?.splitViewController?.secondaryViewController?.show(vc, sender: self)
+            self.viewController?.splitViewController?.toggleMasterView()
+        }
     }
+    
 }

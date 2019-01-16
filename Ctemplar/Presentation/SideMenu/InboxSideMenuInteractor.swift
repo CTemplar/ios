@@ -140,11 +140,22 @@ class InboxSideMenuInteractor {
     
     func dismissSideMenuAndTopController() {
         
-        self.viewController?.dismiss(animated: true, completion: { 
-            if let parentViewController = self.viewController?.currentParentViewController {
-                parentViewController.navigationController?.popToRootViewController(animated: true)
-            }
-        })
+        if (!Device.IS_IPAD) {
+            self.viewController?.dismiss(animated: true, completion: {
+                if let parentViewController = self.viewController?.currentParentViewController {
+                    parentViewController.navigationController?.popToRootViewController(animated: true)
+                }
+            })
+        } else {
+            self.viewController?.splitViewController?.toggleMasterView()
+            //if (self.viewController?.currentParentViewController) != nil {
+                //self.viewController?.splitViewController?.secondaryViewController?.dismiss(animated: true, completion: nil)
+                //self.viewController?.router?.showInboxViewController()
+                if let parentViewController = self.viewController?.currentParentViewController {
+                    parentViewController.navigationController?.popToRootViewController(animated: true)
+                }
+            //}
+        }
     }
     
     func selectSideMenuAction(optionName: String) {
@@ -207,11 +218,7 @@ class InboxSideMenuInteractor {
         currentViewController?.presenter?.interactor?.setInboxData(messages: (currentViewController?.allMessagesList)!, folderFilter: filter)
         currentViewController?.presenter?.interactor?.clearFilters()
         
-        if (!Device.IS_IPAD) {
-            self.dismissSideMenuAndTopController()
-        } else {
-            self.viewController?.splitViewController?.toggleMasterView()
-        }
+        self.dismissSideMenuAndTopController()
     }
     
     func applyCustomFolderAction(folderName: String) {
