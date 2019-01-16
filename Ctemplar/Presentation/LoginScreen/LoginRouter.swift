@@ -31,4 +31,15 @@ class LoginRouter {
             self.viewController?.show(vc, sender: self)
         }
     }
+    
+    func showInboxScreen() {
+        
+        self.viewController?.dismiss(animated: true, completion: {
+            if (!Device.IS_IPAD) {
+                self.viewController?.mainViewController?.showInboxNavigationController()
+            } else {
+                self.viewController?.mainViewController?.showSplitViewController()
+            }
+        })
+    }
 }

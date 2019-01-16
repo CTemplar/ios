@@ -12,4 +12,20 @@ import UIKit
 class SignUpRouter {
     
     var viewController: SignUpPageViewController?
+    
+    func showInboxScreen() {
+        
+        let currentPresentingViewController = self.viewController?.presentingViewController as? LoginViewController
+        
+        self.viewController?.dismiss(animated: true) {
+            
+            currentPresentingViewController?.dismiss(animated: true, completion: {
+                if (!Device.IS_IPAD) {
+                    self.viewController?.mainViewController?.showInboxNavigationController()
+                } else {
+                    self.viewController?.mainViewController?.showSplitViewController()
+                }
+            })
+        }
+    }
 }
