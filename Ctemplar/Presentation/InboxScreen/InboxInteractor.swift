@@ -264,8 +264,10 @@ class InboxInteractor {
                 if let mailboxes = userMyself.mailboxesList {
                     self.viewController?.mailboxesList = mailboxes
                 }
-                                
-                self.viewController?.leftBarButtonItem.isEnabled = true
+                
+                if self.viewController?.navigationItem.leftBarButtonItem != nil {
+                    self.viewController?.leftBarButtonItem.isEnabled = true
+                }
                 
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: value)
                 

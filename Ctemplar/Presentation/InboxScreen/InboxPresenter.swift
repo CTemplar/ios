@@ -82,9 +82,16 @@ class InboxPresenter {
             viewController?.emptyInbox.isHidden = true
         } else {
             viewController?.emptyInbox.isHidden = false
-       }
-        //
+        }
+        
+        //temp
         self.viewController?.leftBarButtonItem = self.viewController?.navigationItem.leftBarButtonItem
+        
+        if UIDevice.current.orientation.isLandscape {
+            self.setupNavigationLeftItem(show: false)
+        } else {            
+            self.setupNavigationLeftItem(show: true)
+        }
     }
     
     func setupNavigationItemTitle(selectedMessages: Int, selectionMode: Bool, currentFolder: String) {
