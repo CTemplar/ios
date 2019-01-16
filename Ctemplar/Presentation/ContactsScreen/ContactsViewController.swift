@@ -60,6 +60,10 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating, UISearc
         super.viewWillAppear(animated)
         
         self.presenter?.interactor?.userContactsList()
+        
+        if (Device.IS_IPAD) {
+            self.presenter?.setupNavigationLeftItem()
+        }
     }
         
     //MARK: - IBActions
@@ -126,4 +130,14 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating, UISearc
         self.rightBarButtonItem.isEnabled = false
     }
     
+    //MARK: - Orientation
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        if (Device.IS_IPAD) {
+            self.presenter?.setupNavigationLeftItem()
+        }
+    }
 }

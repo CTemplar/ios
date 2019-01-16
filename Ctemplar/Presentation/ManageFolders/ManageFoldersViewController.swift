@@ -61,6 +61,12 @@ class ManageFoldersViewController: UIViewController {
         super.viewWillAppear(animated)
         
         self.presenter?.interactor?.foldersList()
+        
+        if (Device.IS_IPAD) {
+            if self.showFromSideMenu {
+                self.presenter?.setupNavigationLeftItem()
+            }
+        }
     }
     
     //MARK: - IBActions
@@ -77,5 +83,18 @@ class ManageFoldersViewController: UIViewController {
     @IBAction func addFolderButtonPressed(_ sender: AnyObject) {
         
         self.presenter?.addFolderButtonPressed()
+    }
+    
+    //MARK: - Orientation
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        if (Device.IS_IPAD) {
+            if self.showFromSideMenu {
+                self.presenter?.setupNavigationLeftItem()
+            }
+        }
     }
 }

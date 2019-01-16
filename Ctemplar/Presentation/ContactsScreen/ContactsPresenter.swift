@@ -184,6 +184,19 @@ class ContactsPresenter {
             self.viewController?.navigationItem.title = "contacts".localized()
         }
     }
+    
+    func setupNavigationLeftItem() {
+        
+        let emptyButton = UIBarButtonItem(image: UIImage(), style: .done, target: self, action: nil)
+        
+        if UIDevice.current.orientation.isLandscape {
+            print("Landscape")
+            self.viewController?.navigationItem.leftBarButtonItem = emptyButton
+        } else {
+            print("Portrait")
+            self.viewController?.navigationItem.leftBarButtonItem = self.viewController?.leftBarButtonItem
+        }
+    }
         
     func deleteContactPermanently(selectedContactsArray: Array<Contact>) {
         
