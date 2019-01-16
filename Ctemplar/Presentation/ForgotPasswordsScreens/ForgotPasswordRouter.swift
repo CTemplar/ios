@@ -52,7 +52,7 @@ class ForgotPasswordRouter {
     }
     
     func backToLoginViewController() {
-        
-        self.viewController?.view.window?.rootViewController?.presentedViewController!.presentedViewController!.dismiss(animated: true, completion: nil)
+    
+        self.viewController?.view.window?.rootViewController?.presentedViewController!.dismiss(animated: true, completion: nil)        
     }
 }
