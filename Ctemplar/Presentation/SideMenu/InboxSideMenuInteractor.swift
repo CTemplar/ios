@@ -148,13 +148,10 @@ class InboxSideMenuInteractor {
             })
         } else {
             self.viewController?.splitViewController?.toggleMasterView()
-            //if (self.viewController?.currentParentViewController) != nil {
-                //self.viewController?.splitViewController?.secondaryViewController?.dismiss(animated: true, completion: nil)
-                //self.viewController?.router?.showInboxViewController()
-                if let parentViewController = self.viewController?.currentParentViewController {
-                    parentViewController.navigationController?.popToRootViewController(animated: true)
-                }
-            //}
+        
+            if let parentViewController = self.viewController?.currentParentViewController {
+                parentViewController.navigationController?.popToRootViewController(animated: true)
+            }        
         }
     }
     
@@ -189,14 +186,20 @@ class InboxSideMenuInteractor {
             self.applyFirstSectionAction(folder: optionName, filter: "")
             break
         case InboxSideMenuOptionsName.contacts.rawValue :
-            self.dismissSideMenuAndTopController()
+            if (!Device.IS_IPAD) {
+                self.dismissSideMenuAndTopController()
+            }
             self.viewController?.router?.showContactsViewController()
         case InboxSideMenuOptionsName.settings.rawValue :
-            self.dismissSideMenuAndTopController()
+            if (!Device.IS_IPAD) {
+                self.dismissSideMenuAndTopController()
+            }
             self.viewController?.router?.showSettingsViewController()
             break
         case InboxSideMenuOptionsName.manageFolders.rawValue :
-            self.dismissSideMenuAndTopController()
+            if (!Device.IS_IPAD) {
+                self.dismissSideMenuAndTopController()
+            }
             self.viewController?.router?.showManageFoldersViewController()
             break
         case InboxSideMenuOptionsName.logout.rawValue :

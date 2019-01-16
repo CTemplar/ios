@@ -85,12 +85,9 @@ class InboxPresenter {
         }
         
         //temp
-        self.viewController?.leftBarButtonItem = self.viewController?.navigationItem.leftBarButtonItem
-        
-        if UIDevice.current.orientation.isLandscape {
-            self.setupNavigationLeftItem(show: false)
-        } else {            
-            self.setupNavigationLeftItem(show: true)
+        if (Device.IS_IPAD) {
+            self.viewController?.leftBarButtonItem = self.viewController?.navigationItem.leftBarButtonItem
+            self.setupNavigationLeftItem()
         }
     }
     
@@ -133,12 +130,14 @@ class InboxPresenter {
         }
     }
     
-    func setupNavigationLeftItem(show: Bool) {
+    func setupNavigationLeftItem() {
         
-        if show {
-            self.viewController?.navigationItem.leftBarButtonItem = self.viewController?.leftBarButtonItem
-        } else {
+        if UIDevice.current.orientation.isLandscape {
+            print("Landscape")
             self.viewController?.navigationItem.leftBarButtonItem = nil
+        } else {
+            print("Portrait")
+            self.viewController?.navigationItem.leftBarButtonItem = self.viewController?.leftBarButtonItem
         }
     }
             

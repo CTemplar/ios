@@ -25,7 +25,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Zy2-Np-81q"/>
                     </view>
-                    <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" id="FsQ-LA-S1x"/>
+                    <navigationItem key="navigationItem" id="FsQ-LA-S1x"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="crA-Q6-N0D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

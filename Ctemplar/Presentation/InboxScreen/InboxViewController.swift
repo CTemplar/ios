@@ -194,12 +194,8 @@ class InboxViewController: UIViewController {
         
         super.viewWillTransition(to: size, with: coordinator)
         
-        if UIDevice.current.orientation.isLandscape {
-            print("Landscape")
-            self.presenter?.setupNavigationLeftItem(show: false)
-        } else {
-            print("Portrait")
-            self.presenter?.setupNavigationLeftItem(show: true)
+        if (Device.IS_IPAD) {
+            self.presenter?.setupNavigationLeftItem()
         }
     }
 }
