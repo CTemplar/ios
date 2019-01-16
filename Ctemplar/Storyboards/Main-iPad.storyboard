@@ -18,7 +18,6 @@
         <!--Main View Controller-->
         <scene sceneID="slh-k0-5ay">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="crA-Q6-N0D" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Vu0-Ev-M6v" customClass="MainViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="j4H-ok-dKF">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
@@ -28,6 +27,7 @@
                     </view>
                     <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" id="FsQ-LA-S1x"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="crA-Q6-N0D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-601" y="312"/>
         </scene>

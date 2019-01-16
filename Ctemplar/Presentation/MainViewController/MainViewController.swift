@@ -113,6 +113,12 @@ class MainViewController: UIViewController {
             self.initAndSetupInboxSideMenuController(inboxViewController: inboxViewController)
         } else {
             //self.initAndSetupIpadInboxSideMenuController(inboxViewController: inboxViewController)
+            
+            //if let splitViewController = self.window?.rootViewController as? UISplitViewController {
+                
+            //}
+            
+            
         }
     }
     

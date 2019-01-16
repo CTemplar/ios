@@ -186,7 +186,22 @@ class InboxViewController: UIViewController {
         
         self.presenter?.interactor?.updateMessages(withUndo: "", silent: silent)
         self.presenter?.interactor?.userMyself()
-    }    
+    }
+    
+    //MARK: - Orientation
+    /*
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        if UIDevice.current.orientation.isLandscape {
+            print("Landscape")
+            self.presenter?.setupNavigationLeftItem(show: false)
+        } else {
+            print("Portrait")
+            self.presenter?.setupNavigationLeftItem(show: true)
+        }
+    }*/
 }
 
 extension InboxViewController: InboxFilterDelegate {

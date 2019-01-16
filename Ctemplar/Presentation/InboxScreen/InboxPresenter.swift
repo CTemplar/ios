@@ -83,6 +83,8 @@ class InboxPresenter {
         } else {
             viewController?.emptyInbox.isHidden = false
        }
+        //
+        self.viewController?.leftBarButtonItem = self.viewController?.navigationItem.leftBarButtonItem
     }
     
     func setupNavigationItemTitle(selectedMessages: Int, selectionMode: Bool, currentFolder: String) {
@@ -121,6 +123,15 @@ class InboxPresenter {
             } else {
                 self.viewController?.navigationItem.rightBarButtonItems = [searchItem]
             }
+        }
+    }
+    
+    func setupNavigationLeftItem(show: Bool) {
+        
+        if show {
+            self.viewController?.navigationItem.leftBarButtonItem = self.viewController?.leftBarButtonItem
+        } else {
+            self.viewController?.navigationItem.leftBarButtonItem = nil
         }
     }
             

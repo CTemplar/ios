@@ -9,13 +9,14 @@
 import Foundation
 import UIKit
 
-class SplitViewController: UISplitViewController {
+class SplitViewController: UISplitViewController, UISplitViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.preferredDisplayMode = .automatic       
-        //self.primaryEdge = .leading
+        //self.delegate = self
+        
+        self.preferredDisplayMode = .automatic 
         
         /*
         let navigationController = self.viewControllers.last as? UINavigationController
@@ -28,10 +29,22 @@ class SplitViewController: UISplitViewController {
         
         detailViewController.navigationItem.leftBarButtonItem = self.displayModeButtonItem
         detailViewController.navigationItem.leftItemsSupplementBackButton = true
-        
+        */
         for vc in self.viewControllers {
             print("vc:", vc)
-        }*/
+        }
         
+    }
+    
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+        return true
+    }
+}
+
+extension UISplitViewController {
+    
+    func toggleMasterView() {
+        let barButtonItem = self.displayModeButtonItem
+        UIApplication.shared.sendAction(barButtonItem.action!, to: barButtonItem.target, from: nil, for: nil)
     }
 }
