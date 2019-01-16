@@ -14,29 +14,29 @@ class SplitViewController: UISplitViewController, UISplitViewControllerDelegate 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var apiService      : APIService?
     
+    var mainViewController: MainViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.delegate = self
         
         self.preferredDisplayMode = .automatic
-        /*
-           
-        if let mainViewController = self.secondaryViewController as? MainViewController {
         
-            print("mainViewController:", mainViewController)
+        if let inboxNavigationViewController = self.secondaryViewController as? InboxNavigationController {
             
-            let inboxViewController = mainViewController.inboxNavigationController.viewControllers.first as! InboxViewController
+            let inboxViewController = inboxNavigationViewController.viewControllers.first as! InboxViewController
             
             if let navigationController = self.primaryViewController as? UINavigationController {
                 
                 if let sideMenuViewController = navigationController.topViewController as? InboxSideMenuViewController {
                     
                     sideMenuViewController.inboxViewController = inboxViewController
+                    sideMenuViewController.mainViewController = self.mainViewController
                     print("sideMenuViewController:", sideMenuViewController)
                 }
             }
-        }*/
+        }
     }
     
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
@@ -47,25 +47,6 @@ class SplitViewController: UISplitViewController, UISplitViewControllerDelegate 
     func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewController.DisplayMode) {
         
         print("displayMode:", displayMode.rawValue)
-    }
-    
-    func showLoginViewController() {
-        
-        print("show iPad login VC")
-        
-        DispatchQueue.main.async {
-            
-            var storyboardName : String? = k_LoginStoryboardName
-            
-            if (Device.IS_IPAD) {
-                storyboardName = k_LoginStoryboardName_iPad
-            }
-            
-            let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: k_LoginViewControllerID) as! LoginViewController
-            //vc.mainViewController = self
-            self.show(vc, sender: self)
-        }
     }
 }
 

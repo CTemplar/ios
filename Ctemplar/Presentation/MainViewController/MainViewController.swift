@@ -28,9 +28,9 @@ class MainViewController: UIViewController {
         
         configurePKHUD()
         
-        if (!Device.IS_IPAD) {
-            initInboxNavigationController()
-        } else {
+        initInboxNavigationController()
+        
+        if (Device.IS_IPAD) {
             initSplitViewController()
         }
        
@@ -48,7 +48,6 @@ class MainViewController: UIViewController {
                 showSplitViewController()
             }
         }
-        
         
         setAutoUpdaterTimer()
     }
@@ -114,8 +113,6 @@ class MainViewController: UIViewController {
         
         if (!Device.IS_IPAD) {
             self.initAndSetupInboxSideMenuController(inboxViewController: inboxViewController)
-        } else {
-                        
         }
     }
     
@@ -147,6 +144,9 @@ class MainViewController: UIViewController {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_SplitStoryboardName, bundle: nil)
         self.iPadSplitViewController = storyboard.instantiateViewController(withIdentifier: k_SplitViewControllerID) as? SplitViewController
+        self.iPadSplitViewController.mainViewController = self
+        
+        self.iPadSplitViewController.showDetailViewController(self.inboxNavigationController, sender: self)
     }
     
     func showSplitViewController() {
