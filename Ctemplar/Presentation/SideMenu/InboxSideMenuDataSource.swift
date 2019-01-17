@@ -268,6 +268,9 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             case SideMenuSectionIndex.options.rawValue:
                 let optionName = self.optionsArray[indexPath.row]
                 self.parentViewController?.presenter?.interactor?.selectSideMenuAction(optionName: optionName)
+                if optionName == InboxSideMenuOptionsName.help.rawValue {
+                    self.selectedIndexPath = currentSelectedIndexPath
+                }
                 break
             case SideMenuSectionIndex.manageFolders.rawValue:
                 let optionName = InboxSideMenuOptionsName.manageFolders.rawValue 

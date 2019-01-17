@@ -178,6 +178,9 @@ class InboxSideMenuInteractor {
             self.dismissSideMenuAndTopController()
             self.viewController?.router?.showSettingsViewController()
             break
+        case InboxSideMenuOptionsName.help.rawValue :
+            self.openSupportURL()
+            break
         case InboxSideMenuOptionsName.manageFolders.rawValue :
             self.dismissSideMenuAndTopController()
             self.viewController?.router?.showManageFoldersViewController()
@@ -292,5 +295,16 @@ class InboxSideMenuInteractor {
         }
         
         return unreadMessagesCount
+    }
+    
+    func openSupportURL() {
+        
+        if let url = URL(string: "mailto:\(k_supportURL)") {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
     }
 }

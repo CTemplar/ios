@@ -379,6 +379,7 @@ let k_privacyURL                   = "https://ctemplar.com/privacy"
 let k_termsURL                     = "https://ctemplar.com/terms"
 let k_mainSiteURL                  = "https://ctemplar.com/"
 let k_upgradeURL                   = "https://ctemplar.com/pricing"
+let k_supportURL                   = "support@ctemplar.com."
 
 let k_firstCharsForHeader          = 50
 let k_firstCharsForEncryptdHeader  = 5
