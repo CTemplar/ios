@@ -27,7 +27,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pHX-pL-J1M">
                     <rect key="frame" x="24" y="101" width="366" height="514"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upgrade to Prime" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8VG-Uy-gGU">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="upgrade" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8VG-Uy-gGU" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                             <rect key="frame" x="10" y="26" width="346" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="wXC-yn-EFT"/>
@@ -46,7 +46,7 @@
                                         <constraint firstAttribute="width" secondItem="EIe-Oy-xtF" secondAttribute="height" multiplier="1:1" id="pa7-m0-cjF"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 User" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VbF-8U-mn5">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1user" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VbF-8U-mn5" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                     <rect key="frame" x="32" y="14" width="286" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="16" id="gIy-6n-xDr"/>
@@ -86,7 +86,7 @@
                                         <constraint firstAttribute="width" secondItem="t4T-xc-OEK" secondAttribute="height" multiplier="1:1" id="rGo-4W-Ump"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="from 5 Gb Storage" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYQ-N4-aHd">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5storage" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYQ-N4-aHd" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                     <rect key="frame" x="32" y="14" width="286" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="16" id="VEh-Bw-FaR"/>
@@ -126,7 +126,7 @@
                                         <constraint firstAttribute="width" secondItem="tbs-Yi-ztp" secondAttribute="height" multiplier="1:1" id="tQg-xb-5uJ"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="from 3 E-mail Addresses" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zO3-OI-JO0">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zO3-OI-JO0" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                     <rect key="frame" x="32" y="14" width="286" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="16" id="8Hj-MY-7hT"/>
@@ -166,7 +166,7 @@
                                         <constraint firstAttribute="width" secondItem="EUw-TX-KaY" secondAttribute="height" multiplier="1:1" id="WIN-Vv-iCm"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="from 1 Custom Domain" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaX-TT-XX6">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1custom" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaX-TT-XX6" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                     <rect key="frame" x="32" y="14" width="286" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="16" id="Fmk-Yp-3q7"/>
@@ -206,7 +206,7 @@
                                         <constraint firstAttribute="width" secondItem="ptW-Wn-RIV" secondAttribute="height" multiplier="1:1" id="ffH-K8-eHp"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000 Messages per Day" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2P-2H-xIR">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000messages" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2P-2H-xIR" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                     <rect key="frame" x="32" y="14" width="286" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="16" id="ZWj-Q8-id6"/>
@@ -246,7 +246,7 @@
                                         <constraint firstAttribute="width" secondItem="kpJ-6T-jaL" secondAttribute="height" multiplier="1:1" id="fcx-u9-ai6"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200 Folders" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gd9-TT-Y9a">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200folders" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gd9-TT-Y9a" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                     <rect key="frame" x="32" y="14" width="286" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="16" id="fdn-G6-vk8"/>
@@ -286,7 +286,7 @@
                                         <constraint firstAttribute="width" secondItem="NBp-Jb-Crx" secondAttribute="height" multiplier="1:1" id="mn5-Fe-LVu"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dead Mans Timer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFU-fH-fFR">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="deadMan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFU-fH-fFR" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                     <rect key="frame" x="32" y="14" width="286" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="16" id="drG-t5-4oa"/>
@@ -295,7 +295,7 @@
                                     <color key="textColor" white="0.0" alpha="0.86506932219999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="and more features" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8y-K6-blt">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="andMore" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8y-K6-blt" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                     <rect key="frame" x="32" y="40" width="286" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="16" id="AyA-1G-ICh"/>
@@ -318,21 +318,21 @@
                                 <constraint firstAttribute="trailing" secondItem="p8y-K6-blt" secondAttribute="trailing" id="yEh-VK-vYc"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J97-7W-xyt">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J97-7W-xyt" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
                             <rect key="frame" x="38" y="410" width="290" height="48"/>
                             <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="i5N-l9-10c"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="16"/>
-                            <state key="normal" title="UPGRADE TO PRIME">
+                            <state key="normal" title="upgradeBig">
                                 <color key="titleColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="upgradeAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="16i-cQ-w9R"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not now" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRp-Ww-2J5">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="notNow" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRp-Ww-2J5" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                             <rect key="frame" x="24" y="478" width="318" height="16"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                             <color key="textColor" white="0.0" alpha="0.86506932219999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

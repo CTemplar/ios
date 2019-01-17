@@ -9,13 +9,7 @@
 import Foundation
 import UIKit
 
-protocol UpgradeToPrimeViewDelegate {
-    func cancelAction()
-}
-
 class UpgradeToPrimeView: UIView {
-    
-    var delegate    : UpgradeToPrimeViewDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,11 +31,13 @@ class UpgradeToPrimeView: UIView {
     
     @IBAction func upgradeAction(_ sender: AnyObject) {
         
+        if let url = URL(string: k_upgradeURL) {
+            UIApplication.shared.open(url, options: [:])
+        }
     }
     
     @objc func tappedViewAction(sender : UITapGestureRecognizer) {
-        
-        //delegate?.cancelAction()
+ 
         self.isHidden = true
     }
 }

@@ -357,3 +357,17 @@
 "manyHours" = " hours";
 "manyHoursx" = " hours";
 "oneHour" = " hour";
+
+//upgrade Plan Screen
+
+"upgrade" = "Upgrade to Prime";
+"1user" = "1 User";
+"5storage" = "from 5 Gb Storage";
+"3email" = "from 3 E-mail Addresses";
+"1custom" = "from 1 Custom Domain";
+"1000messages" = "1000 Messages per Day";
+"200folders" = "200 Folders";
+"deadMan" = "Dead Mans Timer";
+"andMore" = "and more features";
+"upgradeBig" = "UPGRADE TO PRIME";
+"notNow" = "Not now";
