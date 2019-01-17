@@ -23,6 +23,8 @@ class ManageFoldersViewController: UIViewController {
     
     var user = UserMyself()
     
+    var upgradeToPrimeView : UpgradeToPrimeView?
+    
     @IBOutlet var foldersTableView         : UITableView!
     @IBOutlet var addFolderView            : UIView!
     @IBOutlet var redBottomView            : UIView!
@@ -55,6 +57,7 @@ class ManageFoldersViewController: UIViewController {
         self.presenter?.setupAddFolderButtonLabel()
         //self.presenter?.setupAddFolderButton()
         self.presenter?.setAddFolderButton(enable: true)
+        self.presenter?.initAddFolderLimitView()
     }
     
     override func viewWillAppear(_ animated: Bool) {

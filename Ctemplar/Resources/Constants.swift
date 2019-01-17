@@ -97,6 +97,7 @@ let k_AttachmentCollcetionViewCellXibName  = "AttachmentCollcetionViewCell"
 let k_AttachmentViewXibName                = "Attachment"
 let k_SettingsBaseTableViewCellXibName     = "SettingsBaseTableViewCell"
 let k_SettingsStorageTableViewCellXibName  = "SettingsStorageTableViewCell"
+let k_UpgradeToPrimeViewXibName            = "UpgradeToPrime"
 
 // cell identifier
 

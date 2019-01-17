@@ -163,6 +163,8 @@
 		8441228321A6823F00B56857 /* AttachmentCollcetionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441228221A6823F00B56857 /* AttachmentCollcetionViewCell.xib */; };
 		8441559321BF8AA90053C39F /* AttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441559221BF8AA90053C39F /* AttachmentView.swift */; };
 		8441559521BF8CF90053C39F /* Attachment.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441559421BF8CF90053C39F /* Attachment.xib */; };
+		8443CBE521F052B100B71FF6 /* UpgradeToPrimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443CBE421F052B100B71FF6 /* UpgradeToPrimeView.swift */; };
+		8443CBE721F053CC00B71FF6 /* UpgradeToPrime.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8443CBE621F053CC00B71FF6 /* UpgradeToPrime.xib */; };
 		8443D21321CB6A0F002AD54B /* EditFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443D21221CB6A0F002AD54B /* EditFolderViewController.swift */; };
 		8443D21521CB6AC4002AD54B /* EditFolderConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443D21421CB6AC4002AD54B /* EditFolderConfigurator.swift */; };
 		8443D21721CB6AFB002AD54B /* EditFolderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443D21621CB6AFB002AD54B /* EditFolderInteractor.swift */; };
@@ -388,6 +390,8 @@
 		8441228221A6823F00B56857 /* AttachmentCollcetionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AttachmentCollcetionViewCell.xib; sourceTree = "<group>"; };
 		8441559221BF8AA90053C39F /* AttachmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentView.swift; sourceTree = "<group>"; };
 		8441559421BF8CF90053C39F /* Attachment.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Attachment.xib; sourceTree = "<group>"; };
+		8443CBE421F052B100B71FF6 /* UpgradeToPrimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeToPrimeView.swift; sourceTree = "<group>"; };
+		8443CBE621F053CC00B71FF6 /* UpgradeToPrime.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpgradeToPrime.xib; sourceTree = "<group>"; };
 		8443D21221CB6A0F002AD54B /* EditFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFolderViewController.swift; sourceTree = "<group>"; };
 		8443D21421CB6AC4002AD54B /* EditFolderConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFolderConfigurator.swift; sourceTree = "<group>"; };
 		8443D21621CB6AFB002AD54B /* EditFolderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFolderInteractor.swift; sourceTree = "<group>"; };
@@ -740,6 +744,7 @@
 				8432870C21D25B8F00A66DBF /* SetSignature */,
 				8440141821D377AE00FC450C /* PrivacyAndTerms */,
 				845E64412170BD08008612FE /* AboutAsScreen */,
+				8443CBE321F0526600B71FF6 /* UpgradeScreen */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -964,6 +969,15 @@
 				8441228221A6823F00B56857 /* AttachmentCollcetionViewCell.xib */,
 			);
 			path = CollectionCells;
+			sourceTree = "<group>";
+		};
+		8443CBE321F0526600B71FF6 /* UpgradeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8443CBE421F052B100B71FF6 /* UpgradeToPrimeView.swift */,
+				8443CBE621F053CC00B71FF6 /* UpgradeToPrime.xib */,
+			);
+			path = UpgradeScreen;
 			sourceTree = "<group>";
 		};
 		8443D21121CB697B002AD54B /* EditFolder */ = {
@@ -1224,6 +1238,7 @@
 				843FBF17216E3D2400148FC1 /* Login-iPad.storyboard in Resources */,
 				8462C62921CCD570005B3D74 /* SettingsStorageTableViewCell.xib in Resources */,
 				8440466B21C7E8C700CDEB3F /* ManageFolders.storyboard in Resources */,
+				8443CBE721F053CC00B71FF6 /* UpgradeToPrime.xib in Resources */,
 				8433A5412189DE17008E1C85 /* MoveTo.storyboard in Resources */,
 				8441559521BF8CF90053C39F /* Attachment.xib in Resources */,
 				843710412174661000DAE4BA /* ForgotPassword.storyboard in Resources */,
@@ -1502,6 +1517,7 @@
 				8443D22421CBDD7D002AD54B /* SettingsInteractor.swift in Sources */,
 				8443D21C21CBDB6F002AD54B /* SettingsViewController.swift in Sources */,
 				8440467321C7F85700CDEB3F /* ManageFoldersPresenter.swift in Sources */,
+				8443CBE521F052B100B71FF6 /* UpgradeToPrimeView.swift in Sources */,
 				843207152178C75000F18E5A /* InboxMessageTablelViewCell.swift in Sources */,
 				84344D3421CA30AD00A5D9A0 /* AddFolderViewController.swift in Sources */,
 				843FC3972164D20E000CFEA9 /* SignUpPageEmail.swift in Sources */,
