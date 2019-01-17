@@ -1035,11 +1035,14 @@ final class UILocalizedTextField: UITextField {
     }
 }
 
-final class UILocalizedTextView: UITextField {
+final class UILocalizedTextView: UITextView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
         text = text?.localized()
+    
+        let attributes = attributedText?.attributes(at: 0, effectiveRange: nil)
+        attributedText = NSAttributedString(string: text, attributes: attributes)        
     }
 }
 

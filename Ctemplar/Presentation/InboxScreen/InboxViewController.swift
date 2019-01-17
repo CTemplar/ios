@@ -101,7 +101,9 @@ class InboxViewController: UIViewController {
             self.runOnce = false
         }
         
-        navigationController?.navigationBar.backgroundColor = k_whiteColor
+        self.navigationController?.navigationBar.backgroundColor = k_whiteColor
+        //need to update after View Messge Back
+        self.presenter?.setupNavigationItemTitle(selectedMessages: (self.dataSource?.selectedMessagesIDArray.count)!, selectionMode: (self.dataSource?.selectionMode)!, currentFolder: self.currentFolder)
     }
        
     //MARK: - IBActions

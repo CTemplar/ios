@@ -128,7 +128,7 @@ class ManageFoldersPresenter {
             }
         }
     }
-    
+    /*
     func showAddFolderLimitAlert() {
         
         let params = Parameters(
@@ -145,5 +145,21 @@ class ManageFoldersPresenter {
                 print("Other")
             }
         }
+    }*/
+    
+    func showAddFolderLimitAlert() {
+        
+        self.viewController?.upgradeToPrimeView?.isHidden = !(self.viewController?.upgradeToPrimeView?.isHidden)!
+    }
+    
+    func initAddFolderLimitView() {
+        
+        self.viewController?.upgradeToPrimeView = Bundle.main.loadNibNamed(k_UpgradeToPrimeViewXibName, owner: nil, options: nil)?.first as? UpgradeToPrimeView
+        self.viewController?.upgradeToPrimeView?.frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
+        //self.viewController?.upgradeToPrimeView?.delegate = self.viewController
+        
+        self.viewController?.navigationController!.view.addSubview((self.viewController?.upgradeToPrimeView)!)
+        
+        self.viewController?.upgradeToPrimeView?.isHidden = true
     }
 }

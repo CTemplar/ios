@@ -134,7 +134,7 @@ class InboxSideMenuInteractor {
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
-            HUD.hide()
+            //HUD.hide()
         }
     }
     
@@ -195,6 +195,9 @@ class InboxSideMenuInteractor {
                 self.dismissSideMenuAndTopController()
             }
             self.viewController?.router?.showSettingsViewController()
+            break
+        case InboxSideMenuOptionsName.help.rawValue :
+            self.openSupportURL()
             break
         case InboxSideMenuOptionsName.manageFolders.rawValue :
             if (!Device.IS_IPAD) {
@@ -312,5 +315,16 @@ class InboxSideMenuInteractor {
         }
         
         return unreadMessagesCount
+    }
+    
+    func openSupportURL() {
+        
+        if let url = URL(string: "mailto:\(k_supportURL)") {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
     }
 }
