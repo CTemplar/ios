@@ -109,7 +109,8 @@ class InboxInteractor {
     func messagesList(folder: String, withUndo: String, silent: Bool) {
         
         if !silent {
-            HUD.show(.progress)
+            //HUD.show(.progress)
+            HUD.show(.labeledProgress(title: "updateMessages".localized(), subtitle: ""))
         }
         
         apiService?.messagesList(folder: ""/*folder*/, messagesIDIn: "", seconds: 0) {(result) in
@@ -132,6 +133,7 @@ class InboxInteractor {
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
+            print("messagesList complete")
             HUD.hide()
         }
     }
@@ -351,7 +353,7 @@ class InboxInteractor {
     
     func decryptHeader(content: String, messageID: Int) {
         
-        let queue = DispatchQueue.global(qos: .userInitiated)
+        let queue = DispatchQueue.global(qos: .utility)
         
         queue.async {
             

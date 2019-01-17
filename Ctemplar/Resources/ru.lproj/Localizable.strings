@@ -375,3 +375,7 @@
 "notNow" = "Не сейчас";
 
 "supportEmailString" = "Если у вас есть вопросы, пожалуйста, напишите на support@ctemplar.com.";
+
+"updateMessages" = "Обновление Сообщений";
+"hashing" = "Хеширование...";
+"updateToken" = "Обновление Токена";

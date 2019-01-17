@@ -373,3 +373,7 @@
 "notNow" = "Not now";
 
 "supportEmailString" = "If you have further questions please email support@ctemplar.com.";
+
+"updateMessages" = "Update Messages";
+"hashing" = "Hashing...";
+"updateToken" = "Update Token";
