@@ -140,10 +140,19 @@ class InboxPresenter {
         
         if UIDevice.current.orientation.isLandscape {
             print("Landscape")
-            self.viewController?.navigationItem.leftBarButtonItem = nil
+            //self.viewController?.navigationItem.leftBarButtonItem = nil
+            self.viewController?.leftBarButtonItem.image = nil
+            self.viewController?.leftBarButtonItem.isEnabled = false
         } else {
             print("Portrait")
-            self.viewController?.navigationItem.leftBarButtonItem = self.viewController?.leftBarButtonItem
+           //self.viewController?.navigationItem.leftBarButtonItem = self.viewController?.leftBarButtonItem
+            if !(self.viewController?.dataSource?.selectionMode)! {
+                self.viewController?.leftBarButtonItem.image = UIImage(named: k_menuImageName)
+                self.viewController?.leftBarButtonItem.isEnabled = true
+            } else {
+                self.viewController?.leftBarButtonItem.image = nil
+                self.viewController?.leftBarButtonItem.isEnabled = false
+            }
         }
     }
             
@@ -235,11 +244,12 @@ class InboxPresenter {
         if (self.viewController?.dataSource?.messagesArray.count)! > 0 {
             moreButtonEnabled = true
         }
-        
+        /*
         if self.viewController?.leftBarButtonItem != nil {
             self.viewController?.leftBarButtonItem.image = nil
             self.viewController?.leftBarButtonItem.isEnabled = false
-        }
+        }*/
+        self.setupNavigationLeftItem()
         
         setupNavigationRightItems(searchMode: true, moreButtonEnabled: moreButtonEnabled)
         
@@ -268,10 +278,12 @@ class InboxPresenter {
             moreButtonEnabled = true
         }
         
+        /*
         if self.viewController?.leftBarButtonItem != nil {
             self.viewController?.leftBarButtonItem.image = UIImage(named: k_menuImageName)
             self.viewController?.leftBarButtonItem.isEnabled = true
-        }
+        }*/
+        self.setupNavigationLeftItem()
                 
         setupNavigationRightItems(searchMode: false, moreButtonEnabled: moreButtonEnabled)
         
