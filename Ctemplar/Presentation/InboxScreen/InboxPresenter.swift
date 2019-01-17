@@ -624,12 +624,12 @@ class InboxPresenter {
             self.markSelectedMessagesAsRead()
         })
         
-        let moveToInboxAction = UIAlertAction(title: readButton, style: .default, handler: {
+        let moveToInboxAction = UIAlertAction(title: "moveToInbox".localized(), style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             self.moveSelectedMessagesToInbox()
         })
         
-        let moveToArchiveAction = UIAlertAction(title: readButton, style: .default, handler: {
+        let moveToArchiveAction = UIAlertAction(title: "moveToArchive".localized(), style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             self.moveSelectedMessagesToArchive()
         })

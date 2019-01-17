@@ -44,7 +44,9 @@ class InboxInteractor {
             self.viewController?.dataSource?.reloadData()
             
             if self.viewController?.dataSource?.selectionMode == true {
-                self.viewController?.presenter?.disableSelectionMode()
+                if self.viewController?.dataSource?.selectedMessagesIDArray.count == 0 {
+                    self.viewController?.presenter?.disableSelectionMode()
+                }
             }
             
             readEmails = calculateReadEmails(array: currentFolderMessages)

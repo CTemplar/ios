@@ -12,6 +12,9 @@ import PKHUD
 
 class ViewInboxEmailPresenter {
     
+    var k_popoverSourceRectX          = 0
+    var k_popoverSourceRectY          = 0
+    
     var viewController   : ViewInboxEmailViewController?
     var interactor       : ViewInboxEmailInteractor?
     
@@ -57,6 +60,9 @@ class ViewInboxEmailPresenter {
         garbageItem.isEnabled = enabled
         
         self.viewController?.navigationItem.rightBarButtonItems = [moreItem, moveItem, spamItem, garbageItem]
+        
+        k_popoverSourceRectX = Int((self.viewController?.view.frame.width)! - 40.0)
+        k_popoverSourceRectY = Int(57.0)
     }
     
     func setupMessageHeader(message: EmailMessage) {
@@ -246,7 +252,13 @@ class ViewInboxEmailPresenter {
     
     @objc func moreButtonPresed() {
         
-        self.showMoreActionsView()
+       // self.showMoreActionsView()
+        
+        if (!Device.IS_IPAD) {
+            self.showMoreActionsView()
+        } else {
+            self.showMoreActionsActionSheet()
+        }
     }
     
     func starButtonPressed() {
@@ -379,19 +391,20 @@ class ViewInboxEmailPresenter {
                 break
             case MoreActionsTitles.markAsRead.rawValue.localized():
                 print("markAsRead btn more actions")
-                self.interactor?.markMessageAsRead(message: (self.viewController?.message)!, asRead: true, withUndo: "undoMarkAsRead".localized())
+                //self.interactor?.markMessageAsRead(message: (self.viewController?.message)!, asRead: true, withUndo: "undoMarkAsRead".localized())
+                self.markSelectedMessagesAsRead() 
                 break
             case MoreActionsTitles.markAsUnread.rawValue.localized():
                 print("markAsUnread btn more actions")
-                self.interactor?.markMessageAsRead(message: (self.viewController?.message)!, asRead: false, withUndo: "undoMarkAsUnread".localized())
+                self.markSelectedMessagesAsRead()
                 break
             case MoreActionsTitles.moveToArchive.rawValue.localized():
                 print("moveToArchive btn more actions")
-                self.interactor?.moveMessageToArchive(message: (self.viewController?.message)!, withUndo: "undoMoveToInbox".localized())
+                self.moveSelectedMessagesToArchive()
                 break
             case MoreActionsTitles.moveToInbox.rawValue.localized():
                 print("moveToInbox btn more actions")
-                self.interactor?.moveMessageToInbox(message: (self.viewController?.message)!, withUndo: "undoMoveToInbox".localized())
+                self.moveSelectedMessagesToInbox()
                 break
             case MoreActionsTitles.emptyFolder.rawValue.localized():
                 print("emptyFolder btn more actions")
@@ -402,5 +415,107 @@ class ViewInboxEmailPresenter {
         }
         
         self.showMoreActionsView()
+    }
+    
+    func showMoreActionsActionSheet() {
+        
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        self.configureMoreActionsActionSheet(alertController: alertController)
+        
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = viewController?.view
+            popoverController.sourceRect = CGRect(x: k_popoverSourceRectX, y: k_popoverSourceRectY, width: 0, height: 0)
+        }
+        
+        viewController?.present(alertController, animated: true, completion: nil)
+    }
+    
+    func configureMoreActionsActionSheet(alertController: UIAlertController) {
+        
+        let currentFolder = self.viewController?.currentFolderFilter
+        
+        var readButton : String = ""
+        
+        if (self.viewController?.messageIsRead)! {
+            readButton = "markAsUnread".localized()
+        } else {
+            readButton = "markAsRead".localized()
+        }
+        
+        var actionsList: Array<UIAlertAction> = []
+        
+        let readMessageAction = UIAlertAction(title: readButton, style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.markSelectedMessagesAsRead()
+        })
+        
+        let moveToInboxAction = UIAlertAction(title: "moveToInbox".localized(), style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.moveSelectedMessagesToInbox()
+        })
+        
+        let moveToArchiveAction = UIAlertAction(title: "moveToArchive".localized(), style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.moveSelectedMessagesToArchive()
+        })
+        
+        switch currentFolder {
+        case MessagesFoldersName.inbox.rawValue:
+            actionsList = [readMessageAction, moveToArchiveAction]
+            break
+        case MessagesFoldersName.draft.rawValue:
+            
+            break
+        case MessagesFoldersName.sent.rawValue:
+            actionsList = [readMessageAction, moveToArchiveAction]
+            break
+        case MessagesFoldersName.outbox.rawValue:
+            actionsList = [readMessageAction, moveToArchiveAction, moveToInboxAction]
+            break
+        case MessagesFoldersName.starred.rawValue:
+            actionsList = [readMessageAction, moveToArchiveAction, moveToInboxAction]
+            break
+        case MessagesFoldersName.archive.rawValue:
+            actionsList = [readMessageAction, moveToInboxAction]
+            break
+        case MessagesFoldersName.spam.rawValue:
+            actionsList = [readMessageAction, moveToArchiveAction, moveToInboxAction]
+            break
+        case MessagesFoldersName.trash.rawValue:
+            
+            break
+        default:
+            actionsList = [readMessageAction, moveToArchiveAction, moveToInboxAction]
+            break
+        }
+        
+        for action in actionsList {
+            alertController.addAction(action)
+        }
+    }
+    
+    func markSelectedMessagesAsRead() {
+        
+        let read = self.viewController?.messageIsRead
+        
+        var undoMessage = ""
+        if read! {
+            undoMessage = "undoMarkAsUnread".localized()
+        } else {
+            undoMessage = "undoMarkAsRead".localized()
+        }
+        
+        self.interactor?.markMessageAsRead(message: (self.viewController?.message)!, asRead: !read!, withUndo: undoMessage)
+    }
+    
+    func moveSelectedMessagesToArchive() {
+        
+        self.interactor?.moveMessageToArchive(message: (self.viewController?.message)!, withUndo: "undoMoveToArchive".localized())
+    }
+    
+    func moveSelectedMessagesToInbox() {
+        
+        self.interactor?.moveMessageToInbox(message: (self.viewController?.message)!, withUndo: "undoMoveToInbox".localized())
     }
 }
