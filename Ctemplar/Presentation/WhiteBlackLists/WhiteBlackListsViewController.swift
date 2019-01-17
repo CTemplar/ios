@@ -59,7 +59,8 @@ class WhiteBlackListsViewController: UIViewController, UISearchBarDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        navigationController!.navigationBar.hideBorderLine()
+        self.navigationController!.navigationBar.hideBorderLine()
+        self.presenter?.setupUnderlineView(listMode: self.listMode)
     }
     
     //MARK: - IBActions
