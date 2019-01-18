@@ -228,6 +228,7 @@
                         <outlet property="addButton" destination="cG4-CR-m8K" id="dfh-uQ-ZlR"/>
                         <outlet property="buttonBottomOffsetConstraint" destination="xzv-7b-zmz" id="zTL-VT-gew"/>
                         <outlet property="colorPickerSuperView" destination="VyG-aG-Jlh" id="HCa-r0-cUv"/>
+                        <outlet property="colorPickerSuperViewHeightConstraint" destination="aPb-P7-Yu9" id="eYf-6K-H38"/>
                         <outlet property="darkLineView" destination="V2y-0R-uTt" id="kmX-Sz-4uK"/>
                         <outlet property="folderNameTextField" destination="2Cn-KY-Ch2" id="Deu-aS-kLC"/>
                     </connections>
