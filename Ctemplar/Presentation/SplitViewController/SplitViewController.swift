@@ -22,6 +22,7 @@ class SplitViewController: UISplitViewController, UISplitViewControllerDelegate 
         self.delegate = self
         
         self.preferredDisplayMode = .automatic
+        self.preferredPrimaryColumnWidthFraction = 0.34
         
         if let inboxNavigationViewController = self.secondaryViewController as? InboxNavigationController {
             

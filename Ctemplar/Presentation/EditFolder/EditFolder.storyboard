@@ -165,6 +165,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="colorPickerSuperView" destination="7ET-YE-4xc" id="uA1-jb-YpC"/>
+                        <outlet property="colorPickerSuperViewHeightConstraint" destination="hrb-Ev-s0m" id="cpE-iN-WtU"/>
                         <outlet property="darkLineView" destination="hqG-3p-9NJ" id="USg-on-bV4"/>
                         <outlet property="deleteButton" destination="lIL-cN-Nds" id="L6i-Sl-N9l"/>
                         <outlet property="folderNameTextField" destination="6QH-TV-ArI" id="OWE-Ww-EMA"/>

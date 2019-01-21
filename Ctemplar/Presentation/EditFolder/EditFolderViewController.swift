@@ -23,10 +23,15 @@ class EditFolderViewController: UIViewController {
     @IBOutlet var darkLineView              : UIView!
     @IBOutlet var colorPickerSuperView      : UIView!
     
+    @IBOutlet var colorPickerSuperViewHeightConstraint          : NSLayoutConstraint!
+    
     var selectedHexColor : String = ""
     var folderName : String = ""
     
     var colorPicker : ColorPickerView!
+    
+    let k_colorPickerOffset : CGFloat = 32.0
+    var k_colorPickeriPadHeight : CGFloat = 180.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +56,12 @@ class EditFolderViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.colorPicker.setupColorPicker(width: self.colorPickerSuperView.bounds.width, height: self.colorPickerSuperView.bounds.height)        
+        self.colorPicker.setupColorPicker(width: self.colorPickerSuperView.bounds.width, height: self.colorPickerSuperView.bounds.height)
+        
+        if (Device.IS_IPAD) {
+            k_colorPickeriPadHeight = self.colorPicker.calculateColorPickerHeight(width: self.colorPickerSuperView.bounds.width)
+            self.colorPickerSuperViewHeightConstraint.constant = k_colorPickeriPadHeight
+        }
     }
     
     //MARK: - IBActions
@@ -83,6 +93,27 @@ class EditFolderViewController: UIViewController {
     @objc func tappedViewAction(sender : UITapGestureRecognizer) {
         
         self.folderNameTextField.resignFirstResponder()
+    }
+    
+    //MARK: - Orientation
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        super.viewWillTransition(to: size, with: coordinator)
+ 
+        var width : CGFloat = 0.0
+        
+        if (Device.IS_IPAD) {
+            if UIDevice.current.orientation.isLandscape {
+                width = (self.splitViewController?.secondaryViewController?.view.bounds.height)! * (1.0 - (self.splitViewController?.preferredPrimaryColumnWidthFraction)!) - k_colorPickerOffset/8.0
+            } else {
+                width = (self.splitViewController?.secondaryViewController?.view.bounds.height)! - k_colorPickerOffset
+            }
+            
+            self.colorPicker.updateColorPickerFrame(width: width, height: k_colorPickeriPadHeight)
+            k_colorPickeriPadHeight = self.colorPicker.calculateColorPickerHeight(width: self.colorPickerSuperView.bounds.width)
+            self.view.layoutIfNeeded()
+        }
     }
 }
 

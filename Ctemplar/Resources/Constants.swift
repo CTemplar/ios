@@ -260,6 +260,7 @@ let k_attachmentViewTopOffset       : CGFloat = 25.0
 
 let k_iphoneSEBottomButtonsOffset   : CGFloat = 222.0
 let k_iphoneAllBottomButtonsOffset  : CGFloat = 277.0
+let k_iPadBottomButtonsOffset       : CGFloat = 20.0
 
 let k_settingsBaseCellHeight        : CGFloat = 50.0
 let k_settingsStorageCellHeight     : CGFloat = 78.0

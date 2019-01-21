@@ -57,7 +57,7 @@ class ColorPickerView: UIView {
     }
     
     func setupColorPicker(width: CGFloat, height: CGFloat) {        
-        
+            
         self.frame = CGRect(x: 0, y: 0, width: width, height: height)
         
         let buttonWidth = self.calculateButtonWidth(viewWidth: width)
@@ -125,6 +125,32 @@ class ColorPickerView: UIView {
             let tag = index + k_colorButtonsTag
             if let button = self.viewWithTag(tag) {
                 (button as! UIButton).setImage(UIImage(), for: .normal)
+            }
+        }
+    }
+    
+    func calculateColorPickerHeight(width: CGFloat) -> CGFloat {
+        
+        let buttonWidth = self.calculateButtonWidth(viewWidth: width)
+        
+        let height = buttonWidth + buttonWidth + k_spaceBetweenButtons
+        
+        return height
+    }
+    
+    func updateColorPickerFrame(width: CGFloat, height: CGFloat) {
+        
+        self.removeButtons()
+        self.setupColorPicker(width: width, height: height)
+    }
+    
+    func removeButtons() {
+        
+        for index in 1...colorsArray.count {
+            let tag = index + k_colorButtonsTag
+         
+            if let subview = self.viewWithTag(tag) {
+                subview.removeFromSuperview()
             }
         }
     }
