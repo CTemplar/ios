@@ -44,7 +44,15 @@ class SignUpPagePasswordViewController: UIViewController, UITextFieldDelegate {
         if Device.IS_IPHONE_5 {
             keyboardOffset = k_signUpPageKeyboardOffsetLarge        
         } else {
-            keyboardOffset = k_signUpPageKeyboardOffsetBig
+            if Device.IS_IPAD {
+                if UIDevice.current.orientation.isLandscape {
+                    keyboardOffset = k_signUpPageKeyboardOffsetiPadLarge
+                } else {
+                    keyboardOffset = 0.0
+                }                
+            } else {
+                keyboardOffset = k_signUpPageKeyboardOffsetBig
+            }
         }
         
         let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
@@ -137,6 +145,24 @@ class SignUpPagePasswordViewController: UIViewController, UITextFieldDelegate {
        
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y += CGFloat(keyboardOffset)
+        }
+    }
+    
+    //MARK: - Orientation
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        if (Device.IS_IPAD) {
+            
+            self.view.endEditing(true)
+            
+            if UIDevice.current.orientation.isLandscape {
+                keyboardOffset = k_signUpPageKeyboardOffsetiPadLarge
+            } else {
+                keyboardOffset = 0.0
+            }
         }
     }
 }

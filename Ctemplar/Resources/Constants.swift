@@ -199,6 +199,7 @@ let k_KeyboardHeight                    = 216.0
 
 
 let k_signUpPageKeyboardOffsetiPadBig   = 116.0
+let k_signUpPageKeyboardOffsetiPadLarge = 180.0
 
 let k_setPasswordKeyboardOffset         = 80.0
 let k_addContactKeyboardOffset          = 71.0
