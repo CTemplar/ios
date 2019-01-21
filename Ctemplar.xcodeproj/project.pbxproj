@@ -181,6 +181,7 @@
 		844655BD218C264E00B2F2E4 /* MoreActions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F348552181B21C00F00E37 /* MoreActions.xib */; };
 		844F4B5A216B3A380057C758 /* UserPGPKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F4B59216B3A380057C758 /* UserPGPKey.swift */; };
 		84510A4321F5A76F00912328 /* SignUp-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84510A4221F5A76F00912328 /* SignUp-iPad.storyboard */; };
+		84510A4521F5C3EA00912328 /* ForgotPassword-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84510A4421F5C3EA00912328 /* ForgotPassword-iPad.storyboard */; };
 		8451BEB421D5FD03009B1C8C /* AddContactToWhiteBlackListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451BEB321D5FD03009B1C8C /* AddContactToWhiteBlackListViewController.swift */; };
 		8451BEB621D5FD16009B1C8C /* AddContactToWhiteBlackList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8451BEB521D5FD16009B1C8C /* AddContactToWhiteBlackList.storyboard */; };
 		8451BEB921D60F8F009B1C8C /* SelectLanguage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8451BEB821D60F8F009B1C8C /* SelectLanguage.storyboard */; };
@@ -409,6 +410,7 @@
 		8443D22721CBDFEC002AD54B /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		844F4B59216B3A380057C758 /* UserPGPKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPGPKey.swift; sourceTree = "<group>"; };
 		84510A4221F5A76F00912328 /* SignUp-iPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "SignUp-iPad.storyboard"; sourceTree = "<group>"; };
+		84510A4421F5C3EA00912328 /* ForgotPassword-iPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "ForgotPassword-iPad.storyboard"; sourceTree = "<group>"; };
 		8451BEB321D5FD03009B1C8C /* AddContactToWhiteBlackListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactToWhiteBlackListViewController.swift; sourceTree = "<group>"; };
 		8451BEB521D5FD16009B1C8C /* AddContactToWhiteBlackList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddContactToWhiteBlackList.storyboard; sourceTree = "<group>"; };
 		8451BEB821D60F8F009B1C8C /* SelectLanguage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectLanguage.storyboard; sourceTree = "<group>"; };
@@ -836,6 +838,7 @@
 				84A62E522175CD95009C38E5 /* ForgotPasswordPresenter.swift */,
 				84A62E542175CDFB009C38E5 /* ForgotPasswordInteractor.swift */,
 				843710402174661000DAE4BA /* ForgotPassword.storyboard */,
+				84510A4421F5C3EA00912328 /* ForgotPassword-iPad.storyboard */,
 			);
 			path = ForgotPasswordsScreens;
 			sourceTree = "<group>";
@@ -1277,6 +1280,7 @@
 				846EDE9421A284D400EE9A88 /* ChildMessageExpandedTableViewCell.xib in Resources */,
 				8433FF24216201A500C57DC8 /* LaunchScreen.storyboard in Resources */,
 				8436AD532180663800D16008 /* Localizable.strings in Resources */,
+				84510A4521F5C3EA00912328 /* ForgotPassword-iPad.storyboard in Resources */,
 				8440141A21D377D600FC450C /* PrivacyAndTerms.storyboard in Resources */,
 				8433DFBC219ECDC600375609 /* ChildMessageTableViewCell.xib in Resources */,
 				844655BD218C264E00B2F2E4 /* MoreActions.xib in Resources */,

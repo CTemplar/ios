@@ -33,7 +33,14 @@ class LoginRouter {
     func showForgotPasswordViewController() {
         
         DispatchQueue.main.async {
-            let storyboard: UIStoryboard = UIStoryboard(name: k_ForgotPasswordStoryboardName, bundle: nil)
+            
+            var storyboardName : String? = k_ForgotPasswordStoryboardName
+            
+            if (Device.IS_IPAD) {
+                storyboardName = k_ForgotPasswordStoryboardName_iPad
+            }
+            
+            let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: k_ForgotPasswordViewControllerID) as! ForgotPasswordViewController
             self.viewController?.show(vc, sender: self)
         }
