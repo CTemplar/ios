@@ -21,7 +21,11 @@ class AddFolderInteractor {
         if Device.IS_IPHONE_5 {
             self.viewController?.buttonBottomOffsetConstraint.constant = k_iphoneSEBottomButtonsOffset
         } else {
-            self.viewController?.buttonBottomOffsetConstraint.constant = k_iphoneAllBottomButtonsOffset
+            if Device.IS_IPAD {
+                self.viewController?.buttonBottomOffsetConstraint.constant = k_iPadBottomButtonsOffset
+            } else {
+                self.viewController?.buttonBottomOffsetConstraint.constant = k_iphoneAllBottomButtonsOffset
+            }
         }
     }
     
