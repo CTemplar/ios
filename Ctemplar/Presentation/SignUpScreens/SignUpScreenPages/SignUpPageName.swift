@@ -111,9 +111,11 @@ class SignUpPageNameViewController: UIViewController, UITextFieldDelegate {
         
         if (Device.IS_IPAD) {
             
-            userNameTextField.resignFirstResponder()            
+            userNameTextField.resignFirstResponder()
+            parentSignUpPageViewController?.presenter?.setPageControlFrame()
+            
             if UIDevice.current.orientation.isLandscape {
-                keyboardOffset = k_signUpPageKeyboardOffsetiPadBig
+                keyboardOffset = k_signUpPageKeyboardOffsetiPadBig                
             } else {
                 keyboardOffset = 0.0
             }

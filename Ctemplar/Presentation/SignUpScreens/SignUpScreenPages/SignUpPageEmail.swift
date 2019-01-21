@@ -149,6 +149,7 @@ class SignUpPageEmailViewController: UIViewController, UITextFieldDelegate {
         if Device.IS_IPAD {
             
             self.view.endEditing(true)
+            parentSignUpPageViewController?.presenter?.setPageControlFrame()
             
             if UIDevice.current.orientation.isLandscape {
                 keyboardOffset = k_signUpPageKeyboardOffsetiPadExtraLarge

@@ -39,6 +39,16 @@ class SignUpPresenter {
         self.viewController?.view.addSubview((self.viewController?.pageControl)!)
     }
     
+    func setPageControlFrame() {
+        
+        let screenBoundsMax =  self.viewController?.view.bounds.maxX
+        let screenWidth = self.viewController?.view.bounds.width
+        
+        let bottomOffset : Double = Double(screenBoundsMax!) - k_pageControlBottomOffset
+        
+        self.viewController?.pageControl.frame = CGRect(x: 0.0, y: bottomOffset, width: Double(screenWidth!), height:  k_pageControlDotSize)
+    }
+    
     func viewControllerBefore(viewController: UIViewController) -> UIViewController? {
         
         guard let viewControllerIndex = self.viewController?.orderedViewControllers.index(of: viewController) else {
