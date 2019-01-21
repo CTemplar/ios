@@ -77,7 +77,13 @@ class SignUpPresenter {
     
     func addPageContent(viewController: String) -> UIViewController {
         
-        return UIStoryboard(name: k_SignUpStoryboardName, bundle: nil).instantiateViewController(withIdentifier: viewController)
+        var storyboardName : String? = k_SignUpStoryboardName
+        
+        if (Device.IS_IPAD) {
+            storyboardName = k_SignUpStoryboardName_iPad
+        }
+        
+        return UIStoryboard(name: storyboardName!, bundle: nil).instantiateViewController(withIdentifier: viewController)
     }
     
     //MARK: - Child View Controllers functional

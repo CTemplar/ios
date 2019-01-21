@@ -51,7 +51,6 @@ let k_AboutAsViewControllerID               = "AboutAsViewController"
 
 // view controllers storyboards name
 
-let k_SplitStoryboardName                  = "SplitiPad"
 let k_LoginStoryboardName                  = "Login"
 let k_SignUpStoryboardName                 = "SignUp"
 let k_ForgotPasswordStoryboardName         = "ForgotPassword"
@@ -123,7 +122,9 @@ let k_SettingsStorageTableViewCellIdentifier       = "settingsStorageTableViewCe
 
 // view controllers iPad storyboards name
 
+let k_SplitStoryboardName                  = "SplitiPad"
 let k_LoginStoryboardName_iPad             = "Login-iPad"
+let k_SignUpStoryboardName_iPad            = "SignUp-iPad"
 
 
 // notifications
@@ -195,6 +196,9 @@ let k_signUpPageKeyboardOffsetBig       = 96.0
 let k_signUpPageKeyboardOffsetLarge     = 160.0
 let k_signUpPageKeyboardOffsetExtraLarge     = 210.0
 let k_KeyboardHeight                    = 216.0
+
+
+let k_signUpPageKeyboardOffsetiPadBig   = 116.0
 
 let k_setPasswordKeyboardOffset         = 80.0
 let k_addContactKeyboardOffset          = 71.0

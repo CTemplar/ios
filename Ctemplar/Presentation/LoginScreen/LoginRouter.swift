@@ -16,7 +16,14 @@ class LoginRouter {
     func showSignUpViewController() {
         
         DispatchQueue.main.async {
-            let storyboard: UIStoryboard = UIStoryboard(name: k_SignUpStoryboardName, bundle: nil)
+            
+            var storyboardName : String? = k_SignUpStoryboardName
+            
+            if (Device.IS_IPAD) {
+                storyboardName = k_SignUpStoryboardName_iPad
+            }
+            
+            let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: k_SignUpPageViewControllerID) as! SignUpPageViewController
             vc.mainViewController = self.viewController?.mainViewController
             self.viewController?.show(vc, sender: self)
