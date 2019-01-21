@@ -107,13 +107,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@ctemplar.com" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQi-OF-dS0">
-                                <rect key="frame" x="487.5" y="444.5" width="94.5" height="17"/>
+                                <rect key="frame" x="485.5" y="443.5" width="96.5" height="17"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                 <color key="textColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="213-v1-qB0">
-                                <rect key="frame" x="186" y="442.5" width="295.5" height="20"/>
+                                <rect key="frame" x="186" y="442.5" width="293.5" height="19"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
@@ -129,14 +129,14 @@
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hhz-bx-xfn">
-                                <rect key="frame" x="186" y="469.5" width="396" height="2"/>
+                                <rect key="frame" x="186" y="468.5" width="396" height="2"/>
                                 <color key="backgroundColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="753-vL-dIs"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H7b-Kl-O93" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
-                                <rect key="frame" x="186" y="521.5" width="396" height="48"/>
+                                <rect key="frame" x="186" y="520.5" width="396" height="48"/>
                                 <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="H7b-Kl-O93" secondAttribute="height" multiplier="398:48" id="SBA-8E-tA1"/>
@@ -150,7 +150,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AVd-lp-p0F" customClass="UILocalizedTextView" customModule="Ctemplar" customModuleProvider="target">
-                                <rect key="frame" x="30" y="581.5" width="708" height="43"/>
+                                <rect key="frame" x="30" y="580.5" width="708" height="43"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="i1t-7o-noa"/>
@@ -598,7 +598,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="recoveryEmailPlaceholder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bnA-Gv-dFR" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
-                                        <rect key="frame" x="260" y="134" width="248.5" height="40"/>
+                                        <rect key="frame" x="-135.5" y="134" width="1039" height="140.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="bnA-Gv-dFR" secondAttribute="height" multiplier="212:27" constant="-66" id="rXI-gi-6Tq"/>
                                         </constraints>
@@ -607,7 +607,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="thisIsUsed" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="bf7-Ez-WeK" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
-                                        <rect key="frame" x="52" y="184" width="664" height="84"/>
+                                        <rect key="frame" x="52" y="284.5" width="664" height="84"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="bf7-Ez-WeK" secondAttribute="height" multiplier="135:17" constant="-2.9705882352941444" id="4hJ-XY-hxl"/>
                                         </constraints>
@@ -616,7 +616,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="recoveryEmailPlaceholder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62q-2N-rjc" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
-                                        <rect key="frame" x="32" y="310.5" width="89" height="15"/>
+                                        <rect key="frame" x="186" y="411" width="89" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="89" id="QFH-cJ-CMb"/>
                                             <constraint firstAttribute="width" secondItem="62q-2N-rjc" secondAttribute="height" multiplier="89:15" id="zCV-Dr-Khy"/>
@@ -626,7 +626,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Recovery email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZRo-Dj-YFg">
-                                        <rect key="frame" x="32" y="326.5" width="704" height="56.5"/>
+                                        <rect key="frame" x="186" y="427" width="396" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ZRo-Dj-YFg" secondAttribute="height" multiplier="311:25" id="esF-Be-9Ab"/>
                                         </constraints>
@@ -645,14 +645,14 @@
                                         </connections>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Eg-C1-zVE">
-                                        <rect key="frame" x="32" y="385" width="704" height="2"/>
+                                        <rect key="frame" x="186" y="461" width="396" height="2"/>
                                         <color key="backgroundColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="UGo-1e-Kby"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Q7-qW-Zke">
-                                        <rect key="frame" x="32" y="417" width="704" height="133"/>
+                                        <rect key="frame" x="186" y="493" width="396" height="57"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQ2-q5-WsG">
                                                 <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
@@ -667,7 +667,7 @@
                                                 </connections>
                                             </button>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ww9-E2-Fgo">
-                                                <rect key="frame" x="34" y="0.0" width="669" height="133"/>
+                                                <rect key="frame" x="34" y="0.0" width="361" height="57"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="Please check this box if you agree to abide by our Terms and Conditions">
@@ -690,10 +690,11 @@
                                             <constraint firstItem="Ww9-E2-Fgo" firstAttribute="top" secondItem="bQ2-q5-WsG" secondAttribute="top" id="cXN-XG-MP5"/>
                                             <constraint firstAttribute="trailing" secondItem="Ww9-E2-Fgo" secondAttribute="trailing" constant="1" id="izf-YO-5u4"/>
                                             <constraint firstAttribute="bottom" secondItem="Ww9-E2-Fgo" secondAttribute="bottom" id="kwY-Uw-fuV"/>
+                                            <constraint firstAttribute="height" constant="57" id="sya-KP-qNl"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o1c-0b-JCU" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
-                                        <rect key="frame" x="32" y="569.5" width="704" height="85"/>
+                                        <rect key="frame" x="186" y="569.5" width="396" height="47.5"/>
                                         <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="o1c-0b-JCU" secondAttribute="height" multiplier="398:48" constant="1" id="qZj-jc-gzU"/>
@@ -707,7 +708,7 @@
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="21X-yq-I8O" customClass="UILocalizedTextView" customModule="Ctemplar" customModuleProvider="target">
-                                        <rect key="frame" x="30" y="667.5" width="708" height="43"/>
+                                        <rect key="frame" x="30" y="630" width="708" height="43"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="43" id="cnD-bI-GJa"/>
@@ -793,7 +794,7 @@
                                     <constraint firstItem="8AL-94-XeC" firstAttribute="top" secondItem="z3E-VN-nLo" secondAttribute="top" constant="12" id="fFW-ze-paJ"/>
                                     <constraint firstItem="bnA-Gv-dFR" firstAttribute="centerX" secondItem="sSb-5g-0TS" secondAttribute="centerX" id="fmW-bx-4ok"/>
                                     <constraint firstItem="3Q7-qW-Zke" firstAttribute="top" secondItem="0Eg-C1-zVE" secondAttribute="bottom" constant="30" id="lar-I7-L5T"/>
-                                    <constraint firstItem="o1c-0b-JCU" firstAttribute="leading" secondItem="z3E-VN-nLo" secondAttribute="leading" constant="32" id="llw-FJ-1CF"/>
+                                    <constraint firstItem="o1c-0b-JCU" firstAttribute="leading" secondItem="z3E-VN-nLo" secondAttribute="leading" constant="186" id="llw-FJ-1CF"/>
                                     <constraint firstItem="0Eg-C1-zVE" firstAttribute="trailing" secondItem="ZRo-Dj-YFg" secondAttribute="trailing" id="pPU-M0-29g"/>
                                     <constraint firstItem="vJG-Zv-ISd" firstAttribute="top" secondItem="sSb-5g-0TS" secondAttribute="top" id="qYj-2R-Hg8"/>
                                     <constraint firstItem="3Q7-qW-Zke" firstAttribute="centerX" secondItem="sSb-5g-0TS" secondAttribute="centerX" id="sJs-6M-KNv"/>
