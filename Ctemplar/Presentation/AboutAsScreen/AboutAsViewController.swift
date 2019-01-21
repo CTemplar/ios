@@ -37,6 +37,8 @@ class AboutAsViewController: UIViewController {
     
     @IBAction func goToWebButtonPressed(_ sender: AnyObject) {
        
-       
+        if let url = URL(string: k_mainSiteURL) {
+            UIApplication.shared.open(url, options: [:])
+        }
     }
 }

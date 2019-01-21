@@ -87,6 +87,10 @@ class InboxSideMenuViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(userDataUpdate), name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: nil)
+        
+        if (Device.IS_IPAD) {
+            NotificationCenter.default.addObserver(self, selector: #selector(reloadViewController), name: NSNotification.Name(rawValue: k_reloadViewControllerNotificationID), object: nil)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -134,5 +138,11 @@ class InboxSideMenuViewController: UIViewController {
         DispatchQueue.main.async {
             self.presenter?.interactor?.unreadMessagesCounter()
         }
+    }
+    
+    @objc func reloadViewController() {
+        
+        self.viewDidLoad()
+        self.viewWillAppear(false)
     }
 }

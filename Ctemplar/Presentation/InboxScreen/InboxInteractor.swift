@@ -44,7 +44,9 @@ class InboxInteractor {
             self.viewController?.dataSource?.reloadData()
             
             if self.viewController?.dataSource?.selectionMode == true {
-                self.viewController?.presenter?.disableSelectionMode()
+                if self.viewController?.dataSource?.selectedMessagesIDArray.count == 0 {
+                    self.viewController?.presenter?.disableSelectionMode()
+                }
             }
             
             readEmails = calculateReadEmails(array: currentFolderMessages)
@@ -109,7 +111,8 @@ class InboxInteractor {
     func messagesList(folder: String, withUndo: String, silent: Bool) {
         
         if !silent {
-            HUD.show(.progress)
+            //HUD.show(.progress)
+            HUD.show(.labeledProgress(title: "updateMessages".localized(), subtitle: ""))
         }
         
         apiService?.messagesList(folder: ""/*folder*/, messagesIDIn: "", seconds: 0) {(result) in
@@ -132,6 +135,7 @@ class InboxInteractor {
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
+            print("messagesList complete")
             HUD.hide()
         }
     }
@@ -264,8 +268,10 @@ class InboxInteractor {
                 if let mailboxes = userMyself.mailboxesList {
                     self.viewController?.mailboxesList = mailboxes
                 }
-                                
-                self.viewController?.leftBarButtonItem.isEnabled = true
+                
+                if self.viewController?.navigationItem.leftBarButtonItem != nil {
+                    self.viewController?.leftBarButtonItem.isEnabled = true
+                }
                 
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: value)
                 
@@ -351,7 +357,7 @@ class InboxInteractor {
     
     func decryptHeader(content: String, messageID: Int) {
         
-        let queue = DispatchQueue.global(qos: .userInitiated)
+        let queue = DispatchQueue.global(qos: .utility)
         
         queue.async {
             

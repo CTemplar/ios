@@ -122,7 +122,7 @@ class FormatterService
     
     func formatToString(toEmailsArray: Array<String>) -> String {
         
-        var toEmailsText : String = "To: "
+        var toEmailsText : String = "toPrefix".localized()
         
         for toEmail in toEmailsArray {
             toEmailsText = toEmailsText + "<" + toEmail + ">,\n"
@@ -138,7 +138,7 @@ class FormatterService
     
      func formatFromToString(fromName: String, fromEmail: String, toNamesArray: Array<String>, toEmailsArray: Array<String>, ccArray: Array<String>) -> String {
         
-        var toEmailsText : String = "\nTo: "
+        var toEmailsText : String = "\n" + "toPrefix".localized()
         
         for toEmail in toEmailsArray {
             toEmailsText = toEmailsText + "<" + toEmail + ">,\n"
@@ -148,7 +148,7 @@ class FormatterService
             toEmailsText = String(toEmailsText.dropLast(2))
         }
         
-        var ccText : String = "\nCC: "
+        var ccText : String = "\n" + "ccPrefix".localized()
         
         for carbonCopy in ccArray {
             ccText = ccText + "<" + carbonCopy + ">,\n"
@@ -158,7 +158,7 @@ class FormatterService
             ccText = String(ccText.dropLast(2))
         }
 
-        let textString = "From: " + fromName + " <" + fromEmail + ">" + toEmailsText + ccText
+        let textString = "fromPrefix".localized() + fromName + " <" + fromEmail + ">" + toEmailsText + ccText
         
         print("textString:", textString)
         
@@ -208,7 +208,7 @@ class FormatterService
             if daysCount > 0 {
                 if daysCount == 1 {
                     //yesterday
-                    dateString = "Yesterday"
+                    dateString = "yesterday".localized()
                 } else {
                     //2 or more
                     dateString = formatDateToStringMonthAndDate(date: date)
@@ -227,13 +227,13 @@ class FormatterService
         var dateString : String = ""
         
         if !Device.IS_IPHONE_5 {
-            dateString = dateString + "Delete In "
+            dateString = dateString + "deleteIn".localized()
         }
         
         if let daysCount = calculateDaysCountForDestruct(date: date) {
          
             if daysCount > 0 {
-               dateString = dateString + String(format: "%@", daysCount) + "d" //%02d
+               dateString = dateString + String(format: "%@", daysCount) + "daySuffix".localized() //%02d
                 
                let timeWithoutDaysDate = Calendar.current.date(byAdding: .day, value: -daysCount, to: Date())!
             }
@@ -251,8 +251,8 @@ class FormatterService
         var length = 5
         
         if !short {
-            dateString = dateString + "Dead mans "
-            location = 10
+            location = "deadMans".localized().count//10
+            dateString = dateString + "deadMans".localized()
         }
         
         if duration > 0 {
@@ -265,7 +265,7 @@ class FormatterService
                     length = 9
                 }
                 
-                dateString = dateString + String(format: "%d", days) + "d "
+                dateString = dateString + String(format: "%d", days) + "daySuffix".localized()
                 
                 let hours = duration - (days * 24)
                 dateString = dateString + String(format: "%02d", hours) + ":00"
@@ -416,6 +416,8 @@ class FormatterService
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "E dd MMM HH:mm"
+        let appLang = UserDefaults.standard.string(forKey: "app_lang") ?? "en"
+        dateFormatter.locale = Locale.init(identifier: appLang)        
         
         let dateString = dateFormatter.string(from:date as Date)
         
@@ -537,8 +539,8 @@ extension Date {
         var length = 5
         
         if !short {
-            location = 10
-            destructionLabelAttributedText = destructionLabelAttributedText + "Delete In "
+            location = "deleteIn".localized().count//10
+            destructionLabelAttributedText = destructionLabelAttributedText + "deleteIn".localized()
         }
             
         if days > 0 {
@@ -549,7 +551,7 @@ extension Date {
                 length = 9
             }
             
-            dateString = dateString + String(format: "%d", days) + "d " //%02d
+            dateString = dateString + String(format: "%d", days) + "daySuffix".localized() //%02d
         }
         
         dateString = dateString + String(format: "%02d:%02d", hours, minutes)
@@ -577,8 +579,8 @@ extension Date {
         var length = 5
         
         if !short {
-            location = 11
-            destructionLabelAttributedText = destructionLabelAttributedText + "Delay time "//"Delete In "
+            location = "delayTime".localized().count//11
+            destructionLabelAttributedText = destructionLabelAttributedText + "delayTime".localized()
         }
         
         if days > 0 {
@@ -589,7 +591,7 @@ extension Date {
                 length = 9
             }
             
-            dateString = dateString + String(format: "%d", days) + "d " //%02d
+            dateString = dateString + String(format: "%d", days) + "daySuffix".localized()//%02d
         }
         
         dateString = dateString + String(format: "%02d:%02d", hours, minutes)
@@ -634,21 +636,48 @@ extension Date {
         var daysSuffix: String = ""
         var hoursSuffix: String = ""
         
-        if days > 0 {
+        var daysLastDigit = 0
+        
+        if days < 10 || days > 19 {
+            let daysString = days.description
+            daysLastDigit = Int(String(daysString.last!))!
+        } else {
+            daysLastDigit = days
+        }
+        
+        if daysLastDigit > 0 {
             
-            if days > 1 {
-                daysSuffix = " days "
+            if daysLastDigit > 1 {
+                daysSuffix = "manyDays".localized()
+                if daysLastDigit < 5 {
+                    daysSuffix = "manyDaysx".localized()
+                }
             } else {
-                daysSuffix = " day "
+                daysSuffix = "oneDay".localized()
             }
             
             dateString = dateString + String(format: "%d", days) + daysSuffix
         }
         
-        if hours > 1 {
-            hoursSuffix = " hours"
+        var hoursLastDigit = 0
+        
+        if hours < 10 || hours > 19 {
+            let hoursString = hours.description
+            hoursLastDigit = Int(String(hoursString.last!))!
         } else {
-            hoursSuffix = " hour"
+            hoursLastDigit = hours
+        }
+        
+        if hoursLastDigit > 1 {
+            hoursSuffix = "manyHours".localized()
+            if hoursLastDigit < 5 {
+                hoursSuffix = "manyHoursx".localized()
+            }
+        } else {
+            hoursSuffix = "oneHour".localized()
+            if hoursLastDigit < 1 {
+                hoursSuffix = "manyHours".localized()
+            }
         }
         
         dateString = dateString + String(format: "%02d", hours) + hoursSuffix
@@ -726,10 +755,27 @@ extension Data {
 }
 
 extension String {
-    
+    /*
     func localized(bundle: Bundle = .main, tableName: String = "Localizable") -> String {
         
         return NSLocalizedString(self, tableName: tableName, value: "**\(self)**", comment: "")
+    }
+    */
+    func localized() -> String {
+   
+        return NSLocalizedString(self, tableName: nil, bundle: Bundle.localizedBundle(), value: "", comment: "")
+    }
+    
+    func localized(lang: String) -> String {
+        
+        let path = Bundle.main.path(forResource: lang, ofType: "lproj")
+        let bundle = Bundle(path: path!)
+        return NSLocalizedString(self, tableName: nil, bundle: bundle!, value: "", comment: "")
+    }
+    
+    func localizeWithFormat(arguments: CVarArg...) -> String{
+        
+        return String(format: self.localized(), arguments: arguments)
     }
     
     func widthOfString(usingFont font: UIFont) -> CGFloat {
@@ -959,5 +1005,55 @@ extension URL {
     
     var localizedName: String? {
         return (try? resourceValues(forKeys: [.localizedNameKey]))?.localizedName
+    }
+}
+
+// localized Classes
+
+final class UILocalizedButton: UIButton {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        let title = self.title(for: .normal)?.localized()
+        setTitle(title, for: .normal)
+    }
+}
+
+final class UILocalizedLabel: UILabel {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        text = text?.localized()
+    }
+}
+
+final class UILocalizedTextField: UITextField {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        text = text?.localized()
+        
+        placeholder = placeholder?.localized()
+    }
+}
+
+final class UILocalizedTextView: UITextView {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        text = text?.localized()
+    
+        let attributes = attributedText?.attributes(at: 0, effectiveRange: nil)
+        attributedText = NSAttributedString(string: text, attributes: attributes)        
+    }
+}
+
+
+final class UILocalizedUINavigationItem: UINavigationItem {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        title = title?.localized()
+        
+        leftBarButtonItem?.title = leftBarButtonItem?.title?.localized()
+        rightBarButtonItem?.title = rightBarButtonItem?.title?.localized()
     }
 }

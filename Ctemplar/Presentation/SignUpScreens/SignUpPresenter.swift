@@ -39,6 +39,16 @@ class SignUpPresenter {
         self.viewController?.view.addSubview((self.viewController?.pageControl)!)
     }
     
+    func setPageControlFrame() {
+        
+        let screenBoundsMax =  self.viewController?.view.bounds.maxX
+        let screenWidth = self.viewController?.view.bounds.width
+        
+        let bottomOffset : Double = Double(screenBoundsMax!) - k_pageControlBottomOffset
+        
+        self.viewController?.pageControl.frame = CGRect(x: 0.0, y: bottomOffset, width: Double(screenWidth!), height:  k_pageControlDotSize)
+    }
+    
     func viewControllerBefore(viewController: UIViewController) -> UIViewController? {
         
         guard let viewControllerIndex = self.viewController?.orderedViewControllers.index(of: viewController) else {
@@ -77,7 +87,13 @@ class SignUpPresenter {
     
     func addPageContent(viewController: String) -> UIViewController {
         
-        return UIStoryboard(name: k_SignUpStoryboardName, bundle: nil).instantiateViewController(withIdentifier: viewController)
+        var storyboardName : String? = k_SignUpStoryboardName
+        
+        if (Device.IS_IPAD) {
+            storyboardName = k_SignUpStoryboardName_iPad
+        }
+        
+        return UIStoryboard(name: storyboardName!, bundle: nil).instantiateViewController(withIdentifier: viewController)
     }
     
     //MARK: - Child View Controllers functional

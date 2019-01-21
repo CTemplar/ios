@@ -16,7 +16,12 @@ class SettingsRouter {
 
     func showInboxSideMenu() {
         
-        self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+        //self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+        if (!Device.IS_IPAD) {
+            self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+        } else {
+            self.viewController?.splitViewController?.toggleMasterView()
+        }
     }
     
     func showRecoveryEmailViewController() {
@@ -75,6 +80,7 @@ class SettingsRouter {
         vc.foldersList = (self.viewController?.user.foldersList)!
         vc.user = (self.viewController?.user)!
         vc.showFromSideMenu = false
+        vc.showFromSettings = true
         self.viewController?.show(vc, sender: self)
     }
     

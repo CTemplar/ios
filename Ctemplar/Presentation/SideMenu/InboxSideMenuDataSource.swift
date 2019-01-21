@@ -167,7 +167,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
 
             let unreadCount = self.parentViewController?.presenter?.interactor?.getUnreadMessagesCount(folderName: folderName)
             
-            (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: selected, iconName: iconName, title: folderName, unreadCount: unreadCount!)
+            (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: selected, iconName: iconName, title: folderName.localized(), unreadCount: unreadCount!)
             
             break
         case SideMenuSectionIndex.options.rawValue:
@@ -178,7 +178,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             let iconName = self.optionsImageNameList[indexPath.row]
             let selected = isSelected(section: indexPath.section, row: indexPath.row)
             
-            (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: selected, iconName: iconName, title: optionName, unreadCount: 0)
+            (cell as! SideMenuTableViewCell).setupSideMenuTableCell(selected: selected, iconName: iconName, title: optionName.localized(), unreadCount: 0)
             
             break
         case SideMenuSectionIndex.manageFolders.rawValue:
@@ -251,7 +251,13 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         tableView.deselectRow(at: indexPath, animated: true)
         
         if self.selectedIndexPath == indexPath {
-            self.parentViewController?.dismiss(animated: true, completion: nil)
+            
+            if (!Device.IS_IPAD) {
+                self.parentViewController?.dismiss(animated: true, completion: nil)
+            } else {
+                self.parentViewController?.splitViewController?.toggleMasterView()
+            }
+            
             return
         }
         
@@ -268,6 +274,9 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             case SideMenuSectionIndex.options.rawValue:
                 let optionName = self.optionsArray[indexPath.row]
                 self.parentViewController?.presenter?.interactor?.selectSideMenuAction(optionName: optionName)
+                if optionName == InboxSideMenuOptionsName.help.rawValue {
+                    self.selectedIndexPath = currentSelectedIndexPath
+                }
                 break
             case SideMenuSectionIndex.manageFolders.rawValue:
                 let optionName = InboxSideMenuOptionsName.manageFolders.rawValue 

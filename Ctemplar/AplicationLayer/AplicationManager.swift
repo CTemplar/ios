@@ -98,3 +98,51 @@ extension UIApplication {
         }
     }
 }
+
+extension Bundle {
+    
+    private static var bundle: Bundle!
+    
+    public static func localizedBundle() -> Bundle! {
+        
+        if bundle == nil {
+            let appLang = UserDefaults.standard.string(forKey: "app_lang") ?? "en"
+            let path = Bundle.main.path(forResource: appLang, ofType: "lproj")
+            bundle = Bundle(path: path!)
+        }
+
+        //print("bundlePath:", NSString(string: bundle.bundlePath).lastPathComponent)
+        
+        return bundle;
+    }
+    
+    public static func setLanguage(lang: String) {
+        
+        print("set language:", lang)
+        
+        UserDefaults.standard.set(lang, forKey: "app_lang")
+        let path = Bundle.main.path(forResource: lang, ofType: "lproj")
+        bundle = Bundle(path: path!)
+    }
+    
+    public static func getLanguage() -> String {
+        
+        let appLang = UserDefaults.standard.string(forKey: "app_lang") ?? "en"
+        
+        return appLang
+    }
+    
+    public static func currentDeviceLanguageCode() -> String? {
+        
+        let locale = Locale.current.languageCode
+        
+        return locale
+    }
+    
+    public static func currentAppLanguage() -> String? {
+        
+        let preferredLanguages = Locale.preferredLanguages[0]
+        
+        return preferredLanguages
+    }
+}

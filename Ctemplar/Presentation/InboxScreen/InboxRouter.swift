@@ -15,8 +15,12 @@ class InboxRouter {
     var viewController: InboxViewController?
     
     func showInboxSideMenu() {
-        
-        viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+ 
+        if (!Device.IS_IPAD) {
+            viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+        } else {
+            self.viewController?.splitViewController?.toggleMasterView()
+        }
     }
     
     func showComposeViewController(answerMode: AnswerMessageMode) {

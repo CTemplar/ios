@@ -90,4 +90,9 @@ class ManageFoldersDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
             }
         }
     }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        
+        return "deleteRow".localized()
+    }
 }

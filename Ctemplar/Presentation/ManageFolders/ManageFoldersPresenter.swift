@@ -44,8 +44,45 @@ class ManageFoldersPresenter {
         self.viewController!.navigationItem.leftBarButtonItem = backButton
     }
     
+    func setupNavigationLeftItem() {
+        
+        let emptyButton = UIBarButtonItem(image: UIImage(), style: .done, target: self, action: nil)
+        
+        if UIDevice.current.orientation.isLandscape {
+            print("Landscape")
+            self.viewController?.navigationItem.leftBarButtonItem = emptyButton
+        } else {
+            print("Portrait")
+            self.viewController?.navigationItem.leftBarButtonItem = self.viewController?.leftBarButtonItem
+        }
+    }
+    
+    func setupAddFolderButtonLabel() {
+        
+        let labelText = self.viewController?.addFolderLabel.text?.localized()
+        
+        let textWidth = labelText?.widthOfString(usingFont: (self.viewController?.addFolderLabel.font)!)
+        
+        let viewWidth = k_plusImageWidth + k_addButtonLeftOffet + textWidth! + 3.0 //sometimes width calculation is small
+        
+        self.viewController?.addFolderViewWithConstraint.constant = viewWidth        
+    }
+    
     @objc func backAction() {
         self.viewController?.router?.backAction()
+    }
+    
+    func addFolderButtonPressed() {
+        
+        if (self.viewController?.dataSource?.foldersArray.count)! > k_customFoldersLimitForNonPremium - 1 {
+            if (self.viewController?.user.isPrime)! {
+                self.viewController?.router?.showAddFolderViewController()
+            } else {
+                self.showAddFolderLimitAlert()
+            }
+        } else {
+            self.viewController?.router?.showAddFolderViewController()
+        }
     }
     
     func setupAddFolderButton() {
@@ -90,5 +127,39 @@ class ManageFoldersPresenter {
                 self.interactor?.deleteFolder(folderID: folderID)
             }
         }
+    }
+    /*
+    func showAddFolderLimitAlert() {
+        
+        let params = Parameters(
+            title: "infoTitle".localized(),
+            message: "addFolderLimit".localized(),
+            cancelButton: "closeButton".localized()
+        )
+        
+        AlertHelperKit().showAlertWithHandler(self.viewController!, parameters: params) { buttonIndex in
+            switch buttonIndex {
+            case 0:
+                print("Close")
+            default:
+                print("Other")
+            }
+        }
+    }*/
+    
+    func showAddFolderLimitAlert() {
+        
+        self.viewController?.upgradeToPrimeView?.isHidden = !(self.viewController?.upgradeToPrimeView?.isHidden)!
+    }
+    
+    func initAddFolderLimitView() {
+        
+        self.viewController?.upgradeToPrimeView = Bundle.main.loadNibNamed(k_UpgradeToPrimeViewXibName, owner: nil, options: nil)?.first as? UpgradeToPrimeView
+        self.viewController?.upgradeToPrimeView?.frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
+        //self.viewController?.upgradeToPrimeView?.delegate = self.viewController
+        
+        self.viewController?.navigationController!.view.addSubview((self.viewController?.upgradeToPrimeView)!)
+        
+        self.viewController?.upgradeToPrimeView?.isHidden = true
     }
 }

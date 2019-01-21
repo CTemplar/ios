@@ -11,6 +11,7 @@ import Foundation
 
 // view controllers ID
 
+let k_SplitViewControllerID                 = "SplitViewController"
 let k_LoginViewControllerID                 = "LoginViewController"
 let k_SignUpPageViewControllerID            = "SignUpPageViewController"
 let k_SignUpPageNameViewControllerID        = "SignUpPageNameViewController"
@@ -97,6 +98,7 @@ let k_AttachmentCollcetionViewCellXibName  = "AttachmentCollcetionViewCell"
 let k_AttachmentViewXibName                = "Attachment"
 let k_SettingsBaseTableViewCellXibName     = "SettingsBaseTableViewCell"
 let k_SettingsStorageTableViewCellXibName  = "SettingsStorageTableViewCell"
+let k_UpgradeToPrimeViewXibName            = "UpgradeToPrime"
 
 // cell identifier
 
@@ -120,7 +122,9 @@ let k_SettingsStorageTableViewCellIdentifier       = "settingsStorageTableViewCe
 
 // view controllers iPad storyboards name
 
+let k_SplitStoryboardName                  = "SplitiPad"
 let k_LoginStoryboardName_iPad             = "Login-iPad"
+let k_SignUpStoryboardName_iPad            = "SignUp-iPad"
 
 
 // notifications
@@ -129,6 +133,7 @@ let k_updateUserDataNotificationID          = "UpdateUserDataNotificationIdentif
 let k_updateUserSettingsNotificationID      = "UpdateUserSettingsNotificationIdentifier"
 let k_updateInboxMessagesNotificationID     = "updateInboxMessagesNotification"
 let k_attachUploadUpdateNotificationID      = "attachUploadUpdateNotificationIdentifier"
+let k_reloadViewControllerNotificationID    = "ReloadViewControllerNotificationIdentifier"
 
 // colors
 
@@ -191,6 +196,11 @@ let k_signUpPageKeyboardOffsetBig       = 96.0
 let k_signUpPageKeyboardOffsetLarge     = 160.0
 let k_signUpPageKeyboardOffsetExtraLarge     = 210.0
 let k_KeyboardHeight                    = 216.0
+
+
+let k_signUpPageKeyboardOffsetiPadBig   = 116.0
+let k_signUpPageKeyboardOffsetiPadLarge = 180.0
+let k_signUpPageKeyboardOffsetiPadExtraLarge     = 230.0
 
 let k_setPasswordKeyboardOffset         = 80.0
 let k_addContactKeyboardOffset          = 71.0
@@ -256,9 +266,13 @@ let k_attachmentViewTopOffset       : CGFloat = 25.0
 
 let k_iphoneSEBottomButtonsOffset   : CGFloat = 222.0
 let k_iphoneAllBottomButtonsOffset  : CGFloat = 277.0
+let k_iPadBottomButtonsOffset       : CGFloat = 20.0
 
 let k_settingsBaseCellHeight        : CGFloat = 50.0
 let k_settingsStorageCellHeight     : CGFloat = 78.0
+
+let k_plusImageWidth                : CGFloat = 20.0
+let k_addButtonLeftOffet            : CGFloat = 10.0
 
 //images
 
@@ -372,6 +386,9 @@ let k_keyringFileName              = "keyring.gpg"
 
 let k_privacyURL                   = "https://ctemplar.com/privacy"
 let k_termsURL                     = "https://ctemplar.com/terms"
+let k_mainSiteURL                  = "https://ctemplar.com/"
+let k_upgradeURL                   = "https://ctemplar.com/pricing"
+let k_supportURL                   = "support@ctemplar.com."
 
 let k_firstCharsForHeader          = 50
 let k_firstCharsForEncryptdHeader  = 5
@@ -387,7 +404,7 @@ let k_customFoldersLimitForNonPremium = 3
 let k_colorButtonsTag = 200
 
 enum InboxSideMenuOptionsName: String {
-    
+    /*
     case inbox            = "Inbox"
     case draft            = "Draft"
     case sent             = "Sent"
@@ -401,7 +418,22 @@ enum InboxSideMenuOptionsName: String {
     case settings         = "Settings"
     case help             = "Help"
     case logout           = "Logout"
-    case manageFolders    = "Manage Folders"
+    case manageFolders    = "Manage Folders"*/
+    
+    case inbox            = "inbox"
+    case draft            = "draft"
+    case sent             = "sent"
+    case outbox           = "outbox"
+    case starred          = "starred"
+    case archive          = "archive"
+    case spam             = "spam"
+    case trash            = "trash"
+    case allMails         = "allMails"
+    case contacts         = "contacts"
+    case settings         = "settings"
+    case help             = "help"
+    case logout           = "logout"
+    case manageFolders    = "manageFolders"    
 }
 
 enum MessagesFoldersName: String, CaseIterable {
@@ -527,12 +559,12 @@ enum SchedulerMode: String {
 
 enum SettingsSectionsName: String, CaseIterable {
     
-    case general           = "General settings"
-    case folders           = "Folders"
-    case mail              = "Mail"
-    case about             = "About"
-    case storage           = "Storage"
-    case logout            = "Log out"
+    case general           = "generalSettings"
+    case folders           = "foldersSettings"
+    case mail              = "mailSettings"
+    case about             = "aboutSettings"
+    case storage           = "storageSettings"
+    case logout            = "logoutSettings"
 }
 
 enum SettingsSections: Int, CaseIterable {
@@ -591,4 +623,10 @@ enum LanguagesName: String {
     
     case english            = "English"
     case russian            = "Русский"
+}
+
+enum LanguagesBundlePrefix: String {
+    
+    case english            = "en"
+    case russian            = "ru"
 }

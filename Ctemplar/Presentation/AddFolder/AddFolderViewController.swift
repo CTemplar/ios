@@ -20,9 +20,13 @@ class AddFolderViewController: UIViewController {
     @IBOutlet var colorPickerSuperView      : UIView!
     
     @IBOutlet var buttonBottomOffsetConstraint          : NSLayoutConstraint!
+    @IBOutlet var colorPickerSuperViewHeightConstraint          : NSLayoutConstraint!
     
     var selectedHexColor : String = ""
     var folderName : String = ""
+    
+    let k_colorPickerOffset : CGFloat = 32.0
+    var k_colorPickeriPadHeight : CGFloat = 180.0
     
     var colorPicker : ColorPickerView!
 
@@ -47,7 +51,11 @@ class AddFolderViewController: UIViewController {
         super.viewDidAppear(animated)
         
         //self.colorPicker.selectedButtonTag = k_colorButtonsTag + 4
-        self.colorPicker.setupColorPicker(width: self.colorPickerSuperView.bounds.width, height: self.colorPickerSuperView.bounds.height)
+        if (Device.IS_IPAD) {
+            k_colorPickeriPadHeight = self.colorPicker.calculateColorPickerHeight(width: self.colorPickerSuperView.bounds.width)
+            self.colorPickerSuperViewHeightConstraint.constant = k_colorPickeriPadHeight
+        }
+        self.colorPicker.setupColorPicker(width: self.colorPickerSuperView.bounds.width, height: k_colorPickeriPadHeight)
         
         self.interactor?.setupBottomButtons()
         
@@ -76,6 +84,22 @@ class AddFolderViewController: UIViewController {
         if gesture.direction == UISwipeGestureRecognizer.Direction.down {
             
             self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    //MARK: - Orientation
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        if (Device.IS_IPAD) {
+
+            let width = self.view.bounds.height - k_colorPickerOffset
+            
+            self.colorPicker.updateColorPickerFrame(width: width, height: k_colorPickeriPadHeight)
+            k_colorPickeriPadHeight = self.colorPicker.calculateColorPickerHeight(width: self.colorPickerSuperView.bounds.width)
+            self.view.layoutIfNeeded()
         }
     }
 }

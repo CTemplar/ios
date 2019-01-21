@@ -27,15 +27,7 @@ class SignUpInteractor {
                 
                 self.keychainService?.saveUserCredentials(userName: userName, password: password)
                 
-                let currentPresentingViewController = self.viewController?.presentingViewController as? LoginViewController
-                
-                self.viewController?.dismiss(animated: true) {
-                    //currentPresentingViewController?.dismiss(animated: false, completion: nil) //hide Login View Controller
-                    
-                    currentPresentingViewController?.dismiss(animated: true, completion: {
-                        self.viewController?.mainViewController?.showInboxNavigationController()
-                    })
-                }
+                self.viewController?.router?.showInboxScreen()
                 
                 NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil, userInfo: nil)
                 

@@ -225,7 +225,7 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                             <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z5N-8m-C3L">
                                 <rect key="frame" x="0.0" y="618" width="375" height="49"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2m-Xp-8JM">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2m-Xp-8JM" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="48" y="6" width="46" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="b2m-Xp-8JM" secondAttribute="height" multiplier="46:35" id="2uE-MU-BKl"/>
@@ -235,7 +235,7 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                                             <action selector="replyButtonPressed:" destination="eXb-8R-FAT" eventType="touchUpInside" id="a0u-t9-Cks"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1u4-Uf-KqQ">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1u4-Uf-KqQ" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="164.5" y="6" width="46" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="1u4-Uf-KqQ" secondAttribute="height" multiplier="46:35" id="dqe-6i-Z1l"/>
@@ -245,7 +245,7 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                                             <action selector="replyAllButtonPressed:" destination="eXb-8R-FAT" eventType="touchUpInside" id="PIg-hk-sJO"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ya-OR-KPO">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ya-OR-KPO" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="281" y="8" width="46" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="9Ya-OR-KPO" secondAttribute="height" multiplier="46:35" id="C9E-4o-szj"/>
@@ -370,7 +370,7 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
     <resources>
         <image name="ProtectOn" width="24" height="24"/>
         <image name="SecureIcon" width="16" height="16"/>
-        <image name="StarOnBig" width="44" height="44"/>
+        <image name="StarOnBig" width="47" height="47"/>
         <image name="forwardButton" width="44" height="31"/>
         <image name="replyAllButton" width="44" height="31"/>
         <image name="replyButton" width="44" height="31"/>

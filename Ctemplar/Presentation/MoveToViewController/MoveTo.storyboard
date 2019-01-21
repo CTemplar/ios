@@ -41,32 +41,32 @@
                                             <action selector="cancelButtonPressed:" destination="FNd-Or-ZG7" eventType="touchUpInside" id="SbU-0U-Le7"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Move to..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvH-cx-MaS">
-                                        <rect key="frame" x="137.5" y="29" width="100" height="27"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="moveTo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvH-cx-MaS" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                        <rect key="frame" x="97.5" y="29" width="180" height="27"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="27" id="UHk-sB-cQz"/>
-                                            <constraint firstAttribute="width" constant="100" id="zCB-61-zOV"/>
+                                            <constraint firstAttribute="width" constant="180" id="zCB-61-zOV"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="22"/>
                                         <color key="textColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button hidden="YES" opaque="NO" tag="205" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEG-dg-ibL">
-                                        <rect key="frame" x="297" y="16" width="64" height="26"/>
+                                    <button hidden="YES" opaque="NO" tag="205" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEG-dg-ibL" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
+                                        <rect key="frame" x="277" y="16" width="84" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="26" id="Lz0-UQ-j33"/>
-                                            <constraint firstAttribute="width" constant="64" id="XdO-Kv-lst"/>
+                                            <constraint firstAttribute="width" constant="84" id="XdO-Kv-lst"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                         <color key="tintColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Clear all">
+                                        <state key="normal" title="clearAll">
                                             <color key="titleColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8LG-oP-tRN">
                                         <rect key="frame" x="0.0" y="75" width="375" height="40"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select folder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGD-rS-tj7">
+                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="selectfolder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGD-rS-tj7" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="8" width="343" height="32"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                                 <color key="textColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -124,16 +124,33 @@
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8r-20-gvx">
                                         <rect key="frame" x="0.0" y="-1" width="375" height="45"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1AQ-Zz-7IY">
-                                                <rect key="frame" x="12" y="12" width="150" height="20"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="redFolder" translatesAutoresizingMaskIntoConstraints="NO" id="uJe-dO-k4O">
+                                                <rect key="frame" x="16" y="13" width="20" height="20"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="150" id="6AX-wL-dVf"/>
+                                                    <constraint firstAttribute="width" secondItem="uJe-dO-k4O" secondAttribute="height" multiplier="1:1" id="hUK-Nh-taY"/>
+                                                    <constraint firstAttribute="height" constant="20" id="u4C-PF-gCR"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="manageFolders" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iZT-IL-ZVT" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                                <rect key="frame" x="44" y="13" width="180" height="19"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="19" id="Ayv-jT-0eL"/>
+                                                    <constraint firstAttribute="width" constant="180" id="gAb-He-iuZ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                                <color key="textColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1AQ-Zz-7IY" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
+                                                <rect key="frame" x="12" y="12" width="200" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="200" id="6AX-wL-dVf"/>
                                                     <constraint firstAttribute="height" constant="20" id="Ev8-gj-arP"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                                 <inset key="titleEdgeInsets" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <inset key="imageEdgeInsets" minX="-12" minY="1" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" title="Manage folders" image="redFolder">
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal">
                                                     <color key="titleColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
@@ -143,9 +160,13 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="uJe-dO-k4O" firstAttribute="leading" secondItem="S8r-20-gvx" secondAttribute="leading" constant="16" id="88H-qe-RZ7"/>
                                             <constraint firstItem="1AQ-Zz-7IY" firstAttribute="leading" secondItem="S8r-20-gvx" secondAttribute="leading" constant="12" id="Ii0-Dn-dyS"/>
                                             <constraint firstItem="1AQ-Zz-7IY" firstAttribute="top" secondItem="S8r-20-gvx" secondAttribute="top" constant="12" id="Knn-M4-LZl"/>
+                                            <constraint firstItem="uJe-dO-k4O" firstAttribute="top" secondItem="S8r-20-gvx" secondAttribute="top" constant="13" id="Pnh-lG-u4A"/>
                                             <constraint firstAttribute="height" constant="45" id="UPk-3K-fTF"/>
+                                            <constraint firstItem="iZT-IL-ZVT" firstAttribute="top" secondItem="S8r-20-gvx" secondAttribute="top" constant="13" id="Ygd-Va-7sW"/>
+                                            <constraint firstItem="iZT-IL-ZVT" firstAttribute="leading" secondItem="uJe-dO-k4O" secondAttribute="trailing" constant="8" id="tMH-sR-GUR"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -163,29 +184,46 @@
                                         <rect key="frame" x="0.0" y="44" width="375" height="419"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXl-sY-7ce">
-                                        <rect key="frame" x="16" y="15" width="110" height="20"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="redPlus" translatesAutoresizingMaskIntoConstraints="NO" id="ydn-E6-Cej">
+                                        <rect key="frame" x="16" y="13" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="QEm-un-ewL"/>
+                                            <constraint firstAttribute="width" secondItem="ydn-E6-Cej" secondAttribute="height" multiplier="1:1" id="rPc-X1-mlS"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="addFolder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4cs-0Y-Dfi" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                        <rect key="frame" x="46" y="13" width="180" height="19"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="180" id="ERV-Ez-Ey5"/>
+                                            <constraint firstAttribute="height" constant="19" id="Zz0-x2-x3v"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                        <color key="textColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXl-sY-7ce" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="15" width="140" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="CIf-Wx-deD"/>
-                                            <constraint firstAttribute="width" constant="110" id="jIh-Og-fQH"/>
+                                            <constraint firstAttribute="width" constant="140" id="jIh-Og-fQH"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                         <inset key="titleEdgeInsets" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="-12" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="Add folder" image="redPlus">
+                                        <state key="normal">
                                             <color key="titleColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="addButtonPressed:" destination="FNd-Or-ZG7" eventType="touchUpInside" id="f9e-Bx-Vpt"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="206" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="khh-ts-9p1">
+                                    <button opaque="NO" tag="206" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="khh-ts-9p1" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="16" y="473" width="163.5" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="VVr-oN-LQ7"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                        <state key="normal" title="Cancel">
+                                        <state key="normal" title="cancelButton">
                                             <color key="titleColor" red="0.090196078430000007" green="0.1960784314" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -203,14 +241,14 @@
                                             <action selector="cancelButtonPressed:" destination="FNd-Or-ZG7" eventType="touchUpInside" id="hLS-8H-WOp"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="207" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xxy-Hd-3eK">
+                                    <button opaque="NO" tag="207" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xxy-Hd-3eK" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="195.5" y="473" width="163.5" height="48"/>
                                         <color key="backgroundColor" red="0.090196078430000007" green="0.1960784314" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="W9s-9b-GRH"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                        <state key="normal" title="Apply">
+                                        <state key="normal" title="applyButton">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -221,6 +259,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Xxy-Hd-3eK" secondAttribute="bottom" constant="10" id="0m2-2B-gjm"/>
+                                    <constraint firstItem="4cs-0Y-Dfi" firstAttribute="top" secondItem="P36-9T-3rm" secondAttribute="top" constant="13" id="1AB-XX-Mcw"/>
                                     <constraint firstAttribute="trailing" secondItem="FNs-U3-Y0L" secondAttribute="trailing" id="1n2-Rf-Kqx"/>
                                     <constraint firstItem="bXl-sY-7ce" firstAttribute="leading" secondItem="P36-9T-3rm" secondAttribute="leading" constant="16" id="2F2-e5-PZp"/>
                                     <constraint firstAttribute="trailing" secondItem="Xxy-Hd-3eK" secondAttribute="trailing" constant="16" id="5Qw-sd-h2h"/>
@@ -228,11 +267,14 @@
                                     <constraint firstAttribute="centerX" secondItem="khh-ts-9p1" secondAttribute="trailing" constant="8" id="CUy-aG-Ctd"/>
                                     <constraint firstItem="FNs-U3-Y0L" firstAttribute="leading" secondItem="P36-9T-3rm" secondAttribute="leading" id="DCq-zu-EIC"/>
                                     <constraint firstItem="FNs-U3-Y0L" firstAttribute="top" secondItem="S8r-20-gvx" secondAttribute="bottom" id="MVF-N3-wpk"/>
+                                    <constraint firstItem="ydn-E6-Cej" firstAttribute="leading" secondItem="P36-9T-3rm" secondAttribute="leading" constant="16" id="Mif-pU-zTr"/>
                                     <constraint firstAttribute="bottom" secondItem="khh-ts-9p1" secondAttribute="bottom" constant="10" id="QTb-Sh-z3O"/>
                                     <constraint firstAttribute="trailing" secondItem="S8r-20-gvx" secondAttribute="trailing" id="b52-8k-9dy"/>
                                     <constraint firstItem="khh-ts-9p1" firstAttribute="leading" secondItem="P36-9T-3rm" secondAttribute="leading" constant="16" id="cW2-bQ-Sb7"/>
+                                    <constraint firstItem="ydn-E6-Cej" firstAttribute="top" secondItem="P36-9T-3rm" secondAttribute="top" constant="13" id="dvE-jJ-ase"/>
                                     <constraint firstItem="bXl-sY-7ce" firstAttribute="top" secondItem="P36-9T-3rm" secondAttribute="top" constant="15" id="eko-8s-csV"/>
                                     <constraint firstItem="S8r-20-gvx" firstAttribute="leading" secondItem="P36-9T-3rm" secondAttribute="leading" id="fb1-rY-Kfl"/>
+                                    <constraint firstItem="4cs-0Y-Dfi" firstAttribute="leading" secondItem="ydn-E6-Cej" secondAttribute="trailing" constant="10" id="fkl-in-Brj"/>
                                     <constraint firstItem="S8r-20-gvx" firstAttribute="top" secondItem="P36-9T-3rm" secondAttribute="top" constant="-1" id="mZZ-Om-rKA"/>
                                     <constraint firstItem="Xxy-Hd-3eK" firstAttribute="leading" secondItem="P36-9T-3rm" secondAttribute="centerX" constant="8" id="y7L-56-9so"/>
                                 </constraints>
@@ -257,6 +299,8 @@
                     </view>
                     <connections>
                         <outlet property="addFolderButton" destination="bXl-sY-7ce" id="iOm-Bw-p7L"/>
+                        <outlet property="addFolderImage" destination="ydn-E6-Cej" id="J1B-1T-Vz8"/>
+                        <outlet property="addFolderLabel" destination="4cs-0Y-Dfi" id="eho-IM-UMR"/>
                         <outlet property="applyButton" destination="Xxy-Hd-3eK" id="XFz-8G-tfh"/>
                         <outlet property="manageFolderButton" destination="1AQ-Zz-7IY" id="nnH-MW-aFx"/>
                         <outlet property="manageFolderView" destination="S8r-20-gvx" id="lyY-5s-bNp"/>

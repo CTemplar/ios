@@ -31,9 +31,26 @@ class  SettingsViewController: UIViewController {
         let configurator =  SettingsConfigurator()
         configurator.configure(viewController: self)
         
+        self.navigationItem.title = "settings".localized()
+        
         dataSource?.initWith(parent: self, tableView: settingsTableView)
         
         NotificationCenter.default.addObserver(self, selector: #selector(userSettingsUpdate), name: NSNotification.Name(rawValue: k_updateUserSettingsNotificationID), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadViewController), name: NSNotification.Name(rawValue: k_reloadViewControllerNotificationID), object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if (Device.IS_IPAD) {
+            self.presenter?.setupNavigationLeftItem()
+        }
+    }
+    
+    @objc func reloadViewController() {
+        
+        self.viewDidLoad()
+        self.viewWillAppear(false)
     }
     
     //MARK: - IBActions
@@ -46,5 +63,16 @@ class  SettingsViewController: UIViewController {
     @objc func userSettingsUpdate(notification: Notification) {
         
         self.presenter?.interactor?.userMyself()
+    }
+    
+    //MARK: - Orientation
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        if (Device.IS_IPAD) {
+            self.presenter?.setupNavigationLeftItem()
+        }
     }
 }

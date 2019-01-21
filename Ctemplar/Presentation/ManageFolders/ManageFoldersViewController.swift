@@ -17,10 +17,13 @@ class ManageFoldersViewController: UIViewController {
     var dataSource  : ManageFoldersDataSource?
     
     var showFromSideMenu : Bool = true
+    var showFromSettings : Bool = false
     
     var foldersList : Array<Folder> = []
     
     var user = UserMyself()
+    
+    var upgradeToPrimeView : UpgradeToPrimeView?
     
     @IBOutlet var foldersTableView         : UITableView!
     @IBOutlet var addFolderView            : UIView!
@@ -29,7 +32,13 @@ class ManageFoldersViewController: UIViewController {
     @IBOutlet var leftBarButtonItem        : UIBarButtonItem!
     @IBOutlet var addFolderButton          : UIButton!
     
+    @IBOutlet var addFolderLabel           : UILabel!
+    @IBOutlet var addFolderImage           : UIImageView!
+    
     @IBOutlet var addFolderViewHeightConstraint          : NSLayoutConstraint!
+    
+    @IBOutlet var addFolderViewWithConstraint            : NSLayoutConstraint!
+    @IBOutlet var addFolderLabelWidthConstraint          : NSLayoutConstraint!
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,13 +53,23 @@ class ManageFoldersViewController: UIViewController {
         self.dataSource?.initWith(parent: self, tableView: foldersTableView)
         
         self.presenter?.setDataSource(folders: self.foldersList)
-        self.presenter?.setupAddFolderButton()        
+
+        self.presenter?.setupAddFolderButtonLabel()
+        //self.presenter?.setupAddFolderButton()
+        self.presenter?.setAddFolderButton(enable: true)
+        self.presenter?.initAddFolderLimitView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.presenter?.interactor?.foldersList()
+        
+        if (Device.IS_IPAD) {
+            if self.showFromSideMenu {
+                self.presenter?.setupNavigationLeftItem()
+            }
+        }
     }
     
     //MARK: - IBActions
@@ -66,6 +85,19 @@ class ManageFoldersViewController: UIViewController {
     
     @IBAction func addFolderButtonPressed(_ sender: AnyObject) {
         
-        self.router?.showAddFolderViewController()
+        self.presenter?.addFolderButtonPressed()
+    }
+    
+    //MARK: - Orientation
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        if (Device.IS_IPAD) {
+            if self.showFromSideMenu {
+                self.presenter?.setupNavigationLeftItem()
+            }
+        }
     }
 }

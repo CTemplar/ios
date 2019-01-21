@@ -18,7 +18,7 @@ class ManageFoldersInteractor {
     
     func foldersList() {
         
-        //HUD.show(.progress)
+        HUD.show(.progress)
         
         apiService?.customFoldersList(limit: 200, offset: 0) {(result) in
             
@@ -35,7 +35,7 @@ class ManageFoldersInteractor {
                 AlertHelperKit().showAlert(self.viewController!, title: "Get Folders Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
-            //HUD.hide()
+            HUD.hide()
         }
     }
     
@@ -44,7 +44,7 @@ class ManageFoldersInteractor {
         if let folders = folderList.foldersList {
 
             self.presenter?.setDataSource(folders: folders)
-            self.presenter?.setupAddFolderButton()
+            //self.presenter?.setupAddFolderButton()
         }
     }
     

@@ -15,10 +15,12 @@ class ContactsRouter {
     var viewController: ContactsViewController?
     
     func showInboxSideMenu() {
-        
-        //let inboxSideMenuViewController = SideMenuManager.default.menuLeftNavigationController?.children.first as! InboxSideMenuViewController
-        //inboxSideMenuViewController.currentParentViewController = self.viewController
-        self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+          
+        if (!Device.IS_IPAD) {
+            self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+        } else {
+            self.viewController?.splitViewController?.toggleMasterView()
+        }
     }
     
     func showAddContactViewController(editMode: Bool, contact: Contact) {

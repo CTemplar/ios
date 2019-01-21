@@ -117,7 +117,7 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         let message = messagesArray[indexPath.row]
         let selected = isMessageSelected(message: message)
         
-        var localHeader = "decrypting..."
+        var localHeader = "decrypting".localized()
         
         if messagesHeaderArray.count > indexPath.row {
             localHeader = messagesHeaderArray[indexPath.row]

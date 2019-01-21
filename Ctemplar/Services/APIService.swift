@@ -129,10 +129,13 @@ class APIService {
     
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
-        HUD.show(.progress)
+        HUD.show(.labeledProgress(title: "hashing".localized(), subtitle: ""))
         
         getHashedPassword(userName: userName, password: password) { (complete) in
             if complete {
+                
+                HUD.show(.labeledProgress(title: "updateToken".localized(), subtitle: ""))
+                
                 self.restAPIService?.authenticateUser(userName: userName, password: self.hashedPassword!) {(result) in
                     
                     switch(result) {

@@ -83,30 +83,27 @@ class InboxViewController: UIViewController {
         presenter?.setupUI(emailsCount: 0, unreadEmails: 0, filterEnabled: false)
         presenter?.initFilterView()
         presenter?.initMoreActionsView()
-    
-        //DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5), execute: {
-        //    self.presenter?.interactor?.publicKeyList()
-        //})
         
         adddNotificationObserver()
-        
-        self.navigationItem.title = currentFolder
+
         self.leftBarButtonItem.isEnabled = false
         
-        self.presenter?.interactor?.updateMessages(withUndo: "", silent: false)
-        //self.presenter?.interactor?.userMyself()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100), execute: {
+            self.presenter?.interactor?.updateMessages(withUndo: "", silent: false)
+        })       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        //self.presenter?.interactor?.updateMessages(withUndo: "")
+                
         if self.runOnce == true { //optimization for showing table already 
             self.presenter?.interactor?.userMyself()
             self.runOnce = false
         }
         
-        navigationController?.navigationBar.backgroundColor = k_whiteColor
+        self.navigationController?.navigationBar.backgroundColor = k_whiteColor
+        //need to update after View Messge Back
+        self.presenter?.setupNavigationItemTitle(selectedMessages: (self.dataSource?.selectedMessagesIDArray.count)!, selectionMode: (self.dataSource?.selectionMode)!, currentFolder: self.currentFolder)
     }
        
     //MARK: - IBActions
@@ -160,7 +157,12 @@ class InboxViewController: UIViewController {
     
     @IBAction func moreButtonPressed(_ sender: AnyObject) {
         
-        self.presenter?.showMoreActionsView(emptyFolder: false)
+        //self.presenter?.showMoreActionsView(emptyFolder: false)
+        if (!Device.IS_IPAD) {
+            self.presenter?.showMoreActionsView(emptyFolder: false)
+        } else {
+            self.presenter?.showMoreActionsActionSheet()
+        }
     }
     
     @IBAction func undoButtonPressed(_ sender: AnyObject) {
@@ -191,7 +193,18 @@ class InboxViewController: UIViewController {
         
         self.presenter?.interactor?.updateMessages(withUndo: "", silent: silent)
         self.presenter?.interactor?.userMyself()
-    }    
+    }
+    
+    //MARK: - Orientation
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        if (Device.IS_IPAD) {
+            self.presenter?.setupNavigationLeftItem()
+        }
+    }
 }
 
 extension InboxViewController: InboxFilterDelegate {

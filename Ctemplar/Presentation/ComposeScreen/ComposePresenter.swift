@@ -929,13 +929,13 @@ class ComposePresenter {
             prefix = ""
             break
         case AnswerMessageMode.reply:
-            prefix = "Re: "
+            prefix = "reply"
             break
         case AnswerMessageMode.replyAll:
-            prefix = "Re: "
+            prefix = "reply"
             break
         case AnswerMessageMode.forward:
-            prefix = "Fwd: "
+            prefix = "forward".localized()
             break
         }
         

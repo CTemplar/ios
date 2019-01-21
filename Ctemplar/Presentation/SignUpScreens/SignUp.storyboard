@@ -78,8 +78,8 @@
                                     <constraint firstItem="dHB-Ew-cGy" firstAttribute="leading" secondItem="qAH-oT-1iT" secondAttribute="trailing" constant="7" id="v0k-LJ-GMJ"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username and domain" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PdD-B8-1sp">
-                                <rect key="frame" x="73.5" y="134" width="228" height="28.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="usernameAndDomain" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PdD-B8-1sp" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                <rect key="frame" x="45.5" y="134" width="284" height="35.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="PdD-B8-1sp" secondAttribute="height" multiplier="8:1" id="Rn6-P0-sdg"/>
                                 </constraints>
@@ -87,8 +87,8 @@
                                 <color key="textColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This will be your new Ctemplar email address." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeD-1q-rRA">
-                                <rect key="frame" x="48.5" y="168.5" width="278.5" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ctemplarEmailAddress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeD-1q-rRA" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                <rect key="frame" x="88.5" y="175.5" width="198" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="aeD-1q-rRA" secondAttribute="height" multiplier="139:12" constant="1" id="QQy-M0-fNO"/>
                                 </constraints>
@@ -96,7 +96,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.20784313725490194" alpha="0.54239106514084512" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OsM-e8-4OG">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="usernamePlaceholder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OsM-e8-4OG" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                 <rect key="frame" x="32.5" y="248" width="110" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="OsM-e8-4OG" secondAttribute="height" multiplier="110:15" id="OhY-EZ-L2z"/>
@@ -116,7 +116,7 @@
                                 <rect key="frame" x="32.5" y="264" width="209.5" height="20"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                         <color key="value" red="0.090196078431372548" green="0.19607843137254902" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -135,20 +135,77 @@
                                     <constraint firstAttribute="height" constant="2" id="h8O-Vz-Juv"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vlv-wg-4W9">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vlv-wg-4W9" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
                                 <rect key="frame" x="32.5" y="343" width="310" height="48"/>
                                 <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Vlv-wg-4W9" secondAttribute="height" multiplier="155:24" id="dWE-i1-7ds"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                <state key="normal" title="Next">
+                                <state key="normal" title="nextButton">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="nextButtonPressed:" destination="6rv-tf-Wv0" eventType="touchUpInside" id="TPU-jg-RRS"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H0B-KR-ik2" customClass="UILocalizedTextView" customModule="Ctemplar" customModuleProvider="target">
+                                <rect key="frame" x="30" y="403" width="315" height="43"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="9ZC-eP-7J9"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="supportEmailString">
+                                        <attributes>
+                                            <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <font key="NSFont" size="14" name="Lato-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="28">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="56">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="84">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="112">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="140">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="168">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="196">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="224">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="252">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="280">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="308">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="336">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES" address="YES"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -156,12 +213,14 @@
                             <constraint firstItem="aeD-1q-rRA" firstAttribute="top" secondItem="PdD-B8-1sp" secondAttribute="bottom" constant="6" id="713-PD-4fk"/>
                             <constraint firstItem="OsM-e8-4OG" firstAttribute="top" secondItem="aeD-1q-rRA" secondAttribute="bottom" constant="55.5" id="92t-a5-Zx7"/>
                             <constraint firstItem="80S-kp-hQd" firstAttribute="centerX" secondItem="XE6-P7-c6G" secondAttribute="centerX" id="D5l-g2-PyX"/>
+                            <constraint firstItem="mSv-mx-NkB" firstAttribute="trailing" secondItem="H0B-KR-ik2" secondAttribute="trailing" constant="30" id="DRT-Ef-5C0"/>
                             <constraint firstItem="34f-jb-yd7" firstAttribute="leading" secondItem="OsM-e8-4OG" secondAttribute="leading" id="ESp-yY-twx"/>
                             <constraint firstItem="u84-gM-cSA" firstAttribute="top" secondItem="34f-jb-yd7" secondAttribute="bottom" constant="7" id="EgU-iF-aV8"/>
                             <constraint firstItem="Vlv-wg-4W9" firstAttribute="top" secondItem="34f-jb-yd7" secondAttribute="bottom" constant="59" id="IuX-fv-oa6"/>
                             <constraint firstItem="3pz-K4-c4J" firstAttribute="trailing" secondItem="u84-gM-cSA" secondAttribute="trailing" id="Ngb-da-TgI"/>
                             <constraint firstItem="u84-gM-cSA" firstAttribute="top" secondItem="3pz-K4-c4J" secondAttribute="bottom" constant="8" id="QGO-Lk-Joj"/>
                             <constraint firstItem="PdD-B8-1sp" firstAttribute="top" secondItem="80S-kp-hQd" secondAttribute="bottom" constant="32" id="Rht-Lz-et8"/>
+                            <constraint firstItem="H0B-KR-ik2" firstAttribute="top" secondItem="Vlv-wg-4W9" secondAttribute="bottom" constant="12" id="RiZ-k9-KFl"/>
                             <constraint firstItem="133-n4-SLS" firstAttribute="trailing" secondItem="mSv-mx-NkB" secondAttribute="trailing" id="Z04-kl-VBy"/>
                             <constraint firstItem="aeD-1q-rRA" firstAttribute="centerX" secondItem="XE6-P7-c6G" secondAttribute="centerX" id="bMt-wh-bSV"/>
                             <constraint firstItem="133-n4-SLS" firstAttribute="leading" secondItem="mSv-mx-NkB" secondAttribute="leading" id="byP-lZ-pn8"/>
@@ -169,6 +228,7 @@
                             <constraint firstItem="133-n4-SLS" firstAttribute="top" secondItem="XE6-P7-c6G" secondAttribute="top" id="dcW-9W-Yh3"/>
                             <constraint firstItem="34f-jb-yd7" firstAttribute="top" secondItem="OsM-e8-4OG" secondAttribute="bottom" constant="1" id="goF-C6-hUp"/>
                             <constraint firstItem="PdD-B8-1sp" firstAttribute="centerX" secondItem="XE6-P7-c6G" secondAttribute="centerX" id="hG7-Yt-6U0"/>
+                            <constraint firstItem="H0B-KR-ik2" firstAttribute="leading" secondItem="mSv-mx-NkB" secondAttribute="leading" constant="30" id="hKS-HS-Sxs"/>
                             <constraint firstItem="23y-Sy-DbR" firstAttribute="leading" secondItem="mSv-mx-NkB" secondAttribute="leading" constant="5" id="iqq-Ec-zR1"/>
                             <constraint firstItem="80S-kp-hQd" firstAttribute="top" secondItem="mSv-mx-NkB" secondAttribute="top" constant="52" id="jxm-Yr-BmI"/>
                             <constraint firstAttribute="bottom" secondItem="133-n4-SLS" secondAttribute="bottom" id="k33-eY-O58"/>
@@ -243,8 +303,8 @@
                                     <constraint firstAttribute="trailing" secondItem="K4P-TX-jzI" secondAttribute="trailing" id="hxE-mY-bB5"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrD-D8-ru5">
-                                <rect key="frame" x="139" y="134" width="97" height="28"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="passwordPlaceholder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrD-D8-ru5" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                <rect key="frame" x="85" y="134" width="205" height="59"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="hrD-D8-ru5" secondAttribute="height" multiplier="31:9" constant="1" id="oNE-sF-3GY"/>
                                 </constraints>
@@ -252,18 +312,17 @@
                                 <color key="textColor" red="0.035294117647058823" green="0.12156862745098039" blue="0.20784313725490194" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="Ghp-zw-Ug0">
-                                <rect key="frame" x="40" y="172" width="295" height="51"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="passwordMust" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="Ghp-zw-Ug0" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                <rect key="frame" x="40" y="203" width="295" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="YGD-up-pKf"/>
                                 </constraints>
-                                <string key="text">Your password must be at least 10 characters. Password can contain only latin letters and cannot contain symbols such «-+!@. etc.</string>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5403279049295775" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jh0-a0-aSH">
-                                <rect key="frame" x="33" y="265" width="110" height="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="choosePasswordPlaceholder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="jh0-a0-aSH" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                <rect key="frame" x="33" y="296" width="110" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="jh0-a0-aSH" secondAttribute="height" multiplier="110:15" id="qOT-lS-axT"/>
                                     <constraint firstAttribute="width" constant="110" id="uzJ-PI-yHg"/>
@@ -273,7 +332,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Choose password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hgi-0p-C0l">
-                                <rect key="frame" x="33" y="281.5" width="283" height="20"/>
+                                <rect key="frame" x="33" y="312.5" width="283" height="20"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -289,7 +348,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2OI-pj-AFk">
-                                <rect key="frame" x="322" y="284" width="20" height="20"/>
+                                <rect key="frame" x="322" y="315" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="2OI-pj-AFk" secondAttribute="height" multiplier="1:1" id="bZ7-JG-Bvh"/>
                                     <constraint firstAttribute="width" constant="20" id="kb5-hP-z3y"/>
@@ -300,15 +359,15 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CzY-C2-fpZ">
-                                <rect key="frame" x="33" y="308" width="309" height="2"/>
+                                <rect key="frame" x="33" y="339" width="309" height="2"/>
                                 <color key="backgroundColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="XWJ-eW-54j"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="V6O-Rm-a0T"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01M-Wz-des">
-                                <rect key="frame" x="33" y="330" width="110" height="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="confirmPasswordPlaceholder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="01M-Wz-des" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                <rect key="frame" x="33" y="361" width="110" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="110" id="5T4-Yc-GcR"/>
                                     <constraint firstAttribute="width" secondItem="01M-Wz-des" secondAttribute="height" multiplier="110:15" id="hLs-zI-YWq"/>
@@ -318,7 +377,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="96Z-Yk-gjz">
-                                <rect key="frame" x="33" y="346.5" width="283" height="20"/>
+                                <rect key="frame" x="33" y="377.5" width="283" height="20"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -334,7 +393,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BIi-vy-NUV">
-                                <rect key="frame" x="322" y="349" width="20" height="20"/>
+                                <rect key="frame" x="322" y="380" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="BIi-vy-NUV" secondAttribute="height" multiplier="1:1" id="hhX-Ya-FTM"/>
                                     <constraint firstAttribute="width" constant="20" id="hn0-3h-SJl"/>
@@ -345,26 +404,83 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JOy-L5-0n2">
-                                <rect key="frame" x="33" y="373" width="309" height="2"/>
+                                <rect key="frame" x="33" y="404" width="309" height="2"/>
                                 <color key="backgroundColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="QFT-Pp-tmB"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GpS-cQ-VT6">
-                                <rect key="frame" x="33" y="415" width="309" height="48"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GpS-cQ-VT6" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
+                                <rect key="frame" x="33" y="446" width="309" height="48"/>
                                 <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="GpS-cQ-VT6" secondAttribute="height" multiplier="155:24" constant="-1" id="q8n-XG-eql"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                <state key="normal" title="Next">
+                                <state key="normal" title="nextButton">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="nextButtonPressed:" destination="pfw-hU-Z5O" eventType="touchUpInside" id="prJ-sL-W8K"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UFt-zm-iXV" customClass="UILocalizedTextView" customModule="Ctemplar" customModuleProvider="target">
+                                <rect key="frame" x="30" y="506" width="315" height="43"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="gpJ-R6-3ap"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="supportEmailString">
+                                        <attributes>
+                                            <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <font key="NSFont" size="14" name="Lato-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="28">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="56">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="84">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="112">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="140">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="168">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="196">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="224">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="252">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="280">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="308">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="336">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES" address="YES"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -375,9 +491,11 @@
                             <constraint firstItem="BIi-vy-NUV" firstAttribute="leading" secondItem="96Z-Yk-gjz" secondAttribute="trailing" constant="6" id="9wJ-Pr-Atk"/>
                             <constraint firstItem="Ghp-zw-Ug0" firstAttribute="top" secondItem="hrD-D8-ru5" secondAttribute="bottom" constant="10" id="BjQ-iV-zFz"/>
                             <constraint firstItem="96Z-Yk-gjz" firstAttribute="leading" secondItem="Hgi-0p-C0l" secondAttribute="leading" id="CDj-wW-TQd"/>
+                            <constraint firstItem="UFt-zm-iXV" firstAttribute="leading" secondItem="S1p-CI-CxW" secondAttribute="leading" constant="30" id="CKu-9G-Nrs"/>
                             <constraint firstItem="Ghp-zw-Ug0" firstAttribute="leading" secondItem="S1p-CI-CxW" secondAttribute="leading" constant="40" id="GMy-Lc-lPM"/>
                             <constraint firstItem="GpS-cQ-VT6" firstAttribute="leading" secondItem="Hgi-0p-C0l" secondAttribute="leading" id="JER-7X-8KA"/>
                             <constraint firstItem="eIS-VD-Xl9" firstAttribute="top" secondItem="S1p-CI-CxW" secondAttribute="top" constant="12" id="Kvf-47-ez1"/>
+                            <constraint firstItem="S1p-CI-CxW" firstAttribute="trailing" secondItem="UFt-zm-iXV" secondAttribute="trailing" constant="30" id="LHP-cZ-nXO"/>
                             <constraint firstItem="2OI-pj-AFk" firstAttribute="trailing" secondItem="CzY-C2-fpZ" secondAttribute="trailing" id="OzU-Qr-l6h"/>
                             <constraint firstItem="jh0-a0-aSH" firstAttribute="top" secondItem="Ghp-zw-Ug0" secondAttribute="bottom" constant="42" id="QCV-dP-Qvt"/>
                             <constraint firstItem="CzY-C2-fpZ" firstAttribute="leading" secondItem="Hgi-0p-C0l" secondAttribute="leading" id="ULC-js-xpS"/>
@@ -396,6 +514,7 @@
                             <constraint firstItem="JOy-L5-0n2" firstAttribute="top" secondItem="BIi-vy-NUV" secondAttribute="bottom" constant="4" id="isY-Xq-aIk"/>
                             <constraint firstItem="Hgi-0p-C0l" firstAttribute="top" secondItem="jh0-a0-aSH" secondAttribute="bottom" constant="1.5" id="j9i-Zj-blH"/>
                             <constraint firstItem="hrD-D8-ru5" firstAttribute="top" secondItem="H48-lb-VCB" secondAttribute="bottom" constant="32" id="jpc-9q-cSP"/>
+                            <constraint firstItem="UFt-zm-iXV" firstAttribute="top" secondItem="GpS-cQ-VT6" secondAttribute="bottom" constant="12" id="jtL-GO-Qk1"/>
                             <constraint firstItem="Hgi-0p-C0l" firstAttribute="top" relation="greaterThanOrEqual" secondItem="mNc-sb-Tvh" secondAttribute="centerY" constant="-52" id="mZT-Ho-JKQ"/>
                             <constraint firstItem="GpS-cQ-VT6" firstAttribute="centerX" secondItem="mNc-sb-Tvh" secondAttribute="centerX" id="o8O-u8-16c"/>
                             <constraint firstItem="SkK-Z8-6qd" firstAttribute="bottom" secondItem="S1p-CI-CxW" secondAttribute="bottom" constant="34" id="r8R-NI-QnN"/>
@@ -478,8 +597,8 @@
                                             <constraint firstAttribute="trailing" secondItem="fiL-6V-Nrt" secondAttribute="trailing" id="zC5-QH-APU"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recovery email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcW-ha-2ux">
-                                        <rect key="frame" x="114.5" y="134" width="146" height="27"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="recoveryEmailPlaceholder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcW-ha-2ux" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                        <rect key="frame" x="63.5" y="134" width="248.5" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="jcW-ha-2ux" secondAttribute="height" multiplier="212:27" constant="-66" id="bXO-wX-DfH"/>
                                         </constraints>
@@ -487,8 +606,8 @@
                                         <color key="textColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is used to recover your account if you get locked out or forget your password" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="3gc-S1-eI2">
-                                        <rect key="frame" x="52" y="171" width="271" height="34.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="thisIsUsed" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="3gc-S1-eI2" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                        <rect key="frame" x="52" y="184" width="271" height="34.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="3gc-S1-eI2" secondAttribute="height" multiplier="135:17" constant="-2.9705882352941444" id="3Jm-yw-P54"/>
                                         </constraints>
@@ -496,8 +615,8 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.54000000000000004" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recovery email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOB-2o-md1">
-                                        <rect key="frame" x="32" y="248" width="89" height="15"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="recoveryEmailPlaceholder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOB-2o-md1" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="261" width="89" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="89" id="D0B-vz-WUE"/>
                                             <constraint firstAttribute="width" secondItem="pOB-2o-md1" secondAttribute="height" multiplier="89:15" id="J2c-zU-tef"/>
@@ -507,13 +626,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Recovery email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SVs-yR-hNb">
-                                        <rect key="frame" x="32" y="264" width="311" height="25"/>
+                                        <rect key="frame" x="32" y="277" width="311" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="SVs-yR-hNb" secondAttribute="height" multiplier="311:25" id="D3c-Qc-Ulp"/>
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                                 <color key="value" red="0.090196078430000007" green="0.1960784314" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -526,14 +645,14 @@
                                         </connections>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lw6-Ro-4eD">
-                                        <rect key="frame" x="32" y="291" width="311" height="2"/>
+                                        <rect key="frame" x="32" y="304" width="311" height="2"/>
                                         <color key="backgroundColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="Hk2-fa-6bm"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M1L-gg-erv">
-                                        <rect key="frame" x="32" y="323" width="311" height="49.5"/>
+                                        <rect key="frame" x="32" y="336" width="311" height="49.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OIN-xv-ils">
                                                 <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
@@ -573,20 +692,77 @@
                                             <constraint firstItem="hQn-QG-3O5" firstAttribute="leading" secondItem="OIN-xv-ils" secondAttribute="trailing" constant="12" id="fPd-eE-3MO"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Byg-w0-gwk">
-                                        <rect key="frame" x="32" y="392" width="311" height="48"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Byg-w0-gwk" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="405" width="311" height="48"/>
                                         <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Byg-w0-gwk" secondAttribute="height" multiplier="155:24" constant="1" id="41G-9s-MQg"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                        <state key="normal" title="Create account">
+                                        <state key="normal" title="createAccount">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="createAccountPressed:" destination="CyF-gd-NUn" eventType="touchUpInside" id="5wP-RE-QMO"/>
                                         </connections>
                                     </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D9L-3Q-sXv" customClass="UILocalizedTextView" customModule="Ctemplar" customModuleProvider="target">
+                                        <rect key="frame" x="30" y="466" width="315" height="43"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="43" id="BoJ-4T-8fB"/>
+                                        </constraints>
+                                        <attributedString key="attributedText">
+                                            <fragment content="supportEmailString">
+                                                <attributes>
+                                                    <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <font key="NSFont" size="14" name="Lato-Regular"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                        <tabStops>
+                                                            <textTab alignment="left" location="28">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="56">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="84">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="112">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="140">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="168">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="196">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="224">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="252">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="280">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="308">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="336">
+                                                                <options/>
+                                                            </textTab>
+                                                        </tabStops>
+                                                    </paragraphStyle>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" link="YES" address="YES"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -598,10 +774,12 @@
                                     <constraint firstItem="SVs-yR-hNb" firstAttribute="leading" secondItem="pOB-2o-md1" secondAttribute="leading" id="CQk-Am-fbj"/>
                                     <constraint firstItem="zzn-3H-sgG" firstAttribute="leading" secondItem="F8v-d5-ZWE" secondAttribute="leading" id="DxV-ME-rZs"/>
                                     <constraint firstItem="jcW-ha-2ux" firstAttribute="top" secondItem="F8v-d5-ZWE" secondAttribute="top" constant="114" id="Fhk-8O-M7R"/>
+                                    <constraint firstItem="D9L-3Q-sXv" firstAttribute="top" secondItem="Byg-w0-gwk" secondAttribute="bottom" constant="13" id="Gu4-ke-5bv"/>
                                     <constraint firstItem="jcW-ha-2ux" firstAttribute="centerX" secondItem="wmm-xR-Mlh" secondAttribute="centerX" id="HtJ-rz-Y3i"/>
                                     <constraint firstItem="lw6-Ro-4eD" firstAttribute="centerX" secondItem="wmm-xR-Mlh" secondAttribute="centerX" id="K5t-TW-PLm"/>
                                     <constraint firstItem="lw6-Ro-4eD" firstAttribute="trailing" secondItem="SVs-yR-hNb" secondAttribute="trailing" id="KNf-lS-Dfa"/>
                                     <constraint firstItem="Byg-w0-gwk" firstAttribute="leading" secondItem="lw6-Ro-4eD" secondAttribute="leading" id="Khq-cl-zq0"/>
+                                    <constraint firstItem="D9L-3Q-sXv" firstAttribute="leading" secondItem="F8v-d5-ZWE" secondAttribute="leading" constant="30" id="Kvt-Xy-3lS"/>
                                     <constraint firstItem="M1L-gg-erv" firstAttribute="leading" secondItem="lw6-Ro-4eD" secondAttribute="leading" id="LNb-TT-PgA"/>
                                     <constraint firstItem="lw6-Ro-4eD" firstAttribute="leading" secondItem="SVs-yR-hNb" secondAttribute="leading" id="MEH-vc-UaY"/>
                                     <constraint firstItem="M1L-gg-erv" firstAttribute="trailing" secondItem="lw6-Ro-4eD" secondAttribute="trailing" id="PeY-me-ty3"/>
@@ -622,6 +800,7 @@
                                     <constraint firstItem="Byg-w0-gwk" firstAttribute="leading" secondItem="SVs-yR-hNb" secondAttribute="leading" id="mg0-Dy-VPJ"/>
                                     <constraint firstItem="3gc-S1-eI2" firstAttribute="leading" secondItem="F8v-d5-ZWE" secondAttribute="leading" constant="52" id="nGk-bt-CMO"/>
                                     <constraint firstItem="zzn-3H-sgG" firstAttribute="top" secondItem="wmm-xR-Mlh" secondAttribute="top" id="pDO-Ua-ACA"/>
+                                    <constraint firstItem="F8v-d5-ZWE" firstAttribute="trailing" secondItem="D9L-3Q-sXv" secondAttribute="trailing" constant="30" id="zFX-H6-Ht3"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="F8v-d5-ZWE"/>
                             </view>
@@ -653,6 +832,6 @@
         <image name="DarkEyeIcon" width="16" height="16"/>
         <image name="LightBackground" width="375" height="667"/>
         <image name="Logo" width="103" height="102"/>
-        <image name="roundDark" width="17" height="17"/>
+        <image name="roundDark" width="29" height="29"/>
     </resources>
 </document>

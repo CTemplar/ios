@@ -17,6 +17,8 @@ class SearchPresenter {
     
     func setupNavigationBarItem(searchBar: UISearchBar) {
         
+        self.viewController?.navigationItem.rightBarButtonItem?.title = "cancelButton".localized()
+        
         searchBar.placeholder = "search".localized()
         searchBar.sizeToFit()
         

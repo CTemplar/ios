@@ -39,25 +39,25 @@
                                 <action selector="cancelButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="ROx-Pm-uTP"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filters" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6WL-Kx-8eP">
-                            <rect key="frame" x="157.5" y="29" width="60" height="27"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="filters" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6WL-Kx-8eP" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                            <rect key="frame" x="132.5" y="29" width="110" height="27"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="60" id="iC8-eW-uLz"/>
+                                <constraint firstAttribute="width" constant="110" id="iC8-eW-uLz"/>
                                 <constraint firstAttribute="height" constant="27" id="w6a-6g-8e0"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="22"/>
                             <color key="textColor" red="0.035294117647058823" green="0.12156862745098039" blue="0.20784313725490194" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" tag="205" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tla-pD-FE7">
-                            <rect key="frame" x="297" y="16" width="64" height="26"/>
+                        <button opaque="NO" tag="205" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tla-pD-FE7" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
+                            <rect key="frame" x="277" y="16" width="84" height="26"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="26" id="9cD-gO-ybd"/>
-                                <constraint firstAttribute="width" constant="64" id="jQJ-QM-NNE"/>
+                                <constraint firstAttribute="width" constant="84" id="jQJ-QM-NNE"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                             <color key="tintColor" red="0.17254901960784313" green="0.24313725490196078" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="Clear all">
+                            <state key="normal" title="clearAll">
                                 <color key="titleColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
@@ -67,7 +67,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m4s-bQ-p4V">
                             <rect key="frame" x="0.0" y="75" width="375" height="40"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select filters" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LFT-H0-5VW">
+                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="selectedFilters" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LFT-H0-5VW" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                     <rect key="frame" x="16" y="8" width="343" height="32"/>
                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                     <color key="textColor" red="0.20392156862745098" green="0.28627450980392155" blue="0.36862745098039218" alpha="1" colorSpace="calibratedRGB"/>
@@ -134,7 +134,7 @@
                                 <action selector="filterTappedAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="GS6-4E-2o8"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Starred" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m2J-JF-exz">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="starredFilter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m2J-JF-exz" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                             <rect key="frame" x="16" y="8" width="270" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
@@ -167,7 +167,7 @@
                                 <action selector="filterTappedAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="UYe-hh-WGa"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Unread" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NbU-pR-nab">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ureadFilter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NbU-pR-nab" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                             <rect key="frame" x="16" y="60" width="270" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
@@ -200,7 +200,7 @@
                                 <action selector="filterTappedAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="GtS-k7-Ed3"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="With Attachment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CxR-gK-Git">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="attachmentsFilter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CxR-gK-Git" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                             <rect key="frame" x="16" y="112" width="270" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
@@ -221,13 +221,13 @@
                                 <constraint firstAttribute="height" constant="1" id="5Yb-YH-DaQ"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" tag="206" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7l6-6Z-px8">
+                        <button opaque="NO" tag="206" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7l6-6Z-px8" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
                             <rect key="frame" x="16" y="473" width="163.5" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="j9O-cS-HLK"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                            <state key="normal" title="Cancel">
+                            <state key="normal" title="cancelButton">
                                 <color key="titleColor" red="0.090196078431372548" green="0.19607843137254902" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <userDefinedRuntimeAttributes>
@@ -245,14 +245,14 @@
                                 <action selector="cancelButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="Z1T-5q-vlD"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="207" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvK-jD-T0V">
+                        <button opaque="NO" tag="207" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvK-jD-T0V" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
                             <rect key="frame" x="195.5" y="473" width="163.5" height="48"/>
                             <color key="backgroundColor" red="0.090196078431372548" green="0.19607843137254902" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="Zue-gl-9Gx"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                            <state key="normal" title="Apply">
+                            <state key="normal" title="applyButton">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>

@@ -16,12 +16,21 @@ class ManageFoldersRouter {
 
     func showInboxSideMenu() {
         
-        self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+        //self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+        if (!Device.IS_IPAD) {
+            self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+        } else {
+            self.viewController?.splitViewController?.toggleMasterView()
+        }
     }
     
     func backAction() {
         
-        self.viewController?.navigationController?.popViewController(animated: true)
+        if (self.viewController?.showFromSettings)! {
+            self.viewController?.navigationController?.popViewController(animated: true)
+        } else {
+            self.viewController?.dismiss(animated: true, completion: nil)
+        }
     }
     
     func showAddFolderViewController() {

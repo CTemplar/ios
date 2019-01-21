@@ -13,6 +13,9 @@ import SideMenu
 
 class InboxPresenter {
     
+    var k_popoverSourceRectX          = 0
+    var k_popoverSourceRectY          = 0
+    
     var viewController   : InboxViewController?
     var interactor       : InboxInteractor?
     
@@ -30,19 +33,22 @@ class InboxPresenter {
     
     func setupUI(emailsCount: Int, unreadEmails: Int, filterEnabled: Bool) {
         
+        k_popoverSourceRectX = Int((self.viewController?.view.frame.width)! - 44.0)
+        k_popoverSourceRectY = Int((self.viewController?.view.frame.height)! - 44.0)
+        
         if filterEnabled {
-            viewController?.messagesLabel.text = "Filtered"
+            viewController?.messagesLabel.text = "filtered".localized()
             viewController?.unreadMessagesLabel.text = self.formatAppliedFilters()
             viewController?.unreadMessagesLabel.textColor = k_redColor
             
-            viewController?.inboxEmptyLabel.text = "There are no messages match the filter"
+            viewController?.inboxEmptyLabel.text = "noFilteredMessage".localized()
             viewController?.inboxEmptyImageView.image =  UIImage(named: k_emptyFilterInboxIconImageName)
         } else {
             viewController?.messagesLabel.text = formatEmailsCountText(emailsCount: emailsCount)
             viewController?.unreadMessagesLabel.text = formatUreadEmailsCountText(emailsCount: unreadEmails)
             viewController?.unreadMessagesLabel.textColor = k_lightGrayTextColor
             
-            viewController?.inboxEmptyLabel.text = "You have no Inbox messages"
+            viewController?.inboxEmptyLabel.text = "noInboxMessage".localized()
             viewController?.inboxEmptyImageView.image =  UIImage(named: k_emptyInboxIconImageName)
         }
         
@@ -82,15 +88,21 @@ class InboxPresenter {
             viewController?.emptyInbox.isHidden = true
         } else {
             viewController?.emptyInbox.isHidden = false
-       }
+        }
+        
+        //temp
+        if (Device.IS_IPAD) {
+            self.viewController?.leftBarButtonItem = self.viewController?.navigationItem.leftBarButtonItem
+            self.setupNavigationLeftItem()
+        }
     }
     
     func setupNavigationItemTitle(selectedMessages: Int, selectionMode: Bool, currentFolder: String) {
         
         if selectionMode == true {
-            self.viewController?.navigationItem.title = String(format: "%d Selected", selectedMessages)
+            self.viewController?.navigationItem.title = String(format: "%d " + "selected".localized() , selectedMessages)
         } else {
-            self.viewController?.navigationItem.title = currentFolder
+            self.viewController?.navigationItem.title = currentFolder.localized()
         }
     }
     
@@ -124,36 +136,66 @@ class InboxPresenter {
         }
     }
     
-    //MARK: - Side Menu
-    
-    func initAndSetupInboxSideMenuController() {
+    func setupNavigationLeftItem() {
         
-        let storyboard: UIStoryboard = UIStoryboard(name: k_InboxSideMenuStoryboardName, bundle: nil)
-       
-        self.viewController?.inboxSideMenuViewController = storyboard.instantiateViewController(withIdentifier: k_InboxSideMenuViewControllerID) as? InboxSideMenuViewController
-        
-        self.viewController?.inboxSideMenuViewController?.currentParentViewController = self.viewController
-        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: (self.viewController?.inboxSideMenuViewController)!)
-        
-        SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
-        SideMenuManager.default.menuFadeStatusBar = false
-        SideMenuManager.default.menuAnimationFadeStrength = 0.5
-        SideMenuManager.default.menuAnimationBackgroundColor = k_sideMenuFadeColor
-        
-        SideMenuManager.default.menuPresentMode = .menuSlideIn
-        let frame = self.viewController?.view.frame
-        SideMenuManager.default.menuWidth = max(round(min((frame!.width), (frame!.height)) * 0.67), 240)
+        if UIDevice.current.orientation.isLandscape {
+            print("Landscape")
+            //self.viewController?.navigationItem.leftBarButtonItem = nil
+            self.viewController?.leftBarButtonItem.image = nil
+            self.viewController?.leftBarButtonItem.isEnabled = false
+        } else {
+            print("Portrait")
+           //self.viewController?.navigationItem.leftBarButtonItem = self.viewController?.leftBarButtonItem
+            if !(self.viewController?.dataSource?.selectionMode)! {
+                self.viewController?.leftBarButtonItem.image = UIImage(named: k_menuImageName)
+                self.viewController?.leftBarButtonItem.isEnabled = true
+            } else {
+                self.viewController?.leftBarButtonItem.image = nil
+                self.viewController?.leftBarButtonItem.isEnabled = false
+            }
+        }
     }
-        
+            
     //MARK: - formatting
     
     func formatEmailsCountText(emailsCount: Int) -> String {
         
-        var emailsCountString : String = "emails"
+        var emailsCountString : String = "emails".localized()
         
-        if emailsCount == 1 {
-            emailsCountString = "email"
+        var lastDigit = 0
+        
+        if emailsCount < 10 || emailsCount > 19 {
+            let daysString = emailsCount.description
+            lastDigit = Int(String(daysString.last!))!
+        } else {
+            lastDigit = emailsCount
         }
+        
+        if lastDigit > 0 {
+            
+            if lastDigit > 1 {
+                emailsCountString = "emails".localized()
+                if lastDigit < 5 {
+                    emailsCountString = "emailsx".localized()
+                }
+            } else {
+                emailsCountString = "email".localized()
+            }
+        }
+        
+        /*
+        if emailsCount == 1 {
+            emailsCountString = "email".localized()
+        }
+        
+        let emailsString = emailsCount.description
+        
+        let lastChar = emailsString.last
+        let lastDigit = Int(String(lastChar!))
+        
+        if lastDigit! > 1 && lastDigit! < 5 {
+            emailsCountString = "emailsx".localized()
+        }*/
         
         emailsCountString = emailsCount.description + " " + emailsCountString
         
@@ -162,7 +204,7 @@ class InboxPresenter {
     
     func formatUreadEmailsCountText(emailsCount: Int) -> String {
         
-        var emailsCountString : String = "unread"
+        var emailsCountString : String = "unread".localized()
         
         emailsCountString = emailsCount.description + " " + emailsCountString
         
@@ -185,19 +227,13 @@ class InboxPresenter {
     
     @objc func moreButtonPresed() {
         
-        showMoreActionsView(emptyFolder: true)
-    }
-    
-    /*
-    func searchButtonPressed(sender: AnyObject) {
-        
-        if self.viewController?.dataSource?.selectionMode == true {
-            disableSelectionMode()
+        if (!Device.IS_IPAD) {
+            self.showMoreActionsView(emptyFolder: true)
         } else {
-            //self.viewController?.router?.showMoveToViewController()//temp
+            //self.showMoreActionsActionSheet()
         }
-    }*/
-    
+    }
+     
     func enableSelectionMode() {
         
         var moreButtonEnabled: Bool = false
@@ -208,9 +244,12 @@ class InboxPresenter {
         if (self.viewController?.dataSource?.messagesArray.count)! > 0 {
             moreButtonEnabled = true
         }
-        
-        self.viewController?.leftBarButtonItem.image = nil
-        self.viewController?.leftBarButtonItem.isEnabled = false
+        /*
+        if self.viewController?.leftBarButtonItem != nil {
+            self.viewController?.leftBarButtonItem.image = nil
+            self.viewController?.leftBarButtonItem.isEnabled = false
+        }*/
+        self.setupNavigationLeftItem()
         
         setupNavigationRightItems(searchMode: true, moreButtonEnabled: moreButtonEnabled)
         
@@ -239,8 +278,12 @@ class InboxPresenter {
             moreButtonEnabled = true
         }
         
-        self.viewController?.leftBarButtonItem.image = UIImage(named: k_menuImageName)
-        self.viewController?.leftBarButtonItem.isEnabled = true
+        /*
+        if self.viewController?.leftBarButtonItem != nil {
+            self.viewController?.leftBarButtonItem.image = UIImage(named: k_menuImageName)
+            self.viewController?.leftBarButtonItem.isEnabled = true
+        }*/
+        self.setupNavigationLeftItem()
                 
         setupNavigationRightItems(searchMode: false, moreButtonEnabled: moreButtonEnabled)
         
@@ -307,16 +350,16 @@ class InboxPresenter {
             case InboxFilterButtonsTag.starred.rawValue:
                 //print("starred filtered")
                 if filterApplied == true {
-                   appliedFiltersText = "Starred"
+                   appliedFiltersText = "starredFilter".localized()
                 }
                 break
             case InboxFilterButtonsTag.unread.rawValue:
                 //print("unread filtered")
                 if filterApplied == true {
                     if appliedFiltersText.count > 0 {
-                        appliedFiltersText = appliedFiltersText + ", Unread"
+                        appliedFiltersText = appliedFiltersText + ", " + "ureadFilter".localized()
                     } else {
-                        appliedFiltersText = "Unread"
+                        appliedFiltersText = "ureadFilter".localized()
                     }
                 }
                 break
@@ -324,9 +367,9 @@ class InboxPresenter {
                 //print("with attachment filtered")
                 if filterApplied == true {
                     if appliedFiltersText.count > 0 {
-                        appliedFiltersText = appliedFiltersText + ", With attachments"
+                        appliedFiltersText = appliedFiltersText + ", " + "attachmentsFilter".localized()
                     } else {
-                        appliedFiltersText = "With attachments"
+                        appliedFiltersText = "attachmentsFilter".localized()
                     }
                 }
                 break
@@ -557,6 +600,85 @@ class InboxPresenter {
         }
         
         return false
+    }
+    
+    func showMoreActionsActionSheet() {
+        
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        self.configureMoreActionsActionSheet(alertController: alertController)
+        
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = viewController?.view
+            popoverController.sourceRect = CGRect(x: k_popoverSourceRectX, y: k_popoverSourceRectY, width: 0, height: 0)
+        }
+        
+        viewController?.present(alertController, animated: true, completion: nil)
+    }
+    
+    func configureMoreActionsActionSheet(alertController: UIAlertController) {
+        
+        let currentFolder = self.viewController?.currentFolderFilter
+        
+        let read = self.needReadAction()
+        var readButton : String = ""
+        
+        if read {
+            readButton = "markAsRead".localized()
+        } else {
+            readButton = "markAsUnread".localized()
+        }
+        
+        var actionsList: Array<UIAlertAction> = []
+        
+        let readMessageAction = UIAlertAction(title: readButton, style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.markSelectedMessagesAsRead()
+        })
+        
+        let moveToInboxAction = UIAlertAction(title: "moveToInbox".localized(), style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.moveSelectedMessagesToInbox()
+        })
+        
+        let moveToArchiveAction = UIAlertAction(title: "moveToArchive".localized(), style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.moveSelectedMessagesToArchive()
+        })
+        
+        switch currentFolder {
+        case MessagesFoldersName.inbox.rawValue:
+            actionsList = [readMessageAction, moveToArchiveAction]
+            break
+        case MessagesFoldersName.draft.rawValue:
+            
+            break
+        case MessagesFoldersName.sent.rawValue:
+            actionsList = [readMessageAction, moveToArchiveAction]
+            break
+        case MessagesFoldersName.outbox.rawValue:
+            actionsList = [readMessageAction, moveToArchiveAction, moveToInboxAction]
+            break
+        case MessagesFoldersName.starred.rawValue:
+            actionsList = [readMessageAction, moveToArchiveAction, moveToInboxAction]
+            break
+        case MessagesFoldersName.archive.rawValue:
+            actionsList = [readMessageAction, moveToInboxAction]
+            break
+        case MessagesFoldersName.spam.rawValue:
+            actionsList = [readMessageAction, moveToArchiveAction, moveToInboxAction]
+            break
+        case MessagesFoldersName.trash.rawValue:
+           
+            break
+        default:
+            actionsList = [readMessageAction, moveToArchiveAction, moveToInboxAction]
+            break
+        }
+        
+        for action in actionsList {
+            alertController.addAction(action)
+        }
     }
     
     //MARK: - Actions with Selected Messages

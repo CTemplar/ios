@@ -16,6 +16,14 @@
 "cancelButton" = "Cancel";
 "logotButton" = "Log out";
 "saveButton" = "Save";
+"applyButton" = "Apply";
+"nextButton" = "Next";
+"resetPasswordButton" = "Reset password";
+"confirmButton" = "Confirm";
+"addButton" = "Add";
+"changeButton" = "Change";
+
+"deleteRow" = "Delete";
 
 "termsAndConditionsFullText" = "Please check this box if you agree to abide by our Terms and Conditions";
 "termsAndConditionsPhrase" = "Terms and Conditions";
@@ -25,17 +33,78 @@
 "emailPlaceholder" = "Email";
 "passwordPlaceholder" = "Password";
 "usernamePlaceholder" = "Username";
+
+"forgotPassword" = "Forgot Password?";
+"login" = "Log in";
+"createAccount" = "Create account";
+
+//Sign Up
+
+"usernameAndDomain" = "Username and domain";
+"ctemplarEmailAddress" = "This will be your new Ctemplar email address.";
+
 "choosePasswordPlaceholder" = "Choose password";
 "confirmPasswordPlaceholder" = "Confirm password";
 "recoveryEmailPlaceholder" = "Recovery email";
+
+"passwordMust" = "Your password must be at least 10 characters. Password can contain only latin letters and cannot contain symbols such «-+!@. etc.";
+
+"thisIsUsed" = "This is used to recover your account if you get locked out or forget your password";
+
+"usernameResetHint" = "Ctemplar username to reset";
 "usernameResetPlaceholder" = "Ctemplar username to reset";
 "resetCodePlaceholder" = "Reset Code";
 "newPasswordPlaceholder" = "New password";
 "confirmNewPasswordPlaceholder" = "Confirm new password";
 
+"resetLink" = "We will send reset link to your recovery email";
+
+"confirmResetPassword" = "Confirm Reset Password";
+
+"areYouSure" = "Are you sure you want to reset your password?";
+
+"supportDescription" = "Your encryption key is connected to your password. Because of this you will not be able to decrypt old messages, attachments and contacts if you reset your password. \nIf you have further questions please email support@ctemplar.com.";
+
+"supportDescriptionAttr" = "you will not be able to decrypt old messages, attachments and contacts";
+
+"resetPassword" = "Reset Password";
+
+"weHave" = "We have sent a reset code to your\nrecovery email to reset your password. ";
+"recoveryEmailAttr" = "recovery email ";
+
+"enterIt" = "Enter it below for confirmation.";
+
+"forgetPass" = "Don’t forget this password, it can’t be restored.";
+
+
 //side menu
 
 "manageFolders" = "Manage Folders";
+
+// inbox
+"selected" = "Selected";
+"emails" = "emails";
+"email" = "email";
+"emailsx" = "emails";
+"unread" = "unread";
+
+"filtered" = "Filtered";
+"noInboxMessage" = "You have no Inbox messages";
+"noFilteredMessage" = "There are no messages match the filter";
+
+"starredFilter" = "Starred";
+"ureadFilter" = "Unread";
+"attachmentsFilter" = "With attachments";
+
+"decrypting" = "decrypting...";
+
+"compose" = "Compose";
+
+//Filter
+
+"filters" = "Filters";
+"clearAll" = "Clear all";
+"selectedFilters" = "Select filters";
 
 //more actions buttons
 "markAsSpam" = "Mark as spam";
@@ -61,8 +130,6 @@
 "relpyAll" = "Reply All";
 "forward" = "Forward";
 
-"search" = "Search";
-
 //delete
 
 "deleteTitle" = "Warning!";
@@ -79,6 +146,16 @@
 
 "addContact" = "Add Contact";
 "editContact" = "Edit Contact";
+
+"noContacts" = "You have no contacts yet";
+
+"addContacts" = "Add contacts";
+
+"contactName" = "Contact Name";
+"emailAddress" = "Email Address";
+"phoneNumber" = "Phone Number";
+"address" = "Address";
+"note" = "Note";
 
 //view message
 
@@ -107,11 +184,39 @@
 "photoLibrary" = "Photo library";
 "camera" = "Camera";
 
+"forward" = "Fwd: ";
+"reply" = "Re: ";
+
+"subject" = "Subject";
+
+// Search Screen
+
+"noResults" = "No results found";
+
+"search" = "Search";
+
 //Side Menu Cells
+
+"inbox"            = "Inbox";
+"draft"            = "Draft";
+"sent"             = "Sent";
+"outbox"           = "Outbox";
+"starred"          = "Starred";
+"archive"          = "Archive";
+"spam"             = "Spam";
+"trash"            = "Trash";
+"allMails"         = "All Mails";
+"contacts"         = "Contacts";
+"settings"         = "Settings";
+"help"             = "Get Support";
+"logout"           = "Logout";
+"manageFolders"    = "Manage Folders";
+
 "showMoreFolders" = "Show More Folders";
 "hideFolders" = "Hide Folders";
 
 //Scheduler Screen
+
 "selfDestructTimer" = "Self-destructing Timer";
 "deadManTimer"      = "Dead Man's Timer";
 "delayedDelivery"   = "Delayed delivery";
@@ -120,9 +225,33 @@
 "deadManTimerText"      = "If you do not log into your account after the set time email will be sent after ";
 "delayedDeliveryText"   = "Email will be send automatically at the set time";
 
+"setPassword" = "Set Password";
+"encryptForNon" = "Encrypt for non-Ctemplar Mail Users";
+"messagePassword" = "Message Password";
+
+"passwordsMustMatch" = "Passwords must match";
+"passwordHint" = "Password Hint";
+
+"encryptedMessagesTo" = "Encrypted messages to non-Ctemplar recipients will expire in 28 days unless a shorter expiration time is set.";
+
 //Manage Folders
 "deleteFolderTitle" = "Delete folder?";
 "deleteFolder" = "Are you sure you want to delete folder?";
+
+"addFolder" = "Add folder";
+
+"selectfolder" = "Select folder";
+
+"moveTo" = "Move to...";
+
+"noFolders" = "You have no folders";
+
+"addFolderLimit" = " Upgrade to premium";
+
+"folderName" = "Folder name";
+"chooseColor" = "Choose color";
+
+"deleteFolder" = "Delete folder";
 
 //Settings
 
@@ -143,6 +272,8 @@
 "privacyPolicy" = "Privacy Policy";
 "terms" = "Terms & Conditions";
 
+"enableRecoveryEmail" = "Enable recovery email";
+"typeRecoveryEmail" = "Type your recovery email";
 "recoveryEmailUpdatedMessage" = "Recovery Email was updated successfully";
 "passwordUpdatedMessage" = "Password was updated successfully";
 "userSignature" = "Signature was updated successfully";
@@ -150,9 +281,36 @@
 "currentPasswordPlaceholder" = "Current password";
 "newPasswordPlaceholder" = "New password";
 
+"saveContacts" = "Automatically save contacts";
+
+"selectDefaulfAddress" = "Select default address";
+"addresses" = "Addresses";
+
+"signature" = "Signature";
+
+"enableSignature" = "Enable signature";
+"typeSignature" = "Type your signature";
+
 "privacyPolicy" = "Privacy Policy";
 "termsAndConditions" = "Terms & Conditions";
 
+"appVersion" = "AppVersion ";
+
+"takeBack" = "Take Back Your Liberty";
+"withEncrypted" = "with Encrypted Communication";
+"sendUnbreakable" = "Send unbreakable emails and protect your key professional and personal details trough next-gen encryption. End-to-end PKI encription keeps your private information safe from governments, corporations and hackers-for-hire.";
+"goToWebVersion" = "GO TO WEB VERSION";
+
+"settings" = "Settings";
+
+"generalSettings"           = "General settings";
+"foldersSettings"           = "Folders";
+"mailSettings"              = "Mail";
+"aboutSettings"             = "About";
+"storageSettings"           = "Storage";
+"logoutSettings"            = "Log out";
+
+//White/Black List
 
 "whiteListText" = "Messages from contacts in the whitelist always go to Inbox folder. Marking a message as not spam adds the address to the Whitelist";
 "blackListText" = "Messages from contacts in the blacklist always go to Spam folder. Marking a message as spam adds the address to the Blacklist";
@@ -166,3 +324,56 @@
 "deleteContactFromBlackList" = "Do you want to delete this contact from Blacklist?";
 "deleteContactFromWhiteList" = "Do you want to delete this contact from Whitelist?";
 
+"whitelistBlacklist" = "Whitelist / Blacklist";
+"whitelist" = "WHITELIST";
+"blacklist" = "BLACKLIST";
+
+"addContactW" = "Add Contact";
+"name" = "Name";
+"email" = "Email";
+
+
+//language
+
+"languageTitle" = "Language";
+
+//formatter
+
+"toPrefix" = "To: ";
+"ccPrefix" = "CC: ";
+"fromPrefix" = "From: ";
+
+"yesterday" = "Yesterday";
+
+"deleteIn" = "Delete In ";
+"daySuffix" = "d ";
+
+"deadMans" = "Dead mans ";
+"delayTime" = "Delay time ";
+
+"manyDays" = " days ";
+"manyDaysx" = " days ";
+"oneDay" = " day ";
+"manyHours" = " hours";
+"manyHoursx" = " hours";
+"oneHour" = " hour";
+
+//upgrade Plan Screen
+
+"upgrade" = "Upgrade to Prime";
+"1user" = "1 User";
+"5storage" = "from 5 Gb Storage";
+"3email" = "from 3 E-mail Addresses";
+"1custom" = "from 1 Custom Domain";
+"1000messages" = "1000 Messages per Day";
+"200folders" = "200 Folders";
+"deadMan" = "Dead Mans Timer";
+"andMore" = "and more features";
+"upgradeBig" = "UPGRADE TO PRIME";
+"notNow" = "Not now";
+
+"supportEmailString" = "If you have further questions please email support@ctemplar.com.";
+
+"updateMessages" = "Update Messages";
+"hashing" = "Hashing...";
+"updateToken" = "Update Token";

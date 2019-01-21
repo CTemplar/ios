@@ -68,7 +68,7 @@
 		8433FF1F216201A300C57DC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF1D216201A300C57DC8 /* Main.storyboard */; };
 		8433FF21216201A500C57DC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF20216201A500C57DC8 /* Assets.xcassets */; };
 		8433FF24216201A500C57DC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF22216201A500C57DC8 /* LaunchScreen.storyboard */; };
-		8433FF4C21620DBD00C57DC8 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF4B21620DBD00C57DC8 /* Main-iPad.storyboard */; };
+		8433FF4C21620DBD00C57DC8 /* SplitiPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF4B21620DBD00C57DC8 /* SplitiPad.storyboard */; };
 		8433FF532162128200C57DC8 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF522162128200C57DC8 /* APIService.swift */; };
 		8433FF552162129800C57DC8 /* RestAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF542162129800C57DC8 /* RestAPIService.swift */; };
 		8433FF57216212D500C57DC8 /* AplicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF56216212D500C57DC8 /* AplicationManager.swift */; };
@@ -88,6 +88,7 @@
 		8434D9B4219C4E1200D2C3A5 /* ContactsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D9B3219C4E1200D2C3A5 /* ContactsPresenter.swift */; };
 		8434D9B6219C4E2800D2C3A5 /* ContactsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D9B5219C4E2800D2C3A5 /* ContactsInteractor.swift */; };
 		8434D9B8219C4E3900D2C3A5 /* ContactsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D9B7219C4E3900D2C3A5 /* ContactsDataSource.swift */; };
+		8434E18B21EF175600E15766 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8434E18A21EF175600E15766 /* Main-iPad.storyboard */; };
 		84356859216F2736002101D3 /* InboxNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84356858216F2736002101D3 /* InboxNavigationController.swift */; };
 		8435685B216F2748002101D3 /* Inbox.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8435685A216F2748002101D3 /* Inbox.storyboard */; };
 		8435685D216F2DB3002101D3 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8435685C216F2DB3002101D3 /* InboxViewController.swift */; };
@@ -163,6 +164,8 @@
 		8441228321A6823F00B56857 /* AttachmentCollcetionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441228221A6823F00B56857 /* AttachmentCollcetionViewCell.xib */; };
 		8441559321BF8AA90053C39F /* AttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441559221BF8AA90053C39F /* AttachmentView.swift */; };
 		8441559521BF8CF90053C39F /* Attachment.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441559421BF8CF90053C39F /* Attachment.xib */; };
+		8443CBE521F052B100B71FF6 /* UpgradeToPrimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443CBE421F052B100B71FF6 /* UpgradeToPrimeView.swift */; };
+		8443CBE721F053CC00B71FF6 /* UpgradeToPrime.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8443CBE621F053CC00B71FF6 /* UpgradeToPrime.xib */; };
 		8443D21321CB6A0F002AD54B /* EditFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443D21221CB6A0F002AD54B /* EditFolderViewController.swift */; };
 		8443D21521CB6AC4002AD54B /* EditFolderConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443D21421CB6AC4002AD54B /* EditFolderConfigurator.swift */; };
 		8443D21721CB6AFB002AD54B /* EditFolderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443D21621CB6AFB002AD54B /* EditFolderInteractor.swift */; };
@@ -177,6 +180,7 @@
 		844655BC218C264200B2F2E4 /* MoreActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F348532181B20C00F00E37 /* MoreActionsView.swift */; };
 		844655BD218C264E00B2F2E4 /* MoreActions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F348552181B21C00F00E37 /* MoreActions.xib */; };
 		844F4B5A216B3A380057C758 /* UserPGPKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F4B59216B3A380057C758 /* UserPGPKey.swift */; };
+		84510A4321F5A76F00912328 /* SignUp-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84510A4221F5A76F00912328 /* SignUp-iPad.storyboard */; };
 		8451BEB421D5FD03009B1C8C /* AddContactToWhiteBlackListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451BEB321D5FD03009B1C8C /* AddContactToWhiteBlackListViewController.swift */; };
 		8451BEB621D5FD16009B1C8C /* AddContactToWhiteBlackList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8451BEB521D5FD16009B1C8C /* AddContactToWhiteBlackList.storyboard */; };
 		8451BEB921D60F8F009B1C8C /* SelectLanguage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8451BEB821D60F8F009B1C8C /* SelectLanguage.storyboard */; };
@@ -190,6 +194,7 @@
 		84525F1F2195690A00CA732E /* SearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84525F1E2195690A00CA732E /* SearchDataSource.swift */; };
 		84525F222195710D00CA732E /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84525F212195710D00CA732E /* SearchTableViewCell.swift */; };
 		84525F242195718200CA732E /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84525F232195718200CA732E /* SearchTableViewCell.xib */; };
+		84527B9121EE13B300FF87AA /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84527B9021EE13B300FF87AA /* SplitViewController.swift */; };
 		845E64392170849C008612FE /* InboxSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E64382170849C008612FE /* InboxSideMenuViewController.swift */; };
 		845E643B21709330008612FE /* InboxSideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845E643A21709330008612FE /* InboxSideMenu.storyboard */; };
 		845E643E2170A46C008612FE /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E643D2170A46C008612FE /* ComposeViewController.swift */; };
@@ -287,7 +292,7 @@
 		8433FF20216201A500C57DC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8433FF23216201A500C57DC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8433FF25216201A500C57DC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8433FF4B21620DBD00C57DC8 /* Main-iPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Main-iPad.storyboard"; sourceTree = "<group>"; };
+		8433FF4B21620DBD00C57DC8 /* SplitiPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplitiPad.storyboard; sourceTree = "<group>"; };
 		8433FF522162128200C57DC8 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		8433FF542162129800C57DC8 /* RestAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPIService.swift; sourceTree = "<group>"; };
 		8433FF56216212D500C57DC8 /* AplicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AplicationManager.swift; sourceTree = "<group>"; };
@@ -307,6 +312,7 @@
 		8434D9B3219C4E1200D2C3A5 /* ContactsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsPresenter.swift; sourceTree = "<group>"; };
 		8434D9B5219C4E2800D2C3A5 /* ContactsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsInteractor.swift; sourceTree = "<group>"; };
 		8434D9B7219C4E3900D2C3A5 /* ContactsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsDataSource.swift; sourceTree = "<group>"; };
+		8434E18A21EF175600E15766 /* Main-iPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Main-iPad.storyboard"; sourceTree = "<group>"; };
 		84356858216F2736002101D3 /* InboxNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxNavigationController.swift; sourceTree = "<group>"; };
 		8435685A216F2748002101D3 /* Inbox.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Inbox.storyboard; sourceTree = "<group>"; };
 		8435685C216F2DB3002101D3 /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
@@ -366,7 +372,6 @@
 		8440141E21D39F7700FC450C /* SavingContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingContactsViewController.swift; sourceTree = "<group>"; };
 		8440142021D39F8B00FC450C /* SavingContacts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SavingContacts.storyboard; sourceTree = "<group>"; };
 		8440142321D3B74100FC450C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
-		8440142621D3B74400FC450C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Login.strings; sourceTree = "<group>"; };
 		8440466A21C7E8C700CDEB3F /* ManageFolders.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ManageFolders.storyboard; sourceTree = "<group>"; };
 		8440466C21C7E8DE00CDEB3F /* ManageFoldersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageFoldersViewController.swift; sourceTree = "<group>"; };
 		8440466E21C7F84000CDEB3F /* ManageFoldersConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageFoldersConfigurator.swift; sourceTree = "<group>"; };
@@ -389,6 +394,8 @@
 		8441228221A6823F00B56857 /* AttachmentCollcetionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AttachmentCollcetionViewCell.xib; sourceTree = "<group>"; };
 		8441559221BF8AA90053C39F /* AttachmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentView.swift; sourceTree = "<group>"; };
 		8441559421BF8CF90053C39F /* Attachment.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Attachment.xib; sourceTree = "<group>"; };
+		8443CBE421F052B100B71FF6 /* UpgradeToPrimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeToPrimeView.swift; sourceTree = "<group>"; };
+		8443CBE621F053CC00B71FF6 /* UpgradeToPrime.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpgradeToPrime.xib; sourceTree = "<group>"; };
 		8443D21221CB6A0F002AD54B /* EditFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFolderViewController.swift; sourceTree = "<group>"; };
 		8443D21421CB6AC4002AD54B /* EditFolderConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFolderConfigurator.swift; sourceTree = "<group>"; };
 		8443D21621CB6AFB002AD54B /* EditFolderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFolderInteractor.swift; sourceTree = "<group>"; };
@@ -401,6 +408,7 @@
 		8443D22521CBDD88002AD54B /* SettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDataSource.swift; sourceTree = "<group>"; };
 		8443D22721CBDFEC002AD54B /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		844F4B59216B3A380057C758 /* UserPGPKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPGPKey.swift; sourceTree = "<group>"; };
+		84510A4221F5A76F00912328 /* SignUp-iPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "SignUp-iPad.storyboard"; sourceTree = "<group>"; };
 		8451BEB321D5FD03009B1C8C /* AddContactToWhiteBlackListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactToWhiteBlackListViewController.swift; sourceTree = "<group>"; };
 		8451BEB521D5FD16009B1C8C /* AddContactToWhiteBlackList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddContactToWhiteBlackList.storyboard; sourceTree = "<group>"; };
 		8451BEB821D60F8F009B1C8C /* SelectLanguage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectLanguage.storyboard; sourceTree = "<group>"; };
@@ -414,6 +422,7 @@
 		84525F1E2195690A00CA732E /* SearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataSource.swift; sourceTree = "<group>"; };
 		84525F212195710D00CA732E /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		84525F232195718200CA732E /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
+		84527B9021EE13B300FF87AA /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		845E64382170849C008612FE /* InboxSideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuViewController.swift; sourceTree = "<group>"; };
 		845E643A21709330008612FE /* InboxSideMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InboxSideMenu.storyboard; sourceTree = "<group>"; };
 		845E643D2170A46C008612FE /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
@@ -675,7 +684,7 @@
 			isa = PBXGroup;
 			children = (
 				8433FF1D216201A300C57DC8 /* Main.storyboard */,
-				8433FF4B21620DBD00C57DC8 /* Main-iPad.storyboard */,
+				8434E18A21EF175600E15766 /* Main-iPad.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -731,6 +740,8 @@
 				8443D21121CB697B002AD54B /* EditFolder */,
 				8434D9AA219BFCE700D2C3A5 /* ContactsScreen */,
 				845E643721708453008612FE /* SideMenu */,
+				84527B8E21EE12D000FF87AA /* SideMenuTableViewController */,
+				84527B8F21EE139100FF87AA /* SplitViewController */,
 				8443D21A21CBDB43002AD54B /* Settings */,
 				8431B08521D10F5000A73D39 /* RecoveryEmail */,
 				8432870721D2033100A66DBF /* ChangePassword */,
@@ -741,6 +752,7 @@
 				8432870C21D25B8F00A66DBF /* SetSignature */,
 				8440141821D377AE00FC450C /* PrivacyAndTerms */,
 				845E64412170BD08008612FE /* AboutAsScreen */,
+				8443CBE321F0526600B71FF6 /* UpgradeScreen */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -889,6 +901,7 @@
 				843FC38B2164CA27000CFEA9 /* SignUpPresenter.swift */,
 				843FC38D2164CA35000CFEA9 /* SignUpInteractor.swift */,
 				843FC38F2164CBFA000CFEA9 /* SignUp.storyboard */,
+				84510A4221F5A76F00912328 /* SignUp-iPad.storyboard */,
 			);
 			path = SignUpScreens;
 			sourceTree = "<group>";
@@ -965,6 +978,15 @@
 				8441228221A6823F00B56857 /* AttachmentCollcetionViewCell.xib */,
 			);
 			path = CollectionCells;
+			sourceTree = "<group>";
+		};
+		8443CBE321F0526600B71FF6 /* UpgradeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8443CBE421F052B100B71FF6 /* UpgradeToPrimeView.swift */,
+				8443CBE621F053CC00B71FF6 /* UpgradeToPrime.xib */,
+			);
+			path = UpgradeScreen;
 			sourceTree = "<group>";
 		};
 		8443D21121CB697B002AD54B /* EditFolder */ = {
@@ -1047,6 +1069,22 @@
 				84525F232195718200CA732E /* SearchTableViewCell.xib */,
 			);
 			path = SearchCells;
+			sourceTree = "<group>";
+		};
+		84527B8E21EE12D000FF87AA /* SideMenuTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SideMenuTableViewController;
+			sourceTree = "<group>";
+		};
+		84527B8F21EE139100FF87AA /* SplitViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84527B9021EE13B300FF87AA /* SplitViewController.swift */,
+				8433FF4B21620DBD00C57DC8 /* SplitiPad.storyboard */,
+			);
+			path = SplitViewController;
 			sourceTree = "<group>";
 		};
 		845E643721708453008612FE /* SideMenu */ = {
@@ -1225,10 +1263,12 @@
 				843FBF17216E3D2400148FC1 /* Login-iPad.storyboard in Resources */,
 				8462C62921CCD570005B3D74 /* SettingsStorageTableViewCell.xib in Resources */,
 				8440466B21C7E8C700CDEB3F /* ManageFolders.storyboard in Resources */,
+				8443CBE721F053CC00B71FF6 /* UpgradeToPrime.xib in Resources */,
 				8433A5412189DE17008E1C85 /* MoveTo.storyboard in Resources */,
 				8441559521BF8CF90053C39F /* Attachment.xib in Resources */,
 				843710412174661000DAE4BA /* ForgotPassword.storyboard in Resources */,
 				84344D3621CA30BA00A5D9A0 /* AddFolder.storyboard in Resources */,
+				84510A4321F5A76F00912328 /* SignUp-iPad.storyboard in Resources */,
 				8441228321A6823F00B56857 /* AttachmentCollcetionViewCell.xib in Resources */,
 				845E643B21709330008612FE /* InboxSideMenu.storyboard in Resources */,
 				8440141121D34A8100FC450C /* SetMailbox.storyboard in Resources */,
@@ -1245,7 +1285,7 @@
 				8443D21921CB6F36002AD54B /* EditFolder.storyboard in Resources */,
 				8435685B216F2748002101D3 /* Inbox.storyboard in Resources */,
 				8403BDE221A3F00B00EE8DCD /* AddContact.storyboard in Resources */,
-				8433FF4C21620DBD00C57DC8 /* Main-iPad.storyboard in Resources */,
+				8433FF4C21620DBD00C57DC8 /* SplitiPad.storyboard in Resources */,
 				8462C62621CCC16C005B3D74 /* SettingsBaseTableViewCell.xib in Resources */,
 				8432B2FE2186F403006C901C /* SideMenuTableSectionHeader.xib in Resources */,
 				84344D3821CA44AD00A5D9A0 /* ColorPicker.xib in Resources */,
@@ -1257,6 +1297,7 @@
 				8432B302218709F5006C901C /* SideMenuTableViewCell.xib in Resources */,
 				8440142221D3B74100FC450C /* Login.storyboard in Resources */,
 				8432071321785F8400F18E5A /* InboxMessageTableViewCell.xib in Resources */,
+				8434E18B21EF175600E15766 /* Main-iPad.storyboard in Resources */,
 				8441099421776B6400F0BE18 /* README.md in Resources */,
 				8440141721D35D5D00FC450C /* UserMailboxBigTableViewCell.xib in Resources */,
 				84525F15219549C100CA732E /* Search.storyboard in Resources */,
@@ -1416,6 +1457,7 @@
 				8434D9AC219BFD1E00D2C3A5 /* ContactsViewController.swift in Sources */,
 				84A62E4D2175C6EB009C38E5 /* ForgotUsernameViewController.swift in Sources */,
 				84525F222195710D00CA732E /* SearchTableViewCell.swift in Sources */,
+				84527B9121EE13B300FF87AA /* SplitViewController.swift in Sources */,
 				84A62E492175B508009C38E5 /* ResetPasswordViewController.swift in Sources */,
 				8403BDEC21A452AB00EE8DCD /* Attachment.swift in Sources */,
 				84525F1D219568FF00CA732E /* SearchInteractor.swift in Sources */,
@@ -1503,6 +1545,7 @@
 				8443D22421CBDD7D002AD54B /* SettingsInteractor.swift in Sources */,
 				8443D21C21CBDB6F002AD54B /* SettingsViewController.swift in Sources */,
 				8440467321C7F85700CDEB3F /* ManageFoldersPresenter.swift in Sources */,
+				8443CBE521F052B100B71FF6 /* UpgradeToPrimeView.swift in Sources */,
 				843207152178C75000F18E5A /* InboxMessageTablelViewCell.swift in Sources */,
 				84344D3421CA30AD00A5D9A0 /* AddFolderViewController.swift in Sources */,
 				843FC3972164D20E000CFEA9 /* SignUpPageEmail.swift in Sources */,
@@ -1549,7 +1592,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				8440142321D3B74100FC450C /* Base */,
-				8440142621D3B74400FC450C /* ru */,
 			);
 			name = Login.storyboard;
 			sourceTree = "<group>";

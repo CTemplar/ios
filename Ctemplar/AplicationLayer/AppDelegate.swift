@@ -18,8 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        /*
+        if let splitViewController = self.window?.rootViewController as? UISplitViewController {
         
+            let navigationController = splitViewController.viewControllers.first as? UINavigationController
+        
+            navigationController?.topViewController?.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+            navigationController?.topViewController?.navigationItem.leftItemsSupplementBackButton = true
+        }*/
+            
         UserDefaults.standard.setValue(false, forKey:"_UIConstraintBasedLayoutLogUnsatisfiable")
+        
+        print("currentDeviceLanguageCode:", Locale.current.languageCode as Any)
+        print("currentAppLanguage:", Locale.preferredLanguages[0])
         
         Fabric.with([Crashlytics.self])
         

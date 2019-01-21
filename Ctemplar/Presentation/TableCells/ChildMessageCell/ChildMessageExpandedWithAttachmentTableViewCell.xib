@@ -42,7 +42,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apr 6, 2018" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LTG-Sh-vfM">
-                        <rect key="frame" x="16" y="64" width="252" height="16"/>
+                        <rect key="frame" x="16" y="64" width="202" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="fWM-vE-Mto"/>
                         </constraints>
@@ -50,18 +50,19 @@
                         <color key="textColor" red="0.57647058819999997" green="0.56862745100000001" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PHV-at-ZCc">
-                        <rect key="frame" x="284" y="64" width="75" height="16"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PHV-at-ZCc" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
+                        <rect key="frame" x="234" y="64" width="125" height="16"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="75" id="PRa-Of-vSo"/>
+                            <constraint firstAttribute="width" constant="125" id="PRa-Of-vSo"/>
                             <constraint firstAttribute="height" constant="16" id="dGO-0u-U5e"/>
                         </constraints>
                         <state key="normal">
                             <attributedString key="attributedTitle">
                                 <fragment content="View details">
                                     <attributes>
+                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <font key="NSFont" size="14" name="Lato-Regular"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                     </attributes>
                                 </fragment>
                             </attributedString>

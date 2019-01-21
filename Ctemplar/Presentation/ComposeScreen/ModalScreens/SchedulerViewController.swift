@@ -69,22 +69,54 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         
         for day in 0...99 {
             
-            if day == 1 {
-                daySuffix = "day"
+            var daysLastDigit = 0
+            
+            if day < 10 || day > 19 {
+                let daysString = day.description
+                daysLastDigit = Int(String(daysString.last!))!
             } else {
-                daySuffix = "days"
+                daysLastDigit = day
+            }
+
+            if daysLastDigit == 1 {
+                daySuffix = "oneDay".localized()
+            } else {
+                daySuffix = "manyDays".localized()
+                if daysLastDigit < 5 {
+                    daySuffix = "manyDaysx".localized()
+                }
             }
             
-            let dayString = String(format: "%i ", day) + daySuffix
+            if daysLastDigit == 0 {
+                daySuffix = "manyDays".localized()
+            }
+            
+            let dayString = String(format: "%i ", day) + daySuffix.dropLast()
             daysList.append(dayString)
         }
         
         for hour in 0...24 {
             
-            if hour == 1 {
-                hourSuffix = "hour"
+            var hoursLastDigit = 0
+            
+            if hour < 10 || hour > 19 {
+                let hoursString = hour.description
+                hoursLastDigit = Int(String(hoursString.last!))!
             } else {
-                hourSuffix = "hours"
+                hoursLastDigit = hour
+            }
+            
+            if hoursLastDigit == 1 {
+                hourSuffix = "oneHour".localized()
+            } else {
+                hourSuffix = "manyHours".localized()
+                if hoursLastDigit < 5 {
+                    hourSuffix = "manyHoursx".localized()
+                }
+            }
+            
+            if hoursLastDigit == 0 {
+                hourSuffix = "manyHours".localized()
             }
             
             let hourString = String(format: "%i ", hour) + hourSuffix
@@ -148,6 +180,8 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             break
         }
         
+        let appLang = UserDefaults.standard.string(forKey: "app_lang") ?? "en"
+        self.datePicker.locale = Locale.init(identifier: appLang)
         self.datePicker.date = self.scheduledDate
         self.setCustomPickerScheduledDate()
     }

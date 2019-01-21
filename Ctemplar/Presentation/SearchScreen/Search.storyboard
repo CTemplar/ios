@@ -27,14 +27,14 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptySearchIcon" translatesAutoresizingMaskIntoConstraints="NO" id="P6t-Id-Fcn">
-                                        <rect key="frame" x="137.5" y="129.5" width="100" height="100"/>
+                                        <rect key="frame" x="137.5" y="169.5" width="100" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="PiF-26-tnq"/>
                                             <constraint firstAttribute="width" secondItem="P6t-Id-Fcn" secondAttribute="height" multiplier="1:1" id="dry-ss-nEa"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No results found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="f7x-0w-1Zz">
-                                        <rect key="frame" x="27.5" y="261.5" width="320" height="18"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="noResults" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="f7x-0w-1Zz" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                        <rect key="frame" x="27.5" y="301.5" width="320" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="320" id="h61-fx-mKc"/>
                                             <constraint firstAttribute="width" secondItem="f7x-0w-1Zz" secondAttribute="height" multiplier="160:9" id="xQf-ps-pP0"/>
@@ -48,7 +48,7 @@
                                 <constraints>
                                     <constraint firstItem="P6t-Id-Fcn" firstAttribute="centerX" secondItem="cZy-md-dX6" secondAttribute="centerX" id="7u6-dy-rZn"/>
                                     <constraint firstItem="f7x-0w-1Zz" firstAttribute="top" secondItem="P6t-Id-Fcn" secondAttribute="bottom" constant="32" id="NhK-GD-uSX"/>
-                                    <constraint firstItem="P6t-Id-Fcn" firstAttribute="top" secondItem="cZy-md-dX6" secondAttribute="centerY" constant="-194" id="Nmd-5i-GKI"/>
+                                    <constraint firstItem="P6t-Id-Fcn" firstAttribute="top" secondItem="cZy-md-dX6" secondAttribute="centerY" constant="-154" id="Nmd-5i-GKI"/>
                                     <constraint firstItem="f7x-0w-1Zz" firstAttribute="centerX" secondItem="cZy-md-dX6" secondAttribute="centerX" id="l3n-Wn-hnK"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>

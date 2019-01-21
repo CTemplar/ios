@@ -34,7 +34,7 @@ class ConfirmResetPasswordViewController: UIViewController {
         let style = NSMutableParagraphStyle()
         style.alignment = NSTextAlignment.center
         
-        let attributedString = NSMutableAttributedString(string: "Your encryption key is connected to your password. Because of this you will not be able to decrypt old messages, attachments and contacts if you reset your password. \nIf you have further questions please email support@ctemplar.com.", attributes: [
+        let attributedString = NSMutableAttributedString(string: "supportDescription".localized(), attributes: [
             .font: UIFont(name: k_latoRegularFontName, size: 14.0)!,
             .foregroundColor: k_lightGrayColor,
             .paragraphStyle: style,
@@ -46,7 +46,7 @@ class ConfirmResetPasswordViewController: UIViewController {
         //_ = attributedString.setUnderline(textToFind: "Click here to learn more")
         _ = attributedString.setUnderline(textToFind: "support@ctemplar.com")
         
-        _ = attributedString.setForgroundColor(textToFind: "you will not be able to decrypt old messages, attachments and contacts", color: k_redColor)
+        _ = attributedString.setForgroundColor(textToFind: "supportDescriptionAttr".localized(), color: k_redColor)
        // _ = attributedString.setForgroundColor(textToFind: "Click here to learn more", color: k_urlColor)
         _ = attributedString.setForgroundColor(textToFind: "support@ctemplar.com", color: k_urlColor)
         

@@ -119,6 +119,24 @@ class SettingsInteractor {
         }
     }
     
+    func getLanguageName() -> String {
+        
+        var currentLanguage : String = ""
+        
+        let language = Bundle.getLanguage()
+        
+        switch language {
+        case LanguagesBundlePrefix.english.rawValue:
+            currentLanguage = LanguagesName.english.rawValue
+        case LanguagesBundlePrefix.russian.rawValue:
+            currentLanguage = LanguagesName.russian.rawValue
+        default:
+            currentLanguage = LanguagesName.english.rawValue
+        }
+        
+        return currentLanguage
+    }
+    
     func userMyself() {
         
         apiService?.userMyself() {(result) in

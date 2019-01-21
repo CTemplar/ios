@@ -22,15 +22,21 @@ class InboxSideMenuInteractor {
         self.viewController?.inboxViewController.currentFolder  = InboxSideMenuOptionsName.inbox.rawValue
         self.viewController?.inboxViewController.currentFolderFilter = MessagesFoldersName.inbox.rawValue
         
-        self.viewController?.dismiss(animated: true, completion: {
-            if let parentViewController = self.viewController?.currentParentViewController {
-                parentViewController.navigationController?.popViewController(animated: true)
-            }
-        })
-        
-        self.viewController?.inboxViewController.dismiss(animated: false, completion: {
-            self.viewController?.mainViewController?.showLoginViewController()
-        })
+        if (!Device.IS_IPAD) {
+            self.viewController?.dismiss(animated: true, completion: {
+                if let parentViewController = self.viewController?.currentParentViewController {
+                    parentViewController.navigationController?.popViewController(animated: true)
+                }
+            })
+            
+            self.viewController?.inboxViewController.dismiss(animated: false, completion: {
+                self.viewController?.mainViewController?.showLoginViewController()
+            })
+        } else {
+            self.viewController?.splitViewController?.dismiss(animated: false, completion: {
+                self.viewController?.mainViewController?.showLoginViewController()
+            })
+        }
         
         apiService?.logOut()  {(result) in
             switch(result) {
@@ -128,17 +134,25 @@ class InboxSideMenuInteractor {
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
-            HUD.hide()
+            //HUD.hide()
         }
     }
     
     func dismissSideMenuAndTopController() {
         
-        self.viewController?.dismiss(animated: true, completion: { 
+        if (!Device.IS_IPAD) {
+            self.viewController?.dismiss(animated: true, completion: {
+                if let parentViewController = self.viewController?.currentParentViewController {
+                    parentViewController.navigationController?.popToRootViewController(animated: true)
+                }
+            })
+        } else {
+            self.viewController?.splitViewController?.toggleMasterView()
+        
             if let parentViewController = self.viewController?.currentParentViewController {
                 parentViewController.navigationController?.popToRootViewController(animated: true)
-            }
-        })
+            }        
+        }
     }
     
     func selectSideMenuAction(optionName: String) {
@@ -172,14 +186,23 @@ class InboxSideMenuInteractor {
             self.applyFirstSectionAction(folder: optionName, filter: "")
             break
         case InboxSideMenuOptionsName.contacts.rawValue :
-            self.dismissSideMenuAndTopController()
+            if (!Device.IS_IPAD) {
+                self.dismissSideMenuAndTopController()
+            }
             self.viewController?.router?.showContactsViewController()
         case InboxSideMenuOptionsName.settings.rawValue :
-            self.dismissSideMenuAndTopController()
+            if (!Device.IS_IPAD) {
+                self.dismissSideMenuAndTopController()
+            }
             self.viewController?.router?.showSettingsViewController()
             break
+        case InboxSideMenuOptionsName.help.rawValue :
+            self.openSupportURL()
+            break
         case InboxSideMenuOptionsName.manageFolders.rawValue :
-            self.dismissSideMenuAndTopController()
+            if (!Device.IS_IPAD) {
+                self.dismissSideMenuAndTopController()
+            }
             self.viewController?.router?.showManageFoldersViewController()
             break
         case InboxSideMenuOptionsName.logout.rawValue :
@@ -292,5 +315,16 @@ class InboxSideMenuInteractor {
         }
         
         return unreadMessagesCount
+    }
+    
+    func openSupportURL() {
+        
+        if let url = URL(string: "mailto:\(k_supportURL)") {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
     }
 }

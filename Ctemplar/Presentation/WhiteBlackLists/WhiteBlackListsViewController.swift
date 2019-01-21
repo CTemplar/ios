@@ -23,6 +23,7 @@ class WhiteBlackListsViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet var underlineView         : UIView!
     
     @IBOutlet var addContactButton      : UIButton!
+    @IBOutlet var addContactBottomButton      : UIButton!
     @IBOutlet var textLabel             : UILabel!
     
     @IBOutlet var searchBar             : UISearchBar!
@@ -58,7 +59,8 @@ class WhiteBlackListsViewController: UIViewController, UISearchBarDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        navigationController!.navigationBar.hideBorderLine()
+        self.navigationController!.navigationBar.hideBorderLine()
+        self.presenter?.setupUnderlineView(listMode: self.listMode)
     }
     
     //MARK: - IBActions

@@ -33,8 +33,11 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating, UISearc
     @IBOutlet var selectAllImageView    : UIImageView!
     @IBOutlet var selectAllLabel        : UILabel!
     
+    @IBOutlet var addContactsLabel      : UILabel!
+    
     @IBOutlet var selectedAllViewHeightConstraint    : NSLayoutConstraint!
     @IBOutlet var bottomBarHeightConstraint          : NSLayoutConstraint!
+    @IBOutlet var addContactsViewWithConstraint      : NSLayoutConstraint!
     
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -49,6 +52,7 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating, UISearc
         dataSource?.initWith(parent: self, tableView: contactsTableView)
         
         presenter?.setupTable()
+        presenter?.setupAddContactsButtonLabel()
         presenter?.getContactsList()
     }
     
@@ -56,6 +60,10 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating, UISearc
         super.viewWillAppear(animated)
         
         self.presenter?.interactor?.userContactsList()
+        
+        if (Device.IS_IPAD) {
+            self.presenter?.setupNavigationLeftItem()
+        }
     }
         
     //MARK: - IBActions
@@ -107,8 +115,14 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating, UISearc
         
         self.rightBarButtonItem.isEnabled = true
         
-        let show = dataSource?.selectionMode
-        presenter?.setSelectAllBar(show: show!)
+        if (self.dataSource?.selectedContactsArray.count)! > 0 {
+            let show = dataSource?.selectionMode
+            presenter?.setSelectAllBar(show: show!)
+        } else {
+            //self.presenter?.disableSelectionMode()
+            //dataSource?.selectionMode = false
+            presenter?.setSelectAllBar(show: false)
+        }
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -116,4 +130,14 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating, UISearc
         self.rightBarButtonItem.isEnabled = false
     }
     
+    //MARK: - Orientation
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        if (Device.IS_IPAD) {
+            self.presenter?.setupNavigationLeftItem()
+        }
+    }
 }
