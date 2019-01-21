@@ -29,6 +29,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var eyeButton             : UIButton!
     
+    var keyboardOffset = 0.0
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -46,8 +48,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         userNameTextField.delegate = self
         passwordTextField.delegate = self
         
+        if (Device.IS_IPAD) {
+
+            if UIDevice.current.orientation.isLandscape {
+                keyboardOffset = k_signUpPageKeyboardOffsetiPadLarge
+            } else {
+                keyboardOffset = 0.0
+            }
+        }
+        
         let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
         self.view.addGestureRecognizer(freeSpaceViewGesture)
+        
+        adddNotificationObserver()
     }
     
     //MARK: - IBActions
@@ -108,5 +121,46 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         presenter!.hintLabel(show: false, sender: textField)
+    }
+    
+    //MARK: - notification
+    
+    func adddNotificationObserver() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        
+        if self.view.frame.origin.y == 0 {
+            self.view.frame.origin.y -= CGFloat(keyboardOffset)
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y += CGFloat(keyboardOffset)
+        }
+    }
+    
+    //MARK: - Orientation
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        if (Device.IS_IPAD) {
+            
+            self.view.endEditing(true)
+            
+            if UIDevice.current.orientation.isLandscape {
+                keyboardOffset = k_signUpPageKeyboardOffsetiPadLarge
+            } else {
+                keyboardOffset = 0.0
+            }
+        }
     }
 }
