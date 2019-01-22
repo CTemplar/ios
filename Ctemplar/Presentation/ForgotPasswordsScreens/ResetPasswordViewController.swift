@@ -38,7 +38,15 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         if (Device.IS_IPHONE_5) {
             keyboardOffset = k_signUpPageKeyboardOffsetMedium
         } else {
-            keyboardOffset = 0.0
+            if Device.IS_IPAD {
+                if UIDevice.current.orientation.isLandscape {
+                    keyboardOffset = k_signUpPageKeyboardOffsetiPadBig
+                } else {
+                    keyboardOffset = 0.0
+                }
+            } else {
+                keyboardOffset = 0.0
+            }
         }
         
         let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
@@ -73,7 +81,9 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         recoveryEmailTextView.attributedText = attributedString
         
         recoveryEmailTextView.disableTextPadding()
-        recoveryEmailTextView.autosizeTextFont()
+        if (!Device.IS_IPAD) {
+            recoveryEmailTextView.autosizeTextFont()
+        }
     }
     
     //MARK: - IBActions
@@ -128,6 +138,24 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y += CGFloat(keyboardOffset)
+        }
+    }
+    
+    //MARK: - Orientation
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        if (Device.IS_IPAD) {
+            
+            self.view.endEditing(true)
+            
+            if UIDevice.current.orientation.isLandscape {
+                keyboardOffset = k_signUpPageKeyboardOffsetiPadBig
+            } else {
+                keyboardOffset = 0.0
+            }
         }
     }
 }
