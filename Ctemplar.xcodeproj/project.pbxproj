@@ -142,6 +142,7 @@
 		8440141F21D39F7700FC450C /* SavingContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440141E21D39F7700FC450C /* SavingContactsViewController.swift */; };
 		8440142121D39F8B00FC450C /* SavingContacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8440142021D39F8B00FC450C /* SavingContacts.storyboard */; };
 		8440142221D3B74100FC450C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8440142421D3B74100FC450C /* Login.storyboard */; };
+		844018BA21F6EBED00A3D115 /* AboutAs-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844018B921F6EBED00A3D115 /* AboutAs-iPad.storyboard */; };
 		8440466B21C7E8C700CDEB3F /* ManageFolders.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8440466A21C7E8C700CDEB3F /* ManageFolders.storyboard */; };
 		8440466D21C7E8DE00CDEB3F /* ManageFoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440466C21C7E8DE00CDEB3F /* ManageFoldersViewController.swift */; };
 		8440466F21C7F84000CDEB3F /* ManageFoldersConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440466E21C7F84000CDEB3F /* ManageFoldersConfigurator.swift */; };
@@ -373,6 +374,7 @@
 		8440141E21D39F7700FC450C /* SavingContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingContactsViewController.swift; sourceTree = "<group>"; };
 		8440142021D39F8B00FC450C /* SavingContacts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SavingContacts.storyboard; sourceTree = "<group>"; };
 		8440142321D3B74100FC450C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
+		844018B921F6EBED00A3D115 /* AboutAs-iPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "AboutAs-iPad.storyboard"; sourceTree = "<group>"; };
 		8440466A21C7E8C700CDEB3F /* ManageFolders.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ManageFolders.storyboard; sourceTree = "<group>"; };
 		8440466C21C7E8DE00CDEB3F /* ManageFoldersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageFoldersViewController.swift; sourceTree = "<group>"; };
 		8440466E21C7F84000CDEB3F /* ManageFoldersConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageFoldersConfigurator.swift; sourceTree = "<group>"; };
@@ -1124,6 +1126,7 @@
 			children = (
 				845E64452170C5A4008612FE /* AboutAsViewController.swift */,
 				845E64422170BD21008612FE /* AboutAs.storyboard */,
+				844018B921F6EBED00A3D115 /* AboutAs-iPad.storyboard */,
 			);
 			path = AboutAsScreen;
 			sourceTree = "<group>";
@@ -1291,6 +1294,7 @@
 				8403BDE221A3F00B00EE8DCD /* AddContact.storyboard in Resources */,
 				8433FF4C21620DBD00C57DC8 /* SplitiPad.storyboard in Resources */,
 				8462C62621CCC16C005B3D74 /* SettingsBaseTableViewCell.xib in Resources */,
+				844018BA21F6EBED00A3D115 /* AboutAs-iPad.storyboard in Resources */,
 				8432B2FE2186F403006C901C /* SideMenuTableSectionHeader.xib in Resources */,
 				84344D3821CA44AD00A5D9A0 /* ColorPicker.xib in Resources */,
 				84085B3521C152CB002733DE /* SideMenuTableManageFoldersCell.xib in Resources */,

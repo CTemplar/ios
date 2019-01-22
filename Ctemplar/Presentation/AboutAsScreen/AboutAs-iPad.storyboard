@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad9_7" orientation="landscape">
+        <adaptation id="splitview2_3"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Black.ttf">
+            <string>Lato-Black</string>
+        </array>
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--About As View Controller-->
+        <scene sceneID="vhO-Q9-Qvv">
+            <objects>
+                <viewController storyboardIdentifier="AboutAsViewController" id="SQR-Cg-LeA" customClass="AboutAsViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HAb-J8-xK4">
+                        <rect key="frame" x="0.0" y="0.0" width="694" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LightBackground" translatesAutoresizingMaskIntoConstraints="NO" id="d8n-nG-fe3">
+                                <rect key="frame" x="0.0" y="0.0" width="694" height="768"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UUA-U0-ysG">
+                                <rect key="frame" x="5" y="32" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="UUA-U0-ysG" secondAttribute="height" multiplier="1:1" id="rE9-tH-bUq"/>
+                                </constraints>
+                                <state key="normal" image="BackArrowDark"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="SQR-Cg-LeA" eventType="touchUpInside" id="CPE-2i-SXP"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="8pg-Me-4UW">
+                                <rect key="frame" x="315" y="64" width="64" height="63"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="hQi-ts-umi"/>
+                                    <constraint firstAttribute="width" secondItem="8pg-Me-4UW" secondAttribute="height" multiplier="64:63" id="yQn-SM-8gI"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CTEMPLAR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C9w-64-MZv">
+                                <rect key="frame" x="292" y="134" width="110" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Dbc-F2-kmc"/>
+                                    <constraint firstAttribute="width" secondItem="C9w-64-MZv" secondAttribute="height" multiplier="110:21" id="UwS-Gx-QWk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
+                                <color key="textColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="takeBack" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="xxG-z1-4eZ" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                <rect key="frame" x="240" y="201" width="214" height="19.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="xxG-z1-4eZ" secondAttribute="height" multiplier="111:10" id="naf-EA-xGb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="24"/>
+                                <color key="textColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="withEncrypted" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="Z9x-pP-8lx" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                <rect key="frame" x="186" y="228.5" width="322" height="43.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Z9x-pP-8lx" secondAttribute="height" multiplier="74:10" id="R6n-ik-MMh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="24"/>
+                                <color key="textColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sendUnbreakable" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="LAa-si-VeI" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                <rect key="frame" x="146" y="303" width="402" height="274"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="LAa-si-VeI" secondAttribute="height" multiplier="154:105" id="PMv-go-TG5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="22"/>
+                                <color key="textColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRF-0z-ZWs" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
+                                <rect key="frame" x="186" y="642" width="322" height="48"/>
+                                <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="w7a-bB-bNO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                <state key="normal" title="goToWebVersion">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="goToWebButtonPressed:" destination="SQR-Cg-LeA" eventType="touchUpInside" id="IJ9-t9-zLY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="C9w-64-MZv" firstAttribute="top" secondItem="8pg-Me-4UW" secondAttribute="bottom" constant="7" id="7Lc-tw-9wP"/>
+                            <constraint firstItem="8pg-Me-4UW" firstAttribute="top" secondItem="wEO-a5-YlH" secondAttribute="top" constant="44" id="Elg-kh-RSv"/>
+                            <constraint firstItem="dRF-0z-ZWs" firstAttribute="top" secondItem="LAa-si-VeI" secondAttribute="bottom" constant="65" id="GaA-dV-euR"/>
+                            <constraint firstAttribute="bottom" secondItem="d8n-nG-fe3" secondAttribute="bottom" id="GpH-Qz-8J4"/>
+                            <constraint firstItem="LAa-si-VeI" firstAttribute="top" secondItem="Z9x-pP-8lx" secondAttribute="bottom" constant="31" id="Rqk-dd-3Kl"/>
+                            <constraint firstItem="UUA-U0-ysG" firstAttribute="top" secondItem="wEO-a5-YlH" secondAttribute="top" constant="12" id="TH6-kv-uAV"/>
+                            <constraint firstItem="d8n-nG-fe3" firstAttribute="top" secondItem="HAb-J8-xK4" secondAttribute="top" id="TJO-dS-Yy1"/>
+                            <constraint firstItem="UUA-U0-ysG" firstAttribute="leading" secondItem="wEO-a5-YlH" secondAttribute="leading" constant="5" id="VJT-Gd-uNN"/>
+                            <constraint firstItem="d8n-nG-fe3" firstAttribute="trailing" secondItem="wEO-a5-YlH" secondAttribute="trailing" id="WqH-EN-KiH"/>
+                            <constraint firstItem="wEO-a5-YlH" firstAttribute="trailing" secondItem="xxG-z1-4eZ" secondAttribute="trailing" constant="240" id="bwF-l8-WFh"/>
+                            <constraint firstItem="Z9x-pP-8lx" firstAttribute="leading" secondItem="wEO-a5-YlH" secondAttribute="leading" constant="186" id="d8b-Qh-YPb"/>
+                            <constraint firstItem="xxG-z1-4eZ" firstAttribute="top" secondItem="C9w-64-MZv" secondAttribute="bottom" constant="46" id="dqh-K0-YF4"/>
+                            <constraint firstItem="8pg-Me-4UW" firstAttribute="centerX" secondItem="HAb-J8-xK4" secondAttribute="centerX" id="gmP-C9-SDt"/>
+                            <constraint firstItem="xxG-z1-4eZ" firstAttribute="centerX" secondItem="HAb-J8-xK4" secondAttribute="centerX" id="h32-rh-n9j"/>
+                            <constraint firstItem="C9w-64-MZv" firstAttribute="centerX" secondItem="HAb-J8-xK4" secondAttribute="centerX" id="kFA-uO-vns"/>
+                            <constraint firstItem="dRF-0z-ZWs" firstAttribute="leading" secondItem="wEO-a5-YlH" secondAttribute="leading" constant="186" id="qBq-Wg-riZ"/>
+                            <constraint firstItem="Z9x-pP-8lx" firstAttribute="top" secondItem="xxG-z1-4eZ" secondAttribute="bottom" constant="8" id="r53-sy-aIp"/>
+                            <constraint firstItem="Z9x-pP-8lx" firstAttribute="centerX" secondItem="HAb-J8-xK4" secondAttribute="centerX" id="rc9-Yr-IOg"/>
+                            <constraint firstItem="dRF-0z-ZWs" firstAttribute="centerX" secondItem="HAb-J8-xK4" secondAttribute="centerX" id="sYF-cb-INY"/>
+                            <constraint firstItem="d8n-nG-fe3" firstAttribute="leading" secondItem="wEO-a5-YlH" secondAttribute="leading" id="tZf-BX-aXK"/>
+                            <constraint firstItem="LAa-si-VeI" firstAttribute="leading" secondItem="wEO-a5-YlH" secondAttribute="leading" constant="146" id="uyQ-7o-E5Y"/>
+                            <constraint firstItem="LAa-si-VeI" firstAttribute="centerX" secondItem="HAb-J8-xK4" secondAttribute="centerX" id="xBl-IO-QqT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wEO-a5-YlH"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dzt-Wg-Skf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2309.375" y="-84.486666666666665"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="BackArrowDark" width="11" height="20"/>
+        <image name="LightBackground" width="375" height="667"/>
+        <image name="Logo" width="103" height="102"/>
+    </resources>
+</document>

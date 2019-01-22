@@ -110,7 +110,13 @@ class SettingsRouter {
     
     func showAboutAsViewController() {
         
-        let storyboard: UIStoryboard = UIStoryboard(name: k_AboutAsStoryboardName, bundle: nil)
+        var storyboardName : String? = k_AboutAsStoryboardName
+        
+        if (Device.IS_IPAD) {
+            storyboardName = k_AboutAsStoryboardName_iPad
+        }
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_AboutAsViewControllerID) as! AboutAsViewController       
         self.viewController?.show(vc, sender: self)
     }
