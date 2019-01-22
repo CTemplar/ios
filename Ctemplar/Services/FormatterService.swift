@@ -365,6 +365,8 @@ class FormatterService
         
         let dateFormatter = DateFormatter()        
         dateFormatter.dateFormat = "HH:mm:ss a"
+        let appLang = UserDefaults.standard.string(forKey: "app_lang") ?? "en"
+        dateFormatter.locale = Locale.init(identifier: appLang) 
         
         let dateString = dateFormatter.string(from:date as Date)
         
@@ -386,7 +388,8 @@ class FormatterService
         //Thu, November 22, 2018 at 10:10:10 AM
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "E, MMMM dd, yyyy"// HH:mm:ss a"
-        
+        let appLang = UserDefaults.standard.string(forKey: "app_lang") ?? "en"
+        dateFormatter.locale = Locale.init(identifier: appLang)
         let dateString = dateFormatter.string(from:date as Date)
         
         return dateString

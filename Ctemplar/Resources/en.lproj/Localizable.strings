@@ -173,6 +173,9 @@
 "replyOn" = "On: ";
 "wroteBy" = "wrote:";
 "atTime" = " at ";
+"forwardLine" = "---------- Forwarded message ----------";
+"date" = "Date: ";
+"subject" = "Subject: ";
 
 "infoTitle" = "Information:";
 "mailSendMessage" = "Mail was sent successfully";
@@ -186,8 +189,6 @@
 
 "forward" = "Fwd: ";
 "reply" = "Re: ";
-
-"subject" = "Subject";
 
 // Search Screen
 

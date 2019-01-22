@@ -439,7 +439,35 @@ class ComposePresenter {
         To: <dmitry3@dev.ctemplar.com>
         */
         var forwardHeader : String = ""
+        forwardHeader = forwardHeader + "forwardLine".localized()
         
+        if let sender = message.sender {
+            forwardHeader = forwardHeader + "\n" + "emailFromPrefix".localized() + "<" + sender + "> " + "\n"
+        }
+        
+        if let sentAtDate = message.updated { //message.sentAt
+            
+            if  let date = self.formatterService!.formatStringToDate(date: sentAtDate) {
+                let formattedDate = self.formatterService!.formatReplyDate(date: date)
+                let formattedTime = self.formatterService!.formatDateToStringTimeFull(date: date)
+                
+                forwardHeader = forwardHeader + "date".localized() + formattedDate + "atTime".localized() + formattedTime + "\n"
+            }
+        }
+        
+        if let subject = message.subject {
+            forwardHeader = forwardHeader + "subject".localized() + subject + "\n"
+        }
+        
+        
+        if let recieversArray = message.receivers  {
+            for email in recieversArray as! [String] {
+                 forwardHeader = forwardHeader + "emailToPrefix".localized() + "<" + email + "> "
+            }
+        }
+        
+        forwardHeader = forwardHeader + "\n\n"
+                
         let font : UIFont = UIFont(name: k_latoRegularFontName, size: 14.0)!
         
         let attributedString = NSMutableAttributedString(string: forwardHeader, attributes: [
