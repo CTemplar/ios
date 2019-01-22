@@ -128,25 +128,7 @@ class ManageFoldersPresenter {
             }
         }
     }
-    /*
-    func showAddFolderLimitAlert() {
-        
-        let params = Parameters(
-            title: "infoTitle".localized(),
-            message: "addFolderLimit".localized(),
-            cancelButton: "closeButton".localized()
-        )
-        
-        AlertHelperKit().showAlertWithHandler(self.viewController!, parameters: params) { buttonIndex in
-            switch buttonIndex {
-            case 0:
-                print("Close")
-            default:
-                print("Other")
-            }
-        }
-    }*/
-    
+   
     func showAddFolderLimitAlert() {
         
         self.viewController?.upgradeToPrimeView?.isHidden = !(self.viewController?.upgradeToPrimeView?.isHidden)!
@@ -155,8 +137,15 @@ class ManageFoldersPresenter {
     func initAddFolderLimitView() {
         
         self.viewController?.upgradeToPrimeView = Bundle.main.loadNibNamed(k_UpgradeToPrimeViewXibName, owner: nil, options: nil)?.first as? UpgradeToPrimeView
-        self.viewController?.upgradeToPrimeView?.frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
-        //self.viewController?.upgradeToPrimeView?.delegate = self.viewController
+        
+        var frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
+        
+        if Device.IS_IPAD {
+            frame = CGRect(x: 0.0, y: 0.0, width: (self.viewController!.splitViewController?.secondaryViewController?.view.frame.width)!, height: (self.viewController!.splitViewController?.secondaryViewController?.view.frame.height)!)
+        }
+        
+        self.viewController?.upgradeToPrimeView?.frame = frame
+       
         
         self.viewController?.navigationController!.view.addSubview((self.viewController?.upgradeToPrimeView)!)
         
