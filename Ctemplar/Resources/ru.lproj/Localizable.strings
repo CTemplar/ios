@@ -173,6 +173,9 @@
 "replyOn" = "На: ";
 "wroteBy" = "писал:";
 "atTime" = " от ";
+"forwardLine" = "---------- Пересылаемое сообщение ----------";
+"date" = "Дата: ";
+"subject" = "Тема: ";
 
 "infoTitle" = "Информация:";
 "mailSendMessage" = "Письмо успешно отправлено";
@@ -186,8 +189,6 @@
 
 "forward" = "Fwd: ";
 "reply" = "Re: ";
-
-"subject" = "Тема";
 
 // Search Screen
 

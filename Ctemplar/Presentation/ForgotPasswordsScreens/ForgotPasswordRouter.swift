@@ -15,7 +15,13 @@ class ForgotPasswordRouter {
     
     func showConfirmResetPasswordViewController(userName: String, recoveryEmail: String) {
         
-        let storyboard: UIStoryboard = UIStoryboard(name: k_ForgotPasswordStoryboardName, bundle: nil)
+        var storyboardName : String? = k_ForgotPasswordStoryboardName
+        
+        if (Device.IS_IPAD) {
+            storyboardName = k_ForgotPasswordStoryboardName_iPad
+        }
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_ConfirmResetPasswordViewControllerID) as! ConfirmResetPasswordViewController
         vc.userName = userName
         vc.recoveryEmail = recoveryEmail
@@ -25,14 +31,26 @@ class ForgotPasswordRouter {
     
     func showForgotUsernameViewController() {
         
-        let storyboard: UIStoryboard = UIStoryboard(name: k_ForgotPasswordStoryboardName, bundle: nil)
+        var storyboardName : String? = k_ForgotPasswordStoryboardName
+        
+        if (Device.IS_IPAD) {
+            storyboardName = k_ForgotPasswordStoryboardName_iPad
+        }
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_ForgorUsernameViewControllerID) as! ForgotUsernameViewController
         self.viewController?.present(vc, animated: true, completion: nil)
     }
     
     func showResetPasswordViewController(userName: String, recoveryEmail: String) {
         
-        let storyboard: UIStoryboard = UIStoryboard(name: k_ForgotPasswordStoryboardName, bundle: nil)
+        var storyboardName : String? = k_ForgotPasswordStoryboardName
+        
+        if (Device.IS_IPAD) {
+            storyboardName = k_ForgotPasswordStoryboardName_iPad
+        }
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_ResetPasswordViewControllerID) as! ResetPasswordViewController
         vc.userName = userName
         vc.recoveryEmail = recoveryEmail
@@ -42,7 +60,13 @@ class ForgotPasswordRouter {
     
     func showNewPasswordViewController(userName: String, resetPasswordCode: String, recoveryEmail: String) {
         
-        let storyboard: UIStoryboard = UIStoryboard(name: k_ForgotPasswordStoryboardName, bundle: nil)
+        var storyboardName : String? = k_ForgotPasswordStoryboardName
+        
+        if (Device.IS_IPAD) {
+            storyboardName = k_ForgotPasswordStoryboardName_iPad
+        }
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_NewPasswordViewControllerID) as! NewPasswordViewController
         vc.userName = userName
         vc.resetCode = resetPasswordCode

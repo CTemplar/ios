@@ -439,7 +439,35 @@ class ComposePresenter {
         To: <dmitry3@dev.ctemplar.com>
         */
         var forwardHeader : String = ""
+        forwardHeader = forwardHeader + "forwardLine".localized()
         
+        if let sender = message.sender {
+            forwardHeader = forwardHeader + "\n" + "emailFromPrefix".localized() + "<" + sender + "> " + "\n"
+        }
+        
+        if let sentAtDate = message.updated { //message.sentAt
+            
+            if  let date = self.formatterService!.formatStringToDate(date: sentAtDate) {
+                let formattedDate = self.formatterService!.formatReplyDate(date: date)
+                let formattedTime = self.formatterService!.formatDateToStringTimeFull(date: date)
+                
+                forwardHeader = forwardHeader + "date".localized() + formattedDate + "atTime".localized() + formattedTime + "\n"
+            }
+        }
+        
+        if let subject = message.subject {
+            forwardHeader = forwardHeader + "subject".localized() + subject + "\n"
+        }
+        
+        
+        if let recieversArray = message.receivers  {
+            for email in recieversArray as! [String] {
+                 forwardHeader = forwardHeader + "emailToPrefix".localized() + "<" + email + "> "
+            }
+        }
+        
+        forwardHeader = forwardHeader + "\n\n"
+                
         let font : UIFont = UIFont(name: k_latoRegularFontName, size: 14.0)!
         
         let attributedString = NSMutableAttributedString(string: forwardHeader, attributes: [
@@ -986,7 +1014,14 @@ class ComposePresenter {
     func initDraftActionsView() {
         
         self.viewController?.draftActionsView = Bundle.main.loadNibNamed(k_MoreActionsViewXibName, owner: nil, options: nil)?.first as? MoreActionsView
-        self.viewController?.draftActionsView?.frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
+        
+        var frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
+        
+        if Device.IS_IPAD {
+            frame = CGRect(x: 0.0, y: 0.0, width: (self.viewController!.splitViewController?.secondaryViewController?.view.frame.width)!, height: (self.viewController!.splitViewController?.secondaryViewController?.view.frame.height)!)
+        }
+        
+        self.viewController?.draftActionsView?.frame = frame
         self.viewController?.draftActionsView?.delegate = self.viewController
         
         self.viewController?.navigationController!.view.addSubview((self.viewController?.draftActionsView)!)

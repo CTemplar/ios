@@ -125,6 +125,8 @@ let k_SettingsStorageTableViewCellIdentifier       = "settingsStorageTableViewCe
 let k_SplitStoryboardName                  = "SplitiPad"
 let k_LoginStoryboardName_iPad             = "Login-iPad"
 let k_SignUpStoryboardName_iPad            = "SignUp-iPad"
+let k_ForgotPasswordStoryboardName_iPad    = "ForgotPassword-iPad"
+let k_AboutAsStoryboardName_iPad           = "AboutAs-iPad"
 
 
 // notifications
