@@ -59,8 +59,8 @@ class EditFolderViewController: UIViewController {
         self.colorPicker.setupColorPicker(width: self.colorPickerSuperView.bounds.width, height: self.colorPickerSuperView.bounds.height)
         
         if (Device.IS_IPAD) {
-            k_colorPickeriPadHeight = self.colorPicker.calculateColorPickerHeight(width: self.colorPickerSuperView.bounds.width)
-            self.colorPickerSuperViewHeightConstraint.constant = k_colorPickeriPadHeight
+            //k_colorPickeriPadHeight = self.colorPicker.calculateColorPickerHeight(width: self.colorPickerSuperView.bounds.width)
+           // self.colorPickerSuperViewHeightConstraint.constant = k_colorPickeriPadHeight
         }
     }
     
@@ -100,7 +100,7 @@ class EditFolderViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
         super.viewWillTransition(to: size, with: coordinator)
- 
+ /*
         var width : CGFloat = 0.0
         
         if (Device.IS_IPAD) {
@@ -113,7 +113,7 @@ class EditFolderViewController: UIViewController {
             self.colorPicker.updateColorPickerFrame(width: width, height: k_colorPickeriPadHeight)
             k_colorPickeriPadHeight = self.colorPicker.calculateColorPickerHeight(width: self.colorPickerSuperView.bounds.width)
             self.view.layoutIfNeeded()
-        }
+        }*/
     }
 }
 
