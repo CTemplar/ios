@@ -111,6 +111,7 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
+        cell.selectionStyle = .none
         
         return cell
     }
