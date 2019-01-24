@@ -181,13 +181,22 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             header.textLabel?.textColor = k_sideMenuTextFadeColor
         }
         
+        for index in SettingsSections.allCases {            
+            if let subview = header.viewWithTag(index.rawValue + 100) {
+                subview.removeFromSuperview()
+            }
+        }
+        
+        let tag = 100 + section
+        
         var frame = CGRect(x: 0, y: 0, width: header.frame.width, height: 1.0)
         let upperlineView = UIView(frame: frame)
         upperlineView.backgroundColor = k_settingHeaderLineColor
         header.add(subview: upperlineView)
         
-        frame = CGRect(x: 0, y: header.frame.height - 1.0, width: header.frame.width, height: 1.0)
+        frame = CGRect(x: 0, y: header.bounds.height - 1.0, width: header.frame.width, height: 1.0)
         let bottomlineView = UIView(frame: frame)
+        bottomlineView.tag = tag
         bottomlineView.backgroundColor = k_settingHeaderLineColor
         header.add(subview: bottomlineView)
     }
