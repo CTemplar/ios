@@ -156,6 +156,7 @@
 		84405BB821AD0CCB0048D8AC /* ComposeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84405BB721AD0CCB0048D8AC /* ComposeInteractor.swift */; };
 		84405BBA21AD0CD90048D8AC /* ComposeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84405BB921AD0CD90048D8AC /* ComposeDataSource.swift */; };
 		8441026521F9A8E40072691C /* InboxFilter-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441026421F9A8E30072691C /* InboxFilter-iPad.xib */; };
+		8441026721F9AE940072691C /* AddFolder-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8441026621F9AE940072691C /* AddFolder-iPad.storyboard */; };
 		8441098E2177238A00F0BE18 /* ViewInboxEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441098D2177238A00F0BE18 /* ViewInboxEmailViewController.swift */; };
 		84410990217723CE00F0BE18 /* ViewInboxEmail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8441098F217723CE00F0BE18 /* ViewInboxEmail.storyboard */; };
 		8441099221776B5100F0BE18 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8441099121776B4C00F0BE18 /* Lato-Bold.ttf */; };
@@ -389,6 +390,7 @@
 		84405BB721AD0CCB0048D8AC /* ComposeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeInteractor.swift; sourceTree = "<group>"; };
 		84405BB921AD0CD90048D8AC /* ComposeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeDataSource.swift; sourceTree = "<group>"; };
 		8441026421F9A8E30072691C /* InboxFilter-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "InboxFilter-iPad.xib"; sourceTree = "<group>"; };
+		8441026621F9AE940072691C /* AddFolder-iPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "AddFolder-iPad.storyboard"; sourceTree = "<group>"; };
 		8441098D2177238A00F0BE18 /* ViewInboxEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewInboxEmailViewController.swift; sourceTree = "<group>"; };
 		8441098F217723CE00F0BE18 /* ViewInboxEmail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ViewInboxEmail.storyboard; sourceTree = "<group>"; };
 		8441099121776B4C00F0BE18 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
@@ -783,6 +785,7 @@
 				84344D3C21CA89FB00A5D9A0 /* AddFolderConfigurator.swift */,
 				84344D3E21CA8A0900A5D9A0 /* AddFolderInteractor.swift */,
 				84344D3521CA30BA00A5D9A0 /* AddFolder.storyboard */,
+				8441026621F9AE940072691C /* AddFolder-iPad.storyboard */,
 			);
 			path = AddFolder;
 			sourceTree = "<group>";
@@ -1307,6 +1310,7 @@
 				8441227E21A66E3A00B56857 /* ChildMessageExpandedWithAttachmentTableViewCell.xib in Resources */,
 				8432870921D2034F00A66DBF /* ChangePassword.storyboard in Resources */,
 				8432B302218709F5006C901C /* SideMenuTableViewCell.xib in Resources */,
+				8441026721F9AE940072691C /* AddFolder-iPad.storyboard in Resources */,
 				8440142221D3B74100FC450C /* Login.storyboard in Resources */,
 				8432071321785F8400F18E5A /* InboxMessageTableViewCell.xib in Resources */,
 				8434E18B21EF175600E15766 /* Main-iPad.storyboard in Resources */,

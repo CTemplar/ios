@@ -60,7 +60,11 @@ class ColorPickerView: UIView {
             
         self.frame = CGRect(x: 0, y: 0, width: width, height: height)
         
-        let buttonWidth = self.calculateButtonWidth(viewWidth: width)
+        var buttonWidth = self.calculateButtonWidth(viewWidth: width)
+
+        if (Device.IS_IPAD) {
+            buttonWidth = CGFloat(40.0)
+        }
         
         self.setButtons(buttonWidth: buttonWidth)
         

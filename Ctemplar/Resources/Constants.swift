@@ -128,6 +128,7 @@ let k_SignUpStoryboardName_iPad            = "SignUp-iPad"
 let k_ForgotPasswordStoryboardName_iPad    = "ForgotPassword-iPad"
 let k_AboutAsStoryboardName_iPad           = "AboutAs-iPad"
 let k_InboxFilterViewXibName_iPad          = "InboxFilter-iPad"
+let k_AddFolderStoryboardName_iPad         = "AddFolder-iPad"
 
 
 // notifications
