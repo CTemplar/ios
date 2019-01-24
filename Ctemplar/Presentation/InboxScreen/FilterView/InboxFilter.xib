@@ -315,10 +315,12 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="roundedWhiteBackgroundView" destination="N1Z-xc-Pf8" id="XwI-fw-pur"/>
                 <outlet property="starredFilterCheckImage" destination="KUL-zw-Vru" id="Swf-WZ-cTH"/>
                 <outlet property="starredFilterLabel" destination="m2J-JF-exz" id="r0F-Sx-Cna"/>
                 <outlet property="unreadFilterCheckImage" destination="LEB-vt-UIZ" id="x7j-5w-jEx"/>
                 <outlet property="unreadFilterLabel" destination="NbU-pR-nab" id="bwl-qA-lqb"/>
+                <outlet property="whiteBackgroundView" destination="LGd-cb-Wae" id="zCa-1B-l9w"/>
                 <outlet property="withAttachmentCheckImage" destination="loD-25-8sD" id="1QK-8b-DXX"/>
                 <outlet property="withAttachmentLabel" destination="CxR-gK-Git" id="svx-f8-U1Z"/>
             </connections>

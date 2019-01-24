@@ -35,6 +35,9 @@ class InboxFilterView: UIView {
     @IBOutlet var starredFilterCheckImage    : UIImageView!
     @IBOutlet var unreadFilterCheckImage     : UIImageView!
     @IBOutlet var withAttachmentCheckImage   : UIImageView!
+    
+    @IBOutlet var whiteBackgroundView : UIView!
+    @IBOutlet var roundedWhiteBackgroundView : UIView!
 
     var parentFilters    : Array<Bool> = []
     var appliedFilters   : Array<Bool> = []
