@@ -28,21 +28,25 @@ class ContactsPresenter {
         self.viewController?.searchController.searchBar.delegate = self.viewController
         self.viewController?.searchController.searchBar.returnKeyType = .done
         
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).leftViewMode = .never
+        //UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).leftViewMode = .never
         
-        UISearchBar.appearance().searchTextPositionAdjustment = UIOffset(horizontal: 34, vertical: 0) //10
+        UISearchBar.appearance().searchTextPositionAdjustment = UIOffset(horizontal: 14, vertical: 0) //10
        // UISearchBar.appearance().searchFieldBackgroundPositionAdjustment = UIOffset(horizontal: 0, vertical: 8)
         
-        //self.viewController?.searchController.searchBar.setImage(UIImage(named: "SearchButton"), for: .search, state: .normal)
+        //self.viewController?.searchController.searchBar.setImage(UIImage(named: "SearchIcon"), for: .search, state: .normal)
+        
+        self.viewController?.searchController.searchBar.setPositionAdjustment(UIOffset(horizontal: -8, vertical: 0), for: UISearchBar.Icon.search)
   
-        let imageView = UIImageView(image: UIImage(named: "SearchButton"))
-        imageView.frame = CGRect(x: 16, y: 5, width: 22, height: 28)
-        self.viewController?.searchController.searchBar.add(subview: imageView)
+        let imageView = UIImageView(image: UIImage(named: "SearchIcon")?.withRenderingMode(.alwaysTemplate))
+        imageView.frame = CGRect(x: 0, y: 0, width: 22, height: 22)
         
         if let searchTextField = self.viewController?.searchController.searchBar.value(forKey: "_searchField") as? UITextField {
             searchTextField.borderStyle = .none
-            //searchTextField.backgroundColor = self.viewController?.navigationItem.titleView?.backgroundColor
-            //searchTextField.background = UIImage()
+            searchTextField.leftView = imageView
+            
+            //let glassIconView = searchTextField.leftView as? UIImageView
+            //glassIconView?.image = glassIconView?.image?.withRenderingMode(.alwaysTemplate)
+            //glassIconView?.tintColor = UIColor.red
         }
     }
     
