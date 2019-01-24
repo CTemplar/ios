@@ -476,6 +476,13 @@ enum InboxFilterImagesTag: Int, CaseIterable {
     case withAttachment   = 303
 }
 
+enum InboxFilterLablesTag: Int, CaseIterable {
+    
+    case starred          = 401
+    case unread           = 402
+    case withAttachment   = 403
+}
+
 enum InboxFilterViewButtonsTag: Int {
     
     case clearAllButton   = 205

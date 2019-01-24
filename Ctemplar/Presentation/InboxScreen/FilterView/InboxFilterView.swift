@@ -25,6 +25,10 @@ class InboxFilterView: UIView {
     @IBOutlet var unreadFilterButton    : UIButton!
     @IBOutlet var withAttachmentButton  : UIButton!
     
+    @IBOutlet var starredFilterLabel    : UILabel!
+    @IBOutlet var unreadFilterLabel     : UILabel!
+    @IBOutlet var withAttachmentLabel   : UILabel!
+    
     @IBOutlet var cancelButton          : UIButton!
     @IBOutlet var applyButton           : UIButton!
     
@@ -71,7 +75,15 @@ class InboxFilterView: UIView {
             if let filterImageCheck = self.viewWithTag(imageViewTag.rawValue) as? UIImageView {
                 filterImageCheck.isHidden = !filterApplied
             }
-        }
+            
+            if let label = self.viewWithTag(imageViewTag.rawValue + 100) as? UILabel {
+                if filterApplied {
+                    label.textColor = k_redColor
+                } else {
+                    label.textColor = k_lightGrayColor
+                }
+            }
+        }        
     }
     
     func localApplyFilter(_ sender: AnyObject) {
