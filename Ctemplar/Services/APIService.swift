@@ -346,7 +346,7 @@ class APIService {
         }
     }
     
-    func changePassword(newPassword: String, deleteData: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func changePassword(newPassword: String, deleteData: Bool, user: UserMyself,  completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         print("newPassword:", newPassword)
         
@@ -377,7 +377,6 @@ class APIService {
         */
         
         var newKeysArray = [[String : Any]]()
-        let user = UserMyself()
         
         if let mailboxList = user.mailboxesList {
             for mailbox in mailboxList {

@@ -241,7 +241,7 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
     
     func changePassword(deleteData: Bool) {
         
-        self.apiService?.changePassword(newPassword: self.newPassword, deleteData: deleteData)  {(result) in
+        self.apiService?.changePassword(newPassword: self.newPassword, deleteData: deleteData, user: self.user)  {(result) in
             
             switch(result) {
                 
