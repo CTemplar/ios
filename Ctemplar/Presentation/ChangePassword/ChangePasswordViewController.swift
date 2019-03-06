@@ -69,8 +69,8 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
     //MARK: - IBActions
     
     @IBAction func changeButtonPressed(_ sender: AnyObject) {
-        
-        self.changePassword()
+        //for ex: need to show pop up with select: delete or no.
+        self.changePassword(deleteData: false)
     }
     
     @IBAction func backButtonPressed(_ sender: AnyObject) {
@@ -239,9 +239,9 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: - API request
     
-    func changePassword() {
+    func changePassword(deleteData: Bool) {
         
-        self.apiService?.changePassword(newPassword: self.newPassword)  {(result) in
+        self.apiService?.changePassword(newPassword: self.newPassword, deleteData: deleteData)  {(result) in
             
             switch(result) {
                 

@@ -346,7 +346,7 @@ class APIService {
         }
     }
     
-    func changePassword(newPassword: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func changePassword(newPassword: String, deleteData: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         print("newPassword:", newPassword)
         
@@ -367,6 +367,26 @@ class APIService {
             
             print("fingerprint:", fingerprint)
         }
+        /*
+        "new_keys": [
+        {
+        "mailbox_id": 2,
+        "private_key": "private_key2",
+        "public_key": "public_key2"
+        },
+        */
+        
+        var newKeysArray = [[String : Any]]()
+        let user = UserMyself()
+        
+        if let mailboxList = user.mailboxesList {
+            for mailbox in mailboxList {
+                let mailboxDict = ["mailbox_id" : mailbox.mailboxID, "private_key" : privateKey, "public_key" : "publicKey" ] as [String : Any]
+                newKeysArray.append(mailboxDict)
+            }
+        }
+        
+        //let newKeysDict = ["new_keys" : newKeysArray]
         
         HUD.show(.progress)
         
@@ -382,7 +402,7 @@ class APIService {
 
                                 if newHashedPassword.count > 0 {
                      
-                                    self.restAPIService?.changePassword(token: token, oldPassword: self.hashedPassword!, newPassword: newHashedPassword, privateKey: privateKey, publicKey: publicKey, fingerprint: fingerprint)  {(result) in
+                                    self.restAPIService?.changePassword(token: token, oldPassword: self.hashedPassword!, newPassword: newHashedPassword, newKeys: newKeysArray, deleteData: deleteData)  {(result) in
                                         
                                         HUD.hide()
                                         
