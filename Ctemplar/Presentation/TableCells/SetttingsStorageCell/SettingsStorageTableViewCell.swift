@@ -34,10 +34,14 @@ class SettingsStorageTableViewCell: UITableViewCell {
         self.selectionStyle = .none
         
         self.setupValuesLabel(usedStorageSpace: usedStorageSpace, totalStorageSpace: totalStorageSpace)
-        
-        let ratio = CGFloat(totalStorageSpace/usedStorageSpace)
-        let value = self.backgroundLineView.frame.width / ratio
-        self.valueLineViewWidthConstraint.constant = value
+         
+        if usedStorageSpace > 0 {
+            let ratio = CGFloat(totalStorageSpace/usedStorageSpace)
+            let value = self.backgroundLineView.frame.width / ratio
+            self.valueLineViewWidthConstraint.constant = value
+        } else {
+            self.valueLineViewWidthConstraint.constant = 0
+        }
     }
     
     func setupValuesLabel(usedStorageSpace: Int, totalStorageSpace: Int) {
