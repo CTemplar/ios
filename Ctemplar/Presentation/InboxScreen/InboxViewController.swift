@@ -60,6 +60,7 @@ class InboxViewController: UIViewController {
     @IBOutlet var selectionDraftToolBar : UIView!
     @IBOutlet var undoBar               : UIView!
     
+    @IBOutlet var bottomComposeButton   : UIButton!
     @IBOutlet var rightComposeButton    : UIButton!
     @IBOutlet var leftFilterButton      : UIButton!
     @IBOutlet var undoButton            : UIButton!
@@ -87,6 +88,8 @@ class InboxViewController: UIViewController {
         adddNotificationObserver()
 
         self.leftBarButtonItem.isEnabled = false
+        self.bottomComposeButton.isEnabled = false
+        self.rightComposeButton.isEnabled = false
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100), execute: {
             self.presenter?.interactor?.updateMessages(withUndo: "", silent: false)

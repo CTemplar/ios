@@ -92,7 +92,7 @@ class APIService {
             
             if (storedUserName?.count)! < 1 || (storedPassword?.count)! < 1 {
                 print("wrong stored credentials!")
-                self.showLoginViewController()
+                //self.showLoginViewController()
                 completion(false)
                 return
             }
@@ -109,7 +109,27 @@ class APIService {
                     print("autologin error:", error)
                     
                     if let topViewController = UIApplication.topViewController() {
-                        AlertHelperKit().showAlert(topViewController, title: "Autologin Error", message: error.localizedDescription, button: "Close")
+                       // AlertHelperKit().showAlert(topViewController, title: "Autologin Error", message: error.localizedDescription, button: "Close")
+                        let params = Parameters(
+                            title: "Autologin Error",
+                            message: error.localizedDescription,
+                            cancelButton: "Clear Cashed Credeintials"
+                        )
+                        
+                        AlertHelperKit().showAlertWithHandler(topViewController, parameters: params) { buttonIndex in
+                            self.logOut()  {(done) in
+                                switch(done) {
+                                    
+                                case .success(let value):
+                                    print("value:", value)
+                                    self.showLoginViewController()
+                                    
+                                case .failure(let error):
+                                    print("error:", error)
+                                    
+                                }
+                            }
+                        }
                     }
                     completion(false)
                 }
@@ -149,12 +169,14 @@ class APIService {
                             } else {
                                 completionHandler(APIResult.success("success"))
                             }
+                            self.hashedPassword = nil
                         } else {
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
                             completionHandler(APIResult.failure(error))
                         }
                         
                     case .failure(let error):
+                        self.hashedPassword = nil
                         let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                         completionHandler(APIResult.failure(error))
                     }
@@ -1866,5 +1888,20 @@ class APIService {
             topViewController.present(vc, animated: false, completion: nil)
         }
  */
+        if let topViewController = UIApplication.topViewController() {
+            DispatchQueue.main.async {
+                
+                var storyboardName : String? = k_LoginStoryboardName
+                
+                if (Device.IS_IPAD) {
+                    storyboardName = k_LoginStoryboardName_iPad
+                }
+                
+                let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: k_LoginViewControllerID) as! LoginViewController
+                //vc.mainViewController = self
+                topViewController.show(vc, sender: self)
+            }
+        }
     }
 }

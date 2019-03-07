@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -444,6 +444,7 @@
                     <connections>
                         <outlet property="advancedToolBar" destination="ls5-Br-YTX" id="Z4K-XN-Hgj"/>
                         <outlet property="baseToolBar" destination="OxM-zC-5gC" id="4gF-Tv-dWI"/>
+                        <outlet property="bottomComposeButton" destination="K4R-qn-ZRa" id="1dX-CS-drc"/>
                         <outlet property="emptyInbox" destination="eDd-Iw-BQd" id="eF2-hW-EuV"/>
                         <outlet property="grayBorder" destination="PWU-yj-LpB" id="C0t-d0-w5p"/>
                         <outlet property="inboxEmptyImageView" destination="sCN-au-kGO" id="V3r-6b-fPd"/>
