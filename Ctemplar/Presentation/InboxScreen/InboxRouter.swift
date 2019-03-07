@@ -67,5 +67,6 @@ class InboxRouter {
         vc.user = (self.viewController?.user)!
         self.viewController?.present(vc, animated: true, completion: nil)
         //self.viewController?.show(vc, sender: self)
+       // self.viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }

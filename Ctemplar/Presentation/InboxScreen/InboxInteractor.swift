@@ -273,6 +273,9 @@ class InboxInteractor {
                     self.viewController?.leftBarButtonItem.isEnabled = true
                 }
                 
+                self.viewController?.bottomComposeButton.isEnabled = true
+                self.viewController?.rightComposeButton.isEnabled = true
+                
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: value)
                 
             case .failure(let error):

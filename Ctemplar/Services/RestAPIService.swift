@@ -39,6 +39,8 @@ class RestAPIService {
         case password = "password"
         case oldPassword = "old_password"
         case confirmPassword = "confirm_password"
+        case deleteData = "delete_data"
+        case newKeys = "new_keys"
         case privateKey = "private_key"
         case publicKey = "public_key"
         case fingerprint = "fingerprint"
@@ -239,7 +241,7 @@ class RestAPIService {
         }
     }
     
-    func changePassword(token: String, oldPassword: String, newPassword: String, privateKey: String, publicKey: String, fingerprint: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func changePassword(token: String, oldPassword: String, newPassword: String, newKeys: [[String : Any]], deleteData: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -250,9 +252,11 @@ class RestAPIService {
             JSONKey.oldPassword.rawValue: oldPassword,
             JSONKey.password.rawValue: newPassword,
             JSONKey.confirmPassword.rawValue: newPassword,
-            JSONKey.privateKey.rawValue: privateKey,
-            JSONKey.publicKey.rawValue: publicKey,
-            JSONKey.fingerprint.rawValue: fingerprint.lowercased()
+            JSONKey.deleteData.rawValue: deleteData,
+            JSONKey.newKeys.rawValue: newKeys
+            //JSONKey.privateKey.rawValue: privateKey,
+            //JSONKey.publicKey.rawValue: publicKey,
+            //JSONKey.fingerprint.rawValue: fingerprint.lowercased()
         ]
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.changePassword.rawValue

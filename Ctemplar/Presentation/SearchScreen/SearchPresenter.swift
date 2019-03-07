@@ -22,18 +22,15 @@ class SearchPresenter {
         searchBar.placeholder = "search".localized()
         searchBar.sizeToFit()
         
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).leftViewMode = .never
+        //UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).leftViewMode = .never
         
         if let searchTextField = searchBar.value(forKey: "_searchField") as? UITextField {
             searchTextField.borderStyle = .none
             searchTextField.backgroundColor = self.viewController?.navigationItem.titleView?.backgroundColor
+            searchTextField.leftView = nil
         }
         
-        self.viewController?.navigationItem.titleView = searchBar
-        
-        //if (self.viewController?.messagesList.count)! > 0 {
-        //    self.viewController?.searchTableView.isHidden = false
-        //}
+        self.viewController?.navigationItem.titleView = searchBar   
     }
 
 }

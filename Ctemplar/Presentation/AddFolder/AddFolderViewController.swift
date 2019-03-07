@@ -26,7 +26,7 @@ class AddFolderViewController: UIViewController {
     var folderName : String = ""
     
     let k_colorPickerOffset : CGFloat = 32.0
-    var k_colorPickeriPadHeight : CGFloat = 180.0
+    var k_colorPickeriPadHeight : CGFloat = 90.0
     
     var colorPicker : ColorPickerView!
 
@@ -52,8 +52,8 @@ class AddFolderViewController: UIViewController {
         
         //self.colorPicker.selectedButtonTag = k_colorButtonsTag + 4
         if (Device.IS_IPAD) {
-            k_colorPickeriPadHeight = self.colorPicker.calculateColorPickerHeight(width: self.colorPickerSuperView.bounds.width)
-            self.colorPickerSuperViewHeightConstraint.constant = k_colorPickeriPadHeight
+            //k_colorPickeriPadHeight = self.colorPicker.calculateColorPickerHeight(width: self.colorPickerSuperView.bounds.width)
+            //self.colorPickerSuperViewHeightConstraint.constant = k_colorPickeriPadHeight
         }
         self.colorPicker.setupColorPicker(width: self.colorPickerSuperView.bounds.width, height: k_colorPickeriPadHeight)
         
@@ -97,8 +97,8 @@ class AddFolderViewController: UIViewController {
 
             let width = self.view.bounds.height - k_colorPickerOffset
             
-            self.colorPicker.updateColorPickerFrame(width: width, height: k_colorPickeriPadHeight)
-            k_colorPickeriPadHeight = self.colorPicker.calculateColorPickerHeight(width: self.colorPickerSuperView.bounds.width)
+            //self.colorPicker.updateColorPickerFrame(width: width, height: k_colorPickeriPadHeight)
+            //k_colorPickeriPadHeight = self.colorPicker.calculateColorPickerHeight(width: self.colorPickerSuperView.bounds.width)
             self.view.layoutIfNeeded()
         }
     }

@@ -134,7 +134,7 @@
                                 <action selector="filterTappedAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="GS6-4E-2o8"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="starredFilter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m2J-JF-exz" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                        <label opaque="NO" userInteractionEnabled="NO" tag="401" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="starredFilter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m2J-JF-exz" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                             <rect key="frame" x="16" y="8" width="270" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
@@ -167,7 +167,7 @@
                                 <action selector="filterTappedAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="UYe-hh-WGa"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ureadFilter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NbU-pR-nab" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                        <label opaque="NO" userInteractionEnabled="NO" tag="402" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ureadFilter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NbU-pR-nab" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                             <rect key="frame" x="16" y="60" width="270" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
@@ -200,7 +200,7 @@
                                 <action selector="filterTappedAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="GtS-k7-Ed3"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="attachmentsFilter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CxR-gK-Git" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                        <label opaque="NO" userInteractionEnabled="NO" tag="403" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="attachmentsFilter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CxR-gK-Git" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                             <rect key="frame" x="16" y="112" width="270" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
@@ -315,9 +315,14 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="roundedWhiteBackgroundView" destination="N1Z-xc-Pf8" id="XwI-fw-pur"/>
                 <outlet property="starredFilterCheckImage" destination="KUL-zw-Vru" id="Swf-WZ-cTH"/>
+                <outlet property="starredFilterLabel" destination="m2J-JF-exz" id="r0F-Sx-Cna"/>
                 <outlet property="unreadFilterCheckImage" destination="LEB-vt-UIZ" id="x7j-5w-jEx"/>
+                <outlet property="unreadFilterLabel" destination="NbU-pR-nab" id="bwl-qA-lqb"/>
+                <outlet property="whiteBackgroundView" destination="LGd-cb-Wae" id="zCa-1B-l9w"/>
                 <outlet property="withAttachmentCheckImage" destination="loD-25-8sD" id="1QK-8b-DXX"/>
+                <outlet property="withAttachmentLabel" destination="CxR-gK-Git" id="svx-f8-U1Z"/>
             </connections>
             <point key="canvasLocation" x="39.200000000000003" y="46.326836581709152"/>
         </view>
