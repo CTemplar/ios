@@ -79,6 +79,7 @@ class MoveToInteractor {
                 //print("value:", value)
                 print("move list to another folder")
                 
+                self.postUpdateInboxNotification()
                 self.viewController?.dismiss(animated: true, completion: nil)
                 
             case .failure(let error):
@@ -115,5 +116,12 @@ class MoveToInteractor {
         }
         
         return folderName
+    }
+    
+    func postUpdateInboxNotification() {
+        
+        let silent = true
+        
+        NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: silent, userInfo: nil)
     }
 }
