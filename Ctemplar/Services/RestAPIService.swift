@@ -30,8 +30,8 @@ class RestAPIService {
         case createAttachment = "emails/attachments/create/"
         case deleteAttachment = "emails/attachments/"
         case settings = "users/settings/"
-        case blackList = "/users/blacklist/"
-        case whiteList = "/users/whitelist/"
+        case blackList = "users/blacklist/"
+        case whiteList = "users/whitelist/"
     }
     
     enum JSONKey: String {
