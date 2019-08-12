@@ -361,7 +361,7 @@ class RestAPIService {
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
             
-            //print("messagesList responce:", response)
+            print("messagesList responce:", response)
             
             switch(response.result) {
             case .success(let value):

@@ -59,7 +59,7 @@ class MainViewController: UIViewController {
     
     func setAutoUpdaterTimer() {
         
-        Timer.scheduledTimer(timeInterval: 30,
+        Timer.scheduledTimer(timeInterval: 60,
                              target: self,
                              selector: #selector(self.sendUpdateNotification),
                              userInfo: nil,

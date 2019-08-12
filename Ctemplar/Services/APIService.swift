@@ -1736,14 +1736,26 @@ class APIService {
                         return
                     }
                 }
+            } else {
+                self.autologin(){ (complete) in
+                    if complete {
+                        completion(true)
+                    }
+                }
+            }
+        } else {
+            self.autologin(){ (complete) in
+                if complete {
+                    completion(true)
+                }
             }
         }
-        
+        /*
         self.autologin(){ (complete) in
             if complete {
                 completion(true)
             }
-        }
+        }*/
     }
     
     
