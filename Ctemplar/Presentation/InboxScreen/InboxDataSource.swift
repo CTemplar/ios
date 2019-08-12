@@ -226,6 +226,7 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
             self.trashSwipeAction(index: index, message: message)
             break
         default:
+            self.inboxSwipeAction(index: index, message: message) //for custom folders
             break
         }
 
