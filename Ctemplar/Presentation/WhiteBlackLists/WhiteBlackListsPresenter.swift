@@ -25,6 +25,7 @@ class WhiteBlackListsPresenter {
         searchBar.placeholder = "search".localized()
         
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).leftViewMode = .never
+        UISearchBar.appearance().searchTextPositionAdjustment = UIOffset(horizontal: 52, vertical: 0)
         
         if let searchTextField = searchBar.value(forKey: "_searchField") as? UITextField {
             searchTextField.borderStyle = .none

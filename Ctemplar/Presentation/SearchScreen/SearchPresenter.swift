@@ -19,6 +19,9 @@ class SearchPresenter {
         
         self.viewController?.navigationItem.rightBarButtonItem?.title = "cancelButton".localized()
         
+        UISearchBar.appearance().searchTextPositionAdjustment = UIOffset(horizontal: 0, vertical: 0)
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).leftViewMode = .always
+        
         searchBar.placeholder = "search".localized()
         searchBar.sizeToFit()
         

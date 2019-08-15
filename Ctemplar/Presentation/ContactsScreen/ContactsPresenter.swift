@@ -28,7 +28,7 @@ class ContactsPresenter {
         self.viewController?.searchController.searchBar.delegate = self.viewController
         self.viewController?.searchController.searchBar.returnKeyType = .done
         
-        //UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).leftViewMode = .never
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).leftViewMode = .always
         
         UISearchBar.appearance().searchTextPositionAdjustment = UIOffset(horizontal: 14, vertical: 0) //10
        // UISearchBar.appearance().searchFieldBackgroundPositionAdjustment = UIOffset(horizontal: 0, vertical: 8)
