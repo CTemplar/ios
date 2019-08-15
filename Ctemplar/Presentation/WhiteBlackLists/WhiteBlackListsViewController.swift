@@ -52,8 +52,7 @@ class WhiteBlackListsViewController: UIViewController, UISearchBarDelegate {
         
         self.presenter?.setupSegmentedControl()
         self.segmentedControl.sendActions(for: UIControl.Event.valueChanged)
-        self.presenter?.setupSearchBar(searchBar: self.searchBar)
-        //self.presenter?.setupTableAndDataSource(user: self.user, listMode: self.listMode)
+        self.presenter?.setupSearchBar(searchBar: self.searchBar)        
     }
     
     override func viewWillAppear(_ animated: Bool) {

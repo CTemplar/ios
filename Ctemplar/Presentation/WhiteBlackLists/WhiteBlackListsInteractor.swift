@@ -18,6 +18,8 @@ class WhiteBlackListsInteractor {
     
     func getWhiteListContacts() {
         
+        HUD.show(.progress)
+        
         apiService?.whiteListContacts() {(result) in
             
             switch(result) {
@@ -28,20 +30,23 @@ class WhiteBlackListsInteractor {
                 let contactsList = value as! ContactsList
                 if let contacts = contactsList.contactsList {
                     self.presenter?.whiteListContacts = contacts
-                    //self.presenter?.setupTableAndDataSource(contactsList: contacts)
+                    self.presenter?.setupTableAndDataSource(listMode: self.viewController!.listMode)
                 }
                 
-                //self.viewController?.presenter?.setupTableAndDataSource(user: userMyself, listMode: (self.viewController?.listMode)!)
                 break              
                 
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Get White List Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
             }
+            
+            HUD.hide()
         }
     }
     
     func getBlackListContacts() {
+        
+        HUD.show(.progress)
         
         apiService?.blackListContacts() {(result) in
             
@@ -52,8 +57,8 @@ class WhiteBlackListsInteractor {
                 
                 let contactsList = value as! ContactsList
                 if let contacts = contactsList.contactsList {
-                    self.presenter?.blackListContacts = contacts
-                    //self.presenter?.setupTableAndDataSource(contactsList: contacts)
+                    self.presenter?.blackListContacts = contacts                    
+                    self.presenter?.setupTableAndDataSource(listMode: self.viewController!.listMode)
                 }
                
                 break
@@ -62,6 +67,8 @@ class WhiteBlackListsInteractor {
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Get Black List Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
             }
+            
+            HUD.hide()
         }
     }
     
@@ -100,7 +107,7 @@ class WhiteBlackListsInteractor {
                 
             case .success(let value):
                 print("value:", value)
-                //self.updateUserMyself()
+                self.getBlackListContacts()
                 
             case .failure(let error):
                 print("error:", error)
@@ -121,7 +128,7 @@ class WhiteBlackListsInteractor {
                 
             case .success(let value):
                 print("value:", value)
-                //self.updateUserMyself()
+                self.getWhiteListContacts()
                 
             case .failure(let error):
                 print("error:", error)
@@ -144,7 +151,7 @@ class WhiteBlackListsInteractor {
             case .success( _):
                 
                 print("deleteContactsFromWhiteList")
-                //self.updateUserMyself()
+                self.getWhiteListContacts()
                 
             case .failure(let error):
                 print("error:", error)
@@ -166,7 +173,7 @@ class WhiteBlackListsInteractor {
             case .success( _):
                 
                 print("deleteContactsFromBlacklList")
-                //self.updateUserMyself()
+                self.getBlackListContacts()
                 
             case .failure(let error):
                 print("error:", error)
@@ -176,32 +183,4 @@ class WhiteBlackListsInteractor {
             HUD.hide()
         }
     }
-    /*
-    func updateUserMyself() {
-        
-        apiService?.userMyself() {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                //print("userMyself value:", value)
-                
-                let userMyself = value as! UserMyself
-                self.viewController?.user = userMyself
-                
-                self.viewController?.presenter?.setupTableAndDataSource(user: userMyself, listMode: (self.viewController?.listMode)!)                
-                
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: value)
-                
-            case .failure(let error):
-                print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "User Myself Error", message: error.localizedDescription, button: "closeButton".localized())
-            }
-        }
-    }*/
-    /*
-    func postUpdateUserSettingsNotification() {
-        
-        NotificationCenter.default.post(name: Notification.Name(k_updateUserSettingsNotificationID), object: nil, userInfo: nil)
-    }*/
 }

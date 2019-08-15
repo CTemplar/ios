@@ -35,24 +35,18 @@ class WhiteBlackListsPresenter {
         searchBar.add(subview: imageView)
     }
     
-    func setupTableAndDataSource(contactsList: Array<Contact>) {
-        /*
+    func setupTableAndDataSource(listMode: WhiteBlackListsMode) {
+        
         var contactsList = Array<Contact>()
         
         switch listMode {
         case WhiteBlackListsMode.whiteList:
-            if let whiteListContacts = user.contactsWhiteList {
-                contactsList = whiteListContacts
-            }
+            contactsList = whiteListContacts
             break
         case WhiteBlackListsMode.blackList:
-            if let blackListContacts = user.contactsBlackList {
-                contactsList = blackListContacts
-            }
+            contactsList = blackListContacts
             break
-        }*/
-        
-        //contactsList = user.contactsList!//for debug
+        }
         
         if contactsList.count > 0 {
             self.viewController?.tableView.isHidden = false
@@ -90,7 +84,8 @@ class WhiteBlackListsPresenter {
         self.setupUnderlineView(listMode: self.viewController!.listMode)
         self.setupLabelText(listMode: self.viewController!.listMode)
         self.setupAddContactButton(listMode: self.viewController!.listMode)
-        //self.setupTableAndDataSource(user: self.viewController!.user, listMode: self.viewController!.listMode)
+        
+        self.setupTableAndDataSource(listMode: self.viewController!.listMode)
     }
 
     func setupSegmentedControl() {
