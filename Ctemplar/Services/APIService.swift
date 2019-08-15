@@ -862,6 +862,36 @@ class APIService {
         }
     }
     
+    func deleteMessage(messagesID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    
+                    //HUD.show(.progress)
+                    
+                    self.restAPIService?.deleteMessage(token: token, messagesID: messagesID) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            
+                            print("deleteMessage success:", value)
+                            completionHandler(APIResult.success(value))
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                        
+                        //HUD.hide()
+                    }
+                }
+            }
+        }
+    }
+    
     func saveDraftMesssage(messageID: String, messageContent: String, subject: String, recieversList: [[String]], folder: String, encryptionObject: [String : String], encrypted: Bool, selfDestructionDate: String, delayedDeliveryDate: String, deadManDate: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         var deadManTimer = 0
