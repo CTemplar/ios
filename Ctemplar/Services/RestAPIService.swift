@@ -322,7 +322,7 @@ class RestAPIService {
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
             
-            //print("userMyself responce:", response)
+            print("userMyself responce:", response)
             
             switch(response.result) {
             case .success(let value):
@@ -361,7 +361,7 @@ class RestAPIService {
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
             
-            print("messagesList responce:", response)
+            //print("messagesList responce:", response)
             
             switch(response.result) {
             case .success(let value):
@@ -1083,6 +1083,30 @@ class RestAPIService {
         Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
             
             print("deleteContactFromWhiteList responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func whiteListContacts(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.whiteList.rawValue
+        
+        print("whiteListContacts url:", url)
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("whiteListContacts responce:", response)
             
             switch(response.result) {
             case .success(let value):

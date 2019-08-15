@@ -15,6 +15,9 @@ class WhiteBlackListsPresenter {
     var viewController   : WhiteBlackListsViewController?
     var interactor       : WhiteBlackListsInteractor?
     
+    var whiteListContacts = Array<Contact>()
+    var blackListContacts = Array<Contact>()
+    
     func setupSearchBar(searchBar: UISearchBar) {
         
         searchBar.delegate = self.viewController
@@ -32,8 +35,8 @@ class WhiteBlackListsPresenter {
         searchBar.add(subview: imageView)
     }
     
-    func setupTableAndDataSource(user: UserMyself, listMode: WhiteBlackListsMode) {
-        
+    func setupTableAndDataSource(contactsList: Array<Contact>) {
+        /*
         var contactsList = Array<Contact>()
         
         switch listMode {
@@ -47,7 +50,7 @@ class WhiteBlackListsPresenter {
                 contactsList = blackListContacts
             }
             break
-        }
+        }*/
         
         //contactsList = user.contactsList!//for debug
         
@@ -87,7 +90,7 @@ class WhiteBlackListsPresenter {
         self.setupUnderlineView(listMode: self.viewController!.listMode)
         self.setupLabelText(listMode: self.viewController!.listMode)
         self.setupAddContactButton(listMode: self.viewController!.listMode)
-        self.setupTableAndDataSource(user: self.viewController!.user, listMode: self.viewController!.listMode)
+        //self.setupTableAndDataSource(user: self.viewController!.user, listMode: self.viewController!.listMode)
     }
 
     func setupSegmentedControl() {

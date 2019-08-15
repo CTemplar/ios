@@ -16,6 +16,31 @@ class WhiteBlackListsInteractor {
     var presenter       : WhiteBlackListsPresenter?
     var apiService      : APIService?
     
+    func getWhiteListContacts() {
+        
+        apiService?.whiteListContacts() {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("whiteListContacts value:", value)
+                
+                let contactsList = value as! ContactsList
+                if let contacts = contactsList.contactsList {
+                    self.presenter?.whiteListContacts = contacts
+                    //self.presenter?.setupTableAndDataSource(contactsList: contacts)
+                }
+                
+                //self.viewController?.presenter?.setupTableAndDataSource(user: userMyself, listMode: (self.viewController?.listMode)!)
+                break              
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Get White List Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
     func setFilteredList(searchText: String) {
         
         let contacts = (self.viewController?.dataSource?.contactsArray)!
@@ -51,7 +76,7 @@ class WhiteBlackListsInteractor {
                 
             case .success(let value):
                 print("value:", value)
-                self.updateUserMyself()
+                //self.updateUserMyself()
                 
             case .failure(let error):
                 print("error:", error)
@@ -72,7 +97,7 @@ class WhiteBlackListsInteractor {
                 
             case .success(let value):
                 print("value:", value)
-                self.updateUserMyself()
+                //self.updateUserMyself()
                 
             case .failure(let error):
                 print("error:", error)
@@ -95,7 +120,7 @@ class WhiteBlackListsInteractor {
             case .success( _):
                 
                 print("deleteContactsFromWhiteList")
-                self.updateUserMyself()
+                //self.updateUserMyself()
                 
             case .failure(let error):
                 print("error:", error)
@@ -117,7 +142,7 @@ class WhiteBlackListsInteractor {
             case .success( _):
                 
                 print("deleteContactsFromBlacklList")
-                self.updateUserMyself()
+                //self.updateUserMyself()
                 
             case .failure(let error):
                 print("error:", error)
@@ -127,7 +152,7 @@ class WhiteBlackListsInteractor {
             HUD.hide()
         }
     }
-    
+    /*
     func updateUserMyself() {
         
         apiService?.userMyself() {(result) in
@@ -149,10 +174,10 @@ class WhiteBlackListsInteractor {
                 AlertHelperKit().showAlert(self.viewController!, title: "User Myself Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
-    }
-    
+    }*/
+    /*
     func postUpdateUserSettingsNotification() {
         
         NotificationCenter.default.post(name: Notification.Name(k_updateUserSettingsNotificationID), object: nil, userInfo: nil)
-    }
+    }*/
 }

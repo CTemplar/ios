@@ -53,7 +53,7 @@ class WhiteBlackListsViewController: UIViewController, UISearchBarDelegate {
         self.presenter?.setupSegmentedControl()
         self.segmentedControl.sendActions(for: UIControl.Event.valueChanged)
         self.presenter?.setupSearchBar(searchBar: self.searchBar)
-        self.presenter?.setupTableAndDataSource(user: self.user, listMode: self.listMode)
+        //self.presenter?.setupTableAndDataSource(user: self.user, listMode: self.listMode)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,6 +61,7 @@ class WhiteBlackListsViewController: UIViewController, UISearchBarDelegate {
         
         self.navigationController!.navigationBar.hideBorderLine()
         self.presenter?.setupUnderlineView(listMode: self.listMode)
+        self.presenter?.interactor?.getWhiteListContacts()
     }
     
     //MARK: - IBActions
