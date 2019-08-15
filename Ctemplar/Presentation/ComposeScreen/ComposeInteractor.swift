@@ -52,19 +52,52 @@ class ComposeInteractor {
     
     func deleteDraftMessage(messageID: String) {
         
+        let folder = MessagesFoldersName.trash.rawValue
+        
+        apiService?.updateMessages(messageID: "", messagesIDIn: messageID, folder: folder, starred: false, read: false, updateFolder: true, updateStarred: false, updateRead: false)  {(result) in
+            
+            switch(result) {
+                
+            case .success( _):
+                //print("value:", value)
+                print("marked list as trash")
+               
+                break
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Delete Draft Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+        
+        /*
         apiService?.deleteMessages(messagesIDIn: messageID) {(result) in
             
             switch(result) {
                 
             case .success(let value):
                 print("delete Draft value:", value)
-                //self.postUpdateInboxNotification()
+                self.postUpdateInboxNotification()
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                AlertHelperKit().showAlert(self.viewController!, title: "Delete Draft Error", message: error.localizedDescription, button: "closeButton".localized())
             }
-        }
+        }*/
+ 
+        /*
+        apiService?.deleteMessage(messagesID: messageID) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("delete Draft value:", value)
+                self.postUpdateInboxNotification()
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Delete Draft Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }*/
     }
     
     func saveDraftMessage(messageID: Int, messageContent: String, encryptionObject: [String : String], subject: String, send: Bool, recieversList: [[String]], encrypted: Bool, selfDestructionDate: String, delayedDeliveryDate: String, deadManDate: String) {
