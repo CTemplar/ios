@@ -62,6 +62,7 @@ class WhiteBlackListsViewController: UIViewController, UISearchBarDelegate {
         self.navigationController!.navigationBar.hideBorderLine()
         self.presenter?.setupUnderlineView(listMode: self.listMode)
         self.presenter?.interactor?.getWhiteListContacts()
+        self.presenter?.interactor?.getBlackListContacts()
     }
     
     //MARK: - IBActions

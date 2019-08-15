@@ -41,6 +41,30 @@ class WhiteBlackListsInteractor {
         }
     }
     
+    func getBlackListContacts() {
+        
+        apiService?.blackListContacts() {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("blackListContacts value:", value)
+                
+                let contactsList = value as! ContactsList
+                if let contacts = contactsList.contactsList {
+                    self.presenter?.blackListContacts = contacts
+                    //self.presenter?.setupTableAndDataSource(contactsList: contacts)
+                }
+               
+                break
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Get Black List Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
     func setFilteredList(searchText: String) {
         
         let contacts = (self.viewController?.dataSource?.contactsArray)!

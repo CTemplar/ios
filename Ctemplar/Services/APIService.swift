@@ -1596,6 +1596,44 @@ class APIService {
         }
     }
     
+    func blackListContacts(completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    
+                    self.restAPIService?.blackListContacts(token: token) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            
+                            if let response = value as? Dictionary<String, Any> {
+                                
+                                if let message = self.parseServerResponse(response:response) {
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    let contactsList = ContactsList(dictionary: response)
+                                    completionHandler(APIResult.success(contactsList))
+                                }
+                                
+                            } else {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
+                            }
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     //MARK: - Download
     
     func loadAttachFile(url: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
