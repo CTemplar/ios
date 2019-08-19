@@ -62,7 +62,15 @@ class SignUpInteractor {
             switch(result) {
                 
             case .success(let value):
-                print("getCaptcha success value:", value)
+                //print("getCaptcha success value:", value)
+                
+                if let captcha = value as? Captcha {
+                    print("key:", captcha.captchaKey as Any)
+                    print("url:", captcha.captchaImageUrl as Any)
+                    
+                    self.verifyCaptcha(key: captcha.captchaKey!, value: "xxxxx")
+                }
+                
                 break
             case .failure(let error):
                 print("getCaptcha error:", error)               
