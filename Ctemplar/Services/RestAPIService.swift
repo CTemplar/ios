@@ -33,6 +33,7 @@ class RestAPIService {
         case blackList = "users/blacklist/"
         case whiteList = "users/whitelist/"
         case captcha = "auth/captcha"
+        case verifyCaptcha = "verifyCaptcha"
     }
     
     enum JSONKey: String {
@@ -90,6 +91,8 @@ class RestAPIService {
         case savingContacts = "save_contacts"
         case isDefault = "is_default"
         case userSignature = "signature"
+        case captchaKey = "key"
+        case captchaValue = "value"
     }
         
     func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -319,6 +322,32 @@ class RestAPIService {
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil) .responseJSON { (response: DataResponse<Any>) in
             
             print("getCaptcha responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func verifyCaptcha(key: String, value: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.captcha.rawValue
+        
+        print("verifyCaptcha url:", url)
+        
+        let parameters: Parameters = [
+            JSONKey.captchaValue.rawValue: value,
+            JSONKey.captchaKey.rawValue: key
+        ]
+        
+        print("verifyCaptcha parameters:", parameters)
+        
+        Alamofire.request(url, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: nil) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("verifyCaptcha responce:", response)
             
             switch(response.result) {
             case .success(let value):

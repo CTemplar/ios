@@ -537,6 +537,27 @@ class APIService {
         }
     }
     
+    func verifyCaptcha(key: String, value: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        HUD.show(.progress)
+        
+        self.restAPIService?.verifyCaptcha(key: key, value: value) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("verifyCaptcha success:", value)
+               
+                break                
+            case .failure(let error):
+                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                completionHandler(APIResult.failure(error))
+            }
+            
+            HUD.hide()
+        }
+    }
+    
     //MARK: - User
     
     func userMyself(completionHandler: @escaping (APIResult<Any>) -> Void) {

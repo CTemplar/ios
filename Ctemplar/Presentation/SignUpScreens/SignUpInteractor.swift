@@ -69,4 +69,19 @@ class SignUpInteractor {
             }
         }
     }
+    
+    func verifyCaptcha(key: String, value: String) {
+        
+        apiService?.verifyCaptcha(key: key, value: value) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("verifyCaptcha success value:", value)
+                break
+            case .failure(let error):
+                print("verifyCaptcha error:", error)
+            }
+        }
+    }
 }
