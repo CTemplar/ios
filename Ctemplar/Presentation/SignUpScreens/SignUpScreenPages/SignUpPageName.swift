@@ -45,6 +45,9 @@ class SignUpPageNameViewController: UIViewController, UITextFieldDelegate {
         self.view.addGestureRecognizer(freeSpaceViewGesture)
         
         adddNotificationObserver()
+        
+        //just for debug
+        parentSignUpPageViewController?.presenter?.interactor?.getCaptcha()
     }
     
     //MARK: - IBActions

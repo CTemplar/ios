@@ -54,4 +54,19 @@ class SignUpInteractor {
             }
         }
     }
+    
+    func getCaptcha() {
+        
+        apiService?.getCaptcha() {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("getCaptcha success value:", value)
+                break
+            case .failure(let error):
+                print("getCaptcha error:", error)               
+            }
+        }
+    }
 }

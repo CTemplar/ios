@@ -32,6 +32,7 @@ class RestAPIService {
         case settings = "users/settings/"
         case blackList = "users/blacklist/"
         case whiteList = "users/whitelist/"
+        case captcha = "auth/captcha"
     }
     
     enum JSONKey: String {
@@ -297,6 +298,27 @@ class RestAPIService {
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
             
             print("verifyToken responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    //MARK: - Captcha
+    
+    func getCaptcha(completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.captcha.rawValue
+        
+        print("getCaptcha url:", url)
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("getCaptcha responce:", response)
             
             switch(response.result) {
             case .success(let value):
