@@ -17,6 +17,9 @@ class SignUpPageViewController: UIPageViewController, UIPageViewControllerDataSo
     var password        : String? = ""
     var recoveryEmail   : String? = ""
     
+    var captchaValue    : String? = ""
+    var captchaKey      : String? = ""
+    
     var presenter   : SignUpPresenter?
     var router      : SignUpRouter?
     

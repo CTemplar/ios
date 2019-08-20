@@ -8,6 +8,7 @@
 
 import Foundation
 import AlertHelperKit
+import PKHUD
 
 class SignUpInteractor {
     
@@ -68,7 +69,13 @@ class SignUpInteractor {
                     print("key:", captcha.captchaKey as Any)
                     print("url:", captcha.captchaImageUrl as Any)
                     
-                    self.verifyCaptcha(key: captcha.captchaKey!, value: "xxxxx")
+                    //self.verifyCaptcha(key: captcha.captchaKey!, value: "xxxxx")
+                    
+                    if let url = captcha.captchaImageUrl {
+                        self.downloadCaptchaImage(with: url)
+                    }
+                    
+                     self.presenter?.viewController?.captchaKey = captcha.captchaKey
                 }
                 
                 break
@@ -86,9 +93,40 @@ class SignUpInteractor {
                 
             case .success(let value):
                 print("verifyCaptcha success value:", value)
+                let emailVC = self.viewController?.orderedViewControllers[2] as! SignUpPageEmailViewController
+                
+                emailVC.captchaView.isHidden = true
+                
                 break
             case .failure(let error):
                 print("verifyCaptcha error:", error)
+            }
+        }
+    }
+    
+    func downloadCaptchaImage(with url: String) {
+        
+        HUD.show(.progress)
+        
+        apiService?.loadAttachFile(url: url) {(result) in
+            
+            HUD.hide()
+            
+            switch(result) {
+                
+            case .success(let value):
+                //print("url value:", value)
+                let savedFileUrl = value as! URL
+                
+                let emailVC = self.viewController?.orderedViewControllers[2] as! SignUpPageEmailViewController
+                
+                if let data = try? Data(contentsOf: savedFileUrl) {
+                    emailVC.captchaImageView.image = UIImage(data: data)
+                }
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Download File Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
     }

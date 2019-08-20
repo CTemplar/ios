@@ -47,7 +47,13 @@ class SignUpPageNameViewController: UIViewController, UITextFieldDelegate {
         adddNotificationObserver()
         
         //just for debug
-        parentSignUpPageViewController?.presenter?.interactor?.getCaptcha()
+        //parentSignUpPageViewController?.presenter?.interactor?.getCaptcha()
+        
+        #if DEBUG
+        userNameTextField.text = "TestDima"
+        parentSignUpPageViewController?.userName = "TestDima"
+        parentSignUpPageViewController?.presenter?.changeButtonState(button: nextButton, disabled: false)
+        #endif
     }
     
     //MARK: - IBActions

@@ -21,6 +21,9 @@ class SignUpPageEmailViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var createAccountButton    : UIButton!
     @IBOutlet var checkBoxButton         : UIButton!
     
+    @IBOutlet var captchaView: UIView!
+    @IBOutlet var captchaImageView: UIImageView!
+    
     var keyboardOffset = 0.0
     
     override func viewDidLoad() {
@@ -54,6 +57,8 @@ class SignUpPageEmailViewController: UIViewController, UITextFieldDelegate {
         self.view.addGestureRecognizer(freeSpaceViewGesture)
         
         adddNotificationObserver()
+        
+        parentSignUpPageViewController?.presenter?.interactor?.getCaptcha()
     }
     
     func setupAttributesForTextView() {
@@ -157,5 +162,34 @@ class SignUpPageEmailViewController: UIViewController, UITextFieldDelegate {
                 keyboardOffset = 0.0
             }
         }
+    }
+    
+    // temp captcha
+    
+    func setupCaptchaView() {
+        
+        //captchaView = UIView(frame: self.view.frame)
+        
+    }
+    
+    @IBAction func renewCaptchPressed(_ sender: AnyObject) {
+        
+        parentSignUpPageViewController?.presenter?.interactor?.getCaptcha()
+    }
+    
+    @IBAction func verifyCaptchaPressed(_ sender: AnyObject) {
+        
+        if let key = parentSignUpPageViewController?.captchaKey,
+            let value = parentSignUpPageViewController?.captchaValue {
+                parentSignUpPageViewController?.presenter?.interactor?.verifyCaptcha(key: key, value: value)
+        } else {
+            //show alert wrong captcha
+        }
+    }
+    
+    @IBAction func captchaTyped(_ sender: UITextField) {
+        
+        parentSignUpPageViewController?.captchaValue = sender.text
+        print("entered captcha:", sender.text as Any)
     }
 }

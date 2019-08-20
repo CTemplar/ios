@@ -58,7 +58,13 @@ class SignUpPagePasswordViewController: UIViewController, UITextFieldDelegate {
         let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
         self.view.addGestureRecognizer(freeSpaceViewGesture)
         
-        adddNotificationObserver()  
+        adddNotificationObserver()
+        
+        #if DEBUG
+        choosePasswordTextField.text = "test123"
+        confirmPasswordTextField.text = "test123"
+        parentSignUpPageViewController?.presenter?.changeButtonState(button: nextButton, disabled: false)       
+        #endif
     }
     
     //MARK: - IBActions
