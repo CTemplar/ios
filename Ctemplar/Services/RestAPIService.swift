@@ -33,7 +33,7 @@ class RestAPIService {
         case blackList = "users/blacklist/"
         case whiteList = "users/whitelist/"
         case captcha = "auth/captcha"
-        case verifyCaptcha = "auth/captcha-verify"
+        case verifyCaptcha = "auth/captcha-verify/"
     }
     
     enum JSONKey: String {
@@ -91,6 +91,8 @@ class RestAPIService {
         case savingContacts = "save_contacts"
         case isDefault = "is_default"
         case userSignature = "signature"
+        case signUpCaptchaKey = "captcha_key"
+        case signUpCaptchaValue = "captcha_value"
         case captchaKey = "key"
         case captchaValue = "value"
     }
@@ -162,8 +164,8 @@ class RestAPIService {
             JSONKey.fingerprint.rawValue: fingerprint,
             //JSONKey.recaptcha.rawValue: recaptcha,
             JSONKey.recoveryEmail.rawValue: recoveryEmail,
-            JSONKey.captchaKey.rawValue: captchaKey,
-            JSONKey.captchaValue.rawValue: captchaValue,
+            JSONKey.signUpCaptchaKey.rawValue: captchaKey,
+            JSONKey.signUpCaptchaValue.rawValue: captchaValue,
         ]
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.signUp.rawValue
@@ -347,7 +349,7 @@ class RestAPIService {
         
         print("verifyCaptcha parameters:", parameters)
         
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil) .validate() .responseJSON { (response: DataResponse<Any>) in
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil) .responseJSON { (response: DataResponse<Any>) in
             
             print("verifyCaptcha responce:", response)
             

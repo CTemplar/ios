@@ -547,6 +547,21 @@ class APIService {
                 
             case .success(let value):
                 print("verifyCaptcha success:", value)
+                
+                if let response = value as? Dictionary<String, Any> {
+                    
+                    let status = response["status"] as! Bool
+                    
+                    if status == true {
+                        completionHandler(APIResult.success(""))
+                    } else {
+                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Wrong captcha value!"])
+                        completionHandler(APIResult.failure(error))
+                    }
+                } else {
+                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                    completionHandler(APIResult.failure(error))
+                }
                
                 break                
             case .failure(let error):
