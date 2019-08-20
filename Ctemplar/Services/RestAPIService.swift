@@ -152,7 +152,7 @@ class RestAPIService {
         }
     }
     
-    func signUp(userName: String, password: String, privateKey: String, publicKey: String, fingerprint: String, recaptcha: String, recoveryEmail: String,fromAddress: String, redeemCode: String, stripeToken: String, memory: String, emailCount: String, paymentType: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func signUp(userName: String, password: String, privateKey: String, publicKey: String, fingerprint: String, captchaKey: String, captchaValue: String, recoveryEmail: String,fromAddress: String, redeemCode: String, stripeToken: String, memory: String, emailCount: String, paymentType: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let parameters: Parameters = [
             JSONKey.userName.rawValue: userName,
@@ -160,8 +160,10 @@ class RestAPIService {
             JSONKey.privateKey.rawValue: privateKey,
             JSONKey.publicKey.rawValue: publicKey,
             JSONKey.fingerprint.rawValue: fingerprint,
-            JSONKey.recaptcha.rawValue: recaptcha,
-            JSONKey.recoveryEmail.rawValue: recoveryEmail
+            //JSONKey.recaptcha.rawValue: recaptcha,
+            JSONKey.recoveryEmail.rawValue: recoveryEmail,
+            JSONKey.captchaKey.rawValue: captchaKey,
+            JSONKey.captchaValue.rawValue: captchaValue,
         ]
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.signUp.rawValue

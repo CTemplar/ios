@@ -293,7 +293,7 @@ class SignUpPresenter {
     
     func createUserAccount() {
         
-        self.interactor?.signUpUser(userName: (self.viewController?.userName)!, password: (self.viewController?.password)!, recoveryEmail: (self.viewController?.recoveryEmail)!)
+        self.interactor?.signUpUser(userName: (self.viewController?.userName)!, password: (self.viewController?.password)!, recoveryEmail: (self.viewController?.recoveryEmail)!, captchaKey: (self.viewController?.captchaKey)!, captchaValue: (self.viewController?.captchaValue)!)
         
         //self.interactor?.signUpUser(userName: "test", password: "test123", recoveryEmail: "test@test.com")
     }

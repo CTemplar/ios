@@ -219,7 +219,7 @@ class APIService {
         }
     }
     
-    func signUpUser(userName: String, password: String, recoveryEmail: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func signUpUser(userName: String, password: String, recoveryEmail: String, captchaKey: String, captchaValue: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         print("userName:", userName)
         print("password:", password)
@@ -246,7 +246,7 @@ class APIService {
         
         getHashedPassword(userName: userName, password: password) { (complete) in
             if complete {
-                self.restAPIService?.signUp(userName: userName, password: self.hashedPassword!, privateKey: (userPGPKey?.privateKey)!, publicKey: (userPGPKey?.publicKey)!, fingerprint: (userPGPKey?.fingerprint)!, recaptcha: "1", recoveryEmail: recoveryEmail, fromAddress: "", redeemCode: "", stripeToken: "", memory: "", emailCount: "", paymentType: "") {(result) in
+                self.restAPIService?.signUp(userName: userName, password: self.hashedPassword!, privateKey: (userPGPKey?.privateKey)!, publicKey: (userPGPKey?.publicKey)!, fingerprint: (userPGPKey?.fingerprint)!, captchaKey: captchaKey, captchaValue: captchaValue, recoveryEmail: recoveryEmail, fromAddress: "", redeemCode: "", stripeToken: "", memory: "", emailCount: "", paymentType: "") {(result) in
                 
                     switch(result) {
                         

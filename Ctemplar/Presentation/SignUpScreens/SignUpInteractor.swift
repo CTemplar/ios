@@ -17,9 +17,9 @@ class SignUpInteractor {
     var apiService      : APIService?
     var keychainService : KeychainService?
     
-    func signUpUser(userName: String, password: String, recoveryEmail: String) {
+    func signUpUser(userName: String, password: String, recoveryEmail: String, captchaKey: String, captchaValue: String) {
     
-        apiService?.signUpUser(userName: userName, password: password, recoveryEmail: recoveryEmail) {(result) in
+        apiService?.signUpUser(userName: userName, password: password, recoveryEmail: recoveryEmail, captchaKey: captchaKey, captchaValue: captchaValue) {(result) in
             
             switch(result) {
                 
