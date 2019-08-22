@@ -24,6 +24,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var userNameTextField     : UITextField!
     @IBOutlet var passwordTextField     : UITextField!
+    @IBOutlet var otpTextField          : UITextField!
     
     @IBOutlet var emailHintLabel        : UILabel!
     @IBOutlet var passwordHintLabel     : UILabel!
@@ -31,6 +32,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var eyeButton             : UIButton!
     
     @IBOutlet var passwordBlockView     : UIView!
+    @IBOutlet var otpBlockView          : UIView!
     
     var keyboardOffset = 0.0
     
@@ -42,6 +44,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let configurator = LoginConfigurator()
         configurator.configure(viewController: self)
         
+        passwordBlockView.isHidden = false
+        otpBlockView.isHidden = true
+        
         presenter!.setupEmailTextFieldsAndHintLabel(userEmail: userEmail!)
         presenter!.setupPasswordTextFieldsAndHintLabel(password: password!)
         
@@ -50,6 +55,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         userNameTextField.delegate = self
         passwordTextField.delegate = self
+        //otpTextField.delegate = self
+        
+        otpTextField.placeholder = "twoFAPlaceholder".localized()
         
         if (Device.IS_IPAD) {
 
@@ -109,6 +117,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         password = sender.text
         //presenter!.setupPasswordTextFieldsAndHintLabel(password: password!)
+    }
+    
+    @IBAction func otpTyped(_ sender: UITextField) {
+        
+        twoFAcode = sender.text
     }
     
     @objc func tappedViewAction(sender : UITapGestureRecognizer) {

@@ -35,6 +35,8 @@ class LoginInteractor {
                 
                 if error.localizedDescription == APIResponse.twoFAEnabled.rawValue {
                     //show 2FA screen
+                    self.viewController?.passwordBlockView.isHidden = true
+                    self.viewController?.otpBlockView.isHidden = false
                 } else {
                     AlertHelperKit().showAlert(self.viewController!, title: "Login Error".localized(), message: error.localizedDescription, button: "closeButton".localized())
                 }

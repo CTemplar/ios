@@ -34,6 +34,8 @@
 "passwordPlaceholder" = "Пароль";
 "usernamePlaceholder" = "Имя";
 
+"twoFAPlaceholder" = "2FA код";
+
 "forgotPassword" = "Забыли пароль?";
 "login" = "Войти";
 "createAccount" = "Создать аккаунт";

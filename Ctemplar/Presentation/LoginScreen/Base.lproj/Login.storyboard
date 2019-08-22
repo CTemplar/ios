@@ -30,7 +30,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Vb8-o7-nya">
-                                <rect key="frame" x="155.5" y="45" width="64.000000000000028" height="63"/>
+                                <rect key="frame" x="155.5" y="45" width="64" height="63"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Vb8-o7-nya" secondAttribute="height" multiplier="64:63" id="b9z-UO-UR2"/>
                                     <constraint firstAttribute="width" constant="64" id="gzd-md-ZjB"/>
@@ -50,7 +50,7 @@
                                 <rect key="frame" x="33" y="185" width="310" height="113"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="usernamePlaceholder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zyc-Qa-hyt" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="113" height="15"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="117" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="sqo-Ti-Psh"/>
                                         </constraints>
@@ -59,7 +59,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="usernamePlaceholder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t1J-Gy-OcL" customClass="UILocalizedTextField" customModule="Ctemplar" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="16" width="212.5" height="23"/>
+                                        <rect key="frame" x="0.0" y="16" width="210.5" height="23"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="19"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="namePhonePad" keyboardAppearance="alert" textContentType="username"/>
@@ -75,7 +75,7 @@
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@ctemplar.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Rd-cE-sql">
-                                        <rect key="frame" x="215.5" y="21" width="94.5" height="17"/>
+                                        <rect key="frame" x="213.5" y="21" width="96.5" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="qaw-R2-LVs"/>
                                         </constraints>
@@ -91,7 +91,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="passwordPlaceholder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ip-E3-IDL" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="64" width="112" height="14"/>
+                                        <rect key="frame" x="0.0" y="64" width="116" height="14"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="0.67649647889999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -157,8 +157,60 @@
                                     <constraint firstItem="L56-Az-CHr" firstAttribute="leading" secondItem="S0R-MO-LOs" secondAttribute="trailing" constant="6" id="zzD-YF-3uN"/>
                                 </constraints>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ih-wi-Xmd">
+                                <rect key="frame" x="33" y="185" width="310" height="113"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 FACTOR AUTENTICATION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s0p-nL-jn2">
+                                        <rect key="frame" x="13" y="13" width="284" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="dYT-QE-83G"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="twoFAPlaceholder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t1J-7V-Kap" customClass="UILocalizedTextField" customModule="Ctemplar" customModuleProvider="target">
+                                        <rect key="frame" x="13" y="61" width="284" height="23"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="23" id="Zu6-kf-eSR"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="19"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardAppearance="alert" textContentType="password"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="otpTyped:" destination="k7s-rE-KqE" eventType="editingChanged" id="BgI-5W-VMk"/>
+                                            <action selector="otpTyped:" destination="k7s-rE-KqE" eventType="editingDidEndOnExit" id="DCc-vO-XC4"/>
+                                        </connections>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R32-Ln-UCW">
+                                        <rect key="frame" x="0.0" y="92" width="310" height="2"/>
+                                        <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="JSX-OE-Tvo"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="s0p-nL-jn2" firstAttribute="top" secondItem="7Ih-wi-Xmd" secondAttribute="top" constant="13" id="YsT-4P-ORH"/>
+                                    <constraint firstItem="t1J-7V-Kap" firstAttribute="centerY" secondItem="7Ih-wi-Xmd" secondAttribute="centerY" constant="16" id="arw-Or-GPi"/>
+                                    <constraint firstAttribute="trailing" secondItem="R32-Ln-UCW" secondAttribute="trailing" id="eUa-A4-hCx"/>
+                                    <constraint firstAttribute="trailing" secondItem="t1J-7V-Kap" secondAttribute="trailing" constant="13" id="jes-wG-VHf"/>
+                                    <constraint firstItem="R32-Ln-UCW" firstAttribute="top" secondItem="t1J-7V-Kap" secondAttribute="bottom" constant="8" id="ldY-b3-V87"/>
+                                    <constraint firstItem="R32-Ln-UCW" firstAttribute="leading" secondItem="7Ih-wi-Xmd" secondAttribute="leading" id="mhN-js-axA"/>
+                                    <constraint firstItem="t1J-7V-Kap" firstAttribute="leading" secondItem="7Ih-wi-Xmd" secondAttribute="leading" constant="13" id="sa3-hJ-F8X"/>
+                                    <constraint firstAttribute="trailing" secondItem="s0p-nL-jn2" secondAttribute="trailing" constant="13" id="sd4-Ia-BO1"/>
+                                    <constraint firstItem="s0p-nL-jn2" firstAttribute="leading" secondItem="7Ih-wi-Xmd" secondAttribute="leading" constant="13" id="yZV-qk-ubK"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o29-J4-Ta5" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
-                                <rect key="frame" x="260" y="307" width="83" height="15"/>
+                                <rect key="frame" x="258" y="307" width="85" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="LNi-zR-ixM"/>
                                 </constraints>
@@ -212,15 +264,19 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="tH5-lT-99T" firstAttribute="trailing" secondItem="8NZ-9j-UFf" secondAttribute="trailing" constant="32" id="0g9-lf-Bkb"/>
+                            <constraint firstItem="7Ih-wi-Xmd" firstAttribute="leading" secondItem="seq-AU-INg" secondAttribute="leading" id="1E6-Xv-cCW"/>
                             <constraint firstItem="UOi-eI-hZP" firstAttribute="centerX" secondItem="xBq-T1-bfu" secondAttribute="centerX" id="55X-St-iot"/>
                             <constraint firstItem="tH5-lT-99T" firstAttribute="bottom" secondItem="xHN-TI-gR0" secondAttribute="bottom" constant="26" id="7hz-fQ-v1O"/>
                             <constraint firstItem="o29-J4-Ta5" firstAttribute="top" secondItem="seq-AU-INg" secondAttribute="bottom" constant="9" id="8DG-Sc-GQb"/>
                             <constraint firstItem="xHN-TI-gR0" firstAttribute="leading" secondItem="kpe-KA-Ad9" secondAttribute="leading" id="8ro-Wg-MdU"/>
+                            <constraint firstItem="7Ih-wi-Xmd" firstAttribute="trailing" secondItem="seq-AU-INg" secondAttribute="trailing" id="CkT-HN-JUT"/>
                             <constraint firstItem="8NZ-9j-UFf" firstAttribute="top" secondItem="xBq-T1-bfu" secondAttribute="centerY" constant="14.5" id="Jlw-hS-sFH"/>
+                            <constraint firstItem="7Ih-wi-Xmd" firstAttribute="bottom" secondItem="seq-AU-INg" secondAttribute="bottom" id="Lhd-Px-uZ6"/>
                             <constraint firstItem="8NZ-9j-UFf" firstAttribute="leading" secondItem="tH5-lT-99T" secondAttribute="leading" constant="33" id="NqI-6T-2vB"/>
                             <constraint firstItem="a37-lE-kZR" firstAttribute="bottom" secondItem="xBq-T1-bfu" secondAttribute="bottom" id="P9L-lT-EFZ"/>
                             <constraint firstItem="xHN-TI-gR0" firstAttribute="top" secondItem="kpe-KA-Ad9" secondAttribute="bottom" constant="3" id="QtP-Sr-RSk"/>
                             <constraint firstItem="8NZ-9j-UFf" firstAttribute="leading" secondItem="seq-AU-INg" secondAttribute="leading" id="V4F-PJ-u2x"/>
+                            <constraint firstItem="7Ih-wi-Xmd" firstAttribute="top" secondItem="seq-AU-INg" secondAttribute="top" id="Xuu-eC-tZU"/>
                             <constraint firstItem="8NZ-9j-UFf" firstAttribute="trailing" secondItem="seq-AU-INg" secondAttribute="trailing" id="fSy-OP-HQz"/>
                             <constraint firstItem="xHN-TI-gR0" firstAttribute="centerX" secondItem="xBq-T1-bfu" secondAttribute="centerX" id="it5-ew-6N6"/>
                             <constraint firstItem="Vb8-o7-nya" firstAttribute="centerX" secondItem="xBq-T1-bfu" secondAttribute="centerX" id="jLd-P1-oFD"/>
@@ -238,6 +294,8 @@
                     <connections>
                         <outlet property="emailHintLabel" destination="Zyc-Qa-hyt" id="gLz-jQ-7EK"/>
                         <outlet property="eyeButton" destination="L56-Az-CHr" id="k7z-hd-oDx"/>
+                        <outlet property="otpBlockView" destination="7Ih-wi-Xmd" id="BVT-FJ-U3m"/>
+                        <outlet property="otpTextField" destination="t1J-7V-Kap" id="BWl-Ss-wod"/>
                         <outlet property="passwordBlockView" destination="seq-AU-INg" id="HFo-0g-sDg"/>
                         <outlet property="passwordHintLabel" destination="8Ip-E3-IDL" id="4X6-t4-LPw"/>
                         <outlet property="passwordTextField" destination="S0R-MO-LOs" id="2ee-39-AXA"/>

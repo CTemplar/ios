@@ -34,6 +34,8 @@
 "passwordPlaceholder" = "Password";
 "usernamePlaceholder" = "Username";
 
+"twoFAPlaceholder" = "2FA code";
+
 "forgotPassword" = "Forgot Password?";
 "login" = "Log in";
 "createAccount" = "Create account";
