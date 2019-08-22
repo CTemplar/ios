@@ -32,6 +32,7 @@ enum APIResponse: String {
     case errorDetail       = "detail"
     case tokenExpiredValue = "Signature has expired."
     case noCredentials     = "Invalid Authorization header. No credentials provided."
+    case twoFAEnabled      = "is_2fa_enabled"
     
     //email messages
     case pageConut         = "page_count"
@@ -91,7 +92,7 @@ class APIService {
             let storedPassword = self.keychainService?.getPassword()
             
             if (storedUserName?.count)! < 1 || (storedPassword?.count)! < 1 {
-                print("wrong stored credentials!")
+                print("autologin: ywrong stored credentials!")
                 //self.showLoginViewController()
                 completion(false)
                 return
@@ -1969,9 +1970,22 @@ class APIService {
             switch dictionary.key {
             case APIResponse.token.rawValue :
                 if let token = dictionary.value as? String {
-                    saveToken(token: token)
+                    if token.count > 0 {
+                        saveToken(token: token)
+                    } else {
+                        message = "Token Error"
+                    }
                 } else {
-                    message = "Token Error"
+                    //message = "Token Error"
+                    if let twoFactorAuth = response[APIResponse.twoFAEnabled.rawValue] as? Bool {
+                        if twoFactorAuth == true {
+                            message = APIResponse.twoFAEnabled.rawValue
+                        } else {
+                            message = "Token Error"
+                        }
+                    } else {
+                        message = "Token Error"
+                    }
                 }
                 break
             case APIResponse.errorDetail.rawValue :

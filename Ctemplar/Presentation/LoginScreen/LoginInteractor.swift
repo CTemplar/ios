@@ -32,7 +32,12 @@ class LoginInteractor {
                 
             case .failure(let error):
                 print("login error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Login Error", message: error.localizedDescription, button: "closeButton".localized())
+                
+                if error.localizedDescription == APIResponse.twoFAEnabled.rawValue {
+                    //show 2FA screen
+                } else {
+                    AlertHelperKit().showAlert(self.viewController!, title: "Login Error".localized(), message: error.localizedDescription, button: "closeButton".localized())
+                }
             }
         }
     }
