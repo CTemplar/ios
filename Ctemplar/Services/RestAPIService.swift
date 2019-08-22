@@ -95,18 +95,23 @@ class RestAPIService {
         case signUpCaptchaValue = "captcha_value"
         case captchaKey = "key"
         case captchaValue = "value"
+        case otp = "otp"
     }
         
-    func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func authenticateUser(userName: String, password: String, twoFAcode: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Accept": "application/json"
         ]
         
-        let parameters: Parameters = [
+        var parameters: Parameters = [
             JSONKey.userName.rawValue: userName,
             JSONKey.password.rawValue: password
         ]
+        
+        if twoFAcode.count > 0 {
+            parameters[JSONKey.otp.rawValue] = twoFAcode
+        }
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.signIn.rawValue
         

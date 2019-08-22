@@ -20,6 +20,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var userEmail   : String? = ""
     var password    : String? = ""
+    var twoFAcode   : String? = ""
     
     @IBOutlet var userNameTextField     : UITextField!
     @IBOutlet var passwordTextField     : UITextField!
@@ -67,7 +68,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginButtonPressed(_ sender: AnyObject) {
         
-        self.presenter?.buttonLoginPressed(userEmail: userEmail!, password: password!)
+        self.presenter?.buttonLoginPressed(userEmail: userEmail!, password: password!, twoFAcode: twoFAcode!)
     }
     
     @IBAction func forgotPasswordButtonPressed(_ sender: AnyObject) {

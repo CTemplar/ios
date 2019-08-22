@@ -90,6 +90,7 @@ class APIService {
             
             let storedUserName = self.keychainService?.getUserName()
             let storedPassword = self.keychainService?.getPassword()
+            let twoFAcode = self.keychainService?.getPassword()
             
             if (storedUserName?.count)! < 1 || (storedPassword?.count)! < 1 {
                 print("autologin: ywrong stored credentials!")
@@ -98,7 +99,7 @@ class APIService {
                 return
             }
             
-            self.authenticateUser(userName: storedUserName!, password: storedPassword!) {(result) in
+            self.authenticateUser(userName: storedUserName!, password: storedPassword!, twoFAcode: twoFAcode ?? "") {(result) in
                 
                 switch(result) {
                     
@@ -148,7 +149,7 @@ class APIService {
     
     //MARK: - authentication
     
-    func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func authenticateUser(userName: String, password: String, twoFAcode: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         HUD.show(.labeledProgress(title: "hashing".localized(), subtitle: ""))
         
@@ -157,7 +158,7 @@ class APIService {
                 
                 HUD.show(.labeledProgress(title: "updateToken".localized(), subtitle: ""))
                 
-                self.restAPIService?.authenticateUser(userName: userName, password: self.hashedPassword!) {(result) in
+                self.restAPIService?.authenticateUser(userName: userName, password: self.hashedPassword!, twoFAcode: twoFAcode) {(result) in
                     
                     switch(result) {
                         

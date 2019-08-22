@@ -16,9 +16,9 @@ class LoginInteractor {
     var apiService      : APIService?
     var keychainService : KeychainService?
     
-    func authenticateUser(userName: String, password: String) {
+    func authenticateUser(userName: String, password: String, twoFAcode: String) {
 
-        apiService?.authenticateUser(userName: userName, password: password) {(result) in
+        apiService?.authenticateUser(userName: userName, password: password, twoFAcode: twoFAcode) {(result) in
             
             switch(result) {
                 

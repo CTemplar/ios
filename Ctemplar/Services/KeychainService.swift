@@ -16,6 +16,7 @@ class KeychainService
         case tokenSavedTime = "tokenSavedTime"
         case username = "username"
         case password = "password"
+        case twoFAcode = "twoFAcode"
     }
     
     let keychain = KeychainSwift()
@@ -74,6 +75,15 @@ class KeychainService
         }
         
         return password
+    }
+    
+    func getTwoFAcode() -> String {
+        
+        guard let code = keychain.get(Consts.twoFAcode.rawValue) else {
+            return ""
+        }
+        
+        return code
     }
     
     func saveUserCredentials(userName: String, password: String) {
