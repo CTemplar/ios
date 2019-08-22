@@ -30,6 +30,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var eyeButton             : UIButton!
     
+    @IBOutlet var passwordBlockView     : UIView!
+    
     var keyboardOffset = 0.0
     
     //MARK: - Lifecycle
