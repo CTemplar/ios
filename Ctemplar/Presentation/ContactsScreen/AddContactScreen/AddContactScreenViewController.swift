@@ -29,6 +29,8 @@ class AddContactViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var contactAddressTextField   : UITextField!
     @IBOutlet var contactNoteTextField      : UITextField!
     
+    @IBOutlet var scrollViewBottomConstraint            : NSLayoutConstraint!
+    
     var keyboardOffset = 0.0
     
     override func viewDidLoad() {
@@ -121,15 +123,19 @@ class AddContactViewController: UIViewController, UITextFieldDelegate {
         if contactPhoneTextField.isEditing || contactAddressTextField.isEditing || contactNoteTextField.isEditing {
         
             if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= CGFloat(keyboardOffset)
+                //self.view.frame.origin.y -= CGFloat(keyboardOffset)
             }
         }
+        
+        scrollViewBottomConstraint.constant = CGFloat(k_KeyboardHeight + 20.0)
     }
     
     @objc func keyboardWillHide(notification: Notification) {
         
         if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y += CGFloat(keyboardOffset)
+            //self.view.frame.origin.y += CGFloat(keyboardOffset)
         }
+        
+        scrollViewBottomConstraint.constant = 0
     }
 }
