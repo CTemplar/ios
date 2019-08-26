@@ -111,7 +111,7 @@
 		843E1DC821D4CBD5001B89D6 /* WhiteBlackListsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E1DC721D4CBD5001B89D6 /* WhiteBlackListsRouter.swift */; };
 		843E1DCA21D4CBE2001B89D6 /* WhiteBlackListsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E1DC921D4CBE2001B89D6 /* WhiteBlackListsPresenter.swift */; };
 		843E1DCC21D4CBF6001B89D6 /* WhiteBlackListsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E1DCB21D4CBF6001B89D6 /* WhiteBlackListsInteractor.swift */; };
-		843E1DCE21D4CC02001B89D6 /* contactsArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E1DCD21D4CC02001B89D6 /* contactsArray.swift */; };
+		843E1DCE21D4CC02001B89D6 /* WhiteBlackListsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E1DCD21D4CC02001B89D6 /* WhiteBlackListsDataSource.swift */; };
 		843E972F21634E7900147CBE /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E972E21634E7800147CBE /* LaunchScreenViewController.swift */; };
 		843E973221635BEB00147CBE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973121635BEB00147CBE /* LoginViewController.swift */; };
 		843E973721636FF200147CBE /* LoginConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973621636FF200147CBE /* LoginConfigurator.swift */; };
@@ -343,7 +343,7 @@
 		843E1DC721D4CBD5001B89D6 /* WhiteBlackListsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBlackListsRouter.swift; sourceTree = "<group>"; };
 		843E1DC921D4CBE2001B89D6 /* WhiteBlackListsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBlackListsPresenter.swift; sourceTree = "<group>"; };
 		843E1DCB21D4CBF6001B89D6 /* WhiteBlackListsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBlackListsInteractor.swift; sourceTree = "<group>"; };
-		843E1DCD21D4CC02001B89D6 /* contactsArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = contactsArray.swift; sourceTree = "<group>"; };
+		843E1DCD21D4CC02001B89D6 /* WhiteBlackListsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBlackListsDataSource.swift; sourceTree = "<group>"; };
 		843E972C2163494400147CBE /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		843E972E21634E7800147CBE /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		843E973121635BEB00147CBE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -863,7 +863,7 @@
 				843E1DC721D4CBD5001B89D6 /* WhiteBlackListsRouter.swift */,
 				843E1DC921D4CBE2001B89D6 /* WhiteBlackListsPresenter.swift */,
 				843E1DCB21D4CBF6001B89D6 /* WhiteBlackListsInteractor.swift */,
-				843E1DCD21D4CC02001B89D6 /* contactsArray.swift */,
+				843E1DCD21D4CC02001B89D6 /* WhiteBlackListsDataSource.swift */,
 				843E1DBF21D49BAF001B89D6 /* WhiteBlackLists.storyboard */,
 			);
 			path = WhiteBlackLists;
@@ -1527,7 +1527,7 @@
 				8403BDEA21A4052800EE8DCD /* AddContactInteractor.swift in Sources */,
 				843E973721636FF200147CBE /* LoginConfigurator.swift in Sources */,
 				8432B2FC2186F39F006C901C /* SideMenuTableSectionHeaderView.swift in Sources */,
-				843E1DCE21D4CC02001B89D6 /* contactsArray.swift in Sources */,
+				843E1DCE21D4CC02001B89D6 /* WhiteBlackListsDataSource.swift in Sources */,
 				8435685F216F2DCD002101D3 /* InboxDataSource.swift in Sources */,
 				843E1DC821D4CBD5001B89D6 /* WhiteBlackListsRouter.swift in Sources */,
 				8441228121A67A5D00B56857 /* AttachmentCollectionViewCell.swift in Sources */,
