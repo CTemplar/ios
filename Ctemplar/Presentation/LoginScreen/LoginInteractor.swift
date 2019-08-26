@@ -17,8 +17,10 @@ class LoginInteractor {
     var keychainService : KeychainService?
     
     func authenticateUser(userName: String, password: String, twoFAcode: String) {
+        
+        let trimmedUsername = trimUserName(userName)
 
-        apiService?.authenticateUser(userName: userName, password: password, twoFAcode: twoFAcode) {(result) in
+        apiService?.authenticateUser(userName: trimmedUsername, password: password, twoFAcode: twoFAcode) {(result) in
             
             switch(result) {
                 
@@ -42,5 +44,22 @@ class LoginInteractor {
                 }
             }
         }
+    }
+    
+    func trimUserName(_ userName: String) -> String {
+        
+        var trimmedName = userName.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        let substrings = trimmedName.split(separator: "@")
+            
+        if let domain = substrings.last {
+            if domain == k_mainDomain || domain == k_devMainDomain {
+                if let name = substrings.first {
+                    trimmedName = String(name)
+                }
+            }
+        }
+        
+        return trimmedName
     }
 }

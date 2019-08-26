@@ -407,6 +407,9 @@ let k_customFoldersLimitForNonPremium = 3
 
 let k_colorButtonsTag = 200
 
+let k_mainDomain = "ctemplar.com"
+let k_devMainDomain = "dev.ctemplar.com"
+
 enum InboxSideMenuOptionsName: String {
     /*
     case inbox            = "Inbox"

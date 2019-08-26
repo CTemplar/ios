@@ -63,7 +63,7 @@ class LoginPresenter {
     
     func buttonLoginPressed(userEmail: String, password: String, twoFAcode: String) {
         
-        if (formatterService?.validateNameFormat(enteredName: userEmail))! {
+        if (formatterService?.validateEmailFormat(enteredEmail: userEmail))! {
             if (formatterService?.validatePasswordFormat(enteredPassword: password))! {
                 authenticateUser(userEmail: userEmail, password: password, twoFAcode: twoFAcode)
             } else {               
