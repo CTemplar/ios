@@ -105,6 +105,7 @@ class APIService {
                             if !self.authErrorAlertAlreadyShowing {
                                 self.showErorrLoginAlert(error: error)
                             }
+                            HUD.hide()
                             completion(false)
                         } else {
                             completion(true)
@@ -2121,7 +2122,7 @@ class APIService {
             let params = Parameters(
                 title: "Refresh Token Error",
                 message: error.localizedDescription,
-                cancelButton: "Clear Cashed Credeintials"
+                cancelButton: "Relogin"
             )
             
             AlertHelperKit().showAlertWithHandler(topViewController, parameters: params) { buttonIndex in
@@ -2130,6 +2131,10 @@ class APIService {
                         
                     case .success(let value):
                         print("value:", value)
+                        
+                        topViewController.navigationController?.popToRootViewController(animated: false)
+                        topViewController.navigationController?.navigationBar.isHidden = true
+                        
                         self.showLoginViewController()
                         self.authErrorAlertAlreadyShowing = false
                         
@@ -2143,7 +2148,7 @@ class APIService {
     }
 
     func showLoginViewController() {
-
+/*
         if let topViewController = UIApplication.topViewController() {
             DispatchQueue.main.async {
                 
@@ -2158,6 +2163,9 @@ class APIService {
                 //vc.mainViewController = self
                 topViewController.show(vc, sender: self)
             }
-        }
+        }*/
+        
+        let mainViewController: MainViewController = UIApplication.shared.keyWindow?.rootViewController as! MainViewController        
+        mainViewController.showLoginViewController()
     }
 }

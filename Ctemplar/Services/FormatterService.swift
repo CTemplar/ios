@@ -65,7 +65,7 @@ class FormatterService
     
     func validateNameFormat(enteredName: String) -> Bool {
         
-        let nameFormat = "[A-Z0-9a-z._%+-]{4,64}"
+        let nameFormat = "[A-Z0-9a-z._%+-@]{4,64}"
         let namePredicate = NSPredicate(format:"SELF MATCHES %@", nameFormat)
         return namePredicate.evaluate(with: enteredName)
     }

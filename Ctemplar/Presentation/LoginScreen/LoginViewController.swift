@@ -72,6 +72,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.view.addGestureRecognizer(freeSpaceViewGesture)
         
         adddNotificationObserver()
+        
+        self.mainViewController?.stopAutoUpdaterTimer()
     }
     
     //MARK: - IBActions

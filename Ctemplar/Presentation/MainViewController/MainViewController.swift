@@ -20,6 +20,8 @@ class MainViewController: UIViewController {
     var inboxNavigationController: InboxNavigationController! = nil
     var iPadSplitViewController : SplitViewController! = nil
     
+    var mainTimer: Timer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -41,6 +43,7 @@ class MainViewController: UIViewController {
         if (storedUserName?.count)! < 1 || (storedPassword?.count)! < 1 {
             print("MainViewController: wrong stored credentials!")
             showLoginViewController()
+            return
         } else {
             if (!Device.IS_IPAD) {
                 showInboxNavigationController()
@@ -59,11 +62,18 @@ class MainViewController: UIViewController {
     
     func setAutoUpdaterTimer() {
         
-        Timer.scheduledTimer(timeInterval: 60,
+        mainTimer = Timer.scheduledTimer(timeInterval: 60,
                              target: self,
                              selector: #selector(self.sendUpdateNotification),
                              userInfo: nil,
                              repeats: true)
+    }
+    
+    func stopAutoUpdaterTimer() {
+        
+        if mainTimer != nil {
+            mainTimer.invalidate()
+        }
     }
     
     @objc func sendUpdateNotification() {
