@@ -52,6 +52,8 @@ class APIService {
     
     var hashedPassword: String?
     
+    var authErrorAlertAlreadyShowing = false
+    
     @objc func getHashedPassword(userName: String, password: String, completion:@escaping (Bool) -> () ) {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
@@ -96,34 +98,25 @@ class APIService {
                     
                 case .success(let value):
                     print("refreshToken success value:", value)
-                    completion(true)
-                   
+                    
+                    if let response = value as? Dictionary<String, Any> {
+                        if let message = self.parseServerResponse(response:response) {
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                            if !self.authErrorAlertAlreadyShowing {
+                                self.showErorrLoginAlert(error: error)
+                            }
+                            completion(false)
+                        } else {
+                            completion(true)
+                        }
+                    }                    
+                    
                 case .failure(let error):
                     print("refreshToken error:", error)
-                    
-                    if let topViewController = UIApplication.topViewController() {
-                        // AlertHelperKit().showAlert(topViewController, title: "Autologin Error", message: error.localizedDescription, button: "Close")
-                        let params = Parameters(
-                            title: "Refresh Token Error",
-                            message: error.localizedDescription,
-                            cancelButton: "Clear Cashed Credeintials"
-                        )
-                        
-                        AlertHelperKit().showAlertWithHandler(topViewController, parameters: params) { buttonIndex in
-                            self.logOut()  {(done) in
-                                switch(done) {
-                                    
-                                case .success(let value):
-                                    print("value:", value)
-                                    self.showLoginViewController()
-                                    
-                                case .failure(let error):
-                                    print("error:", error)
-                                    
-                                }
-                            }
-                        }
-                    }
+                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                    if !self.authErrorAlertAlreadyShowing {
+                        self.showErorrLoginAlert(error: error)
+                    }                   
                     
                     completion(false)
                 }
@@ -2118,22 +2111,39 @@ class APIService {
         
         return ""
     }
-
-    func showLoginViewController() {
-        /*
+    
+    func showErorrLoginAlert(error: NSError) {
+        
+        authErrorAlertAlreadyShowing = true
+        
         if let topViewController = UIApplication.topViewController() {
             
-            var storyboardName : String? = k_LoginStoryboardName
+            let params = Parameters(
+                title: "Refresh Token Error",
+                message: error.localizedDescription,
+                cancelButton: "Clear Cashed Credeintials"
+            )
             
-            if (Device.IS_IPAD) {
-                storyboardName = k_LoginStoryboardName_iPad
+            AlertHelperKit().showAlertWithHandler(topViewController, parameters: params) { buttonIndex in
+                self.logOut()  {(done) in
+                    switch(done) {
+                        
+                    case .success(let value):
+                        print("value:", value)
+                        self.showLoginViewController()
+                        self.authErrorAlertAlreadyShowing = false
+                        
+                    case .failure(let error):
+                        print("error:", error)
+                        
+                    }
+                }
             }
-            
-            let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: k_LoginViewControllerID) as! LoginViewController
-            topViewController.present(vc, animated: false, completion: nil)
         }
- */
+    }
+
+    func showLoginViewController() {
+
         if let topViewController = UIApplication.topViewController() {
             DispatchQueue.main.async {
                 
