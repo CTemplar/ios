@@ -84,16 +84,63 @@ class APIService {
         })
     }
     
+    @objc func refreshToken(completion:@escaping (Bool) -> () ) {
+        
+        DispatchQueue.main.async {
+            
+            let storedToken = self.keychainService?.getToken()
+            
+            self.restAPIService?.refreshToken(token: storedToken!) {(result) in
+                
+                switch(result) {
+                    
+                case .success(let value):
+                    print("refreshToken success value:", value)
+                    completion(true)
+                   
+                case .failure(let error):
+                    print("refreshToken error:", error)
+                    
+                    if let topViewController = UIApplication.topViewController() {
+                        // AlertHelperKit().showAlert(topViewController, title: "Autologin Error", message: error.localizedDescription, button: "Close")
+                        let params = Parameters(
+                            title: "Refresh Token Error",
+                            message: error.localizedDescription,
+                            cancelButton: "Clear Cashed Credeintials"
+                        )
+                        
+                        AlertHelperKit().showAlertWithHandler(topViewController, parameters: params) { buttonIndex in
+                            self.logOut()  {(done) in
+                                switch(done) {
+                                    
+                                case .success(let value):
+                                    print("value:", value)
+                                    self.showLoginViewController()
+                                    
+                                case .failure(let error):
+                                    print("error:", error)
+                                    
+                                }
+                            }
+                        }
+                    }
+                    
+                    completion(false)
+                }
+            }
+        }
+    }
+    
     @objc func autologin(completion:@escaping (Bool) -> () ) {
         
         DispatchQueue.main.async {
             
             let storedUserName = self.keychainService?.getUserName()
             let storedPassword = self.keychainService?.getPassword()
-            let twoFAcode = self.keychainService?.getPassword()
+            let twoFAcode = ""//self.keychainService?.getPassword()
             
             if (storedUserName?.count)! < 1 || (storedPassword?.count)! < 1 {
-                print("autologin: ywrong stored credentials!")
+                print("autologin: wrong stored credentials!")
                 //self.showLoginViewController()
                 completion(false)
                 return
@@ -1897,7 +1944,7 @@ class APIService {
                     let minutesCount = tokenSavedDate.minutesCountForTokenExpiration()
                     if minutesCount > k_tokenMinutesExpiration {
                        
-                        self.autologin(){ (complete) in
+                        self.refreshToken(){ (complete) in
                             if complete {
                                 completion(true)
                                 return
@@ -1911,14 +1958,14 @@ class APIService {
                     }
                 }
             } else {
-                self.autologin(){ (complete) in
+                self.refreshToken(){ (complete) in
                     if complete {
                         completion(true)
                     }
                 }
             }
         } else {
-            self.autologin(){ (complete) in
+            self.refreshToken(){ (complete) in
                 if complete {
                     completion(true)
                 }

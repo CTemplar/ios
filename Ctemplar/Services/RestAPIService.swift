@@ -20,6 +20,7 @@ class RestAPIService {
         case resetPassword = "auth/reset/"
         case changePassword = "auth/change-password/"
         case verifyToken = "auth/verify/"
+        case refreshToken = "auth/refresh/"
         case messages = "emails/messages/"
         case mailboxes = "emails/mailboxes/"
         case publicKeys = "emails/keys/"
@@ -310,6 +311,34 @@ class RestAPIService {
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
             
             print("verifyToken responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func refreshToken(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.token.rawValue: token
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.refreshToken.rawValue
+        
+        //print("verifyToken parameters:", parameters)
+        print("refreshToken url:", url)
+        
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("refreshToken responce:", response)
             
             switch(response.result) {
             case .success(let value):
