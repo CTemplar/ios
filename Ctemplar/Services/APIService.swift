@@ -116,7 +116,7 @@ class APIService {
                     let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                     if !self.authErrorAlertAlreadyShowing {
                         self.showErorrLoginAlert(error: error)
-                    }                   
+                    }
                     
                     completion(false)
                 }
