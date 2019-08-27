@@ -40,7 +40,7 @@ class InboxInteractor {
             self.viewController?.currentFolderMessagesArray = currentFolderMessages
             
             self.viewController?.dataSource?.messagesArray = currentFolderMessages
-            self.updateMessagesHeader(emailsArray: currentFolderMessages)
+            //self.updateMessagesHeader(emailsArray: currentFolderMessages)
             self.viewController?.dataSource?.reloadData()
             
             if self.viewController?.dataSource?.selectionMode == true {
@@ -494,7 +494,7 @@ class InboxInteractor {
         }
         
         self.viewController?.dataSource?.messagesArray = filteredMessagesArray
-        self.updateMessagesHeader(emailsArray: filteredMessagesArray)
+        //self.updateMessagesHeader(emailsArray: filteredMessagesArray)
         self.viewController?.dataSource?.reloadData()        
     }
     
