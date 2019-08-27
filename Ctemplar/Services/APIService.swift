@@ -124,62 +124,7 @@ class APIService {
             }
         }
     }
-    /*
-    @objc func autologin(completion:@escaping (Bool) -> () ) {
-        
-        DispatchQueue.main.async {
-            
-            let storedUserName = self.keychainService?.getUserName()
-            let storedPassword = self.keychainService?.getPassword()
-            let twoFAcode = ""//self.keychainService?.getPassword()
-            
-            if (storedUserName?.count)! < 1 || (storedPassword?.count)! < 1 {
-                print("autologin: wrong stored credentials!")
-                //self.showLoginViewController()
-                completion(false)
-                return
-            }
-            
-            self.authenticateUser(userName: storedUserName!, password: storedPassword!, twoFAcode: twoFAcode ?? "") {(result) in
-                
-                switch(result) {
-                    
-                case .success(let value):
-                    print("autologin success value:", value)
-                    completion(true)
-                    
-                case .failure(let error):
-                    print("autologin error:", error)
-                    
-                    if let topViewController = UIApplication.topViewController() {
-                       // AlertHelperKit().showAlert(topViewController, title: "Autologin Error", message: error.localizedDescription, button: "Close")
-                        let params = Parameters(
-                            title: "Autologin Error",
-                            message: error.localizedDescription,
-                            cancelButton: "Clear Cashed Credeintials"
-                        )
-                        
-                        AlertHelperKit().showAlertWithHandler(topViewController, parameters: params) { buttonIndex in
-                            self.logOut()  {(done) in
-                                switch(done) {
-                                    
-                                case .success(let value):
-                                    print("value:", value)
-                                    self.showLoginViewController()
-                                    
-                                case .failure(let error):
-                                    print("error:", error)
-                                    
-                                }
-                            }
-                        }
-                    }
-                    completion(false)
-                }
-            }
-        }
-    }*/
-    
+     
     func initialize() {
        
         self.restAPIService = appDelegate.applicationManager.restAPIService
@@ -2148,24 +2093,7 @@ class APIService {
     }
 
     func showLoginViewController() {
-/*
-        if let topViewController = UIApplication.topViewController() {
-            DispatchQueue.main.async {
-                
-                var storyboardName : String? = k_LoginStoryboardName
-                
-                if (Device.IS_IPAD) {
-                    storyboardName = k_LoginStoryboardName_iPad
-                }
-                
-                let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: k_LoginViewControllerID) as! LoginViewController
-                let mainViewController: MainViewController = UIApplication.shared.keyWindow?.rootViewController as! MainViewController
-                vc.mainViewController = mainViewController
-                topViewController.show(vc, sender: self)
-            }
-        }
-        */
+
         let mainViewController: MainViewController = UIApplication.shared.keyWindow?.rootViewController as! MainViewController
         mainViewController.inboxNavigationController.dismiss(animated: false, completion: {
             mainViewController.showLoginViewController()
