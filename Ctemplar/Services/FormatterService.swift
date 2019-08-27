@@ -273,6 +273,8 @@ class FormatterService
                 let hours = duration
                 dateString = dateString + String(format: "%02d", hours) + ":00"
             }
+        } else {
+            dateString = dateString + "00:00"
         }
         
         let attributedString = NSMutableAttributedString(string: dateString, attributes: [
