@@ -61,7 +61,8 @@ class RecoveryEmailViewController: UIViewController {
             self.rigthBarButtonEnabled()
         } else {
             self.textFieldView.isHidden = true
-            self.setupRightBarButton(show: false)
+            self.setupRightBarButton(show: true)
+            self.recoveryEmail = " " //if use just "" mail is not updated
         }
     }
     
@@ -153,7 +154,8 @@ class RecoveryEmailViewController: UIViewController {
         
         AlertHelperKit().showAlertWithHandler(self, parameters: params) { buttonIndex in
             
-            self.dismiss(animated: true, completion: nil)
+            //self.dismiss(animated: true, completion: nil)
+            self.cancelButtonPressed(self)
         }
     }
 }
