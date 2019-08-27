@@ -189,8 +189,8 @@
 "photoLibrary" = "Photo library";
 "camera" = "Camera";
 
-"forward" = "Fwd: ";
-"reply" = "Re: ";
+"forwardSubject" = "Fwd: ";
+"replySubject" = "Re: ";
 
 // Search Screen
 

@@ -189,8 +189,8 @@
 "photoLibrary" = "Медиатека";
 "camera" = "Камера";
 
-"forward" = "Fwd: ";
-"reply" = "Re: ";
+"forwardSubject" = "Fwd: ";
+"replySubject" = "Re: ";
 
 // Search Screen
 
