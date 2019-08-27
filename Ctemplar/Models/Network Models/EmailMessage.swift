@@ -36,6 +36,7 @@ struct EmailMessage {
     var sentAt : String? = nil
     var starred : Bool? = nil
     var subject : String? = nil
+    var incomingHeader : String? = nil
     var updated : String? = nil
     
     init() {
@@ -44,7 +45,7 @@ struct EmailMessage {
     
     init(dictionary: [String: Any]) {
         
-        //print("email dict:", dictionary)
+        print("email dict:", dictionary)
         
         if let attachmentsArray = dictionary["attachments"] as? Array<Any> {
             self.attachments = self.parsAttachmentsFromList(array: attachmentsArray)
@@ -82,6 +83,7 @@ struct EmailMessage {
         self.sentAt = dictionary["sent_at"] as? String
         self.starred = dictionary["starred"] as? Bool
         self.subject = dictionary["subject"] as? String
+        self.incomingHeader = dictionary["incoming_headers"] as? String
         self.updated = dictionary["updated"] as? String
     }
     

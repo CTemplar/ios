@@ -127,14 +127,8 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
             //print("header:", header)
             localHeader = header
         }*/
-        
-        var header = ""
-        
-        if let subj = message.subject {
-            header = subj
-        }
-
-        cell.setupCellWithData(message: message, header: header, isSelectionMode: self.selectionMode, isSelected: selected, frameWidth: self.tableView.frame.width)
+  
+        cell.setupCellWithData(message: message, header: "", isSelectionMode: self.selectionMode, isSelected: selected, frameWidth: self.tableView.frame.width)
         
         //cell.selectionStyle = UITableViewCell.SelectionStyle.none
         
