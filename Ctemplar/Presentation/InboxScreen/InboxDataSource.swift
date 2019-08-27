@@ -116,7 +116,7 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         
         let message = messagesArray[indexPath.row]
         let selected = isMessageSelected(message: message)
-        
+        /*
         var localHeader = "decrypting".localized()
         
         if messagesHeaderArray.count > indexPath.row {
@@ -126,9 +126,15 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         if let header = messagesHeaderDictionary[message.messsageID!] {
             //print("header:", header)
             localHeader = header
+        }*/
+        
+        var header = ""
+        
+        if let subj = message.subject {
+            header = subj
         }
 
-        cell.setupCellWithData(message: message, header: localHeader, isSelectionMode: self.selectionMode, isSelected: selected, frameWidth: self.tableView.frame.width)
+        cell.setupCellWithData(message: message, header: header, isSelectionMode: self.selectionMode, isSelected: selected, frameWidth: self.tableView.frame.width)
         
         //cell.selectionStyle = UITableViewCell.SelectionStyle.none
         

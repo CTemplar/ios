@@ -44,6 +44,8 @@ struct EmailMessage {
     
     init(dictionary: [String: Any]) {
         
+        //print("email dict:", dictionary)
+        
         if let attachmentsArray = dictionary["attachments"] as? Array<Any> {
             self.attachments = self.parsAttachmentsFromList(array: attachmentsArray)
         }
