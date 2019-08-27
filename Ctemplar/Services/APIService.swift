@@ -124,7 +124,7 @@ class APIService {
             }
         }
     }
-    
+    /*
     @objc func autologin(completion:@escaping (Bool) -> () ) {
         
         DispatchQueue.main.async {
@@ -178,7 +178,7 @@ class APIService {
                 }
             }
         }
-    }
+    }*/
     
     func initialize() {
        
@@ -2160,12 +2160,15 @@ class APIService {
                 
                 let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: k_LoginViewControllerID) as! LoginViewController
-                //vc.mainViewController = self
+                let mainViewController: MainViewController = UIApplication.shared.keyWindow?.rootViewController as! MainViewController
+                vc.mainViewController = mainViewController
                 topViewController.show(vc, sender: self)
             }
-        }*/
-        
-        let mainViewController: MainViewController = UIApplication.shared.keyWindow?.rootViewController as! MainViewController        
-        mainViewController.showLoginViewController()
+        }
+        */
+        let mainViewController: MainViewController = UIApplication.shared.keyWindow?.rootViewController as! MainViewController
+        mainViewController.inboxNavigationController.dismiss(animated: false, completion: {
+            mainViewController.showLoginViewController()
+        })        
     }
 }

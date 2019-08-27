@@ -62,6 +62,8 @@ class MainViewController: UIViewController {
     
     func setAutoUpdaterTimer() {
         
+        print("start AutoUpdaterTimer")
+        
         mainTimer = Timer.scheduledTimer(timeInterval: 60,
                              target: self,
                              selector: #selector(self.sendUpdateNotification),
@@ -72,7 +74,9 @@ class MainViewController: UIViewController {
     func stopAutoUpdaterTimer() {
         
         if mainTimer != nil {
+            print("stop AutoUpdaterTimer")
             mainTimer.invalidate()
+            mainTimer = nil
         }
     }
     
@@ -109,7 +113,7 @@ class MainViewController: UIViewController {
     }
     
     func showInboxNavigationController() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async {            
             self.show(self.inboxNavigationController, sender: self)
         }
     }

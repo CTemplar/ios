@@ -99,6 +99,8 @@ class InboxPresenter {
     
     func setupNavigationItemTitle(selectedMessages: Int, selectionMode: Bool, currentFolder: String) {
         
+        self.viewController?.navigationController?.navigationBar.isHidden = false
+        
         if selectionMode == true {
             self.viewController?.navigationItem.title = String(format: "%d " + "selected".localized() , selectedMessages)
         } else {
