@@ -142,7 +142,7 @@ class ContactsPresenter {
         
         self.setupNavigationItemTitle(selectedContacts: (self.viewController?.dataSource?.selectedContactsArray.count)!, selectionMode: true)
         
-        self.viewController?.selectedAllViewHeightConstraint.constant = k_contactsSelectAllBarHeight
+        //self.viewController?.selectedAllViewHeightConstraint.constant = k_contactsSelectAllBarHeight
         self.viewController?.bottomBarHeightConstraint.constant = k_contactsBottomBarHeight
         self.viewController?.view.layoutIfNeeded()
         
@@ -172,7 +172,7 @@ class ContactsPresenter {
     func setSelectAllBar(show : Bool) {
         
         if show {
-            self.viewController?.selectedAllViewHeightConstraint.constant = k_contactsSelectAllBarHeight
+            //self.viewController?.selectedAllViewHeightConstraint.constant = k_contactsSelectAllBarHeight
         } else {
             self.viewController?.selectedAllViewHeightConstraint.constant = 0.0
         }
