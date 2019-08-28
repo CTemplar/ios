@@ -515,7 +515,7 @@ class ComposeInteractor {
         return ""
     }
     
-    func sendPasswordForCreatingMessage(password: String, passwordHint: String) {
+    func sendPasswordForCreatingMessage(password: String, passwordHint: String, expiredTime: Int) {
         
         self.setPassword = password
   
@@ -523,7 +523,7 @@ class ComposeInteractor {
         
         messageContent = self.encryptMessageWithOwnPublicKey(message: messageContent)
         
-        let encryptionObject = EncryptionObject.init(password: password, passwordHint: passwordHint).toShortDictionary()
+        let encryptionObject = EncryptionObject.init(password: password, passwordHint: passwordHint, expiryHours: expiredTime.description).toShortDictionary()
         
         let recieversList = self.setRecieversList()
         

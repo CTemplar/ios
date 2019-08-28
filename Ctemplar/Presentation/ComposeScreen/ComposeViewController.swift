@@ -616,9 +616,9 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
 
 extension ComposeViewController: SetPasswordDelegate {
 
-    func applyAction(password: String, passwordHint: String) {
+    func applyAction(password: String, passwordHint: String, expiredTime: Int) {
         
-        self.interactor?.sendPasswordForCreatingMessage(password: password, passwordHint: passwordHint)
+        self.interactor?.sendPasswordForCreatingMessage(password: password, passwordHint: passwordHint, expiredTime: expiredTime)
     }
     
     func cancelAction() {

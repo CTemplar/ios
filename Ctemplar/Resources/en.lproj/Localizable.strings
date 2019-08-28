@@ -232,6 +232,8 @@
 "encryptForNon" = "Encrypt for non-Ctemplar Mail Users";
 "messagePassword" = "Message Password";
 "expirationTime" = "Expiration Time";
+"days" = "Days";
+"hours" = "Hours";
 
 "passwordsMustMatch" = "Passwords must match";
 "passwordHint" = "Password Hint";

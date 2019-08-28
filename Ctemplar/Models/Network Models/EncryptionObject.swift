@@ -19,6 +19,7 @@ struct EncryptionObject: Encodable {
     var privateKey : String? = nil
     var publicKey : String? = nil
     var randomSecret : String? = nil
+    var expiryHours : String? = nil
     
     init() {
         
@@ -35,12 +36,14 @@ struct EncryptionObject: Encodable {
         self.privateKey = dictionary["private_key"] as? String
         self.publicKey = dictionary["public_key"] as? String
         self.randomSecret = dictionary["random_secret"] as? String
+        self.expiryHours = dictionary["expiry_hours"] as? String
     }
     
-    init(password: String, passwordHint: String) {
+    init(password: String, passwordHint: String, expiryHours: String) {
         
         self.password = password
         self.passwordHint = passwordHint
+        self.expiryHours = expiryHours
     }
     
     mutating func setPGPKeys(publicKey: String, privateKey: String) {
@@ -77,7 +80,8 @@ struct EncryptionObject: Encodable {
                 "message"           : self.messageID?.description ?? "",
                 "private_key"       : self.privateKey ?? "",
                 "public_key"        : self.publicKey ?? "",
-                "random_secret"     : self.randomSecret ?? ""
+                "random_secret"     : self.randomSecret ?? "",
+                "expiry_hours"      : self.expiryHours ?? ""
                 ]
     }
     

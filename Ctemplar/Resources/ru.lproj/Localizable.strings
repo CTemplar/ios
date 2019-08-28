@@ -233,6 +233,8 @@
 "encryptForNon" = "Шифровать для не-Ctemplar пользователей";
 "messagePassword" = "Пароль сообщения";
 "expirationTime" = "Время жизни";
+"days" = "Дни";
+"hours" = "Часы";
 
 "passwordsMustMatch" = "Пароли должны совпадать";
 "passwordHint" = "Подсказка для пароля";
