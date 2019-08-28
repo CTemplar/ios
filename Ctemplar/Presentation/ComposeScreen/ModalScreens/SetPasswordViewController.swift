@@ -272,7 +272,7 @@ class SetPasswordViewController: UIViewController, UITextFieldDelegate {
     
     func showExpirationTimeAlert() {
         
-        AlertHelperKit().showAlert(self, title: "Info:".localized(), message: "Expiry time should be minimum 1 hour and maximum 5 days.".localized(), button: "closeButton".localized())
+        AlertHelperKit().showAlert(self, title: "Info:".localized(), message: "expireTimeAlert".localized(), button: "closeButton".localized())
     }
     
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {

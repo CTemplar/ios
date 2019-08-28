@@ -234,6 +234,7 @@
 "expirationTime" = "Expiration Time";
 "days" = "Days";
 "hours" = "Hours";
+"expireTimeAlert" = "Expiry time should be minimum 1 hour and maximum 5 days.";
 
 "passwordsMustMatch" = "Passwords must match";
 "passwordHint" = "Password Hint";
@@ -241,6 +242,7 @@
 "encryptedMessagesTo" = "Encrypted messages to non-Ctemplar recipients will expire in 28 days unless a shorter expiration time is set.";
 
 //Manage Folders
+
 "deleteFolderTitle" = "Delete folder?";
 "deleteFolder" = "Are you sure you want to delete folder?";
 

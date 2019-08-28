@@ -198,7 +198,6 @@
 
 "search" = "Поиск";
 
-
 //Side Menu Cells
 
 "inbox"            = "Входящие";
@@ -235,6 +234,7 @@
 "expirationTime" = "Время жизни";
 "days" = "Дни";
 "hours" = "Часы";
+"expireTimeAlert" = "Expiry time should be minimum 1 hour and maximum 5 days.";
 
 "passwordsMustMatch" = "Пароли должны совпадать";
 "passwordHint" = "Подсказка для пароля";
