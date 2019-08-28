@@ -523,7 +523,7 @@ class ComposeInteractor {
         
         messageContent = self.encryptMessageWithOwnPublicKey(message: messageContent)
         
-        let encryptionObject = EncryptionObject.init(password: password, passwordHint: passwordHint, expiryHours: expiredTime.description).toShortDictionary()
+        let encryptionObject = EncryptionObject.init(password: password, passwordHint: passwordHint, expiryHours: expiredTime).toShortDictionary()
         
         let recieversList = self.setRecieversList()
         

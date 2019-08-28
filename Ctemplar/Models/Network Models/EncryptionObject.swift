@@ -19,7 +19,7 @@ struct EncryptionObject: Encodable {
     var privateKey : String? = nil
     var publicKey : String? = nil
     var randomSecret : String? = nil
-    var expiryHours : String? = nil
+    var expiryHours : Int? = nil
     
     init() {
         
@@ -36,10 +36,10 @@ struct EncryptionObject: Encodable {
         self.privateKey = dictionary["private_key"] as? String
         self.publicKey = dictionary["public_key"] as? String
         self.randomSecret = dictionary["random_secret"] as? String
-        self.expiryHours = dictionary["expiry_hours"] as? String
+        self.expiryHours = dictionary["expiry_hours"] as? Int
     }
     
-    init(password: String, passwordHint: String, expiryHours: String) {
+    init(password: String, passwordHint: String, expiryHours: Int) {
         
         self.password = password
         self.passwordHint = passwordHint
@@ -81,7 +81,7 @@ struct EncryptionObject: Encodable {
                 "private_key"       : self.privateKey ?? "",
                 "public_key"        : self.publicKey ?? "",
                 "random_secret"     : self.randomSecret ?? "",
-                "expiry_hours"      : self.expiryHours ?? ""
+                "expiry_hours"      : self.expiryHours?.description ?? ""
                 ]
     }
     
