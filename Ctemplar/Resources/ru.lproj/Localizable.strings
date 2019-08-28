@@ -232,6 +232,7 @@
 "setPassword" = "Установить пароль";
 "encryptForNon" = "Шифровать для не-Ctemplar пользователей";
 "messagePassword" = "Пароль сообщения";
+"expirationTime" = "Время жизни";
 
 "passwordsMustMatch" = "Пароли должны совпадать";
 "passwordHint" = "Подсказка для пароля";
