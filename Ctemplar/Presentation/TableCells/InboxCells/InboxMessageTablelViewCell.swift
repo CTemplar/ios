@@ -22,7 +22,8 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
     @IBOutlet weak var deleteLabel             : UILabel!
     @IBOutlet weak var leftLabel               : UILabel!
     @IBOutlet weak var timeLabel               : UILabel!
-    
+    @IBOutlet weak var encryptedSubjectLabel   : UILabel!
+ 
     @IBOutlet weak var isSelectedImageView     : UIImageView!
     @IBOutlet weak var isReadImageView         : UIImageView!
     @IBOutlet weak var isSecuredImageView      : UIImageView!
@@ -32,6 +33,7 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
     @IBOutlet weak var timerlabelsView         : UIView!
     @IBOutlet weak var leftlabelView           : UIView!
     @IBOutlet weak var rightlabelView          : UIView!
+    @IBOutlet weak var encryptedSubjectView    : UIView!
     
     @IBOutlet var senderLabelWidthConstraint            : NSLayoutConstraint!
     @IBOutlet var isSelectedImageTrailingConstraint     : NSLayoutConstraint!
@@ -59,11 +61,11 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
         // Configure the view for the selected state
     }
     
-    func setupCellWithData(message: EmailMessage, header: String, subject: String, isSelectionMode: Bool, isSelected: Bool, frameWidth: CGFloat) {
+    func setupCellWithData(message: EmailMessage, header: String, subjectEncrypted: Bool, isSelectionMode: Bool, isSelected: Bool, frameWidth: CGFloat) {
         
         cellWidth = frameWidth
         
-        setupLabelsAndImages(message: message, header: header, subject: subject)
+        setupLabelsAndImages(message: message, header: header, subjectEncrypted: subjectEncrypted)
         
         setupConstraints(message: message, isSelectionMode: isSelectionMode)
         
@@ -74,17 +76,23 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
         }
     }
     
-    func setupLabelsAndImages(message: EmailMessage, header : String, subject: String) {
+    func setupLabelsAndImages(message: EmailMessage, header : String, subjectEncrypted: Bool) {
         
         if let sender = message.sender {            
             senderLabel.text = sender
+        }        
+        
+        if subjectEncrypted {
+            encryptedSubjectView.isHidden = false
+            subjectLabel.text = ""
+        } else {
+            encryptedSubjectView.isHidden = true
+            if let subject = message.subject {
+                subjectLabel.text = subject
+            }
         }
         
-        //if let subject = message.subject {
-        //    subjectLabel.text = subject
-        //}
-        
-        subjectLabel.text = subject
+        //subjectLabel.text = subject
         
         headMessageLabel.text = header
         

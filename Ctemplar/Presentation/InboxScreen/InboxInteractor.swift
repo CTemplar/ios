@@ -41,7 +41,7 @@ class InboxInteractor {
             
             self.viewController?.dataSource?.messagesArray = currentFolderMessages
             //self.updateMessagesHeader(emailsArray: currentFolderMessages)
-            self.updateMessagesSubjects(emailsArray: currentFolderMessages)
+            //self.updateMessagesSubjects(emailsArray: currentFolderMessages)
             self.viewController?.dataSource?.reloadData()
             
             if self.viewController?.dataSource?.selectionMode == true {
@@ -420,6 +420,15 @@ class InboxInteractor {
         return false
     }
     
+    func isSubjectEncrypted(message: EmailMessage) -> Bool {
+        
+        if (apiService?.isSubjectEncrypted(message: message))! {
+            return true
+        }
+        
+        return false
+    }
+    
     func updateMessagesSubjects(emailsArray: Array<EmailMessage>) {
         
         for message in emailsArray {
@@ -540,7 +549,7 @@ class InboxInteractor {
         
         self.viewController?.dataSource?.messagesArray = filteredMessagesArray
         //self.updateMessagesHeader(emailsArray: filteredMessagesArray)
-        self.updateMessagesSubjects(emailsArray: filteredMessagesArray)
+        //self.updateMessagesSubjects(emailsArray: filteredMessagesArray)
         self.viewController?.dataSource?.reloadData()        
     }
     

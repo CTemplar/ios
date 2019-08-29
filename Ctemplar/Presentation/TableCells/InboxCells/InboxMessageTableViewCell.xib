@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -229,6 +229,58 @@
                                 <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G38-y1-Kgj">
+                                <rect key="frame" x="0.0" y="25" width="80" height="18"/>
+                                <subviews>
+                                    <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="7e3-cH-JZh">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="18"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="Yv0-gk-FUN"/>
+                                        </constraints>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Encrypted Subject">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <font key="NSFont" size="9" name="Lato-Regular"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.66666666669999997" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="7e3-cH-JZh" firstAttribute="leading" secondItem="G38-y1-Kgj" secondAttribute="leading" id="MFG-Rj-qbC"/>
+                                    <constraint firstAttribute="bottom" secondItem="7e3-cH-JZh" secondAttribute="bottom" id="Ofh-0w-AeK"/>
+                                    <constraint firstAttribute="height" constant="18" id="k5T-cX-S3m"/>
+                                    <constraint firstAttribute="trailing" secondItem="7e3-cH-JZh" secondAttribute="trailing" id="n9P-gZ-XfE"/>
+                                    <constraint firstItem="7e3-cH-JZh" firstAttribute="top" secondItem="G38-y1-Kgj" secondAttribute="top" id="zri-Ah-Zyw"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You now have an inbox that is protected…" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aj7-qF-XOj">
                                 <rect key="frame" x="0.0" y="48" width="288" height="16"/>
                                 <constraints>
@@ -249,6 +301,8 @@
                             <constraint firstItem="ojL-O5-Vff" firstAttribute="top" secondItem="gQA-43-osU" secondAttribute="top" id="FLg-U7-sxn"/>
                             <constraint firstItem="Klj-j6-FcD" firstAttribute="leading" secondItem="XCp-iz-PG3" secondAttribute="trailing" constant="6" id="Jss-lk-iem"/>
                             <constraint firstAttribute="trailing" secondItem="x7N-NB-U2F" secondAttribute="trailing" id="caF-Wl-xcS"/>
+                            <constraint firstItem="G38-y1-Kgj" firstAttribute="leading" secondItem="x7N-NB-U2F" secondAttribute="leading" id="dMd-T8-dfv"/>
+                            <constraint firstItem="G38-y1-Kgj" firstAttribute="centerY" secondItem="x7N-NB-U2F" secondAttribute="centerY" id="df2-tq-XOk"/>
                             <constraint firstItem="aj7-qF-XOj" firstAttribute="leading" secondItem="gQA-43-osU" secondAttribute="leading" id="ksh-FV-ZNR"/>
                             <constraint firstAttribute="bottom" secondItem="aj7-qF-XOj" secondAttribute="bottom" id="lh3-dd-yXw"/>
                             <constraint firstAttribute="trailing" secondItem="ojL-O5-Vff" secondAttribute="trailing" id="mkK-uy-xtX"/>
@@ -304,6 +358,8 @@
                 <outlet property="deleteLabel" destination="VLh-Ex-4Na" id="Q7j-pD-Wcf"/>
                 <outlet property="dotImageTrailingConstraint" destination="zkf-o1-vCS" id="dB8-jB-4xV"/>
                 <outlet property="dotImageWidthConstraint" destination="LV0-2O-V7x" id="e8i-Cf-qTj"/>
+                <outlet property="encryptedSubjectLabel" destination="7e3-cH-JZh" id="Rem-Td-EOd"/>
+                <outlet property="encryptedSubjectView" destination="G38-y1-Kgj" id="XEI-7h-iA4"/>
                 <outlet property="hasAttachmentImageView" destination="ri0-gV-UDM" id="3Y9-N6-P37"/>
                 <outlet property="headMessageLabel" destination="aj7-qF-XOj" id="LHf-og-y7n"/>
                 <outlet property="isReadImageView" destination="sdQ-tS-sOY" id="oJr-W7-jKf"/>
@@ -332,6 +388,6 @@
         <image name="RedDot" width="8" height="8"/>
         <image name="SecureIcon" width="16" height="16"/>
         <image name="StarIcon" width="16" height="16"/>
-        <image name="roundDark" width="29" height="29"/>
+        <image name="roundDark" width="29.333333969116211" height="29.333333969116211"/>
     </resources>
 </document>

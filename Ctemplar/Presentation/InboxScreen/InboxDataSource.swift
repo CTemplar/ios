@@ -128,14 +128,16 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
             //print("header:", header)
             localHeader = header
         }*/
-        
+        /*
         var localSubject = "decrypting".localized()
         
         if let subject = messagesSubjectDictionary[message.messsageID!] {            
             localSubject = subject
-        }
+        }*/
         
-        cell.setupCellWithData(message: message, header: "", subject: localSubject, isSelectionMode: self.selectionMode, isSelected: selected, frameWidth: self.tableView.frame.width)
+        let isSubjectEncrypted = self.parentViewController?.presenter?.interactor?.isSubjectEncrypted(message: message)
+        
+        cell.setupCellWithData(message: message, header: "", subjectEncrypted: isSubjectEncrypted!, isSelectionMode: self.selectionMode, isSelected: selected, frameWidth: self.tableView.frame.width)
         
         //cell.selectionStyle = UITableViewCell.SelectionStyle.none
         
