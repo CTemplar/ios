@@ -131,8 +131,7 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         
         var localSubject = "decrypting".localized()
         
-        if let subject = messagesSubjectDictionary[message.messsageID!] {
-            print("subject:", subject)
+        if let subject = messagesSubjectDictionary[message.messsageID!] {            
             localSubject = subject
         }
         

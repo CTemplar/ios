@@ -197,6 +197,36 @@ class ViewInboxEmailInteractor {
         return header
     }
     
+    func updateSubject(message: EmailMessage) {
+        
+        if (apiService?.isSubjectEncrypted(message: message))! {
+            self.extractSubjectContentAsync(message: message)
+        } else {
+            if let subjectText = message.subject {
+                self.presenter?.setSubjectLabel(subject: subjectText)
+            } else {
+                self.presenter?.setSubjectLabel(subject: "Empty subject")
+            }
+        }
+    }
+    
+    func extractSubjectContentAsync(message: EmailMessage) {
+        
+        let queue = DispatchQueue.global(qos: .userInitiated)
+        
+        queue.async {
+            if let content = message.subject {
+                if let decryptedSubject = self.pgpService?.decryptMessage(encryptedContet: content) {
+                    DispatchQueue.main.async {
+                        self.presenter?.setSubjectLabel(subject: decryptedSubject)
+                    }
+                }
+            }
+        }
+    }
+    
+    //MARK: - Move methods
+    
     func moveMessageToTrash(message: EmailMessage, withUndo: String) {
         
         self.viewController?.lastAction = ActionsIndex.moveToTrach

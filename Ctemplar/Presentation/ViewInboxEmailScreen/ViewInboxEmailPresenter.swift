@@ -192,7 +192,12 @@ class ViewInboxEmailPresenter {
     
     func setupSubjectLabel(message: EmailMessage) {
         
-        self.viewController?.headerLabel.text = message.subject
+        self.interactor?.updateSubject(message: message)       
+    }
+    
+    func setSubjectLabel(subject: String) {
+        
+        self.viewController?.headerLabel.text = subject
         
         let subjectTextWidth : CGFloat  = (self.viewController?.headerLabel.text!.widthOfString(usingFont: (self.viewController?.headerLabel.font)!))!
         

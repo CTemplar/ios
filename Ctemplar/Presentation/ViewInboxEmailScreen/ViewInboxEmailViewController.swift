@@ -53,6 +53,7 @@ class ViewInboxEmailViewController: UIViewController {
     
     var message : EmailMessage?
     var messageID  : Int?
+    var decryptedSubject: String? = ""
     
     //var mailboxesList    : Array<Mailbox> = []
     var user = UserMyself()
