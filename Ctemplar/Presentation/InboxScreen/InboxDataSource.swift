@@ -14,8 +14,9 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
     
     var messagesArray            : Array<EmailMessage> = []
     var messagesHeaderArray      : Array<String> = []
-    //var messagesHeaderDictionary : Dictionary<Int, String> = Dictionary<Int, String>()
     var messagesHeaderDictionary = [Int: String]()
+    var messagesSubjectArray     : Array<String> = []
+    var messagesSubjectDictionary = [Int: String]()
     var selectedMessagesIDArray  : Array<Int> = []
     
     var tableView               : UITableView!

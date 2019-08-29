@@ -1946,6 +1946,31 @@ class APIService {
         return false
     }
     
+    func isSubjectEncrypted(message: EmailMessage) -> Bool {
+        /*
+        if let isEncrypted = message.isEncrypted {
+            if isEncrypted {
+                return true
+            } else {
+                */
+                let content = message.subject
+                
+                if content!.count > k_firstCharsForEncryptdHeader {
+                    let index = content!.index(content!.startIndex, offsetBy: k_firstCharsForEncryptdHeader)
+                    let header = String(content!.prefix(upTo: index))
+                    
+                    //print("header:", header)
+                    
+                    if header == "-----" {
+                        return true
+                    }
+                }
+            //}
+       // }
+        
+        return false
+    }
+    
     //MARK: - Parcing
     
     func parseServerResponse(response: Dictionary<String, Any>) -> String? {

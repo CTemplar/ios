@@ -41,6 +41,7 @@ class InboxInteractor {
             
             self.viewController?.dataSource?.messagesArray = currentFolderMessages
             //self.updateMessagesHeader(emailsArray: currentFolderMessages)
+            self.updateMessagesSubjects(emailsArray: currentFolderMessages)
             self.viewController?.dataSource?.reloadData()
             
             if self.viewController?.dataSource?.selectionMode == true {
@@ -373,11 +374,31 @@ class InboxInteractor {
         }
     }
     
+    func decryptSubject(content: String, messageID: Int) {
+        
+        let queue = DispatchQueue.global(qos: .utility)
+        
+        queue.async {
+            
+            if let subject = self.pgpService?.decryptMessage(encryptedContet: content) {
+                DispatchQueue.main.async {
+                    self.setDecryptedSubject(content: subject, messageID: messageID)
+                }
+            }
+        }
+    }
+    
     func setDecryptedHeader(content: String, messageID: Int) {
         
         let header = self.headerOfMessage(content: content)
      
         self.viewController?.dataSource?.messagesHeaderDictionary[messageID] = header
+        self.viewController?.dataSource?.reloadData()
+    }
+    
+    func setDecryptedSubject(content: String, messageID: Int) {
+        
+        self.viewController?.dataSource?.messagesSubjectDictionary[messageID] = content
         self.viewController?.dataSource?.reloadData()
     }
     
@@ -388,6 +409,30 @@ class InboxInteractor {
         }
         
         return false
+    }
+    
+    func checkIsMessageSubjectDecrypted(messageID: Int) -> Bool {
+        
+        if (self.viewController?.dataSource?.messagesSubjectDictionary[messageID]) != nil {
+            return true
+        }
+        
+        return false
+    }
+    
+    func updateMessagesSubjects(emailsArray: Array<EmailMessage>) {
+        
+        for message in emailsArray {
+            if let messageSubject = message.subject {
+                if (apiService?.isSubjectEncrypted(message: message))! {
+                    if !self.checkIsMessageSubjectDecrypted(messageID: message.messsageID!) {
+                        self.decryptSubject(content: messageSubject, messageID: message.messsageID!)
+                    }
+                } else {
+                    self.setDecryptedSubject(content: messageSubject, messageID: message.messsageID!)
+                }
+            }
+        }
     }
     
     func updateMessagesHeader(emailsArray: Array<EmailMessage>) {
@@ -495,6 +540,7 @@ class InboxInteractor {
         
         self.viewController?.dataSource?.messagesArray = filteredMessagesArray
         //self.updateMessagesHeader(emailsArray: filteredMessagesArray)
+        self.updateMessagesSubjects(emailsArray: filteredMessagesArray)
         self.viewController?.dataSource?.reloadData()        
     }
     
