@@ -2090,9 +2090,9 @@ class APIService {
         if let topViewController = UIApplication.topViewController() {
             
             let params = Parameters(
-                title: "Refresh Token Error",
+                title: "Refresh Token".localized(),
                 message: error.localizedDescription,
-                cancelButton: "Relogin"
+                cancelButton: "Relogin".localized()
             )
             
             AlertHelperKit().showAlertWithHandler(topViewController, parameters: params) { buttonIndex in

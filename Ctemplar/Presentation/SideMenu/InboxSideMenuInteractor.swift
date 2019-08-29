@@ -79,7 +79,7 @@ class InboxSideMenuInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                AlertHelperKit().showAlert(self.viewController!, title: "Folders Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
             HUD.hide()
@@ -131,7 +131,7 @@ class InboxSideMenuInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                AlertHelperKit().showAlert(self.viewController!, title: "Unread Messages Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
             //HUD.hide()

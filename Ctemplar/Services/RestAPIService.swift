@@ -441,6 +441,8 @@ class RestAPIService {
             timeParameter = "&seconds=" + seconds.description
         }
         
+        //timeParameter = "?seconds=100000000"
+        
         let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + folder + messagesIDIn + timeParameter//"?starred=1"// "?read=0"
         //let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + "?seconds=" + seconds
         //let url = "https://devapi.ctemplar.com/emails/messages/?limit=20&offset=0&folder=inbox&read=false&seconds=30"

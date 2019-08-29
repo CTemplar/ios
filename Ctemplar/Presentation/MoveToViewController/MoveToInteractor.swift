@@ -84,7 +84,7 @@ class MoveToInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                AlertHelperKit().showAlert(self.viewController!, title: "Move Messages Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
     }
