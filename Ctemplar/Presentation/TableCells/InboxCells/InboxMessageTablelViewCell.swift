@@ -59,11 +59,11 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
         // Configure the view for the selected state
     }
     
-    func setupCellWithData(message: EmailMessage, header: String, isSelectionMode: Bool, isSelected: Bool, frameWidth: CGFloat) {
+    func setupCellWithData(message: EmailMessage, header: String, subject: String, isSelectionMode: Bool, isSelected: Bool, frameWidth: CGFloat) {
         
         cellWidth = frameWidth
         
-        setupLabelsAndImages(message: message, header: header)
+        setupLabelsAndImages(message: message, header: header, subject: subject)
         
         setupConstraints(message: message, isSelectionMode: isSelectionMode)
         
@@ -74,15 +74,17 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
         }
     }
     
-    func setupLabelsAndImages(message: EmailMessage, header : String) {
+    func setupLabelsAndImages(message: EmailMessage, header : String, subject: String) {
         
         if let sender = message.sender {            
             senderLabel.text = sender
         }
         
-        if let subject = message.subject {
-            subjectLabel.text = subject
-        }
+        //if let subject = message.subject {
+        //    subjectLabel.text = subject
+        //}
+        
+        subjectLabel.text = subject
         
         headMessageLabel.text = header
         
