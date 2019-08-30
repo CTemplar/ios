@@ -58,6 +58,10 @@ class InboxInteractor {
             
             let filterEnabled = self.filterEnabled()
             self.presenter?.setupUI(emailsCount: currentFolderMessages.count, unreadEmails: unreadEmails, filterEnabled: filterEnabled)
+            
+            if filterEnabled {
+                self.applyFilters()
+            }
         }
     }
     
