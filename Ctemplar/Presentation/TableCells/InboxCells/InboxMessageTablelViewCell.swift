@@ -126,6 +126,9 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
         }
         
         leftlabelView.isHidden = true
+        //rightlabelView.isHidden = true
+        
+        //if message.folder != InboxSideMenuOptionsName.trash.rawValue {
         
         let short = self.isShortNeed(message: message)
         
@@ -172,6 +175,12 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
                 }
             }
         } else {
+            rightlabelView.isHidden = true
+        }
+        //}
+        
+        if message.folder == InboxSideMenuOptionsName.trash.rawValue {
+            leftlabelView.isHidden = true
             rightlabelView.isHidden = true
         }
         
