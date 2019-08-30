@@ -25,6 +25,14 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     var filtered : Bool = false
     var selectionMode : Bool = false
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh(_:)), for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.gray
+        
+        return refreshControl
+    }()
+    
     func initWith(parent: ContactsViewController, tableView: UITableView) {
         
         self.parentViewController = parent
@@ -35,6 +43,8 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(sender:)))
         self.tableView.addGestureRecognizer(longPressRecognizer)
+        
+        self.tableView.addSubview(self.refreshControl)
         
         registerTableViewCell()
     }
@@ -129,6 +139,7 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     func reloadData() {
         
         self.tableView.reloadData()
+        self.refreshControl.endRefreshing()
         
         self.parentViewController.presenter?.setupNavigationItemTitle(selectedContacts: selectedContactsArray.count, selectionMode: selectionMode)
     }
@@ -145,6 +156,11 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             let contact = contactsArray[indexPath.row]            
             self.parentViewController.presenter?.deleteContactPermanently(selectedContactsArray: [contact])
         }
+    }
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        
+        self.parentViewController.presenter?.interactor?.userContactsList()
     }
     
     // MARK: Actions

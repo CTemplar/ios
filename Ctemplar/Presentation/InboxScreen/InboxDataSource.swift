@@ -198,8 +198,7 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         
-       self.parentViewController.presenter?.interactor?.updateMessages(withUndo: "", silent: true)
-        //refreshControl.endRefreshing()
+       self.parentViewController.presenter?.interactor?.updateMessages(withUndo: "", silent: true)        
     }
     
     // MARK: MGSwipe delegate
