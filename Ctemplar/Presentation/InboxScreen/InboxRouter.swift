@@ -24,12 +24,33 @@ class InboxRouter {
     }
     
     func showComposeViewController(answerMode: AnswerMessageMode) {
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: k_ComposeStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_ComposeViewControllerID) as! ComposeViewController
+        vc.answerMode = answerMode
+        vc.user = (self.viewController?.user)!
+        self.viewController?.show(vc, sender: self)
+    }
+    
+    func showComposeViewControllerWithDraft(answerMode: AnswerMessageMode, message: EmailMessage) {
  
         let storyboard: UIStoryboard = UIStoryboard(name: k_ComposeStoryboardName, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: k_ComposeViewControllerID) as! ComposeViewController        
+        let vc = storyboard.instantiateViewController(withIdentifier: k_ComposeViewControllerID) as! ComposeViewController
+        
         vc.answerMode = answerMode
-        //vc.mailboxesList = (self.viewController?.mailboxesList)!
         vc.user = (self.viewController?.user)!
+        vc.message = message
+        
+        if let children = message.children {
+            if children.count > 0 {
+                vc.messagesArray = children
+            }
+        }
+       
+        if let draftSubject = message.subject {
+            vc.subject = draftSubject
+        }
+        
         self.viewController?.show(vc, sender: self)   
     }
     

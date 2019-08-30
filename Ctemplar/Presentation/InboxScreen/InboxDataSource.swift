@@ -151,7 +151,11 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         let message = messagesArray[indexPath.row]
          
         if self.selectionMode == false {
-            self.parentViewController.router?.showViewInboxEmailViewController(message: message)
+            if self.parentViewController.currentFolder == InboxSideMenuOptionsName.draft.rawValue {
+                self.parentViewController.router?.showComposeViewControllerWithDraft(answerMode: AnswerMessageMode.newMessage, message: message)
+            } else {
+                self.parentViewController.router?.showViewInboxEmailViewController(message: message)
+            }
         } else {
             
             let selected = isMessageSelected(message: message)
