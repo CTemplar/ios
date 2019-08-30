@@ -25,6 +25,14 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
     
     var selectionMode : Bool = false
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh(_:)), for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.gray
+        
+        return refreshControl
+    }()
+    
     func initWith(parent: InboxViewController, tableView: UITableView, array: Array<EmailMessage>) {
         
         self.parentViewController = parent
@@ -37,6 +45,7 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         self.tableView.addGestureRecognizer(longPressRecognizer)
         
         self.tableView.tableFooterView = UIView()
+        self.tableView.addSubview(self.refreshControl)
         
         registerTableViewCell()
     }
@@ -184,6 +193,13 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
     func reloadData() {
 
         self.tableView.reloadData()
+        self.refreshControl.endRefreshing()
+    }
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        
+       self.parentViewController.presenter?.interactor?.updateMessages(withUndo: "", silent: true)
+        //refreshControl.endRefreshing()
     }
     
     // MARK: MGSwipe delegate
