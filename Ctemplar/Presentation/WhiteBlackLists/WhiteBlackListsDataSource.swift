@@ -21,6 +21,14 @@ class  WhiteBlackListsDataSource: NSObject, UITableViewDataSource, UITableViewDe
     var searchText              : String = ""
     var filtered : Bool = false
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh(_:)), for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.gray
+        
+        return refreshControl
+    }()
+    
     func initWith(parent: WhiteBlackListsViewController, tableView: UITableView) {
         
         self.parentViewController = parent
@@ -28,6 +36,7 @@ class  WhiteBlackListsDataSource: NSObject, UITableViewDataSource, UITableViewDe
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
+        self.tableView.addSubview(self.refreshControl)
         self.tableView.tableFooterView = UIView()
         
         registerTableViewCell()
@@ -69,6 +78,7 @@ class  WhiteBlackListsDataSource: NSObject, UITableViewDataSource, UITableViewDe
     
     func reloadData() {
         
+        self.refreshControl.endRefreshing()
         self.tableView.reloadData()        
     }
     
@@ -85,5 +95,11 @@ class  WhiteBlackListsDataSource: NSObject, UITableViewDataSource, UITableViewDe
             let contactID = contact.contactID?.description
             self.parentViewController.presenter?.deleteContactFromList(contactID: contactID!, listMode: (self.parentViewController?.listMode)!)
         }
+    }
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        
+        self.parentViewController.presenter?.interactor?.getWhiteListContacts(silent: true)
+        self.parentViewController.presenter?.interactor?.getBlackListContacts(silent: true)
     }
 }

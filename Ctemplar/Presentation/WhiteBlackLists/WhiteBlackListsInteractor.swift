@@ -16,9 +16,11 @@ class WhiteBlackListsInteractor {
     var presenter       : WhiteBlackListsPresenter?
     var apiService      : APIService?
     
-    func getWhiteListContacts() {
+    func getWhiteListContacts(silent: Bool) {
         
-        HUD.show(.progress)
+        if !silent {
+            HUD.show(.progress)
+        }
         
         apiService?.whiteListContacts() {(result) in
             
@@ -44,9 +46,11 @@ class WhiteBlackListsInteractor {
         }
     }
     
-    func getBlackListContacts() {
+    func getBlackListContacts(silent: Bool) {
         
-        HUD.show(.progress)
+        if !silent {
+            HUD.show(.progress)
+        }
         
         apiService?.blackListContacts() {(result) in
             
@@ -107,7 +111,7 @@ class WhiteBlackListsInteractor {
                 
             case .success(let value):
                 print("value:", value)
-                self.getBlackListContacts()
+                self.getBlackListContacts(silent: false)
                 
             case .failure(let error):
                 print("error:", error)
@@ -128,7 +132,7 @@ class WhiteBlackListsInteractor {
                 
             case .success(let value):
                 print("value:", value)
-                self.getWhiteListContacts()
+                self.getWhiteListContacts(silent: false)
                 
             case .failure(let error):
                 print("error:", error)
@@ -151,7 +155,7 @@ class WhiteBlackListsInteractor {
             case .success( _):
                 
                 print("deleteContactsFromWhiteList")
-                self.getWhiteListContacts()
+                self.getWhiteListContacts(silent: false)
                 
             case .failure(let error):
                 print("error:", error)
@@ -173,7 +177,7 @@ class WhiteBlackListsInteractor {
             case .success( _):
                 
                 print("deleteContactsFromBlacklList")
-                self.getBlackListContacts()
+                self.getBlackListContacts(silent: false)
                 
             case .failure(let error):
                 print("error:", error)
