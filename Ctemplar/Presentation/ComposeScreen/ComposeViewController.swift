@@ -201,18 +201,20 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
                     self.interactor?.createDraftWithParent(message: self.message!)
                 })
             }
+            
+            self.interactor?.setupSubject(subject: self.subject, message: self.message!, answerMode: self.answerMode)
 
         } else {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: {
                 self.interactor?.createDraft()
             })
+            
+            self.presenter?.setupSubject(subjectText: subject, answerMode: answerMode)
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100), execute: {
             self.interactor?.userContactsList()
-        })
-        
-        self.presenter?.setupSubject(subjectText: self.subject, answerMode: self.answerMode)
+        })        
         
         self.presenter?.setupSchedulersButtons()
         

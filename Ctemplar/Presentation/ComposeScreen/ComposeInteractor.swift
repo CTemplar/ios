@@ -558,6 +558,30 @@ class ComposeInteractor {
         return "Error"
     }
     
+    func setupSubject(subject: String, message: EmailMessage, answerMode: AnswerMessageMode) {
+        
+        if (apiService?.isSubjectEncrypted(message: message))! {
+            self.extractSubjectContentAsync(message: message, answerMode: answerMode)
+        } else {
+            self.presenter?.setupSubject(subjectText: subject, answerMode: answerMode)
+        }
+    }
+    
+    func extractSubjectContentAsync(message: EmailMessage, answerMode: AnswerMessageMode) {
+        
+        let queue = DispatchQueue.global(qos: .userInitiated)
+        
+        queue.async {
+            if let content = message.subject {
+                if let decryptedSubject = self.pgpService?.decryptMessage(encryptedContet: content) {
+                    DispatchQueue.main.async {
+                        self.presenter?.setupSubject(subjectText: decryptedSubject, answerMode: answerMode)
+                    }
+                }
+            }
+        }
+    }
+    
     //MARK: - Attachments
     
     func attachFileToDraftMessage(url: URL) {
