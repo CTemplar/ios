@@ -63,7 +63,7 @@ class ManageFoldersViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.presenter?.interactor?.foldersList()
+        self.presenter?.interactor?.foldersList(silent: false)
         
         if (Device.IS_IPAD) {
             if self.showFromSideMenu {

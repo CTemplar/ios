@@ -16,9 +16,11 @@ class ManageFoldersInteractor {
     var presenter       : ManageFoldersPresenter?
     var apiService      : APIService?
     
-    func foldersList() {
+    func foldersList(silent: Bool) {
         
-        HUD.show(.progress)
+        if !silent {
+            HUD.show(.progress)
+        }
         
         apiService?.customFoldersList(limit: 200, offset: 0) {(result) in
             
@@ -56,7 +58,7 @@ class ManageFoldersInteractor {
                 
             case .success(let value):
                 print("value:", value)
-                self.foldersList()
+                self.foldersList(silent: false)
                 
             case .failure(let error):
                 print("error:", error)

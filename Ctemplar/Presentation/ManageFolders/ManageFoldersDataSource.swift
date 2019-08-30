@@ -17,6 +17,13 @@ class ManageFoldersDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     var parentViewController    : ManageFoldersViewController!
     var formatterService        : FormatterService?
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh(_:)), for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.gray
+        
+        return refreshControl
+    }()
     
     func initWith(parent: ManageFoldersViewController, tableView: UITableView) {
         
@@ -26,6 +33,7 @@ class ManageFoldersDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         self.tableView.dataSource = self
         
         self.tableView.tableFooterView = UIView()
+        self.tableView.addSubview(self.refreshControl)
            
         registerTableViewCell()
     }
@@ -72,6 +80,7 @@ class ManageFoldersDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     
     func reloadData() {
         
+        self.refreshControl.endRefreshing()
         self.tableView.reloadData()
     }
     
@@ -94,5 +103,11 @@ class ManageFoldersDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         
         return "deleteRow".localized()
+    }
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        
+        self.parentViewController.presenter?.interactor?.foldersList(silent: true)
+        
     }
 }
