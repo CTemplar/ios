@@ -156,6 +156,8 @@ class FormatterService
         
         if ccArray.count > 0 {
             ccText = String(ccText.dropLast(2))
+        } else {
+            ccText = ""
         }
 
         let textString = "fromPrefix".localized() + fromName + " <" + fromEmail + ">" + toEmailsText + ccText

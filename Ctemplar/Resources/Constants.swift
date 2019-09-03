@@ -245,7 +245,7 @@ let k_moreActionsButtonsViewMiddleContstraint : CGFloat = 154
 let k_moreActionsButtonsViewSmallContstraint  : CGFloat = 102
 let k_moreActionsButtonHeightConstraint       : CGFloat = 50
 
-let k_fromToViewMinHeight       : CGFloat = 94.0
+let k_fromToViewMinHeight       : CGFloat = 70.0//94.0
 let k_fromToHeaderMinHeight     : CGFloat = 146.0
 let k_dateLabelOffsetHeight     : CGFloat = 52.0
 
