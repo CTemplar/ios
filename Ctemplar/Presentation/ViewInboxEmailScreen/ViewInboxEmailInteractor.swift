@@ -200,12 +200,13 @@ class ViewInboxEmailInteractor {
     func updateSubject(message: EmailMessage) {
         
         if (apiService?.isSubjectEncrypted(message: message))! {
+            self.presenter?.setSubjectLabel(subject: "Decrypting...".localized())
             self.extractSubjectContentAsync(message: message)
         } else {
             if let subjectText = message.subject {
                 self.presenter?.setSubjectLabel(subject: subjectText)
             } else {
-                self.presenter?.setSubjectLabel(subject: "Empty subject")
+                self.presenter?.setSubjectLabel(subject: "Empty subject".localized())
             }
         }
     }
