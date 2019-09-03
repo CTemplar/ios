@@ -111,6 +111,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var delayedDeliveryDate : Date!
     
     var runOnce : Bool = true
+        
+    var upgradeToPrimeView : UpgradeToPrimeView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -218,6 +220,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         self.presenter?.setupSchedulersButtons()
         
+        self.presenter?.initAddFolderLimitView()
+        
         self.addGesureRecognizers()
         
         self.addNotificationObserver()
@@ -287,17 +291,17 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     @IBAction func selfDestructedButtonPressed(_ sender: AnyObject) {
         
-        self.presenter!.showScheduler(mode: SchedulerMode.selfDestructTimer)
+        self.presenter!.checkIsPrimeAccount(mode: SchedulerMode.selfDestructTimer)
     }
     
     @IBAction func delayedDeliveryButtonPressed(_ sender: AnyObject) {
         
-        self.presenter!.showScheduler(mode: SchedulerMode.delayedDelivery)
+        self.presenter!.checkIsPrimeAccount(mode: SchedulerMode.delayedDelivery)
     }
     
     @IBAction func deadManButtonPressed(_ sender: AnyObject) {
         
-        self.presenter!.showScheduler(mode: SchedulerMode.deadManTimer)
+        self.presenter!.checkIsPrimeAccount(mode: SchedulerMode.deadManTimer)
     }
         
     //MARK: - textView delegate

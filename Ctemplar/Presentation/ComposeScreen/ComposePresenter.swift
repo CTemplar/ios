@@ -171,10 +171,32 @@ class ComposePresenter {
         self.setupSchedulersButtons()
     }
     
+    func checkIsPrimeAccount(mode: SchedulerMode) {
+        
+        switch mode {
+        case SchedulerMode.selfDestructTimer:
+            break
+        case SchedulerMode.deadManTimer:
+            if !(self.viewController?.user.isPrime)! {
+                self.showUpgradeToPrimeView()
+                return
+            }
+            break
+        case SchedulerMode.delayedDelivery:
+            if !(self.viewController?.user.isPrime)! {
+                self.showUpgradeToPrimeView()
+                return
+            }
+            break
+        }
+        
+        self.showScheduler(mode: mode)
+    }
+    
     func setupSchedulersButtons() {
         
         self.viewController?.selfDestructedButton.isEnabled = true
-        
+        /*
         if (self.viewController?.user.isPrime)! {
         
             if self.viewController?.deadManDate != nil {
@@ -191,7 +213,10 @@ class ComposePresenter {
         } else {
             self.viewController?.delayedDeliveryButton.isEnabled = false
             self.viewController?.deadManButton.isEnabled = false
-        }
+        }*/
+        
+        self.viewController?.delayedDeliveryButton.isEnabled = true
+        self.viewController?.deadManButton.isEnabled = true
     }
     
     func setSchedulerTimersForMessage(message: EmailMessage) {
@@ -1171,5 +1196,29 @@ class ComposePresenter {
         }
         
         return nil
+    }
+    
+    //MARK: - Upgrade to Prime
+    
+    func showUpgradeToPrimeView() {
+        
+        self.viewController?.upgradeToPrimeView?.isHidden = !(self.viewController?.upgradeToPrimeView?.isHidden)!
+    }
+    
+    func initAddFolderLimitView() {
+        
+        self.viewController?.upgradeToPrimeView = Bundle.main.loadNibNamed(k_UpgradeToPrimeViewXibName, owner: nil, options: nil)?.first as? UpgradeToPrimeView
+        
+        let frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
+        
+        if Device.IS_IPAD {
+            // frame = CGRect(x: 0.0, y: 0.0, width: (self.viewController!.splitViewController?.secondaryViewController?.view.frame.width)!, height: (self.viewController!.splitViewController?.secondaryViewController?.view.frame.height)!)
+        }
+        
+        self.viewController?.upgradeToPrimeView?.frame = frame
+        
+        self.viewController?.navigationController!.view.addSubview((self.viewController?.upgradeToPrimeView)!)
+        
+        self.viewController?.upgradeToPrimeView?.isHidden = true
     }
 }
