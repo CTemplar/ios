@@ -88,11 +88,11 @@ class SearchInteractor {
     func setFilteredList(searchText: String) {
         
         let filteredSubjectsList = (self.viewController?.dataSource?.messagesArray.filter({( message : EmailMessage) -> Bool in
-            return (message.subject?.lowercased().contains(searchText.lowercased()))!
+            return (message.subject?.lowercased().contains(searchText.lowercased()) ?? false)
         }))!
         
         let filteredSendersList = (self.viewController?.dataSource?.messagesArray.filter({( message : EmailMessage) -> Bool in
-            return (message.sender?.lowercased().contains(searchText.lowercased()))!
+            return (message.sender?.lowercased().contains(searchText.lowercased()) ?? false)
         }))!
         
         var filteredDuplicatesMessagesList : Array<EmailMessage> = []

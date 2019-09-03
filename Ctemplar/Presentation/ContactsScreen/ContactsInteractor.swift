@@ -21,11 +21,12 @@ class ContactsInteractor {
         let contacts = (self.viewController?.dataSource?.contactsArray)!
         
         let filteredContactNamesList = (contacts.filter({( contact : Contact) -> Bool in
-            return (contact.contactName?.lowercased().contains(searchText.lowercased()))!
+            
+            return (contact.contactName?.lowercased().contains(searchText.lowercased()) ?? false)
         }))
         
         let filteredEmailsList = (contacts.filter({( contact : Contact) -> Bool in
-            return (contact.email?.lowercased().contains(searchText.lowercased()))!
+            return (contact.email?.lowercased().contains(searchText.lowercased()) ?? false)
         }))
         
         let filteredList = filteredContactNamesList + filteredEmailsList
