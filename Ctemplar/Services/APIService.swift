@@ -1383,6 +1383,12 @@ class APIService {
     
     //MARK: - Contacts
     
+    func decryptContactData(encryptedData: String) {
+        
+        
+        
+    }
+    
     func userContacts(contactsIDIn: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         var contactsIDInParameter = ""
@@ -1395,6 +1401,8 @@ class APIService {
             if complete {
                 
                 if let token = self.getToken() {
+                    
+                    HUD.show(.progress)
                     
                     self.restAPIService?.userContacts(token: token, contactsIDIn: contactsIDInParameter) {(result) in
                         
@@ -1409,6 +1417,7 @@ class APIService {
                                     completionHandler(APIResult.failure(error))
                                 } else {
                                     let contactsList = ContactsList(dictionary: response)
+                                    
                                     completionHandler(APIResult.success(contactsList))
                                 }
                                 
@@ -1421,6 +1430,8 @@ class APIService {
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                             completionHandler(APIResult.failure(error))
                         }
+                        
+                        HUD.hide()
                         
                     }
                 }

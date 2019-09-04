@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Contact: Hashable {
     
@@ -35,6 +36,69 @@ struct Contact: Hashable {
         self.isEncrypted = dictionary["is_encrypted"] as? Bool
         self.emailHash = dictionary["email_hash"] as? String
         self.encryptedData = dictionary["encrypted_data"] as? String
+        
+        if self.isEncrypted ?? false {
+            if let unwrappedData = self.encryptedData {
+                let dictionary = self.decryptContactData(encryptedData: unwrappedData)
+                self.setup(encryptedDictionary: dictionary)
+            }
+        }
+    }
+    
+    mutating func setup(encryptedDictionary: [String: Any]) {
+        
+        self.email = encryptedDictionary["email"] as? String
+        self.contactName = encryptedDictionary["name"] as? String
+        self.contactID = encryptedDictionary["id"] as? Int
+        self.phone = encryptedDictionary["phone"] as? String
+        self.address = encryptedDictionary["address"] as? String
+        self.note = encryptedDictionary["note"] as? String
+        self.isEncrypted = encryptedDictionary["is_encrypted"] as? Bool
+        self.emailHash = encryptedDictionary["email_hash"] as? String
+        self.encryptedData = encryptedDictionary["encrypted_data"] as? String
+    }
+    
+    func decryptContactData(encryptedData: String) -> [String:Any] {
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let pgpService = appDelegate.applicationManager.pgpService
+        
+        let queue = DispatchQueue.global(qos: .userInitiated)
+        
+        //queue.async {
+            
+            let decryptedContent = pgpService.decryptMessage(encryptedContet: encryptedData)
+            //DispatchQueue.main.async {
+                //print("decryptedContent:", decryptedContent)
+                let dictionary = self.convertStringToDictionary(text: decryptedContent)
+                //self.setup(encryptedDictionary: dictionary)
+                return dictionary
+           // }
+       // }
+        
+        return [String:Any]()
+    }
+    
+    func convertStringToDictionary(text: String) -> [String:Any] {
+        
+        var dicitionary = [String:Any]()
+        
+        if let data = text.data(using: String.Encoding.utf8) {
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:Any] {
+                    print("convertStringToDictionary:", json as Any)
+                    dicitionary = json
+                }
+                return dicitionary
+                
+            } catch {
+                print("convertStringToDictionary: Something went wrong")
+                return dicitionary
+            }
+        }
+        
+        return dicitionary
     }
 }
 

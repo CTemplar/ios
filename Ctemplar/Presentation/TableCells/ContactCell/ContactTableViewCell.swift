@@ -40,6 +40,9 @@ class ContactTableViewCell: UITableViewCell {
             _ = subjectAttributedString.setBackgroundColor(range: range, color: k_foundTextBackgroundColor)
             self.nameLabel.attributedText = subjectAttributedString
             self.initialsLabel.text = self.formatInitials(name: userName)
+        } else {
+            self.nameLabel.text = "Unknown name".localized()
+            self.initialsLabel.text = "UN".localized()
         }
         
         if let email = contact.email {
@@ -47,6 +50,8 @@ class ContactTableViewCell: UITableViewCell {
             let range = subjectAttributedString.foundRangeFor(lowercasedString: email.lowercased(), textToFind: foundText)
             _ = subjectAttributedString.setBackgroundColor(range: range, color: k_foundTextBackgroundColor)
             self.emailLabel.attributedText = subjectAttributedString           
+        } else {
+            self.emailLabel.text = "Unknown email".localized()
         }
         
         if isSelectionMode {
