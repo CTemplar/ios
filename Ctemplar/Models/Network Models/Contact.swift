@@ -39,13 +39,13 @@ struct Contact: Hashable {
         
         if self.isEncrypted ?? false {
             if let unwrappedData = self.encryptedData {
-                let dictionary = self.decryptContactData(encryptedData: unwrappedData)
-                self.setup(encryptedDictionary: dictionary)
+                //let dictionary = self.decryptContactData(encryptedData: unwrappedData)
+                //self.setup(encryptedDictionary: dictionary)
             }
         }
     }
     
-    mutating func setup(encryptedDictionary: [String: Any]) {
+    init(encryptedDictionary: [String: Any]) {
         
         self.email = encryptedDictionary["email"] as? String
         self.contactName = encryptedDictionary["name"] as? String
@@ -58,7 +58,7 @@ struct Contact: Hashable {
         self.encryptedData = encryptedDictionary["encrypted_data"] as? String
     }
     
-    func decryptContactData(encryptedData: String) -> [String:Any] {
+    func decryptContactData(encryptedData: String) {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
@@ -66,18 +66,16 @@ struct Contact: Hashable {
         
         let queue = DispatchQueue.global(qos: .userInitiated)
         
-        //queue.async {
+        queue.async {
             
             let decryptedContent = pgpService.decryptMessage(encryptedContet: encryptedData)
-            //DispatchQueue.main.async {
+            DispatchQueue.main.async {
                 //print("decryptedContent:", decryptedContent)
                 let dictionary = self.convertStringToDictionary(text: decryptedContent)
-                //self.setup(encryptedDictionary: dictionary)
-                return dictionary
-           // }
-       // }
+                //self.setup(encryptedDictionary: dictionary)                
+            }
+        }
         
-        return [String:Any]()
     }
     
     func convertStringToDictionary(text: String) -> [String:Any] {
