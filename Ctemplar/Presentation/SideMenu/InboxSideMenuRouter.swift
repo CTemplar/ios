@@ -27,6 +27,7 @@ class InboxSideMenuRouter {
         let vc = storyboard.instantiateViewController(withIdentifier: k_ContactsViewControllerID) as! ContactsViewController
         self.viewController?.currentParentViewController = vc
         vc.contactsList = (self.viewController?.inboxViewController?.user.contactsList)! //temp
+        vc.contactsEncrypted = self.viewController?.inboxViewController?.user.settings.isContactsEncrypted ?? false
         //vc.sideMenuViewController = self.viewController
        
         if (!Device.IS_IPAD) {

@@ -24,9 +24,13 @@ class ContactsPresenter {
         self.viewController?.searchController.hidesNavigationBarDuringPresentation = false
         self.viewController?.searchController.searchBar.tintColor = k_contactsBarTintColor
         self.viewController?.searchController.searchBar.placeholder = "search".localized()
-        self.viewController?.navigationItem.searchController = self.viewController?.searchController
+        //self.viewController?.navigationItem.searchController = self.viewController?.searchController
         self.viewController?.searchController.searchBar.delegate = self.viewController
         self.viewController?.searchController.searchBar.returnKeyType = .done
+        
+        if !viewController!.contactsEncrypted {
+            self.viewController?.navigationItem.searchController = self.viewController?.searchController
+        }
         
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).leftViewMode = .always
         

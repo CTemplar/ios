@@ -20,6 +20,7 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating, UISearc
     
     var contactsList : Array<Contact> = []
     var filterdContactsList : Array<Contact> = []
+    var contactsEncrypted: Bool = false
     
     @IBOutlet var contactsTableView        : UITableView!
     
