@@ -21,6 +21,9 @@ struct Settings: Hashable {
     var fromAddress : String? = nil
     var settingsID : Int? = nil
     var isPendingPayment : Bool? = nil
+    var isAttachmentsEncrypted : Bool? = nil
+    var isSubjectEncrypted : Bool? = nil
+    var isContactsEncrypted : Bool? = nil
     var language : String? = nil
     var newsletter: Bool? = nil
     var recoveryEmail : String? = nil
@@ -49,6 +52,9 @@ struct Settings: Hashable {
         self.fromAddress = dictionary["from_address"] as? String
         self.settingsID = dictionary["id"] as? Int
         self.isPendingPayment = dictionary["is_pending_payment"] as? Bool
+        self.isAttachmentsEncrypted = dictionary["is_attachments_encrypted"] as? Bool
+        self.isSubjectEncrypted = dictionary["is_subject_encrypted"] as? Bool
+        self.isContactsEncrypted = dictionary["is_contacts_encrypted"] as? Bool
         self.language = dictionary["language"] as? String
         self.newsletter = dictionary["newsletter"] as? Bool
         self.recoveryEmail = dictionary["recovery_email"] as? String

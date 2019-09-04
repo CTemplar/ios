@@ -16,6 +16,9 @@ struct Contact: Hashable {
     var phone : String? = nil
     var address : String? = nil
     var note : String? = nil
+    var isEncrypted : Bool? = nil
+    var emailHash : String? = nil
+    var encryptedData : String? = nil
     
     init() {
         
@@ -29,6 +32,9 @@ struct Contact: Hashable {
         self.phone = dictionary["phone"] as? String
         self.address = dictionary["address"] as? String
         self.note = dictionary["note"] as? String
+        self.isEncrypted = dictionary["is_encrypted"] as? Bool
+        self.emailHash = dictionary["email_hash"] as? String
+        self.encryptedData = dictionary["encrypted_data"] as? String
     }
 }
 

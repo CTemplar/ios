@@ -34,6 +34,8 @@ struct UserMyself {
     
     init(dictionary: [String: Any]) {
         
+        //print("user:", dictionary)
+        
         self.totalCount = dictionary["total_count"] as? Int
         self.next = dictionary["next"] as? String
         self.pageConut = dictionary["page_count"] as? Int
