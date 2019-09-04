@@ -42,7 +42,7 @@ struct ContactsList {
             if let objectDictionary = object as? Dictionary<String, Any> {
                 let contactsResult = Contact(dictionary: objectDictionary)
                 
-                if contactsResult.isEncrypted! {
+                if contactsResult.isEncrypted ?? false {
                     if let unwrappedData = contactsResult.encryptedData {
                         let encryptedDictionary = self.decryptContactData(encryptedData: unwrappedData)
                         let encryptedContact = Contact(dictionary: encryptedDictionary)
