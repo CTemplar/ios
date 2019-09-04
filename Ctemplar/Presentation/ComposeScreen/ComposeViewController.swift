@@ -214,10 +214,13 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             self.presenter?.setupSubject(subjectText: subject, answerMode: answerMode)
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100), execute: {
-            self.interactor?.userContactsList()
-        })        
-        
+        let isContactsEncrypted = self.user.settings.isContactsEncrypted ?? false
+        if !isContactsEncrypted {        
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100), execute: {
+                self.interactor?.userContactsList()
+            })
+        }
+            
         self.presenter?.setupSchedulersButtons()
         
         self.presenter?.initAddFolderLimitView()
@@ -313,11 +316,15 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         if textView != self.messageTextView {
             
             //temp
-            self.tableView.isHidden = false
-            self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset + self.emailToSectionView.frame.height/*self.toViewSectionHeightConstraint.constant*/ - 5.0)
-            self.dataSource?.currentTextView = textView
-            self.dataSource?.reloadData(setMailboxData: false)
-            self.interactor?.setFilteredList(searchText: "")
+            let isContactsEncrypted = self.user.settings.isContactsEncrypted ?? false
+            if !isContactsEncrypted {
+            
+                self.tableView.isHidden = false
+                self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset + self.emailToSectionView.frame.height/*self.toViewSectionHeightConstraint.constant*/ - 5.0)
+                self.dataSource?.currentTextView = textView
+                self.dataSource?.reloadData(setMailboxData: false)
+                self.interactor?.setFilteredList(searchText: "")
+            }
             //
             
             if self.messageTextView.text.isEmpty {
