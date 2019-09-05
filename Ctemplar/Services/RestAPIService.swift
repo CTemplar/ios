@@ -97,6 +97,8 @@ class RestAPIService {
         case captchaKey = "key"
         case captchaValue = "value"
         case otp = "otp"
+        case emailHash = "email_hash"
+        case encryptedData = "encrypted_data"
     }
         
     func authenticateUser(userName: String, password: String, twoFAcode: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -1039,7 +1041,7 @@ class RestAPIService {
         }
     }
     
-    func updateContact(token: String, contactID: String, name: String, email: String, phone: String, address: String, note: String, completionHandler: @escaping (APIResult<Any>) -> Void) {        
+    func updateContact(token: String, contactID: String, name: String, email: String, phone: String, address: String, note: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -1087,6 +1089,70 @@ class RestAPIService {
         Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
             
             print("deleteContact responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func createEncryptedContact(token: String, encryptedContact: String, encryptedContactHash: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.encryptedData.rawValue: encryptedContact,
+            JSONKey.emailHash.rawValue: encryptedContactHash,
+            JSONKey.encrypted.rawValue: true,
+        ]
+        
+        print("createEncryptedContact parameters:", parameters)
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.contact.rawValue
+        
+        print("createEncryptedContact url:", url)
+        
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("createEncryptedContact responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func updateEncryptedContact(token: String, contactID: String, encryptedContact: String, encryptedContactHash: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.encryptedData.rawValue: encryptedContact,
+            JSONKey.emailHash.rawValue: encryptedContactHash,
+            JSONKey.encrypted.rawValue: true,
+        ]
+        
+        print("updateEncryptedContact parameters:", parameters)
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.contact.rawValue + contactID + "/"
+        
+        print("updateEncryptedContact url:", url)
+        
+        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+            
+            print("updateEncryptedContact responce:", response)
             
             switch(response.result) {
             case .success(let value):
