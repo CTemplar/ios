@@ -67,6 +67,10 @@ class AddContactPresenter {
             self.viewController?.contactNote = note
             self.viewController?.contactNoteTextField.text = note
         }
+        
+        //just for debug:
+        
+        interactor?.updateEncryptedContact(contactID: contact.contactID!.description, name:  contact.contactName ?? "name", email:  contact.email ?? "emal", phone: contact.phone ?? "", address: contact.address ?? "", note: contact.note ?? "")
     }
     
     func setupSaveButton(contactName: String, contactEmail: String) {

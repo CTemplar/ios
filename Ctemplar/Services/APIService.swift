@@ -1555,6 +1555,43 @@ class APIService {
         }
     }
     
+    @objc func encryptedContactHash(contactEmail: String, contactAsStringDictionary: String, completion:@escaping (String) -> () ) {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100), execute: {
+            if let salt = self.formatterService?.generateSaltFrom(userName: contactEmail) {
+                print("salt:", salt)
+                
+                let encryptedContactHash = self.formatterService?.hash(password: contactAsStringDictionary, salt: salt)
+                print("encryptContactHash:", encryptedContactHash as Any)
+                completion(encryptedContactHash!)
+            }
+        })
+    }
+    
+    func updateEncryptedContact(contactID: String, name: String, email: String, phone: String, address: String, note: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    
+                    let json = [
+                        JSONKey.folderName.rawValue: name,
+                        JSONKey.email.rawValue: email,
+                        JSONKey.phone.rawValue: phone,
+                        JSONKey.address.rawValue: address,
+                        JSONKey.note.rawValue: note
+                    ]
+                    
+                    self.encryptedContactHash(contactEmail: email, contactAsStringDictionary: json.description){ (encryptedContactHash) in
+                    
+                    }                   
+                    
+                }
+            }
+        }
+    }
+    
     //MARK: - White/Black lists
     
     func addContactToBlackList(name: String, email: String, completionHandler: @escaping (APIResult<Any>) -> Void) {

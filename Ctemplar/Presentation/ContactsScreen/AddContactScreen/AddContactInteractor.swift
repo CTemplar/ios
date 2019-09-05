@@ -59,4 +59,25 @@ class AddContactInteractor {
             HUD.hide()
         }
     }
+    
+    func updateEncryptedContact(contactID: String, name: String, email: String, phone: String, address: String, note: String) {
+        
+        HUD.show(.progress)
+        
+        apiService?.updateEncryptedContact(contactID: contactID, name: name, email: email, phone: phone, address: address, note: note) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("updateContact:", value)
+                self.viewController?.navigationController?.popViewController(animated: true)
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+            
+            HUD.hide()
+        }
+    }
 }
