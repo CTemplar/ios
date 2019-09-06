@@ -1141,7 +1141,7 @@ class RestAPIService {
         
         let parameters: Parameters = [
             JSONKey.encryptedData.rawValue: encryptedContact,
-            JSONKey.emailHash.rawValue: encryptedContactHash,
+            //JSONKey.emailHash.rawValue: encryptedContactHash,
             JSONKey.encrypted.rawValue: true,
         ]
         

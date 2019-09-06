@@ -10,6 +10,7 @@ import Foundation
 import PKHUD
 import AlertHelperKit
 import MobileCoreServices
+import ObjectivePGP
 
 enum APIResult<T>
 {
@@ -1568,6 +1569,19 @@ class APIService {
         })
     }
     
+    func encryptContact(publicKeys: Array<Key>, contactAsJson: String) -> String {
+        
+        if let contactData = pgpService?.encodeString(message: contactAsJson) {
+            
+            if let encryptedContact = self.pgpService?.encrypt(data: contactData, keys: publicKeys) {
+                print("encryptedContact:", encryptedContact)
+                return encryptedContact
+            }
+        }
+        
+        return ""
+    }
+    
     func updateEncryptedContact(contactID: String, name: String, email: String, phone: String, address: String, note: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         self.checkTokenExpiration(){ (complete) in
@@ -1582,10 +1596,32 @@ class APIService {
                         JSONKey.address.rawValue: address,
                         JSONKey.note.rawValue: note
                     ]
-                    
+                    /*
                     self.encryptedContactHash(contactEmail: email, contactAsStringDictionary: json.description){ (encryptedContactHash) in
                     
-                    }                   
+                    }        */
+                    
+                    if let userKeys = self.pgpService?.getStoredPGPKeys() {
+                        if userKeys.count > 0 {
+                            let encryptedContact = self.encryptContact(publicKeys: userKeys, contactAsJson: json.description)
+                            
+                            self.restAPIService?.updateEncryptedContact(token: token, contactID: contactID, encryptedContact: encryptedContact, encryptedContactHash: "") {(result) in
+                                
+                                switch(result) {
+                                    
+                                case .success(let value):
+                                    
+                                    print("updateEncryptedContact success:", value)
+                                    completionHandler(APIResult.success(value))
+                                    
+                                case .failure(let error):
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                                    completionHandler(APIResult.failure(error))
+                                }
+                            }
+                            
+                        }
+                    }
                     
                 }
             }

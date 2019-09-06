@@ -70,7 +70,7 @@ class AddContactPresenter {
         
         //just for debug:
         
-        interactor?.updateEncryptedContact(contactID: contact.contactID!.description, name:  contact.contactName ?? "name", email:  contact.email ?? "emal", phone: contact.phone ?? "", address: contact.address ?? "", note: contact.note ?? "")
+        //interactor?.updateEncryptedContact(contactID: contact.contactID!.description, name:  contact.contactName ?? "name", email:  contact.email ?? "emal", phone: contact.phone ?? "", address: contact.address ?? "", note: contact.note ?? "")
     }
     
     func setupSaveButton(contactName: String, contactEmail: String) {
@@ -94,7 +94,12 @@ class AddContactPresenter {
         
         if (self.viewController?.editMode)! {
             if let contactID = self.viewController!.contact!.contactID {
-                self.interactor?.updateContact(contactID: contactID.description, name: (self.viewController?.contactName)!, email: (self.viewController?.contactEmail)!, phone: (self.viewController?.contactPhone)!, address: (self.viewController?.contactAddress)!, note: (self.viewController?.contactNote)!)
+                //TODO: need check settings state
+                if self.viewController!.contact!.isEncrypted! {
+                    self.interactor?.updateEncryptedContact(contactID: contactID.description, name: (self.viewController?.contactName)!, email: (self.viewController?.contactEmail)!, phone: (self.viewController?.contactPhone)!, address: (self.viewController?.contactAddress)!, note: (self.viewController?.contactNote)!)
+                } else {
+                    self.interactor?.updateContact(contactID: contactID.description, name: (self.viewController?.contactName)!, email: (self.viewController?.contactEmail)!, phone: (self.viewController?.contactPhone)!, address: (self.viewController?.contactAddress)!, note: (self.viewController?.contactNote)!)
+                }
             }
         } else {
             self.interactor?.createContact(name: (self.viewController?.contactName)!, email: (self.viewController?.contactEmail)!, phone: (self.viewController?.contactPhone)!, address: (self.viewController?.contactAddress)!, note: (self.viewController?.contactNote)!)
