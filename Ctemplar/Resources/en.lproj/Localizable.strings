@@ -78,12 +78,8 @@
 
 "forgetPass" = "Don’t forget this password, it can’t be restored.";
 
-
-//side menu
-
-"manageFolders" = "Manage Folders";
-
 // inbox
+
 "selected" = "Selected";
 "emails" = "emails";
 "email" = "email";
@@ -109,6 +105,7 @@
 "selectedFilters" = "Select filters";
 
 //more actions buttons
+
 "markAsSpam" = "Mark as spam";
 "markAsRead" = "Mark as read";
 "markAsUnread" = "Mark as unread";
@@ -119,6 +116,7 @@
 "cancel" = "Cancel";
 
 //undo actions buttons
+
 "undoMarkAsSpam" = "Undo mark as spam";
 "undoMarkAsRead" = "Undo mark as read";
 "undoMarkAsUnread" = "Undo mark as unread";
@@ -127,6 +125,7 @@
 "undoMoveToInbox" = "Undo move to inbox";
 
 //compose message titles
+
 "newMessage" = "New Message";
 "reply" = "Reply";
 "relpyAll" = "Reply All";
@@ -271,6 +270,7 @@
 "whiteBlackList" = "Whitelist / Blacklist";
 
 "manageFolders" = "Manage folders";
+"manageSecurity" = "Security";
 
 "signature" = "Signature";
 "mobileSignature" = "Mobile signature";
@@ -313,6 +313,7 @@
 
 "generalSettings"           = "General settings";
 "foldersSettings"           = "Folders";
+"securitySettings"          = "Security";
 "mailSettings"              = "Mail";
 "aboutSettings"             = "About";
 "storageSettings"           = "Storage";

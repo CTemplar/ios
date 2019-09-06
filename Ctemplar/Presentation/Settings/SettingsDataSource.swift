@@ -52,6 +52,8 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             return SettingsSectionsName.general.rawValue.localized()
         case SettingsSections.folders.rawValue:
             return SettingsSectionsName.folders.rawValue.localized()
+        case SettingsSections.security.rawValue:
+            return SettingsSectionsName.security.rawValue.localized()
         case SettingsSections.mail.rawValue:
             return SettingsSectionsName.mail.rawValue.localized()
         case SettingsSections.about.rawValue:
@@ -87,6 +89,8 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             return SettingsGeneralSection.allCases.count
         case SettingsSections.folders.rawValue:
             return SettingsFoldersSection.allCases.count
+        case SettingsSections.security.rawValue:
+            return 1
         case SettingsSections.mail.rawValue:
             return SettingsMailSection.allCases.count
         case SettingsSections.about.rawValue:
@@ -113,6 +117,9 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             break
         case SettingsSections.folders.rawValue:
             self.setupFoldersSectionCell(index: index, cell: cell)
+            break
+        case SettingsSections.security.rawValue:
+            self.setupSecuritySectionsCell(index: index, cell: cell, settings: settings!)
             break
         case SettingsSections.mail.rawValue:
             self.setupMailSectionCell(index: index, cell: cell)
@@ -248,6 +255,15 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         default:
             break
         }
+        
+        (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: "")
+    }
+    
+    func setupSecuritySectionsCell(index: Int, cell: UITableViewCell, settings: Settings) {
+        
+        var cellTitle : String = ""
+        
+        cellTitle = "manageSecurity".localized()
         
         (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: "")
     }

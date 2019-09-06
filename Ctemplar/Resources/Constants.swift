@@ -575,6 +575,7 @@ enum SettingsSectionsName: String, CaseIterable {
     
     case general           = "generalSettings"
     case folders           = "foldersSettings"
+    case security          = "securitySettings"
     case mail              = "mailSettings"
     case about             = "aboutSettings"
     case storage           = "storageSettings"
@@ -585,10 +586,11 @@ enum SettingsSections: Int, CaseIterable {
     
     case general           = 0
     case folders           = 1
-    case mail              = 2
-    case about             = 3
-    case storage           = 4
-    case logout            = 5
+    case security          = 2
+    case mail              = 3
+    case about             = 4
+    case storage           = 5
+    case logout            = 6
 }
 
 enum SettingsGeneralSection: Int, CaseIterable {

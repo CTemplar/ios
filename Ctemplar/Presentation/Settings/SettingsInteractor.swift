@@ -34,6 +34,8 @@ class SettingsInteractor {
         case SettingsSections.folders.rawValue:
             self.SettingsFoldersCellPressed(index: row)
             break
+        case SettingsSections.security.rawValue:
+            break
         case SettingsSections.mail.rawValue:
             self.SettingsMailCellPressed(index: row)
             break
