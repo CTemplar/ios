@@ -97,6 +97,7 @@ enum JSONKey: String {
     case otp = "otp"
     case emailHash = "email_hash"
     case encryptedData = "encrypted_data"
+    case contactsEncrypted = "is_contacts_encrypted"
 }
 
 class RestAPIService {
@@ -1424,7 +1425,7 @@ class RestAPIService {
     
     //MARK: - Settings
     
-    func updateSettings(token: String, settingsID: String, recoveryEmail: String, dispalyName: String, savingContacts: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateSettings(token: String, settingsID: String, recoveryEmail: String, dispalyName: String, savingContacts: Bool, encryptContacts: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -1432,7 +1433,8 @@ class RestAPIService {
         ]
         
         var parameters: Parameters = [
-            JSONKey.savingContacts.rawValue : savingContacts
+            JSONKey.savingContacts.rawValue : savingContacts,
+            JSONKey.contactsEncrypted.rawValue : encryptContacts
         ]
         
         if recoveryEmail.count > 0 {

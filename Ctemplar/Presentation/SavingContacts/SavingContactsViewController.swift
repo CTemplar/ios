@@ -63,7 +63,7 @@ class SavingContastsViewController: UIViewController {
         
         let settingsID = settings.settingsID
         
-        apiService?.updateSettings(settingsID: (settingsID?.description)!, recoveryEmail: "", dispalyName: "", savingContacts: savingContacts) {(result) in
+        apiService?.updateSettings(settingsID: (settingsID?.description)!, recoveryEmail: "", dispalyName: "", savingContacts: savingContacts, encryptContacts: settings.isContactsEncrypted ?? false) {(result) in
             
             switch(result) {
                 

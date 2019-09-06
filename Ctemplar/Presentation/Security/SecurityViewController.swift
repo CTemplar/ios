@@ -56,26 +56,26 @@ class SecurityViewController: UIViewController {
             self.encryptContacts = false
         }
         
-        self.updateEncriptionContacts(settings: self.user.settings, savingContacts: self.encryptContacts)
+        self.updateEncriptionContacts(settings: self.user.settings, encryptContacts: self.encryptContacts)
     }
     
-    func updateEncriptionContacts(settings: Settings, savingContacts: Bool) {
+    func updateEncriptionContacts(settings: Settings, encryptContacts: Bool) {
         
         let settingsID = settings.settingsID
-        /*
-        apiService?.updateSettings(settingsID: (settingsID?.description)!, recoveryEmail: "", dispalyName: "", savingContacts: savingContacts) {(result) in
+        
+        apiService?.updateSettings(settingsID: (settingsID?.description)!, recoveryEmail: "", dispalyName: "", savingContacts: settings.saveContacts ?? false, encryptContacts: encryptContacts) {(result) in
             
             switch(result) {
                 
             case .success(let value):
-                print("updateSavingContacts value:", value)
+                print("updateEncriptionContacts value:", value)
                 self.postUpdateUserSettingsNotification()
                 
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self, title: "Update Settings Error", message: error.localizedDescription, button: "closeButton".localized())
             }
-        }*/
+        }
     }
     
     func postUpdateUserSettingsNotification() {
