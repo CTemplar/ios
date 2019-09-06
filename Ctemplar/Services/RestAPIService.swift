@@ -1153,7 +1153,7 @@ class RestAPIService {
         
         Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
             
-            print("updateEncryptedContact responce:", response)
+           // print("updateEncryptedContact responce:", response)
             
             switch(response.result) {
             case .success(let value):

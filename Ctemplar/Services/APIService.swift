@@ -1584,18 +1584,31 @@ class APIService {
     
     func updateEncryptedContact(contactID: String, name: String, email: String, phone: String, address: String, note: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
+        let dictionary = [
+            JSONKey.folderName.rawValue: name,
+            JSONKey.email.rawValue: email,
+            JSONKey.phone.rawValue: phone,
+            JSONKey.address.rawValue: address,
+            JSONKey.note.rawValue: note
+        ]
+        
+        var jsonString = ""
+        
+        if let theJSONData = try?  JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted ),
+            let jsonStringEncoded = String(data: theJSONData, encoding: String.Encoding.utf8) {
+            print("JSON string = \n\(jsonStringEncoded)")
+            jsonString = jsonStringEncoded
+        } else {
+            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "JSON encoding error"])
+            completionHandler(APIResult.failure(error))
+            return
+        }
+        
         self.checkTokenExpiration(){ (complete) in
             if complete {
                 
                 if let token = self.getToken() {
                     
-                    let json = [
-                        JSONKey.folderName.rawValue: name,
-                        JSONKey.email.rawValue: email,
-                        JSONKey.phone.rawValue: phone,
-                        JSONKey.address.rawValue: address,
-                        JSONKey.note.rawValue: note
-                    ]
                     /*
                     self.encryptedContactHash(contactEmail: email, contactAsStringDictionary: json.description){ (encryptedContactHash) in
                     
@@ -1603,7 +1616,7 @@ class APIService {
                     
                     if let userKeys = self.pgpService?.getStoredPGPKeys() {
                         if userKeys.count > 0 {
-                            let encryptedContact = self.encryptContact(publicKeys: userKeys, contactAsJson: json.description)
+                            let encryptedContact = self.encryptContact(publicKeys: userKeys, contactAsJson: jsonString)
                             
                             self.restAPIService?.updateEncryptedContact(token: token, contactID: contactID, encryptedContact: encryptedContact, encryptedContactHash: "") {(result) in
                                 

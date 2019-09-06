@@ -45,7 +45,7 @@ struct ContactsList {
                 if contactsResult.isEncrypted ?? false {
                     if let unwrappedData = contactsResult.encryptedData {
                         let encryptedDictionary = self.decryptContactData(encryptedData: unwrappedData)
-                        let encryptedContact = Contact(dictionary: encryptedDictionary)
+                        let encryptedContact = Contact(enceyptedDictionary: encryptedDictionary, contactId: contactsResult.contactID ?? 0)
                         objectsArray.append(encryptedContact)
                     }
                 } else {                
@@ -89,7 +89,7 @@ struct ContactsList {
                 return dicitionary
                 
             } catch {
-                print("convertStringToDictionary: Something went wrong")
+                print("convertStringToDictionary: Something went wrong string ->", text)
                 return dicitionary
             }
         }

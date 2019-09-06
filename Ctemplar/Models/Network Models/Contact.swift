@@ -37,5 +37,17 @@ struct Contact: Hashable {
         self.emailHash = dictionary["email_hash"] as? String
         self.encryptedData = dictionary["encrypted_data"] as? String
     }
+    
+    init(enceyptedDictionary: [String: Any], contactId: Int) {
+        
+        self.email = enceyptedDictionary["email"] as? String
+        self.contactName = enceyptedDictionary["name"] as? String
+        self.contactID = contactId
+        self.phone = enceyptedDictionary["phone"] as? String
+        self.address = enceyptedDictionary["address"] as? String
+        self.note = enceyptedDictionary["note"] as? String
+        self.isEncrypted = true
+        self.emailHash = enceyptedDictionary["email_hash"] as? String        
+    }
 }
 
