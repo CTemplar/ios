@@ -262,12 +262,15 @@
 
 //Settings
 
+"enableRecoveryEmail" = "Enable recovery email";
+"typeRecoveryEmail" = "Type your recovery email";
 "recoveryEmail" = "Recovery email";
 "password" = "Password";
 "language" = "Language";
 "notifications" = "Notifications";
 "savingContact" = "Saving contacts";
 "whiteBlackList" = "Whitelist / Blacklist";
+"security" = "Security";
 
 "manageFolders" = "Manage folders";
 "manageSecurity" = "Security";
@@ -280,8 +283,6 @@
 "privacyPolicy" = "Privacy Policy";
 "terms" = "Terms & Conditions";
 
-"enableRecoveryEmail" = "Enable recovery email";
-"typeRecoveryEmail" = "Type your recovery email";
 "recoveryEmailUpdatedMessage" = "Recovery Email was updated successfully";
 "passwordUpdatedMessage" = "Password was updated successfully";
 "userSignature" = "Signature was updated successfully";
@@ -294,7 +295,7 @@
 "selectDefaulfAddress" = "Select default address";
 "addresses" = "Addresses";
 
-"signature" = "Signature";
+"сontactsEncryption" = "Contacts encryption";
 
 "enableSignature" = "Enable signature";
 "typeSignature" = "Type your signature";

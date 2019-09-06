@@ -55,6 +55,14 @@ class SettingsRouter {
         self.viewController?.show(vc, sender: self)
     }
     
+    func showSecurityViewController() {
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: k_SecurityStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_SecurityViewControllerID) as! SecurityViewController
+        vc.user = (self.viewController?.user)!
+        self.viewController?.show(vc, sender: self)
+    }
+    
     func showWhiteBlackListsViewController() {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_WhiteBlackListsStoryboardName, bundle: nil)

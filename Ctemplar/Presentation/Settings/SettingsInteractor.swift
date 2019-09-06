@@ -35,6 +35,7 @@ class SettingsInteractor {
             self.SettingsFoldersCellPressed(index: row)
             break
         case SettingsSections.security.rawValue:
+            self.viewController?.router?.showSecurityViewController()
             break
         case SettingsSections.mail.rawValue:
             self.SettingsMailCellPressed(index: row)

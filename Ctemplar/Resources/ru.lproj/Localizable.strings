@@ -270,6 +270,7 @@
 "notifications" = "Уведомления";
 "savingContact" = "Сохранять контакты";
 "whiteBlackList" = "Белый список / Черный список";
+"security" = "Безопасность";
 
 "manageFolders" = "Управление папками";
 "manageSecurity" = "Безопасность";
@@ -294,7 +295,10 @@
 "selectDefaulfAddress" = "Выберите почтовый ящик по умолчанию";
 "addresses" = "Адреса";
 
-"signature" = "Подпись";
+"contactsEncryption" = "Шифровать контакты";
+
+"enableSignature" = "Включить подпись";
+"typeSignature" = "Введите вашу подпись";
 
 "privacyPolicy" = "Политика конфиденциальности";
 "termsAndConditions" = "Условия использования";
@@ -304,13 +308,9 @@
 "takeBack" = "Верни свою свободу";
 "withEncrypted" = "с Зашифрованной Связью";
 "sendUnbreakable" = "Отправляйте электронные письма и защищайте свои ключевые профессиональные и личные данные с помощью шифрования следующего поколения. Комплексная система PKI защищает вашу личную информацию от правительств, корпораций и нанятых хакеров.";
-"goToWebVersion" = "GO TO WEB VERSION";
 "goToWebVersion" = "ПЕРЕЙТИ НА САЙТ";
 
 "settings" = "Настройки";
-
-"enableSignature" = "Включить подпись";
-"typeSignature" = "Введите вашу подпись";
 
 "generalSettings"           = "Основные настройки";
 "foldersSettings"           = "Папки";
