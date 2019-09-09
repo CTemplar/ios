@@ -93,9 +93,8 @@ class AddContactPresenter {
     func saveButtonPressed() {
         
         if (self.viewController?.editMode)! {
-            if let contactID = self.viewController!.contact!.contactID {
-                //TODO: need check settings state
-                if self.viewController!.contact!.isEncrypted! {
+            if let contactID = self.viewController!.contact!.contactID {                
+                if self.viewController!.contactsEncrypted {
                     self.interactor?.updateEncryptedContact(contactID: contactID.description, name: (self.viewController?.contactName)!, email: (self.viewController?.contactEmail)!, phone: (self.viewController?.contactPhone)!, address: (self.viewController?.contactAddress)!, note: (self.viewController?.contactNote)!)
                 } else {
                     self.interactor?.updateContact(contactID: contactID.description, name: (self.viewController?.contactName)!, email: (self.viewController?.contactEmail)!, phone: (self.viewController?.contactPhone)!, address: (self.viewController?.contactAddress)!, note: (self.viewController?.contactNote)!)

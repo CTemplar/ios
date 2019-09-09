@@ -23,12 +23,13 @@ class ContactsRouter {
         }
     }
     
-    func showAddContactViewController(editMode: Bool, contact: Contact) {
+    func showAddContactViewController(editMode: Bool, contact: Contact, contactsEncrypted: Bool) {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_AddContactStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_AddContactViewControllerID) as! AddContactViewController
         vc.editMode = editMode
         vc.contact = contact
+        vc.contactsEncrypted = contactsEncrypted
         self.viewController?.show(vc, sender: self)        
     }
 }

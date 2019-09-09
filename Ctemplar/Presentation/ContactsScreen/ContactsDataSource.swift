@@ -104,7 +104,7 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         let contact = currentContactsArray[indexPath.row]
         
         if self.selectionMode == false {
-            self.parentViewController?.router?.showAddContactViewController(editMode: true, contact: contact)
+            self.parentViewController?.router?.showAddContactViewController(editMode: true, contact: contact, contactsEncrypted: self.parentViewController.contactsEncrypted)
         } else {
             
             let selected = isContactSelected(contact: contact)

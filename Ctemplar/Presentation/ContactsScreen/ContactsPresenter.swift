@@ -89,7 +89,7 @@ class ContactsPresenter {
             self.disableSelectionMode()
         } else {
             let contact = Contact.init()
-            self.viewController?.router?.showAddContactViewController(editMode: false, contact: contact)
+            self.viewController?.router?.showAddContactViewController(editMode: false, contact: contact, contactsEncrypted: self.viewController!.contactsEncrypted)
         }
     }
     

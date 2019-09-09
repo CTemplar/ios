@@ -16,6 +16,7 @@ class AddContactViewController: UIViewController, UITextFieldDelegate {
     
     var contact: Contact!
     var editMode: Bool? = false
+    var contactsEncrypted: Bool = false
     
     var contactName     : String? = ""
     var contactEmail    : String? = ""
