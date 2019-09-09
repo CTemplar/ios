@@ -385,6 +385,7 @@ let k_latoBoldFontName    = "Lato-Bold"
 
 // other
 let k_pageLimit = 20
+let k_offsetForLast = 5
 
 let k_numberOfRounds               = 29
 let k_saltPrefix                   = "$2a$10$"

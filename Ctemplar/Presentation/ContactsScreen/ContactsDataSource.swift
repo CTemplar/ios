@@ -176,16 +176,14 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             if let lastCell = tableView.visibleCells.last {
                 let indexPath = tableView.indexPath(for: lastCell)
                 if let index = indexPath?.row {
-                    print("last visible cell index:", index)
-                    
+                    print("last visible cell index:", index)                    
                     let totalItems = parentViewController.presenter?.interactor!.totalItems
                     let offset = (parentViewController.presenter?.interactor!.offset)!
                     print("currentOffset:", currentOffset)
                     print("offset:", offset)
                     if currentOffset < offset {
-                    
                         if contactsArray.count < totalItems! {
-                            if index + 5 >= currentOffset {
+                            if index + k_offsetForLast >= currentOffset {
                                 print("need load with new offset:", offset)
                                 currentOffset = (parentViewController.presenter?.interactor!.offset)!
                                 parentViewController.presenter?.interactor!.userContactsList()
@@ -196,12 +194,7 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             }
         }
     }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        
-    }
-    
+     
     // MARK: Actions
     
     @objc func longPressed(sender: UILongPressGestureRecognizer) {
