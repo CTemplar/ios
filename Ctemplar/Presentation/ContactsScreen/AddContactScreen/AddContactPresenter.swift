@@ -101,7 +101,11 @@ class AddContactPresenter {
                 }
             }
         } else {
-            self.interactor?.createContact(name: (self.viewController?.contactName)!, email: (self.viewController?.contactEmail)!, phone: (self.viewController?.contactPhone)!, address: (self.viewController?.contactAddress)!, note: (self.viewController?.contactNote)!)
+            if self.viewController!.contactsEncrypted {
+                self.interactor?.createEncryptedContact(name: (self.viewController?.contactName)!, email: (self.viewController?.contactEmail)!, phone: (self.viewController?.contactPhone)!, address: (self.viewController?.contactAddress)!, note: (self.viewController?.contactNote)!)
+            } else {
+                self.interactor?.createContact(name: (self.viewController?.contactName)!, email: (self.viewController?.contactEmail)!, phone: (self.viewController?.contactPhone)!, address: (self.viewController?.contactAddress)!, note: (self.viewController?.contactNote)!)
+            }
         }
     }
 }

@@ -1576,6 +1576,58 @@ class APIService {
         return ""
     }
     
+    func createEncryptedContact(name: String, email: String, phone: String, address: String, note: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let dictionary = [
+            JSONKey.folderName.rawValue: name,
+            JSONKey.email.rawValue: email,
+            JSONKey.phone.rawValue: phone,
+            JSONKey.address.rawValue: address,
+            JSONKey.note.rawValue: note
+        ]
+        
+        var jsonString = ""
+        
+        let encoder = JSONEncoder()
+        if let jsonData = try? encoder.encode(dictionary) {
+            if let jsonStringEncoded = String(data: jsonData, encoding: .utf8) {
+                print("JSON string = \n\(jsonStringEncoded)")
+                jsonString = jsonStringEncoded
+            } else {
+                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "JSON encoding error"])
+                completionHandler(APIResult.failure(error))
+                return
+            }
+        }
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    
+                    if let userKeys = self.pgpService?.getStoredPGPKeys() {
+                        if userKeys.count > 0 {
+                            let encryptedContact = self.encryptContact(publicKeys: userKeys, contactAsJson: jsonString)
+                            
+                            self.restAPIService?.createEncryptedContact(token: token, encryptedContact: encryptedContact, encryptedContactHash: "") {(result) in
+                                
+                                switch(result) {
+                                    
+                                case .success(let value):
+                                    //print("createEncryptedContact success:", value)
+                                    completionHandler(APIResult.success(value))
+                                case .failure(let error):
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                                    completionHandler(APIResult.failure(error))
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     func updateEncryptedContact(contactID: String, name: String, email: String, phone: String, address: String, note: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let dictionary = [
@@ -1619,17 +1671,15 @@ class APIService {
                                 switch(result) {
                                     
                                 case .success(let value):
-                                    print("updateEncryptedContact success:", value)
+                                    //print("updateEncryptedContact success:", value)
                                     completionHandler(APIResult.success(value))                                    
                                 case .failure(let error):
                                     let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                                     completionHandler(APIResult.failure(error))
                                 }
                             }
-                            
                         }
                     }
-                    
                 }
             }
         }
