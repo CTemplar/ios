@@ -52,10 +52,19 @@ class ContactsInteractor {
         self.viewController?.dataSource?.reloadData()
     }
     
-    func setContactsData(contactsList: ContactsList) {
+    func clearContactsList() {
+        
+        self.viewController?.dataSource?.contactsArray.removeAll()
+    }
+    
+    func setContactsData(contactsList: ContactsList, withOffset: Bool) {
         
         if let contacts = contactsList.contactsList {
-            self.viewController?.dataSource?.contactsArray = contacts
+            if withOffset {
+                self.viewController?.dataSource?.contactsArray.append(contentsOf: contacts)
+            } else {
+                self.viewController?.dataSource?.contactsArray = contacts
+            }
             self.viewController?.dataSource?.reloadData()
         }
     }
@@ -67,8 +76,9 @@ class ContactsInteractor {
         if self.offset >= self.totalItems && self.offset > 0 {
             return
         }
+        let fetchAll = !self.viewController!.contactsEncrypted
         
-        apiService?.userContacts(fetchAll: !self.viewController!.contactsEncrypted, offset: offset) {(result) in
+        apiService?.userContacts(fetchAll: fetchAll, offset: offset) {(result) in
             
             switch(result) {
                 
@@ -79,10 +89,10 @@ class ContactsInteractor {
                 if let totalCount = contactsList.totalCount {
                     self.totalItems = totalCount
                 }
-                self.setContactsData(contactsList: contactsList)
                 
                 self.offset = self.offset + k_pageLimit
-                
+                self.setContactsData(contactsList: contactsList, withOffset: !fetchAll)
+                                
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())

@@ -25,6 +25,8 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     var filtered : Bool = false
     var selectionMode : Bool = false
     
+    var currentOffset = 0
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh(_:)), for: UIControl.Event.valueChanged)
@@ -67,6 +69,9 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             return filteredContactsArray.count
         }
         
+        if parentViewController.contactsEncrypted {
+            //return contactsArray.count + 1
+        }
         return contactsArray.count
     }
     
@@ -161,6 +166,40 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         
         self.parentViewController.presenter?.interactor?.userContactsList()
+    }
+    
+    // MARK: Scrolling
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        if parentViewController.contactsEncrypted {
+            if let lastCell = tableView.visibleCells.last {
+                let indexPath = tableView.indexPath(for: lastCell)
+                if let index = indexPath?.row {
+                    print("last visible cell index:", index)
+                    
+                    let totalItems = parentViewController.presenter?.interactor!.totalItems
+                    let offset = (parentViewController.presenter?.interactor!.offset)!
+                    print("currentOffset:", currentOffset)
+                    print("offset:", offset)
+                    if currentOffset < offset {
+                    
+                        if contactsArray.count < totalItems! {
+                            if index + 5 >= currentOffset {
+                                print("need load with new offset:", offset)
+                                currentOffset = (parentViewController.presenter?.interactor!.offset)!
+                                parentViewController.presenter?.interactor!.userContactsList()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        
     }
     
     // MARK: Actions

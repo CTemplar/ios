@@ -60,6 +60,9 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating, UISearc
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.presenter?.interactor?.offset = 0
+        self.dataSource?.currentOffset = 0
+        self.presenter?.interactor?.clearContactsList()
         self.presenter?.interactor?.userContactsList()
         
         if (Device.IS_IPAD) {
