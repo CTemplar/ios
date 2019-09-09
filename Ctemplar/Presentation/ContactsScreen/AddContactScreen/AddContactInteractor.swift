@@ -16,89 +16,87 @@ class AddContactInteractor {
     var presenter       : AddContactPresenter?
     var apiService      : APIService?
 
-    func createContact(name: String, email: String, phone: String, address: String, note: String) {
+    func createContact(name: String, email: String, phone: String, address: String, note: String, encrypted: Bool) {
         
-        HUD.show(.progress)
-        
-        apiService?.createContact(name: name, email: email, phone: phone, address: address, note: note) {(result) in
+        if encrypted {
+            HUD.show(.progress)
             
-            switch(result) {
+            apiService?.createEncryptedContact(name: name, email: email, phone: phone, address: address, note: note) {(result) in
                 
-            case .success(let value):
-                print("createContact:", value)
-                self.viewController?.navigationController?.popViewController(animated: true)
+                switch(result) {
+                    
+                case .success(let value):
+                    print("createEncryptedContact:", value)
+                    self.viewController?.navigationController?.popViewController(animated: true)
+                    
+                case .failure(let error):
+                    print("error:", error)
+                    AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+                }
                 
-                //need send to update Contact list
-                
-            case .failure(let error):
-                print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+                HUD.hide()
             }
+        } else {
+            HUD.show(.progress)
             
-            HUD.hide()
+            apiService?.createContact(name: name, email: email, phone: phone, address: address, note: note) {(result) in
+                
+                switch(result) {
+                    
+                case .success(let value):
+                    print("createContact:", value)
+                    self.viewController?.navigationController?.popViewController(animated: true)
+                    
+                    //need send to update Contact list
+                    
+                case .failure(let error):
+                    print("error:", error)
+                    AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+                }
+                
+                HUD.hide()
+            }
         }
     }
     
-    func createEncryptedContact(name: String, email: String, phone: String, address: String, note: String) {
+    func updateContact(contactID: String, name: String, email: String, phone: String, address: String, note: String, encrypted: Bool) {
         
-        HUD.show(.progress)
-        
-        apiService?.createEncryptedContact(name: name, email: email, phone: phone, address: address, note: note) {(result) in
+        if encrypted {
+            HUD.show(.progress)
             
-            switch(result) {
+            apiService?.updateEncryptedContact(contactID: contactID, name: name, email: email, phone: phone, address: address, note: note) {(result) in
                 
-            case .success(let value):
-                print("createEncryptedContact:", value)
-                self.viewController?.navigationController?.popViewController(animated: true)
+                switch(result) {
+                    
+                case .success(let value):
+                    print("updateContact:", value)
+                    self.viewController?.navigationController?.popViewController(animated: true)
+                    
+                case .failure(let error):
+                    print("error:", error)
+                    AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+                }
                 
-            case .failure(let error):
-                print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+                HUD.hide()
             }
+        } else {
+            HUD.show(.progress)
             
-            HUD.hide()
-        }
-    }
-    
-    func updateContact(contactID: String, name: String, email: String, phone: String, address: String, note: String) {
-        
-        HUD.show(.progress)
-        
-        apiService?.updateContact(contactID: contactID, name: name, email: email, phone: phone, address: address, note: note) {(result) in
-            
-            switch(result) {
+            apiService?.updateContact(contactID: contactID, name: name, email: email, phone: phone, address: address, note: note) {(result) in
                 
-            case .success(let value):
-                print("updateContact:", value)
-                self.viewController?.navigationController?.popViewController(animated: true)
-                            
-            case .failure(let error):
-                print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+                switch(result) {
+                    
+                case .success(let value):
+                    print("updateContact:", value)
+                    self.viewController?.navigationController?.popViewController(animated: true)
+                    
+                case .failure(let error):
+                    print("error:", error)
+                    AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+                }
+                
+                HUD.hide()
             }
-            
-            HUD.hide()
         }
-    }
-    
-    func updateEncryptedContact(contactID: String, name: String, email: String, phone: String, address: String, note: String) {
-        
-        HUD.show(.progress)
-        
-        apiService?.updateEncryptedContact(contactID: contactID, name: name, email: email, phone: phone, address: address, note: note) {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                print("updateContact:", value)
-                self.viewController?.navigationController?.popViewController(animated: true)
-                
-            case .failure(let error):
-                print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
-            }
-            
-            HUD.hide()
-        }
-    }
+    }   
 }
