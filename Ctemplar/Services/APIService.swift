@@ -1576,7 +1576,9 @@ class APIService {
         return ""
     }
     
-    func createEncryptedContact(name: String, email: String, phone: String, address: String, note: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func serializeContactToJson(name: String, email: String, phone: String, address: String, note: String) -> String {
+        
+        var jsonString = ""
         
         let dictionary = [
             JSONKey.folderName.rawValue: name,
@@ -1586,18 +1588,25 @@ class APIService {
             JSONKey.note.rawValue: note
         ]
         
-        var jsonString = ""
-        
         let encoder = JSONEncoder()
         if let jsonData = try? encoder.encode(dictionary) {
             if let jsonStringEncoded = String(data: jsonData, encoding: .utf8) {
                 print("JSON string = \n\(jsonStringEncoded)")
                 jsonString = jsonStringEncoded
-            } else {
-                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "JSON encoding error"])
-                completionHandler(APIResult.failure(error))
-                return
             }
+        }
+        
+        return jsonString
+    }
+    
+    func createEncryptedContact(name: String, email: String, phone: String, address: String, note: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let jsonString = self.serializeContactToJson(name: name, email: email, phone: phone, address: address, note: note)
+        
+        if jsonString.count == 0 {
+            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "JSON encoding error"])
+            completionHandler(APIResult.failure(error))
+            return
         }
         
         self.checkTokenExpiration(){ (complete) in
@@ -1630,26 +1639,12 @@ class APIService {
     
     func updateEncryptedContact(contactID: String, name: String, email: String, phone: String, address: String, note: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
-        let dictionary = [
-            JSONKey.folderName.rawValue: name,
-            JSONKey.email.rawValue: email,
-            JSONKey.phone.rawValue: phone,
-            JSONKey.address.rawValue: address,
-            JSONKey.note.rawValue: note
-        ]
+        let jsonString = self.serializeContactToJson(name: name, email: email, phone: phone, address: address, note: note)
         
-        var jsonString = ""
-        
-        let encoder = JSONEncoder()
-        if let jsonData = try? encoder.encode(dictionary) {
-            if let jsonStringEncoded = String(data: jsonData, encoding: .utf8) {
-                print("JSON string = \n\(jsonStringEncoded)")
-                jsonString = jsonStringEncoded
-            } else {
-                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "JSON encoding error"])
-                completionHandler(APIResult.failure(error))
-                return
-            }
+        if jsonString.count == 0 {
+            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "JSON encoding error"])
+            completionHandler(APIResult.failure(error))
+            return
         }
         
         self.checkTokenExpiration(){ (complete) in
