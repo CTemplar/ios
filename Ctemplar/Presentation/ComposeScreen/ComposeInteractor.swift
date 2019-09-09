@@ -191,7 +191,7 @@ class ComposeInteractor {
         
         //HUD.show(.progress)
         
-        apiService?.userContacts(contactsIDIn: "") {(result) in
+        apiService?.userContacts(fetchAll: true, offset: 0) {(result) in
             
             switch(result) {
                 

@@ -53,7 +53,7 @@ class APIService {
     
     var hashedPassword: String?
     
-    var authErrorAlertAlreadyShowing = false
+    var authErrorAlertAlreadyShowing = false    
     
     @objc func getHashedPassword(userName: String, password: String, completion:@escaping (Bool) -> () ) {
         
@@ -1390,14 +1390,8 @@ class APIService {
         
     }
     
-    func userContacts(contactsIDIn: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
-        
-        var contactsIDInParameter = ""
-        
-        if contactsIDIn.count > 0 {
-            contactsIDInParameter = "?id__in=" + contactsIDIn
-        }
-        
+    func userContacts(fetchAll: Bool, offset: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
+               
         self.checkTokenExpiration(){ (complete) in
             if complete {
                 
@@ -1405,7 +1399,7 @@ class APIService {
                     
                     HUD.show(.progress)
                     
-                    self.restAPIService?.userContacts(token: token, contactsIDIn: contactsIDInParameter) {(result) in
+                    self.restAPIService?.userContacts(token: token, fetchAll: fetchAll, offset: offset) {(result) in
                         
                         switch(result) {
                             

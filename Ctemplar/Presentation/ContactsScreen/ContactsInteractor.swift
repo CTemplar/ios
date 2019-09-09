@@ -15,6 +15,9 @@ class ContactsInteractor {
     var viewController  : ContactsViewController?
     var presenter       : ContactsPresenter?
     var apiService      : APIService?
+    
+    var totalItems = 0
+    var offset = 0
 
     func setFilteredList(searchText: String) {
 
@@ -61,7 +64,11 @@ class ContactsInteractor {
         
         //HUD.show(.progress)
         
-        apiService?.userContacts(contactsIDIn: "") {(result) in
+        if self.offset >= self.totalItems && self.offset > 0 {
+            return
+        }
+        
+        apiService?.userContacts(fetchAll: !self.viewController!.contactsEncrypted, offset: offset) {(result) in
             
             switch(result) {
                 
@@ -69,7 +76,12 @@ class ContactsInteractor {
                 //print("userContactsList:", value)
                 
                 let contactsList = value as! ContactsList
+                if let totalCount = contactsList.totalCount {
+                    self.totalItems = totalCount
+                }
                 self.setContactsData(contactsList: contactsList)
+                
+                self.offset = self.offset + k_pageLimit
                 
             case .failure(let error):
                 print("error:", error)

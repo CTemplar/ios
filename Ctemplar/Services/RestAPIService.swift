@@ -984,14 +984,20 @@ class RestAPIService {
     
     //MARK: - Contacts
     
-    func userContacts(token: String, contactsIDIn: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func userContacts(token: String, fetchAll: Bool, offset: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
             "Accept": "application/json"
         ]
         
-        let url = EndPoint.baseUrl.rawValue + EndPoint.contact.rawValue + contactsIDIn
+        var params = ""
+        
+        if !fetchAll {
+            params = String(format: "?limit=%d&offset=%d&q=", k_pageLimit, offset)
+        }
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.contact.rawValue + params
         
         print("userContacts url:", url)
         
