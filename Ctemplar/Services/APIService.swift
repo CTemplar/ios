@@ -1594,14 +1594,16 @@ class APIService {
         
         var jsonString = ""
         
-        if let theJSONData = try?  JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted ),
-            let jsonStringEncoded = String(data: theJSONData, encoding: String.Encoding.utf8) {
-            print("JSON string = \n\(jsonStringEncoded)")
-            jsonString = jsonStringEncoded
-        } else {
-            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "JSON encoding error"])
-            completionHandler(APIResult.failure(error))
-            return
+        let encoder = JSONEncoder()
+        if let jsonData = try? encoder.encode(dictionary) {
+            if let jsonStringEncoded = String(data: jsonData, encoding: .utf8) {
+                print("JSON string = \n\(jsonStringEncoded)")
+                jsonString = jsonStringEncoded
+            } else {
+                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "JSON encoding error"])
+                completionHandler(APIResult.failure(error))
+                return
+            }
         }
         
         self.checkTokenExpiration(){ (complete) in
@@ -1623,10 +1625,8 @@ class APIService {
                                 switch(result) {
                                     
                                 case .success(let value):
-                                    
                                     print("updateEncryptedContact success:", value)
-                                    completionHandler(APIResult.success(value))
-                                    
+                                    completionHandler(APIResult.success(value))                                    
                                 case .failure(let error):
                                     let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                                     completionHandler(APIResult.failure(error))
