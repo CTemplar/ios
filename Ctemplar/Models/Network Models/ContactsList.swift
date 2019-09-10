@@ -45,7 +45,7 @@ struct ContactsList {
                 if contactsResult.isEncrypted ?? false {
                     if let unwrappedData = contactsResult.encryptedData {
                         let encryptedDictionary = self.decryptContactData(encryptedData: unwrappedData)
-                        let encryptedContact = Contact(enceyptedDictionary: encryptedDictionary, contactId: contactsResult.contactID ?? 0)
+                        let encryptedContact = Contact(encryptedDictionary: encryptedDictionary, contactId: contactsResult.contactID ?? 0, encryptedData: unwrappedData)
                         objectsArray.append(encryptedContact)
                     }
                 } else {                

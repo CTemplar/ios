@@ -38,16 +38,29 @@ struct Contact: Hashable {
         self.encryptedData = dictionary["encrypted_data"] as? String
     }
     
-    init(enceyptedDictionary: [String: Any], contactId: Int) {
+    init(encryptedDictionary: [String: Any], contactId: Int, encryptedData: String) {
         
-        self.email = enceyptedDictionary["email"] as? String
-        self.contactName = enceyptedDictionary["name"] as? String
+        self.email = encryptedDictionary["email"] as? String
+        self.contactName = encryptedDictionary["name"] as? String
         self.contactID = contactId
-        self.phone = enceyptedDictionary["phone"] as? String
-        self.address = enceyptedDictionary["address"] as? String
-        self.note = enceyptedDictionary["note"] as? String
+        self.phone = encryptedDictionary["phone"] as? String
+        self.address = encryptedDictionary["address"] as? String
+        self.note = encryptedDictionary["note"] as? String
         self.isEncrypted = true
-        self.emailHash = enceyptedDictionary["email_hash"] as? String        
+        self.emailHash = encryptedDictionary["email_hash"] as? String
+        self.encryptedData = encryptedData
+    }
+    
+    init(decryptedDictionary: [String: Any], contactId: Int) {
+        
+        self.email = decryptedDictionary["email"] as? String
+        self.contactName = decryptedDictionary["name"] as? String
+        self.contactID = contactId
+        self.phone = decryptedDictionary["phone"] as? String
+        self.address = decryptedDictionary["address"] as? String
+        self.note = decryptedDictionary["note"] as? String
+        self.isEncrypted = false
+        self.emailHash = decryptedDictionary["email_hash"] as? String
     }
 }
 

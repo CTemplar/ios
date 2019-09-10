@@ -1390,14 +1390,16 @@ class APIService {
         
     }
     
-    func userContacts(fetchAll: Bool, offset: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func userContacts(fetchAll: Bool, offset: Int, silent: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
                
         self.checkTokenExpiration(){ (complete) in
             if complete {
                 
                 if let token = self.getToken() {
                     
-                    HUD.show(.progress)
+                    if !silent {
+                        HUD.show(.progress)
+                    }
                     
                     self.restAPIService?.userContacts(token: token, fetchAll: fetchAll, offset: offset) {(result) in
                         
@@ -1426,8 +1428,9 @@ class APIService {
                             completionHandler(APIResult.failure(error))
                         }
                         
-                        HUD.hide()
-                        
+                        if !silent {
+                            HUD.hide()
+                        }                        
                     }
                 }
             }

@@ -393,3 +393,6 @@
 "encryptContacts" = "All your contacts will be encrypted. Contacts suggestion on compose email won't be available anymore. Contacts can't be searched anymore";
 "decryptContactsTitle" = "Are you sure you want to disable contacts encryption?";
 "decryptContacts" = "Note: Disabling contacts encryption can take several minutes depending upon the number of contacts you have. After you confirm, all your contacts will be decrypted inside your browser and saved on server.";
+"decryptingContacts" = "Decrypting Contacts...";
+"allContactsWasEncrypted" = "All Contacts was encrypted";
+"allContactsWasDecrypted" = "All Contacts was decrypted";

@@ -1060,7 +1060,8 @@ class RestAPIService {
             JSONKey.email.rawValue: email,
             JSONKey.phone.rawValue: phone,
             JSONKey.address.rawValue: address,
-            JSONKey.note.rawValue: note
+            JSONKey.note.rawValue: note,
+            JSONKey.encrypted.rawValue: false
         ]
         
         print("updateContact parameters:", parameters)

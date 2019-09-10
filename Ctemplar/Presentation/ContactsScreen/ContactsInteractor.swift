@@ -78,7 +78,7 @@ class ContactsInteractor {
         }
         let fetchAll = !self.viewController!.contactsEncrypted
         
-        apiService?.userContacts(fetchAll: fetchAll, offset: offset) {(result) in
+        apiService?.userContacts(fetchAll: fetchAll, offset: offset, silent: false) {(result) in
             
             switch(result) {
                 
