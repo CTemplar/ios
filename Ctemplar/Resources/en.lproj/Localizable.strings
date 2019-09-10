@@ -387,3 +387,10 @@
 "updateMessages" = "Update Messages";
 "hashing" = "Hashing...";
 "updateToken" = "Update Token";
+
+"encryptButton" = "Encrypt";
+"decryptButton" = "Decrypt";
+"encryptContactsTitle" = "By enabling contacts encryption";
+"encryptContacts" = "All your contacts will be encrypted. Contacts suggestion on compose email won't be available anymore. Contacts can't be searched anymore";
+"decryptContactsTitle" = "";
+"decryptContacts" = "";

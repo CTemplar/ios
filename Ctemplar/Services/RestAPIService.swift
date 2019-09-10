@@ -1457,7 +1457,7 @@ class RestAPIService {
         
         print("updateSettings url:", url)
         
-        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
             
             print("updateSettings responce:", response)
             
