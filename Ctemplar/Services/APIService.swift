@@ -610,7 +610,7 @@ class APIService {
     
     //MARK: - Mail
     
-    func messagesList(folder: String, messagesIDIn: String, seconds: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func messagesList(folder: String, messagesIDIn: String, seconds: Int, offset: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         var folderFilter = ""
         
@@ -618,7 +618,8 @@ class APIService {
             if folder == MessagesFoldersName.starred.rawValue {
                 folderFilter = "?starred=1"
             } else {
-                folderFilter = "?folder=" + folder
+                //folderFilter = "?folder=" + folder
+                folderFilter = "&folder=" + folder
             }
         }
         
@@ -635,7 +636,7 @@ class APIService {
                     
                     //HUD.show(.progress)
                     
-                    self.restAPIService?.messagesList(token: token, folder: folderFilter, messagesIDIn: messagesIDInParameter, seconds: seconds) {(result) in
+                    self.restAPIService?.messagesList(token: token, folder: folderFilter, messagesIDIn: messagesIDInParameter, seconds: seconds, offset: offset) {(result) in
                         
                         switch(result) {
                             

@@ -90,7 +90,7 @@ class ContactsInteractor {
                     self.totalItems = totalCount
                 }
                 
-                self.offset = self.offset + k_pageLimit
+                self.offset = self.offset + k_contactPageLimit
                 self.setContactsData(contactsList: contactsList, withOffset: !fetchAll)
                                 
             case .failure(let error):

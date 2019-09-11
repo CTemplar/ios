@@ -384,7 +384,8 @@ let k_latoRegularFontName = "Lato-Regular"
 let k_latoBoldFontName    = "Lato-Bold"
 
 // other
-let k_pageLimit = 20
+let k_contactPageLimit = 20
+let k_pageLimit = 50
 let k_offsetForLast = 5
 
 let k_numberOfRounds               = 29

@@ -130,7 +130,7 @@ class PGPService {
     func exportArmoredPublicKey(pgpKey: Key) -> String? {
         
         guard let publicKey = try? pgpKey.export(keyType: .public) else {return nil}
-        let armoredPublicKey = Armor.armored(publicKey, as: .publicKey)
+        let armoredPublicKey = Armor.armored(publicKey, as: .publicKey)     
               
         print("armoredPublicKey:", armoredPublicKey)
         

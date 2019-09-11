@@ -20,7 +20,7 @@ class InboxViewController: UIViewController {
     
     var inboxSideMenuViewController: InboxSideMenuViewController?
     
-    var allMessagesList : EmailMessagesList = EmailMessagesList.init()
+    //var allMessagesList : EmailMessagesList = EmailMessagesList.init()
     
     var allMessagesArray : Array<EmailMessage> = []
     var currentFolderMessagesArray : Array<EmailMessage> = []
@@ -194,7 +194,8 @@ class InboxViewController: UIViewController {
             silent = notification.object as! Bool
         }
         
-        self.presenter?.interactor?.updateMessages(withUndo: "", silent: silent)
+        //self.presenter?.interactor?.currentOffset = 0
+        //self.presenter?.interactor?.updateMessages(withUndo: "", silent: silent)
         self.presenter?.interactor?.userMyself()
     }
     

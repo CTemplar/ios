@@ -17,6 +17,10 @@ class InboxInteractor {
     var apiService      : APIService?
     var pgpService      : PGPService?
     
+    //var currentOffset = 0
+    var totalItems = 0
+    var offset = 0
+    
     //MARK: - data
 
     func updateMessages(withUndo: String, silent: Bool) {
@@ -24,6 +28,33 @@ class InboxInteractor {
         if self.checkStoredPGPKeys() {
             self.messagesList(folder: (self.viewController?.currentFolderFilter)!, withUndo: withUndo, silent: silent)
         }
+    }
+    
+    func setInboxData(messages: Array<EmailMessage>, folderFilter: String) {
+     
+        self.viewController?.allMessagesArray.append(contentsOf: messages)
+        
+        //let currentFolderMessages = self.filterInboxMessages(array: self.viewController!.allMessagesArray, filter: folderFilter)
+        
+        self.viewController?.dataSource?.messagesArray = self.viewController!.allMessagesArray//currentFolderMessages
+        self.viewController?.dataSource?.reloadData()
+        
+        if self.viewController?.dataSource?.selectionMode == true {
+            if self.viewController?.dataSource?.selectedMessagesIDArray.count == 0 {
+                self.viewController?.presenter?.disableSelectionMode()
+            }
+        }
+        
+        var totalEmails = 0
+        var unreadEmails = 0
+        
+        let filterEnabled = self.filterEnabled()
+        self.presenter?.setupUI(emailsCount: totalEmails, unreadEmails: unreadEmails, filterEnabled: filterEnabled)
+        
+        if filterEnabled {
+            self.applyFilters()
+        }
+        
     }
     
     func setInboxData(messages: EmailMessagesList, folderFilter: String) {
@@ -115,12 +146,16 @@ class InboxInteractor {
     
     func messagesList(folder: String, withUndo: String, silent: Bool) {
         
+        if self.offset >= self.totalItems && self.offset > 0 {
+            return
+        }
+        
         if !silent {
             //HUD.show(.progress)
             HUD.show(.labeledProgress(title: "updateMessages".localized(), subtitle: ""))
         }
         
-        apiService?.messagesList(folder: ""/*folder*/, messagesIDIn: "", seconds: 0) {(result) in
+        apiService?.messagesList(folder: folder, messagesIDIn: "", seconds: 0, offset: offset) {(result) in
             
             switch(result) {
                 
@@ -128,12 +163,18 @@ class InboxInteractor {
                 //print("value:", value)
                 
                 let emailMessages = value as! EmailMessagesList
-                self.viewController?.allMessagesList = emailMessages
-                self.setInboxData(messages: emailMessages, folderFilter: folder)
+                //self.viewController?.allMessagesList = emailMessages
+                self.totalItems = emailMessages.totalCount!
+                
+                //self.setInboxData(messages: emailMessages, folderFilter: folder)
+                
+                self.setInboxData(messages: emailMessages.messagesList!, folderFilter: folder)
                 
                 if withUndo.count > 0 {
                     self.presenter?.showUndoBar(text: withUndo)
                 }
+                
+                self.offset = self.offset + k_pageLimit
                 
             case .failure(let error):
                 print("error:", error)
@@ -149,7 +190,7 @@ class InboxInteractor {
         
         HUD.show(.progress)
         
-        apiService?.messagesList(folder: "", messagesIDIn: "", seconds: 0) {(result) in
+        apiService?.messagesList(folder: "", messagesIDIn: "", seconds: 0, offset: -1) {(result) in
             
             switch(result) {
                 

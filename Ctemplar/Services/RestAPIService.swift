@@ -427,7 +427,7 @@ class RestAPIService {
     
     //MARK: - Mail
     
-    func messagesList(token: String, folder: String, messagesIDIn: String, seconds: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func messagesList(token: String, folder: String, messagesIDIn: String, seconds: Int, offset: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -444,9 +444,15 @@ class RestAPIService {
             timeParameter = "&seconds=" + seconds.description
         }
         
+        var limitParams = ""
+        
+        if offset > -1 {
+            limitParams = String(format: "?limit=%d&offset=%d", k_pageLimit, offset)
+        }
+        
         //timeParameter = "?seconds=100000000"
         
-        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + folder + messagesIDIn + timeParameter//"?starred=1"// "?read=0"
+        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + limitParams + folder + messagesIDIn + timeParameter//"?starred=1"// "?read=0"
         //let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + "?seconds=" + seconds
         //let url = "https://devapi.ctemplar.com/emails/messages/?limit=20&offset=0&folder=inbox&read=false&seconds=30"
         
@@ -455,7 +461,7 @@ class RestAPIService {
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
             
-            //print("messagesList responce:", response)
+            print("messagesList responce:", response)
             
             switch(response.result) {
             case .success(let value):
@@ -994,7 +1000,7 @@ class RestAPIService {
         var params = ""
         
         if !fetchAll {
-            params = String(format: "?limit=%d&offset=%d&q=", k_pageLimit, offset)
+            params = String(format: "?limit=%d&offset=%d&q=", k_contactPageLimit, offset)
         }
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.contact.rawValue + params

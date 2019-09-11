@@ -22,13 +22,6 @@ class InboxPresenter {
     var timer = Timer()
     var counter = 0
     
-    //MARK: - API Requests
-    /*
-    func loadMessages(folder: String) {
-        
-        self.interactor?.messagesList(folder: folder, withUndo: "", silent: false)
-    }*/
-    
     //MARK: - setup UI
     
     func setupUI(emailsCount: Int, unreadEmails: Int, filterEnabled: Bool) {

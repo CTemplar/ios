@@ -71,7 +71,7 @@ class ViewInboxEmailInteractor {
         
         HUD.show(.progress)
         
-        apiService?.messagesList(folder: "", messagesIDIn: messageID.description, seconds: 0) {(result) in
+        apiService?.messagesList(folder: "", messagesIDIn: messageID.description, seconds: 0, offset: -1) {(result) in
             
             switch(result) {
                 
