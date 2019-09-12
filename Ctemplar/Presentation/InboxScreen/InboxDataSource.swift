@@ -25,6 +25,8 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
     
     var selectionMode : Bool = false
     
+    var currentOffset = 0
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh(_:)), for: UIControl.Event.valueChanged)
@@ -421,6 +423,32 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         default:
             break
         }
+    }
+    
+    // MARK: Scrolling
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        if let lastCell = tableView.visibleCells.last {
+            let indexPath = tableView.indexPath(for: lastCell)
+            if let index = indexPath?.row {
+                print("last visible cell index:", index)
+                let totalItems = parentViewController.presenter?.interactor!.totalItems
+                let offset = (parentViewController.presenter?.interactor!.offset)!
+                print("currentOffset:", currentOffset)
+                print("offset:", offset)
+                if currentOffset < offset {
+                    if messagesArray.count < totalItems! {
+                        if index + k_offsetForLast >= currentOffset {
+                            print("need load with new offset:", offset)
+                            currentOffset = (parentViewController.presenter?.interactor!.offset)!
+                            parentViewController.presenter?.interactor!.messagesList(folder: parentViewController.currentFolder, withUndo: "", silent: false)
+                        }
+                    }
+                }
+            }
+        }
+        
     }
     
     // MARK: Actions

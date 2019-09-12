@@ -30,7 +30,7 @@ class InboxInteractor {
         }
     }
     
-    func setInboxData(messages: Array<EmailMessage>, folderFilter: String) {
+    func setInboxData(messages: Array<EmailMessage>, totalEmails: Int) {
      
         self.viewController?.allMessagesArray.append(contentsOf: messages)
         
@@ -45,7 +45,7 @@ class InboxInteractor {
             }
         }
         
-        var totalEmails = 0
+        //var totalEmails = 0
         var unreadEmails = 0
         
         let filterEnabled = self.filterEnabled()
@@ -168,7 +168,7 @@ class InboxInteractor {
                 
                 //self.setInboxData(messages: emailMessages, folderFilter: folder)
                 
-                self.setInboxData(messages: emailMessages.messagesList!, folderFilter: folder)
+                self.setInboxData(messages: emailMessages.messagesList!, totalEmails: self.totalItems)
                 
                 if withUndo.count > 0 {
                     self.presenter?.showUndoBar(text: withUndo)

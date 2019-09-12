@@ -38,7 +38,7 @@ class InboxPresenter {
             viewController?.inboxEmptyImageView.image =  UIImage(named: k_emptyFilterInboxIconImageName)
         } else {
             viewController?.messagesLabel.text = formatEmailsCountText(emailsCount: emailsCount)
-            viewController?.unreadMessagesLabel.text = formatUreadEmailsCountText(emailsCount: unreadEmails)
+           // viewController?.unreadMessagesLabel.text = formatUreadEmailsCountText(emailsCount: unreadEmails)
             viewController?.unreadMessagesLabel.textColor = k_lightGrayTextColor
             
             viewController?.inboxEmptyLabel.text = "noInboxMessage".localized()
