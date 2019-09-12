@@ -104,8 +104,24 @@ class InboxSideMenuInteractor {
     
     func setUnreadCounters(array: Array<UnreadMessagesCounter>) {
         
-         self.viewController?.dataSource?.unreadMessagesArray = array
-         self.viewController?.dataSource?.reloadData()
+        self.viewController?.dataSource?.unreadMessagesArray = array
+        self.viewController?.dataSource?.reloadData()
+        
+        updateInboxBottomBar(with: array)
+    }
+    
+    func updateInboxBottomBar(with array: Array<UnreadMessagesCounter>) {
+    
+        let inboxViewController = self.viewController?.inboxViewController
+        
+        let filterEnabled = (inboxViewController?.presenter?.interactor?.filterEnabled())!
+        let totalEmails = (inboxViewController?.presenter?.interactor?.totalItems)!
+        let currentFolder = (inboxViewController?.currentFolderFilter)!
+        
+        let unreadEmails = getUnreadMessagesCount(folderName: currentFolder)
+        
+        inboxViewController?.presenter?.interactor?.unreadEmails = unreadEmails
+        inboxViewController?.presenter?.setupUI(emailsCount: totalEmails, unreadEmails: unreadEmails, filterEnabled: filterEnabled)
     }
     
     func unreadMessagesCounter() {
@@ -225,6 +241,8 @@ class InboxSideMenuInteractor {
         currentViewController?.presenter?.interactor?.updateMessages(withUndo: "", silent: false)//loadMessages(folder: filter)        
         //currentViewController?.presenter?.interactor?.setInboxData(messages: (currentViewController?.allMessagesList)!, folderFilter: filter)
         currentViewController?.presenter?.interactor?.clearFilters()
+        
+        updateInboxBottomBar(with: (self.viewController?.dataSource!.unreadMessagesArray)!)
         
         self.dismissSideMenuAndTopController()
     }

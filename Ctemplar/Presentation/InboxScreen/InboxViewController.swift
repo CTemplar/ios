@@ -195,6 +195,7 @@ class InboxViewController: UIViewController {
         }
         
         //self.presenter?.interactor?.currentOffset = 0
+        //self.presenter?.interactor?.offset = 0
         //self.presenter?.interactor?.updateMessages(withUndo: "", silent: silent)
         self.presenter?.interactor?.userMyself()
     }

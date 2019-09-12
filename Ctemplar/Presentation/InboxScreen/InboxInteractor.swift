@@ -17,8 +17,8 @@ class InboxInteractor {
     var apiService      : APIService?
     var pgpService      : PGPService?
     
-    //var currentOffset = 0
     var totalItems = 0
+    var unreadEmails = 0
     var offset = 0
     
     //MARK: - data
@@ -46,15 +46,14 @@ class InboxInteractor {
         }
         
         //var totalEmails = 0
-        var unreadEmails = 0
+        //var unreadEmails = 0
         
         let filterEnabled = self.filterEnabled()
         self.presenter?.setupUI(emailsCount: totalEmails, unreadEmails: unreadEmails, filterEnabled: filterEnabled)
         
         if filterEnabled {
             self.applyFilters()
-        }
-        
+        }        
     }
     
     func setInboxData(messages: EmailMessagesList, folderFilter: String) {
