@@ -616,7 +616,8 @@ class APIService {
         
         if folder.count > 0 {
             if folder == MessagesFoldersName.starred.rawValue {
-                folderFilter = "?starred=1"
+                //folderFilter = "?starred=1"
+                folderFilter = "&starred=1"
             } else {
                 //folderFilter = "?folder=" + folder
                 folderFilter = "&folder=" + folder
