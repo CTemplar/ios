@@ -637,7 +637,7 @@ class APIService {
                     
                     //HUD.show(.progress)
                     
-                    self.restAPIService?.messagesList(token: token, folder: folderFilter, messagesIDIn: messagesIDInParameter, seconds: seconds, offset: offset) {(result) in
+                    self.restAPIService?.messagesList(token: token, folder: folderFilter, messagesIDIn: messagesIDInParameter, filter: "", seconds: seconds, offset: offset) {(result) in
                         
                         switch(result) {
                             

@@ -427,16 +427,12 @@ class RestAPIService {
     
     //MARK: - Mail
     
-    func messagesList(token: String, folder: String, messagesIDIn: String, seconds: Int, offset: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func messagesList(token: String, folder: String, messagesIDIn: String, filter: String, seconds: Int, offset: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
             "Accept": "application/json"
         ]
-        
-         //let parameters: Parameters = [
-         //   JSONKey.filter.rawValue: "inbox"
-         //]
         
         var timeParameter = ""
         
@@ -452,7 +448,7 @@ class RestAPIService {
         
         //timeParameter = "?seconds=100000000"
         
-        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + limitParams + folder + messagesIDIn + timeParameter//"?starred=1"// "?read=0"
+        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + limitParams + folder + messagesIDIn + timeParameter + filter//"?starred=1"// "?read=0"
         //let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + "?seconds=" + seconds
         //let url = "https://devapi.ctemplar.com/emails/messages/?limit=20&offset=0&folder=inbox&read=false&seconds=30"
         //https://devapi.ctemplar.com/emails/messages/?limit=20&offset=0&starred=true
