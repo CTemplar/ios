@@ -329,13 +329,13 @@ class InboxPresenter {
             
         case InboxFilterViewButtonsTag.cancelButton.rawValue:
             print("cancel filters")
-            self.viewController?.presenter?.setupUI(emailsCount: (self.viewController?.emailsCount)!, unreadEmails: (self.viewController?.unreadEmails)!, filterEnabled: false)
+            self.viewController?.presenter?.setupUI(emailsCount: self.viewController?.presenter?.interactor?.totalItems ?? 0, unreadEmails: self.viewController?.presenter?.interactor?.unreadEmails ?? 0, filterEnabled: false)
             break
         case InboxFilterViewButtonsTag.applyButton.rawValue:
             print("apply filters")
             self.interactor?.applyFilters()
             let filterEnabled = self.interactor?.filterEnabled()
-            self.viewController?.presenter?.setupUI(emailsCount: (self.viewController?.emailsCount)!, unreadEmails: (self.viewController?.unreadEmails)!, filterEnabled: filterEnabled!)
+            self.viewController?.presenter?.setupUI(emailsCount: self.viewController?.presenter?.interactor?.totalItems ?? 0, unreadEmails: self.viewController?.presenter?.interactor?.unreadEmails ?? 0, filterEnabled: filterEnabled!)
             break
         default:
             print("filter: default")

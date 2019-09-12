@@ -33,9 +33,7 @@ class InboxInteractor {
     func setInboxData(messages: Array<EmailMessage>, totalEmails: Int) {
      
         self.viewController?.allMessagesArray.append(contentsOf: messages)
-        
-        //let currentFolderMessages = self.filterInboxMessages(array: self.viewController!.allMessagesArray, filter: folderFilter)
-        
+    
         self.viewController?.dataSource?.messagesArray = self.viewController!.allMessagesArray//currentFolderMessages
         self.viewController?.dataSource?.reloadData()
         
@@ -45,9 +43,6 @@ class InboxInteractor {
             }
         }
         
-        //var totalEmails = 0
-        //var unreadEmails = 0
-        
         let filterEnabled = self.filterEnabled()
         self.presenter?.setupUI(emailsCount: totalEmails, unreadEmails: unreadEmails, filterEnabled: filterEnabled)
         
@@ -55,7 +50,7 @@ class InboxInteractor {
             self.applyFilters()
         }        
     }
-    
+    /*
     func setInboxData(messages: EmailMessagesList, folderFilter: String) {
         
         var readEmails = 0
@@ -83,8 +78,8 @@ class InboxInteractor {
             readEmails = calculateReadEmails(array: currentFolderMessages)
             unreadEmails = currentFolderMessages.count - readEmails
             
-            self.viewController?.emailsCount = currentFolderMessages.count
-            self.viewController?.unreadEmails = unreadEmails
+            //self.viewController?.emailsCount = currentFolderMessages.count
+            //self.viewController?.unreadEmails = unreadEmails
             
             let filterEnabled = self.filterEnabled()
             self.presenter?.setupUI(emailsCount: currentFolderMessages.count, unreadEmails: unreadEmails, filterEnabled: filterEnabled)
@@ -93,38 +88,7 @@ class InboxInteractor {
                 self.applyFilters()
             }
         }
-    }
-    
-    func setSideMenuData(array: Array<UnreadMessagesCounter>) {
-        
-       // self.viewController?.inboxSideMenuViewController?.dataSource?.unreadMessagesArray = array
-       // self.viewController?.inboxSideMenuViewController?.dataSource?.reloadData()
-    }
-    
-    func setSideMenuData(messages: EmailMessagesList) {
-        /*
-        var readEmails = 0
-        var unreadEmails = 0
-        
-        if let emailsArray = messages.messagesList {
-            
-            //self.viewController?.mainFoldersUnreadMessagesCount.removeAll()
-           // self.viewController?.inboxSideMenuViewController?.dataSource?.mainFoldersUnreadMessagesCount.removeAll()
-            
-            
-            for filter in MessagesFoldersName.allCases {
-                let messages = filterInboxMessages(array: emailsArray, filter: filter.rawValue)
-                readEmails = calculateReadEmails(array: messages)
-                
-                unreadEmails = messages.count - readEmails
-                print("filter:", filter, "unreadEmails:", unreadEmails)
-                //self.viewController?.mainFoldersUnreadMessagesCount.append(unreadEmails)
-               // self.viewController?.inboxSideMenuViewController?.dataSource?.mainFoldersUnreadMessagesCount.append(unreadEmails)
-            }
-            
-            self.viewController?.inboxSideMenuViewController?.dataSource?.reloadData()
-        }*/
-    }
+    }*/
     
     func calculateReadEmails(array: Array<EmailMessage>) -> Int {
         
@@ -194,11 +158,10 @@ class InboxInteractor {
             switch(result) {
                 
             case .success(let value):
-                //print("value:", value)
+                print("allMessagesList value:", value)
                 
-                let emailMessages = value as! EmailMessagesList
-                self.setSideMenuData(messages: emailMessages)
-                
+               // let emailMessages = value as! EmailMessagesList
+               break
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
@@ -206,36 +169,6 @@ class InboxInteractor {
             
             HUD.hide()
         }
-    }
-    
-    func unreadMessagesCounter() {
-        
-        HUD.show(.progress)
-        
-        apiService?.unreadMessagesCounter() {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                //print("unreadMessagesCounter value:", value)
-                
-                var unreadMessagesCounterArray: Array<UnreadMessagesCounter> = []
-                
-                for objectDictionary in (value as? Dictionary<String, Any>)! {
-                   
-                    let unreadMessageCounter = UnreadMessagesCounter(key: objectDictionary.key, value: objectDictionary.value)
-                    unreadMessagesCounterArray.append(unreadMessageCounter)
-                }
-              
-                self.setSideMenuData(array: unreadMessagesCounterArray)
-                
-            case .failure(let error):
-                print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
-            }
-            
-            HUD.hide()
-        }        
     }
     
     func checkStoredPGPKeys() -> Bool {
@@ -563,7 +496,7 @@ class InboxInteractor {
     
     func applyFilters() {
         
-        var filteredMessagesArray : Array<EmailMessage> = (self.viewController?.currentFolderMessagesArray)!
+        var filteredMessagesArray : Array<EmailMessage> = self.viewController!.allMessagesArray //(self.viewController?.currentFolderMessagesArray)!
         
         for (index, filterApplied) in (self.viewController?.appliedFilters)!.enumerated() {
                  

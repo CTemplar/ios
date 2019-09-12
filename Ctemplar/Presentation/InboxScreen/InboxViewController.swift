@@ -39,8 +39,8 @@ class InboxViewController: UIViewController {
     
     var appliedFilters   : Array<Bool> = [false, false, false]
     
-    var emailsCount : Int = 0
-    var unreadEmails: Int = 0
+    //var emailsCount : Int = 0
+    //var unreadEmails: Int = 0
     
     //var senderEmail: String = ""
     
@@ -225,7 +225,7 @@ extension InboxViewController: InboxFilterDelegate {
         
         presenter?.showFilterView()
         
-        self.presenter?.setupUI(emailsCount: emailsCount, unreadEmails: unreadEmails, filterEnabled: false)
+        self.presenter?.setupUI(emailsCount: presenter?.interactor!.totalItems ?? 0, unreadEmails: presenter?.interactor!.unreadEmails ?? 0, filterEnabled: false)
     }
 }
 
