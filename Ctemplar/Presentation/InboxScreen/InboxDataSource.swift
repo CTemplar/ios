@@ -199,8 +199,9 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
     }
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        
-       self.parentViewController.presenter?.interactor?.updateMessages(withUndo: "", silent: true)        
+        currentOffset = 0
+        parentViewController.presenter?.interactor!.offset = 0
+        self.parentViewController.presenter?.interactor?.updateMessages(withUndo: "", silent: true)
     }
     
     // MARK: MGSwipe delegate
@@ -439,7 +440,7 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
                 print("offset:", offset)
                 if currentOffset < offset {
                     if messagesArray.count < totalItems! {
-                        if index + k_offsetForLast >= currentOffset {
+                        if index + k_offsetForLast >= offset {
                             print("need load with new offset:", offset)
                             currentOffset = (parentViewController.presenter?.interactor!.offset)!
                             parentViewController.presenter?.interactor!.messagesList(folder: parentViewController.currentFolder, withUndo: "", silent: false)
@@ -447,8 +448,7 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
                     }
                 }
             }
-        }
-        
+        }        
     }
     
     // MARK: Actions

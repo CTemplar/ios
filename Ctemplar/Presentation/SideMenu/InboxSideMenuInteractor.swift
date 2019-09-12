@@ -219,8 +219,10 @@ class InboxSideMenuInteractor {
         
         currentViewController?.currentFolder = folder
         currentViewController?.currentFolderFilter = filter
-        //currentViewController?.presenter?.interactor?.updateMessages(withUndo: "")//loadMessages(folder: filter)
-        //TODO use folder filter
+        currentViewController?.dataSource?.currentOffset = 0
+        currentViewController?.presenter?.interactor?.offset = 0
+        currentViewController?.allMessagesArray.removeAll()
+        currentViewController?.presenter?.interactor?.updateMessages(withUndo: "", silent: false)//loadMessages(folder: filter)        
         //currentViewController?.presenter?.interactor?.setInboxData(messages: (currentViewController?.allMessagesList)!, folderFilter: filter)
         currentViewController?.presenter?.interactor?.clearFilters()
         
