@@ -2255,8 +2255,14 @@ class APIService {
     func showLoginViewController() {
 
         let mainViewController: MainViewController = UIApplication.shared.keyWindow?.rootViewController as! MainViewController
-        mainViewController.inboxNavigationController.dismiss(animated: false, completion: {
-            mainViewController.showLoginViewController()
-        })        
+        
+        let inboxViewController = mainViewController.inboxNavigationController.viewControllers.first as! InboxViewController
+        inboxViewController.inboxSideMenuViewController?.presenter?.interactor?.resetInboxData()
+        
+        self.logOut() { done in
+            mainViewController.inboxNavigationController.dismiss(animated: false, completion: {
+                mainViewController.showLoginViewController()
+            })
+        }       
     }
 }

@@ -18,9 +18,7 @@ class InboxSideMenuInteractor {
 
     func logOut() {
         
-        self.viewController?.dataSource?.selectedIndexPath = IndexPath(row: 0, section: SideMenuSectionIndex.mainFolders.rawValue)
-        self.viewController?.inboxViewController.currentFolder  = InboxSideMenuOptionsName.inbox.rawValue
-        self.viewController?.inboxViewController.currentFolderFilter = MessagesFoldersName.inbox.rawValue
+        self.resetInboxData()
         
         if (!Device.IS_IPAD) {
             self.viewController?.dismiss(animated: true, completion: {
@@ -49,6 +47,17 @@ class InboxSideMenuInteractor {
                 
             }
         }
+    }
+    
+    func resetInboxData() {
+        
+        self.viewController?.dataSource?.selectedIndexPath = IndexPath(row: 0, section: SideMenuSectionIndex.mainFolders.rawValue)
+        self.viewController?.inboxViewController.currentFolder  = InboxSideMenuOptionsName.inbox.rawValue
+        self.viewController?.inboxViewController.currentFolderFilter = MessagesFoldersName.inbox.rawValue
+        self.viewController?.inboxViewController.presenter?.interactor?.offset = 0
+        self.viewController?.inboxViewController.allMessagesArray.removeAll()
+        self.viewController?.inboxViewController.dataSource?.messagesArray.removeAll()
+        self.viewController?.inboxViewController.dataSource?.reloadData()
     }
     
     func setCustomFoldersData(folderList: FolderList) {
