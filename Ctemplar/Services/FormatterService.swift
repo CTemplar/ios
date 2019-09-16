@@ -136,7 +136,7 @@ class FormatterService
         
     }
     
-     func formatFromToString(fromName: String, fromEmail: String, toNamesArray: Array<String>, toEmailsArray: Array<String>, ccArray: Array<String>) -> String {
+     func formatFromToString(fromName: String, fromEmail: String, toNamesArray: Array<String>, toEmailsArray: Array<String>, ccArray: Array<String>, bccArray: Array<String>) -> String {
         
         var toEmailsText : String = "\n" + "toPrefix".localized()
         
@@ -159,15 +159,27 @@ class FormatterService
         } else {
             ccText = ""
         }
+        
+        var bccText : String = "\n" + "bccPrefix".localized()
+        
+        for bcarbonCopy in bccArray {
+            bccText = bccText + "<" + bcarbonCopy + ">,\n"
+        }
+        
+        if bccArray.count > 0 {
+            bccText = String(bccText.dropLast(2))
+        } else {
+            bccText = ""
+        }
 
-        let textString = "fromPrefix".localized() + fromName + " <" + fromEmail + ">" + toEmailsText + ccText
+        let textString = "fromPrefix".localized() + fromName + " <" + fromEmail + ">" + toEmailsText + ccText + bccText
         
         print("textString:", textString)
         
         return textString
     }
     
-    func formatFromToAttributedString(fromName: String, fromToText: String, toNamesArray: Array<String>, toEmailsArray: Array<String>, ccArray: Array<String>) -> NSAttributedString {
+    func formatFromToAttributedString(fromName: String, fromToText: String, toNamesArray: Array<String>, toEmailsArray: Array<String>, ccArray: Array<String>, bccArray: Array<String>) -> NSAttributedString {
         
         let style = NSMutableParagraphStyle()
         style.lineSpacing = CGFloat(k_lineSpaceSizeForFromToText)

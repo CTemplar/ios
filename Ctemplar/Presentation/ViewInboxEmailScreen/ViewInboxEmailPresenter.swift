@@ -120,6 +120,7 @@ class ViewInboxEmailPresenter {
         var toNamesArray : Array<String> = []
         var toEmailsArray : Array<String> = []
         var ccArray : Array<String> = []
+        var bccArray : Array<String> = []
         
         if let sender = message.sender {
             fromEmail = sender
@@ -131,6 +132,10 @@ class ViewInboxEmailPresenter {
         
         if let carbonCopyArray = message.cc {
             ccArray = carbonCopyArray as! Array<String>
+        }
+        
+        if let bcarbonCopyArray = message.bcc {
+            bccArray = bcarbonCopyArray as! Array<String>
         }
         /*
         //temp names
@@ -150,9 +155,9 @@ class ViewInboxEmailPresenter {
         ccArray.append("huly-gunxx@white-zebra.com")
         */
         
-        let fromToText = self.interactor?.formatterService!.formatFromToString(fromName: fromName, fromEmail: fromEmail, toNamesArray: toNamesArray, toEmailsArray: toEmailsArray, ccArray: ccArray)
+        let fromToText = self.interactor?.formatterService!.formatFromToString(fromName: fromName, fromEmail: fromEmail, toNamesArray: toNamesArray, toEmailsArray: toEmailsArray, ccArray: ccArray, bccArray: bccArray)
         
-        let fromToAttributtedString = self.interactor?.formatterService!.formatFromToAttributedString(fromName: fromName, fromToText: fromToText!, toNamesArray: toNamesArray, toEmailsArray: toEmailsArray, ccArray: ccArray)
+        let fromToAttributtedString = self.interactor?.formatterService!.formatFromToAttributedString(fromName: fromName, fromToText: fromToText!, toNamesArray: toNamesArray, toEmailsArray: toEmailsArray, ccArray: ccArray, bccArray: bccArray)
         
         self.viewController?.fromToBarTextView.contentInset = UIEdgeInsets(top: 3, left: 0, bottom: 0, right: 0)
         self.viewController?.fromToBarTextView.attributedText = fromToAttributtedString

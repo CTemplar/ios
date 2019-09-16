@@ -350,6 +350,7 @@
 
 "toPrefix" = "Кому: ";
 "ccPrefix" = "Копия: ";
+"bccPrefix" = "Скрытая копия: ";
 "fromPrefix" = "От: ";
 
 "yesterday" = "Вчера";

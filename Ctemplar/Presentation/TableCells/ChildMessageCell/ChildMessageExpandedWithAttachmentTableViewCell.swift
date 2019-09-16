@@ -90,6 +90,7 @@ class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell, UICollec
         var toNamesArray : Array<String> = []
         var toEmailsArray : Array<String> = []
         var ccArray : Array<String> = []
+        var bccArray : Array<String> = []
         
         if let sender = message.sender {
             fromEmail = sender
@@ -102,10 +103,14 @@ class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell, UICollec
         if let carbonCopyArray = message.cc {
             ccArray = carbonCopyArray as! Array<String>
         }
-         
-        let fromToText = parentController?.formatterService!.formatFromToString(fromName: fromName, fromEmail: fromEmail, toNamesArray: toNamesArray, toEmailsArray: toEmailsArray, ccArray: ccArray)
         
-        let fromToAttributtedString = parentController?.formatterService!.formatFromToAttributedString(fromName: fromName, fromToText: fromToText!, toNamesArray: toNamesArray, toEmailsArray: toEmailsArray, ccArray: ccArray)
+        if let bcarbonCopyArray = message.bcc {
+            bccArray = bcarbonCopyArray as! Array<String>
+        }
+         
+        let fromToText = parentController?.formatterService!.formatFromToString(fromName: fromName, fromEmail: fromEmail, toNamesArray: toNamesArray, toEmailsArray: toEmailsArray, ccArray: ccArray, bccArray: bccArray)
+        
+        let fromToAttributtedString = parentController?.formatterService!.formatFromToAttributedString(fromName: fromName, fromToText: fromToText!, toNamesArray: toNamesArray, toEmailsArray: toEmailsArray, ccArray: ccArray, bccArray: bccArray)
         
         self.fromToBarTextView.contentInset = UIEdgeInsets(top: 3, left: 0, bottom: 0, right: 0)
         self.fromToBarTextView.attributedText = fromToAttributtedString

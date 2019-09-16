@@ -350,6 +350,7 @@
 
 "toPrefix" = "To: ";
 "ccPrefix" = "CC: ";
+"bccPrefix" = "BCC: ";
 "fromPrefix" = "From: ";
 
 "yesterday" = "Yesterday";
