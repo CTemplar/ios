@@ -249,9 +249,9 @@ class InboxSideMenuInteractor {
     
     func applyCustomFolderAction(folderName: String) {
         
-        //let formattedFolderName = self.formatFolderNameLikeUrl(folderName: folderName)
+        let formattedFolderName = self.formatFolderNameLikeUrl(folderName: folderName)
         
-        self.applyFirstSectionAction(folder: folderName, filter: folderName)
+        self.applyFirstSectionAction(folder: folderName, filter: formattedFolderName)
     }
     
     func formatFolderNameLikeUrl(folderName: String) -> String {
