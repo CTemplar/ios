@@ -43,7 +43,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         
         dataSource?.initWith(parent: self, tableView: searchTableView, array: messagesList)
         
-        searchBar.delegate = self        
+        searchBar.delegate = self
+        
+        self.presenter?.updateMessges()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,11 +53,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         
         //presenter?.setupNavigationBarItem(searchBar: searchBar)
         //self.dataSource?.reloadData()
-        self.presenter?.interactor!.offset = 0
-        self.presenter?.interactor!.getCount = 0
-        self.presenter?.interactor!.currentCount = 0
-        self.dataSource?.messagesArray.removeAll()
-        self.presenter?.interactor?.getAllMessagesPageByPage()
     }
     
     // MARK: IBActions

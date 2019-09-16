@@ -35,5 +35,13 @@ class SearchPresenter {
         
         self.viewController?.navigationItem.titleView = searchBar   
     }
-
+    
+    func updateMessges() {
+        
+        self.interactor!.offset = 0
+        self.interactor!.getCount = 0
+        self.interactor!.currentCount = 0
+        self.viewController?.dataSource?.messagesArray.removeAll()
+        self.interactor?.getAllMessagesPageByPage()
+    }
 }
