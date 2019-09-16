@@ -32,6 +32,8 @@ class InboxInteractor {
     
     func setInboxData(messages: Array<EmailMessage>, totalEmails: Int) {
      
+        
+        
         self.viewController?.allMessagesArray.append(contentsOf: messages)
     
         self.viewController?.dataSource?.messagesArray = self.viewController!.allMessagesArray//currentFolderMessages

@@ -23,6 +23,16 @@ class SearchDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     var filtered : Bool = false
     
+    var currentOffset = 0
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh(_:)), for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.gray
+        
+        return refreshControl
+    }()
+    
     func initWith(parent: SearchViewController, tableView: UITableView, array: Array<EmailMessage>) {
         
         self.parentViewController = parent
@@ -30,6 +40,8 @@ class SearchDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.messagesArray = array        
+        
+        self.tableView.addSubview(self.refreshControl)
         
         registerTableViewCell()
     }
@@ -102,6 +114,7 @@ class SearchDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     func reloadData() {
         
         self.tableView.reloadData()
+        self.refreshControl.endRefreshing()
         
         if self.filtered {
             if self.filteredArray.count > 0 {
@@ -112,5 +125,12 @@ class SearchDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         } else {
             self.tableView.isHidden = false
         }
+    }
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        currentOffset = 0
+        parentViewController.presenter?.interactor!.offset = 0
+        parentViewController.presenter?.interactor!.getCount = 0
+        self.parentViewController.presenter?.interactor?.getAllMessagesPageByPage()
     }
 }

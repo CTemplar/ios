@@ -50,7 +50,12 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         super.viewWillAppear(animated)
         
         //presenter?.setupNavigationBarItem(searchBar: searchBar)
-        self.dataSource?.reloadData()
+        //self.dataSource?.reloadData()
+        self.presenter?.interactor!.offset = 0
+        self.presenter?.interactor!.getCount = 0
+        self.presenter?.interactor!.currentCount = 0
+        self.dataSource?.messagesArray.removeAll()
+        self.presenter?.interactor?.getAllMessagesPageByPage()
     }
     
     // MARK: IBActions

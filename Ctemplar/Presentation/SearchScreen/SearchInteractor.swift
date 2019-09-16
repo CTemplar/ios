@@ -17,15 +17,86 @@ class SearchInteractor {
     var apiService      : APIService?
     var pgpService      : PGPService?
     
+    var totalItems = 0
+    var offset = 0
+    var getCount = 0
+    var currentCount = 0
+    
     func setData(messages: EmailMessagesList) {
         
+        if offset == 0 {
+            currentCount = 0
+            self.viewController?.dataSource?.messagesArray.removeAll()
+        }
+        
         if let emailsArray = messages.messagesList {
-            self.viewController?.dataSource?.messagesArray = emailsArray
+            //self.viewController?.dataSource?.messagesArray = emailsArray
+            self.viewController?.dataSource?.messagesArray.append(contentsOf: emailsArray)
+            print("total search messagesArray:", self.viewController?.dataSource?.messagesArray.count as Any)
         }
         
         self.viewController?.dataSource?.reloadData()
     }
-
+    
+    func getAllMessagesPageByPage() {
+        
+        if self.offset >= self.totalItems && self.offset > 0 {
+            HUD.hide()
+            return
+        }
+    
+        if getCount > 0 {
+            if currentCount > 0 {
+                allMessagesList()
+                currentCount = currentCount - 1
+            }
+        } else {
+            allMessagesList()
+        }
+    }
+    
+    func allMessagesList() {
+        
+        HUD.show(.progress)
+        
+        apiService?.messagesList(folder: "", messagesIDIn: "", seconds: 0, offset: self.offset) {(result) in
+            
+            switch(result) {
+                
+            case .success(let value):
+                //print("value:", value)
+                
+                let emailMessages = value as! EmailMessagesList
+                self.totalItems = emailMessages.totalCount!
+                
+                self.setData(messages: emailMessages)
+               
+                self.getCount = self.totalItems / k_pageLimit
+                
+                if self.offset == 0 {
+                    self.customFoldersList() //need to get folders/labels color
+                    self.currentCount = self.getCount
+                }
+                
+                self.offset = self.offset + k_pageLimit
+                
+                //print("self.offset:", self.offset)
+                
+                self.getAllMessagesPageByPage()
+                
+            case .failure(let error):
+                HUD.hide()
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+            
+            if self.offset != 0 {
+            //    HUD.hide()
+            }
+        }
+    }
+    
+/*
     func allMessagesList() {
         
         HUD.show(.progress)
@@ -50,7 +121,7 @@ class SearchInteractor {
             
            // HUD.hide()
         }
-    }
+    }*/
     
     func setCustomFoldersData(folderList: FolderList) {
         
@@ -81,7 +152,7 @@ class SearchInteractor {
                 AlertHelperKit().showAlert(self.viewController!, title: "Folders Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
-            HUD.hide()
+            //HUD.hide()
         }
     }
     
