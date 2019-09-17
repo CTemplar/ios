@@ -296,6 +296,7 @@
 "addresses" = "Адреса";
 
 "contactsEncryption" = "Шифровать контакты";
+"attachmentEncryption" = "Шифровать вложения";
 
 "enableSignature" = "Включить подпись";
 "typeSignature" = "Введите вашу подпись";

@@ -14,13 +14,6 @@ class SecurityInteractor {
     
     var viewController  : SecurityViewController?
     var apiService      : APIService?
-    
-    func startDecryption() {
-        
-        HUD.show(.labeledProgress(title: "decryptingContacts".localized(), subtitle: ""))
-        
-        self.userContactsList()
-    }
 
     func updateEncryptionContacts(settings: Settings, encryptContacts: Bool) {
         
@@ -45,15 +38,17 @@ class SecurityInteractor {
             case .failure(let error):
                 print("error:", error)
                 self.viewController!.encryptContacts = !self.viewController!.encryptContacts
-                self.viewController!.switcher.setOn(self.viewController!.encryptContacts, animated: true)
+                self.viewController!.contactsEncryptionSwitcher.setOn(self.viewController!.encryptContacts, animated: true)
                 AlertHelperKit().showAlert(self.viewController!, title: "Update Settings Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
     }
-
-    func postUpdateUserSettingsNotification() {
     
-        NotificationCenter.default.post(name: Notification.Name(k_updateUserSettingsNotificationID), object: nil, userInfo: nil)
+    func startDecryption() {
+        
+        HUD.show(.labeledProgress(title: "decryptingContacts".localized(), subtitle: ""))
+        
+        self.userContactsList()
     }
     
     func decryptContacts(contacts: Array<Contact> ) {
@@ -68,7 +63,7 @@ class SecurityInteractor {
                     //something went wrong
                     AlertHelperKit().showAlert(self.viewController!, title: "Error:", message: "Contact Encryption Error", button: "closeButton".localized())
                     self.viewController!.encryptContacts = true
-                    self.viewController!.switcher.setOn(self.viewController!.encryptContacts, animated: true)
+                    self.viewController!.contactsEncryptionSwitcher.setOn(self.viewController!.encryptContacts, animated: true)
                     HUD.hide()
                 }
                 
@@ -156,5 +151,10 @@ class SecurityInteractor {
                 //AlertHelperKit().showAlert(self, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
+    }
+    
+    func postUpdateUserSettingsNotification() {
+        
+        NotificationCenter.default.post(name: Notification.Name(k_updateUserSettingsNotificationID), object: nil, userInfo: nil)
     }
 }

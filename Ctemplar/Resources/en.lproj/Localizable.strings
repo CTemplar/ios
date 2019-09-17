@@ -296,6 +296,7 @@
 "addresses" = "Addresses";
 
 "сontactsEncryption" = "Contacts encryption";
+"attachmentEncryption" = "Attachment encryption";
 
 "enableSignature" = "Enable signature";
 "typeSignature" = "Type your signature";

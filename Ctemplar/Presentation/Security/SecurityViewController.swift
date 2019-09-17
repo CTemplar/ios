@@ -13,7 +13,8 @@ import PKHUD
 
 class SecurityViewController: UIViewController {
     
-    @IBOutlet var switcher                 : UISwitch!
+    @IBOutlet var contactsEncryptionSwitcher         : UISwitch!
+    @IBOutlet var attachmentEncryptionSwitcher       : UISwitch!
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -23,7 +24,8 @@ class SecurityViewController: UIViewController {
     
     var user = UserMyself()
     
-    var encryptContacts : Bool = false
+    var encryptContacts     : Bool = false
+    var encryptAttachment   : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,18 +52,34 @@ class SecurityViewController: UIViewController {
         
         self.encryptContacts = self.user.settings.isContactsEncrypted ?? false
         
-        self.switcher.setOn(self.encryptContacts, animated: true)
+        self.contactsEncryptionSwitcher.setOn(self.encryptContacts, animated: true)
     }
     
     @IBAction func switchStateDidChange(_ sender: UISwitch) {
         
-        if (sender.isOn == true) {
-            self.encryptContacts = true
-        } else {
-            self.encryptContacts = false
+        switch sender {
+        case contactsEncryptionSwitcher:
+            
+            if (sender.isOn == true) {
+                self.encryptContacts = true
+            } else {
+                self.encryptContacts = false
+            }
+            
+            self.showWarningPopUp(settings: self.user.settings, encryptContacts: self.encryptContacts)
+            break
+        case attachmentEncryptionSwitcher:
+            
+            if (sender.isOn == true) {
+                self.encryptAttachment = true
+            } else {
+                self.encryptAttachment = false
+            }
+            
+            break
+        default:
+            break
         }
-        
-        self.showWarningPopUp(settings: self.user.settings, encryptContacts: self.encryptContacts)
     }
     
     func showWarningPopUp(settings: Settings, encryptContacts: Bool) {
@@ -91,7 +109,7 @@ class SecurityViewController: UIViewController {
             switch buttonIndex {
             case 0:
                 self.encryptContacts = !self.encryptContacts
-                self.switcher.setOn(self.encryptContacts, animated: true)
+                self.contactsEncryptionSwitcher.setOn(self.encryptContacts, animated: true)
                 break
             default:
                 print("Change Contact Encryption")
