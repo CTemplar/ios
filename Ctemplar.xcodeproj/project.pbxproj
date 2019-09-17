@@ -31,6 +31,7 @@
 		8407AD94216CC98900AF2E7B /* EmailMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407AD93216CC98900AF2E7B /* EmailMessage.swift */; };
 		84085B3321C15216002733DE /* SideMenuTableManageFolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84085B3221C15216002733DE /* SideMenuTableManageFolderCell.swift */; };
 		84085B3521C152CB002733DE /* SideMenuTableManageFoldersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84085B3421C152CB002733DE /* SideMenuTableManageFoldersCell.xib */; };
+		84092FB52330C5D0002E2718 /* SecurityInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84092FB42330C5D0002E2718 /* SecurityInteractor.swift */; };
 		840DEA5823222969006FB927 /* SecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840DEA5623222969006FB927 /* SecurityViewController.swift */; };
 		840DEA5923222969006FB927 /* Security.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840DEA5723222969006FB927 /* Security.storyboard */; };
 		84304298217D9D1C00DB5787 /* InboxSideMenuConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84304297217D9D1C00DB5787 /* InboxSideMenuConfigurator.swift */; };
@@ -260,6 +261,7 @@
 		8407AD93216CC98900AF2E7B /* EmailMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailMessage.swift; sourceTree = "<group>"; };
 		84085B3221C15216002733DE /* SideMenuTableManageFolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableManageFolderCell.swift; sourceTree = "<group>"; };
 		84085B3421C152CB002733DE /* SideMenuTableManageFoldersCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuTableManageFoldersCell.xib; sourceTree = "<group>"; };
+		84092FB42330C5D0002E2718 /* SecurityInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityInteractor.swift; sourceTree = "<group>"; };
 		840DEA5623222969006FB927 /* SecurityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityViewController.swift; sourceTree = "<group>"; };
 		840DEA5723222969006FB927 /* Security.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Security.storyboard; sourceTree = "<group>"; };
 		84304297217D9D1C00DB5787 /* InboxSideMenuConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuConfigurator.swift; sourceTree = "<group>"; };
@@ -559,6 +561,7 @@
 			isa = PBXGroup;
 			children = (
 				840DEA5623222969006FB927 /* SecurityViewController.swift */,
+				84092FB42330C5D0002E2718 /* SecurityInteractor.swift */,
 				840DEA5723222969006FB927 /* Security.storyboard */,
 			);
 			path = Security;
@@ -1534,6 +1537,7 @@
 				8440467721C7F87300CDEB3F /* ManageFoldersDataSource.swift in Sources */,
 				8431218A218AF80E0014560D /* ViewInboxEmailRouter.swift in Sources */,
 				843FC3882164CA0D000CFEA9 /* SignUpConfigurator.swift in Sources */,
+				84092FB52330C5D0002E2718 /* SecurityInteractor.swift in Sources */,
 				845E64392170849C008612FE /* InboxSideMenuViewController.swift in Sources */,
 				84BB2E4E230ADB4C00E9C162 /* Captcha.swift in Sources */,
 				8462C62D21CCE21E005B3D74 /* Settings.swift in Sources */,

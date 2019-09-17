@@ -19,6 +19,7 @@ class SecurityViewController: UIViewController {
     
     var apiService              : APIService?
     var formatterService        : FormatterService?
+    var interactor              : SecurityInteractor?
     
     var user = UserMyself()
     
@@ -30,6 +31,10 @@ class SecurityViewController: UIViewController {
         
         self.formatterService = appDelegate.applicationManager.formatterService
         self.apiService = appDelegate.applicationManager.apiService
+        
+        self.interactor = SecurityInteractor()
+        self.interactor?.viewController = self
+        self.interactor?.apiService = self.apiService
      
         self.setupScreen()
     }
@@ -91,153 +96,10 @@ class SecurityViewController: UIViewController {
             default:
                 print("Change Contact Encryption")
                 //if encryptContacts {
-                    self.updateEncryptionContacts(settings: settings, encryptContacts: encryptContacts)
+                    self.interactor!.updateEncryptionContacts(settings: settings, encryptContacts: encryptContacts)
                // } else {
                //     self.startDecryption()
                // }
-            }
-        }
-        
-    }    
-    
-    func updateEncryptionContacts(settings: Settings, encryptContacts: Bool) {
-        
-        HUD.show(.progress)
-        
-        let settingsID = settings.settingsID
-        
-        apiService?.updateSettings(settingsID: (settingsID?.description)!, recoveryEmail: "", dispalyName: "", savingContacts: settings.saveContacts ?? false, encryptContacts: encryptContacts) {(result) in
-            
-            HUD.hide()
-            
-            switch(result) {
-                
-            case .success(let value):
-                print("updateEncryptionContacts value:", value)
-                if encryptContacts {
-                    self.postUpdateUserSettingsNotification()
-                    AlertHelperKit().showAlert(self, title: "Info:".localized(), message: "allContactsWasEncrypted".localized(), button: "closeButton".localized())
-                } else {
-                    self.startDecryption()
-                }
-            case .failure(let error):
-                print("error:", error)
-                self.encryptContacts = !self.encryptContacts
-                self.switcher.setOn(self.encryptContacts, animated: true)
-                AlertHelperKit().showAlert(self, title: "Update Settings Error", message: error.localizedDescription, button: "closeButton".localized())
-            }
-        }
-    }
-    
-    func postUpdateUserSettingsNotification() {
-        
-        NotificationCenter.default.post(name: Notification.Name(k_updateUserSettingsNotificationID), object: nil, userInfo: nil)
-    }
-    
-    func startDecryption() {
-        
-        HUD.show(.labeledProgress(title: "decryptingContacts".localized(), subtitle: ""))
-        
-        self.userContactsList()
-    }
-    
-    func decryptContacts(contacts: Array<Contact> ) {
-        
-        var decryptedContacts = 0
-        
-        for contact in contacts {
-            self.decryptContact(contact) { done in
-                if done {
-                    decryptedContacts = decryptedContacts + 1
-                } else {
-                    //something went wrong
-                    AlertHelperKit().showAlert(self, title: "Error:", message: "Contact Encryption Error", button: "closeButton".localized())
-                    self.encryptContacts = true
-                    self.switcher.setOn(self.encryptContacts, animated: true)
-                    HUD.hide()
-                }
-                
-                if decryptedContacts == contacts.count {
-                    HUD.hide()
-                    AlertHelperKit().showAlert(self, title: "Info:".localized(), message: "allContactsWasDecrypted".localized(), button: "closeButton".localized())
-                }
-            }
-        }
-    }
-    
-    func decryptContact(_ contact: Contact, with completion: ((_ done: Bool) -> Void)? = nil) {
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        let pgpService = appDelegate.applicationManager.pgpService
-        
-        if let encryptedData = contact.encryptedData {
-            let decryptedContent = pgpService.decryptMessage(encryptedContet: encryptedData)
-            let dictionary = self.convertStringToDictionary(text: decryptedContent)
-            let decryptedContact = Contact(decryptedDictionary: dictionary, contactId: contact.contactID ?? 0)
-            
-            self.updateContact(contactID: contact.contactID?.description ?? "", name: decryptedContact.contactName ?? "name", email:  decryptedContact.email ?? "emal", phone: decryptedContact.phone ?? "", address: decryptedContact.address ?? "", note: decryptedContact.note ?? "") { done in
-                completion?(done)
-            }
-        }
-    }
-    
-    func convertStringToDictionary(text: String) -> [String:Any] {
-        
-        var dicitionary = [String:Any]()
-        
-        if let data = text.data(using: String.Encoding.utf8) {
-            do {
-                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:Any] {
-                    // print("convertStringToDictionary:", json as Any)
-                    dicitionary = json
-                }
-                return dicitionary
-                
-            } catch {
-                print("convertStringToDictionary: Something went wrong string ->", text)
-                return dicitionary
-            }
-        }
-        
-        return dicitionary
-    }
-    
-    func userContactsList() {
-        
-        apiService?.userContacts(fetchAll: true, offset: 0, silent: true) {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                
-                let contactsList = value as! ContactsList
-                if let contacts = contactsList.contactsList {
-                    self.decryptContacts(contacts: contacts)
-                }
-                
-            case .failure(let error):
-                print("error:", error)
-                AlertHelperKit().showAlert(self, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
-            }
-        }
-    }
-    
-    func updateContact(contactID: String, name: String, email: String, phone: String, address: String, note: String, with completion: ((_ done: Bool) -> Void)? = nil) {
-        
-        print("email:", email)
-        
-        apiService?.updateContact(contactID: contactID, name: name, email: email, phone: phone, address: address, note: note) {(result) in
-                
-            switch(result) {
-                    
-            case .success(let value):
-                print("updateContact:", value)
-                completion?(true)
-            case .failure(let error):
-                print("error:", error)
-                completion?(false)
-                //AlertHelperKit().showAlert(self, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
     }
