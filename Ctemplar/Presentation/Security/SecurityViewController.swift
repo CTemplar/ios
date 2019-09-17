@@ -51,8 +51,10 @@ class SecurityViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: k_contactsBarTintColor]
         
         self.encryptContacts = self.user.settings.isContactsEncrypted ?? false
-        
         self.contactsEncryptionSwitcher.setOn(self.encryptContacts, animated: true)
+        
+        self.encryptAttachment = self.user.settings.isAttachmentsEncrypted ?? false
+        self.attachmentEncryptionSwitcher.setOn(self.encryptAttachment, animated: true)        
     }
     
     @IBAction func switchStateDidChange(_ sender: UISwitch) {
@@ -66,8 +68,7 @@ class SecurityViewController: UIViewController {
                 self.encryptContacts = false
             }
             
-            self.showWarningPopUp(settings: self.user.settings, encryptContacts: self.encryptContacts)
-            break
+            self.showContactEncryptionWarningPopUp(settings: self.user.settings, encryptContacts: self.encryptContacts)
         case attachmentEncryptionSwitcher:
             
             if (sender.isOn == true) {
@@ -76,13 +77,14 @@ class SecurityViewController: UIViewController {
                 self.encryptAttachment = false
             }
             
-            break
+            self.interactor!.updateEncryptionAttachment(settings: self.user.settings, encryptContacts: self.encryptContacts, encryptAttachment: self.encryptAttachment)
+           
         default:
             break
         }
     }
     
-    func showWarningPopUp(settings: Settings, encryptContacts: Bool) {
+    func showContactEncryptionWarningPopUp(settings: Settings, encryptContacts: Bool) {
         
         var encryptButtonText = ""
         var encryptTitleText = ""
@@ -114,7 +116,7 @@ class SecurityViewController: UIViewController {
             default:
                 print("Change Contact Encryption")
                 //if encryptContacts {
-                    self.interactor!.updateEncryptionContacts(settings: settings, encryptContacts: encryptContacts)
+                self.interactor!.updateEncryptionContacts(settings: settings, encryptContacts: encryptContacts, encryptAttachment: self.encryptAttachment)
                // } else {
                //     self.startDecryption()
                // }

@@ -398,3 +398,6 @@
 "decryptingContacts" = "Decrypting...";
 "allContactsWasEncrypted" = "All Contacts was encrypted";
 "allContactsWasDecrypted" = "All Contacts was decrypted";
+
+"attachmentEncryptionWasEnabled" = "Attachment Encryption Was Enabled";
+"attachmentEncryptionWasDisabled" = "Attachment Encryption Was Disabled";

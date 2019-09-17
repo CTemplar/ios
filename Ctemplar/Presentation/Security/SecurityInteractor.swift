@@ -15,13 +15,13 @@ class SecurityInteractor {
     var viewController  : SecurityViewController?
     var apiService      : APIService?
 
-    func updateEncryptionContacts(settings: Settings, encryptContacts: Bool) {
+    func updateEncryptionContacts(settings: Settings, encryptContacts: Bool, encryptAttachment: Bool) {
         
         HUD.show(.progress)
         
         let settingsID = settings.settingsID
         
-        apiService?.updateSettings(settingsID: (settingsID?.description)!, recoveryEmail: "", dispalyName: "", savingContacts: settings.saveContacts ?? false, encryptContacts: encryptContacts) {(result) in
+        apiService?.updateSettings(settingsID: (settingsID?.description)!, recoveryEmail: "", dispalyName: "", savingContacts: settings.saveContacts ?? false, encryptContacts: encryptContacts, encryptAttachment: encryptAttachment) {(result) in
             
             HUD.hide()
             
@@ -149,6 +149,38 @@ class SecurityInteractor {
                 print("error:", error)
                 completion?(false)
                 //AlertHelperKit().showAlert(self, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
+    func updateEncryptionAttachment(settings: Settings, encryptContacts: Bool, encryptAttachment: Bool) {
+        
+        HUD.show(.progress)
+        
+        let settingsID = settings.settingsID
+        
+        apiService?.updateSettings(settingsID: (settingsID?.description)!, recoveryEmail: "", dispalyName: "", savingContacts: settings.saveContacts ?? false, encryptContacts: encryptContacts, encryptAttachment: encryptAttachment) {(result) in
+            
+            HUD.hide()
+            
+            switch(result) {
+                
+            case .success(let value):
+                print("updateEncryptionAttachment value:", value)
+                
+                if encryptAttachment {
+                    AlertHelperKit().showAlert(self.viewController!, title: "Info:".localized(), message: "attachmentEncryptionWasEnabled".localized(), button: "closeButton".localized())
+                } else {
+                    AlertHelperKit().showAlert(self.viewController!, title: "Info:".localized(), message: "attachmentEncryptionWasDisabled".localized(), button: "closeButton".localized())
+                }
+                
+                self.postUpdateUserSettingsNotification()
+                
+            case .failure(let error):
+                print("error:", error)
+                self.viewController!.encryptAttachment = !self.viewController!.encryptAttachment
+                self.viewController!.attachmentEncryptionSwitcher.setOn(self.viewController!.encryptAttachment, animated: true)
+                AlertHelperKit().showAlert(self.viewController!, title: "Update Settings Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
     }
