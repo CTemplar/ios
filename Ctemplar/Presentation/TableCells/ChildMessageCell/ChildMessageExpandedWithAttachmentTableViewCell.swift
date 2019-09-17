@@ -209,7 +209,7 @@ class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell, UICollec
         
         if let urlString = attach.contentUrl {
             //let url = URL(string: urlString)
-            self.parentController?.attachSelected(itemUrlString: urlString)
+            self.parentController?.attachSelected(itemUrlString: urlString, encrypted: attach.encrypted ?? false)
         }
     }
 }

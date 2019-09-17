@@ -412,7 +412,16 @@ class ViewInboxEmailInteractor {
     
     //MARK: - Share Attachment
     
-    func showPreviewScreen(url: URL) {
+    func showPreviewScreen(url: URL, encrypted: Bool) {
+        
+        if encrypted {
+            guard let data = try? Data(contentsOf: url) else {
+                print("Attachment content data error!")
+                return
+            }
+            
+           self.decryptAttachment(data: data)
+        }
         
         self.viewController?.documentInteractionController.url = url
         self.viewController?.documentInteractionController.uti = url.typeIdentifier ?? "public.data, public.content"
@@ -445,8 +454,14 @@ class ViewInboxEmailInteractor {
         
         return url
     }
+    
+    func decryptAttachment(data: Data) {
+    
+        let decryptedAttachment = pgpService?.decrypt(encryptedData: data)
+        print("decryptedAttachment:", decryptedAttachment as Any)
+    }
         
-    func loadAttachFile(url: String) {
+    func loadAttachFile(url: String, encrypted: Bool) {
      
         HUD.show(.progress)
         
@@ -459,7 +474,7 @@ class ViewInboxEmailInteractor {
             case .success(let value):
                 //print("load value:", value)
                 let savedFileUrl = value as! URL
-                self.showPreviewScreen(url: savedFileUrl)
+                self.showPreviewScreen(url: savedFileUrl, encrypted: encrypted)
                 
             case .failure(let error):
                 print("error:", error)

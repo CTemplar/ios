@@ -215,14 +215,14 @@ class ViewInboxEmailPresenter {
     
     //MARK: - Attachment Action
     
-    func showShareScreen(itemUrlString: String) {
+    func showShareScreen(itemUrlString: String, encrypted: Bool) {
         
         let url = self.interactor?.getFileUrlDocuments(withURLString: itemUrlString)
     
         if (self.interactor?.checkIsFileExist(url: url!))! {            
-            self.interactor?.showPreviewScreen(url: url!)
+            self.interactor?.showPreviewScreen(url: url!, encrypted: encrypted)
         } else {
-            self.interactor?.loadAttachFile(url: itemUrlString)
+            self.interactor?.loadAttachFile(url: itemUrlString, encrypted: encrypted)
         }
     }
         
