@@ -44,6 +44,12 @@ class ViewInboxEmailInteractor {
                 }
                 
                 self.viewController?.dataSource?.reloadData(scrollToLastMessage: true)
+            } else {
+                self.viewController?.dataSource?.messagesArray.append(message)
+                self.viewController?.dataSource?.showDetailMessagesArray.append(false)
+                self.viewController?.dataSource?.showContentMessagesArray.append(true)
+                self.updateMessageContent(emailsArray: (self.viewController?.dataSource?.messagesArray)!)
+                self.viewController?.dataSource?.reloadData(scrollToLastMessage: false)
             }
         } else {
             self.viewController?.dataSource?.messagesArray.append(message)
@@ -76,7 +82,7 @@ class ViewInboxEmailInteractor {
             switch(result) {
                 
             case .success(let value):
-                //print("value:", value)
+                print("getMessage:", value)
   
                 let emailMessages = value as! EmailMessagesList
                 self.setMessages(messages: emailMessages)
