@@ -420,10 +420,16 @@ class ViewInboxEmailInteractor {
                 return
             }
             
-           self.decryptAttachment(data: data)
+            if let tempUrl = self.decryptAttachment(data: data) {
+                self.viewController?.documentInteractionController.url = tempUrl
+            } else {
+                print("Attachment decrypted content data error!")
+                return
+            }
+        } else {
+            self.viewController?.documentInteractionController.url = url
         }
         
-        self.viewController?.documentInteractionController.url = url
         self.viewController?.documentInteractionController.uti = url.typeIdentifier ?? "public.data, public.content"
         self.viewController?.documentInteractionController.name = url.localizedName ?? url.lastPathComponent
         
@@ -455,10 +461,23 @@ class ViewInboxEmailInteractor {
         return url
     }
     
-    func decryptAttachment(data: Data) {
+    func decryptAttachment(data: Data) -> URL? {
     
         let decryptedAttachment = pgpService?.decrypt(encryptedData: data)
-        print("decryptedAttachment:", decryptedAttachment as Any)
+        print("decryptedAttachment:", decryptedAttachment as Any)        
+        
+        if let tempFileUrl = pgpService?.getApplicationSupportDirectoryDirectory().appendingPathComponent(k_tempFileName) {
+        
+            do {
+                try decryptedAttachment?.write(to: tempFileUrl)
+            }  catch {
+                print("save decryptedAttachment Error")
+            }
+            
+            return tempFileUrl
+        }
+        
+        return nil
     }
         
     func loadAttachFile(url: String, encrypted: Bool) {

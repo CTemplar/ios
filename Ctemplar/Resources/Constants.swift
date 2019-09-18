@@ -392,6 +392,7 @@ let k_numberOfRounds               = 29
 let k_saltPrefix                   = "$2a$10$"
 
 let k_keyringFileName              = "keyring.gpg"
+let k_tempFileName                 = "tempFile"
 
 let k_privacyURL                   = "https://ctemplar.com/privacy"
 let k_termsURL                     = "https://ctemplar.com/terms"
