@@ -1353,7 +1353,7 @@ class RestAPIService {
     
     //MARK: - Attachments
     
-    func createAttachment(token: String, file: Data, fileName: String, mimeType: String, messageID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func createAttachment(token: String, file: Data, fileName: String, mimeType: String, messageID: String, encrypted: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -1363,7 +1363,8 @@ class RestAPIService {
         let parameters: Parameters = [
             JSONKey.messageID.rawValue: messageID,
             //JSONKey.fileData.rawValue: file,
-            JSONKey.inline.rawValue: false
+            JSONKey.inline.rawValue: false,
+            JSONKey.encrypted.rawValue:  encrypted
         ]
         
         print("createAttachment parameters:", parameters)
@@ -1395,9 +1396,9 @@ class RestAPIService {
                 })
                 
                 upload.responseJSON(completionHandler: { (response) in
-                   
                     switch(response.result) {
                     case .success(let value):
+                        print("upload Data succes value:", value)
                         completionHandler(APIResult.success(value))
                     case .failure(let error):
                         completionHandler(APIResult.failure(error))

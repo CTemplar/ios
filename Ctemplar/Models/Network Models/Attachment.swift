@@ -14,7 +14,7 @@ struct Attachment {
     var contentUrl : String? = nil
     var attachmentID : Int? = nil
     var inline : Bool? = nil
-    var messageID : String? = nil
+    var messageID : Int? = nil
     var encrypted : Bool? = nil
     
     init() {
@@ -27,7 +27,7 @@ struct Attachment {
         self.contentUrl = dictionary["document"] as? String
         self.attachmentID = dictionary["id"] as? Int
         self.inline = dictionary["is_inline"] as? Bool
-        self.messageID = dictionary["message"] as? String
+        self.messageID = dictionary["message"] as? Int
         self.encrypted = dictionary["is_encrypted"] as? Bool
     }
     

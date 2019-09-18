@@ -1880,9 +1880,18 @@ class APIService {
     
     //MARK: - Attachments
     
-    func createAttachment(fileUrl: URL, messageID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func createAttachment(fileUrl: URL, messageID: String, encrypt: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
-        let fileData = try? Data(contentsOf: fileUrl)
+        var fileData = try? Data(contentsOf: fileUrl)
+        
+        if encrypt {
+            if let userKeys = self.pgpService?.getStoredPGPKeys() {
+                if userKeys.count > 0 {
+                    fileData = pgpService?.encryptAsData(data: fileData!, keys: userKeys)
+                }
+            }
+        }
+        
         let fileName = fileUrl.lastPathComponent
         let mimeType = self.mimeTypeForFileAt(url: fileUrl)
         
@@ -1895,7 +1904,7 @@ class APIService {
                 
                 if let token = self.getToken() {
                     
-                    self.restAPIService?.createAttachment(token: token, file: fileData!, fileName: fileName, mimeType: mimeType, messageID: messageID) {(result) in
+                    self.restAPIService?.createAttachment(token: token, file: fileData!, fileName: fileName, mimeType: mimeType, messageID: messageID, encrypted: encrypt) {(result) in
                         
                         switch(result) {
                             

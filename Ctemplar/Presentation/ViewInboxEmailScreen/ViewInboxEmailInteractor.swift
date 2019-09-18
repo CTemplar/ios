@@ -466,7 +466,7 @@ class ViewInboxEmailInteractor {
     func decryptAttachment(data: Data) -> URL? {
     
         let decryptedAttachment = pgpService?.decrypt(encryptedData: data)
-        print("decryptedAttachment:", decryptedAttachment as Any)        
+        print("decryptedAttachment:", decryptedAttachment as Any)
         
         if let tempFileUrl = pgpService?.getApplicationSupportDirectoryDirectory().appendingPathComponent(k_tempFileName) {
         

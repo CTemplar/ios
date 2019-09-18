@@ -212,7 +212,9 @@ class ComposeInteractor {
     
     func uploadAttach(fileUrl: URL, messageID : String) {
         
-        apiService?.createAttachment(fileUrl: fileUrl, messageID: messageID) {(result) in
+        let encrypt = self.viewController?.user.settings.isAttachmentsEncrypted ?? false
+        
+        apiService?.createAttachment(fileUrl: fileUrl, messageID: messageID, encrypt: encrypt) {(result) in
             
             self.viewController?.attachmentButton.isEnabled = true
             
