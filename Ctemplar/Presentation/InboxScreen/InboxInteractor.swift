@@ -31,14 +31,28 @@ class InboxInteractor {
     }
     
     func setInboxData(messages: Array<EmailMessage>, totalEmails: Int) {
-     
+     /*
         if self.offset == 0 {
             self.viewController?.allMessagesArray.removeAll()
+            self.viewController?.dataSource?.selectedMessagesIDArray.removeAll()
+        }*/
+        
+        //self.viewController?.allMessagesArray.append(contentsOf: messages)
+        
+        for newmessage in messages {
+            if isMessageExist(messageId: newmessage.messsageID!) {
+                self.viewController?.allMessagesArray.removeAll(where: {$0.messsageID == newmessage.messsageID})
+            }
+         
+            self.viewController?.allMessagesArray.append(newmessage)
         }
         
-        self.viewController?.allMessagesArray.append(contentsOf: messages)
-    
-        self.viewController?.dataSource?.messagesArray = self.viewController!.allMessagesArray//currentFolderMessages
+        print("fetched messages count:", self.viewController?.allMessagesArray.count as Any)
+        
+        //sorting by creation date
+        self.viewController?.allMessagesArray = self.sortMessagesByCreatedDate(messages: self.viewController!.allMessagesArray)
+        
+        self.viewController?.dataSource?.messagesArray = self.viewController!.allMessagesArray
         self.viewController?.dataSource?.reloadData()
         
         if self.viewController?.dataSource?.selectionMode == true {
@@ -54,6 +68,36 @@ class InboxInteractor {
             self.applyFilters()
         }        
     }
+    
+    func isMessageExist(messageId: Int) -> Bool {
+    
+        if let exist = self.viewController?.allMessagesArray.contains(where: {$0.messsageID == messageId}) {
+            return exist
+        }
+        
+        return false
+    }
+    
+    func sortMessagesByCreatedDate(messages: Array<EmailMessage>) -> Array<EmailMessage> {
+        
+        var sortedMessages = Array<EmailMessage>()
+        
+        sortedMessages = messages.sorted(by: {
+            
+            guard let date0 = $0.createdAt, let date1 = $1.createdAt else {
+                return false
+            }
+            
+            guard let date0Date = self.viewController?.dataSource?.formatterService?.formatStringToDate(date: date0), let date1Date = self.viewController?.dataSource?.formatterService?.formatStringToDate(date: date1) else {
+                return false
+            }
+            
+            return date0Date > date1Date
+        })
+        
+        return sortedMessages
+    }
+    
     /*
     func setInboxData(messages: EmailMessagesList, folderFilter: String) {
         

@@ -44,7 +44,7 @@ struct EmailMessagesList {
             }
         }
         
-        print("messages count:", objectsArray.count)
+        print("new messages count:", objectsArray.count)
         
         return objectsArray
     }
