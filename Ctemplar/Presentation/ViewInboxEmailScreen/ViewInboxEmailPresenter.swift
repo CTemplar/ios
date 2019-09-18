@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import PKHUD
+import AlertHelperKit
 
 class ViewInboxEmailPresenter {
     
@@ -224,6 +225,11 @@ class ViewInboxEmailPresenter {
         } else {
             self.interactor?.loadAttachFile(url: itemUrlString, encrypted: encrypted)
         }
+    }
+    
+    func showAttachmentError() {
+        
+        AlertHelperKit().showAlert(self.viewController!, title: "Attachment Error", message: "Attachment File is corrupted or cannot be decrypted", button: "closeButton".localized())
     }
         
     //MARK: - Read Actions

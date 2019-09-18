@@ -417,6 +417,7 @@ class ViewInboxEmailInteractor {
         if encrypted {
             guard let data = try? Data(contentsOf: url) else {
                 print("Attachment content data error!")
+                self.presenter?.showAttachmentError()
                 return
             }
             
@@ -424,6 +425,7 @@ class ViewInboxEmailInteractor {
                 self.viewController?.documentInteractionController.url = tempUrl
             } else {
                 print("Attachment decrypted content data error!")
+                self.presenter?.showAttachmentError()
                 return
             }
         } else {

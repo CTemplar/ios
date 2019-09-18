@@ -194,10 +194,10 @@ class InboxViewController: UIViewController {
             silent = notification.object as! Bool
         }
         
-        //self.presenter?.interactor?.offset = 0
-        if self.presenter?.interactor?.offset == 0 {
+        self.presenter?.interactor?.offset = 0
+       // if self.presenter?.interactor?.offset == 0 {
             self.presenter?.interactor?.updateMessages(withUndo: "", silent: silent)
-        }
+        //}
         self.presenter?.interactor?.userMyself()
     }
     
