@@ -425,8 +425,10 @@ class ViewInboxEmailInteractor {
                 self.viewController?.documentInteractionController.url = tempUrl
             } else {
                 print("Attachment decrypted content data error!")
-                self.presenter?.showAttachmentError()
-                return
+                //self.presenter?.showAttachmentError()
+               // return
+                //probably data is not encrypted
+                self.viewController?.documentInteractionController.url = url
             }
         } else {
             self.viewController?.documentInteractionController.url = url
@@ -467,6 +469,10 @@ class ViewInboxEmailInteractor {
     
         let decryptedAttachment = pgpService?.decrypt(encryptedData: data)
         print("decryptedAttachment:", decryptedAttachment as Any)
+        
+        if decryptedAttachment == nil {
+            return nil
+        }
         
         if let tempFileUrl = pgpService?.getApplicationSupportDirectoryDirectory().appendingPathComponent(k_tempFileName) {
         
