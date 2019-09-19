@@ -28,6 +28,7 @@ enum EndPoint: String {
     case contact = "users/contacts/"
     case createAttachment = "emails/attachments/create/"
     case deleteAttachment = "emails/attachments/"
+    case updateAttachment = "emails/attachments/update/"
     case settings = "users/settings/"
     case blackList = "users/blacklist/"
     case whiteList = "users/whitelist/"
@@ -1433,6 +1434,64 @@ class RestAPIService {
                 completionHandler(APIResult.failure(error))
             }
         }
+    }
+    
+    func updateAttachment(token: String, attachmentID: String, file: Data, fileName: String, mimeType: String, messageID: String, encrypted: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.messageID.rawValue: messageID,
+            //JSONKey.fileData.rawValue: file,
+            JSONKey.inline.rawValue: false,
+            JSONKey.encrypted.rawValue:  encrypted
+        ]
+        
+        print("updateAttachment parameters:", parameters)
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.updateAttachment.rawValue  + attachmentID + "/"
+        
+        print("updateAttachment url:", url)
+        
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            
+            for param in parameters {
+                if let value = param.value as? String {
+                    multipartFormData.append(value.data(using: .utf8)!, withName: param.key)
+                }
+            }
+            
+            multipartFormData.append(file, withName: JSONKey.fileData.rawValue, fileName: fileName, mimeType: mimeType) //"image/jpg"
+            
+        }, to: url, method: .patch , headers: headers, encodingCompletion: { (result) in
+            
+            print("updateAttachment upload Data result:", result)
+            
+            switch result {
+            case .success(let upload, _, _):
+                
+                upload.uploadProgress(closure: { (progress) in
+                    print("updateAttachment upload Data:", progress.fractionCompleted * 100)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_attachUploadUpdateNotificationID), object: progress.fractionCompleted)
+                })
+                
+                upload.responseJSON(completionHandler: { (response) in
+                    switch(response.result) {
+                    case .success(let value):
+                        print("updateAttachment upload Data succes value:", value)
+                        completionHandler(APIResult.success(value))
+                    case .failure(let error):
+                        completionHandler(APIResult.failure(error))
+                    }
+                })
+                
+            case .failure(let error):
+                print("upload Data error:", error)
+            }
+        })
     }
     
     //MARK: - Settings
