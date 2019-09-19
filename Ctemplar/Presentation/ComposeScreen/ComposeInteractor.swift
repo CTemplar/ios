@@ -306,7 +306,12 @@ class ComposeInteractor {
              if keys.count < 2 { //just logged user key or non
                 self.sendEmailForNonCtemplarUser()
              } else {
-                self.sendEncryptedEmailForCtemplarUser(publicKeys: keys)
+                
+                if let messageID = self.sendingMessage.messsageID {
+                    self.updateAttachments(publicKeys: keys, messageID: messageID)
+                }
+                
+                //self.sendEncryptedEmailForCtemplarUser(publicKeys: keys)
              }
         }
     }
@@ -609,6 +614,38 @@ class ComposeInteractor {
             if attachFileName == fileName {
                 self.viewController!.mailAttachmentsList.remove(at: index)
                 self.deleteAttach(attachID: attachID!)
+            }
+        }
+    }
+    
+    func updateAttachments(publicKeys: Array<Key>, messageID: Int) {
+        
+        var attachmentsCount = self.viewController!.mailAttachmentsList.count
+        
+        for attach in self.viewController!.mailAttachmentsList {
+            
+            if let attachFileUrl = attach["localUrl"] {
+                
+                let attachID = attach["id"]
+                
+                let fileUrl = URL(fileURLWithPath: attachFileUrl)
+                
+                if let fileData = try? Data(contentsOf: fileUrl) {
+                
+                    if publicKeys.count > 0 {
+                        let encryptedfileData = pgpService?.encryptAsData(data: fileData, keys: publicKeys)
+                        
+                        apiService?.updateAttachment(attachmentID: attachID!, fileUrl: fileUrl, fileData: encryptedfileData!, messageID: messageID, encrypt: true) { updated in
+                            
+                            attachmentsCount = attachmentsCount - 1
+                            if attachmentsCount == 0 {
+                                self.sendEncryptedEmailForCtemplarUser(publicKeys: publicKeys)
+                            }
+                        }
+                    }
+                } else {
+                    print("attach fileData is nil")
+                }
             }
         }
     }

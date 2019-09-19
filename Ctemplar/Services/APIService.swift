@@ -1916,7 +1916,8 @@ class APIService {
                                     let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
                                     completionHandler(APIResult.failure(error))
                                 } else {
-                                    let attachment = Attachment(dictionary: value as! [String : Any])
+                                    var attachment = Attachment(dictionary: value as! [String : Any])
+                                    attachment.localUrl = fileUrl.path
                                     completionHandler(APIResult.success(attachment))
                                 }
                                 
@@ -1949,6 +1950,47 @@ class APIService {
                         case .success(let value):
                             print("deleted attach:", value)
                             completionHandler(APIResult.success(value))
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func updateAttachment(attachmentID: String, fileUrl: URL, fileData: Data, messageID: Int, encrypt: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let fileName = fileUrl.lastPathComponent
+        let mimeType = self.mimeTypeForFileAt(url: fileUrl)
+        
+        self.checkTokenExpiration(){ (complete) in
+            if complete {
+                
+                if let token = self.getToken() {
+                    
+                    self.restAPIService?.updateAttachment(token: token, attachmentID: attachmentID, file: fileData, fileName: fileName, mimeType: mimeType, messageID: messageID, encrypted: encrypt) {(result) in
+                        
+                        switch(result) {
+                            
+                        case .success(let value):
+                            
+                            if let response = value as? Dictionary<String, Any> {
+                                
+                                if let message = self.parseServerResponse(response:response) {
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    let attachment = Attachment(dictionary: value as! [String : Any])
+                                    completionHandler(APIResult.success(attachment))
+                                }
+                                
+                            } else {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
+                            }
                             
                         case .failure(let error):
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])

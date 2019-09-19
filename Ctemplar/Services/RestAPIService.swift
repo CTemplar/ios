@@ -1436,7 +1436,7 @@ class RestAPIService {
         }
     }
     
-    func updateAttachment(token: String, attachmentID: String, file: Data, fileName: String, mimeType: String, messageID: String, encrypted: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateAttachment(token: String, attachmentID: String, file: Data, fileName: String, mimeType: String, messageID: Int, encrypted: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,

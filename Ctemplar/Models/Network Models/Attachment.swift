@@ -16,6 +16,7 @@ struct Attachment {
     var inline : Bool? = nil
     var messageID : Int? = nil
     var encrypted : Bool? = nil
+    var localUrl: String? = nil
     
     init() {
         
@@ -29,6 +30,7 @@ struct Attachment {
         self.inline = dictionary["is_inline"] as? Bool
         self.messageID = dictionary["message"] as? Int
         self.encrypted = dictionary["is_encrypted"] as? Bool
+        self.localUrl = dictionary["localUrl"] as? String
     }
     
     func toDictionary() -> [String : String] {
@@ -39,6 +41,7 @@ struct Attachment {
                 "id"                : self.attachmentID?.description ?? "",
                 "message"           : self.messageID?.description ?? "",
                 "is_encrypted"      : self.encrypted?.description ?? "",
+                "localUrl"          : self.localUrl ?? ""
         ]
     }
 }
