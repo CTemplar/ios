@@ -82,7 +82,7 @@ class ViewInboxEmailInteractor {
             switch(result) {
                 
             case .success(let value):
-                print("getMessage:", value)
+                //print("getMessage:", value)
   
                 let emailMessages = value as! EmailMessagesList
                 self.setMessages(messages: emailMessages)

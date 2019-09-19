@@ -1380,6 +1380,9 @@ class RestAPIService {
                 if let value = param.value as? String {
                     multipartFormData.append(value.data(using: .utf8)!, withName: param.key)
                 }
+                if let value = param.value as? Bool {
+                    multipartFormData.append(value.description.data(using: .utf8)!, withName: param.key)
+                }
             }
             
             multipartFormData.append(file, withName: JSONKey.fileData.rawValue, fileName: fileName, mimeType: mimeType) //"image/jpg"
@@ -1444,7 +1447,7 @@ class RestAPIService {
         ]
         
         let parameters: Parameters = [
-            JSONKey.messageID.rawValue: messageID,
+            JSONKey.messageID.rawValue: messageID.description,
             //JSONKey.fileData.rawValue: file,
             JSONKey.inline.rawValue: false,
             JSONKey.encrypted.rawValue: encrypted
@@ -1461,6 +1464,10 @@ class RestAPIService {
             for param in parameters {
                 if let value = param.value as? String {
                     multipartFormData.append(value.data(using: .utf8)!, withName: param.key)
+                }
+                
+                if let value = param.value as? Bool {
+                    multipartFormData.append(value.description.data(using: .utf8)!, withName: param.key)
                 }
             }
             
