@@ -228,6 +228,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.addGesureRecognizers()
         
         self.addNotificationObserver()
+        
+        print("isAttachmentsEncrypted:", user.settings.isAttachmentsEncrypted)
     }
     
     override func viewDidAppear(_ animated: Bool) {

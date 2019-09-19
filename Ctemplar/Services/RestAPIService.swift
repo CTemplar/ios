@@ -1365,7 +1365,7 @@ class RestAPIService {
             JSONKey.messageID.rawValue: messageID,
             //JSONKey.fileData.rawValue: file,
             JSONKey.inline.rawValue: false,
-            JSONKey.encrypted.rawValue:  encrypted
+            JSONKey.encrypted.rawValue: encrypted
         ]
         
         print("createAttachment parameters:", parameters)
@@ -1447,7 +1447,7 @@ class RestAPIService {
             JSONKey.messageID.rawValue: messageID,
             //JSONKey.fileData.rawValue: file,
             JSONKey.inline.rawValue: false,
-            JSONKey.encrypted.rawValue:  encrypted
+            JSONKey.encrypted.rawValue: encrypted
         ]
         
         print("updateAttachment parameters:", parameters)
