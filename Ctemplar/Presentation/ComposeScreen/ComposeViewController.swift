@@ -151,8 +151,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         //emailsToArray.append("dmitry8@dev.ctemplar.com")
         //emailsToArray.append("huly-gun@white-zebra.net")
         
-        for email in emailsToArray {
-            self.emailToSting = self.emailToSting + email + " "
+        if answerMode != AnswerMessageMode.forward {
+            for email in emailsToArray {
+                self.emailToSting = self.emailToSting + email + " "
+            }
         }
         
         //subject = "Test encrypted email for contact users"

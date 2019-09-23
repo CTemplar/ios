@@ -588,7 +588,7 @@ class ComposePresenter {
     var bccToSubViewsArray = Array<Int>()
     
     func fillAllEmailsFields(message: EmailMessage) {
-        
+        /*
         if let sender = message.sender {
             
             if sender == self.viewController!.sender {
@@ -605,6 +605,17 @@ class ComposePresenter {
                 self.viewController!.emailToSting = self.viewController!.emailToSting + sender
                 self.viewController!.emailsToArray.append(sender)
             }
+        }*/
+        
+        let answerMode = self.viewController!.answerMode
+        if answerMode != AnswerMessageMode.forward {
+           if let recieversArray = message.receivers {
+               self.viewController!.emailsToArray = recieversArray as! [String]
+               
+               for email in self.viewController!.emailsToArray {
+                   self.viewController!.emailToSting = self.viewController!.emailToSting + email + " "
+               }
+           }
         }
         
         if let ccArray = message.cc {
@@ -849,6 +860,8 @@ class ComposePresenter {
         //self.viewController!.emailToTextView.backgroundColor = UIColor.yellow//debug
         //self.viewController!.ccToTextView.backgroundColor = UIColor.yellow
         //self.viewController!.bccToTextView.backgroundColor = UIColor.yellow
+             
+        self.setupEmailToViewText(emailToText: emailToText)
         
         self.setupEmailToViewText(emailToText: emailToText)
         let emailToViewHeight = self.setupEmailToViewSize()
