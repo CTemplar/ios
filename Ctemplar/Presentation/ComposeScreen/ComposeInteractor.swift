@@ -308,10 +308,13 @@ class ComposeInteractor {
              } else {
                 
                 if let messageID = self.sendingMessage.messsageID {
-                    self.updateAttachments(publicKeys: keys, messageID: messageID)
+                    let attachmentsCount = self.viewController!.mailAttachmentsList.count
+                    if attachmentsCount > 0 {
+                        self.updateAttachments(publicKeys: keys, messageID: messageID)
+                    } else {
+                        self.sendEncryptedEmailForCtemplarUser(publicKeys: keys)
+                    }
                 }
-                
-                //self.sendEncryptedEmailForCtemplarUser(publicKeys: keys)
              }
         }
     }
