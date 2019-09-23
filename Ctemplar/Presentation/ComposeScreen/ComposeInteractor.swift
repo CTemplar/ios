@@ -645,6 +645,15 @@ class ComposeInteractor {
                                 self.sendEncryptedEmailForCtemplarUser(publicKeys: publicKeys)
                             }
                         }
+                    } else {
+                        
+                        apiService?.updateAttachment(attachmentID: attachID!, fileUrl: fileUrl, fileData: fileData, messageID: messageID, encrypt: true) { updated in
+                            
+                            attachmentsCount = attachmentsCount - 1
+                            if attachmentsCount == 0 {
+                                //self.sendEmailForNonCtemplarUser()
+                            }
+                        }
                     }
                 } else {
                     print("attach fileData is nil")
