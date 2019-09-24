@@ -84,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
            
         let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
         print("APNs device token: \(deviceTokenString)")
-      
+        self.saveAPNDeviceToken(deviceTokenString)
     }
        
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -101,6 +101,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Push notification received: \(userInfo)")
            
            //completionHandler(<#UIBackgroundFetchResult#>)
+    }
+    
+    func saveAPNDeviceToken(_ token: String) {
+        
+        let keychainService = applicationManager.keychainService        
+        keychainService.saveAPNDeviceToken(token)
     }
 }
 

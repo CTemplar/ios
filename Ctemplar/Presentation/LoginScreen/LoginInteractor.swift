@@ -29,7 +29,7 @@ class LoginInteractor {
                 self.keychainService?.saveUserCredentials(userName: userName, password: password)
                 
                 NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil, userInfo: nil)
-                
+                self.sendAPNDeviceToken()
                 self.viewController?.router?.showInboxScreen()
                 
             case .failure(let error):
@@ -61,5 +61,24 @@ class LoginInteractor {
         }
         
         return trimmedName
+    }
+    
+    func sendAPNDeviceToken() {
+        
+        if let deviceToken = keychainService?.getAPNDeviceToken() {
+            if deviceToken.count > 0 {
+                apiService?.createAppToken(deviceToken: deviceToken) {(result) in
+                
+                    switch(result) {
+                    
+                    case .success(let value):
+                        print("sendAPNDeviceToken success value:", value)
+                    
+                    case .failure(let error):
+                        print("sendAPNDeviceToken error:", error)
+                    }
+                }
+            }
+        }
     }
 }

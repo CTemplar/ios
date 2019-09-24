@@ -17,6 +17,7 @@ class KeychainService
         case username = "username"
         case password = "password"
         case twoFAcode = "twoFAcode"
+        case apnToken = "apnToken"
     }
     
     let keychain = KeychainSwift()
@@ -92,12 +93,27 @@ class KeychainService
         savePassword(password: password)
     }
     
+    func saveAPNDeviceToken(_ token: String) {
+           
+        keychain.set(token, forKey: Consts.apnToken.rawValue)
+    }
+       
+    func getAPNDeviceToken() -> String {
+           
+        guard let username = keychain.get(Consts.apnToken.rawValue) else {
+            return ""
+        }
+           
+        return username
+    }
+    
     func deleteUserCredentialsAndToken() {
         
         keychain.delete(Consts.token.rawValue)
         keychain.delete(Consts.tokenSavedTime.rawValue)
         keychain.delete(Consts.username.rawValue)
         keychain.delete(Consts.password.rawValue)
+        keychain.delete(Consts.apnToken.rawValue)
     }
 }
 

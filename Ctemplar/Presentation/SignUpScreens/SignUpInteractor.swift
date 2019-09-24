@@ -29,7 +29,7 @@ class SignUpInteractor {
                 self.keychainService?.saveUserCredentials(userName: userName, password: password)
                 
                 self.viewController?.router?.showInboxScreen()
-                
+                self.sendAPNDeviceToken()
                 NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil, userInfo: nil)
                 
             case .failure(let error):
@@ -127,6 +127,25 @@ class SignUpInteractor {
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Download File Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
+    func sendAPNDeviceToken() {
+        
+        if let deviceToken = keychainService?.getAPNDeviceToken() {
+            if deviceToken.count > 0 {
+                apiService?.createAppToken(deviceToken: deviceToken) {(result) in
+                
+                    switch(result) {
+                    
+                    case .success(let value):
+                        print("sendAPNDeviceToken success value:", value)
+                    
+                    case .failure(let error):
+                        print("sendAPNDeviceToken error:", error)
+                    }
+                }
             }
         }
     }

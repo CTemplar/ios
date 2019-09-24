@@ -1567,7 +1567,7 @@ class RestAPIService {
         
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
             
-            print("createAppToken responce:", response)
+            //print("createAppToken responce:", response)
             
             switch(response.result) {
             case .success(let value):
