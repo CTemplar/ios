@@ -309,7 +309,7 @@ class ComposeInteractor {
                 
                 if let messageID = self.sendingMessage.messsageID {
                     let attachmentsCount = self.viewController!.mailAttachmentsList.count
-                    if attachmentsCount > 0 {
+                    if attachmentsCount > 0 && (self.viewController?.user.settings.isAttachmentsEncrypted)! {
                         self.updateAttachments(publicKeys: keys, messageID: messageID)
                     } else {
                         self.sendEncryptedEmailForCtemplarUser(publicKeys: keys)
@@ -635,26 +635,36 @@ class ComposeInteractor {
                 
                 if let fileData = try? Data(contentsOf: fileUrl) {
                 
-                    if publicKeys.count > 0 {
-                        let encryptedfileData = pgpService?.encryptAsData(data: fileData, keys: publicKeys)
-                        
-                        apiService?.updateAttachment(attachmentID: attachID!, fileUrl: fileUrl, fileData: encryptedfileData!, messageID: messageID, encrypt: true) { updated in
+                    if (self.viewController?.user.settings.isAttachmentsEncrypted)! {
+                        if publicKeys.count > 0 {
+                            let encryptedfileData = pgpService?.encryptAsData(data: fileData, keys: publicKeys)
+                            
+                            apiService?.updateAttachment(attachmentID: attachID!, fileUrl: fileUrl, fileData: encryptedfileData!, messageID: messageID, encrypt: true) { updated in
+                                
+                                attachmentsCount = attachmentsCount - 1
+                                if attachmentsCount == 0 {
+                                    self.sendEncryptedEmailForCtemplarUser(publicKeys: publicKeys)
+                                }
+                            }
+                        } else {// if send to non-CT user
+                            apiService?.updateAttachment(attachmentID: attachID!, fileUrl: fileUrl, fileData: fileData, messageID: messageID, encrypt: false) { updated in
+                                
+                                attachmentsCount = attachmentsCount - 1
+                                if attachmentsCount == 0 {
+                                    //self.sendEmailForNonCtemplarUser()
+                                }
+                            }
+                        }
+                    } else { //if attachment encryption is disabled
+                        apiService?.updateAttachment(attachmentID: attachID!, fileUrl: fileUrl, fileData: fileData, messageID: messageID, encrypt: false) { updated in
                             
                             attachmentsCount = attachmentsCount - 1
                             if attachmentsCount == 0 {
                                 self.sendEncryptedEmailForCtemplarUser(publicKeys: publicKeys)
                             }
                         }
-                    } else {
-                        
-                        apiService?.updateAttachment(attachmentID: attachID!, fileUrl: fileUrl, fileData: fileData, messageID: messageID, encrypt: true) { updated in
-                            
-                            attachmentsCount = attachmentsCount - 1
-                            if attachmentsCount == 0 {
-                                //self.sendEmailForNonCtemplarUser()
-                            }
-                        }
                     }
+                    
                 } else {
                     print("attach fileData is nil")
                 }
