@@ -34,6 +34,7 @@ enum EndPoint: String {
     case whiteList = "users/whitelist/"
     case captcha = "auth/captcha"
     case verifyCaptcha = "auth/captcha-verify/"
+    case appToken = "users/app-token/"
 }
 
 enum JSONKey: String {
@@ -100,6 +101,7 @@ enum JSONKey: String {
     case encryptedData = "encrypted_data"
     case contactsEncrypted = "is_contacts_encrypted"
     case attachmentEncrypted = "is_attachments_encrypted"
+    case platform = "platform"
 }
 
 class RestAPIService {
@@ -1533,6 +1535,39 @@ class RestAPIService {
         Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
             
             print("updateSettings responce:", response)
+            
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    //MARK: - Notifications
+    
+    func createAppToken(token: String, deviceToken: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.token.rawValue: deviceToken,
+            JSONKey.platform.rawValue: k_platform
+        ]
+        
+        print("createAppToken parameters:", parameters)
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.appToken.rawValue
+        
+        print("createAppToken url:", url)
+        
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+            
+            print("createAppToken responce:", response)
             
             switch(response.result) {
             case .success(let value):
