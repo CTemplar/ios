@@ -35,6 +35,19 @@ struct Settings: Hashable {
     var timeZone : String? = nil
     var usedStorage: Int? = nil
     
+    var antiPhishingPhrase : String? = nil
+    var attachmentSizeError : String? = nil
+    var attachmentSizeLimit : Int? = nil
+    var e2eeNonct : Bool? = nil
+    var enable2fa : Bool? = nil
+    var enableForwarding : Bool? = nil
+    var forwardingAddress : String? = nil
+    var isAntiPhishingEnabled : Bool? = nil
+    var isHtmlDisabled : Bool? = nil
+    var notificationEmail : String? = nil
+    var planType : String? = nil
+    
+    
     init() {
         
     }
@@ -65,6 +78,19 @@ struct Settings: Hashable {
         self.stripeCustomerCode = dictionary["stripe_customer_code"] as? String
         self.timeZone = dictionary["timezone"] as? String
         self.usedStorage = dictionary["used_storage"] as? Int
+        
+        self.antiPhishingPhrase = dictionary["anti_phishing_phrase"] as? String
+        self.attachmentSizeError = dictionary["attachment_size_error"] as? String
+        self.attachmentSizeLimit = dictionary["attachment_size_limit"] as? String
+        self.e2eeNonct = dictionary["e2ee_nonct"] as? Bool
+        self.enable2fa = dictionary["enable_2fa"] as? Bool
+        self.enableForwarding = dictionary["enable_forwarding"] as? Bool
+        self.forwardingAddress = dictionary["forwarding_address"] as? String
+        self.isAntiPhishingEnabled = dictionary["is_anti_phishing_enabled"] as? Bool
+        self.isHtmlDisabled = dictionary["is_html_disabled"] as? Bool
+        self.notificationEmail = dictionary["notification_email"] as? String
+        self.planType = dictionary["plan_type"] as? String
+        
     }
 }
 
