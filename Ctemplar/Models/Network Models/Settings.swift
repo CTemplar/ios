@@ -45,8 +45,7 @@ struct Settings: Hashable {
     var isAntiPhishingEnabled : Bool? = nil
     var isHtmlDisabled : Bool? = nil
     var notificationEmail : String? = nil
-    var planType : String? = nil
-    
+    var planType : String? = nil    
     
     init() {
         
@@ -81,7 +80,7 @@ struct Settings: Hashable {
         
         self.antiPhishingPhrase = dictionary["anti_phishing_phrase"] as? String
         self.attachmentSizeError = dictionary["attachment_size_error"] as? String
-        self.attachmentSizeLimit = dictionary["attachment_size_limit"] as? String
+        self.attachmentSizeLimit = dictionary["attachment_size_limit"] as? Int
         self.e2eeNonct = dictionary["e2ee_nonct"] as? Bool
         self.enable2fa = dictionary["enable_2fa"] as? Bool
         self.enableForwarding = dictionary["enable_forwarding"] as? Bool
@@ -90,7 +89,6 @@ struct Settings: Hashable {
         self.isHtmlDisabled = dictionary["is_html_disabled"] as? Bool
         self.notificationEmail = dictionary["notification_email"] as? String
         self.planType = dictionary["plan_type"] as? String
-        
     }
 }
 
