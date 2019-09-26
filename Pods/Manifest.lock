@@ -7,7 +7,7 @@ PODS:
   - Fabric (1.7.11)
   - KeychainSwift (12.0.0)
   - MGSwipeTableCell (1.6.7)
-  - ObjectivePGP (0.12.2)
+  - ObjectivePGP (0.15.0)
   - PKHUD (5.1.0)
   - SideMenu (4.0.0)
 
@@ -52,7 +52,7 @@ SPEC CHECKSUMS:
   Fabric: f233c9492b3bbc1f04e3882986740f7988a58edb
   KeychainSwift: d5e776578587ee5958ce36601df22f168f65138a
   MGSwipeTableCell: fb20e983988bde2b8d0df29c2d9e1d8ffd10b74a
-  ObjectivePGP: 9b8112c8d1be0fa4af1117d81f35a9df99303858
+  ObjectivePGP: 35a73ed3253e7e2982184ea86b1ff6c5773d1299
   PKHUD: 62ea46a1e88c4def1da784878d199bb54c841e3c
   SideMenu: 70ee5657df63ec3382660ec4ef470bf1cf5db07d
 
