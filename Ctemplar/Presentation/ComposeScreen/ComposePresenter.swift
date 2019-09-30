@@ -608,19 +608,21 @@ class ComposePresenter {
             }
         }
         
-        if let ccArray = message.cc {
-            self.viewController!.ccToArray = ccArray as! [String]
-            
-            for email in self.viewController!.ccToArray {
-                self.viewController!.ccToSting = self.viewController!.ccToSting + email + " "
+        if answerMode != AnswerMessageMode.reply {
+            if let ccArray = message.cc {
+                self.viewController!.ccToArray = ccArray as! [String]
+                
+                for email in self.viewController!.ccToArray {
+                    self.viewController!.ccToSting = self.viewController!.ccToSting + email + " "
+                }
             }
-        }
-        
-        if let bccArray = message.bcc {
-            self.viewController!.bccToArray = bccArray as! [String]
             
-            for email in self.viewController!.bccToArray {
-                self.viewController!.bccToSting = self.viewController!.bccToSting + email + " "
+            if let bccArray = message.bcc {
+                self.viewController!.bccToArray = bccArray as! [String]
+                
+                for email in self.viewController!.bccToArray {
+                    self.viewController!.bccToSting = self.viewController!.bccToSting + email + " "
+                }
             }
         }
         
