@@ -612,6 +612,10 @@ class ComposePresenter {
             if let ccArray = message.cc {
                 self.viewController!.ccToArray = ccArray as! [String]
                 
+                if let recieversArray = message.receivers  {
+                    self.viewController!.ccToArray.append(contentsOf: recieversArray as! [String])
+                }
+                
                 for email in self.viewController!.ccToArray {
                     self.viewController!.ccToSting = self.viewController!.ccToSting + email + " "
                 }
