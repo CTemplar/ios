@@ -608,25 +608,33 @@ class ComposePresenter {
             }
         }
         
-        if answerMode != AnswerMessageMode.reply {
-            if let ccArray = message.cc {
-                self.viewController!.ccToArray = ccArray as! [String]
+        
+        if let ccArray = message.cc {
+            self.viewController!.ccToArray = ccArray as! [String]
                 
+            if answerMode == AnswerMessageMode.replyAll {
                 if let recieversArray = message.receivers  {
-                    self.viewController!.ccToArray.append(contentsOf: recieversArray as! [String])
-                }
-                
-                for email in self.viewController!.ccToArray {
-                    self.viewController!.ccToSting = self.viewController!.ccToSting + email + " "
+                    
+                    for reciever in recieversArray {
+                        if reciever as! String != self.viewController!.sender {
+                            self.viewController!.ccToArray.append(reciever as! String)
+                        }
+                    }
+                    //self.viewController!.ccToArray.append(contentsOf: recieversArray as! [String])
                 }
             }
             
-            if let bccArray = message.bcc {
-                self.viewController!.bccToArray = bccArray as! [String]
+            for email in self.viewController!.ccToArray {
+            
+                self.viewController!.ccToSting = self.viewController!.ccToSting + email + " "
+            }
+        }
+            
+        if let bccArray = message.bcc {
+            self.viewController!.bccToArray = bccArray as! [String]
                 
-                for email in self.viewController!.bccToArray {
-                    self.viewController!.bccToSting = self.viewController!.bccToSting + email + " "
-                }
+            for email in self.viewController!.bccToArray {
+                self.viewController!.bccToSting = self.viewController!.bccToSting + email + " "
             }
         }
         
