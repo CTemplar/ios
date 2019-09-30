@@ -588,34 +588,24 @@ class ComposePresenter {
     var bccToSubViewsArray = Array<Int>()
     
     func fillAllEmailsFields(message: EmailMessage) {
-        /*
-        if let sender = message.sender {
-            
-            if sender == self.viewController!.sender {
-        
-                if let recieversArray = message.receivers {
-                    self.viewController!.emailsToArray = recieversArray as! [String]
-                    
-                    for email in self.viewController!.emailsToArray {
-                        self.viewController!.emailToSting = self.viewController!.emailToSting + email + " "
-                    }
-                }
-            } else {
-            
-                self.viewController!.emailToSting = self.viewController!.emailToSting + sender
-                self.viewController!.emailsToArray.append(sender)
-            }
-        }*/
         
         let answerMode = self.viewController!.answerMode
         if answerMode != AnswerMessageMode.forward {
-           if let recieversArray = message.receivers {
-               self.viewController!.emailsToArray = recieversArray as! [String]
-               
-               for email in self.viewController!.emailsToArray {
-                   self.viewController!.emailToSting = self.viewController!.emailToSting + email + " "
-               }
-           }
+            
+           if let sender = message.sender {
+                if sender == self.viewController!.sender {
+                    if let recieversArray = message.receivers {
+                        self.viewController!.emailsToArray = recieversArray as! [String]
+                        
+                        for email in self.viewController!.emailsToArray {
+                            self.viewController!.emailToSting = self.viewController!.emailToSting + email + " "
+                        }
+                    }
+                } else {
+                    self.viewController!.emailToSting = self.viewController!.emailToSting + sender
+                    self.viewController!.emailsToArray.append(sender)
+                }
+            }
         }
         
         if let ccArray = message.cc {
