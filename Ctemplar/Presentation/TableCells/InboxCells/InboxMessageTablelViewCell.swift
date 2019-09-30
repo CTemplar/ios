@@ -119,7 +119,8 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
         if let childrenCount = message.childrenCount {
             if childrenCount > 0 {
                 countLabel.isHidden = false
-                countLabel.text = childrenCount.description
+                let totalCount = childrenCount + 1 //add parent to counting
+                countLabel.text = totalCount.description
             } else {
                 countLabel.isHidden = true
             }
