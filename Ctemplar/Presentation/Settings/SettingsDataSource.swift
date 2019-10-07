@@ -296,9 +296,9 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
                 cellTitle = "signature".localized()
             }
             break
-        case SettingsMailSection.mobileSignature.rawValue:
-            cellTitle = "mobileSignature".localized() //API required
-            break
+        //case SettingsMailSection.mobileSignature.rawValue:
+        //    cellTitle = "mobileSignature".localized() //API required
+        //    break
         default:
             break
         }

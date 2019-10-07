@@ -620,7 +620,7 @@ enum SettingsMailSection: Int, CaseIterable {
     
     case mail              = 0
     case signature         = 1
-    case mobileSignature   = 2
+    //case mobileSignature   = 2
 }
 
 enum SettingsAboutSection: Int, CaseIterable {
