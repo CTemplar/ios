@@ -273,7 +273,7 @@
 "security" = "Безопасность";
 
 "manageFolders" = "Управление папками";
-"manageSecurity" = "Безопасность";
+"manageSecurity" = "Шифрование";
 
 "signature" = "Подпись";
 "mobileSignature" = "Мобильная подпись";

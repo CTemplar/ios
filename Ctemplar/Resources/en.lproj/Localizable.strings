@@ -273,7 +273,7 @@
 "security" = "Security";
 
 "manageFolders" = "Manage folders";
-"manageSecurity" = "Security";
+"manageSecurity" = "Encryption";
 
 "signature" = "Signature";
 "mobileSignature" = "Mobile signature";
