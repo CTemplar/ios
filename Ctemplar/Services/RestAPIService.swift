@@ -591,7 +591,7 @@ class RestAPIService {
         }
     }
     
-    func updateSendingMessage(token: String, messageID: String, encryptedMessage: String, subject: String, recieversList: [[String]], folder: String, send: Bool, encryptionObject: [String : String], encrypted: Bool, attachments: Array<[String : String]>, selfDestructionDate: String, delayedDeliveryDate: String, deadManTimer: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateSendingMessage(token: String, messageID: String, mailboxID: Int, sender: String, encryptedMessage: String, subject: String, recieversList: [[String]], folder: String, send: Bool, encryptionObject: [String : String], encrypted: Bool, attachments: Array<[String : String]>, selfDestructionDate: String, delayedDeliveryDate: String, deadManTimer: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -601,6 +601,8 @@ class RestAPIService {
         var parameters: Parameters = [
             JSONKey.content.rawValue : encryptedMessage,
             JSONKey.folder.rawValue: folder,
+            JSONKey.mailbox.rawValue: mailboxID,
+            JSONKey.sender.rawValue: sender,
             JSONKey.subject.rawValue: subject,
             JSONKey.receiver.rawValue: recieversList[0],
             JSONKey.send.rawValue: send,

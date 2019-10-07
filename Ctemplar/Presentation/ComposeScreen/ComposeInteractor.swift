@@ -119,7 +119,7 @@ class ComposeInteractor {
     
     func updateSendingMessage(messageID: String, encryptedMessage: String, encryptionObject: [String : String], subject: String, send: Bool, recieversList: [[String]], encrypted: Bool, attachments: Array<[String : String]>, selfDestructionDate: String, delayedDeliveryDate: String, deadManDate: String) {
         
-        apiService?.updateSendingMessage(messageID: messageID, encryptedMessage: encryptedMessage, subject: subject, recieversList: recieversList, folder: MessagesFoldersName.sent.rawValue, send: send, encryptionObject: encryptionObject, encrypted: encrypted, attachments: attachments, selfDestructionDate: selfDestructionDate, delayedDeliveryDate: delayedDeliveryDate, deadManDate: deadManDate) {(result) in
+        apiService?.updateSendingMessage(messageID: messageID, mailboxID: self.viewController?.mailboxID ?? 0, sender: self.viewController?.sender ?? "", encryptedMessage: encryptedMessage, subject: subject, recieversList: recieversList, folder: MessagesFoldersName.sent.rawValue, send: send, encryptionObject: encryptionObject, encrypted: encrypted, attachments: attachments, selfDestructionDate: selfDestructionDate, delayedDeliveryDate: delayedDeliveryDate, deadManDate: deadManDate) {(result) in
             
             switch(result) {
                 
