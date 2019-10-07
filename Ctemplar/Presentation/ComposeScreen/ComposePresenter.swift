@@ -403,7 +403,7 @@ class ComposePresenter {
     func generateHeader(message: EmailMessage, answerMode: AnswerMessageMode) -> NSAttributedString {
         
         var attributedString = NSAttributedString()
-        
+         
         switch answerMode {
         case AnswerMessageMode.newMessage:
            
@@ -415,7 +415,7 @@ class ComposePresenter {
             attributedString = self.generateReplyHeader(message: message)
             break
         case AnswerMessageMode.forward:
-            attributedString = self.generateForwardHeader(message: message)
+            attributedString = self.generateForwardHeader(message: message, subject: self.viewController?.subject ?? "")
             break
         }
         
@@ -451,7 +451,7 @@ class ComposePresenter {
         return attributedString
     }
     
-    func generateForwardHeader(message: EmailMessage) -> NSAttributedString {
+    func generateForwardHeader(message: EmailMessage, subject: String) -> NSAttributedString {
         /*
         ---------- Forwarded message ----------
             
@@ -480,10 +480,9 @@ class ComposePresenter {
             }
         }
         
-        if let subject = message.subject {
+        //if let subject = message.subject {
             forwardHeader = forwardHeader + "subject".localized() + subject + "\n"
-        }
-        
+        //}
         
         if let recieversArray = message.receivers  {
             for email in recieversArray as! [String] {

@@ -207,6 +207,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             }
             
             self.interactor?.setupSubject(subject: self.subject, message: self.message!, answerMode: self.answerMode)
+            //self.presenter?.setupSubject(subjectText: subject, answerMode: answerMode)
 
         } else {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: {
@@ -231,7 +232,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         self.addNotificationObserver()
         
-        print("isAttachmentsEncrypted:", user.settings.isAttachmentsEncrypted)
+        //print("isAttachmentsEncrypted:", user.settings.isAttachmentsEncrypted)
     }
     
     override func viewDidAppear(_ animated: Bool) {
