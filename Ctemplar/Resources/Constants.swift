@@ -625,10 +625,11 @@ enum SettingsMailSection: Int, CaseIterable {
 
 enum SettingsAboutSection: Int, CaseIterable {
     
-    case aboutAs           = 0
-    case privacy           = 1
-    case terms             = 2
-    case appVersion        = 3
+    //case aboutAs           = 0
+    //case privacy           = 1
+  //  case terms            = 2
+//    case appVersion        = 3
+    case appVersion        = 0
 }
 
 enum TextControllerMode: Int, CaseIterable {

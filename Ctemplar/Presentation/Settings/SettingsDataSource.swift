@@ -310,7 +310,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         
         var cellTitle : String = ""
         
-        switch index {
+        switch index {/*
         case SettingsAboutSection.aboutAs.rawValue:
             cellTitle = "aboutUs".localized()
             (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: "")
@@ -322,7 +322,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         case SettingsAboutSection.terms.rawValue:
             cellTitle = "terms".localized()
             (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: "")
-            break
+            break */
         case SettingsAboutSection.appVersion.rawValue:
             self.setupAppVersionCell(cell: cell)
             break

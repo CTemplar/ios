@@ -104,7 +104,7 @@ class SettingsInteractor {
     
     func SettingsAboutCellPressed(index: Int) {
         
-        switch index {
+        switch index {/*
         case SettingsAboutSection.aboutAs.rawValue:
             self.viewController?.router?.showAboutAsViewController()
             break
@@ -113,7 +113,7 @@ class SettingsInteractor {
             break
         case SettingsAboutSection.terms.rawValue:
             self.viewController?.router?.showPrivacyAndTermsViewController(mode: TextControllerMode.termsAndConditions)
-            break
+            break*/
         case SettingsAboutSection.appVersion.rawValue:
          
             break
