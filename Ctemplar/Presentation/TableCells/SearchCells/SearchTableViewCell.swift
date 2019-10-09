@@ -59,7 +59,7 @@ class SearchTableViewCell: UITableViewCell {
             }
         }
         
-        if let isSecured = message.isEncrypted {
+        if let isSecured = message.isProtected {
             if isSecured {
                 isSecuredImageView.image = UIImage(named: k_secureOnImageName)
             } else {

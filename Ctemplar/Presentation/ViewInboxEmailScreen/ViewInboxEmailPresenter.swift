@@ -76,7 +76,7 @@ class ViewInboxEmailPresenter {
             }
         }
         
-        if let protected = message.isEncrypted {            
+        if let protected = message.isProtected {            
             if protected {
                 self.viewController?.securedImageView.image = UIImage(named: k_secureOnImageName)
             } else {

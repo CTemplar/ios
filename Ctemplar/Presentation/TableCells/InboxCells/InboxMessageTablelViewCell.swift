@@ -185,7 +185,7 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
             rightlabelView.isHidden = true
         }
         
-        if let isSecured = message.isEncrypted {
+        if let isSecured = message.isProtected {
             if isSecured {
                 isSecuredImageView.image = UIImage(named: k_secureOnImageName)
             } else {
