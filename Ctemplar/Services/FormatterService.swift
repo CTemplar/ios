@@ -754,7 +754,7 @@ extension Data {
         do {
             return try NSAttributedString(data: self, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
         } catch {
-            print("error:", error)
+            print("can not convert HTML Data to Attrubuted string error:", error)
             return  nil
         }
     }

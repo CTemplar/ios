@@ -27,6 +27,8 @@ struct EmailMessage {
     var messsageID : Int? = nil
     var isEncrypted : Bool? = nil
     var isProtected : Bool? = nil
+    var isHtml : Bool? = nil
+    var isSubjectEncrypted : Bool? = nil
     var mailbox : String? = nil
     var parent : String? = nil
     var read : Bool? = nil
@@ -76,6 +78,8 @@ struct EmailMessage {
         self.messsageID = dictionary["id"] as? Int
         self.isEncrypted = dictionary["is_encrypted"] as? Bool
         self.isProtected = dictionary["is_protected"] as? Bool
+        self.isHtml = dictionary["is_html"] as? Bool
+        self.isSubjectEncrypted = dictionary["is_subject_encrypted"] as? Bool
         self.mailbox = dictionary["mailbox"] as? String        
         self.parent = dictionary["parent"] as? String
         self.read = dictionary["read"] as? Bool
