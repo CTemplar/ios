@@ -733,6 +733,7 @@ class InboxInteractor {
                 //print("value:", value)
                 print("marked list as spam")
                 self.viewController?.lastAction = ActionsIndex.markAsSpam
+                self.offset = 0
                 self.updateMessages(withUndo: withUndo, silent: false)
                 
             case .failure(let error):
@@ -762,6 +763,7 @@ class InboxInteractor {
                 //print("value:", value)
                 print("marked list as read/unread")
                 self.viewController?.lastAction = ActionsIndex.markAsRead
+                self.offset = 0
                 self.updateMessages(withUndo: withUndo, silent: false)
                 
             case .failure(let error):
@@ -795,6 +797,7 @@ class InboxInteractor {
                 //print("value:", value)
                 print("marked list as trash")
                 self.viewController?.lastAction = ActionsIndex.moveToTrach
+                self.offset = 0
                 self.updateMessages(withUndo: withUndo, silent: false)
                 
             case .failure(let error):
@@ -828,6 +831,7 @@ class InboxInteractor {
                 //print("value:", value)
                 print("move list to archive")
                 self.viewController?.lastAction = ActionsIndex.moveToArchive
+                self.offset = 0
                 self.updateMessages(withUndo: withUndo, silent: false)
                 
             case .failure(let error):
@@ -861,6 +865,7 @@ class InboxInteractor {
                 //print("value:", value)
                 print("move list to inbox")
                 self.viewController?.lastAction = ActionsIndex.moveToArchive
+                self.offset = 0
                 self.updateMessages(withUndo: withUndo, silent: false)
                 
             case .failure(let error):
