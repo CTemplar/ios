@@ -101,7 +101,7 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
         if let createdDate = message.createdAt {
             
             if  let date = parentController?.formatterService!.formatStringToDate(date: createdDate) {
-                timeLabel.text = parentController?.formatterService!.formatCreationDate(date: date)
+                timeLabel.text = parentController?.formatterService!.formatCreationDate(date: date, short: true)
             }
         }
         

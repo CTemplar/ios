@@ -213,7 +213,7 @@ class FormatterService
         return dateString
     }
     
-    func formatCreationDate(date: Date) -> String {
+    func formatCreationDate(date: Date, short: Bool) -> String {
         
         var dateString : String = ""
         
@@ -225,7 +225,11 @@ class FormatterService
                     dateString = "yesterday".localized()
                 } else {
                     //2 or more
-                    dateString = formatDateToStringMonthAndDate(date: date)
+                    if short {
+                        dateString = formatDateToStringMonthAndDate(date: date)
+                    } else {
+                        dateString = formatDateToStringMonthDateAndTime(date: date)
+                    }
                 }
             } else {
                 //current day
@@ -393,6 +397,16 @@ class FormatterService
         
         let dateFormatter = DateFormatter()       
         dateFormatter.dateFormat = "MMM dd"
+        
+        let dateString = dateFormatter.string(from:date as Date)
+        
+        return dateString
+    }
+    
+    func formatDateToStringMonthDateAndTime(date: Date) -> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd HH:mm:ss a"
         
         let dateString = dateFormatter.string(from:date as Date)
         

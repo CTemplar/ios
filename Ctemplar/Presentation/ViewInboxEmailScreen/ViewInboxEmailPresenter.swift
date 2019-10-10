@@ -72,7 +72,7 @@ class ViewInboxEmailPresenter {
         
         if let createdDate = message.createdAt {
             if  let date = self.interactor?.formatterService!.formatStringToDate(date: createdDate) {
-                self.viewController?.dateLabel.text = self.interactor?.formatterService!.formatCreationDate(date: date)
+                self.viewController?.dateLabel.text = self.interactor?.formatterService!.formatCreationDate(date: date, short: false)
             }
         }
         
