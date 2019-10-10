@@ -60,7 +60,13 @@ class ViewInboxEmailPresenter {
         spamItem.isEnabled = enabled
         garbageItem.isEnabled = enabled
         
-        self.viewController?.navigationItem.rightBarButtonItems = [moreItem, moveItem, spamItem, garbageItem]
+        let folder = self.viewController?.message?.folder
+        
+        if folder == MessagesFoldersName.spam.rawValue {
+            self.viewController?.navigationItem.rightBarButtonItems = [moreItem, moveItem, garbageItem]
+        } else {
+            self.viewController?.navigationItem.rightBarButtonItems = [moreItem, moveItem, spamItem, garbageItem]
+        }
         
         k_popoverSourceRectX = Int((self.viewController?.view.frame.width)! - 40.0)
         k_popoverSourceRectY = Int(57.0)
