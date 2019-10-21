@@ -40,6 +40,10 @@ class ViewInboxEmailViewController: UIViewController {
     @IBOutlet var replyAllButton        : UIButton!
     @IBOutlet var forwardButton         : UIButton!
     
+    @IBOutlet weak var propertylabelView : UIView!
+    @IBOutlet var propertyLabel         : UILabel!
+    @IBOutlet var propertyLabelViewWidthConstraint          : NSLayoutConstraint!
+    
     @IBOutlet var messagesTableView     : UITableView!
     
     var moreActionsView : MoreActionsView?

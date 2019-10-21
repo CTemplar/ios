@@ -105,7 +105,8 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
             }
             
             cell = tableView.dequeueReusableCell(withIdentifier: k_ChildMessageTableViewCellIdentifier)! as! ChildMessageTableViewCell
-            (cell as! ChildMessageTableViewCell).setupCellWithData(sender: sender!, header: header, isLast: lastMessage)
+            (cell as! ChildMessageTableViewCell).parentController = self
+            (cell as! ChildMessageTableViewCell).setupCellWithData(sender: sender!, header: header, message: message, isLast: lastMessage)
         }
          
         cell.preservesSuperviewLayoutMargins = false
