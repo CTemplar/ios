@@ -253,7 +253,7 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
             leftlabelViewWidthConstraint.constant = 0.0
         }
 
-        if deleteLabel.isHidden {
+        if rightlabelView.isHidden {
             rightlabelViewWidthConstraint.constant = 0.0
         }
         
