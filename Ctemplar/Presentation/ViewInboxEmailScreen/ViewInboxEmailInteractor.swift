@@ -236,15 +236,24 @@ class ViewInboxEmailInteractor {
     
     func moveMessageToTrash(message: EmailMessage, withUndo: String) {
         
-        self.viewController?.lastAction = ActionsIndex.moveToTrach
+        if self.viewController?.currentFolderFilter == MessagesFoldersName.trash.rawValue {
+            
+            self.viewController?.lastAction = ActionsIndex.delete
+            
+            self.deleteMessage(message: message, withUndo: "")
+            
+        } else {
         
-        var folder = message.folder
-        
-        if withUndo.count > 0 {
-            folder = MessagesFoldersName.trash.rawValue
+            self.viewController?.lastAction = ActionsIndex.moveToTrach
+            
+            var folder = message.folder
+            
+            if withUndo.count > 0 {
+                folder = MessagesFoldersName.trash.rawValue
+            }
+            
+            self.moveMessageTo(message: message, folder: folder!, withUndo: withUndo)
         }
-        
-        self.moveMessageTo(message: message, folder: folder!, withUndo: withUndo)
     }
     
     func moveMessageToSpam(message: EmailMessage, withUndo: String) {
@@ -369,6 +378,26 @@ class ViewInboxEmailInteractor {
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+            }
+        }
+    }
+    
+    func deleteMessage(message: EmailMessage, withUndo: String) {
+             
+        apiService?.deleteMessages(messagesIDIn: message.messsageID!.description) {(result) in
+            
+            switch(result) {
+                
+            case .success( _):
+                //print("value:", value)
+                print("deleteMessage ")
+                self.viewController?.lastAction = ActionsIndex.delete
+                self.postUpdateInboxNotification()
+                self.viewController?.router?.backToParentViewController()
+                
+            case .failure(let error):
+                print("error:", error)
+                AlertHelperKit().showAlert(self.viewController!, title: "Delete Message Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
     }

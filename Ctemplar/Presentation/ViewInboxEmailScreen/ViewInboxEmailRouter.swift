@@ -39,4 +39,9 @@ class ViewInboxEmailRouter {
         vc.subject = subject
         self.viewController?.show(vc, sender: self)        
     }
+    
+    func backToParentViewController() {
+        
+        self.viewController?.navigationController?.popViewController(animated: true)
+    }
 }
