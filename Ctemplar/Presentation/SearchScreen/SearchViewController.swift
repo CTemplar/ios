@@ -11,7 +11,7 @@ import Foundation
 import PKHUD
 import AlertHelperKit
 
-class SearchViewController: UIViewController, UISearchBarDelegate {
+class SearchViewController: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate {
     
     var presenter   : SearchPresenter?
     var router      : SearchRouter?
@@ -47,6 +47,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         
         searchBar.delegate = self
         addNotificationObserver()
+        handleTapAnywhereToRemoveKeyboard()
         
         self.presenter?.updateMessges()
     }
@@ -56,6 +57,18 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         
         //presenter?.setupNavigationBarItem(searchBar: searchBar)
         //self.dataSource?.reloadData()
+    }
+    
+    func handleTapAnywhereToRemoveKeyboard() {
+        let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.singleTap(sender:)))
+        singleTapGestureRecognizer.delegate = self
+        singleTapGestureRecognizer.cancelsTouchesInView = false
+        self.navigationController?.navigationBar.addGestureRecognizer(singleTapGestureRecognizer)
+    }
+       
+    @objc func singleTap(sender: UITapGestureRecognizer) {
+        searchBar.resignFirstResponder()
+        searchBar.endEditing(true)
     }
     
     // MARK: IBActions
@@ -123,5 +136,17 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     @objc func keyboardWillHide(notification: Notification) {
         bottomTableViewOffsetConstraint.constant = 0.0
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if touch.view?.isDescendant(of: self.dataSource!.tableView) == true {
+            singleTap(sender: gestureRecognizer as! UITapGestureRecognizer)
+            return false
+        }
+        return true
     }
 }
