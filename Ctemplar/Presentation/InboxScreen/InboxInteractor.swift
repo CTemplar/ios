@@ -671,7 +671,11 @@ class InboxInteractor {
             messagesIDArray.append(messageID)
         }
         
-        self.markMessagesListAsTrash(selectedMessagesIdArray: messagesIDArray, lastSelectedMessage: message, withUndo: "undoMoveToTrash".localized())
+        if self.viewController?.currentFolder == InboxSideMenuOptionsName.trash.rawValue {
+            self.deleteMessagesList(selectedMessagesIdArray: messagesIDArray, withUndo: "")
+        } else {
+            self.markMessagesListAsTrash(selectedMessagesIdArray: messagesIDArray, lastSelectedMessage: message, withUndo: "undoMoveToTrash".localized())
+        }
     }
     
     func undoLastAction(message: EmailMessage) {
@@ -894,7 +898,8 @@ class InboxInteractor {
             case .success( _):
                 //print("value:", value)
                 print("deleteMessagesList")
-                self.viewController?.lastAction = ActionsIndex.moveToArchive
+                self.viewController?.lastAction = ActionsIndex.delete
+                self.offset = 0
                 self.updateMessages(withUndo: withUndo, silent: false)
                 
             case .failure(let error):
