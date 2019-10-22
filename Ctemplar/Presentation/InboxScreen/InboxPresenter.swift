@@ -720,8 +720,12 @@ class InboxPresenter {
     func markSelectedMessagesAsTrash() {
         
         if self.viewController?.appliedActionMessage != nil {
-            if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! > 0 {
-                self.interactor?.markMessagesListAsTrash(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!, withUndo: "undoMoveToTrash".localized())
+            if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! > 0 {                
+                if self.viewController?.currentFolder == InboxSideMenuOptionsName.trash.rawValue {
+                    self.interactor?.deleteMessagesList(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, withUndo: "")
+                } else {
+                    self.interactor?.markMessagesListAsTrash(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!, withUndo: "undoMoveToTrash".localized())
+                }
             } else {
                 print("messages not selected!!!")
             }

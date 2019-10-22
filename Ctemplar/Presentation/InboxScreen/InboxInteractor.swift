@@ -31,11 +31,11 @@ class InboxInteractor {
     }
     
     func setInboxData(messages: Array<EmailMessage>, totalEmails: Int) {
-     /*
+     
         if self.offset == 0 {
             self.viewController?.allMessagesArray.removeAll()
             self.viewController?.dataSource?.selectedMessagesIDArray.removeAll()
-        }*/
+        }
         
         //self.viewController?.allMessagesArray.append(contentsOf: messages)
         
