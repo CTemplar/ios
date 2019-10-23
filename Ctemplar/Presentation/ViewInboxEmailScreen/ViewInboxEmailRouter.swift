@@ -36,6 +36,7 @@ class ViewInboxEmailRouter {
         vc.user = (self.viewController?.user)!
         vc.message = self.viewController?.message
         vc.messagesArray = (self.viewController?.dataSource?.messagesArray)!
+        vc.dercyptedMessagesArray = (self.viewController?.dataSource?.dercyptedMessagesArray)!
         vc.subject = subject
         self.viewController?.show(vc, sender: self)        
     }

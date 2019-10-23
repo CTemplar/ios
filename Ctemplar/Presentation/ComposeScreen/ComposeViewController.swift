@@ -102,7 +102,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var messageAttributedText : NSAttributedString = NSAttributedString(string: "")
     
     var messagesArray                     : Array<EmailMessage> = []
-    //var dercyptedMessagesArray            : Array<String> = []
+    var dercyptedMessagesArray            : Array<String> = []
     
     var message : EmailMessage?
     

@@ -345,6 +345,12 @@ class ComposeInteractor {
         
         //temp
         //self.presenter?.setupAttachments(message: message)
+        //self.presenter?.setupMessageSection(message: message)
+        
+        let content = self.getMessageContent(message: message)
+        
+        print("draft content:", content)
+        
         self.presenter?.setupMessageSectionSize()
         
         /*
@@ -357,7 +363,7 @@ class ComposeInteractor {
             }
         }*/
         
-        self.createDraftMessage(parentID: (message.messsageID?.description)!, content: message.content!, subject: message.subject!, recievers: recieversList, folder: MessagesFoldersName.draft.rawValue, mailboxID: mailboxID, send: false, encrypted: message.isEncrypted!, encryptionObject: encryptionObjectDictionary, attachments: self.viewController!.mailAttachmentsList)
+        self.createDraftMessage(parentID: (message.messsageID?.description)!, content: content, subject: message.subject!, recievers: recieversList, folder: MessagesFoldersName.draft.rawValue, mailboxID: mailboxID, send: false, encrypted: message.isEncrypted!, encryptionObject: encryptionObjectDictionary, attachments: self.viewController!.mailAttachmentsList)
     }
     
     func deleteDraft() {
@@ -566,6 +572,27 @@ class ComposeInteractor {
         }
         
         return "Error"
+    }
+    
+    func getMessageContent(message: EmailMessage) -> String {
+        
+        var content = ""
+                        
+        if (self.viewController?.dercyptedMessagesArray.count)! > 0 {
+            
+            print("self.viewController!.dercyptedMessagesArray:", self.viewController!.dercyptedMessagesArray)
+            
+            for childContent in self.viewController!.dercyptedMessagesArray {
+                content = content + "\n" + childContent
+            }
+                    
+        } else {
+            content = self.extractMessageContent(message: message)
+        }
+        
+        print("message content:", content)
+        
+        return content
     }
     
     func setupSubject(subject: String, message: EmailMessage, answerMode: AnswerMessageMode) {

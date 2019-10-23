@@ -351,7 +351,7 @@ class ComposePresenter {
     
     func setupMessageSection(message: EmailMessage) {
     
-        if let messageContent = self.interactor?.extractMessageContent(message: message) {
+        if let messageContent = self.interactor?.getMessageContent(message: message) {
             
             if messageContent.count > 0 {
             
