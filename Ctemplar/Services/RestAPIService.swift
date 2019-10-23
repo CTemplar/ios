@@ -102,6 +102,7 @@ enum JSONKey: String {
     case contactsEncrypted = "is_contacts_encrypted"
     case attachmentEncrypted = "is_attachments_encrypted"
     case platform = "platform"
+    case forwardAttachmentsMessage = "forward_attachments_of_message"
 }
 
 class RestAPIService {
@@ -571,6 +572,10 @@ class RestAPIService {
         
         if recieversList[2].count > 0 {
             parameters[JSONKey.blindCarbonCopy.rawValue] = recieversList[2]
+        }
+        
+        if attachments.count > 0 {
+            parameters[JSONKey.forwardAttachmentsMessage.rawValue] = parentID
         }
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue

@@ -35,6 +35,8 @@ class ComposeInteractor {
                 print("create Draft Message value:", value)
                 self.sendingMessage = value as! EmailMessage
                 
+                print("create Draft sendingMessage attachments:", self.sendingMessage.attachments as Any)
+                
                 //self.presenter?.setupAttachments(message: self.sendingMessage) //need investigate attachment_forward
                 //self.presenter?.setupMessageSectionSize()
                 //self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
@@ -344,16 +346,8 @@ class ComposeInteractor {
         }
         
         //temp
-        //self.presenter?.setupAttachments(message: message)
-        //self.presenter?.setupMessageSection(message: message)
-        
-        let content = self.getMessageContent(message: message)
-        
-        print("draft content:", content)
-        
-        self.presenter?.setupMessageSectionSize()
-        
-        /*
+        self.presenter?.setupAttachments(message: message)
+         /*
         if let attachments = message.attachments {
             
             self.viewController?.mailAttachmentsList.removeAll()
@@ -362,6 +356,12 @@ class ComposeInteractor {
                 self.viewController?.mailAttachmentsList.append(attachment.toDictionary())
             }
         }*/
+        
+        let content = self.getMessageContent(message: message)
+        
+        print("draft content:", content)
+        
+        self.presenter?.setupMessageSectionSize()
         
         self.createDraftMessage(parentID: (message.messsageID?.description)!, content: content, subject: message.subject!, recievers: recieversList, folder: MessagesFoldersName.draft.rawValue, mailboxID: mailboxID, send: false, encrypted: message.isEncrypted!, encryptionObject: encryptionObjectDictionary, attachments: self.viewController!.mailAttachmentsList)
     }

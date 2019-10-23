@@ -40,6 +40,7 @@ struct EmailMessage {
     var subject : String? = nil
     var incomingHeader : String? = nil
     var updated : String? = nil
+    var forwardAttachmentsMessage: Int? = nil
     
     init() {
         
@@ -91,6 +92,7 @@ struct EmailMessage {
         self.subject = dictionary["subject"] as? String
         self.incomingHeader = dictionary["incoming_headers"] as? String
         self.updated = dictionary["updated"] as? String
+        self.forwardAttachmentsMessage = dictionary["forward_attachments_of_message"] as? Int
     }
     
     func parsResultsFromList(array: Array<Any>) -> Array<EmailMessage>{
