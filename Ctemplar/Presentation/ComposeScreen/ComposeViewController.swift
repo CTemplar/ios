@@ -245,6 +245,12 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+     
+        NotificationCenter.default.removeObserver(self)
+        
+    }
+    
     func addGesureRecognizers() {
         
         let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
@@ -578,12 +584,18 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     //MARK: - notification
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     func addNotificationObserver() {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.attachDownloadUpdate), name: NSNotification.Name(rawValue: k_attachUploadUpdateNotificationID), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
     }
     
     @objc func keyboardWillShow(notification: Notification) {
@@ -629,6 +641,13 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
                 attachment?.backgroundProgressView.isHidden = true
             }
         }
+    }
+    
+    @objc func appMovedToBackground() {
+        
+        print("appMovedToBackground")
+        
+        self.interactor?.saveDraft()
     }
 }
 
