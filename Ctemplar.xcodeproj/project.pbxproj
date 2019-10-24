@@ -1765,7 +1765,7 @@
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = TL9R53MN93;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Ctemplar/Info.plist;
@@ -1790,7 +1790,7 @@
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = TL9R53MN93;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Ctemplar/Info.plist;

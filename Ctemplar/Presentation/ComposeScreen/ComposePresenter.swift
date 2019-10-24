@@ -77,9 +77,19 @@ class ComposePresenter {
     func setupEncryptedButton() {
         
         if let draftMessage = self.viewController!.interactor?.sendingMessage {
+                     
+            if let isMessageEncryptedForNonCtemplarUser = draftMessage.encryption?.password {
             
-            self.viewController?.encryptedMail = draftMessage.isEncrypted!
-            self.setEncryptedButtonMode(applied: (self.viewController?.encryptedMail)!)
+                if isMessageEncryptedForNonCtemplarUser.count > 0 {
+                    self.setEncryptedButtonMode(applied: true)
+                } else {
+                    self.setEncryptedButtonMode(applied: false)
+                }
+            } else {
+                self.setEncryptedButtonMode(applied: false)
+            }
+            
+            //self.setEncryptedButtonMode(applied: (self.viewController?.encryptedMail)!)
         }
     }
     
