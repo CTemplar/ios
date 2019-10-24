@@ -232,10 +232,10 @@ class ComposePresenter {
     func setSchedulerTimersForMessage(message: EmailMessage) {
         
         if let selfDestructionDateString = message.destructDay {
-            if let selfDestructionDate = self.formatterService?.formatDestructionTimeStringToDate(date: selfDestructionDateString) {
+            if let selfDestructionDate = self.formatterService?.formatDestructionTimeStringToDateTest(date: selfDestructionDateString) {
                 self.viewController?.selfDestructionDate = selfDestructionDate
-                self.setSelfDestructionButtonMode(applied: true)
             }
+            self.setSelfDestructionButtonMode(applied: true)
         } else {
             self.viewController?.selfDestructionDate = nil
             self.setSelfDestructionButtonMode(applied: false)
@@ -244,8 +244,8 @@ class ComposePresenter {
         if let delayedDeliveryDateString = message.delayedDelivery {
             if let delayedDeliveryDate = self.formatterService?.formatDestructionTimeStringToDate(date: delayedDeliveryDateString) {
                 self.viewController?.delayedDeliveryDate = delayedDeliveryDate
-                self.setDelayedDeliveryButtonMode(applied: true)
             }
+            self.setDelayedDeliveryButtonMode(applied: true)
         } else {
             self.viewController?.delayedDeliveryDate = nil
             self.setDelayedDeliveryButtonMode(applied: false)
