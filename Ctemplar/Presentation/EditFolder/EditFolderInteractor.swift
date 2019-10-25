@@ -40,7 +40,7 @@ class EditFolderInteractor {
         
         var nameValid : Bool = false
         
-        if (self.formatterService?.validateNameFormat(enteredName: text))! {
+        if (self.formatterService?.validateFolderNameFormat(enteredName: text))! {
             self.viewController?.folderName = text
             self.viewController?.darkLineView.backgroundColor = k_sideMenuColor
             nameValid = true

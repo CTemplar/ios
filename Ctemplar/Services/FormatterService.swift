@@ -70,6 +70,13 @@ class FormatterService
         return namePredicate.evaluate(with: enteredName)
     }
     
+    func validateFolderNameFormat(enteredName: String) -> Bool {
+        
+        let nameFormat = "[A-Z0-9a-z._%+-@ ]{4,64}"//allow whitespaces
+        let namePredicate = NSPredicate(format:"SELF MATCHES %@", nameFormat)
+        return namePredicate.evaluate(with: enteredName)
+    }
+    
     func validateNameLench(enteredName: String) -> Bool {
         
         if (enteredName.count > 0)  {
