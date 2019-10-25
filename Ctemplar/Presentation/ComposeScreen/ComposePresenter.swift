@@ -17,6 +17,8 @@ class ComposePresenter {
     var interactor       : ComposeInteractor?
     var formatterService        : FormatterService?
     
+    var currentSignature : String = ""
+    
     //MARK: - Setup Answer Mode
     
     func setupNavigationBarTitle(mode: AnswerMessageMode) {
@@ -364,24 +366,65 @@ class ComposePresenter {
         if let messageContent = self.interactor?.getMessageContent(message: message) {
             
             if messageContent.count > 0 {
+                
+                let mutableAttributedString = NSMutableAttributedString()
+                
+                if currentSignature.count > 0 {
+                    let signatureAttributedString = NSAttributedString(string: "\n" + currentSignature)
+                    mutableAttributedString.append(signatureAttributedString)
+                }
             
                 let replyHeader = self.generateHeader(message: message, answerMode: self.viewController!.answerMode)
             
                 let messageContentAttributedString = messageContent.html2AttributedString
-                let mutableAttributedString = NSMutableAttributedString(attributedString: replyHeader)
+                let headerMutableAttributedString = NSMutableAttributedString(attributedString: replyHeader)
+                mutableAttributedString.append(headerMutableAttributedString)
                 mutableAttributedString.append(messageContentAttributedString!)
             
                 self.viewController?.messageTextView.attributedText = mutableAttributedString
                 self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
             } else {
-                self.setPlaceholderToMessageTextView(show: true)
-                //self.viewController?.messageTextView.text = "xxssss xxssss xxssssxxssss xxssss xxssss xxssssvvvvvvvvvvv      fedfsdf dfgsdgsd gs gsd gsd gs s sgds gsdgssdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjpsogjsdpo gpsdojg gs dgpogj sg \n\n\n\n\n dgjsdpogj sgjgposgj sogogjo sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg  sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjp sdogjsd g dsgjsgjosgpg g sdpgojsdog sdgsg gsgdg's;g sg sd';  gs'd;gsigsjgosd gs0d-s gspg s g dsgs--gs- g \n\n dfgjfdlgjdf;g \n\n gsjgsgs gsd gds  sdgs dgjsgisdogjisodg sdogjsd g dsgjsgjosgpg g sdpgojsdog  gpsodgj opg sdjp gpsodgj opg sdjp gogjodp gs   000000000 000000000 00000000"
+                if currentSignature.count > 0 {
+                    let attributedString = NSAttributedString(string: "\n" + currentSignature)
+                    self.viewController?.messageTextView.attributedText = attributedString
+                    self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
+                } else {
+                    self.setPlaceholderToMessageTextView(show: true)
+                }
             }
-        } else {
-            self.setPlaceholderToMessageTextView(show: true)
         }
         
         self.enabledSendButton()
+        self.setupMessageSectionSize()
+    }
+    
+    func setupSignature(_ newSignature: String) {
+        
+        print("set new Signature:", newSignature)
+        
+        guard let currentMessageText = self.viewController?.messageTextView.attributedText else { return }
+        
+        let mutableAttributedString = NSMutableAttributedString(attributedString: currentMessageText)
+        
+        if let range = mutableAttributedString.string.range(of: currentSignature) {
+            let nsRange = NSRange(range, in: mutableAttributedString.string)
+
+            let newAttributedStringSignature =  NSAttributedString(string: newSignature)
+        
+            mutableAttributedString.replaceCharacters(in: nsRange, with: newAttributedStringSignature)
+        
+            self.viewController?.messageTextView.attributedText = mutableAttributedString
+            currentSignature = newSignature
+        } else {
+            currentSignature = newSignature
+            
+            let newAttributedStringSignature =  NSAttributedString(string: "\n" + newSignature)
+            mutableAttributedString.insert(newAttributedStringSignature, at: 0)
+            
+            self.viewController?.messageTextView.attributedText = mutableAttributedString
+        }
+        
+        self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
         self.setupMessageSectionSize()
     }
     
@@ -528,6 +571,7 @@ class ComposePresenter {
                 if defaultMailbox {
                     if let defaultEmail = mailbox.email {
                         self.setupEmailFromSection(emailFromText: defaultEmail)
+                        self.currentSignature = mailbox.signature ?? ""
                     }
                     
                     self.viewController!.mailboxID = mailbox.mailboxID!

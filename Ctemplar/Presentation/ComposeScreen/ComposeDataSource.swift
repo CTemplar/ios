@@ -94,6 +94,8 @@ class ComposeDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             }
             
             self.parentViewController.mailboxID = mailbox.mailboxID!
+            let newSignature = mailbox.signature ?? ""
+            self.parentViewController.presenter?.setupSignature(newSignature)
             
             self.parentViewController.presenter?.mailboxesButtonPressed()
         } else {
