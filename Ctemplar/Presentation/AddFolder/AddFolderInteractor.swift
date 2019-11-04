@@ -29,25 +29,20 @@ class AddFolderInteractor {
         }
     }
     
-    func validateFolderName(text: String) {
-        
-        var nameValid : Bool = false
-        
-        if (self.formatterService?.validateFolderNameFormat(enteredName: text))! {
-            self.viewController?.folderName = text
-            self.viewController?.darkLineView.backgroundColor = k_sideMenuColor
-            nameValid = true
-        } else {
+    func validateFolderName(text: String?) {
+        guard let text = text else {
             self.viewController?.darkLineView.backgroundColor = k_redColor
-            self.setAddButton(enable: true)
-            nameValid = false
-        }
-        
-        if (self.viewController?.selectedHexColor.count)! > 0 && nameValid {
-            self.setAddButton(enable: true)
-        } else {
             self.setAddButton(enable: false)
+            return
         }
+        let nameValid = self.formatterService?.validateFolderNameFormat(enteredName: text) ?? false
+        
+        self.viewController?.darkLineView.backgroundColor = nameValid ? k_sideMenuColor : k_redColor
+        self.setAddButton(enable: nameValid && (self.viewController?.selectedHexColor.count ?? 0) > 0)
+    }
+    
+    func validFolderName(text: String?) -> Bool {
+        return formatterService?.validateFolderNameFormat(enteredName: text ?? "") ?? false
     }
     
     func setAddButton(enable: Bool) {

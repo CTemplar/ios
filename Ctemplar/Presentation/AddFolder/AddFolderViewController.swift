@@ -23,7 +23,7 @@ class AddFolderViewController: UIViewController {
     @IBOutlet var colorPickerSuperViewHeightConstraint          : NSLayoutConstraint!
     
     var selectedHexColor : String = ""
-    var folderName : String = ""
+    var folderName: String?
     
     let k_colorPickerOffset : CGFloat = 32.0
     var k_colorPickeriPadHeight : CGFloat = 90.0
@@ -40,7 +40,7 @@ class AddFolderViewController: UIViewController {
         self.colorPicker.delegate = self
         self.colorPickerSuperView.add(subview: colorPicker)
         
-        self.interactor?.validateFolderName(text: self.folderName)
+        self.interactor?.validateFolderName(text: self.folderName ?? "")
         
         let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture(gesture:)))
         swipeDownGesture.direction = .down
@@ -65,8 +65,10 @@ class AddFolderViewController: UIViewController {
     //MARK: - IBActions
     
     @IBAction func addButtonPressed(_ sender: AnyObject) {
-        
-        self.interactor?.createCustomFolder(name: self.folderName, colorHex: self.selectedHexColor)
+        if let name = folderName,
+            interactor?.validFolderName(text: folderName) == true {
+            self.interactor?.createCustomFolder(name: name, colorHex: self.selectedHexColor)
+        }
     }
     
     @IBAction func cancelButtonPressed(_ sender: AnyObject) {
@@ -75,7 +77,7 @@ class AddFolderViewController: UIViewController {
     }
     
     @IBAction func textTyped(_ sender: UITextField) {
-        
+        folderName = sender.text
         self.interactor?.validateFolderName(text: sender.text!)
     }
     
