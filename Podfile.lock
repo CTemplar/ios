@@ -1,0 +1,61 @@
+PODS:
+  - Alamofire (4.9.1)
+  - AlertHelperKit (1.9.0)
+  - BCryptSwift (1.1)
+  - Crashlytics (3.14.0):
+    - Fabric (~> 1.10.2)
+  - Fabric (1.10.2)
+  - KeychainSwift (18.0.0)
+  - MGSwipeTableCell (1.6.11)
+  - ObjectivePGP (0.15.0)
+  - PKHUD (5.1.0)
+  - SideMenu (4.0.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - AlertHelperKit (from `https://github.com/keygx/AlertHelperKit`)
+  - BCryptSwift
+  - Crashlytics
+  - Fabric
+  - KeychainSwift
+  - MGSwipeTableCell
+  - ObjectivePGP
+  - PKHUD (~> 5.1.0)
+  - SideMenu (~> 4.0.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - BCryptSwift
+    - Crashlytics
+    - Fabric
+    - KeychainSwift
+    - MGSwipeTableCell
+    - ObjectivePGP
+    - PKHUD
+    - SideMenu
+
+EXTERNAL SOURCES:
+  AlertHelperKit:
+    :git: https://github.com/keygx/AlertHelperKit
+
+CHECKOUT OPTIONS:
+  AlertHelperKit:
+    :commit: 936acfcde29957788911f145fafe39b0a9a32fcc
+    :git: https://github.com/keygx/AlertHelperKit
+
+SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AlertHelperKit: db79a53288eb4b135966f7fef1aa2ec1ed753564
+  BCryptSwift: f69992ea5685f6714260842c2770688043b89ab2
+  Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
+  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
+  KeychainSwift: c46e1438d121e47459fb304ac88c5e058a2a91ed
+  MGSwipeTableCell: b804e4e450dee439c42250be90bd50458bf67fce
+  ObjectivePGP: 35a73ed3253e7e2982184ea86b1ff6c5773d1299
+  PKHUD: 62ea46a1e88c4def1da784878d199bb54c841e3c
+  SideMenu: 70ee5657df63ec3382660ec4ef470bf1cf5db07d
+
+PODFILE CHECKSUM: c017c088021f737aea9186c65e7414f252c0d8de
+
+COCOAPODS: 1.8.4
