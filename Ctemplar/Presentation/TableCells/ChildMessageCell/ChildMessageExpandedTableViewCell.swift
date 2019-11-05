@@ -229,14 +229,14 @@ class ChildMessageExpandedTableViewCell: UITableViewCell {
     }
     
     func setupMessageContentTextView(messageContent: String) {
-        
-        contentTextView.attributedText = messageContent.html2AttributedString
+        let content = messageContent.replacingOccurrences(of: "\n", with: "<br>")
+        contentTextView.attributedText = content.html2AttributedString
         contentTextView.sizeToFit()
         
         //contentTextView.text = messageContent
         
         //print("messageContent:", messageContent)
-        //print("messageContent.html2AttributedString:", messageContent.html2AttributedString)
+        //print("messageContent.html2AttributedString:", content.html2AttributedString)
         
         let layoutManager : NSLayoutManager = contentTextView.layoutManager
         let numberOfGlyphs = layoutManager.numberOfGlyphs
