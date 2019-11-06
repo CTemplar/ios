@@ -17,21 +17,21 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="inboxMessageTableViewCellIdentifier" id="05r-7M-Vpj" customClass="InboxMessageTableViewCell" customModule="Ctemplar" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="05r-7M-Vpj" id="8au-y8-0Qc">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="70.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roundDark" translatesAutoresizingMaskIntoConstraints="NO" id="ZVU-xo-7UT">
-                        <rect key="frame" x="13" y="35" width="22" height="22"/>
+                        <rect key="frame" x="13" y="24.5" width="22" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="22" id="PMC-vx-Qkk"/>
                             <constraint firstAttribute="width" secondItem="ZVU-xo-7UT" secondAttribute="height" multiplier="1:1" id="zPw-CD-plz"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQA-43-osU">
-                        <rect key="frame" x="47" y="13" width="288" height="64"/>
+                        <rect key="frame" x="47" y="13" width="288" height="45"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCp-iz-PG3">
                                 <rect key="frame" x="0.0" y="0.0" width="107.5" height="18"/>
@@ -43,7 +43,7 @@
                                     <fragment content="CTemplar">
                                         <attributes>
                                             <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="0.865509463028169" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="16" name="Lato-Bold"/>
+                                            <font key="NSFont" metaFont="system" size="16"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -93,7 +93,7 @@
                                                             <fragment content="5:25">
                                                                 <attributes>
                                                                     <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <font key="NSFont" size="9" name="Lato-Regular"/>
+                                                                    <font key="NSFont" metaFont="miniSystem"/>
                                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                                 </attributes>
                                                             </fragment>
@@ -142,7 +142,7 @@
                                                             <fragment content="Delete in 5:25">
                                                                 <attributes>
                                                                     <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <font key="NSFont" size="9" name="Lato-Regular"/>
+                                                                    <font key="NSFont" metaFont="miniSystem"/>
                                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                                 </attributes>
                                                             </fragment>
@@ -221,7 +221,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to CTemplar!  " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7N-NB-U2F">
-                                <rect key="frame" x="0.0" y="23" width="288" height="22"/>
+                                <rect key="frame" x="0.0" y="23" width="147" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="M1N-Oa-hiZ"/>
                                 </constraints>
@@ -242,7 +242,7 @@
                                             <fragment content="Encrypted Subject">
                                                 <attributes>
                                                     <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <font key="NSFont" size="9" name="Lato-Regular"/>
+                                                    <font key="NSFont" metaFont="miniSystem"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                 </attributes>
                                             </fragment>
@@ -281,10 +281,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You now have an inbox that is protected…" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aj7-qF-XOj">
-                                <rect key="frame" x="0.0" y="48" width="288" height="16"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You now have an inbox that is protected…" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aj7-qF-XOj">
+                                <rect key="frame" x="0.0" y="45" width="288" height="0.0"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="16" id="hXD-Tk-bMk"/>
+                                    <constraint firstAttribute="height" id="hXD-Tk-bMk"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                 <color key="textColor" red="0.57647058823529407" green="0.56862745098039214" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
@@ -300,7 +300,7 @@
                             <constraint firstItem="x7N-NB-U2F" firstAttribute="leading" secondItem="gQA-43-osU" secondAttribute="leading" id="F1e-qu-mew"/>
                             <constraint firstItem="ojL-O5-Vff" firstAttribute="top" secondItem="gQA-43-osU" secondAttribute="top" id="FLg-U7-sxn"/>
                             <constraint firstItem="Klj-j6-FcD" firstAttribute="leading" secondItem="XCp-iz-PG3" secondAttribute="trailing" constant="6" id="Jss-lk-iem"/>
-                            <constraint firstAttribute="trailing" secondItem="x7N-NB-U2F" secondAttribute="trailing" id="caF-Wl-xcS"/>
+                            <constraint firstItem="aj7-qF-XOj" firstAttribute="top" secondItem="x7N-NB-U2F" secondAttribute="bottom" id="RTe-a0-PFv"/>
                             <constraint firstItem="G38-y1-Kgj" firstAttribute="leading" secondItem="x7N-NB-U2F" secondAttribute="leading" id="dMd-T8-dfv"/>
                             <constraint firstItem="G38-y1-Kgj" firstAttribute="centerY" secondItem="x7N-NB-U2F" secondAttribute="centerY" id="df2-tq-XOk"/>
                             <constraint firstItem="aj7-qF-XOj" firstAttribute="leading" secondItem="gQA-43-osU" secondAttribute="leading" id="ksh-FV-ZNR"/>
@@ -325,7 +325,7 @@
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AttachIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ri0-gV-UDM">
-                        <rect key="frame" x="348" y="61" width="16" height="16"/>
+                        <rect key="frame" x="324" y="36" width="16" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="FvR-Rt-rad"/>
                             <constraint firstAttribute="width" secondItem="ri0-gV-UDM" secondAttribute="height" multiplier="1:1" id="w6v-k0-S45"/>
@@ -335,18 +335,17 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="1oJ-nU-efR" secondAttribute="trailing" constant="11" id="2zx-JY-e2n"/>
                     <constraint firstItem="OGH-zi-U9d" firstAttribute="top" secondItem="1oJ-nU-efR" secondAttribute="bottom" constant="9" id="5Ax-m3-H04"/>
-                    <constraint firstAttribute="bottom" secondItem="ZVU-xo-7UT" secondAttribute="bottom" constant="32.5" id="649-zu-Uou"/>
                     <constraint firstAttribute="trailing" secondItem="OGH-zi-U9d" secondAttribute="trailing" constant="11" id="6gn-e5-Yv2"/>
                     <constraint firstItem="gQA-43-osU" firstAttribute="leading" secondItem="ZVU-xo-7UT" secondAttribute="trailing" constant="12" id="8Ia-Y7-wam"/>
-                    <constraint firstAttribute="bottom" secondItem="ri0-gV-UDM" secondAttribute="bottom" constant="12.5" id="LDe-Zs-A23"/>
-                    <constraint firstAttribute="trailing" secondItem="ri0-gV-UDM" secondAttribute="trailing" constant="11" id="T7F-It-e7X"/>
+                    <constraint firstItem="ri0-gV-UDM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="x7N-NB-U2F" secondAttribute="trailing" constant="8" id="ApP-Li-oxs"/>
                     <constraint firstAttribute="bottomMargin" secondItem="gQA-43-osU" secondAttribute="bottom" constant="2" id="WR7-f4-CkS"/>
                     <constraint firstItem="gQA-43-osU" firstAttribute="top" secondItem="8au-y8-0Qc" secondAttribute="topMargin" constant="2" id="aM5-7j-NPq"/>
                     <constraint firstItem="ZVU-xo-7UT" firstAttribute="leading" secondItem="8au-y8-0Qc" secondAttribute="leading" constant="13" id="bfc-f9-wX1"/>
-                    <constraint firstItem="ZVU-xo-7UT" firstAttribute="top" secondItem="8au-y8-0Qc" secondAttribute="top" constant="35" id="lAO-tc-zLp"/>
+                    <constraint firstItem="OGH-zi-U9d" firstAttribute="leading" secondItem="ri0-gV-UDM" secondAttribute="trailing" constant="8" id="gXW-vn-5bq"/>
+                    <constraint firstItem="OGH-zi-U9d" firstAttribute="centerY" secondItem="ri0-gV-UDM" secondAttribute="centerY" id="iDG-mm-6sB"/>
                     <constraint firstItem="1oJ-nU-efR" firstAttribute="leading" secondItem="gQA-43-osU" secondAttribute="trailing" constant="13" id="olw-X6-Rzl"/>
                     <constraint firstItem="1oJ-nU-efR" firstAttribute="top" secondItem="8au-y8-0Qc" secondAttribute="top" constant="11" id="qlo-BW-VfO"/>
-                    <constraint firstItem="ri0-gV-UDM" firstAttribute="top" secondItem="OGH-zi-U9d" secondAttribute="bottom" constant="9" id="wNs-z2-Xvg"/>
+                    <constraint firstItem="ZVU-xo-7UT" firstAttribute="centerY" secondItem="8au-y8-0Qc" secondAttribute="centerY" id="vBX-DI-YAp"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
