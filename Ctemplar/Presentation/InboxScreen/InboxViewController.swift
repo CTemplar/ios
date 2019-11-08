@@ -73,6 +73,10 @@ class InboxViewController: UIViewController {
     
     //MARK: - Lifecycle
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -93,7 +97,9 @@ class InboxViewController: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100), execute: {
             self.presenter?.interactor?.updateMessages(withUndo: "", silent: false)
-        })       
+        })
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(userSettingsUpdate), name: NSNotification.Name(rawValue: k_updateUserSettingsNotificationID), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -198,6 +204,11 @@ class InboxViewController: UIViewController {
        // if self.presenter?.interactor?.offset == 0 {
             self.presenter?.interactor?.updateMessages(withUndo: "", silent: silent)
         //}
+        self.presenter?.interactor?.userMyself()
+    }
+    
+    @objc func userSettingsUpdate(notification: Notification) {
+        
         self.presenter?.interactor?.userMyself()
     }
     
