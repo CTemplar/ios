@@ -382,6 +382,7 @@ class ComposeInteractor {
             let encrypted = true//self.viewController!.encryptedMail //self.sendingMessage.isEncrypted
             
             var messageContent = self.getEnteredMessageContent()
+            messageContent = messageContent.replacingOccurrences(of: presenter?.currentSignature ?? "", with: "")
             
             if encrypted {
                 messageContent = self.encryptMessageWithOwnPublicKey(message: messageContent)
