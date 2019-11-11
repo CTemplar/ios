@@ -369,18 +369,17 @@ class ComposePresenter {
                 
                 let mutableAttributedString = NSMutableAttributedString()
                 
-                if currentSignature.count > 0 {
-                    let signatureAttributedString = NSAttributedString(string: "\n" + currentSignature)
-                    mutableAttributedString.append(signatureAttributedString)
-                }
-            
                 let replyHeader = self.generateHeader(message: message, answerMode: self.viewController!.answerMode)
-            
-                let messageContentAttributedString = messageContent.html2AttributedString
+                
+                let content = messageContent.replacingOccurrences(of: "\n", with: "<br>")
+                let messageContentAttributedString = content.html2AttributedString
                 let headerMutableAttributedString = NSMutableAttributedString(attributedString: replyHeader)
                 mutableAttributedString.append(headerMutableAttributedString)
                 mutableAttributedString.append(messageContentAttributedString!)
             
+                if currentSignature.count > 0 {
+                    mutableAttributedString.append(NSMutableAttributedString(string: currentSignature))
+                }
                 self.viewController?.messageTextView.attributedText = mutableAttributedString
                 self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
             } else {
