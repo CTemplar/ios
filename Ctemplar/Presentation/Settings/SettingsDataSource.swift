@@ -160,7 +160,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         self.parentViewController.presenter?.interactor?.SettingsCellPressed(indexPath: indexPath)        
     }
     
-    func reloadData() {
+    @objc func reloadData() {
         
         self.tableView.reloadData()
     }
@@ -296,9 +296,16 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
                 cellTitle = "signature".localized()
             }
             break
-        //case SettingsMailSection.mobileSignature.rawValue:
-        //    cellTitle = "mobileSignature".localized() //API required
-        //    break
+        case SettingsMailSection.mobileSignature.rawValue:
+            if let signature = UserDefaults.standard.string(forKey: k_mobileSignatureKey) {
+                if signature.count > 0 {
+                    cellTitle = signature
+                } else {
+                    cellTitle = "mobileSignature".localized()
+                }
+            } else {
+                cellTitle = "mobileSignature".localized()
+            }
         default:
             break
         }

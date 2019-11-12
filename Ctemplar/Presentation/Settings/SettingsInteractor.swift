@@ -92,11 +92,10 @@ class SettingsInteractor {
             self.viewController?.router?.showSetMailboxViewController()
             break
         case SettingsMailSection.signature.rawValue:
-            self.viewController?.router?.showSetSignatureViewController() 
+            self.viewController?.router?.showSetSignatureViewController(with: .general)
             break
-        //case SettingsMailSection.mobileSignature.rawValue:
-            
-        //    break
+        case SettingsMailSection.mobileSignature.rawValue:
+            self.viewController?.router?.showSetSignatureViewController(with: .mobile)
         default:
             break
         }

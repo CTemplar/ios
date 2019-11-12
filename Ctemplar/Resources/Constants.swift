@@ -140,6 +140,7 @@ let k_updateUserSettingsNotificationID      = "UpdateUserSettingsNotificationIde
 let k_updateInboxMessagesNotificationID     = "updateInboxMessagesNotification"
 let k_attachUploadUpdateNotificationID      = "attachUploadUpdateNotificationIdentifier"
 let k_reloadViewControllerNotificationID    = "ReloadViewControllerNotificationIdentifier"
+let k_reloadViewControllerDataSourceNotificationID    = "ReloadViewControllerDataSourceNotificationIdentifier"
 
 // colors
 
@@ -418,6 +419,10 @@ let k_devMainDomain = "dev.ctemplar.com"
 
 let k_platform = "ios"
 
+// UserDefaults
+
+let k_mobileSignatureKey = k_mainDomain + ".mobileSignatureKey"
+
 enum InboxSideMenuOptionsName: String {
     /*
     case inbox            = "Inbox"
@@ -620,7 +625,7 @@ enum SettingsMailSection: Int, CaseIterable {
     
     case mail              = 0
     case signature         = 1
-    //case mobileSignature   = 2
+    case mobileSignature   = 2
 }
 
 enum SettingsAboutSection: Int, CaseIterable {
