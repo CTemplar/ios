@@ -11,6 +11,11 @@ import UIKit
 import AlertHelperKit
 import PKHUD
 
+enum SignatureType {
+    case general
+    case mobile
+}
+
 class SetSignatureViewController: UIViewController {
     
     @IBOutlet var rightBarButtonItem       : UIBarButtonItem!
@@ -20,6 +25,7 @@ class SetSignatureViewController: UIViewController {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
+    var signatureType = SignatureType.general
     var userSignature : String = ""
     var apiService      : APIService?
     
@@ -46,8 +52,14 @@ class SetSignatureViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: AnyObject) {
-        
-        self.updateUserSignature(mailbox: self.mailbox, userSignature: self.userSignature)
+        guard signatureType == .mobile else {
+            self.updateUserSignature(mailbox: self.mailbox, userSignature: self.userSignature)
+            return
+        }
+        UserDefaults.standard.set(userSignature, forKey: k_mobileSignatureKey)
+        UserDefaults.standard.synchronize()
+        postUpdateUserSettingsNotification()
+        userSignatureWasUpdated()
     }
     
     @IBAction func textTyped(_ sender: UITextField) {
@@ -65,9 +77,10 @@ class SetSignatureViewController: UIViewController {
             self.rigthBarButtonEnabled()
         } else {
             self.textFieldView.isHidden = true
-            if let signature = self.mailbox.signature {
+            let value = signatureType == .general ? self.mailbox.signature : UserDefaults.standard.string(forKey: k_mobileSignatureKey)
+            if let signature = value {
                 if signature.count > 0 {
-                    self.userSignature = " "
+                    self.userSignature = signatureType == .general ? " " : "" //api doesn't update signature if to send empty "" string
                 } else {
                     self.setupRightBarButton(show: false)
                 }
@@ -76,10 +89,10 @@ class SetSignatureViewController: UIViewController {
     }
     
     func setupScreen() {
-        
+        title = (signatureType == .general ? "signature" : "mobileSignature").localized().capitalized
         //self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: k_contactsBarTintColor]
-       
-        if let signature = self.mailbox.signature {
+        let value = signatureType == .general ? self.mailbox.signature : UserDefaults.standard.string(forKey: k_mobileSignatureKey)
+        if let signature = value {
             if signature.count > 0 {
                 self.userSignature = signature
                 self.textFieldView.isHidden = false
@@ -149,8 +162,8 @@ class SetSignatureViewController: UIViewController {
     }
     
     func postUpdateUserSettingsNotification() {
-        
-        NotificationCenter.default.post(name: Notification.Name(k_updateUserSettingsNotificationID), object: nil, userInfo: nil)
+        let name = signatureType == .general ? k_updateUserSettingsNotificationID : k_reloadViewControllerDataSourceNotificationID
+        NotificationCenter.default.post(name: Notification.Name(name), object: nil, userInfo: nil)
     }
     
     func userSignatureWasUpdated() {

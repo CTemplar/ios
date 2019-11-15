@@ -566,15 +566,19 @@ class ComposePresenter {
     func setMailboxes(mailboxes: Array<Mailbox>) {
         
         for mailbox in mailboxes {
-            if let defaultMailbox = mailbox.isDefault {
-                if defaultMailbox {
-                    if let defaultEmail = mailbox.email {
-                        self.setupEmailFromSection(emailFromText: defaultEmail)
+            if mailbox.isDefault == true {
+                if let defaultEmail = mailbox.email {
+                    self.setupEmailFromSection(emailFromText: defaultEmail)
+                    if mailbox.signature?.isEmpty == false {
                         self.currentSignature = mailbox.signature ?? ""
+                    } else {
+                        self.currentSignature = UserDefaults.standard.string(forKey: k_mobileSignatureKey) ?? ""
                     }
-                    
-                    self.viewController!.mailboxID = mailbox.mailboxID!
                 }
+                
+                self.viewController!.mailboxID = mailbox.mailboxID!
+            } else {
+                self.currentSignature = UserDefaults.standard.string(forKey: k_mobileSignatureKey) ?? ""
             }
         }
         

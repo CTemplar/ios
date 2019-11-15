@@ -100,10 +100,11 @@ class SettingsRouter {
         self.viewController?.show(vc, sender: self)
     }
     
-    func showSetSignatureViewController() {
+    func showSetSignatureViewController(with type: SignatureType) {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_SetSignatureStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_SetSignatureViewControllerID) as! SetSignatureViewController
+        vc.signatureType = type
         vc.user = (self.viewController?.user)!
         self.viewController?.show(vc, sender: self)
     }
