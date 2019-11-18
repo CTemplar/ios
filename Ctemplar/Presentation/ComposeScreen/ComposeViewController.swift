@@ -53,6 +53,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet var tableViewBottomOffsetConstraint        : NSLayoutConstraint!
     
     @IBOutlet var messageTextViewHeightConstraint        : NSLayoutConstraint!
+    @IBOutlet weak var messageTextViewBottomOffsetConstraint: NSLayoutConstraint!
     @IBOutlet var scrollViewBottomOffsetConstraint       : NSLayoutConstraint!
     
     //var scrollViewContentSize
@@ -604,7 +605,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             if self.view.frame.origin.y == 0 {
                 //self.view.frame.origin.y -= CGFloat(keyboardOffset)
                 
-                scrollViewBottomOffsetConstraint.constant = CGFloat(k_KeyboardHeight)
+                scrollViewBottomOffsetConstraint.constant = CGFloat(k_KeyboardHeight) + (UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0)
                 self.presenter?.setupMessageSectionSize()
             }
         }
@@ -703,9 +704,6 @@ extension ComposeViewController: MoreActionsDelegate {
 extension ComposeViewController: AttachmentDelegate {
     
     func deleteAttach(tag: Int) {
-        
-        self.presenter?.removeAllAttachmentsView()
-        
         for (index, attachmentView) in self.viewAttachmentsList.enumerated() {
             if attachmentView.tag == tag {
                 self.viewAttachmentsList.remove(at: index)
