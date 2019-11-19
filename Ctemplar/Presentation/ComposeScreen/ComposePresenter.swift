@@ -555,24 +555,17 @@ class ComposePresenter {
     //MARK: - Setup Email From Section
     
     func setMailboxes(mailboxes: Array<Mailbox>) {
-        
+        currentSignature = UserDefaults.standard.string(forKey: k_mobileSignatureKey) ?? ""
         for mailbox in mailboxes {
-            if mailbox.isDefault == true {
-                if let defaultEmail = mailbox.email {
-                    self.setupEmailFromSection(emailFromText: defaultEmail)
-                    if mailbox.signature?.isEmpty == false {
-                        self.currentSignature = mailbox.signature ?? ""
-                    } else {
-                        self.currentSignature = UserDefaults.standard.string(forKey: k_mobileSignatureKey) ?? ""
-                    }
-                }
-                
-                self.viewController!.mailboxID = mailbox.mailboxID!
-            } else {
-                self.currentSignature = UserDefaults.standard.string(forKey: k_mobileSignatureKey) ?? ""
+            guard mailbox.isDefault == true else { break }
+            if let defaultEmail = mailbox.email {
+                self.setupEmailFromSection(emailFromText: defaultEmail)
             }
-        }
-        
+            if currentSignature.isEmpty {
+                currentSignature = mailbox.signature ?? ""
+            }
+            self.viewController!.mailboxID = mailbox.mailboxID!
+        }        
         if mailboxes.count < 2 {
             //self.viewController!.mailboxesButton.isEnabled = false
         }
