@@ -307,25 +307,23 @@ class ComposePresenter {
         self.setupMessageSectionSize()
     }
     
-    func setAttachmentsToMessage( topOffset: CGFloat) -> CGFloat {
-        
-        //self.removeAttachmentsView()
-        self.removeAllAttachmentsView()
-        
-        var attachmentsHeight : CGFloat = k_attachmentViewTopOffset
-        
-        for attachmentView in (self.viewController?.viewAttachmentsList)! {
-            
-            let frame = CGRect(x: k_emailToTextViewLeftOffset, y: topOffset + attachmentsHeight, width: (self.viewController?.view.frame.size.width)! - k_emailToTextViewLeftOffset - k_emailToTextViewLeftOffset, height: k_attachmentViewHeight)
-            
-            attachmentView.frame = frame
-            
-            self.viewController!.scrollView.add(subview: attachmentView)
-            
-            attachmentsHeight = attachmentsHeight + k_attachmentViewHeight + k_messageTextViewTopOffset
+    func setAttachmentsToMessage() {
+        viewController?.scrollView.subviews.forEach {
+            ($0 as? UIStackView)?.removeFromSuperview()
         }
-        
-        return attachmentsHeight
+        if let list = viewController?.viewAttachmentsList,
+            list.count > 0,
+            let scrollView = viewController?.scrollView,
+        let textView = viewController?.messageTextView {
+            let stack = attachmentStackView(from: list)
+            stack.translatesAutoresizingMaskIntoConstraints = false
+            viewController?.scrollView.add(subview: stack)
+            stack.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: k_emailToTextViewLeftOffset).isActive = true
+            stack.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -k_emailToTextViewLeftOffset).isActive = true
+            stack.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: k_messageTextViewTopOffset).isActive = true
+            stack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -k_emailToTextViewLeftOffset).isActive = true
+            viewController?.messageTextViewBottomOffsetConstraint.priority = .defaultLow
+        }
     }
     
     func setupMessageSectionSize() {
@@ -333,28 +331,21 @@ class ComposePresenter {
         self.setupAttachmentButton()
         
         //self.viewController?.messageTextView.backgroundColor = UIColor.yellow
-        
         let fixedWidth = self.viewController!.view.frame.width - k_emailToTextViewLeftOffset - k_emailToTextViewLeftOffset
         let messageContentHeight = self.sizeThatFits(textView: self.viewController!.messageTextView, fixedWidth: fixedWidth)
-        
         let scrollViewHeight = self.viewController?.scrollView.frame.size.height
         
-        let attachmentsHeight = self.setAttachmentsToMessage(topOffset: messageContentHeight)
+        self.setAttachmentsToMessage()
         
-        if attachmentsHeight > k_attachmentViewTopOffset {
-            
-            self.viewController!.messageTextViewHeightConstraint.constant = self.viewController!.messageTextView.frame.size.height
-            self.viewController?.scrollView.contentSize = CGSize(width: (self.viewController?.view.frame.size.width)!, height: (self.viewController?.messageTextViewHeightConstraint.constant)! + k_messageTextViewTopOffset + k_messageTextViewTopOffset + attachmentsHeight)
-            
+        if let list = viewController?.viewAttachmentsList, list.count > 0 {
+            self.viewController!.messageTextViewHeightConstraint.constant = messageContentHeight
         } else { //without attachments
-            
+            viewController?.messageTextViewBottomOffsetConstraint.priority = UILayoutPriority(rawValue: 999)
             let content = self.interactor?.getEnteredMessageContent()
             if content?.count == 0 { //empty message
                 self.viewController?.messageTextViewHeightConstraint.constant = scrollViewHeight! - k_messageTextViewTopOffset - k_messageTextViewTopOffset
-                self.viewController?.scrollView.contentSize = CGSize(width: (self.viewController?.view.frame.size.width)!, height: (self.viewController?.messageTextViewHeightConstraint.constant)! + k_messageTextViewTopOffset + k_messageTextViewTopOffset)
             } else {
-                self.viewController!.messageTextViewHeightConstraint.constant = self.viewController!.messageTextView.frame.size.height
-                self.viewController?.scrollView.contentSize = CGSize(width: (self.viewController?.view.frame.size.width)!, height: (self.viewController?.messageTextViewHeightConstraint.constant)! + k_messageTextViewTopOffset + k_messageTextViewTopOffset + attachmentsHeight)
+                self.viewController!.messageTextViewHeightConstraint.constant = messageContentHeight
             }
         }
         
@@ -1229,48 +1220,6 @@ class ComposePresenter {
         return attachmentView!
     }
     
-    func removeAttachmentsView() {
-        
-        var tag = ComposeSubViewTags.attachmentsViewTag.rawValue
-        
-        for _ in (self.viewController?.viewAttachmentsList)! {
-            
-            tag = tag + 1
-            
-            if let subview = self.viewController?.scrollView.viewWithTag(tag) {
-                subview.removeFromSuperview()
-            }
-        }
-    }
-    
-    func removeAllAttachmentsView() {
-        
-        for attachmentView in (self.viewController?.viewAttachmentsList)! {
-            
-            let tag = attachmentView.tag
-            
-            if let subview = self.viewController?.scrollView.viewWithTag(tag) {
-                subview.removeFromSuperview()
-            }
-        }
-    }
-    
-    func removeAttachmentView(tag: Int) {
-        
-        if let subview = self.viewController?.scrollView.viewWithTag(tag) {
-            subview.removeFromSuperview()
-        }
-    }
-    
-    func attachmentView(tag: Int) -> AttachmentView? {
-        
-        if let subview = self.viewController?.scrollView.viewWithTag(tag) {
-            return subview as? AttachmentView
-        }
-        
-        return nil
-    }
-    
     //MARK: - Upgrade to Prime
     
     func showUpgradeToPrimeView() {
@@ -1293,5 +1242,19 @@ class ComposePresenter {
         self.viewController?.navigationController!.view.addSubview((self.viewController?.upgradeToPrimeView)!)
         
         self.viewController?.upgradeToPrimeView?.isHidden = true
+    }
+    
+    func attachmentStackView(from list: [AttachmentView]) -> UIStackView {
+        list.forEach {
+            $0.removeFromSuperview()
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            $0.heightAnchor.constraint(equalToConstant: k_attachmentViewHeight).isActive = true
+        }
+        let stack = UIStackView(arrangedSubviews: list)
+        stack.axis = .vertical
+        stack.distribution = .fill
+        stack.spacing = k_attachmentsInterSpacing
+        
+        return stack
     }
 }
