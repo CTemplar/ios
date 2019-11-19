@@ -10,7 +10,11 @@ import Foundation
 import Alamofire
 
 enum EndPoint: String {
+    #if DEVELOPMENT
     case baseUrl = "https://devapi.ctemplar.com/"
+    #else
+    case baseUrl = "https://api.ctemplar.com/"
+    #endif
     case signIn = "auth/sign-in/"
     case signUp = "auth/sign-up/"
     case checkUsername = "auth/check-username/"

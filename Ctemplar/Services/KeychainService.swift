@@ -18,19 +18,26 @@ class KeychainService
         case password = "password"
         case twoFAcode = "twoFAcode"
         case apnToken = "apnToken"
+        
+        var keyName: String {
+            guard let identifier = Bundle.main.bundleIdentifier else {
+                fatalError()
+            }
+            return identifier + "." + self.rawValue
+        }
     }
     
     let keychain = KeychainSwift()
     
     func saveToken(token: String) {
         
-        keychain.set(token, forKey: Consts.token.rawValue)
-        keychain.set(Date().description, forKey: Consts.tokenSavedTime.rawValue)
+        keychain.set(token, forKey: Consts.token.keyName)
+        keychain.set(Date().description, forKey: Consts.tokenSavedTime.keyName)
     }
     
     func getToken() -> String {
         
-        guard let token = keychain.get(Consts.token.rawValue) else {
+        guard let token = keychain.get(Consts.token.keyName) else {
             return ""
         }
         
@@ -41,7 +48,7 @@ class KeychainService
         
         //var tokenSavedDate : Date?
         
-        guard let tokenSavedTime = keychain.get(Consts.tokenSavedTime.rawValue) else {
+        guard let tokenSavedTime = keychain.get(Consts.tokenSavedTime.keyName) else {
             return ""
         }
         
@@ -52,12 +59,12 @@ class KeychainService
     
     func saveUsername(name: String) {
         
-        keychain.set(name, forKey: Consts.username.rawValue)
+        keychain.set(name, forKey: Consts.username.keyName)
     }
     
     func getUserName() -> String {
         
-        guard let username = keychain.get(Consts.username.rawValue) else {
+        guard let username = keychain.get(Consts.username.keyName) else {
             return ""
         }
         
@@ -66,12 +73,12 @@ class KeychainService
     
     func savePassword(password: String) {
         
-        keychain.set(password, forKey: Consts.password.rawValue)
+        keychain.set(password, forKey: Consts.password.keyName)
     }
     
     func getPassword() -> String {
         
-        guard let password = keychain.get(Consts.password.rawValue) else {
+        guard let password = keychain.get(Consts.password.keyName) else {
             return ""
         }
         
@@ -80,7 +87,7 @@ class KeychainService
     
     func getTwoFAcode() -> String {
         
-        guard let code = keychain.get(Consts.twoFAcode.rawValue) else {
+        guard let code = keychain.get(Consts.twoFAcode.keyName) else {
             return ""
         }
         
@@ -95,12 +102,12 @@ class KeychainService
     
     func saveAPNDeviceToken(_ token: String) {
            
-        keychain.set(token, forKey: Consts.apnToken.rawValue)
+        keychain.set(token, forKey: Consts.apnToken.keyName)
     }
        
     func getAPNDeviceToken() -> String {
            
-        guard let username = keychain.get(Consts.apnToken.rawValue) else {
+        guard let username = keychain.get(Consts.apnToken.keyName) else {
             return ""
         }
            
@@ -109,11 +116,11 @@ class KeychainService
     
     func deleteUserCredentialsAndToken() {
         
-        keychain.delete(Consts.token.rawValue)
-        keychain.delete(Consts.tokenSavedTime.rawValue)
-        keychain.delete(Consts.username.rawValue)
-        keychain.delete(Consts.password.rawValue)
-        keychain.delete(Consts.apnToken.rawValue)
+        keychain.delete(Consts.token.keyName)
+        keychain.delete(Consts.tokenSavedTime.keyName)
+        keychain.delete(Consts.username.keyName)
+        keychain.delete(Consts.password.keyName)
+        keychain.delete(Consts.apnToken.keyName)
     }
 }
 
