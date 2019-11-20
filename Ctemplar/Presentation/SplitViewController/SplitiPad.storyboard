@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0bc-Yp-sKS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0bc-Yp-sKS">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -89,7 +89,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="adam@ctemplar.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uc8-n5-iIx">
-                                        <rect key="frame" x="16" y="43" width="288" height="20"/>
+                                        <rect key="frame" x="16" y="43" width="109.5" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="Tb2-y1-7XO"/>
                                         </constraints>
@@ -98,7 +98,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downTriangle" translatesAutoresizingMaskIntoConstraints="NO" id="4Fh-ZH-pRq">
-                                        <rect key="frame" x="85" y="52.5" width="5" height="5"/>
+                                        <rect key="frame" x="133.5" y="52.5" width="5" height="5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="5" id="hiz-Pe-jOi"/>
                                             <constraint firstAttribute="width" constant="5" id="tY6-2F-y7y"/>
@@ -114,7 +114,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Uc8-n5-iIx" secondAttribute="trailing" constant="16" id="0sx-e7-uUX"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Uc8-n5-iIx" secondAttribute="trailing" constant="16" id="0sx-e7-uUX"/>
                                     <constraint firstAttribute="trailing" secondItem="ori-6y-REd" secondAttribute="trailing" id="9hW-cV-0EL"/>
                                     <constraint firstItem="LUQ-XT-V5e" firstAttribute="top" secondItem="DJa-pc-8I3" secondAttribute="top" constant="26" id="A8f-av-Zaf"/>
                                     <constraint firstItem="nkw-7J-L0F" firstAttribute="leading" secondItem="DJa-pc-8I3" secondAttribute="leading" id="CXs-tY-c0b"/>
@@ -123,10 +123,10 @@
                                     <constraint firstItem="ori-6y-REd" firstAttribute="leading" secondItem="DJa-pc-8I3" secondAttribute="leading" id="G4y-xN-PJO"/>
                                     <constraint firstItem="LUQ-XT-V5e" firstAttribute="leading" secondItem="DJa-pc-8I3" secondAttribute="leading" constant="16" id="Jdo-TT-MXK"/>
                                     <constraint firstAttribute="bottom" secondItem="nkw-7J-L0F" secondAttribute="bottom" id="Jvk-ef-kbx"/>
+                                    <constraint firstItem="4Fh-ZH-pRq" firstAttribute="leading" secondItem="Uc8-n5-iIx" secondAttribute="trailing" constant="8" id="Yrx-Sk-gSu"/>
                                     <constraint firstItem="Uc8-n5-iIx" firstAttribute="leading" secondItem="DJa-pc-8I3" secondAttribute="leading" constant="16" id="bEi-bZ-hlg"/>
                                     <constraint firstAttribute="bottom" secondItem="ori-6y-REd" secondAttribute="bottom" id="e7r-xx-het"/>
                                     <constraint firstAttribute="height" constant="80" id="lfT-4v-dYN"/>
-                                    <constraint firstAttribute="trailing" secondItem="4Fh-ZH-pRq" secondAttribute="trailing" constant="230" id="lgx-ms-tA2"/>
                                     <constraint firstItem="4Fh-ZH-pRq" firstAttribute="centerY" secondItem="Uc8-n5-iIx" secondAttribute="centerY" constant="2" id="mB2-b7-NOe"/>
                                     <constraint firstAttribute="trailing" secondItem="nkw-7J-L0F" secondAttribute="trailing" id="sWv-xX-a7I"/>
                                     <constraint firstItem="nkw-7J-L0F" firstAttribute="top" secondItem="DJa-pc-8I3" secondAttribute="top" id="xk9-HX-bVA"/>
@@ -202,7 +202,6 @@
                         <outlet property="inboxSideMenuTableView" destination="haL-RV-8xc" id="2QX-z2-RcZ"/>
                         <outlet property="nameLabel" destination="LUQ-XT-V5e" id="ofd-rP-TzF"/>
                         <outlet property="triangle" destination="4Fh-ZH-pRq" id="E5D-e2-BeU"/>
-                        <outlet property="triangleTrailingConstraint" destination="lgx-ms-tA2" id="KZo-f4-0Ba"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OVt-GG-LuK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -211,6 +210,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="downTriangle" width="3" height="2"/>
+        <image name="downTriangle" width="3.3333332538604736" height="2"/>
     </resources>
 </document>

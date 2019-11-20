@@ -71,8 +71,6 @@ class InboxSideMenuViewController: UIViewController {
     @IBOutlet var emailLabel : UILabel!
     @IBOutlet var triangle   : UIImageView!
     
-    @IBOutlet var triangleTrailingConstraint : NSLayoutConstraint!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
