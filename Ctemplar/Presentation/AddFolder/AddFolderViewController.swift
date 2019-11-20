@@ -19,7 +19,6 @@ class AddFolderViewController: UIViewController {
     @IBOutlet var darkLineView              : UIView!
     @IBOutlet var colorPickerSuperView      : UIView!
     
-    @IBOutlet var buttonBottomOffsetConstraint          : NSLayoutConstraint!
     @IBOutlet var colorPickerSuperViewHeightConstraint          : NSLayoutConstraint!
     
     var selectedHexColor : String = ""
@@ -55,9 +54,9 @@ class AddFolderViewController: UIViewController {
             //k_colorPickeriPadHeight = self.colorPicker.calculateColorPickerHeight(width: self.colorPickerSuperView.bounds.width)
             //self.colorPickerSuperViewHeightConstraint.constant = k_colorPickeriPadHeight
         }
-        self.colorPicker.setupColorPicker(width: self.colorPickerSuperView.bounds.width, height: k_colorPickeriPadHeight)
-        
-        self.interactor?.setupBottomButtons()
+        self.colorPicker.setupColorPicker(width: self.colorPickerSuperView.bounds.width)
+        colorPickerSuperViewHeightConstraint.constant = colorPicker.frame.height
+        view.layoutIfNeeded()
         
         self.folderNameTextField.becomeFirstResponder()
     }

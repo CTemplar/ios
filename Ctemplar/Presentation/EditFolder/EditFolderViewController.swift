@@ -56,8 +56,9 @@ class EditFolderViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.colorPicker.setupColorPicker(width: self.colorPickerSuperView.bounds.width, height: self.colorPickerSuperView.bounds.height)
-        
+        self.colorPicker.setupColorPicker(width: self.colorPickerSuperView.bounds.width)
+        colorPickerSuperViewHeightConstraint.constant = colorPicker.frame.height
+        view.layoutIfNeeded()
         if (Device.IS_IPAD) {
             //k_colorPickeriPadHeight = self.colorPicker.calculateColorPickerHeight(width: self.colorPickerSuperView.bounds.width)
            // self.colorPickerSuperViewHeightConstraint.constant = k_colorPickeriPadHeight
