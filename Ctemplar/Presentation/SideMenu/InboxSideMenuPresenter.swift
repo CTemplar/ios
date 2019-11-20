@@ -22,21 +22,8 @@ class InboxSideMenuPresenter {
         self.viewController!.emailLabel.text = mailbox?.email
         self.viewController!.nameLabel.text = userName
          
-        let emailTextWidth = self.viewController!.emailLabel.text?.widthOfString(usingFont: viewController!.emailLabel.font)
-         
-        let triangleTrailingConstraintWidth = self.viewController!.view.frame.width - emailTextWidth! - CGFloat(k_triangleOffset)
-        self.updateTriangleTrailingConstraint(value: triangleTrailingConstraintWidth )
-         
         if mailboxes.count < 2 {
            self.viewController?.triangle.isHidden = true
-        }
-    }
-    
-    func updateTriangleTrailingConstraint(value: CGFloat) {
-        
-        DispatchQueue.main.async {
-            self.viewController!.triangleTrailingConstraint.constant = value
-            self.viewController!.view.layoutIfNeeded()
         }
     }
 
