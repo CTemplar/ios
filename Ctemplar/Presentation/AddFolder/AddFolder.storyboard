@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -143,7 +143,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" tag="206" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5zr-CK-cPx" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="320" width="163.5" height="48"/>
+                                        <rect key="frame" x="16" y="278" width="163.5" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="gU6-RL-UKD"/>
                                         </constraints>
@@ -167,7 +167,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="207" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cG4-CR-m8K" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
-                                        <rect key="frame" x="195.5" y="320" width="163.5" height="48"/>
+                                        <rect key="frame" x="195.5" y="278" width="163.5" height="48"/>
                                         <color key="backgroundColor" red="0.090196078430000007" green="0.1960784314" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="eT8-Nc-vsG"/>
@@ -197,13 +197,13 @@
                                     <constraint firstAttribute="trailing" secondItem="V2y-0R-uTt" secondAttribute="trailing" constant="16" id="UpJ-fQ-HQk"/>
                                     <constraint firstItem="fD8-us-aI5" firstAttribute="top" secondItem="3fr-6e-Ztf" secondAttribute="top" constant="35" id="Wmd-X5-2pg"/>
                                     <constraint firstItem="V2y-0R-uTt" firstAttribute="top" secondItem="fD8-us-aI5" secondAttribute="bottom" id="Yww-f2-ltI"/>
+                                    <constraint firstItem="cG4-CR-m8K" firstAttribute="top" secondItem="VyG-aG-Jlh" secondAttribute="bottom" constant="50" id="dyP-YR-IFX"/>
                                     <constraint firstItem="5zr-CK-cPx" firstAttribute="leading" secondItem="3fr-6e-Ztf" secondAttribute="leading" constant="16" id="fgu-n3-yee"/>
                                     <constraint firstAttribute="trailing" secondItem="Smi-Mt-keG" secondAttribute="trailing" constant="160" id="gOr-10-13M"/>
                                     <constraint firstAttribute="trailing" secondItem="cG4-CR-m8K" secondAttribute="trailing" constant="16" id="kkW-Mp-HuL"/>
                                     <constraint firstItem="fD8-us-aI5" firstAttribute="top" secondItem="Smi-Mt-keG" secondAttribute="bottom" constant="8" id="ntj-ay-2m2"/>
                                     <constraint firstItem="VyG-aG-Jlh" firstAttribute="top" secondItem="zVU-ag-v42" secondAttribute="bottom" constant="16" id="o3q-dY-zvT"/>
                                     <constraint firstAttribute="trailing" secondItem="VyG-aG-Jlh" secondAttribute="trailing" constant="16" id="r4t-gH-NMT"/>
-                                    <constraint firstAttribute="bottom" secondItem="cG4-CR-m8K" secondAttribute="bottom" constant="222" id="xzv-7b-zmz"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -226,7 +226,6 @@
                     </view>
                     <connections>
                         <outlet property="addButton" destination="cG4-CR-m8K" id="dfh-uQ-ZlR"/>
-                        <outlet property="buttonBottomOffsetConstraint" destination="xzv-7b-zmz" id="zTL-VT-gew"/>
                         <outlet property="colorPickerSuperView" destination="VyG-aG-Jlh" id="HCa-r0-cUv"/>
                         <outlet property="colorPickerSuperViewHeightConstraint" destination="aPb-P7-Yu9" id="eYf-6K-H38"/>
                         <outlet property="darkLineView" destination="V2y-0R-uTt" id="kmX-Sz-4uK"/>

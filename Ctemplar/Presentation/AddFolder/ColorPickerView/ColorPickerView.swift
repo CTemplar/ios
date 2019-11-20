@@ -13,6 +13,11 @@ protocol ColorPickerViewDelegate {
     func selectColorAction(colorHex: String)
 }
 
+private enum Constants {
+    static let hexPrefix = "#"
+    static let hexColorSymbolsCount = 6
+}
+
 class ColorPickerView: UIView {
     
     var delegate    : ColorPickerViewDelegate?
@@ -20,24 +25,9 @@ class ColorPickerView: UIView {
     var selectedButtonTag : Int = -1
     var selectedHexColor : String = ""
     
-    let k_buttonsInRow = 7
-    let k_buttonsRows = 2
+    let k_buttonsInRow = 6
+    let k_buttonsRows = 6
     let k_spaceBetweenButtons : CGFloat = 10.0
-    
-    let k_color1: UIColor = UIColor(red: 114.0 / 255.0, green: 114.0 / 255.0, blue: 168.0 / 255.0, alpha: 1.0)
-    let k_color2: UIColor = UIColor(red: 208.0 / 255.0, green: 88.0 / 255.0, blue: 89.0 / 255.0, alpha: 1.0)
-    let k_color3: UIColor = UIColor(red: 194.0 / 255.0, green: 108.0 / 255.0, blue: 199.0 / 255.0, alpha: 1.0)
-    let k_color4: UIColor = UIColor(red: 117.0 / 255.0, green: 104.0 / 255.0, blue: 209.0 / 255.0, alpha: 1.0)
-    let k_color5: UIColor = UIColor(red: 106.0 / 255.0, green: 169.0 / 255.0, blue: 210.0 / 255.0, alpha: 1.0)
-    let k_color6: UIColor = UIColor(red: 95.0 / 255.0, green: 199.0 / 255.0, blue: 184.0 / 255.0, alpha: 1.0)
-    let k_color7: UIColor = UIColor(red: 114.0 / 255.0, green: 187.0 / 255.0, blue: 116.0 / 255.0, alpha: 1.0)
-    let k_color8: UIColor = UIColor(red: 196.0 / 255.0, green: 210.0 / 255.0, blue: 97.0 / 255.0, alpha: 1.0)
-    let k_color9: UIColor = UIColor(red: 230.0 / 255.0, green: 193.0 / 255.0, blue: 76.0 / 255.0, alpha: 1.0)
-    let k_color10: UIColor = UIColor(red: 230.0 / 255.0, green: 153.0 / 255.0, blue: 77.0 / 255.0, alpha: 1.0)
-    let k_color11: UIColor = UIColor(red: 207.0 / 255.0, green: 126.0 / 255.0, blue: 125.0 / 255.0, alpha: 1.0)
-    let k_color12: UIColor = UIColor(red: 200.0 / 255.0, green: 147.0 / 255.0, blue: 203.0 / 255.0, alpha: 1.0)
-    let k_color13: UIColor = UIColor(red: 156.0 / 255.0, green: 148.0 / 255.0, blue: 208.0 / 255.0, alpha: 1.0)
-    let k_color14: UIColor = UIColor(red: 169.0 / 255.0, green: 196.0 / 255.0, blue: 213.0 / 255.0, alpha: 1.0)    
     
     var colorsArray = [UIColor]()
     
@@ -53,24 +43,19 @@ class ColorPickerView: UIView {
     
     private func commonInit() {
         
-        colorsArray = [k_color1, k_color2, k_color3, k_color4, k_color5, k_color6, k_color7, k_color8, k_color9, k_color10, k_color11, k_color12, k_color13, k_color14]
+        colorsArray = ["#ced4da", "#868e96", "#212529", "#da77f2", "#be4bdb", "#8e44ad", "#f783ac", "#e64980", "#a61e4d",  "#748ffc", "#4c6ef5", "#364fc7", "#9775fa", "#7950f2", "#5f3dc4", "#ff8787", "#fa5252", "#c0392b",  "#4dabf7", "#3498db", "#1864ab", "#2ecc71", "#27ae60", "#16a085", "#ffd43b", "#fab005", "#e67e22",  "#3bc9db", "#15aabf", "#0b7285", "#a9e34b", "#82c91e", "#5c940d", "#f39c12", "#fd7e14", "#e74c3c"]
+            .compactMap { return UIColor(hex: $0) }
     }
     
-    func setupColorPicker(width: CGFloat, height: CGFloat) {        
-            
-        self.frame = CGRect(x: 0, y: 0, width: width, height: height)
-        
-        var buttonWidth = self.calculateButtonWidth(viewWidth: width)
-
-        if (Device.IS_IPAD) {
-            buttonWidth = CGFloat(40.0)
-        }
-        
+    func setupColorPicker(width: CGFloat) {
+        let buttonWidth = self.calculateButtonWidth(viewWidth: width)
         self.setButtons(buttonWidth: buttonWidth)
         
         if self.selectedButtonTag > 0 {
             self.setButtonSelected(tag: self.selectedButtonTag)
         }
+        let lastButton = subviews.last
+        self.frame = CGRect(origin: .zero, size: CGSize(width: width, height: lastButton?.frame.maxY ?? 0))
     }
     
     func setButtons(buttonWidth: CGFloat) {
@@ -101,7 +86,9 @@ class ColorPickerView: UIView {
     }
     
     func createButton(x: CGFloat, y: CGFloat, buttonWidth: CGFloat, tag: Int) {
-        
+        guard colorsArray.count >= tag else {
+            return
+        }
         let frame = CGRect(x: x, y: y, width: buttonWidth, height: buttonWidth)
         let button = UIButton(frame: frame)
         button.backgroundColor = colorsArray[tag - 1]
@@ -129,32 +116,6 @@ class ColorPickerView: UIView {
             let tag = index + k_colorButtonsTag
             if let button = self.viewWithTag(tag) {
                 (button as! UIButton).setImage(UIImage(), for: .normal)
-            }
-        }
-    }
-    
-    func calculateColorPickerHeight(width: CGFloat) -> CGFloat {
-        
-        let buttonWidth = self.calculateButtonWidth(viewWidth: width)
-        
-        let height = buttonWidth + buttonWidth + k_spaceBetweenButtons
-        
-        return height
-    }
-    
-    func updateColorPickerFrame(width: CGFloat, height: CGFloat) {
-        
-        self.removeButtons()
-        self.setupColorPicker(width: width, height: height)
-    }
-    
-    func removeButtons() {
-        
-        for index in 1...colorsArray.count {
-            let tag = index + k_colorButtonsTag
-         
-            if let subview = self.viewWithTag(tag) {
-                subview.removeFromSuperview()
             }
         }
     }
@@ -222,5 +183,21 @@ extension UIColor {
         }
         
         return color
+    }
+
+    convenience init(hex: String) {
+        var cString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        
+        if cString.hasPrefix(Constants.hexPrefix) {
+            cString.remove(at: cString.startIndex)
+        }
+        
+        var rgbValue: UInt64 = 0
+        Scanner(string: cString).scanHexInt64(&rgbValue)
+        
+        self.init(red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+                  green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+                  blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+                  alpha: CGFloat(1.0))
     }
 }

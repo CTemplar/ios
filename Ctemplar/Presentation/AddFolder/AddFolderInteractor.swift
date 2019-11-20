@@ -16,19 +16,6 @@ class AddFolderInteractor {
     var apiService      : APIService?
     var formatterService        : FormatterService?
     
-    func setupBottomButtons() {
-        
-        if Device.IS_IPHONE_5 {
-            self.viewController?.buttonBottomOffsetConstraint.constant = k_iphoneSEBottomButtonsOffset
-        } else {
-            if Device.IS_IPAD {
-                self.viewController?.buttonBottomOffsetConstraint.constant = k_iPadBottomButtonsOffset
-            } else {
-                self.viewController?.buttonBottomOffsetConstraint.constant = k_iphoneAllBottomButtonsOffset
-            }
-        }
-    }
-    
     func validateFolderName(text: String?) {
         guard let text = text else {
             self.viewController?.darkLineView.backgroundColor = k_redColor
