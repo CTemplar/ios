@@ -557,7 +557,7 @@ class ComposePresenter {
     func setMailboxes(mailboxes: Array<Mailbox>) {
         currentSignature = UserDefaults.standard.string(forKey: k_mobileSignatureKey) ?? ""
         for mailbox in mailboxes {
-            guard mailbox.isDefault == true else { break }
+            guard mailbox.isDefault == true else { continue }
             if let defaultEmail = mailbox.email {
                 self.setupEmailFromSection(emailFromText: defaultEmail)
             }
