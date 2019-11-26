@@ -132,18 +132,25 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
         //if message.folder != InboxSideMenuOptionsName.trash.rawValue {
         
         let short = self.isShortNeed(message: message)
+        let now = Date()
         
         if let delayedDelivery = message.delayedDelivery {
             leftlabelView.isHidden = false
             leftlabelView.backgroundColor = k_greenColor
-            if  let date = parentController?.formatterService!.formatDestructionTimeStringToDate(date: delayedDelivery) {
-                leftLabel.attributedText = date.timeCountForDelivery(short: short)
-            } else {
-                if let date = parentController?.formatterService!.formatDestructionTimeStringToDateTest(date: delayedDelivery) {
-                    leftLabel.attributedText = date.timeCountForDelivery(short: short)
+            if let date = parentController?.formatterService!.formatDestructionTimeStringToDate(date: delayedDelivery) ??
+                parentController?.formatterService!.formatDestructionTimeStringToDateTest(date: delayedDelivery) {
+                if date <= now || (date.timeIntervalSince(now) < 120 && date.timeIntervalSince(now) > 0) {
+                    leftLabel.attributedText = NSAttributedString(string: "inProgress".localized(),
+                                                                  attributes: [
+                                                                    .font: UIFont(name: k_latoRegularFontName, size: 9.0)!,
+                                                                    .foregroundColor: UIColor.white,
+                                                                    .kern: 0.0
+                        ])
                 } else {
-                    leftLabel.attributedText = NSAttributedString(string: "Error")
+                    leftLabel.attributedText = date.timeCountForDelivery(short: short)
                 }
+            } else {
+                leftlabelView.isHidden = true
             }
         }
         
@@ -163,18 +170,22 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
         if let destructionDate = message.destructDay {
             rightlabelView.isHidden = false
             rightlabelView.backgroundColor = k_orangeColor
-            //print("destructionDate:", destructionDate)
-            if  let date = parentController?.formatterService!.formatDestructionTimeStringToDate(date: destructionDate) {
-                deleteLabel.attributedText = date.timeCountForDestruct(short: short)
-            } else {
-                //print("erorr formatting destructionDate:", destructionDate)
-                if let date = parentController?.formatterService!.formatDestructionTimeStringToDateTest(date: destructionDate) {
-                    print("new format date:", date)
-                    deleteLabel.attributedText = date.timeCountForDestruct(short: short)
+            if let date = parentController?.formatterService!.formatDestructionTimeStringToDate(date: destructionDate) ??
+                parentController?.formatterService!.formatDestructionTimeStringToDateTest(date: destructionDate) {
+                if date <= now || (date.timeIntervalSince(now) < 120 && date.timeIntervalSince(now) > 0) {
+                    leftLabel.attributedText = NSAttributedString(string: "inProgress".localized(),
+                                                                  attributes: [
+                                                                    .font: UIFont(name: k_latoRegularFontName, size: 9.0)!,
+                                                                    .foregroundColor: UIColor.white,
+                                                                    .kern: 0.0
+                        ])
                 } else {
-                    deleteLabel.attributedText = NSAttributedString(string: "Error")
+                    leftLabel.attributedText = date.timeCountForDestruct(short: short)
                 }
+            } else {
+                leftlabelView.isHidden = true
             }
+            //print("destructionDate:", destructionDate)
         } else {
             rightlabelView.isHidden = true
         }
