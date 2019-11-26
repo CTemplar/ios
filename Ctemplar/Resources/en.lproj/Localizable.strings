@@ -97,6 +97,7 @@
 "decrypting" = "decrypting...";
 
 "compose" = "Compose";
+"inProgress" = "In progress";
 
 //Filter
 

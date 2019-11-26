@@ -190,6 +190,7 @@
 
 "forwardSubject" = "Fwd: ";
 "replySubject" = "Re: ";
+"inProgress" = "In progress";
 
 // Search Screen
 
