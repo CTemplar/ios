@@ -413,7 +413,7 @@ class FormatterService
     func formatDateToStringMonthDateAndTime(date: Date) -> String {
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM dd HH:mm:ss a"
+        dateFormatter.dateFormat = "MMM dd, yyyy, HH:mm:ss a"
         
         let dateString = dateFormatter.string(from:date as Date)
         
