@@ -236,6 +236,18 @@
 		84FF7E3C219DB71500E3E56A /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF7E3B219DB71500E3E56A /* ContactTableViewCell.swift */; };
 		84FF7E3E219DB7E600E3E56A /* ContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FF7E3D219DB7E600E3E56A /* ContactTableViewCell.xib */; };
 		8895AB178CEFEFB8A9DCD62B /* Pods_Ctemplar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B8DB58A9BFE099948CF3E1 /* Pods_Ctemplar.framework */; };
+		CC45F35A239A8902004BC74C /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC45F349239A8902004BC74C /* BaseRouter.swift */; };
+		CC45F35B239A8902004BC74C /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC45F349239A8902004BC74C /* BaseRouter.swift */; };
+		CC45F35C239A8902004BC74C /* RouterPlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC45F34A239A8902004BC74C /* RouterPlaces.swift */; };
+		CC45F35D239A8902004BC74C /* RouterPlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC45F34A239A8902004BC74C /* RouterPlaces.swift */; };
+		CC45F364239A8902004BC74C /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC45F34F239A8902004BC74C /* Place.swift */; };
+		CC45F365239A8902004BC74C /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC45F34F239A8902004BC74C /* Place.swift */; };
+		CC45F36A239A8902004BC74C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC45F353239A8902004BC74C /* NetworkService.swift */; };
+		CC45F36B239A8902004BC74C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC45F353239A8902004BC74C /* NetworkService.swift */; };
+		CC45F36C239A8902004BC74C /* NetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC45F354239A8902004BC74C /* NetworkConfiguration.swift */; };
+		CC45F36D239A8902004BC74C /* NetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC45F354239A8902004BC74C /* NetworkConfiguration.swift */; };
+		CC45F36E239A8902004BC74C /* NetworkService+Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC45F356239A8902004BC74C /* NetworkService+Places.swift */; };
+		CC45F36F239A8902004BC74C /* NetworkService+Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC45F356239A8902004BC74C /* NetworkService+Places.swift */; };
 		CC6908A82384500100956E9B /* ChildMessageExpandedWithAttachmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441227B21A66E3A00B56857 /* ChildMessageExpandedWithAttachmentTableViewCell.swift */; };
 		CC6908A92384500100956E9B /* ConfirmResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84371042217491F100DAE4BA /* ConfirmResetPasswordViewController.swift */; };
 		CC6908AA2384500100956E9B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84525F12219549B100CA732E /* SearchViewController.swift */; };
@@ -703,6 +715,12 @@
 		84FF7E3D219DB7E600E3E56A /* ContactTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactTableViewCell.xib; sourceTree = "<group>"; };
 		A9B8DB58A9BFE099948CF3E1 /* Pods_Ctemplar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC3C27EE23844AAB005828BF /* Ctemplar-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Ctemplar-Info.plist"; sourceTree = "<group>"; };
+		CC45F349239A8902004BC74C /* BaseRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
+		CC45F34A239A8902004BC74C /* RouterPlaces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterPlaces.swift; sourceTree = "<group>"; };
+		CC45F34F239A8902004BC74C /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		CC45F353239A8902004BC74C /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		CC45F354239A8902004BC74C /* NetworkConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConfiguration.swift; sourceTree = "<group>"; };
+		CC45F356239A8902004BC74C /* NetworkService+Places.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetworkService+Places.swift"; sourceTree = "<group>"; };
 		CC6909922384500100956E9B /* Ctemplar.dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ctemplar.dev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC690994238450BB00956E9B /* Ctemplar.dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Ctemplar.dev-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -981,6 +999,7 @@
 		8433FF502162106C00C57DC8 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				CC45F346239A8902004BC74C /* Networking */,
 				8433FF522162128200C57DC8 /* APIService.swift */,
 				843FA927216BA39C00355849 /* FormatterService.swift */,
 				843FC3812164C2CC000CFEA9 /* KeychainService.swift */,
@@ -1469,6 +1488,51 @@
 			path = Plist;
 			sourceTree = "<group>";
 		};
+		CC45F346239A8902004BC74C /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				CC45F347239A8902004BC74C /* Routers */,
+				CC45F34B239A8902004BC74C /* Representations */,
+				CC45F351239A8902004BC74C /* General */,
+				CC45F355239A8902004BC74C /* Interfaces */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		CC45F347239A8902004BC74C /* Routers */ = {
+			isa = PBXGroup;
+			children = (
+				CC45F349239A8902004BC74C /* BaseRouter.swift */,
+				CC45F34A239A8902004BC74C /* RouterPlaces.swift */,
+			);
+			path = Routers;
+			sourceTree = "<group>";
+		};
+		CC45F34B239A8902004BC74C /* Representations */ = {
+			isa = PBXGroup;
+			children = (
+				CC45F34F239A8902004BC74C /* Place.swift */,
+			);
+			path = Representations;
+			sourceTree = "<group>";
+		};
+		CC45F351239A8902004BC74C /* General */ = {
+			isa = PBXGroup;
+			children = (
+				CC45F353239A8902004BC74C /* NetworkService.swift */,
+				CC45F354239A8902004BC74C /* NetworkConfiguration.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		CC45F355239A8902004BC74C /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				CC45F356239A8902004BC74C /* NetworkService+Places.swift */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1830,7 +1894,9 @@
 				8430C29021B5033600ACB559 /* EncryptionObject.swift in Sources */,
 				84405BB421AD0CB20048D8AC /* ComposeRouter.swift in Sources */,
 				8407AD92216CC61600AF2E7B /* EmailMessagesList.swift in Sources */,
+				CC45F35A239A8902004BC74C /* BaseRouter.swift in Sources */,
 				843FC38E2164CA35000CFEA9 /* SignUpInteractor.swift in Sources */,
+				CC45F364239A8902004BC74C /* Place.swift in Sources */,
 				8440466F21C7F84000CDEB3F /* ManageFoldersConfigurator.swift in Sources */,
 				8430429C217D9D3F00DB5787 /* InboxSideMenuPresenter.swift in Sources */,
 				84405BB821AD0CCB0048D8AC /* ComposeInteractor.swift in Sources */,
@@ -1852,6 +1918,7 @@
 				84304298217D9D1C00DB5787 /* InboxSideMenuConfigurator.swift in Sources */,
 				84FF7E39219DB21E00E3E56A /* Contact.swift in Sources */,
 				84405BB221AD0CA40048D8AC /* ComposeConfigurator.swift in Sources */,
+				CC45F36A239A8902004BC74C /* NetworkService.swift in Sources */,
 				84356861216F2DE3002101D3 /* InboxConfigurator.swift in Sources */,
 				843E1DC421D4A25D001B89D6 /* WhiteBlackListsNavigationController.swift in Sources */,
 				84405BBA21AD0CD90048D8AC /* ComposeDataSource.swift in Sources */,
@@ -1923,6 +1990,7 @@
 				8440467721C7F87300CDEB3F /* ManageFoldersDataSource.swift in Sources */,
 				8431218A218AF80E0014560D /* ViewInboxEmailRouter.swift in Sources */,
 				843FC3882164CA0D000CFEA9 /* SignUpConfigurator.swift in Sources */,
+				CC45F35C239A8902004BC74C /* RouterPlaces.swift in Sources */,
 				84092FB52330C5D0002E2718 /* SecurityInteractor.swift in Sources */,
 				845E64392170849C008612FE /* InboxSideMenuViewController.swift in Sources */,
 				84BB2E4E230ADB4C00E9C162 /* Captcha.swift in Sources */,
@@ -1953,9 +2021,11 @@
 				8441559321BF8AA90053C39F /* AttachmentView.swift in Sources */,
 				8443D22021CBDD64002AD54B /* SettingsRouter.swift in Sources */,
 				84FF7E37219D662300E3E56A /* UserMyself.swift in Sources */,
+				CC45F36E239A8902004BC74C /* NetworkService+Places.swift in Sources */,
 				84525F17219568D900CA732E /* SearchConfigurator.swift in Sources */,
 				8437103D217465A700DAE4BA /* ForgotPasswordNavigationController.swift in Sources */,
 				8430429E217D9D5100DB5787 /* InboxSideMenuInteractor.swift in Sources */,
+				CC45F36C239A8902004BC74C /* NetworkConfiguration.swift in Sources */,
 				84312188218AF7F20014560D /* ViewInboxEmailConfigurator.swift in Sources */,
 				8443D21E21CBDD58002AD54B /* SettingsConfigurator.swift in Sources */,
 				8433FF5A2162181E00C57DC8 /* Constants.swift in Sources */,
@@ -1995,7 +2065,9 @@
 				CC6908AC2384500100956E9B /* EncryptionObject.swift in Sources */,
 				CC6908AD2384500100956E9B /* ComposeRouter.swift in Sources */,
 				CC6908AE2384500100956E9B /* EmailMessagesList.swift in Sources */,
+				CC45F35B239A8902004BC74C /* BaseRouter.swift in Sources */,
 				CC6908AF2384500100956E9B /* SignUpInteractor.swift in Sources */,
+				CC45F365239A8902004BC74C /* Place.swift in Sources */,
 				CC6908B02384500100956E9B /* ManageFoldersConfigurator.swift in Sources */,
 				CC6908B12384500100956E9B /* InboxSideMenuPresenter.swift in Sources */,
 				CC6908B22384500100956E9B /* ComposeInteractor.swift in Sources */,
@@ -2017,6 +2089,7 @@
 				CC6908C22384500100956E9B /* InboxSideMenuConfigurator.swift in Sources */,
 				CC6908C32384500100956E9B /* Contact.swift in Sources */,
 				CC6908C42384500100956E9B /* ComposeConfigurator.swift in Sources */,
+				CC45F36B239A8902004BC74C /* NetworkService.swift in Sources */,
 				CC6908C52384500100956E9B /* InboxConfigurator.swift in Sources */,
 				CC6908C62384500100956E9B /* WhiteBlackListsNavigationController.swift in Sources */,
 				CC6908C72384500100956E9B /* ComposeDataSource.swift in Sources */,
@@ -2088,6 +2161,7 @@
 				CC6909092384500100956E9B /* ManageFoldersDataSource.swift in Sources */,
 				CC69090A2384500100956E9B /* ViewInboxEmailRouter.swift in Sources */,
 				CC69090B2384500100956E9B /* SignUpConfigurator.swift in Sources */,
+				CC45F35D239A8902004BC74C /* RouterPlaces.swift in Sources */,
 				CC69090C2384500100956E9B /* SecurityInteractor.swift in Sources */,
 				CC69090D2384500100956E9B /* InboxSideMenuViewController.swift in Sources */,
 				CC69090E2384500100956E9B /* Captcha.swift in Sources */,
@@ -2118,9 +2192,11 @@
 				CC6909272384500100956E9B /* AttachmentView.swift in Sources */,
 				CC6909282384500100956E9B /* SettingsRouter.swift in Sources */,
 				CC6909292384500100956E9B /* UserMyself.swift in Sources */,
+				CC45F36F239A8902004BC74C /* NetworkService+Places.swift in Sources */,
 				CC69092A2384500100956E9B /* SearchConfigurator.swift in Sources */,
 				CC69092B2384500100956E9B /* ForgotPasswordNavigationController.swift in Sources */,
 				CC69092C2384500100956E9B /* InboxSideMenuInteractor.swift in Sources */,
+				CC45F36D239A8902004BC74C /* NetworkConfiguration.swift in Sources */,
 				CC69092D2384500100956E9B /* ViewInboxEmailConfigurator.swift in Sources */,
 				CC69092E2384500100956E9B /* SettingsConfigurator.swift in Sources */,
 				CC69092F2384500100956E9B /* Constants.swift in Sources */,
@@ -2333,7 +2409,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2359,7 +2435,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2385,7 +2461,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.iosapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2411,7 +2487,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.iosapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

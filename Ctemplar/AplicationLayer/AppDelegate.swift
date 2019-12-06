@@ -11,6 +11,8 @@ import Fabric
 import Crashlytics
 import UserNotifications
 
+typealias Completion<T> = (Result<T, Error>) -> Void
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
