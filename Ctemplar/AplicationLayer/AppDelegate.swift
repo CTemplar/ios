@@ -17,7 +17,7 @@ typealias Completion<T> = (Result<T, Error>) -> Void
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var applicationManager = ApplicationManager()
+    var applicationManager = AppManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

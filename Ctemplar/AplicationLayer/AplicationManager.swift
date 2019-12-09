@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 
-class ApplicationManager
-{
+class AppManager {
+    static var shared = AppManager()
+    let networkService = NetworkService()
     
     //let mainViewController: MainViewController = UIApplication.shared.keyWindow?.rootViewController as! MainViewController
     

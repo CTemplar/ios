@@ -13,22 +13,43 @@ protocol NetworkServiceDelegate: class {
 }
 
 public class NetworkService {
-    private let additionalHeaders = ["accept": "application/json"]
+    private let additionalHeaders = ["Accept": "application/json"]
 
-    lazy var session: SessionManager = {
+    lazy var session: Session = {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = additionalHeaders
-        return SessionManager(configuration: configuration)
+        return Session(configuration: configuration)
     }()
 }
 
 extension NetworkService {
-//    func handler<T: Codable>(for completion: @escaping Completion<T>) -> (DataResponse<Data>) -> Void {
-//        return { response in
-//            let mappedResponse = response.flatMap { data in
-//                try JSONDecoder().decode(T.self, from: data)
-//            }
-//            completion(mappedResponse.result)
-//        }
-//    }
+    func handler<T: Codable>(for completion: @escaping Completion<T>) -> (AFDataResponse<Any>) -> Void {
+        return { response in
+            let mapped = response.tryMap({ (any: Any) -> T in
+                if let value = any as? T {
+                    return value
+                } else {
+                    throw AppError.downcastingFailed
+                }
+            })
+            completion(mapped.result)
+        }
+    }
+    
+    func handler(for completion: @escaping Completion<Void>) -> (AFDataResponse<Any>) -> Void {
+        return { response in
+            completion(response.tryMap({_ in ()}).result)
+        }
+    }
+    
+    func perform(request: URLRequestConvertible, completionHandler: @escaping Completion<Void>) {
+        session.request(request)
+            .validate(statusCode: 200..<300)
+            .responseJSON(completionHandler: handler(for: completionHandler))
+    }
+    func perform<T: Codable>(request: URLRequestConvertible, completionHandler: @escaping Completion<T>) {
+        session.request(request)
+            .validate(statusCode: 200..<300)
+            .responseJSON(completionHandler: handler(for: completionHandler))
+    }
 }
