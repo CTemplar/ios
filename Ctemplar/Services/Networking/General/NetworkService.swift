@@ -25,20 +25,39 @@ public class NetworkService {
 extension NetworkService {
     func handler<T: Codable>(for completion: @escaping Completion<T>) -> (AFDataResponse<Any>) -> Void {
         return { response in
-            let mapped = response.tryMap({ (any: Any) -> T in
+            let mapped = response
+                .tryMap({ (any: Any) -> T in
                 if let value = any as? T {
                     return value
                 } else {
                     throw AppError.downcastingFailed
                 }
-            })
+                }).tryMapError(self.errorHadler(for: response))
             completion(mapped.result)
         }
     }
     
     func handler(for completion: @escaping Completion<Void>) -> (AFDataResponse<Any>) -> Void {
         return { response in
-            completion(response.tryMap({_ in ()}).result)
+            let mapped = response
+                .tryMap({_ in ()})
+                .tryMapError(self.errorHadler(for: response))
+            completion(mapped.result)
+        }
+    }
+    
+    func errorHadler(for response: AFDataResponse<Any>) -> ((Error) -> Error) {
+        return { initial in
+            if let data = response.data,
+                let errorInfo = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                for value in errorInfo.values {
+                    if let array = value as? [Any], let message = array.first as? String {
+                        return AppError.serverError(value: message)
+                    }
+                }
+                return initial
+            }
+            return initial
         }
     }
     

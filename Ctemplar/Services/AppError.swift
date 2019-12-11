@@ -15,7 +15,7 @@ public enum AppError: Error {
 //    case timeoutIssue
 //    case unauthorized(value: ServerError?)
 //    case serverMaintenance
-//    case serverError(value: ServerError?)
+    case serverError(value: String)
 //    case custom(message: String)
 //    case userDiscardedRequest
     case unknown
@@ -46,8 +46,8 @@ extension AppError: LocalizedError {
             return "No connection error"
         case .unknown:
             return "Unknown error"
-//        case .serverError(let value):
-//            return value?.message ?? Localization.Errors.unknownError.localized
+        case .serverError(let value):
+            return value
 //        case .unauthorized(let value):
 //            return value?.message
 //        case .userDiscardedRequest:
