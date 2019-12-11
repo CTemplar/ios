@@ -33,37 +33,36 @@ class LoginInteractor: HashingService {
             HUD.show(.labeledProgress(title: "updateToken".localized(), subtitle: ""))
             AppManager.shared.networkService.loginUser(with: LoginDetails(userName: trimmedUsername,
                                                                           password: value,
-                                                                          twoFAcode: twoFAcode)) { result in
-                                                                            print("result \(result)")
+                                                                          twoFAcode: twoFAcode)) { result in                                                                   
+                                                                            if let value = try? result.get(), !value.isTwoFAEnabled {
+                                                                                self.keychainService?.saveUserCredentials(userName: userName, password: password)
+                                                                            }
+                                                                            self.handleNetwork(responce: result)
                                                                             HUD.hide()
             }
         }
-
-        
-//        apiService?.authenticateUser(userName: trimmedUsername, password: password, twoFAcode: twoFAcode) {(result) in
-//            
-//            switch(result) {
-//                
-//            case .success(let value):
-//                print("login success value:", value)
-//                self.keychainService?.saveUserCredentials(userName: userName, password: password)
-//                
-//                NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil, userInfo: nil)
-//                self.sendAPNDeviceToken()
-//                self.viewController?.router?.showInboxScreen()
-//                
-//            case .failure(let error):
-//                print("login error:", error)
-//                
-//                if error.localizedDescription == APIResponse.twoFAEnabled.rawValue {
-//                    //show 2FA screen
-//                    self.viewController?.passwordBlockView.isHidden = true
-//                    self.viewController?.otpBlockView.isHidden = false
-//                } else {
-//                    AlertHelperKit().showAlert(self.viewController!, title: "Login Error".localized(), message: error.localizedDescription, button: "closeButton".localized())
-//                }
-//            }
-//        }
+    }
+    
+    func handleNetwork(responce: AppResult<LoginResult>) {
+        switch responce {
+        case .success(let value):
+            guard !value.isTwoFAEnabled else {
+                viewController?.passwordBlockView.isHidden = true
+                viewController?.otpBlockView.isHidden = false
+                return
+            }
+            if let token = value.token {
+                keychainService?.saveToken(token: token)
+            }
+            NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil, userInfo: nil)
+            self.sendAPNDeviceToken()
+            self.viewController?.router?.showInboxScreen()
+        case .failure(let error):
+            AlertHelperKit().showAlert(self.viewController!,
+                                       title: "Login Error".localized(),
+                                       message: error.localizedDescription,
+                                       button: "closeButton".localized())
+        }
     }
     
     func trimUserName(_ userName: String) -> String {

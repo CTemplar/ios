@@ -52,7 +52,7 @@ struct ChangePasswordDetails {
 
 protocol AuthService {
     func loginUser(with details: LoginDetails,
-                   completionHandler: @escaping Completion<Void>)
+                   completionHandler: @escaping Completion<LoginResult>)
     func checkUser(name: String,
                    completionHandler: @escaping Completion<Void>)
     func signUp(with details: SignupDetails,
@@ -68,7 +68,7 @@ protocol AuthService {
 
 extension NetworkService: AuthService {
     func loginUser(with details: LoginDetails,
-                   completionHandler: @escaping Completion<Void>) {
+                   completionHandler: @escaping Completion<LoginResult>) {
         perform(request: RouterAuth.login(details: details),
                 completionHandler: completionHandler)
     }

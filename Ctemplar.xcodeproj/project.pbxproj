@@ -478,6 +478,8 @@
 		CC69098C2384500100956E9B /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84525F232195718200CA732E /* SearchTableViewCell.xib */; };
 		CC97A4F123A10DB200FED4A2 /* Hashing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97A4F023A10DB200FED4A2 /* Hashing.swift */; };
 		CC97A4F223A10DB200FED4A2 /* Hashing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97A4F023A10DB200FED4A2 /* Hashing.swift */; };
+		CC97A4F423A116F000FED4A2 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97A4F323A116F000FED4A2 /* LoginResult.swift */; };
+		CC97A4F523A116F000FED4A2 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97A4F323A116F000FED4A2 /* LoginResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -729,6 +731,7 @@
 		CC6909922384500100956E9B /* Ctemplar.dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ctemplar.dev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC690994238450BB00956E9B /* Ctemplar.dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Ctemplar.dev-Info.plist"; sourceTree = "<group>"; };
 		CC97A4F023A10DB200FED4A2 /* Hashing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hashing.swift; sourceTree = "<group>"; };
+		CC97A4F323A116F000FED4A2 /* LoginResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1520,6 +1523,7 @@
 			isa = PBXGroup;
 			children = (
 				CC45F34F239A8902004BC74C /* Place.swift */,
+				CC97A4F323A116F000FED4A2 /* LoginResult.swift */,
 			);
 			path = Representations;
 			sourceTree = "<group>";
@@ -2066,6 +2070,7 @@
 				840249902191A02800CDDB0F /* MoveToDataSource.swift in Sources */,
 				843E1DC621D4CBCA001B89D6 /* WhiteBlackListsConfigurator.swift in Sources */,
 				8434D9B2219C4E0200D2C3A5 /* ContactsRouter.swift in Sources */,
+				CC97A4F423A116F000FED4A2 /* LoginResult.swift in Sources */,
 				84A62E512175CD40009C38E5 /* ForgotPasswordRouter.swift in Sources */,
 				843FBF13216DEFBD00148FC1 /* Mailboxes.swift in Sources */,
 				84344D3A21CA44BA00A5D9A0 /* ColorPickerView.swift in Sources */,
@@ -2239,6 +2244,7 @@
 				CC6909402384500100956E9B /* MoveToDataSource.swift in Sources */,
 				CC6909412384500100956E9B /* WhiteBlackListsConfigurator.swift in Sources */,
 				CC6909422384500100956E9B /* ContactsRouter.swift in Sources */,
+				CC97A4F523A116F000FED4A2 /* LoginResult.swift in Sources */,
 				CC6909432384500100956E9B /* ForgotPasswordRouter.swift in Sources */,
 				CC6909442384500100956E9B /* Mailboxes.swift in Sources */,
 				CC6909452384500100956E9B /* ColorPickerView.swift in Sources */,
