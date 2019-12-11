@@ -10,44 +10,44 @@ import Alamofire
 import Foundation
 
 struct LoginDetails {
-    let userName: String
-    let password: String
-    let twoFAcode: String?
+    var userName: String
+    var password: String
+    var twoFAcode: String?
 }
 
 struct SignupDetails {
-    let userName: String
-    let password: String
-    let privateKey: String
-    let publicKey: String
-    let fingerprint: String
-    let captchaKey: String
-    let captchaValue: String
-    let recoveryEmail: String
-    let fromAddress: String
-    let redeemCode: String
-    let stripeToken: String
-    let memory: String
-    let emailCount: String
-    let paymentType: String
+    var userName: String
+    var password: String
+    var privateKey: String
+    var publicKey: String
+    var fingerprint: String
+    var captchaKey: String
+    var captchaValue: String
+    var recoveryEmail: String
+    var fromAddress: String
+    var redeemCode: String
+    var stripeToken: String
+    var memory: String
+    var emailCount: String
+    var paymentType: String
 }
 
 struct ResetPasswordDetails {
-    let resetPasswordCode: String
-    let userName: String
-    let password: String
-    let privateKey: String
-    let publicKey: String
-    let fingerprint: String
-    let recoveryEmail: String
+    var resetPasswordCode: String
+    var userName: String
+    var password: String
+    var privateKey: String
+    var publicKey: String
+    var fingerprint: String
+    var recoveryEmail: String
 }
 
 struct ChangePasswordDetails {
-    let token: String
-    let oldPassword: String
-    let newPassword: String
-    let newKeys: [[String : Any]]
-    let deleteData: Bool
+    var token: String
+    var oldPassword: String
+    var newPassword: String
+    var newKeys: [[String : Any]]
+    var deleteData: Bool
 }
 
 protocol AuthService {

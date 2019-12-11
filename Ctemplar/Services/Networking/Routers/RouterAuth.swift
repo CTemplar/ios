@@ -54,9 +54,9 @@ enum RouterAuth: BaseRouter {
         case .login(let details):
             var params: [String: Any] = [
                 JSONKey.userName.rawValue: details.userName,
-                JSONKey.password.rawValue: details.password
+                JSONKey.password.rawValue: details.password,
             ]
-            if let code = details.twoFAcode {
+            if let code = details.twoFAcode, !code.isEmpty {
                 params[JSONKey.otp.rawValue] = code
             }
             return try JSONEncoding.default.encode(request, with: params)

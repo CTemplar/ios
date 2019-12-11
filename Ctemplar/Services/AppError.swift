@@ -10,6 +10,7 @@ import Foundation
 
 public enum AppError: Error {
     case downcastingFailed
+    case hashingFailed
     case connectivityIssue
 //    case timeoutIssue
 //    case unauthorized(value: ServerError?)
@@ -39,6 +40,8 @@ extension AppError: LocalizedError {
         switch self {
         case .downcastingFailed:
             return "Downcasting failed"
+        case .hashingFailed:
+            return "Hashing failed"
         case .connectivityIssue:
             return "No connection error"
         case .unknown:

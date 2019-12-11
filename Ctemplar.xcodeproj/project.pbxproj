@@ -476,6 +476,8 @@
 		CC69098A2384500100956E9B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF1D216201A300C57DC8 /* Main.storyboard */; };
 		CC69098B2384500100956E9B /* AddContactToWhiteBlackList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8451BEB521D5FD16009B1C8C /* AddContactToWhiteBlackList.storyboard */; };
 		CC69098C2384500100956E9B /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84525F232195718200CA732E /* SearchTableViewCell.xib */; };
+		CC97A4F123A10DB200FED4A2 /* Hashing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97A4F023A10DB200FED4A2 /* Hashing.swift */; };
+		CC97A4F223A10DB200FED4A2 /* Hashing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97A4F023A10DB200FED4A2 /* Hashing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -726,6 +728,7 @@
 		CC45F356239A8902004BC74C /* NetworkService+Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetworkService+Auth.swift"; sourceTree = "<group>"; };
 		CC6909922384500100956E9B /* Ctemplar.dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ctemplar.dev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC690994238450BB00956E9B /* Ctemplar.dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Ctemplar.dev-Info.plist"; sourceTree = "<group>"; };
+		CC97A4F023A10DB200FED4A2 /* Hashing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hashing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -960,6 +963,7 @@
 		8433FF18216201A300C57DC8 /* Ctemplar */ = {
 			isa = PBXGroup;
 			children = (
+				CC97A4EF23A10D8D00FED4A2 /* Misc */,
 				8441099321776B6400F0BE18 /* README.md */,
 				843FC3832164C320000CFEA9 /* Ctemplar.entitlements */,
 				8433FF4F2162106200C57DC8 /* AplicationLayer */,
@@ -1537,6 +1541,14 @@
 			path = Interfaces;
 			sourceTree = "<group>";
 		};
+		CC97A4EF23A10D8D00FED4A2 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				CC97A4F023A10DB200FED4A2 /* Hashing.swift */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1967,6 +1979,7 @@
 				8402498E2191A01B00CDDB0F /* MoveToInteractor.swift in Sources */,
 				8402498A21919FF600CDDB0F /* MoveToRouter.swift in Sources */,
 				844F4B5A216B3A380057C758 /* UserPGPKey.swift in Sources */,
+				CC97A4F123A10DB200FED4A2 /* Hashing.swift in Sources */,
 				8430429A217D9D2D00DB5787 /* InboxSideMenuRouter.swift in Sources */,
 				843E973D2163703100147CBE /* LoginPresenter.swift in Sources */,
 				843FC3862164C9EE000CFEA9 /* SignUpPageViewController.swift in Sources */,
@@ -2139,6 +2152,7 @@
 				CC6908ED2384500100956E9B /* MoveToInteractor.swift in Sources */,
 				CC6908EE2384500100956E9B /* MoveToRouter.swift in Sources */,
 				CC6908EF2384500100956E9B /* UserPGPKey.swift in Sources */,
+				CC97A4F223A10DB200FED4A2 /* Hashing.swift in Sources */,
 				CC6908F02384500100956E9B /* InboxSideMenuRouter.swift in Sources */,
 				CC6908F12384500100956E9B /* LoginPresenter.swift in Sources */,
 				CC6908F22384500100956E9B /* SignUpPageViewController.swift in Sources */,

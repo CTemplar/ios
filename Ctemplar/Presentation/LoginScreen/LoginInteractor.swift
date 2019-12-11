@@ -8,8 +8,9 @@
 
 import Foundation
 import AlertHelperKit
+import PKHUD
 
-class LoginInteractor {
+class LoginInteractor: HashingService {
     
     var viewController  : LoginViewController?
     var presenter       : LoginPresenter?
@@ -19,12 +20,26 @@ class LoginInteractor {
     func authenticateUser(userName: String, password: String, twoFAcode: String) {
         
         let trimmedUsername = trimUserName(userName)
-
-        AppManager.shared.networkService.loginUser(with: LoginDetails(userName: trimmedUsername,
-                                                                      password: password,
-                                                                      twoFAcode: twoFAcode)) { result in
-            print("result \(result)")
+        HUD.show(.labeledProgress(title: "hashing".localized(), subtitle: ""))
+        generateHashedPassword(for: userName, password: password) { result in
+            guard let value = try? result.get() else {
+                HUD.hide()
+                AlertHelperKit().showAlert(self.viewController!,
+                                           title: "Login Error".localized(),
+                                           message: "Something went wrong".localized(),
+                                           button: "closeButton".localized())
+                return
+            }
+            HUD.show(.labeledProgress(title: "updateToken".localized(), subtitle: ""))
+            AppManager.shared.networkService.loginUser(with: LoginDetails(userName: trimmedUsername,
+                                                                          password: value,
+                                                                          twoFAcode: twoFAcode)) { result in
+                                                                            print("result \(result)")
+                                                                            HUD.hide()
+            }
         }
+
+        
 //        apiService?.authenticateUser(userName: trimmedUsername, password: password, twoFAcode: twoFAcode) {(result) in
 //            
 //            switch(result) {
