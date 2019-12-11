@@ -20,30 +20,35 @@ class LoginInteractor {
         
         let trimmedUsername = trimUserName(userName)
 
-        apiService?.authenticateUser(userName: trimmedUsername, password: password, twoFAcode: twoFAcode) {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                print("login success value:", value)
-                self.keychainService?.saveUserCredentials(userName: userName, password: password)
-                
-                NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil, userInfo: nil)
-                self.sendAPNDeviceToken()
-                self.viewController?.router?.showInboxScreen()
-                
-            case .failure(let error):
-                print("login error:", error)
-                
-                if error.localizedDescription == APIResponse.twoFAEnabled.rawValue {
-                    //show 2FA screen
-                    self.viewController?.passwordBlockView.isHidden = true
-                    self.viewController?.otpBlockView.isHidden = false
-                } else {
-                    AlertHelperKit().showAlert(self.viewController!, title: "Login Error".localized(), message: error.localizedDescription, button: "closeButton".localized())
-                }
-            }
+        AppManager.shared.networkService.loginUser(with: LoginDetails(userName: trimmedUsername,
+                                                                      password: password,
+                                                                      twoFAcode: twoFAcode)) { result in
+            print("result \(result)")
         }
+//        apiService?.authenticateUser(userName: trimmedUsername, password: password, twoFAcode: twoFAcode) {(result) in
+//            
+//            switch(result) {
+//                
+//            case .success(let value):
+//                print("login success value:", value)
+//                self.keychainService?.saveUserCredentials(userName: userName, password: password)
+//                
+//                NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil, userInfo: nil)
+//                self.sendAPNDeviceToken()
+//                self.viewController?.router?.showInboxScreen()
+//                
+//            case .failure(let error):
+//                print("login error:", error)
+//                
+//                if error.localizedDescription == APIResponse.twoFAEnabled.rawValue {
+//                    //show 2FA screen
+//                    self.viewController?.passwordBlockView.isHidden = true
+//                    self.viewController?.otpBlockView.isHidden = false
+//                } else {
+//                    AlertHelperKit().showAlert(self.viewController!, title: "Login Error".localized(), message: error.localizedDescription, button: "closeButton".localized())
+//                }
+//            }
+//        }
     }
     
     func trimUserName(_ userName: String) -> String {

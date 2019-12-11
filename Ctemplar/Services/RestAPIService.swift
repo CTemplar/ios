@@ -131,17 +131,17 @@ class RestAPIService {
         print("authenticateUser parameters:", parameters)
         print("authenticateUser url:", url)
         
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
-            
-            print("authenticateUser responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))                
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("authenticateUser responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func checkUser(name: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -159,17 +159,17 @@ class RestAPIService {
         print("checkUser parameters:", parameters)
         print("checkUser url:", url)
         
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("checkUser responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("checkUser responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func signUp(userName: String, password: String, privateKey: String, publicKey: String, fingerprint: String, captchaKey: String, captchaValue: String, recoveryEmail: String,fromAddress: String, redeemCode: String, stripeToken: String, memory: String, emailCount: String, paymentType: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -191,17 +191,17 @@ class RestAPIService {
         print("signUp parameters:", parameters)
         print("signUp url:", url)
         
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
-            
-            print("signUp responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }        
+//        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("signUp responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func recoveryPasswordCode(userName: String, recoveryEmail: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -220,17 +220,17 @@ class RestAPIService {
         print("recoveryPasswordCode parameters:", parameters)
         print("recoveryPasswordCode url:", url)
         
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
-            
-            print("recoveryPasswordCode responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("recoveryPasswordCode responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func resetPassword(resetPasswordCode: String, userName: String, password: String, privateKey: String, publicKey: String, fingerprint: String, recoveryEmail: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -254,17 +254,17 @@ class RestAPIService {
         print("resetPassword parameters:", parameters)
         print("resetPassword url:", url)
         
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
-            
-            print("resetPassword responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("resetPassword responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func changePassword(token: String, oldPassword: String, newPassword: String, newKeys: [[String : Any]], deleteData: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -290,17 +290,17 @@ class RestAPIService {
         print("changePassword parameters:", parameters)
         print("changePassword url:", url)
         
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("changePassword responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("changePassword responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     //FAILURE: Error Domain=kCFErrorDomainCFNetwork Code=303 "(null)" UserInfo={NSErrorPeerAddressKey=<CFData 0x604000292b10 [0x1137a5c80]>{length = 16, capacity = 16, bytes = 0x100201bb681237e50000000000000000}, _kCFStreamErrorCodeKey=-2201, _kCFStreamErrorDomainKey=4}
@@ -320,17 +320,17 @@ class RestAPIService {
         //print("verifyToken parameters:", parameters)
         print("verifyToken url:", url)
         
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("verifyToken responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("verifyToken responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func refreshToken(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -348,17 +348,17 @@ class RestAPIService {
         //print("verifyToken parameters:", parameters)
         print("refreshToken url:", url)
         
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("refreshToken responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//            
+//            print("refreshToken responce:", response)
+//            
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     //MARK: - Captcha
@@ -369,17 +369,17 @@ class RestAPIService {
         
         print("getCaptcha url:", url)
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("getCaptcha responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("getCaptcha responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func verifyCaptcha(key: String, value: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -395,17 +395,17 @@ class RestAPIService {
         
         print("verifyCaptcha parameters:", parameters)
         
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("verifyCaptcha responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("verifyCaptcha responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     //MARK: - User
@@ -421,17 +421,17 @@ class RestAPIService {
         
         print("userMyself url:", url)
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
-            
-            print("userMyself responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("userMyself responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     //MARK: - Mail
@@ -465,17 +465,17 @@ class RestAPIService {
         //print("messagesList parameters:", parameters)
         print("messagesList url:", url)
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
-            
-            print("messagesList responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("messagesList responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func updateMessages(token: String, messageID: String, messagesIDIn: String, folder: String, starred: Bool, read: Bool, updateFolder: Bool, updateStarred: Bool, updateRead: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -513,17 +513,17 @@ class RestAPIService {
         print("updateMessages parameters:", parameters)
         print("updateMessages url:", url)
         
-        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
-            
-            print("updateMessages responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("updateMessages responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func unreadMessagesCounter(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -537,17 +537,17 @@ class RestAPIService {
         
         print("unreadMessagesCounter url:", url)
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
-            
-            //print("unreadMessagesCounter responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+//
+//            //print("unreadMessagesCounter responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func createMessage(token: String, parentID: String, content: String, subject: String, recieversList: [[String]], folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String], attachments: Array<[String : String]>, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -587,17 +587,17 @@ class RestAPIService {
         print("createMessage url:", url)
         print("createMessage parameters:", parameters)
         
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("createMessage responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("createMessage responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func updateSendingMessage(token: String, messageID: String, mailboxID: Int, sender: String, encryptedMessage: String, subject: String, recieversList: [[String]], folder: String, send: Bool, encryptionObject: [String : String], encrypted: Bool, attachments: Array<[String : String]>, selfDestructionDate: String, delayedDeliveryDate: String, deadManTimer: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -648,17 +648,17 @@ class RestAPIService {
         print("updateSendingMessage parameters:", parameters)
         print("updateSendingMessage url:", url)
         
-        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("updateSendingMessage responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("updateSendingMessage responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func saveDraftMesssage(token: String, messageID: String, messageContent: String, subject: String, recieversList: [[String]], folder: String, encryptionObject: [String : String], encrypted: Bool, selfDestructionDate: String, delayedDeliveryDate: String, deadManTimer: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -703,17 +703,17 @@ class RestAPIService {
         print("saveDraftMesssage parameters:", parameters)
         print("saveDraftMesssage url:", url)
         
-        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("saveDraftMesssage responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("saveDraftMesssage responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func deleteMessages(token: String, messagesIDIn: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -728,17 +728,17 @@ class RestAPIService {
         //print("messagesList parameters:", parameters)
         print("deleteMessages url:", url)
         
-        Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("deleteMessages responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("deleteMessages responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func deleteMessage(token: String, messagesID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -753,17 +753,17 @@ class RestAPIService {
         //print("messagesList parameters:", parameters)
         print("deleteMessage url:", url)
         
-        Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("deleteMessage responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("deleteMessage responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     //MARK: - Mailbox
@@ -779,17 +779,17 @@ class RestAPIService {
         
         print("mailboxes url:", url)
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
-            
-            print("mailboxes responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("mailboxes responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func updateMailbox(token: String, mailboxID: String, userSignature: String, displayName: String, isDefault: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -816,17 +816,17 @@ class RestAPIService {
         print("updateMailbox parameters:", parameters)
         print("updateMailbox url:", url)
         
-        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("updateMailbox responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("updateMailbox responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func publicKeyList(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -840,17 +840,17 @@ class RestAPIService {
         
         print("publicKeyList url:", url)
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("publicKeyList responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("publicKeyList responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func publicKeyFor(userEmails: Array<String>, token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -870,17 +870,17 @@ class RestAPIService {
         
         print("publicKeyFor url:", url)
         
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("publicKeyFor responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("publicKeyFor responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     //MARK: - Folders
@@ -903,17 +903,17 @@ class RestAPIService {
         
         print("customFolders url:", url)
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
-            
-            print("customFolders responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("customFolders responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func createCustomFolder(token: String, name: String, color: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -934,17 +934,17 @@ class RestAPIService {
         
         print("createCustomFolder url:", url)
         
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
-            
-            print("createCustomFolder responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("createCustomFolder responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func updateCustomFolder(token: String, folderID: String,  name: String, color: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -963,17 +963,17 @@ class RestAPIService {
         
         print("updateCustomFolder url:", url)
         
-        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("updateCustomFolder responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("updateCustomFolder responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func deleteCustomFolder(token: String, folderID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -987,17 +987,17 @@ class RestAPIService {
         
         print("deleteCustomFolder url:", url)
         
-        Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("deleteCustomFolder responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("deleteCustomFolder responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     //MARK: - Contacts
@@ -1019,17 +1019,17 @@ class RestAPIService {
         
         print("userContacts url:", url)
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("userContacts responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("userContacts responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func createContact(token: String, name: String, email: String, phone: String, address: String, note: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -1053,17 +1053,17 @@ class RestAPIService {
         
         print("createContact url:", url)
         
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("createContact responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("createContact responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func updateContact(token: String, contactID: String, name: String, email: String, phone: String, address: String, note: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -1088,17 +1088,17 @@ class RestAPIService {
         
         print("updateContact url:", url)
         
-        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("updateContact responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("updateContact responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func deleteContacts(token: String, contactsIDIn: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -1112,17 +1112,17 @@ class RestAPIService {
         
         print("deleteContact url:", url)
         
-        Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("deleteContact responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("deleteContact responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func createEncryptedContact(token: String, encryptedContact: String, encryptedContactHash: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -1144,17 +1144,17 @@ class RestAPIService {
         
         print("createEncryptedContact url:", url)
         
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("createEncryptedContact responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("createEncryptedContact responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func updateEncryptedContact(token: String, contactID: String, encryptedContact: String, encryptedContactHash: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -1176,17 +1176,17 @@ class RestAPIService {
         
         print("updateEncryptedContact url:", url)
         
-        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-           // print("updateEncryptedContact responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//           // print("updateEncryptedContact responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     //MARK: - White/Black lists
@@ -1209,17 +1209,17 @@ class RestAPIService {
         
         print("addContactToBlackList url:", url)
         
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("addContactToBlackList responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("addContactToBlackList responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func deleteContactFromBlackList(token: String, contactID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -1233,17 +1233,17 @@ class RestAPIService {
         
         print("deleteContactFromBlackList url:", url)
         
-        Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("deleteContactFromBlackList responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("deleteContactFromBlackList responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func addContactToWhiteList(token: String, name: String, email: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -1264,17 +1264,17 @@ class RestAPIService {
         
         print("addContactToWhiteList url:", url)
         
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("addContactToWhiteList responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("addContactToWhiteList responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func deleteContactFromWhiteList(token: String, contactID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -1288,17 +1288,17 @@ class RestAPIService {
         
         print("deleteContactFromWhiteList url:", url)
         
-        Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("deleteContactFromWhiteList responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("deleteContactFromWhiteList responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func whiteListContacts(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -1312,17 +1312,17 @@ class RestAPIService {
         
         print("whiteListContacts url:", url)
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("whiteListContacts responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("whiteListContacts responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func blackListContacts(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -1336,17 +1336,17 @@ class RestAPIService {
         
         print("blackListContacts url:", url)
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("blackListContacts responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("blackListContacts responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     //MARK: - Download
@@ -1357,12 +1357,12 @@ class RestAPIService {
         
         let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory)
         
-        Alamofire.download(url, to: destination).downloadProgress(queue: DispatchQueue.global(qos: .utility)) { (progress) in
-            print("Progress: \(progress.fractionCompleted)")
-            } /*.validate()*/.responseData { ( response ) in
-                print(response.destinationURL!)
-                completionHandler(APIResult.success(response.destinationURL!/*.lastPathComponent*/))
-        }
+//        Alamofire.download(url, to: destination).downloadProgress(queue: DispatchQueue.global(qos: .utility)) { (progress) in
+//            print("Progress: \(progress.fractionCompleted)")
+//            } /*.validate()*/.responseData { ( response ) in
+//                print(response.destinationURL!)
+//                completionHandler(APIResult.success(response.destinationURL!/*.lastPathComponent*/))
+//        }
     }
     
     //MARK: - Attachments
@@ -1387,45 +1387,45 @@ class RestAPIService {
         
         print("createAttachment url:", url)
         
-        Alamofire.upload(multipartFormData: { (multipartFormData) in
-            
-            for param in parameters {
-                if let value = param.value as? String {
-                    multipartFormData.append(value.data(using: .utf8)!, withName: param.key)
-                }
-                if let value = param.value as? Bool {
-                    multipartFormData.append(value.description.data(using: .utf8)!, withName: param.key)
-                }
-            }
-            
-            multipartFormData.append(file, withName: JSONKey.fileData.rawValue, fileName: fileName, mimeType: mimeType) //"image/jpg"
-            
-        }, to: url, method: .post , headers: headers, encodingCompletion: { (result) in
-            
-            print("upload Data result:", result)
-            
-            switch result {
-            case .success(let upload, _, _):
-                
-                upload.uploadProgress(closure: { (progress) in
-                    print("upload Data:", progress.fractionCompleted * 100)
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_attachUploadUpdateNotificationID), object: progress.fractionCompleted)
-                })
-                
-                upload.responseJSON(completionHandler: { (response) in
-                    switch(response.result) {
-                    case .success(let value):
-                        print("upload Data succes value:", value)
-                        completionHandler(APIResult.success(value))
-                    case .failure(let error):
-                        completionHandler(APIResult.failure(error))
-                    }
-                })
-                
-            case .failure(let error):
-                print("upload Data error:", error)
-            }
-        })
+//        Alamofire.upload(multipartFormData: { (multipartFormData) in
+//
+//            for param in parameters {
+//                if let value = param.value as? String {
+//                    multipartFormData.append(value.data(using: .utf8)!, withName: param.key)
+//                }
+//                if let value = param.value as? Bool {
+//                    multipartFormData.append(value.description.data(using: .utf8)!, withName: param.key)
+//                }
+//            }
+//
+//            multipartFormData.append(file, withName: JSONKey.fileData.rawValue, fileName: fileName, mimeType: mimeType) //"image/jpg"
+//
+//        }, to: url, method: .post , headers: headers, encodingCompletion: { (result) in
+//
+//            print("upload Data result:", result)
+//
+//            switch result {
+//            case .success(let upload, _, _):
+//
+//                upload.uploadProgress(closure: { (progress) in
+//                    print("upload Data:", progress.fractionCompleted * 100)
+//                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_attachUploadUpdateNotificationID), object: progress.fractionCompleted)
+//                })
+//
+//                upload.responseJSON(completionHandler: { (response) in
+//                    switch(response.result) {
+//                    case .success(let value):
+//                        print("upload Data succes value:", value)
+//                        completionHandler(APIResult.success(value))
+//                    case .failure(let error):
+//                        completionHandler(APIResult.failure(error))
+//                    }
+//                })
+//
+//            case .failure(let error):
+//                print("upload Data error:", error)
+//            }
+//        })
     }
     
     func deleteAttachment(token: String, attachmentID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -1439,17 +1439,17 @@ class RestAPIService {
         
         print("deleteAttachment url:", url)
         
-        Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
-            
-            print("deleteAttachment responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("deleteAttachment responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     func updateAttachment(token: String, attachmentID: String, file: Data, fileName: String, mimeType: String, messageID: Int, encrypted: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -1472,46 +1472,46 @@ class RestAPIService {
         
         print("updateAttachment url:", url)
         
-        Alamofire.upload(multipartFormData: { (multipartFormData) in
-            
-            for param in parameters {
-                if let value = param.value as? String {
-                    multipartFormData.append(value.data(using: .utf8)!, withName: param.key)
-                }
-                
-                if let value = param.value as? Bool {
-                    multipartFormData.append(value.description.data(using: .utf8)!, withName: param.key)
-                }
-            }
-            
-            multipartFormData.append(file, withName: JSONKey.fileData.rawValue, fileName: fileName, mimeType: mimeType) //"image/jpg"
-            
-        }, to: url, method: .patch , headers: headers, encodingCompletion: { (result) in
-            
-            print("updateAttachment upload Data result:", result)
-            
-            switch result {
-            case .success(let upload, _, _):
-                
-                upload.uploadProgress(closure: { (progress) in
-                    print("updateAttachment upload Data:", progress.fractionCompleted * 100)
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_attachUploadUpdateNotificationID), object: progress.fractionCompleted)
-                })
-                
-                upload.responseJSON(completionHandler: { (response) in
-                    switch(response.result) {
-                    case .success(let value):
-                        print("updateAttachment upload Data succes value:", value)
-                        completionHandler(APIResult.success(value))
-                    case .failure(let error):
-                        completionHandler(APIResult.failure(error))
-                    }
-                })
-                
-            case .failure(let error):
-                print("upload Data error:", error)
-            }
-        })
+//        Alamofire.upload(multipartFormData: { (multipartFormData) in
+//
+//            for param in parameters {
+//                if let value = param.value as? String {
+//                    multipartFormData.append(value.data(using: .utf8)!, withName: param.key)
+//                }
+//
+//                if let value = param.value as? Bool {
+//                    multipartFormData.append(value.description.data(using: .utf8)!, withName: param.key)
+//                }
+//            }
+//
+//            multipartFormData.append(file, withName: JSONKey.fileData.rawValue, fileName: fileName, mimeType: mimeType) //"image/jpg"
+//
+//        }, to: url, method: .patch , headers: headers, encodingCompletion: { (result) in
+//
+//            print("updateAttachment upload Data result:", result)
+//
+//            switch result {
+//            case .success(let upload, _, _):
+//
+//                upload.uploadProgress(closure: { (progress) in
+//                    print("updateAttachment upload Data:", progress.fractionCompleted * 100)
+//                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_attachUploadUpdateNotificationID), object: progress.fractionCompleted)
+//                })
+//
+//                upload.responseJSON(completionHandler: { (response) in
+//                    switch(response.result) {
+//                    case .success(let value):
+//                        print("updateAttachment upload Data succes value:", value)
+//                        completionHandler(APIResult.success(value))
+//                    case .failure(let error):
+//                        completionHandler(APIResult.failure(error))
+//                    }
+//                })
+//
+//            case .failure(let error):
+//                print("upload Data error:", error)
+//            }
+//        })
     }
     
     //MARK: - Settings
@@ -1543,17 +1543,17 @@ class RestAPIService {
         
         print("updateSettings url:", url)
         
-        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
-            
-            print("updateSettings responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+//
+//            print("updateSettings responce:", response)
+//
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
     
     //MARK: - Notifications
@@ -1576,16 +1576,16 @@ class RestAPIService {
         
         print("createAppToken url:", url)
         
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
-            
-            //print("createAppToken responce:", response)
-            
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
+//        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: DataResponse<Any>) in
+//            
+//            //print("createAppToken responce:", response)
+//            
+//            switch(response.result) {
+//            case .success(let value):
+//                completionHandler(APIResult.success(value))
+//            case .failure(let error):
+//                completionHandler(APIResult.failure(error))
+//            }
+//        }
     }
 }
