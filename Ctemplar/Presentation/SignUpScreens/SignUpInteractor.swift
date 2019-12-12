@@ -40,15 +40,18 @@ class SignUpInteractor {
     }
     
     func checkUser(userName: String, childViewController: UIViewController) {
-        
-        apiService?.checkUser(userName: userName) {(result) in
-            
-            switch(result) {
-                
+        AppManager.shared.networkService.checkUser(name: userName) { result in
+            switch result {
             case .success(let value):
                 print("checkUser success value:", value)
-                self.presenter?.showNextViewController(childViewController: childViewController)
-                
+                if value.exists == 1 {
+                    self.presenter?.showNextViewController(childViewController: childViewController)
+                } else {
+                    AlertHelperKit().showAlert(self.viewController!,
+                                               title: "User Name Error".localized(),
+                                               message: "This name already exists!".localized(),
+                                               button: "closeButton".localized())
+                }
             case .failure(let error):
                 print("checkUser error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "User Name Error", message: error.localizedDescription, button: "closeButton".localized())

@@ -54,7 +54,7 @@ protocol AuthService {
     func loginUser(with details: LoginDetails,
                    completionHandler: @escaping Completion<LoginResult>)
     func checkUser(name: String,
-                   completionHandler: @escaping Completion<Void>)
+                   completionHandler: @escaping Completion<CheckUserResult>)
     func signUp(with details: SignupDetails,
                 completionHandler: @escaping Completion<Void>)
     func recoveryPasswordCode(for userName: String, recoveryEmail: String, completionHandler: @escaping Completion<Void>)
@@ -73,7 +73,7 @@ extension NetworkService: AuthService {
                 completionHandler: completionHandler)
     }
     func checkUser(name: String,
-                   completionHandler: @escaping Completion<Void>) {
+                   completionHandler: @escaping Completion<CheckUserResult>) {
         perform(request: RouterAuth.check(userName: name),
                 completionHandler: completionHandler)
     }

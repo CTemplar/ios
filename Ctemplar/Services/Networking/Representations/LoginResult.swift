@@ -18,3 +18,7 @@ struct LoginResult: Codable {
         case isTwoFAEnabled = "is_2fa_enabled"
     }
 }
+
+struct CheckUserResult: Codable {
+    let exists: Bool
+}
