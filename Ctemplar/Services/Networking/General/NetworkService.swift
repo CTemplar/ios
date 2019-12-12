@@ -23,21 +23,16 @@ public class NetworkService {
 }
 
 extension NetworkService {
-    func handler<T: Codable>(for completion: @escaping Completion<T>) -> (AFDataResponse<Any>) -> Void {
+    func handler<T: Codable>(for completion: @escaping Completion<T>) -> (AFDataResponse<Data>) -> Void {
         return { response in
             let mapped = response
-                .tryMap({ (any: Any) -> T in
-                if let value = any as? T {
-                    return value
-                } else {
-                    throw AppError.downcastingFailed
-                }
-                }).tryMapError(self.errorHadler(for: response))
+                .tryMap{ try JSONDecoder().decode(T.self, from: $0) }
+                .tryMapError(self.errorHadler(for: response))
             completion(mapped.result)
         }
     }
     
-    func handler(for completion: @escaping Completion<Void>) -> (AFDataResponse<Any>) -> Void {
+    func handler(for completion: @escaping Completion<Void>) -> (AFDataResponse<Data>) -> Void {
         return { response in
             let mapped = response
                 .tryMap({_ in ()})
@@ -46,7 +41,7 @@ extension NetworkService {
         }
     }
     
-    func errorHadler(for response: AFDataResponse<Any>) -> ((Error) -> Error) {
+    func errorHadler(for response: AFDataResponse<Data>) -> ((Error) -> Error) {
         return { initial in
             if let data = response.data,
                 let errorInfo = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
@@ -64,11 +59,11 @@ extension NetworkService {
     func perform(request: URLRequestConvertible, completionHandler: @escaping Completion<Void>) {
         session.request(request)
             .validate(statusCode: 200..<300)
-            .responseJSON(completionHandler: handler(for: completionHandler))
+            .responseData(completionHandler: handler(for: completionHandler))
     }
     func perform<T: Codable>(request: URLRequestConvertible, completionHandler: @escaping Completion<T>) {
         session.request(request)
             .validate(statusCode: 200..<300)
-            .responseJSON(completionHandler: handler(for: completionHandler))
+            .responseData(completionHandler: handler(for: completionHandler))
     }
 }

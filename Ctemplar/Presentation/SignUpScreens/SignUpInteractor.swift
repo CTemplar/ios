@@ -44,7 +44,7 @@ class SignUpInteractor {
             switch result {
             case .success(let value):
                 print("checkUser success value:", value)
-                if value.exists == 1 {
+                if !value.exists {
                     self.presenter?.showNextViewController(childViewController: childViewController)
                 } else {
                     AlertHelperKit().showAlert(self.viewController!,
