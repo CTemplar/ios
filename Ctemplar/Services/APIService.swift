@@ -42,7 +42,7 @@ enum APIResponse: String {
     case expires           = "expires"
 }
 
-class APIService {
+class APIService: HashingService {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -341,23 +341,16 @@ class APIService {
         
         var publicKey : String = ""
         var privateKey : String = ""
-        var fingerprint : String = ""
         
         let storedUserName = self.keychainService?.getUserName()
         let storedPassword = self.keychainService?.getPassword()
         
         if let userKey = self.pgpService?.getStoredPGPKeys()?.first,
             let pub = pgpService?.exportArmoredPublicKey(pgpKey: userKey),
-            let pri = pgpService?.exportArmoredPrivateKey(pgpKey: userKey),
-            let fing = pgpService?.fingerprintForKey(pgpKey: userKey) {
-            
-            let userPGPKey = UserPGPKey(privateKey: pub, publicKey: pri, fingerprint: fing)
-            
-            publicKey = userPGPKey.publicKey
-            privateKey = userPGPKey.privateKey
-            fingerprint = userPGPKey.fingerprint
-            
-            print("fingerprint:", fingerprint)
+            let userPGPKey = pgpService?.generatePGPKey(userName: storedUserName ?? "", password: newPassword) {
+            publicKey = pub
+            privateKey = pgpService?.exportArmoredPrivateKey(pgpKey: userPGPKey) ?? ""
+
         }
         /*
         "new_keys": [
