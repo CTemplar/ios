@@ -1,5 +1,5 @@
 //
-//  LoginResult.swift
+//  AuthResult.swift
 //  Ctemplar
 //
 //  Created by romkh on 11.12.2019.
@@ -21,4 +21,8 @@ struct LoginResult: Codable {
 
 struct CheckUserResult: Codable {
     let exists: Bool
+}
+
+struct SignupResult: Codable {
+    let token: String
 }

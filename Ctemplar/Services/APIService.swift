@@ -214,53 +214,42 @@ class APIService {
         print("password:", password)
         print("recoveryEmail:", recoveryEmail)
         
-        let userPGPKey = pgpService?.generateUserPGPKeys(userName: userName, password: password)
-        
-        if userPGPKey?.privateKey == nil {
-            print("publicKey is nil")
-            return
-        }
-        
-        if userPGPKey?.publicKey == nil {
-            print("publicKey is nil")
-            return
-        }
-        
-        if userPGPKey?.fingerprint == nil {
-            print("fingerprint is nil")
-            return
-        }
-        
-        HUD.show(.progress)
-        
-        getHashedPassword(userName: userName, password: password) { (complete) in
-            if complete {
-                self.restAPIService?.signUp(userName: userName, password: self.hashedPassword!, privateKey: (userPGPKey?.privateKey)!, publicKey: (userPGPKey?.publicKey)!, fingerprint: (userPGPKey?.fingerprint)!, captchaKey: captchaKey, captchaValue: captchaValue, recoveryEmail: recoveryEmail, fromAddress: "", redeemCode: "", stripeToken: "", memory: "", emailCount: "", paymentType: "") {(result) in
-                
-                    switch(result) {
+        pgpService?.generateUserPGPKey(for: userName, password: password) {
+            guard let userPGPKey = try? $0.get() else {
+                return
+            }
+            
+            HUD.show(.progress)
+            
+            self.getHashedPassword(userName: userName, password: password) { (complete) in
+                if complete {
+                    self.restAPIService?.signUp(userName: userName, password: self.hashedPassword!, privateKey: userPGPKey.privateKey, publicKey: userPGPKey.publicKey, fingerprint: userPGPKey.fingerprint, captchaKey: captchaKey, captchaValue: captchaValue, recoveryEmail: recoveryEmail, fromAddress: "", redeemCode: "", stripeToken: "", memory: "", emailCount: "", paymentType: "") {(result) in
                         
-                    case .success(let value):
-                       // print("signUpUser success:", value)
-                        
-                        if let response = value as? Dictionary<String, Any> {
-                            if let message = self.parseServerResponse(response:response) {
-                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
-                                completionHandler(APIResult.failure(error))
+                        switch(result) {
+                            
+                        case .success(let value):
+                            // print("signUpUser success:", value)
+                            
+                            if let response = value as? Dictionary<String, Any> {
+                                if let message = self.parseServerResponse(response:response) {
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    completionHandler(APIResult.success("success"))
+                                }
                             } else {
-                                completionHandler(APIResult.success("success"))
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
                             }
-                        } else {
-                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                            
+                        case .failure(let error):
+                            print("signUpUser error:", error.localizedDescription)
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                             completionHandler(APIResult.failure(error))
                         }
                         
-                    case .failure(let error):
-                        print("signUpUser error:", error.localizedDescription)
-                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
-                        completionHandler(APIResult.failure(error))
+                        HUD.hide()
                     }
-                    
-                    HUD.hide()
                 }
             }
         }
@@ -305,53 +294,42 @@ class APIService {
         print("resetPasswordCode:", resetPasswordCode)
         print("recoveryEmail:", recoveryEmail)
         
-        let userPGPKey = pgpService?.generateUserPGPKeys(userName: userName, password: password)
-        
-        if userPGPKey?.privateKey == nil {
-            print("publicKey is nil")
-            return
-        }
-        
-        if userPGPKey?.publicKey == nil {
-            print("publicKey is nil")
-            return
-        }
-        
-        if userPGPKey?.fingerprint == nil {
-            print("fingerprint is nil")
-            return
-        }
-        
-        HUD.show(.progress)
-        
-        getHashedPassword(userName: userName, password: password) { (complete) in
-            if complete {
-        
-                self.restAPIService?.resetPassword(resetPasswordCode: resetPasswordCode, userName: userName, password: self.hashedPassword!, privateKey: (userPGPKey?.privateKey)!, publicKey: (userPGPKey?.publicKey)!, fingerprint: (userPGPKey?.fingerprint)!, recoveryEmail: recoveryEmail) {(result) in
+        pgpService?.generateUserPGPKey(for: userName, password: password) {
+            guard let userPGPKey = try? $0.get() else {
+                return
+            }
+            
+            HUD.show(.progress)
+            
+            self.getHashedPassword(userName: userName, password: password) { (complete) in
+                if complete {
                     
-                    switch(result) {
+                    self.restAPIService?.resetPassword(resetPasswordCode: resetPasswordCode, userName: userName, password: self.hashedPassword!, privateKey: userPGPKey.privateKey, publicKey: userPGPKey.publicKey, fingerprint: userPGPKey.fingerprint, recoveryEmail: recoveryEmail) {(result) in
                         
-                    case .success(let value):
-                        
-                        if let response = value as? Dictionary<String, Any> {
-                            print("resetPassword response", response)
-                            if let message = self.parseServerResponse(response:response) {
-                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
-                                completionHandler(APIResult.failure(error))
+                        switch(result) {
+                            
+                        case .success(let value):
+                            
+                            if let response = value as? Dictionary<String, Any> {
+                                print("resetPassword response", response)
+                                if let message = self.parseServerResponse(response:response) {
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    completionHandler(APIResult.success("success"))
+                                }
                             } else {
-                                completionHandler(APIResult.success("success"))
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
                             }
-                        } else {
-                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                             completionHandler(APIResult.failure(error))
                         }
                         
-                    case .failure(let error):
-                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
-                        completionHandler(APIResult.failure(error))
+                        HUD.hide()
                     }
-                    
-                    HUD.hide()
                 }
             }
         }
@@ -368,13 +346,16 @@ class APIService {
         let storedUserName = self.keychainService?.getUserName()
         let storedPassword = self.keychainService?.getPassword()
         
-        if let userKey = self.pgpService?.getStoredPGPKeys()?.first {
+        if let userKey = self.pgpService?.getStoredPGPKeys()?.first,
+            let pub = pgpService?.exportArmoredPublicKey(pgpKey: userKey),
+            let pri = pgpService?.exportArmoredPrivateKey(pgpKey: userKey),
+            let fing = pgpService?.fingerprintForKey(pgpKey: userKey) {
             
-            let userPGPKey = UserPGPKey.init(pgpService: self.pgpService!, pgpKey: userKey)
+            let userPGPKey = UserPGPKey(privateKey: pub, publicKey: pri, fingerprint: fing)
             
-            publicKey = userPGPKey.publicKey!
-            privateKey = userPGPKey.publicKey!
-            fingerprint = userPGPKey.fingerprint!
+            publicKey = userPGPKey.publicKey
+            privateKey = userPGPKey.privateKey
+            fingerprint = userPGPKey.fingerprint
             
             print("fingerprint:", fingerprint)
         }
@@ -391,7 +372,7 @@ class APIService {
         
         if let mailboxList = user.mailboxesList {
             for mailbox in mailboxList {
-                let mailboxDict = ["mailbox_id" : mailbox.mailboxID, "private_key" : privateKey, "public_key" : "publicKey" ] as [String : Any]
+                let mailboxDict = ["mailbox_id" : mailbox.mailboxID, "private_key" : privateKey, "public_key" : publicKey ] as [String : Any]
                 newKeysArray.append(mailboxDict)
             }
         }

@@ -11,18 +11,11 @@ import UIKit
 import ObjectivePGP
 
 class PGPService {
+    var keyring = Keyring()
+    var keychainService: KeychainService
     
-    //let keyring = Keyring()
-    //let keychainService = KeychainService()
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
-    var keyring : Keyring!
-    var keychainService: KeychainService!
-    
-    func initialize() {
-        
-        self.keyring = Keyring()
-        self.keychainService = appDelegate.applicationManager.keychainService
+    init(keychainService: KeychainService) {
+        self.keychainService = keychainService
     }
     
     func encodeString(message: String) -> Data {
@@ -104,20 +97,31 @@ class PGPService {
     
     //MARK: - Keys
     
-    func generateUserPGPKeys(userName: String, password: String) -> UserPGPKey {
-        
-        let mainPgpKey = self.generatePGPKey(userName: userName, password: password)
-        
-        self.savePGPKey(pgpKey: mainPgpKey)
-        
-        let userPGPKey = UserPGPKey.init(pgpService: self, pgpKey: mainPgpKey)
-        
-        return userPGPKey
+    func generateUserPGPKey(for userName: String, password: String, completion: @escaping Completion<UserPGPKey>) {
+        DispatchQueue.global().async {
+            let generated = self.generatePGPKey(userName: userName, password: password)
+            guard let pub = self.exportArmoredPublicKey(pgpKey: generated),
+                let pri = self.exportArmoredPrivateKey(pgpKey: generated),
+                let fing = self.fingerprintForKey(pgpKey: generated) else {
+                    DispatchQueue.main.async {
+                        completion(.failure(AppError.cryptoFailed))
+                    }
+                    return
+            }
+            self.savePGPKey(pgpKey: generated)
+            DispatchQueue.main.async {
+                completion(.success(UserPGPKey(privateKey: pri,
+                                               publicKey: pub,
+                                               fingerprint: fing)))
+            }
+        }
     }
     
     func generatePGPKey(userName: String, password: String) -> Key {
-        
-        let pgpKey = KeyGenerator().generate(for: userName, passphrase: password)
+        let generator = KeyGenerator()
+        generator.keyBitsLength = 4096
+        let pgpKey = generator.generate(for: userName, passphrase: password)
+        print("\(generator.keyBitsLength)")
         print("generate keyID:", pgpKey.publicKey?.keyID as Any)
         print("generate fingerprint:", pgpKey.publicKey?.fingerprint as Any)
         
