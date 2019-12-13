@@ -7,7 +7,7 @@ def ctemplarPods
   
   # Pods for Ctemplar
   pod 'ObjectivePGP'
-  pod 'Alamofire'
+  pod 'Alamofire', '~> 5.0.0-rc.3'
   pod 'PKHUD', '~> 5.1.0'
   pod 'AlertHelperKit', :git => 'https://github.com/keygx/AlertHelperKit'
   pod 'KeychainSwift'

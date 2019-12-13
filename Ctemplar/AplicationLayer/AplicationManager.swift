@@ -9,8 +9,12 @@
 import Foundation
 import UIKit
 
-class ApplicationManager
-{
+class AppManager {
+    static var shared = AppManager()
+    let networkService = NetworkService()
+    let keychainService = KeychainService()
+    let formatterService = FormatterService()
+    let restAPIService = RestAPIService()
     
     //let mainViewController: MainViewController = UIApplication.shared.keyWindow?.rootViewController as! MainViewController
     
@@ -23,34 +27,9 @@ class ApplicationManager
         
     }()
     
-    lazy var formatterService: FormatterService = {
-        
-        let service = FormatterService()
-        
-        return service
-        
-    }()
-    
-    lazy var keychainService: KeychainService = {
-        
-        let service = KeychainService()
-        
-        return service
-        
-    }()
-    
     lazy var pgpService: PGPService = {
         
-        let service = PGPService()
-        service.initialize()
-        
-        return service
-        
-    }()
-    
-    lazy var restAPIService: RestAPIService = {
-        
-        let service = RestAPIService()
+        let service = PGPService(keychainService: self.keychainService)
         
         return service
         

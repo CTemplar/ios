@@ -11,11 +11,14 @@ import Fabric
 import Crashlytics
 import UserNotifications
 
+typealias AppResult<T> = Result<T, Error>
+typealias Completion<T> = (AppResult<T>) -> Void
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var applicationManager = ApplicationManager()
+    var applicationManager = AppManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
