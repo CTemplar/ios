@@ -1400,32 +1400,20 @@ class RestAPIService {
 
             multipartFormData.append(file, withName: JSONKey.fileData.rawValue, fileName: fileName, mimeType: mimeType) //"image/jpg"
 
-        }, to: url, method: .post , headers: headers/*, encodingCompletion: { (result) in
-
-            print("upload Data result:", result)
-
-            switch result {
-            case .success(let upload, _, _):
-
-                upload.uploadProgress(closure: { (progress) in
-                    print("upload Data:", progress.fractionCompleted * 100)
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_attachUploadUpdateNotificationID), object: progress.fractionCompleted)
-                })
-
-                upload.responseJSON(completionHandler: { (response) in
-                    switch(response.result) {
-                    case .success(let value):
-                        print("upload Data succes value:", value)
-                        completionHandler(APIResult.success(value))
-                    case .failure(let error):
-                        completionHandler(APIResult.failure(error))
-                    }
-                })
-//
-            case .failure(let error):
-                print("upload Data error:", error)
-            }
-        }*/)
+        }, to: url, method: .post , headers: headers)
+            .uploadProgress { (progress) in
+            print("upload Data:", progress.fractionCompleted * 100)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_attachUploadUpdateNotificationID), object: progress.fractionCompleted)
+        }
+            .responseJSON(completionHandler: { (response) in
+                switch(response.result) {
+                case .success(let value):
+                    print("upload Data succes value:", value)
+                    completionHandler(APIResult.success(value))
+                case .failure(let error):
+                    completionHandler(APIResult.failure(error))
+                }
+            })
     }
     
     func deleteAttachment(token: String, attachmentID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -1486,7 +1474,20 @@ class RestAPIService {
 //
             multipartFormData.append(file, withName: JSONKey.fileData.rawValue, fileName: fileName, mimeType: mimeType) //"image/jpg"
 //
-        }, to: url, method: .patch , headers: headers/*, encodingCompletion: { (result) in
+        }, to: url, method: .patch , headers: headers)
+            .uploadProgress { (progress) in
+            print("updateAttachment upload Data:", progress.fractionCompleted * 100)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_attachUploadUpdateNotificationID), object: progress.fractionCompleted)
+        }
+            .responseJSON(completionHandler: { (response) in
+                switch(response.result) {
+                case .success(let value):
+                    print("updateAttachment upload Data succes value:", value)
+                    completionHandler(APIResult.success(value))
+                case .failure(let error):
+                    completionHandler(APIResult.failure(error))
+                }
+        })/*, encodingCompletion: { (result) in
 //
             print("updateAttachment upload Data result:", result)
 //
@@ -1511,7 +1512,7 @@ class RestAPIService {
             case .failure(let error):
                 print("upload Data error:", error)
             }
-        }*/)
+        }*/
     }
     
     //MARK: - Settings
