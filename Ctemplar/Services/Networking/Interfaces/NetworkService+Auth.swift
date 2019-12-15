@@ -43,9 +43,11 @@ struct ResetPasswordDetails {
 }
 
 struct ChangePasswordDetails {
-    var token: String
+    var username: String
     var oldPassword: String
     var newPassword: String
+    var oldHashedPassword: String
+    var newHashedPassword: String
     var newKeys: [[String : Any]]
     var deleteData: Bool
 }
@@ -56,14 +58,12 @@ protocol AuthService {
     func checkUser(name: String,
                    completionHandler: @escaping Completion<CheckUserResult>)
     func signUp(with details: SignupDetails,
-                completionHandler: @escaping Completion<SignupResult>)
+                completionHandler: @escaping Completion<TokenResult>)
     func recoveryPasswordCode(for userName: String, recoveryEmail: String, completionHandler: @escaping Completion<Void>)
     func resetPassword(with details: ResetPasswordDetails,
                        completionHandler: @escaping Completion<Void>)
     func changePassword(with details: ChangePasswordDetails,
                         completionHandler: @escaping Completion<Void>)
-    func verifyToken(token: String, completionHandler: @escaping Completion<Void>)
-    func refreshToken(token: String, completionHandler: @escaping Completion<Void>)
 }
 
 extension NetworkService: AuthService {
@@ -78,7 +78,7 @@ extension NetworkService: AuthService {
                 completionHandler: completionHandler)
     }
     func signUp(with details: SignupDetails,
-                completionHandler: @escaping Completion<SignupResult>) {
+                completionHandler: @escaping Completion<TokenResult>) {
         perform(request: RouterAuth.signup(details: details),
                 completionHandler: completionHandler)
     }
@@ -94,17 +94,9 @@ extension NetworkService: AuthService {
     
     func changePassword(with details: ChangePasswordDetails,
                         completionHandler: @escaping Completion<Void>) {
-        perform(request: RouterAuth.changePassword(details: details),
-                completionHandler: completionHandler)
-    }
-    
-    func verifyToken(token: String, completionHandler: @escaping Completion<Void>) {
-        perform(request: RouterAuth.verifyToken(token: token),
-                completionHandler: completionHandler)
-    }
-    
-    func refreshToken(token: String, completionHandler: @escaping Completion<Void>) {
-        perform(request: RouterAuth.refreshToken(token: token),
-                completionHandler: completionHandler)
+        checkToken { _ in
+            self.perform(request: RouterAuth.changePassword(details: details),
+                    completionHandler: completionHandler)
+        }
     }
 }

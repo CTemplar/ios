@@ -53,7 +53,7 @@ class SignUpInteractor: HashingService {
         }
     }
     
-    func handleNetwork(responce: AppResult<SignupResult>) {
+    func handleNetwork(responce: AppResult<TokenResult>) {
         switch responce {
         case .success(let value):
             keychainService?.saveToken(token: value.token)

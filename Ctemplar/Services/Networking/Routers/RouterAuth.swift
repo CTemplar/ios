@@ -16,8 +16,6 @@ enum RouterAuth: BaseRouter {
     case recoveryPasswordCode(userName: String, recoveryEmail: String)
     case resetPassword(details: ResetPasswordDetails)
     case changePassword(details: ChangePasswordDetails)
-    case verifyToken(token: String)
-    case refreshToken(token: String)
 
     static let group = "/auth/"
 
@@ -42,10 +40,6 @@ enum RouterAuth: BaseRouter {
             return RouterAuth.group + "reset/"
         case .changePassword:
             return RouterAuth.group + "change-password/"
-        case .verifyToken:
-            return RouterAuth.group + "verify/"
-        case .refreshToken:
-            return RouterAuth.group + "refresh/"
         }
     }
 
@@ -97,10 +91,6 @@ enum RouterAuth: BaseRouter {
                 JSONKey.newKeys.rawValue: details.newKeys
             ]
             return try JSONEncoding.default.encode(request, with: params)
-        case .verifyToken(let token):
-            return try JSONEncoding.default.encode(request, with: [JSONKey.token.rawValue: token])
-        case .refreshToken(let token):
-            return try JSONEncoding.default.encode(request, with: [JSONKey.token.rawValue: token])
         }
     }
 }

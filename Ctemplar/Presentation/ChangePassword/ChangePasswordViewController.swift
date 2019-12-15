@@ -11,7 +11,7 @@ import UIKit
 import AlertHelperKit
 import PKHUD
 
-class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
+class ChangePasswordViewController: UIViewController, UITextFieldDelegate, HashingService {
     
     @IBOutlet var leftBarButtonItem       : UIBarButtonItem!
     
@@ -238,22 +238,79 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: - API request
-    
     func changePassword(deleteData: Bool) {
-        
-        self.apiService?.changePassword(newPassword: self.newPassword, deleteData: deleteData, user: self.user)  {(result) in
+        HUD.show(.labeledProgress(title: "hashing".localized(), subtitle: ""))
+        retrieveChangePasswordDetails {
+            guard let details = try? $0.get() else {
+                HUD.hide()
+                AlertHelperKit().showAlert(self,
+                                           title: "Change Password Error",
+                                           message: "Something went wrong".localized(),
+                                           button: "closeButton".localized())
+                return
+            }
+            HUD.show(.labeledProgress(title: "Updating".localized(), subtitle: ""))
+            AppManager.shared.networkService.changePassword(with: details) {
+                HUD.hide()
+                switch $0 {
+                case .success(let value):
+                    print("changePassword value:", value)
+                    self.keychainService?.saveUserCredentials(userName: details.username,
+                                                              password: self.newPassword)
+                    self.passwordWasUpdated()
+                    
+                case .failure(let error):
+                    AlertHelperKit().showAlert(self,
+                                               title: "Change Password Error",
+                                               message: error.localizedDescription,
+                                               button: "closeButton".localized())
+                }
+            }
+        }
+    }
+    
+    func retrieveChangePasswordDetails(with completion: @escaping Completion<ChangePasswordDetails>) {
+        let error = {
+            completion(.failure(AppError.cryptoFailed))
+        }
+        DispatchQueue.global().async {
+            let userName = AppManager.shared.keychainService.getUserName()
+            if userName.isEmpty {
+                DispatchQueue.main.async(execute: error)
+                return
+            }
+            let old = AppManager.shared.keychainService.getPassword()
+            if old.isEmpty {
+                DispatchQueue.main.async(execute: error)
+                return
+            }
+            let updatedPGPKey = AppManager.shared.pgpService.generatePGPKey(userName: userName,
+                                                                            password: self.newPassword)
+            guard let storedKey = AppManager.shared.pgpService.getStoredPGPKeys()?.first,
+                let publicKey =  AppManager.shared.pgpService.exportArmoredPublicKey(pgpKey: storedKey),
+                let privateKey = AppManager.shared.pgpService.exportArmoredPrivateKey(pgpKey: updatedPGPKey) else {
+                    DispatchQueue.main.async(execute: error)
+                    return
+            }
+            guard let keys = self.user.mailboxesList?
+                .compactMap ({ (mailbox: Mailbox) -> [String: Any]? in
+                    guard let id = mailbox.mailboxID else { return nil }
+                    return ["mailbox_id" : id,
+                            "private_key" : privateKey,
+                            "public_key" : publicKey ] }) else {
+                DispatchQueue.main.async(execute: error)
+                return
+            }
             
-            switch(result) {
-                
-            case .success(let value):
-                print("changePassword value:", value)
-
-                let storedUserName = self.keychainService?.getUserName()
-                self.keychainService?.saveUserCredentials(userName: storedUserName!, password: self.newPassword)
-                self.passwordWasUpdated()
-                
-            case .failure(let error):
-                AlertHelperKit().showAlert(self, title: "Change Password Error", message: error.localizedDescription, button: "closeButton".localized())
+            let details = ChangePasswordDetails(username: userName,
+                                                oldPassword: old,
+                                                newPassword: self.newPassword,
+                                                oldHashedPassword: "",
+                                                newHashedPassword: "",
+                                                newKeys: keys,
+                                                deleteData: false)
+            DispatchQueue.main.async {
+                completion(.success(details))
             }
         }
     }
