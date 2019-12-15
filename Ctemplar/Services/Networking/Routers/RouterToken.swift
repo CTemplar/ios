@@ -30,6 +30,10 @@ enum RouterToken: BaseRouter {
             return RouterAuth.group + "refresh/"
         }
     }
+    
+    var usesToken: Bool {
+        return false
+    }
 
     func encoded(_ request: URLRequest) throws -> URLRequest {
         switch self {

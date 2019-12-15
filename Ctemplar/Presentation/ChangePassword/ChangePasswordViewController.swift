@@ -302,11 +302,30 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate, Hashi
                 return
             }
             
+            var oldHashedPassword: String?
+            var newHashedPassword: String?
+            let passGroup = DispatchGroup()
+            passGroup.enter()
+            self.generateHashedPassword(for: userName, password: old) {
+                oldHashedPassword = try? $0.get()
+                passGroup.leave()
+            }
+            passGroup.enter()
+            self.generateHashedPassword(for: userName, password: self.newPassword) {
+                newHashedPassword = try? $0.get()
+                passGroup.leave()
+            }
+            passGroup.wait()
+            guard let oldHashed = oldHashedPassword,
+                let newHashed = newHashedPassword else {
+                    DispatchQueue.main.async(execute: error)
+                    return
+            }
             let details = ChangePasswordDetails(username: userName,
                                                 oldPassword: old,
                                                 newPassword: self.newPassword,
-                                                oldHashedPassword: "",
-                                                newHashedPassword: "",
+                                                oldHashedPassword: oldHashed,
+                                                newHashedPassword: newHashed,
                                                 newKeys: keys,
                                                 deleteData: false)
             DispatchQueue.main.async {

@@ -42,6 +42,15 @@ enum RouterAuth: BaseRouter {
             return RouterAuth.group + "change-password/"
         }
     }
+    
+    var usesToken: Bool {
+        switch self {
+        case .resetPassword, .changePassword:
+            return true
+        default:
+            return false
+        }
+    }
 
     func encoded(_ request: URLRequest) throws -> URLRequest {
         switch self {
@@ -84,9 +93,9 @@ enum RouterAuth: BaseRouter {
             return try JSONEncoding.default.encode(request, with: params)
         case .changePassword(let details):
             let params: [String: Any] = [
-                JSONKey.oldPassword.rawValue: details.oldPassword,
-                JSONKey.password.rawValue: details.newPassword,
-                JSONKey.confirmPassword.rawValue: details.newPassword,
+                JSONKey.oldPassword.rawValue: details.oldHashedPassword,
+                JSONKey.password.rawValue: details.newHashedPassword,
+                JSONKey.confirmPassword.rawValue: details.newHashedPassword,
                 JSONKey.deleteData.rawValue: details.deleteData,
                 JSONKey.newKeys.rawValue: details.newKeys
             ]

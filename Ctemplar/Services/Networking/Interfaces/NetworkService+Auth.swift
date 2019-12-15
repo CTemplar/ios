@@ -94,9 +94,7 @@ extension NetworkService: AuthService {
     
     func changePassword(with details: ChangePasswordDetails,
                         completionHandler: @escaping Completion<Void>) {
-        checkToken { _ in
-            self.perform(request: RouterAuth.changePassword(details: details),
-                    completionHandler: completionHandler)
-        }
+        perform(request: RouterAuth.changePassword(details: details),
+                     completionHandler: completionHandler)
     }
 }
