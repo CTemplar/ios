@@ -57,13 +57,41 @@ extension NetworkService {
     }
     
     func perform(request: URLRequestConvertible, completionHandler: @escaping Completion<Void>) {
-        session.request(request)
-            .validate(statusCode: 200..<300)
-            .responseData(completionHandler: handler(for: completionHandler))
+        if let router = request as? BaseRouter, router.usesToken {
+            checkToken {
+                guard let result = try? $0.get(),
+                    var request = try? request.asURLRequest() else {
+                        completionHandler(.failure(AppError.cryptoFailed))
+                        return
+                }
+                request.addValue("JWT " + result.token, forHTTPHeaderField: "Authorization")
+                self.session.request(request)
+                    .validate(statusCode: 200..<300)
+                    .responseData(completionHandler: self.handler(for: completionHandler))
+            }
+        } else {
+            session.request(request)
+                .validate(statusCode: 200..<300)
+                .responseData(completionHandler: handler(for: completionHandler))
+        }
     }
     func perform<T: Codable>(request: URLRequestConvertible, completionHandler: @escaping Completion<T>) {
-        session.request(request)
-            .validate(statusCode: 200..<300)
-            .responseData(completionHandler: handler(for: completionHandler))
+        if let router = request as? BaseRouter, router.usesToken {
+            checkToken {
+                guard let result = try? $0.get(),
+                    var request = try? request.asURLRequest() else {
+                        completionHandler(.failure(AppError.cryptoFailed))
+                        return
+                }
+                request.addValue("JWT " + result.token, forHTTPHeaderField: "Authorization")
+                self.session.request(request)
+                    .validate(statusCode: 200..<300)
+                    .responseData(completionHandler: self.handler(for: completionHandler))
+            }
+        } else {
+            session.request(request)
+                .validate(statusCode: 200..<300)
+                .responseData(completionHandler: handler(for: completionHandler))
+        }
     }
 }

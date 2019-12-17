@@ -23,6 +23,6 @@ struct CheckUserResult: Codable {
     let exists: Bool
 }
 
-struct SignupResult: Codable {
+struct TokenResult: Codable {
     let token: String
 }

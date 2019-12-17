@@ -16,8 +16,6 @@ enum RouterAuth: BaseRouter {
     case recoveryPasswordCode(userName: String, recoveryEmail: String)
     case resetPassword(details: ResetPasswordDetails)
     case changePassword(details: ChangePasswordDetails)
-    case verifyToken(token: String)
-    case refreshToken(token: String)
 
     static let group = "/auth/"
 
@@ -42,10 +40,15 @@ enum RouterAuth: BaseRouter {
             return RouterAuth.group + "reset/"
         case .changePassword:
             return RouterAuth.group + "change-password/"
-        case .verifyToken:
-            return RouterAuth.group + "verify/"
-        case .refreshToken:
-            return RouterAuth.group + "refresh/"
+        }
+    }
+    
+    var usesToken: Bool {
+        switch self {
+        case .resetPassword, .changePassword:
+            return true
+        default:
+            return false
         }
     }
 
@@ -90,17 +93,13 @@ enum RouterAuth: BaseRouter {
             return try JSONEncoding.default.encode(request, with: params)
         case .changePassword(let details):
             let params: [String: Any] = [
-                JSONKey.oldPassword.rawValue: details.oldPassword,
-                JSONKey.password.rawValue: details.newPassword,
-                JSONKey.confirmPassword.rawValue: details.newPassword,
+                JSONKey.oldPassword.rawValue: details.oldHashedPassword,
+                JSONKey.password.rawValue: details.newHashedPassword,
+                JSONKey.confirmPassword.rawValue: details.newHashedPassword,
                 JSONKey.deleteData.rawValue: details.deleteData,
                 JSONKey.newKeys.rawValue: details.newKeys
             ]
             return try JSONEncoding.default.encode(request, with: params)
-        case .verifyToken(let token):
-            return try JSONEncoding.default.encode(request, with: [JSONKey.token.rawValue: token])
-        case .refreshToken(let token):
-            return try JSONEncoding.default.encode(request, with: [JSONKey.token.rawValue: token])
         }
     }
 }

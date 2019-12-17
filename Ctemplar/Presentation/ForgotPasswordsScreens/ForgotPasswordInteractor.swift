@@ -17,18 +17,17 @@ class ForgotPasswordInteractor {
     var keychainService : KeychainService?
     
     func recoveryPasswordCode(userName: String, recoveryEmail: String) {
-        
-        apiService?.recoveryPasswordCode(userName: userName, recoveryEmail: recoveryEmail) {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                print("recoveryPasswordCode success value:", value)
-                
-            case .failure(let error):
-                print("recoveryPasswordCode error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Password Code Error", message: error.localizedDescription, button: "closeButton".localized())
+        AppManager.shared.networkService.recoveryPasswordCode(for: userName,
+                                                              recoveryEmail: recoveryEmail)
+        {
+            guard case .failure(let error) = $0 else {
+                return
             }
+            AlertHelperKit().showAlert(self.viewController!,
+                                       title: "Password Code Error",
+                                       message: error.localizedDescription,
+                                       button: "closeButton".localized())
+            
         }
     }
     

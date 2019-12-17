@@ -12,6 +12,7 @@ import Foundation
 protocol BaseRouter: URLRequestConvertible {
     var method: HTTPMethod { get }
     var path: String { get }
+    var usesToken: Bool { get }
     func encoded(_ request: URLRequest) throws -> URLRequest
 }
 
