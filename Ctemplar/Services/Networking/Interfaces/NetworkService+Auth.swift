@@ -44,8 +44,6 @@ struct ResetPasswordDetails {
 
 struct ChangePasswordDetails {
     var username: String
-    var oldPassword: String
-    var newPassword: String
     var oldHashedPassword: String
     var newHashedPassword: String
     var newKeys: [[String : Any]]

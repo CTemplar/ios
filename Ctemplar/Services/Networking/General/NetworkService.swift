@@ -76,19 +76,22 @@ extension NetworkService {
         }
     }
     func perform<T: Codable>(request: URLRequestConvertible, completionHandler: @escaping Completion<T>) {
-        checkToken {
-            guard let result = try? $0.get(),
-                var request = try? request.asURLRequest() else {
-                    completionHandler(.failure(AppError.cryptoFailed))
-                    return
+        if let router = request as? BaseRouter, router.usesToken {
+            checkToken {
+                guard let result = try? $0.get(),
+                    var request = try? request.asURLRequest() else {
+                        completionHandler(.failure(AppError.cryptoFailed))
+                        return
+                }
+                request.addValue("JWT " + result.token, forHTTPHeaderField: "Authorization")
+                self.session.request(request)
+                    .validate(statusCode: 200..<300)
+                    .responseData(completionHandler: self.handler(for: completionHandler))
             }
-            request.addValue("JWT " + result.token, forHTTPHeaderField: "Authorization")
-            self.session.request(request)
+        } else {
+            session.request(request)
                 .validate(statusCode: 200..<300)
-                .responseData(completionHandler: self.handler(for: completionHandler))
+                .responseData(completionHandler: handler(for: completionHandler))
         }
-        session.request(request)
-            .validate(statusCode: 200..<300)
-            .responseData(completionHandler: handler(for: completionHandler))
     }
 }
