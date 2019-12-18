@@ -27,9 +27,9 @@ enum RouterCaptcha: BaseRouter {
     var path: String {
         switch self {
         case .get:
-            return RouterAuth.group + "captcha"
+            return RouterCaptcha.group + "captcha"
         case .verify:
-            return RouterAuth.group + "captcha-verify/"
+            return RouterCaptcha.group + "captcha-verify/"
         }
     }
     

@@ -25,9 +25,9 @@ enum RouterToken: BaseRouter {
     var path: String {
         switch self {
         case .verify:
-            return RouterAuth.group + "verify/"
+            return RouterToken.group + "verify/"
         case .refresh:
-            return RouterAuth.group + "refresh/"
+            return RouterToken.group + "refresh/"
         }
     }
     

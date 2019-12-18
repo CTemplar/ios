@@ -18,6 +18,12 @@
 		30A38A7623AAC15100166595 /* NetworkService+Captcha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A38A7423AAC15100166595 /* NetworkService+Captcha.swift */; };
 		30A38A7823AAC21500166595 /* RouterCaptcha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A38A7723AAC21500166595 /* RouterCaptcha.swift */; };
 		30A38A7923AAC21500166595 /* RouterCaptcha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A38A7723AAC21500166595 /* RouterCaptcha.swift */; };
+		30A38A7B23AACA0200166595 /* NetworkService+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A38A7A23AACA0200166595 /* NetworkService+User.swift */; };
+		30A38A7C23AACA0200166595 /* NetworkService+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A38A7A23AACA0200166595 /* NetworkService+User.swift */; };
+		30A38A7E23AACA0B00166595 /* RouterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A38A7D23AACA0B00166595 /* RouterUser.swift */; };
+		30A38A7F23AACA0B00166595 /* RouterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A38A7D23AACA0B00166595 /* RouterUser.swift */; };
+		30A38A8123AACDEA00166595 /* UserResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A38A8023AACDEA00166595 /* UserResult.swift */; };
+		30A38A8223AACDEA00166595 /* UserResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A38A8023AACDEA00166595 /* UserResult.swift */; };
 		57B79C1A71ED0BEF31596F4F /* Pods_Ctemplar_dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823BDF0CC853F6FBA6C0178A /* Pods_Ctemplar_dev.framework */; };
 		8402497F21916D3200CDDB0F /* FoldersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8402497E21916D3200CDDB0F /* FoldersList.swift */; };
 		8402498121916D8E00CDDB0F /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8402498021916D8E00CDDB0F /* Folder.swift */; };
@@ -494,6 +500,9 @@
 		3043741323A65F4900F759D0 /* NetworkService+Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetworkService+Token.swift"; sourceTree = "<group>"; };
 		30A38A7423AAC15100166595 /* NetworkService+Captcha.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetworkService+Captcha.swift"; sourceTree = "<group>"; };
 		30A38A7723AAC21500166595 /* RouterCaptcha.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterCaptcha.swift; sourceTree = "<group>"; };
+		30A38A7A23AACA0200166595 /* NetworkService+User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetworkService+User.swift"; sourceTree = "<group>"; };
+		30A38A7D23AACA0B00166595 /* RouterUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterUser.swift; sourceTree = "<group>"; };
+		30A38A8023AACDEA00166595 /* UserResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResult.swift; sourceTree = "<group>"; };
 		3BB2B698FA7BB789966AC020 /* Pods-Ctemplar.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.dev.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev.debug.xcconfig"; sourceTree = "<group>"; };
 		52368E1F0F7C651A4939DBDB /* Pods-Ctemplar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ctemplar/Pods-Ctemplar.release.xcconfig"; sourceTree = "<group>"; };
 		6F29E0F3EE79297696014C0E /* Pods-Ctemplar.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.dev.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev.release.xcconfig"; sourceTree = "<group>"; };
@@ -1526,6 +1535,7 @@
 				CC45F34A239A8902004BC74C /* RouterAuth.swift */,
 				3043741023A65F3F00F759D0 /* RouterToken.swift */,
 				30A38A7723AAC21500166595 /* RouterCaptcha.swift */,
+				30A38A7D23AACA0B00166595 /* RouterUser.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -1534,6 +1544,7 @@
 			isa = PBXGroup;
 			children = (
 				CC97A4F323A116F000FED4A2 /* AuthResult.swift */,
+				30A38A8023AACDEA00166595 /* UserResult.swift */,
 			);
 			path = Representations;
 			sourceTree = "<group>";
@@ -1553,6 +1564,7 @@
 				CC45F356239A8902004BC74C /* NetworkService+Auth.swift */,
 				3043741323A65F4900F759D0 /* NetworkService+Token.swift */,
 				30A38A7423AAC15100166595 /* NetworkService+Captcha.swift */,
+				30A38A7A23AACA0200166595 /* NetworkService+User.swift */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -1929,6 +1941,7 @@
 				CC45F35A239A8902004BC74C /* BaseRouter.swift in Sources */,
 				843FC38E2164CA35000CFEA9 /* SignUpInteractor.swift in Sources */,
 				8440466F21C7F84000CDEB3F /* ManageFoldersConfigurator.swift in Sources */,
+				30A38A8123AACDEA00166595 /* UserResult.swift in Sources */,
 				8430429C217D9D3F00DB5787 /* InboxSideMenuPresenter.swift in Sources */,
 				84405BB821AD0CCB0048D8AC /* ComposeInteractor.swift in Sources */,
 				3043740E239EE21700F759D0 /* AppError.swift in Sources */,
@@ -2058,6 +2071,7 @@
 				8441559321BF8AA90053C39F /* AttachmentView.swift in Sources */,
 				8443D22021CBDD64002AD54B /* SettingsRouter.swift in Sources */,
 				84FF7E37219D662300E3E56A /* UserMyself.swift in Sources */,
+				30A38A7E23AACA0B00166595 /* RouterUser.swift in Sources */,
 				CC45F36E239A8902004BC74C /* NetworkService+Auth.swift in Sources */,
 				84525F17219568D900CA732E /* SearchConfigurator.swift in Sources */,
 				8437103D217465A700DAE4BA /* ForgotPasswordNavigationController.swift in Sources */,
@@ -2065,6 +2079,7 @@
 				CC45F36C239A8902004BC74C /* NetworkConfiguration.swift in Sources */,
 				84312188218AF7F20014560D /* ViewInboxEmailConfigurator.swift in Sources */,
 				8443D21E21CBDD58002AD54B /* SettingsConfigurator.swift in Sources */,
+				30A38A7B23AACA0200166595 /* NetworkService+User.swift in Sources */,
 				8433FF5A2162181E00C57DC8 /* Constants.swift in Sources */,
 				8441098E2177238A00F0BE18 /* ViewInboxEmailViewController.swift in Sources */,
 				84FF7E3C219DB71500E3E56A /* ContactTableViewCell.swift in Sources */,
@@ -2106,6 +2121,7 @@
 				CC45F35B239A8902004BC74C /* BaseRouter.swift in Sources */,
 				CC6908AF2384500100956E9B /* SignUpInteractor.swift in Sources */,
 				CC6908B02384500100956E9B /* ManageFoldersConfigurator.swift in Sources */,
+				30A38A8223AACDEA00166595 /* UserResult.swift in Sources */,
 				CC6908B12384500100956E9B /* InboxSideMenuPresenter.swift in Sources */,
 				CC6908B22384500100956E9B /* ComposeInteractor.swift in Sources */,
 				3043740F239EE21700F759D0 /* AppError.swift in Sources */,
@@ -2235,6 +2251,7 @@
 				CC6909272384500100956E9B /* AttachmentView.swift in Sources */,
 				CC6909282384500100956E9B /* SettingsRouter.swift in Sources */,
 				CC6909292384500100956E9B /* UserMyself.swift in Sources */,
+				30A38A7F23AACA0B00166595 /* RouterUser.swift in Sources */,
 				CC45F36F239A8902004BC74C /* NetworkService+Auth.swift in Sources */,
 				CC69092A2384500100956E9B /* SearchConfigurator.swift in Sources */,
 				CC69092B2384500100956E9B /* ForgotPasswordNavigationController.swift in Sources */,
@@ -2242,6 +2259,7 @@
 				CC45F36D239A8902004BC74C /* NetworkConfiguration.swift in Sources */,
 				CC69092D2384500100956E9B /* ViewInboxEmailConfigurator.swift in Sources */,
 				CC69092E2384500100956E9B /* SettingsConfigurator.swift in Sources */,
+				30A38A7C23AACA0200166595 /* NetworkService+User.swift in Sources */,
 				CC69092F2384500100956E9B /* Constants.swift in Sources */,
 				CC6909302384500100956E9B /* ViewInboxEmailViewController.swift in Sources */,
 				CC6909312384500100956E9B /* ContactTableViewCell.swift in Sources */,
