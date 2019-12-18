@@ -141,53 +141,6 @@ class RestAPIService {
         }
     }
     
-    //MARK: - Captcha
-    
-    func getCaptcha(completionHandler: @escaping (APIResult<Any>) -> Void) {
-        
-        let url = EndPoint.baseUrl.rawValue + EndPoint.captcha.rawValue
-        
-        print("getCaptcha url:", url)
-        
-        AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil) .responseJSON { (response: AFDataResponse<Any>) in
-
-            print("getCaptcha responce:", response)
-
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
-    }
-    
-    func verifyCaptcha(key: String, value: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
-        
-        let url = EndPoint.baseUrl.rawValue + EndPoint.verifyCaptcha.rawValue
-        
-        print("verifyCaptcha url:", url)
-        
-        let parameters: Parameters = [
-            JSONKey.captchaValue.rawValue: value,
-            JSONKey.captchaKey.rawValue: key
-        ]
-        
-        print("verifyCaptcha parameters:", parameters)
-        
-        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil) .responseJSON { (response: AFDataResponse<Any>) in
-
-            print("verifyCaptcha responce:", response)
-
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
-    }
-    
     //MARK: - User
     
     func userMyself(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {

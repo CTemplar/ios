@@ -14,6 +14,10 @@
 		3043741223A65F3F00F759D0 /* RouterToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3043741023A65F3F00F759D0 /* RouterToken.swift */; };
 		3043741423A65F4900F759D0 /* NetworkService+Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3043741323A65F4900F759D0 /* NetworkService+Token.swift */; };
 		3043741523A65F4900F759D0 /* NetworkService+Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3043741323A65F4900F759D0 /* NetworkService+Token.swift */; };
+		30A38A7523AAC15100166595 /* NetworkService+Captcha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A38A7423AAC15100166595 /* NetworkService+Captcha.swift */; };
+		30A38A7623AAC15100166595 /* NetworkService+Captcha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A38A7423AAC15100166595 /* NetworkService+Captcha.swift */; };
+		30A38A7823AAC21500166595 /* RouterCaptcha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A38A7723AAC21500166595 /* RouterCaptcha.swift */; };
+		30A38A7923AAC21500166595 /* RouterCaptcha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A38A7723AAC21500166595 /* RouterCaptcha.swift */; };
 		57B79C1A71ED0BEF31596F4F /* Pods_Ctemplar_dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823BDF0CC853F6FBA6C0178A /* Pods_Ctemplar_dev.framework */; };
 		8402497F21916D3200CDDB0F /* FoldersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8402497E21916D3200CDDB0F /* FoldersList.swift */; };
 		8402498121916D8E00CDDB0F /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8402498021916D8E00CDDB0F /* Folder.swift */; };
@@ -488,6 +492,8 @@
 		3043740D239EE21700F759D0 /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		3043741023A65F3F00F759D0 /* RouterToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterToken.swift; sourceTree = "<group>"; };
 		3043741323A65F4900F759D0 /* NetworkService+Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetworkService+Token.swift"; sourceTree = "<group>"; };
+		30A38A7423AAC15100166595 /* NetworkService+Captcha.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetworkService+Captcha.swift"; sourceTree = "<group>"; };
+		30A38A7723AAC21500166595 /* RouterCaptcha.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterCaptcha.swift; sourceTree = "<group>"; };
 		3BB2B698FA7BB789966AC020 /* Pods-Ctemplar.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.dev.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev.debug.xcconfig"; sourceTree = "<group>"; };
 		52368E1F0F7C651A4939DBDB /* Pods-Ctemplar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ctemplar/Pods-Ctemplar.release.xcconfig"; sourceTree = "<group>"; };
 		6F29E0F3EE79297696014C0E /* Pods-Ctemplar.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.dev.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev.release.xcconfig"; sourceTree = "<group>"; };
@@ -1519,6 +1525,7 @@
 				CC45F349239A8902004BC74C /* BaseRouter.swift */,
 				CC45F34A239A8902004BC74C /* RouterAuth.swift */,
 				3043741023A65F3F00F759D0 /* RouterToken.swift */,
+				30A38A7723AAC21500166595 /* RouterCaptcha.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -1545,6 +1552,7 @@
 			children = (
 				CC45F356239A8902004BC74C /* NetworkService+Auth.swift */,
 				3043741323A65F4900F759D0 /* NetworkService+Token.swift */,
+				30A38A7423AAC15100166595 /* NetworkService+Captcha.swift */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -1962,6 +1970,7 @@
 				8402498121916D8E00CDDB0F /* Folder.swift in Sources */,
 				8402498821919FEB00CDDB0F /* MoveToConfigurator.swift in Sources */,
 				8403BDE021A3EEB100EE8DCD /* AddContactScreenViewController.swift in Sources */,
+				30A38A7823AAC21500166595 /* RouterCaptcha.swift in Sources */,
 				8433FF1C216201A300C57DC8 /* MainViewController.swift in Sources */,
 				8440467121C7F84C00CDEB3F /* ManageFoldersRouter.swift in Sources */,
 				84525F1F2195690A00CA732E /* SearchDataSource.swift in Sources */,
@@ -1998,6 +2007,7 @@
 				3043741423A65F4900F759D0 /* NetworkService+Token.swift in Sources */,
 				843E973B2163701B00147CBE /* LoginInteractor.swift in Sources */,
 				846EDE9221A284C200EE9A88 /* ChildMessageExpandedTableViewCell.swift in Sources */,
+				30A38A7523AAC15100166595 /* NetworkService+Captcha.swift in Sources */,
 				8431218E218AF82C0014560D /* ViewInboxEmailInteractor.swift in Sources */,
 				8433DFBA219ECD7000375609 /* ChildMessageTableViewCell.swift in Sources */,
 				843E97392163700900147CBE /* LoginRouter.swift in Sources */,
@@ -2137,6 +2147,7 @@
 				CC6908D52384500100956E9B /* Folder.swift in Sources */,
 				CC6908D62384500100956E9B /* MoveToConfigurator.swift in Sources */,
 				CC6908D72384500100956E9B /* AddContactScreenViewController.swift in Sources */,
+				30A38A7923AAC21500166595 /* RouterCaptcha.swift in Sources */,
 				CC6908D82384500100956E9B /* MainViewController.swift in Sources */,
 				CC6908D92384500100956E9B /* ManageFoldersRouter.swift in Sources */,
 				CC6908DA2384500100956E9B /* SearchDataSource.swift in Sources */,
@@ -2173,6 +2184,7 @@
 				3043741523A65F4900F759D0 /* NetworkService+Token.swift in Sources */,
 				CC6908F82384500100956E9B /* LoginInteractor.swift in Sources */,
 				CC6908F92384500100956E9B /* ChildMessageExpandedTableViewCell.swift in Sources */,
+				30A38A7623AAC15100166595 /* NetworkService+Captcha.swift in Sources */,
 				CC6908FA2384500100956E9B /* ViewInboxEmailInteractor.swift in Sources */,
 				CC6908FB2384500100956E9B /* ChildMessageTableViewCell.swift in Sources */,
 				CC6908FC2384500100956E9B /* LoginRouter.swift in Sources */,

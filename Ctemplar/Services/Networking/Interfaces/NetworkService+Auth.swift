@@ -1,5 +1,5 @@
 //
-//  NetworkService+Places.swift
+//  NetworkService+Auth.swift
 //  Ctemplar
 //
 //  Created by Roman K. on 12/6/19.

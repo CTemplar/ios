@@ -89,50 +89,22 @@ class SignUpInteractor: HashingService {
     }
     
     func getCaptcha() {
-        
-        apiService?.getCaptcha() {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                //print("getCaptcha success value:", value)
-                
-                if let captcha = value as? Captcha {
-                    print("key:", captcha.captchaKey as Any)
-                    print("url:", captcha.captchaImageUrl as Any)
-                    
-                    //self.verifyCaptcha(key: captcha.captchaKey!, value: "xxxxx")
-                    
-                    if let url = captcha.captchaImageUrl {
-                        self.downloadCaptchaImage(with: url)
-                    }
-                    
-                     self.presenter?.viewController?.captchaKey = captcha.captchaKey
-                }
-                
-                break
-            case .failure(let error):
-                print("getCaptcha error:", error)               
+        AppManager.shared.networkService.getCaptcha {
+            guard let captcha = try? $0.get() else {
+                return
             }
+            self.downloadCaptchaImage(with: captcha.image)
+            self.presenter?.viewController?.captchaKey = captcha.key
         }
     }
     
     func verifyCaptcha(key: String, value: String) {
-        
-        apiService?.verifyCaptcha(key: key, value: value) {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                print("verifyCaptcha success value:", value)
-                let emailVC = self.viewController?.orderedViewControllers[2] as! SignUpPageEmailViewController
-                
-                emailVC.captchaView.isHidden = true
-                
-                break
-            case .failure(let error):
-                print("verifyCaptcha error:", error)
+        AppManager.shared.networkService.verifyCaptcha(with: value, key: key) {
+            guard let result = try? $0.get(), result.status else {
+                return
             }
+            let emailVC = self.viewController?.orderedViewControllers[2] as! SignUpPageEmailViewController
+            emailVC.captchaView.isHidden = true
         }
     }
     
