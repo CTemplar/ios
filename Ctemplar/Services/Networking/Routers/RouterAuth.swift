@@ -45,7 +45,7 @@ enum RouterAuth: BaseRouter {
     
     var usesToken: Bool {
         switch self {
-        case .resetPassword, .changePassword:
+        case .changePassword:
             return true
         default:
             return false

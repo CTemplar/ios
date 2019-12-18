@@ -8,8 +8,9 @@
 
 import Foundation
 import AlertHelperKit
+import PKHUD
 
-class ForgotPasswordInteractor {
+class ForgotPasswordInteractor: HashingService {
     
     var viewController  : UIViewController?
     var presenter       : ForgotPasswordPresenter?
@@ -32,21 +33,46 @@ class ForgotPasswordInteractor {
     }
     
     func resetPassword(userName: String, password: String, resetPasswordCode: String, recoveryEmail: String) {
-        
-        apiService?.resetPassword(resetPasswordCode: resetPasswordCode, userName: userName, password: password, recoveryEmail: recoveryEmail) {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                print("resetPassword success value:", value)
-                
-                //self.keychainService?.saveUserCredentials(userName: userName, password: password)
-                self.presenter?.router?.backToLoginViewController()                
-                
-            case .failure(let error):
-                print("resetPassword error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Reset Password Error", message: error.localizedDescription, button: "closeButton".localized())
+        HUD.show(.labeledProgress(title: "hashing".localized(), subtitle: ""))
+        generateCryptoInfo(for: userName, password: password) {
+            guard let info = try? $0.get() else {
+                HUD.hide()
+                AlertHelperKit().showAlert(self.viewController!,
+                                           title: "SignUp Error".localized(),
+                                           message: "Something went wrong".localized(),
+                                           button: "closeButton".localized())
+                return
             }
+            let details = ResetPasswordDetails(resetPasswordCode: resetPasswordCode,
+                                               userName: userName,
+                                               password: info.hashedPassword,
+                                               privateKey: info.userPgpKey.privateKey,
+                                               publicKey: info.userPgpKey.publicKey,
+                                               fingerprint: info.userPgpKey.fingerprint,
+                                               recoveryEmail: recoveryEmail)
+            HUD.show(.labeledProgress(title: "updateToken".localized(), subtitle: ""))
+            AppManager.shared.networkService.resetPassword(with: details) { result in
+                if (try? result.get()) != nil {
+                    self.keychainService?.saveUserCredentials(userName: userName, password: password)
+                }
+                self.handleNetwork(responce: result)
+                HUD.hide()
+            }
+        }
+    }
+    
+    func handleNetwork(responce: AppResult<TokenResult>) {
+        switch responce {
+        case .success(let value):
+            keychainService?.saveToken(token: value.token)
+            NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil, userInfo: nil)
+            //self.sendAPNDeviceToken()
+            self.presenter?.router?.showInboxScreen()
+        case .failure(let error):
+            AlertHelperKit().showAlert(self.viewController!,
+                                       title: "Reset Password Error".localized(),
+                                       message: error.localizedDescription,
+                                       button: "closeButton".localized())
         }
     }
 }

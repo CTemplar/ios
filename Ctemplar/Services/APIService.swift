@@ -136,54 +136,6 @@ class APIService: HashingService {
     
     //MARK: - authentication
     
-    func resetPassword(resetPasswordCode: String, userName: String, password: String, recoveryEmail: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
-        
-        print("userName:", userName)
-        print("password:", password)
-        print("resetPasswordCode:", resetPasswordCode)
-        print("recoveryEmail:", recoveryEmail)
-        
-        pgpService?.generateUserPGPKey(for: userName, password: password) {
-            guard let userPGPKey = try? $0.get() else {
-                return
-            }
-            
-            HUD.show(.progress)
-            
-            self.getHashedPassword(userName: userName, password: password) { (complete) in
-                if complete {
-                    
-                    self.restAPIService?.resetPassword(resetPasswordCode: resetPasswordCode, userName: userName, password: self.hashedPassword!, privateKey: userPGPKey.privateKey, publicKey: userPGPKey.publicKey, fingerprint: userPGPKey.fingerprint, recoveryEmail: recoveryEmail) {(result) in
-                        
-                        switch(result) {
-                            
-                        case .success(let value):
-                            
-                            if let response = value as? Dictionary<String, Any> {
-                                print("resetPassword response", response)
-                                if let message = self.parseServerResponse(response:response) {
-                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
-                                    completionHandler(APIResult.failure(error))
-                                } else {
-                                    completionHandler(APIResult.success("success"))
-                                }
-                            } else {
-                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
-                                completionHandler(APIResult.failure(error))
-                            }
-                            
-                        case .failure(let error):
-                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
-                            completionHandler(APIResult.failure(error))
-                        }
-                        
-                        HUD.hide()
-                    }
-                }
-            }
-        }
-    }
-    
     func logOut(completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         self.hashedPassword = nil

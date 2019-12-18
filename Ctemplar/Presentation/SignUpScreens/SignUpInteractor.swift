@@ -44,11 +44,11 @@ class SignUpInteractor: HashingService {
                                         paymentType: "")
             HUD.show(.labeledProgress(title: "updateToken".localized(), subtitle: ""))
             AppManager.shared.networkService.signUp(with: details) { result in
-                self.keychainService?.saveUserCredentials(userName: userName, password: password)
-                DispatchQueue.main.async {
-                    self.handleNetwork(responce: result)
-                    HUD.hide()
+                if (try? result.get()) != nil {
+                    self.keychainService?.saveUserCredentials(userName: userName, password: password)
                 }
+                self.handleNetwork(responce: result)
+                HUD.hide()
             }
         }
     }
