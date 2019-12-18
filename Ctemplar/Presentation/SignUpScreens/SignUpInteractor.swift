@@ -10,7 +10,7 @@ import Foundation
 import AlertHelperKit
 import PKHUD
 
-class SignUpInteractor {
+class SignUpInteractor: HashingService {
     
     var viewController  : SignUpPageViewController?
     var presenter       : SignUpPresenter?
@@ -18,37 +18,69 @@ class SignUpInteractor {
     var keychainService : KeychainService?
     
     func signUpUser(userName: String, password: String, recoveryEmail: String, captchaKey: String, captchaValue: String) {
-    
-        apiService?.signUpUser(userName: userName, password: password, recoveryEmail: recoveryEmail, captchaKey: captchaKey, captchaValue: captchaValue) {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                print("signup success value:", value)
-                
+        HUD.show(.labeledProgress(title: "hashing".localized(), subtitle: ""))
+        generateCryptoInfo(for: userName, password: password) {
+            guard let info = try? $0.get() else {
+                HUD.hide()
+                AlertHelperKit().showAlert(self.viewController!,
+                                           title: "SignUp Error".localized(),
+                                           message: "Something went wrong".localized(),
+                                           button: "closeButton".localized())
+                return
+            }
+            let details = SignupDetails(userName: userName,
+                                        password: info.hashedPassword,
+                                        privateKey: info.userPgpKey.privateKey,
+                                        publicKey: info.userPgpKey.publicKey,
+                                        fingerprint: info.userPgpKey.fingerprint,
+                                        captchaKey: captchaKey,
+                                        captchaValue: captchaValue,
+                                        recoveryEmail: recoveryEmail,
+                                        fromAddress: "",
+                                        redeemCode: "",
+                                        stripeToken: "",
+                                        memory: "",
+                                        emailCount: "",
+                                        paymentType: "")
+            HUD.show(.labeledProgress(title: "updateToken".localized(), subtitle: ""))
+            AppManager.shared.networkService.signUp(with: details) { result in
                 self.keychainService?.saveUserCredentials(userName: userName, password: password)
-                
-                self.viewController?.router?.showInboxScreen()
-                self.sendAPNDeviceToken()
-                NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil, userInfo: nil)
-                
-            case .failure(let error):
-                print("signup error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "SignUp Error", message: error.localizedDescription, button: "closeButton".localized())
+                DispatchQueue.main.async {
+                    self.handleNetwork(responce: result)
+                    HUD.hide()
+                }
             }
         }
     }
     
+    func handleNetwork(responce: AppResult<TokenResult>) {
+        switch responce {
+        case .success(let value):
+            keychainService?.saveToken(token: value.token)
+            NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil, userInfo: nil)
+            self.sendAPNDeviceToken()
+            self.viewController?.router?.showInboxScreen()
+        case .failure(let error):
+            AlertHelperKit().showAlert(self.viewController!,
+                                       title: "SignUp Error".localized(),
+                                       message: error.localizedDescription,
+                                       button: "closeButton".localized())
+        }
+    }
+    
     func checkUser(userName: String, childViewController: UIViewController) {
-        
-        apiService?.checkUser(userName: userName) {(result) in
-            
-            switch(result) {
-                
+        AppManager.shared.networkService.checkUser(name: userName) { result in
+            switch result {
             case .success(let value):
                 print("checkUser success value:", value)
-                self.presenter?.showNextViewController(childViewController: childViewController)
-                
+                if !value.exists {
+                    self.presenter?.showNextViewController(childViewController: childViewController)
+                } else {
+                    AlertHelperKit().showAlert(self.viewController!,
+                                               title: "User Name Error".localized(),
+                                               message: "This name already exists!".localized(),
+                                               button: "closeButton".localized())
+                }
             case .failure(let error):
                 print("checkUser error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "User Name Error", message: error.localizedDescription, button: "closeButton".localized())
