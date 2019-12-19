@@ -1,5 +1,5 @@
 //
-//  RouterAuth.swift
+//  RouterToken.swift
 //  Ctemplar
 //
 //  Created by Roman K. on 12/6/19.
@@ -10,8 +10,8 @@ import Alamofire
 import Foundation
 
 enum RouterToken: BaseRouter {
-    case verifyToken(token: String)
-    case refreshToken(token: String)
+    case verify(value: String)
+    case refresh(value: String)
 
     static let group = "/auth/"
 
@@ -24,10 +24,10 @@ enum RouterToken: BaseRouter {
 
     var path: String {
         switch self {
-        case .verifyToken:
-            return RouterAuth.group + "verify/"
-        case .refreshToken:
-            return RouterAuth.group + "refresh/"
+        case .verify:
+            return RouterToken.group + "verify/"
+        case .refresh:
+            return RouterToken.group + "refresh/"
         }
     }
     
@@ -37,10 +37,10 @@ enum RouterToken: BaseRouter {
 
     func encoded(_ request: URLRequest) throws -> URLRequest {
         switch self {
-        case .verifyToken(let token):
-            return try JSONEncoding.default.encode(request, with: [JSONKey.token.rawValue: token])
-        case .refreshToken(let token):
-            return try JSONEncoding.default.encode(request, with: [JSONKey.token.rawValue: token])
+        case .verify(let value):
+            return try JSONEncoding.default.encode(request, with: [JSONKey.token.rawValue: value])
+        case .refresh(let value):
+            return try JSONEncoding.default.encode(request, with: [JSONKey.token.rawValue: value])
         }
     }
 }

@@ -111,40 +111,6 @@ enum JSONKey: String {
 
 class RestAPIService {
     
-    func resetPassword(resetPasswordCode: String, userName: String, password: String, privateKey: String, publicKey: String, fingerprint: String, recoveryEmail: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
-        
-        let headers: HTTPHeaders = [
-            "Accept": "application/json"
-        ]
-        
-        let parameters: Parameters = [
-            JSONKey.resetPasswordCode.rawValue: resetPasswordCode,
-            JSONKey.userName.rawValue: userName,
-            JSONKey.password.rawValue: password,
-            JSONKey.privateKey.rawValue: privateKey,
-            JSONKey.publicKey.rawValue: publicKey,
-            JSONKey.fingerprint.rawValue: fingerprint,
-            JSONKey.recoveryEmail.rawValue : recoveryEmail            
-        ]
-        
-        let url = EndPoint.baseUrl.rawValue + EndPoint.recoveryCode.rawValue
-        
-        print("resetPassword parameters:", parameters)
-        print("resetPassword url:", url)
-        
-        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: AFDataResponse<Any>) in
-
-            print("resetPassword responce:", response)
-
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
-    }
-    
     //FAILURE: Error Domain=kCFErrorDomainCFNetwork Code=303 "(null)" UserInfo={NSErrorPeerAddressKey=<CFData 0x604000292b10 [0x1137a5c80]>{length = 16, capacity = 16, bytes = 0x100201bb681237e50000000000000000}, _kCFStreamErrorCodeKey=-2201, _kCFStreamErrorDomainKey=4}
     
     func refreshToken(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -166,53 +132,6 @@ class RestAPIService {
             
             print("refreshToken responce:", response)
             
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
-    }
-    
-    //MARK: - Captcha
-    
-    func getCaptcha(completionHandler: @escaping (APIResult<Any>) -> Void) {
-        
-        let url = EndPoint.baseUrl.rawValue + EndPoint.captcha.rawValue
-        
-        print("getCaptcha url:", url)
-        
-        AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil) .responseJSON { (response: AFDataResponse<Any>) in
-
-            print("getCaptcha responce:", response)
-
-            switch(response.result) {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
-            }
-        }
-    }
-    
-    func verifyCaptcha(key: String, value: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
-        
-        let url = EndPoint.baseUrl.rawValue + EndPoint.verifyCaptcha.rawValue
-        
-        print("verifyCaptcha url:", url)
-        
-        let parameters: Parameters = [
-            JSONKey.captchaValue.rawValue: value,
-            JSONKey.captchaKey.rawValue: key
-        ]
-        
-        print("verifyCaptcha parameters:", parameters)
-        
-        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil) .responseJSON { (response: AFDataResponse<Any>) in
-
-            print("verifyCaptcha responce:", response)
-
             switch(response.result) {
             case .success(let value):
                 completionHandler(APIResult.success(value))

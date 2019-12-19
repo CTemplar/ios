@@ -107,6 +107,12 @@ class InboxViewController: UIViewController {
                 
         if self.runOnce == true { //optimization for showing table already 
             self.presenter?.interactor?.userMyself()
+            AppManager.shared.networkService.getMyself {
+                guard let value = try? $0.get() else {
+                    return
+                }
+                AppManager.shared.myselfService = MyselfService(myself: value)
+            }
             self.runOnce = false
         }
         

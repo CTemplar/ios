@@ -26,3 +26,17 @@ struct CheckUserResult: Codable {
 struct TokenResult: Codable {
     let token: String
 }
+
+struct CaptchaResult: Codable {
+    let image: String
+    let key: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case image = "captcha_image"
+        case key = "captcha_key"
+    }
+}
+
+struct StatusResult: Codable {
+    let status: Bool
+}

@@ -1,5 +1,5 @@
 //
-//  NetworkService+Places.swift
+//  NetworkService+Token.swift
 //  Ctemplar
 //
 //  Created by Roman K. on 12/6/19.
@@ -16,12 +16,12 @@ protocol TokenService {
 
 extension NetworkService: TokenService {
     func verifyToken(token: String, completionHandler: @escaping Completion<Void>) {
-        perform(request: RouterToken.verifyToken(token: token),
+        perform(request: RouterToken.verify(value: token),
                 completionHandler: completionHandler)
     }
     
     func refreshToken(token: String, completionHandler: @escaping Completion<TokenResult>) {
-        perform(request: RouterToken.refreshToken(token: token),
+        perform(request: RouterToken.refresh(value: token),
                 completionHandler: completionHandler)
     }
 }

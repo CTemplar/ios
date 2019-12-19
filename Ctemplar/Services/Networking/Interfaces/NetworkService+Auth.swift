@@ -1,5 +1,5 @@
 //
-//  NetworkService+Places.swift
+//  NetworkService+Auth.swift
 //  Ctemplar
 //
 //  Created by Roman K. on 12/6/19.
@@ -59,7 +59,7 @@ protocol AuthService {
                 completionHandler: @escaping Completion<TokenResult>)
     func recoveryPasswordCode(for userName: String, recoveryEmail: String, completionHandler: @escaping Completion<Void>)
     func resetPassword(with details: ResetPasswordDetails,
-                       completionHandler: @escaping Completion<Void>)
+                       completionHandler: @escaping Completion<TokenResult>)
     func changePassword(with details: ChangePasswordDetails,
                         completionHandler: @escaping Completion<Void>)
 }
@@ -85,7 +85,7 @@ extension NetworkService: AuthService {
                 completionHandler: completionHandler)
     }
     func resetPassword(with details: ResetPasswordDetails,
-                       completionHandler: @escaping Completion<Void>) {
+                       completionHandler: @escaping Completion<TokenResult>) {
         perform(request: RouterAuth.resetPassword(details: details),
                 completionHandler: completionHandler)
     }
