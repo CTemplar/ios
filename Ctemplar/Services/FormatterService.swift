@@ -220,7 +220,10 @@ class FormatterService
         return dateString
     }
     
-    func formatCreationDate(date: Date, short: Bool) -> String {
+    func formatCreationDate(date: Date, short: Bool, useFullDate: Bool = false) -> String {
+        guard !useFullDate else {
+            return formatDateToStringMonthDateAndTime(date: date)
+        }
         
         var dateString : String = ""
         

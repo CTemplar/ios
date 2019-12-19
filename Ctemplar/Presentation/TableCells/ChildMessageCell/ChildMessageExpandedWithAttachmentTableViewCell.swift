@@ -78,7 +78,7 @@ class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell, UICollec
         
         if let createdDate = message.createdAt {            
             if  let date = parentController?.formatterService!.formatStringToDate(date: createdDate) {
-                dateLabel.text = parentController?.formatterService!.formatCreationDate(date: date, short: false)
+                dateLabel.text = parentController?.formatterService!.formatCreationDate(date: date, short: false, useFullDate: true)
             }
         }
         
