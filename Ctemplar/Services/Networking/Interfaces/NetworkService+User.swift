@@ -15,7 +15,17 @@ protocol UserService {
 
 extension NetworkService: UserService {
     func getMyself(with completionHandler: @escaping Completion<MyselfResult>) {
+        let pageCompletion: Completion<ContentPageResult<[MyselfResult]>> = { pageResult in
+            let mapped = pageResult.flatMap({ (result: ContentPageResult<[MyselfResult]>) -> AppResult<MyselfResult> in
+                if let value = result.results.first {
+                    return .success(value)
+                } else {
+                    return .failure(AppError.downcastingFailed)
+                }
+            })
+            completionHandler(mapped)
+        }
         perform(request: RouterUser.myself,
-                completionHandler: completionHandler)
+                completionHandler: pageCompletion)
     }
 }

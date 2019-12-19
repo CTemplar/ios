@@ -15,6 +15,7 @@ class AppManager {
     let keychainService = KeychainService()
     let formatterService = FormatterService()
     let restAPIService = RestAPIService()
+    var myselfService: MyselfService?
     
     //let mainViewController: MainViewController = UIApplication.shared.keyWindow?.rootViewController as! MainViewController
     
