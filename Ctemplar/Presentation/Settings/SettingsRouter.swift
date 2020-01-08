@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SideMenu
+import AlertHelperKit
 
 class SettingsRouter {
     
@@ -33,6 +34,9 @@ class SettingsRouter {
     }
     
     func showChangePasswordViewController() {
+        //https://ctemplar.atlassian.net/browse/IAD-461
+        AlertHelperKit().showAlert(viewController!, title: nil, message: "featureIsComing".localized(), button: "closeButton".localized())
+        return
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_ChangePasswordStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_ChangePasswordViewControllerID) as! ChangePasswordViewController

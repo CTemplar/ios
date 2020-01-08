@@ -402,3 +402,5 @@
 
 "attachmentEncryptionWasEnabled" = "Attachment Encryption Was Enabled";
 "attachmentEncryptionWasDisabled" = "Attachment Encryption Was Disabled";
+
+"featureIsComing" = "Feature coming soon. Please, login on desktop to update your password.";
