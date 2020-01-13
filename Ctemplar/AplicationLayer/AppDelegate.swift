@@ -88,6 +88,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
         print("APNs device token: \(deviceTokenString)")
         self.saveAPNDeviceToken(deviceTokenString)
+        if !AppManager.shared.keychainService.getUserName().isEmpty {
+            AppManager.shared.networkService.send(deviceToken: deviceTokenString) { _ in }
+        }
     }
        
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
