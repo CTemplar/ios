@@ -14,6 +14,7 @@
 		3043741223A65F3F00F759D0 /* RouterToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3043741023A65F3F00F759D0 /* RouterToken.swift */; };
 		3043741423A65F4900F759D0 /* NetworkService+Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3043741323A65F4900F759D0 /* NetworkService+Token.swift */; };
 		3043741523A65F4900F759D0 /* NetworkService+Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3043741323A65F4900F759D0 /* NetworkService+Token.swift */; };
+		304AB99423D708F1007D00CC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 304AB99323D708F1007D00CC /* GoogleService-Info.plist */; };
 		3077F30423CCBEAD002DF36D /* NetworkService+PushNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3077F30323CCBEAD002DF36D /* NetworkService+PushNotifications.swift */; };
 		3077F30523CCBEAD002DF36D /* NetworkService+PushNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3077F30323CCBEAD002DF36D /* NetworkService+PushNotifications.swift */; };
 		3077F30723CCBEB5002DF36D /* RouterPushNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3077F30623CCBEB4002DF36D /* RouterPushNotifications.swift */; };
@@ -508,6 +509,7 @@
 		3043740D239EE21700F759D0 /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		3043741023A65F3F00F759D0 /* RouterToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterToken.swift; sourceTree = "<group>"; };
 		3043741323A65F4900F759D0 /* NetworkService+Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetworkService+Token.swift"; sourceTree = "<group>"; };
+		304AB99323D708F1007D00CC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3077F30323CCBEAD002DF36D /* NetworkService+PushNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetworkService+PushNotifications.swift"; sourceTree = "<group>"; };
 		3077F30623CCBEB4002DF36D /* RouterPushNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterPushNotifications.swift; sourceTree = "<group>"; };
 		30A38A7423AAC15100166595 /* NetworkService+Captcha.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetworkService+Captcha.swift"; sourceTree = "<group>"; };
@@ -790,6 +792,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		304AB99223D708F1007D00CC /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				304AB99323D708F1007D00CC /* GoogleService-Info.plist */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
 		6B9D5D9669D4ECC4B64F115A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1527,6 +1537,7 @@
 		CC3C27EC23844AAB005828BF /* Plist */ = {
 			isa = PBXGroup;
 			children = (
+				304AB99223D708F1007D00CC /* Firebase */,
 				CC3C27EE23844AAB005828BF /* Ctemplar-Info.plist */,
 				CC690994238450BB00956E9B /* Ctemplar.dev-Info.plist */,
 			);
@@ -1653,7 +1664,17 @@
 					8433FF15216201A300C57DC8 = {
 						CreatedOnToolsVersion = 10.0;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
+					};
+					CC6908A52384500100956E9B = {
+						SystemCapabilities = {
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -1714,6 +1735,7 @@
 				845E64402170A4A2008612FE /* Compose.storyboard in Resources */,
 				846EDE9421A284D400EE9A88 /* ChildMessageExpandedTableViewCell.xib in Resources */,
 				8433FF24216201A500C57DC8 /* LaunchScreen.storyboard in Resources */,
+				304AB99423D708F1007D00CC /* GoogleService-Info.plist in Resources */,
 				8436AD532180663800D16008 /* Localizable.strings in Resources */,
 				84510A4521F5C3EA00912328 /* ForgotPassword-iPad.storyboard in Resources */,
 				8440141A21D377D600FC450C /* PrivacyAndTerms.storyboard in Resources */,

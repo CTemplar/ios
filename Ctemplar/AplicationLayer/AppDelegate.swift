@@ -10,6 +10,7 @@ import UIKit
 import Fabric
 import Crashlytics
 import UserNotifications
+import Firebase
 
 typealias AppResult<T> = Result<T, Error>
 typealias Completion<T> = (AppResult<T>) -> Void
@@ -28,13 +29,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("currentDeviceLanguageCode:", Locale.current.languageCode as Any)
         print("currentAppLanguage:", Locale.preferredLanguages[0])
         
+        #if !DEVELOPMENT
+        setupFirebase()
         self.registerForPushNotifications()
+        #endif
         
         application.applicationIconBadgeNumber = 0
         
         Fabric.with([Crashlytics.self])
         
         return true
+    }
+    
+    private func setupFirebase() {
+        guard let filePath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist"),
+            let options = FirebaseOptions(contentsOfFile: filePath)
+            else { return }
+        FirebaseApp.configure(options: options)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
