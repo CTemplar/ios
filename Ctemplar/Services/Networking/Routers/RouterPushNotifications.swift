@@ -27,7 +27,7 @@ enum RouterPushNotifications: BaseRouter {
     var path: String {
         switch self {
         default:
-            return RouterToken.group + "app-token/"
+            return RouterPushNotifications.group + "app-token/"
         }
     }
     
