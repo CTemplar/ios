@@ -83,21 +83,7 @@ class LoginInteractor: HashingService {
     }
     
     func sendAPNDeviceToken() {
-        
-        if let deviceToken = keychainService?.getAPNDeviceToken() {
-            if deviceToken.count > 0 {
-                apiService?.createAppToken(deviceToken: deviceToken) {(result) in
-                
-                    switch(result) {
-                    
-                    case .success(let value):
-                        print("sendAPNDeviceToken success value:", value)
-                    
-                    case .failure(let error):
-                        print("sendAPNDeviceToken error:", error)
-                    }
-                }
-            }
-        }
+        guard let deviceToken = keychainService?.getAPNDeviceToken(), !deviceToken.isEmpty  else { return }
+        AppManager.shared.networkService.send(deviceToken: deviceToken) { _ in }
     }
 }
