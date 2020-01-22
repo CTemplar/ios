@@ -29,10 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("currentDeviceLanguageCode:", Locale.current.languageCode as Any)
         print("currentAppLanguage:", Locale.preferredLanguages[0])
         
-        #if !DEVELOPMENT
         setupFirebase()
         self.registerForPushNotifications()
-        #endif
         
         application.applicationIconBadgeNumber = 0
         
