@@ -12,12 +12,40 @@ import PKHUD
 
 class LoginPresenter {
     
-    var viewController  : LoginViewController?
-    var interactor      : LoginInteractor?
+    var viewController   : LoginViewController?
+    var interactor       : LoginInteractor?
+    var formatterService : FormatterService?
+    
+    func hintLabel(show: Bool, sender: UITextField) {
+        
+        if sender == viewController?.userNameTextField {
+            if show {
+                viewController!.emailHintLabel.isHidden = false
+                viewController?.userNameTextField.placeholder = ""
+            } else {
+                if !(formatterService?.validateNameLench(enteredName: (viewController?.userNameTextField.text)!))! {
+                    viewController?.userNameTextField.placeholder = "usernamePlaceholder".localized()
+                    viewController!.emailHintLabel.isHidden = true
+                }
+            }
+        }
+        
+        if sender == viewController?.passwordTextField {            
+            if show {
+                viewController!.passwordHintLabel.isHidden = false
+                viewController?.passwordTextField.placeholder = ""
+            } else {
+                if !(formatterService?.validateNameLench(enteredName: (viewController?.passwordTextField.text)!))! {
+                    viewController?.passwordTextField.placeholder = "passwordPlaceholder".localized()
+                    viewController!.passwordHintLabel.isHidden = true
+                }
+            }
+        }
+    }
     
     func setupEmailTextFieldsAndHintLabel(userEmail: String) {
         
-        if (interactor?.validateNameLench(enteredName: userEmail))! {
+        if (formatterService?.validateNameLench(enteredName: userEmail))! {
             viewController!.emailHintLabel.isHidden = false
         } else {
             viewController!.emailHintLabel.isHidden = true
@@ -26,54 +54,33 @@ class LoginPresenter {
     
     func setupPasswordTextFieldsAndHintLabel(password: String) {
         
-        if (interactor?.validatePasswordLench(enteredPassword: password))! {
+        if (formatterService?.validatePasswordLench(enteredPassword: password))! {
             viewController!.passwordHintLabel.isHidden = false
         } else {
             viewController!.passwordHintLabel.isHidden = true
         }
-        
-        //viewController!.passwordTextField.isSecureTextEntry = true
     }
     
-    func buttonLoginPressed(userEmail: String, password: String) {
+    func buttonLoginPressed(userEmail: String, password: String, twoFAcode: String) {
         
-        if (interactor?.validateEmailFormat(enteredEmail: userEmail))! {
-            if (interactor?.validatePasswordFormat(enteredPassword: password))! {
-                authenticateUser(userEmail: userEmail, password: password)
-            } else {
-                AlertHelperKit().showAlert(self.viewController!, title: "", message: "Entered Password is not valid", button: "Close")
+        if (formatterService?.validateNameFormat(enteredName: userEmail))! {
+            if (formatterService?.validatePasswordFormat(enteredPassword: password))! {
+                authenticateUser(userEmail: userEmail, password: password, twoFAcode: twoFAcode)
+            } else {               
+                AlertHelperKit().showAlert(self.viewController!, title: "", message: "invalidEnteredPassword".localized(), button: "closeButton".localized())
             }
         } else {
-            AlertHelperKit().showAlert(self.viewController!, title: "", message: "Entered Email is not valid", button: "Close")
+            AlertHelperKit().showAlert(self.viewController!, title: "", message: "invalidEnteredEmail".localized(), button: "closeButton".localized())
         }
     }
     
-    func authenticateUser(userEmail: String, password: String) {
+    func buttonCreateAccountPressed() {
         
-        HUD.show(.progress)
+        viewController?.router?.showSignUpViewController()
+    }
+    
+    func authenticateUser(userEmail: String, password: String, twoFAcode: String) {
         
-        interactor?.authenticateUser(userName: userEmail, password: password) {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                print("success:", value) //token value
-                
-                if let response = value as? Dictionary<String, Any> {
-                    for dictionary in response {
-                        //print("dictionary key:", dictionary.key, "/ value:", dictionary.value)
-                        
-                        if dictionary.key == "token" {
-                            print("token:", dictionary.value)
-                        }
-                    }
-                }
-                
-            case .failure(let error):
-                print("error:", error.localizedDescription)
-            }
-            
-            HUD.hide()
-        }
+        interactor?.authenticateUser(userName: userEmail, password: password, twoFAcode: twoFAcode)
     }
 }

@@ -1,0 +1,406 @@
+/* 
+  Localizable.strings
+  Ctemplar
+
+  Created by Tatarinov Dmitry on 24.10.2018.
+  Copyright © 2018 ComeOnSoftware. All rights reserved.
+*/
+
+"invalidEnteredPassword" = "Entered Password is not valid";
+"invalidEnteredEmail" = "Entered Email is not valid";
+
+"logoutTitle" = "Log out";
+"logotuMessage" = "Are you sure you want to log out?";
+
+"closeButton" = "Close";
+"cancelButton" = "Cancel";
+"logotButton" = "Log out";
+"saveButton" = "Save";
+"applyButton" = "Apply";
+"nextButton" = "Next";
+"resetPasswordButton" = "Reset password";
+"confirmButton" = "Confirm";
+"addButton" = "Add";
+"changeButton" = "Change";
+
+"deleteRow" = "Delete";
+
+"termsAndConditionsFullText" = "Please check this box if you agree to abide by our Terms and Conditions";
+"termsAndConditionsPhrase" = "Terms and Conditions";
+
+//login
+
+"emailPlaceholder" = "Email";
+"passwordPlaceholder" = "Password";
+"usernamePlaceholder" = "Username";
+
+"twoFAPlaceholder" = "2FA code";
+
+"forgotPassword" = "Forgot Password?";
+"login" = "Log in";
+"createAccount" = "Create account";
+
+//Sign Up
+
+"usernameAndDomain" = "Username and domain";
+"ctemplarEmailAddress" = "This will be your new Ctemplar email address.";
+
+"choosePasswordPlaceholder" = "Choose password";
+"confirmPasswordPlaceholder" = "Confirm password";
+"recoveryEmailPlaceholder" = "Recovery email";
+
+"passwordMust" = "Your password must be at least 10 characters. Password can contain only latin letters and cannot contain symbols such «-+!@. etc.";
+
+"thisIsUsed" = "This is used to recover your account if you get locked out or forget your password";
+
+"usernameResetHint" = "Ctemplar username to reset";
+"usernameResetPlaceholder" = "Ctemplar username to reset";
+"resetCodePlaceholder" = "Reset Code";
+"newPasswordPlaceholder" = "New password";
+"confirmNewPasswordPlaceholder" = "Confirm new password";
+
+"resetLink" = "We will send reset link to your recovery email";
+
+"confirmResetPassword" = "Confirm Reset Password";
+
+"areYouSure" = "Are you sure you want to reset your password?";
+
+"supportDescription" = "Your encryption key is connected to your password. Because of this you will not be able to decrypt old messages, attachments and contacts if you reset your password. \nIf you have further questions please email support@ctemplar.com.";
+
+"supportDescriptionAttr" = "you will not be able to decrypt old messages, attachments and contacts";
+
+"resetPassword" = "Reset Password";
+
+"weHave" = "We have sent a reset code to your\nrecovery email to reset your password. ";
+"recoveryEmailAttr" = "recovery email ";
+
+"enterIt" = "Enter it below for confirmation.";
+
+"forgetPass" = "Don’t forget this password, it can’t be restored.";
+
+// inbox
+
+"selected" = "Selected";
+"emails" = "emails";
+"email" = "email";
+"emailsx" = "emails";
+"unread" = "unread";
+
+"filtered" = "Filtered";
+"noInboxMessage" = "You have no Inbox messages";
+"noFilteredMessage" = "There are no messages match the filter";
+
+"starredFilter" = "Starred";
+"ureadFilter" = "Unread";
+"attachmentsFilter" = "With attachments";
+
+"decrypting" = "decrypting...";
+
+"compose" = "Compose";
+"inProgress" = "In progress";
+
+//Filter
+
+"filters" = "Filters";
+"clearAll" = "Clear all";
+"selectedFilters" = "Select filters";
+
+//more actions buttons
+
+"markAsSpam" = "Mark as spam";
+"markAsRead" = "Mark as read";
+"markAsUnread" = "Mark as unread";
+"moveToTrash" = "Delete";
+"moveToArchive" = "Move to archive";
+"moveToInbox" = "Move to inbox";
+"emptyFolder" = "Empty folder";
+"cancel" = "Cancel";
+
+//undo actions buttons
+
+"undoMarkAsSpam" = "Undo mark as spam";
+"undoMarkAsRead" = "Undo mark as read";
+"undoMarkAsUnread" = "Undo mark as unread";
+"undoMoveToTrash" = "Undo delete";
+"undoMoveToArchive" = "Undo move to archive";
+"undoMoveToInbox" = "Undo move to inbox";
+
+//compose message titles
+
+"newMessage" = "New Message";
+"reply" = "Reply";
+"relpyAll" = "Reply All";
+"forward" = "Forward";
+
+//delete
+
+"deleteTitle" = "Warning!";
+"deleteMessage" = "Do you want to delete this message(s) permanently?";
+"deleteButton" = "Delete";
+
+//contacts
+
+"contacts" = "Contacts";
+"selectAll" = "Select all";
+"deselectAll" = "Deselect all";
+
+"deleteContact" = "Do you want to delete this contact(s) permanently?";
+
+"addContact" = "Add Contact";
+"editContact" = "Edit Contact";
+
+"noContacts" = "You have no contacts yet";
+
+"addContacts" = "Add contacts";
+
+"contactName" = "Contact Name";
+"emailAddress" = "Email Address";
+"phoneNumber" = "Phone Number";
+"address" = "Address";
+"note" = "Note";
+
+//view message
+
+"viewDetails" = "View details";
+"hideDetails" = "Hide details";
+
+//compose
+
+"emailFromPrefix" = "From: ";
+"emailToPrefix" = "To: ";
+"ccToPrefix" = "Cc: ";
+"bccToPrefix" = "Bcc: ";
+"composeEmail" = "Compose email";
+
+"replyOn" = "On: ";
+"wroteBy" = "wrote:";
+"atTime" = " at ";
+"forwardLine" = "---------- Forwarded message ----------";
+"date" = "Date: ";
+"subject" = "Subject: ";
+
+"infoTitle" = "Information:";
+"mailSendMessage" = "Mail was sent successfully";
+
+"saveDraft" = "Save draft";
+"discardDraft" = "Discard draft";
+
+"fromAnotherApp" = "From another app";
+"photoLibrary" = "Photo library";
+"camera" = "Camera";
+
+"forwardSubject" = "Fwd: ";
+"replySubject" = "Re: ";
+
+// Search Screen
+
+"noResults" = "No results found";
+
+"search" = "Search";
+
+//Side Menu Cells
+
+"inbox"            = "Inbox";
+"draft"            = "Draft";
+"sent"             = "Sent";
+"outbox"           = "Outbox";
+"starred"          = "Starred";
+"archive"          = "Archive";
+"spam"             = "Spam";
+"trash"            = "Trash";
+"allMails"         = "All Mails";
+"contacts"         = "Contacts";
+"settings"         = "Settings";
+"help"             = "Get Support";
+"logout"           = "Logout";
+"manageFolders"    = "Manage Folders";
+
+"showMoreFolders" = "Show More Folders";
+"hideFolders" = "Hide Folders";
+
+//Scheduler Screen
+
+"selfDestructTimer" = "Self-destructing Timer";
+"deadManTimer"      = "Dead Man's Timer";
+"delayedDelivery"   = "Delayed delivery";
+
+"selfDestructTimerText" = "This email deletes itself from the receivers account after";
+"deadManTimerText"      = "If you do not log into your account after the set time email will be sent after ";
+"delayedDeliveryText"   = "Email will be send automatically at the set time";
+
+"setPassword" = "Set Password";
+"encryptForNon" = "Encrypt for non-Ctemplar Mail Users";
+"messagePassword" = "Message Password";
+"expirationTime" = "Expiration Time";
+"days" = "Days";
+"hours" = "Hours";
+"expireTimeAlert" = "Expiry time should be minimum 1 hour and maximum 5 days.";
+
+"passwordsMustMatch" = "Passwords must match";
+"passwordHint" = "Password Hint";
+
+"encryptedMessagesTo" = "Encrypted messages to non-Ctemplar recipients will expire in 28 days unless a shorter expiration time is set.";
+
+//Manage Folders
+
+"deleteFolderTitle" = "Delete folder?";
+"deleteFolder" = "Are you sure you want to delete folder?";
+
+"addFolder" = "Add folder";
+
+"selectfolder" = "Select folder";
+
+"moveTo" = "Move to...";
+
+"noFolders" = "You have no folders";
+
+"addFolderLimit" = " Upgrade to premium";
+
+"folderName" = "Folder name";
+"chooseColor" = "Choose color";
+
+"deleteFolder" = "Delete folder";
+
+//Settings
+
+"enableRecoveryEmail" = "Enable recovery email";
+"typeRecoveryEmail" = "Type your recovery email";
+"recoveryEmail" = "Recovery email";
+"password" = "Password";
+"language" = "Language";
+"notifications" = "Notifications";
+"savingContact" = "Saving contacts";
+"whiteBlackList" = "Whitelist / Blacklist";
+"security" = "Security";
+
+"manageFolders" = "Manage folders";
+"manageSecurity" = "Encryption";
+
+"signature" = "Signature";
+"mobileSignature" = "Mobile signature";
+"default" = "Default";
+
+"aboutUs" = "About us";
+"privacyPolicy" = "Privacy Policy";
+"terms" = "Terms & Conditions";
+
+"recoveryEmailUpdatedMessage" = "Recovery Email was updated successfully";
+"passwordUpdatedMessage" = "Password was updated successfully";
+"userSignature" = "Signature was updated successfully";
+
+"currentPasswordPlaceholder" = "Current password";
+"newPasswordPlaceholder" = "New password";
+
+"saveContacts" = "Automatically save contacts";
+
+"selectDefaulfAddress" = "Select default address";
+"addresses" = "Addresses";
+
+"сontactsEncryption" = "Contacts encryption";
+"attachmentEncryption" = "Attachment encryption";
+
+"enableSignature" = "Enable signature";
+"typeSignature" = "Type your signature";
+
+"privacyPolicy" = "Privacy Policy";
+"termsAndConditions" = "Terms & Conditions";
+
+"appVersion" = "AppVersion ";
+
+"takeBack" = "Take Back Your Liberty";
+"withEncrypted" = "with Encrypted Communication";
+"sendUnbreakable" = "Send unbreakable emails and protect your key professional and personal details trough next-gen encryption. End-to-end PKI encription keeps your private information safe from governments, corporations and hackers-for-hire.";
+"goToWebVersion" = "GO TO WEB VERSION";
+
+"settings" = "Settings";
+
+"generalSettings"           = "General settings";
+"foldersSettings"           = "Folders";
+"securitySettings"          = "Security";
+"mailSettings"              = "Mail";
+"aboutSettings"             = "About";
+"storageSettings"           = "Storage";
+"logoutSettings"            = "Log out";
+
+//White/Black List
+
+"whiteListText" = "Messages from contacts in the whitelist always go to Inbox folder. Marking a message as not spam adds the address to the Whitelist";
+"blackListText" = "Messages from contacts in the blacklist always go to Spam folder. Marking a message as spam adds the address to the Blacklist";
+
+"whiteListAttributedText" = "Inbox folder";
+"blackListAttributedText" = "Spam folder";
+
+"addWhiteList" = "Add whitelist contact";
+"addBlackList" = "Add blacklist contact";
+
+"deleteContactFromBlackList" = "Do you want to delete this contact from Blacklist?";
+"deleteContactFromWhiteList" = "Do you want to delete this contact from Whitelist?";
+
+"whitelistBlacklist" = "Whitelist / Blacklist";
+"whitelist" = "WHITELIST";
+"blacklist" = "BLACKLIST";
+
+"addContactW" = "Add Contact";
+"name" = "Name";
+"email" = "Email";
+
+//language
+
+"languageTitle" = "Language";
+
+//formatter
+
+"toPrefix" = "To: ";
+"ccPrefix" = "CC: ";
+"bccPrefix" = "BCC: ";
+"fromPrefix" = "From: ";
+
+"yesterday" = "Yesterday";
+
+"deleteIn" = "Delete In ";
+"daySuffix" = "d ";
+
+"deadMans" = "Dead mans ";
+"delayTime" = "Delay time ";
+
+"manyDays" = " days ";
+"manyDaysx" = " days ";
+"oneDay" = " day ";
+"manyHours" = " hours";
+"manyHoursx" = " hours";
+"oneHour" = " hour";
+
+//upgrade Plan Screen
+
+"upgrade" = "Upgrade to Prime";
+"1user" = "1 User";
+"5storage" = "from 5 Gb Storage";
+"3email" = "from 3 E-mail Addresses";
+"1custom" = "from 1 Custom Domain";
+"1000messages" = "1000 Messages per Day";
+"200folders" = "200 Folders";
+"deadMan" = "Dead Mans Timer";
+"andMore" = "and more features";
+"upgradeBig" = "UPGRADE TO PRIME";
+"notNow" = "Not now";
+
+"supportEmailString" = "If you have further questions please email support@ctemplar.com.";
+
+"updateMessages" = "Update Messages";
+"hashing" = "Hashing...";
+"updateToken" = "Update Token";
+
+"encryptButton" = "Encrypt";
+"decryptButton" = "Decrypt";
+"encryptContactsTitle" = "By enabling contacts encryption";
+"encryptContacts" = "All your contacts will be encrypted. Contacts suggestion on compose email won't be available anymore. Contacts can't be searched anymore";
+"decryptContactsTitle" = "Are you sure you want to disable contacts encryption?";
+"decryptContacts" = "Note: Disabling contacts encryption can take several minutes depending upon the number of contacts you have. After you confirm, all your contacts will be decrypted inside your browser and saved on server.";
+"decryptingContacts" = "Decrypting...";
+"allContactsWasEncrypted" = "All Contacts was encrypted";
+"allContactsWasDecrypted" = "All Contacts was decrypted";
+
+"attachmentEncryptionWasEnabled" = "Attachment Encryption Was Enabled";
+"attachmentEncryptionWasDisabled" = "Attachment Encryption Was Disabled";
+
+"featureIsComing" = "Feature coming soon. Please, login on desktop to update your password.";

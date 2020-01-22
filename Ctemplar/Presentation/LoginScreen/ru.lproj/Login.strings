@@ -1,0 +1,27 @@
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "8Ip-E3-IDL"; */
+"8Ip-E3-IDL.text" = "Пароль";
+
+/* Class = "UIButton"; normalTitle = "Log in"; ObjectID = "8NZ-9j-UFf"; */
+"8NZ-9j-UFf.normalTitle" = "Войти";
+
+/* Class = "UILabel"; text = "@ctemplar.com"; ObjectID = "9Rd-cE-sql"; */
+"9Rd-cE-sql.text" = "@ctemplar.com";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "S0R-MO-LOs"; */
+"S0R-MO-LOs.placeholder" = "Пароль";
+
+/* Class = "UILabel"; text = "CTEMPLAR"; ObjectID = "UOi-eI-hZP"; */
+"UOi-eI-hZP.text" = "CTEMPLAR";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "Zyc-Qa-hyt"; */
+"Zyc-Qa-hyt.text" = "Имя";
+
+/* Class = "UIButton"; normalTitle = "Create account"; ObjectID = "kpe-KA-Ad9"; */
+"kpe-KA-Ad9.normalTitle" = "Создать почту";
+
+/* Class = "UIButton"; normalTitle = "Forgot Password?"; ObjectID = "o29-J4-Ta5"; */
+"o29-J4-Ta5.normalTitle" = "Забыли Пароль?";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "t1J-Gy-OcL"; */
+"t1J-Gy-OcL.placeholder" = "Имя";

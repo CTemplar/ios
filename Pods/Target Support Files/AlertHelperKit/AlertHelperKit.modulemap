@@ -1,6 +1,0 @@
-framework module AlertHelperKit {
-  umbrella header "AlertHelperKit-umbrella.h"
-
-  export *
-  module * { export * }
-}

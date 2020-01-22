@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--security-->
+        <scene sceneID="eda-2b-dzh">
+            <objects>
+                <viewController storyboardIdentifier="SecurityViewController" id="gp5-fX-yN4" customClass="SecurityViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="keO-TF-Wpg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5pl-Da-pIn">
+                                <rect key="frame" x="0.0" y="20" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="сontactsEncryption" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="H1f-Pm-CYv" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="9" width="278" height="32"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                        <color key="textColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VS9-aa-Fgf">
+                                        <rect key="frame" x="310" y="10" width="51" height="31"/>
+                                        <color key="onTintColor" red="0.20392156859999999" green="0.59607843140000005" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="switchStateDidChange:" destination="gp5-fX-yN4" eventType="valueChanged" id="Kwb-zU-cox"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="VS9-aa-Fgf" firstAttribute="leading" secondItem="H1f-Pm-CYv" secondAttribute="trailing" constant="16" id="1Ro-ft-upp"/>
+                                    <constraint firstAttribute="trailing" secondItem="VS9-aa-Fgf" secondAttribute="trailing" constant="16" id="4hO-YB-WG7"/>
+                                    <constraint firstItem="H1f-Pm-CYv" firstAttribute="leading" secondItem="5pl-Da-pIn" secondAttribute="leading" constant="16" id="Sb5-1k-3Q5"/>
+                                    <constraint firstAttribute="height" constant="50" id="Su1-9N-5xB"/>
+                                    <constraint firstItem="VS9-aa-Fgf" firstAttribute="top" secondItem="5pl-Da-pIn" secondAttribute="top" constant="10" id="bWH-ke-Uv7"/>
+                                    <constraint firstAttribute="bottom" secondItem="H1f-Pm-CYv" secondAttribute="bottom" constant="9" id="hjE-Gq-iXi"/>
+                                    <constraint firstItem="H1f-Pm-CYv" firstAttribute="top" secondItem="5pl-Da-pIn" secondAttribute="top" constant="9" id="xwo-66-wNl"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i0f-Ih-xFV">
+                                <rect key="frame" x="0.0" y="70" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="attachmentEncryption" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="vcm-qj-Ecf" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="9" width="278" height="32"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                        <color key="textColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WOd-U7-eIl">
+                                        <rect key="frame" x="310" y="10" width="51" height="31"/>
+                                        <color key="onTintColor" red="0.20392156859999999" green="0.59607843140000005" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="switchStateDidChange:" destination="gp5-fX-yN4" eventType="valueChanged" id="sAe-zG-wiw"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="vcm-qj-Ecf" secondAttribute="bottom" constant="9" id="BUE-On-0Rw"/>
+                                    <constraint firstItem="vcm-qj-Ecf" firstAttribute="top" secondItem="i0f-Ih-xFV" secondAttribute="top" constant="9" id="Dqa-d5-iNS"/>
+                                    <constraint firstItem="WOd-U7-eIl" firstAttribute="top" secondItem="i0f-Ih-xFV" secondAttribute="top" constant="10" id="Imj-b3-0Kp"/>
+                                    <constraint firstAttribute="trailing" secondItem="WOd-U7-eIl" secondAttribute="trailing" constant="16" id="PfL-8Z-a2k"/>
+                                    <constraint firstItem="vcm-qj-Ecf" firstAttribute="leading" secondItem="i0f-Ih-xFV" secondAttribute="leading" constant="16" id="Uay-1E-4gk"/>
+                                    <constraint firstItem="WOd-U7-eIl" firstAttribute="leading" secondItem="vcm-qj-Ecf" secondAttribute="trailing" constant="16" id="hNU-SX-y6d"/>
+                                    <constraint firstAttribute="height" constant="50" id="n0v-Sd-bjL"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="i0f-Ih-xFV" firstAttribute="leading" secondItem="JZ7-Cu-sWi" secondAttribute="leading" id="KjP-69-uYh"/>
+                            <constraint firstItem="5pl-Da-pIn" firstAttribute="trailing" secondItem="JZ7-Cu-sWi" secondAttribute="trailing" id="PVA-x2-8ex"/>
+                            <constraint firstItem="i0f-Ih-xFV" firstAttribute="trailing" secondItem="JZ7-Cu-sWi" secondAttribute="trailing" id="ncN-z0-NFS"/>
+                            <constraint firstItem="i0f-Ih-xFV" firstAttribute="top" secondItem="5pl-Da-pIn" secondAttribute="bottom" id="pcQ-Ps-wfq"/>
+                            <constraint firstItem="5pl-Da-pIn" firstAttribute="leading" secondItem="JZ7-Cu-sWi" secondAttribute="leading" id="sgb-hP-yJK"/>
+                            <constraint firstItem="5pl-Da-pIn" firstAttribute="top" secondItem="JZ7-Cu-sWi" secondAttribute="top" id="uO5-qC-pcp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="JZ7-Cu-sWi"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="security" id="LZy-dX-w1t" customClass="UILocalizedUINavigationItem" customModule="Ctemplar" customModuleProvider="target">
+                        <barButtonItem key="leftBarButtonItem" image="BackArrowDark" id="NOQ-Gn-2gg">
+                            <color key="tintColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="gp5-fX-yN4" id="bbw-hW-cb7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="attachmentEncryptionSwitcher" destination="WOd-U7-eIl" id="awf-58-2D7"/>
+                        <outlet property="contactsEncryptionSwitcher" destination="VS9-aa-Fgf" id="0P4-dS-ory"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J5V-w9-Ha6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7.5" y="266.79999999999995"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="BackArrowDark" width="11.5" height="20"/>
+    </resources>
+</document>

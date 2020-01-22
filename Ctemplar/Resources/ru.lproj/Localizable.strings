@@ -1,0 +1,404 @@
+/* 
+  Localizable.strings
+  Ctemplar
+
+  Created by Tatarinov Dmitry on 24.10.2018.
+  Copyright © 2018 ComeOnSoftware. All rights reserved.
+*/
+
+"invalidEnteredPassword" = "Неправильный формат пароля";
+"invalidEnteredEmail" = "Неправильный формат Email";
+
+"logoutTitle" = "Выход";
+"logotuMessage" = "Вы уверены, что хотите выйти?";
+
+"closeButton" = "Закрыть";
+"cancelButton" = "Отмена";
+"logotButton" = "Выйти";
+"saveButton" = "Сохранить";
+"applyButton" = "Применить";
+"nextButton" = "Дальше";
+"resetPasswordButton" = "Сбросить пароль";
+"confirmButton" = "Подтвердить";
+"addButton" = "Добавить";
+"changeButton" = "Изменить";
+
+"deleteRow" = "Удалить";
+
+"termsAndConditionsFullText" = "Пожалуста, поставьте галочку если вы согласны с нашими Условиями и Положениями";
+"termsAndConditionsPhrase" = "Условия и Положения";
+
+//login
+
+"emailPlaceholder" = "Почта";
+"passwordPlaceholder" = "Пароль";
+"usernamePlaceholder" = "Имя";
+
+"twoFAPlaceholder" = "2FA код";
+
+"forgotPassword" = "Забыли пароль?";
+"login" = "Войти";
+"createAccount" = "Создать аккаунт";
+
+//Sign Up
+
+"usernameAndDomain" = "Имя и домен";
+"ctemplarEmailAddress" = "Это будет ваш новый Ctemplar почтовый адрес.";
+
+"choosePasswordPlaceholder" = "Выберите пароль";
+"confirmPasswordPlaceholder" = "Подтвердите пароль";
+"recoveryEmailPlaceholder" = "Запасная почта";
+
+"passwordMust" = "Ваш пароль должен быть длинне 10 символов. Пароль может содержать только латинские буквы и не может содержать символы типа «-+!@. etc.";
+
+"thisIsUsed" = "Необходимо для восстановления вашей учетной записи, если вы заблокированы или забыли пароль";
+
+"usernameResetHint" = "Ctemplar имя";
+"usernameResetPlaceholder" = "Ctemplar имя для сброса";
+"resetCodePlaceholder" = "Код для сброса";
+"newPasswordPlaceholder" = "Новый пароль";
+"confirmNewPasswordPlaceholder" = "Подтвердите новый пароль";
+
+"resetLink" = "Мы отправим вам линк для восстановления почты";
+
+"confirmResetPassword" = "Подтвердить Сброс Пароля";
+
+"areYouSure" = "Вы уверены, что хотите сбросить пароль?";
+
+"supportDescription" = "Ваш ключ шифрования связан с вашим паролем. Из-за этого вы не сможете расшифровать старые сообщения, вложения и контакты, если сбросите свой пароль. \ nЕсли у вас есть дополнительные вопросы, пишите на support@ctemplar.com.";
+
+"supportDescriptionAttr" = "вы не сможете расшифровать старые сообщения, вложения и контакты";
+
+"resetPassword" = "Сброс Пароля";
+
+"weHave" = "Мы отправили код сброса на вашу запасную почту.";
+"recoveryEmailAttr" = "запасную почту";
+
+"enterIt" = "Введите его ниже для подтверждения.";
+
+"forgetPass" = "Не забудьте этот пароль, его невозможно будет восстановить.";
+
+// inbox
+
+"selected" = "Выбрано";
+"emails" = "писем";
+"email" = "письмо";
+"emailsx" = "письма";
+"unread" = "непрочитано";
+
+"filtered" = "Отфильтровано";
+"noInboxMessage" = "У вас нет входящих сообщений";
+"noFilteredMessage" = "Нет писем по такому фильтру";
+
+"starredFilter" = "Избранные";
+"ureadFilter" = "Непрочтенные";
+"attachmentsFilter" = "С вложениями";
+
+"decrypting" = "дешифруется...";
+
+"compose" = "Написать";
+
+//Filter
+
+"filters" = "Фильтры";
+"clearAll" = "Очистить";
+"selectedFilters" = "Выбрать фильтры";
+
+//more actions buttons
+
+"markAsSpam" = "Пометить как спам";
+"markAsRead" = "Пометить как прочтенное";
+"markAsUnread" = "Пометить как не прочтенное";
+"moveToTrash" = "Удалить";
+"moveToArchive" = "Переместить в архив";
+"moveToInbox" = "Переместить в inbox";
+"emptyFolder" = "Очистить папку";
+"cancel" = "Отмена";
+
+//undo actions buttons
+
+"undoMarkAsSpam" = "Отменить: пометить как спам";
+"undoMarkAsRead" = "Отменить: пометить как прочтенное";
+"undoMarkAsUnread" = "Отменить: пометить как не прочтенное";
+"undoMoveToTrash" = "Отменить удаление";
+"undoMoveToArchive" = "Отменить перенос в архив";
+"undoMoveToInbox" = "Отменить перенос в inbox";
+
+//compose message titles
+
+"newMessage" = "Новое Сообщение";
+"reply" = "Ответить";
+"relpyAll" = "Ответить Всем";
+"forward" = "Переслать";
+
+//delete
+
+"deleteTitle" = "Предупреждение!";
+"deleteMessage" = "Вы действительно хотите удалить это(и) сообщение(я) окончательно?";
+"deleteButton" = "Удалить";
+
+//contacts
+
+"contacts" = "Контакты";
+"selectAll" = "Выбрать все";
+"deselectAll" = "Отменить выбор всех";
+
+"deleteContact" = "Вы действительно хотите удалить контакт(ы) окончательно?";
+
+"addContact" = "Добавить";
+"editContact" = "Редактировать";
+
+"noContacts" = "У вас пока нет контактов";
+
+"addContacts" = "Добавить контакты";
+
+"contactName" = "Имя контакта";
+"emailAddress" = "Email адрес";
+"phoneNumber" = "Телефонный номер";
+"address" = "Адрес";
+"note" = "Примечание";
+
+//view message
+
+"viewDetails" = "Показать детали";
+"hideDetails" = "Скрыть детали";
+
+//compose
+
+"emailFromPrefix" = "От: ";
+"emailToPrefix" = "Кому: ";
+"ccToPrefix" = "Копия: ";
+"bccToPrefix" = "Скрытая: ";
+"composeEmail" = "Написать письмо";
+
+"replyOn" = "На: ";
+"wroteBy" = "писал:";
+"atTime" = " от ";
+"forwardLine" = "---------- Пересылаемое сообщение ----------";
+"date" = "Дата: ";
+"subject" = "Тема: ";
+
+"infoTitle" = "Информация:";
+"mailSendMessage" = "Письмо успешно отправлено";
+
+"saveDraft" = "Сохранить черновик";
+"discardDraft" = "Удалить черновик";
+
+"fromAnotherApp" = "Импортировать из...";
+"photoLibrary" = "Медиатека";
+"camera" = "Камера";
+
+"forwardSubject" = "Fwd: ";
+"replySubject" = "Re: ";
+"inProgress" = "In progress";
+
+// Search Screen
+
+"noResults" = "Нет результатов";
+
+"search" = "Поиск";
+
+//Side Menu Cells
+
+"inbox"            = "Входящие";
+"draft"            = "Черновик";
+"sent"             = "Отправленные";
+"outbox"           = "Исходящие";
+"starred"          = "Избранные";
+"archive"          = "Архив";
+"spam"             = "Спам";
+"trash"            = "Корзина";
+"allMails"         = "Все письма";
+"contacts"         = "Контакты";
+"settings"         = "Настройки";
+"help"             = "Получить Помощь";
+"logout"           = "Выйти";
+"manageFolders"    = "Управление Папками";
+
+"showMoreFolders" = "Показать больше папок";
+"hideFolders" = "Скрыть папки";
+
+//Scheduler Screen
+
+"selfDestructTimer" = "Время самоудаления";
+"deadManTimer"      = "Таймер мертвеца";
+"delayedDelivery"   = "Отправка с задержкой";
+
+"selfDestructTimerText" = "Это письмо удаляется из учетной записи получателя после";
+"deadManTimerText"      = "Если вы не войдете в свою учетную запись после установленного времени, электронное письмо будет отправлено после ";
+"delayedDeliveryText"   = "Электронная почта будет отправлена автоматически в установленное время";
+
+"setPassword" = "Установить пароль";
+"encryptForNon" = "Шифровать для не-Ctemplar пользователей";
+"messagePassword" = "Пароль сообщения";
+"expirationTime" = "Время жизни";
+"days" = "Дни";
+"hours" = "Часы";
+"expireTimeAlert" = "Expiry time should be minimum 1 hour and maximum 5 days.";
+
+"passwordsMustMatch" = "Пароли должны совпадать";
+"passwordHint" = "Подсказка для пароля";
+
+"encryptedMessagesTo" = "Срок действия зашифрованных сообщений для не-Ctemplar пользователей, истекает через 28 дней, если не установлен более короткий срок.";
+
+//Manage Folders
+
+"deleteFolderTitle" = "Удалить папку?";
+"deleteFolder" = "Вы уверены, что хотите удалить папку?";
+
+"addFolder" = "Добавить папку";
+
+"selectfolder" = "Выбрать папку";
+
+"moveTo" = "Перенести в...";
+
+"noFolders" = "У вас еще нет папок";
+
+"addFolderLimit" = " Купите премиум аккаунт";
+
+"folderName" = "Имя папки";
+"chooseColor" = "Выбрать цвет";
+
+"deleteFolder" = "Удалить папку";
+
+//Settings
+
+"enableRecoveryEmail" = "Включить почту для восстановленя";
+"typeRecoveryEmail" = "Введите почту для восстановления";
+"recoveryEmail" = "Почта для восстановления";
+"password" = "Пароль";
+"language" = "Язык";
+"notifications" = "Уведомления";
+"savingContact" = "Сохранять контакты";
+"whiteBlackList" = "Белый список / Черный список";
+"security" = "Безопасность";
+
+"manageFolders" = "Управление папками";
+"manageSecurity" = "Шифрование";
+
+"signature" = "Подпись";
+"mobileSignature" = "Мобильная подпись";
+"default" = "Основная";
+
+"aboutUs" = "О нас";
+"privacyPolicy" = "Политика конфиденциальности";
+"terms" = "Условия использования";
+
+"recoveryEmailUpdatedMessage" = "Запасной почтовый ящик был успешно обновлен";
+"passwordUpdatedMessage" = "Пароль был успешно обновлен";
+"userSignature" = "Подпись была успешно обновлена";
+
+"currentPasswordPlaceholder" = "Текущий пароль";
+"newPasswordPlaceholder" = "Новый пароль";
+
+"saveContacts" = "Автоматически сохранять контакты";
+
+"selectDefaulfAddress" = "Выберите почтовый ящик по умолчанию";
+"addresses" = "Адреса";
+
+"contactsEncryption" = "Шифровать контакты";
+"attachmentEncryption" = "Шифровать вложения";
+
+"enableSignature" = "Включить подпись";
+"typeSignature" = "Введите вашу подпись";
+
+"privacyPolicy" = "Политика конфиденциальности";
+"termsAndConditions" = "Условия использования";
+
+"appVersion" = "Версия приложения ";
+
+"takeBack" = "Верни свою свободу";
+"withEncrypted" = "с Зашифрованной Связью";
+"sendUnbreakable" = "Отправляйте электронные письма и защищайте свои ключевые профессиональные и личные данные с помощью шифрования следующего поколения. Комплексная система PKI защищает вашу личную информацию от правительств, корпораций и нанятых хакеров.";
+"goToWebVersion" = "ПЕРЕЙТИ НА САЙТ";
+
+"settings" = "Настройки";
+
+"generalSettings"           = "Основные настройки";
+"foldersSettings"           = "Папки";
+"securitySettings"          = "Безопасность";
+"mailSettings"              = "Почта";
+"aboutSettings"             = "О приложении";
+"storageSettings"           = "Хранилище";
+"logoutSettings"            = "Выйти";
+
+//White/Black List
+
+"whiteListText" = "Сообщения от контактов в белом списке всегда отправляются в папку Входящие. Пометка сообщения как не-спам добавляет адрес в белый список";
+"blackListText" = "Сообщения от контактов из черного списка всегда отправляются в папку Спам. Пометка сообщения как спам добавляет адрес в черный список";
+
+"whiteListAttributedText" = "папку Входящие";
+"blackListAttributedText" = "папку Спам";
+
+"addWhiteList" = "Добавить контакт в белый список";
+"addBlackList" = "Добавить контакт в черный список";
+
+"deleteContactFromBlackList" = "Вы хотите удалить контакт из Белого списка?";
+"deleteContactFromWhiteList" = "Вы хотите удалить контакт из Черного списка?";
+
+"whitelistBlacklist" = "Черный / Белый списки";
+"whitelist" = "БЕЛЫЙ СПИСОК";
+"blacklist" = "ЧЕРНЫЙ СПИСОК";
+
+"addContactW" = "Добавить Контакт";
+"name" = "Имя";
+"email" = "Почта";
+
+//language
+
+"languageTitle" = "Язык";
+
+//formatter
+
+"toPrefix" = "Кому: ";
+"ccPrefix" = "Копия: ";
+"bccPrefix" = "Скрытая копия: ";
+"fromPrefix" = "От: ";
+
+"yesterday" = "Вчера";
+
+"deleteIn" = "Удалить в ";
+"daySuffix" = "д ";
+
+"deadMans" = "Удалится ";
+"delayTime" = "Отправка ";
+
+"manyDays" = " дней ";
+"manyDaysx" = " дня ";
+"oneDay" = " день ";
+"manyHours" = " часов";
+"manyHoursx" = " часа";
+"oneHour" = " час";
+
+//upgrade Plan Screen
+
+"upgrade" = "Улучшить до Пермиум";
+"1user" = "1 Пользователь";
+"5storage" = "от 5 Gb Хранилище";
+"3email" = "от 3 E-mail Адресов";
+"1custom" = "от 1 Пользовательского Домена";
+"1000messages" = "1000 Сообщений в День";
+"200folders" = "200 Папок";
+"deadMan" = "Таймер Мертвеца";
+"andMore" = "и другие функции";
+"upgradeBig" = "УЛУЧШИТЬ ДО ПРЕМИУМ";
+"notNow" = "Не сейчас";
+
+"supportEmailString" = "Если у вас есть вопросы, пожалуйста, напишите на support@ctemplar.com.";
+
+"updateMessages" = "Обновление Сообщений";
+"hashing" = "Хеширование...";
+"updateToken" = "Обновление Токена";
+
+"encryptButton" = "Encrypt";
+"decryptButton" = "Decrypt";
+"encryptContactsTitle" = "By enabling contacts encryption";
+"encryptContacts" = "All your contacts will be encrypted. Contacts suggestion on compose email won't be available anymore. Contacts can't be searched anymore";
+"decryptContactsTitle" = "Are you sure you want to disable contacts encryption?";
+"decryptContacts" = "Note: Disabling contacts encryption can take several minutes depending upon the number of contacts you have. After you confirm, all your contacts will be decrypted inside your browser and saved on server.";
+"decryptingContacts" = "Decrypting Contacts...";
+"allContactsWasEncrypted" = "All Contacts was encrypted";
+"allContactsWasDecrypted" = "All Contacts was decrypted";
+
+"attachmentEncryptionWasEnabled" = "Attachment Encryption Was Enabled";
+"attachmentEncryptionWasDisabled" = "Attachment Encryption Was Disabled";

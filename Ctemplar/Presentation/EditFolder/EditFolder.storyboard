@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Folder-->
+        <scene sceneID="sw1-8e-KQx">
+            <objects>
+                <viewController storyboardIdentifier="EditFolderViewController" id="f4S-vX-Ehj" customClass="EditFolderViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MyZ-8a-mYM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="folderName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGD-8a-GTk" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                <rect key="frame" x="16" y="39" width="199" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="9rI-ZH-h24"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                <color key="textColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yi5-Mv-4mg">
+                                <rect key="frame" x="16" y="62" width="343" height="44"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Folder Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6QH-TV-ArI">
+                                        <rect key="frame" x="17" y="12" width="309" height="19"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="19" id="czZ-He-0i9"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="textTyped:" destination="f4S-vX-Ehj" eventType="editingChanged" id="0xX-sF-BxW"/>
+                                            <action selector="textTyped:" destination="f4S-vX-Ehj" eventType="editingDidEndOnExit" id="hOE-KU-6tt"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="6QH-TV-ArI" firstAttribute="leading" secondItem="Yi5-Mv-4mg" secondAttribute="leading" constant="17" id="Pxh-3L-41d"/>
+                                    <constraint firstItem="6QH-TV-ArI" firstAttribute="top" secondItem="Yi5-Mv-4mg" secondAttribute="top" constant="12" id="T3g-p6-RjD"/>
+                                    <constraint firstAttribute="trailing" secondItem="6QH-TV-ArI" secondAttribute="trailing" constant="17" id="ZOQ-97-8nc"/>
+                                    <constraint firstAttribute="height" constant="44" id="tHd-tj-kXB"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqG-3p-9NJ">
+                                <rect key="frame" x="16" y="106" width="343" height="2"/>
+                                <color key="backgroundColor" red="0.090196078430000007" green="0.1960784314" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="4HJ-OE-DPA"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="chooseColor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rwp-PH-zVE" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                <rect key="frame" x="16" y="133" width="343" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="YZP-nb-L6s"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                <color key="textColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ET-YE-4xc">
+                                <rect key="frame" x="16" y="165" width="343" height="90"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="hrb-Ev-s0m"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5V-4b-OIi">
+                                <rect key="frame" x="0.0" y="285" width="375" height="1"/>
+                                <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="VoP-X9-LNF"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" tag="206" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lIL-cN-Nds" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
+                                <rect key="frame" x="16" y="610" width="343" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="Cck-af-Rhr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
+                                <state key="normal" title="deleteFolder">
+                                    <color key="titleColor" red="0.090196078430000007" green="0.1960784314" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.090196078430000007" green="0.1960784314" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="deleteButtonPressed:" destination="f4S-vX-Ehj" eventType="touchUpInside" id="T6n-SD-uPK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Rwp-PH-zVE" secondAttribute="trailing" constant="16" id="1AX-ax-pAO"/>
+                            <constraint firstAttribute="trailing" secondItem="7ET-YE-4xc" secondAttribute="trailing" constant="16" id="2rt-dh-Pos"/>
+                            <constraint firstItem="Yi5-Mv-4mg" firstAttribute="leading" secondItem="MyZ-8a-mYM" secondAttribute="leading" constant="16" id="2wl-5s-SM8"/>
+                            <constraint firstItem="7ET-YE-4xc" firstAttribute="top" secondItem="Rwp-PH-zVE" secondAttribute="bottom" constant="16" id="4i8-D0-G7z"/>
+                            <constraint firstAttribute="trailing" secondItem="aGD-8a-GTk" secondAttribute="trailing" constant="160" id="70s-1B-H3M"/>
+                            <constraint firstAttribute="trailing" secondItem="Yi5-Mv-4mg" secondAttribute="trailing" constant="16" id="9Wa-c4-Ww9"/>
+                            <constraint firstItem="7ET-YE-4xc" firstAttribute="leading" secondItem="MyZ-8a-mYM" secondAttribute="leading" constant="16" id="Fek-h3-pKg"/>
+                            <constraint firstItem="aGD-8a-GTk" firstAttribute="leading" secondItem="MyZ-8a-mYM" secondAttribute="leading" constant="16" id="KFo-wm-VJq"/>
+                            <constraint firstItem="H5V-4b-OIi" firstAttribute="top" secondItem="7ET-YE-4xc" secondAttribute="bottom" constant="30" id="OyW-yN-YNg"/>
+                            <constraint firstItem="Rwp-PH-zVE" firstAttribute="top" secondItem="hqG-3p-9NJ" secondAttribute="bottom" constant="25" id="TO6-ME-y2c"/>
+                            <constraint firstAttribute="trailing" secondItem="hqG-3p-9NJ" secondAttribute="trailing" constant="16" id="UWc-Zd-dAA"/>
+                            <constraint firstItem="Rwp-PH-zVE" firstAttribute="leading" secondItem="MyZ-8a-mYM" secondAttribute="leading" constant="16" id="VDt-mt-cMN"/>
+                            <constraint firstItem="Yi5-Mv-4mg" firstAttribute="top" secondItem="aGD-8a-GTk" secondAttribute="bottom" constant="8" id="Vtg-GP-6C8"/>
+                            <constraint firstItem="Xqt-m1-AcI" firstAttribute="trailing" secondItem="lIL-cN-Nds" secondAttribute="trailing" constant="16" id="Xdg-UD-Qsu"/>
+                            <constraint firstItem="lIL-cN-Nds" firstAttribute="leading" secondItem="MyZ-8a-mYM" secondAttribute="leading" constant="16" id="dcS-1f-DE9"/>
+                            <constraint firstItem="hqG-3p-9NJ" firstAttribute="leading" secondItem="MyZ-8a-mYM" secondAttribute="leading" constant="16" id="fd3-Ba-keF"/>
+                            <constraint firstItem="Xqt-m1-AcI" firstAttribute="trailing" secondItem="H5V-4b-OIi" secondAttribute="trailing" id="kA5-ye-ULR"/>
+                            <constraint firstItem="Yi5-Mv-4mg" firstAttribute="top" secondItem="Xqt-m1-AcI" secondAttribute="top" constant="42" id="nV4-63-q2v"/>
+                            <constraint firstItem="H5V-4b-OIi" firstAttribute="leading" secondItem="Xqt-m1-AcI" secondAttribute="leading" id="pRJ-hU-S0k"/>
+                            <constraint firstItem="Xqt-m1-AcI" firstAttribute="bottom" secondItem="lIL-cN-Nds" secondAttribute="bottom" constant="9" id="s4x-hy-u5y"/>
+                            <constraint firstItem="hqG-3p-9NJ" firstAttribute="top" secondItem="Yi5-Mv-4mg" secondAttribute="bottom" id="xFI-Ah-pLE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Xqt-m1-AcI"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Folder" id="2TK-Ts-GWR" customClass="UILocalizedUINavigationItem" customModule="Ctemplar" customModuleProvider="target">
+                        <barButtonItem key="leftBarButtonItem" title="cancelButton" id="pwL-uY-dpy">
+                            <color key="tintColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="f4S-vX-Ehj" id="GGg-dh-v8h"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="saveButton" id="n5H-Dj-A8M">
+                            <color key="tintColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="f4S-vX-Ehj" id="LSI-7Y-FNc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="colorPickerSuperView" destination="7ET-YE-4xc" id="uA1-jb-YpC"/>
+                        <outlet property="colorPickerSuperViewHeightConstraint" destination="hrb-Ev-s0m" id="cpE-iN-WtU"/>
+                        <outlet property="darkLineView" destination="hqG-3p-9NJ" id="USg-on-bV4"/>
+                        <outlet property="deleteButton" destination="lIL-cN-Nds" id="L6i-Sl-N9l"/>
+                        <outlet property="folderNameTextField" destination="6QH-TV-ArI" id="OWE-Ww-EMA"/>
+                        <outlet property="saveBarButtonItem" destination="n5H-Dj-A8M" id="sa1-hi-esZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ac9-Ql-p73" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52.5" y="134.51166666666666"/>
+        </scene>
+    </scenes>
+</document>

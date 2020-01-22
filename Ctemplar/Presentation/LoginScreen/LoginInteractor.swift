@@ -7,47 +7,83 @@
 //
 
 import Foundation
+import AlertHelperKit
+import PKHUD
 
-class LoginInteractor {
+class LoginInteractor: HashingService {
     
     var viewController  : LoginViewController?
     var presenter       : LoginPresenter?
     var apiService      : APIService?
+    var keychainService : KeychainService?
     
-    func authenticateUser(userName: String, password: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func authenticateUser(userName: String, password: String, twoFAcode: String) {
         
-        apiService?.authenticateUser(userName: userName, password: password, completionHandler: completionHandler)
-    }
-    
-    func validateEmailFormat(enteredEmail: String) -> Bool {
-        
-        let emailFormat = "[A-Z0-9a-z._%+-]{2,64}"
-        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
-        return emailPredicate.evaluate(with: enteredEmail)
-    }
-    
-    func validateNameLench(enteredName: String) -> Bool {
-        
-        if (enteredName.count > 0)  {
-            return true
-        } else {
-            return false
+        let trimmedUsername = trimUserName(userName)
+        HUD.show(.labeledProgress(title: "hashing".localized(), subtitle: ""))
+        generateHashedPassword(for: userName, password: password) { result in
+            guard let value = try? result.get() else {
+                HUD.hide()
+                AlertHelperKit().showAlert(self.viewController!,
+                                           title: "Login Error".localized(),
+                                           message: "Something went wrong".localized(),
+                                           button: "closeButton".localized())
+                return
+            }
+            HUD.show(.labeledProgress(title: "updateToken".localized(), subtitle: ""))
+            AppManager.shared.networkService.loginUser(with: LoginDetails(userName: trimmedUsername,
+                                                                          password: value,
+                                                                          twoFAcode: twoFAcode)) { result in                                                                   
+                                                                            if let value = try? result.get(), !value.isTwoFAEnabled {
+                                                                                self.keychainService?.saveUserCredentials(userName: userName, password: password)
+                                                                            }
+                                                                            self.handleNetwork(responce: result)
+                                                                            HUD.hide()
+            }
         }
     }
     
-    func validatePasswordLench(enteredPassword: String) -> Bool {
-        
-        if (enteredPassword.count > 0)  {
-            return true
-        } else {
-            return false
+    func handleNetwork(responce: AppResult<LoginResult>) {
+        switch responce {
+        case .success(let value):
+            guard !value.isTwoFAEnabled else {
+                viewController?.passwordBlockView.isHidden = true
+                viewController?.otpBlockView.isHidden = false
+                return
+            }
+            if let token = value.token {
+                keychainService?.saveToken(token: token)
+            }
+            NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil, userInfo: nil)
+            self.sendAPNDeviceToken()
+            self.viewController?.router?.showInboxScreen()
+        case .failure(let error):
+            AlertHelperKit().showAlert(self.viewController!,
+                                       title: "Login Error".localized(),
+                                       message: error.localizedDescription,
+                                       button: "closeButton".localized())
         }
     }
     
-    func validatePasswordFormat(enteredPassword: String) -> Bool {
+    func trimUserName(_ userName: String) -> String {
         
-        let passwordFormat = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()\\-_=+{}|?>.<,:;~`’]{8,}$"
-        let passwordPredicate = NSPredicate(format:"SELF MATCHES %@", passwordFormat)
-        return passwordPredicate.evaluate(with: enteredPassword)
+        var trimmedName = userName.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        let substrings = trimmedName.split(separator: "@")
+            
+        if let domain = substrings.last {
+            if domain == k_mainDomain || domain == k_devMainDomain {
+                if let name = substrings.first {
+                    trimmedName = String(name)
+                }
+            }
+        }
+        
+        return trimmedName
+    }
+    
+    func sendAPNDeviceToken() {
+        guard let deviceToken = keychainService?.getAPNDeviceToken(), !deviceToken.isEmpty  else { return }
+        AppManager.shared.networkService.send(deviceToken: deviceToken) { _ in }
     }
 }

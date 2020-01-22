@@ -7,16 +7,46 @@
 //
 
 import UIKit
+import Fabric
+import Crashlytics
+import UserNotifications
+import Firebase
+
+typealias AppResult<T> = Result<T, Error>
+typealias Completion<T> = (AppResult<T>) -> Void
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var applicationManager = ApplicationManager()
+    var applicationManager = AppManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+                  
+        UserDefaults.standard.setValue(false, forKey:"_UIConstraintBasedLayoutLogUnsatisfiable")
+        
+        print("currentDeviceLanguageCode:", Locale.current.languageCode as Any)
+        print("currentAppLanguage:", Locale.preferredLanguages[0])
+        
+        #if !DEVELOPMENT
+        setupFirebase()
+        self.registerForPushNotifications()
+        #endif
+        
+        application.applicationIconBadgeNumber = 0
+        
+        Fabric.with([Crashlytics.self])
+        
         return true
+    }
+    
+    private func setupFirebase() {
+        guard let filePath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist"),
+            let options = FirebaseOptions(contentsOfFile: filePath)
+            else { return }
+        FirebaseApp.configure(options: options)
+        Messaging.messaging().delegate = self
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -35,12 +65,72 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        application.applicationIconBadgeNumber = 0
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    //MARK: - Push notifications
+    
+    func registerForPushNotifications() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            print("Permission granted: \(granted)")
+            
+            guard granted else { return }
+            self.getNotificationSettings()
+        }
+    }
+    
+    func getNotificationSettings() {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            print("Notification settings: \(settings)")
+        
+            guard settings.authorizationStatus == .authorized else { return }
+            
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+        }
+    }
 
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+           
+        let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        print("APNs device token: \(deviceTokenString)")
+    }
+       
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        // Print the error to console (you should alert the user that registration failed)
+        print("APNs registration failed: \(error)")
+    }
+       
+    func application(_ application: UIApplication, didReceiveRemoteNotification data: [AnyHashable : Any]) {
+        // Print notification payload data
+        print("Push notification received: \(data)")
+    }
+       
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("Push notification received: \(userInfo)")
+           
+           completionHandler(.newData)
+    }
+    
+    func saveAPNDeviceToken(_ token: String) {
+        
+        let keychainService = applicationManager.keychainService        
+        keychainService.saveAPNDeviceToken(token)
+    }
+}
 
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+        self.saveAPNDeviceToken(fcmToken)
+        if !AppManager.shared.keychainService.getUserName().isEmpty {
+            AppManager.shared.networkService.send(deviceToken: fcmToken) { _ in }
+        }
+    }
 }
 

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--addresses-->
+        <scene sceneID="BFp-Jb-puL">
+            <objects>
+                <viewController storyboardIdentifier="SetMailboxViewController" id="25O-yb-vyX" customClass="SetMailboxViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZJh-dN-W3L">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aqa-H2-1wb">
+                                <rect key="frame" x="0.0" y="20" width="375" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="selectDefaulfAddress" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Raw-WC-Ebq" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="8" width="343" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="Hce-5F-bku"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                        <color key="textColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Raw-WC-Ebq" firstAttribute="leading" secondItem="Aqa-H2-1wb" secondAttribute="leading" constant="16" id="B5Q-d9-n1s"/>
+                                    <constraint firstAttribute="trailing" secondItem="Raw-WC-Ebq" secondAttribute="trailing" constant="16" id="EiM-uy-F56"/>
+                                    <constraint firstAttribute="height" constant="40" id="MzY-8d-vsr"/>
+                                    <constraint firstItem="Raw-WC-Ebq" firstAttribute="top" secondItem="Aqa-H2-1wb" secondAttribute="top" constant="8" id="YhE-JS-Pg0"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hJJ-LC-1gZ">
+                                <rect key="frame" x="0.0" y="60" width="375" height="607"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="25O-yb-vyX" id="YnK-te-qRr"/>
+                                    <outlet property="delegate" destination="25O-yb-vyX" id="sLO-iM-mJK"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Aqa-H2-1wb" firstAttribute="top" secondItem="KCv-0M-CZG" secondAttribute="top" id="6MZ-h2-M2b"/>
+                            <constraint firstItem="KCv-0M-CZG" firstAttribute="trailing" secondItem="Aqa-H2-1wb" secondAttribute="trailing" id="9SF-vB-Szr"/>
+                            <constraint firstItem="KCv-0M-CZG" firstAttribute="bottom" secondItem="hJJ-LC-1gZ" secondAttribute="bottom" id="AC6-Id-YMh"/>
+                            <constraint firstItem="hJJ-LC-1gZ" firstAttribute="top" secondItem="Aqa-H2-1wb" secondAttribute="bottom" id="KND-pv-x4i"/>
+                            <constraint firstItem="Aqa-H2-1wb" firstAttribute="leading" secondItem="KCv-0M-CZG" secondAttribute="leading" id="YYb-BF-XuW"/>
+                            <constraint firstItem="hJJ-LC-1gZ" firstAttribute="leading" secondItem="KCv-0M-CZG" secondAttribute="leading" id="cr2-mI-bhx"/>
+                            <constraint firstItem="KCv-0M-CZG" firstAttribute="trailing" secondItem="hJJ-LC-1gZ" secondAttribute="trailing" id="d4h-NI-k9h"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="KCv-0M-CZG"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="addresses" id="vWr-iW-fJv" customClass="UILocalizedUINavigationItem" customModule="Ctemplar" customModuleProvider="target">
+                        <barButtonItem key="leftBarButtonItem" image="BackArrowDark" id="zg3-Mf-hEc">
+                            <color key="tintColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="backButtonPressed:" destination="25O-yb-vyX" id="DHe-29-HEG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="hJJ-LC-1gZ" id="Cb8-8k-eQQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QeO-g6-ZWJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3.75" y="301.26166666666666"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="BackArrowDark" width="11" height="20"/>
+    </resources>
+</document>

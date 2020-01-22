@@ -1,20 +1,109 @@
 PODS:
-  - Alamofire (4.7.3)
-  - AlertHelperKit (1.7.0)
-  - ObjectivePGP (0.12.2)
+  - Alamofire (5.0.0-rc.3)
+  - AlertHelperKit (1.9.0)
+  - BCryptSwift (1.1)
+  - Crashlytics (3.14.0):
+    - Fabric (~> 1.10.2)
+  - Fabric (1.10.2)
+  - Firebase/CoreOnly (6.14.0):
+    - FirebaseCore (= 6.5.0)
+  - Firebase/Messaging (6.14.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 4.1.10)
+  - FirebaseAnalyticsInterop (1.5.0)
+  - FirebaseCore (6.5.0):
+    - FirebaseCoreDiagnostics (~> 1.0)
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.4)
+    - GoogleUtilities/Logger (~> 6.4)
+  - FirebaseCoreDiagnostics (1.2.0):
+    - FirebaseCoreDiagnosticsInterop (~> 1.2)
+    - GoogleDataTransportCCTSupport (~> 1.3)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/Logger (~> 6.5)
+    - nanopb (~> 0.3.901)
+  - FirebaseCoreDiagnosticsInterop (1.2.0)
+  - FirebaseInstanceID (4.2.7):
+    - FirebaseCore (~> 6.0)
+    - GoogleUtilities/Environment (~> 6.0)
+    - GoogleUtilities/UserDefaults (~> 6.0)
+  - FirebaseMessaging (4.1.10):
+    - FirebaseAnalyticsInterop (~> 1.3)
+    - FirebaseCore (~> 6.2)
+    - FirebaseInstanceID (~> 4.1)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.2)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Reachability (~> 6.2)
+    - GoogleUtilities/UserDefaults (~> 6.2)
+    - Protobuf (>= 3.9.2, ~> 3.9)
+  - GoogleDataTransport (3.3.0)
+  - GoogleDataTransportCCTSupport (1.3.0):
+    - GoogleDataTransport (~> 3.3)
+    - nanopb (~> 0.3.901)
+  - GoogleUtilities/AppDelegateSwizzler (6.5.0):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (6.5.0)
+  - GoogleUtilities/Logger (6.5.0):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/Network (6.5.0):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (6.5.0)"
+  - GoogleUtilities/Reachability (6.5.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (6.5.0):
+    - GoogleUtilities/Logger
+  - KeychainSwift (18.0.0)
+  - MGSwipeTableCell (1.6.11)
+  - nanopb (0.3.9011):
+    - nanopb/decode (= 0.3.9011)
+    - nanopb/encode (= 0.3.9011)
+  - nanopb/decode (0.3.9011)
+  - nanopb/encode (0.3.9011)
+  - ObjectivePGP (0.15.0)
   - PKHUD (5.1.0)
+  - Protobuf (3.11.2)
+  - SideMenu (4.0.0)
 
 DEPENDENCIES:
-  - Alamofire
+  - Alamofire (~> 5.0.0-rc.3)
   - AlertHelperKit (from `https://github.com/keygx/AlertHelperKit`)
+  - BCryptSwift
+  - Crashlytics
+  - Fabric
+  - Firebase/Messaging
+  - KeychainSwift
+  - MGSwipeTableCell
   - ObjectivePGP
-  - PKHUD (~> 5.0)
+  - PKHUD (~> 5.1.0)
+  - SideMenu (~> 4.0.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Alamofire
+    - BCryptSwift
+    - Crashlytics
+    - Fabric
+    - Firebase
+    - FirebaseAnalyticsInterop
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseCoreDiagnosticsInterop
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - GoogleDataTransport
+    - GoogleDataTransportCCTSupport
+    - GoogleUtilities
+    - KeychainSwift
+    - MGSwipeTableCell
+    - nanopb
     - ObjectivePGP
     - PKHUD
+    - Protobuf
+    - SideMenu
 
 EXTERNAL SOURCES:
   AlertHelperKit:
@@ -22,15 +111,33 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   AlertHelperKit:
-    :commit: 98841dc13ee7274abda6529d46f825ded3becb2f
+    :commit: 936acfcde29957788911f145fafe39b0a9a32fcc
     :git: https://github.com/keygx/AlertHelperKit
 
 SPEC CHECKSUMS:
-  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  AlertHelperKit: a123280ad25338b7d1e1dec063ad1cf42a455338
-  ObjectivePGP: 9b8112c8d1be0fa4af1117d81f35a9df99303858
+  Alamofire: ca8c0de6906873be89d6deec5c8de279e00bf872
+  AlertHelperKit: db79a53288eb4b135966f7fef1aa2ec1ed753564
+  BCryptSwift: f69992ea5685f6714260842c2770688043b89ab2
+  Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
+  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
+  Firebase: 0219bb4782eb1406f1b9b0628a2e625484ce910d
+  FirebaseAnalyticsInterop: 3f86269c38ae41f47afeb43ebf32a001f58fcdae
+  FirebaseCore: 632e05cc5e1199d9147122c16d92305eb04c34bd
+  FirebaseCoreDiagnostics: 5e78803ab276bc5b50340e3c539c06c3de35c649
+  FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
+  FirebaseInstanceID: ebd2ea79ee38db0cb5f5167b17a0d387e1cc7b6e
+  FirebaseMessaging: 089b7a4991425783384acc8bcefcd78c0af913bd
+  GoogleDataTransport: 574a983e829327d7c18f2627f65d9e80164ea8a4
+  GoogleDataTransportCCTSupport: cad3cd6cdbdbad6b5c2c9206ec413402755faaaa
+  GoogleUtilities: f8de7ddf8c706f58e9b405d53e38bbdaa2731e5a
+  KeychainSwift: c46e1438d121e47459fb304ac88c5e058a2a91ed
+  MGSwipeTableCell: b804e4e450dee439c42250be90bd50458bf67fce
+  nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  ObjectivePGP: 35a73ed3253e7e2982184ea86b1ff6c5773d1299
   PKHUD: 62ea46a1e88c4def1da784878d199bb54c841e3c
+  Protobuf: dd1aaea7140debfe4dd0683fb8ef208e527ae153
+  SideMenu: 70ee5657df63ec3382660ec4ef470bf1cf5db07d
 
-PODFILE CHECKSUM: 17b5bfe1c976d32ecd738fc807cd3a9f0a910f7a
+PODFILE CHECKSUM: e3c85c299222d81fb7fc1c693f7052bcd5f5f023
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4
