@@ -46,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let options = FirebaseOptions(contentsOfFile: filePath)
             else { return }
         FirebaseApp.configure(options: options)
+        Messaging.messaging().delegate = self
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -98,10 +99,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
            
         let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
         print("APNs device token: \(deviceTokenString)")
-        self.saveAPNDeviceToken(deviceTokenString)
-        if !AppManager.shared.keychainService.getUserName().isEmpty {
-            AppManager.shared.networkService.send(deviceToken: deviceTokenString) { _ in }
-        }
     }
        
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -117,13 +114,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print("Push notification received: \(userInfo)")
            
-           //completionHandler(<#UIBackgroundFetchResult#>)
+           completionHandler(.newData)
     }
     
     func saveAPNDeviceToken(_ token: String) {
         
         let keychainService = applicationManager.keychainService        
         keychainService.saveAPNDeviceToken(token)
+    }
+}
+
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+        self.saveAPNDeviceToken(fcmToken)
+        if !AppManager.shared.keychainService.getUserName().isEmpty {
+            AppManager.shared.networkService.send(deviceToken: fcmToken) { _ in }
+        }
     }
 }
 

@@ -16,7 +16,7 @@ def ctemplarPods
   pod 'MGSwipeTableCell'
   pod 'Fabric'
   pod 'Crashlytics'
-  pod 'Firebase/Analytics'
+  pod 'Firebase/Messaging'
   
 end
 
