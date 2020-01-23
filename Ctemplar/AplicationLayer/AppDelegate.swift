@@ -73,6 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK: - Push notifications
     
     func registerForPushNotifications() {
+        UNUserNotificationCenter.current().delegate = self
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             print("Permission granted: \(granted)")
             
@@ -103,17 +104,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Print the error to console (you should alert the user that registration failed)
         print("APNs registration failed: \(error)")
     }
-       
-    func application(_ application: UIApplication, didReceiveRemoteNotification data: [AnyHashable : Any]) {
-        // Print notification payload data
-        print("Push notification received: \(data)")
-    }
-       
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print("Push notification received: \(userInfo)")
-           
-           completionHandler(.newData)
-    }
     
     func saveAPNDeviceToken(_ token: String) {
         
@@ -128,6 +118,29 @@ extension AppDelegate: MessagingDelegate {
         self.saveAPNDeviceToken(fcmToken)
         if !AppManager.shared.keychainService.getUserName().isEmpty {
             AppManager.shared.networkService.send(deviceToken: fcmToken) { _ in }
+        }
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: false, userInfo: nil)
+        completionHandler([.sound])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        if let userInfo = response.notification.request.content.userInfo as? [String: Any] {
+            print("Notification data:\n\(userInfo)")
+            if let messageId = Int(userInfo["gcm.notification.message_id"] as? String ?? "0") {
+                var storyboardName = k_MainStoryboardName
+                if Device.IS_IPAD {
+                   storyboardName = k_MainStoryboardName_iPad
+                }
+                let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
+                let mainViewController = storyboard.instantiateViewController(withIdentifier: k_MainViewControllerID) as! MainViewController
+                mainViewController.messageID = messageId
+                UIApplication.shared.keyWindow?.rootViewController = mainViewController
+            }
         }
     }
 }

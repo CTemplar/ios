@@ -22,6 +22,8 @@ class MainViewController: UIViewController {
     
     var mainTimer: Timer!
     
+    var messageID = -1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -108,12 +110,14 @@ class MainViewController: UIViewController {
             let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: k_LoginViewControllerID) as! LoginViewController
             vc.mainViewController = self
+            vc.modalPresentationStyle = .fullScreen
             self.show(vc, sender: self)
         }
     }
     
     func showInboxNavigationController() {
-        DispatchQueue.main.async {            
+        DispatchQueue.main.async {
+            self.inboxNavigationController.modalPresentationStyle = .fullScreen
             self.show(self.inboxNavigationController, sender: self)
         }
     }
@@ -124,7 +128,7 @@ class MainViewController: UIViewController {
         self.inboxNavigationController = storyboard.instantiateViewController(withIdentifier: k_InboxNavigationControllerID) as? InboxNavigationController
        
         let inboxViewController = self.inboxNavigationController.viewControllers.first as! InboxViewController
-        
+        inboxViewController.messageID = messageID
         if (!Device.IS_IPAD) {
             self.initAndSetupInboxSideMenuController(inboxViewController: inboxViewController)
         }
