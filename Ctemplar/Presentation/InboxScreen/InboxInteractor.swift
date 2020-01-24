@@ -66,7 +66,17 @@ class InboxInteractor {
         
         if filterEnabled {
             self.applyFilters()
-        }        
+        }
+        
+        if self.viewController?.messageID != -1 {
+            for message in self.viewController?.allMessagesArray ?? [] {
+                if message.messsageID == self.viewController?.messageID {
+                    self.viewController?.messageID = -1
+                    self.viewController?.router?.showViewInboxEmailViewController(message: message)
+                    break
+                }
+            }
+        }
     }
     
     func isMessageExist(messageId: Int) -> Bool {

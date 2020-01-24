@@ -11,6 +11,7 @@ import Foundation
 
 // view controllers ID
 
+let k_MainViewControllerID                  = "MainViewController"
 let k_SplitViewControllerID                 = "SplitViewController"
 let k_LoginViewControllerID                 = "LoginViewController"
 let k_SignUpPageViewControllerID            = "SignUpPageViewController"
@@ -52,6 +53,7 @@ let k_AboutAsViewControllerID               = "AboutAsViewController"
 
 // view controllers storyboards name
 
+let k_MainStoryboardName                   = "Main"
 let k_LoginStoryboardName                  = "Login"
 let k_SignUpStoryboardName                 = "SignUp"
 let k_ForgotPasswordStoryboardName         = "ForgotPassword"
@@ -124,6 +126,7 @@ let k_SettingsStorageTableViewCellIdentifier       = "settingsStorageTableViewCe
 
 // view controllers iPad storyboards name
 
+let k_MainStoryboardName_iPad              = "Main-iPad"
 let k_SplitStoryboardName                  = "SplitiPad"
 let k_LoginStoryboardName_iPad             = "Login-iPad"
 let k_SignUpStoryboardName_iPad            = "SignUp-iPad"
