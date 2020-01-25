@@ -15,6 +15,7 @@ class ComposeDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     var contactsArray           : Array<Contact> = []
     var mailboxesArray          : Array<Mailbox> = []
+    var mailboxesDataSource     : Array<Mailbox> = []
     
     var searchText              : String = ""
     
@@ -50,7 +51,7 @@ class ComposeDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if self.isMailboxDataSource {
-            return mailboxesArray.count
+            return mailboxesDataSource.count
         }
         
         return self.contactsArray.count
@@ -64,7 +65,7 @@ class ComposeDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             
             cell = tableView.dequeueReusableCell(withIdentifier: k_UserMailboxTableViewCellIdentifier)! as! UserMailboxTableViewCell
             
-            let mailbox = self.mailboxesArray[indexPath.row]
+            let mailbox = self.mailboxesDataSource[indexPath.row]
             
             if let email = mailbox.email {
                 (cell as! UserMailboxTableViewCell).emailLabel.text = email
@@ -87,7 +88,7 @@ class ComposeDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         
         if self.isMailboxDataSource {
             
-            let mailbox = self.mailboxesArray[indexPath.row]
+            let mailbox = self.mailboxesDataSource[indexPath.row]
             
             if let email = mailbox.email {
                 self.parentViewController.presenter?.setupEmailFromSection(emailFromText: email)
@@ -114,7 +115,8 @@ class ComposeDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     func reloadData(setMailboxData: Bool) {
-        
+        let currentMailBox = (self.parentViewController.emailFrom.text ?? "").replacingOccurrences(of: "emailFromPrefix".localized(), with: "")
+        self.mailboxesDataSource = self.mailboxesArray.filter({ return $0.email != currentMailBox })
         self.isMailboxDataSource = setMailboxData
         self.tableView.reloadData()
     }
