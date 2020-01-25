@@ -369,13 +369,14 @@ class ComposePresenter {
                 mutableAttributedString.append(messageContentAttributedString!)
             
                 if currentSignature.count > 0 {
-                    mutableAttributedString.append(NSMutableAttributedString(string: currentSignature))
+//                    mutableAttributedString.append(NSMutableAttributedString(string: currentSignature))
+                    mutableAttributedString.append(currentSignature.html2AttributedString ?? NSAttributedString())
                 }
                 self.viewController?.messageTextView.attributedText = mutableAttributedString
                 self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
             } else {
                 if currentSignature.count > 0 {
-                    let attributedString = NSAttributedString(string: "\n" + currentSignature)
+                    let attributedString = currentSignature.html2AttributedString ?? NSAttributedString() //NSAttributedString(string: "\n" + currentSignature)
                     self.viewController?.messageTextView.attributedText = attributedString
                     self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
                 } else {
@@ -396,10 +397,10 @@ class ComposePresenter {
         
         let mutableAttributedString = NSMutableAttributedString(attributedString: currentMessageText)
         
-        if let range = mutableAttributedString.string.range(of: currentSignature) {
+        if let range = mutableAttributedString.string.range(of: currentSignature.removeHTMLTag) {
             let nsRange = NSRange(range, in: mutableAttributedString.string)
 
-            let newAttributedStringSignature =  NSAttributedString(string: newSignature)
+            let newAttributedStringSignature =  newSignature.html2AttributedString ?? NSAttributedString() //NSAttributedString(string: newSignature)
         
             mutableAttributedString.replaceCharacters(in: nsRange, with: newAttributedStringSignature)
         
@@ -408,7 +409,7 @@ class ComposePresenter {
         } else {
             currentSignature = newSignature
             
-            let newAttributedStringSignature =  NSAttributedString(string: "\n" + newSignature)
+            let newAttributedStringSignature =  newSignature.html2AttributedString ?? NSAttributedString() //NSAttributedString(string: "\n" + newSignature)
             mutableAttributedString.insert(newAttributedStringSignature, at: 0)
             
             self.viewController?.messageTextView.attributedText = mutableAttributedString
