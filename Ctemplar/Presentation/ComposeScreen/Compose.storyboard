@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HDc-VP-u4e">
-                                <rect key="frame" x="0.0" y="20" width="375" height="46"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcj-LT-m7M">
                                         <rect key="frame" x="16" y="15" width="299" height="16"/>
@@ -95,7 +93,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o09-Ex-Zdt">
-                                <rect key="frame" x="0.0" y="65" width="375" height="135"/>
+                                <rect key="frame" x="0.0" y="45" width="375" height="135"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BsK-Bo-ihc">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
@@ -247,7 +245,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JlZ-Fv-gSA">
-                                <rect key="frame" x="0.0" y="197" width="375" height="46"/>
+                                <rect key="frame" x="0.0" y="177" width="375" height="46"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="subject" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="MBF-I2-36Z" customClass="UILocalizedTextField" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="16" y="13" width="343" height="18"/>
@@ -282,7 +280,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SvU-Rf-Cm0">
-                                <rect key="frame" x="0.0" y="242" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="222" width="375" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zrF-Lt-kem">
                                         <rect key="frame" x="8" y="3" width="44" height="44"/>
@@ -392,7 +390,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NRs-SL-oAk">
-                                <rect key="frame" x="0.0" y="292" width="375" height="375"/>
+                                <rect key="frame" x="0.0" y="272" width="375" height="395"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v4G-Sq-GK2">
                                         <rect key="frame" x="16" y="10" width="343" height="355"/>
@@ -402,11 +400,22 @@
                                         <attributedString key="attributedText"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" keyboardAppearance="alert"/>
                                     </textView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mBI-rr-9aJ" customClass="RichEditorView" customModule="RichEditorView">
+                                        <rect key="frame" x="16" y="10" width="343" height="355"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="355" id="My3-HR-cTS"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="mBI-rr-9aJ" firstAttribute="leading" secondItem="NRs-SL-oAk" secondAttribute="leading" constant="16" id="1ey-u8-QPa"/>
                                     <constraint firstItem="v4G-Sq-GK2" firstAttribute="leading" secondItem="NRs-SL-oAk" secondAttribute="leading" constant="16" id="RBM-Kt-HwN"/>
                                     <constraint firstItem="v4G-Sq-GK2" firstAttribute="centerX" secondItem="NRs-SL-oAk" secondAttribute="centerX" id="aic-Is-BZf"/>
                                     <constraint firstAttribute="trailing" secondItem="v4G-Sq-GK2" secondAttribute="trailing" constant="16" id="dnB-Qc-Duo"/>
+                                    <constraint firstAttribute="bottom" secondItem="mBI-rr-9aJ" secondAttribute="bottom" constant="10" id="jq0-Pp-v4w"/>
+                                    <constraint firstItem="mBI-rr-9aJ" firstAttribute="top" secondItem="NRs-SL-oAk" secondAttribute="top" constant="10" id="kTL-ZA-OZq"/>
+                                    <constraint firstAttribute="trailing" secondItem="mBI-rr-9aJ" secondAttribute="trailing" constant="16" id="kuT-TZ-ZMD"/>
                                     <constraint firstItem="v4G-Sq-GK2" firstAttribute="top" secondItem="NRs-SL-oAk" secondAttribute="top" constant="10" id="sAi-ic-USd"/>
                                     <constraint firstAttribute="bottom" secondItem="v4G-Sq-GK2" secondAttribute="bottom" priority="999" constant="10" id="xPX-vV-sSY"/>
                                 </constraints>
@@ -430,7 +439,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tnr-NY-PEc">
-                                <rect key="frame" x="0.0" y="63" width="375" height="604"/>
+                                <rect key="frame" x="0.0" y="43" width="375" height="624"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="mailboxcellidentifier" id="eQu-oa-cCC">
@@ -515,9 +524,9 @@
                         <outlet property="expandButton" destination="0QO-oA-I6g" id="xfr-20-M50"/>
                         <outlet property="fromView" destination="HDc-VP-u4e" id="NXG-g5-Vmo"/>
                         <outlet property="mailboxesButton" destination="Z1z-H2-Y3M" id="SnP-Nr-5hJ"/>
-                        <outlet property="messageTextView" destination="v4G-Sq-GK2" id="ccT-mo-A2A"/>
-                        <outlet property="messageTextViewBottomOffsetConstraint" destination="xPX-vV-sSY" id="1EZ-Df-k3H"/>
-                        <outlet property="messageTextViewHeightConstraint" destination="p2x-by-MRe" id="Ojm-XN-qLX"/>
+                        <outlet property="messageTextEditor" destination="mBI-rr-9aJ" id="CGk-ag-hrg"/>
+                        <outlet property="messageTextEditorBottomOffsetConstraint" destination="jq0-Pp-v4w" id="Xdy-bd-Noo"/>
+                        <outlet property="messageTextEditorHeightConstraint" destination="My3-HR-cTS" id="1R0-7n-RgB"/>
                         <outlet property="scrollView" destination="NRs-SL-oAk" id="dK3-kt-QvR"/>
                         <outlet property="scrollViewBottomOffsetConstraint" destination="zdm-Hn-rVo" id="IdY-Ic-RRh"/>
                         <outlet property="selfDestructedButton" destination="sck-AS-lTR" id="KBg-aS-4vE"/>

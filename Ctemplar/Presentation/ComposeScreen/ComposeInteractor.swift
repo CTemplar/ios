@@ -410,10 +410,10 @@ class ComposeInteractor {
     
     func getEnteredMessageContent() -> String {
         
-        var messageContent = self.viewController!.messageTextView.text
-        if let range = messageContent?.range(of: self.viewController!.presenter!.currentSignature.removeHTMLTag) {
-            messageContent = messageContent?.replacingCharacters(in: range, with: "")
-            messageContent?.append("\n\(self.viewController!.presenter!.currentSignature)")
+        var messageContent = self.viewController!.messageTextEditor.html
+        if let range = messageContent.range(of: self.viewController!.presenter!.currentSignature) {
+            messageContent = messageContent.replacingCharacters(in: range, with: "")
+            messageContent.append("\n\(self.viewController!.presenter!.currentSignature)")
         }
         
         
@@ -421,7 +421,7 @@ class ComposeInteractor {
             messageContent = ""
         }
         
-        return messageContent!
+        return messageContent
     }
     
     func getScheduledDateFor(mode: SchedulerMode) -> String {
