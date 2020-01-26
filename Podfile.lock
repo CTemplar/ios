@@ -66,6 +66,7 @@ PODS:
   - ObjectivePGP (0.15.0)
   - PKHUD (5.1.0)
   - Protobuf (3.11.2)
+  - RichEditorView (5.0.0)
   - SideMenu (4.0.0)
 
 DEPENDENCIES:
@@ -79,6 +80,7 @@ DEPENDENCIES:
   - MGSwipeTableCell
   - ObjectivePGP
   - PKHUD (~> 5.1.0)
+  - RichEditorView
   - SideMenu (~> 4.0.0)
 
 SPEC REPOS:
@@ -103,6 +105,7 @@ SPEC REPOS:
     - ObjectivePGP
     - PKHUD
     - Protobuf
+    - RichEditorView
     - SideMenu
 
 EXTERNAL SOURCES:
@@ -136,8 +139,9 @@ SPEC CHECKSUMS:
   ObjectivePGP: 35a73ed3253e7e2982184ea86b1ff6c5773d1299
   PKHUD: 62ea46a1e88c4def1da784878d199bb54c841e3c
   Protobuf: dd1aaea7140debfe4dd0683fb8ef208e527ae153
+  RichEditorView: 1bbb07b87ca2d479ac29a6877014b38b8df233ef
   SideMenu: 70ee5657df63ec3382660ec4ef470bf1cf5db07d
 
-PODFILE CHECKSUM: e3c85c299222d81fb7fc1c693f7052bcd5f5f023
+PODFILE CHECKSUM: e908a52cbfcede1d75e68f9fcdd14e00d8773063
 
 COCOAPODS: 1.8.4

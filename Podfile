@@ -17,6 +17,7 @@ def ctemplarPods
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'Firebase/Messaging'
+  pod 'RichEditorView'
   
 end
 
