@@ -8,6 +8,11 @@
 
 import Foundation
 import UIKit
+import WebKit
+
+protocol ChildMessageExxpandedTableViewCellDelegate {
+    func reloadCell(at index: Int)
+}
 
 class ChildMessageExpandedTableViewCell: UITableViewCell {
     
@@ -19,7 +24,7 @@ class ChildMessageExpandedTableViewCell: UITableViewCell {
     @IBOutlet weak var detailsButton   : UIButton!
     
     @IBOutlet var fromToBarTextView    : UITextView!
-    @IBOutlet var contentTextView      : UITextView!
+    @IBOutlet weak var contentsWebView: WKWebView!
     
     @IBOutlet weak var deleteLabel             : UILabel!
     @IBOutlet weak var leftLabel               : UILabel!
@@ -35,11 +40,13 @@ class ChildMessageExpandedTableViewCell: UITableViewCell {
     @IBOutlet var fromToViewHeightConstraint        : NSLayoutConstraint!
     @IBOutlet var fromToBarTextViewHeightConstraint : NSLayoutConstraint!
     
-    @IBOutlet var messageContentTextViewHeightConstraint        : NSLayoutConstraint!
+    @IBOutlet weak var contentWebViewHeightConstraint: NSLayoutConstraint!
     
     var showDetails : Bool = false
     //var showContent : Bool = false
     var index : Int = 0
+    
+    var delegate: ChildMessageExxpandedTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -52,10 +59,11 @@ class ChildMessageExpandedTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setupCellWithData(message: EmailMessage, contentMessage: String, showDetails: Bool, index: Int) {
+    func setupCellWithData(message: EmailMessage, contentMessage: String, showDetails: Bool, index: Int, delegate: ChildMessageExxpandedTableViewCellDelegate) {
         
         self.showDetails = showDetails     
         self.index = index
+        self.delegate = delegate
         
         if let sender = message.sender {
             senderLabel.text = sender
@@ -80,7 +88,7 @@ class ChildMessageExpandedTableViewCell: UITableViewCell {
         
         self.setupDetailsButton()
         
-        self.setupMessageContentTextView(messageContent: contentMessage)
+        self.setupMessageContentWebView(messageContent: contentMessage)
         
         self.setupPropertyLabel(message: message)
     }
@@ -228,32 +236,9 @@ class ChildMessageExpandedTableViewCell: UITableViewCell {
         self.detailsButton.setAttributedTitle(attributedString, for: .normal)
     }
     
-    func setupMessageContentTextView(messageContent: String) {
-        let content = messageContent.replacingOccurrences(of: "\n", with: "<br>")
-        contentTextView.attributedText = content.html2AttributedString
-        contentTextView.sizeToFit()
-        
-        //contentTextView.text = messageContent
-        
-        //print("messageContent:", messageContent)
-        //print("messageContent.html2AttributedString:", content.html2AttributedString)
-        
-        let layoutManager : NSLayoutManager = contentTextView.layoutManager
-        let numberOfGlyphs = layoutManager.numberOfGlyphs
-        var numberOfLines = 0
-        var index = 0
-        var lineRange:NSRange = NSRange()
-        
-        while (index < numberOfGlyphs) {
-            layoutManager.lineFragmentRect(forGlyphAt: index, effectiveRange: &lineRange)
-            index = NSMaxRange(lineRange);
-            numberOfLines = numberOfLines + 1
-        }
-        
-        //print("numberOfLines:", numberOfLines)
-        //print("height:", contentTextView.frame.height)
-        
-        messageContentTextViewHeightConstraint.constant = contentTextView.frame.height//CGFloat(numberOfLines) * k_lineHeightForMessageText
+    func setupMessageContentWebView(messageContent: String) {
+        contentsWebView.navigationDelegate = self
+        contentsWebView.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />" + messageContent.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "\r", with: ""), baseURL: nil)
     }
     
     //MARK: - IBActions
@@ -264,5 +249,23 @@ class ChildMessageExpandedTableViewCell: UITableViewCell {
         
         self.parentController?.showDetailMessagesArray[self.index] = self.showDetails
         self.parentController?.reloadData(scrollToLastMessage: false)
+    }
+}
+
+extension ChildMessageExpandedTableViewCell: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        self.contentsWebView.evaluateJavaScript("document.readyState", completionHandler: { (complete, error) in
+            if complete != nil {
+                self.contentsWebView.evaluateJavaScript("document.body.scrollHeight", completionHandler: { (height, error) in
+                    self.contentWebViewHeightConstraint.constant = height as! CGFloat
+                    self.delegate?.reloadCell(at: self.index)
+                })
+            }
+
+            })
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        print("web view loading failed: \(error.localizedDescription)")
     }
 }

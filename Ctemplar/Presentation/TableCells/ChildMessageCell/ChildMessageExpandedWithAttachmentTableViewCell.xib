@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -59,7 +59,7 @@
                                 <fragment content="View details">
                                     <attributes>
                                         <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                        <font key="NSFont" size="14" name="Lato-Regular"/>
+                                        <font key="NSFont" metaFont="menu" size="14"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                     </attributes>
                                 </fragment>
@@ -99,30 +99,24 @@
 To: John Doe &lt;johndoe@gmail.com&gt;
 CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                                 <attributes>
-                                    <font key="NSFont" metaFont="system" size="14"/>
+                                    <font key="NSFont" metaFont="menu" size="14"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
                         </attributedString>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oeh-eb-MhL">
+                    <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bZ8-kT-TqC">
                         <rect key="frame" x="16" y="190" width="343" height="53.5"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="53.5" id="7vD-W9-lVk"/>
+                            <constraint firstAttribute="height" constant="53.5" id="Nfk-bF-tT0"/>
                         </constraints>
-                        <attributedString key="attributedText">
-                            <fragment>
-                                <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <attributes>
-                                    <font key="NSFont" metaFont="system" size="14"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    </textView>
+                        <wkWebViewConfiguration key="configuration">
+                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                            <wkPreferences key="preferences"/>
+                        </wkWebViewConfiguration>
+                    </wkWebView>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ohz-Ep-u46">
                         <rect key="frame" x="0.0" y="259.5" width="375" height="70"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -160,7 +154,7 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                                             <fragment content="5:25">
                                                 <attributes>
                                                     <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <font key="NSFont" size="9" name="Lato-Regular"/>
+                                                    <font key="NSFont" metaFont="miniSystem"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                 </attributes>
                                             </fragment>
@@ -209,7 +203,7 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                                             <fragment content="Delete in 5:25">
                                                 <attributes>
                                                     <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <font key="NSFont" size="9" name="Lato-Regular"/>
+                                                    <font key="NSFont" metaFont="miniSystem"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                 </attributes>
                                             </fragment>
@@ -264,14 +258,13 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Oeh-eb-MhL" firstAttribute="top" secondItem="ESj-7u-Wsm" secondAttribute="bottom" id="09v-RK-pk7"/>
                     <constraint firstItem="7nB-s8-qhz" firstAttribute="top" secondItem="LTG-Sh-vfM" secondAttribute="bottom" constant="16" id="15C-dA-psM"/>
-                    <constraint firstAttribute="trailing" secondItem="Oeh-eb-MhL" secondAttribute="trailing" constant="16" id="5FZ-M7-KH1"/>
                     <constraint firstItem="QvS-7Z-HOi" firstAttribute="leading" secondItem="X0Y-7y-urH" secondAttribute="leading" constant="16" id="5Ir-Lf-Gyj"/>
                     <constraint firstAttribute="trailing" secondItem="WKV-YE-4cH" secondAttribute="trailing" id="85S-Py-PZ6"/>
                     <constraint firstAttribute="trailing" secondItem="ESj-7u-Wsm" secondAttribute="trailing" id="8CX-ru-K4M"/>
                     <constraint firstItem="QvS-7Z-HOi" firstAttribute="top" secondItem="X0Y-7y-urH" secondAttribute="top" constant="16" id="9Zh-08-VF1"/>
                     <constraint firstItem="Ohz-Ep-u46" firstAttribute="leading" secondItem="X0Y-7y-urH" secondAttribute="leading" id="Cpt-1R-OIU"/>
+                    <constraint firstItem="bZ8-kT-TqC" firstAttribute="top" secondItem="ESj-7u-Wsm" secondAttribute="bottom" id="DHg-qj-Ab7"/>
                     <constraint firstItem="LTG-Sh-vfM" firstAttribute="leading" secondItem="X0Y-7y-urH" secondAttribute="leading" constant="16" id="EaO-gw-hO2"/>
                     <constraint firstItem="WKV-YE-4cH" firstAttribute="top" secondItem="X0Y-7y-urH" secondAttribute="top" id="Fh6-gB-e1X"/>
                     <constraint firstItem="PHV-at-ZCc" firstAttribute="leading" secondItem="LTG-Sh-vfM" secondAttribute="trailing" constant="16" id="GLA-sC-F5u"/>
@@ -282,22 +275,24 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                     <constraint firstItem="Jwl-0g-LzY" firstAttribute="leading" secondItem="X0Y-7y-urH" secondAttribute="leading" constant="16" id="O7p-Qx-1SL"/>
                     <constraint firstAttribute="trailing" secondItem="C9X-n5-cqb" secondAttribute="trailing" constant="16" id="PWQ-vu-0uY"/>
                     <constraint firstItem="Jwl-0g-LzY" firstAttribute="top" secondItem="QvS-7Z-HOi" secondAttribute="bottom" constant="8" id="RJe-4B-nho"/>
+                    <constraint firstAttribute="trailing" secondItem="bZ8-kT-TqC" secondAttribute="trailing" constant="16" id="UBh-tt-vez"/>
                     <constraint firstItem="PHV-at-ZCc" firstAttribute="top" secondItem="Jwl-0g-LzY" secondAttribute="bottom" constant="8" id="ULA-Pd-iva"/>
-                    <constraint firstItem="Ohz-Ep-u46" firstAttribute="top" secondItem="Oeh-eb-MhL" secondAttribute="bottom" constant="16" id="Uuw-b3-nMc"/>
+                    <constraint firstItem="Ohz-Ep-u46" firstAttribute="top" secondItem="bZ8-kT-TqC" secondAttribute="bottom" constant="16" id="bBX-T4-3pt"/>
+                    <constraint firstItem="bZ8-kT-TqC" firstAttribute="leading" secondItem="X0Y-7y-urH" secondAttribute="leading" constant="16" id="bCY-yu-FNs"/>
                     <constraint firstAttribute="trailing" secondItem="Jwl-0g-LzY" secondAttribute="trailing" constant="16" id="cXJ-Tv-lWX"/>
                     <constraint firstItem="WKV-YE-4cH" firstAttribute="leading" secondItem="X0Y-7y-urH" secondAttribute="leading" id="czL-td-YrA"/>
                     <constraint firstItem="ESj-7u-Wsm" firstAttribute="leading" secondItem="X0Y-7y-urH" secondAttribute="leading" id="kEL-Qi-Cbh"/>
                     <constraint firstAttribute="trailing" secondItem="7nB-s8-qhz" secondAttribute="trailing" constant="16" id="lX9-uj-iBz"/>
                     <constraint firstAttribute="bottom" secondItem="Ohz-Ep-u46" secondAttribute="bottom" constant="15" id="mQ3-Kx-xd8"/>
                     <constraint firstItem="ESj-7u-Wsm" firstAttribute="top" secondItem="LTG-Sh-vfM" secondAttribute="bottom" constant="16" id="pfh-x1-dVQ"/>
-                    <constraint firstItem="Oeh-eb-MhL" firstAttribute="leading" secondItem="X0Y-7y-urH" secondAttribute="leading" constant="16" id="tu5-Az-xgr"/>
                     <constraint firstAttribute="trailing" secondItem="QvS-7Z-HOi" secondAttribute="trailing" constant="16" id="wWp-pg-hA8"/>
                     <constraint firstItem="7nB-s8-qhz" firstAttribute="leading" secondItem="X0Y-7y-urH" secondAttribute="leading" constant="16" id="zTc-r2-hru"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="collectionView" destination="Ohz-Ep-u46" id="Lcn-1q-CEt"/>
-                <outlet property="contentTextView" destination="Oeh-eb-MhL" id="6f6-AB-WHB"/>
+                <outlet property="contentWebViewHeightConstraint" destination="Nfk-bF-tT0" id="zew-XD-lVd"/>
+                <outlet property="contentsWebView" destination="bZ8-kT-TqC" id="xjv-tL-FUe"/>
                 <outlet property="dateLabel" destination="LTG-Sh-vfM" id="6JX-pY-HJm"/>
                 <outlet property="deleteLabel" destination="elU-HK-xPr" id="DQM-W4-PNg"/>
                 <outlet property="detailsButton" destination="PHV-at-ZCc" id="mM8-Ey-g19"/>
@@ -307,7 +302,6 @@ CC: Sam Smith &lt;samsmith@hotmail.com&gt;</string>
                 <outlet property="leftLabel" destination="y7o-Zx-Yit" id="Hg1-8B-zRy"/>
                 <outlet property="leftlabelView" destination="TiX-iJ-Lyj" id="XTF-Zz-eLe"/>
                 <outlet property="leftlabelViewWidthConstraint" destination="hfC-Nv-gJz" id="HhC-0O-Lt3"/>
-                <outlet property="messageContentTextViewHeightConstraint" destination="7vD-W9-lVk" id="dVg-cm-mvz"/>
                 <outlet property="recieverLabel" destination="Jwl-0g-LzY" id="UZW-mM-Ws6"/>
                 <outlet property="rightlabelView" destination="PXq-Zk-Rfq" id="OdM-Qk-knJ"/>
                 <outlet property="rightlabelViewWidthConstraint" destination="zyF-uf-O1e" id="Hps-zj-4wK"/>

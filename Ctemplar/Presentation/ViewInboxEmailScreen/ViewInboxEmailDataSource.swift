@@ -89,11 +89,11 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
             if hasAttachments {
                 cell = tableView.dequeueReusableCell(withIdentifier: k_ChildMessageExpandedWithAttachmentTableViewCellIdentifier)! as! ChildMessageExpandedWithAttachmentTableViewCell
                 (cell as! ChildMessageExpandedWithAttachmentTableViewCell).parentController = self
-                (cell as! ChildMessageExpandedWithAttachmentTableViewCell).setupCellWithData(message: message, contentMessage: messageText, showDetails: showDetails, index: indexPath.row)
+                (cell as! ChildMessageExpandedWithAttachmentTableViewCell).setupCellWithData(message: message, contentMessage: messageText, showDetails: showDetails, index: indexPath.row, delegate: self)
             } else {
                 cell = tableView.dequeueReusableCell(withIdentifier: k_ChildMessageExpandedTableViewCellIdentifier)! as! ChildMessageExpandedTableViewCell
                 (cell as! ChildMessageExpandedTableViewCell).parentController = self
-                (cell as! ChildMessageExpandedTableViewCell).setupCellWithData(message: message, contentMessage: messageText, showDetails: showDetails, index: indexPath.row)
+                (cell as! ChildMessageExpandedTableViewCell).setupCellWithData(message: message, contentMessage: messageText, showDetails: showDetails, index: indexPath.row, delegate: self)
             }
 
         } else {
@@ -150,5 +150,12 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
     func attachSelected(itemUrlString: String, encrypted: Bool) {
         
         self.parentViewController.presenter?.showShareScreen(itemUrlString: itemUrlString, encrypted: encrypted)
+    }
+}
+
+extension ViewInboxEmailDataSource: ChildMessageExxpandedTableViewCellDelegate {
+    func reloadCell(at index: Int) {
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
 }
