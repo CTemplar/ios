@@ -411,7 +411,7 @@ class ComposePresenter {
 //                self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
             } else {
                 if currentSignature.count > 0 {
-                    self.viewController!.messageTextEditor.html = currentSignature
+                    self.viewController!.messageTextEditor.html = "<br><br>" + currentSignature
 //                    let attributedString = currentSignature.html2AttributedString ?? NSAttributedString() //NSAttributedString(string: "\n" + currentSignature)
 //                    self.viewController?.messageTextView.attributedText = attributedString
 //                    self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
