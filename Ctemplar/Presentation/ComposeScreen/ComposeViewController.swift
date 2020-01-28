@@ -217,7 +217,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
 
         } else {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: {
-                self.interactor?.createDraft()
+                self.interactor?.createDraft(showHud: false)
             })
             
             self.presenter?.setupSubject(subjectText: subject, answerMode: answerMode)
@@ -226,7 +226,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         let isContactsEncrypted = self.user.settings.isContactsEncrypted ?? false
         if !isContactsEncrypted {        
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100), execute: {
-                self.interactor?.userContactsList()
+                self.interactor?.userContactsList(silent: true)
             })
         }
             

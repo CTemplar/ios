@@ -25,9 +25,9 @@ class ComposeInteractor {
 
     //MARK: - API
     
-    func createDraftMessage(parentID: String, content: String, subject: String, recievers: [[String]], folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String], attachments: Array<[String : String]>) {
+    func createDraftMessage(parentID: String, content: String, subject: String, recievers: [[String]], folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String], attachments: Array<[String : String]>, showHud: Bool = true) {
         
-        apiService?.createMessage(parentID: parentID, content: content, subject: subject, recieversList: recievers, folder: folder, mailboxID: mailboxID, send: send, encrypted: encrypted, encryptionObject: encryptionObject, attachments: attachments) {(result) in
+        apiService?.createMessage(parentID: parentID, content: content, subject: subject, recieversList: recievers, folder: folder, mailboxID: mailboxID, send: send, encrypted: encrypted, encryptionObject: encryptionObject, attachments: attachments, showHud: showHud) {(result) in
             
             switch(result) {
                 
@@ -189,11 +189,11 @@ class ComposeInteractor {
         }
     }
     
-    func userContactsList() {
+    func userContactsList(silent: Bool = false) {
         
         //HUD.show(.progress)
         
-        apiService?.userContacts(fetchAll: true, offset: 0, silent: false) {(result) in
+        apiService?.userContacts(fetchAll: true, offset: 0, silent: silent) {(result) in
             
             switch(result) {
                 
@@ -321,7 +321,7 @@ class ComposeInteractor {
         }
     }
     
-    func createDraft() {
+    func createDraft(showHud: Bool = true) {
         
         var messageContent : String = ""
         
@@ -329,7 +329,7 @@ class ComposeInteractor {
         
         let recieversList = self.setRecieversList()
         
-        self.createDraftMessage(parentID: "", content: messageContent, subject: self.viewController!.subject, recievers: recieversList, folder: MessagesFoldersName.draft.rawValue, mailboxID: (self.viewController?.mailboxID)!, send: false, encrypted: false, encryptionObject: [:], attachments: self.viewController!.mailAttachmentsList)
+        self.createDraftMessage(parentID: "", content: messageContent, subject: self.viewController!.subject, recievers: recieversList, folder: MessagesFoldersName.draft.rawValue, mailboxID: (self.viewController?.mailboxID)!, send: false, encrypted: false, encryptionObject: [:], attachments: self.viewController!.mailAttachmentsList, showHud: showHud)
     }
     
     func createDraftWithParent(message: EmailMessage) {

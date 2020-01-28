@@ -422,15 +422,15 @@ class APIService: HashingService {
         }
     }
     
-    func createMessage(parentID: String, content: String, subject: String, recieversList: [[String]], folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String], attachments: Array<[String : String]>, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func createMessage(parentID: String, content: String, subject: String, recieversList: [[String]], folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String], attachments: Array<[String : String]>, showHud: Bool = true, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         self.checkTokenExpiration(){ (complete) in
             if complete {
                 
                 if let token = self.getToken() {
-                    
-                    HUD.show(.progress)
-                    
+                    if showHud {
+                        HUD.show(.progress)
+                    }
                     self.restAPIService?.createMessage(token: token, parentID: parentID, content: content, subject: subject, recieversList: recieversList, folder: folder, mailboxID: mailboxID, send: send, encrypted: encrypted, encryptionObject: encryptionObject, attachments: attachments) {(result) in
                         
                         switch(result) {
