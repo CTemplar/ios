@@ -195,7 +195,7 @@ class APIService: HashingService {
     
     //MARK: - Mail
     
-    func messagesList(folder: String, messagesIDIn: String, seconds: Int, offset: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func messagesList(folder: String, messagesIDIn: String, seconds: Int, offset: Int, pageLimit: Int = k_pageLimit, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         var folderFilter = ""
         
@@ -222,7 +222,7 @@ class APIService: HashingService {
                     
                     //HUD.show(.progress)
                     
-                    self.restAPIService?.messagesList(token: token, folder: folderFilter, messagesIDIn: messagesIDInParameter, filter: "", seconds: seconds, offset: offset) {(result) in
+                    self.restAPIService?.messagesList(token: token, folder: folderFilter, messagesIDIn: messagesIDInParameter, filter: "", seconds: seconds, offset: offset, pageLimit: pageLimit) {(result) in
                         
                         switch(result) {
                             

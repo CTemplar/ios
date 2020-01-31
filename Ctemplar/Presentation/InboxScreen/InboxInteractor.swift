@@ -175,8 +175,14 @@ class InboxInteractor {
             //HUD.show(.progress)
             HUD.show(.labeledProgress(title: "updateMessages".localized(), subtitle: ""))
         }
+        let pageSize: Int
+        if self.viewController?.allMessagesArray.count == 0 {
+            pageSize = 10
+        }else {
+            pageSize = k_pageLimit
+        }
         
-        apiService?.messagesList(folder: folder, messagesIDIn: "", seconds: 0, offset: offset) {(result) in
+        apiService?.messagesList(folder: folder, messagesIDIn: "", seconds: 0, offset: offset, pageLimit: pageSize) {(result) in
             
             switch(result) {
                 

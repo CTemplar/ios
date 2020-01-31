@@ -13,7 +13,7 @@ enum EndPoint: String {
     #if DEVELOPMENT
     case baseUrl = "https://devapi.ctemplar.com/"
     #else
-    case baseUrl = "https://api.ctemplar.com/"
+    case baseUrl = "https://mail.ctemplar.com/api/" //"https://api.ctemplar.com/"
     #endif
     case signIn = "auth/sign-in/"
     case signUp = "auth/sign-up/"
@@ -169,7 +169,7 @@ class RestAPIService {
     
     //MARK: - Mail
     
-    func messagesList(token: String, folder: String, messagesIDIn: String, filter: String, seconds: Int, offset: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func messagesList(token: String, folder: String, messagesIDIn: String, filter: String, seconds: Int, offset: Int, pageLimit: Int = k_pageLimit, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -185,7 +185,7 @@ class RestAPIService {
         var limitParams = ""
         
         if offset > -1 {
-            limitParams = String(format: "?limit=%d&offset=%d", k_pageLimit, offset)
+            limitParams = String(format: "?limit=%d&offset=%d", pageLimit, offset)
         }
         
         //timeParameter = "?seconds=100000000"

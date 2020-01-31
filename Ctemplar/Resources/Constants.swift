@@ -390,7 +390,7 @@ let k_latoBoldFontName    = "Lato-Bold"
 
 // other
 let k_contactPageLimit = 20
-let k_pageLimit = 50
+let k_pageLimit = 30
 let k_offsetForLast = 5
 
 let k_numberOfRounds               = 29
