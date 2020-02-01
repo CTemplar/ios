@@ -177,7 +177,7 @@ class InboxInteractor {
         }
         let pageSize: Int
         if self.viewController?.allMessagesArray.count == 0 {
-            pageSize = 10
+            pageSize = k_firstLoadPageLimit
         }else {
             pageSize = k_pageLimit
         }
@@ -201,7 +201,7 @@ class InboxInteractor {
                     self.presenter?.showUndoBar(text: withUndo)
                 }
                 
-                self.offset = self.offset + k_pageLimit
+                self.offset = self.offset + pageSize
                 
             case .failure(let error):
                 print("error:", error)
