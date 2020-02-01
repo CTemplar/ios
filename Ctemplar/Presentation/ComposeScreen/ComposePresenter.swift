@@ -362,9 +362,13 @@ class ComposePresenter {
         self.setupAttachmentButton()
         
         //self.viewController?.messageTextView.backgroundColor = UIColor.yellow
-        let fixedWidth = self.viewController!.view.frame.width - k_emailToTextViewLeftOffset - k_emailToTextViewLeftOffset
+//        let fixedWidth = self.viewController!.view.frame.width - k_emailToTextViewLeftOffset - k_emailToTextViewLeftOffset
         
-        let messageContentHeight: CGFloat = CGFloat(self.viewController!.messageTextEditor.editorHeight) //self.sizeThatFits(textView: self.viewController!.messageTextView, fixedWidth: fixedWidth)
+        var messageContentHeight: CGFloat = CGFloat(self.viewController!.messageTextEditor.editorHeight)
+        if messageContentHeight < k_messageEditorThresholdHeight {
+            messageContentHeight = k_messageEditorThresholdHeight
+        }
+        //self.sizeThatFits(textView: self.viewController!.messageTextView, fixedWidth: fixedWidth)
         let scrollViewHeight = self.viewController?.scrollView.frame.size.height
         
         self.setAttachmentsToMessage()

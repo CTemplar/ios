@@ -271,6 +271,8 @@ let k_composeTableViewTopOffset     : CGFloat = 45.0
 
 let k_messageTextViewTopOffset      : CGFloat = 10.0
 
+let k_messageEditorThresholdHeight  : CGFloat = 100.0
+
 let k_attachmentViewHeight          : CGFloat = 44.0
 let k_attachmentViewTopOffset       : CGFloat = 25.0
 let k_attachmentsInterSpacing       : CGFloat = 8.0
