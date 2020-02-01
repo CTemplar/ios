@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -75,16 +73,19 @@
                         <constraint firstAttribute="height" constant="18" id="D1A-lI-4MX"/>
                     </constraints>
                     <attributedString key="attributedText">
-                        <fragment content="Label">
+                        <fragment content="Attachment">
                             <attributes>
                                 <color key="NSColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
-                                <font key="NSFont" metaFont="system" size="14"/>
+                                <font key="NSFont" metaFont="menu" size="14"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
                     </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="iO7-5R-Rgw">
+                    <rect key="frame" x="161.5" y="12" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -96,8 +97,10 @@
                 <constraint firstItem="MvI-3Z-OQF" firstAttribute="trailing" secondItem="l2z-f0-39Z" secondAttribute="trailing" id="SEU-2F-g9V"/>
                 <constraint firstItem="Lvt-gE-8Ta" firstAttribute="leading" secondItem="XoT-Ki-U9c" secondAttribute="trailing" constant="10" id="Vtq-uW-tUv"/>
                 <constraint firstItem="l2z-f0-39Z" firstAttribute="bottom" secondItem="MvI-3Z-OQF" secondAttribute="bottom" id="Xw7-lZ-UGQ"/>
+                <constraint firstItem="iO7-5R-Rgw" firstAttribute="centerY" secondItem="bKE-XQ-rYc" secondAttribute="centerY" id="buz-U7-VcK"/>
                 <constraint firstItem="XoT-Ki-U9c" firstAttribute="leading" secondItem="MvI-3Z-OQF" secondAttribute="leading" constant="16" id="q6Z-vm-d6c"/>
                 <constraint firstItem="Lvt-gE-8Ta" firstAttribute="top" secondItem="MvI-3Z-OQF" secondAttribute="top" constant="14" id="vOf-nd-er4"/>
+                <constraint firstItem="iO7-5R-Rgw" firstAttribute="centerX" secondItem="bKE-XQ-rYc" secondAttribute="centerX" id="vhV-lC-xo3"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="MvI-3Z-OQF"/>
@@ -113,6 +116,7 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="activityIndicator" destination="iO7-5R-Rgw" id="929-fu-6g4"/>
                 <outlet property="backgroundProgressView" destination="Lvt-gE-8Ta" id="Kxw-3b-3se"/>
                 <outlet property="deleteButton" destination="l2z-f0-39Z" id="fem-Ja-ceK"/>
                 <outlet property="progressView" destination="b37-CI-3oI" id="GuL-Ss-9eb"/>
