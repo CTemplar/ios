@@ -11,7 +11,6 @@ import Foundation
 import PKHUD
 import AlertHelperKit
 import ObjectivePGP
-import RichEditorView
 
 class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate, UIDocumentPickerDelegate {
     
@@ -28,7 +27,6 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet var emailFrom           : UILabel!
     @IBOutlet var subjectTextField    : UITextField!
     
-//    @IBOutlet var messageTextView     : UITextView!
     @IBOutlet weak var messageTextEditor    :    RichEditorView!
     @IBOutlet var scrollView          : UIScrollView!
     
@@ -54,13 +52,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet var tableViewTopOffsetConstraint           : NSLayoutConstraint!
     @IBOutlet var tableViewBottomOffsetConstraint        : NSLayoutConstraint!
     
-//    @IBOutlet var messageTextViewHeightConstraint        : NSLayoutConstraint!
     @IBOutlet weak var messageTextEditorHeightConstraint: NSLayoutConstraint!
-//    @IBOutlet weak var messageTextViewBottomOffsetConstraint: NSLayoutConstraint!
     @IBOutlet weak var messageTextEditorBottomOffsetConstraint: NSLayoutConstraint!
     @IBOutlet var scrollViewBottomOffsetConstraint       : NSLayoutConstraint!
     
-    //var scrollViewContentSize
     
     var expandedSectionHeight: CGFloat = 0.0
     var keyboardOffset = 0.0
@@ -142,7 +137,6 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         subjectTextField.delegate = self
         
-//        messageTextView.delegate = self
         messageTextEditor.delegate = self
         
         ccToSubSectionView.isHidden = true
@@ -665,6 +659,12 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
 extension ComposeViewController: RichEditorDelegate {
     func richEditor(_ editor: RichEditorView, contentDidChange content: String) {
         self.presenter!.enabledSendButton()
+    }
+    
+    func richEditorTookFocus(_ editor: RichEditorView) {
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+//            editor.focus(at: .zero)
+//        }
     }
 }
 

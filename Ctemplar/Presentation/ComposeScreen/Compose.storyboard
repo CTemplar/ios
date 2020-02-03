@@ -392,15 +392,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NRs-SL-oAk">
                                 <rect key="frame" x="0.0" y="272" width="375" height="395"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v4G-Sq-GK2">
-                                        <rect key="frame" x="16" y="10" width="343" height="355"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="355" id="p2x-by-MRe"/>
-                                        </constraints>
-                                        <attributedString key="attributedText"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" keyboardAppearance="alert"/>
-                                    </textView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mBI-rr-9aJ" customClass="RichEditorView" customModule="RichEditorView">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mBI-rr-9aJ" customClass="RichEditorView" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="16" y="10" width="343" height="355"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -410,14 +402,10 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="mBI-rr-9aJ" firstAttribute="leading" secondItem="NRs-SL-oAk" secondAttribute="leading" constant="16" id="1ey-u8-QPa"/>
-                                    <constraint firstItem="v4G-Sq-GK2" firstAttribute="leading" secondItem="NRs-SL-oAk" secondAttribute="leading" constant="16" id="RBM-Kt-HwN"/>
-                                    <constraint firstItem="v4G-Sq-GK2" firstAttribute="centerX" secondItem="NRs-SL-oAk" secondAttribute="centerX" id="aic-Is-BZf"/>
-                                    <constraint firstAttribute="trailing" secondItem="v4G-Sq-GK2" secondAttribute="trailing" constant="16" id="dnB-Qc-Duo"/>
+                                    <constraint firstItem="mBI-rr-9aJ" firstAttribute="centerX" secondItem="NRs-SL-oAk" secondAttribute="centerX" id="epC-sy-S8M"/>
                                     <constraint firstAttribute="bottom" secondItem="mBI-rr-9aJ" secondAttribute="bottom" constant="10" id="jq0-Pp-v4w"/>
                                     <constraint firstItem="mBI-rr-9aJ" firstAttribute="top" secondItem="NRs-SL-oAk" secondAttribute="top" constant="10" id="kTL-ZA-OZq"/>
                                     <constraint firstAttribute="trailing" secondItem="mBI-rr-9aJ" secondAttribute="trailing" constant="16" id="kuT-TZ-ZMD"/>
-                                    <constraint firstItem="v4G-Sq-GK2" firstAttribute="top" secondItem="NRs-SL-oAk" secondAttribute="top" constant="10" id="sAi-ic-USd"/>
-                                    <constraint firstAttribute="bottom" secondItem="v4G-Sq-GK2" secondAttribute="bottom" priority="999" constant="10" id="xPX-vV-sSY"/>
                                 </constraints>
                             </scrollView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mnP-Oe-gne">
