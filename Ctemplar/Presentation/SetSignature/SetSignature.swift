@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import AlertHelperKit
 import PKHUD
-import RichEditorView
 
 enum SignatureType {
     case general
@@ -252,44 +251,32 @@ extension SetSignatureViewController: RichEditorToolbarDelegate {
     }
     
     func richEditorToolbarInsertLink(_ toolbar: RichEditorToolbar) {
-        if toolbar.editor?.hasRangeSelection == true {
-            let alert = UIAlertController(title: "Insert Link", message: nil, preferredStyle: .alert)
-            alert.addTextField { (textField) in
-                textField.placeholder = "URL (required)"
-            }
-            alert.addTextField { (textField) in
-                textField.placeholder = "Title"
-            }
-            alert.addAction(UIAlertAction(title: "Insert", style: .default, handler: { (action) in
-                let textField1 = alert.textFields![0]
-                let textField2 = alert.textFields![1]
-                let url = textField1.text ?? ""
-                if url == "" {
-                    
-//                    VCUtil.showAlertView(viewController: self, title: "Error", message: "Please add link.")
-                    return
+        toolbar.editor?.hasRangeSelection(handler: { (isRangedSelection) in
+            if isRangedSelection {
+                let alert = UIAlertController(title: "Insert Link", message: nil, preferredStyle: .alert)
+                alert.addTextField { (textField) in
+                    textField.placeholder = "URL (required)"
                 }
-                let title = textField2.text ?? ""
-                toolbar.editor?.insertLink(url, title: title)
-            }))
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }else {
-//            self.view.makeToast("Select text in editor to add link.", duration: 2, position: .center)
-        }
+                alert.addTextField { (textField) in
+                    textField.placeholder = "Title"
+                }
+                alert.addAction(UIAlertAction(title: "Insert", style: .default, handler: { (action) in
+                    let textField1 = alert.textFields![0]
+                    let textField2 = alert.textFields![1]
+                    let url = textField1.text ?? ""
+                    if url == "" {
+                        return
+                    }
+                    let title = textField2.text ?? ""
+                    toolbar.editor?.insertLink(href: url, text: title)
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        })
     }
     
     func richEditorToolbarInsertImage(_ toolbar: RichEditorToolbar) {
-//        imagePicker = UIImagePickerController()
-//        imagePicker.sourceType = .photoLibrary
-//        if !IS_IPHONE {
-//            self.imagePicker.popoverPresentationController?.sourceRect = toolbar.bounds
-//            self.imagePicker.popoverPresentationController?.sourceView = toolbar
-//        }
-//        imagePicker.mediaTypes = [kUTTypeImage as String]
-//        imagePicker.delegate = self
-//        imagePicker.modalPresentationStyle = .fullScreen
-//        present(imagePicker, animated: true, completion: nil)
     }
 }
 

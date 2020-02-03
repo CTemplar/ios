@@ -63,7 +63,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1KD-vX-Azf">
                                 <rect key="frame" x="0.0" y="49" width="375" height="150"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Zj-rG-ufH" customClass="RichEditorView" customModule="RichEditorView">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Zj-rG-ufH" customClass="RichEditorView" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="16" y="8" width="343" height="134"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
