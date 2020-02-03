@@ -44,7 +44,7 @@ class ContactsPresenter {
         let imageView = UIImageView(image: UIImage(named: "SearchIcon")?.withRenderingMode(.alwaysTemplate))
         imageView.frame = CGRect(x: 0, y: 0, width: 22, height: 22)
         
-        if let searchTextField = self.viewController?.searchController.searchBar.value(forKey: "_searchField") as? UITextField {
+        if let searchTextField = self.viewController?.searchController.searchBar.searchTextField {
             searchTextField.borderStyle = .none
             searchTextField.leftView = imageView
             
