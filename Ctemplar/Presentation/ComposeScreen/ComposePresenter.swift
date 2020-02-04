@@ -340,6 +340,12 @@ class ComposePresenter {
             list.count > 0,
             let scrollView = viewController?.scrollView,
         let textEditor = viewController?.messageTextEditor {
+            if #available(iOS 13.0, *) {
+                viewController?.messageTextEditorBottomOffsetConstraint.priority = .defaultLow
+            }else {
+                viewController?.messageTextEditorBottomOffsetConstraint.isActive = false
+            }
+            
             let stack = attachmentStackView(from: list)
             stack.translatesAutoresizingMaskIntoConstraints = false
             viewController?.scrollView.add(subview: stack)
@@ -347,7 +353,6 @@ class ComposePresenter {
             stack.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -k_emailToTextViewLeftOffset).isActive = true
             stack.topAnchor.constraint(equalTo: textEditor.bottomAnchor, constant: k_messageTextViewTopOffset).isActive = true
             stack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -k_emailToTextViewLeftOffset).isActive = true
-            viewController?.messageTextEditorBottomOffsetConstraint.priority = .defaultLow
         }
     }
     
@@ -355,14 +360,11 @@ class ComposePresenter {
         
         self.setupAttachmentButton()
         
-        //self.viewController?.messageTextView.backgroundColor = UIColor.yellow
-//        let fixedWidth = self.viewController!.view.frame.width - k_emailToTextViewLeftOffset - k_emailToTextViewLeftOffset
-        
         var messageContentHeight: CGFloat = CGFloat(self.viewController!.messageTextEditor.editorHeight)
         if messageContentHeight < k_messageEditorThresholdHeight {
             messageContentHeight = k_messageEditorThresholdHeight
         }
-        //self.sizeThatFits(textView: self.viewController!.messageTextView, fixedWidth: fixedWidth)
+        print("message content height: \(messageContentHeight)")
         let scrollViewHeight = self.viewController?.scrollView.frame.size.height
         
         self.setAttachmentsToMessage()
@@ -370,7 +372,12 @@ class ComposePresenter {
         if let list = viewController?.viewAttachmentsList, list.count > 0 {
             self.viewController!.messageTextEditorHeightConstraint.constant = messageContentHeight
         } else { //without attachments
-            viewController?.messageTextEditorBottomOffsetConstraint.priority = UILayoutPriority(rawValue: 999)
+            if #available(iOS 13.0, *) {
+                viewController?.messageTextEditorBottomOffsetConstraint.priority = UILayoutPriority(rawValue: 999)
+            }else {
+                viewController?.messageTextEditorBottomOffsetConstraint.isActive = true
+            }
+            
             let content = self.interactor?.getEnteredMessageContent()
             if content?.count == 0 { //empty message
                 self.viewController?.messageTextEditorHeightConstraint.constant = scrollViewHeight! - k_messageTextViewTopOffset - k_messageTextViewTopOffset
@@ -428,45 +435,18 @@ class ComposePresenter {
         
         print("set new Signature:", newSignature)
         
-//        guard let currentMessageText = self.viewController?.messageTextView.attributedText else { return }
         var currentMessageText = self.viewController?.messageTextEditor.html
-//        let mutableAttributedString = NSMutableAttributedString(attributedString: currentMessageText)
-        
         if let range = currentMessageText?.range(of: currentSignature) {
-//            let nsRange = NSRange(range, in: currentMessageText ?? "")
-            
-//            let newAttributedStringSignature =  newSignature.html2AttributedString ?? NSAttributedString() //NSAttributedString(string: newSignature)
             let messageContentWithNewSignature = (currentMessageText ?? "").replacingCharacters(in: range, with: newSignature)
-//            mutableAttributedString.replaceCharacters(in: nsRange, with: newAttributedStringSignature)
             self.viewController?.messageTextEditor.html = messageContentWithNewSignature
-//            self.viewController?.messageTextView.attributedText = mutableAttributedString
             currentSignature = newSignature
         } else {
             currentSignature = newSignature
             currentMessageText?.append(newSignature)
-//            let newAttributedStringSignature =  newSignature.html2AttributedString ?? NSAttributedString() //NSAttributedString(string: "\n" + newSignature)
-//            mutableAttributedString.insert(newAttributedStringSignature, at: 0)
             self.viewController?.messageTextEditor.html = currentMessageText ?? ""
-//            self.viewController?.messageTextView.attributedText = mutableAttributedString
         }
-        
-//        self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
         self.setupMessageSectionSize()
     }
-    
-//    func setPlaceholderToMessageTextView(show: Bool) {
-//        
-//        if show {
-//            self.viewController?.messageTextView.font = UIFont(name: k_latoRegularFontName, size: 16.0)
-//            self.viewController?.messageTextView.text = "composeEmail".localized()
-//            self.viewController?.messageTextView.textColor = UIColor.lightGray
-//        } else {
-//            if self.viewController?.messageTextView.text == "composeEmail".localized() {
-//                self.viewController?.messageTextView.text = ""
-//                self.viewController?.messageTextView.textColor = UIColor.darkText //temp
-//            }
-//        }
-//    }
    
     func sizeThatFits(textView: UITextView, fixedWidth: CGFloat) -> CGFloat {
         

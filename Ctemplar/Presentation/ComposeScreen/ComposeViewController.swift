@@ -52,8 +52,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet var tableViewTopOffsetConstraint           : NSLayoutConstraint!
     @IBOutlet var tableViewBottomOffsetConstraint        : NSLayoutConstraint!
     
-    @IBOutlet weak var messageTextEditorHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var messageTextEditorBottomOffsetConstraint: NSLayoutConstraint!
+    @IBOutlet var messageTextEditorHeightConstraint: NSLayoutConstraint!
+    @IBOutlet var messageTextEditorBottomOffsetConstraint: NSLayoutConstraint!
     @IBOutlet var scrollViewBottomOffsetConstraint       : NSLayoutConstraint!
     
     
@@ -659,6 +659,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
 extension ComposeViewController: RichEditorDelegate {
     func richEditor(_ editor: RichEditorView, contentDidChange content: String) {
         self.presenter!.enabledSendButton()
+        self.presenter?.setupMessageSectionSize()
     }
     
     func richEditorTookFocus(_ editor: RichEditorView) {
