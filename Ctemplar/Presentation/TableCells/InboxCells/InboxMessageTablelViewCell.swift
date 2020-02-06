@@ -110,8 +110,12 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
             isReadImageView.isHidden = isRead
             
             if !isRead {
+                senderLabel.font = k_unreadMessageSenderFont
+                subjectLabel.font = k_unreadMEssageSubjectFont
                 self.backgroundColor = k_unreadMessageColor
             } else {
+                senderLabel.font = k_readMessageSenderFont
+                subjectLabel.font = k_readMEssageSubjectFont
                 self.backgroundColor = UIColor.white
             }
         }

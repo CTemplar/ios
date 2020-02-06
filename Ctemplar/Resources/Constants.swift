@@ -389,6 +389,10 @@ let k_redSelectedImageName          = "RedSelection"
 
 let k_latoRegularFontName = "Lato-Regular"
 let k_latoBoldFontName    = "Lato-Bold"
+let k_unreadMessageSenderFont = UIFont.systemFont(ofSize: 16.0, weight: UIFont.Weight.semibold)
+let k_readMessageSenderFont = UIFont.systemFont(ofSize: 16.0)
+let k_unreadMEssageSubjectFont = UIFont(name: "Lato-Bold", size: 14.0)
+let k_readMEssageSubjectFont = UIFont(name: "Lato-Regular", size: 14.0)
 
 // other
 let k_contactPageLimit = 20
