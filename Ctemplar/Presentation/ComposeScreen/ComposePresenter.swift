@@ -51,8 +51,8 @@ class ComposePresenter {
         
         var messageContentIsEmpty : Bool = true
         
-        if (self.viewController?.messageTextEditor.html ?? "").count > 0 {
-            if self.viewController?.messageTextEditor.html != currentSignature {
+        if (self.viewController?.messageTextEditor.contentHTML ?? "").count > 0 {
+            if self.viewController?.messageTextEditor.contentHTML != currentSignature {
                 messageContentIsEmpty = false
             }
         }
@@ -435,7 +435,7 @@ class ComposePresenter {
         
         print("set new Signature:", newSignature)
         
-        var currentMessageText = self.viewController?.messageTextEditor.html
+        var currentMessageText = self.viewController?.messageTextEditor.contentHTML
         if let range = currentMessageText?.range(of: currentSignature) {
             let messageContentWithNewSignature = (currentMessageText ?? "").replacingCharacters(in: range, with: newSignature)
             self.viewController?.messageTextEditor.html = messageContentWithNewSignature

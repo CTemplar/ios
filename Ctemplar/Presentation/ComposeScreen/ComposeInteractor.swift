@@ -410,7 +410,7 @@ class ComposeInteractor {
     
     func getEnteredMessageContent() -> String {
         
-        var messageContent = self.viewController!.messageTextEditor.html
+        var messageContent = self.viewController!.messageTextEditor.contentHTML
         if let range = messageContent.range(of: self.viewController!.presenter!.currentSignature) {
             messageContent = messageContent.replacingCharacters(in: range, with: "")
             messageContent.append("\n\(self.viewController!.presenter!.currentSignature)")
