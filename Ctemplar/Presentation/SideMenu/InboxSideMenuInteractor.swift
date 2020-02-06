@@ -17,36 +17,28 @@ class InboxSideMenuInteractor {
     var apiService      : APIService?
 
     func logOut() {
-        
-        self.resetInboxData()
-        
-        if (!Device.IS_IPAD) {
-            self.viewController?.dismiss(animated: true, completion: {
-                if let parentViewController = self.viewController?.currentParentViewController {
-                    parentViewController.navigationController?.popViewController(animated: true)
-                }
-            })
+        HUD.show(.progress)
+        self.apiService?.logOut(completionHandler: { (result) in
+            HUD.hide()
+            self.resetInboxData()
             
-            self.viewController?.inboxViewController.dismiss(animated: false, completion: {
-                self.viewController?.mainViewController?.showLoginViewController()
-            })
-        } else {
-            self.viewController?.splitViewController?.dismiss(animated: false, completion: {
-                self.viewController?.mainViewController?.showLoginViewController()
-            })
-        }
-        
-        apiService?.logOut()  {(result) in
-            switch(result) {
+            if (!Device.IS_IPAD) {
+                self.viewController?.dismiss(animated: true, completion: {
+                    if let parentViewController = self.viewController?.currentParentViewController {
+                        parentViewController.navigationController?.popViewController(animated: true)
+                    }
+                })
                 
-            case .success(let value):
-                print("value:", value)
-                
-            case .failure(let error):
-                print("error:", error)
-                
+                self.viewController?.inboxViewController.dismiss(animated: false, completion: {
+                    self.viewController?.mainViewController?.showLoginViewController()
+                })
+            } else {
+                self.viewController?.splitViewController?.dismiss(animated: false, completion: {
+                    self.viewController?.mainViewController?.showLoginViewController()
+                })
             }
-        }
+        })
+        
     }
     
     func resetInboxData() {

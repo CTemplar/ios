@@ -23,6 +23,7 @@ enum EndPoint: String {
     case changePassword = "auth/change-password/"
     case verifyToken = "auth/verify/"
     case refreshToken = "auth/refresh/"
+    case signOut = "auth/sign-out/"
     case messages = "emails/messages/"
     case mailboxes = "emails/mailboxes/"
     case publicKeys = "emails/keys/"
@@ -53,6 +54,7 @@ enum JSONKey: String {
     case fingerprint = "fingerprint"
     case recaptcha = "recaptcha"
     case recoveryEmail = "recovery_email"
+    case apnsToken = "device_token"
     case fromAddress = "from_address"
     case redeemCode = "redeem_code"
     case stripeToken = "stripe_token"
@@ -133,6 +135,26 @@ class RestAPIService {
             print("refreshToken responce:", response)
             
             switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    //MARK: - Authentication
+    
+    func signOut(token: String, deviceToken: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.signOut.rawValue  + "?plateform=ios&device_token=" + deviceToken
+        
+        AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            switch response.result {
             case .success(let value):
                 completionHandler(APIResult.success(value))
             case .failure(let error):

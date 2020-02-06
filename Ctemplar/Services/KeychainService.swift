@@ -107,11 +107,11 @@ class KeychainService
        
     func getAPNDeviceToken() -> String {
            
-        guard let username = keychain.get(Consts.apnToken.keyName) else {
+        guard let apnsToken = keychain.get(Consts.apnToken.keyName) else {
             return ""
         }
            
-        return username
+        return apnsToken
     }
     
     func deleteUserCredentialsAndToken() {
@@ -120,7 +120,7 @@ class KeychainService
         keychain.delete(Consts.tokenSavedTime.keyName)
         keychain.delete(Consts.username.keyName)
         keychain.delete(Consts.password.keyName)
-        keychain.delete(Consts.apnToken.keyName)
+//        keychain.delete(Consts.apnToken.keyName)
     }
 }
 

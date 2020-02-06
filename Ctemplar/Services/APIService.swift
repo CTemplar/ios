@@ -138,13 +138,20 @@ class APIService: HashingService {
     
     func logOut(completionHandler: @escaping (APIResult<Any>) -> Void) {
         
-        self.hashedPassword = nil
-        
-        keychainService?.deleteUserCredentialsAndToken()
-        pgpService?.deleteStoredPGPKeys()
-        
-        completionHandler(APIResult.success("success"))
-        //showLoginViewController()
+        self.checkTokenExpiration { (complete) in
+            if complete {
+                if let token = self.getToken(), let deviceToken = self.keychainService?.getAPNDeviceToken() {
+                    self.restAPIService?.signOut(token: token, deviceToken: deviceToken, completionHandler: { (result) in
+                        self.hashedPassword = nil
+                        
+                        self.keychainService?.deleteUserCredentialsAndToken()
+                        self.pgpService?.deleteStoredPGPKeys()
+                        
+                        completionHandler(APIResult.success("success"))
+                    })
+                }
+            }
+        }
     }
     
     //MARK: - User
