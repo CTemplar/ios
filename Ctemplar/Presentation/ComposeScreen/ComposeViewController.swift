@@ -118,6 +118,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        self.addGesureRecognizers()
+        
         let configurator = ComposeConfigurator()
         configurator.configure(viewController: self)
         
@@ -210,25 +212,23 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             //self.presenter?.setupSubject(subjectText: subject, answerMode: answerMode)
 
         } else {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: {
+            DispatchQueue.global(qos: .default).async {
                 self.interactor?.createDraft(showHud: false)
-            })
-            
+            }
+//            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: {
+//                self.interactor?.createDraft(showHud: false)
+//            })
             self.presenter?.setupSubject(subjectText: subject, answerMode: answerMode)
         }
         
         let isContactsEncrypted = self.user.settings.isContactsEncrypted ?? false
-        if !isContactsEncrypted {        
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100), execute: {
-                self.interactor?.userContactsList(silent: true)
-            })
+        if !isContactsEncrypted {
+            self.interactor?.userContactsList(silent: true)
         }
             
         self.presenter?.setupSchedulersButtons()
         
         self.presenter?.initAddFolderLimitView()
-        
-        self.addGesureRecognizers()
         
         self.addNotificationObserver()
         

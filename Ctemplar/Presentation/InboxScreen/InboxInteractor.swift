@@ -301,8 +301,10 @@ class InboxInteractor {
             case .success(let value):
                 //print("userMyself value:", value)
                 
-                let userMyself = value as! UserMyself
-                
+                var userMyself = value as! UserMyself
+                if userMyself.username == self.viewController?.user.username {
+                    userMyself.contactsList = self.viewController?.user.contactsList
+                }
                 self.viewController?.user = userMyself
                 
                // if let contacts = userMyself.contactsList {
@@ -321,12 +323,35 @@ class InboxInteractor {
                 self.viewController?.rightComposeButton.isEnabled = true
                 
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: value)
-                
+                self.userContactsList()
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "User Myself Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
+    }
+    
+    func userContactsList() {
+        if (self.viewController?.user.contactsList?.count ?? 0) > 0 {
+            return
+        }
+        DispatchQueue.global(qos: .background).async {
+            self.apiService?.userContacts(fetchAll: true, offset: 0, silent: true, completionHandler: { (result) in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let value):
+                        if let contactsList = value as? ContactsList {
+                            self.viewController?.user.contactsList = contactsList.contactsList ?? []
+                        }
+                        break
+                    case .failure(let error):
+                        print("Error in fetching user contacts: \(error.localizedDescription)")
+                        break
+                    }
+                }
+            })
+        }
+        
     }
     
     func publicKeyList() {
