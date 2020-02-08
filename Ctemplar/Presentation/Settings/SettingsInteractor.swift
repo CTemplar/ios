@@ -35,7 +35,7 @@ class SettingsInteractor {
             self.SettingsFoldersCellPressed(index: row)
             break
         case SettingsSections.security.rawValue:
-            self.viewController?.router?.showSecurityViewController()
+            self.SettingsSecurityCellPressed(index: row)
             break
         case SettingsSections.mail.rawValue:
             self.SettingsMailCellPressed(index: row)
@@ -51,12 +51,6 @@ class SettingsInteractor {
     func SettingsGeneralCellPressed(index: Int) {
         
         switch index {
-        case SettingsGeneralSection.recovery.rawValue:
-            self.viewController?.router?.showRecoveryEmailViewController()
-            break
-        case SettingsGeneralSection.password.rawValue:
-            self.viewController?.router?.showChangePasswordViewController()
-            break
         case SettingsGeneralSection.language.rawValue:
             self.viewController?.router?.showSelectLanguageViewController()
             break
@@ -79,6 +73,22 @@ class SettingsInteractor {
         switch index {
         case SettingsFoldersSection.folder.rawValue:
             self.viewController?.router?.showManageFoldersViewController()
+            break
+        default:
+            break
+        }
+    }
+    
+    func SettingsSecurityCellPressed(index: Int) {
+        switch index {
+        case SettingsSecuritySection.recovery.rawValue:
+            self.viewController?.router?.showRecoveryEmailViewController()
+            break
+        case SettingsSecuritySection.password.rawValue:
+            self.viewController?.router?.showChangePasswordViewController()
+            break
+        case SettingsSecuritySection.encryption.rawValue:
+            self.viewController?.router?.showSecurityViewController()
             break
         default:
             break

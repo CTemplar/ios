@@ -90,7 +90,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         case SettingsSections.folders.rawValue:
             return SettingsFoldersSection.allCases.count
         case SettingsSections.security.rawValue:
-            return 1
+            return SettingsSecuritySection.allCases.count
         case SettingsSections.mail.rawValue:
             return SettingsMailSection.allCases.count
         case SettingsSections.about.rawValue:
@@ -214,12 +214,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         var value : String = ""
         
         switch index {
-        case SettingsGeneralSection.recovery.rawValue:
-            cellTitle = "recoveryEmail".localized()
-            break
-        case SettingsGeneralSection.password.rawValue:
-            cellTitle = "password".localized()
-            break
+        
         case SettingsGeneralSection.language.rawValue:
             cellTitle = "language".localized()
             //if let language = settings.language {
@@ -262,8 +257,19 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     func setupSecuritySectionsCell(index: Int, cell: UITableViewCell, settings: Settings) {
         
         var cellTitle : String = ""
-        
-        cellTitle = "manageSecurity".localized()
+        switch index {
+        case SettingsSecuritySection.password.rawValue:
+            cellTitle = "password".localized()
+            break
+        case SettingsSecuritySection.recovery.rawValue:
+            cellTitle = "recoveryEmail".localized()
+            break
+        case SettingsSecuritySection.encryption.rawValue:
+            cellTitle = "manageSecurity".localized()
+            break
+        default:
+            break
+        }
         
         (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: "")
     }

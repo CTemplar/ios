@@ -621,17 +621,22 @@ enum SettingsSections: Int, CaseIterable {
 
 enum SettingsGeneralSection: Int, CaseIterable {
     
-    case recovery          = 0
-    case password          = 1
-    case language          = 2
-    case notification      = 3
-    case contacts          = 4
-    case whiteBlackList    = 5
+    case notification      = 0
+    case language          = 1
+    case contacts          = 2
+    case whiteBlackList    = 3
 }
 
 enum SettingsFoldersSection: Int, CaseIterable {
     
     case folder            = 0
+}
+
+enum SettingsSecuritySection: Int, CaseIterable {
+    
+    case password          = 0
+    case recovery          = 1
+    case encryption        = 2
 }
 
 enum SettingsMailSection: Int, CaseIterable {
