@@ -395,35 +395,18 @@ class ComposePresenter {
             
             if messageContent.count > 0 {
                 
-//                let mutableAttributedString = NSMutableAttributedString()
                 var contentString = ""
-                let replyHeader = self.generateHtmlHeader(message: message, answerMode: self.viewController!.answerMode) //self.generateHeader(message: message, answerMode: self.viewController!.answerMode)
-                
-//                let content = messageContent.replacingOccurrences(of: "\n", with: "<br>")
-//                let messageContentAttributedString = content.html2AttributedString
-//                let headerMutableAttributedString = NSMutableAttributedString(attributedString: replyHeader)
-//                mutableAttributedString.append(headerMutableAttributedString)
-//                mutableAttributedString.append(messageContentAttributedString!)
+                let replyHeader = self.generateHtmlHeader(message: message, answerMode: self.viewController!.answerMode)
                 contentString.append(replyHeader)
                 contentString.append(messageContent)
                 if currentSignature.count > 0 {
                     contentString.append(currentSignature)
-//                    mutableAttributedString.append(NSMutableAttributedString(string: currentSignature))
-//                    mutableAttributedString.append(currentSignature.html2AttributedString ?? NSAttributedString())
                 }
                 self.viewController!.messageTextEditor.html = contentString
-//                self.viewController?.messageTextView.attributedText = mutableAttributedString
-//                self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
             } else {
                 if currentSignature.count > 0 {
                     self.viewController!.messageTextEditor.html = "<br><br>" + currentSignature
-//                    let attributedString = currentSignature.html2AttributedString ?? NSAttributedString() //NSAttributedString(string: "\n" + currentSignature)
-//                    self.viewController?.messageTextView.attributedText = attributedString
-//                    self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
                 }
-//                else {
-//                    self.setPlaceholderToMessageTextView(show: true)
-//                }
             }
         }
         
@@ -986,7 +969,7 @@ class ComposePresenter {
              
         self.setupEmailToViewText(emailToText: emailToText)
         
-        self.setupEmailToViewText(emailToText: emailToText)
+//        self.setupEmailToViewText(emailToText: emailToText)
         let emailToViewHeight = self.setupEmailToViewSize()
         
         self.viewController!.toViewSubsectionHeightConstraint.constant = emailToViewHeight + k_emailToTextViewTopOffset + k_emailToTextViewTopOffset
@@ -1252,7 +1235,7 @@ class ComposePresenter {
             case "discardDraft".localized():
                 print("discardDraft btn Draft action")
                 self.interactor?.deleteDraft()
-                self.interactor?.postUpdateInboxNotification()
+//                self.interactor?.postUpdateInboxNotification()
                 self.viewController!.navigationController?.popViewController(animated: true)
                 break
             case "saveDraft".localized():

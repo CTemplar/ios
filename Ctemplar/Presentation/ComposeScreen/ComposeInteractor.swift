@@ -180,36 +180,43 @@ class ComposeInteractor {
         }
     }
     
-    func setContactsData(contactsList: ContactsList) {
+    func setContactsData(contacts: [Contact]) {
         
-        if let contacts = contactsList.contactsList {
+//        if let contacts = contactsList.contactsList {
             self.viewController?.contactsList = contacts
             self.viewController?.presenter?.setContactsDataSource(contacts: contacts)
             self.viewController?.dataSource?.reloadData(setMailboxData: false)
-        }
+//        }
     }
     
     func userContactsList(silent: Bool = false) {
         
         //HUD.show(.progress)
-        
-        apiService?.userContacts(fetchAll: true, offset: 0, silent: silent) {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                //print("userContactsList:", value)
-                
-                let contactsList = value as! ContactsList
-                self.setContactsData(contactsList: contactsList)
-                
-            case .failure(let error):
-                print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+        if (self.viewController?.user.contactsList?.count ?? 0) > 0 {
+            self.setContactsData(contacts: self.viewController?.user.contactsList ?? [])
+        }else {
+            DispatchQueue.global(qos: .background).async {
+                self.apiService?.userContacts(fetchAll: true, offset: 0, silent: silent) {(result) in
+                    
+                    switch(result) {
+                        
+                    case .success(let value):
+                        //print("userContactsList:", value)
+                        
+                        let contactsList = value as! ContactsList
+                        self.setContactsData(contacts: contactsList.contactsList ?? [])
+                        //                self.setContactsData(contactsList: contactsList)
+                        
+                    case .failure(let error):
+                        print("error:", error)
+                        AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+                    }
+                    
+                    //HUD.hide()
+                }
             }
-            
-            //HUD.hide()
         }
+        
     }
     
     func uploadAttach(fileUrl: URL, messageID : String) {
