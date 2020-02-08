@@ -212,11 +212,11 @@ class RestAPIService {
         
         //timeParameter = "?seconds=100000000"
         
-        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + limitParams + folder + messagesIDIn + timeParameter + filter//"?starred=1"// "?read=0"
+        var url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + limitParams + folder + messagesIDIn + timeParameter + filter//"?starred=1"// "?read=0"
         //let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + "?seconds=" + seconds
         //let url = "https://devapi.ctemplar.com/emails/messages/?limit=20&offset=0&folder=inbox&read=false&seconds=30"
         //https://devapi.ctemplar.com/emails/messages/?limit=20&offset=0&starred=true
-        
+        url = url.replacingOccurrences(of: " ", with: "%20")
         //print("messagesList parameters:", parameters)
         print("messagesList url:", url)
         
