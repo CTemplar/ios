@@ -392,7 +392,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NRs-SL-oAk">
                                 <rect key="frame" x="0.0" y="272" width="375" height="395"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mBI-rr-9aJ" customClass="RichEditorView" customModule="Ctemplar" customModuleProvider="target">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mBI-rr-9aJ" customClass="RichEditorView" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="16" y="10" width="343" height="355"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
