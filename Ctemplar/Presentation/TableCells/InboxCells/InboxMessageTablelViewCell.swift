@@ -116,7 +116,7 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
             } else {
                 senderLabel.font = k_readMessageSenderFont
                 subjectLabel.font = k_readMEssageSubjectFont
-                self.backgroundColor = UIColor.white
+                self.backgroundColor = k_readMessageColor
             }
         }
         

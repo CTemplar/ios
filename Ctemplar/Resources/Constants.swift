@@ -169,7 +169,9 @@ let k_foundTextBackgroundColor: UIColor = UIColor(red: 217.0 / 255.0, green: 235
 let k_whiteColor: UIColor = UIColor(red: 250.0 / 255.0, green: 251.0 / 255.0, blue: 251.0 / 255.0, alpha: 1.0)
 let k_selectedFolderColor: UIColor = UIColor(red: 18.0 / 255.0, green: 45.0 / 255.0, blue: 71.0 / 255.0, alpha: 0.1)
 
-let k_unreadMessageColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 0.02)
+let k_readMessageColor : UIColor = UIColor(white: 245/255, alpha: 1.0)
+
+let k_unreadMessageColor : UIColor = UIColor(white: 1.0, alpha: 1.0)
 
 let k_actionMessageColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 1.0)
 
