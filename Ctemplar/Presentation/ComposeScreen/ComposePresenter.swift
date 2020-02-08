@@ -352,7 +352,7 @@ class ComposePresenter {
             stack.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: k_emailToTextViewLeftOffset).isActive = true
             stack.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -k_emailToTextViewLeftOffset).isActive = true
             stack.topAnchor.constraint(equalTo: textEditor.bottomAnchor, constant: k_messageTextViewTopOffset).isActive = true
-            stack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -k_emailToTextViewLeftOffset).isActive = true
+            stack.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -k_emailToTextViewLeftOffset).isActive = true
         }
     }
     

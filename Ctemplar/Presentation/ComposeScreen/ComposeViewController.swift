@@ -662,6 +662,10 @@ extension ComposeViewController: RichEditorDelegate {
         self.presenter?.setupMessageSectionSize()
     }
     
+    func richEditor(_ editor: RichEditorView, heightDidChange height: Int) {
+        self.presenter?.setupMessageSectionSize()
+    }
+    
     func richEditorTookFocus(_ editor: RichEditorView) {
 //        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
 //            editor.focus(at: .zero)
