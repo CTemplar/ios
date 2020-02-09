@@ -212,12 +212,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             //self.presenter?.setupSubject(subjectText: subject, answerMode: answerMode)
 
         } else {
-            DispatchQueue.global(qos: .default).async {
-                self.interactor?.createDraft(showHud: false)
-            }
-//            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: {
-//                self.interactor?.createDraft(showHud: false)
-//            })
+            self.interactor?.createDraft(showHud: false)
             self.presenter?.setupSubject(subjectText: subject, answerMode: answerMode)
         }
         

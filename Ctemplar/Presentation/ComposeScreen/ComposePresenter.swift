@@ -404,8 +404,17 @@ class ComposePresenter {
                 }
                 self.viewController!.messageTextEditor.html = contentString
             } else {
-                if currentSignature.count > 0 {
-                    self.viewController!.messageTextEditor.html = "<br><br>" + currentSignature
+                var currentMessageText = self.viewController?.messageTextEditor.contentHTML
+                if (currentMessageText?.count ?? 0) > 0 {
+                    if let _ = currentMessageText?.range(of: currentSignature) {
+                    }else {
+                        currentMessageText?.append("<br><br>\(currentSignature)")
+                        self.viewController!.messageTextEditor.html = currentMessageText ?? ""
+                    }
+                }else {
+                    if currentSignature.count > 0 {
+                        self.viewController!.messageTextEditor.html = "<br><br>" + currentSignature
+                    }
                 }
             }
         }

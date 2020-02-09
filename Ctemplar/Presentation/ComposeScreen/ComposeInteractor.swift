@@ -27,29 +27,24 @@ class ComposeInteractor {
     
     func createDraftMessage(parentID: String, content: String, subject: String, recievers: [[String]], folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String], attachments: Array<[String : String]>, showHud: Bool = true) {
         
-        apiService?.createMessage(parentID: parentID, content: content, subject: subject, recieversList: recievers, folder: folder, mailboxID: mailboxID, send: send, encrypted: encrypted, encryptionObject: encryptionObject, attachments: attachments, showHud: showHud) {(result) in
-            
-            switch(result) {
+        DispatchQueue.global(qos: .background).async {
+            self.apiService?.createMessage(parentID: parentID, content: content, subject: subject, recieversList: recievers, folder: folder, mailboxID: mailboxID, send: send, encrypted: encrypted, encryptionObject: encryptionObject, attachments: attachments, showHud: showHud) {(result) in
                 
-            case .success(let value):
-                print("create Draft Message value:", value)
-                self.sendingMessage = value as! EmailMessage
-                
-                print("create Draft sendingMessage attachments:", self.sendingMessage.attachments as Any)
-                
-                //self.presenter?.setupAttachments(message: self.sendingMessage) //need investigate attachment_forward
-                //self.presenter?.setupMessageSectionSize()
-                //self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
-                //self.presenter?.fillAllEmailsFields(message: self.sendingMessage)
-                self.presenter?.setupMessageSection(message: self.sendingMessage)
-                self.presenter?.setupEncryptedButton()
-                //self.presenter?.setSchedulerTimersForMessage(message: self.sendingMessage)
-                
-            case .failure(let error):
-                print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Create Draft Error", message: error.localizedDescription, button: "closeButton".localized())
+                switch(result) {
+                    
+                case .success(let value):
+                    self.sendingMessage = value as! EmailMessage
+                    
+                    self.presenter?.setupMessageSection(message: self.sendingMessage)
+                    self.presenter?.setupEncryptedButton()
+                    
+                case .failure(let error):
+                    print("error:", error)
+                    AlertHelperKit().showAlert(self.viewController!, title: "Create Draft Error", message: error.localizedDescription, button: "closeButton".localized())
+                }
             }
         }
+        
     }
     
     func deleteDraftMessage(messageID: String) {
@@ -420,7 +415,7 @@ class ComposeInteractor {
         var messageContent = self.viewController!.messageTextEditor.contentHTML
         if let range = messageContent.range(of: self.viewController!.presenter!.currentSignature) {
             messageContent = messageContent.replacingCharacters(in: range, with: "")
-            messageContent.append("\n\(self.viewController!.presenter!.currentSignature)")
+            messageContent.append("<br>\(self.viewController!.presenter!.currentSignature)")
         }
         
         

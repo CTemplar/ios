@@ -170,10 +170,10 @@ class InboxInteractor {
         if self.offset >= self.totalItems && self.offset > 0 {
             return
         }
-        
-        if !silent {
-            //HUD.show(.progress)
-            HUD.show(.labeledProgress(title: "updateMessages".localized(), subtitle: ""))
+        DispatchQueue.main.async {
+            if !silent {
+                HUD.show(.labeledProgress(title: "updateMessages".localized(), subtitle: ""))
+            }
         }
         let pageSize: Int
         if self.viewController?.allMessagesArray.count == 0 {
@@ -187,14 +187,9 @@ class InboxInteractor {
             switch(result) {
                 
             case .success(let value):
-                //print("value:", value)
                 
                 let emailMessages = value as! EmailMessagesList
-                //self.viewController?.allMessagesList = emailMessages
                 self.totalItems = emailMessages.totalCount!
-                
-                //self.setInboxData(messages: emailMessages, folderFilter: folder)
-                
                 self.setInboxData(messages: emailMessages.messagesList!, totalEmails: self.totalItems)
                 
                 if withUndo.count > 0 {
@@ -293,42 +288,40 @@ class InboxInteractor {
     }
     
     func userMyself() {
-        
-        apiService?.userMyself() {(result) in
-            
-            switch(result) {
+        DispatchQueue.global(qos: .background).async {
+            self.apiService?.userMyself() {(result) in
                 
-            case .success(let value):
-                //print("userMyself value:", value)
-                
-                var userMyself = value as! UserMyself
-                if userMyself.username == self.viewController?.user.username {
-                    userMyself.contactsList = self.viewController?.user.contactsList
+                switch(result) {
+                    
+                case .success(let value):
+                    //print("userMyself value:", value)
+                    
+                    var userMyself = value as! UserMyself
+                    if userMyself.username == self.viewController?.user.username {
+                        userMyself.contactsList = self.viewController?.user.contactsList
+                    }
+                    self.viewController?.user = userMyself
+                    
+                    if let mailboxes = userMyself.mailboxesList {
+                        self.viewController?.mailboxesList = mailboxes
+                    }
+                    
+                    if self.viewController?.navigationItem.leftBarButtonItem != nil {
+                        self.viewController?.leftBarButtonItem.isEnabled = true
+                    }
+                    
+                    self.viewController?.bottomComposeButton.isEnabled = true
+                    self.viewController?.rightComposeButton.isEnabled = true
+                    
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: value)
+                    self.userContactsList()
+                case .failure(let error):
+                    print("error:", error)
+                    AlertHelperKit().showAlert(self.viewController!, title: "User Myself Error", message: error.localizedDescription, button: "closeButton".localized())
                 }
-                self.viewController?.user = userMyself
-                
-               // if let contacts = userMyself.contactsList {
-                    //self.viewController?.contactsList = contacts
-                //}
-                
-                if let mailboxes = userMyself.mailboxesList {
-                    self.viewController?.mailboxesList = mailboxes
-                }
-                
-                if self.viewController?.navigationItem.leftBarButtonItem != nil {
-                    self.viewController?.leftBarButtonItem.isEnabled = true
-                }
-                
-                self.viewController?.bottomComposeButton.isEnabled = true
-                self.viewController?.rightComposeButton.isEnabled = true
-                
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: value)
-                self.userContactsList()
-            case .failure(let error):
-                print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "User Myself Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
+        
     }
     
     func userContactsList() {
@@ -337,7 +330,7 @@ class InboxInteractor {
         }
         DispatchQueue.global(qos: .background).async {
             self.apiService?.userContacts(fetchAll: true, offset: 0, silent: true, completionHandler: { (result) in
-                DispatchQueue.main.async {
+//                DispatchQueue.main.async {
                     switch result {
                     case .success(let value):
                         if let contactsList = value as? ContactsList {
@@ -348,7 +341,7 @@ class InboxInteractor {
                         print("Error in fetching user contacts: \(error.localizedDescription)")
                         break
                     }
-                }
+//                }
             })
         }
         

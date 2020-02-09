@@ -54,7 +54,7 @@ class MainViewController: UIViewController {
             }
         }
         
-        setAutoUpdaterTimer()
+//        setAutoUpdaterTimer()
     }
     
     override func viewDidAppear(_ animated: Bool) {

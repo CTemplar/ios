@@ -96,9 +96,9 @@ class InboxViewController: UIViewController {
         self.bottomComposeButton.isEnabled = false
         self.rightComposeButton.isEnabled = false
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100), execute: {
+//        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100), execute: {
             self.presenter?.interactor?.updateMessages(withUndo: "", silent: false)
-        })
+//        })
         
         NotificationCenter.default.addObserver(self, selector: #selector(userSettingsUpdate), name: NSNotification.Name(rawValue: k_updateUserSettingsNotificationID), object: nil)
     }
@@ -108,12 +108,6 @@ class InboxViewController: UIViewController {
                 
         if self.runOnce == true { //optimization for showing table already 
             self.presenter?.interactor?.userMyself()
-            AppManager.shared.networkService.getMyself {
-                guard let value = try? $0.get() else {
-                    return
-                }
-                AppManager.shared.myselfService = MyselfService(myself: value)
-            }
             self.runOnce = false
         }
         
