@@ -151,7 +151,7 @@ class RestAPIService {
             "Accept": "application/json"
         ]
         
-        let url = EndPoint.baseUrl.rawValue + EndPoint.signOut.rawValue  + "?plateform=ios&device_token=" + deviceToken
+        let url = EndPoint.baseUrl.rawValue + EndPoint.signOut.rawValue  + "?platform=ios&device_token=" + deviceToken
         
         AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
             switch response.result {
