@@ -214,7 +214,7 @@ class SetSignatureViewController: UIViewController {
 
 extension SetSignatureViewController: RichEditorDelegate {
     func richEditor(_ editor: RichEditorView, contentDidChange content: String) {
-        userSignature = signatureEditorView.html
+        userSignature = content
         rigthBarButtonEnabled()
     }
 }
