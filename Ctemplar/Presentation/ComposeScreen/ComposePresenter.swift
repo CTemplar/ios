@@ -588,7 +588,7 @@ class ComposePresenter {
     }
     
     func generateHtmlForwardHeader(message: EmailMessage, subject: String) -> String{
-        var forwardHeader : String = ""
+        var forwardHeader : String = "<br>"
         forwardHeader = forwardHeader + "<p>" + "forwardLine".localized() + "</p>"
         
         if let sender = message.sender {
