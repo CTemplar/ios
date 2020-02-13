@@ -189,7 +189,7 @@ class InboxInteractor {
             case .success(let value):
                 
                 let emailMessages = value as! EmailMessagesList
-                self.totalItems = emailMessages.totalCount!
+                self.totalItems = emailMessages.totalCount ?? 0
                 self.setInboxData(messages: emailMessages.messagesList!, totalEmails: self.totalItems)
                 
                 if withUndo.count > 0 {
