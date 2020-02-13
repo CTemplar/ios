@@ -115,9 +115,9 @@ class InboxSideMenuInteractor {
     
         let inboxViewController = self.viewController?.inboxViewController
         
-        let filterEnabled = (inboxViewController?.presenter?.interactor?.filterEnabled())!
-        let totalEmails = (inboxViewController?.presenter?.interactor?.totalItems)!
-        let currentFolder = (inboxViewController?.currentFolderFilter)!
+        let filterEnabled = inboxViewController?.presenter?.interactor?.filterEnabled() ?? false
+        let totalEmails = inboxViewController?.presenter?.interactor?.totalItems ?? 0
+        let currentFolder = inboxViewController?.currentFolderFilter ?? ""
         
         let unreadEmails = getUnreadMessagesCount(folderName: currentFolder)
         
