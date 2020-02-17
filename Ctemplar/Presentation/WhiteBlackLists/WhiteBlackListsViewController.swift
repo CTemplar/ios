@@ -58,7 +58,7 @@ class WhiteBlackListsViewController: UIViewController, UISearchBarDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        self.navigationController!.navigationBar.hideBorderLine()
+//        self.navigationController!.navigationBar.hideBorderLine()
         self.presenter?.setupUnderlineView(listMode: self.listMode)
         self.presenter?.interactor?.getWhiteListContacts(silent: false)
         self.presenter?.interactor?.getBlackListContacts(silent: false)

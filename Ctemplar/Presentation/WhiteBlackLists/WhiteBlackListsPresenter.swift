@@ -26,9 +26,12 @@ class WhiteBlackListsPresenter {
         
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).leftViewMode = .never
         UISearchBar.appearance().searchTextPositionAdjustment = UIOffset(horizontal: 52, vertical: 0)
-        
-        if let searchTextField = searchBar.value(forKey: "_searchField") as? UITextField {
-            searchTextField.borderStyle = .none
+        if #available(iOS 13.0, *) {
+            searchBar.searchTextField.borderStyle = .none
+        }else {
+            if let searchTextField = searchBar.value(forKey: "_searchField") as? UITextField {
+                searchTextField.borderStyle = .none
+            }
         }
         
         let imageView = UIImageView(image: UIImage(named: "SearchButton"))
