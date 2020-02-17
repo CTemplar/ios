@@ -50,9 +50,14 @@ class ComposePresenter {
     func enabledSendButton() {
         
         var messageContentIsEmpty : Bool = true
-        
-        if (self.viewController?.messageTextEditor.contentHTML ?? "").count > 0 {
-            if self.viewController?.messageTextEditor.contentHTML != currentSignature {
+        var messageContent = self.viewController?.messageTextEditor.contentHTML ?? ""
+        if viewController?.answerMode == .forward {
+            if messageContent.count == 0 {
+                messageContent = self.viewController?.messageTextEditor.html ?? ""
+            }
+        }
+        if messageContent.count > 0 {
+            if messageContent != currentSignature {
                 messageContentIsEmpty = false
             }
         }
