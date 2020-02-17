@@ -24,7 +24,7 @@ class LoginPresenter {
                 viewController?.userNameTextField.placeholder = ""
             } else {
                 if !(formatterService?.validateNameLench(enteredName: (viewController?.userNameTextField.text)!))! {
-                    viewController?.userNameTextField.placeholder = "usernamePlaceholder".localized()
+                    viewController?.userNameTextField.attributedPlaceholder = NSAttributedString(string: "usernamePlaceholder".localized(), attributes: [.foregroundColor: UIColor.white])
                     viewController!.emailHintLabel.isHidden = true
                 }
             }
@@ -36,7 +36,7 @@ class LoginPresenter {
                 viewController?.passwordTextField.placeholder = ""
             } else {
                 if !(formatterService?.validateNameLench(enteredName: (viewController?.passwordTextField.text)!))! {
-                    viewController?.passwordTextField.placeholder = "passwordPlaceholder".localized()
+                    viewController?.passwordTextField.attributedPlaceholder = NSAttributedString(string: "passwordPlaceholder".localized(), attributes: [.foregroundColor: UIColor.white])
                     viewController!.passwordHintLabel.isHidden = true
                 }
             }
@@ -49,7 +49,8 @@ class LoginPresenter {
             viewController!.emailHintLabel.isHidden = false
         } else {
             viewController!.emailHintLabel.isHidden = true
-        }        
+        }
+        viewController?.userNameTextField.attributedPlaceholder = NSAttributedString(string: "usernamePlaceholder".localized(), attributes: [.foregroundColor: UIColor.white])
     }
     
     func setupPasswordTextFieldsAndHintLabel(password: String) {
@@ -59,6 +60,7 @@ class LoginPresenter {
         } else {
             viewController!.passwordHintLabel.isHidden = true
         }
+        viewController?.passwordTextField.attributedPlaceholder = NSAttributedString(string: "passwordPlaceholder".localized(), attributes: [.foregroundColor: UIColor.white])
     }
     
     func buttonLoginPressed(userEmail: String, password: String, twoFAcode: String) {

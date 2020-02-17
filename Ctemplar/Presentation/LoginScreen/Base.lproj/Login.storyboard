@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="k7s-rE-KqE">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="k7s-rE-KqE">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,14 +28,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Vb8-o7-nya">
-                                <rect key="frame" x="155.5" y="45" width="64.000000000000028" height="63"/>
+                                <rect key="frame" x="155.5" y="25" width="64" height="63"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Vb8-o7-nya" secondAttribute="height" multiplier="64:63" id="b9z-UO-UR2"/>
                                     <constraint firstAttribute="width" constant="64" id="gzd-md-ZjB"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CTEMPLAR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOi-eI-hZP">
-                                <rect key="frame" x="132.5" y="115" width="110" height="21"/>
+                                <rect key="frame" x="132.5" y="95" width="110" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="DV5-y3-KZ6"/>
                                     <constraint firstAttribute="width" secondItem="UOi-eI-hZP" secondAttribute="height" multiplier="110:21" id="vgw-28-E8g"/>
@@ -50,7 +48,7 @@
                                 <rect key="frame" x="33" y="185" width="310" height="113"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="usernamePlaceholder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zyc-Qa-hyt" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="113" height="15"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="117" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="sqo-Ti-Psh"/>
                                         </constraints>
@@ -82,7 +80,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="passwordPlaceholder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ip-E3-IDL" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="64" width="112" height="14"/>
+                                        <rect key="frame" x="0.0" y="64" width="116" height="14"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="0.67649647889999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -199,7 +197,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o29-J4-Ta5" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
-                                <rect key="frame" x="260" y="307" width="83" height="15"/>
+                                <rect key="frame" x="258" y="307" width="85" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="LNi-zR-ixM"/>
                                 </constraints>
