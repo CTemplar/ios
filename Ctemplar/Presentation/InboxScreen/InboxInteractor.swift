@@ -21,6 +21,7 @@ class InboxInteractor {
     var unreadEmails = 0
     var offset = 0
     
+    private var isFetchInProgress = false
     //MARK: - data
 
     func updateMessages(withUndo: String, silent: Bool) {
@@ -170,6 +171,10 @@ class InboxInteractor {
         if self.offset >= self.totalItems && self.offset > 0 {
             return
         }
+        if isFetchInProgress {
+            return
+        }
+        isFetchInProgress = true
         DispatchQueue.main.async {
             if !silent {
                 HUD.show(.labeledProgress(title: "updateMessages".localized(), subtitle: ""))
@@ -183,7 +188,7 @@ class InboxInteractor {
         }
         
         apiService?.messagesList(folder: folder, messagesIDIn: "", seconds: 0, offset: offset, pageLimit: pageSize) {(result) in
-            
+            self.isFetchInProgress = false
             switch(result) {
                 
             case .success(let value):
