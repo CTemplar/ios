@@ -170,6 +170,7 @@ class MainViewController: UIViewController {
     func showSplitViewController() {
         
         DispatchQueue.main.async {
+            self.iPadSplitViewController.modalPresentationStyle = .fullScreen
             self.show(self.iPadSplitViewController , sender: self)
         }
     }
