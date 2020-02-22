@@ -21,6 +21,8 @@ class AddFolderViewController: UIViewController {
     
     @IBOutlet var colorPickerSuperViewHeightConstraint          : NSLayoutConstraint!
     
+    var delegate: AddFolderDelegate?
+    
     var selectedHexColor : String = ""
     var folderName: String?
     

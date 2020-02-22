@@ -44,6 +44,7 @@ class ManageFoldersRouter {
         let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
         //let storyboard: UIStoryboard = UIStoryboard(name: k_AddFolderStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_AddFolderViewControllerID) as! AddFolderViewController
+        vc.delegate = self.viewController?.presenter
         self.viewController?.present(vc, animated: true, completion: nil)
         //self.viewController?.show(vc, sender: self)
     }

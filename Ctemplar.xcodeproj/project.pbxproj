@@ -504,6 +504,8 @@
 		CCB2F6A823AB77F700B661FA /* MailResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB2F6A623AB77F700B661FA /* MailResult.swift */; };
 		CCB2F6AA23AB8F8800B661FA /* MyselfService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB2F6A923AB8F8800B661FA /* MyselfService.swift */; };
 		CCB2F6AB23AB8F8800B661FA /* MyselfService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB2F6A923AB8F8800B661FA /* MyselfService.swift */; };
+		E3260AB8240196DA00F7BF26 /* AddFolderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3260AB7240196DA00F7BF26 /* AddFolderProtocol.swift */; };
+		E3260AB9240196DA00F7BF26 /* AddFolderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3260AB7240196DA00F7BF26 /* AddFolderProtocol.swift */; };
 		E399BB8623E87AFA00EEA708 /* RichEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399BB4323E87AF900EEA708 /* RichEditorView.swift */; };
 		E399BB8723E87AFA00EEA708 /* RichEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399BB4323E87AF900EEA708 /* RichEditorView.swift */; };
 		E399BB8823E87AFA00EEA708 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399BB4423E87AF900EEA708 /* String+Extensions.swift */; };
@@ -897,6 +899,7 @@
 		CCB2F6A323AB74A000B661FA /* PageResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageResult.swift; sourceTree = "<group>"; };
 		CCB2F6A623AB77F700B661FA /* MailResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailResult.swift; sourceTree = "<group>"; };
 		CCB2F6A923AB8F8800B661FA /* MyselfService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyselfService.swift; sourceTree = "<group>"; };
+		E3260AB7240196DA00F7BF26 /* AddFolderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFolderProtocol.swift; sourceTree = "<group>"; };
 		E399BB4323E87AF900EEA708 /* RichEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichEditorView.swift; sourceTree = "<group>"; };
 		E399BB4423E87AF900EEA708 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		E399BB4523E87AF900EEA708 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
@@ -1335,6 +1338,7 @@
 				84344D3321CA30AD00A5D9A0 /* AddFolderViewController.swift */,
 				84344D3C21CA89FB00A5D9A0 /* AddFolderConfigurator.swift */,
 				84344D3E21CA8A0900A5D9A0 /* AddFolderInteractor.swift */,
+				E3260AB7240196DA00F7BF26 /* AddFolderProtocol.swift */,
 				84344D3521CA30BA00A5D9A0 /* AddFolder.storyboard */,
 				8441026621F9AE940072691C /* AddFolder-iPad.storyboard */,
 			);
@@ -2451,6 +2455,7 @@
 				8433FF5C216246DC00C57DC8 /* PGPService.swift in Sources */,
 				843E972F21634E7900147CBE /* LaunchScreenViewController.swift in Sources */,
 				E399BB8823E87AFA00EEA708 /* String+Extensions.swift in Sources */,
+				E3260AB8240196DA00F7BF26 /* AddFolderProtocol.swift in Sources */,
 				8407AD94216CC98900AF2E7B /* EmailMessage.swift in Sources */,
 				84356863216F2DFE002101D3 /* InboxRouter.swift in Sources */,
 				8406B2162193FD8A009F0375 /* UnreadMessagesCounter.swift in Sources */,
@@ -2641,6 +2646,7 @@
 				CC6908C82384500100956E9B /* PGPService.swift in Sources */,
 				CC6908C92384500100956E9B /* LaunchScreenViewController.swift in Sources */,
 				E399BB8923E87AFA00EEA708 /* String+Extensions.swift in Sources */,
+				E3260AB9240196DA00F7BF26 /* AddFolderProtocol.swift in Sources */,
 				CC6908CA2384500100956E9B /* EmailMessage.swift in Sources */,
 				CC6908CB2384500100956E9B /* InboxRouter.swift in Sources */,
 				CC6908CC2384500100956E9B /* UnreadMessagesCounter.swift in Sources */,

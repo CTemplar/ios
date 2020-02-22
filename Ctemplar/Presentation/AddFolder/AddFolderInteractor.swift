@@ -51,6 +51,7 @@ class AddFolderInteractor {
                 
             case .success(let value):
                 print("value:", value)
+                self.viewController?.delegate?.didAddFolder(value as! Folder)
                 self.viewController?.dismiss(animated: true, completion: nil)
             case .failure(let error):
                 print("error:", error)

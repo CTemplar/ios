@@ -144,7 +144,7 @@ let k_updateInboxMessagesNotificationID     = "updateInboxMessagesNotification"
 let k_attachUploadUpdateNotificationID      = "attachUploadUpdateNotificationIdentifier"
 let k_reloadViewControllerNotificationID    = "ReloadViewControllerNotificationIdentifier"
 let k_reloadViewControllerDataSourceNotificationID    = "ReloadViewControllerDataSourceNotificationIdentifier"
-
+let k_updateCustomFolderNotificationID = "UpdateCustomFoldersNotificationIdentifier"
 // colors
 
 let k_lightRedColor: UIColor = UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 0.2)
