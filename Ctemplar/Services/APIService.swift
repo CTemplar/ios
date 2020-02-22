@@ -876,8 +876,9 @@ class APIService: HashingService {
                                     let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
                                     completionHandler(APIResult.failure(error))
                                 } else {
-                                    let customFolders = FolderList(dictionary: response)
-                                    completionHandler(APIResult.success(customFolders))
+                                    let newFolder = Folder(dictionary: response)
+//                                    let customFolders = FolderList(dictionary: response)
+                                    completionHandler(APIResult.success(newFolder))
                                 }
                                 
                             } else {

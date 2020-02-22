@@ -85,6 +85,7 @@ class InboxSideMenuViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(userDataUpdate), name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(customFoldersUpdated(notification:)), name: NSNotification.Name(rawValue: k_updateCustomFolderNotificationID), object: nil)
         
         if (Device.IS_IPAD) {
             NotificationCenter.default.addObserver(self, selector: #selector(reloadViewController), name: NSNotification.Name(rawValue: k_reloadViewControllerNotificationID), object: nil)
@@ -136,6 +137,12 @@ class InboxSideMenuViewController: UIViewController {
         DispatchQueue.main.async {
             self.presenter?.interactor?.unreadMessagesCounter()
         }
+    }
+    
+    @objc func customFoldersUpdated(notification: Notification) {
+        let customFolders = notification.object as? [Folder] ?? []
+        self.dataSource?.customFoldersArray = customFolders
+        self.dataSource?.reloadData()
     }
     
     @objc func reloadViewController() {
