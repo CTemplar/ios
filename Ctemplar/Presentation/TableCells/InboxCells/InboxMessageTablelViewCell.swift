@@ -78,9 +78,11 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
     
     func setupLabelsAndImages(message: EmailMessage, header : String, subjectEncrypted: Bool) {
         
-        if let sender = message.sender {            
+        if let senderName = message.sender_display {
+            senderLabel.text = senderName
+        }else if let sender = message.sender {
             senderLabel.text = sender
-        }        
+        }
         
         if subjectEncrypted {
             encryptedSubjectView.isHidden = false
@@ -282,7 +284,7 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
     func setupSenderLabelsAndBadgesView(short: Bool) {
         
         let sender = senderLabel.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        let senderTextWidth : CGFloat  = (sender?.widthOfString(usingFont: senderLabel.font))!
+        let senderTextWidth : CGFloat  = (sender?.widthOfString(usingFont: senderLabel.font))! + 5.0
         
         let badgesViewWidth = calculateBadgesViewWidth(short: short)
         
