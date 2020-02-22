@@ -61,7 +61,12 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
         var cell : UITableViewCell
         
         let message = messagesArray[indexPath.row]
-        let sender = message.sender
+        var sender = ""
+        if let dispalyName = message.sender_display {
+            sender = dispalyName
+        }else if let senderEmail = message.sender {
+            sender = senderEmail
+        }
         
         var header = ""
         var messageText = ""
@@ -106,7 +111,7 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
             
             cell = tableView.dequeueReusableCell(withIdentifier: k_ChildMessageTableViewCellIdentifier)! as! ChildMessageTableViewCell
             (cell as! ChildMessageTableViewCell).parentController = self
-            (cell as! ChildMessageTableViewCell).setupCellWithData(sender: sender!, header: header, message: message, isLast: lastMessage)
+            (cell as! ChildMessageTableViewCell).setupCellWithData(sender: sender, header: header, message: message, isLast: lastMessage)
         }
          
         cell.preservesSuperviewLayoutMargins = false

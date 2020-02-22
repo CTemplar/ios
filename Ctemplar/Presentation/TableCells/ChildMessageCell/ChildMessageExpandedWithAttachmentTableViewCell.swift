@@ -66,8 +66,10 @@ class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell, UICollec
         self.index = index
         self.delegate = delegate
         
-        if let sender = message.sender {
-            senderLabel.text = sender
+        if let senderName = message.sender_display {
+            senderLabel.text = senderName
+        }else if let senderEmail = message.sender {
+            senderLabel.text = senderEmail
         }
                 
         var toEmailsArray : Array<String> = []
