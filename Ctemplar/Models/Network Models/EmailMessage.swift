@@ -35,6 +35,7 @@ struct EmailMessage {
     var receivers : Array<Any>? = nil
     var send : String? = nil
     var sender : String? = nil
+    var sender_display: String? = nil
     var sentAt : String? = nil
     var starred : Bool? = nil
     var subject : String? = nil
@@ -93,6 +94,11 @@ struct EmailMessage {
         self.incomingHeader = dictionary["incoming_headers"] as? String
         self.updated = dictionary["updated"] as? String
         self.forwardAttachmentsMessage = dictionary["forward_attachments_of_message"] as? Int
+        if let senderDisplayDict = dictionary["sender_display"] as? [String: Any] {
+            if let displayName = senderDisplayDict["name"] as? String {
+                self.sender_display = displayName
+            }
+        }
     }
     
     func parsResultsFromList(array: Array<Any>) -> Array<EmailMessage>{
