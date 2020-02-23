@@ -488,7 +488,7 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="SendButton" id="pjB-4q-8ts">
-                            <color key="tintColor" red="0.090196078430000007" green="0.1960784314" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.29803921568627451" green="0.37254901960784315" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="sendButtonPressed:" destination="Paf-AF-Vql" id="7aY-t7-U5g"/>
                             </connections>
