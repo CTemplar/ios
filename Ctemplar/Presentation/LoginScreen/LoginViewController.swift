@@ -58,6 +58,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         //otpTextField.delegate = self
         
         otpTextField.placeholder = "twoFAPlaceholder".localized()
+        otpTextField.attributedPlaceholder = NSAttributedString(string: "twoFAPlaceholder".localized(), attributes: [.foregroundColor: UIColor.white])
         
         if (Device.IS_IPAD) {
 
