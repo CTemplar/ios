@@ -46,10 +46,12 @@ class LoginInteractor: HashingService {
     func handleNetwork(responce: AppResult<LoginResult>) {
         switch responce {
         case .success(let value):
-            guard !value.isTwoFAEnabled else {
-                viewController?.passwordBlockView.isHidden = true
-                viewController?.otpBlockView.isHidden = false
-                return
+            if value.isTwoFAEnabled {
+                if value.token == nil {
+                    viewController?.passwordBlockView.isHidden = true
+                    viewController?.otpBlockView.isHidden = false
+                    return
+                }
             }
             if let token = value.token {
                 keychainService?.saveToken(token: token)
@@ -62,6 +64,9 @@ class LoginInteractor: HashingService {
                                        title: "Login Error".localized(),
                                        message: error.localizedDescription,
                                        button: "closeButton".localized())
+            viewController?.passwordBlockView.isHidden = false
+            viewController?.otpBlockView.isHidden = true
+            viewController?.otpTextField.text = ""
         }
     }
     
