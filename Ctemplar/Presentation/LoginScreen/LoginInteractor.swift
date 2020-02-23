@@ -66,6 +66,7 @@ class LoginInteractor: HashingService {
                                        button: "closeButton".localized())
             viewController?.passwordBlockView.isHidden = false
             viewController?.otpBlockView.isHidden = true
+            viewController?.otpTextField.text = ""
         }
     }
     

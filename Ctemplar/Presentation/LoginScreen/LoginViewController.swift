@@ -80,7 +80,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginButtonPressed(_ sender: AnyObject) {
         
-        self.presenter?.buttonLoginPressed(userEmail: userEmail!, password: password!, twoFAcode: twoFAcode!)
+        self.presenter?.buttonLoginPressed(userEmail: userEmail!, password: password!, twoFAcode: otpTextField.text ?? "")
     }
     
     @IBAction func forgotPasswordButtonPressed(_ sender: AnyObject) {
