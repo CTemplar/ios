@@ -85,6 +85,7 @@ class InboxRouter {
         if let selectedMessages = self.viewController?.dataSource?.selectedMessagesIDArray {
             vc.selectedMessagesIDArray = selectedMessages
         }
+        vc.delegate = self.viewController?.presenter
         vc.user = (self.viewController?.user)!
         self.viewController?.present(vc, animated: true, completion: nil)
         //self.viewController?.show(vc, sender: self)

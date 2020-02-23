@@ -504,6 +504,10 @@
 		CCB2F6A823AB77F700B661FA /* MailResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB2F6A623AB77F700B661FA /* MailResult.swift */; };
 		CCB2F6AA23AB8F8800B661FA /* MyselfService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB2F6A923AB8F8800B661FA /* MyselfService.swift */; };
 		CCB2F6AB23AB8F8800B661FA /* MyselfService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB2F6A923AB8F8800B661FA /* MyselfService.swift */; };
+		E322133B2402D9D0002E3CAD /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E322133A2402D9D0002E3CAD /* Toast.swift */; };
+		E322133D2402DA58002E3CAD /* MoveToDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E322133C2402DA58002E3CAD /* MoveToDelegate.swift */; };
+		E322133E2402DA58002E3CAD /* MoveToDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E322133C2402DA58002E3CAD /* MoveToDelegate.swift */; };
+		E322133F2402DBEE002E3CAD /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E322133A2402D9D0002E3CAD /* Toast.swift */; };
 		E3260AB8240196DA00F7BF26 /* AddFolderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3260AB7240196DA00F7BF26 /* AddFolderProtocol.swift */; };
 		E3260AB9240196DA00F7BF26 /* AddFolderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3260AB7240196DA00F7BF26 /* AddFolderProtocol.swift */; };
 		E399BB8623E87AFA00EEA708 /* RichEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399BB4323E87AF900EEA708 /* RichEditorView.swift */; };
@@ -899,6 +903,8 @@
 		CCB2F6A323AB74A000B661FA /* PageResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageResult.swift; sourceTree = "<group>"; };
 		CCB2F6A623AB77F700B661FA /* MailResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailResult.swift; sourceTree = "<group>"; };
 		CCB2F6A923AB8F8800B661FA /* MyselfService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyselfService.swift; sourceTree = "<group>"; };
+		E322133A2402D9D0002E3CAD /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		E322133C2402DA58002E3CAD /* MoveToDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToDelegate.swift; sourceTree = "<group>"; };
 		E3260AB7240196DA00F7BF26 /* AddFolderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFolderProtocol.swift; sourceTree = "<group>"; };
 		E399BB4323E87AF900EEA708 /* RichEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichEditorView.swift; sourceTree = "<group>"; };
 		E399BB4423E87AF900EEA708 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
@@ -1183,6 +1189,7 @@
 				8402498B2191A00100CDDB0F /* MoveToPresenter.swift */,
 				8402498D2191A01B00CDDB0F /* MoveToInteractor.swift */,
 				8402498F2191A02800CDDB0F /* MoveToDataSource.swift */,
+				E322133C2402DA58002E3CAD /* MoveToDelegate.swift */,
 				8433A5402189DE17008E1C85 /* MoveTo.storyboard */,
 			);
 			path = MoveToViewController;
@@ -1824,9 +1831,18 @@
 			path = Misc;
 			sourceTree = "<group>";
 		};
+		E32213392402D9D0002E3CAD /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				E322133A2402D9D0002E3CAD /* Toast.swift */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
 		E399BB4123E87AB200EEA708 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				E32213392402D9D0002E3CAD /* Toast */,
 				E399BB4223E87AF900EEA708 /* RichEditorView */,
 			);
 			path = ThirdParty;
@@ -2451,6 +2467,7 @@
 				84356861216F2DE3002101D3 /* InboxConfigurator.swift in Sources */,
 				843E1DC421D4A25D001B89D6 /* WhiteBlackListsNavigationController.swift in Sources */,
 				84405BBA21AD0CD90048D8AC /* ComposeDataSource.swift in Sources */,
+				E322133B2402D9D0002E3CAD /* Toast.swift in Sources */,
 				CCB2F6A723AB77F700B661FA /* MailResult.swift in Sources */,
 				8433FF5C216246DC00C57DC8 /* PGPService.swift in Sources */,
 				843E972F21634E7900147CBE /* LaunchScreenViewController.swift in Sources */,
@@ -2571,6 +2588,7 @@
 				8430429E217D9D5100DB5787 /* InboxSideMenuInteractor.swift in Sources */,
 				CC45F36C239A8902004BC74C /* NetworkConfiguration.swift in Sources */,
 				84312188218AF7F20014560D /* ViewInboxEmailConfigurator.swift in Sources */,
+				E322133D2402DA58002E3CAD /* MoveToDelegate.swift in Sources */,
 				8443D21E21CBDD58002AD54B /* SettingsConfigurator.swift in Sources */,
 				30A38A7B23AACA0200166595 /* NetworkService+User.swift in Sources */,
 				8433FF5A2162181E00C57DC8 /* Constants.swift in Sources */,
@@ -2678,6 +2696,7 @@
 				CC6908E42384500100956E9B /* Attachment.swift in Sources */,
 				CC6908E52384500100956E9B /* SearchInteractor.swift in Sources */,
 				CC6908E62384500100956E9B /* AddContactToWhiteBlackListViewController.swift in Sources */,
+				E322133F2402DBEE002E3CAD /* Toast.swift in Sources */,
 				CC6908E72384500100956E9B /* CustomFolderTableViewCell.swift in Sources */,
 				CC6908E82384500100956E9B /* APIService.swift in Sources */,
 				CC6908E92384500100956E9B /* InboxInteractor.swift in Sources */,
@@ -2782,6 +2801,7 @@
 				CC69093E2384500100956E9B /* AddFolderViewController.swift in Sources */,
 				CC69093F2384500100956E9B /* SignUpPageEmail.swift in Sources */,
 				CC6909402384500100956E9B /* MoveToDataSource.swift in Sources */,
+				E322133E2402DA58002E3CAD /* MoveToDelegate.swift in Sources */,
 				CC6909412384500100956E9B /* WhiteBlackListsConfigurator.swift in Sources */,
 				CC6909422384500100956E9B /* ContactsRouter.swift in Sources */,
 				CC97A4F523A116F000FED4A2 /* AuthResult.swift in Sources */,
