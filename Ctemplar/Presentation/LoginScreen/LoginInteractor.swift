@@ -34,9 +34,9 @@ class LoginInteractor: HashingService {
             AppManager.shared.networkService.loginUser(with: LoginDetails(userName: trimmedUsername,
                                                                           password: value,
                                                                           twoFAcode: twoFAcode)) { result in                                                                   
-                                                                            if let value = try? result.get(), !value.isTwoFAEnabled {
-                                                                                self.keychainService?.saveUserCredentials(userName: userName, password: password)
-                                                                            }
+//                                                                            if let value = try? result.get(), !value.isTwoFAEnabled {
+//                                                                                self.keychainService?.saveUserCredentials(userName: userName, password: password)
+//                                                                            }
                                                                             self.handleNetwork(responce: result)
                                                                             HUD.hide()
             }
@@ -56,6 +56,7 @@ class LoginInteractor: HashingService {
             if let token = value.token {
                 keychainService?.saveToken(token: token)
             }
+            keychainService?.saveRememberMeValue(rememberMe: self.viewController?.rememberMeButton.isSelected ?? false)
             NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil, userInfo: nil)
             self.sendAPNDeviceToken()
             self.viewController?.router?.showInboxScreen()

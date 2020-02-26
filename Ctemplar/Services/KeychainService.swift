@@ -18,6 +18,7 @@ class KeychainService
         case password = "password"
         case twoFAcode = "twoFAcode"
         case apnToken = "apnToken"
+        case rememberMe = "rememberMe"
         
         var keyName: String {
             guard let identifier = Bundle.main.bundleIdentifier else {
@@ -98,6 +99,17 @@ class KeychainService
         
         saveUsername(name: userName)
         savePassword(password: password)
+    }
+    
+    func saveRememberMeValue(rememberMe: Bool) {
+        keychain.set(rememberMe, forKey: Consts.rememberMe.keyName)
+    }
+    
+    func getRememberMeValue() -> Bool {
+        if let rememberMe = keychain.getBool(Consts.rememberMe.keyName) {
+            return rememberMe
+        }
+        return false
     }
     
     func saveAPNDeviceToken(_ token: String) {
