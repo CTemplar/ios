@@ -2983,7 +2983,7 @@
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 46;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N2Z7XM6798;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Ctemplar/Resources/Plist/Ctemplar-Info.plist";
@@ -2992,6 +2992,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3009,7 +3010,7 @@
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 46;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N2Z7XM6798;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Ctemplar/Resources/Plist/Ctemplar-Info.plist";
@@ -3018,6 +3019,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3035,7 +3037,7 @@
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 56;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N2Z7XM6798;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Ctemplar/Resources/Plist/Ctemplar.dev-Info.plist";
@@ -3044,6 +3046,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3061,7 +3064,7 @@
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 56;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N2Z7XM6798;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Ctemplar/Resources/Plist/Ctemplar.dev-Info.plist";
@@ -3070,6 +3073,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
