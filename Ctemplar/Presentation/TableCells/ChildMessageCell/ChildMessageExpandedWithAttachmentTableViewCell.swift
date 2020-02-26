@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 
 class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -20,7 +21,7 @@ class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell, UICollec
     @IBOutlet weak var detailsButton   : UIButton!
     
     @IBOutlet var fromToBarTextView    : UITextView!
-    @IBOutlet var contentTextView      : UITextView!
+    @IBOutlet weak var contentsWebView: WKWebView!
     
     @IBOutlet var collectionView       : UICollectionView!
     
@@ -38,10 +39,11 @@ class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell, UICollec
     @IBOutlet var fromToViewHeightConstraint        : NSLayoutConstraint!
     @IBOutlet var fromToBarTextViewHeightConstraint : NSLayoutConstraint!
     
-    @IBOutlet var messageContentTextViewHeightConstraint        : NSLayoutConstraint!
+    @IBOutlet weak var contentWebViewHeightConstraint: NSLayoutConstraint!
     
     var showDetails : Bool = false
     var index : Int = 0
+    var delegate: ChildMessageExxpandedTableViewCellDelegate?
     
     var attachmentsArray : Array<Attachment> = []
     
@@ -58,13 +60,16 @@ class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell, UICollec
         // Configure the view for the selected state
     }
     
-    func setupCellWithData(message: EmailMessage, contentMessage: String, showDetails: Bool, index: Int) {
+    func setupCellWithData(message: EmailMessage, contentMessage: String, showDetails: Bool, index: Int, delegate: ChildMessageExxpandedTableViewCellDelegate) {
         
         self.showDetails = showDetails     
         self.index = index
+        self.delegate = delegate
         
-        if let sender = message.sender {
-            senderLabel.text = sender
+        if let senderName = message.sender_display {
+            senderLabel.text = senderName
+        }else if let senderEmail = message.sender {
+            senderLabel.text = senderEmail
         }
                 
         var toEmailsArray : Array<String> = []
@@ -86,7 +91,7 @@ class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell, UICollec
         
         self.setupDetailsButton()
         
-        self.setupMessageContentTextView(messageContent: contentMessage)
+        self.setupMessageContentWebView(messageContent: contentMessage)
         
         if let attachments = message.attachments {
             self.attachmentsArray = attachments
@@ -236,13 +241,10 @@ class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell, UICollec
         self.detailsButton.setAttributedTitle(attributedString, for: .normal)
     }
     
-    func setupMessageContentTextView(messageContent: String) {
+    func setupMessageContentWebView(messageContent: String) {
         
-        contentTextView.attributedText = messageContent.html2AttributedString
-        contentTextView.sizeToFit()
-        //contentTextView.backgroundColor = UIColor.yellow
-        
-        messageContentTextViewHeightConstraint.constant = contentTextView.frame.height
+        contentsWebView.navigationDelegate = self
+        contentsWebView.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />" + messageContent.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "\r", with: ""), baseURL: nil)
     }
     
     //MARK: - IBActions
@@ -286,5 +288,23 @@ class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell, UICollec
             //let url = URL(string: urlString)
             self.parentController?.attachSelected(itemUrlString: urlString, encrypted: attach.encrypted ?? false)
         }
+    }
+}
+
+extension ChildMessageExpandedWithAttachmentTableViewCell: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        self.contentsWebView.evaluateJavaScript("document.readyState", completionHandler: { (complete, error) in
+            if complete != nil {
+                self.contentsWebView.evaluateJavaScript("document.body.scrollHeight", completionHandler: { (height, error) in
+                    self.contentWebViewHeightConstraint.constant = height as! CGFloat
+                    self.delegate?.reloadCell(at: self.index)
+                })
+            }
+
+            })
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        print("web view loading failed: \(error.localizedDescription)")
     }
 }

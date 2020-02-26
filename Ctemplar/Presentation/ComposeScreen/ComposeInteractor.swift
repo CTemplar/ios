@@ -25,31 +25,26 @@ class ComposeInteractor {
 
     //MARK: - API
     
-    func createDraftMessage(parentID: String, content: String, subject: String, recievers: [[String]], folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String], attachments: Array<[String : String]>) {
+    func createDraftMessage(parentID: String, content: String, subject: String, recievers: [[String]], folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String], attachments: Array<[String : String]>, showHud: Bool = true) {
         
-        apiService?.createMessage(parentID: parentID, content: content, subject: subject, recieversList: recievers, folder: folder, mailboxID: mailboxID, send: send, encrypted: encrypted, encryptionObject: encryptionObject, attachments: attachments) {(result) in
-            
-            switch(result) {
+        DispatchQueue.global(qos: .background).async {
+            self.apiService?.createMessage(parentID: parentID, content: content, subject: subject, recieversList: recievers, folder: folder, mailboxID: mailboxID, send: send, encrypted: encrypted, encryptionObject: encryptionObject, attachments: attachments, showHud: showHud) {(result) in
                 
-            case .success(let value):
-                print("create Draft Message value:", value)
-                self.sendingMessage = value as! EmailMessage
-                
-                print("create Draft sendingMessage attachments:", self.sendingMessage.attachments as Any)
-                
-                //self.presenter?.setupAttachments(message: self.sendingMessage) //need investigate attachment_forward
-                //self.presenter?.setupMessageSectionSize()
-                //self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
-                //self.presenter?.fillAllEmailsFields(message: self.sendingMessage)
-                self.presenter?.setupMessageSection(message: self.sendingMessage)
-                self.presenter?.setupEncryptedButton()
-                //self.presenter?.setSchedulerTimersForMessage(message: self.sendingMessage)
-                
-            case .failure(let error):
-                print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Create Draft Error", message: error.localizedDescription, button: "closeButton".localized())
+                switch(result) {
+                    
+                case .success(let value):
+                    self.sendingMessage = value as! EmailMessage
+                    
+                    self.presenter?.setupMessageSection(message: self.sendingMessage)
+                    self.presenter?.setupEncryptedButton()
+                    
+                case .failure(let error):
+                    print("error:", error)
+                    AlertHelperKit().showAlert(self.viewController!, title: "Create Draft Error", message: error.localizedDescription, button: "closeButton".localized())
+                }
             }
         }
+        
     }
     
     func deleteDraftMessage(messageID: String) {
@@ -180,36 +175,43 @@ class ComposeInteractor {
         }
     }
     
-    func setContactsData(contactsList: ContactsList) {
+    func setContactsData(contacts: [Contact]) {
         
-        if let contacts = contactsList.contactsList {
+//        if let contacts = contactsList.contactsList {
             self.viewController?.contactsList = contacts
             self.viewController?.presenter?.setContactsDataSource(contacts: contacts)
             self.viewController?.dataSource?.reloadData(setMailboxData: false)
-        }
+//        }
     }
     
-    func userContactsList() {
+    func userContactsList(silent: Bool = false) {
         
         //HUD.show(.progress)
-        
-        apiService?.userContacts(fetchAll: true, offset: 0, silent: false) {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                //print("userContactsList:", value)
-                
-                let contactsList = value as! ContactsList
-                self.setContactsData(contactsList: contactsList)
-                
-            case .failure(let error):
-                print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+        if (self.viewController?.user.contactsList?.count ?? 0) > 0 {
+            self.setContactsData(contacts: self.viewController?.user.contactsList ?? [])
+        }else {
+            DispatchQueue.global(qos: .background).async {
+                self.apiService?.userContacts(fetchAll: true, offset: 0, silent: silent) {(result) in
+                    
+                    switch(result) {
+                        
+                    case .success(let value):
+                        //print("userContactsList:", value)
+                        
+                        let contactsList = value as! ContactsList
+                        self.setContactsData(contacts: contactsList.contactsList ?? [])
+                        //                self.setContactsData(contactsList: contactsList)
+                        
+                    case .failure(let error):
+                        print("error:", error)
+                        AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+                    }
+                    
+                    //HUD.hide()
+                }
             }
-            
-            //HUD.hide()
         }
+        
     }
     
     func uploadAttach(fileUrl: URL, messageID : String) {
@@ -321,7 +323,7 @@ class ComposeInteractor {
         }
     }
     
-    func createDraft() {
+    func createDraft(showHud: Bool = true) {
         
         var messageContent : String = ""
         
@@ -329,7 +331,7 @@ class ComposeInteractor {
         
         let recieversList = self.setRecieversList()
         
-        self.createDraftMessage(parentID: "", content: messageContent, subject: self.viewController!.subject, recievers: recieversList, folder: MessagesFoldersName.draft.rawValue, mailboxID: (self.viewController?.mailboxID)!, send: false, encrypted: false, encryptionObject: [:], attachments: self.viewController!.mailAttachmentsList)
+        self.createDraftMessage(parentID: "", content: messageContent, subject: self.viewController!.subject, recievers: recieversList, folder: MessagesFoldersName.draft.rawValue, mailboxID: (self.viewController?.mailboxID)!, send: false, encrypted: false, encryptionObject: [:], attachments: self.viewController!.mailAttachmentsList, showHud: showHud)
     }
     
     func createDraftWithParent(message: EmailMessage) {
@@ -410,13 +412,18 @@ class ComposeInteractor {
     
     func getEnteredMessageContent() -> String {
         
-        var messageContent = self.viewController!.messageTextView.text
+        var messageContent = self.viewController!.messageTextEditor.contentHTML
+        if let range = messageContent.range(of: self.viewController!.presenter!.currentSignature) {
+            messageContent = messageContent.replacingCharacters(in: range, with: "")
+            messageContent.append("<br>\(self.viewController!.presenter!.currentSignature)")
+        }
+        
         
         if messageContent == "composeEmail".localized() {
             messageContent = ""
         }
         
-        return messageContent!
+        return messageContent
     }
     
     func getScheduledDateFor(mode: SchedulerMode) -> String {

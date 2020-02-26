@@ -144,7 +144,7 @@ let k_updateInboxMessagesNotificationID     = "updateInboxMessagesNotification"
 let k_attachUploadUpdateNotificationID      = "attachUploadUpdateNotificationIdentifier"
 let k_reloadViewControllerNotificationID    = "ReloadViewControllerNotificationIdentifier"
 let k_reloadViewControllerDataSourceNotificationID    = "ReloadViewControllerDataSourceNotificationIdentifier"
-
+let k_updateCustomFolderNotificationID = "UpdateCustomFoldersNotificationIdentifier"
 // colors
 
 let k_lightRedColor: UIColor = UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 0.2)
@@ -169,7 +169,9 @@ let k_foundTextBackgroundColor: UIColor = UIColor(red: 217.0 / 255.0, green: 235
 let k_whiteColor: UIColor = UIColor(red: 250.0 / 255.0, green: 251.0 / 255.0, blue: 251.0 / 255.0, alpha: 1.0)
 let k_selectedFolderColor: UIColor = UIColor(red: 18.0 / 255.0, green: 45.0 / 255.0, blue: 71.0 / 255.0, alpha: 0.1)
 
-let k_unreadMessageColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 0.02)
+let k_readMessageColor : UIColor = UIColor(white: 245/255, alpha: 1.0)
+
+let k_unreadMessageColor : UIColor = UIColor(white: 1.0, alpha: 1.0)
 
 let k_actionMessageColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 1.0)
 
@@ -270,6 +272,8 @@ let k_emailToTextViewTopOffset      : CGFloat = 9.0
 let k_composeTableViewTopOffset     : CGFloat = 45.0
 
 let k_messageTextViewTopOffset      : CGFloat = 10.0
+
+let k_messageEditorThresholdHeight  : CGFloat = 100.0
 
 let k_attachmentViewHeight          : CGFloat = 44.0
 let k_attachmentViewTopOffset       : CGFloat = 25.0
@@ -387,10 +391,15 @@ let k_redSelectedImageName          = "RedSelection"
 
 let k_latoRegularFontName = "Lato-Regular"
 let k_latoBoldFontName    = "Lato-Bold"
+let k_unreadMessageSenderFont = UIFont.systemFont(ofSize: 16.0, weight: UIFont.Weight.semibold)
+let k_readMessageSenderFont = UIFont.systemFont(ofSize: 16.0)
+let k_unreadMEssageSubjectFont = UIFont(name: "Lato-Bold", size: 14.0)
+let k_readMEssageSubjectFont = UIFont(name: "Lato-Regular", size: 14.0)
 
 // other
 let k_contactPageLimit = 20
-let k_pageLimit = 50
+let k_pageLimit = 30
+let k_firstLoadPageLimit = 10
 let k_offsetForLast = 5
 
 let k_numberOfRounds               = 29
@@ -612,17 +621,22 @@ enum SettingsSections: Int, CaseIterable {
 
 enum SettingsGeneralSection: Int, CaseIterable {
     
-    case recovery          = 0
-    case password          = 1
-    case language          = 2
-    case notification      = 3
-    case contacts          = 4
-    case whiteBlackList    = 5
+    case notification      = 0
+    case language          = 1
+    case contacts          = 2
+    case whiteBlackList    = 3
 }
 
 enum SettingsFoldersSection: Int, CaseIterable {
     
     case folder            = 0
+}
+
+enum SettingsSecuritySection: Int, CaseIterable {
+    
+    case password          = 0
+    case recovery          = 1
+    case encryption        = 2
 }
 
 enum SettingsMailSection: Int, CaseIterable {

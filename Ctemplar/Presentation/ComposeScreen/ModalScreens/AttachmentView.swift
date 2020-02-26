@@ -24,6 +24,7 @@ class AttachmentView: UIView {
     
     @IBOutlet var backgroundProgressView    : UIView!
     @IBOutlet var progressView    : UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var fileUrl : URL!
 
@@ -44,12 +45,18 @@ class AttachmentView: UIView {
     func setup(fileUrl: URL) {
         
         self.fileUrl = fileUrl
-        
-        let fileData = try? Data(contentsOf: fileUrl)
-        let fileSize = fileData?.sizeData()
-        let fileName = fileUrl.lastPathComponent
-        
-        self.formatFileTitle(fileName: fileName, fileSize: fileSize!)       
+        self.activityIndicator.isHidden = false
+        self.activityIndicator.startAnimating()
+        DispatchQueue.global(qos: .userInteractive).async {
+            let fileData = try? Data(contentsOf: fileUrl)
+            let fileSize = fileData?.sizeData()
+            let fileName = fileUrl.lastPathComponent
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.isHidden = true
+                self.formatFileTitle(fileName: fileName, fileSize: fileSize!)
+            }
+        }
     }
     
     func formatFileTitle(fileName: String, fileSize: String) {

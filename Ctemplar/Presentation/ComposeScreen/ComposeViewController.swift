@@ -27,7 +27,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet var emailFrom           : UILabel!
     @IBOutlet var subjectTextField    : UITextField!
     
-    @IBOutlet var messageTextView     : UITextView!
+    @IBOutlet weak var messageTextEditor    :    RichEditorView!
     @IBOutlet var scrollView          : UIScrollView!
     
     @IBOutlet var emailToTextView     : UITextView!
@@ -52,11 +52,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet var tableViewTopOffsetConstraint           : NSLayoutConstraint!
     @IBOutlet var tableViewBottomOffsetConstraint        : NSLayoutConstraint!
     
-    @IBOutlet var messageTextViewHeightConstraint        : NSLayoutConstraint!
-    @IBOutlet weak var messageTextViewBottomOffsetConstraint: NSLayoutConstraint!
+    @IBOutlet var messageTextEditorHeightConstraint: NSLayoutConstraint!
+    @IBOutlet var messageTextEditorBottomOffsetConstraint: NSLayoutConstraint!
     @IBOutlet var scrollViewBottomOffsetConstraint       : NSLayoutConstraint!
     
-    //var scrollViewContentSize
     
     var expandedSectionHeight: CGFloat = 0.0
     var keyboardOffset = 0.0
@@ -119,6 +118,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        self.addGesureRecognizers()
+        
         let configurator = ComposeConfigurator()
         configurator.configure(viewController: self)
         
@@ -138,7 +139,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         subjectTextField.delegate = self
         
-        messageTextView.delegate = self
+        messageTextEditor.delegate = self
         
         ccToSubSectionView.isHidden = true
         bccToSubSectionView.isHidden = true
@@ -211,29 +212,27 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             //self.presenter?.setupSubject(subjectText: subject, answerMode: answerMode)
 
         } else {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: {
-                self.interactor?.createDraft()
-            })
-            
+            self.interactor?.createDraft(showHud: false)
             self.presenter?.setupSubject(subjectText: subject, answerMode: answerMode)
         }
         
         let isContactsEncrypted = self.user.settings.isContactsEncrypted ?? false
-        if !isContactsEncrypted {        
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100), execute: {
-                self.interactor?.userContactsList()
-            })
+        if !isContactsEncrypted {
+            self.interactor?.userContactsList(silent: true)
         }
             
         self.presenter?.setupSchedulersButtons()
         
         self.presenter?.initAddFolderLimitView()
         
-        self.addGesureRecognizers()
-        
         self.addNotificationObserver()
         
         //print("isAttachmentsEncrypted:", user.settings.isAttachmentsEncrypted)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.presenter?.setupMessageEditorView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -325,7 +324,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         print("textViewDidBeginEditing")
         
-        if textView != self.messageTextView {
+//        if textView != self.messageTextView {
             
             //temp
             let isContactsEncrypted = self.user.settings.isContactsEncrypted ?? false
@@ -339,12 +338,12 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             }
             //
             
-            if self.messageTextView.text.isEmpty {
-                self.presenter?.setPlaceholderToMessageTextView(show: true)
-            }
-        } else {
-            self.presenter?.setPlaceholderToMessageTextView(show: false)
-        }
+//            if self.messageTextView.text.isEmpty {
+//                self.presenter?.setPlaceholderToMessageTextView(show: true)
+//            }
+//        } else {
+//            self.presenter?.setPlaceholderToMessageTextView(show: false)
+//        }
     }
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
@@ -385,11 +384,11 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             //inputText =  (self.interactor?.getLastInputEmail(input: inputDroppedPrefixText!))!
             inputText = (self.interactor?.getLastInputText(input: inputDroppedPrefixText!, emailsArray: self.bccToArray))!
             self.interactor?.setEmail(textView: self.bccToTextView, inputEmail: inputText, clearInputtedChars: false)
-        case self.messageTextView:
-            if self.messageTextView.text.isEmpty {
-                self.presenter?.setPlaceholderToMessageTextView(show: true)
-            }
-            break
+//        case self.messageTextView:
+//            if self.messageTextView.text.isEmpty {
+//                self.presenter?.setPlaceholderToMessageTextView(show: true)
+//            }
+//            break
         default:
             break
         }
@@ -418,17 +417,17 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             let inputDroppedPrefixText = self.interactor?.dropPrefix(text: textView.text, prefix: "bccToPrefix".localized())
             inputText =  (self.interactor?.getLastInputEmail(input: inputDroppedPrefixText!))!
             self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: textView.text)
-        case self.messageTextView:
-             //self.messageAttributedText = self.messageTextView.attributedText
-            self.presenter!.setupMessageSectionSize()
-            break
+//        case self.messageTextView:
+//             //self.messageAttributedText = self.messageTextView.attributedText
+//            self.presenter!.setupMessageSectionSize()
+//            break
         default:
             break
         }
         
-        if textView != self.messageTextView {
+//        if textView != self.messageTextView {
             self.interactor?.setFilteredList(searchText: inputText)
-        }
+//        }
         
         self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset + self.emailToSectionView.frame.height/*self.toViewSectionHeightConstraint.constant*/ - 5.0)
         self.presenter!.enabledSendButton()
@@ -443,9 +442,9 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             return (self.interactor?.holdCcToTextViewInput(textView: self.ccToTextView, shouldChangeTextIn: range, replacementText: text))!
         case self.bccToTextView:
             return (self.interactor?.holdBccToTextViewInput(textView: self.bccToTextView, shouldChangeTextIn: range, replacementText: text))!
-        case self.messageTextView:
-            //self.presenter!.setupMessageSectionSize()
-            break
+//        case self.messageTextView:
+//            //self.presenter!.setupMessageSectionSize()
+//            break
         default:
             break
         }
@@ -601,7 +600,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     @objc func keyboardWillShow(notification: Notification) {
         
-        if self.messageTextView.isFirstResponder {
+        if self.messageTextEditor.isFirstResponder {
             if self.view.frame.origin.y == 0 {
                 //self.view.frame.origin.y -= CGFloat(keyboardOffset)
                 
@@ -650,6 +649,18 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         self.interactor?.saveDraft()
     }
+}
+
+extension ComposeViewController: RichEditorDelegate {
+    func richEditor(_ editor: RichEditorView, contentDidChange content: String) {
+        self.presenter!.enabledSendButton()
+        self.presenter?.setupMessageSectionSize()
+    }
+    
+    func richEditor(_ editor: RichEditorView, heightDidChange height: Int) {
+        self.presenter?.setupMessageSectionSize()
+    }
+    
 }
 
 extension ComposeViewController: SetPasswordDelegate {

@@ -21,6 +21,7 @@ class InboxInteractor {
     var unreadEmails = 0
     var offset = 0
     
+    private var isFetchInProgress = false
     //MARK: - data
 
     func updateMessages(withUndo: String, silent: Bool) {
@@ -170,32 +171,37 @@ class InboxInteractor {
         if self.offset >= self.totalItems && self.offset > 0 {
             return
         }
-        
-        if !silent {
-            //HUD.show(.progress)
-            HUD.show(.labeledProgress(title: "updateMessages".localized(), subtitle: ""))
+        if isFetchInProgress {
+            return
+        }
+        isFetchInProgress = true
+        DispatchQueue.main.async {
+            if !silent {
+                HUD.show(.labeledProgress(title: "updateMessages".localized(), subtitle: ""))
+            }
+        }
+        let pageSize: Int
+        if self.viewController?.allMessagesArray.count == 0 {
+            pageSize = k_firstLoadPageLimit
+        }else {
+            pageSize = k_pageLimit
         }
         
-        apiService?.messagesList(folder: folder, messagesIDIn: "", seconds: 0, offset: offset) {(result) in
-            
+        apiService?.messagesList(folder: folder, messagesIDIn: "", seconds: 0, offset: offset, pageLimit: pageSize) {(result) in
+            self.isFetchInProgress = false
             switch(result) {
                 
             case .success(let value):
-                //print("value:", value)
                 
                 let emailMessages = value as! EmailMessagesList
-                //self.viewController?.allMessagesList = emailMessages
-                self.totalItems = emailMessages.totalCount!
-                
-                //self.setInboxData(messages: emailMessages, folderFilter: folder)
-                
+                self.totalItems = emailMessages.totalCount ?? 0
                 self.setInboxData(messages: emailMessages.messagesList!, totalEmails: self.totalItems)
                 
                 if withUndo.count > 0 {
                     self.presenter?.showUndoBar(text: withUndo)
                 }
                 
-                self.offset = self.offset + k_pageLimit
+                self.offset = self.offset + pageSize
                 
             case .failure(let error):
                 print("error:", error)
@@ -287,40 +293,63 @@ class InboxInteractor {
     }
     
     func userMyself() {
-        
-        apiService?.userMyself() {(result) in
-            
-            switch(result) {
+        DispatchQueue.global(qos: .background).async {
+            self.apiService?.userMyself() {(result) in
                 
-            case .success(let value):
-                //print("userMyself value:", value)
-                
-                let userMyself = value as! UserMyself
-                
-                self.viewController?.user = userMyself
-                
-               // if let contacts = userMyself.contactsList {
-                    //self.viewController?.contactsList = contacts
-                //}
-                
-                if let mailboxes = userMyself.mailboxesList {
-                    self.viewController?.mailboxesList = mailboxes
+                switch(result) {
+                    
+                case .success(let value):
+                    //print("userMyself value:", value)
+                    
+                    var userMyself = value as! UserMyself
+                    if userMyself.username == self.viewController?.user.username {
+                        userMyself.contactsList = self.viewController?.user.contactsList
+                    }
+                    self.viewController?.user = userMyself
+                    
+                    if let mailboxes = userMyself.mailboxesList {
+                        self.viewController?.mailboxesList = mailboxes
+                    }
+                    
+                    if self.viewController?.navigationItem.leftBarButtonItem != nil {
+                        self.viewController?.leftBarButtonItem.isEnabled = true
+                    }
+                    
+                    self.viewController?.bottomComposeButton.isEnabled = true
+                    self.viewController?.rightComposeButton.isEnabled = true
+                    
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: value)
+                    self.userContactsList()
+                case .failure(let error):
+                    print("error:", error)
+                    AlertHelperKit().showAlert(self.viewController!, title: "User Myself Error", message: error.localizedDescription, button: "closeButton".localized())
                 }
-                
-                if self.viewController?.navigationItem.leftBarButtonItem != nil {
-                    self.viewController?.leftBarButtonItem.isEnabled = true
-                }
-                
-                self.viewController?.bottomComposeButton.isEnabled = true
-                self.viewController?.rightComposeButton.isEnabled = true
-                
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: value)
-                
-            case .failure(let error):
-                print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "User Myself Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
+        
+    }
+    
+    func userContactsList() {
+        if (self.viewController?.user.contactsList?.count ?? 0) > 0 {
+            return
+        }
+        DispatchQueue.global(qos: .background).async {
+            self.apiService?.userContacts(fetchAll: true, offset: 0, silent: true, completionHandler: { (result) in
+//                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let value):
+                        if let contactsList = value as? ContactsList {
+                            self.viewController?.user.contactsList = contactsList.contactsList ?? []
+                        }
+                        break
+                    case .failure(let error):
+                        print("Error in fetching user contacts: \(error.localizedDescription)")
+                        break
+                    }
+//                }
+            })
+        }
+        
     }
     
     func publicKeyList() {

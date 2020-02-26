@@ -774,3 +774,11 @@ class InboxPresenter {
         }
     }
 }
+
+extension InboxPresenter: MoveToViewControllerDelegate {
+    func didMoveMessage(to folder: String) {
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (timer1) in
+            self.viewController?.view.makeToast("Message moved to \(folder)", duration: 4, position: .bottom)
+        }
+    }
+}

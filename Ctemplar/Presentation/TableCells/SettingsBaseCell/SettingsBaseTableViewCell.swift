@@ -39,4 +39,16 @@ class SettingsBaseTableViewCell: UITableViewCell {
             self.valueLableWidthConstraint.constant = 0.0
         }
     }
+    
+    func setupCellWithData(attributedTitle: NSAttributedString, value: String) {
+        self.titleLabel.attributedText = attributedTitle
+        self.valueLabel.text = value
+        
+        if value.count > 0 {
+            let valueTextWidth = value.widthOfString(usingFont: self.valueLabel.font)
+            self.valueLableWidthConstraint.constant = valueTextWidth * 1.05
+        } else {
+            self.valueLableWidthConstraint.constant = 0.0
+        }
+    }
 }

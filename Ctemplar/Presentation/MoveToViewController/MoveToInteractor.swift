@@ -80,6 +80,7 @@ class MoveToInteractor {
                 print("move list to another folder")
                 
                 self.postUpdateInboxNotification()
+                self.viewController?.delegate?.didMoveMessage(to: folder)
                 self.viewController?.dismiss(animated: true, completion: nil)
                 
             case .failure(let error):

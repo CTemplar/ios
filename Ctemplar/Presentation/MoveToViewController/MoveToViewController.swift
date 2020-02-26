@@ -29,6 +29,8 @@ class MoveToViewController: UIViewController {
     
     var selectedMessagesIDArray : Array<Int> = []
     
+    var delegate: MoveToViewControllerDelegate?
+    
     var user = UserMyself()
 
     //MARK: - Lifecycle

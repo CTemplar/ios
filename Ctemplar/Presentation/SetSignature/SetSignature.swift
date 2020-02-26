@@ -20,7 +20,7 @@ class SetSignatureViewController: UIViewController {
     
     @IBOutlet var rightBarButtonItem       : UIBarButtonItem!
     @IBOutlet var textFieldView            : UIView!
-    @IBOutlet var inputTextField           : UITextField!
+    @IBOutlet weak var signatureEditorView: RichEditorView!
     @IBOutlet var switcher                 : UISwitch!
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -34,6 +34,12 @@ class SetSignatureViewController: UIViewController {
     
     var formatterService        : FormatterService?
     
+    lazy var toolbar: RichEditorToolbar = {
+        let toolbar = RichEditorToolbar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 44))
+        toolbar.options = RichEditorDefaultOption.all
+        return toolbar
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -44,6 +50,12 @@ class SetSignatureViewController: UIViewController {
         self.mailbox = (self.apiService?.defaultMailbox(mailboxes: self.user.mailboxesList!))!
         
         self.setupScreen()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupMessageEditorView()
+        signatureEditorView.delegate = self
     }
     
     @IBAction func cancelButtonPressed(_ sender: AnyObject) {
@@ -72,7 +84,7 @@ class SetSignatureViewController: UIViewController {
         
         if (sender.isOn == true) {
             self.textFieldView.isHidden = false
-            self.userSignature = self.inputTextField.text!
+            self.userSignature = self.signatureEditorView.html
             self.setupRightBarButton(show: true)
             self.rigthBarButtonEnabled()
         } else {
@@ -96,7 +108,7 @@ class SetSignatureViewController: UIViewController {
             if signature.count > 0 {
                 self.userSignature = signature
                 self.textFieldView.isHidden = false
-                self.inputTextField.text = signature
+                self.signatureEditorView.html = signature
                 self.switcher.setOn(true, animated: false)
                 self.setupRightBarButton(show: true)
             } else {
@@ -120,6 +132,25 @@ class SetSignatureViewController: UIViewController {
         } else {
             self.navigationItem.rightBarButtonItem = nil
         }
+    }
+    
+    func setupMessageEditorView() {
+        self.signatureEditorView.inputAccessoryView = toolbar
+        self.signatureEditorView.placeholder = "Type message here..."
+        
+        toolbar.editor = self.signatureEditorView
+        toolbar.delegate = self
+        
+        let clearItem = RichEditorOptionItem(image: nil, title: "Clear") { (toolbar) in
+            toolbar.editor?.html = ""
+        }
+        let doneItem = RichEditorOptionItem(image: nil, title: "Done") { (toolbar) in
+            self.signatureEditorView.endEditing(true)
+        }
+        
+        var options = toolbar.options
+        options.append(contentsOf: [clearItem, doneItem])
+        toolbar.options = options
     }
     
     func rigthBarButtonEnabled() {
@@ -180,3 +211,72 @@ class SetSignatureViewController: UIViewController {
         }
     }
 }
+
+extension SetSignatureViewController: RichEditorDelegate {
+    func richEditor(_ editor: RichEditorView, contentDidChange content: String) {
+        userSignature = content
+        rigthBarButtonEnabled()
+    }
+}
+
+//MARK: - RichEditor Toolbar Delegate
+
+extension SetSignatureViewController: RichEditorToolbarDelegate {
+    
+    fileprivate func randomColor() -> UIColor {
+        let colors: [UIColor] = [
+            .red,
+            .orange,
+            .yellow,
+            .green,
+            .blue,
+            .purple,
+            .black,
+            .darkGray,
+            .brown
+        ]
+        
+        let color = colors[Int(arc4random_uniform(UInt32(colors.count)))]
+        return color
+    }
+    
+    func richEditorToolbarChangeTextColor(_ toolbar: RichEditorToolbar) {
+        let color = randomColor()
+        toolbar.editor?.setTextColor(color)
+    }
+    
+    func richEditorToolbarChangeBackgroundColor(_ toolbar: RichEditorToolbar) {
+        let color = randomColor()
+        toolbar.editor?.setTextBackgroundColor(color)
+    }
+    
+    func richEditorToolbarInsertLink(_ toolbar: RichEditorToolbar) {
+        toolbar.editor?.hasRangeSelection(handler: { (isRangedSelection) in
+            if isRangedSelection {
+                let alert = UIAlertController(title: "Insert Link", message: nil, preferredStyle: .alert)
+                alert.addTextField { (textField) in
+                    textField.placeholder = "URL (required)"
+                }
+                alert.addTextField { (textField) in
+                    textField.placeholder = "Title"
+                }
+                alert.addAction(UIAlertAction(title: "Insert", style: .default, handler: { (action) in
+                    let textField1 = alert.textFields![0]
+                    let textField2 = alert.textFields![1]
+                    let url = textField1.text ?? ""
+                    if url == "" {
+                        return
+                    }
+                    let title = textField2.text ?? ""
+                    toolbar.editor?.insertLink(href: url, text: title)
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        })
+    }
+    
+    func richEditorToolbarInsertImage(_ toolbar: RichEditorToolbar) {
+    }
+}
+

@@ -26,12 +26,20 @@ class SearchPresenter {
         searchBar.sizeToFit()
         
         //UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).leftViewMode = .never
-        
-        if let searchTextField = searchBar.value(forKey: "_searchField") as? UITextField {
+        if #available(iOS 13.0, *) {
+            let searchTextField = searchBar.searchTextField
             searchTextField.borderStyle = .none
             searchTextField.backgroundColor = self.viewController?.navigationItem.titleView?.backgroundColor
             searchTextField.leftView = nil
+        }else {
+            if let searchTextField = searchBar.value(forKey: "_searchField") as? UITextField {
+                searchTextField.borderStyle = .none
+                searchTextField.backgroundColor = self.viewController?.navigationItem.titleView?.backgroundColor
+                searchTextField.leftView = nil
+            }
         }
+        
+        
         
         self.viewController?.navigationItem.titleView = searchBar   
     }

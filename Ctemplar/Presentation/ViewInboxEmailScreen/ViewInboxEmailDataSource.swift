@@ -61,7 +61,12 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
         var cell : UITableViewCell
         
         let message = messagesArray[indexPath.row]
-        let sender = message.sender
+        var sender = ""
+        if let dispalyName = message.sender_display {
+            sender = dispalyName
+        }else if let senderEmail = message.sender {
+            sender = senderEmail
+        }
         
         var header = ""
         var messageText = ""
@@ -89,11 +94,11 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
             if hasAttachments {
                 cell = tableView.dequeueReusableCell(withIdentifier: k_ChildMessageExpandedWithAttachmentTableViewCellIdentifier)! as! ChildMessageExpandedWithAttachmentTableViewCell
                 (cell as! ChildMessageExpandedWithAttachmentTableViewCell).parentController = self
-                (cell as! ChildMessageExpandedWithAttachmentTableViewCell).setupCellWithData(message: message, contentMessage: messageText, showDetails: showDetails, index: indexPath.row)
+                (cell as! ChildMessageExpandedWithAttachmentTableViewCell).setupCellWithData(message: message, contentMessage: messageText, showDetails: showDetails, index: indexPath.row, delegate: self)
             } else {
                 cell = tableView.dequeueReusableCell(withIdentifier: k_ChildMessageExpandedTableViewCellIdentifier)! as! ChildMessageExpandedTableViewCell
                 (cell as! ChildMessageExpandedTableViewCell).parentController = self
-                (cell as! ChildMessageExpandedTableViewCell).setupCellWithData(message: message, contentMessage: messageText, showDetails: showDetails, index: indexPath.row)
+                (cell as! ChildMessageExpandedTableViewCell).setupCellWithData(message: message, contentMessage: messageText, showDetails: showDetails, index: indexPath.row, delegate: self)
             }
 
         } else {
@@ -106,7 +111,7 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
             
             cell = tableView.dequeueReusableCell(withIdentifier: k_ChildMessageTableViewCellIdentifier)! as! ChildMessageTableViewCell
             (cell as! ChildMessageTableViewCell).parentController = self
-            (cell as! ChildMessageTableViewCell).setupCellWithData(sender: sender!, header: header, message: message, isLast: lastMessage)
+            (cell as! ChildMessageTableViewCell).setupCellWithData(sender: sender, header: header, message: message, isLast: lastMessage)
         }
          
         cell.preservesSuperviewLayoutMargins = false
@@ -150,5 +155,12 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
     func attachSelected(itemUrlString: String, encrypted: Bool) {
         
         self.parentViewController.presenter?.showShareScreen(itemUrlString: itemUrlString, encrypted: encrypted)
+    }
+}
+
+extension ViewInboxEmailDataSource: ChildMessageExxpandedTableViewCellDelegate {
+    func reloadCell(at index: Int) {
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
 }

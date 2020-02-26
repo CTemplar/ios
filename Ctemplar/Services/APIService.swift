@@ -89,41 +89,44 @@ class APIService: HashingService {
     
     @objc func refreshToken(completion:@escaping (Bool) -> () ) {
         
-        DispatchQueue.main.async {
-            
-            let storedToken = self.keychainService?.getToken()
-            
+//        DispatchQueue.main.async {
+        
+        let storedToken = self.keychainService?.getToken()
+        DispatchQueue.global(qos: .userInitiated).async {
             self.restAPIService?.refreshToken(token: storedToken!) {(result) in
-                
-                switch(result) {
-                    
-                case .success(let value):
-                    print("refreshToken success value:", value)
-                    
-                    if let response = value as? Dictionary<String, Any> {
-                        if let message = self.parseServerResponse(response:response) {
-                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
-                            if !self.authErrorAlertAlreadyShowing {
-                                self.showErorrLoginAlert(error: error)
+//                DispatchQueue.main.async {
+                    switch(result) {
+                        
+                    case .success(let value):
+                        print("refreshToken success value:", value)
+                        
+                        if let response = value as? Dictionary<String, Any> {
+                            if let message = self.parseServerResponse(response:response) {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                if !self.authErrorAlertAlreadyShowing {
+                                    self.showErorrLoginAlert(error: error)
+                                }
+                                HUD.hide()
+                                completion(false)
+                            } else {
+                                completion(true)
                             }
-                            HUD.hide()
-                            completion(false)
-                        } else {
-                            completion(true)
                         }
-                    }                    
-                    
-                case .failure(let error):
-                    print("refreshToken error:", error)
-                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
-                    if !self.authErrorAlertAlreadyShowing {
-                        self.showErorrLoginAlert(error: error)
+                        
+                    case .failure(let error):
+                        print("refreshToken error:", error)
+                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                        if !self.authErrorAlertAlreadyShowing {
+                            self.showErorrLoginAlert(error: error)
+                        }
+                        
+                        completion(false)
                     }
-                    
-                    completion(false)
-                }
+//                }
             }
         }
+            
+//        }
     }
      
     func initialize() {
@@ -138,13 +141,34 @@ class APIService: HashingService {
     
     func logOut(completionHandler: @escaping (APIResult<Any>) -> Void) {
         
-        self.hashedPassword = nil
-        
-        keychainService?.deleteUserCredentialsAndToken()
-        pgpService?.deleteStoredPGPKeys()
-        
-        completionHandler(APIResult.success("success"))
-        //showLoginViewController()
+        self.checkTokenExpiration { (complete) in
+            if complete {
+                if let token = self.getToken(), let deviceToken = self.keychainService?.getAPNDeviceToken() {
+                    self.restAPIService?.signOut(token: token, deviceToken: deviceToken, completionHandler: { (result) in
+                        self.hashedPassword = nil
+                        
+                        self.keychainService?.deleteUserCredentialsAndToken()
+                        self.pgpService?.deleteStoredPGPKeys()
+                        
+                        completionHandler(APIResult.success("success"))
+                    })
+                }else {
+                    self.hashedPassword = nil
+                    
+                    self.keychainService?.deleteUserCredentialsAndToken()
+                    self.pgpService?.deleteStoredPGPKeys()
+                    
+                    completionHandler(APIResult.success("success"))
+                }
+            }else {
+                self.hashedPassword = nil
+                
+                self.keychainService?.deleteUserCredentialsAndToken()
+                self.pgpService?.deleteStoredPGPKeys()
+                
+                completionHandler(APIResult.success("success"))
+            }
+        }
     }
     
     //MARK: - User
@@ -157,37 +181,35 @@ class APIService: HashingService {
                 if let token = self.getToken() {
                     
                     //HUD.show(.progress)
-                    
-                    self.restAPIService?.userMyself(token: token) {(result) in
-                        
-                        switch(result) {
-                            
-                        case .success(let value):
-                            
-                           // print("userMyself success:", value)
-                            
-                            if let response = value as? Dictionary<String, Any> {                            
-                                
-                                if let message = self.parseServerResponse(response:response) {
-                                    print("userMyself message:", message)
-                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                    DispatchQueue.global(qos: .background).async {
+                        self.restAPIService?.userMyself(token: token) {(result) in
+                            DispatchQueue.main.async {
+                                switch(result) {
+                                case .success(let value):
+                                    if let response = value as? Dictionary<String, Any> {
+                                        if let message = self.parseServerResponse(response:response) {
+                                            print("userMyself message:", message)
+                                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                            completionHandler(APIResult.failure(error))
+                                        } else {
+                                            let userMyself = UserMyself(dictionary: response)
+                                            completionHandler(APIResult.success(userMyself))
+                                        }
+                                    } else {
+                                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                        completionHandler(APIResult.failure(error))
+                                    }
+                                case .failure(let error):
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                                     completionHandler(APIResult.failure(error))
-                                } else {
-                                    let userMyself = UserMyself(dictionary: response)
-                                    completionHandler(APIResult.success(userMyself))
                                 }
-                            } else {
-                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
-                                completionHandler(APIResult.failure(error))
+                                
+                                //HUD.hide()
                             }
                             
-                        case .failure(let error):
-                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
-                            completionHandler(APIResult.failure(error))
                         }
-                        
-                        //HUD.hide()
                     }
+                    
                 }
             }
         }
@@ -195,7 +217,7 @@ class APIService: HashingService {
     
     //MARK: - Mail
     
-    func messagesList(folder: String, messagesIDIn: String, seconds: Int, offset: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func messagesList(folder: String, messagesIDIn: String, seconds: Int, offset: Int, pageLimit: Int = k_pageLimit, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         var folderFilter = ""
         
@@ -221,36 +243,33 @@ class APIService: HashingService {
                 if let token = self.getToken() {
                     
                     //HUD.show(.progress)
-                    
-                    self.restAPIService?.messagesList(token: token, folder: folderFilter, messagesIDIn: messagesIDInParameter, filter: "", seconds: seconds, offset: offset) {(result) in
-                        
-                        switch(result) {
-                            
-                        case .success(let value):
-                            
-                            //print("messagesList success:", value)
-                            
-                            if let response = value as? Dictionary<String, Any> {
-                                
-                                if let message = self.parseServerResponse(response:response) {
-                                    print("messagesList message:", message)
-                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                    DispatchQueue.global(qos: .background).async {
+                        self.restAPIService?.messagesList(token: token, folder: folderFilter, messagesIDIn: messagesIDInParameter, filter: "", seconds: seconds, offset: offset, pageLimit: pageLimit) {(result) in
+                            DispatchQueue.main.async {
+                                switch(result) {
+                                case .success(let value):
+                                    
+                                    if let response = value as? Dictionary<String, Any> {
+                                        
+                                        if let message = self.parseServerResponse(response:response) {
+                                            print("messagesList message:", message)
+                                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                            completionHandler(APIResult.failure(error))
+                                        } else {
+                                            let emailMessages = EmailMessagesList(dictionary: response)
+                                            completionHandler(APIResult.success(emailMessages))
+                                        }
+                                    } else {
+                                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                        completionHandler(APIResult.failure(error))
+                                    }
+                                    
+                                case .failure(let error):
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                                     completionHandler(APIResult.failure(error))
-                                } else {
-                                    let emailMessages = EmailMessagesList(dictionary: response)
-                                    completionHandler(APIResult.success(emailMessages))
                                 }
-                            } else {
-                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
-                                completionHandler(APIResult.failure(error))
                             }
-                            
-                        case .failure(let error):
-                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
-                            completionHandler(APIResult.failure(error))
                         }
-                        
-                        //HUD.hide()
                     }
                 }
             }
@@ -422,46 +441,44 @@ class APIService: HashingService {
         }
     }
     
-    func createMessage(parentID: String, content: String, subject: String, recieversList: [[String]], folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String], attachments: Array<[String : String]>, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func createMessage(parentID: String, content: String, subject: String, recieversList: [[String]], folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String], attachments: Array<[String : String]>, showHud: Bool = true, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         self.checkTokenExpiration(){ (complete) in
             if complete {
                 
                 if let token = self.getToken() {
-                    
-                    HUD.show(.progress)
-                    
-                    self.restAPIService?.createMessage(token: token, parentID: parentID, content: content, subject: subject, recieversList: recieversList, folder: folder, mailboxID: mailboxID, send: send, encrypted: encrypted, encryptionObject: encryptionObject, attachments: attachments) {(result) in
-                        
-                        switch(result) {
-                            
-                        case .success(let value):
-                            
-                           //print("createMessage success:", value)
-                            
-                            if let response = value as? Dictionary<String, Any> {
-                                
-                                if let message = self.parseServerResponse(response:response) {
-                                    //print("unreadMessagesCounter message:", message)
-                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
-                                    completionHandler(APIResult.failure(error))
-                                } else {
-                                    //completionHandler(APIResult.success(response))
-                                    
-                                    let emailMessage = EmailMessage(dictionary: response)
-                                    completionHandler(APIResult.success(emailMessage))
-                                }
-                            } else {
-                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
-                                completionHandler(APIResult.failure(error))
-                            }
-                            
-                        case .failure(let error):
-                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
-                            completionHandler(APIResult.failure(error))
+                    DispatchQueue.main.async {
+                        if showHud {
+                            HUD.show(.progress)
                         }
-                        
-                        HUD.hide()
+                    }
+                    DispatchQueue.global(qos: .background).async {
+                        self.restAPIService?.createMessage(token: token, parentID: parentID, content: content, subject: subject, recieversList: recieversList, folder: folder, mailboxID: mailboxID, send: send, encrypted: encrypted, encryptionObject: encryptionObject, attachments: attachments) {(result) in
+                            DispatchQueue.main.async {
+                                switch(result) {
+                                case .success(let value):
+                                    if let response = value as? Dictionary<String, Any> {
+                                        if let message = self.parseServerResponse(response:response) {
+                                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                            completionHandler(APIResult.failure(error))
+                                        } else {
+                                            let emailMessage = EmailMessage(dictionary: response)
+                                            completionHandler(APIResult.success(emailMessage))
+                                        }
+                                    } else {
+                                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                        completionHandler(APIResult.failure(error))
+                                    }
+                                    
+                                case .failure(let error):
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                                    completionHandler(APIResult.failure(error))
+                                }
+                                if showHud {
+                                    HUD.hide()
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -859,8 +876,9 @@ class APIService: HashingService {
                                     let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
                                     completionHandler(APIResult.failure(error))
                                 } else {
-                                    let customFolders = FolderList(dictionary: response)
-                                    completionHandler(APIResult.success(customFolders))
+                                    let newFolder = Folder(dictionary: response)
+//                                    let customFolders = FolderList(dictionary: response)
+                                    completionHandler(APIResult.success(newFolder))
                                 }
                                 
                             } else {
@@ -983,41 +1001,43 @@ class APIService: HashingService {
             if complete {
                 
                 if let token = self.getToken() {
-                    
-                    if !silent {
-                        HUD.show(.progress)
-                    }
-                    
-                    self.restAPIService?.userContacts(token: token, fetchAll: fetchAll, offset: offset) {(result) in
-                        
-                        switch(result) {
-                            
-                        case .success(let value):
-                            
-                            if let response = value as? Dictionary<String, Any> {
-                                
-                                if let message = self.parseServerResponse(response:response) {
-                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
-                                    completionHandler(APIResult.failure(error))
-                                } else {
-                                    let contactsList = ContactsList(dictionary: response)
-                                    
-                                    completionHandler(APIResult.success(contactsList))
-                                }
-                                
-                            } else {
-                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
-                                completionHandler(APIResult.failure(error))
-                            }
-                            
-                        case .failure(let error):
-                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
-                            completionHandler(APIResult.failure(error))
-                        }
-                        
+                    DispatchQueue.main.async {
                         if !silent {
-                            HUD.hide()
-                        }                        
+                            HUD.show(.progress)
+                        }
+                    }
+                    DispatchQueue.global(qos: .background).async {
+                        self.restAPIService?.userContacts(token: token, fetchAll: fetchAll, offset: offset) {(result) in
+                            DispatchQueue.main.async {
+                                switch(result) {
+                                    
+                                case .success(let value):
+                                    
+                                    if let response = value as? Dictionary<String, Any> {
+                                        
+                                        if let message = self.parseServerResponse(response:response) {
+                                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                            completionHandler(APIResult.failure(error))
+                                        } else {
+                                            let contactsList = ContactsList(dictionary: response)
+                                            
+                                            completionHandler(APIResult.success(contactsList))
+                                        }
+                                        
+                                    } else {
+                                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                        completionHandler(APIResult.failure(error))
+                                    }
+                                    
+                                case .failure(let error):
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                                    completionHandler(APIResult.failure(error))
+                                }
+                                if !silent {
+                                    HUD.hide()
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -1684,17 +1704,14 @@ class APIService: HashingService {
                 
                 if let tokenSavedDate = formatterService?.formatTokenTimeStringToDate(date: tokenSavedTime) {
                     print("tokenSavedDate:", tokenSavedDate)
-                    
                     let minutesCount = tokenSavedDate.minutesCountForTokenExpiration()
                     if minutesCount > k_tokenMinutesExpiration {
-                       
                         self.refreshToken(){ (complete) in
                             if complete {
                                 completion(true)
                                 return
                             }
                         }
-                        
                     } else {
                         print("token is valid")
                         completion(true)
@@ -1895,23 +1912,32 @@ class APIService: HashingService {
             )
             
             AlertHelperKit().showAlertWithHandler(topViewController, parameters: params) { buttonIndex in
-                self.logOut()  {(done) in
-                    switch(done) {
-                        
-                    case .success(let value):
-                        print("value:", value)
-                        
-                        topViewController.navigationController?.popToRootViewController(animated: false)
-                        topViewController.navigationController?.navigationBar.isHidden = true
-                        
-                        self.showLoginViewController()
-                        self.authErrorAlertAlreadyShowing = false
-                        
-                    case .failure(let error):
-                        print("error:", error)
-                        
-                    }
-                }
+                self.hashedPassword = nil
+                
+                self.keychainService?.deleteUserCredentialsAndToken()
+                self.pgpService?.deleteStoredPGPKeys()
+                topViewController.navigationController?.popToRootViewController(animated: false)
+                topViewController.navigationController?.navigationBar.isHidden = true
+                
+                self.showLoginViewController()
+                self.authErrorAlertAlreadyShowing = false
+//                self.logOut()  {(done) in
+//                    switch(done) {
+//
+//                    case .success(let value):
+//                        print("value:", value)
+//
+//                        topViewController.navigationController?.popToRootViewController(animated: false)
+//                        topViewController.navigationController?.navigationBar.isHidden = true
+//
+//                        self.showLoginViewController()
+//                        self.authErrorAlertAlreadyShowing = false
+//
+//                    case .failure(let error):
+//                        print("error:", error)
+//
+//                    }
+//                }
             }
         }
     }
@@ -1923,10 +1949,10 @@ class APIService: HashingService {
         let inboxViewController = mainViewController.inboxNavigationController.viewControllers.first as! InboxViewController
         inboxViewController.inboxSideMenuViewController?.presenter?.interactor?.resetInboxData()
         
-        self.logOut() { done in
+//        self.logOut() { done in
             mainViewController.inboxNavigationController.dismiss(animated: false, completion: {
                 mainViewController.showLoginViewController()
             })
-        }       
+//        }       
     }
 }

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IJm-Tm-MZ5">
-                                <rect key="frame" x="0.0" y="20" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="enableSignature" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCT-a8-a63" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="16" y="9" width="278" height="32"/>
@@ -63,26 +61,20 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1KD-vX-Azf">
-                                <rect key="frame" x="0.0" y="69" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="49" width="375" height="150"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="typeSignature" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BVZ-x5-DfY" customClass="UILocalizedTextField" customModule="Ctemplar" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="8" width="343" height="34"/>
-                                        <color key="textColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <action selector="textTyped:" destination="8bi-pJ-jZq" eventType="editingChanged" id="COh-4D-o01"/>
-                                            <action selector="textTyped:" destination="8bi-pJ-jZq" eventType="editingDidEndOnExit" id="WEa-Z7-qYO"/>
-                                        </connections>
-                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Zj-rG-ufH" customClass="RichEditorView" customModule="Ctemplar" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="8" width="343" height="134"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="GoL-jX-Mfr"/>
-                                    <constraint firstAttribute="trailing" secondItem="BVZ-x5-DfY" secondAttribute="trailing" constant="16" id="YM0-0t-qEh"/>
-                                    <constraint firstAttribute="bottom" secondItem="BVZ-x5-DfY" secondAttribute="bottom" constant="8" id="o6N-AP-hyL"/>
-                                    <constraint firstItem="BVZ-x5-DfY" firstAttribute="top" secondItem="1KD-vX-Azf" secondAttribute="top" constant="8" id="tLD-e8-fgN"/>
-                                    <constraint firstItem="BVZ-x5-DfY" firstAttribute="leading" secondItem="1KD-vX-Azf" secondAttribute="leading" constant="16" id="xfU-PE-VdI"/>
+                                    <constraint firstAttribute="height" constant="150" id="GoL-jX-Mfr"/>
+                                    <constraint firstAttribute="trailing" secondItem="5Zj-rG-ufH" secondAttribute="trailing" constant="16" id="HTz-5H-Tvh"/>
+                                    <constraint firstAttribute="bottom" secondItem="5Zj-rG-ufH" secondAttribute="bottom" constant="8" id="Ogk-2F-6cy"/>
+                                    <constraint firstItem="5Zj-rG-ufH" firstAttribute="top" secondItem="1KD-vX-Azf" secondAttribute="top" constant="8" id="Tbg-MW-KgZ"/>
+                                    <constraint firstItem="5Zj-rG-ufH" firstAttribute="leading" secondItem="1KD-vX-Azf" secondAttribute="leading" constant="16" id="VSM-fb-Kxa"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -120,7 +112,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="inputTextField" destination="BVZ-x5-DfY" id="Nya-Tu-8Ux"/>
+                        <outlet property="signatureEditorView" destination="5Zj-rG-ufH" id="1r1-bR-Xu6"/>
                         <outlet property="switcher" destination="mcO-Vk-azt" id="RRP-aI-16P"/>
                         <outlet property="textFieldView" destination="1KD-vX-Azf" id="d0f-hL-hil"/>
                     </connections>

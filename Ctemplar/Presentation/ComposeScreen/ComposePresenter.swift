@@ -19,6 +19,12 @@ class ComposePresenter {
     
     var currentSignature : String = ""
     
+    lazy var toolbar: RichEditorToolbar = {
+        let toolbar = RichEditorToolbar(frame: CGRect(x: 0, y: 0, width: self.viewController!.view.bounds.width, height: 44))
+        toolbar.options = RichEditorDefaultOption.all
+        return toolbar
+    }()
+    
     //MARK: - Setup Answer Mode
     
     func setupNavigationBarTitle(mode: AnswerMessageMode) {
@@ -44,9 +50,14 @@ class ComposePresenter {
     func enabledSendButton() {
         
         var messageContentIsEmpty : Bool = true
-        
-        if self.viewController!.messageTextView.text.count > 0 {
-            if self.viewController!.messageTextView.text != "composeEmail".localized() {
+        var messageContent = self.viewController?.messageTextEditor.contentHTML ?? ""
+        if viewController?.answerMode == .forward {
+            if messageContent.count == 0 {
+                messageContent = self.viewController?.messageTextEditor.html ?? ""
+            }
+        }
+        if messageContent.count > 0 {
+            if messageContent != currentSignature {
                 messageContentIsEmpty = false
             }
         }
@@ -264,6 +275,25 @@ class ComposePresenter {
     
     //MARK: - Setup Message Section
     
+    func setupMessageEditorView() {
+        self.viewController?.messageTextEditor.inputAccessoryView = toolbar
+        self.viewController?.messageTextEditor.placeholder = "Type message here..."
+        
+        toolbar.editor = self.viewController?.messageTextEditor
+        toolbar.delegate = self
+        
+        let clearItem = RichEditorOptionItem(image: nil, title: "Clear") { (toolbar) in
+            toolbar.editor?.html = ""
+        }
+        let doneItem = RichEditorOptionItem(image: nil, title: "Done") { (toolbar) in
+            self.viewController?.messageTextEditor.endEditing(true)
+        }
+        
+        var options = toolbar.options
+        options.append(contentsOf: [clearItem, doneItem])
+        toolbar.options = options
+    }
+    
     func setupAttachments(message: EmailMessage) {
          
         if let attachments = message.attachments {
@@ -314,15 +344,20 @@ class ComposePresenter {
         if let list = viewController?.viewAttachmentsList,
             list.count > 0,
             let scrollView = viewController?.scrollView,
-        let textView = viewController?.messageTextView {
+        let textEditor = viewController?.messageTextEditor {
+            if #available(iOS 13.0, *) {
+                viewController?.messageTextEditorBottomOffsetConstraint.priority = .defaultLow
+            }else {
+                viewController?.messageTextEditorBottomOffsetConstraint.isActive = false
+            }
+            
             let stack = attachmentStackView(from: list)
             stack.translatesAutoresizingMaskIntoConstraints = false
             viewController?.scrollView.add(subview: stack)
             stack.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: k_emailToTextViewLeftOffset).isActive = true
             stack.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -k_emailToTextViewLeftOffset).isActive = true
-            stack.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: k_messageTextViewTopOffset).isActive = true
-            stack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -k_emailToTextViewLeftOffset).isActive = true
-            viewController?.messageTextViewBottomOffsetConstraint.priority = .defaultLow
+            stack.topAnchor.constraint(equalTo: textEditor.bottomAnchor, constant: k_messageTextViewTopOffset).isActive = true
+            stack.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -k_emailToTextViewLeftOffset).isActive = true
         }
     }
     
@@ -330,22 +365,29 @@ class ComposePresenter {
         
         self.setupAttachmentButton()
         
-        //self.viewController?.messageTextView.backgroundColor = UIColor.yellow
-        let fixedWidth = self.viewController!.view.frame.width - k_emailToTextViewLeftOffset - k_emailToTextViewLeftOffset
-        let messageContentHeight = self.sizeThatFits(textView: self.viewController!.messageTextView, fixedWidth: fixedWidth)
+        var messageContentHeight: CGFloat = CGFloat(self.viewController!.messageTextEditor.editorHeight)
+        if messageContentHeight < k_messageEditorThresholdHeight {
+            messageContentHeight = k_messageEditorThresholdHeight
+        }
+        print("message content height: \(messageContentHeight)")
         let scrollViewHeight = self.viewController?.scrollView.frame.size.height
         
         self.setAttachmentsToMessage()
         
         if let list = viewController?.viewAttachmentsList, list.count > 0 {
-            self.viewController!.messageTextViewHeightConstraint.constant = messageContentHeight
+            self.viewController!.messageTextEditorHeightConstraint.constant = messageContentHeight
         } else { //without attachments
-            viewController?.messageTextViewBottomOffsetConstraint.priority = UILayoutPriority(rawValue: 999)
+            if #available(iOS 13.0, *) {
+                viewController?.messageTextEditorBottomOffsetConstraint.priority = UILayoutPriority(rawValue: 999)
+            }else {
+                viewController?.messageTextEditorBottomOffsetConstraint.isActive = true
+            }
+            
             let content = self.interactor?.getEnteredMessageContent()
             if content?.count == 0 { //empty message
-                self.viewController?.messageTextViewHeightConstraint.constant = scrollViewHeight! - k_messageTextViewTopOffset - k_messageTextViewTopOffset
+                self.viewController?.messageTextEditorHeightConstraint.constant = scrollViewHeight! - k_messageTextViewTopOffset - k_messageTextViewTopOffset
             } else {
-                self.viewController!.messageTextViewHeightConstraint.constant = messageContentHeight
+                self.viewController!.messageTextEditorHeightConstraint.constant = messageContentHeight
             }
         }
         
@@ -358,28 +400,26 @@ class ComposePresenter {
             
             if messageContent.count > 0 {
                 
-                let mutableAttributedString = NSMutableAttributedString()
-                
-                let replyHeader = self.generateHeader(message: message, answerMode: self.viewController!.answerMode)
-                
-                let content = messageContent.replacingOccurrences(of: "\n", with: "<br>")
-                let messageContentAttributedString = content.html2AttributedString
-                let headerMutableAttributedString = NSMutableAttributedString(attributedString: replyHeader)
-                mutableAttributedString.append(headerMutableAttributedString)
-                mutableAttributedString.append(messageContentAttributedString!)
-            
+                var contentString = ""
+                let replyHeader = self.generateHtmlHeader(message: message, answerMode: self.viewController!.answerMode)
+                contentString.append(replyHeader)
+                contentString.append(messageContent)
                 if currentSignature.count > 0 {
-                    mutableAttributedString.append(NSMutableAttributedString(string: currentSignature))
+                    contentString.append(currentSignature)
                 }
-                self.viewController?.messageTextView.attributedText = mutableAttributedString
-                self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
+                self.viewController!.messageTextEditor.html = contentString
             } else {
-                if currentSignature.count > 0 {
-                    let attributedString = NSAttributedString(string: "\n" + currentSignature)
-                    self.viewController?.messageTextView.attributedText = attributedString
-                    self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
-                } else {
-                    self.setPlaceholderToMessageTextView(show: true)
+                var currentMessageText = self.viewController?.messageTextEditor.contentHTML
+                if (currentMessageText?.count ?? 0) > 0 {
+                    if let _ = currentMessageText?.range(of: currentSignature) {
+                    }else {
+                        currentMessageText?.append("<br><br>\(currentSignature)")
+                        self.viewController!.messageTextEditor.html = currentMessageText ?? ""
+                    }
+                }else {
+                    if currentSignature.count > 0 {
+                        self.viewController!.messageTextEditor.html = "<br><br>" + currentSignature
+                    }
                 }
             }
         }
@@ -392,44 +432,17 @@ class ComposePresenter {
         
         print("set new Signature:", newSignature)
         
-        guard let currentMessageText = self.viewController?.messageTextView.attributedText else { return }
-        
-        let mutableAttributedString = NSMutableAttributedString(attributedString: currentMessageText)
-        
-        if let range = mutableAttributedString.string.range(of: currentSignature) {
-            let nsRange = NSRange(range, in: mutableAttributedString.string)
-
-            let newAttributedStringSignature =  NSAttributedString(string: newSignature)
-        
-            mutableAttributedString.replaceCharacters(in: nsRange, with: newAttributedStringSignature)
-        
-            self.viewController?.messageTextView.attributedText = mutableAttributedString
+        var currentMessageText = self.viewController?.messageTextEditor.contentHTML
+        if let range = currentMessageText?.range(of: currentSignature) {
+            let messageContentWithNewSignature = (currentMessageText ?? "").replacingCharacters(in: range, with: newSignature)
+            self.viewController?.messageTextEditor.html = messageContentWithNewSignature
             currentSignature = newSignature
         } else {
             currentSignature = newSignature
-            
-            let newAttributedStringSignature =  NSAttributedString(string: "\n" + newSignature)
-            mutableAttributedString.insert(newAttributedStringSignature, at: 0)
-            
-            self.viewController?.messageTextView.attributedText = mutableAttributedString
+            currentMessageText?.append(newSignature)
+            self.viewController?.messageTextEditor.html = currentMessageText ?? ""
         }
-        
-        self.viewController?.messageTextView.setContentOffset(.zero, animated: true)
         self.setupMessageSectionSize()
-    }
-    
-    func setPlaceholderToMessageTextView(show: Bool) {
-        
-        if show {
-            self.viewController?.messageTextView.font = UIFont(name: k_latoRegularFontName, size: 16.0)
-            self.viewController?.messageTextView.text = "composeEmail".localized()
-            self.viewController?.messageTextView.textColor = UIColor.lightGray
-        } else {
-            if self.viewController?.messageTextView.text == "composeEmail".localized() {
-                self.viewController?.messageTextView.text = ""
-                self.viewController?.messageTextView.textColor = UIColor.darkText //temp
-            }
-        }
     }
    
     func sizeThatFits(textView: UITextView, fixedWidth: CGFloat) -> CGFloat {
@@ -465,6 +478,24 @@ class ComposePresenter {
         return attributedString
     }
     
+    func generateHtmlHeader(message: EmailMessage, answerMode: AnswerMessageMode) -> String {
+        var string = ""
+        switch answerMode {
+        case .newMessage:
+            break
+        case .reply:
+            string = self.generateHtmlReplyHeader(message: message)
+            break
+        case .replyAll:
+            string = self.generateHtmlReplyHeader(message: message)
+            break
+        case .forward:
+            string = self.generateHtmlForwardHeader(message: message, subject: self.viewController?.subject ?? "")
+            break
+        }
+        return string
+    }
+    
     func generateReplyHeader(message: EmailMessage) -> NSAttributedString {
         
         var replyHeader : String = ""
@@ -492,6 +523,21 @@ class ComposePresenter {
             ])
         
         return attributedString
+    }
+    
+    func generateHtmlReplyHeader(message: EmailMessage) -> String{
+        var replyHeader = ""
+        if let sentAtDate = message.updated {
+            if let date = self.formatterService!.formatStringToDate(date: sentAtDate) {
+                let formattedDate = self.formatterService!.formatReplyDate(date: date)
+                let formattedTime = self.formatterService!.formatDateToStringTimeFull(date: date)
+                replyHeader = "<br><br>" + "<p>" + "replyOn".localized() + formattedDate + "atTime".localized() + formattedTime + "</p>"
+            }
+        }
+        if let sender = message.sender {
+            replyHeader = replyHeader + "<p>\"" + sender + "\" " + "wroteBy".localized() + "</p><br>"
+        }
+        return replyHeader
     }
     
     func generateForwardHeader(message: EmailMessage, subject: String) -> NSAttributedString {
@@ -544,6 +590,36 @@ class ComposePresenter {
             ])
         
         return attributedString
+    }
+    
+    func generateHtmlForwardHeader(message: EmailMessage, subject: String) -> String{
+        var forwardHeader : String = "<br>"
+        forwardHeader = forwardHeader + "<p>" + "forwardLine".localized() + "</p>"
+        
+        if let sender = message.sender {
+            forwardHeader = forwardHeader + "<p>" + "emailFromPrefix".localized() + "\" " + sender + "\"</p><br>"
+        }
+        
+        if let sentAtDate = message.updated { //message.sentAt
+            
+            if  let date = self.formatterService!.formatStringToDate(date: sentAtDate) {
+                let formattedDate = self.formatterService!.formatReplyDate(date: date)
+                let formattedTime = self.formatterService!.formatDateToStringTimeFull(date: date)
+                
+                forwardHeader = forwardHeader + "<p>" + "date".localized() + formattedDate + "atTime".localized() + formattedTime + "</p>"
+            }
+        }
+        forwardHeader = forwardHeader + "<p>" + "subject".localized() + subject + "</p>"
+        
+        if let recieversArray = message.receivers  {
+            forwardHeader = forwardHeader + "<p>"
+            for email in recieversArray as! [String] {
+                 forwardHeader = forwardHeader + "emailToPrefix".localized() + "\"" + email + "\" "
+            }
+            forwardHeader = forwardHeader + "</p>"
+        }
+        forwardHeader = forwardHeader + "<br><br>"
+        return forwardHeader
     }
     
     func setupTableView(topOffset: CGFloat) {
@@ -907,7 +983,7 @@ class ComposePresenter {
              
         self.setupEmailToViewText(emailToText: emailToText)
         
-        self.setupEmailToViewText(emailToText: emailToText)
+//        self.setupEmailToViewText(emailToText: emailToText)
         let emailToViewHeight = self.setupEmailToViewSize()
         
         self.viewController!.toViewSubsectionHeightConstraint.constant = emailToViewHeight + k_emailToTextViewTopOffset + k_emailToTextViewTopOffset
@@ -1173,7 +1249,7 @@ class ComposePresenter {
             case "discardDraft".localized():
                 print("discardDraft btn Draft action")
                 self.interactor?.deleteDraft()
-                self.interactor?.postUpdateInboxNotification()
+//                self.interactor?.postUpdateInboxNotification()
                 self.viewController!.navigationController?.popViewController(animated: true)
                 break
             case "saveDraft".localized():
@@ -1249,5 +1325,66 @@ class ComposePresenter {
         stack.spacing = k_attachmentsInterSpacing
         
         return stack
+    }
+}
+
+//MARK: - RichEditor Toolbar Delegate
+
+extension ComposePresenter: RichEditorToolbarDelegate {
+    
+    fileprivate func randomColor() -> UIColor {
+        let colors: [UIColor] = [
+            .red,
+            .orange,
+            .yellow,
+            .green,
+            .blue,
+            .purple,
+            .black,
+            .darkGray,
+            .brown
+        ]
+        
+        let color = colors[Int(arc4random_uniform(UInt32(colors.count)))]
+        return color
+    }
+    
+    func richEditorToolbarChangeTextColor(_ toolbar: RichEditorToolbar) {
+        let color = randomColor()
+        toolbar.editor?.setTextColor(color)
+    }
+    
+    func richEditorToolbarChangeBackgroundColor(_ toolbar: RichEditorToolbar) {
+        let color = randomColor()
+        toolbar.editor?.setTextBackgroundColor(color)
+    }
+    
+    func richEditorToolbarInsertLink(_ toolbar: RichEditorToolbar) {
+        toolbar.editor?.hasRangeSelection(handler: { (isRangedSelection) in
+            if isRangedSelection {
+                let alert = UIAlertController(title: "Insert Link", message: nil, preferredStyle: .alert)
+                alert.addTextField { (textField) in
+                    textField.placeholder = "URL (required)"
+                }
+                alert.addTextField { (textField) in
+                    textField.placeholder = "Title"
+                }
+                alert.addAction(UIAlertAction(title: "Insert", style: .default, handler: { (action) in
+                    let textField1 = alert.textFields![0]
+                    let textField2 = alert.textFields![1]
+                    let url = textField1.text ?? ""
+                    if url == "" {
+                        return
+                    }
+                    let title = textField2.text ?? ""
+                    toolbar.editor?.insertLink(href: url, text: title)
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                self.viewController?.present(alert, animated: true, completion: nil)
+            }
+        })
+    }
+    
+    func richEditorToolbarInsertImage(_ toolbar: RichEditorToolbar) {
     }
 }

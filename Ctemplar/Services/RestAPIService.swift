@@ -13,7 +13,7 @@ enum EndPoint: String {
     #if DEVELOPMENT
     case baseUrl = "https://devapi.ctemplar.com/"
     #else
-    case baseUrl = "https://api.ctemplar.com/"
+    case baseUrl = "https://mail.ctemplar.com/api/" //"https://api.ctemplar.com/"
     #endif
     case signIn = "auth/sign-in/"
     case signUp = "auth/sign-up/"
@@ -23,6 +23,7 @@ enum EndPoint: String {
     case changePassword = "auth/change-password/"
     case verifyToken = "auth/verify/"
     case refreshToken = "auth/refresh/"
+    case signOut = "auth/sign-out/"
     case messages = "emails/messages/"
     case mailboxes = "emails/mailboxes/"
     case publicKeys = "emails/keys/"
@@ -53,6 +54,7 @@ enum JSONKey: String {
     case fingerprint = "fingerprint"
     case recaptcha = "recaptcha"
     case recoveryEmail = "recovery_email"
+    case apnsToken = "device_token"
     case fromAddress = "from_address"
     case redeemCode = "redeem_code"
     case stripeToken = "stripe_token"
@@ -141,6 +143,26 @@ class RestAPIService {
         }
     }
     
+    //MARK: - Authentication
+    
+    func signOut(token: String, deviceToken: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.signOut.rawValue  + "?platform=ios&device_token=" + deviceToken
+        
+        AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            switch response.result {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
     //MARK: - User
     
     func userMyself(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -169,7 +191,7 @@ class RestAPIService {
     
     //MARK: - Mail
     
-    func messagesList(token: String, folder: String, messagesIDIn: String, filter: String, seconds: Int, offset: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func messagesList(token: String, folder: String, messagesIDIn: String, filter: String, seconds: Int, offset: Int, pageLimit: Int = k_pageLimit, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -185,16 +207,16 @@ class RestAPIService {
         var limitParams = ""
         
         if offset > -1 {
-            limitParams = String(format: "?limit=%d&offset=%d", k_pageLimit, offset)
+            limitParams = String(format: "?limit=%d&offset=%d", pageLimit, offset)
         }
         
         //timeParameter = "?seconds=100000000"
         
-        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + limitParams + folder + messagesIDIn + timeParameter + filter//"?starred=1"// "?read=0"
+        var url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + limitParams + folder + messagesIDIn + timeParameter + filter//"?starred=1"// "?read=0"
         //let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + "?seconds=" + seconds
         //let url = "https://devapi.ctemplar.com/emails/messages/?limit=20&offset=0&folder=inbox&read=false&seconds=30"
         //https://devapi.ctemplar.com/emails/messages/?limit=20&offset=0&starred=true
-        
+        url = url.replacingOccurrences(of: " ", with: "%20")
         //print("messagesList parameters:", parameters)
         print("messagesList url:", url)
         
