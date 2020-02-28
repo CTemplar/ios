@@ -144,42 +144,12 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         ccToSubSectionView.isHidden = true
         bccToSubSectionView.isHidden = true
         
-        
-        //temp =========
-        //emailsToArray.append("test@mega.com")
-        //emailsToArray.append("dima@tatarinov.com")
-        
-        //emailsToArray.append("dmitry5@dev.ctemplar.com")
-        //emailsToArray.append("dmitry8@dev.ctemplar.com")
-        //emailsToArray.append("huly-gun@white-zebra.net")
-        
         if answerMode != AnswerMessageMode.forward {
             for email in emailsToArray {
                 self.emailToSting = self.emailToSting + email + " "
             }
         }
         
-        //subject = "Test encrypted email for contact users"
- 
-        /*
-        ccToArray.append("supertest@mega.com")
-        ccToArray.append("dimon@tatarinov.com")
-        ccToArray.append("hulygun@mail.net")
-        
-        for email in ccToArray {
-            self.ccToSting = self.ccToSting + email + " "
-        }
-        
-        bccToArray.append("testX@mega.com")
-        bccToArray.append("dmitry@tatarinov.com")
-        bccToArray.append("hulygunHyper@mail.net")
-        
-        for email in bccToArray {
-            self.bccToSting = self.bccToSting + email + " "
-        }
-        //========
-        */
-          
         self.presenter?.setMailboxes(mailboxes: self.user.mailboxesList!)
         self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
         
@@ -384,11 +354,6 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             //inputText =  (self.interactor?.getLastInputEmail(input: inputDroppedPrefixText!))!
             inputText = (self.interactor?.getLastInputText(input: inputDroppedPrefixText!, emailsArray: self.bccToArray))!
             self.interactor?.setEmail(textView: self.bccToTextView, inputEmail: inputText, clearInputtedChars: false)
-//        case self.messageTextView:
-//            if self.messageTextView.text.isEmpty {
-//                self.presenter?.setPlaceholderToMessageTextView(show: true)
-//            }
-//            break
         default:
             break
         }
@@ -407,6 +372,9 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         switch textView {
         case self.emailToTextView:
             let inputDroppedPrefixText = self.interactor?.dropPrefix(text: textView.text, prefix: "emailToPrefix".localized())
+            if inputDroppedPrefixText == "" {
+                emailsToArray = []
+            }
             inputText =  (self.interactor?.getLastInputEmail(input: inputDroppedPrefixText!))!
             self.presenter?.setupEmailToSection(emailToText: textView.text, ccToText: self.ccToSting, bccToText: self.bccToSting)
         case self.ccToTextView:
@@ -417,19 +385,12 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             let inputDroppedPrefixText = self.interactor?.dropPrefix(text: textView.text, prefix: "bccToPrefix".localized())
             inputText =  (self.interactor?.getLastInputEmail(input: inputDroppedPrefixText!))!
             self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: textView.text)
-//        case self.messageTextView:
-//             //self.messageAttributedText = self.messageTextView.attributedText
-//            self.presenter!.setupMessageSectionSize()
-//            break
         default:
             break
         }
         
-//        if textView != self.messageTextView {
-            self.interactor?.setFilteredList(searchText: inputText)
-//        }
-        
-        self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset + self.emailToSectionView.frame.height/*self.toViewSectionHeightConstraint.constant*/ - 5.0)
+        self.interactor?.setFilteredList(searchText: inputText)
+        self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset + self.emailToSectionView.frame.height - 5.0)
         self.presenter!.enabledSendButton()
     }
     
@@ -442,9 +403,6 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             return (self.interactor?.holdCcToTextViewInput(textView: self.ccToTextView, shouldChangeTextIn: range, replacementText: text))!
         case self.bccToTextView:
             return (self.interactor?.holdBccToTextViewInput(textView: self.bccToTextView, shouldChangeTextIn: range, replacementText: text))!
-//        case self.messageTextView:
-//            //self.presenter!.setupMessageSectionSize()
-//            break
         default:
             break
         }

@@ -65,10 +65,10 @@ class LoginPresenter {
     
     func buttonLoginPressed(userEmail: String, password: String, twoFAcode: String) {
         
-        if (formatterService?.validateNameFormat(enteredName: userEmail))! {
-            if (formatterService?.validatePasswordFormat(enteredPassword: password))! {
+        if userEmail != "" {
+            if password != "" {
                 authenticateUser(userEmail: userEmail, password: password, twoFAcode: twoFAcode)
-            } else {               
+            } else {
                 AlertHelperKit().showAlert(self.viewController!, title: "", message: "invalidEnteredPassword".localized(), button: "closeButton".localized())
             }
         } else {

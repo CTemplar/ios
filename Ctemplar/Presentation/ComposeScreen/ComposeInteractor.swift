@@ -1141,7 +1141,18 @@ class ComposeInteractor {
         let substrings = input.split(separator: " ")
         
         if emailsArray.count == substrings.count {
-            return ""
+            var isContentDifferent = false
+            for content1 in emailsArray {
+                for content2 in substrings {
+                    if content1 != String(content2) {
+                        isContentDifferent = true
+                        break
+                    }
+                }
+            }
+            if !isContentDifferent {
+                return ""
+            }
         }
         
         if let sub = substrings.last {
