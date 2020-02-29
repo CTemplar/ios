@@ -50,6 +50,7 @@ class LoginPresenter {
         } else {
             viewController!.emailHintLabel.isHidden = true
         }
+        viewController?.emailHintLabel.text = "usernamePlaceholder".localized()
         viewController?.userNameTextField.attributedPlaceholder = NSAttributedString(string: "usernamePlaceholder".localized(), attributes: [.foregroundColor: UIColor.white])
     }
     
@@ -60,6 +61,7 @@ class LoginPresenter {
         } else {
             viewController!.passwordHintLabel.isHidden = true
         }
+        viewController?.passwordHintLabel.text = "passwordPlaceholder".localized()
         viewController?.passwordTextField.attributedPlaceholder = NSAttributedString(string: "passwordPlaceholder".localized(), attributes: [.foregroundColor: UIColor.white])
     }
     
