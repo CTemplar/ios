@@ -132,6 +132,7 @@ class KeychainService
         keychain.delete(Consts.tokenSavedTime.keyName)
         keychain.delete(Consts.username.keyName)
         keychain.delete(Consts.password.keyName)
+        keychain.delete(Consts.rememberMe.keyName)
 //        keychain.delete(Consts.apnToken.keyName)
     }
 }

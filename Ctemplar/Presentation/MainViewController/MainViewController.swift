@@ -39,20 +39,30 @@ class MainViewController: UIViewController {
         }
        
         let keyChainService = apiService?.keychainService
-        let storedUserName = keyChainService?.getUserName()
-        let storedPassword = keyChainService?.getPassword()
+        let isRememberMeEnabled = keyChainService?.getRememberMeValue() ?? false
+//        let storedUserName = keyChainService?.getUserName()
+//        let storedPassword = keyChainService?.getPassword()
         
-        if (storedUserName?.count)! < 1 || (storedPassword?.count)! < 1 {
-            print("MainViewController: wrong stored credentials!")
-            showLoginViewController()
-            return
-        } else {
+        if isRememberMeEnabled || (apiService?.isTokenValid() ?? false) {
             if (!Device.IS_IPAD) {
                 showInboxNavigationController()
             } else {
                 showSplitViewController()
             }
+        }else {
+            showLoginViewController()
         }
+//        if (storedUserName?.count)! < 1 || (storedPassword?.count)! < 1 {
+//            print("MainViewController: wrong stored credentials!")
+//            showLoginViewController()
+//            return
+//        } else {
+//            if (!Device.IS_IPAD) {
+//                showInboxNavigationController()
+//            } else {
+//                showSplitViewController()
+//            }
+//        }
         
 //        setAutoUpdaterTimer()
     }
