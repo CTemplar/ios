@@ -28,8 +28,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var emailHintLabel        : UILabel!
     @IBOutlet var passwordHintLabel     : UILabel!
+    @IBOutlet var rememberMeLabel       : UILabel!
     
     @IBOutlet var eyeButton             : UIButton!
+    @IBOutlet var rememberMeButton      : UIButton!
     
     @IBOutlet var passwordBlockView     : UIView!
     @IBOutlet var otpBlockView          : UIView!
@@ -56,6 +58,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         userNameTextField.delegate = self
         passwordTextField.delegate = self
         //otpTextField.delegate = self
+        
+        rememberMeLabel.text = "rememberMe".localized()
         
         otpTextField.placeholder = "twoFAPlaceholder".localized()
         otpTextField.attributedPlaceholder = NSAttributedString(string: "twoFAPlaceholder".localized(), attributes: [.foregroundColor: UIColor.white])
@@ -92,6 +96,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func createAccountButtonPressed(_ sender: AnyObject) {
         
         self.presenter?.buttonCreateAccountPressed()
+    }
+    
+    @IBAction func rememberMeButtonPressed(_ sender: Any) {
+        self.rememberMeButton.isSelected = !self.rememberMeButton.isSelected
     }
     
     @IBAction func userEmailTyped(_ sender: UITextField) {

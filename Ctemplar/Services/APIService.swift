@@ -1740,7 +1740,20 @@ class APIService: HashingService {
         }*/
     }
     
-    
+    func isTokenValid() -> Bool{
+        if let tokenSavedTime = keychainService?.getTokenSavedTime() {
+            if tokenSavedTime.count > 0 {
+                if let tokenSavedDate = formatterService?.formatTokenTimeStringToDate(date: tokenSavedTime) {
+                    print("tokenSavedDate:", tokenSavedDate)
+                    let minutesCount = tokenSavedDate.minutesCountForTokenExpiration()
+                    if minutesCount < k_tokenMinutesExpiration {
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    }
     //check message encryption for avoid server bug
     
     func isMessageEncrypted(message: EmailMessage) -> Bool {

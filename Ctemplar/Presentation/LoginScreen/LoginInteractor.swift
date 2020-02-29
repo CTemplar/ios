@@ -31,19 +31,14 @@ class LoginInteractor: HashingService {
                 return
             }
             HUD.show(.labeledProgress(title: "updateToken".localized(), subtitle: ""))
-            AppManager.shared.networkService.loginUser(with: LoginDetails(userName: trimmedUsername,
-                                                                          password: value,
-                                                                          twoFAcode: twoFAcode)) { result in                                                                   
-                                                                            if let value = try? result.get(), !value.isTwoFAEnabled {
-                                                                                self.keychainService?.saveUserCredentials(userName: userName, password: password)
-                                                                            }
-                                                                            self.handleNetwork(responce: result)
-                                                                            HUD.hide()
+            AppManager.shared.networkService.loginUser(with: LoginDetails(userName: trimmedUsername, password: value, twoFAcode: twoFAcode)) { result in
+                self.handleNetwork(responce: result, username: userName, password: password)
+                HUD.hide()
             }
         }
     }
     
-    func handleNetwork(responce: AppResult<LoginResult>) {
+    func handleNetwork(responce: AppResult<LoginResult>, username: String, password: String) {
         switch responce {
         case .success(let value):
             if value.isTwoFAEnabled {
@@ -55,6 +50,12 @@ class LoginInteractor: HashingService {
             }
             if let token = value.token {
                 keychainService?.saveToken(token: token)
+            }
+            if self.viewController?.rememberMeButton.isSelected ?? false {
+                keychainService?.saveRememberMeValue(rememberMe: true)
+                keychainService?.saveUserCredentials(userName: username, password: password)
+            }else {
+                keychainService?.saveRememberMeValue(rememberMe: false)
             }
             NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil, userInfo: nil)
             self.sendAPNDeviceToken()
