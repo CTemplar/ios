@@ -38,10 +38,10 @@ class SettingsRouter {
         AlertHelperKit().showAlert(viewController!, title: nil, message: "featureIsComing".localized(), button: "closeButton".localized())
         return
         
-        let storyboard: UIStoryboard = UIStoryboard(name: k_ChangePasswordStoryboardName, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: k_ChangePasswordViewControllerID) as! ChangePasswordViewController
-        vc.user = (self.viewController?.user)!
-        self.viewController?.show(vc, sender: self)
+//        let storyboard: UIStoryboard = UIStoryboard(name: k_ChangePasswordStoryboardName, bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: k_ChangePasswordViewControllerID) as! ChangePasswordViewController
+//        vc.user = (self.viewController?.user)!
+//        self.viewController?.show(vc, sender: self)
     }
     
     func showSelectLanguageViewController() {

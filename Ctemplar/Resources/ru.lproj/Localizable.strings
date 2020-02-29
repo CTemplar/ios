@@ -297,6 +297,7 @@
 "selectDefaulfAddress" = "Выберите почтовый ящик по умолчанию";
 "addresses" = "Адреса";
 
+"subjectEncryption" = "предметное шифрование";
 "contactsEncryption" = "Шифровать контакты";
 "attachmentEncryption" = "Шифровать вложения";
 

@@ -297,6 +297,7 @@
 "selectDefaulfAddress" = "Select default address";
 "addresses" = "Addresses";
 
+"subjectEncryption" = "Subject encryption";
 "сontactsEncryption" = "Contacts encryption";
 "attachmentEncryption" = "Attachment encryption";
 

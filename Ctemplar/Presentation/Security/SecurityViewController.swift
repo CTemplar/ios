@@ -13,6 +13,7 @@ import PKHUD
 
 class SecurityViewController: UIViewController {
     
+    @IBOutlet var subjectEncryptionSwitch: UISwitch!
     @IBOutlet var contactsEncryptionSwitcher         : UISwitch!
     @IBOutlet var attachmentEncryptionSwitcher       : UISwitch!
     
@@ -24,6 +25,7 @@ class SecurityViewController: UIViewController {
     
     var user = UserMyself()
     
+    var encryptSubject      : Bool = false
     var encryptContacts     : Bool = false
     var encryptAttachment   : Bool = false
     
@@ -50,6 +52,17 @@ class SecurityViewController: UIViewController {
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: k_contactsBarTintColor]
         
+        self.encryptSubject = self.user.settings.isSubjectEncrypted ?? false
+        self.subjectEncryptionSwitch.setOn(self.encryptSubject, animated: true)
+        
+        let currentPlan = self.user.settings.planType ?? ""
+        let pendingPayment = self.user.settings.isPendingPayment ?? true
+        if currentPlan.lowercased() != "free" && !pendingPayment  {
+            self.subjectEncryptionSwitch.isEnabled = true
+        }else {
+            self.subjectEncryptionSwitch.isEnabled = false
+        }
+        
         self.encryptContacts = self.user.settings.isContactsEncrypted ?? false
         self.contactsEncryptionSwitcher.setOn(self.encryptContacts, animated: true)
         
@@ -60,6 +73,10 @@ class SecurityViewController: UIViewController {
     @IBAction func switchStateDidChange(_ sender: UISwitch) {
         
         switch sender {
+        case subjectEncryptionSwitch:
+            self.encryptSubject = sender.isOn
+            self.interactor?.updateEncryptionSubject(settings: self.user.settings, encryptSubject: self.encryptSubject, encryptContacts: self.encryptContacts, encryptAttachment: self.encryptAttachment)
+            break
         case contactsEncryptionSwitcher:
             
             if (sender.isOn == true) {
