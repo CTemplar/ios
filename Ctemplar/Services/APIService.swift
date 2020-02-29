@@ -1754,6 +1754,21 @@ class APIService: HashingService {
         }
         return false
     }
+    
+    func canTokenRefresh() -> Bool {
+        if let tokenSavedTime = keychainService?.getTokenSavedTime() {
+            if tokenSavedTime.count > 0 {
+                if let tokenSavedDate = formatterService?.formatTokenTimeStringToDate(date: tokenSavedTime) {
+                    print("tokenSavedDate:", tokenSavedDate)
+                    let hoursCount = tokenSavedDate.hoursCountForTokenExpiration()
+                    if hoursCount <= k_tokenHoursRefresh {
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    }
     //check message encryption for avoid server bug
     
     func isMessageEncrypted(message: EmailMessage) -> Bool {
