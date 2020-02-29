@@ -333,7 +333,7 @@ class APIService: HashingService {
         }
     }
     
-    func updateSendingMessage(messageID: String, mailboxID: Int, sender: String, encryptedMessage: String, subject: String, recieversList: [[String]], folder: String, send: Bool, encryptionObject: [String : String], encrypted: Bool, attachments: Array<[String : String]>, selfDestructionDate: String, delayedDeliveryDate: String, deadManDate: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateSendingMessage(messageID: String, mailboxID: Int, sender: String, encryptedMessage: String, subject: String, recieversList: [[String]], folder: String, send: Bool, encryptionObject: [String : String], encrypted: Bool, subjectEncrypted: Bool, attachments: Array<[String : String]>, selfDestructionDate: String, delayedDeliveryDate: String, deadManDate: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         var setFolder : String = folder
         var setSend : Bool = send
@@ -362,7 +362,7 @@ class APIService: HashingService {
                     
                     HUD.show(.progress)
                     
-                    self.restAPIService?.updateSendingMessage(token: token, messageID: messageID, mailboxID: mailboxID, sender: sender, encryptedMessage: encryptedMessage, subject: subject, recieversList: recieversList, folder: setFolder, send: setSend, encryptionObject: encryptionObject, encrypted: encrypted, attachments: attachments, selfDestructionDate: selfDestructionDate, delayedDeliveryDate: delayedDeliveryDate, deadManTimer: deadManTimer) {(result) in
+                    self.restAPIService?.updateSendingMessage(token: token, messageID: messageID, mailboxID: mailboxID, sender: sender, encryptedMessage: encryptedMessage, subject: subject, recieversList: recieversList, folder: setFolder, send: setSend, encryptionObject: encryptionObject, encrypted: encrypted, subjectEncrypted: subjectEncrypted, attachments: attachments, selfDestructionDate: selfDestructionDate, delayedDeliveryDate: delayedDeliveryDate, deadManTimer: deadManTimer) {(result) in
                         
                         switch(result) {
                             

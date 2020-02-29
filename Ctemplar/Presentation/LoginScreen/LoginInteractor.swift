@@ -53,10 +53,10 @@ class LoginInteractor: HashingService {
             }
             if self.viewController?.rememberMeButton.isSelected ?? false {
                 keychainService?.saveRememberMeValue(rememberMe: true)
-                keychainService?.saveUserCredentials(userName: username, password: password)
             }else {
                 keychainService?.saveRememberMeValue(rememberMe: false)
             }
+            keychainService?.saveUserCredentials(userName: username, password: password)
             NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil, userInfo: nil)
             self.sendAPNDeviceToken()
             self.viewController?.router?.showInboxScreen()
