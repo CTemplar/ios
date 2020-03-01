@@ -82,20 +82,13 @@
                                         <rect key="frame" x="46" y="0.0" width="72" height="18"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cBc-cd-Beb">
-                                                <rect key="frame" x="0.0" y="0.0" width="36" height="18"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="72" height="18"/>
                                                 <subviews>
-                                                    <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="FfO-R7-mWh">
-                                                        <rect key="frame" x="-0.5" y="0.0" width="36" height="18"/>
+                                                    <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="FfO-R7-mWh">
+                                                        <rect key="frame" x="-0.5" y="0.0" width="72" height="18"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <attributedString key="attributedText">
-                                                            <fragment content="5:25">
-                                                                <attributes>
-                                                                    <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <font key="NSFont" metaFont="miniSystem"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                        </attributedString>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -113,7 +106,7 @@
                                                 <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="FfO-R7-mWh" secondAttribute="bottom" id="32y-mP-yhk"/>
-                                                    <constraint firstAttribute="width" constant="36" id="9LC-vM-BcT"/>
+                                                    <constraint firstAttribute="width" constant="72" id="9LC-vM-BcT"/>
                                                     <constraint firstAttribute="trailing" secondItem="FfO-R7-mWh" secondAttribute="trailing" constant="0.5" id="Ivg-WD-gnF"/>
                                                     <constraint firstItem="FfO-R7-mWh" firstAttribute="leading" secondItem="cBc-cd-Beb" secondAttribute="leading" constant="-0.5" id="WgX-ia-WvT"/>
                                                     <constraint firstItem="FfO-R7-mWh" firstAttribute="top" secondItem="cBc-cd-Beb" secondAttribute="top" id="q9U-Cj-uhC"/>
@@ -131,20 +124,13 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GKT-yQ-VWu">
-                                                <rect key="frame" x="36" y="0.0" width="36" height="18"/>
+                                                <rect key="frame" x="72" y="0.0" width="0.0" height="18"/>
                                                 <subviews>
-                                                    <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="VLh-Ex-4Na">
-                                                        <rect key="frame" x="0.0" y="0.0" width="36" height="18"/>
+                                                    <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="VLh-Ex-4Na">
+                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="18"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <attributedString key="attributedText">
-                                                            <fragment content="Delete in 5:25">
-                                                                <attributes>
-                                                                    <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <font key="NSFont" metaFont="miniSystem"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                        </attributedString>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -164,7 +150,7 @@
                                                     <constraint firstItem="VLh-Ex-4Na" firstAttribute="top" secondItem="GKT-yQ-VWu" secondAttribute="top" id="6hr-lJ-RI7"/>
                                                     <constraint firstAttribute="bottom" secondItem="VLh-Ex-4Na" secondAttribute="bottom" id="Fel-kF-F4n"/>
                                                     <constraint firstAttribute="trailing" secondItem="VLh-Ex-4Na" secondAttribute="trailing" id="WWp-qK-uH3"/>
-                                                    <constraint firstAttribute="width" constant="36" id="d7s-7C-kV3"/>
+                                                    <constraint firstAttribute="width" id="d7s-7C-kV3"/>
                                                     <constraint firstItem="VLh-Ex-4Na" firstAttribute="leading" secondItem="GKT-yQ-VWu" secondAttribute="leading" id="yMq-h1-sqm"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>

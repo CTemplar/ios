@@ -95,7 +95,7 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
         }
         
         //subjectLabel.text = subject
-        
+        leftLabel.text = ""
         headMessageLabel.text = header
         
         //let testDate = Calendar.current.date(byAdding: .day, value: -3, to: Date())!
@@ -133,8 +133,8 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
         }
         
         leftlabelView.isHidden = true
-        //rightlabelView.isHidden = true
-        
+        rightlabelView.isHidden = true
+        leftLabel.textAlignment = .center
         //if message.folder != InboxSideMenuOptionsName.trash.rawValue {
         
         let short = self.isShortNeed(message: message)
@@ -174,27 +174,24 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
         //2018-12-18T05:18:17.919000Z error
         //web 2018-12-30T19:00:00Z
         if let destructionDate = message.destructDay {
-            rightlabelView.isHidden = false
-            rightlabelView.backgroundColor = k_orangeColor
+            leftlabelView.isHidden = false
+            leftlabelView.backgroundColor = k_orangeColor
             if let date = parentController?.formatterService!.formatDestructionTimeStringToDate(date: destructionDate) ??
                 parentController?.formatterService!.formatDestructionTimeStringToDateTest(date: destructionDate) {
                 if date <= now || (date.timeIntervalSince(now) < 120 && date.timeIntervalSince(now) > 0) {
-                    leftLabel.attributedText = NSAttributedString(string: "inProgress".localized(),
-                                                                  attributes: [
-                                                                    .font: UIFont(name: k_latoRegularFontName, size: 9.0)!,
-                                                                    .foregroundColor: UIColor.white,
-                                                                    .kern: 0.0
-                        ])
+                    leftLabel.attributedText = NSAttributedString(string: "inProgress".localized(), attributes: [.font: UIFont(name: k_latoRegularFontName, size: 9.0)!, .foregroundColor: UIColor.white, .kern: 0.0])
                 } else {
-                    leftLabel.attributedText = date.timeCountForDestruct(short: short)
+                    let attributedText = date.timeCountForDestruct(short: short)
+                    leftLabel.attributedText = attributedText
                 }
             } else {
                 leftlabelView.isHidden = true
             }
             //print("destructionDate:", destructionDate)
-        } else {
-            rightlabelView.isHidden = true
         }
+//        else {
+//            rightlabelView.isHidden = true
+//        }
         //}
         
         if message.folder == InboxSideMenuOptionsName.trash.rawValue {
@@ -260,10 +257,10 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
         
         if short {
             leftlabelViewWidthConstraint.constant = k_deleteLabelSEWidth
-            rightlabelViewWidthConstraint.constant = k_deleteLabelSEWidth
+//            rightlabelViewWidthConstraint.constant = k_deleteLabelWidth
         } else {
             leftlabelViewWidthConstraint.constant = k_deleteLabelWidth
-            rightlabelViewWidthConstraint.constant = k_deleteLabelWidth
+//            rightlabelViewWidthConstraint.constant = k_deleteLabelSEWidth
         }
         
         if leftlabelView.isHidden {
