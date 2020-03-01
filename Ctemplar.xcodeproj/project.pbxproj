@@ -906,6 +906,7 @@
 		E322133A2402D9D0002E3CAD /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		E322133C2402DA58002E3CAD /* MoveToDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToDelegate.swift; sourceTree = "<group>"; };
 		E3260AB7240196DA00F7BF26 /* AddFolderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFolderProtocol.swift; sourceTree = "<group>"; };
+		E32DB9E9240C127700FF0069 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E399BB4323E87AF900EEA708 /* RichEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichEditorView.swift; sourceTree = "<group>"; };
 		E399BB4423E87AF900EEA708 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		E399BB4523E87AF900EEA708 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
@@ -2027,6 +2028,7 @@
 				en,
 				Base,
 				ru,
+				fr,
 			);
 			mainGroup = 8433FF0D216201A300C57DC8;
 			productRefGroup = 8433FF17216201A300C57DC8 /* Products */;
@@ -2838,6 +2840,7 @@
 			children = (
 				8436AD542180663800D16008 /* ru */,
 				8436AD562180664100D16008 /* en */,
+				E32DB9E9240C127700FF0069 /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

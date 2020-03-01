@@ -1,0 +1,414 @@
+/*
+  Localizable.strings
+  Ctemplar
+
+  Created by CTemplar on 24.10.2018.
+  Copyright © 2020 CTemplar. All rights reserved.
+*/
+
+"invalidEnteredPassword" = "Mot de passe invalide";
+"invalidEnteredEmail" = "Email invalide";
+
+"logoutTitle" = "Se déconnecter";
+"logotuMessage" = "Êtes-vous certain de vouloir vous déconnecter?";
+
+"closeButton" = "Fermer";
+"cancelButton" = "Annuler";
+"logotButton" = "Se déconnecter";
+"saveButton" = "Enregistrer";
+"applyButton" = "Appliquer";
+"nextButton" = "Suivant";
+"resetPasswordButton" = "Réinitialiser le mot de passe";
+"confirmButton" = "Confirmer";
+"addButton" = "Ajouter";
+"changeButton" = "Changer";
+
+"deleteRow" = "Supprimer";
+
+"termsAndConditionsFullText" = "Please check this box if you agree to abide by our Terms and Conditions";
+"termsAndConditionsPhrase" = "Termes et Conditions";
+
+//login
+
+"emailPlaceholder" = "Email";
+"passwordPlaceholder" = "Mot de passe";
+"usernamePlaceholder" = "Nom utilisateur";
+
+"twoFAPlaceholder" = "Code 2FA";
+
+"forgotPassword" = "Mot de passe oublié ?";
+"login" = "Se connecter";
+"createAccount" = "Créer un compte";
+"rememberMe" = "Remember me";                                               //Localize
+
+//Sign Up
+
+"usernameAndDomain" = "Nom utilisateur / domaine";
+"ctemplarEmailAddress" = "Votre nouvelle adresse email CTemplar.";
+
+"choosePasswordPlaceholder" = "Choisir un mot de passe";
+"confirmPasswordPlaceholder" = "Confirmer le mot de passe";
+"recoveryEmailPlaceholder" = "Email de récupération";
+
+"passwordMust" = "Le mot de passe doit contenir au moins 10 lettres/chiffres. Password can contain only latin letters and cannot contain symbols such «-+!@. etc.";
+
+"thisIsUsed" = "Cet email sera utilisé si vous perdez votre mot de passe.";
+
+"usernameResetHint" = "Ctemplar username to reset";
+"usernameResetPlaceholder" = "Ctemplar username to reset";
+"resetCodePlaceholder" = "Reset Code";
+"newPasswordPlaceholder" = "Nouveau mot de passe";
+"confirmNewPasswordPlaceholder" = "Confirmer le nouveau mot de passe";
+
+"resetLink" = "Un email va vous être envoyé à votre addresse de récupération.";
+
+"confirmResetPassword" = "Confirmer la réinitialisation du mot de passe";
+
+"areYouSure" = "Êtes-vous certain de vouloir réinitialiser votre mot de passe ?";
+
+"supportDescription" = "Votre clé de cryptage est connectée à votre mot de passe. Si vous réinitialisez votre mot de passe, vos anciens messages, vos pièces jointes et vos contacts ne pourront pas être décryptés. Ils seront supprimés. Pour toutes questions, merci de contacter le support: support@ctemplar.com .";
+
+"supportDescriptionAttr" = "Vos anciens messages, vos pièces jointes et vos contacts ne pourront pas être décryptés.";
+
+"resetPassword" = "Réinitialiser le mot de passe";
+
+"weHave" = "Nous avons envoyé un code de réinitialisation à votre adresse de récupération.";
+"recoveryEmailAttr" = "email de récupération ";
+
+"enterIt" = "Enter it below for confirmation.";
+
+"forgetPass" = "N'oubliez pas votre mot de passe, il ne pourra pas être récupéré.";
+
+// inbox
+
+"selected" = "Sélectionner";
+"emails" = "emails";
+"email" = "email";
+"emailsx" = "emails";
+"unread" = "Non lu";
+
+"filtered" = "Filtrés";
+"noInboxMessage" = "Aucun message";
+"noFilteredMessage" = "Aucun message ne correspond à votre filtre";
+
+"starredFilter" = "Favoris";
+"ureadFilter" = "Non lu";
+"attachmentsFilter" = "Avec pièces jointes";
+
+"decrypting" = "Décryptage en cours...";
+
+"compose" = "Nouveau message";
+"inProgress" = "En cours";
+
+//Filter
+
+"filters" = "Filtres";
+"clearAll" = "Réinitialiser";
+"selectedFilters" = "Sélectionner les filtres";
+
+//more actions buttons
+
+"markAsSpam" = "Marquer comme spam";
+"markAsRead" = "Marquer comme lu";
+"markAsUnread" = "Marquer comme non lu";
+"moveToTrash" = "Supprimer";
+"moveToArchive" = "Archiver";
+"moveToInbox" = "Déplacer dans la boîte de réception";
+"emptyFolder" = "Vider le dossier";
+"cancel" = "Annuler";
+
+//undo actions buttons
+
+"undoMarkAsSpam" = "Annuler";
+"undoMarkAsRead" = "Annuler";
+"undoMarkAsUnread" = "Annuler";
+"undoMoveToTrash" = "Annuler";
+"undoMoveToArchive" = "Annuler";
+"undoMoveToInbox" = "Annuler";
+
+
+//compose message titles
+
+"newMessage" = "Nouveau message";
+"reply" = "Répondre";
+"relpyAll" = "Répondre à tous";
+"forward" = "Transférer";
+
+//delete
+
+"deleteTitle" = "Attention";
+"deleteMessage" = "Êtes-vous certain de vouloir supprimer le / les messages définitivement?";
+"deleteButton" = "Supprimer";
+
+//contacts
+
+"contacts" = "Contacts";
+"selectAll" = "Tout sélectionner";
+"deselectAll" = "Tout désélectionner";
+
+"deleteContact" = "Êtes-vous certain de vouloir supprimer définitivement le/les contacts sélectionnés ?";
+
+"addContact" = "Ajouter un contact";
+"editContact" = "Editer un contact";
+
+"noContacts" = "Aucun contact";
+
+"addContacts" = "Ajouter un contact";
+
+"contactName" = "Nom du contact";
+"emailAddress" = "Addresse email";
+"phoneNumber" = "Numéro de téléphone";
+"address" = "Addresse";
+"note" = "Note";
+
+//view message
+
+"viewDetails" = "Afficher";
+"hideDetails" = "Masquer";
+
+//compose
+
+"emailFromPrefix" = "De : ";
+"emailToPrefix" = "À : ";
+"ccToPrefix" = "Cc : ";
+"bccToPrefix" = "Bcc : ";
+"composeEmail" = "Nouveau message";
+
+"replyOn" = "Date : ";
+"wroteBy" = "De :";
+"atTime" = "Date ";
+"forwardLine" = "---------- Message transféré ----------";
+"date" = "Date : ";
+"subject" = "Objet : ";
+
+"infoTitle" = "Confirmation :";
+"mailSendMessage" = "Email envoyé";
+
+"saveDraft" = "Sauvegardé brouillon";
+"discardDraft" = "Annuler";
+
+"fromAnotherApp" = "A partir d'une autre application";
+"photoLibrary" = "Photos";
+"camera" = "Prendre une photo";
+
+"forwardSubject" = "Fwd : ";
+"replySubject" = "Re : ";
+
+"confirmForwardAttachments" = "Confirm Forward Attachments";                                    //Localize
+"confirmForwardAttachmentsText" = "Do you want to forward attachments of this message?";        //Localize
+"yesActionTitle" = "Yes";                                                                       //Localize
+"noActionTitle" = "No";                                                                         //Localize
+
+// Search Screen
+
+"noResults" = "Aucun résultat";
+
+"search" = "Rechercher";
+
+//Side Menu Cells
+
+"inbox"            = "Boîte de réception";
+"draft"            = "Brouillons";
+"sent"             = "Envoyés";
+"outbox"           = "Boîte d'envoi";
+"starred"          = "Favoris";
+"archive"          = "Archive";
+"spam"             = "Spam";
+"trash"            = "Corbeille";
+"allMails"         = "Tous les emails";
+"contacts"         = "Contacts";
+"settings"         = "Paramètres";
+"help"             = "Aide";
+"logout"           = "Se déconnecter";
+"manageFolders"    = "Gérer les dossiers";
+
+"showMoreFolders" = "Plus de dossier";
+"hideFolders" = "Réduire";
+
+//Scheduler Screen
+
+"selfDestructTimer" = "Auto destruction";
+"deadManTimer"      = "Dead Man's Timer";
+"delayedDelivery"   = "Programmer l\'envoi";
+
+"selfDestructTimerText" = "Cet email sera automatiquement supprimé de la boîte email du destinataire à la date programmée.";
+"deadManTimerText"      = "Si vous ne vous connectez pas à votre compte avant le délai paramétré, l\'email sera automatiquement envoyé.";
+"delayedDeliveryText"   = "L\'email sera automatiquement envoyé à l\'heure programmée.";
+
+"setPassword" = "Email crypté";
+"encryptForNon" = "Email crypté pour les contacts non CTemplar";
+"messagePassword" = "Mot de passe du message";
+"expirationTime" = "Délai d'expiration";
+"days" = "Jours";
+"hours" = "Heures";
+"expireTimeAlert" = "La date d'expiration doit être comprise entre 1 heure et 5 jours.";
+
+"passwordsMustMatch" = "Les mots de passe doivent être identiques";
+"passwordHint" = "Indice mot de passe";
+
+"encryptedMessagesTo" = "Encrypted messages to non-Ctemplar recipients will expire in 28 days unless a shorter expiration time is set.";
+
+//Manage Folders
+
+"deleteFolderTitle" = "Supprimer dossier ?";
+"deleteFolder" = "Êtes-vous certain de vouloir supprimer le dossier ?";
+
+"addFolder" = "Ajouter un dossier";
+
+"selectfolder" = "Sélectionner un dossier";
+
+"moveTo" = "Déplacer vers...";
+
+"noFolders" = "Aucun dossier";
+
+"addFolderLimit" = " Upgrade to premium";
+
+"folderName" = "Nom de dossier";
+"chooseColor" = "Couleur";
+
+"deleteFolder" = "Supprimer";
+
+//Settings
+
+"enableRecoveryEmail" = "Activer l'email de récupération";
+"typeRecoveryEmail" = "Saisir l'email de récupération";
+"recoveryEmail" = "Email de récupération";
+"password" = "Mot de passe";
+"language" = "Langues";
+"notifications" = "Notifications";
+"savingContact" = "Sauvegarde des contacts";
+"whiteBlackList" = "Liste blanche / Liste noire";
+"security" = "Sécurité";
+
+"manageFolders" = "Gérer les dossiers";
+"manageSecurity" = "Chiffrement";
+
+"signature" = "Signature";
+"mobileSignature" = "Signature mobile";
+"default" = "Défaut";
+
+"aboutUs" = "A propos";
+"privacyPolicy" = "Privacy Policy";
+"terms" = "Termes & Conditions";
+
+"recoveryEmailUpdatedMessage" = "Email de récupération mis à jour";
+"passwordUpdatedMessage" = "Mot de passe mis à jour";
+"userSignature" = "Signature mise à jour";
+
+"currentPasswordPlaceholder" = "Mot de passe actuel";
+"newPasswordPlaceholder" = "Nouveau mot de passe";
+
+"saveContacts" = "Sauvegarder les contacts automatiquement";
+
+"selectDefaulfAddress" = "Sélectionner l'adresse par défaut";
+"addresses" = "Adresses";
+
+"subjectEncryption" = "Subject encryption";                                         //Localize
+"сontactsEncryption" = "Contacts chiffrés";
+"attachmentEncryption" = "Pièces jointes chiffrées";
+
+"enableSignature" = "Activer signature";
+"typeSignature" = "Votre signature";
+
+"privacyPolicy" = "Privacy Policy";
+"termsAndConditions" = "Termes & Conditions";
+
+"appVersion" = "Version ";
+
+"takeBack" = "Take Back Your Liberty";
+"withEncrypted" = "with Encrypted Communication";
+"sendUnbreakable" = "Send unbreakable emails and protect your key professional and personal details trough next-gen encryption. End-to-end PKI encription keeps your private information safe from governments, corporations and hackers-for-hire.";
+"goToWebVersion" = "GO TO WEB VERSION";
+
+"settings" = "Paramètres";
+
+"generalSettings"           = "Général";
+"foldersSettings"           = "Dossiers";
+"securitySettings"          = "Sécurité";
+"mailSettings"              = "Email";
+"aboutSettings"             = "A propos";
+"storageSettings"           = "Stockage";
+"logoutSettings"            = "Se déconnecter";
+
+//White/Black List
+
+"whiteListText" = "Messages from contacts in the whitelist always go to Inbox folder. Marking a message as not spam adds the address to the Whitelist";
+"blackListText" = "Messages from contacts in the blacklist always go to Spam folder. Marking a message as spam adds the address to the Blacklist";
+
+"whiteListAttributedText" = "Boîte de réception";
+"blackListAttributedText" = "Dossier Spam";
+
+"addWhiteList" = "Ajouter le contact à la liste blanche";
+"addBlackList" = "Ajouter le contact à la liste noire";
+
+"deleteContactFromBlackList" = "Souhaitez-vous supprimer le contact de la liste noire ?";
+"deleteContactFromWhiteList" = "Souhaitez-vous supprimer le contact de la liste blanche ?";
+
+"whitelistBlacklist" = "Liste blanche / Liste noire";
+"whitelist" = "LISTE BLANCHE";
+"blacklist" = "LISTE NOIRE";
+
+"addContactW" = "Ajouter contact";
+"name" = "Nom";
+"email" = "Email";
+
+//language
+
+"languageTitle" = "Langues";
+
+//formatter
+
+"toPrefix" = "À : ";
+"ccPrefix" = "CC : ";
+"bccPrefix" = "BCC : ";
+"fromPrefix" = "De : ";
+
+"yesterday" = "Hier";
+
+"deleteIn" = "Delete In ";
+"daySuffix" = "d ";
+
+"deadMans" = "Dead mans ";
+"delayTime" = "Envoi programmé ";
+
+"manyDays" = " jours ";
+"manyDaysx" = " jours ";
+"oneDay" = " jour ";
+"manyHours" = " heures";
+"manyHoursx" = " heures";
+"oneHour" = " heure";
+
+//upgrade Plan Screen
+
+"upgrade" = "Souscrire";
+"1user" = "1 utilisateur";
+"5storage" = "Stockage à partir de 5 Gb";
+"3email" = "à partir de 3 emails addresses";
+"1custom" = "à partir de 1 domaine";
+"1000messages" = "1000 messages par jour";
+"200folders" = "200 dossiers";
+"deadMan" = "Dead Mans Timer";
+"andMore" = "et davantage de fonctionnalités";
+"upgradeBig" = "Souscrire";
+"notNow" = "Plus tard";
+
+"supportEmailString" = "Si vous avez des questions, vous pouvez contacter le support : support@ctemplar.com.";
+
+"updateMessages" = "Mise à jour des messages";
+"hashing" = "Hashing...";
+"updateToken" = "Mise à jour de la session";
+
+"encryptButton" = "Chiffrer";
+"decryptButton" = "Décrypter";
+"encryptContactsTitle" = "By enabling contacts encryption";
+"encryptContacts" = "All your contacts will be encrypted. Contacts suggestion on compose email won't be available anymore. Contacts can't be searched anymore";
+"decryptContactsTitle" = "Êtes-vous certain de vouloir décrypter vos contacts ?";
+"decryptContacts" = "Note : décrypter vos contacts peut prendre plusieurs minutes en fonction du nombre de contacts. Après confirmation, tous vos contacts seront décryptés dans votre navigateur et sur nos serveurs.";
+"decryptingContacts" = "Décryptage en cours...";
+"allContactsWasEncrypted" = "Tous les contacts sont chiffrés";
+"allContactsWasDecrypted" = "Tous les contacts sont décryptés";
+
+"attachmentEncryptionWasEnabled" = "Le chiffrement des pièces jointes est activé";
+"attachmentEncryptionWasDisabled" = "Le chiffrement des pièces jointes est désactivé";
+
+"featureIsComing" = "Fonctionnalité bientôt disponible. Pour modifier votre mot de passe, vous pouvez vous connecter au site web. Feature coming soon.";
