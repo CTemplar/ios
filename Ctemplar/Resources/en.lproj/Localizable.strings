@@ -193,6 +193,11 @@
 "forwardSubject" = "Fwd: ";
 "replySubject" = "Re: ";
 
+"confirmForwardAttachments" = "Confirm Forward Attachments";
+"confirmForwardAttachmentsText" = "Do you want to forward attachments of this message?";
+"yesActionTitle" = "Yes";
+"noActionTitle" = "No";
+
 // Search Screen
 
 "noResults" = "No results found";

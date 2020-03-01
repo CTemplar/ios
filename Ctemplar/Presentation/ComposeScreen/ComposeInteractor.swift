@@ -334,7 +334,7 @@ class ComposeInteractor {
         self.createDraftMessage(parentID: "", content: messageContent, subject: self.viewController!.subject, recievers: recieversList, folder: MessagesFoldersName.draft.rawValue, mailboxID: (self.viewController?.mailboxID)!, send: false, encrypted: false, encryptionObject: [:], attachments: self.viewController!.mailAttachmentsList, showHud: showHud)
     }
     
-    func createDraftWithParent(message: EmailMessage) {
+    func createDraftWithParent(message: EmailMessage, answerMode: AnswerMessageMode) {
         
         //let recievers = message.receivers as! Array<String>
         let recieversList = self.setRecieversList()
@@ -347,25 +347,18 @@ class ComposeInteractor {
             encryptionObjectDictionary = encryptionObject.toDictionary()
         }
         
-        //temp
-        self.presenter?.setupAttachments(message: message)
-         /*
-        if let attachments = message.attachments {
-            
-            self.viewController?.mailAttachmentsList.removeAll()
-            
-            for attachment in attachments {
-                self.viewController?.mailAttachmentsList.append(attachment.toDictionary())
+        self.presenter?.shouldAddAttachments(message: message, completion: { (shouldAdd) in
+            if shouldAdd {
+                self.presenter?.setupAttachments(message: message)
             }
-        }*/
-        
-        let content = self.getMessageContent(message: message)
-        
-        print("draft content:", content)
-        
-        self.presenter?.setupMessageSectionSize()
-        
-        self.createDraftMessage(parentID: (message.messsageID?.description)!, content: content, subject: message.subject!, recievers: recieversList, folder: MessagesFoldersName.draft.rawValue, mailboxID: mailboxID, send: false, encrypted: message.isEncrypted!, encryptionObject: encryptionObjectDictionary, attachments: self.viewController!.mailAttachmentsList)
+            let content = self.getMessageContent(message: message)
+            
+            print("draft content:", content)
+            
+            self.presenter?.setupMessageSectionSize()
+            
+            self.createDraftMessage(parentID: (message.messsageID?.description)!, content: content, subject: message.subject!, recievers: recieversList, folder: MessagesFoldersName.draft.rawValue, mailboxID: mailboxID, send: false, encrypted: message.isEncrypted!, encryptionObject: encryptionObjectDictionary, attachments: self.viewController!.mailAttachmentsList)
+        })
     }
     
     func deleteDraft() {

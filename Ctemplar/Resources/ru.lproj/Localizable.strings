@@ -193,6 +193,11 @@
 "replySubject" = "Re: ";
 "inProgress" = "In progress";
 
+"confirmForwardAttachments" = "Подтвердите пересылку вложений";
+"confirmForwardAttachmentsText" = "Вы хотите переслать вложения этого сообщения?";
+"yesActionTitle" = "да";
+"noActionTitle" = "нет";
+
 // Search Screen
 
 "noResults" = "Нет результатов";
