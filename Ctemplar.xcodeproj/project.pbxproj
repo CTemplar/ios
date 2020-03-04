@@ -1316,6 +1316,7 @@
 				8451BEB721D60F70009B1C8C /* SelectLanguge */,
 				8440141D21D39F5700FC450C /* SavingContacts */,
 				840DEA55232228BB006FB927 /* Security */,
+				E37CFB912410201200B3F887 /* PGP-Keys */,
 				843E1DBE21D49B87001B89D6 /* WhiteBlackLists */,
 				8440140F21D34A6500FC450C /* SetMailbox */,
 				8432870C21D25B8F00A66DBF /* SetSignature */,
@@ -1838,6 +1839,13 @@
 				E322133A2402D9D0002E3CAD /* Toast.swift */,
 			);
 			path = Toast;
+			sourceTree = "<group>";
+		};
+		E37CFB912410201200B3F887 /* PGP-Keys */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "PGP-Keys";
 			sourceTree = "<group>";
 		};
 		E399BB4123E87AB200EEA708 /* ThirdParty */ = {

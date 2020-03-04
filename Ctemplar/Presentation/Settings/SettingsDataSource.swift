@@ -297,19 +297,6 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             break
         case SettingsMailSection.signature.rawValue:
             cellTitle = "signature".localized()
-//            if let signature = mailbox.signature {
-//                if signature.count > 0 {
-//                    cellTitle = signature.removeHTMLTag
-//                    (cell as! SettingsBaseTableViewCell).titleLabel.numberOfLines = 0
-////                    let attributedText = signature.html2AttributedString ?? NSAttributedString()
-////                    (cell as! SettingsBaseTableViewCell).setupCellWithData(attributedTitle: attributedText, value: "")
-////                    return
-//                } else {
-//                    cellTitle = "signature".localized()
-//                }
-//            } else {
-//                cellTitle = "signature".localized()
-//            }
             break
         case SettingsMailSection.mobileSignature.rawValue:
             if let signature = UserDefaults.standard.string(forKey: k_mobileSignatureKey) {
@@ -321,6 +308,9 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             } else {
                 cellTitle = "mobileSignature".localized()
             }
+            break
+        case SettingsMailSection.keys.rawValue:
+            break
         default:
             break
         }
