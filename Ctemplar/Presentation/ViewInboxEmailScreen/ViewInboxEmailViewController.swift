@@ -107,7 +107,7 @@ class ViewInboxEmailViewController: UIViewController {
                     
                     self.messageIsRead = true//message.read
                     self.messageIsStarred = message.starred
-                    self.presenter?.setupMessageHeader(message: message)
+//                    self.presenter?.setupMessageHeader(message: message)
                     
                 } else {
                     self.presenter?.setupMessageHeader(message: message)//visual optimization
