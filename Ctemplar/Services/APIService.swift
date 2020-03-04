@@ -1621,14 +1621,14 @@ class APIService: HashingService {
     
     //MARK: - Settings
     
-    func updateSettings(settingsID: String, recoveryEmail: String, dispalyName: String, savingContacts: Bool, encryptContacts: Bool, encryptAttachment: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateSettings(settingsID: Int, recoveryEmail: String, dispalyName: String, savingContacts: Bool, encryptContacts: Bool, encryptAttachment: Bool, encryptSubject: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         self.checkTokenExpiration(){ (complete) in
             if complete {
                 
                 if let token = self.getToken() {
                     
-                    self.restAPIService?.updateSettings(token: token, settingsID: settingsID, recoveryEmail: recoveryEmail, dispalyName: dispalyName, savingContacts: savingContacts, encryptContacts: encryptContacts, encryptAttachment: encryptAttachment) {(result) in
+                    self.restAPIService?.updateSettings(token: token, settingsID: settingsID, recoveryEmail: recoveryEmail, dispalyName: dispalyName, savingContacts: savingContacts, encryptContacts: encryptContacts, encryptAttachment: encryptAttachment, encryptSubject: encryptSubject) {(result) in
                         
                         switch(result) {
                             

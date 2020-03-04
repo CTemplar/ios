@@ -1274,7 +1274,7 @@ class RestAPIService {
     
     //MARK: - Settings
     
-    func updateSettings(token: String, settingsID: String, recoveryEmail: String, dispalyName: String, savingContacts: Bool, encryptContacts: Bool, encryptAttachment: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateSettings(token: String, settingsID: Int, recoveryEmail: String, dispalyName: String, savingContacts: Bool, encryptContacts: Bool, encryptAttachment: Bool, encryptSubject: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -1282,6 +1282,7 @@ class RestAPIService {
         ]
         
         var parameters: Parameters = [
+            JSONKey.subjectEncrypted.rawValue : encryptSubject,
             JSONKey.savingContacts.rawValue : savingContacts,
             JSONKey.contactsEncrypted.rawValue : encryptContacts,
             JSONKey.attachmentEncrypted.rawValue : encryptAttachment
@@ -1297,7 +1298,7 @@ class RestAPIService {
         
         print("updateSettings parameters:", parameters)
         
-        let url = EndPoint.baseUrl.rawValue + EndPoint.settings.rawValue + settingsID + "/"
+        let url = EndPoint.baseUrl.rawValue + EndPoint.settings.rawValue + "\(settingsID)" + "/"
         
         print("updateSettings url:", url)
         

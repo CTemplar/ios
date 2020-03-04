@@ -61,9 +61,9 @@ class SavingContastsViewController: UIViewController {
     
     func updateSavingContacts(settings: Settings, savingContacts: Bool) {
         
-        let settingsID = settings.settingsID
+        let settingsID = settings.settingsID ?? 0
         
-        apiService?.updateSettings(settingsID: (settingsID?.description)!, recoveryEmail: "", dispalyName: "", savingContacts: savingContacts, encryptContacts: settings.isContactsEncrypted ?? false, encryptAttachment: settings.isAttachmentsEncrypted ?? false) {(result) in
+        apiService?.updateSettings(settingsID: settingsID, recoveryEmail: "", dispalyName: "", savingContacts: savingContacts, encryptContacts: settings.isContactsEncrypted ?? false, encryptAttachment: settings.isAttachmentsEncrypted ?? false, encryptSubject: settings.isSubjectEncrypted ?? false) {(result) in
             
             switch(result) {
                 

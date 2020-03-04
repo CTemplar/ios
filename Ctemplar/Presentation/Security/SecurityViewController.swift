@@ -94,7 +94,7 @@ class SecurityViewController: UIViewController {
                 self.encryptAttachment = false
             }
             
-            self.interactor!.updateEncryptionAttachment(settings: self.user.settings, encryptContacts: self.encryptContacts, encryptAttachment: self.encryptAttachment)
+            self.interactor!.updateEncryptionAttachment(settings: self.user.settings, encryptSubject: self.encryptSubject, encryptContacts: self.encryptContacts, encryptAttachment: self.encryptAttachment)
            
         default:
             break
@@ -133,7 +133,7 @@ class SecurityViewController: UIViewController {
             default:
                 print("Change Contact Encryption")
                 //if encryptContacts {
-                self.interactor!.updateEncryptionContacts(settings: settings, encryptContacts: encryptContacts, encryptAttachment: self.encryptAttachment)
+                self.interactor!.updateEncryptionContacts(settings: settings, encryptSubject: self.encryptSubject, encryptContacts: encryptContacts, encryptAttachment: self.encryptAttachment)
                // } else {
                //     self.startDecryption()
                // }
