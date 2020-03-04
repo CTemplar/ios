@@ -39,7 +39,7 @@
 "forgotPassword" = "Mot de passe oublié ?";
 "login" = "Se connecter";
 "createAccount" = "Créer un compte";
-"rememberMe" = "Remember me";                                               //Localize
+"rememberMe" = "Rester connecté";                                               //Localize
 
 //Sign Up
 
