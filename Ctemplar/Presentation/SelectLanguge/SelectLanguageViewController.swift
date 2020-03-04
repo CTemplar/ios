@@ -55,6 +55,8 @@ class SelectLanguageViewController: UIViewController, UITableViewDataSource, UIT
         case Languages.russian.rawValue:
             languageName = LanguagesName.russian.rawValue
             break
+        case Languages.french.rawValue:
+            languageName = LanguagesName.french.rawValue
         default:
             break
         }
@@ -79,6 +81,8 @@ class SelectLanguageViewController: UIViewController, UITableViewDataSource, UIT
         case Languages.russian.rawValue:
             languagePrefix = LanguagesBundlePrefix.russian
             break
+        case Languages.french.rawValue:
+            languagePrefix = LanguagesBundlePrefix.french
         default:
             languagePrefix = LanguagesBundlePrefix.english
             break
@@ -125,6 +129,8 @@ class SelectLanguageViewController: UIViewController, UITableViewDataSource, UIT
             language = LanguagesBundlePrefix.english.rawValue
         case Languages.russian.rawValue:
             language = LanguagesBundlePrefix.russian.rawValue
+        case Languages.french.rawValue:
+            language = LanguagesBundlePrefix.french.rawValue
         default:
             language = LanguagesBundlePrefix.english.rawValue
         }

@@ -666,16 +666,19 @@ enum Languages: Int, CaseIterable {
     
     case english            = 0
     case russian            = 1
+    case french             = 2
 }
 
 enum LanguagesName: String {
     
     case english            = "English"
     case russian            = "Русский"
+    case french             = "Français"
 }
 
 enum LanguagesBundlePrefix: String {
     
     case english            = "en"
     case russian            = "ru"
+    case french             = "fr"
 }
