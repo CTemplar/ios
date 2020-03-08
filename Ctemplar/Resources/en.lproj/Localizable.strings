@@ -160,6 +160,14 @@
 "address" = "Address";
 "note" = "Note";
 
+//Pgp Keys
+
+"fingerprint" = "Fingerprint";
+"publicKey" = "Public Key";
+"privateKey" = "Private Key";
+"publicKeyDownload" = "Download public key (4096 bit)";
+"privateKeyDownload" = "Download private key (4096 bit)";
+
 //view message
 
 "viewDetails" = "View details";
@@ -285,6 +293,7 @@
 "signature" = "Signature";
 "mobileSignature" = "Mobile signature";
 "default" = "Default";
+"keys" = "Keys";
 
 "aboutUs" = "About us";
 "privacyPolicy" = "Privacy Policy";

@@ -113,11 +113,11 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
             
             if !isRead {
                 senderLabel.font = k_unreadMessageSenderFont
-                subjectLabel.font = k_unreadMEssageSubjectFont
+                subjectLabel.font = k_unreadMessageSubjectFont
                 self.backgroundColor = k_unreadMessageColor
             } else {
                 senderLabel.font = k_readMessageSenderFont
-                subjectLabel.font = k_readMEssageSubjectFont
+                subjectLabel.font = k_readMessageSubjectFont
                 self.backgroundColor = k_readMessageColor
             }
         }

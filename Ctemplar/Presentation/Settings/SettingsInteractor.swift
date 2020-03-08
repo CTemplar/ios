@@ -106,6 +106,10 @@ class SettingsInteractor {
             break
         case SettingsMailSection.mobileSignature.rawValue:
             self.viewController?.router?.showSetSignatureViewController(with: .mobile)
+            break
+        case SettingsMailSection.keys.rawValue:
+            self.viewController?.router?.showPgpKeysViewController()
+            break
         default:
             break
         }

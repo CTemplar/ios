@@ -510,6 +510,18 @@
 		E322133F2402DBEE002E3CAD /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E322133A2402D9D0002E3CAD /* Toast.swift */; };
 		E3260AB8240196DA00F7BF26 /* AddFolderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3260AB7240196DA00F7BF26 /* AddFolderProtocol.swift */; };
 		E3260AB9240196DA00F7BF26 /* AddFolderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3260AB7240196DA00F7BF26 /* AddFolderProtocol.swift */; };
+		E35F5E9C24137715003C4281 /* PgpKeys.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E35F5E9B24137715003C4281 /* PgpKeys.storyboard */; };
+		E35F5E9D24137715003C4281 /* PgpKeys.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E35F5E9B24137715003C4281 /* PgpKeys.storyboard */; };
+		E35F5E9F2413772B003C4281 /* PgpKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35F5E9E2413772B003C4281 /* PgpKeysViewController.swift */; };
+		E35F5EA02413772B003C4281 /* PgpKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35F5E9E2413772B003C4281 /* PgpKeysViewController.swift */; };
+		E35F5EA224137D27003C4281 /* PgpKeysPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35F5EA124137D27003C4281 /* PgpKeysPresenter.swift */; };
+		E35F5EA324137D27003C4281 /* PgpKeysPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35F5EA124137D27003C4281 /* PgpKeysPresenter.swift */; };
+		E35F5EA524137DC0003C4281 /* PgpKeysConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35F5EA424137DC0003C4281 /* PgpKeysConfigurator.swift */; };
+		E35F5EA624137DC0003C4281 /* PgpKeysConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35F5EA424137DC0003C4281 /* PgpKeysConfigurator.swift */; };
+		E35F5EA82414C3CA003C4281 /* PgpKeysInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35F5EA72414C3CA003C4281 /* PgpKeysInteractor.swift */; };
+		E35F5EA92414C3CA003C4281 /* PgpKeysInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35F5EA72414C3CA003C4281 /* PgpKeysInteractor.swift */; };
+		E35F5EAB2414CEF0003C4281 /* PgpKeysDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35F5EAA2414CEF0003C4281 /* PgpKeysDataSource.swift */; };
+		E35F5EAC2414CEF0003C4281 /* PgpKeysDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35F5EAA2414CEF0003C4281 /* PgpKeysDataSource.swift */; };
 		E399BB8623E87AFA00EEA708 /* RichEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399BB4323E87AF900EEA708 /* RichEditorView.swift */; };
 		E399BB8723E87AFA00EEA708 /* RichEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399BB4323E87AF900EEA708 /* RichEditorView.swift */; };
 		E399BB8823E87AFA00EEA708 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399BB4423E87AF900EEA708 /* String+Extensions.swift */; };
@@ -907,6 +919,12 @@
 		E322133C2402DA58002E3CAD /* MoveToDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToDelegate.swift; sourceTree = "<group>"; };
 		E3260AB7240196DA00F7BF26 /* AddFolderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFolderProtocol.swift; sourceTree = "<group>"; };
 		E32DB9E9240C127700FF0069 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E35F5E9B24137715003C4281 /* PgpKeys.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PgpKeys.storyboard; sourceTree = "<group>"; };
+		E35F5E9E2413772B003C4281 /* PgpKeysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgpKeysViewController.swift; sourceTree = "<group>"; };
+		E35F5EA124137D27003C4281 /* PgpKeysPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgpKeysPresenter.swift; sourceTree = "<group>"; };
+		E35F5EA424137DC0003C4281 /* PgpKeysConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgpKeysConfigurator.swift; sourceTree = "<group>"; };
+		E35F5EA72414C3CA003C4281 /* PgpKeysInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgpKeysInteractor.swift; sourceTree = "<group>"; };
+		E35F5EAA2414CEF0003C4281 /* PgpKeysDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgpKeysDataSource.swift; sourceTree = "<group>"; };
 		E399BB4323E87AF900EEA708 /* RichEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichEditorView.swift; sourceTree = "<group>"; };
 		E399BB4423E87AF900EEA708 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		E399BB4523E87AF900EEA708 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
@@ -1319,6 +1337,7 @@
 				843E1DBE21D49B87001B89D6 /* WhiteBlackLists */,
 				8440140F21D34A6500FC450C /* SetMailbox */,
 				8432870C21D25B8F00A66DBF /* SetSignature */,
+				E37CFB912410201200B3F887 /* PGP-Keys */,
 				8440141821D377AE00FC450C /* PrivacyAndTerms */,
 				845E64412170BD08008612FE /* AboutAsScreen */,
 				8443CBE321F0526600B71FF6 /* UpgradeScreen */,
@@ -1840,6 +1859,19 @@
 			path = Toast;
 			sourceTree = "<group>";
 		};
+		E37CFB912410201200B3F887 /* PGP-Keys */ = {
+			isa = PBXGroup;
+			children = (
+				E35F5E9B24137715003C4281 /* PgpKeys.storyboard */,
+				E35F5E9E2413772B003C4281 /* PgpKeysViewController.swift */,
+				E35F5EA124137D27003C4281 /* PgpKeysPresenter.swift */,
+				E35F5EA424137DC0003C4281 /* PgpKeysConfigurator.swift */,
+				E35F5EA72414C3CA003C4281 /* PgpKeysInteractor.swift */,
+				E35F5EAA2414CEF0003C4281 /* PgpKeysDataSource.swift */,
+			);
+			path = "PGP-Keys";
+			sourceTree = "<group>";
+		};
 		E399BB4123E87AB200EEA708 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
@@ -1995,7 +2027,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 1000;
-				ORGANIZATIONNAME = ComeOnSoftware;
+				ORGANIZATIONNAME = AreteSol;
 				TargetAttributes = {
 					8433FF15216201A300C57DC8 = {
 						CreatedOnToolsVersion = 10.0;
@@ -2122,6 +2154,7 @@
 				E399BBF623E87AFA00EEA708 /* assert.js in Resources */,
 				84344D3821CA44AD00A5D9A0 /* ColorPicker.xib in Resources */,
 				E399BB9A23E87AFA00EEA708 /* indent@2x.png in Resources */,
+				E35F5E9C24137715003C4281 /* PgpKeys.storyboard in Resources */,
 				E399BB9E23E87AFA00EEA708 /* insert_image.png in Resources */,
 				84085B3521C152CB002733DE /* SideMenuTableManageFoldersCell.xib in Resources */,
 				E399BBB223E87AFA00EEA708 /* underline.png in Resources */,
@@ -2256,6 +2289,7 @@
 				E399BBF723E87AFA00EEA708 /* assert.js in Resources */,
 				CC6909762384500100956E9B /* ColorPicker.xib in Resources */,
 				E399BB9B23E87AFA00EEA708 /* indent@2x.png in Resources */,
+				E35F5E9D24137715003C4281 /* PgpKeys.storyboard in Resources */,
 				E399BB9F23E87AFA00EEA708 /* insert_image.png in Resources */,
 				CC6909772384500100956E9B /* SideMenuTableManageFoldersCell.xib in Resources */,
 				E399BBB323E87AFA00EEA708 /* underline.png in Resources */,
@@ -2438,6 +2472,7 @@
 				8435900621C287EB00F7D34D /* SchedulerViewController.swift in Sources */,
 				8430C29021B5033600ACB559 /* EncryptionObject.swift in Sources */,
 				84405BB421AD0CB20048D8AC /* ComposeRouter.swift in Sources */,
+				E35F5E9F2413772B003C4281 /* PgpKeysViewController.swift in Sources */,
 				8407AD92216CC61600AF2E7B /* EmailMessagesList.swift in Sources */,
 				CC45F35A239A8902004BC74C /* BaseRouter.swift in Sources */,
 				843FC38E2164CA35000CFEA9 /* SignUpInteractor.swift in Sources */,
@@ -2461,6 +2496,7 @@
 				8403BDE621A4050C00EE8DCD /* AddContactRouter.swift in Sources */,
 				843E973221635BEB00147CBE /* LoginViewController.swift in Sources */,
 				8433FF552162129800C57DC8 /* RestAPIService.swift in Sources */,
+				E35F5EA82414C3CA003C4281 /* PgpKeysInteractor.swift in Sources */,
 				8462C62B21CCD57C005B3D74 /* SettingsStorageTableViewCell.swift in Sources */,
 				84304298217D9D1C00DB5787 /* InboxSideMenuConfigurator.swift in Sources */,
 				84FF7E39219DB21E00E3E56A /* Contact.swift in Sources */,
@@ -2510,6 +2546,7 @@
 				8433FF532162128200C57DC8 /* APIService.swift in Sources */,
 				84356867216F2E20002101D3 /* InboxInteractor.swift in Sources */,
 				84732CA021B17B3F00B6F799 /* UserMailboxTableViewCell.swift in Sources */,
+				E35F5EA524137DC0003C4281 /* PgpKeysConfigurator.swift in Sources */,
 				84A62E4F2175CC98009C38E5 /* ForgotPasswordConfigurator.swift in Sources */,
 				8433FF1A216201A300C57DC8 /* AppDelegate.swift in Sources */,
 				8402498E2191A01B00CDDB0F /* MoveToInteractor.swift in Sources */,
@@ -2527,6 +2564,7 @@
 				8402497F21916D3200CDDB0F /* FoldersList.swift in Sources */,
 				3043741423A65F4900F759D0 /* NetworkService+Token.swift in Sources */,
 				843E973B2163701B00147CBE /* LoginInteractor.swift in Sources */,
+				E35F5EA224137D27003C4281 /* PgpKeysPresenter.swift in Sources */,
 				846EDE9221A284C200EE9A88 /* ChildMessageExpandedTableViewCell.swift in Sources */,
 				30A38A7523AAC15100166595 /* NetworkService+Captcha.swift in Sources */,
 				8431218E218AF82C0014560D /* ViewInboxEmailInteractor.swift in Sources */,
@@ -2609,6 +2647,7 @@
 				8443CBE521F052B100B71FF6 /* UpgradeToPrimeView.swift in Sources */,
 				843207152178C75000F18E5A /* InboxMessageTablelViewCell.swift in Sources */,
 				84344D3421CA30AD00A5D9A0 /* AddFolderViewController.swift in Sources */,
+				E35F5EAB2414CEF0003C4281 /* PgpKeysDataSource.swift in Sources */,
 				843FC3972164D20E000CFEA9 /* SignUpPageEmail.swift in Sources */,
 				840249902191A02800CDDB0F /* MoveToDataSource.swift in Sources */,
 				843E1DC621D4CBCA001B89D6 /* WhiteBlackListsConfigurator.swift in Sources */,
@@ -2631,6 +2670,7 @@
 				CC6908AB2384500100956E9B /* SchedulerViewController.swift in Sources */,
 				CC6908AC2384500100956E9B /* EncryptionObject.swift in Sources */,
 				CC6908AD2384500100956E9B /* ComposeRouter.swift in Sources */,
+				E35F5EA02413772B003C4281 /* PgpKeysViewController.swift in Sources */,
 				CC6908AE2384500100956E9B /* EmailMessagesList.swift in Sources */,
 				CC45F35B239A8902004BC74C /* BaseRouter.swift in Sources */,
 				CC6908AF2384500100956E9B /* SignUpInteractor.swift in Sources */,
@@ -2654,6 +2694,7 @@
 				CC6908BE2384500100956E9B /* AddContactRouter.swift in Sources */,
 				CC6908BF2384500100956E9B /* LoginViewController.swift in Sources */,
 				CC6908C02384500100956E9B /* RestAPIService.swift in Sources */,
+				E35F5EA92414C3CA003C4281 /* PgpKeysInteractor.swift in Sources */,
 				CC6908C12384500100956E9B /* SettingsStorageTableViewCell.swift in Sources */,
 				CC6908C22384500100956E9B /* InboxSideMenuConfigurator.swift in Sources */,
 				CC6908C32384500100956E9B /* Contact.swift in Sources */,
@@ -2703,6 +2744,7 @@
 				CC6908E82384500100956E9B /* APIService.swift in Sources */,
 				CC6908E92384500100956E9B /* InboxInteractor.swift in Sources */,
 				CC6908EA2384500100956E9B /* UserMailboxTableViewCell.swift in Sources */,
+				E35F5EA624137DC0003C4281 /* PgpKeysConfigurator.swift in Sources */,
 				CC6908EB2384500100956E9B /* ForgotPasswordConfigurator.swift in Sources */,
 				CC6908EC2384500100956E9B /* AppDelegate.swift in Sources */,
 				CC6908ED2384500100956E9B /* MoveToInteractor.swift in Sources */,
@@ -2720,6 +2762,7 @@
 				CC6908F72384500100956E9B /* FoldersList.swift in Sources */,
 				3043741523A65F4900F759D0 /* NetworkService+Token.swift in Sources */,
 				CC6908F82384500100956E9B /* LoginInteractor.swift in Sources */,
+				E35F5EA324137D27003C4281 /* PgpKeysPresenter.swift in Sources */,
 				CC6908F92384500100956E9B /* ChildMessageExpandedTableViewCell.swift in Sources */,
 				30A38A7623AAC15100166595 /* NetworkService+Captcha.swift in Sources */,
 				CC6908FA2384500100956E9B /* ViewInboxEmailInteractor.swift in Sources */,
@@ -2802,6 +2845,7 @@
 				CC69093D2384500100956E9B /* InboxMessageTablelViewCell.swift in Sources */,
 				CC69093E2384500100956E9B /* AddFolderViewController.swift in Sources */,
 				CC69093F2384500100956E9B /* SignUpPageEmail.swift in Sources */,
+				E35F5EAC2414CEF0003C4281 /* PgpKeysDataSource.swift in Sources */,
 				CC6909402384500100956E9B /* MoveToDataSource.swift in Sources */,
 				E322133E2402DA58002E3CAD /* MoveToDelegate.swift in Sources */,
 				CC6909412384500100956E9B /* WhiteBlackListsConfigurator.swift in Sources */,

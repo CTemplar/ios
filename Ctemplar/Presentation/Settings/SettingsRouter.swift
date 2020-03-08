@@ -113,6 +113,13 @@ class SettingsRouter {
         self.viewController?.show(vc, sender: self)
     }
     
+    func showPgpKeysViewController() {
+        let storyboard: UIStoryboard = UIStoryboard(name: k_PGPKeysStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_PgpKeysViewControllerID) as! PgpKeysViewController
+//        vc.user = (self.viewController?.user)!
+        self.viewController?.show(vc, sender: self)
+    }
+    
     func showPrivacyAndTermsViewController(mode: TextControllerMode) {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_PrivacyAndTermsStoryboardName, bundle: nil)
