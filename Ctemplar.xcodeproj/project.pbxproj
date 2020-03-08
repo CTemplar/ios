@@ -3084,7 +3084,7 @@
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = N2Z7XM6798;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Ctemplar/Resources/Plist/Ctemplar.dev-Info.plist";
@@ -3111,7 +3111,7 @@
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = N2Z7XM6798;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Ctemplar/Resources/Plist/Ctemplar.dev-Info.plist";
