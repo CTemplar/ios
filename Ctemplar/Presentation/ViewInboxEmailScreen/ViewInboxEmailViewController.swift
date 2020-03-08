@@ -110,7 +110,7 @@ class ViewInboxEmailViewController: UIViewController {
 //                    self.presenter?.setupMessageHeader(message: message)
                     
                 } else {
-                    self.presenter?.setupMessageHeader(message: message)//visual optimization
+//                    self.presenter?.setupMessageHeader(message: message)//visual optimization
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: {
                         //self.presenter?.interactor?.setMessageData(message: message)
