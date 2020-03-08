@@ -159,6 +159,14 @@
 "address" = "Адрес";
 "note" = "Примечание";
 
+//Pgp Keys
+
+"fingerprint" = "отпечаток пальца";
+"publicKey" = "Открытый ключ";
+"privateKey" = "Закрытый ключ";
+"publicKeyDownload" = "Загрузить открытый ключ (4096 бит)";
+"privateKeyDownload" = "Скачать приватный ключ (4096 бит)";
+
 //view message
 
 "viewDetails" = "Показать детали";
@@ -285,6 +293,7 @@
 "signature" = "Подпись";
 "mobileSignature" = "Мобильная подпись";
 "default" = "Основная";
+"keys" = "Ключи";
 
 "aboutUs" = "О нас";
 "privacyPolicy" = "Политика конфиденциальности";

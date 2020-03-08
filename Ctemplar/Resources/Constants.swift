@@ -48,6 +48,7 @@ let k_WhiteBlackListsViewControllerID       = "WhiteBlackListsViewController"
 let k_AddContactToWhiteBlackListsViewControllerID       = "AddContactToWhiteBlackListsViewController"
 let k_SetMailboxViewControllerID            = "SetMailboxViewController"
 let k_SetSignatureViewControllerID          = "SetSignatureViewController"
+let k_PgpKeysViewControllerID               = "PgpKeysViewController"
 let k_PrivacyAndTermsViewControllerID       = "PrivacyAndTermsViewController"
 let k_AboutAsViewControllerID               = "AboutAsViewController"
 
@@ -80,6 +81,7 @@ let k_WhiteBlackListsStoryboardName        = "WhiteBlackLists"
 let k_AddContackToWhiteBlackListsStoryboardName        = "AddContactToWhiteBlackList"
 let k_SetMailboxStoryboardName             = "SetMailbox"
 let k_SetSignatureStoryboardName           = "SetSignature"
+let k_PGPKeysStoryboardName                = "PgpKeys"
 let k_PrivacyAndTermsStoryboardName        = "PrivacyAndTerms"
 let k_AddContactStoryboardName             = "AddContact"
 
@@ -393,8 +395,8 @@ let k_latoRegularFontName = "Lato-Regular"
 let k_latoBoldFontName    = "Lato-Bold"
 let k_unreadMessageSenderFont = UIFont.systemFont(ofSize: 16.0, weight: UIFont.Weight.semibold)
 let k_readMessageSenderFont = UIFont.systemFont(ofSize: 16.0)
-let k_unreadMEssageSubjectFont = UIFont(name: "Lato-Bold", size: 14.0)
-let k_readMEssageSubjectFont = UIFont(name: "Lato-Regular", size: 14.0)
+let k_unreadMessageSubjectFont = UIFont(name: "Lato-Bold", size: 14.0)
+let k_readMessageSubjectFont = UIFont(name: "Lato-Regular", size: 14.0)
 
 // other
 let k_contactPageLimit = 20

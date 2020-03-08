@@ -310,6 +310,8 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             }
             break
         case SettingsMailSection.keys.rawValue:
+            cellTitle = "keys".localized()
+            value = ""
             break
         default:
             break

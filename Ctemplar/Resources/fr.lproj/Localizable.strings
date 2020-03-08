@@ -161,6 +161,12 @@
 "address" = "Addresse";
 "note" = "Note";
 
+"fingerprint" = "Empreinte digitale";
+"publicKey" = "Clé publique";
+"privateKey" = "Clé privée";
+"publicKeyDownload" = "Télécharger la clé publique (4096 bits)";
+"privateKeyDownload" = "Télécharger la clé privée (4096 bits)";
+
 //view message
 
 "viewDetails" = "Afficher";
@@ -286,6 +292,7 @@
 "signature" = "Signature";
 "mobileSignature" = "Signature mobile";
 "default" = "Défaut";
+"keys" = "Clés";
 
 "aboutUs" = "A propos";
 "privacyPolicy" = "Privacy Policy";
