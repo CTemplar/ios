@@ -50,7 +50,7 @@ class LoginRouter {
         
         self.viewController?.dismiss(animated: true, completion: {
             
-            self.viewController?.mainViewController?.setAutoUpdaterTimer()
+//            self.viewController?.mainViewController?.setAutoUpdaterTimer()
             
             if (!Device.IS_IPAD) {
                 self.viewController?.mainViewController?.showInboxNavigationController()
