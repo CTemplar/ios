@@ -10,6 +10,7 @@ import UIKit
 
 class PgpKeysViewController: UIViewController {
 
+    @IBOutlet var backgroundView: UIView!
     @IBOutlet var emailAddressTitleLabel: UILabel!
     @IBOutlet var emailAddressTextField: UITextField!
     @IBOutlet var fingerprintTitleLabel: UILabel!
@@ -20,6 +21,8 @@ class PgpKeysViewController: UIViewController {
     @IBOutlet var privateKeyDownloadButton: UIButton!
     @IBOutlet var emailsTableView: UITableView!
     @IBOutlet var emailsTableView_height: NSLayoutConstraint!
+    
+    var tapGesture: UITapGestureRecognizer?
     
     var presenter: PgpKeysPresenter?
     var dataSource: PgpKeysDatasource?
