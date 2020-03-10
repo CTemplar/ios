@@ -27,6 +27,11 @@ class PgpKeysPresenter {
         viewController.privateKeyDownloadButton.setAttributedTitle(NSAttributedString(string: "privateKeyDownload".localized(), attributes: underlineAttribute), for: .normal)
     }
     
+    func addTapGesture() {
+        viewController.tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapGestureAction(_:)))
+        viewController.backgroundView.addGestureRecognizer(viewController.tapGesture!)
+    }
+    
     func loadMailBoxes() {
         self.interactor.mailboxList()
     }
@@ -72,7 +77,14 @@ class PgpKeysPresenter {
 }
 
 extension PgpKeysPresenter {
+    @objc func tapGestureAction(_ tapGesture: UITapGestureRecognizer) {
+        self.tableViewSelectionComplete()
+    }
+}
+
+extension PgpKeysPresenter {
     func textFieldBeginEditing() {
+        self.addTapGesture()
         self.viewController.emailsTableView.reloadData()
         var tableViewHeight = CGFloat(self.viewController.mailboxList.count * 40)
         let availableHeight = self.viewController.view.frame.height - self.viewController.emailsTableView.frame.origin.y - 20
@@ -86,6 +98,9 @@ extension PgpKeysPresenter {
     }
     
     func tableViewSelectionComplete() {
+        if viewController.tapGesture != nil {
+            viewController.backgroundView.removeGestureRecognizer(viewController.tapGesture!)
+        }
         self.viewController.emailsTableView_height.constant = 0
         UIView.animate(withDuration: 0.2) {
             self.viewController.view.layoutIfNeeded()

@@ -17,6 +17,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PEt-F9-N1p">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="emailAddress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20D-cU-d82">
                                 <rect key="frame" x="16" y="64" width="382" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -54,7 +58,7 @@
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTu-HU-e7u">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTu-HU-e7u">
                                 <rect key="frame" x="20" y="188" width="374" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -140,6 +144,7 @@
                             <constraint firstItem="tCp-BX-GZy" firstAttribute="leading" secondItem="Ure-db-gpY" secondAttribute="leading" constant="20" id="6Sb-oq-mci"/>
                             <constraint firstItem="Ure-db-gpY" firstAttribute="trailing" secondItem="hXh-NJ-VR7" secondAttribute="trailing" constant="16" id="6Xb-IY-1cq"/>
                             <constraint firstItem="Ure-db-gpY" firstAttribute="trailing" secondItem="L9q-6G-udL" secondAttribute="trailing" constant="16" id="7Ul-mk-OFx"/>
+                            <constraint firstItem="PEt-F9-N1p" firstAttribute="top" secondItem="Ure-db-gpY" secondAttribute="top" id="DZg-5H-C0l"/>
                             <constraint firstItem="6wE-vb-oy9" firstAttribute="leading" secondItem="Ure-db-gpY" secondAttribute="leading" constant="20" id="FcX-jn-MFq"/>
                             <constraint firstItem="NZo-Fw-hTg" firstAttribute="top" secondItem="6wE-vb-oy9" secondAttribute="bottom" id="FrU-WN-H2w"/>
                             <constraint firstItem="iS9-ks-ehO" firstAttribute="centerY" secondItem="6wE-vb-oy9" secondAttribute="centerY" id="Gt1-da-Ivs"/>
@@ -147,14 +152,17 @@
                             <constraint firstItem="L9q-6G-udL" firstAttribute="top" secondItem="tCp-BX-GZy" secondAttribute="bottom" constant="20" id="NSq-W1-aOK"/>
                             <constraint firstItem="82j-jn-lN9" firstAttribute="leading" secondItem="Ure-db-gpY" secondAttribute="leading" constant="16" id="QHg-4O-puO"/>
                             <constraint firstItem="NZo-Fw-hTg" firstAttribute="trailing" secondItem="6wE-vb-oy9" secondAttribute="trailing" id="Qol-a0-bCk"/>
+                            <constraint firstItem="Ure-db-gpY" firstAttribute="trailing" secondItem="PEt-F9-N1p" secondAttribute="trailing" id="RNo-6n-rj0"/>
                             <constraint firstItem="sFw-xt-hMN" firstAttribute="top" secondItem="NZo-Fw-hTg" secondAttribute="bottom" id="S5O-jK-E7d"/>
                             <constraint firstItem="sFw-xt-hMN" firstAttribute="trailing" secondItem="NZo-Fw-hTg" secondAttribute="trailing" id="Scw-gP-dpl"/>
+                            <constraint firstItem="Ure-db-gpY" firstAttribute="bottom" secondItem="PEt-F9-N1p" secondAttribute="bottom" id="V0g-A8-81k"/>
                             <constraint firstItem="Ure-db-gpY" firstAttribute="trailing" secondItem="6wE-vb-oy9" secondAttribute="trailing" constant="20" id="V3i-O9-f60"/>
                             <constraint firstItem="EBb-gZ-VUO" firstAttribute="top" secondItem="L9q-6G-udL" secondAttribute="bottom" constant="8" id="VuY-ze-fDu"/>
                             <constraint firstItem="tCp-BX-GZy" firstAttribute="top" secondItem="82j-jn-lN9" secondAttribute="bottom" constant="8" id="YZN-TN-n9e"/>
                             <constraint firstItem="Ure-db-gpY" firstAttribute="trailing" secondItem="EBb-gZ-VUO" secondAttribute="trailing" constant="20" id="ZMl-4v-vKR"/>
                             <constraint firstItem="Ure-db-gpY" firstAttribute="trailing" secondItem="tCp-BX-GZy" secondAttribute="trailing" constant="20" id="bW2-7T-GL5"/>
                             <constraint firstItem="NZo-Fw-hTg" firstAttribute="leading" secondItem="6wE-vb-oy9" secondAttribute="leading" id="fPx-r1-CeG"/>
+                            <constraint firstItem="PEt-F9-N1p" firstAttribute="leading" secondItem="Ure-db-gpY" secondAttribute="leading" id="fmF-1B-102"/>
                             <constraint firstItem="hXh-NJ-VR7" firstAttribute="top" secondItem="NZo-Fw-hTg" secondAttribute="bottom" constant="20" id="k0X-fx-0pH"/>
                             <constraint firstItem="iS9-ks-ehO" firstAttribute="trailing" secondItem="6wE-vb-oy9" secondAttribute="trailing" id="lP1-K1-Xfs"/>
                             <constraint firstItem="EBb-gZ-VUO" firstAttribute="leading" secondItem="Ure-db-gpY" secondAttribute="leading" constant="20" id="mD6-db-QbD"/>
@@ -178,6 +186,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="backgroundView" destination="PEt-F9-N1p" id="e7L-Kz-onb"/>
                         <outlet property="emailAddressTextField" destination="6wE-vb-oy9" id="LAf-8a-0Ky"/>
                         <outlet property="emailAddressTitleLabel" destination="20D-cU-d82" id="4wN-yY-9TT"/>
                         <outlet property="emailsTableView" destination="sFw-xt-hMN" id="J7s-g3-JMn"/>
@@ -199,10 +208,10 @@
         <image name="BackArrowDark" width="11.5" height="20"/>
         <image name="downArrow" width="29.333333969116211" height="29.333333969116211"/>
         <namedColor name="navButtonTintColor">
-            <color red="0.20392156862745098" green="0.28627450980392155" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20399999618530273" green="0.28600001335144043" blue="0.36899998784065247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textColor">
-            <color red="0.20392156862745098" green="0.28627450980392155" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20399999618530273" green="0.28600001335144043" blue="0.36899998784065247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
