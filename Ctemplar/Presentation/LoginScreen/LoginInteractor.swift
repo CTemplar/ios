@@ -21,7 +21,7 @@ class LoginInteractor: HashingService {
         
         let trimmedUsername = trimUserName(userName)
         HUD.show(.labeledProgress(title: "hashing".localized(), subtitle: ""))
-        generateHashedPassword(for: userName, password: password) { result in
+        generateHashedPassword(for: trimmedUsername, password: password) { result in
             guard let value = try? result.get() else {
                 HUD.hide()
                 AlertHelperKit().showAlert(self.viewController!,
@@ -73,7 +73,7 @@ class LoginInteractor: HashingService {
     
     func trimUserName(_ userName: String) -> String {
         
-        var trimmedName = userName.trimmingCharacters(in: .whitespacesAndNewlines)
+        var trimmedName = userName.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         
         let substrings = trimmedName.split(separator: "@")
             
