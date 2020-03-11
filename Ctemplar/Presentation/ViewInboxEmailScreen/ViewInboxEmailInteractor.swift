@@ -206,7 +206,9 @@ class ViewInboxEmailInteractor {
     func updateSubject(message: EmailMessage) {
         
         if (apiService?.isSubjectEncrypted(message: message))! {
-            self.presenter?.setSubjectLabel(subject: "Decrypting...".localized())
+            if (viewController?.headerLabel.text ?? "") == "" {
+                self.presenter?.setSubjectLabel(subject: "Decrypting...".localized())
+            }
             self.extractSubjectContentAsync(message: message)
         } else {
             if let subjectText = message.subject {

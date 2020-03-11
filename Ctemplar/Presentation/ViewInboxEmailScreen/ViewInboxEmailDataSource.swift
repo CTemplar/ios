@@ -75,7 +75,7 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
         if dercyptedMessagesArray.count > indexPath.row {
             let messageContent = dercyptedMessagesArray[indexPath.row]
         
-            header = (self.parentViewController?.presenter?.interactor?.headerOfMessage(content: messageContent))!
+//            header = (self.parentViewController?.presenter?.interactor?.headerOfMessage(content: messageContent))!
             messageText = messageContent
         }
         
@@ -102,6 +102,11 @@ class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDele
             }
 
         } else {
+            if dercyptedMessagesArray.count > indexPath.row {
+                let messageContent = dercyptedMessagesArray[indexPath.row]
+            
+                header = (self.parentViewController?.presenter?.interactor?.headerOfMessage(content: messageContent))!
+            }
             
             var lastMessage = false
             
