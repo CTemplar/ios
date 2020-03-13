@@ -217,9 +217,9 @@ class ComposeInteractor {
     func uploadAttach(fileUrl: URL, messageID : String) {
         
         let encrypt = self.viewController?.user.settings.isAttachmentsEncrypted ?? false
-        
+        HUD.show(.progress)
         apiService?.createAttachment(fileUrl: fileUrl, messageID: messageID, encrypt: encrypt) {(result) in
-            
+            HUD.hide()
             self.viewController?.attachmentButton.isEnabled = true
             
             switch(result) {
@@ -303,7 +303,7 @@ class ComposeInteractor {
     //MARK: - prepared to send
     
     func prepareMessadgeToSend() {
-                    
+        self.viewController?.view.endEditing(true)
         self.publicKeysFor(userEmailsArray: self.viewController!.emailsToArray) { (keys) in
             print("publicKeys:", keys)
             
