@@ -182,7 +182,12 @@ class InboxInteractor {
         }
         let pageSize: Int
         if self.viewController?.allMessagesArray.count == 0 {
-            pageSize = k_firstLoadPageLimit
+            if Device.IS_IPAD {
+                pageSize = k_firstLoadPageLimit_iPad
+            }else {
+                pageSize = k_firstLoadPageLimit
+            }
+            
         }else {
             pageSize = k_pageLimit
         }

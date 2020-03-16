@@ -174,7 +174,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             } else {
                 self.presenter?.fillAllEmailsFields(message: self.message!)
                 DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: {
-                    self.interactor?.createDraftWithParent(message: self.message!)
+                    self.interactor?.createDraftWithParent(message: self.message!, answerMode: self.answerMode)
                 })
             }
             

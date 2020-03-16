@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
                   
+        self.disableDarkMode()
+        
         UserDefaults.standard.setValue(false, forKey:"_UIConstraintBasedLayoutLogUnsatisfiable")
         
         print("currentDeviceLanguageCode:", Locale.current.languageCode as Any)
@@ -142,6 +144,17 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                 UIApplication.shared.keyWindow?.rootViewController = mainViewController
             }
         }
+    }
+}
+
+extension AppDelegate {
+    func disableDarkMode() {
+        #if compiler(>=5.1)
+        if #available(iOS 13.0, *) {
+            // Always adopt a light interface style.
+            window?.overrideUserInterfaceStyle = .light
+        }
+        #endif
     }
 }
 

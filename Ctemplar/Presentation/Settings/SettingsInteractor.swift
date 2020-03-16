@@ -106,6 +106,10 @@ class SettingsInteractor {
             break
         case SettingsMailSection.mobileSignature.rawValue:
             self.viewController?.router?.showSetSignatureViewController(with: .mobile)
+            break
+        case SettingsMailSection.keys.rawValue:
+            self.viewController?.router?.showPgpKeysViewController()
+            break
         default:
             break
         }
@@ -142,6 +146,8 @@ class SettingsInteractor {
             currentLanguage = LanguagesName.english.rawValue
         case LanguagesBundlePrefix.russian.rawValue:
             currentLanguage = LanguagesName.russian.rawValue
+        case LanguagesBundlePrefix.french.rawValue:
+            currentLanguage = LanguagesName.french.rawValue
         default:
             currentLanguage = LanguagesName.english.rawValue
         }

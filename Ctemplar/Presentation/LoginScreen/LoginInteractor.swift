@@ -21,7 +21,7 @@ class LoginInteractor: HashingService {
         
         let trimmedUsername = trimUserName(userName)
         HUD.show(.labeledProgress(title: "hashing".localized(), subtitle: ""))
-        generateHashedPassword(for: userName, password: password) { result in
+        generateHashedPassword(for: trimmedUsername, password: password) { result in
             guard let value = try? result.get() else {
                 HUD.hide()
                 AlertHelperKit().showAlert(self.viewController!,
@@ -31,19 +31,14 @@ class LoginInteractor: HashingService {
                 return
             }
             HUD.show(.labeledProgress(title: "updateToken".localized(), subtitle: ""))
-            AppManager.shared.networkService.loginUser(with: LoginDetails(userName: trimmedUsername,
-                                                                          password: value,
-                                                                          twoFAcode: twoFAcode)) { result in                                                                   
-                                                                            if let value = try? result.get(), !value.isTwoFAEnabled {
-                                                                                self.keychainService?.saveUserCredentials(userName: userName, password: password)
-                                                                            }
-                                                                            self.handleNetwork(responce: result)
-                                                                            HUD.hide()
+            AppManager.shared.networkService.loginUser(with: LoginDetails(userName: trimmedUsername, password: value, twoFAcode: twoFAcode)) { result in
+                self.handleNetwork(responce: result, username: userName, password: password)
+                HUD.hide()
             }
         }
     }
     
-    func handleNetwork(responce: AppResult<LoginResult>) {
+    func handleNetwork(responce: AppResult<LoginResult>, username: String, password: String) {
         switch responce {
         case .success(let value):
             if value.isTwoFAEnabled {
@@ -56,6 +51,12 @@ class LoginInteractor: HashingService {
             if let token = value.token {
                 keychainService?.saveToken(token: token)
             }
+            if self.viewController?.rememberMeButton.isSelected ?? false {
+                keychainService?.saveRememberMeValue(rememberMe: true)
+            }else {
+                keychainService?.saveRememberMeValue(rememberMe: false)
+            }
+            keychainService?.saveUserCredentials(userName: username, password: password)
             NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil, userInfo: nil)
             self.sendAPNDeviceToken()
             self.viewController?.router?.showInboxScreen()
@@ -72,7 +73,7 @@ class LoginInteractor: HashingService {
     
     func trimUserName(_ userName: String) -> String {
         
-        var trimmedName = userName.trimmingCharacters(in: .whitespacesAndNewlines)
+        var trimmedName = userName.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         
         let substrings = trimmedName.split(separator: "@")
             

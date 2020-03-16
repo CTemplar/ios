@@ -564,11 +564,6 @@ extension Date {
         
         let remainMinutesInHour = (secondsAgo - remainDays * day - remainHoursInDay * hour) / minute
         
-        //print("now", Date())
-        //print("remainDays", remainDays)
-        //print("remainHoursInDay", remainHoursInDay)
-        //print("remainMinutesInHour", remainMinutesInHour)
-        
         let timeString = formatDestructionTimeToString(days: abs(remainDays), hours: abs(remainHoursInDay), minutes: abs(remainMinutesInHour), short: short)
         
         return timeString
@@ -745,6 +740,20 @@ extension Date {
         print("minutesCount", minutesCount)
         
         return minutesCount
+    }
+    
+    func hoursCountForTokenExpiration() -> Int {
+        let secondsAgo = Int(Date().timeIntervalSince(self))
+        let minute = 60
+        let hour = 60 * minute
+        
+        let hoursCount = secondsAgo / hour
+        let minutesCount = secondsAgo / minute
+
+        print("hoursCount", hoursCount)
+        print("minutesCount", minutesCount)
+        
+        return hoursCount
     }
     
     func hoursCountFromNow() -> Int {

@@ -14,14 +14,35 @@ class SecurityInteractor {
     
     var viewController  : SecurityViewController?
     var apiService      : APIService?
+    
+    func updateEncryptionSubject(settings: Settings, encryptSubject: Bool, encryptContacts: Bool, encryptAttachment: Bool) {
+        HUD.show(.progress)
+        
+        let settingsID = settings.settingsID ?? 0
+        apiService?.updateSettings(settingsID: settingsID, recoveryEmail: "", dispalyName: "", savingContacts: settings.saveContacts ?? false, encryptContacts: encryptContacts, encryptAttachment: encryptAttachment, encryptSubject: encryptSubject) {(result) in
+        
+            HUD.hide()
+            
+            switch(result) {
+            case .success(_):
+                self.postUpdateUserSettingsNotification()
+                break
+            case .failure(let error):
+                self.viewController!.encryptSubject = !self.viewController!.encryptSubject
+                self.viewController!.subjectEncryptionSwitch.setOn(self.viewController!.encryptSubject, animated: true)
+                AlertHelperKit().showAlert(self.viewController!, title: "Update Settings Error", message: error.localizedDescription, button: "closeButton".localized())
+                break
+            }
+        }
+    }
 
-    func updateEncryptionContacts(settings: Settings, encryptContacts: Bool, encryptAttachment: Bool) {
+    func updateEncryptionContacts(settings: Settings, encryptSubject: Bool, encryptContacts: Bool, encryptAttachment: Bool) {
         
         HUD.show(.progress)
         
-        let settingsID = settings.settingsID
+        let settingsID: Int = settings.settingsID ?? 0
         
-        apiService?.updateSettings(settingsID: (settingsID?.description)!, recoveryEmail: "", dispalyName: "", savingContacts: settings.saveContacts ?? false, encryptContacts: encryptContacts, encryptAttachment: encryptAttachment) {(result) in
+        apiService?.updateSettings(settingsID: settingsID, recoveryEmail: "", dispalyName: "", savingContacts: settings.saveContacts ?? false, encryptContacts: encryptContacts, encryptAttachment: encryptAttachment, encryptSubject: encryptSubject) {(result) in
             
             HUD.hide()
             
@@ -153,13 +174,13 @@ class SecurityInteractor {
         }
     }
     
-    func updateEncryptionAttachment(settings: Settings, encryptContacts: Bool, encryptAttachment: Bool) {
+    func updateEncryptionAttachment(settings: Settings, encryptSubject: Bool, encryptContacts: Bool, encryptAttachment: Bool) {
         
         HUD.show(.progress)
         
-        let settingsID = settings.settingsID
+        let settingsID = settings.settingsID ?? 0
         
-        apiService?.updateSettings(settingsID: (settingsID?.description)!, recoveryEmail: "", dispalyName: "", savingContacts: settings.saveContacts ?? false, encryptContacts: encryptContacts, encryptAttachment: encryptAttachment) {(result) in
+        apiService?.updateSettings(settingsID: settingsID, recoveryEmail: "", dispalyName: "", savingContacts: settings.saveContacts ?? false, encryptContacts: encryptContacts, encryptAttachment: encryptAttachment, encryptSubject: encryptSubject) {(result) in
             
             HUD.hide()
             

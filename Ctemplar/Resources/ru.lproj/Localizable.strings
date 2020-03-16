@@ -39,6 +39,7 @@
 "forgotPassword" = "Забыли пароль?";
 "login" = "Войти";
 "createAccount" = "Создать аккаунт";
+"rememberMe" = "оставаться в системе";
 
 //Sign Up
 
@@ -158,6 +159,14 @@
 "address" = "Адрес";
 "note" = "Примечание";
 
+//Pgp Keys
+
+"fingerprint" = "отпечаток пальца";
+"publicKey" = "Открытый ключ";
+"privateKey" = "Закрытый ключ";
+"publicKeyDownload" = "Загрузить открытый ключ (4096 бит)";
+"privateKeyDownload" = "Скачать приватный ключ (4096 бит)";
+
 //view message
 
 "viewDetails" = "Показать детали";
@@ -191,6 +200,11 @@
 "forwardSubject" = "Fwd: ";
 "replySubject" = "Re: ";
 "inProgress" = "In progress";
+
+"confirmForwardAttachments" = "Подтвердите пересылку вложений";
+"confirmForwardAttachmentsText" = "Вы хотите переслать вложения этого сообщения?";
+"yesActionTitle" = "да";
+"noActionTitle" = "нет";
 
 // Search Screen
 
@@ -279,6 +293,7 @@
 "signature" = "Подпись";
 "mobileSignature" = "Мобильная подпись";
 "default" = "Основная";
+"keys" = "Ключи";
 
 "aboutUs" = "О нас";
 "privacyPolicy" = "Политика конфиденциальности";
@@ -296,6 +311,7 @@
 "selectDefaulfAddress" = "Выберите почтовый ящик по умолчанию";
 "addresses" = "Адреса";
 
+"subjectEncryption" = "предметное шифрование";
 "contactsEncryption" = "Шифровать контакты";
 "attachmentEncryption" = "Шифровать вложения";
 

@@ -49,12 +49,12 @@ class AttachmentView: UIView {
         self.activityIndicator.startAnimating()
         DispatchQueue.global(qos: .userInteractive).async {
             let fileData = try? Data(contentsOf: fileUrl)
-            let fileSize = fileData?.sizeData()
+            let fileSize = fileData?.sizeData() ?? ""
             let fileName = fileUrl.lastPathComponent
             DispatchQueue.main.async {
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.isHidden = true
-                self.formatFileTitle(fileName: fileName, fileSize: fileSize!)
+                self.formatFileTitle(fileName: fileName, fileSize: fileSize)
             }
         }
     }

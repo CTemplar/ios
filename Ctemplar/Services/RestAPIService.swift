@@ -105,6 +105,7 @@ enum JSONKey: String {
     case otp = "otp"
     case emailHash = "email_hash"
     case encryptedData = "encrypted_data"
+    case subjectEncrypted = "is_subject_encrypted"
     case contactsEncrypted = "is_contacts_encrypted"
     case attachmentEncrypted = "is_attachments_encrypted"
     case platform = "platform"
@@ -355,7 +356,7 @@ class RestAPIService {
         }
     }
     
-    func updateSendingMessage(token: String, messageID: String, mailboxID: Int, sender: String, encryptedMessage: String, subject: String, recieversList: [[String]], folder: String, send: Bool, encryptionObject: [String : String], encrypted: Bool, attachments: Array<[String : String]>, selfDestructionDate: String, delayedDeliveryDate: String, deadManTimer: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateSendingMessage(token: String, messageID: String, mailboxID: Int, sender: String, encryptedMessage: String, subject: String, recieversList: [[String]], folder: String, send: Bool, encryptionObject: [String : String], encrypted: Bool, subjectEncrypted: Bool, attachments: Array<[String : String]>, selfDestructionDate: String, delayedDeliveryDate: String, deadManTimer: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -372,6 +373,7 @@ class RestAPIService {
             JSONKey.send.rawValue: send,
             JSONKey.encryption.rawValue : encryptionObject,
             JSONKey.encrypted.rawValue : encrypted,
+            JSONKey.subjectEncrypted.rawValue: subjectEncrypted,
             JSONKey.attachments.rawValue : attachments,
             //JSONKey.selfDestructionDate.rawValue : selfDestructionDate,
             //JSONKey.delayedDeliveryDate.rawValue : delayedDeliveryDate,
@@ -1272,7 +1274,7 @@ class RestAPIService {
     
     //MARK: - Settings
     
-    func updateSettings(token: String, settingsID: String, recoveryEmail: String, dispalyName: String, savingContacts: Bool, encryptContacts: Bool, encryptAttachment: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateSettings(token: String, settingsID: Int, recoveryEmail: String, dispalyName: String, savingContacts: Bool, encryptContacts: Bool, encryptAttachment: Bool, encryptSubject: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -1280,6 +1282,7 @@ class RestAPIService {
         ]
         
         var parameters: Parameters = [
+            JSONKey.subjectEncrypted.rawValue : encryptSubject,
             JSONKey.savingContacts.rawValue : savingContacts,
             JSONKey.contactsEncrypted.rawValue : encryptContacts,
             JSONKey.attachmentEncrypted.rawValue : encryptAttachment
@@ -1295,7 +1298,7 @@ class RestAPIService {
         
         print("updateSettings parameters:", parameters)
         
-        let url = EndPoint.baseUrl.rawValue + EndPoint.settings.rawValue + settingsID + "/"
+        let url = EndPoint.baseUrl.rawValue + EndPoint.settings.rawValue + "\(settingsID)" + "/"
         
         print("updateSettings url:", url)
         

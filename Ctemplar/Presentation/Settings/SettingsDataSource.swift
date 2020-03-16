@@ -184,7 +184,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             break
         default:
             header.textLabel?.textAlignment = NSTextAlignment.left
-            header.textLabel?.font = UIFont(name: k_latoRegularFontName, size: 14)!
+            header.textLabel?.font = UIFont(name: k_latoRegularFontName, size: 15)!
             header.textLabel?.textColor = k_sideMenuTextFadeColor
         }
         
@@ -206,6 +206,10 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         bottomlineView.tag = tag
         bottomlineView.backgroundColor = k_settingHeaderLineColor
         header.add(subview: bottomlineView)
+        
+        let bkgView = UIView()
+        bkgView.backgroundColor = UIColor(white: 247/255.0, alpha: 1.0)
+        header.backgroundView = bkgView
     }
     
     func setupGeneralSectionsCell(index: Int, cell: UITableViewCell, settings: Settings) {
@@ -293,19 +297,6 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             break
         case SettingsMailSection.signature.rawValue:
             cellTitle = "signature".localized()
-//            if let signature = mailbox.signature {
-//                if signature.count > 0 {
-//                    cellTitle = signature.removeHTMLTag
-//                    (cell as! SettingsBaseTableViewCell).titleLabel.numberOfLines = 0
-////                    let attributedText = signature.html2AttributedString ?? NSAttributedString()
-////                    (cell as! SettingsBaseTableViewCell).setupCellWithData(attributedTitle: attributedText, value: "")
-////                    return
-//                } else {
-//                    cellTitle = "signature".localized()
-//                }
-//            } else {
-//                cellTitle = "signature".localized()
-//            }
             break
         case SettingsMailSection.mobileSignature.rawValue:
             if let signature = UserDefaults.standard.string(forKey: k_mobileSignatureKey) {
@@ -317,6 +308,11 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             } else {
                 cellTitle = "mobileSignature".localized()
             }
+            break
+        case SettingsMailSection.keys.rawValue:
+            cellTitle = "keys".localized()
+            value = ""
+            break
         default:
             break
         }

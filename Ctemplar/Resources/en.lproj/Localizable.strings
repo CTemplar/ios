@@ -39,6 +39,7 @@
 "forgotPassword" = "Forgot Password?";
 "login" = "Log in";
 "createAccount" = "Create account";
+"rememberMe" = "Keep me logged in";
 
 //Sign Up
 
@@ -159,6 +160,14 @@
 "address" = "Address";
 "note" = "Note";
 
+//Pgp Keys
+
+"fingerprint" = "Fingerprint";
+"publicKey" = "Public Key";
+"privateKey" = "Private Key";
+"publicKeyDownload" = "Download public key (4096 bit)";
+"privateKeyDownload" = "Download private key (4096 bit)";
+
 //view message
 
 "viewDetails" = "View details";
@@ -191,6 +200,11 @@
 
 "forwardSubject" = "Fwd: ";
 "replySubject" = "Re: ";
+
+"confirmForwardAttachments" = "Confirm Forward Attachments";
+"confirmForwardAttachmentsText" = "Do you want to forward attachments of this message?";
+"yesActionTitle" = "Yes";
+"noActionTitle" = "No";
 
 // Search Screen
 
@@ -279,6 +293,7 @@
 "signature" = "Signature";
 "mobileSignature" = "Mobile signature";
 "default" = "Default";
+"keys" = "Keys";
 
 "aboutUs" = "About us";
 "privacyPolicy" = "Privacy Policy";
@@ -296,6 +311,7 @@
 "selectDefaulfAddress" = "Select default address";
 "addresses" = "Addresses";
 
+"subjectEncryption" = "Subject encryption";
 "сontactsEncryption" = "Contacts encryption";
 "attachmentEncryption" = "Attachment encryption";
 

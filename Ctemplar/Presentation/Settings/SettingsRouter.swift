@@ -38,10 +38,10 @@ class SettingsRouter {
         AlertHelperKit().showAlert(viewController!, title: nil, message: "featureIsComing".localized(), button: "closeButton".localized())
         return
         
-        let storyboard: UIStoryboard = UIStoryboard(name: k_ChangePasswordStoryboardName, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: k_ChangePasswordViewControllerID) as! ChangePasswordViewController
-        vc.user = (self.viewController?.user)!
-        self.viewController?.show(vc, sender: self)
+//        let storyboard: UIStoryboard = UIStoryboard(name: k_ChangePasswordStoryboardName, bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: k_ChangePasswordViewControllerID) as! ChangePasswordViewController
+//        vc.user = (self.viewController?.user)!
+//        self.viewController?.show(vc, sender: self)
     }
     
     func showSelectLanguageViewController() {
@@ -110,6 +110,13 @@ class SettingsRouter {
         let vc = storyboard.instantiateViewController(withIdentifier: k_SetSignatureViewControllerID) as! SetSignatureViewController
         vc.signatureType = type
         vc.user = (self.viewController?.user)!
+        self.viewController?.show(vc, sender: self)
+    }
+    
+    func showPgpKeysViewController() {
+        let storyboard: UIStoryboard = UIStoryboard(name: k_PGPKeysStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_PgpKeysViewControllerID) as! PgpKeysViewController
+//        vc.user = (self.viewController?.user)!
         self.viewController?.show(vc, sender: self)
     }
     

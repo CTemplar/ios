@@ -333,7 +333,7 @@ class APIService: HashingService {
         }
     }
     
-    func updateSendingMessage(messageID: String, mailboxID: Int, sender: String, encryptedMessage: String, subject: String, recieversList: [[String]], folder: String, send: Bool, encryptionObject: [String : String], encrypted: Bool, attachments: Array<[String : String]>, selfDestructionDate: String, delayedDeliveryDate: String, deadManDate: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateSendingMessage(messageID: String, mailboxID: Int, sender: String, encryptedMessage: String, subject: String, recieversList: [[String]], folder: String, send: Bool, encryptionObject: [String : String], encrypted: Bool, subjectEncrypted: Bool, attachments: Array<[String : String]>, selfDestructionDate: String, delayedDeliveryDate: String, deadManDate: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         var setFolder : String = folder
         var setSend : Bool = send
@@ -362,7 +362,7 @@ class APIService: HashingService {
                     
                     HUD.show(.progress)
                     
-                    self.restAPIService?.updateSendingMessage(token: token, messageID: messageID, mailboxID: mailboxID, sender: sender, encryptedMessage: encryptedMessage, subject: subject, recieversList: recieversList, folder: setFolder, send: setSend, encryptionObject: encryptionObject, encrypted: encrypted, attachments: attachments, selfDestructionDate: selfDestructionDate, delayedDeliveryDate: delayedDeliveryDate, deadManTimer: deadManTimer) {(result) in
+                    self.restAPIService?.updateSendingMessage(token: token, messageID: messageID, mailboxID: mailboxID, sender: sender, encryptedMessage: encryptedMessage, subject: subject, recieversList: recieversList, folder: setFolder, send: setSend, encryptionObject: encryptionObject, encrypted: encrypted, subjectEncrypted: subjectEncrypted, attachments: attachments, selfDestructionDate: selfDestructionDate, delayedDeliveryDate: delayedDeliveryDate, deadManTimer: deadManTimer) {(result) in
                         
                         switch(result) {
                             
@@ -1621,14 +1621,14 @@ class APIService: HashingService {
     
     //MARK: - Settings
     
-    func updateSettings(settingsID: String, recoveryEmail: String, dispalyName: String, savingContacts: Bool, encryptContacts: Bool, encryptAttachment: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateSettings(settingsID: Int, recoveryEmail: String, dispalyName: String, savingContacts: Bool, encryptContacts: Bool, encryptAttachment: Bool, encryptSubject: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         self.checkTokenExpiration(){ (complete) in
             if complete {
                 
                 if let token = self.getToken() {
                     
-                    self.restAPIService?.updateSettings(token: token, settingsID: settingsID, recoveryEmail: recoveryEmail, dispalyName: dispalyName, savingContacts: savingContacts, encryptContacts: encryptContacts, encryptAttachment: encryptAttachment) {(result) in
+                    self.restAPIService?.updateSettings(token: token, settingsID: settingsID, recoveryEmail: recoveryEmail, dispalyName: dispalyName, savingContacts: savingContacts, encryptContacts: encryptContacts, encryptAttachment: encryptAttachment, encryptSubject: encryptSubject) {(result) in
                         
                         switch(result) {
                             
@@ -1740,7 +1740,35 @@ class APIService: HashingService {
         }*/
     }
     
+    func isTokenValid() -> Bool{
+        if let tokenSavedTime = keychainService?.getTokenSavedTime() {
+            if tokenSavedTime.count > 0 {
+                if let tokenSavedDate = formatterService?.formatTokenTimeStringToDate(date: tokenSavedTime) {
+                    print("tokenSavedDate:", tokenSavedDate)
+                    let minutesCount = tokenSavedDate.minutesCountForTokenExpiration()
+                    if minutesCount < k_tokenMinutesExpiration {
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    }
     
+    func canTokenRefresh() -> Bool {
+        if let tokenSavedTime = keychainService?.getTokenSavedTime() {
+            if tokenSavedTime.count > 0 {
+                if let tokenSavedDate = formatterService?.formatTokenTimeStringToDate(date: tokenSavedTime) {
+                    print("tokenSavedDate:", tokenSavedDate)
+                    let hoursCount = tokenSavedDate.hoursCountForTokenExpiration()
+                    if hoursCount <= k_tokenHoursRefresh {
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    }
     //check message encryption for avoid server bug
     
     func isMessageEncrypted(message: EmailMessage) -> Bool {

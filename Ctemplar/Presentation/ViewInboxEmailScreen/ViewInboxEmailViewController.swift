@@ -101,9 +101,9 @@ class ViewInboxEmailViewController: UIViewController {
             if let hasChildren = message.hasChildren {
                 
                 if hasChildren == true {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
+//                    /DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
                         self.presenter?.interactor?.getMessage(messageID: message.messsageID!)
-                    })
+//                    })
                     
                     self.messageIsRead = true//message.read
                     self.messageIsStarred = message.starred
@@ -112,10 +112,10 @@ class ViewInboxEmailViewController: UIViewController {
                 } else {
                     self.presenter?.setupMessageHeader(message: message)//visual optimization
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: {
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: {
                         //self.presenter?.interactor?.setMessageData(message: message)
                         self.presenter?.interactor?.getMessage(messageID: message.messsageID!)
-                    })
+//                    })
                 }
             }
             

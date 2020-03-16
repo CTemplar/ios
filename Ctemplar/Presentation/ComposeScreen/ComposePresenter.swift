@@ -1289,6 +1289,28 @@ class ComposePresenter {
         return attachmentView!
     }
     
+    func shouldAddAttachments(message: EmailMessage, completion: @escaping (_ shouldAdd: Bool) -> Void) {
+        let answerMode = self.viewController?.answerMode ?? AnswerMessageMode.newMessage
+        if answerMode == .reply || answerMode == .replyAll {
+            completion(false)
+        }else if answerMode == .forward {
+            if (message.attachments?.count ?? 0) > 0 {
+                let alert = UIAlertController(title: "confirmForwardAttachments".localized(), message: "confirmForwardAttachmentsText".localized(), preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "yesActionTitle".localized(), style: .default, handler: { (action) in
+                    completion(true)
+                }))
+                alert.addAction(UIAlertAction(title: "noActionTitle".localized(), style: .cancel, handler: { (action) in
+                    completion(false)
+                }))
+                self.viewController?.present(alert, animated: true, completion: nil)
+            }else {
+                completion(true)
+            }
+        }else {
+            completion(true)
+        }
+    }
+    
     //MARK: - Upgrade to Prime
     
     func showUpgradeToPrimeView() {

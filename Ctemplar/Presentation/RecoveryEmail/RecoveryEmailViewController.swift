@@ -120,10 +120,10 @@ class RecoveryEmailViewController: UIViewController {
     
     func updateRecoveryEmail(settings: Settings, recoveryEmail: String) {
         
-        let settingsID = settings.settingsID
+        let settingsID = settings.settingsID ?? 0
         let savingContacts = settings.saveContacts
         
-        apiService?.updateSettings(settingsID: (settingsID?.description)!, recoveryEmail: recoveryEmail, dispalyName: "", savingContacts: savingContacts ?? false, encryptContacts: settings.isContactsEncrypted ?? false, encryptAttachment: settings.isAttachmentsEncrypted ?? false) {(result) in
+        apiService?.updateSettings(settingsID: settingsID, recoveryEmail: recoveryEmail, dispalyName: "", savingContacts: savingContacts ?? false, encryptContacts: settings.isContactsEncrypted ?? false, encryptAttachment: settings.isAttachmentsEncrypted ?? false, encryptSubject: settings.isSubjectEncrypted ?? false) {(result) in
             
             switch(result) {
                 

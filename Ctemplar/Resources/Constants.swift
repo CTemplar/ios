@@ -48,6 +48,7 @@ let k_WhiteBlackListsViewControllerID       = "WhiteBlackListsViewController"
 let k_AddContactToWhiteBlackListsViewControllerID       = "AddContactToWhiteBlackListsViewController"
 let k_SetMailboxViewControllerID            = "SetMailboxViewController"
 let k_SetSignatureViewControllerID          = "SetSignatureViewController"
+let k_PgpKeysViewControllerID               = "PgpKeysViewController"
 let k_PrivacyAndTermsViewControllerID       = "PrivacyAndTermsViewController"
 let k_AboutAsViewControllerID               = "AboutAsViewController"
 
@@ -80,6 +81,7 @@ let k_WhiteBlackListsStoryboardName        = "WhiteBlackLists"
 let k_AddContackToWhiteBlackListsStoryboardName        = "AddContactToWhiteBlackList"
 let k_SetMailboxStoryboardName             = "SetMailbox"
 let k_SetSignatureStoryboardName           = "SetSignature"
+let k_PGPKeysStoryboardName                = "PgpKeys"
 let k_PrivacyAndTermsStoryboardName        = "PrivacyAndTerms"
 let k_AddContactStoryboardName             = "AddContact"
 
@@ -393,13 +395,14 @@ let k_latoRegularFontName = "Lato-Regular"
 let k_latoBoldFontName    = "Lato-Bold"
 let k_unreadMessageSenderFont = UIFont.systemFont(ofSize: 16.0, weight: UIFont.Weight.semibold)
 let k_readMessageSenderFont = UIFont.systemFont(ofSize: 16.0)
-let k_unreadMEssageSubjectFont = UIFont(name: "Lato-Bold", size: 14.0)
-let k_readMEssageSubjectFont = UIFont(name: "Lato-Regular", size: 14.0)
+let k_unreadMessageSubjectFont = UIFont(name: "Lato-Bold", size: 14.0)
+let k_readMessageSubjectFont = UIFont(name: "Lato-Regular", size: 14.0)
 
 // other
 let k_contactPageLimit = 20
 let k_pageLimit = 30
 let k_firstLoadPageLimit = 10
+let k_firstLoadPageLimit_iPad = 20
 let k_offsetForLast = 5
 
 let k_numberOfRounds               = 29
@@ -419,6 +422,7 @@ let k_firstCharsForEncryptdHeader  = 5
 
 let k_tokenHoursExpiration         = 2
 let k_tokenMinutesExpiration       = 170
+let k_tokenHoursRefresh            = 47
 
 let k_undoActionBarShowingSecs     = 5.0
 
@@ -644,6 +648,7 @@ enum SettingsMailSection: Int, CaseIterable {
     case mail              = 0
     case signature         = 1
     case mobileSignature   = 2
+    case keys              = 3
 }
 
 enum SettingsAboutSection: Int, CaseIterable {
@@ -665,16 +670,19 @@ enum Languages: Int, CaseIterable {
     
     case english            = 0
     case russian            = 1
+    case french             = 2
 }
 
 enum LanguagesName: String {
     
     case english            = "English"
     case russian            = "Русский"
+    case french             = "Français"
 }
 
 enum LanguagesBundlePrefix: String {
     
     case english            = "en"
     case russian            = "ru"
+    case french             = "fr"
 }
