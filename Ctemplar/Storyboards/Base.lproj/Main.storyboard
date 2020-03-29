@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,7 +15,35 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="gg7-4Q-yBB">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="vvy-gw-HF1">
+                                <rect key="frame" x="84.5" y="216.5" width="206" height="204"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="vvy-gw-HF1" secondAttribute="height" multiplier="103:102" id="a8b-Zc-Ax6"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Pwc-Ek-0jx">
+                                <rect key="frame" x="82.5" y="444.5" width="210" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Pwc-Ek-0jx" secondAttribute="height" multiplier="15:2" id="eqA-h0-D0i"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Pwc-Ek-0jx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Bxg-iw-ZAn"/>
+                            <constraint firstAttribute="bottom" secondItem="gg7-4Q-yBB" secondAttribute="bottom" id="C7s-7I-Gvm"/>
+                            <constraint firstItem="vvy-gw-HF1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-117" id="OKj-uV-ig8"/>
+                            <constraint firstAttribute="trailing" secondItem="gg7-4Q-yBB" secondAttribute="trailing" id="Sza-hh-g3F"/>
+                            <constraint firstItem="Pwc-Ek-0jx" firstAttribute="top" secondItem="vvy-gw-HF1" secondAttribute="bottom" constant="24" id="URB-1j-oiG"/>
+                            <constraint firstItem="gg7-4Q-yBB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="XzV-Ao-iqw"/>
+                            <constraint firstItem="Pwc-Ek-0jx" firstAttribute="width" secondItem="Pwc-Ek-0jx" secondAttribute="height" multiplier="15:2" id="cja-EB-2Cm"/>
+                            <constraint firstItem="vvy-gw-HF1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iRA-dZ-BaI"/>
+                            <constraint firstItem="gg7-4Q-yBB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="yXj-I2-uch"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
@@ -37,4 +65,9 @@
             <point key="canvasLocation" x="692" y="36"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="AppTitle" width="105" height="14"/>
+        <image name="Background" width="375" height="667"/>
+        <image name="Logo" width="103" height="102"/>
+    </resources>
 </document>

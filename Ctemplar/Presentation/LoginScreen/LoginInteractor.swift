@@ -57,6 +57,7 @@ class LoginInteractor: HashingService {
                 keychainService?.saveRememberMeValue(rememberMe: false)
             }
             keychainService?.saveUserCredentials(userName: username, password: password)
+            keychainService?.saveTwoFAvalue(isTwoFAenabled: value.isTwoFAEnabled)
             NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil, userInfo: nil)
             self.sendAPNDeviceToken()
             self.viewController?.router?.showInboxScreen()

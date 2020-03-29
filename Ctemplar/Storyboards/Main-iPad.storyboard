@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YFy-fy-PJe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YFy-fy-PJe">
     <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,7 +15,37 @@
                     <view key="view" contentMode="scaleToFill" id="cCM-mM-DCs">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="9ch-aq-D7Y">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="8VH-mh-L7y">
+                                <rect key="frame" x="281" y="300" width="206" height="204"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="204" id="BvJ-U6-2v3"/>
+                                    <constraint firstAttribute="width" secondItem="8VH-mh-L7y" secondAttribute="height" multiplier="206:204" id="IaG-YY-7uj"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppTitle" translatesAutoresizingMaskIntoConstraints="NO" id="w1p-eg-yZ1">
+                                <rect key="frame" x="279" y="560" width="210" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="w1p-eg-yZ1" secondAttribute="height" multiplier="210:28" id="HyI-JZ-KTi"/>
+                                    <constraint firstAttribute="height" constant="28" id="gCf-Uo-W6d"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8VH-mh-L7y" firstAttribute="centerX" secondItem="cCM-mM-DCs" secondAttribute="centerX" id="ECw-8B-zxv"/>
+                            <constraint firstItem="w1p-eg-yZ1" firstAttribute="top" secondItem="8VH-mh-L7y" secondAttribute="bottom" constant="56" id="IWR-mb-JZU"/>
+                            <constraint firstItem="9ch-aq-D7Y" firstAttribute="top" secondItem="cCM-mM-DCs" secondAttribute="top" id="JP3-qC-UvM"/>
+                            <constraint firstItem="w1p-eg-yZ1" firstAttribute="centerX" secondItem="cCM-mM-DCs" secondAttribute="centerX" id="Jgu-dk-jXc"/>
+                            <constraint firstItem="w1p-eg-yZ1" firstAttribute="width" secondItem="w1p-eg-yZ1" secondAttribute="height" multiplier="210:28" id="Ugv-92-hXY"/>
+                            <constraint firstAttribute="bottom" secondItem="9ch-aq-D7Y" secondAttribute="bottom" id="ePk-v9-EcO"/>
+                            <constraint firstItem="8VH-mh-L7y" firstAttribute="centerY" secondItem="cCM-mM-DCs" secondAttribute="centerY" constant="-110" id="lmK-uS-JQb"/>
+                            <constraint firstAttribute="trailing" secondItem="9ch-aq-D7Y" secondAttribute="trailing" id="qQY-qz-S40"/>
+                            <constraint firstItem="9ch-aq-D7Y" firstAttribute="leading" secondItem="cCM-mM-DCs" secondAttribute="leading" id="vB2-y1-PnN"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="n6o-uB-nzh"/>
                     </view>
                 </viewController>
@@ -24,4 +54,9 @@
             <point key="canvasLocation" x="-369" y="-430"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="AppTitle" width="105" height="14"/>
+        <image name="Background" width="375" height="667"/>
+        <image name="Logo" width="103" height="102"/>
+    </resources>
 </document>

@@ -650,6 +650,12 @@
 		E399BC0323E87AFA00EEA708 /* RichEditorToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399BB8423E87AF900EEA708 /* RichEditorToolbar.swift */; };
 		E399BC0423E87AFA00EEA708 /* RichEditorOptionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399BB8523E87AF900EEA708 /* RichEditorOptionItem.swift */; };
 		E399BC0523E87AFA00EEA708 /* RichEditorOptionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399BB8523E87AF900EEA708 /* RichEditorOptionItem.swift */; };
+		E3E575D32430FB6400037979 /* UIView+Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E575D22430FB6400037979 /* UIView+Layer.swift */; };
+		E3E575D42430FB6400037979 /* UIView+Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E575D22430FB6400037979 /* UIView+Layer.swift */; };
+		E3E575D62430FB9B00037979 /* UINavBar+Borderline.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E575D52430FB9B00037979 /* UINavBar+Borderline.swift */; };
+		E3E575D72430FB9B00037979 /* UINavBar+Borderline.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E575D52430FB9B00037979 /* UINavBar+Borderline.swift */; };
+		E3E575D92430FBCE00037979 /* UIKitControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E575D82430FBCE00037979 /* UIKitControls.swift */; };
+		E3E575DA2430FBCE00037979 /* UIKitControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E575D82430FBCE00037979 /* UIKitControls.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -989,6 +995,9 @@
 		E399BB8323E87AF900EEA708 /* normalize.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = normalize.css; sourceTree = "<group>"; };
 		E399BB8423E87AF900EEA708 /* RichEditorToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichEditorToolbar.swift; sourceTree = "<group>"; };
 		E399BB8523E87AF900EEA708 /* RichEditorOptionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichEditorOptionItem.swift; sourceTree = "<group>"; };
+		E3E575D22430FB6400037979 /* UIView+Layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layer.swift"; sourceTree = "<group>"; };
+		E3E575D52430FB9B00037979 /* UINavBar+Borderline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavBar+Borderline.swift"; sourceTree = "<group>"; };
+		E3E575D82430FBCE00037979 /* UIKitControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitControls.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1249,6 +1258,7 @@
 		8433FF18216201A300C57DC8 /* Ctemplar */ = {
 			isa = PBXGroup;
 			children = (
+				E3E575D02430FB3700037979 /* Helpers */,
 				E399BB4123E87AB200EEA708 /* ThirdParty */,
 				CC97A4EF23A10D8D00FED4A2 /* Misc */,
 				8441099321776B6400F0BE18 /* README.md */,
@@ -1976,6 +1986,24 @@
 			path = editor;
 			sourceTree = "<group>";
 		};
+		E3E575D02430FB3700037979 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E3E575D12430FB4100037979 /* Extensions */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		E3E575D12430FB4100037979 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E3E575D22430FB6400037979 /* UIView+Layer.swift */,
+				E3E575D52430FB9B00037979 /* UINavBar+Borderline.swift */,
+				E3E575D82430FBCE00037979 /* UIKitControls.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2594,6 +2622,8 @@
 				845E64392170849C008612FE /* InboxSideMenuViewController.swift in Sources */,
 				3043741123A65F3F00F759D0 /* RouterToken.swift in Sources */,
 				84BB2E4E230ADB4C00E9C162 /* Captcha.swift in Sources */,
+				E3E575D92430FBCE00037979 /* UIKitControls.swift in Sources */,
+				E3E575D62430FB9B00037979 /* UINavBar+Borderline.swift in Sources */,
 				8462C62D21CCE21E005B3D74 /* Settings.swift in Sources */,
 				843FC3822164C2CC000CFEA9 /* KeychainService.swift in Sources */,
 				84344D3D21CA89FB00A5D9A0 /* AddFolderConfigurator.swift in Sources */,
@@ -2608,6 +2638,7 @@
 				8443D22221CBDD71002AD54B /* SettingsPresenter.swift in Sources */,
 				845E64462170C5A4008612FE /* AboutAsViewController.swift in Sources */,
 				84525F1B219568F200CA732E /* SearchPresenter.swift in Sources */,
+				E3E575D32430FB6400037979 /* UIView+Layer.swift in Sources */,
 				8434D9B6219C4E2800D2C3A5 /* ContactsInteractor.swift in Sources */,
 				8432870E21D25BB100A66DBF /* SetSignature.swift in Sources */,
 				840249942191C23800CDDB0F /* MoveToFolderTableViewCell.swift in Sources */,
@@ -2792,6 +2823,8 @@
 				CC69090D2384500100956E9B /* InboxSideMenuViewController.swift in Sources */,
 				3043741223A65F3F00F759D0 /* RouterToken.swift in Sources */,
 				CC69090E2384500100956E9B /* Captcha.swift in Sources */,
+				E3E575DA2430FBCE00037979 /* UIKitControls.swift in Sources */,
+				E3E575D72430FB9B00037979 /* UINavBar+Borderline.swift in Sources */,
 				CC69090F2384500100956E9B /* Settings.swift in Sources */,
 				CC6909102384500100956E9B /* KeychainService.swift in Sources */,
 				CC6909112384500100956E9B /* AddFolderConfigurator.swift in Sources */,
@@ -2806,6 +2839,7 @@
 				CC69091A2384500100956E9B /* SettingsPresenter.swift in Sources */,
 				CC69091B2384500100956E9B /* AboutAsViewController.swift in Sources */,
 				CC69091C2384500100956E9B /* SearchPresenter.swift in Sources */,
+				E3E575D42430FB6400037979 /* UIView+Layer.swift in Sources */,
 				CC69091D2384500100956E9B /* ContactsInteractor.swift in Sources */,
 				CC69091E2384500100956E9B /* SetSignature.swift in Sources */,
 				CC69091F2384500100956E9B /* MoveToFolderTableViewCell.swift in Sources */,
