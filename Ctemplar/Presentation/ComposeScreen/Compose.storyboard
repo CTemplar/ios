@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -244,41 +244,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JlZ-Fv-gSA">
-                                <rect key="frame" x="0.0" y="177" width="375" height="46"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="subject" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="MBF-I2-36Z" customClass="UILocalizedTextField" customModule="Ctemplar" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="13" width="343" height="18"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="18" id="Dis-u0-e7B"/>
-                                        </constraints>
-                                        <color key="textColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="Paf-AF-Vql" id="915-zL-89X"/>
-                                        </connections>
-                                    </textField>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="46" id="EJb-My-FE7"/>
-                                    <constraint firstItem="MBF-I2-36Z" firstAttribute="top" secondItem="JlZ-Fv-gSA" secondAttribute="top" constant="13" id="cTc-sK-qY4"/>
-                                    <constraint firstAttribute="trailing" secondItem="MBF-I2-36Z" secondAttribute="trailing" constant="16" id="oVS-Fe-IxD"/>
-                                    <constraint firstItem="MBF-I2-36Z" firstAttribute="leading" secondItem="JlZ-Fv-gSA" secondAttribute="leading" constant="16" id="z3N-2A-n8C"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SvU-Rf-Cm0">
                                 <rect key="frame" x="0.0" y="222" width="375" height="50"/>
                                 <subviews>
@@ -376,6 +341,41 @@
                                     <constraint firstItem="sck-AS-lTR" firstAttribute="centerY" secondItem="SvU-Rf-Cm0" secondAttribute="centerY" id="kuY-ma-F0L"/>
                                     <constraint firstItem="CwU-he-D7r" firstAttribute="leading" secondItem="sck-AS-lTR" secondAttribute="trailing" id="nig-84-OxM"/>
                                     <constraint firstItem="7U3-xX-q7Y" firstAttribute="top" secondItem="SvU-Rf-Cm0" secondAttribute="top" constant="3" id="wmi-kx-VaU"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JlZ-Fv-gSA">
+                                <rect key="frame" x="0.0" y="177" width="375" height="46"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="subject" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="MBF-I2-36Z" customClass="UILocalizedTextField" customModule="Ctemplar" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="13" width="343" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="18" id="Dis-u0-e7B"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="Paf-AF-Vql" id="915-zL-89X"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="EJb-My-FE7"/>
+                                    <constraint firstItem="MBF-I2-36Z" firstAttribute="top" secondItem="JlZ-Fv-gSA" secondAttribute="top" constant="13" id="cTc-sK-qY4"/>
+                                    <constraint firstAttribute="trailing" secondItem="MBF-I2-36Z" secondAttribute="trailing" constant="16" id="oVS-Fe-IxD"/>
+                                    <constraint firstItem="MBF-I2-36Z" firstAttribute="leading" secondItem="JlZ-Fv-gSA" secondAttribute="leading" constant="16" id="z3N-2A-n8C"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -511,6 +511,7 @@
                         <outlet property="encryptedButton" destination="w6J-GM-YcY" id="hzN-1G-inK"/>
                         <outlet property="expandButton" destination="0QO-oA-I6g" id="xfr-20-M50"/>
                         <outlet property="fromView" destination="HDc-VP-u4e" id="NXG-g5-Vmo"/>
+                        <outlet property="fromViewTopConstraint" destination="Ob6-Bg-iqd" id="BeE-1P-goE"/>
                         <outlet property="mailboxesButton" destination="Z1z-H2-Y3M" id="SnP-Nr-5hJ"/>
                         <outlet property="messageTextEditor" destination="mBI-rr-9aJ" id="CGk-ag-hrg"/>
                         <outlet property="messageTextEditorBottomOffsetConstraint" destination="jq0-Pp-v4w" id="Xdy-bd-Noo"/>
@@ -526,6 +527,7 @@
                         <outlet property="toViewSectionHeightConstraint" destination="lOT-Tm-3c1" id="ssz-zA-yrQ"/>
                         <outlet property="toViewSubsectionHeightConstraint" destination="c6v-iT-6BX" id="Eua-aW-JNM"/>
                         <outlet property="toolBarView" destination="SvU-Rf-Cm0" id="iBA-04-aBo"/>
+                        <outlet property="toolbarViewTopConstraint" destination="ocn-bq-SDv" id="99X-2a-0Dn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5P5-wB-qHE" userLabel="First Responder" sceneMemberID="firstResponder"/>

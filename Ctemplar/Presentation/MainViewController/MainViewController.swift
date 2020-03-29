@@ -42,13 +42,14 @@ class MainViewController: UIViewController {
         let isRememberMeEnabled = keyChainService?.getRememberMeValue() ?? false
 
         if (isRememberMeEnabled && (apiService?.canTokenRefresh() ?? false)) || (apiService?.isTokenValid() ?? false){
-            if (apiService?.canTokenRefresh() ?? false) {
-                if (!Device.IS_IPAD) {
-                    showInboxNavigationController()
-                } else {
-                    showSplitViewController()
-                }
+            if (!Device.IS_IPAD) {
+                showInboxNavigationController()
+            } else {
+                showSplitViewController()
             }
+//            if (apiService?.canTokenRefresh() ?? false) {
+//                
+//            }
         }else {
             showLoginViewController()
         }

@@ -44,10 +44,12 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet var delayedDeliveryButton : UIButton!
     @IBOutlet var deadManButton       : UIButton!
     
+    @IBOutlet var fromViewTopConstraint: NSLayoutConstraint!
     @IBOutlet var toViewSectionHeightConstraint          : NSLayoutConstraint!
     @IBOutlet var toViewSubsectionHeightConstraint       : NSLayoutConstraint!
     @IBOutlet var ccViewSubsectionHeightConstraint       : NSLayoutConstraint!
     @IBOutlet var bccViewSubsectionHeightConstraint      : NSLayoutConstraint!
+    @IBOutlet var toolbarViewTopConstraint: NSLayoutConstraint!
     
     @IBOutlet var tableViewTopOffsetConstraint           : NSLayoutConstraint!
     @IBOutlet var tableViewBottomOffsetConstraint        : NSLayoutConstraint!
@@ -111,6 +113,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var delayedDeliveryDate : Date!
     
     var runOnce : Bool = true
+    
+    var lastContentOffset: CGFloat = 0
         
     var upgradeToPrimeView : UpgradeToPrimeView?
     
@@ -140,6 +144,9 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         subjectTextField.delegate = self
         
         messageTextEditor.delegate = self
+        messageTextEditor.isScrollEnabled = false
+
+        scrollView.delegate = self
         
         ccToSubSectionView.isHidden = true
         bccToSubSectionView.isHidden = true
@@ -548,38 +555,59 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     func addNotificationObserver() {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.attachDownloadUpdate), name: NSNotification.Name(rawValue: k_attachUploadUpdateNotificationID), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
     }
     
-    @objc func keyboardWillShow(notification: Notification) {
-        
-        if self.messageTextEditor.isFirstResponder {
-            if self.view.frame.origin.y == 0 {
-                //self.view.frame.origin.y -= CGFloat(keyboardOffset)
-                
-                scrollViewBottomOffsetConstraint.constant = CGFloat(k_KeyboardHeight) + (UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0)
+    @objc func keyboardWillChangeFrame(_ notification: Notification) {
+        if let endFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            var keyboardHeight = UIScreen.main.bounds.height - endFrame.origin.y
+            if #available(iOS 11, *) {
+                if keyboardHeight > 0 {
+                    keyboardHeight = keyboardHeight - view.safeAreaInsets.bottom
+                }
+            }
+            if keyboardHeight == 0 {
+                scrollViewBottomOffsetConstraint.constant = 0.0
                 self.presenter?.setupMessageSectionSize()
+                tableViewBottomOffsetConstraint.constant = 0.0
+            }else {
+                scrollViewBottomOffsetConstraint.constant = keyboardHeight
+                self.presenter?.setupMessageSectionSize()
+                tableViewBottomOffsetConstraint.constant = keyboardHeight
             }
         }
-        
-        tableViewBottomOffsetConstraint.constant = CGFloat(k_KeyboardHeight)
     }
     
-    @objc func keyboardWillHide(notification: Notification) {
-        
-        if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y += CGFloat(k_KeyboardHeight)
-        }
-        
-        scrollViewBottomOffsetConstraint.constant = 0.0
-        self.presenter?.setupMessageSectionSize()
-        tableViewBottomOffsetConstraint.constant = 0.0
-    }
+//    @objc func keyboardWillShow(notification: Notification) {
+//
+//        if self.messageTextEditor.isFirstResponder {
+//            if self.view.frame.origin.y == 0 {
+//                //self.view.frame.origin.y -= CGFloat(keyboardOffset)
+//
+//                scrollViewBottomOffsetConstraint.constant = CGFloat(k_KeyboardHeight) + (UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0)
+//                self.presenter?.setupMessageSectionSize()
+//            }
+//        }
+//
+//        tableViewBottomOffsetConstraint.constant = CGFloat(k_KeyboardHeight)
+//    }
+//
+//    @objc func keyboardWillHide(notification: Notification) {
+//
+//        if self.view.frame.origin.y != 0 {
+//            self.view.frame.origin.y += CGFloat(k_KeyboardHeight)
+//        }
+//
+//        scrollViewBottomOffsetConstraint.constant = 0.0
+//        self.presenter?.setupMessageSectionSize()
+//        tableViewBottomOffsetConstraint.constant = 0.0
+//    }
     
     @objc func attachDownloadUpdate(notification: Notification) {
         
@@ -610,6 +638,26 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
 }
 
 extension ComposeViewController: RichEditorDelegate {
+    func richEditorTookFocus(_ editor: RichEditorView) {
+        fromViewTopConstraint.constant = -46
+        toolbarViewTopConstraint.constant = -51
+        fromView.isHidden = true
+        toolBarView.isHidden = true
+        UIView.animate(withDuration: 0.2) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func richEditorLostFocus(_ editor: RichEditorView) {
+        fromViewTopConstraint.constant = 0
+        toolbarViewTopConstraint.constant = -1
+        fromView.isHidden = false
+        toolBarView.isHidden = false
+        UIView.animate(withDuration: 0.2) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
     func richEditor(_ editor: RichEditorView, contentDidChange content: String) {
         self.presenter!.enabledSendButton()
         self.presenter?.setupMessageSectionSize()
@@ -619,6 +667,38 @@ extension ComposeViewController: RichEditorDelegate {
         self.presenter?.setupMessageSectionSize()
     }
     
+}
+
+extension ComposeViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == self.scrollView {
+//            let y = scrollView.contentOffset.y
+            
+            let delta = scrollView.contentOffset.y - lastContentOffset
+            print("delta: \(delta)")
+            if delta < 0 {
+                fromViewTopConstraint.constant = 0
+                toolbarViewTopConstraint.constant = -1
+                fromView.isHidden = false
+                toolBarView.isHidden = false
+            }else {
+                fromViewTopConstraint.constant = -46
+                toolbarViewTopConstraint.constant = -51
+                fromView.isHidden = true
+                toolBarView.isHidden = true
+            }
+            lastContentOffset = scrollView.contentOffset.y
+            UIView.animate(withDuration: 0.2) {
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+
+//    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+//        if scrollView == self.scrollView {
+//            lastContentOffset = scrollView.contentOffset.y
+//        }
+//    }
 }
 
 extension ComposeViewController: SetPasswordDelegate {
