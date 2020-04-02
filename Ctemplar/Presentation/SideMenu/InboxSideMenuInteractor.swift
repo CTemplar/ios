@@ -21,7 +21,7 @@ class InboxSideMenuInteractor {
         self.apiService?.logOut(completionHandler: { (result) in
             HUD.hide()
             self.resetInboxData()
-            
+            self.resetAppIconBadgeValue()
             if (!Device.IS_IPAD) {
                 self.viewController?.dismiss(animated: true, completion: {
                     if let parentViewController = self.viewController?.currentParentViewController {
@@ -50,6 +50,10 @@ class InboxSideMenuInteractor {
         self.viewController?.inboxViewController.allMessagesArray.removeAll()
         self.viewController?.inboxViewController.dataSource?.messagesArray.removeAll()
         self.viewController?.inboxViewController.dataSource?.reloadData()
+    }
+    
+    func resetAppIconBadgeValue() {
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     func setCustomFoldersData(folderList: FolderList) {
