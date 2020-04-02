@@ -45,11 +45,13 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet var deadManButton       : UIButton!
     
     @IBOutlet var fromViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet var fromViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet var toViewSectionHeightConstraint          : NSLayoutConstraint!
     @IBOutlet var toViewSubsectionHeightConstraint       : NSLayoutConstraint!
     @IBOutlet var ccViewSubsectionHeightConstraint       : NSLayoutConstraint!
     @IBOutlet var bccViewSubsectionHeightConstraint      : NSLayoutConstraint!
     @IBOutlet var toolbarViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet var toolbarViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet var tableViewTopOffsetConstraint           : NSLayoutConstraint!
     @IBOutlet var tableViewBottomOffsetConstraint        : NSLayoutConstraint!
@@ -115,6 +117,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var runOnce : Bool = true
     
     var lastContentOffset: CGFloat = 0
+    let fromViewRange: Range<CGFloat> = (-46 ..< 0)
+    let toolbarViewRange: Range<CGFloat> = (-56 ..< -1)
         
     var upgradeToPrimeView : UpgradeToPrimeView?
     
@@ -639,13 +643,6 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
 
 extension ComposeViewController: RichEditorDelegate {
     func richEditorTookFocus(_ editor: RichEditorView) {
-        fromViewTopConstraint.constant = -46
-        toolbarViewTopConstraint.constant = -51
-        fromView.isHidden = true
-        toolBarView.isHidden = true
-        UIView.animate(withDuration: 0.2) {
-            self.view.layoutIfNeeded()
-        }
     }
     
     func richEditorLostFocus(_ editor: RichEditorView) {
@@ -672,20 +669,24 @@ extension ComposeViewController: RichEditorDelegate {
 extension ComposeViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == self.scrollView {
-//            let y = scrollView.contentOffset.y
-            
+            let frameHeight = scrollView.frame.size.height
+            let contentHeight = scrollView.contentSize.height
+            let offsetY = scrollView.contentOffset.y
             let delta = scrollView.contentOffset.y - lastContentOffset
             print("delta: \(delta)")
-            if delta < 0 {
+            if scrollView.contentOffset.y == 0 {
                 fromViewTopConstraint.constant = 0
                 toolbarViewTopConstraint.constant = -1
-                fromView.isHidden = false
-                toolBarView.isHidden = false
-            }else {
+            }else if offsetY + frameHeight == contentHeight {
                 fromViewTopConstraint.constant = -46
                 toolbarViewTopConstraint.constant = -51
-                fromView.isHidden = true
-                toolBarView.isHidden = true
+            }
+            else if delta < 0 {
+                fromViewTopConstraint.constant = min(fromViewTopConstraint.constant - delta, 0)
+                toolbarViewTopConstraint.constant = min(toolbarViewTopConstraint.constant - delta, -1)
+            }else {
+                fromViewTopConstraint.constant = max(-46, fromViewTopConstraint.constant - delta)
+                toolbarViewTopConstraint.constant = max(-51, toolbarViewTopConstraint.constant - delta)
             }
             lastContentOffset = scrollView.contentOffset.y
             UIView.animate(withDuration: 0.2) {
@@ -694,11 +695,11 @@ extension ComposeViewController: UIScrollViewDelegate {
         }
     }
 
-//    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-//        if scrollView == self.scrollView {
-//            lastContentOffset = scrollView.contentOffset.y
-//        }
-//    }
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if scrollView == self.scrollView {
+            lastContentOffset = scrollView.contentOffset.y
+        }
+    }
 }
 
 extension ComposeViewController: SetPasswordDelegate {
