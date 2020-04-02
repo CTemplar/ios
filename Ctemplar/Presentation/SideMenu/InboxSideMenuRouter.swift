@@ -21,6 +21,32 @@ class InboxSideMenuRouter {
         self.viewController?.splitViewController?.showDetailViewController(inboxNavigationController!, sender: self)
     }
     
+    func showMessagesViewController(vc: InboxViewController) {
+        
+        self.viewController?.currentParentViewController = vc
+        if Device.IS_IPAD {
+            self.viewController?.splitViewController?.secondaryViewController?.show(vc, sender: self)
+            self.viewController?.splitViewController?.toggleMasterView()
+        }else {
+            var currentVCStack = self.viewController?.navigationController?.viewControllers
+            if (currentVCStack ?? []).count > 1 {
+                currentVCStack?.removeSubrange(2...3)
+            }
+            
+            currentVCStack?.append(vc)
+            self.viewController?.navigationController?.setViewControllers(currentVCStack!, animated: true)
+//            if let navController = self.viewController?.navigationController {
+//                for i in 0..<navController.viewControllers.count {
+//                    if navController.viewControllers[i] == vc {
+//                        navController.viewControllers.remove(at: i)
+//                        break
+//                    }
+//                }
+//            }
+//            self.viewController?.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     func showContactsViewController() {
         
         let storyboard: UIStoryboard = UIStoryboard(name: k_ContactsStoryboardName, bundle: nil)
