@@ -16,11 +16,12 @@ class InboxRouter {
     
     func showInboxSideMenu() {
  
-        if (!Device.IS_IPAD) {
-            viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
-        } else {
-            self.viewController?.splitViewController?.toggleMasterView()
-        }
+//        if (!Device.IS_IPAD) {
+            self.viewController?.openLeft()
+//            viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+//        } else {
+//            self.viewController?.splitViewController?.toggleMasterView()
+//        }
     }
     
     func showComposeViewController(answerMode: AnswerMessageMode) {

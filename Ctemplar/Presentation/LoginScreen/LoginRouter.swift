@@ -25,7 +25,7 @@ class LoginRouter {
             
             let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: k_SignUpPageViewControllerID) as! SignUpPageViewController
-            vc.mainViewController = self.viewController?.mainViewController
+//            vc.mainViewController = self.viewController?.mainViewController
             self.viewController?.show(vc, sender: self)
         }
     }
@@ -48,15 +48,31 @@ class LoginRouter {
     
     func showInboxScreen() {
         
-        self.viewController?.dismiss(animated: true, completion: {
-            
-//            self.viewController?.mainViewController?.setAutoUpdaterTimer()
-            
-            if (!Device.IS_IPAD) {
-                self.viewController?.mainViewController?.showInboxNavigationController()
-            } else {
-                self.viewController?.mainViewController?.showSplitViewController()
+//        if Device.IS_IPAD {
+//            let splitViewController = self.viewController?.presenter?.interactor?.getSplitViewController()
+//            if let window = UIApplication.shared.getKeyWindow() {
+//                window.setRootViewController(splitViewController!)
+//            }else {
+//                self.viewController?.show(splitViewController!, sender: self)
+//            }
+//        }else {
+            let slideMenuController = self.viewController?.presenter?.interactor?.getSlideMenuController()
+            slideMenuController?.modalPresentationStyle = .fullScreen
+            if let window = UIApplication.shared.getKeyWindow() {
+                window.setRootViewController(slideMenuController!)
+            }else {
+                self.viewController?.show(slideMenuController!, sender: self)
             }
-        })
+//        }
+//        self.viewController?.dismiss(animated: true, completion: {
+//
+////            self.viewController?.mainViewController?.setAutoUpdaterTimer()
+//
+//            if (!Device.IS_IPAD) {
+//                self.viewController?.mainViewController?.showInboxNavigationController()
+//            } else {
+//                self.viewController?.mainViewController?.showSplitViewController()
+//            }
+//        })
     }
 }

@@ -14,7 +14,7 @@ class SplitViewController: UISplitViewController, UISplitViewControllerDelegate 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var apiService      : APIService?
     
-    var mainViewController: MainViewController?
+//    var mainViewController: MainViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,20 +24,20 @@ class SplitViewController: UISplitViewController, UISplitViewControllerDelegate 
         self.preferredDisplayMode = .automatic
         self.preferredPrimaryColumnWidthFraction = 0.34
         
-        if let inboxNavigationViewController = self.secondaryViewController as? InboxNavigationController {
-            
-            let inboxViewController = inboxNavigationViewController.viewControllers.first as! InboxViewController
-            
-            if let navigationController = self.primaryViewController as? UINavigationController {
-                
-                if let sideMenuViewController = navigationController.topViewController as? InboxSideMenuViewController {
-                    
-                    sideMenuViewController.inboxViewController = inboxViewController
-                    sideMenuViewController.mainViewController = self.mainViewController
-                    print("sideMenuViewController:", sideMenuViewController)
-                }
-            }
-        }
+//        if let inboxNavigationViewController = self.secondaryViewController as? InboxNavigationController {
+//
+//            let inboxViewController = inboxNavigationViewController.viewControllers.first as! InboxViewController
+//
+//            if let navigationController = self.primaryViewController as? UINavigationController {
+//
+//                if let sideMenuViewController = navigationController.topViewController as? InboxSideMenuViewController {
+//
+//                    sideMenuViewController.inboxViewController = inboxViewController
+//                    sideMenuViewController.mainViewController = self.mainViewController
+//                    print("sideMenuViewController:", sideMenuViewController)
+//                }
+//            }
+//        }
     }
     
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {

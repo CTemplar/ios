@@ -16,11 +16,12 @@ class ContactsRouter {
     
     func showInboxSideMenu() {
           
-        if (!Device.IS_IPAD) {
-            self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
-        } else {
-            self.viewController?.splitViewController?.toggleMasterView()
-        }
+//        if (!Device.IS_IPAD) {
+            self.viewController?.openLeft()
+//            self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+//        } else {
+//            self.viewController?.splitViewController?.toggleMasterView()
+//        }
     }
     
     func showAddContactViewController(editMode: Bool, contact: Contact, contactsEncrypted: Bool) {

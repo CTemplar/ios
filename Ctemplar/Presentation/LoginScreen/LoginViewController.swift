@@ -11,7 +11,7 @@ import Foundation
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
-    var mainViewController: MainViewController?
+//    var mainViewController: MainViewController?
     
     var passwordTextFieldSecure   : Bool = true
     
@@ -78,7 +78,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         adddNotificationObserver()
         
-        self.mainViewController?.stopAutoUpdaterTimer()
+//        self.mainViewController?.stopAutoUpdaterTimer()
     }
     
     //MARK: - IBActions

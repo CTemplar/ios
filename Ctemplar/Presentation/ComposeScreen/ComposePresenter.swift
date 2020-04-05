@@ -1176,7 +1176,7 @@ class ComposePresenter {
         var frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
         
         if Device.IS_IPAD {
-            frame = CGRect(x: 0.0, y: 0.0, width: (self.viewController!.splitViewController?.secondaryViewController?.view.frame.width)!, height: (self.viewController!.splitViewController?.secondaryViewController?.view.frame.height)!)
+//            frame = CGRect(x: 0.0, y: 0.0, width: (self.viewController!.splitViewController?.secondaryViewController?.view.frame.width)!, height: (self.viewController!.splitViewController?.secondaryViewController?.view.frame.height)!)
         }
         
         self.viewController?.draftActionsView?.frame = frame
