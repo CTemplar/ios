@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-//import SideMenu
 
 class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     

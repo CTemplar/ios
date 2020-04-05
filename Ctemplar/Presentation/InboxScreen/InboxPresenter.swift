@@ -9,7 +9,6 @@
 import Foundation
 import AlertHelperKit
 import PKHUD
-import SideMenu
 
 class InboxPresenter {
     

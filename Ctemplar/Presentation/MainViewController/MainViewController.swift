@@ -10,7 +10,6 @@ import UIKit
 import Foundation
 import PKHUD
 import AlertHelperKit
-import SideMenu
 
 class MainViewController: UIViewController, HashingService {
     

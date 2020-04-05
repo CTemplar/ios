@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import SideMenu
 
 class ContactsViewController: UIViewController, UISearchResultsUpdating, UISearchBarDelegate {
     
