@@ -158,3 +158,10 @@ extension AppDelegate {
     }
 }
 
+extension UIApplication {
+    func getKeyWindow() -> UIWindow? {
+        let newWindow = UIApplication.shared.windows.first { $0.isKeyWindow }
+        return newWindow
+    }
+}
+
