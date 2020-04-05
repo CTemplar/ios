@@ -292,7 +292,7 @@ class InboxPresenter {
     func initFilterView() {
         
         self.viewController?.inboxFilterView = Bundle.main.loadNibNamed(k_InboxFilterViewXibName, owner: nil, options: nil)?.first as? InboxFilterView
-        var frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
+        let frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
         
 //        if Device.IS_IPAD {
 //            self.viewController?.inboxFilterView = Bundle.main.loadNibNamed(k_InboxFilterViewXibName_iPad, owner: nil, options: nil)?.first as? InboxFilterView
@@ -302,7 +302,8 @@ class InboxPresenter {
         self.viewController?.inboxFilterView?.frame = frame
         self.viewController?.inboxFilterView?.delegate = self.viewController
         self.viewController?.inboxFilterView?.setup(appliedFilters: (self.viewController?.appliedFilters)!)
-        self.viewController?.navigationController!.view.addSubview((self.viewController?.inboxFilterView)!)
+        self.viewController?.view.addSubview(self.viewController!.inboxFilterView!)
+//        self.viewController?.navigationController!.view.addSubview((self.viewController?.inboxFilterView)!)
         
         self.viewController?.inboxFilterView?.isHidden = true
     }
