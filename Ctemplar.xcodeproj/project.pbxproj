@@ -522,6 +522,8 @@
 		E35F5EA92414C3CA003C4281 /* PgpKeysInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35F5EA72414C3CA003C4281 /* PgpKeysInteractor.swift */; };
 		E35F5EAB2414CEF0003C4281 /* PgpKeysDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35F5EAA2414CEF0003C4281 /* PgpKeysDataSource.swift */; };
 		E35F5EAC2414CEF0003C4281 /* PgpKeysDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35F5EAA2414CEF0003C4281 /* PgpKeysDataSource.swift */; };
+		E38E4AEF2439C3190062E830 /* UIViewController+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38E4AEE2439C3190062E830 /* UIViewController+Helper.swift */; };
+		E38E4AF02439C3190062E830 /* UIViewController+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38E4AEE2439C3190062E830 /* UIViewController+Helper.swift */; };
 		E399BB8623E87AFA00EEA708 /* RichEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399BB4323E87AF900EEA708 /* RichEditorView.swift */; };
 		E399BB8723E87AFA00EEA708 /* RichEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399BB4323E87AF900EEA708 /* RichEditorView.swift */; };
 		E399BB8823E87AFA00EEA708 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399BB4423E87AF900EEA708 /* String+Extensions.swift */; };
@@ -650,6 +652,14 @@
 		E399BC0323E87AFA00EEA708 /* RichEditorToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399BB8423E87AF900EEA708 /* RichEditorToolbar.swift */; };
 		E399BC0423E87AFA00EEA708 /* RichEditorOptionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399BB8523E87AF900EEA708 /* RichEditorOptionItem.swift */; };
 		E399BC0523E87AFA00EEA708 /* RichEditorOptionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399BB8523E87AF900EEA708 /* RichEditorOptionItem.swift */; };
+		E3E22E4E24398E6C00DCE5B7 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = E3E22E4A24398E6B00DCE5B7 /* LICENSE */; };
+		E3E22E4F24398E6C00DCE5B7 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = E3E22E4A24398E6B00DCE5B7 /* LICENSE */; };
+		E3E22E5024398E6C00DCE5B7 /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E22E4C24398E6B00DCE5B7 /* SlideMenuController.swift */; };
+		E3E22E5124398E6C00DCE5B7 /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E22E4C24398E6B00DCE5B7 /* SlideMenuController.swift */; };
+		E3E22E5624398FDD00DCE5B7 /* AppStoryBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E22E5524398FDC00DCE5B7 /* AppStoryBoard.swift */; };
+		E3E22E5724398FDD00DCE5B7 /* AppStoryBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E22E5524398FDC00DCE5B7 /* AppStoryBoard.swift */; };
+		E3E22E5A243995A000DCE5B7 /* UIWindowTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E22E59243995A000DCE5B7 /* UIWindowTransitions.swift */; };
+		E3E22E5B243995A000DCE5B7 /* UIWindowTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E22E59243995A000DCE5B7 /* UIWindowTransitions.swift */; };
 		E3E575D32430FB6400037979 /* UIView+Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E575D22430FB6400037979 /* UIView+Layer.swift */; };
 		E3E575D42430FB6400037979 /* UIView+Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E575D22430FB6400037979 /* UIView+Layer.swift */; };
 		E3E575D62430FB9B00037979 /* UINavBar+Borderline.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E575D52430FB9B00037979 /* UINavBar+Borderline.swift */; };
@@ -931,6 +941,7 @@
 		E35F5EA424137DC0003C4281 /* PgpKeysConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgpKeysConfigurator.swift; sourceTree = "<group>"; };
 		E35F5EA72414C3CA003C4281 /* PgpKeysInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgpKeysInteractor.swift; sourceTree = "<group>"; };
 		E35F5EAA2414CEF0003C4281 /* PgpKeysDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgpKeysDataSource.swift; sourceTree = "<group>"; };
+		E38E4AEE2439C3190062E830 /* UIViewController+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helper.swift"; sourceTree = "<group>"; };
 		E399BB4323E87AF900EEA708 /* RichEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichEditorView.swift; sourceTree = "<group>"; };
 		E399BB4423E87AF900EEA708 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		E399BB4523E87AF900EEA708 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
@@ -995,6 +1006,10 @@
 		E399BB8323E87AF900EEA708 /* normalize.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = normalize.css; sourceTree = "<group>"; };
 		E399BB8423E87AF900EEA708 /* RichEditorToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichEditorToolbar.swift; sourceTree = "<group>"; };
 		E399BB8523E87AF900EEA708 /* RichEditorOptionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichEditorOptionItem.swift; sourceTree = "<group>"; };
+		E3E22E4A24398E6B00DCE5B7 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		E3E22E4C24398E6B00DCE5B7 /* SlideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuController.swift; sourceTree = "<group>"; };
+		E3E22E5524398FDC00DCE5B7 /* AppStoryBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoryBoard.swift; sourceTree = "<group>"; };
+		E3E22E59243995A000DCE5B7 /* UIWindowTransitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIWindowTransitions.swift; sourceTree = "<group>"; };
 		E3E575D22430FB6400037979 /* UIView+Layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layer.swift"; sourceTree = "<group>"; };
 		E3E575D52430FB9B00037979 /* UINavBar+Borderline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavBar+Borderline.swift"; sourceTree = "<group>"; };
 		E3E575D82430FBCE00037979 /* UIKitControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitControls.swift; sourceTree = "<group>"; };
@@ -1336,7 +1351,6 @@
 				8443D21121CB697B002AD54B /* EditFolder */,
 				8434D9AA219BFCE700D2C3A5 /* ContactsScreen */,
 				845E643721708453008612FE /* SideMenu */,
-				84527B8E21EE12D000FF87AA /* SideMenuTableViewController */,
 				84527B8F21EE139100FF87AA /* SplitViewController */,
 				8443D21A21CBDB43002AD54B /* Settings */,
 				8431B08521D10F5000A73D39 /* RecoveryEmail */,
@@ -1673,13 +1687,6 @@
 			path = SearchCells;
 			sourceTree = "<group>";
 		};
-		84527B8E21EE12D000FF87AA /* SideMenuTableViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SideMenuTableViewController;
-			sourceTree = "<group>";
-		};
 		84527B8F21EE139100FF87AA /* SplitViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1885,6 +1892,9 @@
 		E399BB4123E87AB200EEA708 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				E3E22E58243995A000DCE5B7 /* UIWindowTransitions */,
+				E3E22E5424398FDC00DCE5B7 /* AppStoryBoard */,
+				E3E22E4924398E6B00DCE5B7 /* SlideMenuControllerSwift */,
 				E32213392402D9D0002E3CAD /* Toast */,
 				E399BB4223E87AF900EEA708 /* RichEditorView */,
 			);
@@ -1986,6 +1996,39 @@
 			path = editor;
 			sourceTree = "<group>";
 		};
+		E3E22E4924398E6B00DCE5B7 /* SlideMenuControllerSwift */ = {
+			isa = PBXGroup;
+			children = (
+				E3E22E4A24398E6B00DCE5B7 /* LICENSE */,
+				E3E22E4B24398E6B00DCE5B7 /* Source */,
+			);
+			path = SlideMenuControllerSwift;
+			sourceTree = "<group>";
+		};
+		E3E22E4B24398E6B00DCE5B7 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				E3E22E4C24398E6B00DCE5B7 /* SlideMenuController.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		E3E22E5424398FDC00DCE5B7 /* AppStoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				E3E22E5524398FDC00DCE5B7 /* AppStoryBoard.swift */,
+			);
+			path = AppStoryBoard;
+			sourceTree = "<group>";
+		};
+		E3E22E58243995A000DCE5B7 /* UIWindowTransitions */ = {
+			isa = PBXGroup;
+			children = (
+				E3E22E59243995A000DCE5B7 /* UIWindowTransitions.swift */,
+			);
+			path = UIWindowTransitions;
+			sourceTree = "<group>";
+		};
 		E3E575D02430FB3700037979 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -2000,6 +2043,7 @@
 				E3E575D22430FB6400037979 /* UIView+Layer.swift */,
 				E3E575D52430FB9B00037979 /* UINavBar+Borderline.swift */,
 				E3E575D82430FBCE00037979 /* UIKitControls.swift */,
+				E38E4AEE2439C3190062E830 /* UIViewController+Helper.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2106,6 +2150,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3E22E4E24398E6C00DCE5B7 /* LICENSE in Resources */,
 				8432871021D25BBD00A66DBF /* SetSignature.storyboard in Resources */,
 				840249952191C23800CDDB0F /* MoveToFolderTableViewCell.xib in Resources */,
 				84410990217723CE00F0BE18 /* ViewInboxEmail.storyboard in Resources */,
@@ -2241,6 +2286,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3E22E4F24398E6C00DCE5B7 /* LICENSE in Resources */,
 				CC69094A2384500100956E9B /* SetSignature.storyboard in Resources */,
 				CC69094B2384500100956E9B /* MoveToFolderTableViewCell.xib in Resources */,
 				CC69094C2384500100956E9B /* ViewInboxEmail.storyboard in Resources */,
@@ -2510,11 +2556,13 @@
 				84405BB821AD0CCB0048D8AC /* ComposeInteractor.swift in Sources */,
 				3077F30723CCBEB5002DF36D /* RouterPushNotifications.swift in Sources */,
 				3043740E239EE21700F759D0 /* AppError.swift in Sources */,
+				E3E22E5024398E6C00DCE5B7 /* SlideMenuController.swift in Sources */,
 				8440467521C7F86700CDEB3F /* ManageFoldersInteractor.swift in Sources */,
 				8440141521D35D5200FC450C /* UserMailboxBigTableViewCell.swift in Sources */,
 				843FC38C2164CA27000CFEA9 /* SignUpPresenter.swift in Sources */,
 				8432870B21D2036A00A66DBF /* ChangePasswordViewController.swift in Sources */,
 				843042A0217D9D5D00DB5787 /* InboxSideMenuDataSource.swift in Sources */,
+				E38E4AEF2439C3190062E830 /* UIViewController+Helper.swift in Sources */,
 				8434D9B4219C4E1200D2C3A5 /* ContactsPresenter.swift in Sources */,
 				8403BDDD21A3DD2100EE8DCD /* ContactsList.swift in Sources */,
 				84525F19219568E700CA732E /* SearchRouter.swift in Sources */,
@@ -2608,6 +2656,7 @@
 				84344D3F21CA8A0900A5D9A0 /* AddFolderInteractor.swift in Sources */,
 				8433A53A218974B5008E1C85 /* InboxFilterView.swift in Sources */,
 				843FC3932164D1B2000CFEA9 /* SignUpPageName.swift in Sources */,
+				E3E22E5A243995A000DCE5B7 /* UIWindowTransitions.swift in Sources */,
 				8434D9B0219C4DF500D2C3A5 /* ContactsConfigurator.swift in Sources */,
 				8402498C2191A00100CDDB0F /* MoveToPresenter.swift in Sources */,
 				E399BC0223E87AFA00EEA708 /* RichEditorToolbar.swift in Sources */,
@@ -2665,6 +2714,7 @@
 				8433FF5A2162181E00C57DC8 /* Constants.swift in Sources */,
 				8441098E2177238A00F0BE18 /* ViewInboxEmailViewController.swift in Sources */,
 				84FF7E3C219DB71500E3E56A /* ContactTableViewCell.swift in Sources */,
+				E3E22E5624398FDD00DCE5B7 /* AppStoryBoard.swift in Sources */,
 				8443D21721CB6AFB002AD54B /* EditFolderInteractor.swift in Sources */,
 				8435685D216F2DB3002101D3 /* InboxViewController.swift in Sources */,
 				8431B08721D10F7400A73D39 /* RecoveryEmailViewController.swift in Sources */,
@@ -2711,11 +2761,13 @@
 				CC6908B22384500100956E9B /* ComposeInteractor.swift in Sources */,
 				3077F30823CCBEB5002DF36D /* RouterPushNotifications.swift in Sources */,
 				3043740F239EE21700F759D0 /* AppError.swift in Sources */,
+				E3E22E5124398E6C00DCE5B7 /* SlideMenuController.swift in Sources */,
 				CC6908B32384500100956E9B /* ManageFoldersInteractor.swift in Sources */,
 				CC6908B42384500100956E9B /* UserMailboxBigTableViewCell.swift in Sources */,
 				CC6908B52384500100956E9B /* SignUpPresenter.swift in Sources */,
 				CC6908B62384500100956E9B /* ChangePasswordViewController.swift in Sources */,
 				CC6908B72384500100956E9B /* InboxSideMenuDataSource.swift in Sources */,
+				E38E4AF02439C3190062E830 /* UIViewController+Helper.swift in Sources */,
 				CC6908B82384500100956E9B /* ContactsPresenter.swift in Sources */,
 				CC6908B92384500100956E9B /* ContactsList.swift in Sources */,
 				CC6908BA2384500100956E9B /* SearchRouter.swift in Sources */,
@@ -2809,6 +2861,7 @@
 				CC6909042384500100956E9B /* AddFolderInteractor.swift in Sources */,
 				CC6909052384500100956E9B /* InboxFilterView.swift in Sources */,
 				CC6909062384500100956E9B /* SignUpPageName.swift in Sources */,
+				E3E22E5B243995A000DCE5B7 /* UIWindowTransitions.swift in Sources */,
 				CC6909072384500100956E9B /* ContactsConfigurator.swift in Sources */,
 				CC6909082384500100956E9B /* MoveToPresenter.swift in Sources */,
 				E399BC0323E87AFA00EEA708 /* RichEditorToolbar.swift in Sources */,
@@ -2866,6 +2919,7 @@
 				CC6909302384500100956E9B /* ViewInboxEmailViewController.swift in Sources */,
 				CC6909312384500100956E9B /* ContactTableViewCell.swift in Sources */,
 				CC6909322384500100956E9B /* EditFolderInteractor.swift in Sources */,
+				E3E22E5724398FDD00DCE5B7 /* AppStoryBoard.swift in Sources */,
 				CC6909332384500100956E9B /* InboxViewController.swift in Sources */,
 				CC6909342384500100956E9B /* RecoveryEmailViewController.swift in Sources */,
 				CC6909352384500100956E9B /* SettingsBaseTableViewCell.swift in Sources */,

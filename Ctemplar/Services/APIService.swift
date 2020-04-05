@@ -1971,16 +1971,19 @@ class APIService: HashingService {
     }
 
     func showLoginViewController() {
-
-        let mainViewController: MainViewController = UIApplication.shared.keyWindow?.rootViewController as! MainViewController
-        
-        let inboxViewController = mainViewController.inboxNavigationController.viewControllers.first as! InboxViewController
-        inboxViewController.inboxSideMenuViewController?.presenter?.interactor?.resetInboxData()
-        
-//        self.logOut() { done in
-            mainViewController.inboxNavigationController.dismiss(animated: false, completion: {
-                mainViewController.showLoginViewController()
-            })
-//        }       
+        let loginVC = LoginViewController.instantiate(fromAppStoryboard: .Login)
+        if let window = UIApplication.shared.getKeyWindow() {
+            window.setRootViewController(loginVC)
+        }
+//        let mainViewController: MainViewController = UIApplication.shared.keyWindow?.rootViewController as! MainViewController
+//        
+//        let inboxViewController = mainViewController.inboxNavigationController.viewControllers.first as! InboxViewController
+//        inboxViewController.inboxSideMenuViewController?.presenter?.interactor?.resetInboxData()
+//        
+////        self.logOut() { done in
+//            mainViewController.inboxNavigationController.dismiss(animated: false, completion: {
+//                mainViewController.showLoginViewController()
+//            })
+////        }       
     }
 }

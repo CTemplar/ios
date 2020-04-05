@@ -15,20 +15,20 @@ class SignUpRouter {
     
     func showInboxScreen() {
         
-        let currentPresentingViewController = self.viewController?.presentingViewController as? LoginViewController
-        
-        self.viewController?.dismiss(animated: true) {
-            
-            currentPresentingViewController?.dismiss(animated: true, completion: {
-                
-                self.viewController?.mainViewController?.setAutoUpdaterTimer()
-                
-                if (!Device.IS_IPAD) {
-                    self.viewController?.mainViewController?.showInboxNavigationController()
-                } else {
-                    self.viewController?.mainViewController?.showSplitViewController()
-                }
-            })
-        }
+//        let currentPresentingViewController = self.viewController?.presentingViewController as? LoginViewController
+//
+//        self.viewController?.dismiss(animated: true) {
+//
+//            currentPresentingViewController?.dismiss(animated: true, completion: {
+//
+//                self.viewController?.mainViewController?.setAutoUpdaterTimer()
+//
+//                if (!Device.IS_IPAD) {
+//                    self.viewController?.mainViewController?.showInboxNavigationController()
+//                } else {
+//                    self.viewController?.mainViewController?.showSplitViewController()
+//                }
+//            })
+//        }
     }
 }

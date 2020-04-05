@@ -12,7 +12,7 @@ def ctemplarPods
   pod 'AlertHelperKit', :git => 'https://github.com/keygx/AlertHelperKit'
   pod 'KeychainSwift'
   pod "BCryptSwift"
-  pod 'SideMenu', '~> 4.0.0'
+#  pod 'SideMenu', '~> 4.0.0'
   pod 'MGSwipeTableCell'
   pod 'Fabric'
   pod 'Crashlytics'

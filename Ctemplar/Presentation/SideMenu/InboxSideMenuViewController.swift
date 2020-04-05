@@ -12,7 +12,7 @@ import AlertHelperKit //temp
 
 class InboxSideMenuViewController: UIViewController {
     
-    var mainViewController: MainViewController?
+//    var mainViewController: MainViewController?
     
     var presenter   : InboxSideMenuPresenter?
     var router      : InboxSideMenuRouter?
@@ -20,6 +20,76 @@ class InboxSideMenuViewController: UIViewController {
     
     var currentParentViewController     : UIViewController!
     var inboxViewController             : InboxViewController!
+    
+    lazy var draftViewController : InboxViewController = {
+        let storyboard: UIStoryboard = UIStoryboard(name: k_InboxStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_InboxViewControllerID) as! InboxViewController
+        vc.currentFolder = InboxSideMenuOptionsName.draft.rawValue
+        vc.currentFolderFilter = MessagesFoldersName.draft.rawValue
+        return vc
+    }()
+    
+    lazy var sentViewControllet : InboxViewController = {
+        let storyboard: UIStoryboard = UIStoryboard(name: k_InboxStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_InboxViewControllerID) as! InboxViewController
+        vc.currentFolder = InboxSideMenuOptionsName.sent.rawValue
+        vc.currentFolderFilter = MessagesFoldersName.sent.rawValue
+        return vc
+    }()
+    
+    lazy var outboxViewController : InboxViewController = {
+        let storyboard: UIStoryboard = UIStoryboard(name: k_InboxStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_InboxViewControllerID) as! InboxViewController
+        vc.currentFolder = InboxSideMenuOptionsName.outbox.rawValue
+        vc.currentFolderFilter = MessagesFoldersName.outbox.rawValue
+        return vc
+    }()
+    
+    lazy var starredViewController : InboxViewController = {
+        let storyboard: UIStoryboard = UIStoryboard(name: k_InboxStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_InboxViewControllerID) as! InboxViewController
+        vc.currentFolder = InboxSideMenuOptionsName.starred.rawValue
+        vc.currentFolderFilter = MessagesFoldersName.starred.rawValue
+        return vc
+    }()
+    
+    lazy var archiveViewController : InboxViewController = {
+        let storyboard: UIStoryboard = UIStoryboard(name: k_InboxStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_InboxViewControllerID) as! InboxViewController
+        vc.currentFolder = InboxSideMenuOptionsName.archive.rawValue
+        vc.currentFolderFilter = MessagesFoldersName.archive.rawValue
+        return vc
+    }()
+    
+    lazy var spamViewController : InboxViewController = {
+        let storyboard: UIStoryboard = UIStoryboard(name: k_InboxStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_InboxViewControllerID) as! InboxViewController
+        vc.currentFolder = InboxSideMenuOptionsName.spam.rawValue
+        vc.currentFolderFilter = MessagesFoldersName.spam.rawValue
+        return vc
+    }()
+    
+    lazy var trashViewController : InboxViewController = {
+        let storyboard: UIStoryboard = UIStoryboard(name: k_InboxStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_InboxViewControllerID) as! InboxViewController
+        vc.currentFolder = InboxSideMenuOptionsName.trash.rawValue
+        vc.currentFolderFilter = MessagesFoldersName.trash.rawValue
+        return vc
+    }()
+    
+    lazy var allMailViewController : InboxViewController = {
+        let storyboard: UIStoryboard = UIStoryboard(name: k_InboxStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_InboxViewControllerID) as! InboxViewController
+        vc.currentFolder = InboxSideMenuOptionsName.allMails.rawValue
+        vc.currentFolderFilter = ""
+        return vc
+    }()
+    
+    lazy var customFoldersViewController: InboxViewController = {
+        let storyboard: UIStoryboard = UIStoryboard(name: k_InboxStoryboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: k_InboxViewControllerID) as! InboxViewController
+        return vc
+    }()
     
     var mainFoldersNameList: Array<String> = [
         InboxSideMenuOptionsName.inbox.rawValue,

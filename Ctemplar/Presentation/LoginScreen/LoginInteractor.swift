@@ -94,3 +94,36 @@ class LoginInteractor: HashingService {
         AppManager.shared.networkService.send(deviceToken: deviceToken) { _ in }
     }
 }
+
+extension LoginInteractor {
+    func getSlideMenuController() -> SlideMenuController {
+        let inboxViewController = InboxViewController.instantiate(fromAppStoryboard: .Inbox)
+        
+        let inboxNavigationController = (self.viewController?.getNavController(rootViewController: inboxViewController))!
+        
+        let leftMenuController = InboxSideMenuViewController.instantiate(fromAppStoryboard: .InboxSideMenu)
+        leftMenuController.inboxViewController = inboxViewController
+        leftMenuController.dataSource?.selectedIndexPath = IndexPath(row: 0, section: SideMenuSectionIndex.mainFolders.rawValue)
+        
+        let slideMenuController = SlideMenuController(mainViewController: inboxNavigationController, leftMenuViewController: leftMenuController)
+        SlideMenuOptions.rightViewWidth = UIScreen.main.bounds.width / 1.3
+        SlideMenuOptions.contentViewOpacity = 0.3
+        
+        SlideMenuOptions.contentViewScale = 1
+        
+        return slideMenuController
+    }
+    
+    func getSplitViewController() -> SplitViewController{
+        let splitViewController = SplitViewController.instantiate(fromAppStoryboard: .SplitiPad)
+//        splitViewController.mainViewController = self.viewController!
+        
+        let inboxViewController = InboxViewController.instantiate(fromAppStoryboard: .Inbox)
+        
+        let inboxNavigationController = UINavigationController(rootViewController: inboxViewController)
+        
+        splitViewController.showDetailViewController(inboxNavigationController, sender: self)
+        
+        return splitViewController
+    }
+}
