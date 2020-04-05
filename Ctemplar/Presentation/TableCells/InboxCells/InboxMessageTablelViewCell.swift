@@ -78,12 +78,21 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
     
     func setupLabelsAndImages(message: EmailMessage, header : String, subjectEncrypted: Bool) {
         
-        if let senderName = message.sender_display {
-            senderLabel.text = senderName
-        }else if let sender = message.sender {
-            senderLabel.text = sender
+        if message.folder == MessagesFoldersName.sent.rawValue {
+            if message.receivers_display.count > 0 {
+                let namesString = message.receivers_display.joined(separator: ", ")
+                senderLabel.text = namesString
+            }else if let receivers = message.receivers as? Array<String> {
+                let namesString = receivers.joined(separator: ", ")
+                senderLabel.text = namesString
+            }
+        }else {
+            if let senderName = message.sender_display {
+                senderLabel.text = senderName
+            }else if let sender = message.sender {
+                senderLabel.text = sender
+            }
         }
-        
         if subjectEncrypted {
             encryptedSubjectView.isHidden = false
             subjectLabel.text = ""

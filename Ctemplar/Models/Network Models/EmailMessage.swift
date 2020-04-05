@@ -33,6 +33,7 @@ struct EmailMessage {
     var parent : String? = nil
     var read : Bool? = nil
     var receivers : Array<Any>? = nil
+    var receivers_display : [String] = []
     var send : String? = nil
     var sender : String? = nil
     var sender_display: String? = nil
@@ -98,6 +99,9 @@ struct EmailMessage {
             if let displayName = senderDisplayDict["name"] as? String {
                 self.sender_display = displayName
             }
+        }
+        if let receiversDisplayArray = dictionary["receiver_display"] as? [[String: Any]] {
+            receivers_display = receiversDisplayArray.map({ $0["name"] as? String ?? "" })
         }
     }
     
