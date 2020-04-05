@@ -150,6 +150,8 @@ let k_reloadViewControllerDataSourceNotificationID    = "ReloadViewControllerDat
 let k_updateCustomFolderNotificationID = "UpdateCustomFoldersNotificationIdentifier"
 // colors
 
+let k_navBar_titleColor: UIColor = UIColor(red: 44/255, green: 62/255, blue: 80/255, alpha: 0.87)
+let k_navBar_backgroundColor: UIColor = UIColor(red: 250/255, green: 251/255, blue: 251/255, alpha: 1.0)
 let k_lightRedColor: UIColor = UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 0.2)
 let k_redColor: UIColor = UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 1.0)
 
