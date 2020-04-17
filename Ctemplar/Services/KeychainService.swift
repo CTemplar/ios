@@ -16,7 +16,7 @@ class KeychainService
         case tokenSavedTime = "tokenSavedTime"
         case username = "username"
         case password = "password"
-        case twoFAcode = "twoFAcode"
+        case twoFAenabled = "twoFAenabled"
         case apnToken = "apnToken"
         case rememberMe = "rememberMe"
         
@@ -86,10 +86,14 @@ class KeychainService
         return password
     }
     
-    func getTwoFAcode() -> String {
+    func saveTwoFAvalue(isTwoFAenabled: Bool) {
+        keychain.set(isTwoFAenabled, forKey: Consts.twoFAenabled.keyName)
+    }
+    
+    func getTwoFAstatus() -> Bool {
         
-        guard let code = keychain.get(Consts.twoFAcode.keyName) else {
-            return ""
+        guard let code = keychain.getBool(Consts.twoFAenabled.keyName) else {
+            return true
         }
         
         return code
@@ -132,6 +136,7 @@ class KeychainService
         keychain.delete(Consts.tokenSavedTime.keyName)
         keychain.delete(Consts.username.keyName)
         keychain.delete(Consts.password.keyName)
+        keychain.delete(Consts.twoFAenabled.keyName)
         keychain.delete(Consts.rememberMe.keyName)
 //        keychain.delete(Consts.apnToken.keyName)
     }

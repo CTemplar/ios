@@ -66,7 +66,6 @@ PODS:
   - ObjectivePGP (0.15.0)
   - PKHUD (5.1.0)
   - Protobuf (3.11.2)
-  - SideMenu (4.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.0-rc.3)
@@ -79,7 +78,6 @@ DEPENDENCIES:
   - MGSwipeTableCell
   - ObjectivePGP
   - PKHUD (~> 5.1.0)
-  - SideMenu (~> 4.0.0)
 
 SPEC REPOS:
   trunk:
@@ -103,7 +101,6 @@ SPEC REPOS:
     - ObjectivePGP
     - PKHUD
     - Protobuf
-    - SideMenu
 
 EXTERNAL SOURCES:
   AlertHelperKit:
@@ -136,8 +133,7 @@ SPEC CHECKSUMS:
   ObjectivePGP: 35a73ed3253e7e2982184ea86b1ff6c5773d1299
   PKHUD: 62ea46a1e88c4def1da784878d199bb54c841e3c
   Protobuf: dd1aaea7140debfe4dd0683fb8ef208e527ae153
-  SideMenu: 70ee5657df63ec3382660ec4ef470bf1cf5db07d
 
-PODFILE CHECKSUM: 51bd3de71cd0e91d02ac6419d04133369473a972
+PODFILE CHECKSUM: f599616495d8da2cf07fafe3d6de23409f3c300d
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1

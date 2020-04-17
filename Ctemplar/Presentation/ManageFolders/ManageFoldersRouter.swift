@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import SideMenu
 
 class ManageFoldersRouter {
     
@@ -17,11 +16,12 @@ class ManageFoldersRouter {
     func showInboxSideMenu() {
         
         //self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
-        if (!Device.IS_IPAD) {
-            self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
-        } else {
-            self.viewController?.splitViewController?.toggleMasterView()
-        }
+//        if (!Device.IS_IPAD) {
+            self.viewController?.openLeft()
+//            self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+//        } else {
+//            self.viewController?.splitViewController?.toggleMasterView()
+//        }
     }
     
     func backAction() {

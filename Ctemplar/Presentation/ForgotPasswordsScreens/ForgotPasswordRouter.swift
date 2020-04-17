@@ -81,18 +81,18 @@ class ForgotPasswordRouter {
     }
     
     func showInboxScreen() {
-        guard let mainViewController = self.viewController?.view.window?.rootViewController as? MainViewController else {
-            backToLoginViewController()
-            return
-        }
-        mainViewController.dismiss(animated: true, completion: {
-            mainViewController.setAutoUpdaterTimer()
-            
-            if (!Device.IS_IPAD) {
-                mainViewController.showInboxNavigationController()
-            } else {
-                mainViewController.showSplitViewController()
-            }
-        })
+//        guard let mainViewController = self.viewController?.view.window?.rootViewController as? MainViewController else {
+//            backToLoginViewController()
+//            return
+//        }
+//        mainViewController.dismiss(animated: true, completion: {
+//            mainViewController.setAutoUpdaterTimer()
+//            
+//            if (!Device.IS_IPAD) {
+//                mainViewController.showInboxNavigationController()
+//            } else {
+//                mainViewController.showSplitViewController()
+//            }
+//        })
     }
 }

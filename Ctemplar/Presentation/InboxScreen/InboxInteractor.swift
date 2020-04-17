@@ -283,11 +283,9 @@ class InboxInteractor {
                             if let publicKey = mailbox.publicKey {
                                 self.pgpService?.extractAndSavePGPKeyFromString(key: publicKey)
                             }
-                            
-                            //load messages after keys storred
-                            self.messagesList(folder: (self.viewController?.currentFolderFilter)!, withUndo: "", silent: false)
                         }
                     }
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateInboxMessagesNotificationID), object: nil)
                 }
                 
             case .failure(let error):

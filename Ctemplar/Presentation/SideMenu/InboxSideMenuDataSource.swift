@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import SideMenu
 
 class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
@@ -252,11 +251,12 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         
         if self.selectedIndexPath == indexPath {
             
-            if (!Device.IS_IPAD) {
-                self.parentViewController?.dismiss(animated: true, completion: nil)
-            } else {
-                self.parentViewController?.splitViewController?.toggleMasterView()
-            }
+//            if (!Device.IS_IPAD) {
+//                self.parentViewController?.dismiss(animated: true, completion: nil)
+                self.parentViewController?.slideMenuController()?.closeLeft()
+//            } else {
+//                self.parentViewController?.splitViewController?.toggleMasterView()
+//            }
             
             return
         }
