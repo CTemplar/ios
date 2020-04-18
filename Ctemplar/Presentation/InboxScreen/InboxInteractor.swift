@@ -274,14 +274,15 @@ class InboxInteractor {
                         //print("mailbox", mailbox)
                         //print("privateKey:", mailbox.privateKey as Any)
                         //print("publicKey:", mailbox.publicKey as Any)
-                        
-                        if storeKeys == true {
-                            if let privateKey = mailbox.privateKey {
-                                self.pgpService?.extractAndSavePGPKeyFromString(key: privateKey)
-                            }
-                        
-                            if let publicKey = mailbox.publicKey {
-                                self.pgpService?.extractAndSavePGPKeyFromString(key: publicKey)
+                        if (mailbox.isDefault ?? false) || mailboxesList.count == 1 {
+                            if storeKeys == true {
+                                if let privateKey = mailbox.privateKey {
+                                    self.pgpService?.extractAndSavePGPKeyFromString(key: privateKey)
+                                }
+                            
+                                if let publicKey = mailbox.publicKey {
+                                    self.pgpService?.extractAndSavePGPKeyFromString(key: publicKey)
+                                }
                             }
                         }
                     }
