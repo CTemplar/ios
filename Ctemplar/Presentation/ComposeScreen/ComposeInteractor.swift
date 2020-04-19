@@ -503,46 +503,6 @@ class ComposeInteractor {
                 self.updateAttachmentsForNonCtemplarUsers(attachments: self.viewController?.mailAttachmentsList ?? [], index: 0, publicKeys: [], messageID: messageID)
             }
         }
-        
-//        if self.viewController?.encryptedMail == true {
-//
-//            if let encryptionObject = self.sendingMessage.encryption {
-//
-//                let userName = self.sendingMessage.messsageID?.description
-//
-//                if let nonCtemplarPGPKey = pgpService?.generatePGPKey(userName: userName!, password: self.setPassword) {
-//
-//                    encryptionObjectDictionary = self.setPGPKeysForEncryptionObject(object: encryptionObject, pgpKey: nonCtemplarPGPKey)
-//
-//                    var pgpKeys = Array<Key>()
-//
-//                    if let userKeys = self.pgpService?.getStoredPGPKeys() {
-//                        if userKeys.count > 0 {
-//                            pgpKeys = userKeys
-//                        }
-//                    }
-//
-//                    pgpKeys.append(nonCtemplarPGPKey)
-//
-//                    messageContent = self.encryptMessage(publicKeys: pgpKeys, message: messageContent)
-//                    let recieversList = self.setRecieversList()
-//
-//                    if let messageID = self.sendingMessage.messsageID {
-//                        self.updateAttachmentsForNonCtemplarUsers(publicKeys: [nonCtemplarPGPKey], messageID: messageID)
-//                        self.updateSendingMessage(messageID: messageID.description, encryptedMessage: messageContent, encryptionObject: encryptionObjectDictionary, subject: self.viewController!.subject, send: true, recieversList: recieversList, encrypted: true, subjectEncrypted: false, attachments: self.viewController!.mailAttachmentsList, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: self.getScheduledDateFor(mode: SchedulerMode.deadManTimer))
-//                    }
-//                }
-//            }
-//
-//        } else {
-//
-//            if let messageID = self.sendingMessage.messsageID {
-//
-//                let recieversList = self.setRecieversList()
-//                self.updateAttachmentsForNonCtemplarUsers(publicKeys: [], messageID: messageID)
-//                self.updateSendingMessage(messageID: messageID.description, encryptedMessage: messageContent, encryptionObject: [:], subject: self.viewController!.subject, send: true, recieversList: recieversList, encrypted: false, subjectEncrypted: false, attachments: self.viewController!.mailAttachmentsList, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: self.getScheduledDateFor(mode: SchedulerMode.deadManTimer))
-//            }
-//        }
     }
     
     func sendEmailForNonCtemplarUser(messageID: String, attachments: Array<[String : String]>) {
