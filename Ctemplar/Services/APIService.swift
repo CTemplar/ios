@@ -749,56 +749,11 @@ class APIService: HashingService {
                         switch(result) {
                             
                         case .success(let value):
-                            
-                            print("publicKeyFor success:", value)
-                            
-                            if let response = value as? Dictionary<String, Any> {
-                                
-                                if let message = self.parseServerResponse(response:response) {
-                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
-                                    completionHandler(APIResult.failure(error))
-                                } else {
-                                    
-                                    for dictionary in response {
-                                        
-                                        if dictionary.key == "keys" {
-                                            //print("dictionary values:", dictionary.value)
-                                            
-                                            var publicKeysArray = Array<Any>()
-                                            
-                                            let array = dictionary.value as! Array<Any>
-                                            for item in array {
-                                                //print("item:", item)
-                                                let keysDictionary = item as! [String : Any]
-                                                
-                                                for (key, value) in keysDictionary {
-                                                    if key == "public_key" {
-                                                        //print("public Key:", value)
-                                                        publicKeysArray.append(value)                                                        
-                                                    }
-                                                }
-                                            }
-                                            
-                                            completionHandler(APIResult.success(publicKeysArray))
-                                        }
-                                    }
-                                }
-                                
-                            } else {
-                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
-                                completionHandler(APIResult.failure(error))
-                            }
-                            
-                            
-                            
-                            //completionHandler(APIResult.success(value))
-                            
+                            completionHandler(APIResult.success(value))
                         case .failure(let error):
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                             completionHandler(APIResult.failure(error))
                         }
-                        
-                        //HUD.hide()
                     }
                 }
             }

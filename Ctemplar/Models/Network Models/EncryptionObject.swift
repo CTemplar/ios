@@ -89,6 +89,7 @@ struct EncryptionObject: Encodable {
         
         return ["password"          : self.password ?? "",
                 "password_hint"     : self.passwordHint ?? "",
+                "expiry_hours"      : "\(self.expiryHours ?? 120)"
         ]
     }
 }

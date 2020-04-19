@@ -64,11 +64,19 @@ class PGPService {
 
         if let keys = getStoredPGPKeys() {
             
-            guard let decryptedData = try? ObjectivePGP.decrypt(encryptedData, andVerifySignature: true, using: keys, passphraseForKey: {(key) -> String? in
-                return password
-            }) else {return nil}
-            
-            return decryptedData
+            do {
+                let decryptedData = try ObjectivePGP.decrypt(encryptedData, andVerifySignature: true, using: keys, passphraseForKey: { (key) -> String? in
+                    return password
+                })
+                return decryptedData
+            }catch {
+                print(error.localizedDescription)
+            }
+//            guard let decryptedData = try? ObjectivePGP.decrypt(encryptedData, andVerifySignature: true, using: keys, passphraseForKey: {(key) -> String? in
+//                return password
+//            }) else {return nil}
+//            
+//            return decryptedData
         }
         
         return nil

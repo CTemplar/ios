@@ -137,9 +137,9 @@ class ComposeInteractor {
         }
     }
     
-    func publicKeysFor(userEmailsArray: Array<String>, completion:@escaping (Array<Key>) -> () ) {
+    func publicKeysFor(userEmailsArray: Array<String>, completion:@escaping (_ keys: EmailsKeys?) -> () ) {
         
-        var recieversUsersPublicKeys = Array<Key>()
+//        var recieversUsersPublicKeys = Array<Key>()
         
         apiService?.publicKeyFor(userEmailsArray: userEmailsArray) {(result) in
             
@@ -147,28 +147,44 @@ class ComposeInteractor {
                 
             case .success(let value):
                 //print("publicKey value:", value)
-                
-                let publicKeysArray = value as! Array<String>
-                
-                for publicKey in publicKeysArray {
-                    let userPublicKey = self.pgpService?.readPGPKeysFromString(key: publicKey)
-                    recieversUsersPublicKeys = recieversUsersPublicKeys + userPublicKey!
-                }
-                
-                if let userKeys = self.pgpService?.getStoredPGPKeys() { //add logged user public key
-                    if userKeys.count > 0 {
-                        recieversUsersPublicKeys.append(userKeys.first!)
+                if let responseDictionary = value as? [String: Any] {
+                    var emailsKeys = EmailsKeys(dict: responseDictionary)
+                    if emailsKeys.encrypt {
+                        for emailKey in emailsKeys.keys {
+                            if let userPublicKey = self.pgpService?.readPGPKeysFromString(key: emailKey.publicKey)?.first {
+                                emailsKeys.pgpKeys.append(userPublicKey)
+                            }
+                        }
                     }
+                    completion(emailsKeys)
+                }else {
+                    completion(nil)
                 }
-                //print("public keys: ", recieversUsersPublicKeys.count)
+//                if let publicKeysArray = value as? Array<String> {
+//                    for publicKey in publicKeysArray {
+//                        let userPublicKey = self.pgpService?.readPGPKeysFromString(key: publicKey)
+//                        recieversUsersPublicKeys = recieversUsersPublicKeys + userPublicKey!
+//                    }
+//
+//                    if let userKeys = self.pgpService?.getStoredPGPKeys() { //add logged user public key
+//                        if userKeys.count > 0 {
+//                            recieversUsersPublicKeys.append(userKeys.first!)
+//                        }
+//                    }
+//                    //print("public keys: ", recieversUsersPublicKeys.count)
+//
+//                    completion(recieversUsersPublicKeys)
+//
+//                    //pgpService.extractAndSavePGPKeyFromString(key: publicKey)
+//                    //pgpService.getStoredPGPKeys()
+//                }else {
+//                    completion(recieversUsersPublicKeys)
+//                }
                 
-                completion(recieversUsersPublicKeys)
-
-                //pgpService.extractAndSavePGPKeyFromString(key: publicKey)
-                //pgpService.getStoredPGPKeys()
+                
                 
             case .failure(let error):
-                completion(recieversUsersPublicKeys)
+                completion(nil)
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Public Key Error", message: error.localizedDescription, button: "closeButton".localized())
             }
@@ -305,21 +321,22 @@ class ComposeInteractor {
     func prepareMessadgeToSend() {
         self.viewController?.view.endEditing(true)
         self.publicKeysFor(userEmailsArray: self.viewController!.emailsToArray) { (keys) in
-            print("publicKeys:", keys)
-            
-             if keys.count < 2 { //just logged user key or non
-                self.sendEmailForNonCtemplarUser()
-             } else {
-                
-                if let messageID = self.sendingMessage.messsageID {
-                    let attachmentsCount = self.viewController!.mailAttachmentsList.count
-                    if attachmentsCount > 0 && (self.viewController?.user.settings.isAttachmentsEncrypted)! {
-                        self.updateAttachments(publicKeys: keys, messageID: messageID)
-                    } else {
-                        self.sendEncryptedEmailForCtemplarUser(publicKeys: keys)
+            if let emailsKeys = keys {
+                if emailsKeys.encrypt {
+                    if let messageID = self.sendingMessage.messsageID {
+                        let attachmentsCount = self.viewController!.mailAttachmentsList.count
+                        if attachmentsCount > 0 && (self.viewController?.user.settings.isAttachmentsEncrypted)! {
+                            self.updateAttachments(publicKeys: emailsKeys.pgpKeys, messageID: messageID)
+                        } else {
+                            self.sendEncryptedEmailForCtemplarUser(publicKeys: emailsKeys.pgpKeys)
+                        }
                     }
+                }else {
+                    self.prepareEmailForNonCtemplarUser()
                 }
-             }
+            }else {
+                self.prepareEmailForNonCtemplarUser()
+            }
         }
     }
     
@@ -465,49 +482,52 @@ class ComposeInteractor {
         }
     }
     
-    func sendEmailForNonCtemplarUser() {
-        
-        var messageContent = self.getEnteredMessageContent()
-        var encryptionObjectDictionary =  [String : String]()
+    func prepareEmailForNonCtemplarUser() {
         
         if self.viewController?.encryptedMail == true {
-            
+            let userName = self.sendingMessage.messsageID?.description
+            if let nonCtemplarPGPKey = pgpService?.generatePGPKey(userName: userName!, password: self.setPassword) {
+                var pgpKeys = Array<Key>()
+                if let userKeys = self.pgpService?.getStoredPGPKeys() {
+                    if userKeys.count > 0 {
+                        pgpKeys = userKeys
+                    }
+                }
+                pgpKeys.append(nonCtemplarPGPKey)
+                if let messageID = self.sendingMessage.messsageID {
+                    self.updateAttachmentsForNonCtemplarUsers(attachments: self.viewController?.mailAttachmentsList ?? [], index: 0, publicKeys: pgpKeys, messageID: messageID)
+                }
+            }
+        }else {
+            if let messageID = self.sendingMessage.messsageID {
+                self.updateAttachmentsForNonCtemplarUsers(attachments: self.viewController?.mailAttachmentsList ?? [], index: 0, publicKeys: [], messageID: messageID)
+            }
+        }
+    }
+    
+    func sendEmailForNonCtemplarUser(messageID: String, attachments: Array<[String : String]>) {
+        var messageContent = self.getEnteredMessageContent()
+        var encryptionObjectDictionary =  [String : String]()
+        let recieversList = self.setRecieversList()
+        
+        if self.viewController?.encryptedMail == true {
             if let encryptionObject = self.sendingMessage.encryption {
-                
                 let userName = self.sendingMessage.messsageID?.description
-            
                 if let nonCtemplarPGPKey = pgpService?.generatePGPKey(userName: userName!, password: self.setPassword) {
-                
                     encryptionObjectDictionary = self.setPGPKeysForEncryptionObject(object: encryptionObject, pgpKey: nonCtemplarPGPKey)
-                    
                     var pgpKeys = Array<Key>()
-                    
                     if let userKeys = self.pgpService?.getStoredPGPKeys() {
                         if userKeys.count > 0 {
                             pgpKeys = userKeys
                         }
                     }
-                    
                     pgpKeys.append(nonCtemplarPGPKey)
-                    
                     messageContent = self.encryptMessage(publicKeys: pgpKeys, message: messageContent)
-                    
-                    let recieversList = self.setRecieversList()
-                    
-                    if let messageID = self.sendingMessage.messsageID {
-                        self.updateSendingMessage(messageID: messageID.description, encryptedMessage: messageContent, encryptionObject: encryptionObjectDictionary, subject: self.viewController!.subject, send: true, recieversList: recieversList, encrypted: true, subjectEncrypted: false, attachments: self.viewController!.mailAttachmentsList, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: self.getScheduledDateFor(mode: SchedulerMode.deadManTimer))
-                    }
+                    self.updateSendingMessage(messageID: messageID, encryptedMessage: messageContent, encryptionObject: encryptionObjectDictionary, subject: self.viewController!.subject, send: true, recieversList: recieversList, encrypted: true, subjectEncrypted: false, attachments: attachments, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: self.getScheduledDateFor(mode: SchedulerMode.deadManTimer))
                 }
             }
-            
-        } else {
-            
-            if let messageID = self.sendingMessage.messsageID {
-                
-                let recieversList = self.setRecieversList()
-                
-                self.updateSendingMessage(messageID: messageID.description, encryptedMessage: messageContent, encryptionObject: [:], subject: self.viewController!.subject, send: true, recieversList: recieversList, encrypted: false, subjectEncrypted: false, attachments: self.viewController!.mailAttachmentsList, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: self.getScheduledDateFor(mode: SchedulerMode.deadManTimer))
-            }
+        }else {
+            self.updateSendingMessage(messageID: messageID, encryptedMessage: messageContent, encryptionObject: [:], subject: self.viewController!.subject, send: true, recieversList: recieversList, encrypted: false, subjectEncrypted: false, attachments: attachments, selfDestructionDate: self.getScheduledDateFor(mode: SchedulerMode.selfDestructTimer), delayedDeliveryDate: self.getScheduledDateFor(mode: SchedulerMode.delayedDelivery), deadManDate: self.getScheduledDateFor(mode: SchedulerMode.deadManTimer))
         }
     }
     
@@ -628,7 +648,6 @@ class ComposeInteractor {
     //MARK: - Attachments
     
     func attachFileToDraftMessage(url: URL) {
-        
         if let messageID = self.sendingMessage.messsageID {
             self.uploadAttach(fileUrl: url, messageID: messageID.description)
         }
@@ -704,6 +723,54 @@ class ComposeInteractor {
             }
         }
     }
+    
+    func updateAttachmentsForNonCtemplarUsers(attachments: [[String:String]], index: Int, publicKeys: Array<Key>, messageID: Int) {
+        if index >= attachments.count {
+            self.sendEmailForNonCtemplarUser(messageID: "\(messageID)", attachments: attachments)
+            return
+        }
+        var attachments1 = attachments
+        let attachment = attachments1[index]
+        
+        let isAttachmentEncrypted = self.viewController?.user.settings.isAttachmentsEncrypted ?? false
+        if let attachFileUrl = attachment["localUrl"] {
+            let attachID = attachment["id"] ?? ""
+            let fileUrl = URL(fileURLWithPath: attachFileUrl)
+            if let fileData = try? Data(contentsOf: fileUrl) {
+                if publicKeys.count > 0 {
+                    if let encryptedfileData = pgpService?.encryptAsData(data: fileData, keys: publicKeys) {
+                        apiService?.updateAttachment(attachmentID: attachID, fileUrl: fileUrl, fileData: encryptedfileData, messageID: messageID, encrypt: true, completionHandler: { (result) in
+                            switch result {
+                            case .success(let value):
+                                let newAttachment = value as! Attachment
+                                attachments1[index] = newAttachment.toDictionary()
+                                break
+                            case .failure(let error):
+                                print(error.localizedDescription)
+                                break
+                            }
+                            self.updateAttachmentsForNonCtemplarUsers(attachments: attachments1, index: index + 1, publicKeys: publicKeys, messageID: messageID)
+                        })
+                    }
+                }else if isAttachmentEncrypted {
+                    apiService?.updateAttachment(attachmentID: attachID, fileUrl: fileUrl, fileData: fileData, messageID: messageID, encrypt: false, completionHandler: { (result) in
+                        switch result {
+                        case .success(let value):
+                            let newAttachment = value as! Attachment
+                            attachments1[index] = newAttachment.toDictionary()
+                            break
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                            break
+                        }
+                        self.updateAttachmentsForNonCtemplarUsers(attachments: attachments1, index: index + 1, publicKeys: publicKeys, messageID: messageID)
+                    })
+                }
+            }
+        }
+    }
+    
+    
     
     //MARK: - textView delegate
     
