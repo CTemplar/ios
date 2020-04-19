@@ -79,7 +79,7 @@ class LoginInteractor: HashingService {
         let substrings = trimmedName.split(separator: "@")
             
         if let domain = substrings.last {
-            if domain == k_mainDomain || domain == k_devMainDomain {
+            if domain == k_mainDomain || domain == k_devMainDomain || domain == k_devOldDomain {
                 if let name = substrings.first {
                     trimmedName = String(name)
                 }

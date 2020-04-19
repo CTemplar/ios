@@ -435,7 +435,8 @@ let k_customFoldersLimitForNonPremium = 3
 let k_colorButtonsTag = 200
 
 let k_mainDomain = "ctemplar.com"
-let k_devMainDomain = "dev.ctemplar.com"
+let k_devMainDomain = "dev.ctemplar.net"
+let k_devOldDomain = "dev.ctemplar.com"
 
 let k_platform = "ios"
 

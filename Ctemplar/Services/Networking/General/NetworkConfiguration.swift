@@ -10,7 +10,7 @@ import Foundation
 
 public struct NetworkConfiguration {
     #if DEVELOPMENT
-    static let baseUrl =  "https://devapi.ctemplar.com"
+    static let baseUrl =  "https://devapi.ctemplar.net"
     #else
     static let baseUrl =  "https://api.ctemplar.com"
     #endif
