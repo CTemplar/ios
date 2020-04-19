@@ -96,7 +96,7 @@ class PGPService {
                 return decryptedMessage
             } else {
                 print("decrypting failed")
-                return ""
+                return "#D_FAILED_ERROR#"
             }
         }
         

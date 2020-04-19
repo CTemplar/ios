@@ -320,6 +320,7 @@ class ComposeInteractor {
     
     func prepareMessadgeToSend() {
         self.viewController?.view.endEditing(true)
+        HUD.show(.progress)
         self.publicKeysFor(userEmailsArray: self.viewController!.emailsToArray) { (keys) in
             if let emailsKeys = keys {
                 if emailsKeys.encrypt {
