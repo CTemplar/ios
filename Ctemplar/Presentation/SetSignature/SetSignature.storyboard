@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -61,16 +61,15 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1KD-vX-Azf">
-                                <rect key="frame" x="0.0" y="49" width="375" height="150"/>
+                                <rect key="frame" x="0.0" y="49" width="375" height="598"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Zj-rG-ufH" customClass="RichEditorView" customModule="Ctemplar" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="8" width="343" height="134"/>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Zj-rG-ufH" customClass="RichEditorView" customModule="Ctemplar" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="8" width="343" height="582"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="GoL-jX-Mfr"/>
                                     <constraint firstAttribute="trailing" secondItem="5Zj-rG-ufH" secondAttribute="trailing" constant="16" id="HTz-5H-Tvh"/>
                                     <constraint firstAttribute="bottom" secondItem="5Zj-rG-ufH" secondAttribute="bottom" constant="8" id="Ogk-2F-6cy"/>
                                     <constraint firstItem="5Zj-rG-ufH" firstAttribute="top" secondItem="1KD-vX-Azf" secondAttribute="top" constant="8" id="Tbg-MW-KgZ"/>
@@ -97,6 +96,7 @@
                             <constraint firstItem="IJm-Tm-MZ5" firstAttribute="top" secondItem="5zs-9C-ufJ" secondAttribute="top" id="Y2T-1G-Fqu"/>
                             <constraint firstItem="1KD-vX-Azf" firstAttribute="top" secondItem="IJm-Tm-MZ5" secondAttribute="bottom" constant="-1" id="bmn-bM-txj"/>
                             <constraint firstItem="5zs-9C-ufJ" firstAttribute="trailing" secondItem="IJm-Tm-MZ5" secondAttribute="trailing" id="hGP-qb-ciF"/>
+                            <constraint firstItem="5zs-9C-ufJ" firstAttribute="bottom" secondItem="1KD-vX-Azf" secondAttribute="bottom" constant="20" id="oAA-U9-d6E"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5zs-9C-ufJ"/>
                     </view>
@@ -112,6 +112,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="signatureContainerView_bottom" destination="oAA-U9-d6E" id="o5Y-lR-HKl"/>
                         <outlet property="signatureEditorView" destination="5Zj-rG-ufH" id="1r1-bR-Xu6"/>
                         <outlet property="switcher" destination="mcO-Vk-azt" id="RRP-aI-16P"/>
                         <outlet property="textFieldView" destination="1KD-vX-Azf" id="d0f-hL-hil"/>
