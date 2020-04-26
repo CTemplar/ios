@@ -578,13 +578,13 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             }
             if keyboardHeight == 0 {
                 scrollViewBottomOffsetConstraint.constant = 0.0
-                self.presenter?.setupMessageSectionSize()
                 tableViewBottomOffsetConstraint.constant = 0.0
             }else {
                 scrollViewBottomOffsetConstraint.constant = keyboardHeight
-                self.presenter?.setupMessageSectionSize()
                 tableViewBottomOffsetConstraint.constant = keyboardHeight
             }
+            self.view.layoutIfNeeded()
+            self.presenter?.setupMessageSectionSize()
         }
     }
     
