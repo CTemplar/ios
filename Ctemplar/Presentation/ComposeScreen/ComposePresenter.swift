@@ -70,8 +70,12 @@ class ComposePresenter {
     }
     
     func backButtonPressed() {
-        
-        self.showDraftActionsView()
+        if shouldSaveDraft() {
+            self.showDraftActionsView()
+        }else {
+            self.interactor?.deleteDraft()
+            self.viewController!.navigationController?.popViewController(animated: true)
+        }
     }
     
     func setupAttachmentButton() {
@@ -214,6 +218,27 @@ class ComposePresenter {
         }
         
         self.showScheduler(mode: mode)
+    }
+    
+    func shouldSaveDraft() -> Bool {
+        var messageContentIsEmpty : Bool = false
+        var messageContent = self.viewController?.messageTextEditor.contentHTML ?? ""
+        if viewController?.answerMode == .forward {
+            if messageContent.count == 0 {
+                messageContent = self.viewController?.messageTextEditor.html ?? ""
+            }
+        }
+        if let range = messageContent.range(of: currentSignature) {
+            messageContent = messageContent.replacingCharacters(in: range, with: "")
+        }
+        messageContent = messageContent.replacingOccurrences(of: "<br>", with: "")
+        if messageContent.count == 0 {
+            messageContentIsEmpty = true
+        }
+        if self.viewController!.emailsToArray.count == 0 && self.viewController!.subject.count == 0 && messageContentIsEmpty {
+            return false
+        }
+        return true
     }
     
     func setupSchedulersButtons() {
