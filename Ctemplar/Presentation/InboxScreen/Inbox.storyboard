@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +24,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Kev-ma-6ds">
                                 <rect key="frame" x="0.0" y="44" width="414" height="643"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellIdentifier" textLabel="jQh-KU-Ggd" detailTextLabel="t5T-et-Umu" style="IBUITableViewCellStyleSubtitle" id="fdg-6n-Iwn">
                                         <rect key="frame" x="0.0" y="28" width="414" height="55.666667938232422"/>
@@ -50,17 +51,6 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eDd-Iw-BQd">
                                 <rect key="frame" x="0.0" y="44" width="414" height="643"/>
@@ -79,28 +69,17 @@
                                             <constraint firstAttribute="width" secondItem="aXO-qW-NOt" secondAttribute="height" multiplier="160:9" id="rnD-gF-6bD"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
-                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" name="cellSubTitleTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="viewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="sCN-au-kGO" firstAttribute="top" secondItem="eDd-Iw-BQd" secondAttribute="centerY" constant="-57" id="D46-GG-o5O"/>
                                     <constraint firstItem="sCN-au-kGO" firstAttribute="centerX" secondItem="eDd-Iw-BQd" secondAttribute="centerX" id="DB8-B7-hNM"/>
                                     <constraint firstItem="aXO-qW-NOt" firstAttribute="centerX" secondItem="eDd-Iw-BQd" secondAttribute="centerX" id="IIf-ZH-6O6"/>
                                     <constraint firstItem="aXO-qW-NOt" firstAttribute="top" secondItem="sCN-au-kGO" secondAttribute="bottom" constant="45" id="yEz-nZ-vcQ"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OxM-zC-5gC">
                                 <rect key="frame" x="0.0" y="687" width="414" height="83"/>
@@ -401,7 +380,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="viewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="eDd-Iw-BQd" firstAttribute="trailing" secondItem="Smu-NJ-VbE" secondAttribute="trailing" id="5Ik-ri-dRL"/>
                             <constraint firstItem="OxM-zC-5gC" firstAttribute="trailing" secondItem="Smu-NJ-VbE" secondAttribute="trailing" id="6RI-N4-Ecu"/>
@@ -419,20 +398,20 @@
                     </view>
                     <navigationItem key="navigationItem" title="Inbox" id="Ec2-qa-iIZ">
                         <barButtonItem key="leftBarButtonItem" image="MenuButton" id="R5E-6J-cXY">
-                            <color key="tintColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="0.86550946299999998" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" name="navButtonTintColor"/>
                             <connections>
                                 <action selector="menuButtonPressed:" destination="NhN-bs-dS3" id="m9w-nf-lBl"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="SearchButton" id="xtH-pi-9Ib">
-                                <color key="tintColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="0.86550946299999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" name="navButtonTintColor"/>
                                 <connections>
                                     <action selector="searchButtonPressed:" destination="NhN-bs-dS3" id="XYC-yn-ru8"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="moreMessage" id="T69-S1-hv2">
-                                <color key="tintColor" red="0.17254901960784313" green="0.24313725490196078" blue="0.31372549019607843" alpha="0.865509463028169" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <color key="tintColor" name="navButtonTintColor"/>
                                 <connections>
                                     <action selector="moreNavButtonPressed:" destination="NhN-bs-dS3" id="5jE-wd-OGR"/>
                                 </connections>
@@ -472,7 +451,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RY6-8P-htI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.98039215686274506" green="0.98431372549019602" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="navBarBackgroundColor"/>
+                        <color key="barTintColor" name="navBarBackgroundColor"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="0.17254901960784313" green="0.24313725490196078" blue="0.31372549019607843" alpha="0.865509463028169" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
@@ -496,5 +476,17 @@
         <image name="moveMessage" width="44" height="44"/>
         <image name="spamMessage" width="44" height="44"/>
         <image name="trashMessage" width="44" height="44"/>
+        <namedColor name="cellSubTitleTextColor">
+            <color red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="navBarBackgroundColor">
+            <color red="0.98039215686274506" green="0.98039215686274506" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="navButtonTintColor">
+            <color red="0.17254901960784313" green="0.24313725490196078" blue="0.31372549019607843" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="viewBackgroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
