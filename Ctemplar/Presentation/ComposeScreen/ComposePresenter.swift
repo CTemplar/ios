@@ -773,7 +773,7 @@ class ComposePresenter {
         
         for email in self.viewController!.emailsToArray {
             //_ = attributedString.setBackgroundColor(textToFind: email, color: k_mainInboxColor)
-            _ = attributedString.setForgroundColor(textToFind: email, color: k_emailToInputColor)
+            _ = attributedString.setForgroundColor(textToFind: email, color: k_emailToInputColor1)
         }
         
         if self.viewController!.tapSelectedEmail.count > 0 {

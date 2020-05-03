@@ -156,6 +156,9 @@ var k_navBar_titleColor: UIColor {
 var k_navBar_backgroundColor: UIColor {
     return UIColor(named: "navBarBackgroundColor")!
 } //= UIColor(red: 250/255, green: 251/255, blue: 251/255, alpha: 1.0)
+var k_navButtonTintColor: UIColor {
+    return UIColor(named: "navButtonTintColor")!
+}
 var k_lightRedColor: UIColor {
     return UIColor(named: "lightRedColor")!
 } //= UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 0.2)
@@ -189,6 +192,9 @@ var k_emailToColor: UIColor {
 var k_emailToInputColor: UIColor {
     return UIColor(named: "emailToInputColor")!
 } //= UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 0.5)
+var k_emailToInputColor1: UIColor {
+    return UIColor(named: "emailToInputColor1")!
+}
 
 var k_lightGrayTextColor: UIColor {
     return UIColor(named: "lightGrayTextColor")!

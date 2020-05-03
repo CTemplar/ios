@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -20,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yFZ-6d-6Dp" id="m34-gc-9jC">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="66.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roundDark" translatesAutoresizingMaskIntoConstraints="NO" id="VZo-LW-zfY">
@@ -32,7 +31,7 @@
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CDl-f3-UZk">
                         <rect key="frame" x="46" y="14" width="40" height="40"/>
-                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" name="composeMessageShadowColor"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="OQN-Qg-5gi"/>
                             <constraint firstAttribute="width" secondItem="CDl-f3-UZk" secondAttribute="height" multiplier="1:1" id="s2b-6Z-qBJ"/>
@@ -45,7 +44,7 @@
                                 <real key="value" value="1"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                <color key="value" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="value" name="composeMessageShadowColor"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
@@ -53,7 +52,7 @@
                         <rect key="frame" x="46" y="14" width="40" height="40"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
-                        <color key="textColor" red="0.035294117647058823" green="0.12156862745098039" blue="0.20784313725490194" alpha="0.40047315140845069" colorSpace="calibratedRGB"/>
+                        <color key="textColor" name="contactInitialsTextColor"/>
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -70,7 +69,7 @@
                             <constraint firstAttribute="height" constant="18" id="hB9-bC-ipG"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
-                        <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" name="cellSubTitleTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="andrewsmith@gmail.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWr-mH-zUE">
@@ -79,7 +78,7 @@
                             <constraint firstAttribute="height" constant="18" id="l9J-b9-pN7"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.37942891725352113" colorSpace="calibratedRGB"/>
+                        <color key="textColor" name="messageCountLabelTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -111,9 +110,22 @@
                 <outlet property="initialsLabel" destination="PBv-Zb-b4C" id="4Mp-8g-nP8"/>
                 <outlet property="nameLabel" destination="DDr-ca-wu2" id="zpc-r6-dVm"/>
             </connections>
+            <point key="canvasLocation" x="138" y="134"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="roundDark" width="29" height="29"/>
+        <image name="roundDark" width="29.333333969116211" height="29.333333969116211"/>
+        <namedColor name="cellSubTitleTextColor">
+            <color red="0.1289999932050705" green="0.1289999932050705" blue="0.1289999932050705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="composeMessageShadowColor">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="contactInitialsTextColor">
+            <color red="0.035294117647058823" green="0.12156862745098039" blue="0.20784313725490194" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="messageCountLabelTextColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.37999999523162842" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

@@ -24,6 +24,7 @@ class ViewInboxEmailPresenter {
 
     func setupNavigationBar(enabled: Bool) {
         
+        self.viewController?.navigationController?.navigationBar.tintColor = k_navButtonTintColor
         let arrowBackImage = UIImage(named: k_darkBackArrowImageName)
         self.viewController?.navigationController?.navigationBar.backIndicatorImage = arrowBackImage
         self.viewController?.navigationController?.navigationBar.backIndicatorTransitionMaskImage = arrowBackImage
