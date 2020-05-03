@@ -13,7 +13,9 @@ extension UIViewController {
         let navController = UINavigationController(rootViewController: rootViewController)
         let textAttributes = [NSAttributedString.Key.foregroundColor: k_navBar_titleColor]
         navController.navigationBar.titleTextAttributes = textAttributes
-        navController.navigationBar.backgroundColor = k_navBar_backgroundColor
+//        navController.navigationBar.backgroundColor = k_navBar_backgroundColor
+        navController.navigationBar.barTintColor = k_navBar_backgroundColor
+//        navController.navigationBar.isTranslucent = false
         
         return navController
     }

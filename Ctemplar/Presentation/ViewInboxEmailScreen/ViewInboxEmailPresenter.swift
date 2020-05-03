@@ -27,9 +27,8 @@ class ViewInboxEmailPresenter {
         let arrowBackImage = UIImage(named: k_darkBackArrowImageName)
         self.viewController?.navigationController?.navigationBar.backIndicatorImage = arrowBackImage
         self.viewController?.navigationController?.navigationBar.backIndicatorTransitionMaskImage = arrowBackImage
-        
         self.viewController?.navigationController?.navigationBar.topItem?.title = ""
-        self.viewController?.navigationController?.navigationBar.tintColor = UIColor.darkGray
+//        self.viewController?.navigationController?.navigationBar.tintColor = UIColor.darkGray
         
         let garbageButton : UIButton = UIButton.init(type: .custom)
         garbageButton.setImage(UIImage(named: k_garbageImageName), for: .normal)

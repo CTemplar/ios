@@ -270,6 +270,13 @@ var k_mailboxTextColor: UIColor {
     return UIColor(named: "mailboxTextColor")!
 } //= UIColor(red: 52.0/255.0, green: 73.0/255.0, blue: 94.0/255.0, alpha: 1.0)
 
+var k_cellTitleTextColor: UIColor {
+    return UIColor(named: "cellTitleTextColor")!
+}
+
+var k_messageCountLabelTextColor: UIColor {
+    return UIColor(named: "messageCountLabelTextColor")!
+}
 //size constants
 
 let k_pageControlBottomOffset           = 30.0
@@ -383,10 +390,10 @@ let k_blackFilterImageName          = "blackFilterButton"
 
 let k_darkBackArrowImageName        = "BackArrowDark"
 
-let k_garbageImageName              = "GarbageButton"
-let k_spamImageName                 = "SpamButton"
-let k_moveImageName                 = "MoveButton"
-let k_moreImageName                 = "MoreButton"
+let k_garbageImageName              = "trashMessage"
+let k_spamImageName                 = "spamMessage"
+let k_moveImageName                 = "moveMessage"
+let k_moreImageName                 = "moreMessage"
 
 let k_unreadImageName               = "unreadMessage"
 
