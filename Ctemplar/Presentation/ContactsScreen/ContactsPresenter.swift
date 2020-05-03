@@ -16,13 +16,13 @@ class ContactsPresenter {
     var interactor       : ContactsInteractor?
 
     func setupSearchController() {
-        
+        self.viewController?.navigationController?.navigationBar.tintColor = k_navBar_backgroundColor
         self.viewController?.definesPresentationContext = true
-        
+        self.viewController?.searchController.searchBar.barTintColor = k_navBar_backgroundColor
         self.viewController?.searchController.searchResultsUpdater = self.viewController
         self.viewController?.searchController.obscuresBackgroundDuringPresentation = false
         self.viewController?.searchController.hidesNavigationBarDuringPresentation = false
-        self.viewController?.searchController.searchBar.tintColor = k_contactsBarTintColor
+        self.viewController?.searchController.searchBar.tintColor = k_navBar_backgroundColor
         self.viewController?.searchController.searchBar.placeholder = "search".localized()
         //self.viewController?.navigationItem.searchController = self.viewController?.searchController
         self.viewController?.searchController.searchBar.delegate = self.viewController
