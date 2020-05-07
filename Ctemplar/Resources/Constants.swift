@@ -286,6 +286,10 @@ var k_cellTitleTextColor: UIColor {
 var k_messageCountLabelTextColor: UIColor {
     return UIColor(named: "messageCountLabelTextColor")!
 }
+
+var k_settingsHeaderBackgroundColor: UIColor {
+    return UIColor(named: "settingsHeaderBackgroundColor")!
+}
 //size constants
 
 let k_pageControlBottomOffset           = 30.0
