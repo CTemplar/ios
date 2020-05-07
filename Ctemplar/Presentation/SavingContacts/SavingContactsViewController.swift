@@ -41,7 +41,7 @@ class SavingContastsViewController: UIViewController {
     
     func setupScreen() {
         
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: k_contactsBarTintColor]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: k_navBar_titleColor]
         
         self.saveContacts = self.user.settings.saveContacts!
         
