@@ -99,7 +99,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="yzb-ZQ-8jY" firstAttribute="leading" secondItem="HMB-Ka-V96" secondAttribute="leading" id="0f6-6q-orQ"/>
                                     <constraint firstAttribute="bottom" secondItem="gEa-jr-Tvw" secondAttribute="bottom" constant="-36" id="5in-Nc-2bT"/>
@@ -196,7 +196,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="viewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="xAf-DS-WX6" firstAttribute="bottom" secondItem="6Sw-jN-jMH" secondAttribute="bottom" id="0ij-Kd-5z5"/>
                             <constraint firstItem="fnW-W7-n63" firstAttribute="leading" secondItem="xAf-DS-WX6" secondAttribute="leading" id="0tC-al-GOy"/>
@@ -261,6 +261,9 @@
         <image name="roundDark" width="29.333333969116211" height="29.333333969116211"/>
         <namedColor name="navButtonTintColor">
             <color red="0.17299999296665192" green="0.24300000071525574" blue="0.31400001049041748" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="viewBackgroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

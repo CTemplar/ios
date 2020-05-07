@@ -159,6 +159,9 @@ var k_navBar_backgroundColor: UIColor {
 var k_navButtonTintColor: UIColor {
     return UIColor(named: "navButtonTintColor")!
 }
+var k_searchBar_backgroundColor: UIColor {
+    return UIColor(named: "searchBarBackgroundColor")!
+}
 var k_lightRedColor: UIColor {
     return UIColor(named: "lightRedColor")!
 } //= UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 0.2)
