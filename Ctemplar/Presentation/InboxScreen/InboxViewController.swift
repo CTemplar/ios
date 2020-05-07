@@ -92,7 +92,7 @@ class InboxViewController: UIViewController {
         
         adddNotificationObserver()
 
-        self.leftBarButtonItem.isEnabled = false
+//        self.leftBarButtonItem.isEnabled = false
         self.bottomComposeButton.isEnabled = false
         self.rightComposeButton.isEnabled = false
         
