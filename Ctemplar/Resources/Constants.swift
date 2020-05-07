@@ -290,6 +290,10 @@ var k_messageCountLabelTextColor: UIColor {
 var k_settingsHeaderBackgroundColor: UIColor {
     return UIColor(named: "settingsHeaderBackgroundColor")!
 }
+
+var k_fingerprintTextColor: UIColor {
+    return UIColor(named: "fingerprintTextColor")!
+}
 //size constants
 
 let k_pageControlBottomOffset           = 30.0
