@@ -130,7 +130,7 @@ class SetSignatureViewController: UIViewController {
         
         if show {
             let saveItem = UIBarButtonItem(title: "saveButton".localized(), style: .plain, target: self, action: #selector(saveButtonPressed))
-            saveItem.tintColor = UIColor.darkGray
+            saveItem.tintColor = k_navButtonTintColor//UIColor.darkGray
             self.navigationItem.rightBarButtonItem = saveItem
         } else {
             self.navigationItem.rightBarButtonItem = nil

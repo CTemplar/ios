@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,7 +28,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="enableSignature" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCT-a8-a63" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="16" y="9" width="278" height="32"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
-                                        <color key="textColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" name="settingsCellTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mcO-Vk-azt">
@@ -38,7 +39,7 @@
                                         </connections>
                                     </switch>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="settingsCellBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="pCT-a8-a63" firstAttribute="top" secondItem="IJm-Tm-MZ5" secondAttribute="top" constant="9" id="2M8-MV-2QK"/>
                                     <constraint firstItem="pCT-a8-a63" firstAttribute="leading" secondItem="IJm-Tm-MZ5" secondAttribute="leading" constant="16" id="4lE-Qq-VQS"/>
@@ -56,7 +57,7 @@
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" name="composeMessageShadowColor"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -65,10 +66,10 @@
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Zj-rG-ufH" customClass="RichEditorView" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="16" y="8" width="343" height="582"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" name="viewBackgroundColor"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="5Zj-rG-ufH" secondAttribute="trailing" constant="16" id="HTz-5H-Tvh"/>
                                     <constraint firstAttribute="bottom" secondItem="5Zj-rG-ufH" secondAttribute="bottom" constant="8" id="Ogk-2F-6cy"/>
@@ -83,12 +84,12 @@
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" name="composeMessageShadowColor"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="viewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="IJm-Tm-MZ5" firstAttribute="leading" secondItem="Y2U-e3-6CX" secondAttribute="leading" id="5fX-99-36A"/>
                             <constraint firstItem="1KD-vX-Azf" firstAttribute="leading" secondItem="5zs-9C-ufJ" secondAttribute="leading" id="Dmo-xW-PqN"/>
@@ -102,13 +103,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="signature" id="Hb7-5k-h0Z" customClass="UILocalizedUINavigationItem" customModule="Ctemplar" customModuleProvider="target">
                         <barButtonItem key="leftBarButtonItem" title="cancelButton" id="Daf-hw-HW3">
-                            <color key="tintColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" name="navButtonTintColor"/>
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="8bi-pJ-jZq" id="zfh-mS-9r3"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="saveButton" id="pNB-3C-8iU">
-                            <color key="tintColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" name="navButtonTintColor"/>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -123,4 +124,21 @@
             <point key="canvasLocation" x="49.375" y="118.94833333333332"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="composeMessageShadowColor">
+            <color red="0.89800000190734863" green="0.89800000190734863" blue="0.89800000190734863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="navButtonTintColor">
+            <color red="0.17299999296665192" green="0.24300000071525574" blue="0.31400001049041748" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="settingsCellBackgroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="settingsCellTextColor">
+            <color red="0.20392156862745098" green="0.28627450980392155" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="viewBackgroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>
