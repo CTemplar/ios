@@ -129,7 +129,7 @@ class InboxSideMenuInteractor {
         self.viewController?.dataSource?.unreadMessagesArray = array
         self.viewController?.dataSource?.reloadData()
         
-        updateInboxBottomBar(with: array, for: self.viewController!.customFoldersViewController)
+        updateInboxBottomBar(with: array, for: self.viewController!.inboxViewController)
     }
     
     func updateInboxBottomBar(with array: Array<UnreadMessagesCounter>, for vc: InboxViewController) {
