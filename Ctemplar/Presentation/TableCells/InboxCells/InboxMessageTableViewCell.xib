@@ -357,13 +357,13 @@
         <image name="StarIcon" width="16" height="16"/>
         <image name="roundDark" width="29.333333969116211" height="29.333333969116211"/>
         <namedColor name="cellSubTitleTextColor">
-            <color red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.1289999932050705" green="0.1289999932050705" blue="0.1289999932050705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="cellTitleTextColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.85999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.86000001430511475" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="messageCountLabelTextColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.38" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.37999999523162842" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

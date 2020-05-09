@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,11 +39,11 @@
                                             <constraint firstAttribute="width" secondItem="f7x-0w-1Zz" secondAttribute="height" multiplier="160:9" id="xQf-ps-pP0"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
-                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" name="cellSubTitleTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="viewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="P6t-Id-Fcn" firstAttribute="centerX" secondItem="cZy-md-dX6" secondAttribute="centerX" id="7u6-dy-rZn"/>
                                     <constraint firstItem="f7x-0w-1Zz" firstAttribute="top" secondItem="P6t-Id-Fcn" secondAttribute="bottom" constant="32" id="NhK-GD-uSX"/>
@@ -76,7 +77,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="viewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="cZy-md-dX6" firstAttribute="leading" secondItem="ISB-lS-cov" secondAttribute="leading" id="47J-od-Ik5"/>
                             <constraint firstItem="nPA-Nh-LEM" firstAttribute="bottom" secondItem="ISB-lS-cov" secondAttribute="bottom" id="FTH-bV-NMi"/>
@@ -91,13 +92,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="Z3N-2z-VrQ">
                         <barButtonItem key="leftBarButtonItem" image="SearchButton" id="h0e-Gp-G4P">
-                            <color key="tintColor" red="0.090196078430000007" green="0.1960784314" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <color key="tintColor" name="navButtonTintColor"/>
                             <connections>
                                 <action selector="searchButtonPressed:" destination="zrE-J9-SjE" id="5ZX-hw-3Zz"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Cancel" id="tJK-T6-fUi">
-                            <color key="tintColor" red="0.090196078430000007" green="0.1960784314" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <color key="tintColor" name="navButtonTintColor"/>
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="zrE-J9-SjE" id="D5b-OO-YOz"/>
                             </connections>
@@ -117,5 +118,14 @@
     <resources>
         <image name="EmptySearchIcon" width="100" height="100"/>
         <image name="SearchButton" width="22" height="30"/>
+        <namedColor name="cellSubTitleTextColor">
+            <color red="0.1289999932050705" green="0.1289999932050705" blue="0.1289999932050705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="navButtonTintColor">
+            <color red="0.17299999296665192" green="0.24300000071525574" blue="0.31400001049041748" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="viewBackgroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

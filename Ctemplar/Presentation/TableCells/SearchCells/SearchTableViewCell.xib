@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -20,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kxh-H0-dT5" id="NGe-9Q-fl0">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="66.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JWS-CX-dCe">
@@ -68,7 +67,7 @@
                                     <fragment content="Welcome to CTemplar!  ">
                                         <attributes>
                                             <color key="NSColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="16" name="Lato-Regular"/>
+                                            <font key="NSFont" metaFont="system" size="16"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -81,11 +80,11 @@
                                     <constraint firstAttribute="width" constant="78" id="hsn-l8-u7h"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.3794289173" colorSpace="calibratedRGB"/>
+                                <color key="textColor" name="messageCountLabelTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6vE-Ux-Rzc" firstAttribute="top" secondItem="JWS-CX-dCe" secondAttribute="top" id="2vf-kM-SQW"/>
                             <constraint firstItem="0jS-HP-yf9" firstAttribute="top" secondItem="JWS-CX-dCe" secondAttribute="top" id="HLB-Dq-1no"/>
@@ -105,7 +104,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T8r-d3-0kg">
-                        <rect key="frame" x="16" y="39" width="273" height="16"/>
+                        <rect key="frame" x="16" y="39" width="274" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="17A-P6-ZC7"/>
                         </constraints>
@@ -113,7 +112,7 @@
                             <fragment content="CTemplar">
                                 <attributes>
                                     <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="0.37942891725352113" colorSpace="calibratedRGB"/>
-                                    <font key="NSFont" size="16" name="Lato-Regular"/>
+                                    <font key="NSFont" metaFont="system" size="16"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
@@ -121,27 +120,28 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SecureIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Q5y-Qm-cBg">
-                        <rect key="frame" x="343" y="39" width="16" height="16"/>
+                        <rect key="frame" x="344" y="39" width="16" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Q5y-Qm-cBg" secondAttribute="height" multiplier="1:1" id="eaZ-G8-axY"/>
                             <constraint firstAttribute="height" constant="16" id="yLW-qt-clj"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="rAf-IR-uyR">
-                        <rect key="frame" x="320" y="39" width="16" height="16"/>
+                        <rect key="frame" x="321" y="39" width="16" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="RlD-Y5-sGP"/>
                             <constraint firstAttribute="width" secondItem="rAf-IR-uyR" secondAttribute="height" multiplier="1:1" id="aLA-cC-cES"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AttachIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ZVw-gz-8hd">
-                        <rect key="frame" x="297" y="39" width="16" height="16"/>
+                        <rect key="frame" x="298" y="39" width="16" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="ZVw-gz-8hd" secondAttribute="height" multiplier="1:1" id="OdI-1b-S4L"/>
                             <constraint firstAttribute="width" constant="16" id="tMQ-kM-P0s"/>
                         </constraints>
                     </imageView>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="JWS-CX-dCe" firstAttribute="top" secondItem="NGe-9Q-fl0" secondAttribute="top" constant="11" id="76l-xX-SPF"/>
                     <constraint firstItem="T8r-d3-0kg" firstAttribute="top" secondItem="JWS-CX-dCe" secondAttribute="bottom" constant="8" id="B8T-bp-IIi"/>
@@ -158,6 +158,7 @@
                     <constraint firstAttribute="trailing" secondItem="JWS-CX-dCe" secondAttribute="trailing" constant="16" id="ybP-uP-R8L"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" name="readMessageColor"/>
             <connections>
                 <outlet property="dateLabel" destination="0jS-HP-yf9" id="XMJ-fj-DJp"/>
                 <outlet property="folderNameBackground" destination="V18-GM-bhR" id="aLx-xu-Ky0"/>
@@ -176,5 +177,11 @@
         <image name="AttachIcon" width="24" height="24"/>
         <image name="SecureIcon" width="16" height="16"/>
         <image name="StarIcon" width="16" height="16"/>
+        <namedColor name="messageCountLabelTextColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.37999999523162842" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="readMessageColor">
+            <color red="0.96100002527236938" green="0.96100002527236938" blue="0.96100002527236938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

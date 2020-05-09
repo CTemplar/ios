@@ -286,6 +286,10 @@ var k_cellTitleTextColor: UIColor {
     return UIColor(named: "cellTitleTextColor")!
 }
 
+var k_cellSubTitleTextColor: UIColor {
+    return UIColor(named: "cellSubTitleTextColor")!
+}
+
 var k_messageCountLabelTextColor: UIColor {
     return UIColor(named: "messageCountLabelTextColor")!
 }
