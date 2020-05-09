@@ -189,6 +189,9 @@ var k_lightGrayColor: UIColor {
     return UIColor(named: "lightGrayColor")!
 } //= UIColor(white: 0.0, alpha: 0.54)
 
+var k_whiteBlackListTextLabelColor: UIColor {
+    return UIColor(named: "whiteBlackListTextLabelColor")!
+}
 var k_emailToColor: UIColor {
     return UIColor(named: "emailToColor")!
 } //= UIColor(white: 158.0 / 255.0, alpha: 1.0)

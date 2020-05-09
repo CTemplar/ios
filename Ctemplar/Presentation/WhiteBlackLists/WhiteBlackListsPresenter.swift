@@ -142,7 +142,7 @@ class WhiteBlackListsPresenter {
         
         let attributedString = NSMutableAttributedString(string: text, attributes: [
             .font: UIFont(name: k_latoRegularFontName, size: 16.0)!,
-            .foregroundColor: k_lightGrayColor,
+            .foregroundColor: k_whiteBlackListTextLabelColor,
             .kern: 0.0
             ])
         
