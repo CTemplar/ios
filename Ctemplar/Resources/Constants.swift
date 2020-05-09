@@ -243,6 +243,9 @@ var k_mainFolderTextColor : UIColor {
     return UIColor(named: "mainFolderTextColor")!
 } //= UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 0.5)
 
+var k_folderCellTextColor: UIColor {
+    return UIColor(named: "folderCellTextColor")!
+}
 var k_orangeColor : UIColor {
     return UIColor(named: "orangeColor")!
 } //= UIColor(red: 255.0 / 255.0, green: 170.0 / 255.0, blue: 14.0 / 255.0, alpha: 1.0)
@@ -301,6 +304,15 @@ var k_settingsHeaderBackgroundColor: UIColor {
 var k_fingerprintTextColor: UIColor {
     return UIColor(named: "fingerprintTextColor")!
 }
+
+var k_sideMenuCellBackgroundColor: UIColor {
+    return UIColor(named: "sideMenuCellBackgroundColor")!
+}
+
+var k_sideMenuSelectedCellBackgroundColor: UIColor {
+    return UIColor(named: "sideMenuSelectedCellBackgroundColor")!
+}
+
 //size constants
 
 let k_pageControlBottomOffset           = 30.0

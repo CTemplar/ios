@@ -31,9 +31,9 @@ class CustomFolderTableViewCell: UITableViewCell {
     func setupCustomFolderTableCell(selected: Bool, iconColor: String, title: String, unreadCount: Int) {
         
         if selected {
-            self.backgroundColor = k_selectedFolderColor
+            self.backgroundColor = k_sideMenuSelectedCellBackgroundColor
         } else {
-            self.backgroundColor = k_whiteColor
+            self.backgroundColor = k_sideMenuCellBackgroundColor
         }
         
         self.leftSelectionView.isHidden = !selected

@@ -150,7 +150,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "sideMenuCellIdentifier")!
-        cell.contentView.backgroundColor = k_whiteColor
+        cell.contentView.backgroundColor = k_readMessageColor
         
         //cell.selectionStyle = .gray
         
@@ -207,7 +207,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
                 } else {
                 
                     if indexPath.row == self.customFoldersArray.count {
-                        cell.textLabel?.textColor = k_sideMenuColor
+                        cell.textLabel?.textColor = k_mailboxTextColor
                         cell.textLabel?.text = "hideFolders".localized()
                     }
                 }

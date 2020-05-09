@@ -23,9 +23,9 @@ class SideMenuTableManageFolderCell: UITableViewCell {
     func setupCell(selected: Bool, iconName: String, title: String, foldersCount: Int) {
         
         if selected {
-            self.backgroundColor = k_selectedFolderColor
+            self.backgroundColor = k_sideMenuSelectedCellBackgroundColor
         } else {
-            self.backgroundColor = k_whiteColor
+            self.backgroundColor = k_sideMenuCellBackgroundColor
         }
         
         self.leftSelectionView.isHidden = !selected
@@ -44,7 +44,7 @@ class SideMenuTableManageFolderCell: UITableViewCell {
             .kern: 0.0
             ])
         
-        _ = attributedString.setForgroundColor(textToFind: title, color: k_sideMenuColor)
+        _ = attributedString.setForgroundColor(textToFind: title, color: k_folderCellTextColor)
         _ = attributedString.setFont(textToFind: title, font: UIFont(name: k_latoRegularFontName, size: 16.0)!)
         
         self.iconImageView.image = UIImage(named: iconName)
