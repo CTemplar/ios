@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,23 +23,23 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="folderName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGD-8a-GTk" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
-                                <rect key="frame" x="16" y="39" width="199" height="15"/>
+                                <rect key="frame" x="16" y="19" width="199" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="9rI-ZH-h24"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
-                                <color key="textColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" name="actionMessageColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yi5-Mv-4mg">
-                                <rect key="frame" x="16" y="62" width="343" height="44"/>
+                                <rect key="frame" x="16" y="42" width="343" height="44"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Folder Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6QH-TV-ArI">
                                         <rect key="frame" x="17" y="12" width="309" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="19" id="czZ-He-0i9"/>
                                         </constraints>
-                                        <color key="textColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" name="actionMessageColor"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -49,7 +48,7 @@
                                         </connections>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="6QH-TV-ArI" firstAttribute="leading" secondItem="Yi5-Mv-4mg" secondAttribute="leading" constant="17" id="Pxh-3L-41d"/>
                                     <constraint firstItem="6QH-TV-ArI" firstAttribute="top" secondItem="Yi5-Mv-4mg" secondAttribute="top" constant="12" id="T3g-p6-RjD"/>
@@ -64,35 +63,35 @@
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" name="composeMessageShadowColor"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqG-3p-9NJ">
-                                <rect key="frame" x="16" y="106" width="343" height="2"/>
-                                <color key="backgroundColor" red="0.090196078430000007" green="0.1960784314" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="16" y="86" width="343" height="2"/>
+                                <color key="backgroundColor" name="encryptSeperatorColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="4HJ-OE-DPA"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="chooseColor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rwp-PH-zVE" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
-                                <rect key="frame" x="16" y="133" width="343" height="16"/>
+                                <rect key="frame" x="16" y="113" width="343" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="YZP-nb-L6s"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
-                                <color key="textColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" name="actionMessageColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ET-YE-4xc">
-                                <rect key="frame" x="16" y="165" width="343" height="90"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="16" y="145" width="343" height="90"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="hrb-Ev-s0m"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5V-4b-OIi">
-                                <rect key="frame" x="0.0" y="285" width="375" height="1"/>
+                                <rect key="frame" x="0.0" y="265" width="375" height="1"/>
                                 <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="VoP-X9-LNF"/>
@@ -105,7 +104,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                 <state key="normal" title="deleteFolder">
-                                    <color key="titleColor" red="0.090196078430000007" green="0.1960784314" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" name="folderCellTextColor"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -115,7 +114,7 @@
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.090196078430000007" green="0.1960784314" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" name="folderCellTextColor"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -123,7 +122,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="viewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Rwp-PH-zVE" secondAttribute="trailing" constant="16" id="1AX-ax-pAO"/>
                             <constraint firstAttribute="trailing" secondItem="7ET-YE-4xc" secondAttribute="trailing" constant="16" id="2rt-dh-Pos"/>
@@ -151,13 +150,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Folder" id="2TK-Ts-GWR" customClass="UILocalizedUINavigationItem" customModule="Ctemplar" customModuleProvider="target">
                         <barButtonItem key="leftBarButtonItem" title="cancelButton" id="pwL-uY-dpy">
-                            <color key="tintColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" name="navButtonTintColor"/>
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="f4S-vX-Ehj" id="GGg-dh-v8h"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="saveButton" id="n5H-Dj-A8M">
-                            <color key="tintColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" name="navButtonTintColor"/>
                             <connections>
                                 <action selector="saveButtonPressed:" destination="f4S-vX-Ehj" id="LSI-7Y-FNc"/>
                             </connections>
@@ -177,4 +176,24 @@
             <point key="canvasLocation" x="52.5" y="134.51166666666666"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="actionMessageColor">
+            <color red="0.035000000149011612" green="0.12200000137090683" blue="0.20800000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="composeMessageShadowColor">
+            <color red="0.89800000190734863" green="0.89800000190734863" blue="0.89800000190734863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="encryptSeperatorColor">
+            <color red="0.090000003576278687" green="0.19599999487400055" blue="0.30199998617172241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="folderCellTextColor">
+            <color red="0.090196078431372548" green="0.19607843137254902" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="navButtonTintColor">
+            <color red="0.17299999296665192" green="0.24300000071525574" blue="0.31400001049041748" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="viewBackgroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>
