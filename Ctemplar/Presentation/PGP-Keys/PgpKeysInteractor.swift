@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Majid Hussain on 08/03/2020.
-//  Copyright © 2020 AreteSol. All rights reserved.
+//  Copyright © 2020 CTemplar. All rights reserved.
 //
 
 import Foundation

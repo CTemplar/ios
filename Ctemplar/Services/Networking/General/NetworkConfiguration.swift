@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Roman K. on 12/6/19.
-//  Copyright © 2019 ComeOnSoftware. All rights reserved.
+//  Copyright © 2019 CTemplar. All rights reserved.
 //
 
 import Foundation
