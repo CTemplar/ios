@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,7 +28,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="subjectEncryption" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="nJ5-kd-h26" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="16" y="9" width="278" height="32"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
-                                        <color key="textColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" name="settingsCellTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="frQ-xA-kI7">
@@ -38,7 +39,7 @@
                                         </connections>
                                     </switch>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="settingsCellBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="08N-Et-NgH"/>
                                     <constraint firstItem="nJ5-kd-h26" firstAttribute="leading" secondItem="2qb-3F-hnw" secondAttribute="leading" constant="16" id="2MV-3O-bLb"/>
@@ -56,7 +57,7 @@
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" name="composeMessageShadowColor"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -66,7 +67,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="сontactsEncryption" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="H1f-Pm-CYv" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="16" y="9" width="278" height="32"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
-                                        <color key="textColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" name="settingsCellTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VS9-aa-Fgf">
@@ -77,7 +78,7 @@
                                         </connections>
                                     </switch>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="settingsCellBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="VS9-aa-Fgf" firstAttribute="leading" secondItem="H1f-Pm-CYv" secondAttribute="trailing" constant="16" id="1Ro-ft-upp"/>
                                     <constraint firstAttribute="trailing" secondItem="VS9-aa-Fgf" secondAttribute="trailing" constant="16" id="4hO-YB-WG7"/>
@@ -95,7 +96,7 @@
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" name="composeMessageShadowColor"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -105,7 +106,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="attachmentEncryption" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="vcm-qj-Ecf" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
                                         <rect key="frame" x="16" y="9" width="278" height="32"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
-                                        <color key="textColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" name="settingsCellTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WOd-U7-eIl">
@@ -116,7 +117,7 @@
                                         </connections>
                                     </switch>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="settingsCellBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="vcm-qj-Ecf" secondAttribute="bottom" constant="9" id="BUE-On-0Rw"/>
                                     <constraint firstItem="vcm-qj-Ecf" firstAttribute="top" secondItem="i0f-Ih-xFV" secondAttribute="top" constant="9" id="Dqa-d5-iNS"/>
@@ -134,12 +135,12 @@
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" name="composeMessageShadowColor"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="viewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="2qb-3F-hnw" firstAttribute="leading" secondItem="JZ7-Cu-sWi" secondAttribute="leading" id="72k-eW-YqV"/>
                             <constraint firstItem="i0f-Ih-xFV" firstAttribute="leading" secondItem="JZ7-Cu-sWi" secondAttribute="leading" id="KjP-69-uYh"/>
@@ -155,7 +156,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="security" id="LZy-dX-w1t" customClass="UILocalizedUINavigationItem" customModule="Ctemplar" customModuleProvider="target">
                         <barButtonItem key="leftBarButtonItem" image="BackArrowDark" id="NOQ-Gn-2gg">
-                            <color key="tintColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" name="navButtonTintColor"/>
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="gp5-fX-yN4" id="bbw-hW-cb7"/>
                             </connections>
@@ -174,5 +175,20 @@
     </scenes>
     <resources>
         <image name="BackArrowDark" width="11.5" height="20"/>
+        <namedColor name="composeMessageShadowColor">
+            <color red="0.89800000190734863" green="0.89800000190734863" blue="0.89800000190734863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="navButtonTintColor">
+            <color red="0.17299999296665192" green="0.24300000071525574" blue="0.31400001049041748" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="settingsCellBackgroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="settingsCellTextColor">
+            <color red="0.20392156862745098" green="0.28627450980392155" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="viewBackgroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

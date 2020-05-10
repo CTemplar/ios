@@ -50,7 +50,7 @@ class SecurityViewController: UIViewController {
     
     func setupScreen() {
         
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: k_contactsBarTintColor]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: k_navBar_titleColor]
         
         self.encryptSubject = self.user.settings.isSubjectEncrypted ?? false
         self.subjectEncryptionSwitch.setOn(self.encryptSubject, animated: true)

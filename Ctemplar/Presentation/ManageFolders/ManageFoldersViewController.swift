@@ -27,6 +27,7 @@ class ManageFoldersViewController: UIViewController {
     @IBOutlet var foldersTableView         : UITableView!
     @IBOutlet var addFolderView            : UIView!
     @IBOutlet var redBottomView            : UIView!
+    @IBOutlet weak var emptyFoldersView: UIView!
     
     @IBOutlet var leftBarButtonItem        : UIBarButtonItem!
     @IBOutlet var addFolderButton          : UIButton!

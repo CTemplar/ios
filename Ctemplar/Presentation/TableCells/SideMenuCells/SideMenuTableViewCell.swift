@@ -31,9 +31,9 @@ class SideMenuTableViewCell: UITableViewCell {
     func setupSideMenuTableCell(selected: Bool, iconName: String, title: String, unreadCount: Int) {
         
         if selected {
-            self.backgroundColor = k_selectedFolderColor
+            self.backgroundColor = k_sideMenuSelectedCellBackgroundColor
         } else {
-            self.backgroundColor = k_whiteColor
+            self.backgroundColor = k_sideMenuCellBackgroundColor
         }
         
         self.leftSelectionView.isHidden = !selected

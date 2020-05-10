@@ -32,6 +32,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="uqr-Jj-NYt"/>
                                 </constraints>
+                                <color key="textColor" name="settingsCellTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -61,7 +62,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTu-HU-e7u">
                                 <rect key="frame" x="20" y="188" width="374" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" name="fingerprintTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="publicKey" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82j-jn-lN9">
@@ -207,8 +208,14 @@
     <resources>
         <image name="BackArrowDark" width="11.5" height="20"/>
         <image name="downArrow" width="29.333333969116211" height="29.333333969116211"/>
+        <namedColor name="fingerprintTextColor">
+            <color red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="navButtonTintColor">
-            <color red="0.20399999618530273" green="0.28600001335144043" blue="0.36899998784065247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.17299999296665192" green="0.24300000071525574" blue="0.31400001049041748" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="settingsCellTextColor">
+            <color red="0.20392156862745098" green="0.28627450980392155" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textColor">
             <color red="0.20399999618530273" green="0.28600001335144043" blue="0.36899998784065247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

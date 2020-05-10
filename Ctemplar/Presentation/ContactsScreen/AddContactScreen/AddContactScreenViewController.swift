@@ -51,6 +51,8 @@ class AddContactViewController: UIViewController, UITextFieldDelegate {
             self.navigationItem.title = "addContact".localized()
             self.navigationItem.rightBarButtonItem?.isEnabled = false
         }
+        
+        self.navigationController?.navigationBar.barTintColor = k_navBar_backgroundColor
                 
         if (Device.IS_IPHONE_5) {
             keyboardOffset = k_signUpPageKeyboardOffsetLarge

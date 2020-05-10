@@ -107,7 +107,7 @@ class SelectLanguageViewController: UIViewController, UITableViewDataSource, UIT
   
         self.navigationItem.title = "languageTitle".localized()
         
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: k_passwordBarTintColor]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: k_navBar_titleColor]
     }
     
     func reloadViewController() {

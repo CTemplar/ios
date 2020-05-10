@@ -16,13 +16,32 @@ class ContactsPresenter {
     var interactor       : ContactsInteractor?
 
     func setupSearchController() {
-        
+        if #available(iOS 13.0, *) {
+            let buttonAppearence = UIBarButtonItemAppearance()
+            buttonAppearence.configureWithDefault(for: .plain)
+            buttonAppearence.normal.titleTextAttributes = [.foregroundColor: k_navButtonTintColor]
+            
+            let navBarAppearence = UINavigationBarAppearance()
+            navBarAppearence.configureWithDefaultBackground()
+            navBarAppearence.backgroundColor = k_navBar_backgroundColor
+            navBarAppearence.titleTextAttributes = [.foregroundColor: k_navBar_titleColor]
+            
+            navBarAppearence.buttonAppearance = buttonAppearence
+            
+            self.viewController?.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearence
+            self.viewController?.navigationController?.navigationBar.compactAppearance = navBarAppearence
+            self.viewController?.navigationController?.navigationBar.standardAppearance = navBarAppearence
+        }else {
+            self.viewController?.navigationController?.navigationBar.tintColor = k_navBar_backgroundColor
+            self.viewController?.searchController.searchBar.barTintColor = k_navBar_backgroundColor
+        }
+        self.viewController?.navigationController?.navigationBar.isTranslucent = true
         self.viewController?.definesPresentationContext = true
         
         self.viewController?.searchController.searchResultsUpdater = self.viewController
         self.viewController?.searchController.obscuresBackgroundDuringPresentation = false
         self.viewController?.searchController.hidesNavigationBarDuringPresentation = false
-        self.viewController?.searchController.searchBar.tintColor = k_contactsBarTintColor
+        self.viewController?.searchController.searchBar.tintColor = k_searchBar_backgroundColor
         self.viewController?.searchController.searchBar.placeholder = "search".localized()
         //self.viewController?.navigationItem.searchController = self.viewController?.searchController
         self.viewController?.searchController.searchBar.delegate = self.viewController
@@ -39,19 +58,19 @@ class ContactsPresenter {
         
         //self.viewController?.searchController.searchBar.setImage(UIImage(named: "SearchIcon"), for: .search, state: .normal)
         
-        self.viewController?.searchController.searchBar.setPositionAdjustment(UIOffset(horizontal: -8, vertical: 0), for: UISearchBar.Icon.search)
+        self.viewController?.searchController.searchBar.setPositionAdjustment(UIOffset(horizontal: 0, vertical: 0), for: UISearchBar.Icon.search)
   
-        let imageView = UIImageView(image: UIImage(named: "SearchIcon")?.withRenderingMode(.alwaysTemplate))
+        let imageView = UIImageView(image: UIImage(named: "SearchIcon")!)//?.withRenderingMode(.alwaysTemplate))
         imageView.frame = CGRect(x: 0, y: 0, width: 22, height: 22)
         if #available(iOS 13.0, *) {
             if let searchTextField = self.viewController?.searchController.searchBar.searchTextField {
-                searchTextField.borderStyle = .none
+                searchTextField.borderStyle = .roundedRect
                 searchTextField.leftView = imageView
                 
             }
         }else {
             if let searchTextField = self.viewController?.searchController.searchBar.value(forKey: "_searchField") as? UITextField {
-                searchTextField.borderStyle = .none
+                searchTextField.borderStyle = .roundedRect
                 searchTextField.leftView = imageView
             }
         }
