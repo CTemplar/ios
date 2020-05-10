@@ -372,7 +372,7 @@ class ComposePresenter {
         let textEditor = viewController?.messageTextEditor {
             if #available(iOS 13.0, *) {
                 viewController?.messageTextEditorBottomOffsetConstraint.priority = .defaultLow
-            }else {
+            } else {
                 viewController?.messageTextEditorBottomOffsetConstraint.isActive = false
             }
             
