@@ -169,7 +169,7 @@ class InboxSideMenuViewController: UIViewController {
             self.presenter?.interactor?.unreadMessagesCounter()
         }
         
-        self.scrollTableToTop()
+//        self.scrollTableToTop()
     }
     
     func scrollTableToTop() {
