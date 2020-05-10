@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 25.10.2018.
-//  Copyright © 2018 ComeOnSoftware. All rights reserved.
+//  Copyright © 2018 CTemplar. All rights reserved.
 //
 
 //  Created by SIMON_NON_ADMIN on 18/09/2015.
