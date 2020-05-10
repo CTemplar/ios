@@ -1860,7 +1860,9 @@ class APIService: HashingService {
                // }
             }
         }
-        
+        if (message ?? "").isSignatureDecodingError() {
+            self.logoutUser()
+        }
         return message
     }
     
@@ -1923,6 +1925,12 @@ class APIService: HashingService {
 //                }
             }
         }
+    }
+    
+    func logoutUser() {
+        self.keychainService?.deleteUserCredentialsAndToken()
+        self.pgpService?.deleteStoredPGPKeys()
+        showLoginViewController()
     }
 
     func showLoginViewController() {

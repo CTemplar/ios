@@ -531,6 +531,8 @@ let k_mainSiteURL                  = "https://ctemplar.com/"
 let k_upgradeURL                   = "https://ctemplar.com/pricing"
 let k_supportURL                   = "support@ctemplar.com."
 
+let k_signature_decoding_issue = "error decoding signature."
+
 let k_firstCharsForHeader          = 50
 let k_firstCharsForEncryptdHeader  = 5
 
