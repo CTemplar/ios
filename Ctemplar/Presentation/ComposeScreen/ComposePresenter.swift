@@ -70,8 +70,12 @@ class ComposePresenter {
     }
     
     func backButtonPressed() {
-        
-        self.showDraftActionsView()
+        if shouldSaveDraft() {
+            self.showDraftActionsView()
+        } else {
+            self.interactor?.deleteDraft()
+            self.viewController!.navigationController?.popViewController(animated: true)
+        }
     }
     
     func setupAttachmentButton() {
@@ -216,6 +220,27 @@ class ComposePresenter {
         self.showScheduler(mode: mode)
     }
     
+    func shouldSaveDraft() -> Bool {
+        var messageContentIsEmpty : Bool = false
+        var messageContent = self.viewController?.messageTextEditor.contentHTML ?? ""
+        if viewController?.answerMode == .forward {
+            if messageContent.count == 0 {
+                messageContent = self.viewController?.messageTextEditor.html ?? ""
+            }
+        }
+        if let range = messageContent.range(of: currentSignature) {
+            messageContent = messageContent.replacingCharacters(in: range, with: "")
+        }
+        messageContent = messageContent.replacingOccurrences(of: "<br>", with: "")
+        if messageContent.count == 0 {
+            messageContentIsEmpty = true
+        }
+        if self.viewController!.emailsToArray.count == 0 && self.viewController!.subject.count == 0 && messageContentIsEmpty {
+            return false
+        }
+        return true
+    }
+    
     func setupSchedulersButtons() {
         
         self.viewController?.selfDestructedButton.isEnabled = true
@@ -347,7 +372,7 @@ class ComposePresenter {
         let textEditor = viewController?.messageTextEditor {
             if #available(iOS 13.0, *) {
                 viewController?.messageTextEditorBottomOffsetConstraint.priority = .defaultLow
-            }else {
+            } else {
                 viewController?.messageTextEditorBottomOffsetConstraint.isActive = false
             }
             
@@ -379,7 +404,7 @@ class ComposePresenter {
         } else { //without attachments
             if #available(iOS 13.0, *) {
                 viewController?.messageTextEditorBottomOffsetConstraint.priority = UILayoutPriority(rawValue: 999)
-            }else {
+            } else {
                 viewController?.messageTextEditorBottomOffsetConstraint.isActive = true
             }
             
@@ -412,11 +437,11 @@ class ComposePresenter {
                 var currentMessageText = self.viewController?.messageTextEditor.contentHTML
                 if (currentMessageText?.count ?? 0) > 0 {
                     if let _ = currentMessageText?.range(of: currentSignature) {
-                    }else {
+                    } else {
                         currentMessageText?.append("<br><br>\(currentSignature)")
                         self.viewController!.messageTextEditor.html = currentMessageText ?? ""
                     }
-                }else {
+                } else {
                     if currentSignature.count > 0 {
                         self.viewController!.messageTextEditor.html = "<br><br>" + currentSignature
                     }
@@ -1293,7 +1318,7 @@ class ComposePresenter {
         let answerMode = self.viewController?.answerMode ?? AnswerMessageMode.newMessage
         if answerMode == .reply || answerMode == .replyAll {
             completion(false)
-        }else if answerMode == .forward {
+        } else if answerMode == .forward {
             if (message.attachments?.count ?? 0) > 0 {
                 let alert = UIAlertController(title: "confirmForwardAttachments".localized(), message: "confirmForwardAttachmentsText".localized(), preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "yesActionTitle".localized(), style: .default, handler: { (action) in
@@ -1303,10 +1328,10 @@ class ComposePresenter {
                     completion(false)
                 }))
                 self.viewController?.present(alert, animated: true, completion: nil)
-            }else {
+            } else {
                 completion(true)
             }
-        }else {
+        } else {
             completion(true)
         }
     }
