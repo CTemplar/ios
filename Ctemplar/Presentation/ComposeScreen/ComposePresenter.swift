@@ -72,7 +72,7 @@ class ComposePresenter {
     func backButtonPressed() {
         if shouldSaveDraft() {
             self.showDraftActionsView()
-        }else {
+        } else {
             self.interactor?.deleteDraft()
             self.viewController!.navigationController?.popViewController(animated: true)
         }
@@ -404,7 +404,7 @@ class ComposePresenter {
         } else { //without attachments
             if #available(iOS 13.0, *) {
                 viewController?.messageTextEditorBottomOffsetConstraint.priority = UILayoutPriority(rawValue: 999)
-            }else {
+            } else {
                 viewController?.messageTextEditorBottomOffsetConstraint.isActive = true
             }
             
@@ -437,11 +437,11 @@ class ComposePresenter {
                 var currentMessageText = self.viewController?.messageTextEditor.contentHTML
                 if (currentMessageText?.count ?? 0) > 0 {
                     if let _ = currentMessageText?.range(of: currentSignature) {
-                    }else {
+                    } else {
                         currentMessageText?.append("<br><br>\(currentSignature)")
                         self.viewController!.messageTextEditor.html = currentMessageText ?? ""
                     }
-                }else {
+                } else {
                     if currentSignature.count > 0 {
                         self.viewController!.messageTextEditor.html = "<br><br>" + currentSignature
                     }
@@ -1318,7 +1318,7 @@ class ComposePresenter {
         let answerMode = self.viewController?.answerMode ?? AnswerMessageMode.newMessage
         if answerMode == .reply || answerMode == .replyAll {
             completion(false)
-        }else if answerMode == .forward {
+        } else if answerMode == .forward {
             if (message.attachments?.count ?? 0) > 0 {
                 let alert = UIAlertController(title: "confirmForwardAttachments".localized(), message: "confirmForwardAttachmentsText".localized(), preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "yesActionTitle".localized(), style: .default, handler: { (action) in
@@ -1328,10 +1328,10 @@ class ComposePresenter {
                     completion(false)
                 }))
                 self.viewController?.present(alert, animated: true, completion: nil)
-            }else {
+            } else {
                 completion(true)
             }
-        }else {
+        } else {
             completion(true)
         }
     }
