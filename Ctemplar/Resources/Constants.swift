@@ -536,9 +536,9 @@ let k_signature_decoding_issue = "error decoding signature."
 let k_firstCharsForHeader          = 50
 let k_firstCharsForEncryptdHeader  = 5
 
-let k_tokenHoursExpiration         = 2
-let k_tokenMinutesExpiration       = 170
-let k_tokenHoursRefresh            = 47
+let k_tokenHoursExpiration         = 120
+let k_tokenMinutesExpiration       = 7200
+let k_tokenHoursRefresh            = 1920
 
 let k_undoActionBarShowingSecs     = 5.0
 
