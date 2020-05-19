@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 03.12.2018.
-//  Copyright © 2018 ComeOnSoftware. All rights reserved.
+//  Copyright © 2018 CTemplar. All rights reserved.
 //
 
 import Foundation
@@ -89,6 +89,7 @@ struct EncryptionObject: Encodable {
         
         return ["password"          : self.password ?? "",
                 "password_hint"     : self.passwordHint ?? "",
+                "expiry_hours"      : "\(self.expiryHours ?? 120)"
         ]
     }
 }

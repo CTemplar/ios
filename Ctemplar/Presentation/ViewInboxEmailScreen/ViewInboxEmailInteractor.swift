@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 01.11.2018.
-//  Copyright © 2018 ComeOnSoftware. All rights reserved.
+//  Copyright © 2018 CTemplar. All rights reserved.
 //
 
 import Foundation
@@ -100,28 +100,49 @@ class ViewInboxEmailInteractor {
         
         self.viewController?.dataSource?.dercyptedMessagesArray.removeAll()
         
-        /*
-        for (index, message) in emailsArray.enumerated() {
-            if let messageContent = message.content {
-                //self.viewController?.dataSource?.dercyptedMessagesArray.append("decoding...")
-                //self.decryptMessage(content: messageContent, index: index)
-            } else {
-                self.viewController?.dataSource?.dercyptedMessagesArray.append("Empty content")
-            }
-        }*/
-        
         HUD.show(.progress)
-        
-        for message in emailsArray {
-            //DispatchQueue.main.async {
-                let messageContent = self.extractMessageContent(message: message)
-                self.viewController?.dataSource?.dercyptedMessagesArray.append(messageContent)
-           // }
+        self.updateMessageContent1(emailsArray: emailsArray)
+    }
+    
+    private func updateMessageContent1(emailsArray: Array<EmailMessage>) {
+        if emailsArray.count == 0 {
+            HUD.hide()
+            self.viewController?.dataSource?.reloadData(scrollToLastMessage: false)
+            return
+        }
+        var messages = emailsArray
+        let message = messages.removeFirst()
+        let messageContent = self.extractMessageContent(message: message)
+        if messageContent == "#D_FAILED_ERROR#" {
+            apiService?.mailboxesList(completionHandler: { (result) in
+                switch result {
+                case .success(let value):
+                    let mailboxes = value as! Mailboxes
+                    if let mailboxesList = mailboxes.mailboxesResultsList {
+                        for mailbox in mailboxesList{
+                            if (mailbox.isDefault ?? false) || mailboxesList.count == 1 {
+                                if let privateKey = mailbox.privateKey {
+                                    self.pgpService?.extractAndSavePGPKeyFromString(key: privateKey)
+                                }
+                                if let publicKey = mailbox.publicKey {
+                                    self.pgpService?.extractAndSavePGPKeyFromString(key: publicKey)
+                                }
+                                break
+                            }
+                        }
+                        self.updateMessageContent1(emailsArray: emailsArray)
+                    }
+                    break
+                case .failure(_):
+                    self.updateMessageContent1(emailsArray: [])
+                    break
+                }
+            })
+        }else {
+            self.viewController?.dataSource?.dercyptedMessagesArray.append(messageContent)
+            self.updateMessageContent1(emailsArray: messages)
         }
         
-        self.viewController?.dataSource?.reloadData(scrollToLastMessage: false)
-        
-        HUD.hide()
     }
     
     func decryptMessage(content: String, index: Int) {

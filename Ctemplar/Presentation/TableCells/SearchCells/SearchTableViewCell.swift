@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 09.11.2018.
-//  Copyright © 2018 ComeOnSoftware. All rights reserved.
+//  Copyright © 2018 CTemplar. All rights reserved.
 //
 
 import Foundation
@@ -40,14 +40,14 @@ class SearchTableViewCell: UITableViewCell {
     func setupCellWithData(message: EmailMessage, foundText: String) {
         
         if let subject = message.subject {            
-            let subjectAttributedString = NSMutableAttributedString(string: subject)
+            let subjectAttributedString = NSMutableAttributedString(string: subject, attributes: [.foregroundColor: k_cellSubTitleTextColor])
             let range = subjectAttributedString.foundRangeFor(lowercasedString: subject.lowercased(), textToFind: foundText)
             _ = subjectAttributedString.setBackgroundColor(range: range, color: k_foundTextBackgroundColor)
             subjectLabel.attributedText = subjectAttributedString
         }
         
         if let sender = message.sender {
-            let senderAttributedString = NSMutableAttributedString(string: sender)
+            let senderAttributedString = NSMutableAttributedString(string: sender, attributes: [.foregroundColor: k_cellTitleTextColor])
             let range = senderAttributedString.foundRangeFor(lowercasedString: sender.lowercased(), textToFind: foundText)
             _ = senderAttributedString.setBackgroundColor(range: range, color: k_foundTextBackgroundColor)
             senderLabel.attributedText = senderAttributedString

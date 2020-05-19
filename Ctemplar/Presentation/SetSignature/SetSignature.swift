@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 25.12.2018.
-//  Copyright © 2018 ComeOnSoftware. All rights reserved.
+//  Copyright © 2018 CTemplar. All rights reserved.
 //
 
 import Foundation
@@ -22,6 +22,7 @@ class SetSignatureViewController: UIViewController {
     @IBOutlet var textFieldView            : UIView!
     @IBOutlet weak var signatureEditorView: RichEditorView!
     @IBOutlet var switcher                 : UISwitch!
+    @IBOutlet weak var signatureContainerView_bottom: NSLayoutConstraint!
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -50,6 +51,8 @@ class SetSignatureViewController: UIViewController {
         self.mailbox = (self.apiService?.defaultMailbox(mailboxes: self.user.mailboxesList!))!
         
         self.setupScreen()
+        
+        self.addNotificationObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -127,7 +130,7 @@ class SetSignatureViewController: UIViewController {
         
         if show {
             let saveItem = UIBarButtonItem(title: "saveButton".localized(), style: .plain, target: self, action: #selector(saveButtonPressed))
-            saveItem.tintColor = UIColor.darkGray
+            saveItem.tintColor = k_navButtonTintColor//UIColor.darkGray
             self.navigationItem.rightBarButtonItem = saveItem
         } else {
             self.navigationItem.rightBarButtonItem = nil
@@ -208,6 +211,28 @@ class SetSignatureViewController: UIViewController {
         AlertHelperKit().showAlertWithHandler(self, parameters: params) { buttonIndex in
             
             self.cancelButtonPressed(self)
+        }
+    }
+}
+
+extension SetSignatureViewController {
+    func addNotificationObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+}
+
+extension SetSignatureViewController {
+    @objc func keyboardWillChangeFrame(_ notification: Notification) {
+        if let endFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            var keyboardHeight = UIScreen.main.bounds.height - endFrame.origin.y
+            if #available(iOS 11, *) {
+                if keyboardHeight > 0 {
+                    keyboardHeight = keyboardHeight - view.safeAreaInsets.bottom
+                }
+            }
+            signatureContainerView_bottom.constant = keyboardHeight + 20
+            
+            self.view.layoutIfNeeded()
         }
     }
 }

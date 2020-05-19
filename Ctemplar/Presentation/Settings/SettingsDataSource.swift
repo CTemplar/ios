@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 20.12.2018.
-//  Copyright © 2018 ComeOnSoftware. All rights reserved.
+//  Copyright © 2018 CTemplar. All rights reserved.
 //
 
 import Foundation
@@ -208,7 +208,7 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         header.add(subview: bottomlineView)
         
         let bkgView = UIView()
-        bkgView.backgroundColor = UIColor(white: 247/255.0, alpha: 1.0)
+        bkgView.backgroundColor = k_settingsHeaderBackgroundColor //UIColor(white: 247/255.0, alpha: 1.0)
         header.backgroundView = bkgView
     }
     

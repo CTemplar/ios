@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 01.10.2018.
-//  Copyright © 2018 ComeOnSoftware. All rights reserved.
+//  Copyright © 2018 CTemplar. All rights reserved.
 //
 
 import Foundation
@@ -64,11 +64,19 @@ class PGPService {
 
         if let keys = getStoredPGPKeys() {
             
-            guard let decryptedData = try? ObjectivePGP.decrypt(encryptedData, andVerifySignature: true, using: keys, passphraseForKey: {(key) -> String? in
-                return password
-            }) else {return nil}
-            
-            return decryptedData
+            do {
+                let decryptedData = try ObjectivePGP.decrypt(encryptedData, andVerifySignature: true, using: keys, passphraseForKey: { (key) -> String? in
+                    return password
+                })
+                return decryptedData
+            }catch {
+                print(error.localizedDescription)
+            }
+//            guard let decryptedData = try? ObjectivePGP.decrypt(encryptedData, andVerifySignature: true, using: keys, passphraseForKey: {(key) -> String? in
+//                return password
+//            }) else {return nil}
+//            
+//            return decryptedData
         }
         
         return nil
@@ -88,7 +96,7 @@ class PGPService {
                 return decryptedMessage
             } else {
                 print("decrypting failed")
-                return ""
+                return "#D_FAILED_ERROR#"
             }
         }
         

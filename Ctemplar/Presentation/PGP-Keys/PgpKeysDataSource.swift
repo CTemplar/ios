@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Majid Hussain on 08/03/2020.
-//  Copyright © 2020 AreteSol. All rights reserved.
+//  Copyright © 2020 CTemplar. All rights reserved.
 //
 
 import UIKit
@@ -27,7 +27,7 @@ class PgpKeysDatasource: NSObject, UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "emailCell", for: indexPath)
         cell.textLabel?.text = viewController.mailboxList[indexPath.row].email ?? ""
         cell.textLabel?.font = k_readMessageSubjectFont
-        cell.textLabel?.textColor = .darkGray
+        cell.textLabel?.textColor = k_fingerprintTextColor
         return cell
     }
     

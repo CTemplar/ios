@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 12.10.2018.
-//  Copyright © 2018 ComeOnSoftware. All rights reserved.
+//  Copyright © 2018 CTemplar. All rights reserved.
 //
 
 import Foundation
@@ -169,7 +169,7 @@ class InboxSideMenuViewController: UIViewController {
             self.presenter?.interactor?.unreadMessagesCounter()
         }
         
-        self.scrollTableToTop()
+//        self.scrollTableToTop()
     }
     
     func scrollTableToTop() {

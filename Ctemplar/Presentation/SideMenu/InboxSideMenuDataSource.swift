@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 22.10.2018.
-//  Copyright © 2018 ComeOnSoftware. All rights reserved.
+//  Copyright © 2018 CTemplar. All rights reserved.
 //
 
 import Foundation
@@ -150,7 +150,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "sideMenuCellIdentifier")!
-        cell.contentView.backgroundColor = k_whiteColor
+        cell.contentView.backgroundColor = k_readMessageColor
         
         //cell.selectionStyle = .gray
         
@@ -207,7 +207,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
                 } else {
                 
                     if indexPath.row == self.customFoldersArray.count {
-                        cell.textLabel?.textColor = k_sideMenuColor
+                        cell.textLabel?.textColor = k_mailboxTextColor
                         cell.textLabel?.text = "hideFolders".localized()
                     }
                 }

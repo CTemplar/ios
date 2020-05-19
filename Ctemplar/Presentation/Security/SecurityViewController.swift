@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 06.09.2018.
-//  Copyright © 2018 ComeOnSoftware. All rights reserved.
+//  Copyright © 2018 CTemplar. All rights reserved.
 //
 
 import Foundation
@@ -50,7 +50,7 @@ class SecurityViewController: UIViewController {
     
     func setupScreen() {
         
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: k_contactsBarTintColor]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: k_navBar_titleColor]
         
         self.encryptSubject = self.user.settings.isSubjectEncrypted ?? false
         self.subjectEncryptionSwitch.setOn(self.encryptSubject, animated: true)

@@ -510,6 +510,8 @@
 		E322133F2402DBEE002E3CAD /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E322133A2402D9D0002E3CAD /* Toast.swift */; };
 		E3260AB8240196DA00F7BF26 /* AddFolderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3260AB7240196DA00F7BF26 /* AddFolderProtocol.swift */; };
 		E3260AB9240196DA00F7BF26 /* AddFolderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3260AB7240196DA00F7BF26 /* AddFolderProtocol.swift */; };
+		E34E5D92244B5000004A1C2C /* EmailsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34E5D91244B5000004A1C2C /* EmailsKeys.swift */; };
+		E34E5D93244B5000004A1C2C /* EmailsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34E5D91244B5000004A1C2C /* EmailsKeys.swift */; };
 		E35F5E9C24137715003C4281 /* PgpKeys.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E35F5E9B24137715003C4281 /* PgpKeys.storyboard */; };
 		E35F5E9D24137715003C4281 /* PgpKeys.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E35F5E9B24137715003C4281 /* PgpKeys.storyboard */; };
 		E35F5E9F2413772B003C4281 /* PgpKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35F5E9E2413772B003C4281 /* PgpKeysViewController.swift */; };
@@ -652,6 +654,8 @@
 		E399BC0323E87AFA00EEA708 /* RichEditorToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399BB8423E87AF900EEA708 /* RichEditorToolbar.swift */; };
 		E399BC0423E87AFA00EEA708 /* RichEditorOptionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399BB8523E87AF900EEA708 /* RichEditorOptionItem.swift */; };
 		E399BC0523E87AFA00EEA708 /* RichEditorOptionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E399BB8523E87AF900EEA708 /* RichEditorOptionItem.swift */; };
+		E3DA9842246877E00079110D /* String+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DA9841246877E00079110D /* String+Error.swift */; };
+		E3DA9843246877E00079110D /* String+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DA9841246877E00079110D /* String+Error.swift */; };
 		E3E22E4E24398E6C00DCE5B7 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = E3E22E4A24398E6B00DCE5B7 /* LICENSE */; };
 		E3E22E4F24398E6C00DCE5B7 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = E3E22E4A24398E6B00DCE5B7 /* LICENSE */; };
 		E3E22E5024398E6C00DCE5B7 /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E22E4C24398E6B00DCE5B7 /* SlideMenuController.swift */; };
@@ -935,6 +939,7 @@
 		E322133C2402DA58002E3CAD /* MoveToDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToDelegate.swift; sourceTree = "<group>"; };
 		E3260AB7240196DA00F7BF26 /* AddFolderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFolderProtocol.swift; sourceTree = "<group>"; };
 		E32DB9E9240C127700FF0069 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E34E5D91244B5000004A1C2C /* EmailsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailsKeys.swift; sourceTree = "<group>"; };
 		E35F5E9B24137715003C4281 /* PgpKeys.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PgpKeys.storyboard; sourceTree = "<group>"; };
 		E35F5E9E2413772B003C4281 /* PgpKeysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgpKeysViewController.swift; sourceTree = "<group>"; };
 		E35F5EA124137D27003C4281 /* PgpKeysPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgpKeysPresenter.swift; sourceTree = "<group>"; };
@@ -1006,6 +1011,7 @@
 		E399BB8323E87AF900EEA708 /* normalize.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = normalize.css; sourceTree = "<group>"; };
 		E399BB8423E87AF900EEA708 /* RichEditorToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichEditorToolbar.swift; sourceTree = "<group>"; };
 		E399BB8523E87AF900EEA708 /* RichEditorOptionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichEditorOptionItem.swift; sourceTree = "<group>"; };
+		E3DA9841246877E00079110D /* String+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Error.swift"; sourceTree = "<group>"; };
 		E3E22E4A24398E6B00DCE5B7 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		E3E22E4C24398E6B00DCE5B7 /* SlideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuController.swift; sourceTree = "<group>"; };
 		E3E22E5524398FDC00DCE5B7 /* AppStoryBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoryBoard.swift; sourceTree = "<group>"; };
@@ -1130,6 +1136,7 @@
 				8430C28F21B5033600ACB559 /* EncryptionObject.swift */,
 				8462C62C21CCE21E005B3D74 /* Settings.swift */,
 				84BB2E4D230ADB4C00E9C162 /* Captcha.swift */,
+				E34E5D91244B5000004A1C2C /* EmailsKeys.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -2044,6 +2051,7 @@
 				E3E575D52430FB9B00037979 /* UINavBar+Borderline.swift */,
 				E3E575D82430FBCE00037979 /* UIKitControls.swift */,
 				E38E4AEE2439C3190062E830 /* UIViewController+Helper.swift */,
+				E3DA9841246877E00079110D /* String+Error.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2099,7 +2107,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 1000;
-				ORGANIZATIONNAME = AreteSol;
+				ORGANIZATIONNAME = Ctemplar;
 				TargetAttributes = {
 					8433FF15216201A300C57DC8 = {
 						CreatedOnToolsVersion = 10.0;
@@ -2650,6 +2658,7 @@
 				8440141321D34A9600FC450C /* SetMailboxViewController.swift in Sources */,
 				8443D22621CBDD88002AD54B /* SettingsDataSource.swift in Sources */,
 				843FC3952164D1E3000CFEA9 /* SignUpPagePassword.swift in Sources */,
+				E34E5D92244B5000004A1C2C /* EmailsKeys.swift in Sources */,
 				8451BEBB21D60F9F009B1C8C /* SelectLanguageViewController.swift in Sources */,
 				845E643E2170A46C008612FE /* ComposeViewController.swift in Sources */,
 				84356865216F2E0D002101D3 /* InboxPresenter.swift in Sources */,
@@ -2676,6 +2685,7 @@
 				8462C62D21CCE21E005B3D74 /* Settings.swift in Sources */,
 				843FC3822164C2CC000CFEA9 /* KeychainService.swift in Sources */,
 				84344D3D21CA89FB00A5D9A0 /* AddFolderConfigurator.swift in Sources */,
+				E3DA9842246877E00079110D /* String+Error.swift in Sources */,
 				84356859216F2736002101D3 /* InboxNavigationController.swift in Sources */,
 				8403BDEA21A4052800EE8DCD /* AddContactInteractor.swift in Sources */,
 				843E973721636FF200147CBE /* LoginConfigurator.swift in Sources */,
@@ -2855,6 +2865,7 @@
 				CC6908FE2384500100956E9B /* SetMailboxViewController.swift in Sources */,
 				CC6908FF2384500100956E9B /* SettingsDataSource.swift in Sources */,
 				CC6909002384500100956E9B /* SignUpPagePassword.swift in Sources */,
+				E34E5D93244B5000004A1C2C /* EmailsKeys.swift in Sources */,
 				CC6909012384500100956E9B /* SelectLanguageViewController.swift in Sources */,
 				CC6909022384500100956E9B /* ComposeViewController.swift in Sources */,
 				CC6909032384500100956E9B /* InboxPresenter.swift in Sources */,
@@ -2881,6 +2892,7 @@
 				CC69090F2384500100956E9B /* Settings.swift in Sources */,
 				CC6909102384500100956E9B /* KeychainService.swift in Sources */,
 				CC6909112384500100956E9B /* AddFolderConfigurator.swift in Sources */,
+				E3DA9843246877E00079110D /* String+Error.swift in Sources */,
 				CC6909122384500100956E9B /* InboxNavigationController.swift in Sources */,
 				CC6909132384500100956E9B /* AddContactInteractor.swift in Sources */,
 				CC6909142384500100956E9B /* LoginConfigurator.swift in Sources */,
@@ -3118,7 +3130,7 @@
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = N2Z7XM6798;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Ctemplar/Resources/Plist/Ctemplar-Info.plist";
@@ -3127,7 +3139,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.5;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3145,7 +3157,7 @@
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = N2Z7XM6798;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Ctemplar/Resources/Plist/Ctemplar-Info.plist";
@@ -3154,7 +3166,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.5;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3172,7 +3184,7 @@
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N2Z7XM6798;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Ctemplar/Resources/Plist/Ctemplar.dev-Info.plist";
@@ -3181,7 +3193,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.5;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3199,7 +3211,7 @@
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N2Z7XM6798;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Ctemplar/Resources/Plist/Ctemplar.dev-Info.plist";
@@ -3208,7 +3220,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.5;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";

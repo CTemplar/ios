@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 01.10.2018.
-//  Copyright © 2018 ComeOnSoftware. All rights reserved.
+//  Copyright © 2018 CTemplar. All rights reserved.
 //
 
 import UIKit
@@ -150,57 +150,168 @@ let k_reloadViewControllerDataSourceNotificationID    = "ReloadViewControllerDat
 let k_updateCustomFolderNotificationID = "UpdateCustomFoldersNotificationIdentifier"
 // colors
 
-let k_navBar_titleColor: UIColor = UIColor(red: 44/255, green: 62/255, blue: 80/255, alpha: 0.87)
-let k_navBar_backgroundColor: UIColor = UIColor(red: 250/255, green: 251/255, blue: 251/255, alpha: 1.0)
-let k_lightRedColor: UIColor = UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 0.2)
-let k_redColor: UIColor = UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 1.0)
+var k_navBar_titleColor: UIColor {
+    return UIColor(named: "navBarTitleColor")!
+} //= UIColor(red: 44/255, green: 62/255, blue: 80/255, alpha: 0.87)
+var k_navBar_backgroundColor: UIColor {
+    return UIColor(named: "navBarBackgroundColor")!
+} //= UIColor(red: 250/255, green: 251/255, blue: 251/255, alpha: 1.0)
+var k_navButtonTintColor: UIColor {
+    return UIColor(named: "navButtonTintColor")!
+}
+var k_searchBar_backgroundColor: UIColor {
+    return UIColor(named: "searchBarBackgroundColor")!
+}
+var k_lightRedColor: UIColor {
+    return UIColor(named: "lightRedColor")!
+} //= UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 0.2)
+var k_redColor: UIColor {
+    return UIColor(named: "redColor")!
+} //= UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 1.0)
 
-let k_sideMenuColor: UIColor = UIColor(red: 23.0/255.0, green: 50.0/255.0, blue: 77.0/255.0, alpha: 1.0)
-let k_sideMenuSeparatorColor: UIColor = UIColor(red: 23.0/255.0, green: 50.0/255.0, blue: 77.0/255.0, alpha: 0.1)
-let k_sideMenuFadeColor: UIColor = UIColor(red: 2.0/255.0, green: 13.0/255.0, blue: 25.0/255.0, alpha: 0.56)
-let k_sideMenuTextFadeColor: UIColor = UIColor(red: 52.0/255.0, green: 73.0/255.0, blue: 94.0/255.0, alpha: 0.4)
+var k_sideMenuColor: UIColor {
+    return UIColor(named: "sideMenuColor")!
+} //= UIColor(red: 23.0/255.0, green: 50.0/255.0, blue: 77.0/255.0, alpha: 1.0)
+var k_sideMenuSeparatorColor: UIColor {
+    return UIColor(named: "sideMenuSeparatorColor")!
+} //= UIColor(red: 23.0/255.0, green: 50.0/255.0, blue: 77.0/255.0, alpha: 0.1)
+var k_sideMenuFadeColor: UIColor {
+    return UIColor(named: "sideMenuFadeColor")!
+} //= UIColor(red: 2.0/255.0, green: 13.0/255.0, blue: 25.0/255.0, alpha: 0.56)
+var k_sideMenuTextFadeColor: UIColor {
+    return UIColor(named: "sideMenuTextFadeColor")!
+} //= UIColor(red: 52.0/255.0, green: 73.0/255.0, blue: 94.0/255.0, alpha: 0.4)
 
-let k_urlColor: UIColor = UIColor(red: 74.0 / 255.0, green: 144.0 / 255.0, blue: 226.0 / 255.0, alpha: 1.0)
-let k_lightGrayColor: UIColor = UIColor(white: 0.0, alpha: 0.54)
+var k_urlColor: UIColor {
+    return UIColor(named: "urlColor")!
+} //= UIColor(red: 74.0 / 255.0, green: 144.0 / 255.0, blue: 226.0 / 255.0, alpha: 1.0)
+var k_lightGrayColor: UIColor {
+    return UIColor(named: "lightGrayColor")!
+} //= UIColor(white: 0.0, alpha: 0.54)
 
-let k_emailToColor: UIColor = UIColor(white: 158.0 / 255.0, alpha: 1.0)
-let k_emailToInputColor: UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 0.5)
+var k_whiteBlackListTextLabelColor: UIColor {
+    return UIColor(named: "whiteBlackListTextLabelColor")!
+}
+var k_emailToColor: UIColor {
+    return UIColor(named: "emailToColor")!
+} //= UIColor(white: 158.0 / 255.0, alpha: 1.0)
+var k_emailToInputColor: UIColor {
+    return UIColor(named: "emailToInputColor")!
+} //= UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 0.5)
+var k_emailToInputColor1: UIColor {
+    return UIColor(named: "emailToInputColor1")!
+}
 
-let k_lightGrayTextColor: UIColor = UIColor(red: 147.0 / 255.0, green: 145.0 / 255.0, blue: 145.0 / 255.0, alpha: 1.0)
+var k_lightGrayTextColor: UIColor {
+    return UIColor(named: "lightGrayTextColor")!
+} //= UIColor(red: 147.0 / 255.0, green: 145.0 / 255.0, blue: 145.0 / 255.0, alpha: 1.0)
 
-let k_mainInboxColor: UIColor = UIColor(red: 242.0 / 255.0, green: 240.0 / 255.0, blue: 240.0 / 255.0, alpha: 1.0)
-let k_foundTextBackgroundColor: UIColor = UIColor(red: 217.0 / 255.0, green: 235.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+var k_mainInboxColor: UIColor {
+    return UIColor(named: "mainInboxColor")!
+} //= UIColor(red: 242.0 / 255.0, green: 240.0 / 255.0, blue: 240.0 / 255.0, alpha: 1.0)
+var k_foundTextBackgroundColor: UIColor {
+    return UIColor(named: "foundTextBackgroundColor")!
+} //= UIColor(red: 217.0 / 255.0, green: 235.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
 
-let k_whiteColor: UIColor = UIColor(red: 250.0 / 255.0, green: 251.0 / 255.0, blue: 251.0 / 255.0, alpha: 1.0)
-let k_selectedFolderColor: UIColor = UIColor(red: 18.0 / 255.0, green: 45.0 / 255.0, blue: 71.0 / 255.0, alpha: 0.1)
+var k_whiteColor: UIColor {
+    return UIColor(named: "whiteColor")!
+} //= UIColor(red: 250.0 / 255.0, green: 251.0 / 255.0, blue: 251.0 / 255.0, alpha: 1.0)
+var k_selectedFolderColor: UIColor {
+    return UIColor(named: "selectedFolderColor")!
+} //= UIColor(red: 18.0 / 255.0, green: 45.0 / 255.0, blue: 71.0 / 255.0, alpha: 0.1)
 
-let k_readMessageColor : UIColor = UIColor(white: 245/255, alpha: 1.0)
+var k_readMessageColor : UIColor {
+    return UIColor(named: "readMessageColor")!
+} //= UIColor(white: 245/255, alpha: 1.0)
 
-let k_unreadMessageColor : UIColor = UIColor(white: 1.0, alpha: 1.0)
+var k_unreadMessageColor : UIColor {
+    return UIColor(named: "unreadMessageColor")!
+} //= UIColor(white: 1.0, alpha: 1.0)
 
-let k_actionMessageColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 1.0)
+var k_actionMessageColor : UIColor {
+    return UIColor(named: "actionMessageColor")!
+} //= UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 1.0)
 
-let k_contactsBarTintColor : UIColor = UIColor(red: 44.0 / 255.0, green: 62.0 / 255.0, blue: 80.0 / 255.0, alpha: 1.0)
-let k_passwordBarTintColor : UIColor = UIColor(red: 44.0 / 255.0, green: 62.0 / 255.0, blue: 80.0 / 255.0, alpha: 0.87)
+var k_contactsBarTintColor : UIColor {
+    return UIColor(named: "contactsBarTintColor")!
+} //= UIColor(red: 44.0 / 255.0, green: 62.0 / 255.0, blue: 80.0 / 255.0, alpha: 1.0)
+var k_passwordBarTintColor : UIColor {
+    return UIColor(named: "passwordBarTintColor")!
+} //= UIColor(red: 44.0 / 255.0, green: 62.0 / 255.0, blue: 80.0 / 255.0, alpha: 0.87)
 
-let k_mainFolderTextColor : UIColor = UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 0.5)
+var k_mainFolderTextColor : UIColor {
+    return UIColor(named: "mainFolderTextColor")!
+} //= UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 0.5)
 
-let k_orangeColor : UIColor = UIColor(red: 255.0 / 255.0, green: 170.0 / 255.0, blue: 14.0 / 255.0, alpha: 1.0)
-let k_greenColor : UIColor = UIColor(red: 0.0 / 255.0, green: 116.0 / 255.0, blue: 33.0 / 255.0, alpha: 1.0)
+var k_folderCellTextColor: UIColor {
+    return UIColor(named: "folderCellTextColor")!
+}
+var k_orangeColor : UIColor {
+    return UIColor(named: "orangeColor")!
+} //= UIColor(red: 255.0 / 255.0, green: 170.0 / 255.0, blue: 14.0 / 255.0, alpha: 1.0)
+var k_greenColor : UIColor {
+    return UIColor(named: "greenColor")!
+} //= UIColor(red: 0.0 / 255.0, green: 116.0 / 255.0, blue: 33.0 / 255.0, alpha: 1.0)
 
-let k_blueColor : UIColor = UIColor(red: 52.0 / 255.0, green: 152.0 / 255.0, blue: 219.0 / 255.0, alpha: 1.0)
+var k_blueColor : UIColor {
+    return UIColor(named: "blueColor")!
+} //= UIColor(red: 52.0 / 255.0, green: 152.0 / 255.0, blue: 219.0 / 255.0, alpha: 1.0)
 
-let k_docColor : UIColor = UIColor(red: 0.0 / 255.0, green: 150.0 / 255.0, blue: 230.0 / 255.0, alpha: 1.0)
-let k_pdfColor : UIColor = UIColor(red: 204.0 / 255.0, green: 75.0 / 255.0, blue: 76.0 / 255.0, alpha: 1.0)
-let k_pngColor : UIColor = UIColor(red: 101.0 / 255.0, green: 156.0 / 255.0, blue: 53.0 / 255.0, alpha: 1.0)
-let k_jpgColor : UIColor = UIColor(red: 19.0 / 255.0, green: 160.0 / 255.0, blue: 133.0 / 255.0, alpha: 1.0)
-let k_otherColor : UIColor = UIColor(red: 148.0 / 255.0, green: 165.0 / 255.0, blue: 165.0 / 255.0, alpha: 1.0)
+var k_docColor : UIColor {
+    return UIColor(named: "docColor")!
+} //= UIColor(red: 0.0 / 255.0, green: 150.0 / 255.0, blue: 230.0 / 255.0, alpha: 1.0)
+var k_pdfColor : UIColor {
+    return UIColor(named: "pdfColor")!
+} //= UIColor(red: 204.0 / 255.0, green: 75.0 / 255.0, blue: 76.0 / 255.0, alpha: 1.0)
+var k_pngColor : UIColor {
+    return UIColor(named: "pngColor")!
+} //= UIColor(red: 101.0 / 255.0, green: 156.0 / 255.0, blue: 53.0 / 255.0, alpha: 1.0)
+var k_jpgColor : UIColor {
+    return UIColor(named: "jpgColor")!
+} //= UIColor(red: 19.0 / 255.0, green: 160.0 / 255.0, blue: 133.0 / 255.0, alpha: 1.0)
+var k_otherColor : UIColor {
+    return UIColor(named: "otherColor")!
+} //= UIColor(red: 148.0 / 255.0, green: 165.0 / 255.0, blue: 165.0 / 255.0, alpha: 1.0)
 
-let k_fileNameColor : UIColor = UIColor(red: 90.0 / 255.0, green: 90.0 / 255.0, blue: 90.0 / 255.0, alpha: 1.0)
+var k_fileNameColor : UIColor {
+    return UIColor(named: "fileNameColor")!
+}//= UIColor(red: 90.0 / 255.0, green: 90.0 / 255.0, blue: 90.0 / 255.0, alpha: 1.0)
 
-let k_settingHeaderLineColor: UIColor = UIColor(red: 235.0 / 255.0, green: 235.0 / 255.0, blue: 235.0 / 255.0, alpha: 1.0)
+var k_settingHeaderLineColor: UIColor {
+    return UIColor(named: "settingHeaderLineColor")!
+} //= UIColor(red: 235.0 / 255.0, green: 235.0 / 255.0, blue: 235.0 / 255.0, alpha: 1.0)
 
-let k_mailboxTextColor: UIColor = UIColor(red: 52.0/255.0, green: 73.0/255.0, blue: 94.0/255.0, alpha: 1.0)
+var k_mailboxTextColor: UIColor {
+    return UIColor(named: "mailboxTextColor")!
+} //= UIColor(red: 52.0/255.0, green: 73.0/255.0, blue: 94.0/255.0, alpha: 1.0)
+
+var k_cellTitleTextColor: UIColor {
+    return UIColor(named: "cellTitleTextColor")!
+}
+
+var k_cellSubTitleTextColor: UIColor {
+    return UIColor(named: "cellSubTitleTextColor")!
+}
+
+var k_messageCountLabelTextColor: UIColor {
+    return UIColor(named: "messageCountLabelTextColor")!
+}
+
+var k_settingsHeaderBackgroundColor: UIColor {
+    return UIColor(named: "settingsHeaderBackgroundColor")!
+}
+
+var k_fingerprintTextColor: UIColor {
+    return UIColor(named: "fingerprintTextColor")!
+}
+
+var k_sideMenuCellBackgroundColor: UIColor {
+    return UIColor(named: "sideMenuCellBackgroundColor")!
+}
+
+var k_sideMenuSelectedCellBackgroundColor: UIColor {
+    return UIColor(named: "sideMenuSelectedCellBackgroundColor")!
+}
 
 //size constants
 
@@ -315,10 +426,10 @@ let k_blackFilterImageName          = "blackFilterButton"
 
 let k_darkBackArrowImageName        = "BackArrowDark"
 
-let k_garbageImageName              = "GarbageButton"
-let k_spamImageName                 = "SpamButton"
-let k_moveImageName                 = "MoveButton"
-let k_moreImageName                 = "MoreButton"
+let k_garbageImageName              = "trashMessage"
+let k_spamImageName                 = "spamMessage"
+let k_moveImageName                 = "moveMessage"
+let k_moreImageName                 = "moreMessage"
 
 let k_unreadImageName               = "unreadMessage"
 
@@ -420,12 +531,14 @@ let k_mainSiteURL                  = "https://ctemplar.com/"
 let k_upgradeURL                   = "https://ctemplar.com/pricing"
 let k_supportURL                   = "support@ctemplar.com."
 
+let k_signature_decoding_issue = "error decoding signature."
+
 let k_firstCharsForHeader          = 50
 let k_firstCharsForEncryptdHeader  = 5
 
-let k_tokenHoursExpiration         = 2
-let k_tokenMinutesExpiration       = 170
-let k_tokenHoursRefresh            = 47
+let k_tokenHoursExpiration         = 120
+let k_tokenMinutesExpiration       = 7200
+let k_tokenHoursRefresh            = 1920
 
 let k_undoActionBarShowingSecs     = 5.0
 
@@ -435,7 +548,8 @@ let k_customFoldersLimitForNonPremium = 3
 let k_colorButtonsTag = 200
 
 let k_mainDomain = "ctemplar.com"
-let k_devMainDomain = "dev.ctemplar.com"
+let k_devMainDomain = "dev.ctemplar.net"
+let k_devOldDomain = "dev.ctemplar.com"
 
 let k_platform = "ios"
 

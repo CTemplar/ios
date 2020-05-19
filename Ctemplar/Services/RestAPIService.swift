@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 01.10.2018.
-//  Copyright © 2018 ComeOnSoftware. All rights reserved.
+//  Copyright © 2018 CTemplar. All rights reserved.
 //
 
 import Foundation
@@ -11,7 +11,7 @@ import Alamofire
 
 enum EndPoint: String {
     #if DEVELOPMENT
-    case baseUrl = "https://devapi.ctemplar.com/"
+    case baseUrl = "https://devapi.ctemplar.net/"
     #else
     case baseUrl = "https://mail.ctemplar.com/api/" //"https://api.ctemplar.com/"
     #endif
@@ -89,6 +89,7 @@ enum JSONKey: String {
     case messageID = "message"
     case fileData = "document"
     case inline = "is_inline"
+    case fileType = "file_type"
     case attachments = "attachments"
     case parent = "parent"
     case selfDestructionDate = "destruct_date"
@@ -1201,14 +1202,16 @@ class RestAPIService {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
-            "Accept": "application/json"
+            "Accept": "application/json",
+            "Content-type": "multipart/form-data"
         ]
         
         let parameters: Parameters = [
             JSONKey.messageID.rawValue: messageID.description,
             //JSONKey.fileData.rawValue: file,
             JSONKey.inline.rawValue: false,
-            JSONKey.encrypted.rawValue: encrypted
+            JSONKey.encrypted.rawValue: encrypted,
+            JSONKey.fileType.rawValue: mimeType
         ]
         
         print("updateAttachment parameters:", parameters)

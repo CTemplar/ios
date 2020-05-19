@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 08.10.2018.
-//  Copyright © 2018 ComeOnSoftware. All rights reserved.
+//  Copyright © 2018 CTemplar. All rights reserved.
 //
 
 import Foundation
@@ -195,15 +195,15 @@ class FormatterService
         
         let attributedString = NSMutableAttributedString(string: fromToText, attributes: [
             .font: font,
-            .foregroundColor: UIColor(white: 0.0, alpha: 0.38),
+            .foregroundColor: k_messageCountLabelTextColor,
             .kern: 0.0,
             .paragraphStyle: style
             ])
         
-        _ = attributedString.setForgroundColor(textToFind: fromName, color: UIColor(white: 0.0, alpha: 0.87))
+        _ = attributedString.setForgroundColor(textToFind: fromName, color: k_cellTitleTextColor)
         
         for name in toNamesArray {
-            _ = attributedString.setForgroundColor(textToFind: name, color: UIColor(white: 0.0, alpha: 0.87))
+            _ = attributedString.setForgroundColor(textToFind: name, color: k_cellTitleTextColor)
         }
         
         return attributedString

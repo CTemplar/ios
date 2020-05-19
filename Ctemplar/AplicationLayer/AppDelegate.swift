@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 01.10.2018.
-//  Copyright © 2018 ComeOnSoftware. All rights reserved.
+//  Copyright © 2018 CTemplar. All rights reserved.
 //
 
 import UIKit
@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
                   
-        self.disableDarkMode()
+//        self.disableDarkMode()
         
         UserDefaults.standard.setValue(false, forKey:"_UIConstraintBasedLayoutLogUnsatisfiable")
         
@@ -71,6 +71,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+            if let action = userInfo["gcm.notification.action"] as? String {
+                print("push notification received for: \(action)")
+                if action == "changePassword" {
+                    applicationManager.keychainService.deleteUserCredentialsAndToken()
+                    switch application.applicationState {
+                    case .active, .background:
+                        let vc = MainViewController.instantiate(fromAppStoryboard: .Main)
+                        if let window = UIApplication.shared.getKeyWindow() {
+                            window.setRootViewController(vc)
+                        }
+                        break
+                    default:
+                        break
+                    }
+                }
+                
+            }
+            
+            
+            completionHandler(UIBackgroundFetchResult.newData)
+        }
+
     
     //MARK: - Push notifications
     

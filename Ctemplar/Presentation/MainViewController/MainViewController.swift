@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 01.10.2018.
-//  Copyright © 2018 ComeOnSoftware. All rights reserved.
+//  Copyright © 2018 CTemplar. All rights reserved.
 //
 
 import UIKit
@@ -208,11 +208,13 @@ extension MainViewController {
         leftMenuController.inboxViewController = inboxViewController
         leftMenuController.dataSource?.selectedIndexPath = IndexPath(row: 0, section: SideMenuSectionIndex.mainFolders.rawValue)
         
-        let slideMenuController = SlideMenuController(mainViewController: inboxNavigationController, leftMenuViewController: leftMenuController)
         SlideMenuOptions.rightViewWidth = UIScreen.main.bounds.width / 1.3
         SlideMenuOptions.contentViewOpacity = 0.3
+        SlideMenuOptions.panGesturesEnabled = false
         
         SlideMenuOptions.contentViewScale = 1
+        
+        let slideMenuController = SlideMenuController(mainViewController: inboxNavigationController, leftMenuViewController: leftMenuController)
         
         return slideMenuController
     }

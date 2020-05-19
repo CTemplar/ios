@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 29.10.2018.
-//  Copyright © 2018 ComeOnSoftware. All rights reserved.
+//  Copyright © 2018 CTemplar. All rights reserved.
 //
 
 import Foundation
@@ -31,9 +31,9 @@ class CustomFolderTableViewCell: UITableViewCell {
     func setupCustomFolderTableCell(selected: Bool, iconColor: String, title: String, unreadCount: Int) {
         
         if selected {
-            self.backgroundColor = k_selectedFolderColor
+            self.backgroundColor = k_sideMenuSelectedCellBackgroundColor
         } else {
-            self.backgroundColor = k_whiteColor
+            self.backgroundColor = k_sideMenuCellBackgroundColor
         }
         
         self.leftSelectionView.isHidden = !selected

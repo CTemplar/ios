@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 17.12.2018.
-//  Copyright © 2018 ComeOnSoftware. All rights reserved.
+//  Copyright © 2018 CTemplar. All rights reserved.
 //
 
 import Foundation
@@ -27,6 +27,7 @@ class ManageFoldersViewController: UIViewController {
     @IBOutlet var foldersTableView         : UITableView!
     @IBOutlet var addFolderView            : UIView!
     @IBOutlet var redBottomView            : UIView!
+    @IBOutlet weak var emptyFoldersView: UIView!
     
     @IBOutlet var leftBarButtonItem        : UIBarButtonItem!
     @IBOutlet var addFolderButton          : UIButton!

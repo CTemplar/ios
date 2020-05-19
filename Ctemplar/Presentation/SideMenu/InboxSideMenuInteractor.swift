@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 22.10.2018.
-//  Copyright © 2018 ComeOnSoftware. All rights reserved.
+//  Copyright © 2018 CTemplar. All rights reserved.
 //
 
 import Foundation
@@ -129,7 +129,7 @@ class InboxSideMenuInteractor {
         self.viewController?.dataSource?.unreadMessagesArray = array
         self.viewController?.dataSource?.reloadData()
         
-        updateInboxBottomBar(with: array, for: self.viewController!.customFoldersViewController)
+        updateInboxBottomBar(with: array, for: self.viewController!.inboxViewController)
     }
     
     func updateInboxBottomBar(with array: Array<UnreadMessagesCounter>, for vc: InboxViewController) {

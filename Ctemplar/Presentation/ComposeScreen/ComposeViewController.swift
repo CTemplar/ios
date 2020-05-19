@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 12.10.2018.
-//  Copyright © 2018 ComeOnSoftware. All rights reserved.
+//  Copyright © 2018 CTemplar. All rights reserved.
 //
 
 import UIKit
@@ -578,13 +578,13 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             }
             if keyboardHeight == 0 {
                 scrollViewBottomOffsetConstraint.constant = 0.0
-                self.presenter?.setupMessageSectionSize()
                 tableViewBottomOffsetConstraint.constant = 0.0
             }else {
                 scrollViewBottomOffsetConstraint.constant = keyboardHeight
-                self.presenter?.setupMessageSectionSize()
                 tableViewBottomOffsetConstraint.constant = keyboardHeight
             }
+            self.view.layoutIfNeeded()
+            self.presenter?.setupMessageSectionSize()
         }
     }
     
@@ -678,14 +678,14 @@ extension ComposeViewController: UIScrollViewDelegate {
                 fromViewTopConstraint.constant = 0
                 toolbarViewTopConstraint.constant = -1
             }else if offsetY + frameHeight == contentHeight {
-                fromViewTopConstraint.constant = -46
+                fromViewTopConstraint.constant = -50
                 toolbarViewTopConstraint.constant = -51
             }
             else if delta < 0 {
                 fromViewTopConstraint.constant = min(fromViewTopConstraint.constant - delta, 0)
                 toolbarViewTopConstraint.constant = min(toolbarViewTopConstraint.constant - delta, -1)
             }else {
-                fromViewTopConstraint.constant = max(-46, fromViewTopConstraint.constant - delta)
+                fromViewTopConstraint.constant = max(-50, fromViewTopConstraint.constant - delta)
                 toolbarViewTopConstraint.constant = max(-51, toolbarViewTopConstraint.constant - delta)
             }
             lastContentOffset = scrollView.contentOffset.y

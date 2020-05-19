@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 27.12.2018.
-//  Copyright © 2018 ComeOnSoftware. All rights reserved.
+//  Copyright © 2018 CTemplar. All rights reserved.
 //
 
 import Foundation
@@ -142,7 +142,7 @@ class WhiteBlackListsPresenter {
         
         let attributedString = NSMutableAttributedString(string: text, attributes: [
             .font: UIFont(name: k_latoRegularFontName, size: 16.0)!,
-            .foregroundColor: k_lightGrayColor,
+            .foregroundColor: k_whiteBlackListTextLabelColor,
             .kern: 0.0
             ])
         

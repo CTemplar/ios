@@ -3,7 +3,7 @@
 //  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 17.12.2018.
-//  Copyright © 2018 ComeOnSoftware. All rights reserved.
+//  Copyright © 2018 CTemplar. All rights reserved.
 //
 
 import Foundation
@@ -26,21 +26,23 @@ class ManageFoldersPresenter {
     func setupTable(folders: Array<Folder>) {
         
         if folders.count > 0 {
+            self.viewController!.emptyFoldersView.isHidden = true
             self.viewController!.foldersTableView.isHidden = false
             self.viewController!.addFolderView.isHidden = false
-            self.viewController!.redBottomView.isHidden = true
+//            self.viewController!.redBottomView.isHidden = true
         } else {
+            self.viewController!.emptyFoldersView.isHidden = false
             self.viewController!.foldersTableView.isHidden = true
             self.viewController!.addFolderView.isHidden = true
-            self.viewController!.redBottomView.isHidden = false
+//            self.viewController!.redBottomView.isHidden = false
         }
     }
     
     func setupBackButton() {
         
         let backButton = UIBarButtonItem(image: UIImage(named: k_darkBackArrowImageName), style: .done, target: self, action: #selector(backAction))
-        
-        self.viewController!.navigationController?.navigationBar.tintColor = k_contactsBarTintColor
+        backButton.tintColor = k_navButtonTintColor
+//        self.viewController!.navigationController?.navigationBar.barTintColor = k_navBar_backgroundColor
         self.viewController!.navigationItem.leftBarButtonItem = backButton
     }
     
