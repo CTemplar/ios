@@ -148,6 +148,7 @@ let k_attachUploadUpdateNotificationID      = "attachUploadUpdateNotificationIde
 let k_reloadViewControllerNotificationID    = "ReloadViewControllerNotificationIdentifier"
 let k_reloadViewControllerDataSourceNotificationID    = "ReloadViewControllerDataSourceNotificationIdentifier"
 let k_updateCustomFolderNotificationID = "UpdateCustomFoldersNotificationIdentifier"
+let k_updateMessagesReadCountNotificationID = "updateMessagesReadCountNotification"
 // colors
 
 var k_navBar_titleColor: UIColor {

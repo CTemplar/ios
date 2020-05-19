@@ -363,7 +363,8 @@ class ViewInboxEmailInteractor {
                 
                 self.viewController?.messageIsRead = asRead
                 
-                self.postUpdateInboxNotification()
+//                self.postUpdateInboxNotification()
+                self.viewController?.viewInboxEmailDelegate?.didUpdateReadStatus(for: message, status: asRead)
                 
                 if withUndo.count > 0 {
                     self.presenter?.showUndoBar(text: withUndo)

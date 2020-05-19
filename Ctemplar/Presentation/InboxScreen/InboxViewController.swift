@@ -249,3 +249,16 @@ extension InboxViewController: MoreActionsDelegate {
         presenter?.applyMoreAction(sender, isButton: isButton)
     }
 }
+
+extension InboxViewController: ViewInboxEmailDelegate {
+    func didUpdateReadStatus(for message: EmailMessage, status: Bool) {
+        for i in 0..<allMessagesArray.count {
+            if allMessagesArray[i].messsageID == message.messsageID {
+                allMessagesArray[i].read = status
+                break
+            }
+        }
+        dataSource?.updateMessageStatus(message: message, status: status)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateMessagesReadCountNotificationID), object: ["name": self.currentFolder, "isRead": status])
+    }
+}

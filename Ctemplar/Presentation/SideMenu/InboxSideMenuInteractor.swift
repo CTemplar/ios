@@ -132,6 +132,34 @@ class InboxSideMenuInteractor {
         updateInboxBottomBar(with: array, for: self.viewController!.inboxViewController)
     }
     
+    func setUnReadCounters(array: Array<UnreadMessagesCounter>, folder: String) {
+        self.viewController?.dataSource?.unreadMessagesArray = array
+        self.viewController?.dataSource?.reloadData()
+        
+        switch folder {
+        case InboxSideMenuOptionsName.inbox.rawValue:
+            updateInboxBottomBar(with: array, for: self.viewController!.inboxViewController)
+            break
+        case InboxSideMenuOptionsName.outbox.rawValue:
+            updateInboxBottomBar(with: array, for: self.viewController!.outboxViewController)
+            break
+        case InboxSideMenuOptionsName.starred.rawValue:
+            updateInboxBottomBar(with: array, for: self.viewController!.starredViewController)
+            break
+        case InboxSideMenuOptionsName.archive.rawValue:
+            updateInboxBottomBar(with: array, for: self.viewController!.archiveViewController)
+            break
+        case InboxSideMenuOptionsName.spam.rawValue:
+            updateInboxBottomBar(with: array, for: self.viewController!.spamViewController)
+            break
+        case InboxSideMenuOptionsName.trash.rawValue:
+            updateInboxBottomBar(with: array, for: self.viewController!.trashViewController)
+            break
+        default:
+            updateInboxBottomBar(with: array, for: self.viewController!.customFoldersViewController)
+        }
+    }
+    
     func updateInboxBottomBar(with array: Array<UnreadMessagesCounter>, for vc: InboxViewController) {
     
 //        let inboxViewController = self.viewController?.inboxViewController
@@ -169,7 +197,7 @@ class InboxSideMenuInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Unread Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+//                AlertHelperKit().showAlert(self.viewController!, title: "Unread Messages Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
             //HUD.hide()
