@@ -81,12 +81,6 @@ class InboxPresenter {
         } else {
             viewController?.emptyInbox.isHidden = false
         }
-        
-        //temp
-        if (Device.IS_IPAD) {
-            self.viewController?.leftBarButtonItem = self.viewController?.navigationItem.leftBarButtonItem
-            self.setupNavigationLeftItem()
-        }
     }
     
     func setupNavigationItemTitle(selectedMessages: Int, selectionMode: Bool, currentFolder: String) {
@@ -132,21 +126,12 @@ class InboxPresenter {
     
     func setupNavigationLeftItem() {
         
-        if UIDevice.current.orientation.isLandscape {
-            print("Landscape")
-            //self.viewController?.navigationItem.leftBarButtonItem = nil
+        if !(self.viewController?.dataSource?.selectionMode)! {
+            self.viewController?.leftBarButtonItem.image = UIImage(named: k_menuImageName)
+            self.viewController?.leftBarButtonItem.isEnabled = true
+        } else {
             self.viewController?.leftBarButtonItem.image = nil
             self.viewController?.leftBarButtonItem.isEnabled = false
-        } else {
-            print("Portrait")
-           //self.viewController?.navigationItem.leftBarButtonItem = self.viewController?.leftBarButtonItem
-            if !(self.viewController?.dataSource?.selectionMode)! {
-                self.viewController?.leftBarButtonItem.image = UIImage(named: k_menuImageName)
-                self.viewController?.leftBarButtonItem.isEnabled = true
-            } else {
-                self.viewController?.leftBarButtonItem.image = nil
-                self.viewController?.leftBarButtonItem.isEnabled = false
-            }
         }
     }
             
