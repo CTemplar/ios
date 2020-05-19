@@ -71,6 +71,7 @@ class InboxRouter {
         vc.message = message
         vc.messageID = message.messsageID
         vc.currentFolderFilter = self.viewController?.currentFolderFilter
+        vc.viewInboxEmailDelegate = self.viewController
         //vc.mailboxesList = (self.viewController?.mailboxesList)!
         vc.user = (self.viewController?.user)!
         //self.viewController?.show(vc, sender: self)

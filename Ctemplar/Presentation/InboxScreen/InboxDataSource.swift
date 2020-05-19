@@ -52,6 +52,16 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         registerTableViewCell()
     }
     
+    func updateMessageStatus(message: EmailMessage, status: Bool) {
+        for i in 0..<messagesArray.count {
+            if messagesArray[i].messsageID == message.messsageID {
+                messagesArray[i].read = status
+                self.tableView.reloadData()
+                break
+            }
+        }
+    }
+    
     func setupSwipeActionsButton() -> Array<MGSwipeButton> {
         
         var swipeButtonsArray : Array<MGSwipeButton> = []

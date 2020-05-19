@@ -10,11 +10,16 @@ import Foundation
 import UIKit
 import WebKit
 
+protocol ViewInboxEmailDelegate {
+    func didUpdateReadStatus(for message: EmailMessage, status: Bool)
+}
+
 class ViewInboxEmailViewController: UIViewController {
     
     var presenter   : ViewInboxEmailPresenter?
     var router      : ViewInboxEmailRouter?
     var dataSource  : ViewInboxEmailDataSource?
+    var viewInboxEmailDelegate: ViewInboxEmailDelegate?
         
     @IBOutlet var headerLabelWidthConstraint : NSLayoutConstraint!
     @IBOutlet var fromToViewHeightConstraint : NSLayoutConstraint!

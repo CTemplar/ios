@@ -156,6 +156,7 @@ class InboxSideMenuViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(userDataUpdate), name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(customFoldersUpdated(notification:)), name: NSNotification.Name(rawValue: k_updateCustomFolderNotificationID), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUnreadMessageCount(notification:)), name: NSNotification.Name(rawValue: k_updateMessagesReadCountNotificationID), object: nil)
         
         if (Device.IS_IPAD) {
             NotificationCenter.default.addObserver(self, selector: #selector(reloadViewController), name: NSNotification.Name(rawValue: k_reloadViewControllerNotificationID), object: nil)
@@ -219,5 +220,24 @@ class InboxSideMenuViewController: UIViewController {
         
         self.viewDidLoad()
         self.viewWillAppear(false)
+    }
+    
+    @objc func updateUnreadMessageCount(notification: Notification) {
+        if let folder = notification.object as? [String: Any] {
+            let folderName = folder["name"] as? String ?? ""
+            let isRead = folder["isRead"] as? Bool ?? false
+            var unReadCountArray = self.dataSource?.unreadMessagesArray ?? []
+            for i in 0..<unReadCountArray.count {
+                if unReadCountArray[i].folderName == folderName {
+                    if isRead {
+                        unReadCountArray[i].unreadMessagesCount = ((unReadCountArray[i].unreadMessagesCount ?? 1) - 1)
+                    }else {
+                        unReadCountArray[i].unreadMessagesCount = ((unReadCountArray[i].unreadMessagesCount ?? 0) + 1)
+                    }
+                    self.presenter?.interactor?.setUnReadCounters(array: unReadCountArray, folder: folderName)
+                    
+                }
+            }
+        }
     }
 }
