@@ -88,7 +88,7 @@
 "unread" = "непрочитано";
 
 "filtered" = "Отфильтровано";
-"noInboxMessage" = "У вас нет входящих сообщений";
+"noInboxMessage" = "У вас нет сообщений";
 "noFilteredMessage" = "Нет писем по такому фильтру";
 
 "starredFilter" = "Избранные";

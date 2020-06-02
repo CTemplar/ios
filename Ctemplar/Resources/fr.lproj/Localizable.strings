@@ -88,7 +88,7 @@
 "unread" = "Non lu";
 
 "filtered" = "Filtrés";
-"noInboxMessage" = "Aucun message";
+"noInboxMessage" = "Vous n'avez pas de messages";
 "noFilteredMessage" = "Aucun message ne correspond à votre filtre";
 
 "starredFilter" = "Favoris";
