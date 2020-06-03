@@ -49,6 +49,7 @@ class InboxViewController: UIViewController {
     @IBOutlet weak var refreshButton    : UIButton!
     @IBOutlet var messagesLabel         : UILabel!
     @IBOutlet var unreadMessagesLabel   : UILabel!
+    @IBOutlet var messageAlertTitle     : UILabel!
     
     @IBOutlet var emptyInbox            : UIView!
     @IBOutlet var inboxEmptyImageView   : UIImageView!
@@ -60,11 +61,13 @@ class InboxViewController: UIViewController {
     @IBOutlet var selectionToolBar      : UIView!
     @IBOutlet var selectionDraftToolBar : UIView!
     @IBOutlet var undoBar               : UIView!
+    @IBOutlet var viewMailSendingAlert  : UIView!
     
     @IBOutlet var bottomComposeButton   : UIButton!
     @IBOutlet var rightComposeButton    : UIButton!
     @IBOutlet var leftFilterButton      : UIButton!
     @IBOutlet var undoButton            : UIButton!
+    @IBOutlet var alertButton           : UIButton!
     
     @IBOutlet var leftBarButtonItem     : UIBarButtonItem!
     @IBOutlet var rightBarButtonItem    : UIBarButtonItem!
@@ -186,6 +189,11 @@ class InboxViewController: UIViewController {
         }
     }
     
+    @IBAction func alertButtonPressed(_ sender: Any) {
+        viewMailSendingAlert.isHidden = true
+    }
+    
+    
     //MARK: - notification
     
     func adddNotificationObserver() {
@@ -260,5 +268,22 @@ extension InboxViewController: ViewInboxEmailDelegate {
         }
         dataSource?.updateMessageStatus(message: message, status: status)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateMessagesReadCountNotificationID), object: ["name": self.currentFolder, "isRead": status])
+    }
+}
+
+extension InboxViewController : SuccessfulSentMailProtocol, MailSendBeforeShowProgressAlertProtocol {
+    func showSendingAlert() {
+        self.viewMailSendingAlert.isHidden = false
+        messageAlertTitle.text = "mailSendingAlert".localized()
+    }
+    
+    func mailSendSuccess() {
+        messageAlertTitle.text = "mailSendMessage".localized()
+        alertButton.isHidden = false
+        alertButton.setTitle("closeButton".localized(), for: .normal)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.viewMailSendingAlert.isHidden = true
+            self.alertButton.isHidden = true
+        }
     }
 }

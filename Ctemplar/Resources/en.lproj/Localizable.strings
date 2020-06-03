@@ -189,7 +189,8 @@
 "subject" = "Subject: ";
 
 "infoTitle" = "Information:";
-"mailSendMessage" = "Mail was sent successfully";
+"mailSendMessage" = "Mail sent successfully.";
+"mailSendingAlert" = "Sending mail…";
 
 "saveDraft" = "Save draft";
 "discardDraft" = "Discard draft";
