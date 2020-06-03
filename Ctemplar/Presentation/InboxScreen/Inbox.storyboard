@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -72,12 +72,19 @@
                                         <color key="textColor" name="cellSubTitleTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mO5-bi-E06">
+                                        <rect key="frame" x="163.66666666666666" y="412.66666666666669" width="48" height="48"/>
+                                        <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="refresh"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" name="viewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="sCN-au-kGO" firstAttribute="top" secondItem="eDd-Iw-BQd" secondAttribute="centerY" constant="-57" id="D46-GG-o5O"/>
                                     <constraint firstItem="sCN-au-kGO" firstAttribute="centerX" secondItem="eDd-Iw-BQd" secondAttribute="centerX" id="DB8-B7-hNM"/>
                                     <constraint firstItem="aXO-qW-NOt" firstAttribute="centerX" secondItem="eDd-Iw-BQd" secondAttribute="centerX" id="IIf-ZH-6O6"/>
+                                    <constraint firstItem="mO5-bi-E06" firstAttribute="centerX" secondItem="aXO-qW-NOt" secondAttribute="centerX" id="SLQ-Xv-YKM"/>
+                                    <constraint firstItem="mO5-bi-E06" firstAttribute="top" secondItem="aXO-qW-NOt" secondAttribute="bottom" constant="12" id="ren-us-eeL"/>
                                     <constraint firstItem="aXO-qW-NOt" firstAttribute="top" secondItem="sCN-au-kGO" secondAttribute="bottom" constant="45" id="yEz-nZ-vcQ"/>
                                 </constraints>
                             </view>
@@ -431,6 +438,7 @@
                         <outlet property="leftFilterButton" destination="aOn-Eo-5Fa" id="BfC-Nh-mYR"/>
                         <outlet property="messagesLabel" destination="hVo-vt-x7f" id="hqb-QV-S6i"/>
                         <outlet property="moreBarButtonItem" destination="T69-S1-hv2" id="de4-C7-OxX"/>
+                        <outlet property="refreshButton" destination="mO5-bi-E06" id="0KK-c1-XA5"/>
                         <outlet property="rightBarButtonItem" destination="xtH-pi-9Ib" id="zNR-Cq-giI"/>
                         <outlet property="rightComposeButton" destination="qKu-C8-Tfv" id="3hJ-uy-AGO"/>
                         <outlet property="selectionDraftToolBar" destination="1ig-SZ-idl" id="h7L-Zc-74g"/>
@@ -474,6 +482,7 @@
         <image name="SearchButton" width="22" height="30"/>
         <image name="moreMessage" width="44" height="44"/>
         <image name="moveMessage" width="44" height="44"/>
+        <image name="refresh" width="48" height="48"/>
         <image name="spamMessage" width="44" height="44"/>
         <image name="trashMessage" width="44" height="44"/>
         <namedColor name="bottomBarBackgroundColor">
@@ -489,7 +498,7 @@
             <color red="0.17299999296665192" green="0.24300000071525574" blue="0.31400001049041748" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="readMessageCountText">
-            <color red="0.32941176470588235" green="0.32941176470588235" blue="0.32941176470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.32899999618530273" green="0.32899999618530273" blue="0.32899999618530273" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="viewBackgroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

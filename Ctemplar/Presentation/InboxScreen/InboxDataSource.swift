@@ -49,6 +49,7 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         self.tableView.tableFooterView = UIView()
         self.tableView.addSubview(self.refreshControl)
         
+        self.parentViewController.refreshButton.addTarget(self, action: #selector(handleRefresh(_:)), for: .touchUpInside)
         registerTableViewCell()
     }
     
@@ -208,10 +209,11 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         self.refreshControl.endRefreshing()
     }
     
-    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+    @objc
+    private func handleRefresh(_ sender: Any) {
         currentOffset = 0
         parentViewController.presenter?.interactor!.offset = 0
-        self.parentViewController.presenter?.interactor?.updateMessages(withUndo: "", silent: true)
+        self.parentViewController.presenter?.interactor?.updateMessages(withUndo: "", silent: sender is UIButton ? false : true)
     }
     
     // MARK: MGSwipe delegate

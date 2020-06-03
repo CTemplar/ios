@@ -46,7 +46,7 @@ class InboxViewController: UIViewController {
     //var senderEmail: String = ""
     
     @IBOutlet var inboxTableView        : UITableView!
-    
+    @IBOutlet weak var refreshButton    : UIButton!
     @IBOutlet var messagesLabel         : UILabel!
     @IBOutlet var unreadMessagesLabel   : UILabel!
     
