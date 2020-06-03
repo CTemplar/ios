@@ -257,25 +257,22 @@ class ViewInboxEmailInteractor {
     
     //MARK: - Move methods
     
-    func moveMessageToTrash(message: EmailMessage, withUndo: String) {
-        
+    func moveMessageToTrash(message: EmailMessage,
+                            withUndo: String,
+                            onCompletion: @escaping ((Bool) -> Void)) {
         if self.viewController?.currentFolderFilter == MessagesFoldersName.trash.rawValue {
-            
             self.viewController?.lastAction = ActionsIndex.delete
-            
-            self.deleteMessage(message: message, withUndo: "")
-            
+            self.deleteMessage(message: message, withUndo: "", onCompletion: onCompletion)
         } else {
-        
             self.viewController?.lastAction = ActionsIndex.moveToTrach
-            
             var folder = message.folder
-            
-            if withUndo.count > 0 {
+            if !withUndo.isEmpty {
                 folder = MessagesFoldersName.trash.rawValue
             }
-            
-            self.moveMessageTo(message: message, folder: folder!, withUndo: withUndo)
+            self.moveMessageTo(message: message,
+                               folder: folder!,
+                               withUndo: withUndo,
+                               onCompletion: onCompletion)
         }
     }
     
@@ -305,17 +302,21 @@ class ViewInboxEmailInteractor {
         self.moveMessageTo(message: message, folder: folder!, withUndo: withUndo)
     }
     
-    func moveMessageToArchive(message: EmailMessage, withUndo: String) {
-        
+    func moveMessageToArchive(message: EmailMessage,
+                              withUndo: String,
+                              onCompletion: @escaping ((Bool) -> Void)) {
         self.viewController?.lastAction = ActionsIndex.moveToArchive
         
         var folder = message.folder
         
-        if withUndo.count > 0 {
+        if !withUndo.isEmpty {
             folder = MessagesFoldersName.archive.rawValue
         }
         
-        self.moveMessageTo(message: message, folder: folder!, withUndo: withUndo)
+        self.moveMessageTo(message: message,
+                           folder: folder!,
+                           withUndo: withUndo,
+                           onCompletion: onCompletion)
     }
 /*
     func markMessageAsStarred(message: EmailMessage, starred: Bool, withUndo: String) {
@@ -326,25 +327,23 @@ class ViewInboxEmailInteractor {
     
     //MARK: - API requests
     
-    func moveMessageTo(message: EmailMessage, folder: String, withUndo: String) {
-        
+    func moveMessageTo(message: EmailMessage,
+                       folder: String,
+                       withUndo: String,
+                       onCompletion: ((Bool) -> Void)? = nil) {
         apiService?.updateMessages(messageID: (message.messsageID?.description)!, messagesIDIn: "", folder: folder, starred: false, read: false, updateFolder: true, updateStarred: false, updateRead: false)  {(result) in
-            
             switch(result) {
-                
             case .success( _):
-                //print("value:", value)
                 print("move message to:", folder)
-                
                 self.postUpdateInboxNotification()
-                
-                if withUndo.count > 0 {
+                if !withUndo.isEmpty {
                     self.presenter?.showUndoBar(text: withUndo)
                 }
-                
+                onCompletion?(true)
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                onCompletion?(false)
             }
         }
     }
@@ -406,28 +405,26 @@ class ViewInboxEmailInteractor {
         }
     }
     
-    func deleteMessage(message: EmailMessage, withUndo: String) {
-             
+    func deleteMessage(message: EmailMessage,
+                       withUndo: String,
+                       onCompletion: ((Bool) -> Void)? = nil) {
         apiService?.deleteMessages(messagesIDIn: message.messsageID!.description) {(result) in
-            
             switch(result) {
-                
             case .success( _):
-                //print("value:", value)
                 print("deleteMessage ")
                 self.viewController?.lastAction = ActionsIndex.delete
                 self.postUpdateInboxNotification()
                 self.viewController?.router?.backToParentViewController()
-                
+                onCompletion?(true)
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Delete Message Error", message: error.localizedDescription, button: "closeButton".localized())
+                onCompletion?(false)
             }
         }
     }
     
     func undoLastAction(message: EmailMessage) {
-        
         self.presenter?.hideUndoBar()
         
         print("undo pressed")
@@ -435,22 +432,28 @@ class ViewInboxEmailInteractor {
         switch self.viewController?.lastAction.rawValue {
         case ActionsIndex.markAsSpam.rawValue:
             self.moveMessageToSpam(message: message, withUndo: "")
-            break
         case ActionsIndex.markAsRead.rawValue:
             self.markMessageAsRead(message: message, asRead: message.read!, withUndo: "")
-            break
         case ActionsIndex.markAsStarred.rawValue:
             self.markMessageAsStarred(message: message, starred: message.starred!, withUndo: "")
-            break
         case ActionsIndex.moveToArchive.rawValue:
-            self.moveMessageToArchive(message: message, withUndo: "")
-            break
+            self.moveMessageToArchive(message: message, withUndo: "", onCompletion: { [weak self] (isSucceeded) in
+                if isSucceeded {
+                    DispatchQueue.main.async {
+                        self?.viewController?.router?.backToParentViewController()
+                    }
+                }
+            })
         case ActionsIndex.moveToTrach.rawValue:
-            self.moveMessageToTrash(message: message, withUndo: "")
-            break
+            self.moveMessageToTrash(message: message, withUndo: "", onCompletion: { [weak self] (isSucceeded) in
+                if isSucceeded {
+                    DispatchQueue.main.async {
+                        self?.viewController?.router?.backToParentViewController()
+                    }
+                }
+            })
         case ActionsIndex.moveToInbox.rawValue:
             self.moveMessageToInbox(message: message, withUndo: "")
-            break
         default:
             print("unknown undo action")
         }

@@ -308,8 +308,13 @@ class ViewInboxEmailPresenter {
     //MARK: - NavBar Actions
     
     @objc func garbageButtonPresed() {
-        
-        self.interactor?.moveMessageToTrash(message: (self.viewController?.message)!, withUndo: "undoMoveToTrash".localized())
+        self.interactor?.moveMessageToTrash(message: (self.viewController?.message)!, withUndo: "undoMoveToTrash".localized(), onCompletion: { [weak self] (isSucceeded) in
+            if isSucceeded {
+                DispatchQueue.main.async {
+                    self?.viewController?.router?.backToParentViewController()
+                }
+            }
+        })
     }
     
     @objc func spamButtonPresed() {
@@ -460,27 +465,21 @@ class ViewInboxEmailPresenter {
             switch title {
             case MoreActionsTitles.cancel.rawValue.localized():
                 print("cancel btn more actions")
-                break
             case MoreActionsTitles.markAsRead.rawValue.localized():
                 print("markAsRead btn more actions")
                 //self.interactor?.markMessageAsRead(message: (self.viewController?.message)!, asRead: true, withUndo: "undoMarkAsRead".localized())
                 self.markSelectedMessagesAsRead() 
-                break
             case MoreActionsTitles.markAsUnread.rawValue.localized():
                 print("markAsUnread btn more actions")
                 self.markSelectedMessagesAsRead()
-                break
             case MoreActionsTitles.moveToArchive.rawValue.localized():
                 print("moveToArchive btn more actions")
                 self.moveSelectedMessagesToArchive()
-                break
             case MoreActionsTitles.moveToInbox.rawValue.localized():
                 print("moveToInbox btn more actions")
                 self.moveSelectedMessagesToInbox()
-                break
             case MoreActionsTitles.emptyFolder.rawValue.localized():
                 print("emptyFolder btn more actions")
-                break
             default:
                 print("more actions: default")
             }
@@ -582,8 +581,13 @@ class ViewInboxEmailPresenter {
     }
     
     func moveSelectedMessagesToArchive() {
-        
-        self.interactor?.moveMessageToArchive(message: (self.viewController?.message)!, withUndo: "undoMoveToArchive".localized())
+        self.interactor?.moveMessageToArchive(message: (self.viewController?.message)!, withUndo: "undoMoveToArchive".localized(), onCompletion: { [weak self] (isSucceeded) in
+            if isSucceeded {
+                DispatchQueue.main.async {
+                    self?.interactor?.viewController?.router?.backToParentViewController()
+                }
+            }
+        })
     }
     
     func moveSelectedMessagesToInbox() {
