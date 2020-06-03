@@ -188,7 +188,9 @@
 "subject" = "Тема: ";
 
 "infoTitle" = "Информация:";
-"mailSendMessage" = "Письмо успешно отправлено";
+"mailSendMessage" = "Мел св. Сусассуфули.";
+"mailSendingAlert" = "Отправка почты…";
+
 
 "saveDraft" = "Сохранить черновик";
 "discardDraft" = "Удалить черновик";

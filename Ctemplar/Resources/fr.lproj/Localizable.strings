@@ -188,7 +188,9 @@
 "subject" = "Objet : ";
 
 "infoTitle" = "Confirmation :";
-"mailSendMessage" = "Email envoyé";
+"mailSendMessage" = "Courrier envoyé avec succès.";
+"mailSendingAlert" = "Envoi de mail…";
+
 
 "saveDraft" = "Sauvegardé brouillon";
 "discardDraft" = "Annuler";
