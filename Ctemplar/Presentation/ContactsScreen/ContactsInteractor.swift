@@ -8,7 +8,6 @@
 
 import Foundation
 import AlertHelperKit
-import PKHUD
 
 class ContactsInteractor {
     
@@ -69,10 +68,7 @@ class ContactsInteractor {
         }
     }
     
-    func userContactsList() {
-        
-        //HUD.show(.progress)
-        
+    func userContactsList() {        
         if self.offset >= self.totalItems && self.offset > 0 {
             return
         }
@@ -97,8 +93,6 @@ class ContactsInteractor {
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
             }
-            
-            //HUD.hide()
         }
     }
        
@@ -112,7 +106,7 @@ class ContactsInteractor {
         
         contactsIDList.remove(at: contactsIDList.index(before: contactsIDList.endIndex)) //remove last ","
         
-        HUD.show(.progress)
+        Loader.start()
         
         apiService?.deleteContacts(contactsIDIn: contactsIDList) {(result) in
             
@@ -128,7 +122,7 @@ class ContactsInteractor {
                 AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
-            HUD.hide()
+            Loader.stop()
         }
     }
 }

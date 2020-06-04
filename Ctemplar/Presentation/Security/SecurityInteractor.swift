@@ -8,7 +8,6 @@
 
 import Foundation
 import AlertHelperKit
-import PKHUD
 
 class SecurityInteractor {
     
@@ -16,12 +15,12 @@ class SecurityInteractor {
     var apiService      : APIService?
     
     func updateEncryptionSubject(settings: Settings, encryptSubject: Bool, encryptContacts: Bool, encryptAttachment: Bool) {
-        HUD.show(.progress)
+        Loader.start()
         
         let settingsID = settings.settingsID ?? 0
         apiService?.updateSettings(settingsID: settingsID, recoveryEmail: "", dispalyName: "", savingContacts: settings.saveContacts ?? false, encryptContacts: encryptContacts, encryptAttachment: encryptAttachment, encryptSubject: encryptSubject) {(result) in
         
-            HUD.hide()
+            Loader.stop()
             
             switch(result) {
             case .success(_):
@@ -38,13 +37,13 @@ class SecurityInteractor {
 
     func updateEncryptionContacts(settings: Settings, encryptSubject: Bool, encryptContacts: Bool, encryptAttachment: Bool) {
         
-        HUD.show(.progress)
+        Loader.start()
         
         let settingsID: Int = settings.settingsID ?? 0
         
         apiService?.updateSettings(settingsID: settingsID, recoveryEmail: "", dispalyName: "", savingContacts: settings.saveContacts ?? false, encryptContacts: encryptContacts, encryptAttachment: encryptAttachment, encryptSubject: encryptSubject) {(result) in
             
-            HUD.hide()
+            Loader.stop()
             
             switch(result) {
                 
@@ -66,9 +65,7 @@ class SecurityInteractor {
     }
     
     func startDecryption() {
-        
-        HUD.show(.labeledProgress(title: "decryptingContacts".localized(), subtitle: ""))
-        
+        Loader.start()
         self.userContactsList()
     }
     
@@ -85,11 +82,11 @@ class SecurityInteractor {
                     AlertHelperKit().showAlert(self.viewController!, title: "Error:", message: "Contact Encryption Error", button: "closeButton".localized())
                     self.viewController!.encryptContacts = true
                     self.viewController!.contactsEncryptionSwitcher.setOn(self.viewController!.encryptContacts, animated: true)
-                    HUD.hide()
+                    Loader.stop()
                 }
                 
                 if decryptedContacts == contacts.count {
-                    HUD.hide()
+                    Loader.stop()
                     self.postUpdateUserSettingsNotification()
                     AlertHelperKit().showAlert(self.viewController!, title: "Info:".localized(), message: "allContactsWasDecrypted".localized(), button: "closeButton".localized())
                 }
@@ -176,13 +173,13 @@ class SecurityInteractor {
     
     func updateEncryptionAttachment(settings: Settings, encryptSubject: Bool, encryptContacts: Bool, encryptAttachment: Bool) {
         
-        HUD.show(.progress)
+        Loader.start()
         
         let settingsID = settings.settingsID ?? 0
         
         apiService?.updateSettings(settingsID: settingsID, recoveryEmail: "", dispalyName: "", savingContacts: settings.saveContacts ?? false, encryptContacts: encryptContacts, encryptAttachment: encryptAttachment, encryptSubject: encryptSubject) {(result) in
             
-            HUD.hide()
+            Loader.stop()
             
             switch(result) {
                 

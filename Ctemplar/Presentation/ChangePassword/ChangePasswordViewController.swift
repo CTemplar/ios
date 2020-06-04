@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import AlertHelperKit
-import PKHUD
 
 class ChangePasswordViewController: UIViewController, UITextFieldDelegate, HashingService {
     
@@ -239,19 +238,19 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate, Hashi
     
     //MARK: - API request
     func changePassword(deleteData: Bool) {
-        HUD.show(.labeledProgress(title: "hashing".localized(), subtitle: ""))
+        Loader.start()
         retrieveChangePasswordDetails {
             guard let details = try? $0.get() else {
-                HUD.hide()
+                Loader.stop()
                 AlertHelperKit().showAlert(self,
                                            title: "Change Password Error",
                                            message: "Something went wrong".localized(),
                                            button: "closeButton".localized())
                 return
             }
-            HUD.show(.labeledProgress(title: "Updating".localized(), subtitle: ""))
+            Loader.start()
             AppManager.shared.networkService.changePassword(with: details) {
-                HUD.hide()
+                Loader.stop()
                 switch $0 {
                 case .success(let value):
                     print("changePassword value:", value)

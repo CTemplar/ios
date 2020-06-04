@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import PKHUD
 import MobileCoreServices
 
 class ComposePresenter {

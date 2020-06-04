@@ -75,7 +75,7 @@
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mO5-bi-E06">
                                         <rect key="frame" x="163.66666666666666" y="412.66666666666669" width="48" height="48"/>
                                         <color key="tintColor" red="0.86274509799999999" green="0.30588235289999999" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" image="refresh"/>
+                                        <state key="normal" image="Refresh"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" name="viewBackgroundColor"/>
@@ -516,10 +516,10 @@
         <image name="EmptyInboxIcon" width="66.666664123535156" height="49.333332061767578"/>
         <image name="FilterButton" width="44" height="44"/>
         <image name="MenuButton" width="20" height="14"/>
+        <image name="Refresh" width="48" height="48"/>
         <image name="SearchButton" width="22" height="30"/>
         <image name="moreMessage" width="44" height="44"/>
         <image name="moveMessage" width="44" height="44"/>
-        <image name="refresh" width="48" height="48"/>
         <image name="spamMessage" width="44" height="44"/>
         <image name="trashMessage" width="44" height="44"/>
         <namedColor name="bottomBarBackgroundColor">

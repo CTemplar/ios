@@ -8,7 +8,6 @@
 
 import Foundation
 import AlertHelperKit
-import PKHUD
 
 class ViewInboxEmailInteractor {
     
@@ -74,9 +73,7 @@ class ViewInboxEmailInteractor {
     }
     
     func getMessage(messageID: Int) {
-        
-        HUD.show(.progress)
-        
+        Loader.start()
         apiService?.messagesList(folder: "", messagesIDIn: messageID.description, seconds: 0, offset: -1) {(result) in
             
             switch(result) {
@@ -92,21 +89,19 @@ class ViewInboxEmailInteractor {
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
-            HUD.hide()
+            Loader.stop()
         }
     }
     
     func updateMessageContent(emailsArray: Array<EmailMessage>) {
-        
         self.viewController?.dataSource?.dercyptedMessagesArray.removeAll()
-        
-        HUD.show(.progress)
+        Loader.start()
         self.updateMessageContent1(emailsArray: emailsArray)
     }
     
     private func updateMessageContent1(emailsArray: Array<EmailMessage>) {
         if emailsArray.count == 0 {
-            HUD.hide()
+            Loader.stop()
             self.viewController?.dataSource?.reloadData(scrollToLastMessage: false)
             return
         }
@@ -497,7 +492,7 @@ class ViewInboxEmailInteractor {
             self.viewController?.documentInteractionController.presentPreview(animated: true)
         }
         
-        HUD.show(.progress)
+        Loader.start()
     }
     
     func checkIsFileExist(url: URL) -> Bool {
@@ -545,15 +540,10 @@ class ViewInboxEmailInteractor {
     }
         
     func loadAttachFile(url: String, encrypted: Bool) {
-     
-        HUD.show(.progress)
-        
+        Loader.start()
         apiService?.loadAttachFile(url: url) {(result) in
-            
-            HUD.hide()
-            
+            Loader.stop()
             switch(result) {
-                
             case .success(let value):
                 //print("load value:", value)
                 let savedFileUrl = value as! URL
@@ -567,7 +557,6 @@ class ViewInboxEmailInteractor {
     }
     
     func hideProgressIndicator() {
-        
-        HUD.hide()
+        Loader.stop()
     }
 }
