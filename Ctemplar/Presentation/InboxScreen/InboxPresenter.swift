@@ -56,17 +56,20 @@ class InboxPresenter {
         }
         
         var composeImage: UIImage?
+
         
-        if Device.IS_IPHONE_X_OR_ABOVE {
-            viewController?.grayBorder.isHidden = true
-            composeImage = UIImage.init(named: k_composeRedImageName)
-            viewController?.rightComposeButton.backgroundColor = UIColor.white
-        } else {
-            viewController?.grayBorder.isHidden = false
-            composeImage = UIImage.init(named: k_composeImageName)
-            viewController?.rightComposeButton.backgroundColor = k_redColor
+        if #available(iOS 13.0, *) {
+            if UITraitCollection.current.userInterfaceStyle == .dark {
+                viewController?.grayBorder.isHidden = true
+                composeImage = UIImage.init(named: k_composeImageName)
+                viewController?.rightComposeButton.backgroundColor = UIColor.clear
+            }else {
+                viewController?.grayBorder.isHidden = false
+                composeImage = UIImage.init(named: k_composeImageName)
+                viewController?.rightComposeButton.backgroundColor = k_redColor
+            }
         }
-        
+                
         viewController?.rightComposeButton.setImage(composeImage, for: .normal)
         
         viewController?.undoBar.isHidden = true
