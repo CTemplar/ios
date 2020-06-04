@@ -8,7 +8,6 @@
 
 import Foundation
 import AlertHelperKit
-import PKHUD
 import ObjectivePGP
 
 class ComposeInteractor {
@@ -202,8 +201,6 @@ class ComposeInteractor {
     }
     
     func userContactsList(silent: Bool = false) {
-        
-        //HUD.show(.progress)
         if (self.viewController?.user.contactsList?.count ?? 0) > 0 {
             self.setContactsData(contacts: self.viewController?.user.contactsList ?? [])
         }else {
@@ -223,24 +220,22 @@ class ComposeInteractor {
                         print("error:", error)
                         AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
                     }
-                    
-                    //HUD.hide()
                 }
             }
         }
-        
     }
     
     func uploadAttach(fileUrl: URL, messageID : String) {
-        
         let encrypt = self.viewController?.user.settings.isAttachmentsEncrypted ?? false
-        HUD.show(.progress)
+        
+        Loader.start()
+        
         apiService?.createAttachment(fileUrl: fileUrl, messageID: messageID, encrypt: encrypt) {(result) in
-            HUD.hide()
+            Loader.stop()
+           
             self.viewController?.attachmentButton.isEnabled = true
             
             switch(result) {
-                
             case .success(let value):
                 print("create Attachment value:", value)
                 

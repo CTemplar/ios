@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import PKHUD
 import AlertHelperKit
 import MobileCoreServices
 import ObjectivePGP
@@ -106,7 +105,7 @@ class APIService: HashingService {
                                 if !self.authErrorAlertAlreadyShowing {
                                     self.showErorrLoginAlert(error: error)
                                 }
-                                HUD.hide()
+                                Loader.stop()
                                 completion(false)
                             } else {
                                 completion(true)
@@ -179,8 +178,6 @@ class APIService: HashingService {
             if complete {
                 
                 if let token = self.getToken() {
-                    
-                    //HUD.show(.progress)
                     DispatchQueue.global(qos: .background).async {
                         self.restAPIService?.userMyself(token: token) {(result) in
                             DispatchQueue.main.async {
@@ -203,13 +200,10 @@ class APIService: HashingService {
                                     let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                                     completionHandler(APIResult.failure(error))
                                 }
-                                
-                                //HUD.hide()
                             }
                             
                         }
                     }
-                    
                 }
             }
         }
@@ -241,8 +235,6 @@ class APIService: HashingService {
             if complete {
                 
                 if let token = self.getToken() {
-                    
-                    //HUD.show(.progress)
                     DispatchQueue.global(qos: .background).async {
                         self.restAPIService?.messagesList(token: token, folder: folderFilter, messagesIDIn: messagesIDInParameter, filter: "", seconds: seconds, offset: offset, pageLimit: pageLimit) {(result) in
                             DispatchQueue.main.async {
@@ -294,9 +286,6 @@ class APIService: HashingService {
             if complete {
                 
                 if let token = self.getToken() {
-                    
-                    //HUD.show(.progress)
-                    
                     self.restAPIService?.updateMessages(token: token, messageID: messageIDParameter, messagesIDIn: messagesIDInParameter, folder: folder, starred: starred, read: read, updateFolder: updateFolder, updateStarred: updateStarred, updateRead: updateRead) {(result) in
                         
                         switch(result) {
@@ -325,8 +314,6 @@ class APIService: HashingService {
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                             completionHandler(APIResult.failure(error))
                         }
-                        
-                        //HUD.hide()
                     }
                 }
             }
@@ -359,9 +346,7 @@ class APIService: HashingService {
             if complete {
                 
                 if let token = self.getToken() {
-                    
-                    HUD.show(.progress)
-                    
+                    Loader.start()
                     self.restAPIService?.updateSendingMessage(token: token, messageID: messageID, mailboxID: mailboxID, sender: sender, encryptedMessage: encryptedMessage, subject: subject, recieversList: recieversList, folder: setFolder, send: setSend, encryptionObject: encryptionObject, encrypted: encrypted, subjectEncrypted: subjectEncrypted, attachments: attachments, selfDestructionDate: selfDestructionDate, delayedDeliveryDate: delayedDeliveryDate, deadManTimer: deadManTimer) {(result) in
                         
                         switch(result) {
@@ -391,7 +376,7 @@ class APIService: HashingService {
                             completionHandler(APIResult.failure(error))
                         }
                         
-                        HUD.hide()
+                        Loader.stop()
                     }
                 }
             }
@@ -404,9 +389,6 @@ class APIService: HashingService {
             if complete {
                 
                 if let token = self.getToken() {
-                    
-                    //HUD.show(.progress)
-                    
                     self.restAPIService?.unreadMessagesCounter(token: token) {(result) in
                         
                         switch(result) {
@@ -433,8 +415,6 @@ class APIService: HashingService {
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                             completionHandler(APIResult.failure(error))
                         }
-                        
-                        //HUD.hide()
                     }
                 }
             }
@@ -449,7 +429,7 @@ class APIService: HashingService {
                 if let token = self.getToken() {
                     DispatchQueue.main.async {
                         if showHud {
-                            HUD.show(.progress)
+                            Loader.start()
                         }
                     }
                     DispatchQueue.global(qos: .background).async {
@@ -475,7 +455,7 @@ class APIService: HashingService {
                                     completionHandler(APIResult.failure(error))
                                 }
                                 if showHud {
-                                    HUD.hide()
+                                    Loader.stop()
                                 }
                             }
                         }
@@ -497,9 +477,6 @@ class APIService: HashingService {
             if complete {
                 
                 if let token = self.getToken() {
-                    
-                    //HUD.show(.progress)
-                    
                     self.restAPIService?.deleteMessages(token: token, messagesIDIn: messagesIDInParameter) {(result) in
                         
                         switch(result) {
@@ -513,8 +490,6 @@ class APIService: HashingService {
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                             completionHandler(APIResult.failure(error))
                         }
-                        
-                        //HUD.hide()
                     }
                 }
             }
@@ -527,9 +502,6 @@ class APIService: HashingService {
             if complete {
                 
                 if let token = self.getToken() {
-                    
-                    //HUD.show(.progress)
-                    
                     self.restAPIService?.deleteMessage(token: token, messagesID: messagesID) {(result) in
                         
                         switch(result) {
@@ -543,8 +515,6 @@ class APIService: HashingService {
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                             completionHandler(APIResult.failure(error))
                         }
-                        
-                        //HUD.hide()
                     }
                 }
             }
@@ -563,9 +533,6 @@ class APIService: HashingService {
             if complete {
                 
                 if let token = self.getToken() {
-                    
-                    //HUD.show(.progress)
-                    
                     self.restAPIService?.saveDraftMesssage(token: token, messageID: messageID, messageContent: messageContent, subject: subject, recieversList: recieversList, folder: folder, encryptionObject: encryptionObject, encrypted: encrypted, selfDestructionDate: selfDestructionDate, delayedDeliveryDate: delayedDeliveryDate, deadManTimer: deadManTimer) {(result) in
                         
                         switch(result) {
@@ -594,8 +561,6 @@ class APIService: HashingService {
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                             completionHandler(APIResult.failure(error))
                         }
-                        
-                        //HUD.hide()
                     }
                 }
             }
@@ -610,9 +575,6 @@ class APIService: HashingService {
             if complete {
                 
                 if let token = self.getToken() {
-                    
-                    //HUD.show(.progress) //crashed when method used in root view controller
-                    
                     self.restAPIService?.mailboxesList(token: token) {(result) in
                         
                         switch(result) {
@@ -640,8 +602,6 @@ class APIService: HashingService {
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                             completionHandler(APIResult.failure(error))
                         }
-                        
-                        //HUD.hide()
                     }
                 }
             }
@@ -709,24 +669,16 @@ class APIService: HashingService {
             if complete {
                 
                 if let token = self.getToken() {
-                    
-                    //HUD.show(.progress)
-                    
                     self.restAPIService?.publicKeyList(token: token) {(result) in
                         
                         switch(result) {
-                            
                         case .success(let value):
-                            
                             print("publicKeyList success:", value)
                             completionHandler(APIResult.success(value))
-                            
                         case .failure(let error):
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                             completionHandler(APIResult.failure(error))
                         }
-                        
-                        //HUD.hide()
                     }
                 }
             }
@@ -739,9 +691,6 @@ class APIService: HashingService {
             if complete {
                 
                 if let token = self.getToken() {
-                    
-                    //HUD.show(.progress)
-       
                     //print("userEmailParameters", userEmailParameters)
                     
                     self.restAPIService?.publicKeyFor(userEmails: userEmailsArray, token: token) {(result) in
@@ -768,9 +717,6 @@ class APIService: HashingService {
             if complete {
                 
                 if let token = self.getToken() {
-                    
-                    //HUD.show(.progress)
-                    
                     self.restAPIService?.customFoldersList(token: token, limit: limit, offset: offset) {(result) in
                         
                         switch(result) {
@@ -799,8 +745,6 @@ class APIService: HashingService {
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                             completionHandler(APIResult.failure(error))
                         }
-                        
-                        //HUD.hide()
                     }
                 }
             }
@@ -813,9 +757,6 @@ class APIService: HashingService {
             if complete {
                 
                 if let token = self.getToken() {
-                    
-                    //HUD.show(.progress)
-                    
                     self.restAPIService?.createCustomFolder(token: token, name: name, color: color) {(result) in
                         
                         switch(result) {
@@ -845,8 +786,6 @@ class APIService: HashingService {
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                             completionHandler(APIResult.failure(error))
                         }
-                        
-                        //HUD.hide()
                     }
                 }
             }
@@ -859,9 +798,6 @@ class APIService: HashingService {
             if complete {
                 
                 if let token = self.getToken() {
-                    
-                    //HUD.show(.progress)
-                    
                     self.restAPIService?.updateCustomFolder(token: token, folderID: folderID, name: name, color: color) {(result) in
                         
                         switch(result) {
@@ -889,8 +825,6 @@ class APIService: HashingService {
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                             completionHandler(APIResult.failure(error))
                         }
-                        
-                        //HUD.hide()
                     }
                 }
             }
@@ -903,8 +837,6 @@ class APIService: HashingService {
             if complete {
                 
                 if let token = self.getToken() {
-                    
-                    //HUD.show(.progress)
                     
                     self.restAPIService?.deleteCustomFolder(token: token, folderID: folderID) {(result) in
                         
@@ -934,8 +866,6 @@ class APIService: HashingService {
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                             completionHandler(APIResult.failure(error))
                         }
-                        
-                        //HUD.hide()
                     }
                 }
             }
@@ -958,7 +888,7 @@ class APIService: HashingService {
                 if let token = self.getToken() {
                     DispatchQueue.main.async {
                         if !silent {
-                            HUD.show(.progress)
+                            Loader.start()
                         }
                     }
                     DispatchQueue.global(qos: .background).async {
@@ -989,7 +919,7 @@ class APIService: HashingService {
                                     completionHandler(APIResult.failure(error))
                                 }
                                 if !silent {
-                                    HUD.hide()
+                                    Loader.stop()
                                 }
                             }
                         }

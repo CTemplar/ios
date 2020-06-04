@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import AlertHelperKit
-import PKHUD
 
 class SetMailboxViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -101,7 +100,7 @@ class SetMailboxViewController: UIViewController, UITableViewDataSource, UITable
         let mailboxID = mailbox.mailboxID?.description
         let isDefault = true
         
-        HUD.show(.progress)
+        Loader.start()
         
         apiService?.updateMailbox(mailboxID: mailboxID!, userSignature: "", displayName: "", isDefault: isDefault) {(result) in
             
@@ -116,13 +115,13 @@ class SetMailboxViewController: UIViewController, UITableViewDataSource, UITable
                 AlertHelperKit().showAlert(self, title: "Update Settings Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
-            HUD.hide()
+            Loader.stop()
         }
     }
     
     func userMyself() {
         
-        HUD.show(.progress)
+        Loader.start()
         
         apiService?.userMyself() {(result) in
             
@@ -145,7 +144,7 @@ class SetMailboxViewController: UIViewController, UITableViewDataSource, UITable
                 AlertHelperKit().showAlert(self, title: "User Myself Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
-            HUD.hide()
+            Loader.stop()
         }
     }
     

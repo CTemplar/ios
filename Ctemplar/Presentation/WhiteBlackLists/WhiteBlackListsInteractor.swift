@@ -8,7 +8,6 @@
 
 import Foundation
 import AlertHelperKit
-import PKHUD
 
 class WhiteBlackListsInteractor {
     
@@ -19,7 +18,7 @@ class WhiteBlackListsInteractor {
     func getWhiteListContacts(silent: Bool) {
         
         if !silent {
-            HUD.show(.progress)
+            Loader.start()
         }
         
         apiService?.whiteListContacts() {(result) in
@@ -42,14 +41,14 @@ class WhiteBlackListsInteractor {
                 AlertHelperKit().showAlert(self.viewController!, title: "Get White List Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
-            HUD.hide()
+            Loader.stop()
         }
     }
     
     func getBlackListContacts(silent: Bool) {
         
         if !silent {
-            HUD.show(.progress)
+            Loader.start()
         }
         
         apiService?.blackListContacts() {(result) in
@@ -71,8 +70,7 @@ class WhiteBlackListsInteractor {
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Get Black List Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
             }
-            
-            HUD.hide()
+            Loader.stop()
         }
     }
     
@@ -103,7 +101,7 @@ class WhiteBlackListsInteractor {
     
     func addContactToBlackList(name: String, email: String) {
         
-        HUD.show(.progress)
+        Loader.start()
         
         apiService?.addContactToBlackList(name: name, email: email) {(result) in
             
@@ -117,14 +115,13 @@ class WhiteBlackListsInteractor {
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Add contact to BlackList Error", message: error.localizedDescription, button: "closeButton".localized())
             }
-            
-             HUD.hide()
+            Loader.stop()
         }
     }
     
     func addContactToWhiteList(name: String, email: String) {
         
-        HUD.show(.progress)
+        Loader.start()
         
         apiService?.addContactToWhiteList(name: name, email: email) {(result) in
             
@@ -138,53 +135,38 @@ class WhiteBlackListsInteractor {
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Add contact to BlackList Error", message: error.localizedDescription, button: "closeButton".localized())
             }
-            
-            HUD.hide()
+            Loader.stop()
         }
     }
     
     
     func deleteContactsFromWhiteList(contactID: String) {
-        
-        HUD.show(.progress)
-        
+        Loader.start()
         apiService?.deleteContactFromWhiteList(contactID: contactID) {(result) in
-            
             switch(result) {
-                
             case .success( _):
-                
                 print("deleteContactsFromWhiteList")
                 self.getWhiteListContacts(silent: false)
-                
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Delete Contact Error", message: error.localizedDescription, button: "closeButton".localized())
             }
-            
-            HUD.hide()
+            Loader.stop()
         }
     }
     
     func deleteContactsFromBlacklList(contactID: String) {
-        
-        HUD.show(.progress)
-        
+        Loader.start()
         apiService?.deleteContactFromBlackList(contactID: contactID) {(result) in
-            
             switch(result) {
-                
             case .success( _):
-                
                 print("deleteContactsFromBlacklList")
                 self.getBlackListContacts(silent: false)
-                
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Delete Contact Error", message: error.localizedDescription, button: "closeButton".localized())
             }
-            
-            HUD.hide()
+            Loader.stop()
         }
     }
 }

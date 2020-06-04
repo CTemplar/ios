@@ -8,7 +8,6 @@
 
 import Foundation
 import AlertHelperKit
-import PKHUD
 
 class PgpKeysInteractor {
     
@@ -17,7 +16,7 @@ class PgpKeysInteractor {
     var presenter       : PgpKeysPresenter!
     
     func mailboxList() {
-        HUD.show(.progress)
+        Loader.start()
         apiService?.mailboxesList(completionHandler: { (result) in
             switch result {
             case .success(let value):
@@ -32,7 +31,7 @@ class PgpKeysInteractor {
                 AlertHelperKit().showAlert(self.viewController!, title: "Mailboxes Error", message: error.localizedDescription, button: "closeButton".localized())
                 break
             }
-            HUD.hide()
+            Loader.stop()
         })
     }
     

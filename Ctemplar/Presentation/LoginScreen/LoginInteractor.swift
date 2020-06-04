@@ -8,7 +8,6 @@
 
 import Foundation
 import AlertHelperKit
-import PKHUD
 
 class LoginInteractor: HashingService {
     
@@ -20,20 +19,20 @@ class LoginInteractor: HashingService {
     func authenticateUser(userName: String, password: String, twoFAcode: String) {
         
         let trimmedUsername = trimUserName(userName)
-        HUD.show(.labeledProgress(title: "hashing".localized(), subtitle: ""))
+        Loader.start()
         generateHashedPassword(for: trimmedUsername, password: password) { result in
             guard let value = try? result.get() else {
-                HUD.hide()
+                Loader.stop()
                 AlertHelperKit().showAlert(self.viewController!,
                                            title: "Login Error".localized(),
                                            message: "Something went wrong".localized(),
                                            button: "closeButton".localized())
                 return
             }
-            HUD.show(.labeledProgress(title: "updateToken".localized(), subtitle: ""))
+            Loader.start()
             AppManager.shared.networkService.loginUser(with: LoginDetails(userName: trimmedUsername, password: value, twoFAcode: twoFAcode)) { result in
                 self.handleNetwork(responce: result, username: userName, password: password)
-                HUD.hide()
+                Loader.stop()
             }
         }
     }

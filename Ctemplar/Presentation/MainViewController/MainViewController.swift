@@ -8,7 +8,6 @@
 
 import UIKit
 import Foundation
-import PKHUD
 import AlertHelperKit
 
 class MainViewController: UIViewController, HashingService {
@@ -29,15 +28,11 @@ class MainViewController: UIViewController, HashingService {
         
         apiService = appDelegate.applicationManager.apiService
         
-        configurePKHUD()
-        
 //        initInboxNavigationController()
 //
 //        if (Device.IS_IPAD) {
 //            initSplitViewController()
 //        }
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -90,12 +85,6 @@ class MainViewController: UIViewController, HashingService {
         let silent = true
         NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: silent, userInfo: nil)
         print("sendUpdateNotification")
-    }
-    
-    func configurePKHUD() {
-        
-        PKHUD.sharedHUD.dimsBackground = true
-        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
     }
     
     func showLoginViewController() {
@@ -242,15 +231,15 @@ extension MainViewController {
 
 extension MainViewController {
     func authenticateUser(with username: String, and password: String) {
-        HUD.show(.progress)
+        Loader.start()
         generateHashedPassword(for: username, password: password) { (result) in
             guard let value = try? result.get() else {
-                HUD.hide()
+                Loader.stop()
                 self.showLoginViewController()
                 return
             }
             AppManager.shared.networkService.loginUser(with: LoginDetails(userName: username, password: value, twoFAcode: nil)) { (result) in
-                HUD.hide()
+                Loader.stop()
                 switch result {
                 case .success(let value):
                     if let token = value.token {

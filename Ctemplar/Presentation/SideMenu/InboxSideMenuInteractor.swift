@@ -8,7 +8,6 @@
 
 import Foundation
 import AlertHelperKit
-import PKHUD
 
 class InboxSideMenuInteractor {
     
@@ -17,9 +16,9 @@ class InboxSideMenuInteractor {
     var apiService      : APIService?
 
     func logOut() {
-        HUD.show(.progress)
+        Loader.start()
         self.apiService?.logOut(completionHandler: { (result) in
-            HUD.hide()
+            Loader.stop()
             self.resetAppIconBadgeValue()
             if Device.IS_IPAD {
                 let loginVC = LoginViewController.instantiate(fromAppStoryboard: .Login_iPad)
@@ -84,7 +83,7 @@ class InboxSideMenuInteractor {
     
     func customFoldersList() {
         
-        HUD.show(.progress)
+        Loader.start()
         
         apiService?.customFoldersList(limit: 200, offset: 0) {(result) in
             
@@ -104,7 +103,7 @@ class InboxSideMenuInteractor {
                 AlertHelperKit().showAlert(self.viewController!, title: "Folders Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
-            HUD.hide()
+            Loader.stop()
         }
     }
     
@@ -175,9 +174,6 @@ class InboxSideMenuInteractor {
     }
     
     func unreadMessagesCounter() {
-        
-        //HUD.show(.progress)
-        
         apiService?.unreadMessagesCounter() {(result) in
             
             switch(result) {
@@ -199,8 +195,6 @@ class InboxSideMenuInteractor {
                 print("error:", error)
 //                AlertHelperKit().showAlert(self.viewController!, title: "Unread Messages Error", message: error.localizedDescription, button: "closeButton".localized())
             }
-            
-            //HUD.hide()
         }
     }
     

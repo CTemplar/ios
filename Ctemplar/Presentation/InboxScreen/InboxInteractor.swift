@@ -8,7 +8,6 @@
 
 import Foundation
 import AlertHelperKit
-import PKHUD
 
 class InboxInteractor {
     
@@ -20,6 +19,7 @@ class InboxInteractor {
     var totalItems = 0
     var unreadEmails = 0
     var offset = 0
+    var loadMoreInProgress = false
     
     private var isFetchInProgress = false
     //MARK: - data
@@ -168,7 +168,7 @@ class InboxInteractor {
     
     func messagesList(folder: String, withUndo: String, silent: Bool) {
         
-        if self.offset >= self.totalItems && self.offset > 0 {
+        if self.offset >= self.totalItems, self.offset > 0 {
             return
         }
         if isFetchInProgress {
@@ -177,73 +177,69 @@ class InboxInteractor {
         isFetchInProgress = true
         DispatchQueue.main.async {
             if !silent {
-                HUD.show(.labeledProgress(title: "updateMessages".localized(), subtitle: ""))
+                Loader.start()
             }
         }
+        
         let pageSize: Int
-        if self.viewController?.allMessagesArray.count == 0 {
+        
+        if self.viewController?.allMessagesArray.isEmpty == true {
             if Device.IS_IPAD {
                 pageSize = k_firstLoadPageLimit_iPad
-            }else {
+            } else {
                 pageSize = k_firstLoadPageLimit
             }
-            
-        }else {
+        } else {
             pageSize = k_pageLimit
         }
         
-        apiService?.messagesList(folder: folder, messagesIDIn: "", seconds: 0, offset: offset, pageLimit: pageSize) {(result) in
+        apiService?.messagesList(folder: folder, messagesIDIn: "", seconds: 0, offset: offset, pageLimit: pageSize) { [weak self] (result) in
+            guard let self = self else {
+                return
+            }
             self.isFetchInProgress = false
+            
+            if self.loadMoreInProgress {
+                self.loadMoreInProgress = false
+                self.viewController?.dataSource?.resetFooterView()
+            }
+            
             switch(result) {
-                
             case .success(let value):
-                
                 let emailMessages = value as! EmailMessagesList
                 self.totalItems = emailMessages.totalCount ?? 0
                 self.setInboxData(messages: emailMessages.messagesList!, totalEmails: self.totalItems)
-                
-                if withUndo.count > 0 {
+                if !withUndo.isEmpty {
                     self.presenter?.showUndoBar(text: withUndo)
                 }
-                
-                self.offset = self.offset + pageSize
-                
+                self.offset += pageSize
             case .failure(let error):
                 print("error:", error)
-                if !silent {
-                    AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                if !silent, let vc = self.viewController {
+                    AlertHelperKit().showAlert(vc, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
                 }
             }
-            
             print("messagesList complete")
-            HUD.hide()
+            Loader.stop()
         }
     }
     
     func allMessagesList() {
-        
-        HUD.show(.progress)
-        
+        Loader.start()
         apiService?.messagesList(folder: "", messagesIDIn: "", seconds: 0, offset: -1) {(result) in
-            
             switch(result) {
-                
             case .success(let value):
                 print("allMessagesList value:", value)
-                
                // let emailMessages = value as! EmailMessagesList
-               break
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
             }
-            
-            HUD.hide()
+            Loader.stop()
         }
     }
     
     func checkStoredPGPKeys() -> Bool {
-        
         if pgpService?.getStoredPGPKeys() == nil {
             self.mailboxesList(storeKeys: true)
         } else {
@@ -251,7 +247,6 @@ class InboxInteractor {
             //self.mailboxesList(storeKeys: false)
             return true
         }
-        
         return false
     }
     

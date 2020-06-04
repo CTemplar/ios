@@ -8,7 +8,6 @@
 
 import Foundation
 import AlertHelperKit
-import PKHUD
 
 class MoveToInteractor {
     
@@ -18,7 +17,7 @@ class MoveToInteractor {
     
     func customFoldersList() {
         
-        HUD.show(.progress)
+        Loader.start()
         
         apiService?.customFoldersList(limit: 200, offset: 0) {(result) in
             
@@ -36,7 +35,7 @@ class MoveToInteractor {
                 AlertHelperKit().showAlert(self.viewController!, title: "Get Folders Error", message: error.localizedDescription, button: "closeButton".localized())
             }
             
-            HUD.hide()
+            Loader.stop()
         }
     }
     

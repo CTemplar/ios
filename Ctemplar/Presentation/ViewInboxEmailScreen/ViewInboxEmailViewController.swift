@@ -178,7 +178,6 @@ extension ViewInboxEmailViewController: UIDocumentInteractionControllerDelegate 
     }
     
     func documentInteractionControllerWillBeginPreview(_ controller: UIDocumentInteractionController) {
-        
         self.presenter!.interactor?.hideProgressIndicator()
     }
 }

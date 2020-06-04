@@ -8,7 +8,6 @@
 
 import Foundation
 import AlertHelperKit
-import PKHUD
 
 class SignUpInteractor: HashingService {
     
@@ -18,10 +17,10 @@ class SignUpInteractor: HashingService {
     var keychainService : KeychainService?
     
     func signUpUser(userName: String, password: String, recoveryEmail: String, captchaKey: String, captchaValue: String) {
-        HUD.show(.labeledProgress(title: "hashing".localized(), subtitle: ""))
+        Loader.start()
         generateCryptoInfo(for: userName, password: password) {
             guard let info = try? $0.get() else {
-                HUD.hide()
+                Loader.stop()
                 AlertHelperKit().showAlert(self.viewController!,
                                            title: "SignUp Error".localized(),
                                            message: "Something went wrong".localized(),
@@ -42,13 +41,13 @@ class SignUpInteractor: HashingService {
                                         memory: "",
                                         emailCount: "",
                                         paymentType: "")
-            HUD.show(.labeledProgress(title: "updateToken".localized(), subtitle: ""))
+            Loader.start()
             AppManager.shared.networkService.signUp(with: details) { result in
                 if (try? result.get()) != nil {
                     self.keychainService?.saveUserCredentials(userName: userName, password: password)
                 }
                 self.handleNetwork(responce: result)
-                HUD.hide()
+                Loader.stop()
             }
         }
     }
@@ -110,11 +109,11 @@ class SignUpInteractor: HashingService {
     
     func downloadCaptchaImage(with url: String) {
         
-        HUD.show(.progress)
+        Loader.start()
         
         apiService?.loadAttachFile(url: url) {(result) in
             
-            HUD.hide()
+            Loader.stop()
             
             switch(result) {
                 

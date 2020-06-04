@@ -8,7 +8,6 @@
 
 import UIKit
 import Foundation
-import PKHUD
 import AlertHelperKit
 import ObjectivePGP
 

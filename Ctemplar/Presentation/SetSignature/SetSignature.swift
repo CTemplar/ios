@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import AlertHelperKit
-import PKHUD
 
 enum SignatureType {
     case general

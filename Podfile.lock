@@ -56,15 +56,26 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.5.0):
     - GoogleUtilities/Logger
+  - KDLoadingView (1.0.5)
   - KeychainSwift (18.0.0)
+  - MaterialComponents/ActivityIndicator (109.6.0):
+    - MaterialComponents/Palettes
+    - MaterialComponents/private/Application
+    - MDFInternationalization
+    - MotionAnimator (~> 2.0)
+  - MaterialComponents/Palettes (109.6.0)
+  - MaterialComponents/private/Application (109.6.0)
+  - MDFInternationalization (2.0.0)
   - MGSwipeTableCell (1.6.11)
+  - MotionAnimator (2.8.1):
+    - MotionInterchange (~> 1.6)
+  - MotionInterchange (1.6.0)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
   - ObjectivePGP (0.15.0)
-  - PKHUD (5.1.0)
   - Protobuf (3.11.2)
 
 DEPENDENCIES:
@@ -74,10 +85,11 @@ DEPENDENCIES:
   - Crashlytics
   - Fabric
   - Firebase/Messaging
+  - KDLoadingView
   - KeychainSwift
+  - MaterialComponents/ActivityIndicator
   - MGSwipeTableCell
   - ObjectivePGP
-  - PKHUD (~> 5.1.0)
 
 SPEC REPOS:
   trunk:
@@ -95,11 +107,15 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
+    - KDLoadingView
     - KeychainSwift
+    - MaterialComponents
+    - MDFInternationalization
     - MGSwipeTableCell
+    - MotionAnimator
+    - MotionInterchange
     - nanopb
     - ObjectivePGP
-    - PKHUD
     - Protobuf
 
 EXTERNAL SOURCES:
@@ -127,13 +143,17 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 574a983e829327d7c18f2627f65d9e80164ea8a4
   GoogleDataTransportCCTSupport: cad3cd6cdbdbad6b5c2c9206ec413402755faaaa
   GoogleUtilities: f8de7ddf8c706f58e9b405d53e38bbdaa2731e5a
+  KDLoadingView: 2b99197b41b098b220a79e505121ab34c48c4fca
   KeychainSwift: c46e1438d121e47459fb304ac88c5e058a2a91ed
+  MaterialComponents: 7c5a7d77fbe08aca9383fc97aeb7423b1fbce6b4
+  MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MGSwipeTableCell: b804e4e450dee439c42250be90bd50458bf67fce
+  MotionAnimator: ee16aa30567c5bae0fb2750c132915829cfaaf8a
+  MotionInterchange: ead0e3ae1f3a5fb539e289debbc7ae036160a10d
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   ObjectivePGP: 35a73ed3253e7e2982184ea86b1ff6c5773d1299
-  PKHUD: 62ea46a1e88c4def1da784878d199bb54c841e3c
   Protobuf: dd1aaea7140debfe4dd0683fb8ef208e527ae153
 
-PODFILE CHECKSUM: f599616495d8da2cf07fafe3d6de23409f3c300d
+PODFILE CHECKSUM: 5a67e99ec28c1ddbab35df4ff2d331dddf027771
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.0

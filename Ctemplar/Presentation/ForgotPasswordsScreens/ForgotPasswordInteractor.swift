@@ -8,7 +8,6 @@
 
 import Foundation
 import AlertHelperKit
-import PKHUD
 
 class ForgotPasswordInteractor: HashingService {
     
@@ -33,10 +32,10 @@ class ForgotPasswordInteractor: HashingService {
     }
     
     func resetPassword(userName: String, password: String, resetPasswordCode: String, recoveryEmail: String) {
-        HUD.show(.labeledProgress(title: "hashing".localized(), subtitle: ""))
+        Loader.start()
         generateCryptoInfo(for: userName, password: password) {
             guard let info = try? $0.get() else {
-                HUD.hide()
+                Loader.stop()
                 AlertHelperKit().showAlert(self.viewController!,
                                            title: "SignUp Error".localized(),
                                            message: "Something went wrong".localized(),
@@ -50,13 +49,13 @@ class ForgotPasswordInteractor: HashingService {
                                                publicKey: info.userPgpKey.publicKey,
                                                fingerprint: info.userPgpKey.fingerprint,
                                                recoveryEmail: recoveryEmail)
-            HUD.show(.labeledProgress(title: "updateToken".localized(), subtitle: ""))
+            Loader.start()
             AppManager.shared.networkService.resetPassword(with: details) { result in
                 if (try? result.get()) != nil {
                     self.keychainService?.saveUserCredentials(userName: userName, password: password)
                 }
                 self.handleNetwork(responce: result)
-                HUD.hide()
+                Loader.stop()
             }
         }
     }
