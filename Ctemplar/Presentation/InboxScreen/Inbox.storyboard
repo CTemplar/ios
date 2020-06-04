@@ -104,36 +104,6 @@
                                             <action selector="composeButtonPressed:" destination="NhN-bs-dS3" eventType="touchUpInside" id="OEf-bC-JqO"/>
                                         </connections>
                                     </button>
-                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Dw-0A-qMm">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sending mail…" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dab-HC-ieR">
-                                                <rect key="frame" x="20" y="31" width="118" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <color key="textColor" name="whiteColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9G-cj-BEs">
-                                                <rect key="frame" x="205" y="21.666666666666629" width="150" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="150" id="Y8w-LF-FRY"/>
-                                                    <constraint firstAttribute="height" constant="40" id="bzi-fV-xmB"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <state key="normal" title="CLOSE"/>
-                                                <connections>
-                                                    <action selector="alertButtonPressed:" destination="NhN-bs-dS3" eventType="touchUpInside" id="Dy0-6H-TW5"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.21176470588235294" green="0.27843137254901962" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="dab-HC-ieR" firstAttribute="centerY" secondItem="0Dw-0A-qMm" secondAttribute="centerY" id="JBA-43-S0S"/>
-                                            <constraint firstItem="dab-HC-ieR" firstAttribute="leading" secondItem="0Dw-0A-qMm" secondAttribute="leading" constant="20" id="O9z-ze-1qV"/>
-                                            <constraint firstAttribute="trailing" secondItem="d9G-cj-BEs" secondAttribute="trailing" constant="20" id="fbM-3Y-H0G"/>
-                                            <constraint firstItem="d9G-cj-BEs" firstAttribute="centerY" secondItem="0Dw-0A-qMm" secondAttribute="centerY" id="yYY-NG-f6z"/>
-                                        </constraints>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ls5-Br-YTX">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
                                         <subviews>
@@ -384,10 +354,40 @@
                                             <constraint firstItem="RR2-8x-5m3" firstAttribute="leading" secondItem="ZfK-Hc-Mvt" secondAttribute="leading" id="YMe-S8-e2d"/>
                                         </constraints>
                                     </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Dw-0A-qMm">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sending mail…" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dab-HC-ieR">
+                                                <rect key="frame" x="20" y="14" width="118" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <color key="textColor" name="whiteColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9G-cj-BEs">
+                                                <rect key="frame" x="205" y="4.6666666666666288" width="150" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="Y8w-LF-FRY"/>
+                                                    <constraint firstAttribute="height" constant="40" id="bzi-fV-xmB"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <state key="normal" title="CLOSE"/>
+                                                <connections>
+                                                    <action selector="alertButtonPressed:" destination="NhN-bs-dS3" eventType="touchUpInside" id="Dy0-6H-TW5"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.21176470588235294" green="0.27843137254901962" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="dab-HC-ieR" firstAttribute="leading" secondItem="0Dw-0A-qMm" secondAttribute="leading" constant="20" id="O9z-ze-1qV"/>
+                                            <constraint firstAttribute="trailing" secondItem="d9G-cj-BEs" secondAttribute="trailing" constant="20" id="fbM-3Y-H0G"/>
+                                            <constraint firstItem="d9G-cj-BEs" firstAttribute="centerY" secondItem="dab-HC-ieR" secondAttribute="centerY" id="oFh-gt-MOv"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="1ig-SZ-idl" secondAttribute="bottom" id="1j1-Hq-hm2"/>
+                                    <constraint firstItem="dab-HC-ieR" firstAttribute="centerY" secondItem="K4R-qn-ZRa" secondAttribute="centerY" id="6rI-Nb-cHr"/>
                                     <constraint firstItem="nWZ-UV-rjK" firstAttribute="leading" secondItem="OxM-zC-5gC" secondAttribute="leading" id="7dc-tm-1mU"/>
                                     <constraint firstItem="K4R-qn-ZRa" firstAttribute="centerX" secondItem="OxM-zC-5gC" secondAttribute="centerX" id="AdN-cZ-pDP"/>
                                     <constraint firstAttribute="trailing" secondItem="nWZ-UV-rjK" secondAttribute="trailing" id="Czp-0F-YJB"/>
