@@ -270,20 +270,3 @@ extension InboxViewController: ViewInboxEmailDelegate {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateMessagesReadCountNotificationID), object: ["name": self.currentFolder, "isRead": status])
     }
 }
-
-extension InboxViewController : SuccessfulSentMailProtocol, MailSendBeforeShowProgressAlertProtocol {
-    func showSendingAlert() {
-        self.viewMailSendingAlert.isHidden = false
-        messageAlertTitle.text = "mailSendingAlert".localized()
-    }
-    
-    func mailSendSuccess() {
-        messageAlertTitle.text = "mailSendMessage".localized()
-        alertButton.isHidden = false
-        alertButton.setTitle("closeButton".localized(), for: .normal)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.viewMailSendingAlert.isHidden = true
-            self.alertButton.isHidden = true
-        }
-    }
-}

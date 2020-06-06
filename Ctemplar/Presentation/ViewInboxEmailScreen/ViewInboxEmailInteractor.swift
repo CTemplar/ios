@@ -271,17 +271,12 @@ class ViewInboxEmailInteractor {
         }
     }
     
-    func moveMessageToSpam(message: EmailMessage, withUndo: String) {
-        
+    func moveMessageToSpam(message: EmailMessage,
+                           withUndo: String,
+                           onCompletion: ((Bool) -> Void)? = nil) {
         self.viewController?.lastAction = ActionsIndex.markAsSpam
-        
-        var folder = message.folder
-        
-        if withUndo.count > 0 {
-            folder = MessagesFoldersName.spam.rawValue
-        }
-        
-        self.moveMessageTo(message: message, folder: folder!, withUndo: withUndo)
+        let folder = withUndo.isEmpty == false ? MessagesFoldersName.spam.rawValue : message.folder
+        self.moveMessageTo(message: message, folder: folder!, withUndo: withUndo, onCompletion: onCompletion)
     }
     
     func moveMessageToInbox(message: EmailMessage, withUndo: String) {
@@ -343,31 +338,30 @@ class ViewInboxEmailInteractor {
         }
     }
     
-    func markMessageAsRead(message: EmailMessage, asRead: Bool, withUndo: String) {
-        
-        self.viewController?.lastAction = ActionsIndex.markAsRead
-        
-        apiService?.updateMessages(messageID: message.messsageID!.description, messagesIDIn: "", folder: message.folder!, starred: false, read: asRead, updateFolder: false, updateStarred: false, updateRead: true)  {(result) in
-            
+    func markMessageAsRead(message: EmailMessage,
+                           asRead: Bool,
+                           withUndo: String,
+                           onCompletion: ((Bool) -> Void)? = nil) {
+        viewController?.lastAction = ActionsIndex.markAsRead
+        apiService?.updateMessages(messageID: message.messsageID!.description, messagesIDIn: "", folder: message.folder!, starred: false, read: asRead, updateFolder: false, updateStarred: false, updateRead: true)  { [weak self] (result) in
+            guard let self = self else {
+                return
+            }
+            var isSucceeded = false
             switch(result) {
-                
             case .success( _):
-                //print("value:", value)
                 print("mark message as read:", asRead)
-                
+                isSucceeded = true
                 self.viewController?.messageIsRead = asRead
-                
-//                self.postUpdateInboxNotification()
                 self.viewController?.viewInboxEmailDelegate?.didUpdateReadStatus(for: message, status: asRead)
-                
-                if withUndo.count > 0 {
+                if !withUndo.isEmpty {
                     self.presenter?.showUndoBar(text: withUndo)
                 }
-                
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
             }
+            onCompletion?(isSucceeded)
         }
     }
     

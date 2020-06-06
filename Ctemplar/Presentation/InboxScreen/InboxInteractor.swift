@@ -754,13 +754,7 @@ class InboxInteractor {
     //MARK: - Selection Bar Actions
     
     func markMessagesListAsSpam(selectedMessagesIdArray: Array<Int>, lastSelectedMessage: EmailMessage, withUndo: String) {
-        
-        var folder = lastSelectedMessage.folder
-        
-        if withUndo.count > 0 {
-            folder = MessagesFoldersName.spam.rawValue
-        }
-        
+        let folder = withUndo.isEmpty == false ? MessagesFoldersName.spam.rawValue : lastSelectedMessage.folder
         var messagesIDList : String = ""
         
         for message in selectedMessagesIdArray {
@@ -769,17 +763,17 @@ class InboxInteractor {
         
         messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex)) //remove last ","
         
-        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: folder!, starred: false, read: false, updateFolder: true, updateStarred: false, updateRead: false)  {(result) in
+        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: folder!, starred: false, read: false, updateFolder: true, updateStarred: false, updateRead: false) { [weak self] (result) in
+            guard let self = self else {
+                return
+            }
             
             switch(result) {
-                
             case .success( _):
-                //print("value:", value)
                 print("marked list as spam")
                 self.viewController?.lastAction = ActionsIndex.markAsSpam
                 self.offset = 0
                 self.updateMessages(withUndo: withUndo, silent: false)
-                
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
@@ -818,32 +812,25 @@ class InboxInteractor {
     }
     
     func markMessagesListAsTrash(selectedMessagesIdArray: Array<Int>, lastSelectedMessage: EmailMessage, withUndo: String) {
-        
-        var folder = lastSelectedMessage.folder
-        
-        if withUndo.count > 0 {
-            folder = MessagesFoldersName.trash.rawValue
-        }
-        
-        var messagesIDList : String = ""
+        let folder = withUndo.isEmpty == false ? MessagesFoldersName.trash.rawValue : lastSelectedMessage.folder
+        var messagesIDList = ""
         
         for message in selectedMessagesIdArray {
             messagesIDList = messagesIDList + message.description + ","
         }
         
         messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex)) //remove last ","
-        
-        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: folder!, starred: false, read: false, updateFolder: true, updateStarred: false, updateRead: false)  {(result) in
-            
+
+        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: folder!, starred: false, read: false, updateFolder: true, updateStarred: false, updateRead: false)  { [weak self] (result) in
+            guard let self = self else {
+                return
+            }
             switch(result) {
-                
             case .success( _):
-                //print("value:", value)
                 print("marked list as trash")
                 self.viewController?.lastAction = ActionsIndex.moveToTrach
                 self.offset = 0
                 self.updateMessages(withUndo: withUndo, silent: false)
-                
             case .failure(let error):
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
@@ -852,14 +839,8 @@ class InboxInteractor {
     }
     
     func moveMessagesListToArchive(selectedMessagesIdArray: Array<Int>, lastSelectedMessage: EmailMessage, withUndo: String) {
-        
-        var folder = lastSelectedMessage.folder
-        
-        if withUndo.count > 0 {
-            folder = MessagesFoldersName.archive.rawValue
-        }
-        
-        var messagesIDList : String = ""
+        let folder = withUndo.isEmpty == false ? MessagesFoldersName.archive.rawValue : lastSelectedMessage.folder
+        var messagesIDList = ""
         
         for message in selectedMessagesIdArray {
             messagesIDList = messagesIDList + message.description + ","
@@ -867,12 +848,12 @@ class InboxInteractor {
         
         messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex)) //remove last ","
         
-        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: folder!, starred: lastSelectedMessage.starred!, read: lastSelectedMessage.read!, updateFolder: true, updateStarred: false, updateRead: false)  {(result) in
-            
+        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: folder!, starred: lastSelectedMessage.starred!, read: lastSelectedMessage.read!, updateFolder: true, updateStarred: false, updateRead: false)  { [weak self] (result) in
+            guard let self = self else {
+                return
+            }
             switch(result) {
-                
             case .success( _):
-                //print("value:", value)
                 print("move list to archive")
                 self.viewController?.lastAction = ActionsIndex.moveToArchive
                 self.offset = 0

@@ -12,43 +12,41 @@ import AlertHelperKit
 
 class ViewInboxEmailPresenter {
     
-    var k_popoverSourceRectX          = 0
-    var k_popoverSourceRectY          = 0
+    var k_popoverSourceRectX = 0
+    var k_popoverSourceRectY = 0
     
-    var viewController   : ViewInboxEmailViewController?
-    var interactor       : ViewInboxEmailInteractor?
+    var viewController: ViewInboxEmailViewController?
+    var interactor: ViewInboxEmailInteractor?
     
     var timer = Timer()
     var counter = 0
 
     func setupNavigationBar(enabled: Bool) {
-        
         self.viewController?.navigationController?.navigationBar.tintColor = k_navButtonTintColor
         let arrowBackImage = UIImage(named: k_darkBackArrowImageName)
         self.viewController?.navigationController?.navigationBar.backIndicatorImage = arrowBackImage
         self.viewController?.navigationController?.navigationBar.backIndicatorTransitionMaskImage = arrowBackImage
         self.viewController?.navigationController?.navigationBar.topItem?.title = ""
-//        self.viewController?.navigationController?.navigationBar.tintColor = UIColor.darkGray
         
-        let garbageButton : UIButton = UIButton.init(type: .custom)
+        let garbageButton = UIButton(type: .custom)
         garbageButton.setImage(UIImage(named: k_garbageImageName), for: .normal)
         garbageButton.addTarget(self, action: #selector(garbageButtonPresed), for: .touchUpInside)
         garbageButton.frame = CGRect(x: 0, y: 0, width: k_navBarButtonSize, height: k_navBarButtonSize)
         let garbageItem = UIBarButtonItem(customView: garbageButton)
         
-        let spamButton : UIButton = UIButton.init(type: .custom)
+        let spamButton = UIButton(type: .custom)
         spamButton.setImage(UIImage(named: k_spamImageName), for: .normal)
         spamButton.addTarget(self, action: #selector(spamButtonPresed), for: .touchUpInside)
         spamButton.frame = CGRect(x: 0, y: 0, width: k_navBarButtonSize, height: k_navBarButtonSize)
         let spamItem = UIBarButtonItem(customView: spamButton)
         
-        let moveButton : UIButton = UIButton.init(type: .custom)
+        let moveButton = UIButton(type: .custom)
         moveButton.setImage(UIImage(named: k_moveImageName), for: .normal)
         moveButton.addTarget(self, action: #selector(moveButtonPresed), for: .touchUpInside)
         moveButton.frame = CGRect(x: 0, y: 0, width: k_navBarButtonSize, height: k_navBarButtonSize)
         let moveItem = UIBarButtonItem(customView: moveButton)
         
-        let moreButton : UIButton = UIButton.init(type: .custom)
+        let moreButton = UIButton(type: .custom)
         moreButton.setImage(UIImage(named: k_moreImageName), for: .normal)
         moreButton.addTarget(self, action: #selector(moreButtonPresed), for: .touchUpInside)
         moreButton.frame = CGRect(x: 0, y: 0, width: k_navBarButtonSize, height: k_navBarButtonSize)
@@ -92,29 +90,11 @@ class ViewInboxEmailPresenter {
         if let starred = self.viewController?.messageIsStarred {
             self.setupStarredButton(starred: starred)
         }
-        
         self.setupFromToHeaderHeight(message: message)
-        //self.setupPropertyLabel(message: message)
-
     }
     
     func setupMessageContent(message: EmailMessage) {
-        /*
-        if let messageContent = self.interactor?.extractMessageContent(message: message) {
-            
-            //self.viewController?.contentTextView.isHidden = true
-            //self.viewController?.webView.isHidden = false
-            
-            self.viewController?.contentTextView.isHidden = false
-            self.viewController?.webView.isHidden = true
-            
-            self.viewController?.contentTextView.attributedText = messageContent.html2AttributedString
-            //self.viewController?.contentTextView.text = messageContent.html2String
-            self.viewController?.webView.loadHTMLString(messageContent, baseURL: nil)
-        }*/
-        
         self.viewController?.contentTextView.attributedText = NSAttributedString(string: "decrypting...")
-        
         self.interactor?.extractMessageContentAsync(message: message)
         self.viewController?.contentTextView.isHidden = false
         self.viewController?.webView.isHidden = true
@@ -122,9 +102,9 @@ class ViewInboxEmailPresenter {
     
     func setupFromToHeaderHeight(message: EmailMessage) {
         
-        var fromName: String = ""
+        let fromName: String = ""
         var fromEmail: String = ""
-        var toNamesArray : Array<String> = []
+        let toNamesArray : Array<String> = []
         var toEmailsArray : Array<String> = []
         var ccArray : Array<String> = []
         var bccArray : Array<String> = []
@@ -144,23 +124,6 @@ class ViewInboxEmailPresenter {
         if let bcarbonCopyArray = message.bcc {
             bccArray = bcarbonCopyArray as! Array<String>
         }
-        /*
-        //temp names
-        toEmailsArray.append("oak777@unet.lg.ua")
-        toEmailsArray.append("support5464@hypertunnels3d.com")
-        toEmailsArray.append("huly-gun4444@white-zebra.com")
-        
-        toNamesArray.append("Dima")
-        toNamesArray.append("Dimon")
-        toNamesArray.append("MegaDima")
-        
-        //temp carbon
-        ccArray.append("oak@unet.lg.ua")
-        ccArray.append("support@hypertunnels3d.com")
-        ccArray.append("huly-gun@white-zebra.com")
-        ccArray.append("supportxx@hypertunnels3d.com")
-        ccArray.append("huly-gunxx@white-zebra.com")
-        */
         
         let fromToText = self.interactor?.formatterService!.formatFromToString(fromName: fromName, fromEmail: fromEmail, toNamesArray: toNamesArray, toEmailsArray: toEmailsArray, ccArray: ccArray, bccArray: bccArray)
         
@@ -170,7 +133,6 @@ class ViewInboxEmailPresenter {
         self.viewController?.fromToBarTextView.attributedText = fromToAttributtedString
         
         let numberOfLines = fromToText?.numberOfLines()
-        //print("numberOfLines:", numberOfLines as Any)
         
         var fromToViewHeight = k_lineHeightForFromToText * CGFloat(numberOfLines!)
         
@@ -187,14 +149,12 @@ class ViewInboxEmailPresenter {
     }
     
     func setupBottomBar(enabled: Bool) {
-        
         self.viewController?.replyButton.isEnabled = enabled
         self.viewController?.replyAllButton.isEnabled = enabled
         self.viewController?.forwardButton.isEnabled = enabled
     }
     
     func setupStarredButton(starred: Bool) {
-        
         if starred {
             self.viewController?.starredButton.setImage(UIImage(named: k_starOnBigImageName), for: .normal)
         } else {
@@ -203,12 +163,10 @@ class ViewInboxEmailPresenter {
     }
     
     func setupSubjectLabel(message: EmailMessage) {
-        
-        self.interactor?.updateSubject(message: message)       
+        self.interactor?.updateSubject(message: message)
     }
     
     func setSubjectLabel(subject: String) {
-        
         self.viewController?.headerLabel.text = subject
         
         let subjectTextWidth : CGFloat  = (self.viewController?.headerLabel.text!.widthOfString(usingFont: (self.viewController?.headerLabel.font)!))!
@@ -221,7 +179,6 @@ class ViewInboxEmailPresenter {
     }
     
     func setupPropertyLabel(message: EmailMessage) {
-        
         if let delayedDelivery = message.delayedDelivery {
             self.viewController?.propertyLabel.isHidden = false
             self.viewController?.propertylabelView.backgroundColor = k_greenColor
@@ -235,38 +192,6 @@ class ViewInboxEmailPresenter {
                 }
             }
         }
-        
-        //self.viewController?.propertyLabelViewWidthConstraint = 
-               /*
-               if let deadManDuration = message.deadManDuration {
-                   leftlabelView.isHidden = false
-                   leftlabelView.backgroundColor = k_redColor
-                   if  let date = parentController?.formatterService!.formatDeadManDateString(duration: deadManDuration, short: short) {
-                       leftLabel.attributedText = date
-                   } else {
-                       leftLabel.attributedText = NSAttributedString(string: "Error")
-                   }
-               }
-               
-               //let testDate = "2018-10-26T13:00:00Z"
-               //2018-12-18T05:18:17.919000Z error
-               //web 2018-12-30T19:00:00Z
-               if let destructionDate = message.destructDay {
-                   rightlabelView.isHidden = false
-                   rightlabelView.backgroundColor = k_orangeColor
-                   //print("destructionDate:", destructionDate)
-                   if  let date = parentController?.formatterService!.formatDestructionTimeStringToDate(date: destructionDate) {
-                       deleteLabel.attributedText = date.timeCountForDestruct(short: short)
-                   } else {
-                       //print("erorr formatting destructionDate:", destructionDate)
-                       if let date = parentController?.formatterService!.formatDestructionTimeStringToDateTest(date: destructionDate) {
-                           print("new format date:", date)
-                           deleteLabel.attributedText = date.timeCountForDestruct(short: short)
-                       } else {
-                           deleteLabel.attributedText = NSAttributedString(string: "Error")
-                       }
-                   }
-               }*/
     }
     
     //MARK: - Attachment Action
@@ -290,9 +215,7 @@ class ViewInboxEmailPresenter {
     //MARK: - Read Actions
     
     func checkMessaseReadStatus(message: EmailMessage) {
-        
         if let read = message.read {
-            
             if read == false {
                 self.setMessageAsRead()
             }
@@ -300,36 +223,63 @@ class ViewInboxEmailPresenter {
     }
     
     func setMessageAsRead() {
-        
         self.interactor?.markMessageAsRead(message: (self.viewController?.message)!, asRead: true, withUndo: "")
     }
     
     //MARK: - NavBar Actions
-    
-    @objc func garbageButtonPresed() {
+    @objc
+    func garbageButtonPresed() {
+        viewController?.showBanner(withTitle: "movingToTrash".localized(),
+                                        additionalConfigs: [.displayDuration(.infinity),
+                                                            .showButton(false)]
+        )
         self.interactor?.moveMessageToTrash(message: (self.viewController?.message)!, withUndo: "undoMoveToTrash".localized(), onCompletion: { [weak self] (isSucceeded) in
-            if isSucceeded {
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                if isSucceeded {
                     self?.viewController?.router?.backToParentViewController()
+                    self?.viewController?.showBannerAgain(withUpdatedText: "done".localized(),
+                                                         additionalConfigs: [.displayDuration(2.0),
+                                                                             .showButton(true)]
+                    )
+                } else {
+                    self?.viewController?.showBannerAgain(withUpdatedText: "actionFailed".localized(),
+                                                         additionalConfigs: [.displayDuration(2.0),
+                                                                             .showButton(true)]
+                    )
                 }
             }
         })
     }
     
-    @objc func spamButtonPresed() {
-        
-        self.interactor?.moveMessageToSpam(message: (self.viewController?.message)!, withUndo: "undoMarkAsSpam".localized())
+    @objc
+    func spamButtonPresed() {
+        viewController?.showBanner(withTitle: "movingToSpam".localized(),
+                                        additionalConfigs: [.displayDuration(.infinity),
+                                                            .showButton(false)]
+        )
+        self.interactor?.moveMessageToSpam(message: (self.viewController?.message)!, withUndo: "undoMarkAsSpam".localized(), onCompletion: { [weak self] (isSucceeded) in
+            if isSucceeded {
+                self?.viewController?.router?.backToParentViewController()
+                self?.viewController?.showBannerAgain(withUpdatedText: "done".localized(),
+                                                     additionalConfigs: [.displayDuration(2.0),
+                                                                         .showButton(true)]
+                )
+            } else {
+                self?.viewController?.showBannerAgain(withUpdatedText: "actionFailed".localized(),
+                                                     additionalConfigs: [.displayDuration(2.0),
+                                                                         .showButton(true)]
+                )
+            }
+        })
     }
     
-    @objc func moveButtonPresed() {
-        
-        self.viewController?.router?.showMoveToViewController()        
+    @objc
+    func moveButtonPresed() {
+        self.viewController?.router?.showMoveToViewController()
     }
     
-    @objc func moreButtonPresed() {
-        
-       // self.showMoreActionsView()
-        
+    @objc
+    func moreButtonPresed() {
         if (!Device.IS_IPAD) {
             self.showMoreActionsView()
         } else {
@@ -338,125 +288,89 @@ class ViewInboxEmailPresenter {
     }
     
     func starButtonPressed() {
-        
         self.viewController?.messageIsStarred = !(self.viewController?.messageIsStarred)!
-        
         self.interactor?.markMessageAsStarred(message: (self.viewController?.message)!, starred: (self.viewController?.messageIsStarred)!, withUndo: "")
     }
     
-    //MARK: - Undo
-    
+    // MARK: - Undo
     func showUndoBar(text: String) {
-        
         print("show undo bar")
-        
-        self.viewController?.undoButton.setTitle(text, for: .normal)        
+        self.viewController?.undoButton.setTitle(text, for: .normal)
         self.viewController?.undoBar.isHidden = false
-        
         counter = 0
         timer.invalidate()
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fadeUndoBar), userInfo: nil, repeats: true)
     }
     
-    @objc func fadeUndoBar() {
-        
+    @objc
+    func fadeUndoBar() {
         counter +=  1
         let alpha = 1.0/Double(counter)
         self.viewController?.undoButton.alpha = CGFloat(alpha)
-        
         if counter == Int(k_undoActionBarShowingSecs) {
             self.hideUndoBar()
         }
     }
     
     func hideUndoBar() {
-        
         counter = 0
         timer.invalidate()
-        self.viewController?.undoBar.isHidden = true
-        self.viewController?.undoButton.alpha = 1.0
+        viewController?.undoBar.isHidden = true
+        viewController?.undoButton.alpha = 1.0
     }
     
-    //MARK: - More Actions
-    
+    // MARK: - More Actions
     func initMoreActionsView() {
+        viewController?.moreActionsView = Bundle.main.loadNibNamed(k_MoreActionsViewXibName, owner: nil, options: nil)?.first as? MoreActionsView
+        viewController?.moreActionsView?.frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
+        viewController?.moreActionsView?.delegate = self.viewController
         
-        self.viewController?.moreActionsView = Bundle.main.loadNibNamed(k_MoreActionsViewXibName, owner: nil, options: nil)?.first as? MoreActionsView
-        self.viewController?.moreActionsView?.frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
-        self.viewController?.moreActionsView?.delegate = self.viewController
+        viewController?.navigationController!.view.addSubview((self.viewController?.moreActionsView)!)
         
-        self.viewController?.navigationController!.view.addSubview((self.viewController?.moreActionsView)!)
-        
-        self.viewController?.moreActionsView?.isHidden = true
+        viewController?.moreActionsView?.isHidden = true
     }
     
     func showMoreActionsView() {
-        
         var moreActionsButtonsName: Array<String> = []
-
         moreActionsButtonsName = self.setupMoreActionsButtons()
-        
-        self.viewController?.moreActionsView?.setup(buttonsNameArray: moreActionsButtonsName)
-        
+        viewController?.moreActionsView?.setup(buttonsNameArray: moreActionsButtonsName)
         let hidden = self.viewController?.moreActionsView?.isHidden
-        
-        self.viewController?.moreActionsView?.isHidden = !hidden!
+        viewController?.moreActionsView?.isHidden = !hidden!
     }
     
-    
     func setupMoreActionsButtons() -> Array<String> {
-        
         let currentFolder = self.viewController?.currentFolderFilter
         
-        var readButton : String = ""
-        
-        if (self.viewController?.messageIsRead)! {
-            readButton = "markAsUnread".localized()
-        } else {
-            readButton = "markAsRead".localized()
-        }
-        
+        let readButton = viewController?.messageIsRead == true ? "markAsUnread".localized() : "markAsRead".localized()
+
         var moreActionsButtonsName: Array<String> = []
         
         switch currentFolder {
         case MessagesFoldersName.inbox.rawValue:
             moreActionsButtonsName = ["cancel".localized(), readButton, "moveToArchive".localized()]
-            break
         case MessagesFoldersName.draft.rawValue:
-            moreActionsButtonsName = []
-            break
+            moreActionsButtonsName.removeAll()
         case MessagesFoldersName.sent.rawValue:
             moreActionsButtonsName = ["cancel".localized(), readButton, "moveToArchive".localized()]
-            break
         case MessagesFoldersName.outbox.rawValue:
             moreActionsButtonsName = ["cancel".localized(), readButton, "moveToArchive".localized(), "moveToInbox".localized()]
-            break
         case MessagesFoldersName.starred.rawValue:
             moreActionsButtonsName = ["cancel".localized(), readButton, "moveToArchive".localized(), "moveToInbox".localized()]
-            break
         case MessagesFoldersName.archive.rawValue:
             moreActionsButtonsName = ["cancel".localized(), readButton, "moveToInbox".localized()]
-            break
         case MessagesFoldersName.spam.rawValue:
             moreActionsButtonsName = ["cancel".localized(), "moveToArchive".localized(), "moveToInbox".localized()]
-            break
         case MessagesFoldersName.trash.rawValue:
             moreActionsButtonsName = ["cancel".localized(), readButton, "moveToArchive".localized(), "moveToInbox".localized()]
-            break
         default:
             moreActionsButtonsName = ["cancel".localized(), readButton, "moveToArchive".localized(), "moveToInbox".localized()] //for custom folders
-            break
         }
         
         return moreActionsButtonsName
     }
     
     func applyMoreAction(_ sender: AnyObject, isButton: Bool) {
-        
-        if isButton {
-        
-            let button = sender as! UIButton
-            
+        if isButton, let button = sender as? UIButton {
             let title = button.title(for: .normal)
             
             print("title:", title as Any)
@@ -466,7 +380,6 @@ class ViewInboxEmailPresenter {
                 print("cancel btn more actions")
             case MoreActionsTitles.markAsRead.rawValue.localized():
                 print("markAsRead btn more actions")
-                //self.interactor?.markMessageAsRead(message: (self.viewController?.message)!, asRead: true, withUndo: "undoMarkAsRead".localized())
                 self.markSelectedMessagesAsRead() 
             case MoreActionsTitles.markAsUnread.rawValue.localized():
                 print("markAsUnread btn more actions")
@@ -483,36 +396,23 @@ class ViewInboxEmailPresenter {
                 print("more actions: default")
             }
         }
-        
         self.showMoreActionsView()
     }
     
     func showMoreActionsActionSheet() {
-        
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        self.configureMoreActionsActionSheet(alertController: alertController)
-        
+        configureMoreActionsActionSheet(alertController: alertController)
         if let popoverController = alertController.popoverPresentationController {
             popoverController.sourceView = viewController?.view
             popoverController.sourceRect = CGRect(x: k_popoverSourceRectX, y: k_popoverSourceRectY, width: 0, height: 0)
         }
-        
         viewController?.present(alertController, animated: true, completion: nil)
     }
     
     func configureMoreActionsActionSheet(alertController: UIAlertController) {
-        
         let currentFolder = self.viewController?.currentFolderFilter
-        
-        var readButton : String = ""
-        
-        if (self.viewController?.messageIsRead)! {
-            readButton = "markAsUnread".localized()
-        } else {
-            readButton = "markAsRead".localized()
-        }
-        
+        let readButton = viewController?.messageIsRead == true ? "markAsUnread".localized() : "markAsRead".localized()
+
         var actionsList: Array<UIAlertAction> = []
         
         let readMessageAction = UIAlertAction(title: readButton, style: .default, handler: {
@@ -533,64 +433,77 @@ class ViewInboxEmailPresenter {
         switch currentFolder {
         case MessagesFoldersName.inbox.rawValue:
             actionsList = [readMessageAction, moveToArchiveAction]
-            break
-        case MessagesFoldersName.draft.rawValue:
-            
-            break
+        case MessagesFoldersName.draft.rawValue: break
         case MessagesFoldersName.sent.rawValue:
             actionsList = [readMessageAction, moveToArchiveAction]
-            break
         case MessagesFoldersName.outbox.rawValue:
             actionsList = [readMessageAction, moveToArchiveAction, moveToInboxAction]
-            break
         case MessagesFoldersName.starred.rawValue:
             actionsList = [readMessageAction, moveToArchiveAction, moveToInboxAction]
-            break
         case MessagesFoldersName.archive.rawValue:
             actionsList = [readMessageAction, moveToInboxAction]
-            break
         case MessagesFoldersName.spam.rawValue:
             actionsList = [readMessageAction, moveToArchiveAction, moveToInboxAction]
-            break
-        case MessagesFoldersName.trash.rawValue:
-            
-            break
+        case MessagesFoldersName.trash.rawValue: break
         default:
             actionsList = [readMessageAction, moveToArchiveAction, moveToInboxAction]
             break
         }
-        
         for action in actionsList {
             alertController.addAction(action)
         }
     }
     
     func markSelectedMessagesAsRead() {
-        
         let read = self.viewController?.messageIsRead
+        let undoMessage = read == true ? "undoMarkAsUnread".localized() : "undoMarkAsRead".localized()
+        let bannerText = read == true ? "markingAsUnread".localized() : "markingAsRead".localized()
         
-        var undoMessage = ""
-        if read! {
-            undoMessage = "undoMarkAsUnread".localized()
-        } else {
-            undoMessage = "undoMarkAsRead".localized()
-        }
-        
-        self.interactor?.markMessageAsRead(message: (self.viewController?.message)!, asRead: !read!, withUndo: undoMessage)
+        self.interactor?.viewController?.showBanner(withTitle: bannerText, additionalConfigs: [.displayDuration(.infinity), .showButton(false)]
+        )
+        self.interactor?.markMessageAsRead(message: (self.viewController?.message)!, asRead: !read!, withUndo: undoMessage, onCompletion: { [weak self] (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case true:
+                    self?.interactor?.viewController?.router?.backToParentViewController()
+                    self?.interactor?.viewController?.showBannerAgain(withUpdatedText: "done".localized(),
+                                                         additionalConfigs: [.displayDuration(3.0),
+                                                                             .showButton(true)]
+                    )
+                case false:
+                    self?.viewController?.showBannerAgain(withUpdatedText: "actionFailed".localized(),
+                                                         additionalConfigs: [.displayDuration(3.0),
+                                                                             .showButton(true)]
+                    )
+                }
+            }
+        })
     }
     
     func moveSelectedMessagesToArchive() {
+        viewController?.showBanner(withTitle: "movingToArchive".localized(),
+                                        additionalConfigs: [.displayDuration(.infinity),
+                                                            .showButton(false)]
+        )
         self.interactor?.moveMessageToArchive(message: (self.viewController?.message)!, withUndo: "undoMoveToArchive".localized(), onCompletion: { [weak self] (isSucceeded) in
-            if isSucceeded {
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                if isSucceeded {
                     self?.interactor?.viewController?.router?.backToParentViewController()
+                    self?.viewController?.showBannerAgain(withUpdatedText: "done".localized(),
+                                                         additionalConfigs: [.displayDuration(3.0),
+                                                                             .showButton(true)]
+                    )
+                } else {
+                    self?.viewController?.showBannerAgain(withUpdatedText: "actionFailed".localized(),
+                                                         additionalConfigs: [.displayDuration(2.0),
+                                                                             .showButton(true)]
+                    )
                 }
             }
         })
     }
     
     func moveSelectedMessagesToInbox() {
-        
-        self.interactor?.moveMessageToInbox(message: (self.viewController?.message)!, withUndo: "undoMoveToInbox".localized())
+        interactor?.moveMessageToInbox(message: (self.viewController?.message)!, withUndo: "undoMoveToInbox".localized())
     }
 }

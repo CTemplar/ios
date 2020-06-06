@@ -28,6 +28,15 @@
 "termsAndConditionsFullText" = "Please check this box if you agree to abide by our Terms and Conditions";
 "termsAndConditionsPhrase" = "Termes et Conditions";
 
+// Action Banner
+"movingToArchive" = "Passer aux archives";
+"movingToSpam" = "Passer au spam";
+"movingToTrash" = "Passer à la poubelle";
+"markingAsUnread" = "Marquage comme non lu";
+"markingAsRead" = "Marquage comme lu";
+"actionFailed" = "Action: échoué";
+"done" = "Terminé";
+
 //login
 
 "emailPlaceholder" = "Email";

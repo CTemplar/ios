@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -30,6 +30,12 @@
 		30A38A8123AACDEA00166595 /* UserResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A38A8023AACDEA00166595 /* UserResult.swift */; };
 		30A38A8223AACDEA00166595 /* UserResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A38A8023AACDEA00166595 /* UserResult.swift */; };
 		443059F4248948D000C3DB28 /* MatericalIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443059F3248948D000C3DB28 /* MatericalIndicator.swift */; };
+		44305A01248AE01C00C3DB28 /* SwiftEntryKit in Frameworks */ = {isa = PBXBuildFile; productRef = 44305A00248AE01C00C3DB28 /* SwiftEntryKit */; };
+		44305A0F248AE57000C3DB28 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44305A0E248AE57000C3DB28 /* BannerView.swift */; };
+		44305A11248AE5DA00C3DB28 /* ViewConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44305A10248AE5DA00C3DB28 /* ViewConfigurable.swift */; };
+		44305A14248AE7D100C3DB28 /* QuickLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 44305A13248AE7D100C3DB28 /* QuickLayout */; };
+		44305A16248AF71600C3DB28 /* UIScreen+Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44305A15248AF71600C3DB28 /* UIScreen+Edge.swift */; };
+		44305A18248AF73D00C3DB28 /* CGRect+Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44305A17248AF73D00C3DB28 /* CGRect+Edge.swift */; };
 		445B2B3024893FF40023C254 /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445B2B2F24893FF40023C254 /* UIView+Nib.swift */; };
 		44FAB7062488D728001619C8 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FAB7052488D728001619C8 /* AppConstants.swift */; };
 		44FAB7082488D9A3001619C8 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FAB7072488D9A3001619C8 /* Loader.swift */; };
@@ -693,6 +699,10 @@
 		30A38A7D23AACA0B00166595 /* RouterUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterUser.swift; sourceTree = "<group>"; };
 		30A38A8023AACDEA00166595 /* UserResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResult.swift; sourceTree = "<group>"; };
 		443059F3248948D000C3DB28 /* MatericalIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatericalIndicator.swift; sourceTree = "<group>"; };
+		44305A0E248AE57000C3DB28 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
+		44305A10248AE5DA00C3DB28 /* ViewConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfigurable.swift; sourceTree = "<group>"; };
+		44305A15248AF71600C3DB28 /* UIScreen+Edge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Edge.swift"; sourceTree = "<group>"; };
+		44305A17248AF73D00C3DB28 /* CGRect+Edge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Edge.swift"; sourceTree = "<group>"; };
 		445B2B2F24893FF40023C254 /* UIView+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
 		44FAB7052488D728001619C8 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		44FAB7072488D9A3001619C8 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
@@ -1037,6 +1047,8 @@
 			files = (
 				8432070B21784B0100F18E5A /* WebKit.framework in Frameworks */,
 				88FCA113840F68BA283B4BC1 /* Pods_Ctemplar.framework in Frameworks */,
+				44305A14248AE7D100C3DB28 /* QuickLayout in Frameworks */,
+				44305A01248AE01C00C3DB28 /* SwiftEntryKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1075,6 +1087,14 @@
 				30503EA223D8EE6A004B04D6 /* GoogleService-Info.plist */,
 			);
 			path = dev;
+			sourceTree = "<group>";
+		};
+		44305A0D248AE56400C3DB28 /* Banner */ = {
+			isa = PBXGroup;
+			children = (
+				44305A0E248AE57000C3DB28 /* BannerView.swift */,
+			);
+			path = Banner;
 			sourceTree = "<group>";
 		};
 		445B2B2A24893ECD0023C254 /* Loader */ = {
@@ -2056,9 +2076,11 @@
 		E3E575D02430FB3700037979 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				44305A0D248AE56400C3DB28 /* Banner */,
 				445B2B2A24893ECD0023C254 /* Loader */,
 				E3E575D12430FB4100037979 /* Extensions */,
 				44FAB7052488D728001619C8 /* AppConstants.swift */,
+				44305A10248AE5DA00C3DB28 /* ViewConfigurable.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2073,6 +2095,8 @@
 				E3DA9841246877E00079110D /* String+Error.swift */,
 				44FAB70D248912FA001619C8 /* NSObject+ClassName.swift */,
 				445B2B2F24893FF40023C254 /* UIView+Nib.swift */,
+				44305A15248AF71600C3DB28 /* UIScreen+Edge.swift */,
+				44305A17248AF73D00C3DB28 /* CGRect+Edge.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2096,6 +2120,10 @@
 			dependencies = (
 			);
 			name = Ctemplar;
+			packageProductDependencies = (
+				44305A00248AE01C00C3DB28 /* SwiftEntryKit */,
+				44305A13248AE7D100C3DB28 /* QuickLayout */,
+			);
 			productName = Ctemplar;
 			productReference = 8433FF16216201A300C57DC8 /* Ctemplar.app */;
 			productType = "com.apple.product-type.application";
@@ -2164,6 +2192,10 @@
 				fr,
 			);
 			mainGroup = 8433FF0D216201A300C57DC8;
+			packageReferences = (
+				443059FF248AE01C00C3DB28 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */,
+				44305A12248AE7D100C3DB28 /* XCRemoteSwiftPackageReference "QuickLayout" */,
+			);
 			productRefGroup = 8433FF17216201A300C57DC8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -2629,6 +2661,7 @@
 				8437103F217465DD00DAE4BA /* ForgotPasswordViewController.swift in Sources */,
 				8440466D21C7E8DE00CDEB3F /* ManageFoldersViewController.swift in Sources */,
 				E399BB8A23E87AFA00EEA708 /* UIColor+Extensions.swift in Sources */,
+				44305A16248AF71600C3DB28 /* UIScreen+Edge.swift in Sources */,
 				8402498121916D8E00CDDB0F /* Folder.swift in Sources */,
 				8402498821919FEB00CDDB0F /* MoveToConfigurator.swift in Sources */,
 				8403BDE021A3EEB100EE8DCD /* AddContactScreenViewController.swift in Sources */,
@@ -2734,6 +2767,7 @@
 				84A62E4B2175C3CF009C38E5 /* NewPasswordViewController.swift in Sources */,
 				8441559321BF8AA90053C39F /* AttachmentView.swift in Sources */,
 				8443D22021CBDD64002AD54B /* SettingsRouter.swift in Sources */,
+				44305A18248AF73D00C3DB28 /* CGRect+Edge.swift in Sources */,
 				84FF7E37219D662300E3E56A /* UserMyself.swift in Sources */,
 				445B2B3024893FF40023C254 /* UIView+Nib.swift in Sources */,
 				30A38A7E23AACA0B00166595 /* RouterUser.swift in Sources */,
@@ -2751,6 +2785,7 @@
 				84FF7E3C219DB71500E3E56A /* ContactTableViewCell.swift in Sources */,
 				E3E22E5624398FDD00DCE5B7 /* AppStoryBoard.swift in Sources */,
 				8443D21721CB6AFB002AD54B /* EditFolderInteractor.swift in Sources */,
+				44305A0F248AE57000C3DB28 /* BannerView.swift in Sources */,
 				8435685D216F2DB3002101D3 /* InboxViewController.swift in Sources */,
 				8431B08721D10F7400A73D39 /* RecoveryEmailViewController.swift in Sources */,
 				8462C62421CCC15C005B3D74 /* SettingsBaseTableViewCell.swift in Sources */,
@@ -2766,6 +2801,7 @@
 				E35F5EAB2414CEF0003C4281 /* PgpKeysDataSource.swift in Sources */,
 				843FC3972164D20E000CFEA9 /* SignUpPageEmail.swift in Sources */,
 				840249902191A02800CDDB0F /* MoveToDataSource.swift in Sources */,
+				44305A11248AE5DA00C3DB28 /* ViewConfigurable.swift in Sources */,
 				44FAB7062488D728001619C8 /* AppConstants.swift in Sources */,
 				843E1DC621D4CBCA001B89D6 /* WhiteBlackListsConfigurator.swift in Sources */,
 				8434D9B2219C4E0200D2C3A5 /* ContactsRouter.swift in Sources */,
@@ -3288,6 +3324,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		443059FF248AE01C00C3DB28 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/huri000/SwiftEntryKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.3;
+			};
+		};
+		44305A12248AE7D100C3DB28 /* XCRemoteSwiftPackageReference "QuickLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/huri000/QuickLayout.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		44305A00248AE01C00C3DB28 /* SwiftEntryKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 443059FF248AE01C00C3DB28 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */;
+			productName = SwiftEntryKit;
+		};
+		44305A13248AE7D100C3DB28 /* QuickLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 44305A12248AE7D100C3DB28 /* XCRemoteSwiftPackageReference "QuickLayout" */;
+			productName = QuickLayout;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8433FF0E216201A300C57DC8 /* Project object */;
 }
