@@ -57,20 +57,20 @@ class InboxSideMenuRouter {
     }
     
     func showSettingsViewController() {
-        
         let vc = SettingsViewController.instantiate(fromAppStoryboard: .Settings)
         self.viewController?.currentParentViewController = vc
         vc.sideMenuViewController = self.viewController
         vc.user = (self.viewController?.inboxViewController?.user)!
-//        if (!Device.IS_IPAD) {
-            let navController = (self.viewController?.getNavController(rootViewController: vc))!
-            self.viewController?.slideMenuController()?.changeMainViewController(navController, close: true)
-//        } else {
-//            //let navigationController = UINavigationController(rootViewController: vc)
-//            //self.viewController?.splitViewController?.showDetailViewController(navigationController, sender: self)
-//            self.viewController?.splitViewController?.secondaryViewController?.show(vc, sender: self)
-//            self.viewController?.splitViewController?.toggleMasterView()
-//        }
+        let navController = (self.viewController?.getNavController(rootViewController: vc))!
+        self.viewController?.slideMenuController()?.changeMainViewController(navController, close: true)
     }
     
+    func showFAQ() {
+        let vc = FAQViewController.instantiate(fromAppStoryboard: .FAQ)
+        viewController?.currentParentViewController = vc
+        vc.sideMenuViewController = viewController
+        if let navController = viewController?.getNavController(rootViewController: vc) {
+            viewController?.slideMenuController()?.changeMainViewController(navController, close: true)
+        }
+    }
 }

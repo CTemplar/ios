@@ -220,60 +220,32 @@ class InboxSideMenuInteractor {
         switch optionName {
         case InboxSideMenuOptionsName.inbox.rawValue :
             self.applyInboxAction()
-//            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.inbox.rawValue)
-            break
         case InboxSideMenuOptionsName.draft.rawValue :
             self.applyOtherFolderAction(with: self.viewController!.draftViewController)
-//            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.draft.rawValue)
-            break
         case InboxSideMenuOptionsName.sent.rawValue :
             self.applyOtherFolderAction(with: self.viewController!.sentViewControllet)
-//            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.sent.rawValue)
-            break
         case InboxSideMenuOptionsName.outbox.rawValue :
             self.applyOtherFolderAction(with: self.viewController!.outboxViewController)
-//            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.outbox.rawValue)
-            break
         case InboxSideMenuOptionsName.starred.rawValue :
             self.applyOtherFolderAction(with: self.viewController!.starredViewController)
-//            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.starred.rawValue)
-            break
         case InboxSideMenuOptionsName.archive.rawValue :
             self.applyOtherFolderAction(with: self.viewController!.archiveViewController)
-//            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.archive.rawValue)
-            break
         case InboxSideMenuOptionsName.spam.rawValue :
             self.applyOtherFolderAction(with: self.viewController!.spamViewController)
-//            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.spam.rawValue)
-            break
         case InboxSideMenuOptionsName.trash.rawValue :
             self.applyOtherFolderAction(with: self.viewController!.trashViewController)
-//            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.trash.rawValue)
-            break
         case InboxSideMenuOptionsName.allMails.rawValue :
             self.applyOtherFolderAction(with: self.viewController!.allMailViewController)
-//            self.applyFirstSectionAction(folder: optionName, filter: "")
-            break
         case InboxSideMenuOptionsName.contacts.rawValue :
-//            if (!Device.IS_IPAD) {
-//                self.dismissSideMenuAndTopController()
-//            }
             self.viewController?.router?.showContactsViewController()
         case InboxSideMenuOptionsName.settings.rawValue :
-//            if (!Device.IS_IPAD) {
-//                self.dismissSideMenuAndTopController()
-//            }
             self.viewController?.router?.showSettingsViewController()
-            break
-        case InboxSideMenuOptionsName.help.rawValue :
+        case InboxSideMenuOptionsName.help.rawValue:
             self.openSupportURL()
-            break
+        case InboxSideMenuOptionsName.FAQ.rawValue:
+            self.viewController?.router?.showFAQ()
         case InboxSideMenuOptionsName.manageFolders.rawValue :
-//            if (!Device.IS_IPAD) {
-//                self.dismissSideMenuAndTopController()
-//            }
             self.viewController?.router?.showManageFoldersViewController()
-            break
         case InboxSideMenuOptionsName.logout.rawValue :
             self.viewController?.presenter?.logOut()
             break
