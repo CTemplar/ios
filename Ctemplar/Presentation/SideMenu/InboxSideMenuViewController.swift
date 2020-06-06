@@ -124,6 +124,7 @@ class InboxSideMenuViewController: UIViewController {
         InboxSideMenuOptionsName.contacts.rawValue,
         InboxSideMenuOptionsName.settings.rawValue,
         InboxSideMenuOptionsName.help.rawValue,
+        InboxSideMenuOptionsName.FAQ.rawValue,
         InboxSideMenuOptionsName.logout.rawValue
     ]
     
@@ -131,16 +132,16 @@ class InboxSideMenuViewController: UIViewController {
         k_darkContactIconImageName,
         k_darkSettingsIconImageName,
         k_darkHelpconImageName,
+        k_darkFAQIconImageName,
         k_darkExitIconImageName
     ]
                                           
     
-    @IBOutlet var inboxSideMenuTableView        : UITableView!
+    @IBOutlet var inboxSideMenuTableView: UITableView!
     
-    @IBOutlet var nameLabel  : UILabel!
-    @IBOutlet var emailLabel : UILabel!
-    @IBOutlet var triangle   : UIImageView!
-    
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var emailLabel: UILabel!
+    @IBOutlet var triangle: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -165,16 +166,12 @@ class InboxSideMenuViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         DispatchQueue.main.async {
             self.presenter?.interactor?.unreadMessagesCounter()
         }
-        
-//        self.scrollTableToTop()
     }
     
     func scrollTableToTop() {
-        
         let firstIndexPath = IndexPath(row: 0, section: 0)
         self.inboxSideMenuTableView.scrollToRow(at: firstIndexPath, at: .top, animated: true)
     }
@@ -182,11 +179,10 @@ class InboxSideMenuViewController: UIViewController {
     //MARK: - IBActions
     
     @IBAction func userProfilePressed(_ sender: AnyObject) {
-        
-
     }
     
-    @objc func userDataUpdate(notification: Notification) {
+    @objc
+    func userDataUpdate(notification: Notification) {
         
         let userData = notification.object as! UserMyself
             
@@ -210,14 +206,14 @@ class InboxSideMenuViewController: UIViewController {
         }
     }
     
-    @objc func customFoldersUpdated(notification: Notification) {
+    @objc
+    func customFoldersUpdated(notification: Notification) {
         let customFolders = notification.object as? [Folder] ?? []
         self.dataSource?.customFoldersArray = customFolders
         self.dataSource?.reloadData()
     }
     
     @objc func reloadViewController() {
-        
         self.viewDidLoad()
         self.viewWillAppear(false)
     }

@@ -37,6 +37,12 @@
 		44305A16248AF71600C3DB28 /* UIScreen+Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44305A15248AF71600C3DB28 /* UIScreen+Edge.swift */; };
 		44305A18248AF73D00C3DB28 /* CGRect+Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44305A17248AF73D00C3DB28 /* CGRect+Edge.swift */; };
 		445B2B3024893FF40023C254 /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445B2B2F24893FF40023C254 /* UIView+Nib.swift */; };
+		4497F1D8248BDF4000AF83F5 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4497F1D7248BDF4000AF83F5 /* FAQViewController.swift */; };
+		4497F1DA248BDF5200AF83F5 /* FAQ.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4497F1D9248BDF5200AF83F5 /* FAQ.storyboard */; };
+		4497F1DC248BE02000AF83F5 /* FAQConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4497F1DB248BE02000AF83F5 /* FAQConfigurator.swift */; };
+		4497F1DE248BE04300AF83F5 /* FAQDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4497F1DD248BE04300AF83F5 /* FAQDataSource.swift */; };
+		4497F1E0248BE3CF00AF83F5 /* FAQPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4497F1DF248BE3CF00AF83F5 /* FAQPresenter.swift */; };
+		4497F1E2248BE50D00AF83F5 /* FAQRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4497F1E1248BE50D00AF83F5 /* FAQRouter.swift */; };
 		44FAB7062488D728001619C8 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FAB7052488D728001619C8 /* AppConstants.swift */; };
 		44FAB7082488D9A3001619C8 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FAB7072488D9A3001619C8 /* Loader.swift */; };
 		44FAB70E248912FA001619C8 /* NSObject+ClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FAB70D248912FA001619C8 /* NSObject+ClassName.swift */; };
@@ -704,6 +710,12 @@
 		44305A15248AF71600C3DB28 /* UIScreen+Edge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Edge.swift"; sourceTree = "<group>"; };
 		44305A17248AF73D00C3DB28 /* CGRect+Edge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Edge.swift"; sourceTree = "<group>"; };
 		445B2B2F24893FF40023C254 /* UIView+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
+		4497F1D7248BDF4000AF83F5 /* FAQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
+		4497F1D9248BDF5200AF83F5 /* FAQ.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FAQ.storyboard; sourceTree = "<group>"; };
+		4497F1DB248BE02000AF83F5 /* FAQConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQConfigurator.swift; sourceTree = "<group>"; };
+		4497F1DD248BE04300AF83F5 /* FAQDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQDataSource.swift; sourceTree = "<group>"; };
+		4497F1DF248BE3CF00AF83F5 /* FAQPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQPresenter.swift; sourceTree = "<group>"; };
+		4497F1E1248BE50D00AF83F5 /* FAQRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQRouter.swift; sourceTree = "<group>"; };
 		44FAB7052488D728001619C8 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		44FAB7072488D9A3001619C8 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		44FAB70D248912FA001619C8 /* NSObject+ClassName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+ClassName.swift"; sourceTree = "<group>"; };
@@ -1106,6 +1118,19 @@
 			path = Loader;
 			sourceTree = "<group>";
 		};
+		4497F1D6248BDF2200AF83F5 /* FAQ */ = {
+			isa = PBXGroup;
+			children = (
+				4497F1D7248BDF4000AF83F5 /* FAQViewController.swift */,
+				4497F1D9248BDF5200AF83F5 /* FAQ.storyboard */,
+				4497F1DB248BE02000AF83F5 /* FAQConfigurator.swift */,
+				4497F1DD248BE04300AF83F5 /* FAQDataSource.swift */,
+				4497F1DF248BE3CF00AF83F5 /* FAQPresenter.swift */,
+				4497F1E1248BE50D00AF83F5 /* FAQRouter.swift */,
+			);
+			path = FAQ;
+			sourceTree = "<group>";
+		};
 		6B9D5D9669D4ECC4B64F115A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1378,6 +1403,7 @@
 		8433FF512162108B00C57DC8 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				4497F1D6248BDF2200AF83F5 /* FAQ */,
 				8441227F21A679E700B56857 /* CollectionCells */,
 				8432070C21785E0D00F18E5A /* TableCells */,
 				843E972D21634E4800147CBE /* LaunchScreen */,
@@ -2284,6 +2310,7 @@
 				E399BBD023E87AFA00EEA708 /* h1.png in Resources */,
 				E399BBFA23E87AFA00EEA708 /* rich_editor_tests.html in Resources */,
 				8432B2FE2186F403006C901C /* SideMenuTableSectionHeader.xib in Resources */,
+				4497F1DA248BDF5200AF83F5 /* FAQ.storyboard in Resources */,
 				E399BBE023E87AFA00EEA708 /* redo@2x.png in Resources */,
 				E399BBF623E87AFA00EEA708 /* assert.js in Resources */,
 				84344D3821CA44AD00A5D9A0 /* ColorPicker.xib in Resources */,
@@ -2608,6 +2635,7 @@
 				8430C29021B5033600ACB559 /* EncryptionObject.swift in Sources */,
 				84405BB421AD0CB20048D8AC /* ComposeRouter.swift in Sources */,
 				E35F5E9F2413772B003C4281 /* PgpKeysViewController.swift in Sources */,
+				4497F1E2248BE50D00AF83F5 /* FAQRouter.swift in Sources */,
 				8407AD92216CC61600AF2E7B /* EmailMessagesList.swift in Sources */,
 				CC45F35A239A8902004BC74C /* BaseRouter.swift in Sources */,
 				843FC38E2164CA35000CFEA9 /* SignUpInteractor.swift in Sources */,
@@ -2636,6 +2664,7 @@
 				E35F5EA82414C3CA003C4281 /* PgpKeysInteractor.swift in Sources */,
 				8462C62B21CCD57C005B3D74 /* SettingsStorageTableViewCell.swift in Sources */,
 				84304298217D9D1C00DB5787 /* InboxSideMenuConfigurator.swift in Sources */,
+				4497F1DC248BE02000AF83F5 /* FAQConfigurator.swift in Sources */,
 				84FF7E39219DB21E00E3E56A /* Contact.swift in Sources */,
 				84405BB221AD0CA40048D8AC /* ComposeConfigurator.swift in Sources */,
 				443059F4248948D000C3DB28 /* MatericalIndicator.swift in Sources */,
@@ -2649,6 +2678,7 @@
 				843E972F21634E7900147CBE /* LaunchScreenViewController.swift in Sources */,
 				E399BB8823E87AFA00EEA708 /* String+Extensions.swift in Sources */,
 				E3260AB8240196DA00F7BF26 /* AddFolderProtocol.swift in Sources */,
+				4497F1DE248BE04300AF83F5 /* FAQDataSource.swift in Sources */,
 				8407AD94216CC98900AF2E7B /* EmailMessage.swift in Sources */,
 				84356863216F2DFE002101D3 /* InboxRouter.swift in Sources */,
 				8406B2162193FD8A009F0375 /* UnreadMessagesCounter.swift in Sources */,
@@ -2724,6 +2754,7 @@
 				843FC3932164D1B2000CFEA9 /* SignUpPageName.swift in Sources */,
 				E3E22E5A243995A000DCE5B7 /* UIWindowTransitions.swift in Sources */,
 				8434D9B0219C4DF500D2C3A5 /* ContactsConfigurator.swift in Sources */,
+				4497F1D8248BDF4000AF83F5 /* FAQViewController.swift in Sources */,
 				8402498C2191A00100CDDB0F /* MoveToPresenter.swift in Sources */,
 				E399BC0223E87AFA00EEA708 /* RichEditorToolbar.swift in Sources */,
 				8440467721C7F87300CDEB3F /* ManageFoldersDataSource.swift in Sources */,
@@ -2772,6 +2803,7 @@
 				445B2B3024893FF40023C254 /* UIView+Nib.swift in Sources */,
 				30A38A7E23AACA0B00166595 /* RouterUser.swift in Sources */,
 				CC45F36E239A8902004BC74C /* NetworkService+Auth.swift in Sources */,
+				4497F1E0248BE3CF00AF83F5 /* FAQPresenter.swift in Sources */,
 				84525F17219568D900CA732E /* SearchConfigurator.swift in Sources */,
 				8437103D217465A700DAE4BA /* ForgotPasswordNavigationController.swift in Sources */,
 				8430429E217D9D5100DB5787 /* InboxSideMenuInteractor.swift in Sources */,
