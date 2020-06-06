@@ -7,7 +7,7 @@ class FAQConfigurator {
         viewController.presenter = presenter
         viewController.router = router
         
-        let dataSource = FAQDataSource(parentViewController: viewController, FAQURLString: "https://ctemplar.com/faqs/")
+        let dataSource = FAQDataSource(parentViewController: viewController, FAQURLString: k_faqURL)
         viewController.dataSource = dataSource
     }
 }

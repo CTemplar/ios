@@ -531,6 +531,7 @@ let k_privacyURL                   = "https://ctemplar.com/privacy"
 let k_termsURL                     = "https://ctemplar.com/terms"
 let k_mainSiteURL                  = "https://ctemplar.com/"
 let k_upgradeURL                   = "https://ctemplar.com/pricing"
+let k_faqURL                       = "https://ctemplar.com/faqs/"
 let k_supportURL                   = "support@ctemplar.com."
 
 let k_signature_decoding_issue = "error decoding signature."
@@ -545,7 +546,7 @@ let k_tokenHoursRefresh            = 1920
 let k_undoActionBarShowingSecs     = 5.0
 
 let k_numberOfCustomFoldersShowing = 3
-let k_customFoldersLimitForNonPremium = 3
+let k_customFoldersLimitForNonPremium = 5
 
 let k_colorButtonsTag = 200
 
