@@ -512,28 +512,21 @@ class InboxPresenter {
             switch title {
             case MoreActionsTitles.cancel.rawValue.localized():
                 print("cancel btn more actions")
-                
-                break
             case MoreActionsTitles.markAsRead.rawValue.localized():
                 print("markAsRead btn more actions")
                 self.markSelectedMessagesAsRead()
-                break
             case MoreActionsTitles.markAsUnread.rawValue.localized():
                 print("markAsUnread btn more actions")
                 self.markSelectedMessagesAsRead()
-                break
             case MoreActionsTitles.moveToArchive.rawValue.localized():
                 print("moveToArchive btn more actions")
                 self.moveSelectedMessagesToArchive()
-                break
             case MoreActionsTitles.moveToInbox.rawValue.localized():
                 print("moveToInbox btn more actions")
                 self.moveSelectedMessagesToInbox()
-                break
             case MoreActionsTitles.emptyFolder.rawValue.localized():
                 print("emptyFolder btn more actions")
                 self.applyEmptyFolderAction()
-                break
             default:
                 print("more actions: default")
             }
@@ -705,9 +698,8 @@ class InboxPresenter {
     }
     
     func markSelectedMessagesAsTrash() {
-        
         if self.viewController?.appliedActionMessage != nil {
-            if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! > 0 {                
+            if self.viewController?.dataSource?.selectedMessagesIDArray.isEmpty == false {
                 if self.viewController?.currentFolder == InboxSideMenuOptionsName.trash.rawValue {
                     self.interactor?.deleteMessagesList(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, withUndo: "")
                 } else {
@@ -720,9 +712,8 @@ class InboxPresenter {
     }
     
     func moveSelectedMessagesToArchive() {
-        
         if self.viewController?.appliedActionMessage != nil {
-            if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! > 0 {
+            if self.viewController?.dataSource?.selectedMessagesIDArray.isEmpty == false {
                 self.interactor?.moveMessagesListToArchive(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!, withUndo: "undoMoveToArchive".localized())
             } else {
                 print("messages not selected!!!")
@@ -731,7 +722,6 @@ class InboxPresenter {
     }
     
     func moveSelectedMessagesToInbox() {
-        
         if self.viewController?.appliedActionMessage != nil {
             if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! > 0 {
                 self.interactor?.moveMessagesListToInbox(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!, withUndo: "undoMoveToInbox".localized())
@@ -742,7 +732,6 @@ class InboxPresenter {
     }
     
     func deleteMessagesPermanently() {
-     
         let params = Parameters(
             title: "deleteTitle".localized(),
             message: "deleteMessage".localized(),

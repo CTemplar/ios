@@ -28,6 +28,15 @@
 "termsAndConditionsFullText" = "Пожалуста, поставьте галочку если вы согласны с нашими Условиями и Положениями";
 "termsAndConditionsPhrase" = "Условия и Положения";
 
+// Action Banner
+"movingToArchive" = "Переезд в архив";
+"movingToSpam" = "Переезд в спам";
+"movingToTrash" = "Переезд в мусор";
+"markingAsUnread" = "Пометить как непрочитанное";
+"markingAsRead" = "Пометить как прочитанное";
+"actionFailed" = "Действие не удалось";
+"done" = "Выполнено";
+
 //login
 
 "emailPlaceholder" = "Почта";

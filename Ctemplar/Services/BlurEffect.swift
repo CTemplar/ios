@@ -74,7 +74,7 @@ extension Blurable
         blurOverlay.contentMode = UIView.ContentMode.left
         
         if let superview = superview as? UIStackView,
-            let index = (superview as UIStackView).arrangedSubviews.index(of: this)
+            let index = (superview as UIStackView).arrangedSubviews.firstIndex(of: this)
         {
             removeFromSuperview()
             superview.insertArrangedSubview(blurOverlay, at: index)

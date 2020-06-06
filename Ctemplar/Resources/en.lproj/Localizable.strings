@@ -117,6 +117,15 @@
 "emptyFolder" = "Empty folder";
 "cancel" = "Cancel";
 
+// Action Banner
+"movingToArchive" = "Moving to archive";
+"movingToSpam" = "Moving to spam";
+"movingToTrash" = "Moving to trash";
+"markingAsUnread" = "Marking as unread";
+"markingAsRead" = "Marking as read";
+"actionFailed" = "Action failed";
+"done" = "Done";
+
 //undo actions buttons
 
 "undoMarkAsSpam" = "Undo mark as spam";

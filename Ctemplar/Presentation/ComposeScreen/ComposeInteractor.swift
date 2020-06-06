@@ -124,7 +124,10 @@ class ComposeInteractor {
  
                 if send {
                     self.mailWasSent()
-                    self.viewController?.delegate?.mailSendSuccess()
+                    self.viewController?.showBannerAgain(withUpdatedText: "mailSendMessage".localized(),
+                                           additionalConfigs: [.displayDuration(2.0),
+                                                               .showButton(true)]
+                    )
                     self.postUpdateInboxNotification()
                 } else {
                     self.sendingMessage = value as! EmailMessage
@@ -316,8 +319,11 @@ class ComposeInteractor {
     
     func prepareMessadgeToSend() {
         self.viewController?.view.endEditing(true)
-        self.viewController!.navigationController?.popViewController(animated: true)
-        self.viewController?.backDelegate?.showSendingAlert()
+        self.viewController?.navigationController?.popViewController(animated: true)
+        self.viewController?.showBanner(withTitle: "mailSendingAlert".localized(),
+                                        additionalConfigs: [.displayDuration(.infinity),
+                                       .showButton(false)]
+        )
         self.publicKeysFor(userEmailsArray: self.viewController!.emailsToArray) { (keys) in
             if let emailsKeys = keys {
                 if emailsKeys.encrypt {

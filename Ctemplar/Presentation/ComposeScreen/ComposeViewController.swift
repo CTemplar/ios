@@ -11,14 +11,6 @@ import Foundation
 import AlertHelperKit
 import ObjectivePGP
 
-protocol MailSendBeforeShowProgressAlertProtocol: class {
-    func showSendingAlert()
-}
-
-protocol SuccessfulSentMailProtocol: class {
-    func mailSendSuccess()
-}
-
 class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate, UIDocumentPickerDelegate {
     
     @IBOutlet var tableView           : UITableView!
@@ -128,11 +120,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var lastContentOffset: CGFloat = 0
     let fromViewRange: Range<CGFloat> = (-46 ..< 0)
     let toolbarViewRange: Range<CGFloat> = (-56 ..< -1)
-        
     var upgradeToPrimeView : UpgradeToPrimeView?
-    weak var backDelegate: MailSendBeforeShowProgressAlertProtocol?
-    weak var delegate: SuccessfulSentMailProtocol?
-
     
     override func viewDidLoad() {
         super.viewDidLoad()

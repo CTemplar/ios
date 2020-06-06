@@ -29,8 +29,6 @@ class InboxRouter {
         let vc = storyboard.instantiateViewController(withIdentifier: k_ComposeViewControllerID) as! ComposeViewController
         vc.answerMode = answerMode
         vc.user = (self.viewController?.user)!
-        vc.delegate = self.viewController
-        vc.backDelegate = self.viewController
         self.viewController?.show(vc, sender: self)
     }
     

@@ -123,7 +123,7 @@ class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             let selected = isContactSelected(contact: contact)
             
             if selected {
-                if let index = selectedContactsArray.index(where: {$0.contactID == contact.contactID}) {
+                if let index = selectedContactsArray.firstIndex(where: {$0.contactID == contact.contactID}) {
                     selectedContactsArray.remove(at: index)
                 }      
                 
