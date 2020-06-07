@@ -710,6 +710,10 @@
 		44305A15248AF71600C3DB28 /* UIScreen+Edge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Edge.swift"; sourceTree = "<group>"; };
 		44305A17248AF73D00C3DB28 /* CGRect+Edge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Edge.swift"; sourceTree = "<group>"; };
 		445B2B2F24893FF40023C254 /* UIView+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
+		448F45B2248CC5EE00C4A276 /* sk */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = sk; path = sk.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		448F45B3248CC5EE00C4A276 /* sk */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = sk; path = sk.lproj/Login.storyboard; sourceTree = "<group>"; };
+		448F45B4248CC5EF00C4A276 /* sk */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = sk; path = sk.lproj/Main.storyboard; sourceTree = "<group>"; };
+		448F45B5248CC5EF00C4A276 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4497F1D7248BDF4000AF83F5 /* FAQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
 		4497F1D9248BDF5200AF83F5 /* FAQ.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FAQ.storyboard; sourceTree = "<group>"; };
 		4497F1DB248BE02000AF83F5 /* FAQConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQConfigurator.swift; sourceTree = "<group>"; };
@@ -2216,6 +2220,7 @@
 				Base,
 				ru,
 				fr,
+				sk,
 			);
 			mainGroup = 8433FF0D216201A300C57DC8;
 			packageReferences = (
@@ -3060,6 +3065,7 @@
 			children = (
 				8433FF1E216201A300C57DC8 /* Base */,
 				8436AD502180650A00D16008 /* ru */,
+				448F45B4248CC5EF00C4A276 /* sk */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -3069,6 +3075,7 @@
 			children = (
 				8433FF23216201A500C57DC8 /* Base */,
 				8436AD4F2180650900D16008 /* ru */,
+				448F45B2248CC5EE00C4A276 /* sk */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -3079,6 +3086,7 @@
 				8436AD542180663800D16008 /* ru */,
 				8436AD562180664100D16008 /* en */,
 				E32DB9E9240C127700FF0069 /* fr */,
+				448F45B5248CC5EF00C4A276 /* sk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -3087,6 +3095,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8440142321D3B74100FC450C /* Base */,
+				448F45B3248CC5EE00C4A276 /* sk */,
 			);
 			name = Login.storyboard;
 			sourceTree = "<group>";

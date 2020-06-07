@@ -147,6 +147,8 @@ class SettingsInteractor {
             currentLanguage = LanguagesName.russian.rawValue
         case LanguagesBundlePrefix.french.rawValue:
             currentLanguage = LanguagesName.french.rawValue
+        case LanguagesBundlePrefix.slovak.rawValue:
+            currentLanguage = LanguagesName.slovak.rawValue
         default:
             currentLanguage = LanguagesName.english.rawValue
         }
