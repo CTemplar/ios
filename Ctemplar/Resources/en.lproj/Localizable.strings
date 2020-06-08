@@ -296,6 +296,7 @@
 "notifications" = "Notifications";
 "savingContact" = "Saving contacts";
 "whiteBlackList" = "Whitelist / Blacklist";
+"dashboard" = "Dashboard";
 "security" = "Security";
 
 "manageFolders" = "Manage folders";
@@ -436,3 +437,10 @@
 "logoutErrorTitle" = "Logout Error";
 "success" = "Success";
 "logoutErrorMessage" = "Unable to sign you out at this moment, please try again later.";
+
+// Dashboard
+"accountType" = "Account Type";
+"userName" = "Username";
+"customDomainNumber" = "No. of Custom Domains";
+"addressNumber" = "No. of Addresses";
+"notAvailable" = "Not Available";

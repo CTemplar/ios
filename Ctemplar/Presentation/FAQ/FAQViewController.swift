@@ -9,7 +9,7 @@ class FAQViewController: UIViewController {
     // MARK: Properties
     var dataSource: FAQDataSource?
     var sideMenuViewController: InboxSideMenuViewController?
-    var presenter:FAQPresenter?
+    var presenter: FAQPresenter?
     var router: FAQRouter?
     private var webView: WKWebView?
 
@@ -18,12 +18,11 @@ class FAQViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        navigationItem.title = "FAQ".localized()
-        
+                
         let configurator = FAQConfigurator()
         configurator.configure(viewController: self)
-        
+        navigationItem.title = dataSource?.navigationTitle
+
         setupWebView()
         openFAQLink()
     }

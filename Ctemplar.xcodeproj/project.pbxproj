@@ -36,7 +36,11 @@
 		44305A14248AE7D100C3DB28 /* QuickLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 44305A13248AE7D100C3DB28 /* QuickLayout */; };
 		44305A16248AF71600C3DB28 /* UIScreen+Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44305A15248AF71600C3DB28 /* UIScreen+Edge.swift */; };
 		44305A18248AF73D00C3DB28 /* CGRect+Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44305A17248AF73D00C3DB28 /* CGRect+Edge.swift */; };
+		445043FC248C0691007D3177 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 445043FB248C0691007D3177 /* Dashboard.storyboard */; };
+		445043FE248C0764007D3177 /* DashboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445043FD248C0764007D3177 /* DashboardTableViewController.swift */; };
 		445B2B3024893FF40023C254 /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445B2B2F24893FF40023C254 /* UIView+Nib.swift */; };
+		448F45AD248CA6C800C4A276 /* DashboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448F45AC248CA6C800C4A276 /* DashboardDataSource.swift */; };
+		448F45AF248CB3DB00C4A276 /* DashboardConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448F45AE248CB3DB00C4A276 /* DashboardConfigurator.swift */; };
 		4497F1D8248BDF4000AF83F5 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4497F1D7248BDF4000AF83F5 /* FAQViewController.swift */; };
 		4497F1DA248BDF5200AF83F5 /* FAQ.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4497F1D9248BDF5200AF83F5 /* FAQ.storyboard */; };
 		4497F1DC248BE02000AF83F5 /* FAQConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4497F1DB248BE02000AF83F5 /* FAQConfigurator.swift */; };
@@ -709,11 +713,15 @@
 		44305A10248AE5DA00C3DB28 /* ViewConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfigurable.swift; sourceTree = "<group>"; };
 		44305A15248AF71600C3DB28 /* UIScreen+Edge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Edge.swift"; sourceTree = "<group>"; };
 		44305A17248AF73D00C3DB28 /* CGRect+Edge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Edge.swift"; sourceTree = "<group>"; };
+		445043FB248C0691007D3177 /* Dashboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
+		445043FD248C0764007D3177 /* DashboardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewController.swift; sourceTree = "<group>"; };
 		445B2B2F24893FF40023C254 /* UIView+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
 		448F45B2248CC5EE00C4A276 /* sk */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = sk; path = sk.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		448F45B3248CC5EE00C4A276 /* sk */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = sk; path = sk.lproj/Login.storyboard; sourceTree = "<group>"; };
 		448F45B4248CC5EF00C4A276 /* sk */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = sk; path = sk.lproj/Main.storyboard; sourceTree = "<group>"; };
 		448F45B5248CC5EF00C4A276 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		448F45AC248CA6C800C4A276 /* DashboardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardDataSource.swift; sourceTree = "<group>"; };
+		448F45AE248CB3DB00C4A276 /* DashboardConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardConfigurator.swift; sourceTree = "<group>"; };
 		4497F1D7248BDF4000AF83F5 /* FAQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
 		4497F1D9248BDF5200AF83F5 /* FAQ.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FAQ.storyboard; sourceTree = "<group>"; };
 		4497F1DB248BE02000AF83F5 /* FAQConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQConfigurator.swift; sourceTree = "<group>"; };
@@ -1113,6 +1121,17 @@
 			path = Banner;
 			sourceTree = "<group>";
 		};
+		445043FA248C0276007D3177 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				445043FB248C0691007D3177 /* Dashboard.storyboard */,
+				445043FD248C0764007D3177 /* DashboardTableViewController.swift */,
+				448F45AC248CA6C800C4A276 /* DashboardDataSource.swift */,
+				448F45AE248CB3DB00C4A276 /* DashboardConfigurator.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
 		445B2B2A24893ECD0023C254 /* Loader */ = {
 			isa = PBXGroup;
 			children = (
@@ -1407,6 +1426,7 @@
 		8433FF512162108B00C57DC8 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				445043FA248C0276007D3177 /* Dashboard */,
 				4497F1D6248BDF2200AF83F5 /* FAQ */,
 				8441227F21A679E700B56857 /* CollectionCells */,
 				8432070C21785E0D00F18E5A /* TableCells */,
@@ -2324,6 +2344,7 @@
 				E399BB9E23E87AFA00EEA708 /* insert_image.png in Resources */,
 				84085B3521C152CB002733DE /* SideMenuTableManageFoldersCell.xib in Resources */,
 				E399BBB223E87AFA00EEA708 /* underline.png in Resources */,
+				445043FC248C0691007D3177 /* Dashboard.storyboard in Resources */,
 				8433A53C21897595008E1C85 /* InboxFilter.xib in Resources */,
 				E399BBA023E87AFA00EEA708 /* ordered_list@2x.png in Resources */,
 				8440142121D39F8B00FC450C /* SavingContacts.storyboard in Resources */,
@@ -2720,6 +2741,7 @@
 				840249862191758D00CDDB0F /* CustomFolderTableViewCell.swift in Sources */,
 				8433FF532162128200C57DC8 /* APIService.swift in Sources */,
 				84356867216F2E20002101D3 /* InboxInteractor.swift in Sources */,
+				448F45AD248CA6C800C4A276 /* DashboardDataSource.swift in Sources */,
 				84732CA021B17B3F00B6F799 /* UserMailboxTableViewCell.swift in Sources */,
 				E35F5EA524137DC0003C4281 /* PgpKeysConfigurator.swift in Sources */,
 				84A62E4F2175CC98009C38E5 /* ForgotPasswordConfigurator.swift in Sources */,
@@ -2783,6 +2805,7 @@
 				8403BDEA21A4052800EE8DCD /* AddContactInteractor.swift in Sources */,
 				843E973721636FF200147CBE /* LoginConfigurator.swift in Sources */,
 				8432B2FC2186F39F006C901C /* SideMenuTableSectionHeaderView.swift in Sources */,
+				445043FE248C0764007D3177 /* DashboardTableViewController.swift in Sources */,
 				843E1DCE21D4CC02001B89D6 /* WhiteBlackListsDataSource.swift in Sources */,
 				8435685F216F2DCD002101D3 /* InboxDataSource.swift in Sources */,
 				843E1DC821D4CBD5001B89D6 /* WhiteBlackListsRouter.swift in Sources */,
@@ -2808,6 +2831,7 @@
 				445B2B3024893FF40023C254 /* UIView+Nib.swift in Sources */,
 				30A38A7E23AACA0B00166595 /* RouterUser.swift in Sources */,
 				CC45F36E239A8902004BC74C /* NetworkService+Auth.swift in Sources */,
+				448F45AF248CB3DB00C4A276 /* DashboardConfigurator.swift in Sources */,
 				4497F1E0248BE3CF00AF83F5 /* FAQPresenter.swift in Sources */,
 				84525F17219568D900CA732E /* SearchConfigurator.swift in Sources */,
 				8437103D217465A700DAE4BA /* ForgotPasswordNavigationController.swift in Sources */,

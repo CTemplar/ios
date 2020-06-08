@@ -85,6 +85,7 @@ let k_SetSignatureStoryboardName           = "SetSignature"
 let k_PGPKeysStoryboardName                = "PgpKeys"
 let k_PrivacyAndTermsStoryboardName        = "PrivacyAndTerms"
 let k_AddContactStoryboardName             = "AddContact"
+let k_DashboardStoryboardName              = "Dashboard"
 
 let k_InboxMessageTableViewCellXibName     = "InboxMessageTableViewCell"
 let k_InboxFilterViewXibName               = "InboxFilter"
@@ -126,6 +127,7 @@ let k_AttachmentCollcetionViewCellIdentifier    = "attachmentCollcetionViewCellI
 let k_SettingsBaseTableViewCellIdentifier       = "settingsBaseTableViewCellIdentifier"
 let k_SettingsAppVersionTableViewCellIdentifier         = "settingsAppVersuinCellIdentifier"
 let k_SettingsStorageTableViewCellIdentifier       = "settingsStorageTableViewCellIdentifier"
+let k_SettingsDashboardTableViewCellIdentifier     = "settingsDashboardTableViewCellIdentifier"
 
 // view controllers iPad storyboards name
 
@@ -533,6 +535,7 @@ let k_mainSiteURL                  = "https://ctemplar.com/"
 let k_upgradeURL                   = "https://ctemplar.com/pricing"
 let k_faqURL                       = "https://ctemplar.com/faqs/"
 let k_supportURL                   = "support@ctemplar.com."
+let k_FAQURL                       = "https://ctemplar.com/faqs/"
 
 let k_signature_decoding_issue = "error decoding signature."
 
@@ -561,22 +564,6 @@ let k_platform = "ios"
 let k_mobileSignatureKey = k_mainDomain + ".mobileSignatureKey"
 
 enum InboxSideMenuOptionsName: String {
-    /*
-    case inbox            = "Inbox"
-    case draft            = "Draft"
-    case sent             = "Sent"
-    case outbox           = "Outbox"
-    case starred          = "Starred"
-    case archive          = "Archive"
-    case spam             = "Spam"
-    case trash            = "Trash"
-    case allMails         = "All Mails"
-    case contacts         = "Contacts"
-    case settings         = "Settings"
-    case help             = "Help"
-    case logout           = "Logout"
-    case manageFolders    = "Manage Folders"*/
-    
     case inbox            = "inbox"
     case draft            = "draft"
     case sent             = "sent"
@@ -595,7 +582,6 @@ enum InboxSideMenuOptionsName: String {
 }
 
 enum MessagesFoldersName: String, CaseIterable {
-    
     case inbox            = "inbox"
     case draft            = "draft"
     case sent             = "sent"    
@@ -604,95 +590,80 @@ enum MessagesFoldersName: String, CaseIterable {
     case archive          = "archive"
     case spam             = "spam"
     case trash            = "trash"
-    //case foldersCount     = "foldersCount"
     case outboxSD         = "outbox_self_destruct_counter"
     case outboxDD         = "outbox_delayed_delivery_counter"
     case outboxDM         = "outbox_dead_man_counter"
 }
 
 enum InboxCellButtonsIndex: Int {
-    
-    case right           = 0
-    case middle          = 1
-    case left            = 2
+    case right = 0
+    case middle
+    case left
 }
 
 enum InboxFilterButtonsTag: Int, CaseIterable {
-    
-    //case all              = 201
     case starred          = 202
     case unread           = 203
     case withAttachment   = 204
 }
 
 enum InboxFilterImagesTag: Int, CaseIterable {
-    
     case starred          = 301
     case unread           = 302
     case withAttachment   = 303
 }
 
 enum InboxFilterLablesTag: Int, CaseIterable {
-    
-    case starred          = 401
-    case unread           = 402
-    case withAttachment   = 403
+    case starred = 401
+    case unread = 402
+    case withAttachment = 403
 }
 
 enum InboxFilterViewButtonsTag: Int {
-    
-    case clearAllButton   = 205
-    case cancelButton     = 206
-    case applyButton      = 207
+    case clearAllButton = 205
+    case cancelButton = 206
+    case applyButton = 207
 }
 
 enum SideMenuSectionIndex: Int {
-    
-    case mainFolders      = 0
-    case options          = 1
-    case manageFolders    = 2
-    case customFolders    = 3
-    case sectionsCount    = 4
+    case mainFolders = 0
+    case options
+    case manageFolders
+    case customFolders
+    case sectionsCount
 }
 
 enum MoreViewButtonsTag: Int, CaseIterable {
-    
-    case cancel           = 401
-    case bottom           = 402
-    case middle           = 403
-    case upper            = 404
+    case cancel = 401
+    case bottom = 402
+    case middle = 403
+    case upper = 404
 }
 
 enum MoreActionsTitles: String, CaseIterable {
-    
-    case markAsSpam       = "markAsSpam"
-    case markAsRead       = "markAsRead"
-    case markAsUnread     = "markAsUnread"
-    //case markAsStarred    = ""
-    case moveToTrach      = "moveToTrash"
-    case moveToArchive    = "moveToArchive"
-    case moveToInbox      = "moveToInbox"
-    //case moveTo           = ""
-    case emptyFolder      = "emptyFolder"
-    case cancel           = "cancel"
- 
+    case markAsSpam = "markAsSpam"
+    case markAsRead = "markAsRead"
+    case markAsUnread = "markAsUnread"
+    case moveToTrach = "moveToTrash"
+    case moveToArchive = "moveToArchive"
+    case moveToInbox = "moveToInbox"
+    case emptyFolder = "emptyFolder"
+    case cancel = "cancel"
 }
 
 enum ActionsIndex: Int, CaseIterable {
-
-    case markAsSpam       = 1
-    case markAsRead       = 2
-    case markAsStarred    = 3
-    case moveToTrach      = 4
-    case moveToArchive    = 5
-    case moveToInbox      = 6
-    case moveTo           = 7
-    case delete           = 8
-    case noAction         = 9
+    case markAsSpam = 1
+    case markAsRead
+    case markAsStarred
+    case moveToTrach
+    case moveToArchive
+    case moveToInbox
+    case moveTo
+    case delete
+    case noAction
 }
 
 enum DocumentsExtension: String, CaseIterable {
-    
     case doc       = "doc"
     case pdf       = "pdf"
     case png       = "png"
@@ -700,7 +671,6 @@ enum DocumentsExtension: String, CaseIterable {
 }
 
 enum ComposeSubViewTags: Int {
-    
     case emailToTextViewTag  = 200
     case ccToTextViewTag     = 300
     case bccToTextViewTag    = 400
@@ -708,7 +678,6 @@ enum ComposeSubViewTags: Int {
 }
 
 enum AnswerMessageMode: String {
-    
     case newMessage = "New Message"
     case reply      = "Reply"
     case replyAll   = "Reply All"
@@ -716,75 +685,63 @@ enum AnswerMessageMode: String {
 }
 
 enum SchedulerMode: String {
-    
     case selfDestructTimer = "Self-destructing Timer"
     case deadManTimer      = "Dead Man's Timer"
     case delayedDelivery   = "Delayed delivery"
 }
 
 enum SettingsSectionsName: String, CaseIterable {
-    
-    case general           = "generalSettings"
-    case folders           = "foldersSettings"
-    case security          = "securitySettings"
-    case mail              = "mailSettings"
-    case about             = "aboutSettings"
-    case storage           = "storageSettings"
-    case logout            = "logoutSettings"
+    case general = "generalSettings"
+    case folders = "foldersSettings"
+    case security = "securitySettings"
+    case mail = "mailSettings"
+    case about = "aboutSettings"
+    case storage = "storageSettings"
+    case logout = "logoutSettings"
 }
 
 enum SettingsSections: Int, CaseIterable {
-    
-    case general           = 0
-    case folders           = 1
-    case security          = 2
-    case mail              = 3
-    case about             = 4
-    case storage           = 5
-    case logout            = 6
+    case general = 0
+    case folders
+    case security
+    case mail
+    case about
+    case storage
+    case logout
 }
 
 enum SettingsGeneralSection: Int, CaseIterable {
-    
-    case notification      = 0
-    case language          = 1
-    case contacts          = 2
-    case whiteBlackList    = 3
+    case notification = 0
+    case language
+    case contacts
+    case whiteBlackList
+    case dashboard
 }
 
 enum SettingsFoldersSection: Int, CaseIterable {
-    
-    case folder            = 0
+    case folder = 0
 }
 
 enum SettingsSecuritySection: Int, CaseIterable {
-    
-    case password          = 0
-    case recovery          = 1
-    case encryption        = 2
+    case password = 0
+    case recovery
+    case encryption
 }
 
 enum SettingsMailSection: Int, CaseIterable {
-    
-    case mail              = 0
-    case signature         = 1
-    case mobileSignature   = 2
-    case keys              = 3
+    case mail = 0
+    case signature
+    case mobileSignature
+    case keys
 }
 
 enum SettingsAboutSection: Int, CaseIterable {
-    
-    //case aboutAs           = 0
-    //case privacy           = 1
-  //  case terms            = 2
-//    case appVersion        = 3
-    case appVersion        = 0
+    case appVersion = 0
 }
 
 enum TextControllerMode: Int, CaseIterable {
-    
-    case privacyPolicy      = 0
-    case termsAndConditions = 1
+    case privacyPolicy = 0
+    case termsAndConditions
 }
 
 enum Languages: Int, CaseIterable {
