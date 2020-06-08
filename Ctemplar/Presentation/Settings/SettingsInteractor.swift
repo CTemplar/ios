@@ -22,46 +22,37 @@ class SettingsInteractor {
     }
     
     func SettingsCellPressed(indexPath: IndexPath) {
-        
         let section = indexPath.section
         let row = indexPath.row
         
         switch section {
         case SettingsSections.general.rawValue:
             self.SettingsGeneralCellPressed(index: row)
-            break
         case SettingsSections.folders.rawValue:
             self.SettingsFoldersCellPressed(index: row)
-            break
         case SettingsSections.security.rawValue:
             self.SettingsSecurityCellPressed(index: row)
-            break
         case SettingsSections.mail.rawValue:
             self.SettingsMailCellPressed(index: row)
-            break
         case SettingsSections.about.rawValue:
             self.SettingsAboutCellPressed(index: row)
-            break
         default:
             break
         }
     }
     
     func SettingsGeneralCellPressed(index: Int) {
-        
         switch index {
         case SettingsGeneralSection.language.rawValue:
-            self.viewController?.router?.showSelectLanguageViewController()
-            break
+            viewController?.router?.showSelectLanguageViewController()
         case SettingsGeneralSection.notification.rawValue:
             UIApplication.openAppSettings()
-            break
         case SettingsGeneralSection.contacts.rawValue:
-            self.viewController?.router?.showSavingContactsViewController()
-            break
+            viewController?.router?.showSavingContactsViewController()
         case SettingsGeneralSection.whiteBlackList.rawValue:
-            self.viewController?.router?.showWhiteBlackListsViewController()
-            break
+            viewController?.router?.showWhiteBlackListsViewController()
+        case SettingsGeneralSection.dashboard.rawValue:
+            viewController?.router?.showDashboard()
         default:
             break
         }

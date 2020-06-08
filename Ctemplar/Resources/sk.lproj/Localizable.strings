@@ -413,3 +413,10 @@
 "logoutErrorTitle" = "Chyba pri odhlásení";
 "success" = "Úspech";
 "logoutErrorMessage" = "Momentálne sa vám nepodarilo odhlásiť. Skúste to znova neskôr.";
+
+// Dashboard
+"accountType" = "Typ účtu";
+"userName" = "užívateľské meno";
+"customDomainNumber" = "Počet vlastných domén";
+"addressNumber" = "Počet adries";
+"notAvailable" = "Nie je k dispozícií";

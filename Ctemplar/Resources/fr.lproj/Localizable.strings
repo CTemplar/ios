@@ -296,6 +296,7 @@
 "notifications" = "Notifications";
 "savingContact" = "Sauvegarde des contacts";
 "whiteBlackList" = "Liste blanche / Liste noire";
+"dashboard" = "Tableau de bord";
 "security" = "Sécurité";
 
 "manageFolders" = "Gérer les dossiers";
@@ -436,3 +437,10 @@
 "logoutErrorTitle" = "Erreur de déconnexion";
 "success" = "Succès";
 "logoutErrorMessage" = "Impossible de vous déconnecter pour le moment, veuillez réessayer plus tard.";
+
+// Dashboard
+"accountType" = "Type de compte";
+"userName" = "Nom d'utilisateur";
+"customDomainNumber" = "Nombre de domaines personnalisés";
+"addressNumber" = "Nombre d'adresses";
+"notAvailable" = "Indisponible";

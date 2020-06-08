@@ -297,6 +297,7 @@
 "notifications" = "Уведомления";
 "savingContact" = "Сохранять контакты";
 "whiteBlackList" = "Белый список / Черный список";
+"dashboard" = "Приборная панель";
 "security" = "Безопасность";
 
 "manageFolders" = "Управление папками";
@@ -435,3 +436,10 @@
 "logoutErrorTitle" = "Ошибка выхода";
 "success" = "успех";
 "logoutErrorMessage" = "Не удалось выйти из системы в данный момент, повторите попытку позже.";
+
+// Dashboard
+"accountType" = "тип аккаунта";
+"userName" = "имя пользователя";
+"customDomainNumber" = "Количество пользовательских доменов";
+"addressNumber" = "Количество адресов";
+"notAvailable" = "Нет в наличии";

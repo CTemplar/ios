@@ -2,7 +2,7 @@ import UIKit
 
 protocol Configuration {}
 
-protocol ViewConfigurable where Self: UIView {
+protocol Configurable {
     associatedtype AdditionalConfig: Configuration
     init(with configs: [AdditionalConfig])
 }
