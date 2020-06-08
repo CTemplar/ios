@@ -430,3 +430,8 @@
 
 "attachmentEncryptionWasEnabled" = "Attachment Encryption Was Enabled";
 "attachmentEncryptionWasDisabled" = "Attachment Encryption Was Disabled";
+
+// Logout
+"logoutErrorTitle" = "Ошибка выхода";
+"success" = "успех";
+"logoutErrorMessage" = "Не удалось выйти из системы в данный момент, повторите попытку позже.";

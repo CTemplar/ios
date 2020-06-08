@@ -408,3 +408,8 @@
 "attachmentEncryptionWasDisabled" = "Šifrovanie príloh bolo zakázané";
 
 "featureIsComing" = "Funkcia bude čoskoro k dispozícii. Ak chcete aktualizovať svoje heslo, prihláste sa.";
+
+// Logout
+"logoutErrorTitle" = "Chyba pri odhlásení";
+"success" = "Úspech";
+"logoutErrorMessage" = "Momentálne sa vám nepodarilo odhlásiť. Skúste to znova neskôr.";
