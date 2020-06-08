@@ -131,7 +131,6 @@ class KeychainService
     }
     
     func deleteUserCredentialsAndToken() {
-        
         keychain.delete(Consts.token.keyName)
         keychain.delete(Consts.tokenSavedTime.keyName)
         keychain.delete(Consts.username.keyName)

@@ -431,3 +431,8 @@
 "attachmentEncryptionWasDisabled" = "Attachment Encryption Was Disabled";
 
 "featureIsComing" = "Feature coming soon. Please, login on desktop to update your password.";
+
+// Logout
+"logoutErrorTitle" = "Logout Error";
+"success" = "Success";
+"logoutErrorMessage" = "Unable to sign you out at this moment, please try again later.";

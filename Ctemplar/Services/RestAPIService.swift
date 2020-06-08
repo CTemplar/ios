@@ -147,20 +147,22 @@ class RestAPIService {
     
     //MARK: - Authentication
     
-    func signOut(token: String, deviceToken: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func signOut(token: String,
+                 completionHandler: @escaping (Bool) -> Void) {
+        
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
             "Accept": "application/json"
         ]
         
-        let url = EndPoint.baseUrl.rawValue + EndPoint.signOut.rawValue  + "?platform=ios&device_token=" + deviceToken
+        let url = "\(EndPoint.baseUrl.rawValue)\(EndPoint.signOut.rawValue)"
         
         AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
-            switch response.result {
-            case .success(let value):
-                completionHandler(APIResult.success(value))
-            case .failure(let error):
-                completionHandler(APIResult.failure(error))
+            if let statusCode = response.response?.statusCode,
+                !(200..<300 ~= statusCode) {
+                completionHandler(false)
+            } else {
+                completionHandler(true)
             }
         }
     }

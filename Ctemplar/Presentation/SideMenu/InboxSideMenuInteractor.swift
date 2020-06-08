@@ -17,60 +17,45 @@ class InboxSideMenuInteractor {
 
     func logOut() {
         Loader.start()
-        self.apiService?.logOut(completionHandler: { (result) in
-            Loader.stop()
-            self.resetAppIconBadgeValue()
-            if Device.IS_IPAD {
-                let loginVC = LoginViewController.instantiate(fromAppStoryboard: .Login_iPad)
-                if let window = UIApplication.shared.getKeyWindow() {
-                    window.setRootViewController(loginVC)
-                }else {
-                    self.viewController?.show(loginVC, sender: self)
-                }
-            }else {
-                let loginVC = LoginViewController.instantiate(fromAppStoryboard: .Login)
-                if let window = UIApplication.shared.getKeyWindow() {
-                    window.setRootViewController(loginVC)
-                }else {
-                    self.viewController?.show(loginVC, sender: self)
+        apiService?.logOut(completionHandler: { [weak self] (isSucceeded) in
+            DispatchQueue.main.async {
+                Loader.stop()
+                if isSucceeded {
+                    self?.resetAppIconBadgeValue()
+                    self?.resetRootController()
+                } else {
+                   if let currentVC = self?.viewController {
+                        AlertHelperKit().showAlert(currentVC,
+                                                   title: "logoutErrorTitle".localized(),
+                                                   message: "logoutErrorMessage".localized(),
+                                                   button: "closeButton".localized())
+                    }
                 }
             }
-            
-            
-            
-//            if (!Device.IS_IPAD) {
-//                self.viewController?.dismiss(animated: true, completion: {
-//                    if let parentViewController = self.viewController?.currentParentViewController {
-//                        parentViewController.navigationController?.popViewController(animated: true)
-//                    }
-//                })
-//
-//                self.viewController?.inboxViewController.dismiss(animated: false, completion: {
-//                    self.viewController?.mainViewController?.showLoginViewController()
-//                })
-//            } else {
-//                self.viewController?.splitViewController?.dismiss(animated: false, completion: {
-//                    self.viewController?.mainViewController?.showLoginViewController()
-//                })
-//            }
         })
-        
     }
     
-    func resetAppIconBadgeValue() {
+    private func resetAppIconBadgeValue() {
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
-    
-//    func resetInboxData() {
-//        
-//        self.viewController?.dataSource?.selectedIndexPath = IndexPath(row: 0, section: SideMenuSectionIndex.mainFolders.rawValue)
-//        self.viewController?.inboxViewController.currentFolder  = InboxSideMenuOptionsName.inbox.rawValue
-//        self.viewController?.inboxViewController.currentFolderFilter = MessagesFoldersName.inbox.rawValue
-//        self.viewController?.inboxViewController.presenter?.interactor?.offset = 0
-//        self.viewController?.inboxViewController.allMessagesArray.removeAll()
-//        self.viewController?.inboxViewController.dataSource?.messagesArray.removeAll()
-//        self.viewController?.inboxViewController.dataSource?.reloadData()
-//    }
+
+    private func resetRootController() {
+        if Device.IS_IPAD {
+            let loginVC = LoginViewController.instantiate(fromAppStoryboard: .Login_iPad)
+            if let window = UIApplication.shared.getKeyWindow() {
+                window.setRootViewController(loginVC)
+            } else {
+                viewController?.show(loginVC, sender: self)
+            }
+        } else {
+            let loginVC = LoginViewController.instantiate(fromAppStoryboard: .Login)
+            if let window = UIApplication.shared.getKeyWindow() {
+                window.setRootViewController(loginVC)
+            } else {
+                viewController?.show(loginVC, sender: self)
+            }
+        }
+    }
     
     func setCustomFoldersData(folderList: FolderList) {
         

@@ -431,3 +431,8 @@
 "attachmentEncryptionWasDisabled" = "Le chiffrement des pièces jointes est désactivé";
 
 "featureIsComing" = "Fonctionnalité bientôt disponible. Pour modifier votre mot de passe, vous pouvez vous connecter au site web. Feature coming soon.";
+
+// Logout
+"logoutErrorTitle" = "Erreur de déconnexion";
+"success" = "Succès";
+"logoutErrorMessage" = "Impossible de vous déconnecter pour le moment, veuillez réessayer plus tard.";

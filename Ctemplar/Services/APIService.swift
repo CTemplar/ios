@@ -138,34 +138,30 @@ class APIService: HashingService {
     
     //MARK: - authentication
     
-    func logOut(completionHandler: @escaping (APIResult<Any>) -> Void) {
-        
-        self.checkTokenExpiration { (complete) in
+    func logOut(completionHandler: @escaping (Bool) -> Void) {
+        func clearData() {
+            hashedPassword = nil
+            keychainService?.deleteUserCredentialsAndToken()
+            pgpService?.deleteStoredPGPKeys()
+        }
+        checkTokenExpiration { [weak self] (complete) in
             if complete {
-                if let token = self.getToken(), let deviceToken = self.keychainService?.getAPNDeviceToken() {
-                    self.restAPIService?.signOut(token: token, deviceToken: deviceToken, completionHandler: { (result) in
-                        self.hashedPassword = nil
-                        
-                        self.keychainService?.deleteUserCredentialsAndToken()
-                        self.pgpService?.deleteStoredPGPKeys()
-                        
-                        completionHandler(APIResult.success("success"))
+                if let token = self?.getToken() {
+                    self?.restAPIService?.signOut(token: token, completionHandler: { (isSucceeded) in
+                        if isSucceeded {
+                            clearData()
+                            completionHandler(true)
+                        } else {
+                            completionHandler(false)
+                        }
                     })
-                }else {
-                    self.hashedPassword = nil
-                    
-                    self.keychainService?.deleteUserCredentialsAndToken()
-                    self.pgpService?.deleteStoredPGPKeys()
-                    
-                    completionHandler(APIResult.success("success"))
+                } else {
+                    clearData()
+                    completionHandler(true)
                 }
-            }else {
-                self.hashedPassword = nil
-                
-                self.keychainService?.deleteUserCredentialsAndToken()
-                self.pgpService?.deleteStoredPGPKeys()
-                
-                completionHandler(APIResult.success("success"))
+            } else {
+                clearData()
+                completionHandler(true)
             }
         }
     }
