@@ -8,7 +8,8 @@
 
 import Foundation
 import UIKit
-import AlertHelperKit
+import Utility
+import Networking
 
 class SecurityViewController: UIViewController {
     
@@ -32,8 +33,8 @@ class SecurityViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.formatterService = appDelegate.applicationManager.formatterService
-        self.apiService = appDelegate.applicationManager.apiService
+        self.formatterService = UtilityManager.shared.formatterService
+        self.apiService = NetworkManager.shared.apiService
         
         self.interactor = SecurityInteractor()
         self.interactor?.viewController = self
@@ -116,14 +117,14 @@ class SecurityViewController: UIViewController {
             encryptMessageText = "decryptContacts".localized()
         }
         
-        let params = Parameters(
+        let params = AlertKitParams(
             title: encryptTitleText,
             message: encryptMessageText,
             cancelButton: "cancelButton".localized(),
             otherButtons: [encryptButtonText]
         )
         
-        AlertHelperKit().showAlertWithHandler(self, parameters: params) { buttonIndex in
+        showAlert(with: params) { (buttonIndex) in
             switch buttonIndex {
             case 0:
                 self.encryptContacts = !self.encryptContacts

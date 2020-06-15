@@ -1,0 +1,56 @@
+PODS:
+  - AlertHelperKit (1.9.0)
+  - BCryptSwift (1.1)
+  - KDLoadingView (1.0.5)
+  - MaterialComponents/ActivityIndicator (109.6.0):
+    - MaterialComponents/Palettes
+    - MaterialComponents/private/Application
+    - MDFInternationalization
+    - MotionAnimator (~> 2.0)
+  - MaterialComponents/Palettes (109.6.0)
+  - MaterialComponents/private/Application (109.6.0)
+  - MDFInternationalization (2.0.0)
+  - MotionAnimator (2.8.1):
+    - MotionInterchange (~> 1.6)
+  - MotionInterchange (1.6.0)
+  - ObjectivePGP (0.15.0)
+
+DEPENDENCIES:
+  - AlertHelperKit (from `https://github.com/keygx/AlertHelperKit`)
+  - BCryptSwift
+  - KDLoadingView
+  - MaterialComponents/ActivityIndicator
+  - ObjectivePGP
+
+SPEC REPOS:
+  trunk:
+    - BCryptSwift
+    - KDLoadingView
+    - MaterialComponents
+    - MDFInternationalization
+    - MotionAnimator
+    - MotionInterchange
+    - ObjectivePGP
+
+EXTERNAL SOURCES:
+  AlertHelperKit:
+    :git: https://github.com/keygx/AlertHelperKit
+
+CHECKOUT OPTIONS:
+  AlertHelperKit:
+    :commit: 936acfcde29957788911f145fafe39b0a9a32fcc
+    :git: https://github.com/keygx/AlertHelperKit
+
+SPEC CHECKSUMS:
+  AlertHelperKit: db79a53288eb4b135966f7fef1aa2ec1ed753564
+  BCryptSwift: f69992ea5685f6714260842c2770688043b89ab2
+  KDLoadingView: 2b99197b41b098b220a79e505121ab34c48c4fca
+  MaterialComponents: 7c5a7d77fbe08aca9383fc97aeb7423b1fbce6b4
+  MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
+  MotionAnimator: ee16aa30567c5bae0fb2750c132915829cfaaf8a
+  MotionInterchange: ead0e3ae1f3a5fb539e289debbc7ae036160a10d
+  ObjectivePGP: 35a73ed3253e7e2982184ea86b1ff6c5773d1299
+
+PODFILE CHECKSUM: 46e5f6a1a9ac85c46a82da3ca53a8ea00a5cf6a5
+
+COCOAPODS: 1.9.0

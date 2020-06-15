@@ -1,5 +1,6 @@
 import UIKit
 import WebKit
+import Utility
 
 class FAQViewController: UIViewController {
 

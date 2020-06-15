@@ -7,7 +7,9 @@
 //
 
 import Foundation
-import AlertHelperKit
+import Utility
+import UIKit
+import Networking
 
 class ManageFoldersPresenter {
     
@@ -111,23 +113,21 @@ class ManageFoldersPresenter {
     }
     
     func showDeleteFolderAlert(folderID: Int) {
-        
-        let params = Parameters(
+        let params = AlertKitParams(
             title: "deleteFolderTitle".localized(),
             message: "deleteFolder".localized(),
             cancelButton: "cancelButton".localized(),
             otherButtons: ["deleteButton".localized()]
         )
         
-        AlertHelperKit().showAlertWithHandler(self.viewController!, parameters: params) { buttonIndex in
-            switch buttonIndex {
+        viewController?.showAlert(with: params, onCompletion: { [weak self] (index) in
+            switch index {
             case 0:
-                print("Cancel Delete")
+                DPrint("Cancel Delete")
             default:
-                print("Delete")
-                self.interactor?.deleteFolder(folderID: folderID)
+                self?.interactor?.deleteFolder(folderID: folderID)
             }
-        }
+        })
     }
    
     func showAddFolderLimitAlert() {
@@ -139,7 +139,7 @@ class ManageFoldersPresenter {
         
         self.viewController?.upgradeToPrimeView = Bundle.main.loadNibNamed(k_UpgradeToPrimeViewXibName, owner: nil, options: nil)?.first as? UpgradeToPrimeView
         
-        var frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
+        let frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
         
         if Device.IS_IPAD {
            // frame = CGRect(x: 0.0, y: 0.0, width: (self.viewController!.splitViewController?.secondaryViewController?.view.frame.width)!, height: (self.viewController!.splitViewController?.secondaryViewController?.view.frame.height)!)

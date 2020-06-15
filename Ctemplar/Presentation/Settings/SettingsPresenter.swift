@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import AlertHelperKit
+import Utility
+import UIKit
 
 class SettingsPresenter {
     
@@ -15,23 +16,22 @@ class SettingsPresenter {
     var interactor       : SettingsInteractor?
 
     func logOut() {
-        
-        let params = Parameters(
+        let params = AlertKitParams(
             title: "logoutTitle".localized(),
             message: "logotuMessage".localized(),
             cancelButton: "cancelButton".localized(),
             otherButtons: ["logotButton".localized()]
         )
         
-        AlertHelperKit().showAlertWithHandler(self.viewController!, parameters: params) { buttonIndex in
-            switch buttonIndex {
+        self.viewController?.showAlert(with: params, onCompletion: { [weak self] (index) in
+            switch index {
             case 0:
-                print("Cancel Logout")
+                DPrint("Cancel Logout")
             default:
-                print("LogOut")
-                self.interactor?.logOut()
+                DPrint("Logout")
+                self?.interactor?.logOut()
             }
-        }
+        })
     }
     
     func setupNavigationLeftItem() {

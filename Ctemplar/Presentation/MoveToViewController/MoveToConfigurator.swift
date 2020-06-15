@@ -7,8 +7,8 @@
 //
 
 import Foundation
-
 import UIKit
+import Networking
 
 class MoveToConfigurator {
     
@@ -25,7 +25,7 @@ class MoveToConfigurator {
         let interactor = MoveToInteractor()
         interactor.presenter = presenter
         interactor.viewController = viewController
-        interactor.apiService = appDelegate.applicationManager.apiService
+        interactor.apiService = NetworkManager.shared.apiService
                 
         presenter.interactor = interactor
         

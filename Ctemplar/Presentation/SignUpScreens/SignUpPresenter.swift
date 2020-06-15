@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import AlertHelperKit
+import Utility
+import UIKit
 
 class SignUpPresenter {
     
@@ -50,7 +51,7 @@ class SignUpPresenter {
     
     func viewControllerBefore(viewController: UIViewController) -> UIViewController? {
         
-        guard let viewControllerIndex = self.viewController?.orderedViewControllers.index(of: viewController) else {
+        guard let viewControllerIndex = self.viewController?.orderedViewControllers.firstIndex(of: viewController) else {
             return nil
         }
         
@@ -70,7 +71,7 @@ class SignUpPresenter {
     
     func viewControllerAfter(viewController: UIViewController) -> UIViewController? {
         
-        guard let viewControllerIndex = self.viewController?.orderedViewControllers.index(of: viewController) else {
+        guard let viewControllerIndex = self.viewController?.orderedViewControllers.firstIndex(of: viewController) else {
             return nil
         }
         
@@ -242,7 +243,7 @@ class SignUpPresenter {
         
        // guard let nextViewController = self.viewController?.dataSource?.pageViewController(self.viewController!, viewControllerAfter: childViewController ) else { return }
         
-        guard let viewControllerIndex = self.viewController?.orderedViewControllers.index(of: childViewController) else {
+        guard let viewControllerIndex = self.viewController?.orderedViewControllers.firstIndex(of: childViewController) else {
             return
         }
         
@@ -268,7 +269,7 @@ class SignUpPresenter {
         
        // guard let previousViewController = self.viewController?.dataSource?.pageViewController(self.viewController!, viewControllerBefore: childViewController ) else { return }
         
-        guard let viewControllerIndex = self.viewController?.orderedViewControllers.index(of: childViewController) else {
+        guard let viewControllerIndex = self.viewController?.orderedViewControllers.firstIndex(of: childViewController) else {
             return
         }
         

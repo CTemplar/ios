@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import Utility
+import Networking
 
 class AttachmentCollectionViewCell: UICollectionViewCell {
  

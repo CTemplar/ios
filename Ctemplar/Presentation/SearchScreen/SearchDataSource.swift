@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import Utility
+import Networking
 
 class SearchDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     

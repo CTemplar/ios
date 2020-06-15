@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import AlertHelperKit
+import Utility
+import Networking
 
 class MoveToInteractor {
     
@@ -32,7 +33,9 @@ class MoveToInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Get Folders Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Get Folders Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
             
             Loader.stop()
@@ -84,7 +87,9 @@ class MoveToInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Move Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Move Messages Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }

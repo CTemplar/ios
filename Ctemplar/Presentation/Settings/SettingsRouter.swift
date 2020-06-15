@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import AlertHelperKit
+import Utility
 
 class SettingsRouter {
     
@@ -35,7 +35,9 @@ class SettingsRouter {
     
     func showChangePasswordViewController() {
         //https://ctemplar.atlassian.net/browse/IAD-461
-        AlertHelperKit().showAlert(viewController!, title: nil, message: "featureIsComing".localized(), button: "closeButton".localized())
+        self.viewController?.showAlert(with: "",
+                       message: "featureIsComing".localized(),
+                       buttonTitle: Strings.Button.closeButton.localized)
         return
         
 //        let storyboard: UIStoryboard = UIStoryboard(name: k_ChangePasswordStoryboardName, bundle: nil)

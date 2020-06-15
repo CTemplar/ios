@@ -7,7 +7,9 @@
 //
 
 import Foundation
-import AlertHelperKit
+import Utility
+import Networking
+import UIKit
 
 class ForgotPasswordInteractor: HashingService {
     
@@ -17,16 +19,15 @@ class ForgotPasswordInteractor: HashingService {
     var keychainService : KeychainService?
     
     func recoveryPasswordCode(userName: String, recoveryEmail: String) {
-        AppManager.shared.networkService.recoveryPasswordCode(for: userName,
+        NetworkManager.shared.networkService.recoveryPasswordCode(for: userName,
                                                               recoveryEmail: recoveryEmail)
         {
             guard case .failure(let error) = $0 else {
                 return
             }
-            AlertHelperKit().showAlert(self.viewController!,
-                                       title: "Password Code Error",
-                                       message: error.localizedDescription,
-                                       button: "closeButton".localized())
+            self.viewController?.showAlert(with: "Password Code Error",
+                                           message: error.localizedDescription,
+                                           buttonTitle: Strings.Button.closeButton.localized)
             
         }
     }
@@ -36,10 +37,9 @@ class ForgotPasswordInteractor: HashingService {
         generateCryptoInfo(for: userName, password: password) {
             guard let info = try? $0.get() else {
                 Loader.stop()
-                AlertHelperKit().showAlert(self.viewController!,
-                                           title: "SignUp Error".localized(),
-                                           message: "Something went wrong".localized(),
-                                           button: "closeButton".localized())
+                self.viewController?.showAlert(with: "SignUp Error".localized(),
+                                               message: "Something went wrong".localized(),
+                                               buttonTitle: Strings.Button.closeButton.localized)
                 return
             }
             let details = ResetPasswordDetails(resetPasswordCode: resetPasswordCode,
@@ -50,7 +50,7 @@ class ForgotPasswordInteractor: HashingService {
                                                fingerprint: info.userPgpKey.fingerprint,
                                                recoveryEmail: recoveryEmail)
             Loader.start()
-            AppManager.shared.networkService.resetPassword(with: details) { result in
+            NetworkManager.shared.networkService.resetPassword(with: details) { result in
                 if (try? result.get()) != nil {
                     self.keychainService?.saveUserCredentials(userName: userName, password: password)
                 }
@@ -68,10 +68,9 @@ class ForgotPasswordInteractor: HashingService {
             //self.sendAPNDeviceToken()
             self.presenter?.router?.showInboxScreen()
         case .failure(let error):
-            AlertHelperKit().showAlert(self.viewController!,
-                                       title: "Reset Password Error".localized(),
-                                       message: error.localizedDescription,
-                                       button: "closeButton".localized())
+            self.viewController?.showAlert(with: "Reset Password Error".localized(),
+                                           message: error.localizedDescription,
+                                           buttonTitle: Strings.Button.closeButton.localized)
         }
     }
 }

@@ -7,8 +7,9 @@
 //
 
 import Foundation
-import AlertHelperKit
-
+import Utility
+import Networking
+import  UIKit
 class InboxSideMenuInteractor {
     
     var viewController  : InboxSideMenuViewController?
@@ -25,10 +26,9 @@ class InboxSideMenuInteractor {
                     self?.resetRootController()
                 } else {
                    if let currentVC = self?.viewController {
-                        AlertHelperKit().showAlert(currentVC,
-                                                   title: "logoutErrorTitle".localized(),
-                                                   message: "logoutErrorMessage".localized(),
-                                                   button: "closeButton".localized())
+                        currentVC.showAlert(with: "logoutErrorTitle".localized(),
+                                   message: "logoutErrorMessage".localized(),
+                                   buttonTitle: Strings.Button.closeButton.localized)
                     }
                 }
             }
@@ -85,7 +85,9 @@ class InboxSideMenuInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Folders Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Folders Error",
+                           message: error.localizedDescription,
+                           buttonTitle: Strings.Button.closeButton.localized)
             }
             
             Loader.stop()
@@ -103,7 +105,9 @@ class InboxSideMenuInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "User Myself Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "User Myself Error",
+                           message: error.localizedDescription,
+                           buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
@@ -178,7 +182,6 @@ class InboxSideMenuInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-//                AlertHelperKit().showAlert(self.viewController!, title: "Unread Messages Error", message: error.localizedDescription, button: "closeButton".localized())
             }
         }
     }

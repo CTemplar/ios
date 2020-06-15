@@ -8,7 +8,8 @@
 
 import Foundation
 import UIKit
-import AlertHelperKit
+import Utility
+import Networking
 
 class ChangePasswordViewController: UIViewController, UITextFieldDelegate, HashingService {
     
@@ -49,9 +50,9 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate, Hashi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.formatterService = appDelegate.applicationManager.formatterService
-        self.apiService = appDelegate.applicationManager.apiService
-        self.keychainService = appDelegate.applicationManager.keychainService
+        self.formatterService = UtilityManager.shared.formatterService
+        self.apiService = NetworkManager.shared.apiService
+        self.keychainService = UtilityManager.shared.keychainService
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: k_passwordBarTintColor]
         
@@ -242,14 +243,13 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate, Hashi
         retrieveChangePasswordDetails {
             guard let details = try? $0.get() else {
                 Loader.stop()
-                AlertHelperKit().showAlert(self,
-                                           title: "Change Password Error",
-                                           message: "Something went wrong".localized(),
-                                           button: "closeButton".localized())
+                self.showAlert(with: "Update Settings Error",
+                               message: "Something went wrong".localized(),
+                               buttonTitle: Strings.Button.closeButton.localized)
                 return
             }
             Loader.start()
-            AppManager.shared.networkService.changePassword(with: details) {
+            NetworkManager.shared.networkService.changePassword(with: details) {
                 Loader.stop()
                 switch $0 {
                 case .success(let value):
@@ -259,10 +259,9 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate, Hashi
                     self.passwordWasUpdated()
                     
                 case .failure(let error):
-                    AlertHelperKit().showAlert(self,
-                                               title: "Change Password Error",
-                                               message: error.localizedDescription,
-                                               button: "closeButton".localized())
+                    self.showAlert(with: "Change Password Error",
+                                   message: error.localizedDescription,
+                                   buttonTitle: Strings.Button.closeButton.localized)
                 }
             }
         }
@@ -273,24 +272,26 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate, Hashi
             completion(.failure(AppError.cryptoFailed))
         }
         DispatchQueue.global().async {
-            let userName = AppManager.shared.keychainService.getUserName()
+            let userName = UtilityManager.shared.keychainService.getUserName()
             if userName.isEmpty {
                 DispatchQueue.main.async(execute: error)
                 return
             }
-            let old = AppManager.shared.keychainService.getPassword()
+            let old = UtilityManager.shared.keychainService.getPassword()
             if old.isEmpty {
                 DispatchQueue.main.async(execute: error)
                 return
             }
-            let updatedPGPKey = AppManager.shared.pgpService.generatePGPKey(userName: userName,
+            
+            let updatedPGPKey = UtilityManager.shared.pgpService.generatePGPKey(userName: userName,
                                                                             password: self.newPassword)
-            guard let storedKey = AppManager.shared.pgpService.getStoredPGPKeys()?.first,
-                let publicKey =  AppManager.shared.pgpService.exportArmoredPublicKey(pgpKey: storedKey),
-                let privateKey = AppManager.shared.pgpService.exportArmoredPrivateKey(pgpKey: updatedPGPKey) else {
+            guard let storedKey = UtilityManager.shared.pgpService.getStoredPGPKeys()?.first,
+                let publicKey =  UtilityManager.shared.pgpService.exportArmoredPublicKey(pgpKey: storedKey),
+                let privateKey = UtilityManager.shared.pgpService.exportArmoredPrivateKey(pgpKey: updatedPGPKey) else {
                     DispatchQueue.main.async(execute: error)
                     return
             }
+
             guard let keys = self.user.mailboxesList?
                 .compactMap ({ (mailbox: Mailbox) -> [String: Any]? in
                     guard let id = mailbox.mailboxID else { return nil }
@@ -332,16 +333,14 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate, Hashi
     }
     
     func passwordWasUpdated() {
-        
-        let params = Parameters(
+        let params = AlertKitParams(
             title: "infoTitle".localized(),
             message: "passwordUpdatedMessage".localized(),
             cancelButton: "closeButton".localized()
         )
-        
-        AlertHelperKit().showAlertWithHandler(self, parameters: params) { buttonIndex in
-            
-            self.backButtonPressed(self)
+        showAlert(with: params) { [weak self] in
+            guard let safeSelf = self else { return }
+            safeSelf.backButtonPressed(safeSelf)
         }
     }
 }

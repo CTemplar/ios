@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Igp-Qp-klT">
-    <device id="ipad9_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Igp-Qp-klT">
+    <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,7 +36,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ojn-ss-CJX">
-                                <rect key="frame" x="5" y="32" width="22" height="22"/>
+                                <rect key="frame" x="5" y="12" width="22" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Ojn-ss-CJX" secondAttribute="height" multiplier="1:1" id="Eee-Ho-Xtm"/>
                                 </constraints>
@@ -48,7 +46,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gWt-tW-6vg">
-                                <rect key="frame" x="310.5" y="72" width="147" height="30"/>
+                                <rect key="frame" x="310.5" y="52" width="147" height="30"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="dBJ-80-XTg">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -79,7 +77,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="usernameAndDomain" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDv-Tm-dIz" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
-                                <rect key="frame" x="-472" y="134" width="1712" height="214"/>
+                                <rect key="frame" x="-552" y="114" width="1872" height="234"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="XDv-Tm-dIz" secondAttribute="height" multiplier="8:1" id="F68-ac-hY5"/>
                                 </constraints>
@@ -107,14 +105,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@ctemplar.com" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQi-OF-dS0">
-                                <rect key="frame" x="485.5" y="443.5" width="96.5" height="17"/>
+                                <rect key="frame" x="485.5" y="445.5" width="96.5" height="17"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                 <color key="textColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="213-v1-qB0">
-                                <rect key="frame" x="186" y="442.5" width="293.5" height="19"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="186" y="442.5" width="293.5" height="21"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                 <userDefinedRuntimeAttributes>
@@ -129,14 +126,14 @@
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hhz-bx-xfn">
-                                <rect key="frame" x="186" y="468.5" width="396" height="2"/>
+                                <rect key="frame" x="186" y="470.5" width="396" height="2"/>
                                 <color key="backgroundColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="753-vL-dIs"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H7b-Kl-O93" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
-                                <rect key="frame" x="186" y="520.5" width="396" height="48"/>
+                                <rect key="frame" x="186" y="522.5" width="396" height="48"/>
                                 <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="H7b-Kl-O93" secondAttribute="height" multiplier="398:48" id="SBA-8E-tA1"/>
@@ -150,7 +147,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AVd-lp-p0F" customClass="UILocalizedTextView" customModule="Ctemplar" customModuleProvider="target">
-                                <rect key="frame" x="30" y="580.5" width="708" height="43"/>
+                                <rect key="frame" x="30" y="582.5" width="708" height="43"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="i1t-7o-noa"/>
@@ -159,47 +156,8 @@
                                     <fragment content="supportEmailString">
                                         <attributes>
                                             <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <font key="NSFont" size="14" name="Lato-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                <tabStops>
-                                                    <textTab alignment="left" location="28">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="56">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="84">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="112">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="140">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="168">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="196">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="224">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="252">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="280">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="308">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="336">
-                                                        <options/>
-                                                    </textTab>
-                                                </tabStops>
-                                            </paragraphStyle>
+                                            <font key="NSFont" metaFont="menu" size="14"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -263,7 +221,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1058"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FAv-hT-8vq">
-                                <rect key="frame" x="5" y="32" width="22" height="22"/>
+                                <rect key="frame" x="5" y="12" width="22" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="FAv-hT-8vq" secondAttribute="height" multiplier="1:1" id="8Hy-3I-xza"/>
                                 </constraints>
@@ -273,7 +231,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rnR-cQ-Qmp">
-                                <rect key="frame" x="310.5" y="72" width="147" height="30"/>
+                                <rect key="frame" x="310.5" y="52" width="147" height="30"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="w6F-zV-cxv">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -304,7 +262,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="passwordPlaceholder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2VL-nB-1fo" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
-                                <rect key="frame" x="28" y="134" width="712" height="206.5"/>
+                                <rect key="frame" x="-6.5" y="114" width="781" height="226.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="2VL-nB-1fo" secondAttribute="height" multiplier="31:9" constant="1" id="8h3-h0-uC5"/>
                                 </constraints>
@@ -332,8 +290,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Choose password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3MY-Ac-5eY">
-                                <rect key="frame" x="186" y="460" width="370" height="20"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="186" y="460" width="370" height="19"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <userDefinedRuntimeAttributes>
@@ -348,7 +305,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hk-N9-oAY">
-                                <rect key="frame" x="562" y="462.5" width="20" height="20"/>
+                                <rect key="frame" x="562" y="461.5" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="CDe-Cs-Tgv"/>
                                     <constraint firstAttribute="width" secondItem="4hk-N9-oAY" secondAttribute="height" multiplier="1:1" id="SZ7-5j-3jT"/>
@@ -359,7 +316,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bFg-mB-0Xr">
-                                <rect key="frame" x="186" y="486.5" width="396" height="2"/>
+                                <rect key="frame" x="186" y="485.5" width="396" height="2"/>
                                 <color key="backgroundColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="GYQ-cn-xug"/>
@@ -367,7 +324,7 @@
                                 <viewLayoutGuide key="safeArea" id="2Br-xQ-Bi8"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="confirmPasswordPlaceholder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="6MR-xU-62D" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
-                                <rect key="frame" x="186" y="508.5" width="110" height="15"/>
+                                <rect key="frame" x="186" y="507.5" width="110" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="110" id="UKb-tT-CLq"/>
                                     <constraint firstAttribute="width" secondItem="6MR-xU-62D" secondAttribute="height" multiplier="110:15" id="kHh-fA-Sx5"/>
@@ -377,8 +334,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KX0-8y-Oop">
-                                <rect key="frame" x="186" y="525" width="370" height="20"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="186" y="524" width="370" height="19"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <userDefinedRuntimeAttributes>
@@ -393,7 +349,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUi-Bl-3Hw">
-                                <rect key="frame" x="562" y="527.5" width="20" height="20"/>
+                                <rect key="frame" x="562" y="525.5" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="cUi-Bl-3Hw" secondAttribute="height" multiplier="1:1" id="hcy-jO-caK"/>
                                     <constraint firstAttribute="width" constant="20" id="v8D-V9-ixr"/>
@@ -404,14 +360,14 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Svq-C1-roB">
-                                <rect key="frame" x="186" y="551.5" width="396" height="2"/>
+                                <rect key="frame" x="186" y="549.5" width="396" height="2"/>
                                 <color key="backgroundColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="Aad-cu-gpO"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Awi-XZ-15m" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
-                                <rect key="frame" x="186" y="593.5" width="396" height="48"/>
+                                <rect key="frame" x="186" y="591.5" width="396" height="48"/>
                                 <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Awi-XZ-15m" secondAttribute="height" multiplier="398:48" constant="-1" id="Yt0-4D-dDi"/>
@@ -425,7 +381,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nsl-cC-Chp" customClass="UILocalizedTextView" customModule="Ctemplar" customModuleProvider="target">
-                                <rect key="frame" x="30" y="653.5" width="708" height="43"/>
+                                <rect key="frame" x="30" y="651.5" width="708" height="43"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="Tu5-cZ-Sk6"/>
@@ -434,47 +390,8 @@
                                     <fragment content="supportEmailString">
                                         <attributes>
                                             <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <font key="NSFont" size="14" name="Lato-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                <tabStops>
-                                                    <textTab alignment="left" location="28">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="56">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="84">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="112">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="140">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="168">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="196">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="224">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="252">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="280">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="308">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="336">
-                                                        <options/>
-                                                    </textTab>
-                                                </tabStops>
-                                            </paragraphStyle>
+                                            <font key="NSFont" metaFont="menu" size="14"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -557,7 +474,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="768" height="1058"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8AL-94-XeC">
-                                        <rect key="frame" x="5" y="32" width="22" height="22"/>
+                                        <rect key="frame" x="5" y="12" width="22" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="8AL-94-XeC" secondAttribute="height" multiplier="1:1" id="xVZ-a2-HTk"/>
                                         </constraints>
@@ -567,7 +484,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TdM-xY-DFQ">
-                                        <rect key="frame" x="310.5" y="72" width="147" height="30"/>
+                                        <rect key="frame" x="310.5" y="52" width="147" height="30"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="GMC-Yt-FA7">
                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -598,7 +515,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="recoveryEmailPlaceholder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bnA-Gv-dFR" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
-                                        <rect key="frame" x="-135.5" y="134" width="1039" height="140.5"/>
+                                        <rect key="frame" x="-214" y="114" width="1196" height="160.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="bnA-Gv-dFR" secondAttribute="height" multiplier="212:27" constant="-66" id="rXI-gi-6Tq"/>
                                         </constraints>
@@ -630,7 +547,6 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ZRo-Dj-YFg" secondAttribute="height" multiplier="311:25" id="esF-Be-9Ab"/>
                                         </constraints>
-                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                         <userDefinedRuntimeAttributes>
@@ -672,7 +588,7 @@
                                                 <attributedString key="attributedText">
                                                     <fragment content="Please check this box if you agree to abide by our Terms and Conditions">
                                                         <attributes>
-                                                            <font key="NSFont" size="14" name=".SFNSText"/>
+                                                            <font key="NSFont" metaFont="menu" size="14"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
@@ -717,47 +633,8 @@
                                             <fragment content="supportEmailString">
                                                 <attributes>
                                                     <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <font key="NSFont" size="14" name="Lato-Regular"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                        <tabStops>
-                                                            <textTab alignment="left" location="28">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="56">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="84">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="112">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="140">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="168">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="196">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="224">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="252">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="280">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="308">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="336">
-                                                                <options/>
-                                                            </textTab>
-                                                        </tabStops>
-                                                    </paragraphStyle>
+                                                    <font key="NSFont" metaFont="menu" size="14"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                 </attributes>
                                             </fragment>
                                         </attributedString>
@@ -829,10 +706,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="BackArrowDark" width="11" height="20"/>
+        <image name="BackArrowDark" width="11.5" height="20"/>
         <image name="DarkEyeIcon" width="16" height="16"/>
         <image name="LightBackground" width="375" height="667"/>
         <image name="Logo" width="103" height="102"/>
-        <image name="roundDark" width="29" height="29"/>
+        <image name="roundDark" width="29.333333969116211" height="29.333333969116211"/>
     </resources>
 </document>

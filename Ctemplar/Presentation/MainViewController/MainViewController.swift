@@ -8,7 +8,8 @@
 
 import UIKit
 import Foundation
-import AlertHelperKit
+import Utility
+import Networking
 
 class MainViewController: UIViewController, HashingService {
     
@@ -26,7 +27,7 @@ class MainViewController: UIViewController, HashingService {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        apiService = appDelegate.applicationManager.apiService
+        apiService = NetworkManager.shared.apiService
         
 //        initInboxNavigationController()
 //
@@ -37,15 +38,15 @@ class MainViewController: UIViewController, HashingService {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let keyChainService = apiService?.keychainService
-        let isRememberMeEnabled = keyChainService?.getRememberMeValue() ?? false
-        let twoFAstatus = keyChainService?.getTwoFAstatus() ?? true
+        let keyChainService = UtilityManager.shared.keychainService
+        let isRememberMeEnabled = keyChainService.getRememberMeValue() 
+        let twoFAstatus = keyChainService.getTwoFAstatus() 
         
         if (isRememberMeEnabled && (apiService?.canTokenRefresh() ?? false)) || (apiService?.isTokenValid() ?? false) {
             moveToNext()
         }else if isRememberMeEnabled && !twoFAstatus {
-            let username = keyChainService?.getUserName() ?? ""
-            let password = keyChainService?.getPassword() ?? ""
+            let username = keyChainService.getUserName() 
+            let password = keyChainService.getPassword() 
             authenticateUser(with: username, and: password)
         }else {
             showLoginViewController()
@@ -238,12 +239,12 @@ extension MainViewController {
                 self.showLoginViewController()
                 return
             }
-            AppManager.shared.networkService.loginUser(with: LoginDetails(userName: username, password: value, twoFAcode: nil)) { (result) in
+            NetworkManager.shared.networkService.loginUser(with: LoginDetails(userName: username, password: value, twoFAcode: nil)) { (result) in
                 Loader.stop()
                 switch result {
                 case .success(let value):
                     if let token = value.token {
-                        self.apiService?.keychainService?.saveToken(token: token)
+                        UtilityManager.shared.keychainService.saveToken(token: token)
                         self.moveToNext()
                     }else {
                         self.showLoginViewController()

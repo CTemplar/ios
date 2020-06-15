@@ -22,19 +22,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     var password    : String? = ""
     var twoFAcode   : String? = ""
     
-    @IBOutlet var userNameTextField     : UITextField!
-    @IBOutlet var passwordTextField     : UITextField!
-    @IBOutlet var otpTextField          : UITextField!
+    @IBOutlet weak var userNameTextField     : UITextField!
+    @IBOutlet weak var passwordTextField     : UITextField!
+    @IBOutlet weak var otpTextField          : UITextField!
     
-    @IBOutlet var emailHintLabel        : UILabel!
-    @IBOutlet var passwordHintLabel     : UILabel!
-    @IBOutlet var rememberMeLabel       : UILabel!
+    @IBOutlet weak var emailHintLabel        : UILabel!
+    @IBOutlet weak var passwordHintLabel     : UILabel!
+    @IBOutlet weak var rememberMeLabel       : UILabel!
     
-    @IBOutlet var eyeButton             : UIButton!
-    @IBOutlet var rememberMeButton      : UIButton!
-    
-    @IBOutlet var passwordBlockView     : UIView!
-    @IBOutlet var otpBlockView          : UIView!
+    @IBOutlet weak var eyeButton             : UIButton!
+    @IBOutlet weak var rememberMeButton      : UIButton!
+    @IBOutlet weak var signUpButton          : UIButton!
+    @IBOutlet weak var passwordBlockView     : UIView!
+    @IBOutlet weak var otpBlockView          : UIView!
     
     var keyboardOffset = 0.0
     
@@ -49,11 +49,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordBlockView.isHidden = false
         otpBlockView.isHidden = true
         
-        presenter!.setupEmailTextFieldsAndHintLabel(userEmail: userEmail!)
-        presenter!.setupPasswordTextFieldsAndHintLabel(password: password!)
-        
-        presenter!.hintLabel(show: false, sender: userNameTextField)
-        presenter!.hintLabel(show: false, sender: passwordTextField)
+        presenter?.setupEmailTextFieldsAndHintLabel(userEmail: userEmail!)
+        presenter?.setupPasswordTextFieldsAndHintLabel(password: password!)
+        presenter?.setupSignUpButton()
+        presenter?.hintLabel(show: false, sender: userNameTextField)
+        presenter?.hintLabel(show: false, sender: passwordTextField)
         
         userNameTextField.delegate = self
         passwordTextField.delegate = self

@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import Utility
+import Networking
 
 class InboxSideMenuConfigurator {
     
@@ -24,7 +26,7 @@ class InboxSideMenuConfigurator {
         let interactor = InboxSideMenuInteractor()
         interactor.presenter = presenter
         interactor.viewController = viewController
-        interactor.apiService = appDelegate.applicationManager.apiService
+        interactor.apiService = NetworkManager.shared.apiService
         
         presenter.interactor = interactor
         
@@ -34,6 +36,6 @@ class InboxSideMenuConfigurator {
         let dataSource = InboxSideMenuDataSource()
         viewController.dataSource = dataSource
         
-        dataSource.formatterService = appDelegate.applicationManager.formatterService
+        dataSource.formatterService = UtilityManager.shared.formatterService
     }
 }

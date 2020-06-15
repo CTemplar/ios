@@ -1,4 +1,5 @@
 import UIKit
+import Utility
 
 class DashboardTableViewController: UITableViewController {
 

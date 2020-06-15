@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import AlertHelperKit
+import Utility
+import UIKit
 
 class LoginPresenter {
     
@@ -64,16 +65,24 @@ class LoginPresenter {
         viewController?.passwordTextField.attributedPlaceholder = NSAttributedString(string: "passwordPlaceholder".localized(), attributes: [.foregroundColor: UIColor.white])
     }
     
+    func setupSignUpButton() {
+        viewController?.signUpButton.setTitle("createAccount".localized(), for: .normal)
+    }
+    
     func buttonLoginPressed(userEmail: String, password: String, twoFAcode: String) {
         
         if userEmail != "" {
             if password != "" {
                 authenticateUser(userEmail: userEmail, password: password, twoFAcode: twoFAcode)
             } else {
-                AlertHelperKit().showAlert(self.viewController!, title: "", message: "invalidEnteredPassword".localized(), button: "closeButton".localized())
+                self.viewController?.showAlert(with: "",
+                                               message: "invalidEnteredPassword".localized(),
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         } else {
-            AlertHelperKit().showAlert(self.viewController!, title: "", message: "invalidEnteredEmail".localized(), button: "closeButton".localized())
+            self.viewController?.showAlert(with: "",
+                                           message: "invalidEnteredEmail".localized(),
+                                           buttonTitle: Strings.Button.closeButton.localized)
         }
     }
     

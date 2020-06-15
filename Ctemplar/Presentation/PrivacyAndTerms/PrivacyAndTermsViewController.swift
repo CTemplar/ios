@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import WebKit
+import Utility
 
 class PrivacyAndTermsViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
    

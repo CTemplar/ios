@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 import WebKit
-
+import Utility
+import Networking
 
 class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -165,9 +166,9 @@ class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell, UICollec
     
     func setupFromToHeaderHeight(message: EmailMessage) {
         
-        var fromName: String = ""
+        let fromName: String = ""
         var fromEmail: String = ""
-        var toNamesArray : Array<String> = []
+        let toNamesArray : Array<String> = []
         var toEmailsArray : Array<String> = []
         var ccArray : Array<String> = []
         var bccArray : Array<String> = []

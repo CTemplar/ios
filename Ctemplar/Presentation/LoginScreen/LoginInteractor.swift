@@ -7,7 +7,9 @@
 //
 
 import Foundation
-import AlertHelperKit
+import Utility
+import Networking
+import UIKit
 
 class LoginInteractor: HashingService {
     
@@ -23,14 +25,13 @@ class LoginInteractor: HashingService {
         generateHashedPassword(for: trimmedUsername, password: password) { result in
             guard let value = try? result.get() else {
                 Loader.stop()
-                AlertHelperKit().showAlert(self.viewController!,
-                                           title: "Login Error".localized(),
-                                           message: "Something went wrong".localized(),
-                                           button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Login Error".localized(),
+                                               message: "Something went wrong".localized(),
+                                               buttonTitle: Strings.Button.closeButton.localized)
                 return
             }
             Loader.start()
-            AppManager.shared.networkService.loginUser(with: LoginDetails(userName: trimmedUsername, password: value, twoFAcode: twoFAcode)) { result in
+            NetworkManager.shared.networkService.loginUser(with: LoginDetails(userName: trimmedUsername, password: value, twoFAcode: twoFAcode)) { result in
                 self.handleNetwork(responce: result, username: userName, password: password)
                 Loader.stop()
             }
@@ -61,10 +62,9 @@ class LoginInteractor: HashingService {
             self.sendAPNDeviceToken()
             self.viewController?.router?.showInboxScreen()
         case .failure(let error):
-            AlertHelperKit().showAlert(self.viewController!,
-                                       title: "Login Error".localized(),
-                                       message: error.localizedDescription,
-                                       button: "closeButton".localized())
+            self.viewController?.showAlert(with: "Login Error".localized(),
+                                           message: error.localizedDescription,
+                                           buttonTitle: Strings.Button.closeButton.localized)
             viewController?.passwordBlockView.isHidden = false
             viewController?.otpBlockView.isHidden = true
             viewController?.otpTextField.text = ""
@@ -90,7 +90,7 @@ class LoginInteractor: HashingService {
     
     func sendAPNDeviceToken() {
         guard let deviceToken = keychainService?.getAPNDeviceToken(), !deviceToken.isEmpty  else { return }
-        AppManager.shared.networkService.send(deviceToken: deviceToken) { _ in }
+        NetworkManager.shared.networkService.send(deviceToken: deviceToken) { _ in }
     }
 }
 

@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import Networking
+import Utility
 
 class ComposeConfigurator {
     
@@ -24,11 +26,11 @@ class ComposeConfigurator {
         let interactor = ComposeInteractor()
         interactor.presenter = presenter
         interactor.viewController = viewController
-        interactor.apiService = appDelegate.applicationManager.apiService
-        interactor.pgpService = appDelegate.applicationManager.pgpService
+        interactor.apiService = NetworkManager.shared.apiService
+        interactor.pgpService = UtilityManager.shared.pgpService
         
         presenter.interactor = interactor
-        presenter.formatterService = appDelegate.applicationManager.formatterService
+        presenter.formatterService = UtilityManager.shared.formatterService
         
         viewController.presenter = presenter
         viewController.router = router
@@ -37,6 +39,6 @@ class ComposeConfigurator {
         let dataSource = ComposeDataSource()
         viewController.dataSource = dataSource
         
-        dataSource.formatterService = appDelegate.applicationManager.formatterService
+        dataSource.formatterService = UtilityManager.shared.formatterService
     }
 }

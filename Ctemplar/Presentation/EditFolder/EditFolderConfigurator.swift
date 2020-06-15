@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import Utility
+import Networking
 
 class EditFolderConfigurator {
     
@@ -17,8 +19,8 @@ class EditFolderConfigurator {
         
         let interactor = EditFolderInteractor()
         interactor.viewController = viewController
-        interactor.apiService = appDelegate.applicationManager.apiService
-        interactor.formatterService = appDelegate.applicationManager.formatterService
+        interactor.apiService = NetworkManager.shared.apiService
+        interactor.formatterService = UtilityManager.shared.formatterService
         
         viewController.interactor = interactor
     }

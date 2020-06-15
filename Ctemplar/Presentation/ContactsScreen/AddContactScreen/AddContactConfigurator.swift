@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import Utility
+import Networking
 
 class AddContactConfigurator {
     
@@ -20,12 +22,12 @@ class AddContactConfigurator {
         
         let presenter = AddContactPresenter()
         presenter.viewController = viewController
-        presenter.formatterService = appDelegate.applicationManager.formatterService
+        presenter.formatterService = UtilityManager.shared.formatterService
         
         let interactor = AddContactInteractor()
         interactor.presenter = presenter
         interactor.viewController = viewController
-        interactor.apiService = appDelegate.applicationManager.apiService
+        interactor.apiService = NetworkManager.shared.apiService
         
         presenter.interactor = interactor
         

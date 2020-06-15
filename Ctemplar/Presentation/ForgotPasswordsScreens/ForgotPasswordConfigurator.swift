@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Utility
+import Networking
 
 class ForgotPasswordConfigurator {
     
@@ -22,13 +24,13 @@ class ForgotPasswordConfigurator {
         
         let presenter = ForgotPasswordPresenter()
         presenter.viewController = viewController
-        presenter.formatterService = appDelegate.applicationManager.formatterService
+        presenter.formatterService = UtilityManager.shared.formatterService
         
         let interactor = ForgotPasswordInteractor()
         interactor.presenter = presenter
         interactor.viewController = viewController
-        interactor.apiService = appDelegate.applicationManager.apiService
-        interactor.keychainService = appDelegate.applicationManager.keychainService
+        interactor.apiService = NetworkManager.shared.apiService
+        interactor.keychainService = UtilityManager.shared.keychainService
         
         presenter.interactor = interactor
         presenter.router = router

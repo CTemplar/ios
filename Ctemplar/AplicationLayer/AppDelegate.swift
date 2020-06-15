@@ -11,15 +11,15 @@ import Fabric
 import Crashlytics
 import UserNotifications
 import Firebase
+import Utility
+import Networking
 
 typealias AppResult<T> = Result<T, Error>
 typealias Completion<T> = (AppResult<T>) -> Void
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
-    var applicationManager = AppManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -76,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let action = userInfo["gcm.notification.action"] as? String {
                 print("push notification received for: \(action)")
                 if action == "changePassword" {
-                    applicationManager.keychainService.deleteUserCredentialsAndToken()
+                    UtilityManager.shared.keychainService.deleteUserCredentialsAndToken()
                     switch application.applicationState {
                     case .active, .background:
                         let vc = MainViewController.instantiate(fromAppStoryboard: .Main)
@@ -132,9 +132,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func saveAPNDeviceToken(_ token: String) {
-        
-        let keychainService = applicationManager.keychainService        
-        keychainService.saveAPNDeviceToken(token)
+        UtilityManager.shared.keychainService.saveAPNDeviceToken(token)
     }
 }
 
@@ -142,8 +140,8 @@ extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
         self.saveAPNDeviceToken(fcmToken)
-        if !AppManager.shared.keychainService.getUserName().isEmpty {
-            AppManager.shared.networkService.send(deviceToken: fcmToken) { _ in }
+        if !UtilityManager.shared.keychainService.getUserName().isEmpty {
+            NetworkManager.shared.networkService.send(deviceToken: fcmToken) { _ in }
         }
     }
 }
@@ -179,13 +177,6 @@ extension AppDelegate {
             window?.overrideUserInterfaceStyle = .light
         }
         #endif
-    }
-}
-
-extension UIApplication {
-    func getKeyWindow() -> UIWindow? {
-        let newWindow = UIApplication.shared.windows.first { $0.isKeyWindow }
-        return newWindow
     }
 }
 

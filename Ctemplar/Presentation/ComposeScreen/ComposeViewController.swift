@@ -8,8 +8,8 @@
 
 import UIKit
 import Foundation
-import AlertHelperKit
-import ObjectivePGP
+import Networking
+import Utility
 
 class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate, UIDocumentPickerDelegate {
     
@@ -96,8 +96,6 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var tapSelectedEmail    : String = ""
     var tapSelectedCcEmail  : String = ""
     var tapSelectedBccEmail : String = ""
-    
-    var usersPublicKeys = Array<Key>()
     
     var mailAttachmentsList = Array<[String : String]>()
     var viewAttachmentsList = Array<AttachmentView>()
@@ -378,7 +376,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         var inputText : String = ""
         
-        print("textViewDidChange text:", textView.text)
+        print("textViewDidChange text:", textView.text ?? "")
         
         switch textView {
         case self.emailToTextView:

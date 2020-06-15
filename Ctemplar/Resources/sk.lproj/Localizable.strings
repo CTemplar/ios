@@ -41,43 +41,30 @@
 "createAccount" = "Vytvoriť účet";
 "rememberMe" = "Zostať prihlásený";
 
-//Sign Up
-
+// Sign Up
 "usernameAndDomain" = "Prihlasovacie meno a doména";
 "ctemplarEmailAddress" = "Toto bude Vaša nová e-mailová adresa CTemplar";
-
 "choosePasswordPlaceholder" = "Zvoľte heslo";
 "confirmPasswordPlaceholder" = "Potvrdenie hesla";
 "recoveryEmailPlaceholder" = "E-mail na obnovenie účtu";
-
 "passwordMust" = "Heslo musí obsahovať najmenej 10 znakov. Heslo môže obsahovať iba latinské písmená a nemôže obsahovať symboly ako «-+!@ atď.";
-
 "thisIsUsed" = "Používa sa na obnovenie účtu, ak ste zablokovaný alebo zabudli svoje heslo";
-
 "usernameResetHint" = "Ctemplar prihlasovacie meno na obnovenie účtu";
 "usernameResetPlaceholder" = "Ctemplar prihlasovacie meno na obnovenie účtu";
 "resetCodePlaceholder" = "Obnoviť kód";
 "newPasswordPlaceholder" = "Nové heslo";
 "confirmNewPasswordPlaceholder" = "Potvrdiť nové heslo";
-
 "resetLink" = "Na Váš e-mail na obnovenie účtu bude poslaný odkaz na obnovenie";
-
 "confirmResetPassword" = "Potvrdiť obnovenie hesla";
-
 "areYouSure" = "Naozaj chcete obnoviť Vaše heslo?";
-
 "supportDescription" = "Váš šifrovací kľúč je pripojený k Vášmu heslu. Z tohto dôvodu nebudete môcť dešifrovať staré správy, prílohy a kontakty, ak obnovíte svoje heslo. \nV prípade ďalších otázok kontaktujte podporu na adrese support@ctemplar.com.";
-
 "supportDescriptionAttr" = "nebudete môcť dešifrovať staré správy, prílohy a kontakty";
-
 "resetPassword" = "Obnoviť heslo";
-
 "weHave" = "Na Váš e-mail pre obnovenie bol odoslaný\nresetovací kód na obnovenie hesla. ";
 "recoveryEmailAttr" = "E-mail na obnovenie účtu ";
-
 "enterIt" = "Zadajte ho pre potvrdenie.";
-
 "forgetPass" = "Nezabudnie toto heslo, nemôže byť obnovené.";
+"createAccount" = "Vytvoriť účet";
 
 // inbox
 "selected" = "Vybrané";

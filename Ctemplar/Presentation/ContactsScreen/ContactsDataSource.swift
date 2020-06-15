@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import Utility
+import Networking
 
 class ContactsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     

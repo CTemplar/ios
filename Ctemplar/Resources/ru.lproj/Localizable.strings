@@ -50,43 +50,30 @@
 "createAccount" = "Создать аккаунт";
 "rememberMe" = "оставаться в системе";
 
-//Sign Up
-
+// Sign Up
 "usernameAndDomain" = "Имя и домен";
 "ctemplarEmailAddress" = "Это будет ваш новый Ctemplar почтовый адрес.";
-
 "choosePasswordPlaceholder" = "Выберите пароль";
 "confirmPasswordPlaceholder" = "Подтвердите пароль";
 "recoveryEmailPlaceholder" = "Запасная почта";
-
 "passwordMust" = "Ваш пароль должен быть длинне 10 символов. Пароль может содержать только латинские буквы и не может содержать символы типа «-+!@. etc.";
-
 "thisIsUsed" = "Необходимо для восстановления вашей учетной записи, если вы заблокированы или забыли пароль";
-
 "usernameResetHint" = "Ctemplar имя";
 "usernameResetPlaceholder" = "Ctemplar имя для сброса";
 "resetCodePlaceholder" = "Код для сброса";
 "newPasswordPlaceholder" = "Новый пароль";
 "confirmNewPasswordPlaceholder" = "Подтвердите новый пароль";
-
 "resetLink" = "Мы отправим вам линк для восстановления почты";
-
 "confirmResetPassword" = "Подтвердить Сброс Пароля";
-
 "areYouSure" = "Вы уверены, что хотите сбросить пароль?";
-
 "supportDescription" = "Ваш ключ шифрования связан с вашим паролем. Из-за этого вы не сможете расшифровать старые сообщения, вложения и контакты, если сбросите свой пароль. \ nЕсли у вас есть дополнительные вопросы, пишите на support@ctemplar.com.";
-
 "supportDescriptionAttr" = "вы не сможете расшифровать старые сообщения, вложения и контакты";
-
 "resetPassword" = "Сброс Пароля";
-
 "weHave" = "Мы отправили код сброса на вашу запасную почту.";
 "recoveryEmailAttr" = "запасную почту";
-
 "enterIt" = "Введите его ниже для подтверждения.";
-
 "forgetPass" = "Не забудьте этот пароль, его невозможно будет восстановить.";
+"createAccount" = "Создать учетную запись";
 
 // inbox
 

@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import AlertHelperKit
+import Utility
+import UIKit
 
 class ForgotPasswordPresenter {
     
@@ -51,10 +52,14 @@ class ForgotPasswordPresenter {
             if (formatterService?.validateEmailFormat(enteredEmail: recoveryEmail))! {
                 self.router?.showConfirmResetPasswordViewController(userName: userName, recoveryEmail: recoveryEmail)
             } else {
-                AlertHelperKit().showAlert(self.viewController!, title: "", message: "invalidEnteredEmail".localized(), button: "closeButton".localized())
+                self.viewController?.showAlert(with: "",
+                                               message: "invalidEnteredEmail".localized(),
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         } else {
-            AlertHelperKit().showAlert(self.viewController!, title: "", message: "Entered Username is not valid", button: "closeButton".localized())
+            self.viewController?.showAlert(with: "",
+                                           message: "Entered Username is not valid",
+                                           buttonTitle: Strings.Button.closeButton.localized)
         }
     }
     
@@ -78,7 +83,9 @@ class ForgotPasswordPresenter {
         if (formatterService?.validateNameLench(enteredName: resetCode))! {
             self.router?.showNewPasswordViewController(userName: userName, resetPasswordCode: resetCode, recoveryEmail: recoveryEmail)
         } else {
-            AlertHelperKit().showAlert(self.viewController!, title: "", message: "Entered Reset Code is not valid", button: "closeButton".localized())
+            self.viewController?.showAlert(with: "",
+                                           message: "Entered Reset Code is not valid",
+                                           buttonTitle: Strings.Button.closeButton.localized)
         }
     }
     

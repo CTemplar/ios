@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import MobileCoreServices
+import Utility
+import Networking
 
 class ComposePresenter {
     
@@ -1197,11 +1199,7 @@ class ComposePresenter {
         
         self.viewController?.draftActionsView = Bundle.main.loadNibNamed(k_MoreActionsViewXibName, owner: nil, options: nil)?.first as? MoreActionsView
         
-        var frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
-        
-        if Device.IS_IPAD {
-//            frame = CGRect(x: 0.0, y: 0.0, width: (self.viewController!.splitViewController?.secondaryViewController?.view.frame.width)!, height: (self.viewController!.splitViewController?.secondaryViewController?.view.frame.height)!)
-        }
+        let frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
         
         self.viewController?.draftActionsView?.frame = frame
         self.viewController?.draftActionsView?.delegate = self.viewController
