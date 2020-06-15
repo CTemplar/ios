@@ -7,7 +7,9 @@
 //
 
 import Foundation
-import AlertHelperKit
+import Networking
+import Utility
+import UIKit
 
 class SettingsInteractor {
     
@@ -165,7 +167,9 @@ class SettingsInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "User Myself Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "User Myself Error",
+                               message: error.localizedDescription,
+                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }

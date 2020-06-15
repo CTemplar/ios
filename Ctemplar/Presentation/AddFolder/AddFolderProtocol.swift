@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Networking
 
 protocol AddFolderDelegate {
     func didAddFolder(_ folder: Folder)

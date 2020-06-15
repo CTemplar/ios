@@ -1,4 +1,5 @@
 import Foundation
+import Utility
 
 struct DashboardDataSource: Configurable {
     // MARK: Properties

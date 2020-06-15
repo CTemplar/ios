@@ -7,7 +7,9 @@
 //
 
 import Foundation
-import AlertHelperKit
+import Utility
+import Networking
+import UIKit
 
 class SignUpInteractor: HashingService {
     
@@ -21,10 +23,9 @@ class SignUpInteractor: HashingService {
         generateCryptoInfo(for: userName, password: password) {
             guard let info = try? $0.get() else {
                 Loader.stop()
-                AlertHelperKit().showAlert(self.viewController!,
-                                           title: "SignUp Error".localized(),
-                                           message: "Something went wrong".localized(),
-                                           button: "closeButton".localized())
+                self.viewController?.showAlert(with: "SignUp Error".localized(),
+                                               message: "Something went wrong".localized(),
+                                               buttonTitle: Strings.Button.closeButton.localized)
                 return
             }
             let details = SignupDetails(userName: userName,
@@ -32,6 +33,7 @@ class SignUpInteractor: HashingService {
                                         privateKey: info.userPgpKey.privateKey,
                                         publicKey: info.userPgpKey.publicKey,
                                         fingerprint: info.userPgpKey.fingerprint,
+                                        language: "English",
                                         captchaKey: captchaKey,
                                         captchaValue: captchaValue,
                                         recoveryEmail: recoveryEmail,
@@ -42,7 +44,7 @@ class SignUpInteractor: HashingService {
                                         emailCount: "",
                                         paymentType: "")
             Loader.start()
-            AppManager.shared.networkService.signUp(with: details) { result in
+            NetworkManager.shared.networkService.signUp(with: details) { result in
                 if (try? result.get()) != nil {
                     self.keychainService?.saveUserCredentials(userName: userName, password: password)
                 }
@@ -60,35 +62,35 @@ class SignUpInteractor: HashingService {
             self.sendAPNDeviceToken()
             self.viewController?.router?.showInboxScreen()
         case .failure(let error):
-            AlertHelperKit().showAlert(self.viewController!,
-                                       title: "SignUp Error".localized(),
-                                       message: error.localizedDescription,
-                                       button: "closeButton".localized())
+            self.viewController?.showAlert(with: "SignUp Error".localized(),
+                                           message: error.localizedDescription,
+                                           buttonTitle: Strings.Button.closeButton.localized)
         }
     }
     
     func checkUser(userName: String, childViewController: UIViewController) {
-        AppManager.shared.networkService.checkUser(name: userName) { result in
+        NetworkManager.shared.networkService.checkUser(name: userName) { result in
             switch result {
             case .success(let value):
                 print("checkUser success value:", value)
                 if !value.exists {
                     self.presenter?.showNextViewController(childViewController: childViewController)
                 } else {
-                    AlertHelperKit().showAlert(self.viewController!,
-                                               title: "User Name Error".localized(),
-                                               message: "This name already exists!".localized(),
-                                               button: "closeButton".localized())
+                    self.viewController?.showAlert(with: "User Name Error".localized(),
+                                                   message: "This name already exists!".localized(),
+                                                   buttonTitle: Strings.Button.closeButton.localized)
                 }
             case .failure(let error):
                 print("checkUser error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "User Name Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "User Name Error".localized(),
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
     
     func getCaptcha() {
-        AppManager.shared.networkService.getCaptcha {
+        NetworkManager.shared.networkService.getCaptcha {
             guard let captcha = try? $0.get() else {
                 return
             }
@@ -98,7 +100,7 @@ class SignUpInteractor: HashingService {
     }
     
     func verifyCaptcha(key: String, value: String) {
-        AppManager.shared.networkService.verifyCaptcha(with: value, key: key) {
+        NetworkManager.shared.networkService.verifyCaptcha(with: value, key: key) {
             guard let result = try? $0.get(), result.status else {
                 return
             }
@@ -129,13 +131,15 @@ class SignUpInteractor: HashingService {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Download File Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Download File Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
     
     func sendAPNDeviceToken() {
         guard let deviceToken = keychainService?.getAPNDeviceToken(), !deviceToken.isEmpty  else { return }
-        AppManager.shared.networkService.send(deviceToken: deviceToken) { _ in }
+        NetworkManager.shared.networkService.send(deviceToken: deviceToken) { _ in }
     }
 }

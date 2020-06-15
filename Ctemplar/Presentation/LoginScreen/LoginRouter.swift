@@ -8,25 +8,19 @@
 
 import Foundation
 import UIKit
+import Signup
 
 class LoginRouter {
     
     var viewController: LoginViewController?
+    private var signupCoordinator: SignupCoordinator?
     
     func showSignUpViewController() {
-        
         DispatchQueue.main.async {
-            
-            var storyboardName : String? = k_SignUpStoryboardName
-            
-            if (Device.IS_IPAD) {
-                storyboardName = k_SignUpStoryboardName_iPad
+            self.signupCoordinator = SignupCoordinator(with: self.viewController) { [weak self] in
+                self?.showInboxScreen()
             }
-            
-            let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: k_SignUpPageViewControllerID) as! SignUpPageViewController
-//            vc.mainViewController = self.viewController?.mainViewController
-            self.viewController?.show(vc, sender: self)
+            self.signupCoordinator?.showSignup()
         }
     }
     

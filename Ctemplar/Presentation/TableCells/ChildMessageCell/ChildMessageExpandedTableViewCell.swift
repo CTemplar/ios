@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import WebKit
+import Utility
+import Networking
 
 protocol ChildMessageExxpandedTableViewCellDelegate {
     func reloadCell(at index: Int)
@@ -159,9 +161,9 @@ class ChildMessageExpandedTableViewCell: UITableViewCell {
     
     func setupFromToHeaderHeight(message: EmailMessage) {
         
-        var fromName: String = ""
+        let fromName: String = ""
         var fromEmail: String = ""
-        var toNamesArray : Array<String> = []
+        let toNamesArray : Array<String> = []
         var toEmailsArray : Array<String> = []
         var ccArray : Array<String> = []
         var bccArray : Array<String> = []

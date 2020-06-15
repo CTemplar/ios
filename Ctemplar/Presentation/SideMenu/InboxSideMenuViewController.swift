@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import AlertHelperKit //temp
+import Networking
 
 class InboxSideMenuViewController: UIViewController {
     

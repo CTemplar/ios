@@ -8,7 +8,8 @@
 
 import Foundation
 import UIKit
-import AlertHelperKit
+import Utility
+import Networking
 
 class ViewInboxEmailPresenter {
     
@@ -208,8 +209,9 @@ class ViewInboxEmailPresenter {
     }
     
     func showAttachmentError() {
-        
-        AlertHelperKit().showAlert(self.viewController!, title: "Attachment Error", message: "Attachment File is corrupted or cannot be decrypted", button: "closeButton".localized())
+        self.viewController?.showAlert(with: "Attachment Error",
+                   message: "Attachment File is corrupted or cannot be decrypted",
+                   buttonTitle: Strings.Button.closeButton.localized)
     }
         
     //MARK: - Read Actions

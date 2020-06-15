@@ -98,7 +98,7 @@ class AddFolderViewController: UIViewController {
         
         if (Device.IS_IPAD) {
 
-            let width = self.view.bounds.height - k_colorPickerOffset
+            _ = self.view.bounds.height - k_colorPickerOffset
             
             //self.colorPicker.updateColorPickerFrame(width: width, height: k_colorPickeriPadHeight)
             //k_colorPickeriPadHeight = self.colorPicker.calculateColorPickerHeight(width: self.colorPickerSuperView.bounds.width)

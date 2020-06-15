@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import Utility
+import Networking
 
 class ViewInboxEmailConfigurator {
     
@@ -24,9 +26,9 @@ class ViewInboxEmailConfigurator {
         let interactor = ViewInboxEmailInteractor()
         interactor.presenter = presenter
         interactor.viewController = viewController
-        interactor.apiService = appDelegate.applicationManager.apiService
-        interactor.pgpService = appDelegate.applicationManager.pgpService
-        interactor.formatterService = appDelegate.applicationManager.formatterService
+        interactor.apiService = NetworkManager.shared.apiService
+        interactor.pgpService = UtilityManager.shared.pgpService
+        interactor.formatterService = UtilityManager.shared.formatterService
         
         presenter.interactor = interactor
         
@@ -36,6 +38,6 @@ class ViewInboxEmailConfigurator {
         let dataSource = ViewInboxEmailDataSource()
         viewController.dataSource = dataSource
         
-        dataSource.formatterService = appDelegate.applicationManager.formatterService
+        dataSource.formatterService = UtilityManager.shared.formatterService
     }
 }

@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import Networking
+import Utility
 
 class ViewInboxEmailDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     

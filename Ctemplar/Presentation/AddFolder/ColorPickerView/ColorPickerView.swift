@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Utility
 
 protocol ColorPickerViewDelegate {
     func selectColorAction(colorHex: String)

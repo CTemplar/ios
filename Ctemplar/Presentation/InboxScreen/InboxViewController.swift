@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import Utility
+import Networking
 
 class InboxViewController: UIViewController {
     
@@ -262,7 +264,7 @@ extension InboxViewController: ViewInboxEmailDelegate {
     func didUpdateReadStatus(for message: EmailMessage, status: Bool) {
         for i in 0..<allMessagesArray.count {
             if allMessagesArray[i].messsageID == message.messsageID {
-                allMessagesArray[i].read = status
+                allMessagesArray[i].update(readStatus: status)
                 break
             }
         }

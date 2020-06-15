@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import WebKit
+import Networking
 
 protocol ViewInboxEmailDelegate {
     func didUpdateReadStatus(for message: EmailMessage, status: Bool)

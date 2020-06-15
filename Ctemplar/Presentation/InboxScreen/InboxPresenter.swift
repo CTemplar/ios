@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import AlertHelperKit
+import Utility
+import UIKit
 
 class InboxPresenter {
     
@@ -732,22 +733,22 @@ class InboxPresenter {
     }
     
     func deleteMessagesPermanently() {
-        let params = Parameters(
+        let params = AlertKitParams(
             title: "deleteTitle".localized(),
             message: "deleteMessage".localized(),
             cancelButton: "cancelButton".localized(),
             otherButtons: ["deleteButton".localized()]
         )
         
-        AlertHelperKit().showAlertWithHandler(self.viewController!, parameters: params) { buttonIndex in
-            switch buttonIndex {
+        viewController?.showAlert(with: params, onCompletion: { [weak self] (index) in
+            switch index {
             case 0:
-                print("Cancel Delete")
+                DPrint("Cancel Delete")
             default:
-                print("Delete")
-                self.interactor?.deleteMessagesList(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, withUndo: "")
+                DPrint("Delete")
+                self?.interactor?.deleteMessagesList(selectedMessagesIdArray: self?.viewController?.dataSource?.selectedMessagesIDArray ?? [], withUndo: "")
             }
-        }
+        })
     }
 }
 

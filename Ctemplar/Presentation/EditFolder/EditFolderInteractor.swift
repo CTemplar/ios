@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import AlertHelperKit
+import Utility
+import Networking
 
 class EditFolderInteractor {
     
@@ -67,17 +68,16 @@ class EditFolderInteractor {
     }
     
     func updateCustomFolder(folderID: Int, name: String, colorHex: String) {
-        
         apiService?.updateCustomFolder(folderID: folderID.description, name: name, color: colorHex) {(result) in
-            
             switch(result) {
-                
             case .success(let value):
                 print("value:", value)
                 self.viewController!.navigationController?.popViewController(animated: true)
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Update Folder Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Update Folder Error",
+                           message: error.localizedDescription,
+                           buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
@@ -94,28 +94,29 @@ class EditFolderInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Delete Folder Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Delete Folder Error",
+                           message: error.localizedDescription,
+                           buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
     
     func showDeleteFolderAlert(folderID: Int) {
-        
-        let params = Parameters(
+        let params = AlertKitParams(
             title: "deleteFolderTitle".localized(),
             message: "deleteFolder".localized(),
             cancelButton: "cancelButton".localized(),
             otherButtons: ["deleteButton".localized()]
         )
         
-        AlertHelperKit().showAlertWithHandler(self.viewController!, parameters: params) { buttonIndex in
-            switch buttonIndex {
+        viewController?.showAlert(with: params, onCompletion: { [weak self] (index) in
+            switch index {
             case 0:
-                print("Cancel Delete")
+                DPrint("Cancel Delete")
             default:
-                print("Delete")
-                self.deleteFolder(folderID: folderID)
+                DPrint("Delete")
+                self?.deleteFolder(folderID: folderID)
             }
-        }
+        })
     }
 }

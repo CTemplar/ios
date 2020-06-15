@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import AlertHelperKit
+import Utility
+import Networking
 
 class InboxInteractor {
     
@@ -216,7 +217,9 @@ class InboxInteractor {
             case .failure(let error):
                 print("error:", error)
                 if !silent, let vc = self.viewController {
-                    AlertHelperKit().showAlert(vc, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                    vc.showAlert(with: "Messages Error",
+                                 message: error.localizedDescription,
+                                 buttonTitle: Strings.Button.closeButton.localized)
                 }
             }
             print("messagesList complete")
@@ -233,7 +236,9 @@ class InboxInteractor {
                // let emailMessages = value as! EmailMessagesList
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Messages Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
             Loader.stop()
         }
@@ -286,7 +291,9 @@ class InboxInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Mailboxes Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Mailboxes Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
@@ -302,7 +309,7 @@ class InboxInteractor {
                     
                     var userMyself = value as! UserMyself
                     if userMyself.username == self.viewController?.user.username {
-                        userMyself.contactsList = self.viewController?.user.contactsList
+                        userMyself.update(contactsList: self.viewController?.user.contactsList)
                     }
                     self.viewController?.user = userMyself
                     
@@ -321,7 +328,9 @@ class InboxInteractor {
                     self.userContactsList()
                 case .failure(let error):
                     print("error:", error)
-                    AlertHelperKit().showAlert(self.viewController!, title: "User Myself Error", message: error.localizedDescription, button: "closeButton".localized())
+                    self.viewController?.showAlert(with: "User Myself Error",
+                                                   message: error.localizedDescription,
+                                                   buttonTitle: Strings.Button.closeButton.localized)
                 }
             }
         }
@@ -338,7 +347,7 @@ class InboxInteractor {
                     switch result {
                     case .success(let value):
                         if let contactsList = value as? ContactsList {
-                            self.viewController?.user.contactsList = contactsList.contactsList ?? []
+                            self.viewController?.user.update(contactsList: contactsList.contactsList ?? [])
                         }
                         break
                     case .failure(let error):
@@ -362,7 +371,9 @@ class InboxInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Public Key Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Public Key Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
@@ -776,7 +787,9 @@ class InboxInteractor {
                 self.updateMessages(withUndo: withUndo, silent: false)
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Nessages Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
@@ -806,7 +819,9 @@ class InboxInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Messages Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
@@ -833,7 +848,9 @@ class InboxInteractor {
                 self.updateMessages(withUndo: withUndo, silent: false)
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Messages Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
@@ -861,7 +878,9 @@ class InboxInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Messages Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
@@ -895,7 +914,9 @@ class InboxInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Messages Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
@@ -925,7 +946,9 @@ class InboxInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Messages Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }

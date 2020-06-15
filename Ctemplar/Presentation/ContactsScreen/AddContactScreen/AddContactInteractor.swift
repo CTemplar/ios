@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import AlertHelperKit
+import Utility
+import Networking
 
 class AddContactInteractor {
     
@@ -30,7 +31,9 @@ class AddContactInteractor {
                     
                 case .failure(let error):
                     print("error:", error)
-                    AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+                    self.viewController?.showAlert(with: "Contacts Error",
+                                                   message: error.localizedDescription,
+                                                   buttonTitle: Strings.Button.closeButton.localized)
                 }
                 
                 Loader.stop()
@@ -50,7 +53,9 @@ class AddContactInteractor {
                     
                 case .failure(let error):
                     print("error:", error)
-                    AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+                    self.viewController?.showAlert(with: "Contacts Error",
+                                                   message: error.localizedDescription,
+                                                   buttonTitle: Strings.Button.closeButton.localized)
                 }
                 
                 Loader.stop()
@@ -73,7 +78,9 @@ class AddContactInteractor {
                     
                 case .failure(let error):
                     print("error:", error)
-                    AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+                    self.viewController?.showAlert(with: "Contacts Error",
+                                                   message: error.localizedDescription,
+                                                   buttonTitle: Strings.Button.closeButton.localized)
                 }
                 
                 Loader.stop()
@@ -82,16 +89,15 @@ class AddContactInteractor {
             Loader.start()
             
             apiService?.updateContact(contactID: contactID, name: name, email: email, phone: phone, address: address, note: note) {(result) in
-                
                 switch(result) {
-                    
                 case .success(let value):
                     print("updateContact:", value)
                     self.viewController?.navigationController?.popViewController(animated: true)
-                    
                 case .failure(let error):
                     print("error:", error)
-                    AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+                    self.viewController?.showAlert(with: "Contacts Error",
+                                                   message: error.localizedDescription,
+                                                   buttonTitle: Strings.Button.closeButton.localized)
                 }
                 
                 Loader.stop()

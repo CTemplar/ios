@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Networking
 
 public class MyselfService {
     let myself: MyselfResult

@@ -7,13 +7,13 @@
 //
 
 import Foundation
-import AlertHelperKit
+import Utility
+import Networking
 
 class AddFolderInteractor {
-    
-    var viewController  : AddFolderViewController?
-    var apiService      : APIService?
-    var formatterService        : FormatterService?
+    var viewController: AddFolderViewController?
+    var apiService: APIService?
+    var formatterService: FormatterService?
     
     func validateFolderName(text: String?) {
         guard let text = text else {
@@ -54,7 +54,9 @@ class AddFolderInteractor {
                 self.viewController?.dismiss(animated: true, completion: nil)
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Create Folder Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Create Folder Error",
+                           message: error.localizedDescription,
+                           buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }

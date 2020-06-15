@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AlertHelperKit
+import UIKit
 
 class SearchPresenter {
     

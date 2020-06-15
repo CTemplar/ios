@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Utility
 
 protocol InboxFilterDelegate {
     func applyAction(_ sender: AnyObject, appliedFilters: Array<Bool>)

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -321,6 +321,7 @@
                         <outlet property="passwordTextField" destination="akN-NB-okl" id="Tcp-FV-Exs"/>
                         <outlet property="rememberMeButton" destination="UfK-m7-rPM" id="e2W-Pi-XSn"/>
                         <outlet property="rememberMeLabel" destination="7sx-6R-skq" id="x9b-Bh-hGJ"/>
+                        <outlet property="signUpButton" destination="5CI-Zp-vy9" id="aIg-e3-Nll"/>
                         <outlet property="userNameTextField" destination="bK7-Cu-FLL" id="sNA-1R-AZd"/>
                     </connections>
                 </viewController>

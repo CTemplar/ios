@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import AlertHelperKit
+import Utility
+import Networking
 
 class ViewInboxEmailInteractor {
     
@@ -86,7 +87,9 @@ class ViewInboxEmailInteractor {
                                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Messages Error",
+                           message: error.localizedDescription,
+                           buttonTitle: Strings.Button.closeButton.localized)
             }
             
             Loader.stop()
@@ -332,7 +335,9 @@ class ViewInboxEmailInteractor {
                 onCompletion?(true)
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Messages Error",
+                           message: error.localizedDescription,
+                           buttonTitle: Strings.Button.closeButton.localized)
                 onCompletion?(false)
             }
         }
@@ -359,7 +364,9 @@ class ViewInboxEmailInteractor {
                 }
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Messages Error",
+                           message: error.localizedDescription,
+                           buttonTitle: Strings.Button.closeButton.localized)
             }
             onCompletion?(isSucceeded)
         }
@@ -389,7 +396,9 @@ class ViewInboxEmailInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Messages Error",
+                           message: error.localizedDescription,
+                           buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
@@ -407,7 +416,9 @@ class ViewInboxEmailInteractor {
                 onCompletion?(true)
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Delete Message Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Delete Message Error",
+                           message: error.localizedDescription,
+                           buttonTitle: Strings.Button.closeButton.localized)
                 onCompletion?(false)
             }
         }
@@ -519,18 +530,15 @@ class ViewInboxEmailInteractor {
             return nil
         }
         
-        if let tempFileUrl = pgpService?.getApplicationSupportDirectoryDirectory().appendingPathComponent(k_tempFileName) {
+        let tempFileUrl = GeneralConstant.getApplicationSupportDirectoryDirectory().appendingPathComponent(k_tempFileName)
         
-            do {
-                try decryptedAttachment?.write(to: tempFileUrl)
-            }  catch {
-                print("save decryptedAttachment Error")
-            }
-            
-            return tempFileUrl
+        do {
+            try decryptedAttachment?.write(to: tempFileUrl)
+        }  catch {
+            print("save decryptedAttachment Error")
         }
         
-        return nil
+        return tempFileUrl
     }
         
     func loadAttachFile(url: String, encrypted: Bool) {
@@ -545,7 +553,9 @@ class ViewInboxEmailInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Download File Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Download File Error",
+                           message: error.localizedDescription,
+                           buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }

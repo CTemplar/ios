@@ -1,11 +1,3 @@
-/* 
-  Localizable.strings
-  Ctemplar
-
-  Created by Tatarinov Dmitry on 24.10.2018.
-  Copyright © 2018 CTemplar. All rights reserved.
-*/
-
 "invalidEnteredPassword" = "Entered Password is not valid";
 "invalidEnteredEmail" = "Entered Email is not valid";
 
@@ -33,6 +25,9 @@
 "emailPlaceholder" = "Email";
 "passwordPlaceholder" = "Password";
 "usernamePlaceholder" = "Username";
+"userNameNotFound" = "Username is not available";
+"userNameFound" = "Username is available";
+"invitationCodePlaceholder" = "Invitation Code";
 
 "twoFAPlaceholder" = "2FA code";
 
@@ -41,44 +36,30 @@
 "createAccount" = "Create account";
 "rememberMe" = "Keep me logged in";
 
-//Sign Up
-
+// Sign Up
 "usernameAndDomain" = "Username and domain";
 "ctemplarEmailAddress" = "This will be your new Ctemplar email address.";
-
 "choosePasswordPlaceholder" = "Choose password";
 "confirmPasswordPlaceholder" = "Confirm password";
 "recoveryEmailPlaceholder" = "Recovery email";
-
 "passwordMust" = "Your password must be at least 10 characters. Password can contain only latin letters and cannot contain symbols such «-+!@. etc.";
-
 "thisIsUsed" = "This is used to recover your account if you get locked out or forget your password";
-
 "usernameResetHint" = "Ctemplar username to reset";
 "usernameResetPlaceholder" = "Ctemplar username to reset";
 "resetCodePlaceholder" = "Reset Code";
 "newPasswordPlaceholder" = "New password";
 "confirmNewPasswordPlaceholder" = "Confirm new password";
-
 "resetLink" = "We will send reset link to your recovery email";
-
 "confirmResetPassword" = "Confirm Reset Password";
-
 "areYouSure" = "Are you sure you want to reset your password?";
-
 "supportDescription" = "Your encryption key is connected to your password. Because of this you will not be able to decrypt old messages, attachments and contacts if you reset your password. \nIf you have further questions please email support@ctemplar.com.";
-
 "supportDescriptionAttr" = "you will not be able to decrypt old messages, attachments and contacts";
-
 "resetPassword" = "Reset Password";
-
 "weHave" = "We have sent a reset code to your\nrecovery email to reset your password. ";
 "recoveryEmailAttr" = "recovery email ";
-
 "enterIt" = "Enter it below for confirmation.";
-
 "forgetPass" = "Don’t forget this password, it can’t be restored.";
-
+"createAccount" = "Create Account";
 // inbox
 
 "selected" = "Selected";

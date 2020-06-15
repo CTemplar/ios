@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Networking
 
 class PgpKeysConfigurator {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -17,7 +18,7 @@ class PgpKeysConfigurator {
         presenter.viewController = viewController
         
         let interactor = PgpKeysInteractor()
-        interactor.apiService = appDelegate.applicationManager.apiService
+        interactor.apiService = NetworkManager.shared.apiService
         interactor.viewController = viewController
         interactor.presenter = presenter
         

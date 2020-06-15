@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import Networking
+import Utility
 
 class SettingsConfigurator {
     
@@ -24,7 +26,7 @@ class SettingsConfigurator {
         let interactor = SettingsInteractor()
         interactor.presenter = presenter
         interactor.viewController = viewController
-        interactor.apiService = appDelegate.applicationManager.apiService
+        interactor.apiService = NetworkManager.shared.apiService
         
         presenter.interactor = interactor
         
@@ -34,6 +36,6 @@ class SettingsConfigurator {
         let dataSource = SettingsDataSource()
         viewController.dataSource = dataSource
         
-        dataSource.formatterService = appDelegate.applicationManager.formatterService
+        dataSource.formatterService = UtilityManager.shared.formatterService
     }
 }

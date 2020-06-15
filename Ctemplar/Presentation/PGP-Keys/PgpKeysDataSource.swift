@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Utility
 
 class PgpKeysDatasource: NSObject, UITableViewDelegate, UITableViewDataSource {
     

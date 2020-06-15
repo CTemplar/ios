@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import MGSwipeTableCell
+import Utility
+import Networking
 
 class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate {
     
@@ -56,7 +58,7 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
     func updateMessageStatus(message: EmailMessage, status: Bool) {
         for i in 0..<messagesArray.count {
             if messagesArray[i].messsageID == message.messsageID {
-                messagesArray[i].read = status
+                messagesArray[i].update(readStatus: status)
                 self.tableView.reloadData()
                 break
             }

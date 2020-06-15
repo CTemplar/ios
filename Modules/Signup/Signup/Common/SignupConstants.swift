@@ -1,0 +1,1 @@
+let maxPasswordLength = 10

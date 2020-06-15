@@ -60,7 +60,7 @@ class SignUpPageViewController: UIPageViewController, UIPageViewControllerDataSo
         
         if (completed && finished) {
             let pageContentViewController = pageViewController.viewControllers![0]
-            self.pageControl.currentPage = orderedViewControllers.index(of: pageContentViewController)!
+            self.pageControl.currentPage = orderedViewControllers.firstIndex(of: pageContentViewController)!
         }
     }
     
