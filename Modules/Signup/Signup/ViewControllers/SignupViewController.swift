@@ -63,6 +63,10 @@ class SignupViewController: UIViewController {
         initialUISetup()
     }
     
+    deinit {
+        print("deinit called from \(self.className)")
+    }
+    
     // MARK: - UI
     private func initialUISetup() {
         nextButton.setTitle(Strings.Button.nextButton.localized, for: .normal)

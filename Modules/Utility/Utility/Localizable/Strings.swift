@@ -84,5 +84,6 @@ public enum Strings {
         case invitationCodePlaceholder
         case invalidEnteredEmail
         case validEnteredEmail
+        case minPasswordLengthError
     }
 }

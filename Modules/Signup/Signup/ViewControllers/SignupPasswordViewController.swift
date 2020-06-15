@@ -87,6 +87,10 @@ class SignupPasswordViewController: UIViewController {
         initialUISetup()
     }
     
+    deinit {
+        print("deinit called from \(self.className)")
+    }
+    
     // MARK: - UI
     private func initialUISetup() {
         nextButton.setTitle(Strings.Button.nextButton.localized, for: .normal)
@@ -131,12 +135,14 @@ class SignupPasswordViewController: UIViewController {
     }
     
     func update(by passwordChecker: PasswordChecker) {
+        // Match/Unmatch check
         let image = passwordChecker.image.withRenderingMode(.alwaysTemplate)
         passwordCheckerImageView.image = image
         passwordCheckerImageView.tintColor = passwordChecker.color
         passwordCheckerLabel.text = passwordChecker.text
+                
+        let state = passwordChecker == .matched
         
-        let state = (passwordChecker == .matched && passwordTextField.text?.isEmpty == false && confirmPasswordTextField.text?.isEmpty == false)
         signupPageViewController?.presenter?.changeButtonState(button: nextButton, disabled: state == false)
     }
     

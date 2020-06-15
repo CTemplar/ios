@@ -1,1 +1,2 @@
-let maxPasswordLength = 10
+let maxPasswordLength = 20
+let minPasswordLength = 10

@@ -441,3 +441,4 @@
 "relogin" = "Veuillez essayer de vous reconnecter";
 "passwordMatched" = "Mot de passe correspondant";
 "passwordNotMatched" = "Mot de passe ne correspondant pas";
+"minPasswordLengthError" = "Le mot de passe doit contenir au moins 10 caractères";
