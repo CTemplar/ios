@@ -38,6 +38,10 @@ public class SignupPageViewController: UIPageViewController {
         presenter?.configure(pageControl: &pageControl)
     }
     
+    deinit {
+        print("deinit called from \(self.className)")
+    }
+    
     // MARK: - Setup Viper Stack
     func setup(presenter: SignupPresenter) {
         self.presenter = presenter

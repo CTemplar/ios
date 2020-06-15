@@ -161,17 +161,26 @@ final class SignupPresenter {
     
     // MARK: - Password Handler
     func setupPasswordsNextButtonState(childViewController: SignupPasswordViewController, sender: UITextField) {
-        guard formatter.validatePasswordLench(enteredPassword: sender.text ?? "") == true,
-            formatter.validatePasswordFormat(enteredPassword: sender.text ?? "") == true else {
+        let pwd = sender.text ?? ""
+        
+        // Length check
+        guard formatter.validatePasswordLench(enteredPassword: pwd) == true,
+            formatter.validatePasswordFormat(enteredPassword: pwd) == true else {
             childViewController.update(by: .wrongFormat)
             return
         }
         
+        // Minimum Characters check
+        guard pwd.count >= minPasswordLength else {
+            childViewController.update(by: .minLength)
+            return
+        }
+                
         switch sender {
         case childViewController.passwordTextField:
-            originalPassword = sender.text ?? ""
+            originalPassword = pwd
         case (childViewController.confirmPasswordTextField)!:
-            confirmPassword = sender.text ?? ""
+            confirmPassword = pwd
         default:
             DPrint("unknown textfield")
         }

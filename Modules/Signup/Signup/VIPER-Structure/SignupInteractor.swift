@@ -31,6 +31,7 @@ enum PasswordChecker {
     case matched
     case unMatched
     case wrongFormat
+    case minLength
     
     var image: UIImage {
         if #available(iOS 13.0, *) {
@@ -44,7 +45,7 @@ enum PasswordChecker {
     }
     
     var text: String {
-        return self == .some(PasswordChecker.matched) ? Strings.Signup.passwordMatched.localized : self == .some(PasswordChecker.unMatched) ? Strings.Signup.passwordNotMatched.localized : Strings.Signup.invalidEnteredPassword.localized
+        return self == .some(PasswordChecker.matched) ? Strings.Signup.passwordMatched.localized : self == .some(PasswordChecker.unMatched) ? Strings.Signup.passwordNotMatched.localized : self == .some(PasswordChecker.minLength) ? Strings.Signup.minPasswordLengthError.localized : Strings.Signup.invalidEnteredPassword.localized
     }
     
     var color: UIColor? {

@@ -443,4 +443,4 @@
 "relogin" = "Please try to login back";
 "passwordMatched" = "Password Matched";
 "passwordNotMatched" = "Password Not Matched";
-
+"minPasswordLengthError" = "Password should be at least 10 characters";

@@ -417,3 +417,4 @@
 "relogin" = "Skúste sa prihlásiť späť";
 "passwordMatched" = "Heslo sa zhoduje";
 "passwordNotMatched" = "Heslo sa nezhoduje";
+"minPasswordLengthError" = "Heslo by malo mať najmenej 10 znakov";

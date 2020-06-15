@@ -91,6 +91,10 @@ class SignupRecoveryEmailViewController: UIViewController {
         setupAttributesForTextView()
     }
     
+    deinit {
+        print("deinit called from \(self.className)")
+    }
+    
     // MARK: - UI
     private func initialUISetup() {
         nextButton.setTitle(Strings.Signup.createAccount.localized, for: .normal)
