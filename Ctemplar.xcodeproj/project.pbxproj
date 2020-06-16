@@ -148,15 +148,6 @@
 		843E973D2163703100147CBE /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973C2163703100147CBE /* LoginPresenter.swift */; };
 		843FBF17216E3D2400148FC1 /* Login-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843FBF16216E3D2400148FC1 /* Login-iPad.storyboard */; };
 		843FBF19216E4FE500148FC1 /* DeviceScreenConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FBF18216E4FE500148FC1 /* DeviceScreenConstants.swift */; };
-		843FC3862164C9EE000CFEA9 /* SignUpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3852164C9EE000CFEA9 /* SignUpPageViewController.swift */; };
-		843FC3882164CA0D000CFEA9 /* SignUpConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3872164CA0D000CFEA9 /* SignUpConfigurator.swift */; };
-		843FC38A2164CA1A000CFEA9 /* SignUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3892164CA1A000CFEA9 /* SignUpRouter.swift */; };
-		843FC38C2164CA27000CFEA9 /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC38B2164CA27000CFEA9 /* SignUpPresenter.swift */; };
-		843FC38E2164CA35000CFEA9 /* SignUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC38D2164CA35000CFEA9 /* SignUpInteractor.swift */; };
-		843FC3902164CBFA000CFEA9 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843FC38F2164CBFA000CFEA9 /* SignUp.storyboard */; };
-		843FC3932164D1B2000CFEA9 /* SignUpPageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3922164D1B2000CFEA9 /* SignUpPageName.swift */; };
-		843FC3952164D1E3000CFEA9 /* SignUpPagePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3942164D1E3000CFEA9 /* SignUpPagePassword.swift */; };
-		843FC3972164D20E000CFEA9 /* SignUpPageEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3962164D20E000CFEA9 /* SignUpPageEmail.swift */; };
 		8440141121D34A8100FC450C /* SetMailbox.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8440141021D34A8100FC450C /* SetMailbox.storyboard */; };
 		8440141321D34A9600FC450C /* SetMailboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440141221D34A9600FC450C /* SetMailboxViewController.swift */; };
 		8440141521D35D5200FC450C /* UserMailboxBigTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440141421D35D5200FC450C /* UserMailboxBigTableViewCell.swift */; };
@@ -207,7 +198,6 @@
 		844655BC218C264200B2F2E4 /* MoreActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F348532181B20C00F00E37 /* MoreActionsView.swift */; };
 		844655BD218C264E00B2F2E4 /* MoreActions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F348552181B21C00F00E37 /* MoreActions.xib */; };
 		844F4B5A216B3A380057C758 /* UserPGPKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F4B59216B3A380057C758 /* UserPGPKey.swift */; };
-		84510A4321F5A76F00912328 /* SignUp-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84510A4221F5A76F00912328 /* SignUp-iPad.storyboard */; };
 		84510A4521F5C3EA00912328 /* ForgotPassword-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84510A4421F5C3EA00912328 /* ForgotPassword-iPad.storyboard */; };
 		8451BEB421D5FD03009B1C8C /* AddContactToWhiteBlackListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451BEB321D5FD03009B1C8C /* AddContactToWhiteBlackListViewController.swift */; };
 		8451BEB621D5FD16009B1C8C /* AddContactToWhiteBlackList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8451BEB521D5FD16009B1C8C /* AddContactToWhiteBlackList.storyboard */; };
@@ -257,13 +247,11 @@
 		CC6908AA2384500100956E9B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84525F12219549B100CA732E /* SearchViewController.swift */; };
 		CC6908AB2384500100956E9B /* SchedulerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8435900521C287EB00F7D34D /* SchedulerViewController.swift */; };
 		CC6908AD2384500100956E9B /* ComposeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84405BB321AD0CB20048D8AC /* ComposeRouter.swift */; };
-		CC6908AF2384500100956E9B /* SignUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC38D2164CA35000CFEA9 /* SignUpInteractor.swift */; };
 		CC6908B02384500100956E9B /* ManageFoldersConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440466E21C7F84000CDEB3F /* ManageFoldersConfigurator.swift */; };
 		CC6908B12384500100956E9B /* InboxSideMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8430429B217D9D3F00DB5787 /* InboxSideMenuPresenter.swift */; };
 		CC6908B22384500100956E9B /* ComposeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84405BB721AD0CCB0048D8AC /* ComposeInteractor.swift */; };
 		CC6908B32384500100956E9B /* ManageFoldersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440467421C7F86700CDEB3F /* ManageFoldersInteractor.swift */; };
 		CC6908B42384500100956E9B /* UserMailboxBigTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440141421D35D5200FC450C /* UserMailboxBigTableViewCell.swift */; };
-		CC6908B52384500100956E9B /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC38B2164CA27000CFEA9 /* SignUpPresenter.swift */; };
 		CC6908B62384500100956E9B /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8432870A21D2036A00A66DBF /* ChangePasswordViewController.swift */; };
 		CC6908B72384500100956E9B /* InboxSideMenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8430429F217D9D5D00DB5787 /* InboxSideMenuDataSource.swift */; };
 		CC6908B82384500100956E9B /* ContactsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D9B3219C4E1200D2C3A5 /* ContactsPresenter.swift */; };
@@ -293,7 +281,6 @@
 		CC6908D82384500100956E9B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF1B216201A300C57DC8 /* MainViewController.swift */; };
 		CC6908D92384500100956E9B /* ManageFoldersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440467021C7F84C00CDEB3F /* ManageFoldersRouter.swift */; };
 		CC6908DA2384500100956E9B /* SearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84525F1E2195690A00CA732E /* SearchDataSource.swift */; };
-		CC6908DB2384500100956E9B /* SignUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3892164CA1A000CFEA9 /* SignUpRouter.swift */; };
 		CC6908DC2384500100956E9B /* PrivacyAndTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440141B21D377E400FC450C /* PrivacyAndTermsViewController.swift */; };
 		CC6908DD2384500100956E9B /* WhiteBlackListsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E1DCB21D4CBF6001B89D6 /* WhiteBlackListsInteractor.swift */; };
 		CC6908DE2384500100956E9B /* ForgotPasswordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A62E542175CDFB009C38E5 /* ForgotPasswordInteractor.swift */; };
@@ -314,7 +301,6 @@
 		CC6908EF2384500100956E9B /* UserPGPKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F4B59216B3A380057C758 /* UserPGPKey.swift */; };
 		CC6908F02384500100956E9B /* InboxSideMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84304299217D9D2D00DB5787 /* InboxSideMenuRouter.swift */; };
 		CC6908F12384500100956E9B /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E973C2163703100147CBE /* LoginPresenter.swift */; };
-		CC6908F22384500100956E9B /* SignUpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3852164C9EE000CFEA9 /* SignUpPageViewController.swift */; };
 		CC6908F42384500100956E9B /* WhiteBlackListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E1DC121D49BCA001B89D6 /* WhiteBlackListsViewController.swift */; };
 		CC6908F52384500100956E9B /* EditFolderConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443D21421CB6AC4002AD54B /* EditFolderConfigurator.swift */; };
 		CC6908F62384500100956E9B /* DeviceScreenConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FBF18216E4FE500148FC1 /* DeviceScreenConstants.swift */; };
@@ -326,18 +312,15 @@
 		CC6908FD2384500100956E9B /* SavingContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440141E21D39F7700FC450C /* SavingContactsViewController.swift */; };
 		CC6908FE2384500100956E9B /* SetMailboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440141221D34A9600FC450C /* SetMailboxViewController.swift */; };
 		CC6908FF2384500100956E9B /* SettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443D22521CBDD88002AD54B /* SettingsDataSource.swift */; };
-		CC6909002384500100956E9B /* SignUpPagePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3942164D1E3000CFEA9 /* SignUpPagePassword.swift */; };
 		CC6909012384500100956E9B /* SelectLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451BEBA21D60F9F009B1C8C /* SelectLanguageViewController.swift */; };
 		CC6909022384500100956E9B /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E643D2170A46C008612FE /* ComposeViewController.swift */; };
 		CC6909032384500100956E9B /* InboxPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84356864216F2E0D002101D3 /* InboxPresenter.swift */; };
 		CC6909042384500100956E9B /* AddFolderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84344D3E21CA8A0900A5D9A0 /* AddFolderInteractor.swift */; };
 		CC6909052384500100956E9B /* InboxFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433A539218974B5008E1C85 /* InboxFilterView.swift */; };
-		CC6909062384500100956E9B /* SignUpPageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3922164D1B2000CFEA9 /* SignUpPageName.swift */; };
 		CC6909072384500100956E9B /* ContactsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D9AF219C4DF500D2C3A5 /* ContactsConfigurator.swift */; };
 		CC6909082384500100956E9B /* MoveToPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8402498B2191A00100CDDB0F /* MoveToPresenter.swift */; };
 		CC6909092384500100956E9B /* ManageFoldersDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440467621C7F87300CDEB3F /* ManageFoldersDataSource.swift */; };
 		CC69090A2384500100956E9B /* ViewInboxEmailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84312189218AF80E0014560D /* ViewInboxEmailRouter.swift */; };
-		CC69090B2384500100956E9B /* SignUpConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3872164CA0D000CFEA9 /* SignUpConfigurator.swift */; };
 		CC69090C2384500100956E9B /* SecurityInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84092FB42330C5D0002E2718 /* SecurityInteractor.swift */; };
 		CC69090D2384500100956E9B /* InboxSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E64382170849C008612FE /* InboxSideMenuViewController.swift */; };
 		CC69090E2384500100956E9B /* Captcha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BB2E4D230ADB4C00E9C162 /* Captcha.swift */; };
@@ -386,7 +369,6 @@
 		CC69093C2384500100956E9B /* UpgradeToPrimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443CBE421F052B100B71FF6 /* UpgradeToPrimeView.swift */; };
 		CC69093D2384500100956E9B /* InboxMessageTablelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843207142178C75000F18E5A /* InboxMessageTablelViewCell.swift */; };
 		CC69093E2384500100956E9B /* AddFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84344D3321CA30AD00A5D9A0 /* AddFolderViewController.swift */; };
-		CC69093F2384500100956E9B /* SignUpPageEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FC3962164D20E000CFEA9 /* SignUpPageEmail.swift */; };
 		CC6909402384500100956E9B /* MoveToDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8402498F2191A02800CDDB0F /* MoveToDataSource.swift */; };
 		CC6909412384500100956E9B /* WhiteBlackListsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E1DC521D4CBCA001B89D6 /* WhiteBlackListsConfigurator.swift */; };
 		CC6909422384500100956E9B /* ContactsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D9B1219C4E0200D2C3A5 /* ContactsRouter.swift */; };
@@ -414,7 +396,6 @@
 		CC69095C2384500100956E9B /* Attachment.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441559421BF8CF90053C39F /* Attachment.xib */; };
 		CC69095D2384500100956E9B /* ForgotPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843710402174661000DAE4BA /* ForgotPassword.storyboard */; };
 		CC69095E2384500100956E9B /* AddFolder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84344D3521CA30BA00A5D9A0 /* AddFolder.storyboard */; };
-		CC69095F2384500100956E9B /* SignUp-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84510A4221F5A76F00912328 /* SignUp-iPad.storyboard */; };
 		CC6909602384500100956E9B /* AttachmentCollcetionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441228221A6823F00B56857 /* AttachmentCollcetionViewCell.xib */; };
 		CC6909612384500100956E9B /* InboxSideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845E643A21709330008612FE /* InboxSideMenu.storyboard */; };
 		CC6909622384500100956E9B /* SetMailbox.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8440141021D34A8100FC450C /* SetMailbox.storyboard */; };
@@ -452,7 +433,6 @@
 		CC6909822384500100956E9B /* UserMailboxBigTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8440141621D35D5D00FC450C /* UserMailboxBigTableViewCell.xib */; };
 		CC6909832384500100956E9B /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84525F14219549C100CA732E /* Search.storyboard */; };
 		CC6909842384500100956E9B /* ContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FF7E3D219DB7E600E3E56A /* ContactTableViewCell.xib */; };
-		CC6909852384500100956E9B /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843FC38F2164CBFA000CFEA9 /* SignUp.storyboard */; };
 		CC6909862384500100956E9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF20216201A500C57DC8 /* Assets.xcassets */; };
 		CC6909872384500100956E9B /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 843E972C2163494400147CBE /* Lato-Regular.ttf */; };
 		CC6909882384500100956E9B /* CustomFolderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840249832191758D00CDDB0F /* CustomFolderTableViewCell.xib */; };
@@ -796,15 +776,6 @@
 		843FBF16216E3D2400148FC1 /* Login-iPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Login-iPad.storyboard"; sourceTree = "<group>"; };
 		843FBF18216E4FE500148FC1 /* DeviceScreenConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceScreenConstants.swift; sourceTree = "<group>"; };
 		843FC3832164C320000CFEA9 /* Ctemplar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ctemplar.entitlements; sourceTree = "<group>"; };
-		843FC3852164C9EE000CFEA9 /* SignUpPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageViewController.swift; sourceTree = "<group>"; };
-		843FC3872164CA0D000CFEA9 /* SignUpConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpConfigurator.swift; sourceTree = "<group>"; };
-		843FC3892164CA1A000CFEA9 /* SignUpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRouter.swift; sourceTree = "<group>"; };
-		843FC38B2164CA27000CFEA9 /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
-		843FC38D2164CA35000CFEA9 /* SignUpInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInteractor.swift; sourceTree = "<group>"; };
-		843FC38F2164CBFA000CFEA9 /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
-		843FC3922164D1B2000CFEA9 /* SignUpPageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageName.swift; sourceTree = "<group>"; };
-		843FC3942164D1E3000CFEA9 /* SignUpPagePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPagePassword.swift; sourceTree = "<group>"; };
-		843FC3962164D20E000CFEA9 /* SignUpPageEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageEmail.swift; sourceTree = "<group>"; };
 		8440141021D34A8100FC450C /* SetMailbox.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetMailbox.storyboard; sourceTree = "<group>"; };
 		8440141221D34A9600FC450C /* SetMailboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetMailboxViewController.swift; sourceTree = "<group>"; };
 		8440141421D35D5200FC450C /* UserMailboxBigTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMailboxBigTableViewCell.swift; sourceTree = "<group>"; };
@@ -853,7 +824,6 @@
 		8443D22521CBDD88002AD54B /* SettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDataSource.swift; sourceTree = "<group>"; };
 		8443D22721CBDFEC002AD54B /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		844F4B59216B3A380057C758 /* UserPGPKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPGPKey.swift; sourceTree = "<group>"; };
-		84510A4221F5A76F00912328 /* SignUp-iPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "SignUp-iPad.storyboard"; sourceTree = "<group>"; };
 		84510A4421F5C3EA00912328 /* ForgotPassword-iPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "ForgotPassword-iPad.storyboard"; sourceTree = "<group>"; };
 		8451BEB321D5FD03009B1C8C /* AddContactToWhiteBlackListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactToWhiteBlackListViewController.swift; sourceTree = "<group>"; };
 		8451BEB521D5FD16009B1C8C /* AddContactToWhiteBlackList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddContactToWhiteBlackList.storyboard; sourceTree = "<group>"; };
@@ -1374,7 +1344,6 @@
 				8432070C21785E0D00F18E5A /* TableCells */,
 				843E972D21634E4800147CBE /* LaunchScreen */,
 				843E973021635BC700147CBE /* LoginScreen */,
-				843FC3842164C9CC000CFEA9 /* SignUpScreens */,
 				8437103B217464B600DAE4BA /* ForgotPasswordsScreens */,
 				844F4B58216B330E0057C758 /* MainViewController */,
 				84356857216F2702002101D3 /* InboxScreen */,
@@ -1541,31 +1510,6 @@
 				843FBF16216E3D2400148FC1 /* Login-iPad.storyboard */,
 			);
 			path = LoginScreen;
-			sourceTree = "<group>";
-		};
-		843FC3842164C9CC000CFEA9 /* SignUpScreens */ = {
-			isa = PBXGroup;
-			children = (
-				843FC3912164D093000CFEA9 /* SignUpScreenPages */,
-				843FC3852164C9EE000CFEA9 /* SignUpPageViewController.swift */,
-				843FC3872164CA0D000CFEA9 /* SignUpConfigurator.swift */,
-				843FC3892164CA1A000CFEA9 /* SignUpRouter.swift */,
-				843FC38B2164CA27000CFEA9 /* SignUpPresenter.swift */,
-				843FC38D2164CA35000CFEA9 /* SignUpInteractor.swift */,
-				843FC38F2164CBFA000CFEA9 /* SignUp.storyboard */,
-				84510A4221F5A76F00912328 /* SignUp-iPad.storyboard */,
-			);
-			path = SignUpScreens;
-			sourceTree = "<group>";
-		};
-		843FC3912164D093000CFEA9 /* SignUpScreenPages */ = {
-			isa = PBXGroup;
-			children = (
-				843FC3922164D1B2000CFEA9 /* SignUpPageName.swift */,
-				843FC3942164D1E3000CFEA9 /* SignUpPagePassword.swift */,
-				843FC3962164D20E000CFEA9 /* SignUpPageEmail.swift */,
-			);
-			path = SignUpScreenPages;
 			sourceTree = "<group>";
 		};
 		8440140F21D34A6500FC450C /* SetMailbox */ = {
@@ -2171,7 +2115,6 @@
 				E399BBF023E87AFA00EEA708 /* justify_left@2x.png in Resources */,
 				843710412174661000DAE4BA /* ForgotPassword.storyboard in Resources */,
 				84344D3621CA30BA00A5D9A0 /* AddFolder.storyboard in Resources */,
-				84510A4321F5A76F00912328 /* SignUp-iPad.storyboard in Resources */,
 				8441228321A6823F00B56857 /* AttachmentCollcetionViewCell.xib in Resources */,
 				E399BBCE23E87AFA00EEA708 /* undo.png in Resources */,
 				845E643B21709330008612FE /* InboxSideMenu.storyboard in Resources */,
@@ -2247,7 +2190,6 @@
 				84FF7E3E219DB7E600E3E56A /* ContactTableViewCell.xib in Resources */,
 				E399BBA223E87AFA00EEA708 /* clear.png in Resources */,
 				E399BB9423E87AFA00EEA708 /* bold.png in Resources */,
-				843FC3902164CBFA000CFEA9 /* SignUp.storyboard in Resources */,
 				E399BB9823E87AFA00EEA708 /* unordered_list@2x.png in Resources */,
 				E399BBC223E87AFA00EEA708 /* h3.png in Resources */,
 				8433FF21216201A500C57DC8 /* Assets.xcassets in Resources */,
@@ -2309,7 +2251,6 @@
 				E399BBF123E87AFA00EEA708 /* justify_left@2x.png in Resources */,
 				CC69095D2384500100956E9B /* ForgotPassword.storyboard in Resources */,
 				CC69095E2384500100956E9B /* AddFolder.storyboard in Resources */,
-				CC69095F2384500100956E9B /* SignUp-iPad.storyboard in Resources */,
 				CC6909602384500100956E9B /* AttachmentCollcetionViewCell.xib in Resources */,
 				E399BBCF23E87AFA00EEA708 /* undo.png in Resources */,
 				CC6909612384500100956E9B /* InboxSideMenu.storyboard in Resources */,
@@ -2383,7 +2324,6 @@
 				CC6909842384500100956E9B /* ContactTableViewCell.xib in Resources */,
 				E399BBA323E87AFA00EEA708 /* clear.png in Resources */,
 				E399BB9523E87AFA00EEA708 /* bold.png in Resources */,
-				CC6909852384500100956E9B /* SignUp.storyboard in Resources */,
 				E399BB9923E87AFA00EEA708 /* unordered_list@2x.png in Resources */,
 				444BD51824955D3E001D0C5F /* FAQ.storyboard in Resources */,
 				E399BBC323E87AFA00EEA708 /* h3.png in Resources */,
@@ -2538,14 +2478,12 @@
 				84405BB421AD0CB20048D8AC /* ComposeRouter.swift in Sources */,
 				E35F5E9F2413772B003C4281 /* PgpKeysViewController.swift in Sources */,
 				4497F1E2248BE50D00AF83F5 /* FAQRouter.swift in Sources */,
-				843FC38E2164CA35000CFEA9 /* SignUpInteractor.swift in Sources */,
 				8440466F21C7F84000CDEB3F /* ManageFoldersConfigurator.swift in Sources */,
 				8430429C217D9D3F00DB5787 /* InboxSideMenuPresenter.swift in Sources */,
 				84405BB821AD0CCB0048D8AC /* ComposeInteractor.swift in Sources */,
 				E3E22E5024398E6C00DCE5B7 /* SlideMenuController.swift in Sources */,
 				8440467521C7F86700CDEB3F /* ManageFoldersInteractor.swift in Sources */,
 				8440141521D35D5200FC450C /* UserMailboxBigTableViewCell.swift in Sources */,
-				843FC38C2164CA27000CFEA9 /* SignUpPresenter.swift in Sources */,
 				8432870B21D2036A00A66DBF /* ChangePasswordViewController.swift in Sources */,
 				843042A0217D9D5D00DB5787 /* InboxSideMenuDataSource.swift in Sources */,
 				8434D9B4219C4E1200D2C3A5 /* ContactsPresenter.swift in Sources */,
@@ -2581,7 +2519,6 @@
 				8433FF1C216201A300C57DC8 /* MainViewController.swift in Sources */,
 				8440467121C7F84C00CDEB3F /* ManageFoldersRouter.swift in Sources */,
 				84525F1F2195690A00CA732E /* SearchDataSource.swift in Sources */,
-				843FC38A2164CA1A000CFEA9 /* SignUpRouter.swift in Sources */,
 				8440141C21D377E400FC450C /* PrivacyAndTermsViewController.swift in Sources */,
 				843E1DCC21D4CBF6001B89D6 /* WhiteBlackListsInteractor.swift in Sources */,
 				84A62E552175CDFB009C38E5 /* ForgotPasswordInteractor.swift in Sources */,
@@ -2604,7 +2541,6 @@
 				844F4B5A216B3A380057C758 /* UserPGPKey.swift in Sources */,
 				8430429A217D9D2D00DB5787 /* InboxSideMenuRouter.swift in Sources */,
 				843E973D2163703100147CBE /* LoginPresenter.swift in Sources */,
-				843FC3862164C9EE000CFEA9 /* SignUpPageViewController.swift in Sources */,
 				843E1DC221D49BCA001B89D6 /* WhiteBlackListsViewController.swift in Sources */,
 				8443D21521CB6AC4002AD54B /* EditFolderConfigurator.swift in Sources */,
 				843FBF19216E4FE500148FC1 /* DeviceScreenConstants.swift in Sources */,
@@ -2617,20 +2553,17 @@
 				8440141F21D39F7700FC450C /* SavingContactsViewController.swift in Sources */,
 				8440141321D34A9600FC450C /* SetMailboxViewController.swift in Sources */,
 				8443D22621CBDD88002AD54B /* SettingsDataSource.swift in Sources */,
-				843FC3952164D1E3000CFEA9 /* SignUpPagePassword.swift in Sources */,
 				8451BEBB21D60F9F009B1C8C /* SelectLanguageViewController.swift in Sources */,
 				845E643E2170A46C008612FE /* ComposeViewController.swift in Sources */,
 				84356865216F2E0D002101D3 /* InboxPresenter.swift in Sources */,
 				84344D3F21CA8A0900A5D9A0 /* AddFolderInteractor.swift in Sources */,
 				8433A53A218974B5008E1C85 /* InboxFilterView.swift in Sources */,
-				843FC3932164D1B2000CFEA9 /* SignUpPageName.swift in Sources */,
 				8434D9B0219C4DF500D2C3A5 /* ContactsConfigurator.swift in Sources */,
 				4497F1D8248BDF4000AF83F5 /* FAQViewController.swift in Sources */,
 				8402498C2191A00100CDDB0F /* MoveToPresenter.swift in Sources */,
 				E399BC0223E87AFA00EEA708 /* RichEditorToolbar.swift in Sources */,
 				8440467721C7F87300CDEB3F /* ManageFoldersDataSource.swift in Sources */,
 				8431218A218AF80E0014560D /* ViewInboxEmailRouter.swift in Sources */,
-				843FC3882164CA0D000CFEA9 /* SignUpConfigurator.swift in Sources */,
 				E399BB8623E87AFA00EEA708 /* RichEditorView.swift in Sources */,
 				E399BC0423E87AFA00EEA708 /* RichEditorOptionItem.swift in Sources */,
 				84092FB52330C5D0002E2718 /* SecurityInteractor.swift in Sources */,
@@ -2687,7 +2620,6 @@
 				843207152178C75000F18E5A /* InboxMessageTablelViewCell.swift in Sources */,
 				84344D3421CA30AD00A5D9A0 /* AddFolderViewController.swift in Sources */,
 				E35F5EAB2414CEF0003C4281 /* PgpKeysDataSource.swift in Sources */,
-				843FC3972164D20E000CFEA9 /* SignUpPageEmail.swift in Sources */,
 				840249902191A02800CDDB0F /* MoveToDataSource.swift in Sources */,
 				843E1DC621D4CBCA001B89D6 /* WhiteBlackListsConfigurator.swift in Sources */,
 				8434D9B2219C4E0200D2C3A5 /* ContactsRouter.swift in Sources */,
@@ -2707,14 +2639,12 @@
 				CC6908AB2384500100956E9B /* SchedulerViewController.swift in Sources */,
 				CC6908AD2384500100956E9B /* ComposeRouter.swift in Sources */,
 				E35F5EA02413772B003C4281 /* PgpKeysViewController.swift in Sources */,
-				CC6908AF2384500100956E9B /* SignUpInteractor.swift in Sources */,
 				CC6908B02384500100956E9B /* ManageFoldersConfigurator.swift in Sources */,
 				CC6908B12384500100956E9B /* InboxSideMenuPresenter.swift in Sources */,
 				CC6908B22384500100956E9B /* ComposeInteractor.swift in Sources */,
 				E3E22E5124398E6C00DCE5B7 /* SlideMenuController.swift in Sources */,
 				CC6908B32384500100956E9B /* ManageFoldersInteractor.swift in Sources */,
 				CC6908B42384500100956E9B /* UserMailboxBigTableViewCell.swift in Sources */,
-				CC6908B52384500100956E9B /* SignUpPresenter.swift in Sources */,
 				CC6908B62384500100956E9B /* ChangePasswordViewController.swift in Sources */,
 				CC6908B72384500100956E9B /* InboxSideMenuDataSource.swift in Sources */,
 				CC6908B82384500100956E9B /* ContactsPresenter.swift in Sources */,
@@ -2748,7 +2678,6 @@
 				CC6908D82384500100956E9B /* MainViewController.swift in Sources */,
 				CC6908D92384500100956E9B /* ManageFoldersRouter.swift in Sources */,
 				CC6908DA2384500100956E9B /* SearchDataSource.swift in Sources */,
-				CC6908DB2384500100956E9B /* SignUpRouter.swift in Sources */,
 				CC6908DC2384500100956E9B /* PrivacyAndTermsViewController.swift in Sources */,
 				CC6908DD2384500100956E9B /* WhiteBlackListsInteractor.swift in Sources */,
 				CC6908DE2384500100956E9B /* ForgotPasswordInteractor.swift in Sources */,
@@ -2771,7 +2700,6 @@
 				CC6908EF2384500100956E9B /* UserPGPKey.swift in Sources */,
 				CC6908F02384500100956E9B /* InboxSideMenuRouter.swift in Sources */,
 				CC6908F12384500100956E9B /* LoginPresenter.swift in Sources */,
-				CC6908F22384500100956E9B /* SignUpPageViewController.swift in Sources */,
 				444BD51C24955D4C001D0C5F /* FAQRouter.swift in Sources */,
 				444BD51B24955D49001D0C5F /* FAQPresenter.swift in Sources */,
 				CC6908F42384500100956E9B /* WhiteBlackListsViewController.swift in Sources */,
@@ -2786,20 +2714,17 @@
 				CC6908FD2384500100956E9B /* SavingContactsViewController.swift in Sources */,
 				CC6908FE2384500100956E9B /* SetMailboxViewController.swift in Sources */,
 				CC6908FF2384500100956E9B /* SettingsDataSource.swift in Sources */,
-				CC6909002384500100956E9B /* SignUpPagePassword.swift in Sources */,
 				CC6909012384500100956E9B /* SelectLanguageViewController.swift in Sources */,
 				CC6909022384500100956E9B /* ComposeViewController.swift in Sources */,
 				CC6909032384500100956E9B /* InboxPresenter.swift in Sources */,
 				CC6909042384500100956E9B /* AddFolderInteractor.swift in Sources */,
 				CC6909052384500100956E9B /* InboxFilterView.swift in Sources */,
-				CC6909062384500100956E9B /* SignUpPageName.swift in Sources */,
 				CC6909072384500100956E9B /* ContactsConfigurator.swift in Sources */,
 				CC6909082384500100956E9B /* MoveToPresenter.swift in Sources */,
 				E399BC0323E87AFA00EEA708 /* RichEditorToolbar.swift in Sources */,
 				CC6909092384500100956E9B /* ManageFoldersDataSource.swift in Sources */,
 				444BD51924955D43001D0C5F /* FAQConfigurator.swift in Sources */,
 				CC69090A2384500100956E9B /* ViewInboxEmailRouter.swift in Sources */,
-				CC69090B2384500100956E9B /* SignUpConfigurator.swift in Sources */,
 				E399BB8723E87AFA00EEA708 /* RichEditorView.swift in Sources */,
 				E399BC0523E87AFA00EEA708 /* RichEditorOptionItem.swift in Sources */,
 				CC69090C2384500100956E9B /* SecurityInteractor.swift in Sources */,
@@ -2855,7 +2780,6 @@
 				CC69093C2384500100956E9B /* UpgradeToPrimeView.swift in Sources */,
 				CC69093D2384500100956E9B /* InboxMessageTablelViewCell.swift in Sources */,
 				CC69093E2384500100956E9B /* AddFolderViewController.swift in Sources */,
-				CC69093F2384500100956E9B /* SignUpPageEmail.swift in Sources */,
 				E35F5EAC2414CEF0003C4281 /* PgpKeysDataSource.swift in Sources */,
 				CC6909402384500100956E9B /* MoveToDataSource.swift in Sources */,
 				E322133E2402DA58002E3CAD /* MoveToDelegate.swift in Sources */,
