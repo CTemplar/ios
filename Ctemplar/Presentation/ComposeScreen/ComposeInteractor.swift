@@ -132,7 +132,7 @@ class ComposeInteractor {
  
                 if send {
                     self.mailWasSent()
-                    self.viewController?.showBannerAgain(withUpdatedText: "mailSendMessage".localized(),
+                    self.viewController?.showBannerAgain(withUpdatedText: Strings.Banner.mailSendMessage.localized,
                                            additionalConfigs: [.displayDuration(2.0),
                                                                .showButton(true)]
                     )
@@ -143,7 +143,12 @@ class ComposeInteractor {
                 
             case .failure(let error):
                 print("updateSendingMessage error:", error)
-                self.viewController?.showAlert(with: "Send Mail Error",
+                self.viewController?.showBannerAgain(withUpdatedText: Strings.Banner.sendMailError.localized,
+                                       additionalConfigs: [.displayDuration(2.0),
+                                                           .showButton(true)]
+                )
+                
+                self.viewController?.showAlert(with: Strings.Banner.sendMailError.localized,
                                                message: error.localizedDescription,
                                                buttonTitle: Strings.Button.closeButton.localized)
             }
@@ -337,7 +342,7 @@ class ComposeInteractor {
     func prepareMessadgeToSend() {
         self.viewController?.view.endEditing(true)
         self.viewController?.navigationController?.popViewController(animated: true)
-        self.viewController?.showBanner(withTitle: "mailSendingAlert".localized(),
+        self.viewController?.showBanner(withTitle: Strings.Banner.mailSendingAlert.localized,
                                         additionalConfigs: [.displayDuration(.infinity),
                                        .showButton(false)]
         )

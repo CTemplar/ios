@@ -179,9 +179,11 @@
 "subject" = "Тема: ";
 
 "infoTitle" = "Информация:";
+
+// Banner
 "mailSendMessage" = "Мел св. Сусассуфули.";
 "mailSendingAlert" = "Отправка почты…";
-
+"sendMailError" = "Не удалось отправить письмо, попробуйте позже";
 
 "saveDraft" = "Сохранить черновик";
 "discardDraft" = "Удалить черновик";

@@ -368,10 +368,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BoK-ey-VeF">
-                                                                <rect key="frame" x="312" y="11" width="44" height="22"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="44" id="Gij-f8-oPB"/>
-                                                                </constraints>
+                                                                <rect key="frame" x="312" y="0.0" width="44" height="44"/>
                                                                 <state key="normal" image="DarkEyeOnIcon"/>
                                                                 <state key="selected" image="DarkEyeIcon"/>
                                                                 <connections>
@@ -387,6 +384,7 @@
                                                             <constraint firstItem="Hy4-rC-gjc" firstAttribute="width" secondItem="SAL-ZC-Omy" secondAttribute="width" multiplier="0.842697" id="ezs-nh-mvB"/>
                                                             <constraint firstItem="Hy4-rC-gjc" firstAttribute="leading" secondItem="SAL-ZC-Omy" secondAttribute="leading" id="m8V-am-fbP"/>
                                                             <constraint firstAttribute="height" secondItem="Hy4-rC-gjc" secondAttribute="height" multiplier="1.13636" id="tAD-9a-sxd"/>
+                                                            <constraint firstItem="BoK-ey-VeF" firstAttribute="top" secondItem="Hy4-rC-gjc" secondAttribute="top" id="tf2-oY-bZ5"/>
                                                             <constraint firstItem="Hy4-rC-gjc" firstAttribute="top" secondItem="SAL-ZC-Omy" secondAttribute="top" id="toz-k6-4SN"/>
                                                         </constraints>
                                                     </view>
@@ -432,10 +430,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bux-YL-Dbi">
-                                                                <rect key="frame" x="312" y="11" width="44" height="22"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="44" id="wnB-Xf-OiQ"/>
-                                                                </constraints>
+                                                                <rect key="frame" x="312" y="0.0" width="44" height="44"/>
                                                                 <state key="normal" image="DarkEyeOnIcon"/>
                                                                 <state key="selected" image="DarkEyeIcon"/>
                                                                 <connections>
@@ -446,6 +441,7 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="SWw-5v-Wx1" firstAttribute="top" secondItem="W7b-m0-1k7" secondAttribute="top" id="9a1-iJ-W2L"/>
+                                                            <constraint firstItem="Bux-YL-Dbi" firstAttribute="top" secondItem="SWw-5v-Wx1" secondAttribute="top" id="AUe-Go-KjF"/>
                                                             <constraint firstAttribute="height" secondItem="SWw-5v-Wx1" secondAttribute="height" multiplier="1.13636" id="TbV-yt-uAN"/>
                                                             <constraint firstAttribute="trailing" secondItem="Bux-YL-Dbi" secondAttribute="trailing" id="Vu5-Mt-P80"/>
                                                             <constraint firstItem="Bux-YL-Dbi" firstAttribute="leading" secondItem="SWw-5v-Wx1" secondAttribute="trailing" constant="8" id="Zd5-ia-Z8l"/>

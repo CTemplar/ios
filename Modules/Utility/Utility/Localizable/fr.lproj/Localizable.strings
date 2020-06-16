@@ -180,9 +180,11 @@
 "subject" = "Objet : ";
 
 "infoTitle" = "Confirmation :";
+
+// Banner
 "mailSendMessage" = "Courrier envoyé avec succès.";
 "mailSendingAlert" = "Envoi de mail…";
-
+"sendMailError" = "Impossible d'envoyer le courrier, veuillez réessayer plus tard";
 
 "saveDraft" = "Sauvegardé brouillon";
 "discardDraft" = "Annuler";

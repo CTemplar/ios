@@ -173,8 +173,11 @@
 "subject" = "Predmet: ";
 
 "infoTitle" = "Informácie:";
+
+// Banner
 "mailSendMessage" = "Správa bola úspešne odoslaná";
 "mailSendingAlert" = "Posiela sa e-mail...";
+"sendMailError" = "Nepodarilo sa odoslať e-mail, skúste to znova neskôr.";
 
 "saveDraft" = "Uložiť koncept";
 "discardDraft" = "Zahodiť koncept";

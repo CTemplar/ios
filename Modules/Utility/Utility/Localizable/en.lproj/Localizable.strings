@@ -183,8 +183,11 @@
 "subject" = "Subject: ";
 
 "infoTitle" = "Information:";
+
+// Banner
 "mailSendMessage" = "Mail sent successfully.";
 "mailSendingAlert" = "Sending mail…";
+"sendMailError" = "Couldn't send the mail, please try again later.";
 
 "saveDraft" = "Save draft";
 "discardDraft" = "Discard draft";

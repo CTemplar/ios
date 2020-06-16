@@ -86,4 +86,10 @@ public enum Strings {
         case validEnteredEmail
         case minPasswordLengthError
     }
+    
+    public enum Banner: String, Localizable {
+        case mailSendMessage
+        case mailSendingAlert
+        case sendMailError
+    }
 }
