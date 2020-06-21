@@ -46,23 +46,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <connections>
-                        <segue destination="gCm-uE-iCS" kind="push" identifier="segueToLogin" id="79q-R8-Uk5"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="26.25" y="30.014999999999997"/>
-        </scene>
-        <!--Login-->
-        <scene sceneID="Fik-fF-gs7">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="LoginViewController" storyboardName="Login" id="gCm-uE-iCS" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="6Ol-9K-Pjv"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="exT-2u-dXD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="692" y="36"/>
         </scene>
     </scenes>
     <resources>

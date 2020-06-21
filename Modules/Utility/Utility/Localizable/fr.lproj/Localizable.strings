@@ -19,6 +19,7 @@
 "deleteButton" = "Supprimer";
 "encryptButton" = "Chiffrer";
 "decryptButton" = "Décrypter";
+"okButton" = "D'accord";
 
 "deleteRow" = "Supprimer";
 
@@ -45,7 +46,10 @@
 "forgotPassword" = "Mot de passe oublié ?";
 "login" = "Se connecter";
 "createAccount" = "Créer un compte";
-"rememberMe" = "Rester connecté";                                               //Localize
+"rememberMe" = "Rester connecté";
+"loginError" = "Erreur d'identification";
+"passwordCodeError" = "Erreur de code de mot de passe!";
+"forgotUserName" = "Vous avez oublié votre nom d'utilisateur?";
 
 // Sign Up
 "usernameAndDomain" = "Nom utilisateur / domaine";
@@ -71,6 +75,10 @@
 "enterIt" = "Enter it below for confirmation.";
 "forgetPass" = "N'oubliez pas votre mot de passe, il ne pourra pas être récupéré.";
 "createAccount" = "Créer un compte";
+"enterYourEmailAddress" = "Entrez votre adresse e-mail et nous vous enverrons votre nom d'utilisateur";
+"emailMyUserName" = "Envoyez un courriel à mon nom d'utilisateur";
+"passwordResetSuccessTitle" = "Réinitialisation du mot de passe réussie";
+"passwordResetSuccessMessage" = "Vous avez réussi à réinitialiser votre mot de passe. Veuillez maintenant appuyer sur le bouton OK pour continuer.";
 
 // inbox
 

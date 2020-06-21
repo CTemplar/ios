@@ -105,7 +105,7 @@ class InboxViewController: UIViewController {
             self.presenter?.interactor?.updateMessages(withUndo: "", silent: false)
 //        })
         
-        NotificationCenter.default.addObserver(self, selector: #selector(userSettingsUpdate), name: NSNotification.Name(rawValue: k_updateUserSettingsNotificationID), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userSettingsUpdate), name: .updateUserSettingsNotificationID, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -200,7 +200,7 @@ class InboxViewController: UIViewController {
     
     func adddNotificationObserver() {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.reciveUpdateNotification(notification:)), name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reciveUpdateNotification(notification:)), name: .updateInboxMessagesNotificationID, object: nil)
     }
     
     @objc func reciveUpdateNotification(notification: Notification) {
@@ -269,6 +269,6 @@ extension InboxViewController: ViewInboxEmailDelegate {
             }
         }
         dataSource?.updateMessageStatus(message: message, status: status)
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateMessagesReadCountNotificationID), object: ["name": self.currentFolder, "isRead": status])
+        NotificationCenter.default.post(name: .updateMessagesReadCountNotificationID, object: ["name": self.currentFolder, "isRead": status])
     }
 }

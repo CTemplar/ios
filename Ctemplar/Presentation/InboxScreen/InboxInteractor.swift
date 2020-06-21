@@ -286,7 +286,7 @@ class InboxInteractor {
                             }
                         }
                     }
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateInboxMessagesNotificationID), object: nil)
+                    NotificationCenter.default.post(name: .updateInboxMessagesNotificationID, object: nil)
                 }
                 
             case .failure(let error):
@@ -324,7 +324,7 @@ class InboxInteractor {
                     self.viewController?.bottomComposeButton.isEnabled = true
                     self.viewController?.rightComposeButton.isEnabled = true
                     
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: value)
+                    NotificationCenter.default.post(name: .updateUserDataNotificationID, object: value)
                     self.userContactsList()
                 case .failure(let error):
                     print("error:", error)

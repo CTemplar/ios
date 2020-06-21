@@ -54,7 +54,7 @@ public enum BannerConfig {
 }
 
 public extension UIViewController {
-    func getNavController(rootViewController: UIViewController,
+    static func getNavController(rootViewController: UIViewController,
                           navigationForegroundColor: UIColor = AppStyle.StringColor.navigationBarTitle.color, navigationBarBackgroundColor: UIColor = AppStyle.StringColor.navigationBarBackground.color) -> UINavigationController {
         let navController = UINavigationController(rootViewController: rootViewController)
         
@@ -131,14 +131,14 @@ public extension UIViewController {
     
     func showAlert(with params: AlertKitParams, onCompletion: @escaping (() -> Void)) {
         let parameters = Parameters(title: params.title, message: params.message, cancelButton: params.cancelButton, destructiveButtons: params.destructiveButtons, otherButtons: params.otherButtons, disabledButtons: params.disabledButtons, inputFields: params.inputFields, sender: params.sender, arrowDirection: params.arrowDirection, popoverStyle: params.popoverStyle)
-        AlertHelperKit().showActionSheet(self, parameters: parameters) { (_) in
+        AlertHelperKit().showAlertWithHandler(self, parameters: parameters) { (_) in
             onCompletion()
         }
     }
     
     func showAlert(with params: AlertKitParams, onCompletion: @escaping ((Int) -> Void)) {
         let parameters = Parameters(title: params.title, message: params.message, cancelButton: params.cancelButton, destructiveButtons: params.destructiveButtons, otherButtons: params.otherButtons, disabledButtons: params.disabledButtons, inputFields: params.inputFields, sender: params.sender, arrowDirection: params.arrowDirection, popoverStyle: params.popoverStyle)
-        AlertHelperKit().showActionSheet(self, parameters: parameters) { (buttonIndex) in
+        AlertHelperKit().showAlertWithHandler(self, parameters: parameters) { (buttonIndex) in
             onCompletion(buttonIndex)
         }
     }

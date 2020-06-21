@@ -113,7 +113,7 @@ class SelectLanguageViewController: UIViewController, UITableViewDataSource, UIT
         self.viewWillAppear(true)
         self.reloadData()
         
-        NotificationCenter.default.post(name: Notification.Name(k_reloadViewControllerNotificationID), object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: .reloadViewControllerNotificationID, object: nil, userInfo: nil)
     }
     
     func isLanguageSelected(index: Int) -> Bool {

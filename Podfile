@@ -13,6 +13,10 @@ def ctemplarPods
 end
 
 def shared_pods
+  pod 'AlertHelperKit', :git => 'https://github.com/keygx/AlertHelperKit'
+  pod 'KDLoadingView'
+  pod 'MaterialComponents/ActivityIndicator'
+  pod 'BCryptSwift'
   pod 'ObjectivePGP'
 end
 

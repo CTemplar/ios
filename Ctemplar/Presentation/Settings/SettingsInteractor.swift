@@ -163,7 +163,7 @@ class SettingsInteractor {
                 
                 self.viewController?.dataSource?.reloadData()
                 
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: value)
+                NotificationCenter.default.post(name: .updateUserDataNotificationID, object: value)
                 
             case .failure(let error):
                 print("error:", error)

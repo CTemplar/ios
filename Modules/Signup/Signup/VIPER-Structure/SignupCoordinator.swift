@@ -4,7 +4,7 @@ import Utility
 
 public final class SignupCoordinator {
     // MARK: Properties
-    private var presentingViewController: UIViewController?
+    private weak var presentingViewController: UIViewController?
     private var signupCompletion: (() -> Void)
     private var signupPageViewController: SignupPageViewController?
     

@@ -157,7 +157,7 @@ class ManageFoldersPresenter {
 extension ManageFoldersPresenter: AddFolderDelegate {
     func didAddFolder(_ folder: Folder) {
         self.viewController?.foldersList.append(folder)
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateCustomFolderNotificationID), object: self.viewController?.foldersList ?? [])
+        NotificationCenter.default.post(name: .updateCustomFolderNotificationID, object: self.viewController?.foldersList ?? [])
         self.setDataSource(folders: self.viewController?.foldersList ?? [])
     }
 }

@@ -55,13 +55,13 @@ public enum RouterAuth: BaseRouter {
     public func encoded(_ request: URLRequest) throws -> URLRequest {
         switch self {
         case .login(let details):
-            var params: [String: Any] = [
+            let params: [String: Any] = [
                 JSONKey.userName.rawValue: details.userName,
                 JSONKey.password.rawValue: details.password,
             ]
-            if let code = details.twoFAcode, !code.isEmpty {
-                params[JSONKey.otp.rawValue] = code
-            }
+//            if let code = details.twoFAcode, !code.isEmpty {
+//                params[JSONKey.otp.rawValue] = code
+//            }
             return try JSONEncoding.default.encode(request, with: params)
         case .signup(let details):
             let params: [String: Any] = [

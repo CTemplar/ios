@@ -18,6 +18,7 @@
 "deleteButton" = "Удалить";
 "encryptButton" = "Encrypt";
 "decryptButton" = "Decrypt";
+"okButton" = "Хорошо";
 
 "deleteRow" = "Удалить";
 
@@ -45,6 +46,10 @@
 "login" = "Войти";
 "createAccount" = "Создать аккаунт";
 "rememberMe" = "оставаться в системе";
+"loginError" = "Ошибка входа";
+"passwordCodeError" = "Ошибка пароля!";
+"passwordResetError" = "Невозможно сбросить пароль!";
+"forgotUserName" = "Забыли свой логин?";
 
 // Sign Up
 "usernameAndDomain" = "Имя и домен";
@@ -70,6 +75,10 @@
 "enterIt" = "Введите его ниже для подтверждения.";
 "forgetPass" = "Не забудьте этот пароль, его невозможно будет восстановить.";
 "createAccount" = "Создать учетную запись";
+"enterYourEmailAddress" = "Введите адрес электронной почты, и мы вышлем вам ваше имя пользователя";
+"emailMyUserName" = "Отправить мой логин";
+"passwordResetSuccessTitle" = "Пароль успешно сброшен";
+"passwordResetSuccessMessage" = "Вы успешно сбросили свой пароль. Теперь, пожалуйста, нажмите на кнопку ОК, чтобы продолжить.";
 
 // inbox
 

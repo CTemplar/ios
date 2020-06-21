@@ -12,7 +12,12 @@ class SignupRecoveryEmailViewController: UIViewController {
     
     @IBOutlet weak var backButton: UIButton! {
         didSet {
-            backButton.setImage(#imageLiteral(resourceName: "BackArrowDark"), for: .normal)
+            if #available(iOS 12.0, *) {
+                backButton.setImage(UIImage(named: "BackArrowDark", in: .main, compatibleWith: .init(userInterfaceStyle: .light)), for: .normal)
+            } else {
+                // Fallback on earlier versions
+                backButton.setImage(#imageLiteral(resourceName: "BackArrowDark"), for: .normal)
+            }
         }
     }
     
@@ -52,8 +57,9 @@ class SignupRecoveryEmailViewController: UIViewController {
 
     @IBOutlet weak var termsAndConditionButton: UIButton! {
         didSet {
-            termsAndConditionButton.setImage(#imageLiteral(resourceName: "roundDark"), for: .normal)
-            termsAndConditionButton.setImage(#imageLiteral(resourceName: "selectedRoundDark"), for: .selected)
+            backButton.tintColor = recorveyEmailTitleLabel.textColor
+            termsAndConditionButton.setImage(#imageLiteral(resourceName: "roundDark").withRenderingMode(.alwaysTemplate), for: .normal)
+            termsAndConditionButton.setImage(#imageLiteral(resourceName: "selectedRoundDark").withRenderingMode(.alwaysTemplate), for: .selected)
             termsAndConditionButton.isSelected = false
         }
     }
@@ -97,10 +103,9 @@ class SignupRecoveryEmailViewController: UIViewController {
     
     // MARK: - UI
     private func initialUISetup() {
-        nextButton.setTitle(Strings.Signup.createAccount.localized, for: .normal)
+        nextButton.setTitle(Strings.Login.createAccount.localized, for: .normal)
         recorveyEmailTitleLabel.text = Strings.Signup.recoveryEmailAttr.localized
         recorveyEmailSubtitleLabel.text = Strings.Signup.thisIsUsed.localized
-        termsAndConditionTextView.text = Strings.Signup.termsAndConditionsFullText.localized
         supportMailTextView.text = Strings.Signup.supportEmailString.localized
         defaultUIState()
     }
@@ -136,14 +141,25 @@ class SignupRecoveryEmailViewController: UIViewController {
     }
     
     private func setupAttributesForTextView() {
-        let attributedString = NSMutableAttributedString(string: Strings.Signup.termsAndConditionsFullText.localized, attributes: [
-            .font: AppStyle.CustomFontStyle.Regular.font(withSize: 14.0)!,
-            .foregroundColor: k_lightGrayColor,
-            .kern: 0.0
-        ])
+        var attributedString: NSMutableAttributedString?
+        
+        if #available(iOS 12.0, *) {
+            attributedString = NSMutableAttributedString(string: Strings.Signup.termsAndConditionsFullText.localized, attributes: [
+                .font: AppStyle.CustomFontStyle.Regular.font(withSize: 14.0)!,
+                .foregroundColor: recorveyEmailTitleLabel.textColor!,
+                .kern: 0.0
+            ])
+        } else {
+            // Fallback on earlier versions
+            attributedString = NSMutableAttributedString(string: Strings.Signup.termsAndConditionsFullText.localized, attributes: [
+                .font: AppStyle.CustomFontStyle.Regular.font(withSize: 14.0)!,
+                .foregroundColor: k_lightGrayColor,
+                .kern: 0.0
+            ])
+        }
                 
-        _ = attributedString.setAsLink(textToFind: Strings.Signup.termsAndConditionsPhrase.localized, linkURL: GeneralConstant.Link.TermsURL.rawValue)
-        _ = attributedString.setForgroundColor(textToFind: Strings.Signup.termsAndConditionsPhrase.localized, color: k_urlColor)
+        _ = attributedString?.setAsLink(textToFind: Strings.Signup.termsAndConditionsPhrase.localized, linkURL: GeneralConstant.Link.TermsURL.rawValue)
+        _ = attributedString?.setForgroundColor(textToFind: Strings.Signup.termsAndConditionsPhrase.localized, color: k_urlColor)
         
         termsAndConditionTextView.attributedText = attributedString
         
@@ -171,7 +187,7 @@ class SignupRecoveryEmailViewController: UIViewController {
     }
     
     func stopLoader() {
-        nextButton.setTitle(Strings.Signup.createAccount.localized, for: .normal)
+        nextButton.setTitle(Strings.Login.createAccount.localized, for: .normal)
         activityIndicator.stopAnimating()
         view.isUserInteractionEnabled = true
     }

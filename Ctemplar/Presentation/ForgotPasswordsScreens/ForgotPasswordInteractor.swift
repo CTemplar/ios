@@ -64,7 +64,7 @@ class ForgotPasswordInteractor: HashingService {
         switch responce {
         case .success(let value):
             keychainService?.saveToken(token: value.token)
-            NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil, userInfo: nil)
+            NotificationCenter.default.post(name: .updateInboxMessagesNotificationID, object: nil, userInfo: nil)
             //self.sendAPNDeviceToken()
             self.presenter?.router?.showInboxScreen()
         case .failure(let error):

@@ -141,18 +141,6 @@ let k_AboutAsStoryboardName_iPad           = "AboutAs-iPad"
 let k_InboxFilterViewXibName_iPad          = "InboxFilter-iPad"
 let k_AddFolderStoryboardName_iPad         = "AddFolder-iPad"
 
-
-// notifications
-
-let k_updateUserDataNotificationID          = "UpdateUserDataNotificationIdentifier"
-let k_updateUserSettingsNotificationID      = "UpdateUserSettingsNotificationIdentifier"
-let k_updateInboxMessagesNotificationID     = "updateInboxMessagesNotification"
-let k_attachUploadUpdateNotificationID      = "attachUploadUpdateNotificationIdentifier"
-let k_reloadViewControllerNotificationID    = "ReloadViewControllerNotificationIdentifier"
-let k_reloadViewControllerDataSourceNotificationID    = "ReloadViewControllerDataSourceNotificationIdentifier"
-let k_updateCustomFolderNotificationID = "UpdateCustomFoldersNotificationIdentifier"
-let k_updateMessagesReadCountNotificationID = "updateMessagesReadCountNotification"
-
 //size constants
 
 let k_pageControlBottomOffset           = 30.0

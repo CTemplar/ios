@@ -36,9 +36,9 @@ class  SettingsViewController: UIViewController {
         
         dataSource?.initWith(parent: self, tableView: settingsTableView)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(userSettingsUpdate), name: NSNotification.Name(rawValue: k_updateUserSettingsNotificationID), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadViewController), name: NSNotification.Name(rawValue: k_reloadViewControllerNotificationID), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateDataSource), name: NSNotification.Name(rawValue: k_reloadViewControllerDataSourceNotificationID), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userSettingsUpdate), name: .updateUserSettingsNotificationID, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadViewController), name: .reloadViewControllerNotificationID, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateDataSource), name: .reloadViewControllerDataSourceNotificationID, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {

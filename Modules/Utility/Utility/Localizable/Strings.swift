@@ -16,6 +16,7 @@ public enum Strings {
         case deleteButton
         case encryptButton
         case decryptButton
+        case okButton
     }
     
     public enum Formatter: String, Localizable {
@@ -59,20 +60,8 @@ public enum Strings {
         case thisIsUsed
         case usernameResetHint
         case usernameResetPlaceholder
-        case resetCodePlaceholder
-        case newPasswordPlaceholder
-        case confirmNewPasswordPlaceholder
-        case resetLink
-        case confirmResetPassword
-        case areYouSure
-        case supportDescription
-        case supportDescriptionAttr
-        case resetPassword
-        case weHave
         case recoveryEmailAttr
         case enterIt
-        case forgetPass
-        case createAccount
         case usernamePlaceholder
         case passwordPlaceholder
         case supportEmailString
@@ -87,9 +76,39 @@ public enum Strings {
         case minPasswordLengthError
     }
     
+    public enum Login: String, Localizable {
+        case password
+        case forgotPassword
+        case login
+        case createAccount
+        case rememberMe
+        case loginError
+    }
+    
     public enum Banner: String, Localizable {
         case mailSendMessage
         case mailSendingAlert
         case sendMailError
+    }
+    
+    public enum ForgetPassword: String, Localizable {
+        case resetCodePlaceholder
+        case newPasswordPlaceholder
+        case confirmNewPasswordPlaceholder
+        case resetLink
+        case confirmResetPassword
+        case areYouSure
+        case resetPassword
+        case supportDescription
+        case supportDescriptionAttr
+        case weHave
+        case forgetPass
+        case passwordResetError
+        case passwordCodeError
+        case forgotUserName
+        case enterYourEmailAddress
+        case emailMyUserName
+        case passwordResetSuccessMessage
+        case passwordResetSuccessTitle
     }
 }
