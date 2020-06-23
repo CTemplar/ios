@@ -26,16 +26,13 @@ public class ForgetPasswordCoordinator {
     }
 }
 
-class ForgotPasswordNavigationController: UINavigationController {
+class ForgotPasswordNavigationController: UINavigationController, UINavigationControllerDelegate {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        delegate = self
+
         setupNavigationBar()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.topItem?.title = " "
     }
     
     // MARK: - NavigationBar setup
@@ -47,5 +44,10 @@ class ForgotPasswordNavigationController: UINavigationController {
         UINavigationBar.appearance().backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
         // Set translucent. (Default value is already true, so this can be removed if desired.)
         UINavigationBar.appearance().isTranslucent = true
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        let item = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        viewController.navigationItem.backBarButtonItem = item
     }
 }

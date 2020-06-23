@@ -35,11 +35,6 @@ class ForgetUsernameViewController: UIViewController {
 
         initialUISetup()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationItem.backBarButtonItem?.title = ""
-    }
 
     // MARK: - UI
     private func initialUISetup() {
