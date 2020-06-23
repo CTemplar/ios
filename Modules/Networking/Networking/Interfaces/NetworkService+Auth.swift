@@ -13,12 +13,15 @@ import Utility
 public struct LoginDetails {
     public var userName: String
     public var password: String
-    public var twoFAcode: String?
     
-    public init(userName: String, password: String, twoFAcode: String? = nil) {
+    public init() {
+        userName = ""
+        password = ""
+    }
+    
+    public init(userName: String, password: String) {
         self.userName = userName
         self.password = password
-        self.twoFAcode = twoFAcode
     }
 }
 

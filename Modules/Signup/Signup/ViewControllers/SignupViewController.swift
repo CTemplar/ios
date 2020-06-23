@@ -28,7 +28,8 @@ class SignupViewController: UIViewController {
     
     @IBOutlet weak var backButton: UIButton! {
         didSet {
-            backButton.setImage(#imageLiteral(resourceName: "BackArrowDark"), for: .normal)
+            backButton.imageView?.tintColor = .black
+            backButton.setImage(#imageLiteral(resourceName: "BackArrowDark").withRenderingMode(.alwaysTemplate), for: .normal)
         }
     }
     

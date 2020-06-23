@@ -3,8 +3,8 @@ import UIKit
 public extension UIStoryboard {
     enum Storyboard: String {
         case signup = "Signup"
-        case loginiPhone = "Login"
-        case loginiPad = "Login-iPad"
+        case login = "Login"
+        case forgetPassword = "ForgetPassword"
     }
     
     // MARK: - Convenience Initializers
@@ -26,5 +26,25 @@ public extension UIStoryboard {
         }
         
         return viewController
+    }
+}
+
+public extension UIStoryboard.Storyboard {
+    var viewControllerId: String {
+        switch self {
+        case .login:
+            return "LoginViewController"
+        case .signup:
+            return "SignupViewController"
+        case .forgetPassword:
+            return "ForgetPasswordViewController"
+        }
+    }
+    
+    var bundle: Bundle {
+        guard let classType = NSClassFromString(self.viewControllerId) else {
+            fatalError("Couldn't find class with identifier: \(self.viewControllerId)")
+        }
+        return Bundle(for: classType)
     }
 }

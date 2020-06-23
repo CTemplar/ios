@@ -28,10 +28,9 @@ public extension NetworkErrorHandler {
     }
     
     func showLoginViewController() {
-        let loginViewController = UIStoryboard(storyboard: Device.IS_IPAD ? .loginiPad : .loginiPhone,
-            bundle: .main)
-            .instantiateViewController(withIdentifier: "LoginViewController"
-        )
+        let loginViewController = UIStoryboard(storyboard: .login,
+                                               bundle: UIStoryboard.Storyboard.login.bundle)
+            .instantiateViewController(withIdentifier: UIStoryboard.Storyboard.login.viewControllerId)
         if let window = UIApplication.shared.getKeyWindow() {
             window.setRootViewController(loginViewController)
         }

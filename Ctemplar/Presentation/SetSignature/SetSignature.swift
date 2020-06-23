@@ -194,8 +194,8 @@ class SetSignatureViewController: UIViewController {
     }
     
     func postUpdateUserSettingsNotification() {
-        let name = signatureType == .general ? k_updateUserSettingsNotificationID : k_reloadViewControllerDataSourceNotificationID
-        NotificationCenter.default.post(name: Notification.Name(name), object: nil, userInfo: nil)
+        let name: Notification.Name = signatureType == .general ? .updateUserSettingsNotificationID : .reloadViewControllerDataSourceNotificationID
+        NotificationCenter.default.post(name: name, object: nil, userInfo: nil)
     }
     
     func userSignatureWasUpdated() {

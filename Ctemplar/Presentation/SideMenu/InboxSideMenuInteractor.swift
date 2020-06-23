@@ -9,7 +9,9 @@
 import Foundation
 import Utility
 import Networking
-import  UIKit
+import UIKit
+import Login
+
 class InboxSideMenuInteractor {
     
     var viewController  : InboxSideMenuViewController?
@@ -40,21 +42,12 @@ class InboxSideMenuInteractor {
     }
 
     private func resetRootController() {
-        if Device.IS_IPAD {
-            let loginVC = LoginViewController.instantiate(fromAppStoryboard: .Login_iPad)
-            if let window = UIApplication.shared.getKeyWindow() {
-                window.setRootViewController(loginVC)
-            } else {
-                viewController?.show(loginVC, sender: self)
-            }
-        } else {
-            let loginVC = LoginViewController.instantiate(fromAppStoryboard: .Login)
-            if let window = UIApplication.shared.getKeyWindow() {
-                window.setRootViewController(loginVC)
-            } else {
-                viewController?.show(loginVC, sender: self)
-            }
+        guard let presenter = viewController else {
+            return
         }
+        
+        let loginCoordinator = LoginCoordinator()
+        loginCoordinator.showLogin(from: presenter, withSideMenu: presenter)
     }
     
     func setCustomFoldersData(folderList: FolderList) {

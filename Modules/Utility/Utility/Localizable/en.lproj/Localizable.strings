@@ -18,6 +18,7 @@
 "deleteButton" = "Delete";
 "encryptButton" = "Encrypt";
 "decryptButton" = "Decrypt";
+"okButton" = "Ok";
 
 "deleteRow" = "Delete";
 
@@ -39,6 +40,10 @@
 "login" = "Log in";
 "createAccount" = "Create account";
 "rememberMe" = "Keep me logged in";
+"loginError" = "Login Error";
+"passwordCodeError" = "Password Code Error!";
+"passwordResetError" = "Unable to reset your password!";
+"forgotUserName" = "Forgot your Username?";
 
 // Sign Up
 "usernameAndDomain" = "Username and domain";
@@ -64,6 +69,10 @@
 "enterIt" = "Enter it below for confirmation.";
 "forgetPass" = "Don’t forget this password, it can’t be restored.";
 "createAccount" = "Create Account";
+"enterYourEmailAddress" = "Enter your email address and we will send you your username";
+"emailMyUserName" = "Email my Username";
+"passwordResetSuccessTitle" = "Password reset successfully";
+"passwordResetSuccessMessage" = "You have successfully reset your password. Now please tap on Ok button to continue.";
 
 // Inbox
 

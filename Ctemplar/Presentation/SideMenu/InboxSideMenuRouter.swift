@@ -20,7 +20,7 @@ class InboxSideMenuRouter {
 //            self.viewController?.splitViewController?.secondaryViewController?.show(vc, sender: self)
 //            self.viewController?.splitViewController?.toggleMasterView()
 //        }else {
-            let navController = (self.viewController?.getNavController(rootViewController: vc))!
+            let navController = UINavigationController.getNavController(rootViewController: vc)
             self.viewController?.slideMenuController()?.changeMainViewController(navController, close: true)
 //        }
     }
@@ -33,7 +33,7 @@ class InboxSideMenuRouter {
         contactsVC.contactsEncrypted = self.viewController?.inboxViewController?.user.settings.isContactsEncrypted ?? false
         
 //        if (!Device.IS_IPAD) {
-            let navController = (self.viewController?.getNavController(rootViewController: contactsVC))!
+        let navController = UIViewController.getNavController(rootViewController: contactsVC)
             self.viewController?.slideMenuController()?.changeMainViewController(navController, close: true)
 //        } else {
 //            self.viewController?.splitViewController?.secondaryViewController?.show(contactsVC, sender: self)
@@ -48,7 +48,7 @@ class InboxSideMenuRouter {
         vc.foldersList = (self.viewController?.inboxViewController?.user.foldersList)!
         vc.user = (self.viewController?.inboxViewController?.user)!
 //        if (!Device.IS_IPAD) {
-            let navController = (self.viewController?.getNavController(rootViewController: vc))!
+            let navController = UIViewController.getNavController(rootViewController: vc)
             self.viewController?.slideMenuController()?.changeMainViewController(navController, close: true)
 //        } else {
 //            self.viewController?.splitViewController?.secondaryViewController?.show(vc, sender: self)
@@ -61,7 +61,7 @@ class InboxSideMenuRouter {
         self.viewController?.currentParentViewController = vc
         vc.sideMenuViewController = self.viewController
         vc.user = (self.viewController?.inboxViewController?.user)!
-        let navController = (self.viewController?.getNavController(rootViewController: vc))!
+        let navController = UIViewController.getNavController(rootViewController: vc)
         self.viewController?.slideMenuController()?.changeMainViewController(navController, close: true)
     }
     
@@ -69,8 +69,7 @@ class InboxSideMenuRouter {
         let vc = FAQViewController.instantiate(fromAppStoryboard: .FAQ)
         viewController?.currentParentViewController = vc
         vc.sideMenuViewController = viewController
-        if let navController = viewController?.getNavController(rootViewController: vc) {
-            viewController?.slideMenuController()?.changeMainViewController(navController, close: true)
-        }
+        let navController = UIViewController.getNavController(rootViewController: vc)
+        viewController?.slideMenuController()?.changeMainViewController(navController, close: true)
     }
 }

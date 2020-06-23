@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		440F1FDA2495E511007B335D /* SignupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F1FD92495E511007B335D /* SignupCoordinator.swift */; };
-		440F1FDD2495EF33007B335D /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 440F1FDC2495EF33007B335D /* IQKeyboardManagerSwift */; };
 		440F1FE02495FC64007B335D /* SignupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F1FDF2495FC64007B335D /* SignupModel.swift */; };
 		441D16AE248FD5360015FFA3 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441D16AD248FD5360015FFA3 /* SignupViewController.swift */; };
 		441D16B0248FD54B0015FFA3 /* SignupPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441D16AF248FD54B0015FFA3 /* SignupPasswordViewController.swift */; };
@@ -19,12 +18,14 @@
 		444BD2B5249216E1001D0C5F /* Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444BD2B4249216E1001D0C5F /* Utility.framework */; };
 		444BD2B6249216E1001D0C5F /* Utility.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 444BD2B4249216E1001D0C5F /* Utility.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4458B6F624968C3C00F787F5 /* SignupConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4458B6F524968C3C00F787F5 /* SignupConstants.swift */; };
+		445CFAE5249BF3DE0017DC40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 445CFAE4249BF3DE0017DC40 /* Assets.xcassets */; };
 		44BD63612490995200CB4A73 /* SignupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD63602490995200CB4A73 /* SignupPresenter.swift */; };
 		44BD63632490995C00CB4A73 /* SignupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD63622490995C00CB4A73 /* SignupRouter.swift */; };
 		44BD63652490996800CB4A73 /* SignupConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD63642490996800CB4A73 /* SignupConfigurator.swift */; };
 		44BD636724909A6900CB4A73 /* SignupInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD636624909A6900CB4A73 /* SignupInteractor.swift */; };
 		44C6E04C249563ED00D7C614 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6E04B249563ED00D7C614 /* Networking.framework */; };
 		44C6E04D249563ED00D7C614 /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6E04B249563ED00D7C614 /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		44F739EB2498C35D00688086 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 44F739EA2498C35D00688086 /* IQKeyboardManagerSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -55,6 +56,7 @@
 		44382479248F9AE400DEA4F3 /* Signup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Signup.storyboard; sourceTree = "<group>"; };
 		444BD2B4249216E1001D0C5F /* Utility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4458B6F524968C3C00F787F5 /* SignupConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupConstants.swift; sourceTree = "<group>"; };
+		445CFAE4249BF3DE0017DC40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../Ctemplar/Resources/Assets.xcassets; sourceTree = "<group>"; };
 		44BD63602490995200CB4A73 /* SignupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPresenter.swift; sourceTree = "<group>"; };
 		44BD63622490995C00CB4A73 /* SignupRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRouter.swift; sourceTree = "<group>"; };
 		44BD63642490996800CB4A73 /* SignupConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupConfigurator.swift; sourceTree = "<group>"; };
@@ -69,7 +71,7 @@
 			files = (
 				44C6E04C249563ED00D7C614 /* Networking.framework in Frameworks */,
 				444BD2B5249216E1001D0C5F /* Utility.framework in Frameworks */,
-				440F1FDD2495EF33007B335D /* IQKeyboardManagerSwift in Frameworks */,
+				44F739EB2498C35D00688086 /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +109,7 @@
 		44382463248F99FC00DEA4F3 /* Signup */ = {
 			isa = PBXGroup;
 			children = (
+				445CFAE4249BF3DE0017DC40 /* Assets.xcassets */,
 				4458B6F424968C2A00F787F5 /* Common */,
 				44BD635F2490992F00CB4A73 /* VIPER-Structure */,
 				441D16AC248FD51B0015FFA3 /* ViewControllers */,
@@ -185,7 +188,7 @@
 			);
 			name = Signup;
 			packageProductDependencies = (
-				440F1FDC2495EF33007B335D /* IQKeyboardManagerSwift */,
+				44F739EA2498C35D00688086 /* IQKeyboardManagerSwift */,
 			);
 			productName = Signup;
 			productReference = 44382461248F99FC00DEA4F3 /* Signup.framework */;
@@ -216,7 +219,7 @@
 			);
 			mainGroup = 44382457248F99FC00DEA4F3;
 			packageReferences = (
-				440F1FDB2495EF33007B335D /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				44F739E92498C35D00688086 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 44382462248F99FC00DEA4F3 /* Products */;
 			projectDirPath = "";
@@ -232,6 +235,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				445CFAE5249BF3DE0017DC40 /* Assets.xcassets in Resources */,
 				4438247A248F9AE400DEA4F3 /* Signup.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,7 +469,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		440F1FDB2495EF33007B335D /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+		44F739E92498C35D00688086 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
 			requirement = {
@@ -476,9 +480,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		440F1FDC2495EF33007B335D /* IQKeyboardManagerSwift */ = {
+		44F739EA2498C35D00688086 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 440F1FDB2495EF33007B335D /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			package = 44F739E92498C35D00688086 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */

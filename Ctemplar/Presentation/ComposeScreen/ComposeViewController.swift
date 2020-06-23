@@ -561,7 +561,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
 //        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.attachDownloadUpdate), name: NSNotification.Name(rawValue: k_attachUploadUpdateNotificationID), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.attachDownloadUpdate), name: .attachUploadUpdateNotificationID, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
     }

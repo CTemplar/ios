@@ -148,7 +148,7 @@ extension AppDelegate: MessagingDelegate {
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: false, userInfo: nil)
+        NotificationCenter.default.post(name: .updateInboxMessagesNotificationID, object: false, userInfo: nil)
         completionHandler([.sound])
     }
     

@@ -201,6 +201,6 @@ class SecurityInteractor {
     
     func postUpdateUserSettingsNotification() {
         
-        NotificationCenter.default.post(name: Notification.Name(k_updateUserSettingsNotificationID), object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: .updateUserSettingsNotificationID, object: nil, userInfo: nil)
     }
 }

@@ -12,7 +12,12 @@ class SignupPasswordViewController: UIViewController {
     
     @IBOutlet weak var backButton: UIButton! {
         didSet {
-            backButton.setImage(#imageLiteral(resourceName: "BackArrowDark"), for: .normal)
+            if #available(iOS 12.0, *) {
+                backButton.setImage(UIImage(named: "BackArrowDark", in: .main, compatibleWith: .init(userInterfaceStyle: .light)), for: .normal)
+            } else {
+                // Fallback on earlier versions
+                backButton.setImage(#imageLiteral(resourceName: "BackArrowDark"), for: .normal)
+            }
         }
     }
     

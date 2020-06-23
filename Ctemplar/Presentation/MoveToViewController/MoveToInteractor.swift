@@ -127,6 +127,6 @@ class MoveToInteractor {
         
         let silent = true
         
-        NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: silent, userInfo: nil)
+        NotificationCenter.default.post(name: .updateInboxMessagesNotificationID, object: silent, userInfo: nil)
     }
 }

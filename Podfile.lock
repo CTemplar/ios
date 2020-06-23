@@ -1,4 +1,6 @@
 PODS:
+  - AlertHelperKit (1.9.0)
+  - BCryptSwift (1.1)
   - Crashlytics (3.14.0):
     - Fabric (~> 1.10.2)
   - Fabric (1.10.2)
@@ -53,7 +55,19 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.5.0):
     - GoogleUtilities/Logger
+  - KDLoadingView (1.0.5)
+  - MaterialComponents/ActivityIndicator (109.8.0):
+    - MaterialComponents/Palettes
+    - MaterialComponents/private/Application
+    - MDFInternationalization
+    - MotionAnimator (~> 2.0)
+  - MaterialComponents/Palettes (109.8.0)
+  - MaterialComponents/private/Application (109.8.0)
+  - MDFInternationalization (2.0.0)
   - MGSwipeTableCell (1.6.11)
+  - MotionAnimator (2.8.1):
+    - MotionInterchange (~> 1.6)
+  - MotionInterchange (1.6.0)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
     - nanopb/encode (= 0.3.9011)
@@ -63,14 +77,19 @@ PODS:
   - Protobuf (3.11.2)
 
 DEPENDENCIES:
+  - AlertHelperKit (from `https://github.com/keygx/AlertHelperKit`)
+  - BCryptSwift
   - Crashlytics
   - Fabric
   - Firebase/Messaging
+  - KDLoadingView
+  - MaterialComponents/ActivityIndicator
   - MGSwipeTableCell
   - ObjectivePGP
 
 SPEC REPOS:
   trunk:
+    - BCryptSwift
     - Crashlytics
     - Fabric
     - Firebase
@@ -83,12 +102,28 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
+    - KDLoadingView
+    - MaterialComponents
+    - MDFInternationalization
     - MGSwipeTableCell
+    - MotionAnimator
+    - MotionInterchange
     - nanopb
     - ObjectivePGP
     - Protobuf
 
+EXTERNAL SOURCES:
+  AlertHelperKit:
+    :git: https://github.com/keygx/AlertHelperKit
+
+CHECKOUT OPTIONS:
+  AlertHelperKit:
+    :commit: 936acfcde29957788911f145fafe39b0a9a32fcc
+    :git: https://github.com/keygx/AlertHelperKit
+
 SPEC CHECKSUMS:
+  AlertHelperKit: db79a53288eb4b135966f7fef1aa2ec1ed753564
+  BCryptSwift: f69992ea5685f6714260842c2770688043b89ab2
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   Firebase: 0219bb4782eb1406f1b9b0628a2e625484ce910d
@@ -101,11 +136,16 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 574a983e829327d7c18f2627f65d9e80164ea8a4
   GoogleDataTransportCCTSupport: cad3cd6cdbdbad6b5c2c9206ec413402755faaaa
   GoogleUtilities: f8de7ddf8c706f58e9b405d53e38bbdaa2731e5a
+  KDLoadingView: 2b99197b41b098b220a79e505121ab34c48c4fca
+  MaterialComponents: 00df0652f52cd6968b02d531bd2e6956b0f907b8
+  MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MGSwipeTableCell: b804e4e450dee439c42250be90bd50458bf67fce
+  MotionAnimator: ee16aa30567c5bae0fb2750c132915829cfaaf8a
+  MotionInterchange: ead0e3ae1f3a5fb539e289debbc7ae036160a10d
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   ObjectivePGP: 35a73ed3253e7e2982184ea86b1ff6c5773d1299
   Protobuf: dd1aaea7140debfe4dd0683fb8ef208e527ae153
 
-PODFILE CHECKSUM: 34317c8a2da8068d599feb59d4b8da531c34fca2
+PODFILE CHECKSUM: d9b70edde251648d0d27bc32a82fea5d227d01b1
 
-COCOAPODS: 1.9.0
+COCOAPODS: 1.9.3

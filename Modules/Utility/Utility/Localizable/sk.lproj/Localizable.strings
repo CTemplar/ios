@@ -19,6 +19,7 @@
 "deleteButton" = "Vymazať";
 "encryptButton" = "Zašifrovať";
 "decryptButton" = "Dešifrovať";
+"okButton" = "Ok";
 
 "deleteRow" = "Vymazať";
 
@@ -37,6 +38,9 @@
 "login" = "Prihlásiť sa";
 "createAccount" = "Vytvoriť účet";
 "rememberMe" = "Zostať prihlásený";
+"loginError" = "Chyba prihlásenia";
+"passwordCodeError" = "Chyba kódu hesla!";
+"forgotUserName" = "Zabudli ste svoje prihlasovacie meno?";
 
 // Sign Up
 "usernameAndDomain" = "Prihlasovacie meno a doména";
@@ -62,6 +66,11 @@
 "enterIt" = "Zadajte ho pre potvrdenie.";
 "forgetPass" = "Nezabudnie toto heslo, nemôže byť obnovené.";
 "createAccount" = "Vytvoriť účet";
+"enterYourEmailAddress" = "Zadajte svoju e-mailovú adresu a my vám pošleme vaše používateľské meno";
+"emailMyUserName" = "Pošlite e-mail na moje používateľské meno";
+"passwordResetSuccessTitle" = "Heslo bolo úspešne resetované";
+"passwordResetSuccessMessage" = "Úspešne ste obnovili svoje heslo. Pokračujte kliknutím na tlačidlo OK.";
+"passwordResetError" = "Reset hesla Chyba";
 
 // inbox
 "selected" = "Vybrané";
