@@ -45,12 +45,15 @@ public class PGPService {
         let password = keychainService.getPassword()
         if let keys = getStoredPGPKeys() {
             do {
-                let decryptedData = try ObjectivePGP.decrypt(encryptedData, andVerifySignature: true, using: keys, passphraseForKey: { (key) -> String? in
-                    return password
+                let decryptedData = try ObjectivePGP.decrypt(encryptedData,
+                                                             andVerifySignature: true,
+                                                             using: keys,
+                                                             passphraseForKey: { (key) -> String? in
+                                                                return password
                 })
                 return decryptedData
             } catch {
-                print(error.localizedDescription)
+                DPrint(error.localizedDescription)
             }
         }
         

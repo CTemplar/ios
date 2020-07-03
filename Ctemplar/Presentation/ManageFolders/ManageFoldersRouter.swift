@@ -1,28 +1,19 @@
-//
-//  ManageFoldersRouter.swift
-//  Ctemplar
-//
-//  Created by Tatarinov Dmitry on 17.12.2018.
-//  Copyright © 2018 CTemplar. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import Networking
+import SideMenu
 
-class ManageFoldersRouter {
+final class ManageFoldersRouter {
+    // MARK: Properties
+    private (set) weak var viewController: ManageFoldersViewController?
+
+    // MARK: - Constructor
+    init(viewController: ManageFoldersViewController) {
+        self.viewController = viewController
+    }
     
-    var viewController: ManageFoldersViewController?
-
     func showInboxSideMenu() {
-        
-        //self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
-//        if (!Device.IS_IPAD) {
-            self.viewController?.openLeft()
-//            self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
-//        } else {
-//            self.viewController?.splitViewController?.toggleMasterView()
-//        }
+        viewController?.sideMenuController?.revealMenu()
     }
     
     func backAction() {
@@ -35,26 +26,26 @@ class ManageFoldersRouter {
     }
     
     func showAddFolderViewController() {
+        let addFolderVC: AddFolderViewController = UIStoryboard(storyboard: .addFolder,
+                                                                bundle: Bundle(for: EditFolderViewController.self
+            )
+        ).instantiateViewController()
         
-        var storyboardName : String? = k_AddFolderStoryboardName
+        addFolderVC.delegate = viewController?.presenter
         
-        if (Device.IS_IPAD) {
-            storyboardName = k_AddFolderStoryboardName_iPad
-        }
+        addFolderVC.modalPresentationStyle = .formSheet
         
-        let storyboard: UIStoryboard = UIStoryboard(name: storyboardName!, bundle: nil)
-        //let storyboard: UIStoryboard = UIStoryboard(name: k_AddFolderStoryboardName, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: k_AddFolderViewControllerID) as! AddFolderViewController
-        vc.delegate = self.viewController?.presenter
-        self.viewController?.present(vc, animated: true, completion: nil)
-        //self.viewController?.show(vc, sender: self)
+        viewController?.present(addFolderVC, animated: true, completion: nil)
     }
     
     func showEditFolderViewController(folder: Folder) {
+        let editFolderVC: EditFolderViewController = UIStoryboard(storyboard: .editFolder,
+                                                                  bundle: Bundle(for: EditFolderViewController.self
+            )
+        ).instantiateViewController()
         
-        let storyboard: UIStoryboard = UIStoryboard(name: k_EditFolderStoryboardName, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: k_EditFolderViewControllerID) as! EditFolderViewController
-        vc.folder = folder
-        self.viewController?.show(vc, sender: self)
+        editFolderVC.setup(folder: folder)
+        
+        viewController?.show(editFolderVC, sender: self)
     }
 }

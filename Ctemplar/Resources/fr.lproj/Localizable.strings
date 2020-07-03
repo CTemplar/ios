@@ -102,8 +102,7 @@
 "clearAll" = "Réinitialiser";
 "selectedFilters" = "Sélectionner les filtres";
 
-//more actions buttons
-
+// Moree Action buttons
 "markAsSpam" = "Marquer comme spam";
 "markAsRead" = "Marquer comme lu";
 "markAsUnread" = "Marquer comme non lu";
@@ -112,6 +111,7 @@
 "moveToInbox" = "Déplacer dans la boîte de réception";
 "emptyFolder" = "Vider le dossier";
 "cancel" = "Annuler";
+"moreActions" = "Plus d'actions";
 
 //undo actions buttons
 
@@ -209,24 +209,22 @@
 
 "search" = "Rechercher";
 
-//Side Menu Cells
-
-"inbox"            = "Boîte de réception";
-"draft"            = "Brouillons";
-"sent"             = "Envoyés";
-"outbox"           = "Boîte d'envoi";
-"starred"          = "Favoris";
-"archive"          = "Archive";
-"spam"             = "Spam";
-"trash"            = "Corbeille";
-"allMails"         = "Tous les emails";
-"contacts"         = "Contacts";
-"settings"         = "Paramètres";
-"help"             = "Aide";
-"FAQ"              = "FAQ";
-"logout"           = "Se déconnecter";
-"manageFolders"    = "Gérer les dossiers";
-
+// Side Menu Cells
+"inbox" = "Boîte de réception";
+"draft" = "Brouillons";
+"sent" = "Envoyés";
+"outbox" = "Boîte d'envoi";
+"starred" = "Favoris";
+"archive" = "Archive";
+"spam" = "Spam";
+"trash" = "Corbeille";
+"allMails" = "Tous les emails";
+"contacts" = "Contacts";
+"settings" = "Paramètres";
+"help" = "Aide";
+"FAQ" = "FAQ";
+"logout" = "Se déconnecter";
+"manageFolders" = "Gérer les dossiers";
 "showMoreFolders" = "Plus de dossier";
 "hideFolders" = "Réduire";
 

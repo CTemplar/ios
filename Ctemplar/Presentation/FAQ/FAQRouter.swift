@@ -1,4 +1,5 @@
 import Foundation
+import SideMenu
 
 struct FAQRouter {
     // MARK: Properties
@@ -6,6 +7,6 @@ struct FAQRouter {
     
     // MARK: - Actions
     func showInboxSideMenu() {
-        viewController.openLeft()
+        viewController.sideMenuController?.revealMenu()
     }
 }

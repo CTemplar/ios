@@ -92,8 +92,7 @@
 "clearAll" = "Zmazať všetko";
 "selectedFilters" = "Zvoliť filter";
 
-//more actions buttons
-
+// More Action buttons
 "markAsSpam" = "Označiť ako spam";
 "markAsRead" = "Označiť ako prečítané";
 "markAsUnread" = "Označiť ako neprečítané";
@@ -102,6 +101,7 @@
 "moveToInbox" = "Presunúť do prijatých správ";
 "emptyFolder" = "Vyprázdniť zložku";
 "cancel" = "Zrušiť";
+"moreActions" = "Ďalšie akcie";
 
 // Action Banner
 "movingToArchive" = "Prebieha sťahovanie do archívu";
@@ -200,23 +200,22 @@
 
 "search" = "Hľadať";
 
-//Side Menu Cells
-"inbox"            = "Prijaté";
-"draft"            = "Rozpísané";
-"sent"             = "Odoslané";
-"outbox"           = "Na odoslanie";
+// Side Menu Cells
+"inbox" = "Prijaté";
+"draft" = "Rozpísané";
+"sent" = "Odoslané";
+"outbox" = "Na odoslanie";
 "starred"          = "Dôležité";
-"archive"          = "Archív";
-"spam"             = "Spam";
-"trash"            = "Kôš";
-"allMails"         = "Všetky e-maily";
-"contacts"         = "Kontakty";
-"settings"         = "Nastavenia";
-"FAQ"              = "FAQ";
-"help"             = "Podpora";
-"logout"           = "Odhlásiť sa";
-"manageFolders"    = "Správa zložiek";
-
+"archive" = "Archív";
+"spam" = "Spam";
+"trash" = "Kôš";
+"allMails" = "Všetky e-maily";
+"contacts" = "Kontakty";
+"settings" = "Nastavenia";
+"FAQ" = "FAQ";
+"help" = "Podpora";
+"logout" = "Odhlásiť sa";
+"manageFolders" = "Správa zložiek";
 "showMoreFolders" = "Ukázať viac zložiek";
 "hideFolders" = "Skryť zložky";
 

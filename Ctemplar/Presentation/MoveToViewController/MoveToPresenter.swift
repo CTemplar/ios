@@ -1,27 +1,34 @@
-//
-//  MoveToPresenter.swift
-//  Ctemplar
-//
-//  Created by Tatarinov Dmitry on 06.11.2018.
-//  Copyright © 2018 CTemplar. All rights reserved.
-//
-
 import Foundation
 import UIKit
+import Utility
 
-class MoveToPresenter {
+final class MoveToPresenter {
+    // MARK: Properties
+    private weak var viewController: MoveToViewController?
+    private (set) var interactor: MoveToInteractor?
     
-    var viewController   : MoveToViewController?
-    var interactor       : MoveToInteractor?
-    
-    func applyButton(enabled: Bool) {
+    // MARK: - Constructor
+    init(viewController: MoveToViewController, interactor: MoveToInteractor) {
+        self.viewController = viewController
+        self.interactor = interactor
         
-        if enabled {
-            self.viewController?.applyButton.isEnabled = true
-            self.viewController?.applyButton.alpha = 1.0
-        } else {
-            self.viewController?.applyButton.isEnabled = false
-            self.viewController?.applyButton.alpha = 0.3
-        }
+        setupUI()
+    }
+    
+    // MARK: - UI
+    func setupUI() {
+        viewController?.title = Strings.Inbox.moveTo.localized
+        viewController?.selectFolderLabel.text = Strings.ManageFolder.selectfolder.localized
+        viewController?.addFolderLabel.text = Strings.ManageFolder.addFolder.localized
+        viewController?.manageFolderLabel.text = Strings.Menu.manageFolders.localized
+        viewController?.applyButton.title = Strings.Button.applyButton.localized
+        viewController?.cancelButton.title = Strings.Button.cancelButton.localized
+        
+        applyButton(enabled: false)
+    }
+    
+    // MARK: - Actions
+    func applyButton(enabled: Bool) {
+        viewController?.applyButton.isEnabled = enabled
     }
 }

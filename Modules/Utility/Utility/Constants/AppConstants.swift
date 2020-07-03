@@ -37,6 +37,26 @@ public struct AppStyle {
             return UIFont(name: self.rawValue, size: size)
         }
     }
+    
+    public enum SystemFontStyle {
+        case regular
+        case bold
+        case semiBold
+        case light
+        
+        public func font(withSize size: CGFloat) -> UIFont {
+            switch self {
+            case .regular:
+                return UIFont.systemFont(ofSize: size, weight: .regular)
+            case .bold:
+                return UIFont.systemFont(ofSize: size, weight: .bold)
+            case .semiBold:
+                return UIFont.systemFont(ofSize: size, weight: .semibold)
+            case .light:
+                return UIFont.systemFont(ofSize: size, weight: .light)
+            }
+        }
+    }
 }
 
 public struct GeneralConstant {
@@ -82,6 +102,13 @@ public struct GeneralConstant {
     }
     
     public static let updateInboxMessagesNotificationID = "updateInboxMessagesNotification"
+}
+
+public enum AnswerMessageMode {
+    case newMessage
+    case reply
+    case replyAll
+    case forward
 }
 
 enum AppSecurity: String {

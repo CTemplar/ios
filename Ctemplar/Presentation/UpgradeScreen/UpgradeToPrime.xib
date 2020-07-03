@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina5_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,9 +23,9 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pHX-pL-J1M">
-                    <rect key="frame" x="24" y="101" width="366" height="514"/>
+                    <rect key="frame" x="24" y="91" width="366" height="514"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="upgrade" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8VG-Uy-gGU" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upgrade" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8VG-Uy-gGU">
                             <rect key="frame" x="10" y="26" width="346" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="wXC-yn-EFT"/>
@@ -318,21 +316,21 @@
                                 <constraint firstAttribute="trailing" secondItem="p8y-K6-blt" secondAttribute="trailing" id="yEh-VK-vYc"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J97-7W-xyt" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J97-7W-xyt">
                             <rect key="frame" x="38" y="410" width="290" height="48"/>
                             <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="i5N-l9-10c"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="16"/>
-                            <state key="normal" title="upgradeBig">
+                            <state key="normal" title="Upgrade to Prime">
                                 <color key="titleColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="upgradeAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="16i-cQ-w9R"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="notNow" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRp-Ww-2J5" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Now" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRp-Ww-2J5">
                             <rect key="frame" x="24" y="478" width="318" height="16"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                             <color key="textColor" white="0.0" alpha="0.86506932219999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -394,9 +392,15 @@
                 <constraint firstItem="pHX-pL-J1M" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="U3w-pK-244"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="notNowLabel" destination="RRp-Ww-2J5" id="NhO-e3-QUd"/>
+                <outlet property="titleLabel" destination="8VG-Uy-gGU" id="taX-R9-6Xa"/>
+                <outlet property="upgradeButton" destination="J97-7W-xyt" id="abn-Ny-JwS"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="154"/>
         </view>
     </objects>
     <resources>
-        <image name="greenCheck" width="16" height="16"/>
+        <image name="greenCheck" width="16.666666030883789" height="16.666666030883789"/>
     </resources>
 </document>

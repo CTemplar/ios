@@ -1,41 +1,17 @@
-//
-//  ManageFoldersConfigurator.swift
-//  Ctemplar
-//
-//  Created by Tatarinov Dmitry on 17.12.2018.
-//  Copyright © 2018 CTemplar. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import Networking
 import Utility
 
 class ManageFoldersConfigurator {
-    
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
-    func configure(viewController : ManageFoldersViewController) {
+    func configure(viewController: ManageFoldersViewController) {
+        let router = ManageFoldersRouter(viewController: viewController)
         
-        let router = ManageFoldersRouter()
-        router.viewController = viewController
+        let interactor = ManageFoldersInteractor(viewController: viewController)
+
+        let presenter = ManageFoldersPresenter(viewController: viewController, interactor: interactor)
         
-        let presenter = ManageFoldersPresenter()
-        presenter.viewController = viewController
-        
-        let interactor = ManageFoldersInteractor()
-        interactor.presenter = presenter
-        interactor.viewController = viewController
-        interactor.apiService = NetworkManager.shared.apiService
-        
-        presenter.interactor = interactor
-        
-        viewController.presenter = presenter
-        viewController.router = router
-        
-        let dataSource = ManageFoldersDataSource()
-        viewController.dataSource = dataSource
-        
-        dataSource.formatterService = UtilityManager.shared.formatterService
+        viewController.setup(router: router)
+        viewController.setup(presenter: presenter)
     }
 }

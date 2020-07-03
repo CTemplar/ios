@@ -1,16 +1,15 @@
-//
-//  UpgradeToPrimeView.swift
-//  Ctemplar
-//
-//  Created by Tatarinov Dmitry on 17.01.2019.
-//  Copyright © 2019 CTemplar. All rights reserved.
-//
-
 import Foundation
 import UIKit
+import Utility
 
 class UpgradeToPrimeView: UIView {
 
+    // MARK: IBOutlets
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var upgradeButton: UIButton!
+    @IBOutlet weak var notNowLabel: UILabel!
+    
+    // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -22,9 +21,18 @@ class UpgradeToPrimeView: UIView {
     }
     
     private func commonInit() {
-        
         let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
         self.addGestureRecognizer(freeSpaceViewGesture)
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.titleLabel.text = Strings.AppUpgrade.upgrade.localized
+        
+        self.upgradeButton.setTitle(Strings.AppUpgrade.upgradeBig.localized, for: .normal)
+        
+        self.notNowLabel.text = Strings.AppUpgrade.notNow.localized
     }
     
     //MARK: - IBActions

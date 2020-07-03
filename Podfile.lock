@@ -1,6 +1,7 @@
 PODS:
   - AlertHelperKit (1.9.0)
   - BCryptSwift (1.1)
+  - Colorful (3.0.0)
   - Crashlytics (3.14.0):
     - Fabric (~> 1.10.2)
   - Fabric (1.10.2)
@@ -79,6 +80,7 @@ PODS:
 DEPENDENCIES:
   - AlertHelperKit (from `https://github.com/keygx/AlertHelperKit`)
   - BCryptSwift
+  - Colorful (~> 3.0)
   - Crashlytics
   - Fabric
   - Firebase/Messaging
@@ -90,6 +92,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - BCryptSwift
+    - Colorful
     - Crashlytics
     - Fabric
     - Firebase
@@ -124,6 +127,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AlertHelperKit: db79a53288eb4b135966f7fef1aa2ec1ed753564
   BCryptSwift: f69992ea5685f6714260842c2770688043b89ab2
+  Colorful: 9e093edacaa9fb73512ad9da157f0707b82d2542
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   Firebase: 0219bb4782eb1406f1b9b0628a2e625484ce910d
@@ -146,6 +150,6 @@ SPEC CHECKSUMS:
   ObjectivePGP: 35a73ed3253e7e2982184ea86b1ff6c5773d1299
   Protobuf: dd1aaea7140debfe4dd0683fb8ef208e527ae153
 
-PODFILE CHECKSUM: d9b70edde251648d0d27bc32a82fea5d227d01b1
+PODFILE CHECKSUM: 68551e8f86ef2c8da61d439a1a810d63165b3537
 
 COCOAPODS: 1.9.3

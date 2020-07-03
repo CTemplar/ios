@@ -9,19 +9,14 @@
 import Foundation
 import UIKit
 import Networking
+import SideMenu
 
 class InboxRouter {
     
     var viewController: InboxViewController?
     
     func showInboxSideMenu() {
- 
-//        if (!Device.IS_IPAD) {
-            self.viewController?.openLeft()
-//            viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
-//        } else {
-//            self.viewController?.splitViewController?.toggleMasterView()
-//        }
+        viewController?.sideMenuController?.revealMenu()
     }
     
     func showComposeViewController(answerMode: AnswerMessageMode) {
@@ -81,7 +76,6 @@ class InboxRouter {
     }
     
     func showMoveToViewController() {
-        
         let storyboard: UIStoryboard = UIStoryboard(name: k_MoveToStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_MoveToViewControllerID) as! MoveToViewController
         if let selectedMessages = self.viewController?.dataSource?.selectedMessagesIDArray {
@@ -89,8 +83,7 @@ class InboxRouter {
         }
         vc.delegate = self.viewController?.presenter
         vc.user = (self.viewController?.user)!
+        vc.modalPresentationStyle = .formSheet
         self.viewController?.present(vc, animated: true, completion: nil)
-        //self.viewController?.show(vc, sender: self)
-       // self.viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }

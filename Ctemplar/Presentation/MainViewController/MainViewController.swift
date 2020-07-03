@@ -11,14 +11,10 @@ import Foundation
 import Utility
 import Networking
 import Login
+import SideMenu
 
 class MainViewController: UIViewController, HashingService {
-    
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var apiService      : APIService?
-    
-//    var inboxNavigationController: InboxNavigationController! = nil
-//    var iPadSplitViewController : SplitViewController! = nil
+    var apiService: APIService?
     
     var mainTimer: Timer!
     
@@ -27,14 +23,7 @@ class MainViewController: UIViewController, HashingService {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
         apiService = NetworkManager.shared.apiService
-        
-//        initInboxNavigationController()
-//
-//        if (Device.IS_IPAD) {
-//            initSplitViewController()
-//        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -55,17 +44,11 @@ class MainViewController: UIViewController, HashingService {
     }
     
     func moveToNext() {
-//        if (!Device.IS_IPAD) {
-            showInboxNavigationController()
-//        } else {
-//            showSplitViewController()
-//        }
+        showInboxNavigationController()
     }
     
     func setAutoUpdaterTimer() {
-        
-        print("start AutoUpdaterTimer")
-        
+        DPrint("start AutoUpdaterTimer")
         mainTimer = Timer.scheduledTimer(timeInterval: 60,
                              target: self,
                              selector: #selector(self.sendUpdateNotification),
@@ -74,9 +57,8 @@ class MainViewController: UIViewController, HashingService {
     }
     
     func stopAutoUpdaterTimer() {
-        
         if mainTimer != nil {
-            print("stop AutoUpdaterTimer")
+            DPrint("stop AutoUpdaterTimer")
             mainTimer.invalidate()
             mainTimer = nil
         }
@@ -85,25 +67,26 @@ class MainViewController: UIViewController, HashingService {
     @objc func sendUpdateNotification() {
         let silent = true
         NotificationCenter.default.post(name: .updateInboxMessagesNotificationID, object: silent, userInfo: nil)
-        print("sendUpdateNotification")
+        DPrint("sendUpdateNotification")
     }
     
     func showLoginViewController() {
-        print("show login VC")
+        DPrint("show login VC")
         DispatchQueue.main.async {
             let loginCoordinator = LoginCoordinator()
-            loginCoordinator.showLogin(from: self, withSideMenu: self.getSlideMenuController())
+            loginCoordinator.showLogin(from: self, withSideMenu: self.sideMenu())
         }
     }
     
     func showInboxNavigationController() {
         DispatchQueue.main.async {
-            let slideMenuController = self.getSlideMenuController(with: self.messageID)
-            slideMenuController.modalPresentationStyle = .fullScreen
+            let sideMenu = self.sideMenu(with: self.messageID)
+            sideMenu.modalPresentationStyle = .fullScreen
+            
             if let window = UIApplication.shared.getKeyWindow() {
-                window.setRootViewController(slideMenuController)
-            }else {
-                self.show(slideMenuController, sender: self)
+                window.setRootViewController(sideMenu)
+            } else {
+                self.show(sideMenu, sender: self)
             }
         }
     }
@@ -112,26 +95,19 @@ class MainViewController: UIViewController, HashingService {
 //MARK: - SlideMenu Setup
 
 extension MainViewController {
-    func getSlideMenuController(with messageId: Int = -1) -> SlideMenuController {
+    func sideMenu(with messageId: Int = -1) -> SideMenuController {
         let inboxViewController = InboxViewController.instantiate(fromAppStoryboard: .Inbox)
         inboxViewController.messageID = messageId
         
         let inboxNavigationController = UIViewController.getNavController(rootViewController: inboxViewController)
         
         let leftMenuController = InboxSideMenuViewController.instantiate(fromAppStoryboard: .InboxSideMenu)
-//        leftMenuController.mainViewController = self
         leftMenuController.inboxViewController = inboxViewController
         leftMenuController.dataSource?.selectedIndexPath = IndexPath(row: 0, section: SideMenuSectionIndex.mainFolders.rawValue)
+
+        let sideMenuController = SideMenuController(contentViewController: inboxNavigationController, menuViewController: leftMenuController)
         
-        SlideMenuOptions.rightViewWidth = UIScreen.main.bounds.width / 1.3
-        SlideMenuOptions.contentViewOpacity = 0.3
-        SlideMenuOptions.panGesturesEnabled = false
-        
-        SlideMenuOptions.contentViewScale = 1
-        
-        let slideMenuController = SlideMenuController(mainViewController: inboxNavigationController, leftMenuViewController: leftMenuController)
-        
-        return slideMenuController
+        return sideMenuController
     }
 }
 
@@ -150,23 +126,6 @@ extension MainViewController {
         splitViewController.showDetailViewController(inboxNavigationController, sender: self)
         
         return splitViewController
-    }
-    
-    private func getSlideMenuController() -> SlideMenuController {
-        let inboxViewController = InboxViewController.instantiate(fromAppStoryboard: .Inbox)
-        let inboxNavigationController = UIViewController.getNavController(rootViewController: inboxViewController)
-        
-        let leftMenuController = InboxSideMenuViewController.instantiate(fromAppStoryboard: .InboxSideMenu)
-        leftMenuController.inboxViewController = inboxViewController
-        leftMenuController.dataSource?.selectedIndexPath = IndexPath(row: 0, section: SideMenuSectionIndex.mainFolders.rawValue)
-        
-        let slideMenuController = SlideMenuController(mainViewController: inboxNavigationController, leftMenuViewController: leftMenuController)
-        SlideMenuOptions.rightViewWidth = UIScreen.main.bounds.width / 1.3
-        SlideMenuOptions.contentViewOpacity = 0.3
-        
-        SlideMenuOptions.contentViewScale = 1
-        
-        return slideMenuController
     }
 }
 

@@ -1,64 +1,62 @@
-//
-//  AddFolderInteractor.swift
-//  Ctemplar
-//
-//  Created by Tatarinov Dmitry on 19.12.2018.
-//  Copyright © 2018 CTemplar. All rights reserved.
-//
-
 import Foundation
 import Utility
 import Networking
 
 class AddFolderInteractor {
-    var viewController: AddFolderViewController?
-    var apiService: APIService?
-    var formatterService: FormatterService?
+    // MARK: Properties
+    private weak var viewController: AddFolderViewController?
     
+    private let apiService = NetworkManager.shared.apiService
+    
+    private let formatterService = UtilityManager.shared.formatterService
+    
+    // MARK: - Constructor
+    init(viewController: AddFolderViewController?) {
+        self.viewController = viewController
+    }
+    
+    // MARK: - Validations
     func validateFolderName(text: String?) {
         guard let text = text else {
-            self.viewController?.darkLineView.backgroundColor = k_redColor
-            self.setAddButton(enable: false)
+            viewController?.darkLineView.backgroundColor = k_redColor
+            setAddButton(enable: false)
             return
         }
-        let nameValid = self.formatterService?.validateFolderNameFormat(enteredName: text) ?? false
         
-        self.viewController?.darkLineView.backgroundColor = nameValid ? k_sideMenuColor : k_redColor
-        self.setAddButton(enable: nameValid && (self.viewController?.selectedHexColor.count ?? 0) > 0)
+        let nameValid = formatterService.validateFolderNameFormat(enteredName: text)
+
+        viewController?.darkLineView.backgroundColor = nameValid ? k_sideMenuColor : k_redColor
+        
+        setAddButton(enable: nameValid && self.viewController?.selectedHexColor.isEmpty == false)
     }
     
     func validFolderName(text: String?) -> Bool {
-        return formatterService?.validateFolderNameFormat(enteredName: text ?? "") ?? false
+        return formatterService.validateFolderNameFormat(enteredName: text ?? "")
     }
     
     func setAddButton(enable: Bool) {
-        
-        if enable {
-            self.viewController?.addButton.isEnabled = true
-            self.viewController?.addButton.alpha = 1.0
-        } else {
-            self.viewController?.addButton.isEnabled = false
-            self.viewController?.addButton.alpha = 0.6
-        }
+        viewController?.addButton.isEnabled = enable
     }
     
+    // MARK: - API Call
     func createCustomFolder(name: String, colorHex: String) {
-         
-        apiService?.createCustomFolder(name: name, color: colorHex) {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                print("value:", value)
-                self.viewController?.delegate?.didAddFolder(value as! Folder)
-                self.viewController?.dismiss(animated: true, completion: nil)
-            case .failure(let error):
-                print("error:", error)
-                self.viewController?.showAlert(with: "Create Folder Error",
-                           message: error.localizedDescription,
-                           buttonTitle: Strings.Button.closeButton.localized)
+        apiService.createCustomFolder(name: name, color: colorHex) { [weak self] (result) in
+            DispatchQueue.main.async {
+                switch(result) {
+                case .success(let value):
+                    DPrint("value:", value)
+                    if let folder = value as? Folder {
+                        self?.viewController?.delegate?.didAddFolder(folder)
+                    }
+                    self?.viewController?.dismiss(animated: true, completion: nil)
+                case .failure(let error):
+                    DPrint("error:", error)
+                    self?.viewController?.showAlert(with: Strings.AppError.foldersError.localized,
+                               message: error.localizedDescription,
+                               buttonTitle: Strings.Button.closeButton.localized
+                    )
+                }
             }
         }
     }
-
 }

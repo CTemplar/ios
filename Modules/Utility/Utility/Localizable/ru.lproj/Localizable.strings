@@ -2,9 +2,6 @@
 "invalidEnteredEmail" = "Неправильный формат Email";
 "validEnteredEmail" = "Введенный E-mail действителен";
 
-"logoutTitle" = "Выход";
-"logotuMessage" = "Вы уверены, что хотите выйти?";
-
 "closeButton" = "Закрыть";
 "cancelButton" = "Отмена";
 "logoutButton" = "Выйти";
@@ -80,20 +77,19 @@
 "passwordResetSuccessTitle" = "Пароль успешно сброшен";
 "passwordResetSuccessMessage" = "Вы успешно сбросили свой пароль. Теперь, пожалуйста, нажмите на кнопку ОК, чтобы продолжить.";
 
-// inbox
-
+// Inbox
 "selected" = "Выбрано";
 "emails" = "писем";
 "email" = "письмо";
 "emailsx" = "письма";
 "unread" = "непрочитано";
-
 "filtered" = "Отфильтровано";
 "noInboxMessage" = "У вас нет сообщений";
 "noFilteredMessage" = "Нет писем по такому фильтру";
 
+// Inbox Filter
 "starredFilter" = "Избранные";
-"ureadFilter" = "Непрочтенные";
+"unreadFilter" = "Непрочтенные";
 "attachmentsFilter" = "С вложениями";
 
 "decrypting" = "дешифруется...";
@@ -106,8 +102,7 @@
 "clearAll" = "Очистить";
 "selectedFilters" = "Выбрать фильтры";
 
-//more actions buttons
-
+// More Actions
 "markAsSpam" = "Пометить как спам";
 "markAsRead" = "Пометить как прочтенное";
 "markAsUnread" = "Пометить как не прочтенное";
@@ -116,9 +111,9 @@
 "moveToInbox" = "Переместить в inbox";
 "emptyFolder" = "Очистить папку";
 "cancel" = "Отмена";
+"moreActions" = "Больше действий";
 
-//undo actions buttons
-
+// Undo actions buttons
 "undoMarkAsSpam" = "Отменить: пометить как спам";
 "undoMarkAsRead" = "Отменить: пометить как прочтенное";
 "undoMarkAsUnread" = "Отменить: пометить как не прочтенное";
@@ -133,8 +128,7 @@
 "relpyAll" = "Ответить Всем";
 "forward" = "Переслать";
 
-//delete
-
+// Delete
 "deleteTitle" = "Предупреждение!";
 "deleteMessage" = "Вы действительно хотите удалить это(и) сообщение(я) окончательно?";
 
@@ -260,25 +254,18 @@
 
 "encryptedMessagesTo" = "Срок действия зашифрованных сообщений для не-Ctemplar пользователей, истекает через 28 дней, если не установлен более короткий срок.";
 
-//Manage Folders
-
+// Manage Folders
 "deleteFolderTitle" = "Удалить папку?";
 "deleteFolder" = "Вы уверены, что хотите удалить папку?";
-
 "addFolder" = "Добавить папку";
-
 "selectfolder" = "Выбрать папку";
-
 "moveTo" = "Перенести в...";
-
 "noFolders" = "У вас еще нет папок";
-
 "addFolderLimit" = " Купите премиум аккаунт";
-
 "folderName" = "Имя папки";
 "chooseColor" = "Выбрать цвет";
-
-"deleteFolder" = "Удалить папку";
+"folder" = "папка";
+"folders" = "папки";
 
 //Settings
 
@@ -427,6 +414,8 @@
 "logoutErrorTitle" = "Ошибка выхода";
 "success" = "успех";
 "logoutErrorMessage" = "Не удалось выйти из системы в данный момент, повторите попытку позже.";
+"logoutTitle" = "Выход";
+"logoutMessage" = "Вы уверены, что хотите выйти?";
 
 // Dashboard
 "accountType" = "тип аккаунта";
@@ -440,6 +429,11 @@
 "hashingFailure" = "Хеширование не удалось";
 "conectionError" = "Нет ошибки подключения";
 "unknownError" = "Неизвестная ошибка";
+"error" = "ошибка";
+"foldersError" = "Ошибка папок";
+"messagesError" = "Сообщения об ошибках";
+"mailBoxesError" = "Ошибка почтовых ящиков";
+"userError" = "Ошибка пользователя";
 
 // Signup Error
 "signupError" = "Регистрация прошла неудачно";

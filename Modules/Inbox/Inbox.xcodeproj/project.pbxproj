@@ -1,0 +1,669 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		444D23C224A8F30D00BDF79F /* InboxFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D23C124A8F30D00BDF79F /* InboxFilterViewController.swift */; };
+		444D23C424A8F46600BDF79F /* InboxFilterDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D23C324A8F46600BDF79F /* InboxFilterDatasource.swift */; };
+		444D657D24A4DC7600690B3E /* Inbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 444D657B24A4DC7600690B3E /* Inbox.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		444D659024A4E76F00690B3E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D658F24A4E76F00690B3E /* Constants.swift */; };
+		444D659224A70AA300690B3E /* InboxSideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D659124A70AA300690B3E /* InboxSideMenuController.swift */; };
+		444D659424A70B5C00690B3E /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D659324A70B5C00690B3E /* InboxViewController.swift */; };
+		444D659724A70BA000690B3E /* Initializer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444D659624A70BA000690B3E /* Initializer.framework */; };
+		444D659824A70BA000690B3E /* Initializer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 444D659624A70BA000690B3E /* Initializer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		444D659B24A70BA500690B3E /* Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444D659A24A70BA500690B3E /* Utility.framework */; };
+		444D659C24A70BA500690B3E /* Utility.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 444D659A24A70BA500690B3E /* Utility.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		444D659E24A70BFC00690B3E /* Inbox.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 444D659D24A70BFC00690B3E /* Inbox.storyboard */; };
+		444D65A024A70C7600690B3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 444D659F24A70C7500690B3E /* Assets.xcassets */; };
+		444D65A224A70D8C00690B3E /* InboxNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65A124A70D8C00690B3E /* InboxNavigationController.swift */; };
+		444D65A424A7201E00690B3E /* LeftBarButtonItemConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65A324A7201E00690B3E /* LeftBarButtonItemConfigurable.swift */; };
+		444D65A624A7217600690B3E /* InboxRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65A524A7217600690B3E /* InboxRouter.swift */; };
+		444D65A824A723D300690B3E /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444D65A724A723D300690B3E /* Networking.framework */; };
+		444D65A924A723D300690B3E /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 444D65A724A723D300690B3E /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		444D65AB24A72C7500690B3E /* InboxSideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 444D65AA24A72C7500690B3E /* InboxSideMenu.storyboard */; };
+		444D65AE24A72D0100690B3E /* InboxSideMenuConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65AD24A72D0100690B3E /* InboxSideMenuConfigurator.swift */; };
+		444D65B024A72D3000690B3E /* InboxSideMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65AF24A72D3000690B3E /* InboxSideMenuRouter.swift */; };
+		444D65B224A735AB00690B3E /* InboxSideMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65B124A735AB00690B3E /* InboxSideMenuPresenter.swift */; };
+		444D65B424A7360000690B3E /* InboxSideMenuInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65B324A7360000690B3E /* InboxSideMenuInteractor.swift */; };
+		444D65B624A736C500690B3E /* Login.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444D65B524A736C500690B3E /* Login.framework */; };
+		444D65B724A736C600690B3E /* Login.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 444D65B524A736C500690B3E /* Login.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		444D65B924A7389E00690B3E /* InboxSideMenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65B824A7389E00690B3E /* InboxSideMenuDataSource.swift */; };
+		444D65C724A73EFD00690B3E /* SharedInboxState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65C624A73EFD00690B3E /* SharedInboxState.swift */; };
+		444D65CF24A7415300690B3E /* SideMenuTableSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 444D65C924A7415300690B3E /* SideMenuTableSectionHeader.xib */; };
+		444D65D024A7415300690B3E /* SideMenuTableSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65CA24A7415300690B3E /* SideMenuTableSectionHeaderView.swift */; };
+		444D65D124A7415300690B3E /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65CB24A7415300690B3E /* SideMenuTableViewCell.swift */; };
+		444D65D224A7415300690B3E /* SideMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 444D65CC24A7415300690B3E /* SideMenuTableViewCell.xib */; };
+		444D65D324A7415300690B3E /* SideMenuTableManageFolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65CD24A7415300690B3E /* SideMenuTableManageFolderCell.swift */; };
+		444D65D424A7415300690B3E /* SideMenuTableManageFoldersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 444D65CE24A7415300690B3E /* SideMenuTableManageFoldersCell.xib */; };
+		444D65D724A745D200690B3E /* CustomFolderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65D524A745D200690B3E /* CustomFolderTableViewCell.swift */; };
+		444D65D824A745D200690B3E /* CustomFolderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 444D65D624A745D200690B3E /* CustomFolderTableViewCell.xib */; };
+		444D65DA24A7A44D00690B3E /* InboxInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65D924A7A44D00690B3E /* InboxInteractor.swift */; };
+		444D65E924A8523900690B3E /* InboxPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65E824A8523900690B3E /* InboxPresenter.swift */; };
+		444D65F624A88E1A00690B3E /* InboxMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 444D65F424A88E1A00690B3E /* InboxMessageTableViewCell.xib */; };
+		444D65F724A88E1A00690B3E /* InboxMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65F524A88E1A00690B3E /* InboxMessageTableViewCell.swift */; };
+		445BF9F124AE77CB00DAC3B3 /* InboxDataSource+APIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445BF9F024AE77CB00DAC3B3 /* InboxDataSource+APIHelpers.swift */; };
+		44DBC7DD24A89297009EFDB9 /* InboxMessageTablelViewCell+Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBC7DC24A89297009EFDB9 /* InboxMessageTablelViewCell+Labels.swift */; };
+		44DBC7DF24A8957B009EFDB9 /* InboxMessageTablelViewCell+LayoutConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBC7DE24A8957B009EFDB9 /* InboxMessageTablelViewCell+LayoutConstraints.swift */; };
+		44DBC7E124A89741009EFDB9 /* InboxMessageTablelViewCell+Badges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBC7E024A89741009EFDB9 /* InboxMessageTablelViewCell+Badges.swift */; };
+		44DBC7E424A8A3D7009EFDB9 /* InboxDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBC7E324A8A3D7009EFDB9 /* InboxDatasource.swift */; };
+		E8CAD30EC95C444EA423E6FE /* Pods_Inbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 691DDFE2EF3988074189416A /* Pods_Inbox.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		444D659924A70BA000690B3E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				444D65B724A736C600690B3E /* Login.framework in Embed Frameworks */,
+				444D659824A70BA000690B3E /* Initializer.framework in Embed Frameworks */,
+				444D659C24A70BA500690B3E /* Utility.framework in Embed Frameworks */,
+				444D65A924A723D300690B3E /* Networking.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		444D23C124A8F30D00BDF79F /* InboxFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxFilterViewController.swift; sourceTree = "<group>"; };
+		444D23C324A8F46600BDF79F /* InboxFilterDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxFilterDatasource.swift; sourceTree = "<group>"; };
+		444D657824A4DC7600690B3E /* Inbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Inbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		444D657B24A4DC7600690B3E /* Inbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Inbox.h; sourceTree = "<group>"; };
+		444D657C24A4DC7600690B3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		444D658F24A4E76F00690B3E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		444D659124A70AA300690B3E /* InboxSideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuController.swift; sourceTree = "<group>"; };
+		444D659324A70B5C00690B3E /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
+		444D659624A70BA000690B3E /* Initializer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Initializer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		444D659A24A70BA500690B3E /* Utility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		444D659D24A70BFC00690B3E /* Inbox.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Inbox.storyboard; sourceTree = "<group>"; };
+		444D659F24A70C7500690B3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../Ctemplar/Resources/Assets.xcassets; sourceTree = "<group>"; };
+		444D65A124A70D8C00690B3E /* InboxNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxNavigationController.swift; sourceTree = "<group>"; };
+		444D65A324A7201E00690B3E /* LeftBarButtonItemConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftBarButtonItemConfigurable.swift; sourceTree = "<group>"; };
+		444D65A524A7217600690B3E /* InboxRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxRouter.swift; sourceTree = "<group>"; };
+		444D65A724A723D300690B3E /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		444D65AA24A72C7500690B3E /* InboxSideMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InboxSideMenu.storyboard; sourceTree = "<group>"; };
+		444D65AD24A72D0100690B3E /* InboxSideMenuConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuConfigurator.swift; sourceTree = "<group>"; };
+		444D65AF24A72D3000690B3E /* InboxSideMenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuRouter.swift; sourceTree = "<group>"; };
+		444D65B124A735AB00690B3E /* InboxSideMenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuPresenter.swift; sourceTree = "<group>"; };
+		444D65B324A7360000690B3E /* InboxSideMenuInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuInteractor.swift; sourceTree = "<group>"; };
+		444D65B524A736C500690B3E /* Login.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Login.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		444D65B824A7389E00690B3E /* InboxSideMenuDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuDataSource.swift; sourceTree = "<group>"; };
+		444D65C624A73EFD00690B3E /* SharedInboxState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedInboxState.swift; sourceTree = "<group>"; };
+		444D65C924A7415300690B3E /* SideMenuTableSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideMenuTableSectionHeader.xib; sourceTree = "<group>"; };
+		444D65CA24A7415300690B3E /* SideMenuTableSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTableSectionHeaderView.swift; sourceTree = "<group>"; };
+		444D65CB24A7415300690B3E /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
+		444D65CC24A7415300690B3E /* SideMenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideMenuTableViewCell.xib; sourceTree = "<group>"; };
+		444D65CD24A7415300690B3E /* SideMenuTableManageFolderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTableManageFolderCell.swift; sourceTree = "<group>"; };
+		444D65CE24A7415300690B3E /* SideMenuTableManageFoldersCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideMenuTableManageFoldersCell.xib; sourceTree = "<group>"; };
+		444D65D524A745D200690B3E /* CustomFolderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFolderTableViewCell.swift; sourceTree = "<group>"; };
+		444D65D624A745D200690B3E /* CustomFolderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomFolderTableViewCell.xib; sourceTree = "<group>"; };
+		444D65D924A7A44D00690B3E /* InboxInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxInteractor.swift; sourceTree = "<group>"; };
+		444D65E824A8523900690B3E /* InboxPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxPresenter.swift; sourceTree = "<group>"; };
+		444D65F124A88CD900690B3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../Ctemplar/Resources/Assets.xcassets; sourceTree = "<group>"; };
+		444D65F424A88E1A00690B3E /* InboxMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InboxMessageTableViewCell.xib; sourceTree = "<group>"; };
+		444D65F524A88E1A00690B3E /* InboxMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxMessageTableViewCell.swift; sourceTree = "<group>"; };
+		445BF9F024AE77CB00DAC3B3 /* InboxDataSource+APIHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InboxDataSource+APIHelpers.swift"; sourceTree = "<group>"; };
+		44DBC7DC24A89297009EFDB9 /* InboxMessageTablelViewCell+Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InboxMessageTablelViewCell+Labels.swift"; sourceTree = "<group>"; };
+		44DBC7DE24A8957B009EFDB9 /* InboxMessageTablelViewCell+LayoutConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InboxMessageTablelViewCell+LayoutConstraints.swift"; sourceTree = "<group>"; };
+		44DBC7E024A89741009EFDB9 /* InboxMessageTablelViewCell+Badges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InboxMessageTablelViewCell+Badges.swift"; sourceTree = "<group>"; };
+		44DBC7E324A8A3D7009EFDB9 /* InboxDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxDatasource.swift; sourceTree = "<group>"; };
+		4E189E93A102D1073EF74CB2 /* Pods-Inbox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Inbox.debug.xcconfig"; path = "Target Support Files/Pods-Inbox/Pods-Inbox.debug.xcconfig"; sourceTree = "<group>"; };
+		691DDFE2EF3988074189416A /* Pods_Inbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Inbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AC15A26C40132A855CD244B /* Pods-Inbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Inbox.release.xcconfig"; path = "Target Support Files/Pods-Inbox/Pods-Inbox.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		444D657524A4DC7600690B3E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				444D65B624A736C500690B3E /* Login.framework in Frameworks */,
+				444D659724A70BA000690B3E /* Initializer.framework in Frameworks */,
+				444D659B24A70BA500690B3E /* Utility.framework in Frameworks */,
+				444D65A824A723D300690B3E /* Networking.framework in Frameworks */,
+				E8CAD30EC95C444EA423E6FE /* Pods_Inbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		161FEDC7704E45CD721A8E2E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4E189E93A102D1073EF74CB2 /* Pods-Inbox.debug.xcconfig */,
+				7AC15A26C40132A855CD244B /* Pods-Inbox.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../../Pods;
+			sourceTree = "<group>";
+		};
+		444D656E24A4DC7600690B3E = {
+			isa = PBXGroup;
+			children = (
+				444D65F124A88CD900690B3E /* Assets.xcassets */,
+				444D657A24A4DC7600690B3E /* Inbox */,
+				444D657924A4DC7600690B3E /* Products */,
+				444D659524A70BA000690B3E /* Frameworks */,
+				161FEDC7704E45CD721A8E2E /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		444D657924A4DC7600690B3E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				444D657824A4DC7600690B3E /* Inbox.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		444D657A24A4DC7600690B3E /* Inbox */ = {
+			isa = PBXGroup;
+			children = (
+				44DBC7E224A8A3CA009EFDB9 /* Datasource */,
+				444D65F324A88E0600690B3E /* Views */,
+				444D659F24A70C7500690B3E /* Assets.xcassets */,
+				444D658E24A4E75A00690B3E /* Common */,
+				444D658D24A4DCB600690B3E /* Storyboards */,
+				444D658C24A4DCA600690B3E /* VIPER-Structure */,
+				444D658B24A4DC9D00690B3E /* ViewControllers */,
+				444D658924A4DC8800690B3E /* Helpers */,
+				444D657B24A4DC7600690B3E /* Inbox.h */,
+				444D657C24A4DC7600690B3E /* Info.plist */,
+			);
+			path = Inbox;
+			sourceTree = "<group>";
+		};
+		444D658924A4DC8800690B3E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				444D658A24A4DC8F00690B3E /* SideMenu */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		444D658A24A4DC8F00690B3E /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				444D65C824A7413200690B3E /* Views */,
+				444D65BC24A738D000690B3E /* DataSource */,
+				444D65BB24A738C000690B3E /* Storyboards */,
+				444D65BA24A738B800690B3E /* ViewControllers */,
+				444D65AC24A72CE800690B3E /* VIPER-Structure */,
+			);
+			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		444D658B24A4DC9D00690B3E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				444D659324A70B5C00690B3E /* InboxViewController.swift */,
+				444D65A124A70D8C00690B3E /* InboxNavigationController.swift */,
+				444D23C124A8F30D00BDF79F /* InboxFilterViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		444D658C24A4DCA600690B3E /* VIPER-Structure */ = {
+			isa = PBXGroup;
+			children = (
+				444D65A524A7217600690B3E /* InboxRouter.swift */,
+				444D65D924A7A44D00690B3E /* InboxInteractor.swift */,
+				444D65E824A8523900690B3E /* InboxPresenter.swift */,
+			);
+			path = "VIPER-Structure";
+			sourceTree = "<group>";
+		};
+		444D658D24A4DCB600690B3E /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				444D659D24A70BFC00690B3E /* Inbox.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		444D658E24A4E75A00690B3E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				444D658F24A4E76F00690B3E /* Constants.swift */,
+				444D65A324A7201E00690B3E /* LeftBarButtonItemConfigurable.swift */,
+				444D65C624A73EFD00690B3E /* SharedInboxState.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		444D659524A70BA000690B3E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				444D65B524A736C500690B3E /* Login.framework */,
+				444D65A724A723D300690B3E /* Networking.framework */,
+				444D659A24A70BA500690B3E /* Utility.framework */,
+				444D659624A70BA000690B3E /* Initializer.framework */,
+				691DDFE2EF3988074189416A /* Pods_Inbox.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		444D65AC24A72CE800690B3E /* VIPER-Structure */ = {
+			isa = PBXGroup;
+			children = (
+				444D65AD24A72D0100690B3E /* InboxSideMenuConfigurator.swift */,
+				444D65AF24A72D3000690B3E /* InboxSideMenuRouter.swift */,
+				444D65B124A735AB00690B3E /* InboxSideMenuPresenter.swift */,
+				444D65B324A7360000690B3E /* InboxSideMenuInteractor.swift */,
+			);
+			path = "VIPER-Structure";
+			sourceTree = "<group>";
+		};
+		444D65BA24A738B800690B3E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				444D659124A70AA300690B3E /* InboxSideMenuController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		444D65BB24A738C000690B3E /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				444D65AA24A72C7500690B3E /* InboxSideMenu.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		444D65BC24A738D000690B3E /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				444D65B824A7389E00690B3E /* InboxSideMenuDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		444D65C824A7413200690B3E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				444D65D524A745D200690B3E /* CustomFolderTableViewCell.swift */,
+				444D65D624A745D200690B3E /* CustomFolderTableViewCell.xib */,
+				444D65CD24A7415300690B3E /* SideMenuTableManageFolderCell.swift */,
+				444D65CE24A7415300690B3E /* SideMenuTableManageFoldersCell.xib */,
+				444D65CA24A7415300690B3E /* SideMenuTableSectionHeaderView.swift */,
+				444D65C924A7415300690B3E /* SideMenuTableSectionHeader.xib */,
+				444D65CB24A7415300690B3E /* SideMenuTableViewCell.swift */,
+				444D65CC24A7415300690B3E /* SideMenuTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		444D65F324A88E0600690B3E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				444D65F524A88E1A00690B3E /* InboxMessageTableViewCell.swift */,
+				444D65F424A88E1A00690B3E /* InboxMessageTableViewCell.xib */,
+				44DBC7DC24A89297009EFDB9 /* InboxMessageTablelViewCell+Labels.swift */,
+				44DBC7DE24A8957B009EFDB9 /* InboxMessageTablelViewCell+LayoutConstraints.swift */,
+				44DBC7E024A89741009EFDB9 /* InboxMessageTablelViewCell+Badges.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		44DBC7E224A8A3CA009EFDB9 /* Datasource */ = {
+			isa = PBXGroup;
+			children = (
+				44DBC7E324A8A3D7009EFDB9 /* InboxDatasource.swift */,
+				445BF9F024AE77CB00DAC3B3 /* InboxDataSource+APIHelpers.swift */,
+				444D23C324A8F46600BDF79F /* InboxFilterDatasource.swift */,
+			);
+			path = Datasource;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		444D657324A4DC7600690B3E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				444D657D24A4DC7600690B3E /* Inbox.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		444D657724A4DC7600690B3E /* Inbox */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 444D658024A4DC7600690B3E /* Build configuration list for PBXNativeTarget "Inbox" */;
+			buildPhases = (
+				A32132764B1F8E5C0926928D /* [CP] Check Pods Manifest.lock */,
+				444D657324A4DC7600690B3E /* Headers */,
+				444D657424A4DC7600690B3E /* Sources */,
+				444D657524A4DC7600690B3E /* Frameworks */,
+				444D657624A4DC7600690B3E /* Resources */,
+				444D659924A70BA000690B3E /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Inbox;
+			productName = Inbox;
+			productReference = 444D657824A4DC7600690B3E /* Inbox.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		444D656F24A4DC7600690B3E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "Soham Bhattacharjee";
+				TargetAttributes = {
+					444D657724A4DC7600690B3E = {
+						CreatedOnToolsVersion = 11.5;
+						LastSwiftMigration = 1150;
+					};
+				};
+			};
+			buildConfigurationList = 444D657224A4DC7600690B3E /* Build configuration list for PBXProject "Inbox" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 444D656E24A4DC7600690B3E;
+			productRefGroup = 444D657924A4DC7600690B3E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				444D657724A4DC7600690B3E /* Inbox */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		444D657624A4DC7600690B3E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				444D65D824A745D200690B3E /* CustomFolderTableViewCell.xib in Resources */,
+				444D65AB24A72C7500690B3E /* InboxSideMenu.storyboard in Resources */,
+				444D65D424A7415300690B3E /* SideMenuTableManageFoldersCell.xib in Resources */,
+				444D65D224A7415300690B3E /* SideMenuTableViewCell.xib in Resources */,
+				444D65A024A70C7600690B3E /* Assets.xcassets in Resources */,
+				444D659E24A70BFC00690B3E /* Inbox.storyboard in Resources */,
+				444D65F624A88E1A00690B3E /* InboxMessageTableViewCell.xib in Resources */,
+				444D65CF24A7415300690B3E /* SideMenuTableSectionHeader.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A32132764B1F8E5C0926928D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Inbox-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		444D657424A4DC7600690B3E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				444D65AE24A72D0100690B3E /* InboxSideMenuConfigurator.swift in Sources */,
+				444D65DA24A7A44D00690B3E /* InboxInteractor.swift in Sources */,
+				444D65C724A73EFD00690B3E /* SharedInboxState.swift in Sources */,
+				444D659224A70AA300690B3E /* InboxSideMenuController.swift in Sources */,
+				444D65D324A7415300690B3E /* SideMenuTableManageFolderCell.swift in Sources */,
+				44DBC7E124A89741009EFDB9 /* InboxMessageTablelViewCell+Badges.swift in Sources */,
+				444D65D724A745D200690B3E /* CustomFolderTableViewCell.swift in Sources */,
+				444D65A624A7217600690B3E /* InboxRouter.swift in Sources */,
+				444D65B224A735AB00690B3E /* InboxSideMenuPresenter.swift in Sources */,
+				44DBC7DD24A89297009EFDB9 /* InboxMessageTablelViewCell+Labels.swift in Sources */,
+				444D23C424A8F46600BDF79F /* InboxFilterDatasource.swift in Sources */,
+				44DBC7DF24A8957B009EFDB9 /* InboxMessageTablelViewCell+LayoutConstraints.swift in Sources */,
+				444D65A424A7201E00690B3E /* LeftBarButtonItemConfigurable.swift in Sources */,
+				444D65B924A7389E00690B3E /* InboxSideMenuDataSource.swift in Sources */,
+				444D65F724A88E1A00690B3E /* InboxMessageTableViewCell.swift in Sources */,
+				444D65D024A7415300690B3E /* SideMenuTableSectionHeaderView.swift in Sources */,
+				445BF9F124AE77CB00DAC3B3 /* InboxDataSource+APIHelpers.swift in Sources */,
+				444D23C224A8F30D00BDF79F /* InboxFilterViewController.swift in Sources */,
+				444D659424A70B5C00690B3E /* InboxViewController.swift in Sources */,
+				444D65A224A70D8C00690B3E /* InboxNavigationController.swift in Sources */,
+				444D65B424A7360000690B3E /* InboxSideMenuInteractor.swift in Sources */,
+				444D65D124A7415300690B3E /* SideMenuTableViewCell.swift in Sources */,
+				444D659024A4E76F00690B3E /* Constants.swift in Sources */,
+				444D65B024A72D3000690B3E /* InboxSideMenuRouter.swift in Sources */,
+				444D65E924A8523900690B3E /* InboxPresenter.swift in Sources */,
+				44DBC7E424A8A3D7009EFDB9 /* InboxDatasource.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		444D657E24A4DC7600690B3E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		444D657F24A4DC7600690B3E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		444D658124A4DC7600690B3E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E189E93A102D1073EF74CB2 /* Pods-Inbox.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = Inbox/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.dev.Inbox;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		444D658224A4DC7600690B3E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7AC15A26C40132A855CD244B /* Pods-Inbox.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = Inbox/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.dev.Inbox;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		444D657224A4DC7600690B3E /* Build configuration list for PBXProject "Inbox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				444D657E24A4DC7600690B3E /* Debug */,
+				444D657F24A4DC7600690B3E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		444D658024A4DC7600690B3E /* Build configuration list for PBXNativeTarget "Inbox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				444D658124A4DC7600690B3E /* Debug */,
+				444D658224A4DC7600690B3E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 444D656F24A4DC7600690B3E /* Project object */;
+}

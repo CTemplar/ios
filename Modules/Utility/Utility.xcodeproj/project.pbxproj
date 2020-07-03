@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44099D9D24A285D800583630 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 44099D9C24A285D800583630 /* SideMenu */; };
 		444BD2752491EFD5001D0C5F /* FormatterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444BD2742491EFD5001D0C5F /* FormatterService.swift */; };
 		444BD28124920A39001D0C5F /* SharedDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444BD28024920A39001D0C5F /* SharedDateFormatter.swift */; };
 		444BD28624920F57001D0C5F /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444BD28524920F57001D0C5F /* Date+Helpers.swift */; };
@@ -38,6 +39,9 @@
 		444BD3B32494E96F001D0C5F /* EmailKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444BD3B22494E96F001D0C5F /* EmailKeys.swift */; };
 		4457748B2499D31200B8E502 /* Notitifcation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4457748A2499D31200B8E502 /* Notitifcation+Extension.swift */; };
 		4458B6F824968D4C00F787F5 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4458B6F724968D4C00F787F5 /* UITextField+Extension.swift */; };
+		445BF9E324AD22D100DAC3B3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 445BF9E124AD22BA00DAC3B3 /* libz.tbd */; };
+		445BF9E424AD22DC00DAC3B3 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 445BF9E224AD22C900DAC3B3 /* libbz2.tbd */; };
+		445BF9EF24AD248D00DAC3B3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 445BF9EE24AD248D00DAC3B3 /* Security.framework */; };
 		445CFAE9249BF45B0017DC40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 445CFAE8249BF45B0017DC40 /* Assets.xcassets */; };
 		44727D3C249F223D003B99FC /* PasswordChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44727D3B249F223D003B99FC /* PasswordChecker.swift */; };
 		44727D3E249F225B003B99FC /* EmailChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44727D3D249F225B003B99FC /* EmailChecker.swift */; };
@@ -99,6 +103,9 @@
 		444BD3B22494E96F001D0C5F /* EmailKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailKeys.swift; sourceTree = "<group>"; };
 		4457748A2499D31200B8E502 /* Notitifcation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notitifcation+Extension.swift"; sourceTree = "<group>"; };
 		4458B6F724968D4C00F787F5 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		445BF9E124AD22BA00DAC3B3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
+		445BF9E224AD22C900DAC3B3 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libbz2.tbd; sourceTree = DEVELOPER_DIR; };
+		445BF9EE24AD248D00DAC3B3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		445CFAE8249BF45B0017DC40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../Ctemplar/Resources/Assets.xcassets; sourceTree = "<group>"; };
 		44727D3B249F223D003B99FC /* PasswordChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChecker.swift; sourceTree = "<group>"; };
 		44727D3D249F225B003B99FC /* EmailChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailChecker.swift; sourceTree = "<group>"; };
@@ -138,8 +145,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				44BD63F42490B46400CB4A73 /* QuickLayout in Frameworks */,
+				445BF9E424AD22DC00DAC3B3 /* libbz2.tbd in Frameworks */,
+				445BF9E324AD22D100DAC3B3 /* libz.tbd in Frameworks */,
 				444BD2D0249223CD001D0C5F /* KeychainSwift in Frameworks */,
 				44BD63FB2490B93E00CB4A73 /* SwiftEntryKit in Frameworks */,
+				44099D9D24A285D800583630 /* SideMenu in Frameworks */,
+				445BF9EF24AD248D00DAC3B3 /* Security.framework in Frameworks */,
 				F667DD49A75B6FE0252F8096 /* Pods_Utility.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,6 +321,9 @@
 		915CE001F1122A6FA4E963D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				445BF9EE24AD248D00DAC3B3 /* Security.framework */,
+				445BF9E224AD22C900DAC3B3 /* libbz2.tbd */,
+				445BF9E124AD22BA00DAC3B3 /* libz.tbd */,
 				0E703B50CC5FDE28F6FAAE49 /* Pods_Utility.framework */,
 			);
 			name = Frameworks;
@@ -358,6 +372,7 @@
 				44BD63F32490B46400CB4A73 /* QuickLayout */,
 				44BD63FA2490B93E00CB4A73 /* SwiftEntryKit */,
 				444BD2CF249223CD001D0C5F /* KeychainSwift */,
+				44099D9C24A285D800583630 /* SideMenu */,
 			);
 			productName = Utility;
 			productReference = 44BD637324909D9E00CB4A73 /* Utility.framework */;
@@ -393,6 +408,7 @@
 				44BD63F22490B46400CB4A73 /* XCRemoteSwiftPackageReference "QuickLayout" */,
 				44BD63F92490B93E00CB4A73 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */,
 				444BD2CE249223CD001D0C5F /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				44099D9B24A285D800583630 /* XCRemoteSwiftPackageReference "SideMenu" */,
 			);
 			productRefGroup = 44BD637424909D9E00CB4A73 /* Products */;
 			projectDirPath = "";
@@ -722,6 +738,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		44099D9B24A285D800583630 /* XCRemoteSwiftPackageReference "SideMenu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kukushi/SideMenu.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.5;
+			};
+		};
 		444BD2CE249223CD001D0C5F /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
@@ -749,6 +773,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		44099D9C24A285D800583630 /* SideMenu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 44099D9B24A285D800583630 /* XCRemoteSwiftPackageReference "SideMenu" */;
+			productName = SideMenu;
+		};
 		444BD2CF249223CD001D0C5F /* KeychainSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 444BD2CE249223CD001D0C5F /* XCRemoteSwiftPackageReference "keychain-swift" */;

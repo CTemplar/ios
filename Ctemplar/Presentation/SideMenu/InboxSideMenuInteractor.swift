@@ -42,7 +42,7 @@ class InboxSideMenuInteractor {
     }
 
     private func resetRootController() {
-        guard let presenter = viewController else {
+        guard let presenter = viewController?.sideMenuController else {
             return
         }
         

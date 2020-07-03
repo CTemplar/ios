@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tKd-OF-9DY">
+    <device id="retina5_9" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,79 +17,45 @@
         <!--Add Folder View Controller-->
         <scene sceneID="epx-ac-6N8">
             <objects>
-                <viewController storyboardIdentifier="AddFolderViewController" id="tKd-OF-9DY" customClass="AddFolderViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddFolderViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tKd-OF-9DY" customClass="AddFolderViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Koc-pG-r3V">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="37g-fy-yQY">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FKn-VU-gy7">
-                                <rect key="frame" x="0.0" y="1" width="375" height="666"/>
-                                <subviews>
-                                    <button opaque="NO" tag="206" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LIT-Sc-qzk">
-                                        <rect key="frame" x="14" y="16" width="26" height="26"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="LIT-Sc-qzk" secondAttribute="height" multiplier="1:1" id="AIf-qV-tgn"/>
-                                            <constraint firstAttribute="width" constant="26" id="EMe-CL-dSX"/>
-                                        </constraints>
-                                        <state key="normal" image="darkCross"/>
-                                        <connections>
-                                            <action selector="cancelButtonPressed:" destination="tKd-OF-9DY" eventType="touchUpInside" id="gP4-tw-tfg"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="addFolder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqr-73-N8k" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
-                                        <rect key="frame" x="97.5" y="29" width="180" height="27"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="180" id="mSK-Tf-GOh"/>
-                                            <constraint firstAttribute="height" constant="27" id="ynu-Nr-Bdy"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="22"/>
-                                        <color key="textColor" name="actionMessageColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="xqr-73-N8k" firstAttribute="top" secondItem="FKn-VU-gy7" secondAttribute="top" constant="29" id="3RC-Og-8tm"/>
-                                    <constraint firstItem="LIT-Sc-qzk" firstAttribute="leading" secondItem="FKn-VU-gy7" secondAttribute="leading" constant="14" id="Ove-dv-dp9"/>
-                                    <constraint firstItem="LIT-Sc-qzk" firstAttribute="top" secondItem="FKn-VU-gy7" secondAttribute="top" constant="16" id="puQ-Ys-y9b"/>
-                                    <constraint firstItem="xqr-73-N8k" firstAttribute="centerX" secondItem="FKn-VU-gy7" secondAttribute="centerX" id="uGC-dI-9gy"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" name="composeMessageShadowColor"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="12"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="76U-yz-xdD">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <items>
+                                    <navigationItem title="Add Folder" id="S3c-ND-UKp">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="qeZ-YZ-fBn">
+                                            <color key="tintColor" name="settingsCellTextColor"/>
+                                            <connections>
+                                                <action selector="cancelButtonPressed:" destination="tKd-OF-9DY" id="fs7-2F-E0W"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Add" style="done" id="daC-0u-xOg">
+                                            <color key="tintColor" name="settingsCellTextColor"/>
+                                            <connections>
+                                                <action selector="addButtonPressed:" destination="tKd-OF-9DY" id="XkC-1v-wZw"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3fr-6e-Ztf">
-                                <rect key="frame" x="0.0" y="57" width="375" height="610"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="folderName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smi-Mt-keG" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="12" width="199" height="15"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="15" id="o5J-9p-H2l"/>
-                                        </constraints>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Folder Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smi-Mt-keG" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="16" width="80.666666666666671" height="17"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                         <color key="textColor" name="actionMessageColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fD8-us-aI5">
-                                        <rect key="frame" x="16" y="35" width="343" height="44"/>
+                                        <rect key="frame" x="16" y="41" width="343" height="60"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="folderName" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Cn-KY-Ch2" customClass="UILocalizedTextField" customModule="Ctemplar" customModuleProvider="target">
-                                                <rect key="frame" x="17" y="12" width="309" height="19"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="19" id="oQl-BS-E9I"/>
-                                                </constraints>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add your folder name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Cn-KY-Ch2" customClass="UILocalizedTextField" customModule="Ctemplar" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="8" width="327" height="42"/>
                                                 <color key="textColor" name="actionMessageColor"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="name"/>
@@ -98,13 +64,24 @@
                                                     <action selector="textTyped:" destination="tKd-OF-9DY" eventType="editingDidEndOnExit" id="gqI-9a-rSs"/>
                                                 </connections>
                                             </textField>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V2y-0R-uTt">
+                                                <rect key="frame" x="0.0" y="58" width="343" height="2"/>
+                                                <color key="backgroundColor" name="encryptSeperatorColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="2" id="PHL-Xx-EoB"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="2Cn-KY-Ch2" firstAttribute="top" secondItem="fD8-us-aI5" secondAttribute="top" constant="12" id="I71-Am-YqB"/>
-                                            <constraint firstAttribute="trailing" secondItem="2Cn-KY-Ch2" secondAttribute="trailing" constant="17" id="cLo-zw-tf9"/>
-                                            <constraint firstAttribute="height" constant="44" id="p4j-ec-k3L"/>
-                                            <constraint firstItem="2Cn-KY-Ch2" firstAttribute="leading" secondItem="fD8-us-aI5" secondAttribute="leading" constant="17" id="t2D-gU-u1U"/>
+                                            <constraint firstItem="V2y-0R-uTt" firstAttribute="leading" secondItem="fD8-us-aI5" secondAttribute="leading" id="7vB-ms-5fe"/>
+                                            <constraint firstAttribute="bottom" secondItem="V2y-0R-uTt" secondAttribute="bottom" id="Ggd-tg-cdX"/>
+                                            <constraint firstAttribute="trailing" secondItem="2Cn-KY-Ch2" secondAttribute="trailing" constant="8" id="Sl2-j6-cUE"/>
+                                            <constraint firstItem="2Cn-KY-Ch2" firstAttribute="leading" secondItem="fD8-us-aI5" secondAttribute="leading" constant="8" id="Tid-0j-6XC"/>
+                                            <constraint firstItem="V2y-0R-uTt" firstAttribute="top" secondItem="2Cn-KY-Ch2" secondAttribute="bottom" constant="8" id="UYg-Wy-gKl"/>
+                                            <constraint firstItem="2Cn-KY-Ch2" firstAttribute="top" secondItem="fD8-us-aI5" secondAttribute="top" constant="8" id="s7w-It-dwC"/>
+                                            <constraint firstAttribute="height" constant="60" id="xa3-XW-BX4"/>
+                                            <constraint firstAttribute="trailing" secondItem="V2y-0R-uTt" secondAttribute="trailing" id="xjh-Tk-zS7"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -118,131 +95,64 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V2y-0R-uTt">
-                                        <rect key="frame" x="16" y="79" width="343" height="2"/>
-                                        <color key="backgroundColor" name="encryptSeperatorColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="2" id="mHw-NO-HmV"/>
-                                        </constraints>
-                                    </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="chooseColor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVU-ag-v42" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="106" width="343" height="16"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="16" id="FkP-Di-wwy"/>
-                                        </constraints>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Color" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVU-ag-v42" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="125" width="343" height="19"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                         <color key="textColor" name="actionMessageColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VyG-aG-Jlh">
-                                        <rect key="frame" x="16" y="138" width="343" height="90"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VyG-aG-Jlh" customClass="ColorPicker" customModule="Colorful">
+                                        <rect key="frame" x="16" y="156" width="343" height="300"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="90" id="aPb-P7-Yu9"/>
+                                            <constraint firstAttribute="height" constant="300" id="f2g-xj-AQj"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" tag="206" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5zr-CK-cPx" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="278" width="163.5" height="48"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="48" id="gU6-RL-UKD"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                        <state key="normal" title="cancelButton">
-                                            <color key="titleColor" name="folderCellTextColor"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="0.0"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" name="folderCellTextColor"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="cancelButtonPressed:" destination="tKd-OF-9DY" eventType="touchUpInside" id="tdj-QT-PQy"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="207" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cG4-CR-m8K" customClass="UILocalizedButton" customModule="Ctemplar" customModuleProvider="target">
-                                        <rect key="frame" x="195.5" y="278" width="163.5" height="48"/>
-                                        <color key="backgroundColor" name="folderCellTextColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="48" id="eT8-Nc-vsG"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                        <state key="normal" title="addButton">
-                                            <color key="titleColor" name="addFolderButtonTitleColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="addButtonPressed:" destination="tKd-OF-9DY" eventType="touchUpInside" id="TWa-1l-A0r"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="Smi-Mt-keG" firstAttribute="leading" secondItem="3fr-6e-Ztf" secondAttribute="leading" constant="16" id="0Tw-ga-lWl"/>
-                                    <constraint firstAttribute="centerX" secondItem="5zr-CK-cPx" secondAttribute="trailing" constant="8" id="3JQ-PZ-CJw"/>
-                                    <constraint firstAttribute="trailing" secondItem="fD8-us-aI5" secondAttribute="trailing" constant="16" id="5f2-tj-b6V"/>
-                                    <constraint firstItem="fD8-us-aI5" firstAttribute="leading" secondItem="3fr-6e-Ztf" secondAttribute="leading" constant="16" id="6on-kA-DvI"/>
-                                    <constraint firstItem="VyG-aG-Jlh" firstAttribute="leading" secondItem="3fr-6e-Ztf" secondAttribute="leading" constant="16" id="88c-3q-9Td"/>
-                                    <constraint firstItem="V2y-0R-uTt" firstAttribute="leading" secondItem="3fr-6e-Ztf" secondAttribute="leading" constant="16" id="EHf-9X-9y5"/>
-                                    <constraint firstItem="zVU-ag-v42" firstAttribute="leading" secondItem="3fr-6e-Ztf" secondAttribute="leading" constant="16" id="EpR-Yg-mU5"/>
-                                    <constraint firstAttribute="trailing" secondItem="zVU-ag-v42" secondAttribute="trailing" constant="16" id="GBd-UX-fwT"/>
-                                    <constraint firstItem="cG4-CR-m8K" firstAttribute="centerY" secondItem="5zr-CK-cPx" secondAttribute="centerY" id="Hd0-Nf-sT9"/>
-                                    <constraint firstItem="zVU-ag-v42" firstAttribute="top" secondItem="V2y-0R-uTt" secondAttribute="bottom" constant="25" id="LT0-Bl-jsb"/>
-                                    <constraint firstItem="cG4-CR-m8K" firstAttribute="leading" secondItem="3fr-6e-Ztf" secondAttribute="centerX" constant="8" id="MrV-fW-4UB"/>
-                                    <constraint firstAttribute="trailing" secondItem="V2y-0R-uTt" secondAttribute="trailing" constant="16" id="UpJ-fQ-HQk"/>
-                                    <constraint firstItem="fD8-us-aI5" firstAttribute="top" secondItem="3fr-6e-Ztf" secondAttribute="top" constant="35" id="Wmd-X5-2pg"/>
-                                    <constraint firstItem="V2y-0R-uTt" firstAttribute="top" secondItem="fD8-us-aI5" secondAttribute="bottom" id="Yww-f2-ltI"/>
-                                    <constraint firstItem="cG4-CR-m8K" firstAttribute="top" secondItem="VyG-aG-Jlh" secondAttribute="bottom" constant="50" id="dyP-YR-IFX"/>
-                                    <constraint firstItem="5zr-CK-cPx" firstAttribute="leading" secondItem="3fr-6e-Ztf" secondAttribute="leading" constant="16" id="fgu-n3-yee"/>
-                                    <constraint firstAttribute="trailing" secondItem="Smi-Mt-keG" secondAttribute="trailing" constant="160" id="gOr-10-13M"/>
-                                    <constraint firstAttribute="trailing" secondItem="cG4-CR-m8K" secondAttribute="trailing" constant="16" id="kkW-Mp-HuL"/>
-                                    <constraint firstItem="fD8-us-aI5" firstAttribute="top" secondItem="Smi-Mt-keG" secondAttribute="bottom" constant="8" id="ntj-ay-2m2"/>
-                                    <constraint firstItem="VyG-aG-Jlh" firstAttribute="top" secondItem="zVU-ag-v42" secondAttribute="bottom" constant="16" id="o3q-dY-zvT"/>
-                                    <constraint firstAttribute="trailing" secondItem="VyG-aG-Jlh" secondAttribute="trailing" constant="16" id="r4t-gH-NMT"/>
+                                    <constraint firstItem="zVU-ag-v42" firstAttribute="top" secondItem="fD8-us-aI5" secondAttribute="bottom" constant="24" id="5a9-gV-i6L"/>
+                                    <constraint firstItem="zVU-ag-v42" firstAttribute="trailing" secondItem="fD8-us-aI5" secondAttribute="trailing" id="7DB-UT-jFM"/>
+                                    <constraint firstItem="VyG-aG-Jlh" firstAttribute="trailing" secondItem="fD8-us-aI5" secondAttribute="trailing" id="Dvg-Mz-spB"/>
+                                    <constraint firstItem="fD8-us-aI5" firstAttribute="top" secondItem="Smi-Mt-keG" secondAttribute="bottom" constant="8" id="K7c-Cr-gP5"/>
+                                    <constraint firstItem="Smi-Mt-keG" firstAttribute="top" secondItem="3fr-6e-Ztf" secondAttribute="top" constant="16" id="Pyt-s4-2Mc"/>
+                                    <constraint firstItem="Smi-Mt-keG" firstAttribute="leading" secondItem="3fr-6e-Ztf" secondAttribute="leading" constant="16" id="SBT-cs-fG4"/>
+                                    <constraint firstItem="fD8-us-aI5" firstAttribute="leading" secondItem="3fr-6e-Ztf" secondAttribute="leading" constant="16" id="dH2-Bf-Z14"/>
+                                    <constraint firstItem="VyG-aG-Jlh" firstAttribute="leading" secondItem="fD8-us-aI5" secondAttribute="leading" id="qJz-7c-eTh"/>
+                                    <constraint firstItem="VyG-aG-Jlh" firstAttribute="top" secondItem="zVU-ag-v42" secondAttribute="bottom" constant="12" id="vsv-Gq-1DH"/>
+                                    <constraint firstItem="zVU-ag-v42" firstAttribute="leading" secondItem="fD8-us-aI5" secondAttribute="leading" id="wsX-Ym-W6S"/>
+                                    <constraint firstAttribute="trailing" secondItem="fD8-us-aI5" secondAttribute="trailing" constant="16" id="zoY-4B-ceq"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" name="viewBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="37g-fy-yQY" firstAttribute="bottom" secondItem="HWa-Yz-qum" secondAttribute="bottom" id="1hE-MS-ML0"/>
-                            <constraint firstItem="3fr-6e-Ztf" firstAttribute="trailing" secondItem="HWa-Yz-qum" secondAttribute="trailing" id="4BP-Zw-mHu"/>
-                            <constraint firstItem="3fr-6e-Ztf" firstAttribute="bottom" secondItem="HWa-Yz-qum" secondAttribute="bottom" id="93J-zp-9aj"/>
-                            <constraint firstItem="37g-fy-yQY" firstAttribute="trailing" secondItem="HWa-Yz-qum" secondAttribute="trailing" id="COh-dn-oCz"/>
-                            <constraint firstItem="3fr-6e-Ztf" firstAttribute="leading" secondItem="HWa-Yz-qum" secondAttribute="leading" id="Jdh-ns-zrF"/>
-                            <constraint firstItem="3fr-6e-Ztf" firstAttribute="top" secondItem="HWa-Yz-qum" secondAttribute="top" constant="57" id="N0h-jM-yOp"/>
-                            <constraint firstItem="FKn-VU-gy7" firstAttribute="bottom" secondItem="HWa-Yz-qum" secondAttribute="bottom" id="NCb-s0-ZKA"/>
-                            <constraint firstItem="37g-fy-yQY" firstAttribute="top" secondItem="Koc-pG-r3V" secondAttribute="top" id="Y4r-yE-KqS"/>
-                            <constraint firstItem="37g-fy-yQY" firstAttribute="leading" secondItem="HWa-Yz-qum" secondAttribute="leading" id="ZgK-23-K8P"/>
-                            <constraint firstItem="FKn-VU-gy7" firstAttribute="trailing" secondItem="HWa-Yz-qum" secondAttribute="trailing" id="aUQ-Dy-3gK"/>
-                            <constraint firstItem="FKn-VU-gy7" firstAttribute="top" secondItem="HWa-Yz-qum" secondAttribute="top" constant="1" id="tpN-TI-I71"/>
-                            <constraint firstItem="FKn-VU-gy7" firstAttribute="leading" secondItem="HWa-Yz-qum" secondAttribute="leading" id="wzl-DE-Gk3"/>
+                            <constraint firstItem="76U-yz-xdD" firstAttribute="leading" secondItem="HWa-Yz-qum" secondAttribute="leading" id="8JA-A0-RCL"/>
+                            <constraint firstItem="HWa-Yz-qum" firstAttribute="trailing" secondItem="76U-yz-xdD" secondAttribute="trailing" id="8LY-PP-lHY"/>
+                            <constraint firstItem="3fr-6e-Ztf" firstAttribute="bottom" secondItem="Koc-pG-r3V" secondAttribute="bottom" id="AOX-SS-5Jg"/>
+                            <constraint firstItem="3fr-6e-Ztf" firstAttribute="leading" secondItem="HWa-Yz-qum" secondAttribute="leading" id="Wna-Bb-btK"/>
+                            <constraint firstItem="76U-yz-xdD" firstAttribute="top" secondItem="HWa-Yz-qum" secondAttribute="top" id="Xr1-ZY-QGu"/>
+                            <constraint firstItem="3fr-6e-Ztf" firstAttribute="top" secondItem="76U-yz-xdD" secondAttribute="bottom" id="hoi-yg-bLM"/>
+                            <constraint firstItem="3fr-6e-Ztf" firstAttribute="trailing" secondItem="HWa-Yz-qum" secondAttribute="trailing" id="t0x-4y-Dt7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HWa-Yz-qum"/>
                     </view>
                     <connections>
-                        <outlet property="addButton" destination="cG4-CR-m8K" id="dfh-uQ-ZlR"/>
-                        <outlet property="colorPickerSuperView" destination="VyG-aG-Jlh" id="HCa-r0-cUv"/>
-                        <outlet property="colorPickerSuperViewHeightConstraint" destination="aPb-P7-Yu9" id="eYf-6K-H38"/>
+                        <outlet property="addButton" destination="daC-0u-xOg" id="0jD-Fo-1Xi"/>
+                        <outlet property="colorPicker" destination="VyG-aG-Jlh" id="DBb-SS-ZCF"/>
+                        <outlet property="colorPickerSuperViewHeightConstraint" destination="f2g-xj-AQj" id="TEl-0H-QTl"/>
                         <outlet property="darkLineView" destination="V2y-0R-uTt" id="kmX-Sz-4uK"/>
                         <outlet property="folderNameTextField" destination="2Cn-KY-Ch2" id="Deu-aS-kLC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AA6-62-ewF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-212.5" y="103.38499999999999"/>
+            <point key="canvasLocation" x="-341.60000000000002" y="76.108374384236456"/>
         </scene>
     </scenes>
     <resources>
-        <image name="darkCross" width="48" height="48"/>
         <namedColor name="actionMessageColor">
             <color red="0.035000000149011612" green="0.12200000137090683" blue="0.20800000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="addFolderButtonTitleColor">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="composeMessageShadowColor">
             <color red="0.89800000190734863" green="0.89800000190734863" blue="0.89800000190734863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -250,11 +160,8 @@
         <namedColor name="encryptSeperatorColor">
             <color red="0.090000003576278687" green="0.19599999487400055" blue="0.30199998617172241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="folderCellTextColor">
-            <color red="0.090000003576278687" green="0.19599999487400055" blue="0.30199998617172241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="viewBackgroundColor">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="settingsCellTextColor">
+            <color red="0.20399999618530273" green="0.28600001335144043" blue="0.36899998784065247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

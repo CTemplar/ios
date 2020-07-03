@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="SideMenuTableSectionHeaderView" customModule="Inbox" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hmp-lU-aYX">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                    <subviews>
+                        <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rt4-pr-cdZ">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                            <color key="backgroundColor" red="0.090196078430000007" green="0.1960784314" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="6Js-Ei-U4D"/>
+                            </constraints>
+                        </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ERa-CF-GuN">
+                            <rect key="frame" x="12" y="15" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="ERa-CF-GuN" secondAttribute="height" multiplier="1:1" id="9hr-Ok-RuP"/>
+                                <constraint firstAttribute="height" constant="20" id="hFk-Pr-oHP"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ML3-N0-Jcm">
+                            <rect key="frame" x="44" y="15" width="311" height="20"/>
+                            <attributedString key="attributedText">
+                                <fragment content="Label">
+                                    <attributes>
+                                        <color key="NSColor" red="0.090196078430000007" green="0.1960784314" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <font key="NSFont" metaFont="system" size="16"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nXh-H4-m5H">
+                            <rect key="frame" x="0.0" y="48" width="375" height="1"/>
+                            <color key="backgroundColor" red="0.090196078430000007" green="0.1960784314" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="B5M-xF-rsx"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.98431372549019602" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="rt4-pr-cdZ" firstAttribute="leading" secondItem="hmp-lU-aYX" secondAttribute="leading" id="1FJ-eq-ald"/>
+                        <constraint firstItem="ERa-CF-GuN" firstAttribute="top" secondItem="rt4-pr-cdZ" secondAttribute="bottom" constant="14" id="5mO-wY-twt"/>
+                        <constraint firstItem="ERa-CF-GuN" firstAttribute="leading" secondItem="hmp-lU-aYX" secondAttribute="leading" constant="12" id="6zb-hm-u4E"/>
+                        <constraint firstItem="nXh-H4-m5H" firstAttribute="leading" secondItem="hmp-lU-aYX" secondAttribute="leading" id="75T-Aj-uwn"/>
+                        <constraint firstItem="nXh-H4-m5H" firstAttribute="top" secondItem="ML3-N0-Jcm" secondAttribute="bottom" constant="13" id="DPh-X7-Ez2"/>
+                        <constraint firstItem="nXh-H4-m5H" firstAttribute="top" secondItem="ERa-CF-GuN" secondAttribute="bottom" constant="13" id="IXr-Cx-JWo"/>
+                        <constraint firstAttribute="trailing" secondItem="rt4-pr-cdZ" secondAttribute="trailing" id="Smv-5y-HYV"/>
+                        <constraint firstItem="ML3-N0-Jcm" firstAttribute="top" secondItem="rt4-pr-cdZ" secondAttribute="bottom" constant="14" id="Web-Io-XVC"/>
+                        <constraint firstAttribute="trailing" secondItem="nXh-H4-m5H" secondAttribute="trailing" id="bRY-ib-r2p"/>
+                        <constraint firstItem="rt4-pr-cdZ" firstAttribute="top" secondItem="hmp-lU-aYX" secondAttribute="top" id="hHt-fA-bff"/>
+                        <constraint firstItem="ML3-N0-Jcm" firstAttribute="leading" secondItem="ERa-CF-GuN" secondAttribute="trailing" constant="12" id="nEq-2s-eOF"/>
+                        <constraint firstAttribute="trailing" secondItem="ML3-N0-Jcm" secondAttribute="trailing" constant="20" id="s9q-uN-lGm"/>
+                        <constraint firstAttribute="bottom" secondItem="nXh-H4-m5H" secondAttribute="bottom" id="uTn-8I-4bA"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.98431372549999996" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="hmp-lU-aYX" secondAttribute="trailing" id="0hZ-Yf-Pab"/>
+                <constraint firstItem="hmp-lU-aYX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ZTz-7M-neW"/>
+                <constraint firstAttribute="bottom" secondItem="hmp-lU-aYX" secondAttribute="bottom" id="klB-gq-UAk"/>
+                <constraint firstItem="hmp-lU-aYX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zht-cZ-G9V"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="bottomSeparatorView" destination="nXh-H4-m5H" id="cGo-2C-Bg7"/>
+                <outlet property="iconImageView" destination="ERa-CF-GuN" id="F1e-uD-ZOP"/>
+                <outlet property="titleLabel" destination="ML3-N0-Jcm" id="bc7-Q0-Ndj"/>
+            </connections>
+            <point key="canvasLocation" x="39.200000000000003" y="46.326836581709152"/>
+        </view>
+    </objects>
+</document>

@@ -38,6 +38,15 @@
         }
       },
       {
+        "package": "SideMenu",
+        "repositoryURL": "https://github.com/kukushi/SideMenu.git",
+        "state": {
+          "branch": null,
+          "revision": "17a661eb76d3385a76688acf842a24f641f913fd",
+          "version": "2.0.5"
+        }
+      },
+      {
         "package": "SwiftEntryKit",
         "repositoryURL": "https://github.com/huri000/SwiftEntryKit.git",
         "state": {

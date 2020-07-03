@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Utility
 import Networking
+import SideMenu
 
 class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
@@ -252,7 +253,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         tableView.deselectRow(at: indexPath, animated: true)
         
         if self.selectedIndexPath == indexPath {
-            self.parentViewController?.slideMenuController()?.closeLeft()
+            parentViewController?.sideMenuController?.hideMenu()
             return
         }
         

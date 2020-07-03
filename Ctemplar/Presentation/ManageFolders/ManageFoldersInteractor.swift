@@ -1,73 +1,64 @@
-//
-//  ManageFoldersInteractor.swift
-//  Ctemplar
-//
-//  Created by Tatarinov Dmitry on 17.12.2018.
-//  Copyright © 2018 CTemplar. All rights reserved.
-//
-
 import Foundation
 import Utility
 import Networking
 
 class ManageFoldersInteractor {
+    // MARK: Properties
+    private weak var viewController: ManageFoldersViewController?
+    private let apiService = NetworkManager.shared.apiService
     
-    var viewController  : ManageFoldersViewController?
-    var presenter       : ManageFoldersPresenter?
-    var apiService      : APIService?
+    // MARK: - Constructor
+    init(viewController: ManageFoldersViewController) {
+        self.viewController = viewController
+    }
     
+    // MARK: - API Calls
     func foldersList(silent: Bool) {
-        
         if !silent {
             Loader.start()
         }
-        
-        apiService?.customFoldersList(limit: 200, offset: 0) {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                //print("value:", value)
-                
-                let folderList = value as! FolderList                
-                self.setFoldersData(folderList: folderList)
-                
-            case .failure(let error):
-                print("error:", error)
-                self.viewController?.showAlert(with: "Get Folders Error",
-                           message: error.localizedDescription,
-                           buttonTitle: Strings.Button.closeButton.localized)
+        apiService.customFoldersList(limit: 200, offset: 0) { [weak self] (result) in
+            DispatchQueue.main.async {
+                switch(result) {
+                case .success(let value):
+                    if let folderList = value as? FolderList {
+                        self?.setFoldersData(folderList: folderList)
+                    }
+                case .failure(let error):
+                    DPrint("error:", error)
+                    self?.viewController?.showAlert(with: Strings.AppError.foldersError.localized,
+                                                    message: error.localizedDescription,
+                                                    buttonTitle: Strings.Button.closeButton.localized
+                    )
+                }
+                Loader.stop()
             }
-            
-            Loader.stop()
-        }
-    }
-    
-    func setFoldersData(folderList: FolderList) {
-        
-        if let folders = folderList.foldersList {
-
-            self.presenter?.setDataSource(folders: folders)
-            //self.presenter?.setupAddFolderButton()
         }
     }
     
     func deleteFolder(folderID: Int) {
-        
-        apiService?.deleteCustomFolder(folderID: folderID.description) {(result) in
-            
-            switch(result) {
-                
-            case .success(let value):
-                print("value:", value)
-                self.foldersList(silent: false)
-                
-            case .failure(let error):
-                print("error:", error)
-                self.viewController?.showAlert(with: "Delete Folder Error",
-                           message: error.localizedDescription,
-                           buttonTitle: Strings.Button.closeButton.localized)
+        apiService.deleteCustomFolder(folderID: folderID.description) { [weak self] (result) in
+            DispatchQueue.main.async {
+                switch(result) {
+                case .success(let value):
+                    DPrint("value:", value)
+                    self?.foldersList(silent: false)
+                case .failure(let error):
+                    DPrint("error:", error)
+                    self?.viewController?.showAlert(with: Strings.AppError.foldersError.localized,
+                               message: error.localizedDescription,
+                               buttonTitle: Strings.Button.closeButton.localized
+                    )
+                }
             }
+        }
+    }
+    
+    // MARK: - Application Updates
+    func setFoldersData(folderList: FolderList) {
+        if let folders = folderList.foldersList {
+            viewController?.setup(folderList: folders)
+            viewController?.updateState()
         }
     }
 }

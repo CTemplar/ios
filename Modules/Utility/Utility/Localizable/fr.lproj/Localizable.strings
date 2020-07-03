@@ -2,9 +2,6 @@
 "invalidEnteredEmail" = "Email invalide";
 "validEnteredEmail" = "L'email saisi est valide";
 
-"logoutTitle" = "Se déconnecter";
-"logotuMessage" = "Êtes-vous certain de vouloir vous déconnecter?";
-
 // Buttons
 "closeButton" = "Fermer";
 "cancelButton" = "Annuler";
@@ -80,20 +77,19 @@
 "passwordResetSuccessTitle" = "Réinitialisation du mot de passe réussie";
 "passwordResetSuccessMessage" = "Vous avez réussi à réinitialiser votre mot de passe. Veuillez maintenant appuyer sur le bouton OK pour continuer.";
 
-// inbox
-
+// Inbox
 "selected" = "Sélectionner";
 "emails" = "emails";
 "email" = "email";
 "emailsx" = "emails";
 "unread" = "Non lu";
-
 "filtered" = "Filtrés";
 "noInboxMessage" = "Vous n'avez pas de messages";
 "noFilteredMessage" = "Aucun message ne correspond à votre filtre";
 
+// Inbox Filter
 "starredFilter" = "Favoris";
-"ureadFilter" = "Non lu";
+"unreadFilter" = "Non lu";
 "attachmentsFilter" = "Avec pièces jointes";
 
 "decrypting" = "Décryptage en cours...";
@@ -107,8 +103,7 @@
 "clearAll" = "Réinitialiser";
 "selectedFilters" = "Sélectionner les filtres";
 
-//more actions buttons
-
+// More Actions
 "markAsSpam" = "Marquer comme spam";
 "markAsRead" = "Marquer comme lu";
 "markAsUnread" = "Marquer comme non lu";
@@ -117,16 +112,15 @@
 "moveToInbox" = "Déplacer dans la boîte de réception";
 "emptyFolder" = "Vider le dossier";
 "cancel" = "Annuler";
+"moreActions" = "Plus d'actions";
 
-//undo actions buttons
-
+// Undo actions buttons
 "undoMarkAsSpam" = "Annuler";
 "undoMarkAsRead" = "Annuler";
 "undoMarkAsUnread" = "Annuler";
 "undoMoveToTrash" = "Annuler";
 "undoMoveToArchive" = "Annuler";
 "undoMoveToInbox" = "Annuler";
-
 
 //compose message titles
 
@@ -135,8 +129,7 @@
 "relpyAll" = "Répondre à tous";
 "forward" = "Transférer";
 
-//delete
-
+// Delete
 "deleteTitle" = "Attention";
 "deleteMessage" = "Êtes-vous certain de vouloir supprimer le / les messages définitivement?";
 
@@ -259,25 +252,18 @@
 
 "encryptedMessagesTo" = "Encrypted messages to non-Ctemplar recipients will expire in 28 days unless a shorter expiration time is set.";
 
-//Manage Folders
-
+// Manage Folders
 "deleteFolderTitle" = "Supprimer dossier ?";
 "deleteFolder" = "Êtes-vous certain de vouloir supprimer le dossier ?";
-
 "addFolder" = "Ajouter un dossier";
-
 "selectfolder" = "Sélectionner un dossier";
-
 "moveTo" = "Déplacer vers...";
-
 "noFolders" = "Aucun dossier";
-
 "addFolderLimit" = " Upgrade to premium";
-
 "folderName" = "Nom de dossier";
 "chooseColor" = "Couleur";
-
-"deleteFolder" = "Supprimer";
+"folder" = "dossier";
+"folders" = "Dossiers";
 
 //Settings
 
@@ -428,6 +414,8 @@
 "logoutErrorTitle" = "Erreur de déconnexion";
 "success" = "Succès";
 "logoutErrorMessage" = "Impossible de vous déconnecter pour le moment, veuillez réessayer plus tard.";
+"logoutTitle" = "Se déconnecter";
+"logoutMessage" = "Êtes-vous certain de vouloir vous déconnecter?";
 
 // Dashboard
 "accountType" = "Type de compte";
@@ -441,6 +429,11 @@
 "hashingFailure" = "Le hachage a échoué";
 "conectionError" = "Aucune erreur de connexion";
 "unknownError" = "Erreur inconnue";
+"error" = "Erreur";
+"foldersError" = "Erreur de dossiers";
+"messagesError" = "Erreur de messages";
+"mailBoxesError" = "Erreur de boîtes aux lettres";
+"userError" = "Erreur utilisateur";
 
 // Signup Error
 "signupError" = "Échec de l'inscription";

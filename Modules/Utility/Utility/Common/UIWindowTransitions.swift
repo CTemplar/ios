@@ -126,15 +126,14 @@ public extension UIWindow {
     ///   - controller: controller to set
     ///   - options: options of the transition
     func setRootViewController(_ controller: UIViewController, options: TransitionOptions = TransitionOptions()) {
-        
         var transitionWnd: UIWindow? = nil
         if let background = options.background {
             transitionWnd = UIWindow(frame: UIScreen.main.bounds)
             switch background {
-      case .snapshot:
-        if let currentView = snapshotView(afterScreenUpdates: true) {
-          transitionWnd?.rootViewController = UIViewController.newController(withView: currentView, frame: transitionWnd!.bounds)
-        }
+            case .snapshot:
+                if let currentView = snapshotView(afterScreenUpdates: true) {
+                    transitionWnd?.rootViewController = UIViewController.newController(withView: currentView, frame: transitionWnd!.bounds)
+                }
             case .customView(let view):
                 transitionWnd?.rootViewController = UIViewController.newController(withView: view, frame: transitionWnd!.bounds)
             case .solidColor(let color):
