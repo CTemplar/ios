@@ -59,7 +59,7 @@ class SearchInteractor {
         
         Loader.start()
         
-        apiService?.messagesList(folder: "", messagesIDIn: "", seconds: 0, offset: self.offset) {(result) in
+        apiService?.messagesList(folder: "", messagesIDIn: "", seconds: 0, offset: self.offset) { (result) in
             
             switch(result) {
                 

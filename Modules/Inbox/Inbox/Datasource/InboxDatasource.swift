@@ -35,13 +35,17 @@ final class InboxDatasource: NSObject {
     
     private var selectedMessageIds: [Int] = []
     
-    private (set) var selectionMode = false
+    var selectionMode: Bool {
+        return selectedMessageIds.isEmpty == false
+    }
     
     private (set) var lastAppliedActionMessage: EmailMessage?
     
     private (set) var lastSelectedAction: Menu.Action?
     
     private (set) var unreadCount = 0
+    
+    private (set) var messageId = -1
     
     private let formatterService = UtilityManager.shared.formatterService
     
@@ -56,7 +60,7 @@ final class InboxDatasource: NSObject {
     }
     
     var filterEnabled: Bool {
-        return appliedFilters.isEmpty == false
+        return SharedInboxState.shared.appliedFilters.isEmpty == false
     }
     
     lazy var refreshControl: UIRefreshControl = {
@@ -66,17 +70,7 @@ final class InboxDatasource: NSObject {
         
         return refreshControl
     }()
-    
-    private (set) var appliedFilters: [InboxFilter] = [] {
-        didSet {
-            if !appliedFilters.isEmpty {
-                applyFilters()
-            } else {
-                clearFilters()
-            }
-        }
-    }
-    
+
     // MARK: - Constructor
     init(tableView: UITableView, parentViewController: InboxViewController, messages: [EmailMessage]) {
         self.tableView = tableView
@@ -91,7 +85,7 @@ final class InboxDatasource: NSObject {
     
     // MARK: - Setup
     func registerTableViewCell() {
-        tableView.register(UINib(nibName: InboxMessageTableViewCell.className, bundle: .main),
+        tableView.register(UINib(nibName: InboxMessageTableViewCell.className, bundle: Bundle(for: type(of: self))),
                            forCellReuseIdentifier: InboxMessageTableViewCell.className
         )
     }
@@ -102,6 +96,10 @@ final class InboxDatasource: NSObject {
         
         tableView.tableFooterView = UIView()
         
+        tableView.delegate = self
+        
+        tableView.dataSource = self
+        
         tableView.addSubview(self.refreshControl)
         
         parentViewController?.reloadButton.addTarget(self, action: #selector(handleRefresh(_:)), for: .touchUpInside)
@@ -111,11 +109,20 @@ final class InboxDatasource: NSObject {
     @objc
     private func handleRefresh(_ sender: Any) {
         parentViewController?.presenter?.interactor?.update(offset: 0)
-        parentViewController?.presenter?.interactor?.updateMessages(withUndo: "", silent: sender is UIButton ? false : true)
+        parentViewController?
+            .presenter?
+            .interactor?
+            .updateMessages(withUndo: "",
+                            silent: sender is UIButton ? false : true,
+                            menu: SharedInboxState.shared.selectedMenu)
     }
     
     @objc
     private func longPressed(sender: UILongPressGestureRecognizer) {
+        guard SharedInboxState.shared.selectedMenu?.menuName != Menu.allMails.menuName else {
+            return
+        }
+        
         if sender.state == .began {
             let touchPoint = sender.location(in: self.tableView)
             if let indexPath = tableView.indexPathForRow(at: touchPoint) {
@@ -151,7 +158,11 @@ final class InboxDatasource: NSObject {
         let spamButton = MGSwipeButton(title: "", icon: #imageLiteral(resourceName: "whiteSpam"), backgroundColor: k_sideMenuColor)
         let moveToButton = MGSwipeButton(title: "", icon: #imageLiteral(resourceName: "whiteMoveTo"), backgroundColor: k_sideMenuColor)
         
-        switch parentViewController?.selectedMenu ?? .inbox {
+        guard let menu = SharedInboxState.shared.selectedMenu as? Menu else {
+            return []
+        }
+        
+        switch menu {
         case .inbox,
              .sent,
              .outbox,
@@ -159,6 +170,7 @@ final class InboxDatasource: NSObject {
              .archive,
              .trash,
              .allMails,
+             .unread,
              .manageFolders:
             swipeButtonsArray = [trashButton, moveToButton, spamButton]
         case .draft:
@@ -185,6 +197,11 @@ final class InboxDatasource: NSObject {
     func reset() {
         messages.removeAll()
         originalMessages.removeAll()
+        resetSelectionMode()
+        parentViewController?.presenter?.updateNoMessagePrompt()
+    }
+    
+    func resetSelectionMode() {
         selectedMessageIds.removeAll()
     }
     
@@ -202,13 +219,10 @@ final class InboxDatasource: NSObject {
             
             return date1 > date2
         }
-        originalMessages = messages
     }
     
     func disableSelectionIfSelected() {
-        if selectionMode, !selectedMessageIds.isEmpty {
-            parentViewController?.presenter?.disableSelectionMode()
-        }
+        parentViewController?.presenter?.disableSelectionMode()
     }
     
     func invokeRefreshUI() {
@@ -225,29 +239,34 @@ final class InboxDatasource: NSObject {
     }
     
     func applyFilters() {
-        guard appliedFilters.isEmpty == false,
-            !messages.isEmpty else {
+        if SharedInboxState.shared.appliedFilters.isEmpty {
+            clearFilters()
+            return
+        }
+        
+        guard !messages.isEmpty else {
             return
         }
         
         var filteredMessages: [EmailMessage] = []
         
-        appliedFilters.forEach { (filter) in
+        SharedInboxState.shared.appliedFilters.forEach { (filter) in
             switch filter {
             case .unread:
-                let filtered = messages.filter({ $0.read == false })
+                let filtered = originalMessages.filter({ $0.read == false })
                 filteredMessages.append(contentsOf: filtered)
             case .starred:
-                let filtered = messages.filter({ $0.starred == true })
+                let filtered = originalMessages.filter({ $0.starred == true })
                 filteredMessages.append(contentsOf: filtered)
             case .attachments:
-                let filtered = messages.filter({ $0.attachments?.isEmpty == false })
+                let filtered = originalMessages.filter({ $0.attachments?.isEmpty == false })
                 filteredMessages.append(contentsOf: filtered)
             }
         }
         
         if !filteredMessages.isEmpty {
             messages = filteredMessages
+            parentViewController?.presenter?.updateNoMessagePrompt()
             sortMessages()
         }
         
@@ -258,7 +277,81 @@ final class InboxDatasource: NSObject {
     func clearFilters() {
         messages = originalMessages
         sortMessages()
+        parentViewController?.presenter?.updateNoMessagePrompt()
+        
+        // Reload Inbox
         reload()
+    }
+    
+    func undo(lastMessage: EmailMessage) {
+        parentViewController?.presenter?.hideUndoBar()
+
+        guard selectedMessagesCount > 0 else {
+            return
+        }
+        
+        guard let lastAppliedAction = self.lastSelectedAction else {
+            return
+        }
+        
+        switch lastAppliedAction {
+        case .markAsSpam:
+            parentViewController?
+                .presenter?
+                .interactor?
+                .markMessagesAsSpam(forMessageIds: selectedMessageIds,
+                                    lastSelectedMessage: lastMessage,
+                                    withUndo: ""
+            )
+        case .markAsRead:
+            parentViewController?
+                .presenter?
+                .interactor?
+                .toggleReadStatus(forMessageIds: selectedMessageIds,
+                                  asRead: (lastMessage.read ?? false),
+                                  withUndo: ""
+            )
+        case .moveToArchive:
+            parentViewController?
+                .presenter?
+                .interactor?
+                .markMessagesAsArchived(forMessageIds: selectedMessageIds,
+                                        lastSelectedMessage: lastMessage,
+                                        withUndo: ""
+            )
+        case .moveToTrash:
+            parentViewController?
+                .presenter?
+                .interactor?
+                .markMessagesAsTrash(forMessageIds: selectedMessageIds,
+                                     lastSelectedMessage: lastMessage,
+                                     withUndo: ""
+            )
+        case .markAsStarred,
+             .moveToInbox,
+             .moveTo,
+             .delete,
+             .noAction: break
+        }
+        
+        update(lastSelectedAction: nil)
+        selectedMessageIds.removeAll()
+    }
+    
+    func showDetails(of message: EmailMessage) {
+        messageId = -1
+        if let menu = SharedInboxState.shared.selectedMenu {
+            parentViewController?
+                .router?
+                .showViewInboxEmailViewController(message: message,
+                                                  currentFolderFilter: menu.menuName,
+                                                  user: user
+            )
+        }
+    }
+    
+    func searchAttributes() -> (messages: [EmailMessage], user: UserMyself) {
+        return (messages: messages, user: user)
     }
     
     // MARK: - Update Datasource
@@ -272,11 +365,7 @@ final class InboxDatasource: NSObject {
         // Keep syncing the original messages by messages
         originalMessages = messages
     }
-    
-    func update(selectionMode: Bool) {
-        self.selectionMode = selectionMode
-    }
-    
+
     func update(lastAppliedActionMessage: EmailMessage?) {
         self.lastAppliedActionMessage = lastAppliedActionMessage
     }
@@ -287,6 +376,7 @@ final class InboxDatasource: NSObject {
             self.messages.append(message)
         }
         self.originalMessages = self.messages
+        parentViewController?.presenter?.updateNoMessagePrompt()
     }
     
     func removeSelection() {
@@ -294,7 +384,8 @@ final class InboxDatasource: NSObject {
     }
     
     func update(filters: [InboxFilter]) {
-        self.appliedFilters = filters
+        SharedInboxState.shared.update(appliedFilters: filters)
+        applyFilters()
     }
     
     func update(unreadCount: Int) {
@@ -313,8 +404,12 @@ final class InboxDatasource: NSObject {
         self.user.update(contactsList: contacts.contactsList ?? [])
     }
     
-    func update(lastSelectedAction: Menu.Action) {
+    func update(lastSelectedAction: Menu.Action?) {
         self.lastSelectedAction = lastSelectedAction
+    }
+    
+    func update(messageId: Int) {
+        self.messageId = messageId
     }
     
     // MARK: - More Actions
@@ -340,7 +435,7 @@ final class InboxDatasource: NSObject {
         }
         
         if !selectedMessageIds.isEmpty {
-            if parentViewController?.selectedMenu == .trash {
+            if SharedInboxState.shared.selectedMenu?.menuName == Menu.trash.menuName {
                 deleteMessages()
             } else {
                 parentViewController?
@@ -425,6 +520,10 @@ final class InboxDatasource: NSObject {
             DPrint("Messages are not selected")
         }
     }
+    
+    func moveTo() {
+        parentViewController?.router?.showMoveToController(withSelectedMessages: selectedMessageIds)
+    }
 }
 
 // MARK: - UITableViewDelegate & UITableViewDataSource
@@ -449,23 +548,30 @@ extension InboxDatasource: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == lastSectionIndex,
             indexPath.row == lastRowIndex,
             messages.count < totalItems {
-            
-            let spinner = MatericalIndicator.shared.loader(with: CGSize(width: 50.0, height: 50.0))
-            tableView.tableFooterView = spinner
-            spinner.startAnimating()
-            
+                        
             parentViewController?
                 .presenter?
                 .interactor?
                 .toggleProgress(true)
             
-            parentViewController?
-                .presenter?
-                .interactor?
-                .messagesList(folder: parentViewController?.selectedMenu ?? .inbox,
-                              withUndo: "",
-                              silent: true
-            )
+            if let menu = SharedInboxState.shared.selectedMenu {
+                let fetchRequired = parentViewController?
+                    .presenter?
+                    .interactor?
+                    .messagesList(folder: menu.menuName,
+                                  withUndo: "",
+                                  silent: true
+                )
+                
+                if fetchRequired == true {
+                    let spinner = MatericalIndicator.shared.loader(with: CGSize(width: 50.0, height: 50.0))
+                    tableView.tableFooterView = spinner
+                    spinner.startAnimating()
+                } else {
+                    tableView.tableFooterView = UIView()
+                }
+            }
+            
         }
     }
     
@@ -475,16 +581,22 @@ extension InboxDatasource: UITableViewDelegate, UITableViewDataSource {
         let message = messages[indexPath.row]
         
         if selectionMode == false {
-            if parentViewController?.selectedMenu == .draft {
+            if SharedInboxState.shared.selectedMenu?.menuName == Menu.draft.menuName {
                 parentViewController?
                     .router?
-                    .showComposeViewControllerWithDraft(answerMode: .newMessage,
-                                                        message: message
+                    .showComposeViewController(answerMode: .newMessage,
+                                               message: message,
+                                               user: user
                 )
             } else {
-                parentViewController?
-                    .router?
-                    .showViewInboxEmailViewController(message: message)
+                if let menu = SharedInboxState.shared.selectedMenu {
+                    parentViewController?
+                        .router?
+                        .showViewInboxEmailViewController(message: message,
+                                                          currentFolderFilter: menu.menuName,
+                                                          user: user
+                    )
+                }
             }
         } else {
             let selected = selectedMessageIds.filter({ $0 == message.messsageID }).isEmpty == false
@@ -510,13 +622,14 @@ extension InboxDatasource: UITableViewDelegate, UITableViewDataSource {
                 .presenter?
                 .updateNavigationBarTitle(basedOnMessageCount: selectedMessagesCount,
                                           selectionMode: selectionMode,
-                                          currentFolder: parentViewController?.selectedMenu ?? .inbox
+                                          currentFolder: SharedInboxState.shared.selectedMenu ?? Menu.inbox
             )
         }
     }
     
     private func configureMailCell(at indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: InboxMessageTableViewCell.className) as? InboxMessageTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: InboxMessageTableViewCell.className,
+                                                       for: indexPath) as? InboxMessageTableViewCell else {
             return UITableViewCell()
         }
         
@@ -563,7 +676,11 @@ extension InboxDatasource: MGSwipeTableCellDelegate {
         selectedMessageIds.removeAll()
         selectedMessageIds.append(id)
         
-        switch parentViewController?.selectedMenu ?? .inbox {
+        guard let menu = SharedInboxState.shared.selectedMenu as? Menu else {
+            return true
+        }
+        
+        switch menu {
         case .inbox,
              .sent,
              .outbox,
@@ -571,6 +688,7 @@ extension InboxDatasource: MGSwipeTableCellDelegate {
              .archive,
              .trash,
              .allMails,
+             .unread,
              .manageFolders:
             generalSwipeAction(index: index, message: message)
         case .draft:

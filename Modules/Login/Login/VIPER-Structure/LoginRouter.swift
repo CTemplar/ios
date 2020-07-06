@@ -8,7 +8,7 @@ final class LoginRouter {
     // MARK: Properties
     private var loginViewController: LoginViewController
     private var signupCoordinator: SignupCoordinator?
-    private var slideMenuController: UIViewController
+    private var onShowInbox: (() -> Void)
     private lazy var forgetPasswordCoordinator: ForgetPasswordCoordinator = {
         let coordinator = ForgetPasswordCoordinator()
         return coordinator
@@ -16,9 +16,9 @@ final class LoginRouter {
     
     // MARK: - Constructor
     init(loginViewController: LoginViewController,
-         slideMenuController: UIViewController) {
+         onShowInbox: @escaping (() -> Void)) {
         self.loginViewController = loginViewController
-        self.slideMenuController = slideMenuController
+        self.onShowInbox = onShowInbox
     }
     
     // MARK: - Routers
@@ -47,11 +47,6 @@ final class LoginRouter {
     }
     
     func showInboxScreen() {
-        slideMenuController.modalPresentationStyle = .fullScreen
-        if let window = UIApplication.shared.getKeyWindow() {
-            window.setRootViewController(slideMenuController)
-        } else {
-            loginViewController.show(slideMenuController, sender: self)
-        }
+        onShowInbox()
     }
 }

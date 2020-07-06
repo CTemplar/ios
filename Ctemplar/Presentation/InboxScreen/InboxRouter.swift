@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Networking
 import SideMenu
+import Inbox
 
 class InboxRouter {
     

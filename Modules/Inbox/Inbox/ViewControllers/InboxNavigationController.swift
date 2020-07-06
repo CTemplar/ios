@@ -20,12 +20,32 @@ class InboxNavigationController: UINavigationController, UINavigationControllerD
     
     // MARK: - Configuration
     private func configureNavigationBar() {
-        modalPresentationStyle = .formSheet
-        navigationBar.isTranslucent = true
+        delegate = self
+        modalPresentationStyle = .fullScreen
         navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .never
-        let textAttributes = [NSAttributedString.Key.foregroundColor: AppStyle.StringColor.navigationBarTitle.color]
-        navigationBar.titleTextAttributes = textAttributes
+        navigationItem.largeTitleDisplayMode = .automatic
+        navigationBar.tintColor = AppStyle.Colors.loaderColor.color
+        
+        if #available(iOS 13.0, *) {
+            navigationController?.view.backgroundColor = .systemBackground
+            navigationBar.backgroundColor = .systemBackground
+            navigationController?.navigationBar.barTintColor = .systemBackground
+
+            let coloredAppearance = UINavigationBarAppearance()
+            coloredAppearance.configureWithOpaqueBackground()
+            coloredAppearance.backgroundColor = .systemBackground
+            let attribute: [NSAttributedString.Key : Any] = [.foregroundColor: UIColor.label]
+            coloredAppearance.titleTextAttributes = attribute
+            coloredAppearance.largeTitleTextAttributes = attribute
+            UINavigationBar.appearance().standardAppearance = coloredAppearance
+            UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+        } else {
+            // Fallback on earlier versions
+            navigationBar.backgroundColor = .white
+            navigationController?.navigationBar.barTintColor = .white
+            let textAttributes = [NSAttributedString.Key.foregroundColor: AppStyle.StringColor.navigationBarTitle.color]
+            navigationBar.titleTextAttributes = textAttributes
+        }
     }
     
     // MARK: - UINavigationControllerDelegate

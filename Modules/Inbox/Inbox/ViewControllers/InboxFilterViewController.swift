@@ -35,6 +35,7 @@ class InboxFilterViewController: UIViewController {
     }
     
     @IBAction func onTapApplyFilters(_ sender: Any) {
+        dataSource.applyFilters()
         dismiss(animated: true) { [weak self] in
             guard let safeSelf = self else {
                 return

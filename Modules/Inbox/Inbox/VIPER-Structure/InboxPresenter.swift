@@ -1,6 +1,7 @@
 import Foundation
-import Utility
 import UIKit
+import Utility
+import Networking
 import SideMenu
 
 final class InboxPresenter {
@@ -35,24 +36,25 @@ final class InboxPresenter {
             viewController?.inboxEmptyImageView.image = #imageLiteral(resourceName: "EmptyInboxIcon")
         }
 
-        viewController?.toggleGeneralToolbar(shouldShow: emailsCount > 0)
+        if viewController?.dataSource?.selectionMode == false {
+            viewController?.toggleGeneralToolbar(shouldShow: emailsCount > 0)
+        }
         
         updateNavigationBarTitle(basedOnMessageCount: viewController?.dataSource?.selectedMessagesCount ?? 0,
                                  selectionMode: viewController?.dataSource?.selectionMode ?? false,
-                                 currentFolder: viewController?.selectedMenu ?? .inbox
+                                 currentFolder: SharedInboxState.shared.selectedMenu ?? Menu.inbox
         )
         
         updateRightNavigationItems(basedOn: viewController?.dataSource?.selectionMode ?? false)
         
-        viewController?.noMessagePromptStackView.isHidden = viewController?.dataSource?.messagesAvailable == false
+        updateNoMessagePrompt()
     }
     
     func updateNavigationBarTitle(basedOnMessageCount selectedMessages: Int,
                                   selectionMode: Bool,
-                                  currentFolder: Menu) {
-        viewController?.navigationController?.navigationBar.isHidden = false
-        
-        viewController?.title = selectionMode ? "\(selectedMessages) \(Strings.Inbox.selected.localized)" : currentFolder.localized
+                                  currentFolder: MenuConfigurable) {
+        viewController?.navigationController?.updateTintColor()
+        viewController?.navigationItem.title = selectionMode ? "\(selectedMessages) \(Strings.Inbox.selected.localized)" : currentFolder.localizedMenuName
     }
     
     func updateLeftNavigationItem(basedOn selectionMode: Bool) {
@@ -74,10 +76,14 @@ final class InboxPresenter {
         }
     }
     
+    func updateNoMessagePrompt() {
+        viewController?.noMessagePromptStackView.isHidden = viewController?.dataSource?.messagesAvailable == true
+    }
+    
     // MARK: - UI Formatting
     private func formatAppliedFilters() -> String {
         var appliedFiltersText = ""
-        for filter in viewController?.dataSource?.appliedFilters ?? [] {
+        for filter in SharedInboxState.shared.appliedFilters {
             switch filter {
             case .starred:
                 appliedFiltersText = appliedFiltersText.isEmpty ?
@@ -135,7 +141,10 @@ final class InboxPresenter {
     // MARK: - Actions
     @objc
     private func onTapSearch() {
-        viewController?.router?.showSearchViewController()
+        if let searchAttribute = viewController?.dataSource?.searchAttributes() {
+            viewController?.router?.showSearchViewController(with: searchAttribute.messages,
+                                                             user: searchAttribute.user)
+        }
     }
     
     @objc
@@ -151,11 +160,6 @@ final class InboxPresenter {
     }
         
     func enableSelectionMode() {
-        // Switch on selection mode
-        viewController?
-            .dataSource?
-            .update(selectionMode: true)
-        
         // Reload Datasource
         viewController?
             .dataSource?
@@ -167,7 +171,7 @@ final class InboxPresenter {
         updateRightNavigationItems(basedOn: viewController?.dataSource?.selectionMode ?? false)
         
         // Update Tool bars
-        if self.viewController?.selectedMenu == .draft {
+        if SharedInboxState.shared.selectedMenu?.menuName == Menu.draft.menuName {
             viewController?.turnOnDraftToolBar()
         } else {
             viewController?.turnOnSelectionToolBar()
@@ -176,7 +180,7 @@ final class InboxPresenter {
         // Update navigation title
         updateNavigationBarTitle(basedOnMessageCount: viewController?.dataSource?.selectedMessagesCount ?? 0,
                                  selectionMode: viewController?.dataSource?.selectionMode ?? false,
-                                 currentFolder: viewController?.selectedMenu ?? .inbox
+                                 currentFolder: SharedInboxState.shared.selectedMenu ?? Menu.inbox
         )
     }
     
@@ -184,7 +188,7 @@ final class InboxPresenter {
         // Switch off selection mode
         viewController?
             .dataSource?
-            .update(selectionMode: false)
+            .resetSelectionMode()
         
         // Reload Datasource
         viewController?
@@ -202,7 +206,7 @@ final class InboxPresenter {
         // Update navigation title
         updateNavigationBarTitle(basedOnMessageCount: viewController?.dataSource?.selectedMessagesCount ?? 0,
                                  selectionMode: viewController?.dataSource?.selectionMode ?? false,
-                                 currentFolder: viewController?.selectedMenu ?? .inbox
+                                 currentFolder: SharedInboxState.shared.selectedMenu ?? Menu.inbox
         )
     }
     
@@ -267,7 +271,7 @@ extension InboxPresenter {
         }
     }
     
-    private func hideUndoBar() {
+    func hideUndoBar() {
         counter = 0
         timer?.invalidate()
         timer = nil
@@ -281,13 +285,16 @@ extension InboxPresenter {
     private func showMoreActionsAlert() {
         var actions: [MoreAction] = []
         
-        let menu = viewController?.selectedMenu ?? .inbox
+        guard let menu = SharedInboxState.shared.selectedMenu as? Menu else {
+            return
+        }
         
         let readableAction: MoreAction = (viewController?.dataSource?.needReadAction() == true) ? .markAsRead : .markAsUnread
         
         switch menu {
         case .inbox,
-             .sent:
+             .sent,
+             .unread:
             actions.append(contentsOf: [
                 readableAction,
                 .moveToArchive,
@@ -356,14 +363,6 @@ extension InboxPresenter {
     }
     
     func moveToInbox() {
-        let params = AlertKitParams(
-            title: Strings.Inbox.Alert.deleteTitle.localized,
-            message: Strings.Inbox.Alert.deleteMessage.localized,
-            cancelButton: Strings.Button.cancelButton.localized,
-            otherButtons: [
-                Strings.Button.deleteButton.localized
-            ]
-        )
         viewController?
             .dataSource?
             .moveMessagesToInbox()
@@ -408,5 +407,26 @@ extension InboxPresenter {
                     .deleteMessages()
             }
         })
+    }
+    
+    func undo() {
+        if let lastMessage = viewController?.dataSource?.lastAppliedActionMessage {
+            if let count = viewController?.dataSource?.selectedMessagesCount,
+                count > 0 {
+                interactor?.undoLastAction(message: lastMessage)
+            }
+        }
+    }
+}
+
+// MARK: - MoveToViewControllerDelegate
+extension InboxPresenter: MoveToViewControllerDelegate {
+    func didMoveMessage(to folder: String) {
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (timer1) in
+            self.viewController?.view.makeToast("\(Strings.Inbox.messageMovedTo.localized) \(folder)",
+                duration: 4,
+                position: .bottom
+            )
+        }
     }
 }

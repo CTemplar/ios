@@ -86,6 +86,7 @@
 "filtered" = "Отфильтровано";
 "noInboxMessage" = "У вас нет сообщений";
 "noFilteredMessage" = "Нет писем по такому фильтру";
+"messageMovedTo" = "Сообщение перенесено в";
 
 // Inbox Filter
 "starredFilter" = "Избранные";
@@ -210,23 +211,23 @@
 
 "search" = "Поиск";
 
-//Side Menu Cells
-
-"inbox"            = "Входящие";
-"draft"            = "Черновик";
-"sent"             = "Отправленные";
-"outbox"           = "Исходящие";
-"starred"          = "Избранные";
-"archive"          = "Архив";
-"spam"             = "Спам";
-"trash"            = "Корзина";
-"allMails"         = "Все письма";
-"contacts"         = "Контакты";
-"settings"         = "Настройки";
-"help"             = "Получить Помощь";
-"FAQ"              = "FAQ";
-"logout"           = "Выйти";
-"manageFolders"    = "Управление Папками";
+// Side Menu Cells
+"inbox" = "Входящие";
+"draft" = "Черновик";
+"sent" = "Отправленные";
+"outbox" = "Исходящие";
+"starred" = "Избранные";
+"archive" = "Архив";
+"spam" = "Спам";
+"trash" = "Корзина";
+"allMails" = "Все письма";
+"contacts" = "Контакты";
+"settings" = "Настройки";
+"help" = "Получить Помощь";
+"FAQ" = "FAQ";
+"logout" = "Выйти";
+"manageFolders" = "Управление Папками";
+"unread" = "Непрочитанный";
 
 "showMoreFolders" = "Показать больше папок";
 "hideFolders" = "Скрыть папки";

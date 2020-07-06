@@ -136,6 +136,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onTapSignIn(_ sender: Any) {
+        view.endEditing(true)
         presenter?.login()
     }
     

@@ -78,6 +78,7 @@
 "filtered" = "Filtrované";
 "noInboxMessage" = "Nemáte žiadne nové správy";
 "noFilteredMessage" = "Nemáte žiadne správy zodpovedajúce danému filtru";
+"messageMovedTo" = "Správa bola presunutá do priečinka";
 
 // Inbox Filter
 "starredFilter" = "Dôležité";
@@ -206,21 +207,22 @@
 "search" = "Hľadať";
 
 //Side Menu Cells
-"inbox"            = "Prijaté";
-"draft"            = "Rozpísané";
-"sent"             = "Odoslané";
-"outbox"           = "Na odoslanie";
-"starred"          = "Dôležité";
-"archive"          = "Archív";
-"spam"             = "Spam";
-"trash"            = "Kôš";
-"allMails"         = "Všetky e-maily";
-"contacts"         = "Kontakty";
-"settings"         = "Nastavenia";
-"FAQ"              = "FAQ";
-"help"             = "Podpora";
-"logout"           = "Odhlásiť sa";
-"manageFolders"    = "Správa zložiek";
+"inbox" = "Prijaté";
+"draft" = "Rozpísané";
+"sent" = "Odoslané";
+"outbox" = "Na odoslanie";
+"starred" = "Dôležité";
+"archive" = "Archív";
+"spam" = "Spam";
+"trash" = "Kôš";
+"allMails" = "Všetky e-maily";
+"contacts" = "Kontakty";
+"settings" = "Nastavenia";
+"FAQ" = "FAQ";
+"help" = "Podpora";
+"logout" = "Odhlásiť sa";
+"manageFolders" = "Správa zložiek";
+"unread" = "Neprečítaný";
 
 "showMoreFolders" = "Ukázať viac zložiek";
 "hideFolders" = "Skryť zložky";

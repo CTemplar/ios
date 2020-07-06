@@ -124,6 +124,12 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        if #available(iOS 13.0, *) {
+            navigationController?.view.backgroundColor = .systemBackground
+        } else {
+            // Fallback on earlier versions
+        }
+        
         self.addGesureRecognizers()
         
         let configurator = ComposeConfigurator()

@@ -7,14 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		440F7D7B24AF245D00B9BA2D /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7D7A24AF245D00B9BA2D /* Protocols.swift */; };
+		440F7D7D24AF2A1200B9BA2D /* InboxConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7D7C24AF2A1200B9BA2D /* InboxConfigurator.swift */; };
+		440F7D7F24AF2B3B00B9BA2D /* InboxCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7D7E24AF2B3B00B9BA2D /* InboxCoordinator.swift */; };
+		440F7E0724AF6C1900B9BA2D /* EditFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7DEC24AF6C1800B9BA2D /* EditFolderViewController.swift */; };
+		440F7E0824AF6C1900B9BA2D /* EditFolderConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7DED24AF6C1800B9BA2D /* EditFolderConfigurator.swift */; };
+		440F7E0924AF6C1900B9BA2D /* EditFolder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 440F7DEE24AF6C1800B9BA2D /* EditFolder.storyboard */; };
+		440F7E0A24AF6C1900B9BA2D /* EditFolderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7DEF24AF6C1800B9BA2D /* EditFolderInteractor.swift */; };
+		440F7E0B24AF6C1900B9BA2D /* ManageFoldersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7DF124AF6C1800B9BA2D /* ManageFoldersInteractor.swift */; };
+		440F7E0C24AF6C1900B9BA2D /* ManageFoldersConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7DF224AF6C1800B9BA2D /* ManageFoldersConfigurator.swift */; };
+		440F7E0D24AF6C1900B9BA2D /* ManageFoldersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7DF324AF6C1800B9BA2D /* ManageFoldersPresenter.swift */; };
+		440F7E0E24AF6C1900B9BA2D /* ManageFoldersDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7DF424AF6C1800B9BA2D /* ManageFoldersDataSource.swift */; };
+		440F7E0F24AF6C1900B9BA2D /* ManageFoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7DF524AF6C1800B9BA2D /* ManageFoldersViewController.swift */; };
+		440F7E1024AF6C1900B9BA2D /* ManageFoldersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7DF624AF6C1800B9BA2D /* ManageFoldersRouter.swift */; };
+		440F7E1124AF6C1900B9BA2D /* ManageFolders.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 440F7DF724AF6C1800B9BA2D /* ManageFolders.storyboard */; };
+		440F7E1224AF6C1900B9BA2D /* MoveToRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7DF924AF6C1800B9BA2D /* MoveToRouter.swift */; };
+		440F7E1324AF6C1900B9BA2D /* MoveToInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7DFA24AF6C1800B9BA2D /* MoveToInteractor.swift */; };
+		440F7E1424AF6C1900B9BA2D /* MoveTo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 440F7DFB24AF6C1800B9BA2D /* MoveTo.storyboard */; };
+		440F7E1524AF6C1900B9BA2D /* MoveToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7DFC24AF6C1800B9BA2D /* MoveToViewController.swift */; };
+		440F7E1624AF6C1900B9BA2D /* MoveToPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7DFD24AF6C1800B9BA2D /* MoveToPresenter.swift */; };
+		440F7E1724AF6C1900B9BA2D /* MoveToConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7DFE24AF6C1800B9BA2D /* MoveToConfigurator.swift */; };
+		440F7E1824AF6C1900B9BA2D /* MoveToDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7DFF24AF6C1800B9BA2D /* MoveToDelegate.swift */; };
+		440F7E1924AF6C1900B9BA2D /* MoveToDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7E0024AF6C1800B9BA2D /* MoveToDataSource.swift */; };
+		440F7E1A24AF6C1900B9BA2D /* AddFolder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 440F7E0224AF6C1800B9BA2D /* AddFolder.storyboard */; };
+		440F7E1B24AF6C1900B9BA2D /* AddFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7E0324AF6C1800B9BA2D /* AddFolderViewController.swift */; };
+		440F7E1C24AF6C1900B9BA2D /* AddFolderConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7E0424AF6C1900B9BA2D /* AddFolderConfigurator.swift */; };
+		440F7E1D24AF6C1900B9BA2D /* AddFolderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7E0524AF6C1900B9BA2D /* AddFolderProtocol.swift */; };
+		440F7E1E24AF6C1900B9BA2D /* AddFolderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7E0624AF6C1900B9BA2D /* AddFolderInteractor.swift */; };
+		440F7E3A24AF6D7900B9BA2D /* UpgradeToPrime.xib in Resources */ = {isa = PBXBuildFile; fileRef = 440F7E3824AF6D7900B9BA2D /* UpgradeToPrime.xib */; };
+		440F7E3B24AF6D7900B9BA2D /* UpgradeToPrimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7E3924AF6D7900B9BA2D /* UpgradeToPrimeView.swift */; };
+		440F7E4324AF6DDD00B9BA2D /* MoveToFolderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 440F7E4124AF6DDD00B9BA2D /* MoveToFolderTableViewCell.xib */; };
+		440F7E4424AF6DDD00B9BA2D /* MoveToFolderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7E4224AF6DDD00B9BA2D /* MoveToFolderTableViewCell.swift */; };
+		443A1EE724B26BC1009BC733 /* InboxSideMenuDataSource+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443A1EE624B26BC1009BC733 /* InboxSideMenuDataSource+Helpers.swift */; };
 		444D23C224A8F30D00BDF79F /* InboxFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D23C124A8F30D00BDF79F /* InboxFilterViewController.swift */; };
 		444D23C424A8F46600BDF79F /* InboxFilterDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D23C324A8F46600BDF79F /* InboxFilterDatasource.swift */; };
 		444D657D24A4DC7600690B3E /* Inbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 444D657B24A4DC7600690B3E /* Inbox.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		444D659024A4E76F00690B3E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D658F24A4E76F00690B3E /* Constants.swift */; };
 		444D659224A70AA300690B3E /* InboxSideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D659124A70AA300690B3E /* InboxSideMenuController.swift */; };
 		444D659424A70B5C00690B3E /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D659324A70B5C00690B3E /* InboxViewController.swift */; };
-		444D659724A70BA000690B3E /* Initializer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444D659624A70BA000690B3E /* Initializer.framework */; };
-		444D659824A70BA000690B3E /* Initializer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 444D659624A70BA000690B3E /* Initializer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		444D659B24A70BA500690B3E /* Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444D659A24A70BA500690B3E /* Utility.framework */; };
 		444D659C24A70BA500690B3E /* Utility.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 444D659A24A70BA500690B3E /* Utility.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		444D659E24A70BFC00690B3E /* Inbox.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 444D659D24A70BFC00690B3E /* Inbox.storyboard */; };
@@ -38,7 +68,7 @@
 		444D65D124A7415300690B3E /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65CB24A7415300690B3E /* SideMenuTableViewCell.swift */; };
 		444D65D224A7415300690B3E /* SideMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 444D65CC24A7415300690B3E /* SideMenuTableViewCell.xib */; };
 		444D65D324A7415300690B3E /* SideMenuTableManageFolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65CD24A7415300690B3E /* SideMenuTableManageFolderCell.swift */; };
-		444D65D424A7415300690B3E /* SideMenuTableManageFoldersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 444D65CE24A7415300690B3E /* SideMenuTableManageFoldersCell.xib */; };
+		444D65D424A7415300690B3E /* SideMenuTableManageFolderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 444D65CE24A7415300690B3E /* SideMenuTableManageFolderCell.xib */; };
 		444D65D724A745D200690B3E /* CustomFolderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65D524A745D200690B3E /* CustomFolderTableViewCell.swift */; };
 		444D65D824A745D200690B3E /* CustomFolderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 444D65D624A745D200690B3E /* CustomFolderTableViewCell.xib */; };
 		444D65DA24A7A44D00690B3E /* InboxInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65D924A7A44D00690B3E /* InboxInteractor.swift */; };
@@ -61,7 +91,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				444D65B724A736C600690B3E /* Login.framework in Embed Frameworks */,
-				444D659824A70BA000690B3E /* Initializer.framework in Embed Frameworks */,
 				444D659C24A70BA500690B3E /* Utility.framework in Embed Frameworks */,
 				444D65A924A723D300690B3E /* Networking.framework in Embed Frameworks */,
 			);
@@ -71,6 +100,38 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		440F7D7A24AF245D00B9BA2D /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		440F7D7C24AF2A1200B9BA2D /* InboxConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxConfigurator.swift; sourceTree = "<group>"; };
+		440F7D7E24AF2B3B00B9BA2D /* InboxCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxCoordinator.swift; sourceTree = "<group>"; };
+		440F7DEC24AF6C1800B9BA2D /* EditFolderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFolderViewController.swift; sourceTree = "<group>"; };
+		440F7DED24AF6C1800B9BA2D /* EditFolderConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFolderConfigurator.swift; sourceTree = "<group>"; };
+		440F7DEE24AF6C1800B9BA2D /* EditFolder.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditFolder.storyboard; sourceTree = "<group>"; };
+		440F7DEF24AF6C1800B9BA2D /* EditFolderInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFolderInteractor.swift; sourceTree = "<group>"; };
+		440F7DF124AF6C1800B9BA2D /* ManageFoldersInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageFoldersInteractor.swift; sourceTree = "<group>"; };
+		440F7DF224AF6C1800B9BA2D /* ManageFoldersConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageFoldersConfigurator.swift; sourceTree = "<group>"; };
+		440F7DF324AF6C1800B9BA2D /* ManageFoldersPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageFoldersPresenter.swift; sourceTree = "<group>"; };
+		440F7DF424AF6C1800B9BA2D /* ManageFoldersDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageFoldersDataSource.swift; sourceTree = "<group>"; };
+		440F7DF524AF6C1800B9BA2D /* ManageFoldersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageFoldersViewController.swift; sourceTree = "<group>"; };
+		440F7DF624AF6C1800B9BA2D /* ManageFoldersRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageFoldersRouter.swift; sourceTree = "<group>"; };
+		440F7DF724AF6C1800B9BA2D /* ManageFolders.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ManageFolders.storyboard; sourceTree = "<group>"; };
+		440F7DF924AF6C1800B9BA2D /* MoveToRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveToRouter.swift; sourceTree = "<group>"; };
+		440F7DFA24AF6C1800B9BA2D /* MoveToInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveToInteractor.swift; sourceTree = "<group>"; };
+		440F7DFB24AF6C1800B9BA2D /* MoveTo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MoveTo.storyboard; sourceTree = "<group>"; };
+		440F7DFC24AF6C1800B9BA2D /* MoveToViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveToViewController.swift; sourceTree = "<group>"; };
+		440F7DFD24AF6C1800B9BA2D /* MoveToPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveToPresenter.swift; sourceTree = "<group>"; };
+		440F7DFE24AF6C1800B9BA2D /* MoveToConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveToConfigurator.swift; sourceTree = "<group>"; };
+		440F7DFF24AF6C1800B9BA2D /* MoveToDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveToDelegate.swift; sourceTree = "<group>"; };
+		440F7E0024AF6C1800B9BA2D /* MoveToDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveToDataSource.swift; sourceTree = "<group>"; };
+		440F7E0224AF6C1800B9BA2D /* AddFolder.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AddFolder.storyboard; path = ../AddFolder.storyboard; sourceTree = "<group>"; };
+		440F7E0324AF6C1800B9BA2D /* AddFolderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddFolderViewController.swift; path = ../AddFolderViewController.swift; sourceTree = "<group>"; };
+		440F7E0424AF6C1900B9BA2D /* AddFolderConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddFolderConfigurator.swift; path = ../AddFolderConfigurator.swift; sourceTree = "<group>"; };
+		440F7E0524AF6C1900B9BA2D /* AddFolderProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddFolderProtocol.swift; path = ../AddFolderProtocol.swift; sourceTree = "<group>"; };
+		440F7E0624AF6C1900B9BA2D /* AddFolderInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddFolderInteractor.swift; path = ../AddFolderInteractor.swift; sourceTree = "<group>"; };
+		440F7E3824AF6D7900B9BA2D /* UpgradeToPrime.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpgradeToPrime.xib; sourceTree = "<group>"; };
+		440F7E3924AF6D7900B9BA2D /* UpgradeToPrimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpgradeToPrimeView.swift; sourceTree = "<group>"; };
+		440F7E4124AF6DDD00B9BA2D /* MoveToFolderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoveToFolderTableViewCell.xib; sourceTree = "<group>"; };
+		440F7E4224AF6DDD00B9BA2D /* MoveToFolderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveToFolderTableViewCell.swift; sourceTree = "<group>"; };
+		443A1EE624B26BC1009BC733 /* InboxSideMenuDataSource+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InboxSideMenuDataSource+Helpers.swift"; sourceTree = "<group>"; };
 		444D23C124A8F30D00BDF79F /* InboxFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxFilterViewController.swift; sourceTree = "<group>"; };
 		444D23C324A8F46600BDF79F /* InboxFilterDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxFilterDatasource.swift; sourceTree = "<group>"; };
 		444D657824A4DC7600690B3E /* Inbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Inbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,7 +161,7 @@
 		444D65CB24A7415300690B3E /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
 		444D65CC24A7415300690B3E /* SideMenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideMenuTableViewCell.xib; sourceTree = "<group>"; };
 		444D65CD24A7415300690B3E /* SideMenuTableManageFolderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTableManageFolderCell.swift; sourceTree = "<group>"; };
-		444D65CE24A7415300690B3E /* SideMenuTableManageFoldersCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideMenuTableManageFoldersCell.xib; sourceTree = "<group>"; };
+		444D65CE24A7415300690B3E /* SideMenuTableManageFolderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideMenuTableManageFolderCell.xib; sourceTree = "<group>"; };
 		444D65D524A745D200690B3E /* CustomFolderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFolderTableViewCell.swift; sourceTree = "<group>"; };
 		444D65D624A745D200690B3E /* CustomFolderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomFolderTableViewCell.xib; sourceTree = "<group>"; };
 		444D65D924A7A44D00690B3E /* InboxInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxInteractor.swift; sourceTree = "<group>"; };
@@ -124,7 +185,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				444D65B624A736C500690B3E /* Login.framework in Frameworks */,
-				444D659724A70BA000690B3E /* Initializer.framework in Frameworks */,
 				444D659B24A70BA500690B3E /* Utility.framework in Frameworks */,
 				444D65A824A723D300690B3E /* Networking.framework in Frameworks */,
 				E8CAD30EC95C444EA423E6FE /* Pods_Inbox.framework in Frameworks */,
@@ -142,6 +202,213 @@
 			);
 			name = Pods;
 			path = ../../Pods;
+			sourceTree = "<group>";
+		};
+		440F7DEB24AF6C1800B9BA2D /* EditFolder */ = {
+			isa = PBXGroup;
+			children = (
+				440F7E3624AF6D2B00B9BA2D /* VIPER-Structure */,
+				440F7E3524AF6D1F00B9BA2D /* Storyboards */,
+				440F7E3424AF6D1800B9BA2D /* ViewControllers */,
+				440F7E3324AF6D1100B9BA2D /* Views */,
+			);
+			path = EditFolder;
+			sourceTree = "<group>";
+		};
+		440F7DF024AF6C1800B9BA2D /* ManageFolders */ = {
+			isa = PBXGroup;
+			children = (
+				440F7E3F24AF6D9A00B9BA2D /* Storyboards */,
+				440F7E3E24AF6D9100B9BA2D /* ViewControllers */,
+				440F7E3D24AF6D8800B9BA2D /* Views */,
+				440F7E3C24AF6D8100B9BA2D /* VIPER-Structure */,
+			);
+			path = ManageFolders;
+			sourceTree = "<group>";
+		};
+		440F7DF824AF6C1800B9BA2D /* MoveToViewController */ = {
+			isa = PBXGroup;
+			children = (
+				440F7E4924AF6E3B00B9BA2D /* Storyboards */,
+				440F7E4824AF6E2D00B9BA2D /* Common */,
+				440F7E4724AF6E1700B9BA2D /* ViewController */,
+				440F7E4624AF6E0B00B9BA2D /* DataSource */,
+				440F7E4524AF6DF700B9BA2D /* VIPER-Structure */,
+				440F7E4024AF6DCB00B9BA2D /* Views */,
+			);
+			path = MoveToViewController;
+			sourceTree = "<group>";
+		};
+		440F7E0124AF6C1800B9BA2D /* AddFolder */ = {
+			isa = PBXGroup;
+			children = (
+				440F7E3124AF6CDA00B9BA2D /* Common */,
+				440F7E3024AF6CBC00B9BA2D /* ViewController */,
+				440F7E2F24AF6CAE00B9BA2D /* VIPER-Structure */,
+				440F7E2E24AF6CA700B9BA2D /* Storyboards */,
+			);
+			path = AddFolder;
+			sourceTree = "<group>";
+		};
+		440F7E2E24AF6CA700B9BA2D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				440F7E0224AF6C1800B9BA2D /* AddFolder.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		440F7E2F24AF6CAE00B9BA2D /* VIPER-Structure */ = {
+			isa = PBXGroup;
+			children = (
+				440F7E0424AF6C1900B9BA2D /* AddFolderConfigurator.swift */,
+				440F7E0624AF6C1900B9BA2D /* AddFolderInteractor.swift */,
+			);
+			path = "VIPER-Structure";
+			sourceTree = "<group>";
+		};
+		440F7E3024AF6CBC00B9BA2D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				440F7E0324AF6C1800B9BA2D /* AddFolderViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		440F7E3124AF6CDA00B9BA2D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				440F7E0524AF6C1900B9BA2D /* AddFolderProtocol.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		440F7E3324AF6D1100B9BA2D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				440F7DEE24AF6C1800B9BA2D /* EditFolder.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		440F7E3424AF6D1800B9BA2D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				440F7DEC24AF6C1800B9BA2D /* EditFolderViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		440F7E3524AF6D1F00B9BA2D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		440F7E3624AF6D2B00B9BA2D /* VIPER-Structure */ = {
+			isa = PBXGroup;
+			children = (
+				440F7DED24AF6C1800B9BA2D /* EditFolderConfigurator.swift */,
+				440F7DEF24AF6C1800B9BA2D /* EditFolderInteractor.swift */,
+			);
+			path = "VIPER-Structure";
+			sourceTree = "<group>";
+		};
+		440F7E3724AF6D7900B9BA2D /* UpgradeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				440F7E3824AF6D7900B9BA2D /* UpgradeToPrime.xib */,
+				440F7E3924AF6D7900B9BA2D /* UpgradeToPrimeView.swift */,
+			);
+			path = UpgradeScreen;
+			sourceTree = "<group>";
+		};
+		440F7E3C24AF6D8100B9BA2D /* VIPER-Structure */ = {
+			isa = PBXGroup;
+			children = (
+				440F7DF124AF6C1800B9BA2D /* ManageFoldersInteractor.swift */,
+				440F7DF224AF6C1800B9BA2D /* ManageFoldersConfigurator.swift */,
+				440F7DF324AF6C1800B9BA2D /* ManageFoldersPresenter.swift */,
+				440F7DF424AF6C1800B9BA2D /* ManageFoldersDataSource.swift */,
+				440F7DF624AF6C1800B9BA2D /* ManageFoldersRouter.swift */,
+			);
+			path = "VIPER-Structure";
+			sourceTree = "<group>";
+		};
+		440F7E3D24AF6D8800B9BA2D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		440F7E3E24AF6D9100B9BA2D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				440F7DF524AF6C1800B9BA2D /* ManageFoldersViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		440F7E3F24AF6D9A00B9BA2D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				440F7DF724AF6C1800B9BA2D /* ManageFolders.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		440F7E4024AF6DCB00B9BA2D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				440F7E4224AF6DDD00B9BA2D /* MoveToFolderTableViewCell.swift */,
+				440F7E4124AF6DDD00B9BA2D /* MoveToFolderTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		440F7E4524AF6DF700B9BA2D /* VIPER-Structure */ = {
+			isa = PBXGroup;
+			children = (
+				440F7DF924AF6C1800B9BA2D /* MoveToRouter.swift */,
+				440F7DFA24AF6C1800B9BA2D /* MoveToInteractor.swift */,
+				440F7DFD24AF6C1800B9BA2D /* MoveToPresenter.swift */,
+				440F7DFE24AF6C1800B9BA2D /* MoveToConfigurator.swift */,
+			);
+			path = "VIPER-Structure";
+			sourceTree = "<group>";
+		};
+		440F7E4624AF6E0B00B9BA2D /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				440F7E0024AF6C1800B9BA2D /* MoveToDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		440F7E4724AF6E1700B9BA2D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				440F7DFC24AF6C1800B9BA2D /* MoveToViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		440F7E4824AF6E2D00B9BA2D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				440F7DFF24AF6C1800B9BA2D /* MoveToDelegate.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		440F7E4924AF6E3B00B9BA2D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				440F7DFB24AF6C1800B9BA2D /* MoveTo.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		444D656E24A4DC7600690B3E = {
@@ -173,19 +440,24 @@
 				444D658D24A4DCB600690B3E /* Storyboards */,
 				444D658C24A4DCA600690B3E /* VIPER-Structure */,
 				444D658B24A4DC9D00690B3E /* ViewControllers */,
-				444D658924A4DC8800690B3E /* Helpers */,
+				444D658924A4DC8800690B3E /* SubModules */,
 				444D657B24A4DC7600690B3E /* Inbox.h */,
 				444D657C24A4DC7600690B3E /* Info.plist */,
 			);
 			path = Inbox;
 			sourceTree = "<group>";
 		};
-		444D658924A4DC8800690B3E /* Helpers */ = {
+		444D658924A4DC8800690B3E /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
+				440F7E3724AF6D7900B9BA2D /* UpgradeScreen */,
+				440F7E0124AF6C1800B9BA2D /* AddFolder */,
+				440F7DEB24AF6C1800B9BA2D /* EditFolder */,
+				440F7DF024AF6C1800B9BA2D /* ManageFolders */,
+				440F7DF824AF6C1800B9BA2D /* MoveToViewController */,
 				444D658A24A4DC8F00690B3E /* SideMenu */,
 			);
-			path = Helpers;
+			path = SubModules;
 			sourceTree = "<group>";
 		};
 		444D658A24A4DC8F00690B3E /* SideMenu */ = {
@@ -216,6 +488,8 @@
 				444D65A524A7217600690B3E /* InboxRouter.swift */,
 				444D65D924A7A44D00690B3E /* InboxInteractor.swift */,
 				444D65E824A8523900690B3E /* InboxPresenter.swift */,
+				440F7D7C24AF2A1200B9BA2D /* InboxConfigurator.swift */,
+				440F7D7E24AF2B3B00B9BA2D /* InboxCoordinator.swift */,
 			);
 			path = "VIPER-Structure";
 			sourceTree = "<group>";
@@ -234,6 +508,7 @@
 				444D658F24A4E76F00690B3E /* Constants.swift */,
 				444D65A324A7201E00690B3E /* LeftBarButtonItemConfigurable.swift */,
 				444D65C624A73EFD00690B3E /* SharedInboxState.swift */,
+				440F7D7A24AF245D00B9BA2D /* Protocols.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -281,6 +556,7 @@
 			isa = PBXGroup;
 			children = (
 				444D65B824A7389E00690B3E /* InboxSideMenuDataSource.swift */,
+				443A1EE624B26BC1009BC733 /* InboxSideMenuDataSource+Helpers.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -291,7 +567,7 @@
 				444D65D524A745D200690B3E /* CustomFolderTableViewCell.swift */,
 				444D65D624A745D200690B3E /* CustomFolderTableViewCell.xib */,
 				444D65CD24A7415300690B3E /* SideMenuTableManageFolderCell.swift */,
-				444D65CE24A7415300690B3E /* SideMenuTableManageFoldersCell.xib */,
+				444D65CE24A7415300690B3E /* SideMenuTableManageFolderCell.xib */,
 				444D65CA24A7415300690B3E /* SideMenuTableSectionHeaderView.swift */,
 				444D65C924A7415300690B3E /* SideMenuTableSectionHeader.xib */,
 				444D65CB24A7415300690B3E /* SideMenuTableViewCell.swift */,
@@ -363,7 +639,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1150;
-				ORGANIZATIONNAME = "Soham Bhattacharjee";
+				ORGANIZATIONNAME = cTemplar;
 				TargetAttributes = {
 					444D657724A4DC7600690B3E = {
 						CreatedOnToolsVersion = 11.5;
@@ -394,14 +670,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				440F7E0924AF6C1900B9BA2D /* EditFolder.storyboard in Resources */,
+				440F7E3A24AF6D7900B9BA2D /* UpgradeToPrime.xib in Resources */,
 				444D65D824A745D200690B3E /* CustomFolderTableViewCell.xib in Resources */,
 				444D65AB24A72C7500690B3E /* InboxSideMenu.storyboard in Resources */,
-				444D65D424A7415300690B3E /* SideMenuTableManageFoldersCell.xib in Resources */,
+				444D65D424A7415300690B3E /* SideMenuTableManageFolderCell.xib in Resources */,
+				440F7E4324AF6DDD00B9BA2D /* MoveToFolderTableViewCell.xib in Resources */,
 				444D65D224A7415300690B3E /* SideMenuTableViewCell.xib in Resources */,
 				444D65A024A70C7600690B3E /* Assets.xcassets in Resources */,
+				440F7E1424AF6C1900B9BA2D /* MoveTo.storyboard in Resources */,
 				444D659E24A70BFC00690B3E /* Inbox.storyboard in Resources */,
+				440F7E1A24AF6C1900B9BA2D /* AddFolder.storyboard in Resources */,
 				444D65F624A88E1A00690B3E /* InboxMessageTableViewCell.xib in Resources */,
 				444D65CF24A7415300690B3E /* SideMenuTableSectionHeader.xib in Resources */,
+				440F7E1124AF6C1900B9BA2D /* ManageFolders.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,28 +719,54 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				440F7E1E24AF6C1900B9BA2D /* AddFolderInteractor.swift in Sources */,
+				440F7E1624AF6C1900B9BA2D /* MoveToPresenter.swift in Sources */,
 				444D65AE24A72D0100690B3E /* InboxSideMenuConfigurator.swift in Sources */,
 				444D65DA24A7A44D00690B3E /* InboxInteractor.swift in Sources */,
+				440F7E0724AF6C1900B9BA2D /* EditFolderViewController.swift in Sources */,
 				444D65C724A73EFD00690B3E /* SharedInboxState.swift in Sources */,
 				444D659224A70AA300690B3E /* InboxSideMenuController.swift in Sources */,
+				440F7E1224AF6C1900B9BA2D /* MoveToRouter.swift in Sources */,
 				444D65D324A7415300690B3E /* SideMenuTableManageFolderCell.swift in Sources */,
 				44DBC7E124A89741009EFDB9 /* InboxMessageTablelViewCell+Badges.swift in Sources */,
+				440F7E0E24AF6C1900B9BA2D /* ManageFoldersDataSource.swift in Sources */,
 				444D65D724A745D200690B3E /* CustomFolderTableViewCell.swift in Sources */,
+				440F7E0B24AF6C1900B9BA2D /* ManageFoldersInteractor.swift in Sources */,
 				444D65A624A7217600690B3E /* InboxRouter.swift in Sources */,
+				440F7E0F24AF6C1900B9BA2D /* ManageFoldersViewController.swift in Sources */,
 				444D65B224A735AB00690B3E /* InboxSideMenuPresenter.swift in Sources */,
 				44DBC7DD24A89297009EFDB9 /* InboxMessageTablelViewCell+Labels.swift in Sources */,
+				440F7E4424AF6DDD00B9BA2D /* MoveToFolderTableViewCell.swift in Sources */,
 				444D23C424A8F46600BDF79F /* InboxFilterDatasource.swift in Sources */,
 				44DBC7DF24A8957B009EFDB9 /* InboxMessageTablelViewCell+LayoutConstraints.swift in Sources */,
+				440F7D7B24AF245D00B9BA2D /* Protocols.swift in Sources */,
 				444D65A424A7201E00690B3E /* LeftBarButtonItemConfigurable.swift in Sources */,
 				444D65B924A7389E00690B3E /* InboxSideMenuDataSource.swift in Sources */,
+				440F7E1C24AF6C1900B9BA2D /* AddFolderConfigurator.swift in Sources */,
+				440F7E0C24AF6C1900B9BA2D /* ManageFoldersConfigurator.swift in Sources */,
 				444D65F724A88E1A00690B3E /* InboxMessageTableViewCell.swift in Sources */,
 				444D65D024A7415300690B3E /* SideMenuTableSectionHeaderView.swift in Sources */,
+				440F7E1D24AF6C1900B9BA2D /* AddFolderProtocol.swift in Sources */,
+				440F7E0A24AF6C1900B9BA2D /* EditFolderInteractor.swift in Sources */,
+				440F7D7D24AF2A1200B9BA2D /* InboxConfigurator.swift in Sources */,
+				440F7E1524AF6C1900B9BA2D /* MoveToViewController.swift in Sources */,
+				440F7E1924AF6C1900B9BA2D /* MoveToDataSource.swift in Sources */,
 				445BF9F124AE77CB00DAC3B3 /* InboxDataSource+APIHelpers.swift in Sources */,
+				440F7E1724AF6C1900B9BA2D /* MoveToConfigurator.swift in Sources */,
 				444D23C224A8F30D00BDF79F /* InboxFilterViewController.swift in Sources */,
 				444D659424A70B5C00690B3E /* InboxViewController.swift in Sources */,
 				444D65A224A70D8C00690B3E /* InboxNavigationController.swift in Sources */,
+				440F7E3B24AF6D7900B9BA2D /* UpgradeToPrimeView.swift in Sources */,
 				444D65B424A7360000690B3E /* InboxSideMenuInteractor.swift in Sources */,
+				440F7E1324AF6C1900B9BA2D /* MoveToInteractor.swift in Sources */,
 				444D65D124A7415300690B3E /* SideMenuTableViewCell.swift in Sources */,
+				440F7E0D24AF6C1900B9BA2D /* ManageFoldersPresenter.swift in Sources */,
+				440F7E1824AF6C1900B9BA2D /* MoveToDelegate.swift in Sources */,
+				443A1EE724B26BC1009BC733 /* InboxSideMenuDataSource+Helpers.swift in Sources */,
+				440F7E1024AF6C1900B9BA2D /* ManageFoldersRouter.swift in Sources */,
+				440F7D7F24AF2B3B00B9BA2D /* InboxCoordinator.swift in Sources */,
+				440F7E1B24AF6C1900B9BA2D /* AddFolderViewController.swift in Sources */,
+				440F7E0824AF6C1900B9BA2D /* EditFolderConfigurator.swift in Sources */,
 				444D659024A4E76F00690B3E /* Constants.swift in Sources */,
 				444D65B024A72D3000690B3E /* InboxSideMenuRouter.swift in Sources */,
 				444D65E924A8523900690B3E /* InboxPresenter.swift in Sources */,
@@ -520,7 +828,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -577,7 +885,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

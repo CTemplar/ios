@@ -97,11 +97,13 @@ public struct GeneralConstant {
         case TermsURL = "https://ctemplar.com/terms"
         case MainSiteURL = "https://ctemplar.com/"
         case UpgradeURL = "https://ctemplar.com/pricing"
-        case SupportURL = "support@ctemplar.com."
+        case SupportURL = "support@ctemplar.com"
         case FAQURL = "https://ctemplar.com/faqs/"
     }
     
     public static let updateInboxMessagesNotificationID = "updateInboxMessagesNotification"
+    public static let numberOfCustomFoldersShowing = 3
+    public static let customFoldersLimitForNonPremium = 5
 }
 
 public enum AnswerMessageMode {

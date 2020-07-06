@@ -6,7 +6,6 @@ inhibit_all_warnings!
 
 def ctemplarPods
   # Pods for Ctemplar
-  pod "Colorful", "~> 3.0"
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'Firebase/Messaging'
@@ -21,6 +20,7 @@ def shared_pods
 end
 
 def inbox_pods
+  pod "Colorful", "~> 3.0"
   pod 'MGSwipeTableCell'
 end
 

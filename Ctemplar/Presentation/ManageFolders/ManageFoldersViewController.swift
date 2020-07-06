@@ -46,12 +46,16 @@ class ManageFoldersViewController: UIViewController {
         dataSource?.onUpdateDataSource = { [weak self] (dataAvailable) in
             self?.presenter?.toggleEmptyState(showEmptyState: dataAvailable == false)
         }
+        
+        edgesForExtendedLayout = []
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Fetch Folders
-        presenter?.interactor?.foldersList(silent: false)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.presenter?.interactor?.foldersList(silent: false)
+        }
         
         if Device.IS_IPAD {
             if showFromSideMenu {

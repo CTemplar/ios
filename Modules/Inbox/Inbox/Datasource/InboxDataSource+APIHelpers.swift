@@ -29,5 +29,11 @@ extension InboxDatasource {
         if filterEnabled {
             applyFilters()
         }
+        
+        if messageId != -1 {
+            if let message = messages.first(where: { $0.messsageID == messageId }) {
+                showDetails(of: message)
+            }
+        }
     }
 }

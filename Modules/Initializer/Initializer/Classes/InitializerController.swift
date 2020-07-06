@@ -4,11 +4,14 @@ import Utility
 import Networking
 import Login
 import SideMenu
+import Inbox
 
 public class InitializerController: UIViewController, HashingService {
 
     // MARK: Properties
     private let apiService = NetworkManager.shared.apiService
+    
+    private let inboxCoordinator = InboxCoordinator()
     
     lazy private var keyChainService: KeychainService = {
         return UtilityManager.shared.keychainService
@@ -21,6 +24,17 @@ public class InitializerController: UIViewController, HashingService {
     lazy private var twoFAstatus: Bool = {
         return keyChainService.getTwoFAstatus()
     }()
+    
+    private var messageId = -1
+    public var onTapSearch: (([EmailMessage], UserMyself, UIViewController?) -> Void)?
+    public var onTapComposeWithDraft: ((AnswerMessageMode, EmailMessage, UserMyself, UIViewController?) -> Void)?
+    public var onTapCompose: ((AnswerMessageMode, UserMyself, UIViewController?) -> Void)?
+    public var onTapViewInbox: ((EmailMessage, String, UserMyself, ViewInboxEmailDelegate?) -> Void)?
+
+    public var onTapContacts: (([Contact], Bool, UIViewController?) -> Void)?
+    public var onTapSettings: ((UserMyself, UIViewController?) -> Void)?
+    public var onTapManageFolders: (([Folder], UserMyself, UIViewController?) -> Void)?
+    public var onTapFAQ: ((UIViewController?) -> Void)?
 
     // MARK: - Lifecycle
     public override func viewDidLoad() {
@@ -28,8 +42,8 @@ public class InitializerController: UIViewController, HashingService {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if (isRememberMeEnabled && apiService.canTokenRefresh()) || apiService.isTokenValid() {
             moveToNext()
         } else if isRememberMeEnabled && !twoFAstatus {
@@ -49,40 +63,44 @@ public class InitializerController: UIViewController, HashingService {
     func showLoginViewController() {
         DPrint("show login VC")
         DispatchQueue.main.async {
-//            let loginCoordinator = LoginCoordinator()
-//            loginCoordinator.showLogin(from: self, withSideMenu: self.sideMenu())
+            let loginCoordinator = LoginCoordinator()
+            loginCoordinator.showLogin(from: self) { [weak self] in
+                self?.showInboxNavigationController()
+            }
         }
     }
     
     func showInboxNavigationController() {
         DispatchQueue.main.async {
-//            let sideMenu = self.sideMenu()
-//            sideMenu.modalPresentationStyle = .fullScreen
-//            if let window = UIApplication.shared.getKeyWindow() {
-//                window.setRootViewController(sideMenu)
-//            } else {
-//                self.show(sideMenu, sender: self)
-//            }
+            let sideMenu = self.sideMenu()
+            sideMenu.modalPresentationStyle = .fullScreen
+            if let keyWindow = UIApplication.shared.keyWindow {
+                keyWindow.setRootViewController(sideMenu, options: .init(direction: .toRight, style: .easeInOut))
+            }
         }
+    }
+    
+    // MARK: - Push Handler
+    public func update(messageId: Int) {
+        inboxCoordinator.update(messageId: messageId)
     }
 }
 
 // MARK: - SlideMenu Setup
 extension InitializerController {
-//    func sideMenu() -> SideMenuController {
-//        let inboxViewController = InboxViewController.instantiate(fromAppStoryboard: .Inbox)
-//        inboxViewController.messageID = messageId
-//
-//        let inboxNavigationController = UIViewController.getNavController(rootViewController: inboxViewController)
-//
-//        let leftMenuController = InboxSideMenuViewController.instantiate(fromAppStoryboard: .InboxSideMenu)
-//        leftMenuController.inboxViewController = inboxViewController
-//        leftMenuController.dataSource?.selectedIndexPath = IndexPath(row: 0, section: SideMenuSectionIndex.mainFolders.rawValue)
-//
-//        let sideMenuController = SideMenuController(contentViewController: inboxNavigationController, menuViewController: leftMenuController)
-//
-//        return sideMenuController
-//    }
+    func sideMenu() -> SideMenuController {
+        let response = inboxCoordinator.showInbox(onTapCompose: onTapCompose,
+                                                  onTapComposeWithDraft: onTapComposeWithDraft,
+                                                  onTapSearch: onTapSearch,
+                                                  onTapViewInbox: onTapViewInbox,
+                                                  onTapContacts: onTapContacts,
+                                                  onTapSettings: onTapSettings,
+                                                  onTapManageFolders: onTapManageFolders,
+                                                  onTapFAQ: onTapFAQ)
+        
+        let sideMenuController = SideMenuController(contentViewController: response.content, menuViewController: response.menu)
+        return sideMenuController
+    }
 }
 
 // MARK: - Authentication
@@ -97,18 +115,18 @@ extension InitializerController {
             }
             NetworkManager.shared.networkService.loginUser(with: LoginDetails(userName: username, password: value)) { (result) in
                 Loader.stop()
-                switch result {
-                case .success(let value):
-                    if let token = value.token {
-                        UtilityManager.shared.keychainService.saveToken(token: token)
-                        self.moveToNext()
-                    }else {
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let value):
+                        if let token = value.token {
+                            UtilityManager.shared.keychainService.saveToken(token: token)
+                            self.moveToNext()
+                        }else {
+                            self.showLoginViewController()
+                        }
+                    case .failure(_):
                         self.showLoginViewController()
                     }
-                    break
-                case .failure(_):
-                    self.showLoginViewController()
-                    break
                 }
             }
         }

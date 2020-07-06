@@ -71,11 +71,11 @@ class MainViewController: UIViewController, HashingService {
     }
     
     func showLoginViewController() {
-        DPrint("show login VC")
-        DispatchQueue.main.async {
-            let loginCoordinator = LoginCoordinator()
-            loginCoordinator.showLogin(from: self, withSideMenu: self.sideMenu())
-        }
+//        DPrint("show login VC")
+//        DispatchQueue.main.async {
+//            let loginCoordinator = LoginCoordinator()
+//            loginCoordinator.showLogin(from: self, withSideMenu: self.sideMenu())
+//        }
     }
     
     func showInboxNavigationController() {

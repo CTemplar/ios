@@ -46,8 +46,7 @@ class InboxSideMenuInteractor {
             return
         }
         
-        let loginCoordinator = LoginCoordinator()
-        loginCoordinator.showLogin(from: presenter, withSideMenu: presenter)
+        presenter.dismiss(animated: true, completion: nil)
     }
     
     func setCustomFoldersData(folderList: FolderList) {

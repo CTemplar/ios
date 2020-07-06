@@ -157,6 +157,7 @@ public enum Strings {
         case manageFolders
         case showMoreFolders
         case hideFolders
+        case unread
     }
     
     public enum Inbox: String, Localizable {
@@ -172,6 +173,7 @@ public enum Strings {
         case filters
         case moveTo
         case deleteRow
+        case messageMovedTo
         
         public enum Filter: String, Localizable {
             case starredFilter

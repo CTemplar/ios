@@ -55,7 +55,8 @@ public enum BannerConfig {
 
 public extension UIViewController {
     static func getNavController(rootViewController: UIViewController,
-                          navigationForegroundColor: UIColor = AppStyle.StringColor.navigationBarTitle.color, navigationBarBackgroundColor: UIColor = AppStyle.StringColor.navigationBarBackground.color) -> UINavigationController {
+                          navigationForegroundColor: UIColor = AppStyle.StringColor.navigationBarTitle.color,
+                          navigationBarBackgroundColor: UIColor = AppStyle.StringColor.navigationBarBackground.color) -> UINavigationController {
         let navController = UINavigationController(rootViewController: rootViewController)
         
         let textAttributes = [NSAttributedString.Key.foregroundColor: navigationForegroundColor]
@@ -64,6 +65,8 @@ public extension UIViewController {
         
         navController.navigationBar.barTintColor = navigationBarBackgroundColor
         
+        navController.navigationBar.tintColor = AppStyle.Colors.loaderColor.color
+                
         return navController
     }
     
@@ -145,3 +148,23 @@ public extension UIViewController {
 }
 
 extension UIViewController: StoryboardIdentifiable {}
+
+@nonobjc
+public extension UIViewController {
+    func add(_ child: UIViewController, frame: CGRect? = nil) {
+        addChild(child)
+
+        if let frame = frame {
+            child.view.frame = frame
+        }
+
+        view.addSubview(child.view)
+        child.didMove(toParent: self)
+    }
+
+    func remove() {
+        willMove(toParent: nil)
+        view.removeFromSuperview()
+        removeFromParent()
+    }
+}

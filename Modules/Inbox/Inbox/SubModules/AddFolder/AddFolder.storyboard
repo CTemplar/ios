@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tKd-OF-9DY">
+    <device id="retina5_9" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Add Folder View Controller-->
+        <scene sceneID="epx-ac-6N8">
+            <objects>
+                <viewController storyboardIdentifier="AddFolderViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tKd-OF-9DY" customClass="AddFolderViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Koc-pG-r3V">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="76U-yz-xdD">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <items>
+                                    <navigationItem title="Add Folder" id="S3c-ND-UKp">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="qeZ-YZ-fBn">
+                                            <color key="tintColor" name="settingsCellTextColor"/>
+                                            <connections>
+                                                <action selector="cancelButtonPressed:" destination="tKd-OF-9DY" id="fs7-2F-E0W"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Add" style="done" id="daC-0u-xOg">
+                                            <color key="tintColor" name="settingsCellTextColor"/>
+                                            <connections>
+                                                <action selector="addButtonPressed:" destination="tKd-OF-9DY" id="XkC-1v-wZw"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3fr-6e-Ztf">
+                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Folder Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smi-Mt-keG" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="16" width="80.666666666666671" height="17"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                        <color key="textColor" name="actionMessageColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fD8-us-aI5">
+                                        <rect key="frame" x="16" y="41" width="343" height="60"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add your folder name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Cn-KY-Ch2" customClass="UILocalizedTextField" customModule="Ctemplar" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="8" width="327" height="42"/>
+                                                <color key="textColor" name="actionMessageColor"/>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="name"/>
+                                                <connections>
+                                                    <action selector="textTyped:" destination="tKd-OF-9DY" eventType="editingChanged" id="fVf-mk-qfG"/>
+                                                    <action selector="textTyped:" destination="tKd-OF-9DY" eventType="editingDidEndOnExit" id="gqI-9a-rSs"/>
+                                                </connections>
+                                            </textField>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V2y-0R-uTt">
+                                                <rect key="frame" x="0.0" y="58" width="343" height="2"/>
+                                                <color key="backgroundColor" name="encryptSeperatorColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="2" id="PHL-Xx-EoB"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="V2y-0R-uTt" firstAttribute="leading" secondItem="fD8-us-aI5" secondAttribute="leading" id="7vB-ms-5fe"/>
+                                            <constraint firstAttribute="bottom" secondItem="V2y-0R-uTt" secondAttribute="bottom" id="Ggd-tg-cdX"/>
+                                            <constraint firstAttribute="trailing" secondItem="2Cn-KY-Ch2" secondAttribute="trailing" constant="8" id="Sl2-j6-cUE"/>
+                                            <constraint firstItem="2Cn-KY-Ch2" firstAttribute="leading" secondItem="fD8-us-aI5" secondAttribute="leading" constant="8" id="Tid-0j-6XC"/>
+                                            <constraint firstItem="V2y-0R-uTt" firstAttribute="top" secondItem="2Cn-KY-Ch2" secondAttribute="bottom" constant="8" id="UYg-Wy-gKl"/>
+                                            <constraint firstItem="2Cn-KY-Ch2" firstAttribute="top" secondItem="fD8-us-aI5" secondAttribute="top" constant="8" id="s7w-It-dwC"/>
+                                            <constraint firstAttribute="height" constant="60" id="xa3-XW-BX4"/>
+                                            <constraint firstAttribute="trailing" secondItem="V2y-0R-uTt" secondAttribute="trailing" id="xjh-Tk-zS7"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" name="composeMessageShadowColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Color" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVU-ag-v42" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="125" width="343" height="19"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                        <color key="textColor" name="actionMessageColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VyG-aG-Jlh" customClass="ColorPicker" customModule="Colorful">
+                                        <rect key="frame" x="16" y="156" width="343" height="300"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="f2g-xj-AQj"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="zVU-ag-v42" firstAttribute="top" secondItem="fD8-us-aI5" secondAttribute="bottom" constant="24" id="5a9-gV-i6L"/>
+                                    <constraint firstItem="zVU-ag-v42" firstAttribute="trailing" secondItem="fD8-us-aI5" secondAttribute="trailing" id="7DB-UT-jFM"/>
+                                    <constraint firstItem="VyG-aG-Jlh" firstAttribute="trailing" secondItem="fD8-us-aI5" secondAttribute="trailing" id="Dvg-Mz-spB"/>
+                                    <constraint firstItem="fD8-us-aI5" firstAttribute="top" secondItem="Smi-Mt-keG" secondAttribute="bottom" constant="8" id="K7c-Cr-gP5"/>
+                                    <constraint firstItem="Smi-Mt-keG" firstAttribute="top" secondItem="3fr-6e-Ztf" secondAttribute="top" constant="16" id="Pyt-s4-2Mc"/>
+                                    <constraint firstItem="Smi-Mt-keG" firstAttribute="leading" secondItem="3fr-6e-Ztf" secondAttribute="leading" constant="16" id="SBT-cs-fG4"/>
+                                    <constraint firstItem="fD8-us-aI5" firstAttribute="leading" secondItem="3fr-6e-Ztf" secondAttribute="leading" constant="16" id="dH2-Bf-Z14"/>
+                                    <constraint firstItem="VyG-aG-Jlh" firstAttribute="leading" secondItem="fD8-us-aI5" secondAttribute="leading" id="qJz-7c-eTh"/>
+                                    <constraint firstItem="VyG-aG-Jlh" firstAttribute="top" secondItem="zVU-ag-v42" secondAttribute="bottom" constant="12" id="vsv-Gq-1DH"/>
+                                    <constraint firstItem="zVU-ag-v42" firstAttribute="leading" secondItem="fD8-us-aI5" secondAttribute="leading" id="wsX-Ym-W6S"/>
+                                    <constraint firstAttribute="trailing" secondItem="fD8-us-aI5" secondAttribute="trailing" constant="16" id="zoY-4B-ceq"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="76U-yz-xdD" firstAttribute="leading" secondItem="HWa-Yz-qum" secondAttribute="leading" id="8JA-A0-RCL"/>
+                            <constraint firstItem="HWa-Yz-qum" firstAttribute="trailing" secondItem="76U-yz-xdD" secondAttribute="trailing" id="8LY-PP-lHY"/>
+                            <constraint firstItem="3fr-6e-Ztf" firstAttribute="bottom" secondItem="Koc-pG-r3V" secondAttribute="bottom" id="AOX-SS-5Jg"/>
+                            <constraint firstItem="3fr-6e-Ztf" firstAttribute="leading" secondItem="HWa-Yz-qum" secondAttribute="leading" id="Wna-Bb-btK"/>
+                            <constraint firstItem="76U-yz-xdD" firstAttribute="top" secondItem="HWa-Yz-qum" secondAttribute="top" id="Xr1-ZY-QGu"/>
+                            <constraint firstItem="3fr-6e-Ztf" firstAttribute="top" secondItem="76U-yz-xdD" secondAttribute="bottom" id="hoi-yg-bLM"/>
+                            <constraint firstItem="3fr-6e-Ztf" firstAttribute="trailing" secondItem="HWa-Yz-qum" secondAttribute="trailing" id="t0x-4y-Dt7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="HWa-Yz-qum"/>
+                    </view>
+                    <connections>
+                        <outlet property="addButton" destination="daC-0u-xOg" id="0jD-Fo-1Xi"/>
+                        <outlet property="colorPicker" destination="VyG-aG-Jlh" id="DBb-SS-ZCF"/>
+                        <outlet property="colorPickerSuperViewHeightConstraint" destination="f2g-xj-AQj" id="TEl-0H-QTl"/>
+                        <outlet property="darkLineView" destination="V2y-0R-uTt" id="kmX-Sz-4uK"/>
+                        <outlet property="folderNameTextField" destination="2Cn-KY-Ch2" id="Deu-aS-kLC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AA6-62-ewF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-341.60000000000002" y="76.108374384236456"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="actionMessageColor">
+            <color red="0.035000000149011612" green="0.12200000137090683" blue="0.20800000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="composeMessageShadowColor">
+            <color red="0.89800000190734863" green="0.89800000190734863" blue="0.89800000190734863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="encryptSeperatorColor">
+            <color red="0.090000003576278687" green="0.19599999487400055" blue="0.30199998617172241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="settingsCellTextColor">
+            <color red="0.20399999618530273" green="0.28600001335144043" blue="0.36899998784065247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

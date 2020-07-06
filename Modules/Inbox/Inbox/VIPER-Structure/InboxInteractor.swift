@@ -21,14 +21,16 @@ final class InboxInteractor {
     private (set) var totalItems = 0
     
     // MARK: - Constructor
-    init(viewController: InboxViewController,
-         presenter: InboxPresenter) {
+    init(viewController: InboxViewController) {
         self.viewController = viewController
-        self.presenter = presenter
     }
     
     func update(offset: Int) {
         self.offset = offset
+    }
+    
+    func update(presenter: InboxPresenter) {
+        self.presenter = presenter
     }
     
     func toggleProgress(_ isInProgress: Bool) {
@@ -36,13 +38,14 @@ final class InboxInteractor {
     }
     
     // MARK: - API Calls
-    func messagesList(folder: Menu, withUndo: String, silent: Bool) {
+    @discardableResult
+    func messagesList(folder: String, withUndo: String, silent: Bool) -> Bool {
         if offset >= totalItems, offset > 0 {
-            return
+            return false
         }
         
         if isFetchInProgress {
-            return
+            return false
         }
         
         // Start the loader
@@ -64,7 +67,7 @@ final class InboxInteractor {
         }
         
         // Fetch the latest emails
-        apiService.messagesList(folder: folder.rawValue,
+        apiService.messagesList(folder: folder,
                                 messagesIDIn: "",
                                 seconds: 0,
                                 offset: offset,
@@ -86,6 +89,7 @@ final class InboxInteractor {
                 )
             }
         }
+        return true
     }
     
     /// Fetches the latest updates of the mailbox list
@@ -206,12 +210,15 @@ final class InboxInteractor {
 
 // MARK: - API Callers or Application Logics
 extension InboxInteractor {
-    func updateMessages(withUndo: String, silent: Bool) {
+    func updateMessages(withUndo: String, silent: Bool, menu: MenuConfigurable?) {
+        guard let menu = menu else {
+            return
+        }
         if pgpService.getStoredPGPKeys() == nil {
             mailboxesList(storeKeys: true)
         } else {
             DPrint("local PGPKeys exist")
-            messagesList(folder: viewController?.selectedMenu ?? .inbox,
+            messagesList(folder: menu.menuName,
                          withUndo: withUndo,
                          silent: silent
             )
@@ -259,7 +266,9 @@ extension InboxInteractor {
 // MARK: - Swipe Interactions
 extension InboxInteractor {
     func showMoveTo(message: EmailMessage) {
-        viewController?.router?.showMoveToController()
+        if let messageId = message.messsageID {
+            viewController?.router?.showMoveToController(withSelectedMessages: [messageId])
+        }
     }
     
     func markMessageAsSpam(message: EmailMessage) {
@@ -290,9 +299,22 @@ extension InboxInteractor {
     }
     
     func markMessageAsTrash(message: EmailMessage) {
+        guard let id = message.messsageID else {
+            return
+        }
+        
+        if SharedInboxState.shared.selectedMenu?.menuName == Menu.trash.menuName {
+            delete(messageIds: [id], withUndo: "")
+        } else {
+            markMessagesAsTrash(forMessageIds: [id],
+                                lastSelectedMessage: message,
+                                withUndo: Strings.Inbox.UndoAction.undoMoveToTrash.localized
+            )
+        }
     }
     
     func undoLastAction(message: EmailMessage) {
+        viewController?.dataSource?.undo(lastMessage: message)
     }
 }
 
@@ -322,13 +344,12 @@ extension InboxInteractor {
             guard let weakSelf = self else {
                 return
             }
-            
             switch(result) {
             case .success( _):
                 DPrint("marked list as read/unread")
                 weakSelf.viewController?.dataSource?.update(lastSelectedAction: .markAsRead)
                 weakSelf.offset = 0
-                weakSelf.updateMessages(withUndo: withUndo, silent: false)
+                weakSelf.updateMessages(withUndo: withUndo, silent: false, menu: SharedInboxState.shared.selectedMenu)
             case .failure(let error):
                 DPrint("error:", error)
                 weakSelf.viewController?.showAlert(with: Strings.AppError.messagesError.localized,
@@ -340,19 +361,127 @@ extension InboxInteractor {
     }
     
     func delete(messageIds: [Int], withUndo: String) {
+        var messagesIDList : String = ""
         
+        for message in messageIds {
+            messagesIDList = messagesIDList + message.description + ","
+        }
+        
+        messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex))
+        
+        apiService.deleteMessages(messagesIDIn: messagesIDList) { [weak self] (result) in
+            guard let weakSelf = self else {
+                return
+            }
+            switch(result) {
+            case .success( _):
+                DPrint("deleteMessagesList")
+                weakSelf.viewController?.dataSource?.update(lastSelectedAction: .delete)
+                weakSelf.offset = 0
+                weakSelf.updateMessages(withUndo: withUndo, silent: false, menu: SharedInboxState.shared.selectedMenu)
+            case .failure(let error):
+                print("error:", error)
+                weakSelf.viewController?.showAlert(with: Strings.AppError.messagesError.localized,
+                                                   message: error.localizedDescription,
+                                                   buttonTitle: Strings.Button.closeButton.localized
+                )
+            }
+        }
     }
     
     func markMessagesAsTrash(forMessageIds messageIds: [Int],
                              lastSelectedMessage: EmailMessage,
                              withUndo: String) {
+        guard let folder = withUndo.isEmpty == false ?
+            MessagesFoldersName.trash.rawValue :
+            lastSelectedMessage.folder else {
+                return
+        }
         
+        var messagesIDList = ""
+        
+        for message in messageIds {
+            messagesIDList = messagesIDList + message.description + ","
+        }
+        
+        messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex))
+        
+        apiService.updateMessages(messageID: "",
+                                  messagesIDIn: messagesIDList,
+                                  folder: folder,
+                                  starred: false,
+                                  read: false,
+                                  updateFolder: true,
+                                  updateStarred: false,
+                                  updateRead: false)
+        { [weak self] (result) in
+            guard let weakSelf = self else {
+                return
+            }
+            switch(result) {
+            case .success( _):
+                DPrint("marked list as trash")
+                weakSelf.viewController?.dataSource?.update(lastSelectedAction: .moveToTrash)
+                weakSelf.offset = 0
+                weakSelf.updateMessages(withUndo: withUndo, silent: false, menu: SharedInboxState.shared.selectedMenu)
+            case .failure(let error):
+                DPrint("error:", error)
+                weakSelf.viewController?.showAlert(with: Strings.AppError.messagesError.localized,
+                                                   message: error.localizedDescription,
+                                                   buttonTitle: Strings.Button.closeButton.localized
+                )
+            }
+        }
     }
     
     func markMessagesAsArchived(forMessageIds messageIds: [Int],
                                 lastSelectedMessage: EmailMessage,
                                 withUndo: String) {
         
+        guard let folder = withUndo.isEmpty == false ?
+            MessagesFoldersName.archive.rawValue :
+            lastSelectedMessage.folder else {
+                return
+        }
+        
+        let isStarred = lastSelectedMessage.starred ?? false
+        
+        let isRead = lastSelectedMessage.read ?? false
+        
+        var messagesIDList = ""
+        
+        for message in messageIds {
+            messagesIDList = messagesIDList + message.description + ","
+        }
+        
+        messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex))
+        
+        apiService.updateMessages(messageID: "",
+                                  messagesIDIn: messagesIDList,
+                                  folder: folder,
+                                  starred: isStarred,
+                                  read: isRead,
+                                  updateFolder: true,
+                                  updateStarred: false,
+                                  updateRead: false)
+        { [weak self] (result) in
+            guard let weakSelf = self else {
+                return
+            }
+            switch(result) {
+            case .success( _):
+                DPrint("move list to archive")
+                weakSelf.viewController?.dataSource?.update(lastSelectedAction: .moveToArchive)
+                weakSelf.offset = 0
+                weakSelf.updateMessages(withUndo: withUndo, silent: false, menu: SharedInboxState.shared.selectedMenu)
+            case .failure(let error):
+                DPrint("error:", error)
+                weakSelf.viewController?.showAlert(with: Strings.AppError.messagesError.localized,
+                                                   message: error.localizedDescription,
+                                                   buttonTitle: Strings.Button.closeButton.localized
+                )
+            }
+        }
     }
     
     func markMessagesAsSpam(forMessageIds messageIds: [Int],
@@ -389,7 +518,7 @@ extension InboxInteractor {
                 DPrint("marked list as spam")
                 weakSelf.viewController?.dataSource?.update(lastSelectedAction: .markAsSpam)
                 weakSelf.offset = 0
-                weakSelf.updateMessages(withUndo: withUndo, silent: false)
+                weakSelf.updateMessages(withUndo: withUndo, silent: false, menu: SharedInboxState.shared.selectedMenu)
             case .failure(let error):
                 DPrint("error:", error)
                 weakSelf.viewController?.showAlert(with: Strings.AppError.messagesError.localized,
@@ -403,6 +532,50 @@ extension InboxInteractor {
     func moveMessagesToInbox(messageIds: [Int],
                              lastSelectedMessage: EmailMessage,
                              withUndo: String) {
+        guard let folder = withUndo.isEmpty == false ?
+            MessagesFoldersName.inbox.rawValue :
+            lastSelectedMessage.folder else {
+                return
+        }
         
+        let isStarred = lastSelectedMessage.starred ?? false
+        
+        let isRead = lastSelectedMessage.read ?? false
+        
+        var messagesIDList = ""
+        
+        for message in messageIds {
+            messagesIDList = messagesIDList + message.description + ","
+        }
+        
+        messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex))
+        
+        apiService.updateMessages(messageID: "",
+                                  messagesIDIn: messagesIDList,
+                                  folder: folder,
+                                  starred: isStarred,
+                                  read: isRead,
+                                  updateFolder: true,
+                                  updateStarred: false,
+                                  updateRead: false)
+        { [weak self] (result) in
+            guard let weakSelf = self else {
+                return
+            }
+            
+            switch(result) {
+            case .success( _):
+                DPrint("move list to inbox")
+                weakSelf.viewController?.dataSource?.update(lastSelectedAction: .moveToInbox)
+                weakSelf.offset = 0
+                weakSelf.updateMessages(withUndo: withUndo, silent: false, menu: SharedInboxState.shared.selectedMenu)
+            case .failure(let error):
+                DPrint("error:", error)
+                weakSelf.viewController?.showAlert(with: Strings.AppError.messagesError.localized,
+                                                   message: error.localizedDescription,
+                                                   buttonTitle: Strings.Button.closeButton.localized
+                )
+            }
+        }
     }
 }

@@ -80,6 +80,7 @@
 "filtered" = "Filtered";
 "noInboxMessage" = "You have no messages";
 "noFilteredMessage" = "There are no messages match the filter";
+"messageMovedTo" = "Message moved to";
 
 // Inbox Filter
 "starredFilter" = "Starred";
@@ -214,22 +215,22 @@
 "search" = "Search";
 
 // Side Menu Cells
-
-"inbox"            = "Inbox";
-"draft"            = "Draft";
-"sent"             = "Sent";
-"outbox"           = "Outbox";
-"starred"          = "Starred";
-"archive"          = "Archive";
-"spam"             = "Spam";
-"trash"            = "Trash";
-"allMails"         = "All Mails";
-"contacts"         = "Contacts";
-"settings"         = "Settings";
-"help"             = "Get Support";
-"FAQ"              = "FAQ";
-"logout"           = "Logout";
-"manageFolders"    = "Manage Folders";
+"inbox" = "Inbox";
+"draft" = "Draft";
+"sent" = "Sent";
+"outbox" = "Outbox";
+"starred" = "Starred";
+"archive" = "Archive";
+"spam" = "Spam";
+"trash" = "Trash";
+"allMails" = "All Mails";
+"contacts" = "Contacts";
+"settings" = "Settings";
+"help" = "Get Support";
+"FAQ" = "FAQ";
+"logout" = "Logout";
+"manageFolders" = "Manage Folders";
+"unread" = "Unread";
 
 "showMoreFolders" = "Show More Folders";
 "hideFolders" = "Hide Folders";

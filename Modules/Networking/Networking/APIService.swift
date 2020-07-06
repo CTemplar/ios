@@ -161,7 +161,7 @@ public class APIService: HashingService {
             folderFilter = folder == MessagesFoldersName.starred.rawValue ? "&starred=1": "&folder=\(folder)"
         }
         
-        let  messagesIDInParameter = messagesIDIn.isEmpty == false ? "?id__in=\(messagesIDIn)": ""
+        let messagesIDInParameter = messagesIDIn.isEmpty == false ? "?id__in=\(messagesIDIn)": ""
         
         checkTokenExpiration() { [weak self] (complete) in
             if complete {

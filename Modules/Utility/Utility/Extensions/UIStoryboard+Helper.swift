@@ -11,6 +11,13 @@ public extension UIStoryboard {
         case moveTo = "MoveTo"
         case editFolder = "EditFolder"
         case addFolder = "AddFolder"
+        case compose = "Compose"
+        case initializer = "Initializer"
+        case inboxDetails = "ViewInboxEmail"
+        case search = "Search"
+        case contacts = "Contacts"
+        case settings = "Settings"
+        case FAQ = "FAQ"
     }
     
     // MARK: - Convenience Initializers
@@ -37,25 +44,39 @@ public extension UIStoryboard.Storyboard {
     var viewControllerId: String {
         switch self {
         case .login:
-            return "LoginViewController"
+            return "Login.LoginViewController"
         case .signup:
-            return "SignupViewController"
+            return "Signup.SignupViewController"
         case .forgetPassword:
-            return "ForgetPasswordViewController"
+            return "ForgetPassword.ForgetPasswordViewController"
         case .inbox:
-            return "InboxViewController"
+            return "Inbox.InboxViewController"
         case .inboxFilter:
-            return "InboxFilterViewController"
+            return "Inbox.InboxFilterViewController"
         case .inboxSideMenu:
-            return "InboxSideMenu"
+            return "Inbox.InboxSideMenu"
         case .manageFolders:
-            return "ManageFolders"
+            return "Inbox.ManageFolders"
         case .moveTo:
-            return "MoveTo"
+            return "Inbox.MoveToViewController"
         case .editFolder:
-            return "EditFolder"
+            return "Inbox.EditFolderViewController"
         case .addFolder:
-            return "AddFolder"
+            return "Inbox.AddFolderViewController"
+        case .compose:
+            return "ComposeViewController"
+        case .initializer:
+            return "Initializer.InitializerController"
+        case .inboxDetails:
+            return "ViewInboxEmailViewController"
+        case .search:
+            return "SearchViewController"
+        case .contacts:
+            return "ContactsViewController"
+        case .settings:
+            return "SettingsViewController"
+        case .FAQ:
+            return "FAQViewController"
         }
     }
     

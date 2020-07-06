@@ -12,7 +12,12 @@ public enum PageLimit: Int {
     case bigDeviceOffset = 20
 }
 
-public enum Menu: String {
+public protocol MenuConfigurable {
+    var menuName: String { get }
+    var localizedMenuName: String { get }
+}
+
+public enum Menu: String, MenuConfigurable {
     case inbox = "inbox"
     case draft = "draft"
     case sent = "sent"
@@ -21,7 +26,8 @@ public enum Menu: String {
     case archive = "archive"
     case spam = "spam"
     case trash = "trash"
-    case allMails = "allMails"
+    case allMails = "allmails"
+    case unread = "allunreadmails"
     case manageFolders = "manageFolders"
     
     static var allMenu: [Menu] {
@@ -32,6 +38,8 @@ public enum Menu: String {
             .outbox,
             .starred,
             .archive,
+            .unread,
+            .allMails,
             .spam,
             .trash
         ]
@@ -51,12 +59,14 @@ public enum Menu: String {
             return #imageLiteral(resourceName: "darkStar")
         case .archive:
             return #imageLiteral(resourceName: "darkArchive")
+        case .unread:
+            return #imageLiteral(resourceName: "darkUnread")
+        case .allMails:
+            return #imageLiteral(resourceName: "darkAllMails")
         case .spam:
             return #imageLiteral(resourceName: "darkSpam")
         case .trash:
             return #imageLiteral(resourceName: "darkTrash")
-        case .allMails:
-            return #imageLiteral(resourceName: "darkAllMails")
         case .manageFolders:
             return #imageLiteral(resourceName: "darkFoldersIcon")
         }
@@ -74,6 +84,8 @@ public enum Menu: String {
             return Strings.Menu.outbox.localized
         case .starred:
             return Strings.Menu.starred.localized
+        case .unread:
+            return Strings.Menu.unread.localized
         case .archive:
             return Strings.Menu.archive.localized
         case .spam:
@@ -142,7 +154,7 @@ public enum Menu: String {
         case markAsSpam
         case markAsRead
         case markAsStarred
-        case moveToTrach
+        case moveToTrash
         case moveToArchive
         case moveToInbox
         case moveTo
@@ -151,6 +163,29 @@ public enum Menu: String {
     }
     
     static let customFoldersCount = 3
+    
+    public var menuName: String {
+        self.rawValue
+    }
+    
+    public var localizedMenuName: String {
+        return self.localized
+    }
+}
+
+public enum CustomFolderMenu: MenuConfigurable {
+    case customFolder(String)
+    
+    public var menuName: String {
+        switch self {
+        case .customFolder(let name):
+            return name
+        }
+    }
+    
+    public var localizedMenuName: String {
+        return menuName
+    }
 }
 
 enum InboxCellButtonsIndex: Int {

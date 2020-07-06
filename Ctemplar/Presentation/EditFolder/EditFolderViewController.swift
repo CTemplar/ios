@@ -39,7 +39,7 @@ class EditFolderViewController: UIViewController {
         configurator.configure(viewController: self)
                 
         colorPicker.addTarget(self, action: #selector(handleColorChanged(picker:)), for: .valueChanged)
-        colorPicker.set(color: .red, colorSpace: .extendedSRGB)
+        colorPicker.set(color: .red, colorSpace: .sRGB)
 
         if let folder = self.folder {
             interactor?.setFolderProperties(folder: folder)
@@ -97,7 +97,7 @@ class EditFolderViewController: UIViewController {
 
     func setup(selectedHexColor: String) {
         self.selectedHexColor = selectedHexColor
-        colorPicker.set(color: UIColor.hexStringToUIColor(hex: selectedHexColor), colorSpace: .extendedSRGB)
+        colorPicker.set(color: UIColor.hexStringToUIColor(hex: selectedHexColor), colorSpace: .sRGB)
     }
     
     // MARK: - Color Picker Actions

@@ -86,6 +86,7 @@
 "filtered" = "Filtrés";
 "noInboxMessage" = "Vous n'avez pas de messages";
 "noFilteredMessage" = "Aucun message ne correspond à votre filtre";
+"messageMovedTo" = "Message déplacé vers";
 
 // Inbox Filter
 "starredFilter" = "Favoris";
@@ -208,23 +209,23 @@
 
 "search" = "Rechercher";
 
-//Side Menu Cells
-
-"inbox"            = "Boîte de réception";
-"draft"            = "Brouillons";
-"sent"             = "Envoyés";
-"outbox"           = "Boîte d'envoi";
-"starred"          = "Favoris";
-"archive"          = "Archive";
-"spam"             = "Spam";
-"trash"            = "Corbeille";
-"allMails"         = "Tous les emails";
-"contacts"         = "Contacts";
-"settings"         = "Paramètres";
-"help"             = "Aide";
-"FAQ"              = "FAQ";
-"logout"           = "Se déconnecter";
-"manageFolders"    = "Gérer les dossiers";
+// Side Menu Cells
+"inbox" = "Boîte de réception";
+"draft" = "Brouillons";
+"sent" = "Envoyés";
+"outbox" = "Boîte d'envoi";
+"starred" = "Favoris";
+"archive" = "Archive";
+"spam" = "Spam";
+"trash" = "Corbeille";
+"allMails" = "Tous les emails";
+"contacts" = "Contacts";
+"settings" = "Paramètres";
+"help" = "Aide";
+"FAQ" = "FAQ";
+"logout" = "Se déconnecter";
+"manageFolders" = "Gérer les dossiers";
+"unread" = "Non lu";
 
 "showMoreFolders" = "Plus de dossier";
 "hideFolders" = "Réduire";

@@ -17,7 +17,7 @@
         <!--Move To View Controller-->
         <scene sceneID="k60-dp-QGX">
             <objects>
-                <viewController storyboardIdentifier="MoveToViewController" id="FNd-Or-ZG7" customClass="MoveToViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MoveToViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FNd-Or-ZG7" customClass="MoveToViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FFZ-Pa-W5U">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
