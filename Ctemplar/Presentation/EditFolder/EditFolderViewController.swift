@@ -40,7 +40,6 @@ class EditFolderViewController: UIViewController {
                 
         colorPicker.addTarget(self, action: #selector(handleColorChanged(picker:)), for: .valueChanged)
         colorPicker.set(color: .red, colorSpace: .sRGB)
-
         if let folder = self.folder {
             interactor?.setFolderProperties(folder: folder)
         }

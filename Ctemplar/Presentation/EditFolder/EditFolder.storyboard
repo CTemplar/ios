@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="ipad10_5" orientation="landscape" layout="fullscreen" appearance="dark"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -19,7 +19,7 @@
             <objects>
                 <viewController storyboardIdentifier="EditFolderViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="f4S-vX-Ehj" customClass="EditFolderViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MyZ-8a-mYM">
-                        <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Folder Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGD-8a-GTk">
@@ -32,10 +32,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yi5-Mv-4mg">
-                                <rect key="frame" x="16" y="43" width="1080" height="44"/>
+                                <rect key="frame" x="16" y="43" width="343" height="44"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add folder name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6QH-TV-ArI">
-                                        <rect key="frame" x="17" y="0.0" width="1046" height="44"/>
+                                        <rect key="frame" x="17" y="0.0" width="309" height="44"/>
                                         <color key="textColor" name="actionMessageColor"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -66,27 +66,20 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqG-3p-9NJ">
-                                <rect key="frame" x="16" y="87" width="1080" height="2"/>
+                                <rect key="frame" x="16" y="87" width="343" height="2"/>
                                 <color key="backgroundColor" name="encryptSeperatorColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="4HJ-OE-DPA"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Color" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rwp-PH-zVE">
-                                <rect key="frame" x="16" y="113" width="1080" height="19"/>
+                                <rect key="frame" x="16" y="113" width="343" height="19"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                 <color key="textColor" name="actionMessageColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ET-YE-4xc" customClass="ColorPicker" customModule="Colorful">
-                                <rect key="frame" x="16" y="148" width="1080" height="300"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="hrb-Ev-s0m"/>
-                                </constraints>
-                            </view>
                             <button opaque="NO" tag="206" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lIL-cN-Nds">
-                                <rect key="frame" x="16" y="777" width="1080" height="48"/>
+                                <rect key="frame" x="16" y="610" width="343" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="Cck-af-Rhr"/>
                                 </constraints>
@@ -109,23 +102,35 @@
                                     <action selector="deleteButtonPressed:" destination="f4S-vX-Ehj" eventType="touchUpInside" id="T6n-SD-uPK"/>
                                 </connections>
                             </button>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ET-YE-4xc" customClass="ColorPicker" customModule="Colorful">
+                                <rect key="frame" x="27.5" y="213.5" width="320" height="320"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="320" id="BKq-fX-5h4"/>
+                                    <constraint firstAttribute="width" constant="320" id="mLR-AK-7qo"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Rwp-PH-zVE" secondAttribute="trailing" constant="16" id="1AX-ax-pAO"/>
-                            <constraint firstAttribute="trailing" secondItem="7ET-YE-4xc" secondAttribute="trailing" constant="16" id="2rt-dh-Pos"/>
                             <constraint firstItem="Yi5-Mv-4mg" firstAttribute="leading" secondItem="aGD-8a-GTk" secondAttribute="leading" id="35W-4b-KQL"/>
-                            <constraint firstItem="7ET-YE-4xc" firstAttribute="top" secondItem="Rwp-PH-zVE" secondAttribute="bottom" constant="16" id="4i8-D0-G7z"/>
                             <constraint firstAttribute="trailing" secondItem="Yi5-Mv-4mg" secondAttribute="trailing" constant="16" id="9Wa-c4-Ww9"/>
-                            <constraint firstItem="7ET-YE-4xc" firstAttribute="leading" secondItem="MyZ-8a-mYM" secondAttribute="leading" constant="16" id="Fek-h3-pKg"/>
+                            <constraint firstItem="7ET-YE-4xc" firstAttribute="centerX" secondItem="MyZ-8a-mYM" secondAttribute="centerX" id="FDJ-ax-DTd"/>
                             <constraint firstItem="aGD-8a-GTk" firstAttribute="leading" secondItem="MyZ-8a-mYM" secondAttribute="leading" constant="16" id="KFo-wm-VJq"/>
+                            <constraint firstItem="7ET-YE-4xc" firstAttribute="top" secondItem="hqG-3p-9NJ" secondAttribute="bottom" priority="750" constant="145" id="KR2-Yw-XX1"/>
                             <constraint firstItem="hqG-3p-9NJ" firstAttribute="trailing" secondItem="Yi5-Mv-4mg" secondAttribute="trailing" id="L10-FP-xqe"/>
                             <constraint firstItem="hqG-3p-9NJ" firstAttribute="leading" secondItem="Yi5-Mv-4mg" secondAttribute="leading" id="RtZ-N9-02W"/>
                             <constraint firstItem="Rwp-PH-zVE" firstAttribute="top" secondItem="hqG-3p-9NJ" secondAttribute="bottom" constant="24" id="TO6-ME-y2c"/>
                             <constraint firstItem="Rwp-PH-zVE" firstAttribute="leading" secondItem="MyZ-8a-mYM" secondAttribute="leading" constant="16" id="VDt-mt-cMN"/>
                             <constraint firstItem="Yi5-Mv-4mg" firstAttribute="top" secondItem="aGD-8a-GTk" secondAttribute="bottom" constant="12" id="Vtg-GP-6C8"/>
+                            <constraint firstItem="7ET-YE-4xc" firstAttribute="centerY" secondItem="MyZ-8a-mYM" secondAttribute="centerY" id="XTA-Qz-Dmk">
+                                <variation key="heightClass=regular-widthClass=compact" constant="40"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="10"/>
+                            </constraint>
                             <constraint firstItem="Xqt-m1-AcI" firstAttribute="trailing" secondItem="lIL-cN-Nds" secondAttribute="trailing" constant="16" id="Xdg-UD-Qsu"/>
                             <constraint firstItem="lIL-cN-Nds" firstAttribute="leading" secondItem="MyZ-8a-mYM" secondAttribute="leading" constant="16" id="dcS-1f-DE9"/>
+                            <constraint firstItem="lIL-cN-Nds" firstAttribute="top" secondItem="7ET-YE-4xc" secondAttribute="bottom" priority="750" constant="177" id="iiU-f8-Wc2"/>
                             <constraint firstItem="aGD-8a-GTk" firstAttribute="top" secondItem="Xqt-m1-AcI" secondAttribute="top" constant="16" id="mI0-g4-Xog"/>
                             <constraint firstItem="Xqt-m1-AcI" firstAttribute="bottom" secondItem="lIL-cN-Nds" secondAttribute="bottom" constant="9" id="s4x-hy-u5y"/>
                             <constraint firstItem="hqG-3p-9NJ" firstAttribute="top" secondItem="Yi5-Mv-4mg" secondAttribute="bottom" id="xFI-Ah-pLE"/>
@@ -148,7 +153,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="colorPicker" destination="7ET-YE-4xc" id="vne-X2-G2C"/>
-                        <outlet property="colorPickerSuperViewHeightConstraint" destination="hrb-Ev-s0m" id="cpE-iN-WtU"/>
                         <outlet property="darkLineView" destination="hqG-3p-9NJ" id="USg-on-bV4"/>
                         <outlet property="deleteButton" destination="lIL-cN-Nds" id="L6i-Sl-N9l"/>
                         <outlet property="folderNameTextField" destination="6QH-TV-ArI" id="OWE-Ww-EMA"/>
@@ -157,7 +161,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ac9-Ql-p73" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="84" y="99.392857142857139"/>
+            <point key="canvasLocation" x="83.453237410071949" y="99.280575539568346"/>
         </scene>
     </scenes>
     <resources>
