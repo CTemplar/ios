@@ -101,8 +101,7 @@
 "clearAll" = "Очистить";
 "selectedFilters" = "Выбрать фильтры";
 
-//more actions buttons
-
+// More Action buttons
 "markAsSpam" = "Пометить как спам";
 "markAsRead" = "Пометить как прочтенное";
 "markAsUnread" = "Пометить как не прочтенное";
@@ -111,6 +110,7 @@
 "moveToInbox" = "Переместить в inbox";
 "emptyFolder" = "Очистить папку";
 "cancel" = "Отмена";
+"moreActions" = "Больше действий";
 
 //undo actions buttons
 
@@ -210,24 +210,22 @@
 
 "search" = "Поиск";
 
-//Side Menu Cells
-
-"inbox"            = "Входящие";
-"draft"            = "Черновик";
-"sent"             = "Отправленные";
-"outbox"           = "Исходящие";
-"starred"          = "Избранные";
-"archive"          = "Архив";
-"spam"             = "Спам";
-"trash"            = "Корзина";
-"allMails"         = "Все письма";
-"contacts"         = "Контакты";
-"settings"         = "Настройки";
-"help"             = "Получить Помощь";
-"FAQ"              = "FAQ";
-"logout"           = "Выйти";
-"manageFolders"    = "Управление Папками";
-
+// Side Menu Cells
+"inbox" = "Входящие";
+"draft" = "Черновик";
+"sent" = "Отправленные";
+"outbox" = "Исходящие";
+"starred" = "Избранные";
+"archive" = "Архив";
+"spam" = "Спам";
+"trash" = "Корзина";
+"allMails" = "Все письма";
+"contacts" = "Контакты";
+"settings" = "Настройки";
+"help" = "Получить Помощь";
+"FAQ" = "FAQ";
+"logout" = "Выйти";
+"manageFolders" = "Управление Папками";
 "showMoreFolders" = "Показать больше папок";
 "hideFolders" = "Скрыть папки";
 

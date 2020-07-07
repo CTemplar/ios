@@ -5,6 +5,19 @@ public extension UIStoryboard {
         case signup = "Signup"
         case login = "Login"
         case forgetPassword = "ForgetPassword"
+        case inbox, inboxFilter = "Inbox"
+        case inboxSideMenu = "InboxSideMenu"
+        case manageFolders = "ManageFolders"
+        case moveTo = "MoveTo"
+        case editFolder = "EditFolder"
+        case addFolder = "AddFolder"
+        case compose = "Compose"
+        case initializer = "Initializer"
+        case inboxDetails = "ViewInboxEmail"
+        case search = "Search"
+        case contacts = "Contacts"
+        case settings = "Settings"
+        case FAQ = "FAQ"
     }
     
     // MARK: - Convenience Initializers
@@ -12,12 +25,10 @@ public extension UIStoryboard {
         self.init(name: storyboard.rawValue, bundle: bundle)
     }
     
-    
     // MARK: - Class Functions
     class func storyboard(_ storyboard: Storyboard, bundle: Bundle? = nil) -> UIStoryboard {
         return UIStoryboard(name: storyboard.rawValue, bundle: bundle)
     }
-    
     
     // MARK: - View Controller Instantiation from Generics
     func instantiateViewController<T: UIViewController>() -> T {
@@ -33,11 +44,39 @@ public extension UIStoryboard.Storyboard {
     var viewControllerId: String {
         switch self {
         case .login:
-            return "LoginViewController"
+            return "Login.LoginViewController"
         case .signup:
-            return "SignupViewController"
+            return "Signup.SignupViewController"
         case .forgetPassword:
-            return "ForgetPasswordViewController"
+            return "ForgetPassword.ForgetPasswordViewController"
+        case .inbox:
+            return "Inbox.InboxViewController"
+        case .inboxFilter:
+            return "Inbox.InboxFilterViewController"
+        case .inboxSideMenu:
+            return "Inbox.InboxSideMenu"
+        case .manageFolders:
+            return "Inbox.ManageFolders"
+        case .moveTo:
+            return "Inbox.MoveToViewController"
+        case .editFolder:
+            return "Inbox.EditFolderViewController"
+        case .addFolder:
+            return "Inbox.AddFolderViewController"
+        case .compose:
+            return "ComposeViewController"
+        case .initializer:
+            return "Initializer.InitializerController"
+        case .inboxDetails:
+            return "ViewInboxEmailViewController"
+        case .search:
+            return "SearchViewController"
+        case .contacts:
+            return "ContactsViewController"
+        case .settings:
+            return "SettingsViewController"
+        case .FAQ:
+            return "FAQViewController"
         }
     }
     

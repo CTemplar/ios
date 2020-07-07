@@ -87,8 +87,7 @@
 "clearAll" = "Clear all";
 "selectedFilters" = "Select filters";
 
-//more actions buttons
-
+// More Action buttons
 "markAsSpam" = "Mark as spam";
 "markAsRead" = "Mark as read";
 "markAsUnread" = "Mark as unread";
@@ -97,6 +96,7 @@
 "moveToInbox" = "Move to inbox";
 "emptyFolder" = "Empty folder";
 "cancel" = "Cancel";
+"moreActions" = "More Actions";
 
 // Action Banner
 "movingToArchive" = "Moving to archive";
@@ -203,24 +203,22 @@
 
 "search" = "Search";
 
-//Side Menu Cells
-
-"inbox"            = "Inbox";
-"draft"            = "Draft";
-"sent"             = "Sent";
-"outbox"           = "Outbox";
-"starred"          = "Starred";
-"archive"          = "Archive";
-"spam"             = "Spam";
-"trash"            = "Trash";
-"allMails"         = "All Mails";
-"contacts"         = "Contacts";
-"settings"         = "Settings";
-"help"             = "Get Support";
-"FAQ"              = "FAQ";
-"logout"           = "Logout";
-"manageFolders"    = "Manage Folders";
-
+// Side Menu Cells
+"inbox" = "Inbox";
+"draft" = "Draft";
+"sent" = "Sent";
+"outbox" = "Outbox";
+"starred" = "Starred";
+"archive" = "Archive";
+"spam" = "Spam";
+"trash" = "Trash";
+"allMails" = "All Mails";
+"contacts" = "Contacts";
+"settings" = "Settings";
+"help" = "Get Support";
+"FAQ" = "FAQ";
+"logout" = "Logout";
+"manageFolders" = "Manage Folders";
 "showMoreFolders" = "Show More Folders";
 "hideFolders" = "Hide Folders";
 

@@ -42,12 +42,11 @@ class InboxSideMenuInteractor {
     }
 
     private func resetRootController() {
-        guard let presenter = viewController else {
+        guard let presenter = viewController?.sideMenuController else {
             return
         }
         
-        let loginCoordinator = LoginCoordinator()
-        loginCoordinator.showLogin(from: presenter, withSideMenu: presenter)
+        presenter.dismiss(animated: true, completion: nil)
     }
     
     func setCustomFoldersData(folderList: FolderList) {

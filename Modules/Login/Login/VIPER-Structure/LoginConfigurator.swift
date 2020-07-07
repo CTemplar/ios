@@ -20,10 +20,11 @@ final class LoginConfigurator {
     private var interactor: LoginInteractor?
     
     // MARK: - Configure
-    func configure(viewController: LoginViewController, slideMenuController: UIViewController) {
+    func configure(viewController: LoginViewController,
+                   onShowInbox: @escaping (() -> Void)) {
         self.loginViewController = viewController
         
-        let router = LoginRouter(loginViewController: viewController, slideMenuController: slideMenuController)
+        let router = LoginRouter(loginViewController: viewController, onShowInbox: onShowInbox)
         
         let presenter = LoginPresenter(loginViewController: viewController, formatterService: UtilityManager.shared.formatterService)
         

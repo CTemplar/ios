@@ -37,6 +37,26 @@ public struct AppStyle {
             return UIFont(name: self.rawValue, size: size)
         }
     }
+    
+    public enum SystemFontStyle {
+        case regular
+        case bold
+        case semiBold
+        case light
+        
+        public func font(withSize size: CGFloat) -> UIFont {
+            switch self {
+            case .regular:
+                return UIFont.systemFont(ofSize: size, weight: .regular)
+            case .bold:
+                return UIFont.systemFont(ofSize: size, weight: .bold)
+            case .semiBold:
+                return UIFont.systemFont(ofSize: size, weight: .semibold)
+            case .light:
+                return UIFont.systemFont(ofSize: size, weight: .light)
+            }
+        }
+    }
 }
 
 public struct GeneralConstant {
@@ -77,11 +97,20 @@ public struct GeneralConstant {
         case TermsURL = "https://ctemplar.com/terms"
         case MainSiteURL = "https://ctemplar.com/"
         case UpgradeURL = "https://ctemplar.com/pricing"
-        case SupportURL = "support@ctemplar.com."
+        case SupportURL = "support@ctemplar.com"
         case FAQURL = "https://ctemplar.com/faqs/"
     }
     
     public static let updateInboxMessagesNotificationID = "updateInboxMessagesNotification"
+    public static let numberOfCustomFoldersShowing = 3
+    public static let customFoldersLimitForNonPremium = 5
+}
+
+public enum AnswerMessageMode {
+    case newMessage
+    case reply
+    case replyAll
+    case forward
 }
 
 enum AppSecurity: String {

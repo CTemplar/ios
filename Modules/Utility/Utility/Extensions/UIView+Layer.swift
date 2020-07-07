@@ -11,7 +11,6 @@ import UIKit
 public extension UIView {
     
     func addBlurEffect() {
-        
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.regular)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = self.bounds
@@ -24,8 +23,7 @@ public extension UIView {
     var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
-        }
-        set {
+        } set {
             layer.cornerRadius = newValue
         }
     }
@@ -34,8 +32,7 @@ public extension UIView {
     var borderWidth: CGFloat {
         get {
             return layer.borderWidth
-        }
-        set {
+        } set {
             layer.borderWidth = newValue
         }
     }
@@ -47,8 +44,7 @@ public extension UIView {
                 return UIColor(cgColor: color)
             }
             return nil
-        }
-        set {
+        } set {
             if let color = newValue {
                 layer.borderColor = color.cgColor
             } else {
@@ -61,8 +57,7 @@ public extension UIView {
     var shadowRadius: CGFloat {
         get {
             return layer.shadowRadius
-        }
-        set {
+        } set {
             layer.shadowRadius = newValue
         }
     }
@@ -71,8 +66,7 @@ public extension UIView {
     var shadowOpacity: Float {
         get {
             return layer.shadowOpacity
-        }
-        set {
+        } set {
             layer.shadowOpacity = newValue
         }
     }
@@ -81,8 +75,7 @@ public extension UIView {
     var shadowOffset: CGSize {
         get {
             return layer.shadowOffset
-        }
-        set {
+        } set {
             layer.shadowOffset = newValue
         }
     }
@@ -94,8 +87,7 @@ public extension UIView {
                 return UIColor(cgColor: color)
             }
             return nil
-        }
-        set {
+        } set {
             if let color = newValue {
                 layer.shadowColor = color.cgColor
             } else {
@@ -105,5 +97,32 @@ public extension UIView {
     }
 }
 
+public extension UIView {
+    func addTopBorderWithColor(color: UIColor, width: CGFloat) {
+        let border = CALayer()
+        border.backgroundColor = color.cgColor
+        border.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: width)
+        self.layer.addSublayer(border)
+    }
 
+    func addRightBorderWithColor(color: UIColor, width: CGFloat) {
+        let border = CALayer()
+        border.backgroundColor = color.cgColor
+        border.frame = CGRect(x: self.frame.size.width - width, y: 0, width: width, height: self.frame.size.height)
+        self.layer.addSublayer(border)
+    }
 
+    func addBottomBorderWithColor(color: UIColor, width: CGFloat) {
+        let border = CALayer()
+        border.backgroundColor = color.cgColor
+        border.frame = CGRect(x: 0, y: self.frame.size.height - width, width: self.frame.size.width, height: width)
+        self.layer.addSublayer(border)
+    }
+
+    func addLeftBorderWithColor(color: UIColor, width: CGFloat) {
+        let border = CALayer()
+        border.backgroundColor = color.cgColor
+        border.frame = CGRect(x: 0, y: 0, width: width, height: self.frame.size.height)
+        self.layer.addSublayer(border)
+    }
+}

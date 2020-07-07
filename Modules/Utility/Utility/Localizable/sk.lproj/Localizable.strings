@@ -2,9 +2,6 @@
 "invalidEnteredEmail" = "Zadaný e-mail je neplatný";
 "validEnteredEmail" = "Zadaný e-mail je platný";
 
-"logoutTitle" = "Odhlásiť sa";
-"logotuMessage" = "Naozaj sa chcete odhlásiť?";
-
 // Buttons
 "closeButton" = "Zavrieť";
 "cancelButton" = "Zrušiť";
@@ -72,19 +69,20 @@
 "passwordResetSuccessMessage" = "Úspešne ste obnovili svoje heslo. Pokračujte kliknutím na tlačidlo OK.";
 "passwordResetError" = "Reset hesla Chyba";
 
-// inbox
+// Inbox
 "selected" = "Vybrané";
 "emails" = "správy";
 "email" = "správa";
 "emailsx" = "správ";
 "unread" = "neprečítané";
-
 "filtered" = "Filtrované";
 "noInboxMessage" = "Nemáte žiadne nové správy";
 "noFilteredMessage" = "Nemáte žiadne správy zodpovedajúce danému filtru";
+"messageMovedTo" = "Správa bola presunutá do priečinka";
 
+// Inbox Filter
 "starredFilter" = "Dôležité";
-"ureadFilter" = "Neprečítané";
+"unreadFilter" = "Neprečítané";
 "attachmentsFilter" = "S prílohami";
 
 "decrypting" = "dešifrujem...";
@@ -98,8 +96,7 @@
 "clearAll" = "Zmazať všetko";
 "selectedFilters" = "Zvoliť filter";
 
-//more actions buttons
-
+// More Actions
 "markAsSpam" = "Označiť ako spam";
 "markAsRead" = "Označiť ako prečítané";
 "markAsUnread" = "Označiť ako neprečítané";
@@ -108,6 +105,7 @@
 "moveToInbox" = "Presunúť do prijatých správ";
 "emptyFolder" = "Vyprázdniť zložku";
 "cancel" = "Zrušiť";
+"moreActions" = "Ďalšie akcie";
 
 // Action Banner
 "movingToArchive" = "Prebieha sťahovanie do archívu";
@@ -118,7 +116,7 @@
 "actionFailed" = "Akcia zlyhala";
 "done" = "hotový";
 
-//undo actions buttons
+// Undo actions buttons
 "undoMarkAsSpam" = "Zrušiť označenie ako spam";
 "undoMarkAsRead" = "Zrušiť označenie ako prečítané";
 "undoMarkAsUnread" = "Zrušiť označenie ako neprečítané";
@@ -132,7 +130,7 @@
 "relpyAll" = "Odpovedať všetkým";
 "forward" = "Preposlať";
 
-//delete
+// Delete
 "deleteTitle" = "Upozornenie!";
 "deleteMessage" = "Chcete tieto správy odstrániť natrvalo?";
 
@@ -209,21 +207,22 @@
 "search" = "Hľadať";
 
 //Side Menu Cells
-"inbox"            = "Prijaté";
-"draft"            = "Rozpísané";
-"sent"             = "Odoslané";
-"outbox"           = "Na odoslanie";
-"starred"          = "Dôležité";
-"archive"          = "Archív";
-"spam"             = "Spam";
-"trash"            = "Kôš";
-"allMails"         = "Všetky e-maily";
-"contacts"         = "Kontakty";
-"settings"         = "Nastavenia";
-"FAQ"              = "FAQ";
-"help"             = "Podpora";
-"logout"           = "Odhlásiť sa";
-"manageFolders"    = "Správa zložiek";
+"inbox" = "Prijaté";
+"draft" = "Rozpísané";
+"sent" = "Odoslané";
+"outbox" = "Na odoslanie";
+"starred" = "Dôležité";
+"archive" = "Archív";
+"spam" = "Spam";
+"trash" = "Kôš";
+"allMails" = "Všetky e-maily";
+"contacts" = "Kontakty";
+"settings" = "Nastavenia";
+"FAQ" = "FAQ";
+"help" = "Podpora";
+"logout" = "Odhlásiť sa";
+"manageFolders" = "Správa zložiek";
+"unread" = "Neprečítaný";
 
 "showMoreFolders" = "Ukázať viac zložiek";
 "hideFolders" = "Skryť zložky";
@@ -251,7 +250,7 @@
 
 "encryptedMessagesTo" = "Šifrované správy pre príjemcov, ktorí nemajú účet CTemplar, vypršia o 28 dní, pokiaľ nie je nastavená kratšia doba vypršania platnosti.";
 
-//Manage Folders
+// Manage Folders
 "deleteFolderTitle" = "Vymazať zložku?";
 "deleteFolder" = "Ste si istý, že chcete vymazať zložku?";
 "addFolder" = "Pridať zložku";
@@ -261,7 +260,8 @@
 "addFolderLimit" = "Povýšiť na prémiovú verziu";
 "folderName" = "Názov zložky";
 "chooseColor" = "Vybrať farbu";
-"deleteFolder" = "Vymazať zložku";
+"folder" = "zložka";
+"folders" = "zložky";
 
 //Settings
 "enableRecoveryEmail" = "Povoliť e-mail na obnovenie účtu";
@@ -406,6 +406,8 @@
 "logoutErrorTitle" = "Chyba pri odhlásení";
 "success" = "Úspech";
 "logoutErrorMessage" = "Momentálne sa vám nepodarilo odhlásiť. Skúste to znova neskôr.";
+"logoutTitle" = "Odhlásiť sa";
+"logoutMessage" = "Naozaj sa chcete odhlásiť?";
 
 // Dashboard
 "accountType" = "Typ účtu";
@@ -419,6 +421,11 @@
 "hashingFailure" = "Hašovanie zlyhalo";
 "conectionError" = "Žiadna chyba pripojenia";
 "unknownError" = "Neznáma chyba";
+"error" = "Chyba";
+"foldersError" = "Chyba priečinkov";
+"messagesError" = "Chyba správ";
+"mailBoxesError" = "Chyba poštových schránok";
+"userError" = "Chyba používateľa";
 
 // Signup Error
 "signupError" = "Registrácia zlyhala";

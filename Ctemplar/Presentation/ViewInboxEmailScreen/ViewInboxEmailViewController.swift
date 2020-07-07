@@ -10,10 +10,8 @@ import Foundation
 import UIKit
 import WebKit
 import Networking
-
-protocol ViewInboxEmailDelegate {
-    func didUpdateReadStatus(for message: EmailMessage, status: Bool)
-}
+import Inbox
+import Utility
 
 class ViewInboxEmailViewController: UIViewController {
     
@@ -75,6 +73,12 @@ class ViewInboxEmailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if #available(iOS 13.0, *) {
+            navigationController?.view.backgroundColor = .systemBackground
+        } else {
+            // Fallback on earlier versions
+        }
+        
         let configurator = ViewInboxEmailConfigurator()
         configurator.configure(viewController: self)
         
@@ -94,10 +98,8 @@ class ViewInboxEmailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        let arrowBackImage = UIImage(named: k_darkBackArrowImageName)
-        self.navigationController?.navigationBar.backIndicatorImage = arrowBackImage
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = arrowBackImage
+        navigationController?.prefersLargeTitle = false
+        navigationController?.updateTintColor(k_navButtonTintColor)
     }
     
     func initShowingMessage() {

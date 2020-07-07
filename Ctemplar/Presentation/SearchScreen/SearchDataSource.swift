@@ -127,6 +127,8 @@ class SearchDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         } else {
             self.tableView.isHidden = false
         }
+        
+        parentViewController.emptySearch.isHidden = filteredArray.isEmpty == false
     }
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {

@@ -10,4 +10,5 @@ public extension Notification.Name {
     static let reloadViewControllerDataSourceNotificationID = Notification.Name("ReloadViewControllerDataSourceNotificationIdentifier")
     static let updateCustomFolderNotificationID = Notification.Name("UpdateCustomFoldersNotificationIdentifier")
     static let updateMessagesReadCountNotificationID = Notification.Name("updateMessagesReadCountNotification")
+    static let logoutCompleteNotificationID = Notification.Name("logoutCompleteNotification")
 }

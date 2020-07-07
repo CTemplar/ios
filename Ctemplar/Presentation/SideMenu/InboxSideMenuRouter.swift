@@ -8,52 +8,46 @@
 
 import Foundation
 import UIKit
+import SideMenu
 
 class InboxSideMenuRouter {
-    
     var viewController: InboxSideMenuViewController?
     
     func showMessagesViewController(vc: InboxViewController) {
-        
         self.viewController?.currentParentViewController = vc
-//        if Device.IS_IPAD {
-//            self.viewController?.splitViewController?.secondaryViewController?.show(vc, sender: self)
-//            self.viewController?.splitViewController?.toggleMasterView()
-//        }else {
-            let navController = UINavigationController.getNavController(rootViewController: vc)
-            self.viewController?.slideMenuController()?.changeMainViewController(navController, close: true)
-//        }
+        let navController = UINavigationController.getNavController(rootViewController: vc)
+        viewController?.sideMenuController?.setContentViewController(to: navController,
+                                                                     animated: true,
+                                                                     completion: { [weak self] in
+                                                                        self?.viewController?.sideMenuController?.hideMenu()
+        })
     }
     
     func showContactsViewController() {
-        
         let contactsVC = ContactsViewController.instantiate(fromAppStoryboard: .Contacts)
         self.viewController?.currentParentViewController = contactsVC
         contactsVC.contactsList = (self.viewController?.inboxViewController?.user.contactsList)! //temp
         contactsVC.contactsEncrypted = self.viewController?.inboxViewController?.user.settings.isContactsEncrypted ?? false
-        
-//        if (!Device.IS_IPAD) {
         let navController = UIViewController.getNavController(rootViewController: contactsVC)
-            self.viewController?.slideMenuController()?.changeMainViewController(navController, close: true)
-//        } else {
-//            self.viewController?.splitViewController?.secondaryViewController?.show(contactsVC, sender: self)
-//            self.viewController?.splitViewController?.toggleMasterView()
-//        }
+        viewController?.sideMenuController?.setContentViewController(to: navController,
+                                                                     animated: true,
+                                                                     completion: { [weak self] in
+                                                                        self?.viewController?.sideMenuController?.hideMenu()
+        })
+        
     }
     
     func showManageFoldersViewController() {
-        
         let vc = ManageFoldersViewController.instantiate(fromAppStoryboard: .ManageFolders)
         self.viewController?.currentParentViewController = vc
-        vc.foldersList = (self.viewController?.inboxViewController?.user.foldersList)!
-        vc.user = (self.viewController?.inboxViewController?.user)!
-//        if (!Device.IS_IPAD) {
-            let navController = UIViewController.getNavController(rootViewController: vc)
-            self.viewController?.slideMenuController()?.changeMainViewController(navController, close: true)
-//        } else {
-//            self.viewController?.splitViewController?.secondaryViewController?.show(vc, sender: self)
-//            self.viewController?.splitViewController?.toggleMasterView()
-//        }
+        vc.setup(folderList: viewController?.inboxViewController?.user.foldersList ?? [])
+        vc.setup(user: viewController?.inboxViewController?.user)
+        let navController = UIViewController.getNavController(rootViewController: vc)
+        viewController?.sideMenuController?.setContentViewController(to: navController,
+                                                                     animated: true,
+                                                                     completion: { [weak self] in
+                                                                        self?.viewController?.sideMenuController?.hideMenu()
+        })
     }
     
     func showSettingsViewController() {
@@ -62,7 +56,11 @@ class InboxSideMenuRouter {
         vc.sideMenuViewController = self.viewController
         vc.user = (self.viewController?.inboxViewController?.user)!
         let navController = UIViewController.getNavController(rootViewController: vc)
-        self.viewController?.slideMenuController()?.changeMainViewController(navController, close: true)
+        viewController?.sideMenuController?.setContentViewController(to: navController,
+                                                                     animated: true,
+                                                                     completion: { [weak self] in
+                                                                        self?.viewController?.sideMenuController?.hideMenu()
+        })
     }
     
     func showFAQ() {
@@ -70,6 +68,10 @@ class InboxSideMenuRouter {
         viewController?.currentParentViewController = vc
         vc.sideMenuViewController = viewController
         let navController = UIViewController.getNavController(rootViewController: vc)
-        viewController?.slideMenuController()?.changeMainViewController(navController, close: true)
+        viewController?.sideMenuController?.setContentViewController(to: navController,
+                                                                     animated: true,
+                                                                     completion: { [weak self] in
+                                                                        self?.viewController?.sideMenuController?.hideMenu()
+        })
     }
 }

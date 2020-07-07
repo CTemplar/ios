@@ -42,6 +42,11 @@ public enum Strings {
         case hashingFailure
         case conectionError
         case unknownError
+        case error
+        case foldersError
+        case messagesError
+        case mailBoxesError
+        case userError
     }
     
     public enum Signup: String, Localizable {
@@ -110,5 +115,101 @@ public enum Strings {
         case emailMyUserName
         case passwordResetSuccessMessage
         case passwordResetSuccessTitle
+    }
+    
+    public enum Logout: String, Localizable {
+        case logoutErrorTitle
+        case success
+        case logoutErrorMessage
+        case logoutTitle
+        case logoutMessage
+    }
+    
+    public enum ManageFolder: String, Localizable {
+        case deleteFolderTitle
+        case deleteFolder
+        case addFolder
+        case selectfolder
+        case moveTo
+        case noFolders
+        case addFolderLimit
+        case folderName
+        case chooseColor
+        case folder
+        case folders
+    }
+    
+    public enum Menu: String, Localizable {
+        case inbox
+        case draft
+        case sent
+        case outbox
+        case starred
+        case archive
+        case spam
+        case trash
+        case allMails
+        case contacts
+        case settings
+        case help
+        case FAQ
+        case logout
+        case manageFolders
+        case showMoreFolders
+        case hideFolders
+        case unread
+    }
+    
+    public enum Inbox: String, Localizable {
+        case selected
+        case inProgress
+        case emails
+        case email
+        case emailsx
+        case unread
+        case filtered
+        case noInboxMessage
+        case noFilteredMessage
+        case filters
+        case moveTo
+        case deleteRow
+        case messageMovedTo
+        
+        public enum Filter: String, Localizable {
+            case starredFilter
+            case unreadFilter
+            case attachmentsFilter
+        }
+        
+        public enum MoreAction: String, Localizable {
+            case markAsSpam
+            case markAsRead
+            case markAsUnread
+            case moveToTrash
+            case moveToArchive
+            case moveToInbox
+            case moreActions
+        }
+        
+        public enum UndoAction: String, Localizable {
+            case undoMarkAsSpam
+            case undoMarkAsRead
+            case undoMarkAsUnread
+            case undoMoveToTrash
+            case undoMoveToArchive
+            case undoMoveToInbox
+        }
+        
+        public enum Alert: String, Localizable {
+            case deleteTitle
+            case deleteMessage
+        }
+    }
+    
+    public enum AppUpgrade: String, Localizable {
+        case upgrade
+        case andMore
+        case upgradeBig
+        case notNow
     }
 }

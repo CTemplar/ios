@@ -6,7 +6,6 @@ inhibit_all_warnings!
 
 def ctemplarPods
   # Pods for Ctemplar
-  pod 'MGSwipeTableCell'
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'Firebase/Messaging'
@@ -20,19 +19,31 @@ def shared_pods
   pod 'ObjectivePGP'
 end
 
+def inbox_pods
+  pod "Colorful", "~> 3.0"
+  pod 'MGSwipeTableCell'
+end
+
 target 'Utility' do
   project 'Modules/Utility/Utility.xcodeproj'
   shared_pods
 end
 
+target 'Inbox' do
+  project 'Modules/Inbox/Inbox.xcodeproj'
+  inbox_pods
+end
+
 target 'Ctemplar' do
   ctemplarPods
   shared_pods
+  inbox_pods
 end
 
 target 'Ctemplar.dev' do
   ctemplarPods
   shared_pods
+  inbox_pods
 end
 
 post_install do |installer|

@@ -43,10 +43,7 @@ class  SettingsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if (Device.IS_IPAD) {
-            self.presenter?.setupNavigationLeftItem()
-        }
+        presenter?.setupNavigationLeftItem()
     }
     
     @objc func reloadViewController() {
@@ -60,12 +57,7 @@ class  SettingsViewController: UIViewController {
     }
     
     //MARK: - IBActions
-    
-    @IBAction func menuButtonPressed(_ sender: AnyObject) {
-        
-        self.router?.showInboxSideMenu()  
-    }
-    
+
     @objc func userSettingsUpdate(notification: Notification) {
         
         self.presenter?.interactor?.userMyself()

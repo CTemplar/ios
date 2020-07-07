@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Utility
 import Networking
+import Inbox
 
 class InboxViewController: UIViewController {
     

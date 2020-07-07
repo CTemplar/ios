@@ -9,20 +9,14 @@
 import Foundation
 import UIKit
 import Utility
+import SideMenu
 
 class SettingsRouter {
     
     var viewController: SettingsViewController?
 
     func showInboxSideMenu() {
-        
-        //self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
-//        if (!Device.IS_IPAD) {
-            self.viewController?.openLeft()
-//            self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
-//        } else {
-//            self.viewController?.splitViewController?.toggleMasterView()
-//        }
+        viewController?.sideMenuController?.revealMenu()
     }
     
     func showRecoveryEmailViewController() {
@@ -90,8 +84,8 @@ class SettingsRouter {
     func showManageFoldersViewController() {
         let storyboard: UIStoryboard = UIStoryboard(name: k_ManageFoldersStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_ManageFoldersViewControllerID) as! ManageFoldersViewController
-        vc.foldersList = (self.viewController?.user.foldersList)!
-        vc.user = (self.viewController?.user)!
+        vc.setup(folderList: viewController?.user.foldersList ?? [])
+        vc.setup(user: viewController?.user)
         vc.showFromSideMenu = false
         vc.showFromSettings = true
         self.viewController?.show(vc, sender: self)

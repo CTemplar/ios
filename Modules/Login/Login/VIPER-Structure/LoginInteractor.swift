@@ -70,10 +70,10 @@ final class LoginInteractor: Configurable, HashingService {
                 return
             }
             
-            // Update the password by hash
-            self.loginDetails.update(password: value)
+            // Create Temporary login details struct
+            let loginDetails = LoginDetails(userName: self.loginDetails.userName, password: value)
             
-            NetworkManager.shared.networkService.loginUser(with: self.loginDetails) { (result) in
+            NetworkManager.shared.networkService.loginUser(with: loginDetails) { (result) in
                 self.handleNetwork(responce: result, username: self.loginDetails.userName, password: self.loginDetails.password)
                 self.onToggleLoader?(false)
             }
