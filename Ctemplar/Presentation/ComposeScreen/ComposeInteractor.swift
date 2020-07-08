@@ -7,8 +7,9 @@
 //
 
 import Foundation
-import AlertHelperKit
-import PKHUD
+import Utility
+import Networking
+import UIKit
 import ObjectivePGP
 
 class ComposeInteractor {
@@ -40,7 +41,9 @@ class ComposeInteractor {
                     
                 case .failure(let error):
                     print("error:", error)
-                    AlertHelperKit().showAlert(self.viewController!, title: "Create Draft Error", message: error.localizedDescription, button: "closeButton".localized())
+                    self.viewController?.showAlert(with: "Create Draft Error",
+                                                   message: error.localizedDescription,
+                                                   buttonTitle: Strings.Button.closeButton.localized)
                 }
             }
         }
@@ -62,7 +65,9 @@ class ComposeInteractor {
                 break
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Delete Draft Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Delete Draft Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
         
@@ -109,7 +114,9 @@ class ComposeInteractor {
                 
             case .failure(let error):
                 print("saveDraftMessage error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Save Draft Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Save Draft Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
@@ -125,6 +132,10 @@ class ComposeInteractor {
  
                 if send {
                     self.mailWasSent()
+                    self.viewController?.showBannerAgain(withUpdatedText: Strings.Banner.mailSendMessage.localized,
+                                           additionalConfigs: [.displayDuration(2.0),
+                                                               .showButton(true)]
+                    )
                     self.postUpdateInboxNotification()
                 } else {
                     self.sendingMessage = value as! EmailMessage
@@ -132,7 +143,14 @@ class ComposeInteractor {
                 
             case .failure(let error):
                 print("updateSendingMessage error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Send Mail Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showBannerAgain(withUpdatedText: Strings.Banner.sendMailError.localized,
+                                       additionalConfigs: [.displayDuration(2.0),
+                                                           .showButton(true)]
+                )
+                
+                self.viewController?.showAlert(with: Strings.Banner.sendMailError.localized,
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
@@ -152,7 +170,7 @@ class ComposeInteractor {
                     if emailsKeys.encrypt {
                         for emailKey in emailsKeys.keys {
                             if let userPublicKey = self.pgpService?.readPGPKeysFromString(key: emailKey.publicKey)?.first {
-                                emailsKeys.pgpKeys.append(userPublicKey)
+                                emailsKeys.updatePGPkeys(by: userPublicKey)
                             }
                         }
                     }
@@ -186,7 +204,9 @@ class ComposeInteractor {
             case .failure(let error):
                 completion(nil)
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Public Key Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Public Key Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
@@ -201,8 +221,6 @@ class ComposeInteractor {
     }
     
     func userContactsList(silent: Bool = false) {
-        
-        //HUD.show(.progress)
         if (self.viewController?.user.contactsList?.count ?? 0) > 0 {
             self.setContactsData(contacts: self.viewController?.user.contactsList ?? [])
         }else {
@@ -220,26 +238,26 @@ class ComposeInteractor {
                         
                     case .failure(let error):
                         print("error:", error)
-                        AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+                        self.viewController?.showAlert(with: "Contacts Error",
+                                                       message: error.localizedDescription,
+                                                       buttonTitle: Strings.Button.closeButton.localized)
                     }
-                    
-                    //HUD.hide()
                 }
             }
         }
-        
     }
     
     func uploadAttach(fileUrl: URL, messageID : String) {
-        
         let encrypt = self.viewController?.user.settings.isAttachmentsEncrypted ?? false
-        HUD.show(.progress)
+        
+        Loader.start()
+        
         apiService?.createAttachment(fileUrl: fileUrl, messageID: messageID, encrypt: encrypt) {(result) in
-            HUD.hide()
+            Loader.stop()
+           
             self.viewController?.attachmentButton.isEnabled = true
             
             switch(result) {
-                
             case .success(let value):
                 print("create Attachment value:", value)
                 
@@ -248,7 +266,9 @@ class ComposeInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Attach File Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Attach File Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
@@ -265,7 +285,9 @@ class ComposeInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Delete Attach File Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Delete Attach File Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
@@ -296,31 +318,34 @@ class ComposeInteractor {
     }
     
     func mailWasSent() {
-        
-        let params = Parameters(
+        let params = AlertKitParams(
             title: "infoTitle".localized(),
             message: "mailSendMessage".localized(),
             cancelButton: "closeButton".localized()
         )
         
-        AlertHelperKit().showAlertWithHandler(self.viewController!, parameters: params) { buttonIndex in
-            print("close Coppose")
-            self.viewController!.navigationController?.popViewController(animated: true)
-        }
+        viewController?.showAlert(with: params, onCompletion: { [weak self] in
+            DPrint("CLose Compose")
+            self?.viewController?.navigationController?.popViewController(animated: true)
+        })
     }
     
     func postUpdateInboxNotification() {
         
         let silent = true
         
-        NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: silent, userInfo: nil)
+        NotificationCenter.default.post(name: .updateInboxMessagesNotificationID, object: silent, userInfo: nil)
     }
     
     //MARK: - prepared to send
     
     func prepareMessadgeToSend() {
         self.viewController?.view.endEditing(true)
-        HUD.show(.progress)
+        self.viewController?.navigationController?.popViewController(animated: true)
+        self.viewController?.showBanner(withTitle: Strings.Banner.mailSendingAlert.localized,
+                                        additionalConfigs: [.displayDuration(.infinity),
+                                       .showButton(false)]
+        )
         self.publicKeysFor(userEmailsArray: self.viewController!.emailsToArray) { (keys) in
             if let emailsKeys = keys {
                 if emailsKeys.encrypt {
@@ -575,7 +600,7 @@ class ComposeInteractor {
         }
     }
     
-    func setPGPKeysForEncryptionObject(object: EncryptionObject, pgpKey: Key) -> [String : String] {
+    func setPGPKeysForEncryptionObject(object: EncryptionObject, pgpKey: PGPKey) -> [String : String] {
         
         var encryptionObjectDictionary =  [String : String]()
         var encryptionObject = object
@@ -674,7 +699,7 @@ class ComposeInteractor {
         }
     }
     
-    func updateAttachments(publicKeys: Array<Key>, messageID: Int) {
+    func updateAttachments(publicKeys: Array<PGPKey>, messageID: Int) {
         
         var attachmentsCount = self.viewController!.mailAttachmentsList.count
         
@@ -691,7 +716,6 @@ class ComposeInteractor {
                     if (self.viewController?.user.settings.isAttachmentsEncrypted)! {
                         if publicKeys.count > 0 {
                             let encryptedfileData = pgpService?.encryptAsData(data: fileData, keys: publicKeys)
-                            
                             apiService?.updateAttachment(attachmentID: attachID!, fileUrl: fileUrl, fileData: encryptedfileData!, messageID: messageID, encrypt: true) { updated in
                                 
                                 attachmentsCount = attachmentsCount - 1

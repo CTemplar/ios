@@ -8,7 +8,8 @@
 
 import Foundation
 import UIKit
-
+import Utility
+import Networking
 
 let k_storageSectionsRowsCount = 1
 let k_logoutSectionsRowsCount = 0
@@ -83,7 +84,6 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         switch section {
         case SettingsSections.general.rawValue:
             return SettingsGeneralSection.allCases.count
@@ -105,35 +105,30 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let settings = self.parentViewController?.user.settings
         let index = indexPath.row
         
-        var cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: k_SettingsBaseTableViewCellIdentifier) as! SettingsBaseTableViewCell
+        guard var cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: k_SettingsBaseTableViewCellIdentifier) as? SettingsBaseTableViewCell else {
+            return UITableViewCell()
+        }
         
         switch indexPath.section {
         case SettingsSections.general.rawValue:
-            self.setupGeneralSectionsCell(index: index, cell: cell, settings: settings!)
-            break
+            setupGeneralSectionsCell(index: index, cell: cell, settings: settings!)
         case SettingsSections.folders.rawValue:
-            self.setupFoldersSectionCell(index: index, cell: cell)
-            break
+            setupFoldersSectionCell(index: index, cell: cell)
         case SettingsSections.security.rawValue:
-            self.setupSecuritySectionsCell(index: index, cell: cell, settings: settings!)
-            break
+            setupSecuritySectionsCell(index: index, cell: cell, settings: settings!)
         case SettingsSections.mail.rawValue:
-            self.setupMailSectionCell(index: index, cell: cell)
-            break
+            setupMailSectionCell(index: index, cell: cell)
         case SettingsSections.about.rawValue:
             if index == SettingsAboutSection.appVersion.rawValue {
                 cell = tableView.dequeueReusableCell(withIdentifier: k_SettingsAppVersionTableViewCellIdentifier)!
             }
-            self.setupAboutSectionCell(index: index, cell: cell)
-            break
+            setupAboutSectionCell(index: index, cell: cell)
         case SettingsSections.storage.rawValue:
             cell = tableView.dequeueReusableCell(withIdentifier: k_SettingsStorageTableViewCellIdentifier)!
-            self.setupStorageSectionCell(cell: cell, settings: settings!)
-            break
+            setupStorageSectionCell(cell: cell, settings: settings!)
         case SettingsSections.logout.rawValue:
             break
         default:
@@ -154,10 +149,8 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        self.parentViewController.presenter?.interactor?.SettingsCellPressed(indexPath: indexPath)        
+        parentViewController.presenter?.interactor?.SettingsCellPressed(indexPath: indexPath)        
     }
     
     @objc func reloadData() {
@@ -168,7 +161,6 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     //MARK: - setup Headers and Cells
     
     func setupHeader(view: UIView, section: Int) {
-        
         let header = view as! UITableViewHeaderFooterView
         
         switch section {
@@ -180,8 +172,6 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             let headerTapGesture = UITapGestureRecognizer()
             headerTapGesture.addTarget(self, action: #selector(self.tappedHeaderAction(sender:)))
             header.addGestureRecognizer(headerTapGesture)
-            
-            break
         default:
             header.textLabel?.textAlignment = NSTextAlignment.left
             header.textLabel?.font = UIFont(name: k_latoRegularFontName, size: 15)!
@@ -213,64 +203,49 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     func setupGeneralSectionsCell(index: Int, cell: UITableViewCell, settings: Settings) {
-        
-        var cellTitle : String = ""
-        var value : String = ""
+        var cellTitle = ""
+        var value = ""
         
         switch index {
-        
         case SettingsGeneralSection.language.rawValue:
             cellTitle = "language".localized()
-            //if let language = settings.language {
-            //    value = language
-            //}
             value = (self.parentViewController?.presenter?.interactor?.getLanguageName())!
-            
-            break
         case SettingsGeneralSection.notification.rawValue:
             cellTitle = "notifications".localized()
-            break
         case SettingsGeneralSection.contacts.rawValue:
             cellTitle = "savingContact".localized()
-            break
         case SettingsGeneralSection.whiteBlackList.rawValue:
             cellTitle = "whiteBlackList".localized()
-            break
+        case SettingsGeneralSection.dashboard.rawValue:
+            cellTitle = "dashboard".localized()
         default:
             break
         }
-        
-        (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: value)
+        (cell as? SettingsBaseTableViewCell)?.setupCellWithData(title: cellTitle, value: value)
     }
     
     func setupFoldersSectionCell(index: Int, cell: UITableViewCell) {
-        
-        var cellTitle : String = ""
+        var cellTitle = ""
         
         switch index {
         case SettingsFoldersSection.folder.rawValue:
             cellTitle = "manageFolders".localized()
-            break
         default:
             break
         }
         
-        (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: "")
+        (cell as? SettingsBaseTableViewCell)?.setupCellWithData(title: cellTitle, value: "")
     }
     
     func setupSecuritySectionsCell(index: Int, cell: UITableViewCell, settings: Settings) {
-        
         var cellTitle : String = ""
         switch index {
         case SettingsSecuritySection.password.rawValue:
             cellTitle = "password".localized()
-            break
         case SettingsSecuritySection.recovery.rawValue:
             cellTitle = "recoveryEmail".localized()
-            break
         case SettingsSecuritySection.encryption.rawValue:
             cellTitle = "manageSecurity".localized()
-            break
         default:
             break
         }
@@ -279,11 +254,13 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     func setupMailSectionCell(index: Int, cell: UITableViewCell) {
+        var cellTitle = ""
+        var value = ""
         
-        var cellTitle : String = ""
-        var value : String = ""
-        
-        let mailbox = self.parentViewController.presenter!.interactor!.apiService!.defaultMailbox(mailboxes: self.parentViewController!.user.mailboxesList!)
+        guard let mailboxes = parentViewController?.user.mailboxesList,
+            let mailbox = parentViewController.presenter?.interactor?.apiService?.defaultMailbox(mailboxes: mailboxes) else {
+            return
+        }
         
         switch index {
         case SettingsMailSection.mail.rawValue:
@@ -297,7 +274,6 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             break
         case SettingsMailSection.signature.rawValue:
             cellTitle = "signature".localized()
-            break
         case SettingsMailSection.mobileSignature.rawValue:
             if let signature = UserDefaults.standard.string(forKey: k_mobileSignatureKey) {
                 if signature.count > 0 {
@@ -308,45 +284,26 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             } else {
                 cellTitle = "mobileSignature".localized()
             }
-            break
         case SettingsMailSection.keys.rawValue:
             cellTitle = "keys".localized()
             value = ""
-            break
         default:
             break
         }
         
-        (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: value)
+        (cell as? SettingsBaseTableViewCell)?.setupCellWithData(title: cellTitle, value: value)
     }
     
     func setupAboutSectionCell(index: Int, cell: UITableViewCell) {
-        
-        var cellTitle : String = ""
-        
-        switch index {/*
-        case SettingsAboutSection.aboutAs.rawValue:
-            cellTitle = "aboutUs".localized()
-            (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: "")
-            break
-        case SettingsAboutSection.privacy.rawValue:
-            cellTitle = "privacyPolicy".localized()
-            (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: "")
-            break
-        case SettingsAboutSection.terms.rawValue:
-            cellTitle = "terms".localized()
-            (cell as! SettingsBaseTableViewCell).setupCellWithData(title: cellTitle, value: "")
-            break */
+        switch index {
         case SettingsAboutSection.appVersion.rawValue:
             self.setupAppVersionCell(cell: cell)
-            break
         default:
             break
         }
     }
     
     func setupAppVersionCell(cell: UITableViewCell) {
-        
         let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
         let buildNumber = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
         
@@ -354,12 +311,10 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         cell.textLabel?.textColor = k_sideMenuTextFadeColor
         cell.textLabel?.textAlignment = .center
         cell.textLabel?.text = "appVersion".localized() + appVersion + " (" + buildNumber + ")"
-        
         cell.selectionStyle = .none
     }
     
     func setupStorageSectionCell(cell: UITableViewCell, settings: Settings) {
-        
         var usedStorageSpace = 0
         var totalStorageSpace = 0
         
@@ -371,11 +326,11 @@ class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             totalStorageSpace = totalSpace
         }
         
-        (cell as! SettingsStorageTableViewCell).setupCellWithData(usedStorageSpace: usedStorageSpace, totalStorageSpace: totalStorageSpace)
+        (cell as? SettingsStorageTableViewCell)?.setupCellWithData(usedStorageSpace: usedStorageSpace, totalStorageSpace: totalStorageSpace)
     }
     
-    @objc func tappedHeaderAction(sender : UITapGestureRecognizer) {
-        
+    @objc
+    func tappedHeaderAction(sender : UITapGestureRecognizer) {
         print("tap to Logout")
         self.parentViewController?.presenter?.logOut()
     }

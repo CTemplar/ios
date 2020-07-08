@@ -8,69 +8,70 @@
 
 import Foundation
 import UIKit
+import SideMenu
 
 class InboxSideMenuRouter {
-    
     var viewController: InboxSideMenuViewController?
     
     func showMessagesViewController(vc: InboxViewController) {
-        
         self.viewController?.currentParentViewController = vc
-//        if Device.IS_IPAD {
-//            self.viewController?.splitViewController?.secondaryViewController?.show(vc, sender: self)
-//            self.viewController?.splitViewController?.toggleMasterView()
-//        }else {
-            let navController = (self.viewController?.getNavController(rootViewController: vc))!
-            self.viewController?.slideMenuController()?.changeMainViewController(navController, close: true)
-//        }
+        let navController = UINavigationController.getNavController(rootViewController: vc)
+        viewController?.sideMenuController?.setContentViewController(to: navController,
+                                                                     animated: true,
+                                                                     completion: { [weak self] in
+                                                                        self?.viewController?.sideMenuController?.hideMenu()
+        })
     }
     
     func showContactsViewController() {
-        
         let contactsVC = ContactsViewController.instantiate(fromAppStoryboard: .Contacts)
         self.viewController?.currentParentViewController = contactsVC
         contactsVC.contactsList = (self.viewController?.inboxViewController?.user.contactsList)! //temp
         contactsVC.contactsEncrypted = self.viewController?.inboxViewController?.user.settings.isContactsEncrypted ?? false
+        let navController = UIViewController.getNavController(rootViewController: contactsVC)
+        viewController?.sideMenuController?.setContentViewController(to: navController,
+                                                                     animated: true,
+                                                                     completion: { [weak self] in
+                                                                        self?.viewController?.sideMenuController?.hideMenu()
+        })
         
-//        if (!Device.IS_IPAD) {
-            let navController = (self.viewController?.getNavController(rootViewController: contactsVC))!
-            self.viewController?.slideMenuController()?.changeMainViewController(navController, close: true)
-//        } else {
-//            self.viewController?.splitViewController?.secondaryViewController?.show(contactsVC, sender: self)
-//            self.viewController?.splitViewController?.toggleMasterView()
-//        }
     }
     
     func showManageFoldersViewController() {
-        
         let vc = ManageFoldersViewController.instantiate(fromAppStoryboard: .ManageFolders)
         self.viewController?.currentParentViewController = vc
-        vc.foldersList = (self.viewController?.inboxViewController?.user.foldersList)!
-        vc.user = (self.viewController?.inboxViewController?.user)!
-//        if (!Device.IS_IPAD) {
-            let navController = (self.viewController?.getNavController(rootViewController: vc))!
-            self.viewController?.slideMenuController()?.changeMainViewController(navController, close: true)
-//        } else {
-//            self.viewController?.splitViewController?.secondaryViewController?.show(vc, sender: self)
-//            self.viewController?.splitViewController?.toggleMasterView()
-//        }
+        vc.setup(folderList: viewController?.inboxViewController?.user.foldersList ?? [])
+        vc.setup(user: viewController?.inboxViewController?.user)
+        let navController = UIViewController.getNavController(rootViewController: vc)
+        viewController?.sideMenuController?.setContentViewController(to: navController,
+                                                                     animated: true,
+                                                                     completion: { [weak self] in
+                                                                        self?.viewController?.sideMenuController?.hideMenu()
+        })
     }
     
     func showSettingsViewController() {
-        
         let vc = SettingsViewController.instantiate(fromAppStoryboard: .Settings)
         self.viewController?.currentParentViewController = vc
         vc.sideMenuViewController = self.viewController
         vc.user = (self.viewController?.inboxViewController?.user)!
-//        if (!Device.IS_IPAD) {
-            let navController = (self.viewController?.getNavController(rootViewController: vc))!
-            self.viewController?.slideMenuController()?.changeMainViewController(navController, close: true)
-//        } else {
-//            //let navigationController = UINavigationController(rootViewController: vc)
-//            //self.viewController?.splitViewController?.showDetailViewController(navigationController, sender: self)
-//            self.viewController?.splitViewController?.secondaryViewController?.show(vc, sender: self)
-//            self.viewController?.splitViewController?.toggleMasterView()
-//        }
+        let navController = UIViewController.getNavController(rootViewController: vc)
+        viewController?.sideMenuController?.setContentViewController(to: navController,
+                                                                     animated: true,
+                                                                     completion: { [weak self] in
+                                                                        self?.viewController?.sideMenuController?.hideMenu()
+        })
     }
     
+    func showFAQ() {
+        let vc = FAQViewController.instantiate(fromAppStoryboard: .FAQ)
+        viewController?.currentParentViewController = vc
+        vc.sideMenuViewController = viewController
+        let navController = UIViewController.getNavController(rootViewController: vc)
+        viewController?.sideMenuController?.setContentViewController(to: navController,
+                                                                     animated: true,
+                                                                     completion: { [weak self] in
+                                                                        self?.viewController?.sideMenuController?.hideMenu()
+        })
+    }
 }

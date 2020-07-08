@@ -8,23 +8,18 @@
 
 import Foundation
 import UIKit
+import Networking
+import SideMenu
 
 class ContactsRouter {
     
     var viewController: ContactsViewController?
     
     func showInboxSideMenu() {
-          
-//        if (!Device.IS_IPAD) {
-            self.viewController?.openLeft()
-//            self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
-//        } else {
-//            self.viewController?.splitViewController?.toggleMasterView()
-//        }
+        viewController?.sideMenuController?.revealMenu()
     }
     
     func showAddContactViewController(editMode: Bool, contact: Contact, contactsEncrypted: Bool) {
-        
         let storyboard: UIStoryboard = UIStoryboard(name: k_AddContactStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_AddContactViewControllerID) as! AddContactViewController
         vc.editMode = editMode

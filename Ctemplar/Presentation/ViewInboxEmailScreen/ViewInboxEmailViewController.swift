@@ -9,12 +9,16 @@
 import Foundation
 import UIKit
 import WebKit
+import Networking
+import Inbox
+import Utility
 
 class ViewInboxEmailViewController: UIViewController {
     
     var presenter   : ViewInboxEmailPresenter?
     var router      : ViewInboxEmailRouter?
     var dataSource  : ViewInboxEmailDataSource?
+    var viewInboxEmailDelegate: ViewInboxEmailDelegate?
         
     @IBOutlet var headerLabelWidthConstraint : NSLayoutConstraint!
     @IBOutlet var fromToViewHeightConstraint : NSLayoutConstraint!
@@ -69,6 +73,12 @@ class ViewInboxEmailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if #available(iOS 13.0, *) {
+            navigationController?.view.backgroundColor = .systemBackground
+        } else {
+            // Fallback on earlier versions
+        }
+        
         let configurator = ViewInboxEmailConfigurator()
         configurator.configure(viewController: self)
         
@@ -88,10 +98,8 @@ class ViewInboxEmailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        let arrowBackImage = UIImage(named: k_darkBackArrowImageName)
-        self.navigationController?.navigationBar.backIndicatorImage = arrowBackImage
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = arrowBackImage
+        navigationController?.prefersLargeTitle = false
+        navigationController?.updateTintColor(k_navButtonTintColor)
     }
     
     func initShowingMessage() {
@@ -173,7 +181,6 @@ extension ViewInboxEmailViewController: UIDocumentInteractionControllerDelegate 
     }
     
     func documentInteractionControllerWillBeginPreview(_ controller: UIDocumentInteractionController) {
-        
         self.presenter!.interactor?.hideProgressIndicator()
     }
 }

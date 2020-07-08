@@ -1,102 +1,117 @@
-//
-//  ManageFoldersViewController.swift
-//  Ctemplar
-//
-//  Created by Tatarinov Dmitry on 17.12.2018.
-//  Copyright © 2018 CTemplar. All rights reserved.
-//
-
 import Foundation
 import UIKit
+import Networking
 
 class ManageFoldersViewController: UIViewController {
     
-    var presenter   : ManageFoldersPresenter?
-    var router      : ManageFoldersRouter?
-    var dataSource  : ManageFoldersDataSource?
+    // MARK: Properties
+    private (set) var presenter: ManageFoldersPresenter?
     
-    var showFromSideMenu : Bool = true
-    var showFromSettings : Bool = false
+    private (set) var router: ManageFoldersRouter?
     
-    var foldersList : Array<Folder> = []
+    private (set) var dataSource: ManageFoldersDataSource?
+
+    var showFromSideMenu = true
     
-    var user = UserMyself()
+    var showFromSettings = false
     
-    var upgradeToPrimeView : UpgradeToPrimeView?
+    var upgradeToPrimeView: UpgradeToPrimeView?
     
-    @IBOutlet var foldersTableView         : UITableView!
-    @IBOutlet var addFolderView            : UIView!
-    @IBOutlet var redBottomView            : UIView!
-    @IBOutlet weak var emptyFoldersView: UIView!
+    private var folders: [Folder] = []
     
-    @IBOutlet var leftBarButtonItem        : UIBarButtonItem!
-    @IBOutlet var addFolderButton          : UIButton!
+    private var user: UserMyself?
     
-    @IBOutlet var addFolderLabel           : UILabel!
-    @IBOutlet var addFolderImage           : UIImageView!
-    
-    @IBOutlet var addFolderViewHeightConstraint          : NSLayoutConstraint!
-    
-    @IBOutlet var addFolderViewWithConstraint            : NSLayoutConstraint!
-    @IBOutlet var addFolderLabelWidthConstraint          : NSLayoutConstraint!
+    @IBOutlet weak var foldersTableView: UITableView!
+    @IBOutlet weak var leftBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var emptyFolderStackView: UIStackView!
+    @IBOutlet weak var emptyFolderLabel: UILabel!
+    @IBOutlet weak var addFolderBarButtonItem: UIBarButtonItem!
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let configurator = ManageFoldersConfigurator()
         configurator.configure(viewController: self)
         
-        if !self.showFromSideMenu {
-            self.presenter?.setupBackButton()
+        if !showFromSideMenu {
+            presenter?.setupBackButton()
         }
         
-        self.dataSource?.initWith(parent: self, tableView: foldersTableView)
+        // Setup Datasource
+        dataSource = ManageFoldersDataSource(parent: self,
+                                             tableView: foldersTableView,
+                                             folders: folders,
+                                             user: user
+        )
         
-        self.presenter?.setDataSource(folders: self.foldersList)
-
-        self.presenter?.setupAddFolderButtonLabel()
-        //self.presenter?.setupAddFolderButton()
-        self.presenter?.setAddFolderButton(enable: true)
-        self.presenter?.initAddFolderLimitView()
+        dataSource?.onUpdateDataSource = { [weak self] (dataAvailable) in
+            self?.presenter?.toggleEmptyState(showEmptyState: dataAvailable == false)
+        }
+        
+        edgesForExtendedLayout = []
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // Fetch Folders
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.presenter?.interactor?.foldersList(silent: false)
+        }
         
-        self.presenter?.interactor?.foldersList(silent: false)
-        
-        if (Device.IS_IPAD) {
-            if self.showFromSideMenu {
-                self.presenter?.setupNavigationLeftItem()
+        if Device.IS_IPAD {
+            if showFromSideMenu {
+                presenter?.setupNavigationLeftItem()
             }
         }
     }
     
-    //MARK: - IBActions
+    // MARK: - Setup
+    func setup(presenter: ManageFoldersPresenter) {
+        self.presenter = presenter
+    }
     
-    @IBAction func menuButtonPressed(_ sender: AnyObject) {
-        
-        if self.showFromSideMenu {
-            self.router?.showInboxSideMenu()
+    func setup(router: ManageFoldersRouter) {
+        self.router = router
+    }
+
+    func setup(folderList: [Folder]) {
+        if dataSource != nil {
+            dataSource?.update(folders: folderList)
         } else {
-            self.router?.backAction()
+            folders = folderList
+        }
+    }
+    
+    func updateState() {
+        presenter?.updateState()
+    }
+    
+    func setup(user: UserMyself?) {
+        if dataSource != nil {
+            dataSource?.update(user: user)
+        } else {
+            self.user = user
+        }
+    }
+    
+    // MARK: - Actions
+    @IBAction func menuButtonPressed(_ sender: AnyObject) {
+        if showFromSideMenu {
+            router?.showInboxSideMenu()
+        } else {
+            router?.backAction()
         }
     }
     
     @IBAction func addFolderButtonPressed(_ sender: AnyObject) {
-        
-        self.presenter?.addFolderButtonPressed()
+        presenter?.addFolderButtonPressed()
     }
     
-    //MARK: - Orientation
-    
+    // MARK: - Orientation
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        
         super.viewWillTransition(to: size, with: coordinator)
-        
-        if (Device.IS_IPAD) {
-            if self.showFromSideMenu {
-                self.presenter?.setupNavigationLeftItem()
+        if Device.IS_IPAD {
+            if showFromSideMenu {
+                presenter?.setupNavigationLeftItem()
             }
         }
     }

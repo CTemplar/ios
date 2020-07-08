@@ -8,8 +8,8 @@
 
 import Foundation
 import UIKit
-import AlertHelperKit
-import PKHUD
+import Utility
+import Networking
 
 enum SignatureType {
     case general
@@ -45,8 +45,8 @@ class SetSignatureViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.formatterService = appDelegate.applicationManager.formatterService
-        self.apiService = appDelegate.applicationManager.apiService
+        self.formatterService = UtilityManager.shared.formatterService
+        self.apiService = NetworkManager.shared.apiService
         
         self.mailbox = (self.apiService?.defaultMailbox(mailboxes: self.user.mailboxesList!))!
         
@@ -179,38 +179,34 @@ class SetSignatureViewController: UIViewController {
         let mailboxID = mailbox.mailboxID?.description
         let isDefault = mailbox.isDefault
         
-        apiService?.updateMailbox(mailboxID: mailboxID!, userSignature: userSignature, displayName: "", isDefault: isDefault!) {(result) in
-            
+        apiService?.updateMailbox(mailboxID: mailboxID!, userSignature: userSignature, displayName: "", isDefault: isDefault!) { [weak self] (result) in
             switch(result) {
-                
             case .success(let value):
                 print("updateUserSignature value:", value)
-                self.postUpdateUserSettingsNotification()                
-                self.userSignatureWasUpdated()
+                self?.postUpdateUserSettingsNotification()
+                self?.userSignatureWasUpdated()
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self, title: "Update Settings Error", message: error.localizedDescription, button: "closeButton".localized())
+                self?.showAlert(with: "Update Settings Error", message: error.localizedDescription, buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
     
     func postUpdateUserSettingsNotification() {
-        let name = signatureType == .general ? k_updateUserSettingsNotificationID : k_reloadViewControllerDataSourceNotificationID
-        NotificationCenter.default.post(name: Notification.Name(name), object: nil, userInfo: nil)
+        let name: Notification.Name = signatureType == .general ? .updateUserSettingsNotificationID : .reloadViewControllerDataSourceNotificationID
+        NotificationCenter.default.post(name: name, object: nil, userInfo: nil)
     }
     
     func userSignatureWasUpdated() {
-        
-        let params = Parameters(
+        let params = AlertKitParams(
             title: "infoTitle".localized(),
             message: "userSignature".localized(),
             cancelButton: "closeButton".localized()
         )
-        
-        AlertHelperKit().showAlertWithHandler(self, parameters: params) { buttonIndex in
-            
-            self.cancelButtonPressed(self)
+        showAlert(with: params) { [weak self] in
+            guard let safeSelf = self else { return }
+            safeSelf.cancelButtonPressed(safeSelf)
         }
     }
 }

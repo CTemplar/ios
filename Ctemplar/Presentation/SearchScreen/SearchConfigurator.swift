@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import Utility
+import Networking
 
 class SearchConfigurator {
     
@@ -24,8 +26,8 @@ class SearchConfigurator {
         let interactor = SearchInteractor()
         interactor.presenter = presenter
         interactor.viewController = viewController
-        interactor.apiService = appDelegate.applicationManager.apiService
-        interactor.pgpService = appDelegate.applicationManager.pgpService
+        interactor.apiService = NetworkManager.shared.apiService
+        interactor.pgpService = UtilityManager.shared.pgpService
         
         presenter.interactor = interactor
         
@@ -35,6 +37,6 @@ class SearchConfigurator {
         let dataSource = SearchDataSource()
         viewController.dataSource = dataSource
         
-        dataSource.formatterService = appDelegate.applicationManager.formatterService
+        dataSource.formatterService = UtilityManager.shared.formatterService
     }
 }

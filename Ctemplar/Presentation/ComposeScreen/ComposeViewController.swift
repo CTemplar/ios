@@ -8,9 +8,8 @@
 
 import UIKit
 import Foundation
-import PKHUD
-import AlertHelperKit
-import ObjectivePGP
+import Networking
+import Utility
 
 class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate, UIDocumentPickerDelegate {
     
@@ -26,6 +25,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     @IBOutlet var emailFrom           : UILabel!
     @IBOutlet var subjectTextField    : UITextField!
+    
+
     
     @IBOutlet weak var messageTextEditor    :    RichEditorView!
     @IBOutlet var scrollView          : UIScrollView!
@@ -96,8 +97,6 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var tapSelectedCcEmail  : String = ""
     var tapSelectedBccEmail : String = ""
     
-    var usersPublicKeys = Array<Key>()
-    
     var mailAttachmentsList = Array<[String : String]>()
     var viewAttachmentsList = Array<AttachmentView>()
     
@@ -119,12 +118,17 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var lastContentOffset: CGFloat = 0
     let fromViewRange: Range<CGFloat> = (-46 ..< 0)
     let toolbarViewRange: Range<CGFloat> = (-56 ..< -1)
-        
     var upgradeToPrimeView : UpgradeToPrimeView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        if #available(iOS 13.0, *) {
+            navigationController?.view.backgroundColor = .systemBackground
+        } else {
+            // Fallback on earlier versions
+        }
         
         self.addGesureRecognizers()
         
@@ -378,7 +382,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         var inputText : String = ""
         
-        print("textViewDidChange text:", textView.text)
+        print("textViewDidChange text:", textView.text ?? "")
         
         switch textView {
         case self.emailToTextView:
@@ -563,7 +567,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
 //        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.attachDownloadUpdate), name: NSNotification.Name(rawValue: k_attachUploadUpdateNotificationID), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.attachDownloadUpdate), name: .attachUploadUpdateNotificationID, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
     }

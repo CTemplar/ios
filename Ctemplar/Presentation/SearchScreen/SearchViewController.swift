@@ -8,8 +8,7 @@
 
 import UIKit
 import Foundation
-import PKHUD
-import AlertHelperKit
+import Networking
 
 class SearchViewController: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate {
     
@@ -29,7 +28,11 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UIGestureReco
     var searchActive : Bool = false
     
     @IBOutlet var searchTableView        : UITableView!    
-    @IBOutlet var emptySearch            : UIView!
+    @IBOutlet var emptySearch: UIStackView! {
+        didSet {
+            emptySearch.isHidden = true
+        }
+    }
     
     @IBOutlet var bottomTableViewOffsetConstraint: NSLayoutConstraint!
     

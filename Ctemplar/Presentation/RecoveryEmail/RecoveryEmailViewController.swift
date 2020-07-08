@@ -8,8 +8,8 @@
 
 import Foundation
 import UIKit
-import AlertHelperKit
-import PKHUD
+import Utility
+import Networking
 
 class RecoveryEmailViewController: UIViewController {
     
@@ -31,8 +31,8 @@ class RecoveryEmailViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.formatterService = appDelegate.applicationManager.formatterService        
-        self.apiService = appDelegate.applicationManager.apiService
+        self.formatterService = UtilityManager.shared.formatterService
+        self.apiService = NetworkManager.shared.apiService
         
         self.setupScreen()
     }
@@ -134,28 +134,28 @@ class RecoveryEmailViewController: UIViewController {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self, title: "Update Settings Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.showAlert(with: "Update Settings Error",
+                               message: error.localizedDescription,
+                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
     
     func postUpdateUserSettingsNotification() {
         
-        NotificationCenter.default.post(name: Notification.Name(k_updateUserSettingsNotificationID), object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: .updateUserSettingsNotificationID, object: nil, userInfo: nil)
     }
     
     func recoveryEmailWasUpdated() {
-        
-        let params = Parameters(
+        let params = AlertKitParams(
             title: "infoTitle".localized(),
             message: "recoveryEmailUpdatedMessage".localized(),
             cancelButton: "closeButton".localized()
         )
         
-        AlertHelperKit().showAlertWithHandler(self, parameters: params) { buttonIndex in
-            
-            //self.dismiss(animated: true, completion: nil)
-            self.cancelButtonPressed(self)
+        showAlert(with: params) { [weak self] in
+            guard let safeSelf = self else { return }
+            safeSelf.cancelButtonPressed(safeSelf)
         }
     }
 }

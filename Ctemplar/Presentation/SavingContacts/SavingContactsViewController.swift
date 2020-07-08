@@ -8,8 +8,8 @@
 
 import Foundation
 import UIKit
-import AlertHelperKit
-import PKHUD
+import Utility
+import Networking
 
 class SavingContastsViewController: UIViewController {
     
@@ -28,8 +28,8 @@ class SavingContastsViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.formatterService = appDelegate.applicationManager.formatterService
-        self.apiService = appDelegate.applicationManager.apiService
+        self.formatterService = UtilityManager.shared.formatterService
+        self.apiService = NetworkManager.shared.apiService
      
         self.setupScreen()
     }
@@ -73,13 +73,13 @@ class SavingContastsViewController: UIViewController {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self, title: "Update Settings Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.showAlert(with: "Update Settings Error", message: error.localizedDescription, buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
     
     func postUpdateUserSettingsNotification() {
         
-        NotificationCenter.default.post(name: Notification.Name(k_updateUserSettingsNotificationID), object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: .updateUserSettingsNotificationID, object: nil, userInfo: nil)
     }
 }

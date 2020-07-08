@@ -1,164 +1,128 @@
-//
-//  ManageFoldersPresenter.swift
-//  Ctemplar
-//
-//  Created by Tatarinov Dmitry on 17.12.2018.
-//  Copyright © 2018 CTemplar. All rights reserved.
-//
-
 import Foundation
-import AlertHelperKit
-import PKHUD
+import Utility
+import UIKit
+import Networking
 
-class ManageFoldersPresenter {
+final class ManageFoldersPresenter {
+    // MARK: Properties
+    private weak var viewController: ManageFoldersViewController?
+    private (set) var interactor: ManageFoldersInteractor?
     
-    var viewController   : ManageFoldersViewController?
-    var interactor       : ManageFoldersInteractor?
-    
-    func setDataSource(folders: Array<Folder>) {
-    
-        self.viewController!.dataSource?.foldersArray = folders
-        self.viewController!.dataSource?.reloadData()
-    
-        self.setupTable(folders: folders)
+    // MARK: - Constructor
+    init(viewController: ManageFoldersViewController,
+         interactor: ManageFoldersInteractor) {
+        self.viewController = viewController
+        self.interactor = interactor
+        initialiseUI()
     }
-
-    func setupTable(folders: Array<Folder>) {
-        
-        if folders.count > 0 {
-            self.viewController!.emptyFoldersView.isHidden = true
-            self.viewController!.foldersTableView.isHidden = false
-            self.viewController!.addFolderView.isHidden = false
-//            self.viewController!.redBottomView.isHidden = true
-        } else {
-            self.viewController!.emptyFoldersView.isHidden = false
-            self.viewController!.foldersTableView.isHidden = true
-            self.viewController!.addFolderView.isHidden = true
-//            self.viewController!.redBottomView.isHidden = false
-        }
+    
+    // MARK: - Setup UI
+    private func initialiseUI() {
+        viewController?.navigationItem.title = Strings.Menu.manageFolders.localized
+        initAddFolderLimitView()
+        setAddFolderButton(enable: true)
+        updateState()
+    }
+    
+    func updateState() {
+        let folderCount = viewController?.dataSource?.folderCount ?? 0
+        toggleEmptyState(showEmptyState: folderCount == 0)
+    }
+    
+    func toggleEmptyState(showEmptyState: Bool) {
+        viewController?.emptyFolderStackView.isHidden = showEmptyState == false
     }
     
     func setupBackButton() {
-        
-        let backButton = UIBarButtonItem(image: UIImage(named: k_darkBackArrowImageName), style: .done, target: self, action: #selector(backAction))
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "BackArrowDark"), style: .plain, target: self, action: #selector(backAction))
         backButton.tintColor = k_navButtonTintColor
-//        self.viewController!.navigationController?.navigationBar.barTintColor = k_navBar_backgroundColor
-        self.viewController!.navigationItem.leftBarButtonItem = backButton
+        viewController?.navigationItem.leftBarButtonItem = backButton
     }
     
     func setupNavigationLeftItem() {
-        
         let emptyButton = UIBarButtonItem(image: UIImage(), style: .done, target: self, action: nil)
-        
         if UIDevice.current.orientation.isLandscape {
-            print("Landscape")
-            self.viewController?.navigationItem.leftBarButtonItem = emptyButton
+            viewController?.navigationItem.leftBarButtonItem = emptyButton
         } else {
-            print("Portrait")
-            self.viewController?.navigationItem.leftBarButtonItem = self.viewController?.leftBarButtonItem
+            viewController?.navigationItem.leftBarButtonItem = self.viewController?.leftBarButtonItem
         }
     }
     
-    func setupAddFolderButtonLabel() {
-        
-        let labelText = self.viewController?.addFolderLabel.text?.localized()
-        
-        let textWidth = labelText?.widthOfString(usingFont: (self.viewController?.addFolderLabel.font)!)
-        
-        let viewWidth = k_plusImageWidth + k_addButtonLeftOffet + textWidth! + 3.0 //sometimes width calculation is small
-        
-        self.viewController?.addFolderViewWithConstraint.constant = viewWidth        
-    }
-    
-    @objc func backAction() {
-        self.viewController?.router?.backAction()
+    @objc
+    private func backAction() {
+        viewController?.router?.backAction()
     }
     
     func addFolderButtonPressed() {
+        let folderCount = viewController?.dataSource?.folderCount ?? 0
         
-        if (self.viewController?.dataSource?.foldersArray.count)! > k_customFoldersLimitForNonPremium - 1 {
-            if (self.viewController?.user.isPrime)! {
-                self.viewController?.router?.showAddFolderViewController()
+        if folderCount > (k_customFoldersLimitForNonPremium - 1) {
+            if viewController?.dataSource?.isPrimeUser == true {
+                viewController?.router?.showAddFolderViewController()
             } else {
-                self.showAddFolderLimitAlert()
+                showAddFolderLimitAlert()
             }
         } else {
-            self.viewController?.router?.showAddFolderViewController()
+            viewController?.router?.showAddFolderViewController()
         }
     }
     
-    func setupAddFolderButton() {
-        
-        if (self.viewController?.dataSource?.foldersArray.count)! > k_customFoldersLimitForNonPremium - 1 {            
-            if (self.viewController?.user.isPrime)! {
-                self.setAddFolderButton(enable: true)
-            } else {
-                self.setAddFolderButton(enable: false)
-            }
+    private func setupAddFolderButton() {
+        let folderCount = viewController?.dataSource?.folderCount ?? 0
+
+        if folderCount > (k_customFoldersLimitForNonPremium - 1) {
+            setAddFolderButton(enable: (viewController?.dataSource?.isPrimeUser == true))
         } else {
-            self.setAddFolderButton(enable: true)
+            setAddFolderButton(enable: true)
         }
     }
     
-    func setAddFolderButton(enable: Bool) {
-        
-        if enable {
-            self.viewController?.addFolderButton.isEnabled = true
-            self.viewController?.addFolderButton.alpha = 1.0
-        } else {
-            self.viewController?.addFolderButton.isEnabled = false
-            self.viewController?.addFolderButton.alpha = 0.6
-        }
+    private func setAddFolderButton(enable: Bool) {
+        viewController?.addFolderBarButtonItem.isEnabled = enable
     }
     
+    // MARK: - Handle Folder Limitations
     func showDeleteFolderAlert(folderID: Int) {
-        
-        let params = Parameters(
-            title: "deleteFolderTitle".localized(),
-            message: "deleteFolder".localized(),
-            cancelButton: "cancelButton".localized(),
-            otherButtons: ["deleteButton".localized()]
+        let params = AlertKitParams(
+            title: Strings.ManageFolder.deleteFolderTitle.localized,
+            message: Strings.ManageFolder.deleteFolder.localized,
+            cancelButton: Strings.Button.cancelButton.localized,
+            otherButtons: [
+                Strings.Button.deleteButton.localized
+            ]
         )
         
-        AlertHelperKit().showAlertWithHandler(self.viewController!, parameters: params) { buttonIndex in
-            switch buttonIndex {
+        viewController?.showAlert(with: params, onCompletion: { [weak self] (index) in
+            switch index {
             case 0:
-                print("Cancel Delete")
+                DPrint("Cancel Delete")
             default:
-                print("Delete")
-                self.interactor?.deleteFolder(folderID: folderID)
+                self?.interactor?.deleteFolder(folderID: folderID)
             }
-        }
+        })
     }
    
     func showAddFolderLimitAlert() {
-        
-        self.viewController?.upgradeToPrimeView?.isHidden = !(self.viewController?.upgradeToPrimeView?.isHidden)!
+        viewController?.upgradeToPrimeView?.isHidden = !(self.viewController?.upgradeToPrimeView?.isHidden)!
     }
     
     func initAddFolderLimitView() {
+        viewController?.upgradeToPrimeView = Bundle.main.loadNibNamed(k_UpgradeToPrimeViewXibName, owner: nil, options: nil)?.first as? UpgradeToPrimeView
         
-        self.viewController?.upgradeToPrimeView = Bundle.main.loadNibNamed(k_UpgradeToPrimeViewXibName, owner: nil, options: nil)?.first as? UpgradeToPrimeView
-        
-        var frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
-        
-        if Device.IS_IPAD {
-           // frame = CGRect(x: 0.0, y: 0.0, width: (self.viewController!.splitViewController?.secondaryViewController?.view.frame.width)!, height: (self.viewController!.splitViewController?.secondaryViewController?.view.frame.height)!)
-        }
-        
-        self.viewController?.upgradeToPrimeView?.frame = frame
+        let frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
+
+        viewController?.upgradeToPrimeView?.frame = frame
        
+        viewController?.navigationController?.view.addSubview((self.viewController?.upgradeToPrimeView)!)
         
-        self.viewController?.navigationController!.view.addSubview((self.viewController?.upgradeToPrimeView)!)
-        
-        self.viewController?.upgradeToPrimeView?.isHidden = true
+        viewController?.upgradeToPrimeView?.isHidden = true
     }
 }
 
+// MARK: - AddFolderDelegate
 extension ManageFoldersPresenter: AddFolderDelegate {
     func didAddFolder(_ folder: Folder) {
-        self.viewController?.foldersList.append(folder)
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateCustomFolderNotificationID), object: self.viewController?.foldersList ?? [])
-        self.setDataSource(folders: self.viewController?.foldersList ?? [])
+        viewController?.dataSource?.add(folder: folder)
+        viewController?.updateState()
     }
 }

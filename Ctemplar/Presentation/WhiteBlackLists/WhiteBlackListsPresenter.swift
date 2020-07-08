@@ -7,8 +7,9 @@
 //
 
 import Foundation
-import AlertHelperKit
-import PKHUD
+import Utility
+import UIKit
+import Networking
 
 class WhiteBlackListsPresenter {
     
@@ -180,34 +181,30 @@ class WhiteBlackListsPresenter {
         switch listMode {
         case WhiteBlackListsMode.whiteList:
             message = "deleteContactFromWhiteList".localized()
-            break
         case WhiteBlackListsMode.blackList:
             message = "deleteContactFromBlackList".localized()
-            break
         }
         
-        let params = Parameters(
+        let params = AlertKitParams(
             title: "deleteTitle".localized(),
             message: message,
             cancelButton: "cancelButton".localized(),
             otherButtons: ["deleteButton".localized()]
         )
         
-        AlertHelperKit().showAlertWithHandler(self.viewController!, parameters: params) { buttonIndex in
-            switch buttonIndex {
+        viewController?.showAlert(with: params, onCompletion: { [weak self] (index) in
+            switch index {
             case 0:
                 print("Cancel Delete")
             default:
                 print("Delete")
                 switch listMode {
                 case WhiteBlackListsMode.whiteList:
-                    self.interactor?.deleteContactsFromWhiteList(contactID: contactID)
-                    break
+                    self?.interactor?.deleteContactsFromWhiteList(contactID: contactID)
                 case WhiteBlackListsMode.blackList:
-                    self.interactor?.deleteContactsFromBlacklList(contactID: contactID)
-                    break
+                    self?.interactor?.deleteContactsFromBlacklList(contactID: contactID)
                 }
             }
-        }
+        })
     }
 }

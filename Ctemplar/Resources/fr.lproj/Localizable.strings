@@ -28,6 +28,15 @@
 "termsAndConditionsFullText" = "Please check this box if you agree to abide by our Terms and Conditions";
 "termsAndConditionsPhrase" = "Termes et Conditions";
 
+// Action Banner
+"movingToArchive" = "Passer aux archives";
+"movingToSpam" = "Passer au spam";
+"movingToTrash" = "Passer à la poubelle";
+"markingAsUnread" = "Marquage comme non lu";
+"markingAsRead" = "Marquage comme lu";
+"actionFailed" = "Action: échoué";
+"done" = "Terminé";
+
 //login
 
 "emailPlaceholder" = "Email";
@@ -41,43 +50,30 @@
 "createAccount" = "Créer un compte";
 "rememberMe" = "Rester connecté";                                               //Localize
 
-//Sign Up
-
+// Sign Up
 "usernameAndDomain" = "Nom utilisateur / domaine";
 "ctemplarEmailAddress" = "Votre nouvelle adresse email CTemplar.";
-
 "choosePasswordPlaceholder" = "Choisir un mot de passe";
 "confirmPasswordPlaceholder" = "Confirmer le mot de passe";
 "recoveryEmailPlaceholder" = "Email de récupération";
-
 "passwordMust" = "Le mot de passe doit contenir au moins 10 lettres/chiffres. Password can contain only latin letters and cannot contain symbols such «-+!@. etc.";
-
 "thisIsUsed" = "Cet email sera utilisé si vous perdez votre mot de passe.";
-
 "usernameResetHint" = "Ctemplar username to reset";
 "usernameResetPlaceholder" = "Ctemplar username to reset";
 "resetCodePlaceholder" = "Reset Code";
 "newPasswordPlaceholder" = "Nouveau mot de passe";
 "confirmNewPasswordPlaceholder" = "Confirmer le nouveau mot de passe";
-
 "resetLink" = "Un email va vous être envoyé à votre addresse de récupération.";
-
 "confirmResetPassword" = "Confirmer la réinitialisation du mot de passe";
-
 "areYouSure" = "Êtes-vous certain de vouloir réinitialiser votre mot de passe ?";
-
 "supportDescription" = "Votre clé de cryptage est connectée à votre mot de passe. Si vous réinitialisez votre mot de passe, vos anciens messages, vos pièces jointes et vos contacts ne pourront pas être décryptés. Ils seront supprimés. Pour toutes questions, merci de contacter le support: support@ctemplar.com .";
-
 "supportDescriptionAttr" = "Vos anciens messages, vos pièces jointes et vos contacts ne pourront pas être décryptés.";
-
 "resetPassword" = "Réinitialiser le mot de passe";
-
 "weHave" = "Nous avons envoyé un code de réinitialisation à votre adresse de récupération.";
 "recoveryEmailAttr" = "email de récupération ";
-
 "enterIt" = "Enter it below for confirmation.";
-
 "forgetPass" = "N'oubliez pas votre mot de passe, il ne pourra pas être récupéré.";
+"createAccount" = "Créer un compte";
 
 // inbox
 
@@ -88,7 +84,7 @@
 "unread" = "Non lu";
 
 "filtered" = "Filtrés";
-"noInboxMessage" = "Aucun message";
+"noInboxMessage" = "Vous n'avez pas de messages";
 "noFilteredMessage" = "Aucun message ne correspond à votre filtre";
 
 "starredFilter" = "Favoris";
@@ -106,8 +102,7 @@
 "clearAll" = "Réinitialiser";
 "selectedFilters" = "Sélectionner les filtres";
 
-//more actions buttons
-
+// Moree Action buttons
 "markAsSpam" = "Marquer comme spam";
 "markAsRead" = "Marquer comme lu";
 "markAsUnread" = "Marquer comme non lu";
@@ -116,6 +111,7 @@
 "moveToInbox" = "Déplacer dans la boîte de réception";
 "emptyFolder" = "Vider le dossier";
 "cancel" = "Annuler";
+"moreActions" = "Plus d'actions";
 
 //undo actions buttons
 
@@ -188,7 +184,9 @@
 "subject" = "Objet : ";
 
 "infoTitle" = "Confirmation :";
-"mailSendMessage" = "Email envoyé";
+"mailSendMessage" = "Courrier envoyé avec succès.";
+"mailSendingAlert" = "Envoi de mail…";
+
 
 "saveDraft" = "Sauvegardé brouillon";
 "discardDraft" = "Annuler";
@@ -211,23 +209,22 @@
 
 "search" = "Rechercher";
 
-//Side Menu Cells
-
-"inbox"            = "Boîte de réception";
-"draft"            = "Brouillons";
-"sent"             = "Envoyés";
-"outbox"           = "Boîte d'envoi";
-"starred"          = "Favoris";
-"archive"          = "Archive";
-"spam"             = "Spam";
-"trash"            = "Corbeille";
-"allMails"         = "Tous les emails";
-"contacts"         = "Contacts";
-"settings"         = "Paramètres";
-"help"             = "Aide";
-"logout"           = "Se déconnecter";
-"manageFolders"    = "Gérer les dossiers";
-
+// Side Menu Cells
+"inbox" = "Boîte de réception";
+"draft" = "Brouillons";
+"sent" = "Envoyés";
+"outbox" = "Boîte d'envoi";
+"starred" = "Favoris";
+"archive" = "Archive";
+"spam" = "Spam";
+"trash" = "Corbeille";
+"allMails" = "Tous les emails";
+"contacts" = "Contacts";
+"settings" = "Paramètres";
+"help" = "Aide";
+"FAQ" = "FAQ";
+"logout" = "Se déconnecter";
+"manageFolders" = "Gérer les dossiers";
 "showMoreFolders" = "Plus de dossier";
 "hideFolders" = "Réduire";
 
@@ -284,6 +281,7 @@
 "notifications" = "Notifications";
 "savingContact" = "Sauvegarde des contacts";
 "whiteBlackList" = "Liste blanche / Liste noire";
+"dashboard" = "Tableau de bord";
 "security" = "Sécurité";
 
 "manageFolders" = "Gérer les dossiers";
@@ -419,3 +417,15 @@
 "attachmentEncryptionWasDisabled" = "Le chiffrement des pièces jointes est désactivé";
 
 "featureIsComing" = "Fonctionnalité bientôt disponible. Pour modifier votre mot de passe, vous pouvez vous connecter au site web. Feature coming soon.";
+
+// Logout
+"logoutErrorTitle" = "Erreur de déconnexion";
+"success" = "Succès";
+"logoutErrorMessage" = "Impossible de vous déconnecter pour le moment, veuillez réessayer plus tard.";
+
+// Dashboard
+"accountType" = "Type de compte";
+"userName" = "Nom d'utilisateur";
+"customDomainNumber" = "Nombre de domaines personnalisés";
+"addressNumber" = "Nombre d'adresses";
+"notAvailable" = "Indisponible";

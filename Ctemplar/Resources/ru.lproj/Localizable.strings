@@ -28,6 +28,15 @@
 "termsAndConditionsFullText" = "Пожалуста, поставьте галочку если вы согласны с нашими Условиями и Положениями";
 "termsAndConditionsPhrase" = "Условия и Положения";
 
+// Action Banner
+"movingToArchive" = "Переезд в архив";
+"movingToSpam" = "Переезд в спам";
+"movingToTrash" = "Переезд в мусор";
+"markingAsUnread" = "Пометить как непрочитанное";
+"markingAsRead" = "Пометить как прочитанное";
+"actionFailed" = "Действие не удалось";
+"done" = "Выполнено";
+
 //login
 
 "emailPlaceholder" = "Почта";
@@ -41,43 +50,30 @@
 "createAccount" = "Создать аккаунт";
 "rememberMe" = "оставаться в системе";
 
-//Sign Up
-
+// Sign Up
 "usernameAndDomain" = "Имя и домен";
 "ctemplarEmailAddress" = "Это будет ваш новый Ctemplar почтовый адрес.";
-
 "choosePasswordPlaceholder" = "Выберите пароль";
 "confirmPasswordPlaceholder" = "Подтвердите пароль";
 "recoveryEmailPlaceholder" = "Запасная почта";
-
 "passwordMust" = "Ваш пароль должен быть длинне 10 символов. Пароль может содержать только латинские буквы и не может содержать символы типа «-+!@. etc.";
-
 "thisIsUsed" = "Необходимо для восстановления вашей учетной записи, если вы заблокированы или забыли пароль";
-
 "usernameResetHint" = "Ctemplar имя";
 "usernameResetPlaceholder" = "Ctemplar имя для сброса";
 "resetCodePlaceholder" = "Код для сброса";
 "newPasswordPlaceholder" = "Новый пароль";
 "confirmNewPasswordPlaceholder" = "Подтвердите новый пароль";
-
 "resetLink" = "Мы отправим вам линк для восстановления почты";
-
 "confirmResetPassword" = "Подтвердить Сброс Пароля";
-
 "areYouSure" = "Вы уверены, что хотите сбросить пароль?";
-
 "supportDescription" = "Ваш ключ шифрования связан с вашим паролем. Из-за этого вы не сможете расшифровать старые сообщения, вложения и контакты, если сбросите свой пароль. \ nЕсли у вас есть дополнительные вопросы, пишите на support@ctemplar.com.";
-
 "supportDescriptionAttr" = "вы не сможете расшифровать старые сообщения, вложения и контакты";
-
 "resetPassword" = "Сброс Пароля";
-
 "weHave" = "Мы отправили код сброса на вашу запасную почту.";
 "recoveryEmailAttr" = "запасную почту";
-
 "enterIt" = "Введите его ниже для подтверждения.";
-
 "forgetPass" = "Не забудьте этот пароль, его невозможно будет восстановить.";
+"createAccount" = "Создать учетную запись";
 
 // inbox
 
@@ -88,7 +84,7 @@
 "unread" = "непрочитано";
 
 "filtered" = "Отфильтровано";
-"noInboxMessage" = "У вас нет входящих сообщений";
+"noInboxMessage" = "У вас нет сообщений";
 "noFilteredMessage" = "Нет писем по такому фильтру";
 
 "starredFilter" = "Избранные";
@@ -105,8 +101,7 @@
 "clearAll" = "Очистить";
 "selectedFilters" = "Выбрать фильтры";
 
-//more actions buttons
-
+// More Action buttons
 "markAsSpam" = "Пометить как спам";
 "markAsRead" = "Пометить как прочтенное";
 "markAsUnread" = "Пометить как не прочтенное";
@@ -115,6 +110,7 @@
 "moveToInbox" = "Переместить в inbox";
 "emptyFolder" = "Очистить папку";
 "cancel" = "Отмена";
+"moreActions" = "Больше действий";
 
 //undo actions buttons
 
@@ -188,7 +184,9 @@
 "subject" = "Тема: ";
 
 "infoTitle" = "Информация:";
-"mailSendMessage" = "Письмо успешно отправлено";
+"mailSendMessage" = "Мел св. Сусассуфули.";
+"mailSendingAlert" = "Отправка почты…";
+
 
 "saveDraft" = "Сохранить черновик";
 "discardDraft" = "Удалить черновик";
@@ -212,23 +210,22 @@
 
 "search" = "Поиск";
 
-//Side Menu Cells
-
-"inbox"            = "Входящие";
-"draft"            = "Черновик";
-"sent"             = "Отправленные";
-"outbox"           = "Исходящие";
-"starred"          = "Избранные";
-"archive"          = "Архив";
-"spam"             = "Спам";
-"trash"            = "Корзина";
-"allMails"         = "Все письма";
-"contacts"         = "Контакты";
-"settings"         = "Настройки";
-"help"             = "Получить Помощь";
-"logout"           = "Выйти";
-"manageFolders"    = "Управление Папками";
-
+// Side Menu Cells
+"inbox" = "Входящие";
+"draft" = "Черновик";
+"sent" = "Отправленные";
+"outbox" = "Исходящие";
+"starred" = "Избранные";
+"archive" = "Архив";
+"spam" = "Спам";
+"trash" = "Корзина";
+"allMails" = "Все письма";
+"contacts" = "Контакты";
+"settings" = "Настройки";
+"help" = "Получить Помощь";
+"FAQ" = "FAQ";
+"logout" = "Выйти";
+"manageFolders" = "Управление Папками";
 "showMoreFolders" = "Показать больше папок";
 "hideFolders" = "Скрыть папки";
 
@@ -285,6 +282,7 @@
 "notifications" = "Уведомления";
 "savingContact" = "Сохранять контакты";
 "whiteBlackList" = "Белый список / Черный список";
+"dashboard" = "Приборная панель";
 "security" = "Безопасность";
 
 "manageFolders" = "Управление папками";
@@ -418,3 +416,15 @@
 
 "attachmentEncryptionWasEnabled" = "Attachment Encryption Was Enabled";
 "attachmentEncryptionWasDisabled" = "Attachment Encryption Was Disabled";
+
+// Logout
+"logoutErrorTitle" = "Ошибка выхода";
+"success" = "успех";
+"logoutErrorMessage" = "Не удалось выйти из системы в данный момент, повторите попытку позже.";
+
+// Dashboard
+"accountType" = "тип аккаунта";
+"userName" = "имя пользователя";
+"customDomainNumber" = "Количество пользовательских доменов";
+"addressNumber" = "Количество адресов";
+"notAvailable" = "Нет в наличии";

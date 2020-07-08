@@ -7,8 +7,9 @@
 //
 
 import Foundation
-import AlertHelperKit
-import PKHUD
+import Utility
+import UIKit
+import Networking
 
 class ContactsPresenter {
     
@@ -229,22 +230,21 @@ class ContactsPresenter {
     }
         
     func deleteContactPermanently(selectedContactsArray: Array<Contact>) {
-        
-        let params = Parameters(
+        let params = AlertKitParams(
             title: "deleteTitle".localized(),
             message: "deleteContact".localized(),
             cancelButton: "cancelButton".localized(),
             otherButtons: ["deleteButton".localized()]
         )
         
-        AlertHelperKit().showAlertWithHandler(self.viewController!, parameters: params) { buttonIndex in
-            switch buttonIndex {
+        viewController?.showAlert(with: params, onCompletion: { [weak self] (index) in
+            switch index {
             case 0:
-                print("Cancel Delete")
+                DPrint("Cancel Delete")
             default:
-                print("Delete")
-                self.interactor?.deleteContactsList(selectedContactsArray:selectedContactsArray, withUndo: "")
+                DPrint("Delete")
+                self?.interactor?.deleteContactsList(selectedContactsArray: selectedContactsArray, withUndo: "")
             }
-        }
+        })
     }
 }

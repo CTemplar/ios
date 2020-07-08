@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Utility
 
 protocol SchedulerDelegate {
     func applyAction(date: Date, mode: SchedulerMode)
@@ -42,7 +43,7 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.formatterService = appDelegate.applicationManager.formatterService
+        self.formatterService = UtilityManager.shared.formatterService
         
         self.setupCustomPickerData()
         

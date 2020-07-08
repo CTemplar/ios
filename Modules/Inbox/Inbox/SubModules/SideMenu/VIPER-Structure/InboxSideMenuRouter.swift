@@ -1,0 +1,53 @@
+import Foundation
+import UIKit
+import SideMenu
+import Networking
+
+final class InboxSideMenuRouter {
+    // MARK: Properties
+    private weak var viewController: InboxSideMenuController?
+    var onTapSettings: ((UserMyself) -> Void)?
+    var onTapManageFolders: (([Folder], UserMyself) -> Void)?
+    var onTapContacts: (([Contact], Bool) -> Void)?
+    var onTapFAQ: (() -> Void)?
+
+    // MARK: - Constructor
+    init(viewController: InboxSideMenuController,
+         onTapContacts: (([Contact], Bool) -> Void)?,
+         onTapSettings: ((UserMyself) -> Void)?,
+         onTapManageFolders: (([Folder], UserMyself) -> Void)?,
+         onTapFAQ: (() -> Void)?) {
+        self.viewController = viewController
+        self.onTapSettings = onTapSettings
+        self.onTapFAQ = onTapFAQ
+        self.onTapContacts = onTapContacts
+        self.onTapManageFolders = onTapManageFolders
+    }
+    
+    // MARK: - navigations
+    func showMessagesViewController(vc: InboxViewController) {
+        self.viewController?.setup(parent: vc)
+        let navigationController = InboxNavigationController(rootViewController: vc)
+        viewController?.sideMenuController?.setContentViewController(to: navigationController,
+                                                                     animated: true,
+                                                                     completion: { [weak self] in
+                                                                        self?.viewController?.sideMenuController?.hideMenu()
+        })
+    }
+    
+    func showContactsViewController(withUserContacts contacts: [Contact], isContactEncrypted: Bool) {
+        onTapContacts?(contacts, isContactEncrypted)
+    }
+    
+    func showManageFoldersViewController(withList folderList: [Folder], user: UserMyself) {
+        onTapManageFolders?(folderList, user)
+    }
+    
+    func showSettingsViewController(withUser user: UserMyself) {
+        onTapSettings?(user)
+    }
+    
+    func showFAQ() {
+        onTapFAQ?()
+    }
+}

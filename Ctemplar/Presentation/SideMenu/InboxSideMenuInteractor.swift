@@ -7,8 +7,10 @@
 //
 
 import Foundation
-import AlertHelperKit
-import PKHUD
+import Utility
+import Networking
+import UIKit
+import Login
 
 class InboxSideMenuInteractor {
     
@@ -17,61 +19,35 @@ class InboxSideMenuInteractor {
     var apiService      : APIService?
 
     func logOut() {
-        HUD.show(.progress)
-        self.apiService?.logOut(completionHandler: { (result) in
-            HUD.hide()
-            self.resetAppIconBadgeValue()
-            if Device.IS_IPAD {
-                let loginVC = LoginViewController.instantiate(fromAppStoryboard: .Login_iPad)
-                if let window = UIApplication.shared.getKeyWindow() {
-                    window.setRootViewController(loginVC)
-                }else {
-                    self.viewController?.show(loginVC, sender: self)
-                }
-            }else {
-                let loginVC = LoginViewController.instantiate(fromAppStoryboard: .Login)
-                if let window = UIApplication.shared.getKeyWindow() {
-                    window.setRootViewController(loginVC)
-                }else {
-                    self.viewController?.show(loginVC, sender: self)
+        Loader.start()
+        apiService?.logOut(completionHandler: { [weak self] (isSucceeded) in
+            DispatchQueue.main.async {
+                Loader.stop()
+                if isSucceeded {
+                    self?.resetAppIconBadgeValue()
+                    self?.resetRootController()
+                } else {
+                   if let currentVC = self?.viewController {
+                        currentVC.showAlert(with: "logoutErrorTitle".localized(),
+                                   message: "logoutErrorMessage".localized(),
+                                   buttonTitle: Strings.Button.closeButton.localized)
+                    }
                 }
             }
-            
-            
-            
-//            if (!Device.IS_IPAD) {
-//                self.viewController?.dismiss(animated: true, completion: {
-//                    if let parentViewController = self.viewController?.currentParentViewController {
-//                        parentViewController.navigationController?.popViewController(animated: true)
-//                    }
-//                })
-//
-//                self.viewController?.inboxViewController.dismiss(animated: false, completion: {
-//                    self.viewController?.mainViewController?.showLoginViewController()
-//                })
-//            } else {
-//                self.viewController?.splitViewController?.dismiss(animated: false, completion: {
-//                    self.viewController?.mainViewController?.showLoginViewController()
-//                })
-//            }
         })
-        
     }
     
-    func resetAppIconBadgeValue() {
+    private func resetAppIconBadgeValue() {
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
-    
-//    func resetInboxData() {
-//        
-//        self.viewController?.dataSource?.selectedIndexPath = IndexPath(row: 0, section: SideMenuSectionIndex.mainFolders.rawValue)
-//        self.viewController?.inboxViewController.currentFolder  = InboxSideMenuOptionsName.inbox.rawValue
-//        self.viewController?.inboxViewController.currentFolderFilter = MessagesFoldersName.inbox.rawValue
-//        self.viewController?.inboxViewController.presenter?.interactor?.offset = 0
-//        self.viewController?.inboxViewController.allMessagesArray.removeAll()
-//        self.viewController?.inboxViewController.dataSource?.messagesArray.removeAll()
-//        self.viewController?.inboxViewController.dataSource?.reloadData()
-//    }
+
+    private func resetRootController() {
+        guard let presenter = viewController?.sideMenuController else {
+            return
+        }
+        
+        presenter.dismiss(animated: true, completion: nil)
+    }
     
     func setCustomFoldersData(folderList: FolderList) {
         
@@ -84,7 +60,7 @@ class InboxSideMenuInteractor {
     
     func customFoldersList() {
         
-        HUD.show(.progress)
+        Loader.start()
         
         apiService?.customFoldersList(limit: 200, offset: 0) {(result) in
             
@@ -101,10 +77,12 @@ class InboxSideMenuInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Folders Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Folders Error",
+                           message: error.localizedDescription,
+                           buttonTitle: Strings.Button.closeButton.localized)
             }
             
-            HUD.hide()
+            Loader.stop()
         }
     }
     
@@ -119,7 +97,9 @@ class InboxSideMenuInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "User Myself Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "User Myself Error",
+                           message: error.localizedDescription,
+                           buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
@@ -130,6 +110,34 @@ class InboxSideMenuInteractor {
         self.viewController?.dataSource?.reloadData()
         
         updateInboxBottomBar(with: array, for: self.viewController!.inboxViewController)
+    }
+    
+    func setUnReadCounters(array: Array<UnreadMessagesCounter>, folder: String) {
+        self.viewController?.dataSource?.unreadMessagesArray = array
+        self.viewController?.dataSource?.reloadData()
+        
+        switch folder {
+        case InboxSideMenuOptionsName.inbox.rawValue:
+            updateInboxBottomBar(with: array, for: self.viewController!.inboxViewController)
+            break
+        case InboxSideMenuOptionsName.outbox.rawValue:
+            updateInboxBottomBar(with: array, for: self.viewController!.outboxViewController)
+            break
+        case InboxSideMenuOptionsName.starred.rawValue:
+            updateInboxBottomBar(with: array, for: self.viewController!.starredViewController)
+            break
+        case InboxSideMenuOptionsName.archive.rawValue:
+            updateInboxBottomBar(with: array, for: self.viewController!.archiveViewController)
+            break
+        case InboxSideMenuOptionsName.spam.rawValue:
+            updateInboxBottomBar(with: array, for: self.viewController!.spamViewController)
+            break
+        case InboxSideMenuOptionsName.trash.rawValue:
+            updateInboxBottomBar(with: array, for: self.viewController!.trashViewController)
+            break
+        default:
+            updateInboxBottomBar(with: array, for: self.viewController!.customFoldersViewController)
+        }
     }
     
     func updateInboxBottomBar(with array: Array<UnreadMessagesCounter>, for vc: InboxViewController) {
@@ -147,9 +155,6 @@ class InboxSideMenuInteractor {
     }
     
     func unreadMessagesCounter() {
-        
-        //HUD.show(.progress)
-        
         apiService?.unreadMessagesCounter() {(result) in
             
             switch(result) {
@@ -169,10 +174,7 @@ class InboxSideMenuInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Unread Messages Error", message: error.localizedDescription, button: "closeButton".localized())
             }
-            
-            //HUD.hide()
         }
     }
     
@@ -198,60 +200,32 @@ class InboxSideMenuInteractor {
         switch optionName {
         case InboxSideMenuOptionsName.inbox.rawValue :
             self.applyInboxAction()
-//            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.inbox.rawValue)
-            break
         case InboxSideMenuOptionsName.draft.rawValue :
             self.applyOtherFolderAction(with: self.viewController!.draftViewController)
-//            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.draft.rawValue)
-            break
         case InboxSideMenuOptionsName.sent.rawValue :
             self.applyOtherFolderAction(with: self.viewController!.sentViewControllet)
-//            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.sent.rawValue)
-            break
         case InboxSideMenuOptionsName.outbox.rawValue :
             self.applyOtherFolderAction(with: self.viewController!.outboxViewController)
-//            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.outbox.rawValue)
-            break
         case InboxSideMenuOptionsName.starred.rawValue :
             self.applyOtherFolderAction(with: self.viewController!.starredViewController)
-//            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.starred.rawValue)
-            break
         case InboxSideMenuOptionsName.archive.rawValue :
             self.applyOtherFolderAction(with: self.viewController!.archiveViewController)
-//            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.archive.rawValue)
-            break
         case InboxSideMenuOptionsName.spam.rawValue :
             self.applyOtherFolderAction(with: self.viewController!.spamViewController)
-//            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.spam.rawValue)
-            break
         case InboxSideMenuOptionsName.trash.rawValue :
             self.applyOtherFolderAction(with: self.viewController!.trashViewController)
-//            self.applyFirstSectionAction(folder: optionName, filter: MessagesFoldersName.trash.rawValue)
-            break
         case InboxSideMenuOptionsName.allMails.rawValue :
             self.applyOtherFolderAction(with: self.viewController!.allMailViewController)
-//            self.applyFirstSectionAction(folder: optionName, filter: "")
-            break
         case InboxSideMenuOptionsName.contacts.rawValue :
-//            if (!Device.IS_IPAD) {
-//                self.dismissSideMenuAndTopController()
-//            }
             self.viewController?.router?.showContactsViewController()
         case InboxSideMenuOptionsName.settings.rawValue :
-//            if (!Device.IS_IPAD) {
-//                self.dismissSideMenuAndTopController()
-//            }
             self.viewController?.router?.showSettingsViewController()
-            break
-        case InboxSideMenuOptionsName.help.rawValue :
+        case InboxSideMenuOptionsName.help.rawValue:
             self.openSupportURL()
-            break
+        case InboxSideMenuOptionsName.FAQ.rawValue:
+            self.viewController?.router?.showFAQ()
         case InboxSideMenuOptionsName.manageFolders.rawValue :
-//            if (!Device.IS_IPAD) {
-//                self.dismissSideMenuAndTopController()
-//            }
             self.viewController?.router?.showManageFoldersViewController()
-            break
         case InboxSideMenuOptionsName.logout.rawValue :
             self.viewController?.presenter?.logOut()
             break

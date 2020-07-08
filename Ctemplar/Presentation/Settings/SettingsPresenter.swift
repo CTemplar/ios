@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import AlertHelperKit
-import PKHUD
+import Utility
+import UIKit
 
 class SettingsPresenter {
     
@@ -16,35 +16,46 @@ class SettingsPresenter {
     var interactor       : SettingsInteractor?
 
     func logOut() {
-        
-        let params = Parameters(
+        let params = AlertKitParams(
             title: "logoutTitle".localized(),
             message: "logotuMessage".localized(),
             cancelButton: "cancelButton".localized(),
             otherButtons: ["logotButton".localized()]
         )
         
-        AlertHelperKit().showAlertWithHandler(self.viewController!, parameters: params) { buttonIndex in
-            switch buttonIndex {
+        self.viewController?.showAlert(with: params, onCompletion: { [weak self] (index) in
+            switch index {
             case 0:
-                print("Cancel Logout")
+                DPrint("Cancel Logout")
             default:
-                print("LogOut")
-                self.interactor?.logOut()
+                DPrint("Logout")
+                self?.interactor?.logOut()
             }
-        }
+        })
     }
     
     func setupNavigationLeftItem() {
-        
-        let emptyButton = UIBarButtonItem(image: UIImage(), style: .done, target: self, action: nil)
-        
-        if UIDevice.current.orientation.isLandscape {
-            print("Landscape")
-            self.viewController?.navigationItem.leftBarButtonItem = emptyButton
+        if Device.IS_IPAD {
+            let emptyButton = UIBarButtonItem(image: UIImage(), style: .done, target: self, action: nil)
+            if UIDevice.current.orientation.isLandscape {
+                print("Landscape")
+                self.viewController?.navigationItem.leftBarButtonItem = emptyButton
+            } else {
+                print("Portrait")
+                let leftNavigationItem = UIBarButtonItem(image: #imageLiteral(resourceName: "MenuButton"), style: .plain, target: self, action: #selector(menuButtonPressed))
+                viewController?.navigationItem.leftBarButtonItem = leftNavigationItem
+            }
         } else {
-            print("Portrait")
-            self.viewController?.navigationItem.leftBarButtonItem = self.viewController?.leftBarButtonItem
+            let leftNavigationItem = UIBarButtonItem(image: #imageLiteral(resourceName: "MenuButton"), style: .plain, target: self, action: #selector(menuButtonPressed))
+            viewController?.navigationItem.leftBarButtonItem = leftNavigationItem
         }
+        
+        viewController?.navigationController?.updateTintColor(AppStyle.Colors.loaderColor.color)
     }
+    
+    @objc
+    private func menuButtonPressed(_ sender: Any) {
+        viewController?.router?.showInboxSideMenu()
+    }
+    
 }

@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import MGSwipeTableCell
+import Utility
+import Networking
 
 class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate {
     
@@ -49,7 +51,18 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         self.tableView.tableFooterView = UIView()
         self.tableView.addSubview(self.refreshControl)
         
+        self.parentViewController.refreshButton.addTarget(self, action: #selector(handleRefresh(_:)), for: .touchUpInside)
         registerTableViewCell()
+    }
+    
+    func updateMessageStatus(message: EmailMessage, status: Bool) {
+        for i in 0..<messagesArray.count {
+            if messagesArray[i].messsageID == message.messsageID {
+                messagesArray[i].update(readStatus: status)
+                self.tableView.reloadData()
+                break
+            }
+        }
     }
     
     func setupSwipeActionsButton() -> Array<MGSwipeButton> {
@@ -99,28 +112,29 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
     //MARK: - table view
     
     func registerTableViewCell() {
-        
        self.tableView.register(UINib(nibName: k_InboxMessageTableViewCellXibName, bundle: nil), forCellReuseIdentifier: k_InboxMessageTableViewCellIdentifier)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return self.messagesArray.count
+        return messagesArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell : InboxMessageTableViewCell = tableView.dequeueReusableCell(withIdentifier: k_InboxMessageTableViewCellIdentifier)! as! InboxMessageTableViewCell
-        
+        return configureMailCell(at: indexPath)
+    }
+    
+    private func configureMailCell(at indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: k_InboxMessageTableViewCellIdentifier) as? InboxMessageTableViewCell else {
+            return UITableViewCell()
+        }
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
-
+        
         cell.rightButtons = self.setupSwipeActionsButton()
         cell.delegate = self
         
@@ -128,35 +142,29 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
         
         let message = messagesArray[indexPath.row]
         let selected = isMessageSelected(message: message)
-        /*
-        var localHeader = "decrypting".localized()
-        
-        if messagesHeaderArray.count > indexPath.row {
-            localHeader = messagesHeaderArray[indexPath.row]
-        }
-        
-        if let header = messagesHeaderDictionary[message.messsageID!] {
-            //print("header:", header)
-            localHeader = header
-        }*/
-        /*
-        var localSubject = "decrypting".localized()
-        
-        if let subject = messagesSubjectDictionary[message.messsageID!] {            
-            localSubject = subject
-        }*/
         
         let isSubjectEncrypted = self.parentViewController?.presenter?.interactor?.isSubjectEncrypted(message: message)
         
         cell.setupCellWithData(message: message, header: "", subjectEncrypted: isSubjectEncrypted!, isSelectionMode: self.selectionMode, isSelected: selected, frameWidth: self.tableView.frame.width)
-        
-        //cell.selectionStyle = UITableViewCell.SelectionStyle.none
-        
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastSectionIndex = tableView.numberOfSections - 1
+        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
+        let totalItems = parentViewController.presenter?.interactor?.totalItems ?? 0
         
+        if indexPath.section == lastSectionIndex,
+            indexPath.row == lastRowIndex, messagesArray.count < totalItems {
+            let spinner = MatericalIndicator.shared.loader(with: CGSize(width: 50.0, height: 50.0))
+            tableView.tableFooterView = spinner
+            spinner.startAnimating()
+            parentViewController.presenter?.interactor?.loadMoreInProgress = true
+            parentViewController.presenter?.interactor?.messagesList(folder: parentViewController.currentFolder, withUndo: "", silent: true)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let message = messagesArray[indexPath.row]
@@ -172,7 +180,7 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
             let selected = isMessageSelected(message: message)
             
             if selected {
-                if let index = selectedMessagesIDArray.index(where: {$0 == message.messsageID}) {
+                if let index = selectedMessagesIDArray.firstIndex(where: {$0 == message.messsageID}) {
                     print("deselected")
                    selectedMessagesIDArray.remove(at: index)
                 }
@@ -193,15 +201,19 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
     }
     
     func reloadData() {
-
         self.tableView.reloadData()
         self.refreshControl.endRefreshing()
     }
     
-    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+    func resetFooterView() {
+        self.tableView.tableFooterView = UIView()
+    }
+    
+    @objc
+    private func handleRefresh(_ sender: Any) {
         currentOffset = 0
         parentViewController.presenter?.interactor!.offset = 0
-        self.parentViewController.presenter?.interactor?.updateMessages(withUndo: "", silent: true)
+        self.parentViewController.presenter?.interactor?.updateMessages(withUndo: "", silent: sender is UIButton ? false : true)
     }
     
     // MARK: MGSwipe delegate
@@ -211,16 +223,10 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
     }
     
     func swipeTableCell(_ cell: MGSwipeTableCell, canSwipe direction: MGSwipeDirection, from point: CGPoint) -> Bool {
-        
-        if self.selectionMode {
-            return false
-        }
-        
-        return true
+        return self.selectionMode ? false : true
     }
     
     func swipeTableCell(_ cell: MGSwipeTableCell, tappedButtonAt index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
-        
         guard let indexPath = tableView.indexPath(for: cell) else { return true }
         
         let message = messagesArray[indexPath.row]
@@ -425,43 +431,14 @@ class InboxDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, MGS
             break
         }
     }
-    
-    // MARK: Scrolling
-    
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
-        if let lastCell = tableView.visibleCells.last {
-            let indexPath = tableView.indexPath(for: lastCell)
-            if let index = indexPath?.row {
-                print("last visible cell index:", index)
-                let totalItems = parentViewController.presenter?.interactor!.totalItems
-                let offset = (parentViewController.presenter?.interactor!.offset)!
-                print("currentOffset:", currentOffset)
-                print("offset:", offset)
-                if currentOffset < offset {
-                    if messagesArray.count < totalItems! {
-                        if index + k_offsetForLast >= offset {
-                            print("need load with new offset:", offset)
-                            currentOffset = (parentViewController.presenter?.interactor!.offset)!
-                            parentViewController.presenter?.interactor!.messagesList(folder: parentViewController.currentFolder, withUndo: "", silent: false)
-                        }
-                    }
-                }
-            }
-        }        
-    }
-    
+ 
     // MARK: Actions
     
     @objc func longPressed(sender: UILongPressGestureRecognizer) {
-        
-        if sender.state == UIGestureRecognizer.State.began {
-            
+        if sender.state == .began {
             let touchPoint = sender.location(in: self.tableView)
             if let indexPath = tableView.indexPathForRow(at: touchPoint) {
-                
                 let message = messagesArray[indexPath.row]
-                
                 print("Long pressed row: \(indexPath.row)")
                 if self.selectionMode == false {
                     self.selectedMessagesIDArray.removeAll()

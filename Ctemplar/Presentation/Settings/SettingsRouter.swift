@@ -8,21 +8,15 @@
 
 import Foundation
 import UIKit
-import AlertHelperKit
+import Utility
+import SideMenu
 
 class SettingsRouter {
     
     var viewController: SettingsViewController?
 
     func showInboxSideMenu() {
-        
-        //self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
-//        if (!Device.IS_IPAD) {
-            self.viewController?.openLeft()
-//            self.viewController?.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
-//        } else {
-//            self.viewController?.splitViewController?.toggleMasterView()
-//        }
+        viewController?.sideMenuController?.revealMenu()
     }
     
     func showRecoveryEmailViewController() {
@@ -35,7 +29,9 @@ class SettingsRouter {
     
     func showChangePasswordViewController() {
         //https://ctemplar.atlassian.net/browse/IAD-461
-        AlertHelperKit().showAlert(viewController!, title: nil, message: "featureIsComing".localized(), button: "closeButton".localized())
+        self.viewController?.showAlert(with: "",
+                       message: "featureIsComing".localized(),
+                       buttonTitle: Strings.Button.closeButton.localized)
         return
         
 //        let storyboard: UIStoryboard = UIStoryboard(name: k_ChangePasswordStoryboardName, bundle: nil)
@@ -60,7 +56,6 @@ class SettingsRouter {
     }
     
     func showSecurityViewController() {
-        
         let storyboard: UIStoryboard = UIStoryboard(name: k_SecurityStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_SecurityViewControllerID) as! SecurityViewController
         vc.user = (self.viewController?.user)!
@@ -68,36 +63,35 @@ class SettingsRouter {
     }
     
     func showWhiteBlackListsViewController() {
-        
-        let storyboard: UIStoryboard = UIStoryboard(name: k_WhiteBlackListsStoryboardName, bundle: nil)
-        /*
-        let vc = storyboard.instantiateViewController(withIdentifier: k_WhiteBlackListsViewControllerID) as! WhiteBlackListsViewController
-        vc.user = (self.viewController?.user)!
-        let navigationController = UINavigationController(rootViewController: vc)
-        self.viewController?.present(navigationController, animated: true, completion: nil)*/
-        
+        let storyboard = UIStoryboard(name: k_WhiteBlackListsStoryboardName, bundle: nil)
         let navigationController = storyboard.instantiateViewController(withIdentifier: k_WhiteBlackListsNavigationControllerID) as! WhiteBlackListsNavigationController
         
         let whiteBlackListsViewController = navigationController.viewControllers.first as! WhiteBlackListsViewController
         whiteBlackListsViewController.user = (self.viewController?.user)!
-        
-        //self.viewController?.present(navigationController, animated: true, completion: nil)
         self.viewController?.show(whiteBlackListsViewController, sender: self)
     }
     
+    func showDashboard() {
+        let storyboard = UIStoryboard(name: k_DashboardStoryboardName, bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: DashboardTableViewController.className) as? DashboardTableViewController,
+            let user = viewController?.user {
+            let configurator = DashboardConfigurator()
+            configurator.configure(viewController: vc, user: user)
+            viewController?.show(vc, sender: self)
+        }
+    }
+    
     func showManageFoldersViewController() {
-        
         let storyboard: UIStoryboard = UIStoryboard(name: k_ManageFoldersStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_ManageFoldersViewControllerID) as! ManageFoldersViewController
-        vc.foldersList = (self.viewController?.user.foldersList)!
-        vc.user = (self.viewController?.user)!
+        vc.setup(folderList: viewController?.user.foldersList ?? [])
+        vc.setup(user: viewController?.user)
         vc.showFromSideMenu = false
         vc.showFromSettings = true
         self.viewController?.show(vc, sender: self)
     }
     
     func showSetMailboxViewController() {
-        
         let storyboard: UIStoryboard = UIStoryboard(name: k_SetMailboxStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_SetMailboxViewControllerID) as! SetMailboxViewController
         vc.user = (self.viewController?.user)!
@@ -105,7 +99,6 @@ class SettingsRouter {
     }
     
     func showSetSignatureViewController(with type: SignatureType) {
-        
         let storyboard: UIStoryboard = UIStoryboard(name: k_SetSignatureStoryboardName, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: k_SetSignatureViewControllerID) as! SetSignatureViewController
         vc.signatureType = type

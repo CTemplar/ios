@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Networking
 
 class PgpKeysViewController: UIViewController {
 

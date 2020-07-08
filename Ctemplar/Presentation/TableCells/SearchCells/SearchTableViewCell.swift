@@ -8,7 +8,8 @@
 
 import Foundation
 import UIKit
-
+import Utility
+import Networking
 
 class SearchTableViewCell: UITableViewCell {
     

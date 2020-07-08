@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import AlertHelperKit
-import PKHUD
+import Utility
+import Networking
 
 class SearchInteractor {
     
@@ -41,7 +41,7 @@ class SearchInteractor {
     func getAllMessagesPageByPage() {
         
         if self.offset >= self.totalItems && self.offset > 0 {
-            HUD.hide()
+            Loader.stop()
             return
         }
     
@@ -57,9 +57,9 @@ class SearchInteractor {
     
     func allMessagesList() {
         
-        HUD.show(.progress)
+        Loader.start()
         
-        apiService?.messagesList(folder: "", messagesIDIn: "", seconds: 0, offset: self.offset) {(result) in
+        apiService?.messagesList(folder: "", messagesIDIn: "", seconds: 0, offset: self.offset) { (result) in
             
             switch(result) {
                 
@@ -85,22 +85,17 @@ class SearchInteractor {
                 self.getAllMessagesPageByPage()
                 
             case .failure(let error):
-                HUD.hide()
+                Loader.stop()
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
-            }
-            
-            if self.offset != 0 {
-            //    HUD.hide()
+                self.viewController?.showAlert(with: "Messages Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
     
 /*
     func allMessagesList() {
-        
-        HUD.show(.progress)
-        
         apiService?.messagesList(folder: "", messagesIDIn: "", seconds: 0, offset: -1) {(result) in
             
             switch(result) {
@@ -114,12 +109,9 @@ class SearchInteractor {
                 self.customFoldersList()
                 
             case .failure(let error):
-                HUD.hide()
                 print("error:", error)
                 AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
             }
-            
-           // HUD.hide()
         }
     }*/
     
@@ -133,9 +125,6 @@ class SearchInteractor {
     }
     
     func customFoldersList() {
-        
-        //HUD.show(.progress)
-        
         apiService?.customFoldersList(limit: 200, offset: 0) {(result) in
             
             switch(result) {
@@ -149,10 +138,10 @@ class SearchInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Folders Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Folders Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
-            
-            //HUD.hide()
         }
     }
     

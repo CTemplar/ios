@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_5" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,19 +14,19 @@
             <objects>
                 <viewController storyboardIdentifier="SettingsViewController" id="7nv-Md-zBG" customClass="SettingsViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="siU-Pb-xUC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KyB-uE-xNK">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="settingsAppVersuinCellIdentifier" rowHeight="50" id="kh8-8L-4HG">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kh8-8L-4HG" id="j62-f3-HXZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -37,21 +37,13 @@
                         <constraints>
                             <constraint firstItem="KyB-uE-xNK" firstAttribute="top" secondItem="Zbq-Fq-Kgx" secondAttribute="top" id="GFR-wg-jQU"/>
                             <constraint firstItem="Zbq-Fq-Kgx" firstAttribute="trailing" secondItem="KyB-uE-xNK" secondAttribute="trailing" id="hCe-Pt-UL5"/>
-                            <constraint firstItem="Zbq-Fq-Kgx" firstAttribute="bottom" secondItem="KyB-uE-xNK" secondAttribute="bottom" id="hbt-8q-XkD"/>
+                            <constraint firstAttribute="bottom" secondItem="KyB-uE-xNK" secondAttribute="bottom" id="hbt-8q-XkD"/>
                             <constraint firstItem="KyB-uE-xNK" firstAttribute="leading" secondItem="Zbq-Fq-Kgx" secondAttribute="leading" id="l5H-Ch-Pjx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Zbq-Fq-Kgx"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Settings" id="xFU-5H-sNN">
-                        <barButtonItem key="leftBarButtonItem" image="MenuButton" id="o3W-Pl-RHN">
-                            <color key="tintColor" name="navButtonTintColor"/>
-                            <connections>
-                                <action selector="menuButtonPressed:" destination="7nv-Md-zBG" id="N9S-bd-YrB"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Settings" id="xFU-5H-sNN"/>
                     <connections>
-                        <outlet property="leftBarButtonItem" destination="o3W-Pl-RHN" id="L1f-Xi-Q8c"/>
                         <outlet property="settingsTableView" destination="KyB-uE-xNK" id="17x-Yw-d2T"/>
                     </connections>
                 </viewController>
@@ -61,10 +53,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="MenuButton" width="20" height="14"/>
-        <namedColor name="navButtonTintColor">
-            <color red="0.17299999296665192" green="0.24300000071525574" blue="0.31400001049041748" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="viewBackgroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

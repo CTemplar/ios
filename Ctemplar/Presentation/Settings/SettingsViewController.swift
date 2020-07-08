@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Networking
 
 class  SettingsViewController: UIViewController {
     
@@ -35,17 +36,14 @@ class  SettingsViewController: UIViewController {
         
         dataSource?.initWith(parent: self, tableView: settingsTableView)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(userSettingsUpdate), name: NSNotification.Name(rawValue: k_updateUserSettingsNotificationID), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadViewController), name: NSNotification.Name(rawValue: k_reloadViewControllerNotificationID), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateDataSource), name: NSNotification.Name(rawValue: k_reloadViewControllerDataSourceNotificationID), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userSettingsUpdate), name: .updateUserSettingsNotificationID, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadViewController), name: .reloadViewControllerNotificationID, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateDataSource), name: .reloadViewControllerDataSourceNotificationID, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if (Device.IS_IPAD) {
-            self.presenter?.setupNavigationLeftItem()
-        }
+        presenter?.setupNavigationLeftItem()
     }
     
     @objc func reloadViewController() {
@@ -59,12 +57,7 @@ class  SettingsViewController: UIViewController {
     }
     
     //MARK: - IBActions
-    
-    @IBAction func menuButtonPressed(_ sender: AnyObject) {
-        
-        self.router?.showInboxSideMenu()  
-    }
-    
+
     @objc func userSettingsUpdate(notification: Notification) {
         
         self.presenter?.interactor?.userMyself()

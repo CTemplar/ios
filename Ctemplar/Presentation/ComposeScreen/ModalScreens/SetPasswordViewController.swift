@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import AlertHelperKit
+import Utility
 
 protocol SetPasswordDelegate {
     func applyAction(password: String, passwordHint: String, expiredTime: Int)
@@ -52,7 +52,7 @@ class SetPasswordViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.formatterService = appDelegate.applicationManager.formatterService
+        self.formatterService = UtilityManager.shared.formatterService
         
         setPasswordTextField.delegate = self
         confirmPasswordTextField.delegate = self
@@ -271,8 +271,9 @@ class SetPasswordViewController: UIViewController, UITextFieldDelegate {
     }
     
     func showExpirationTimeAlert() {
-        
-        AlertHelperKit().showAlert(self, title: "Info:".localized(), message: "expireTimeAlert".localized(), button: "closeButton".localized())
+        showAlert(with: "Info:".localized(),
+                  message: "expireTimeAlert".localized(),
+                  buttonTitle: Strings.Button.closeButton.localized)
     }
     
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {

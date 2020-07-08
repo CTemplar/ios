@@ -10,8 +10,7 @@ import Foundation
 import UIKit
 
 enum AppStoryboard : String {
-    
-    case Main, Inbox, InboxSideMenu, LaunchScreen, Login, Login_iPad = "Login-iPad", Compose, Search, MoveTo, ViewInboxEmail, ManageFolders, AddFolder, EditFolder, Contacts, SplitiPad, Settings, RecoveryEmail, ChangePassword, SelectLanguage, SavingContacts, Security, WhiteBlackLists, SetMailbox, SetSignature, PgpKeys, PrivacyAndTerms, AboutAs, UpgradeToPrime
+    case Main, Inbox, InboxSideMenu, LaunchScreen, Login, Login_iPad = "Login-iPad", Compose, Search, MoveTo, ViewInboxEmail, ManageFolders, AddFolder, EditFolder, Contacts, SplitiPad, Settings, RecoveryEmail, ChangePassword, SelectLanguage, SavingContacts, Security, WhiteBlackLists, SetMailbox, SetSignature, PgpKeys, PrivacyAndTerms, AboutAs, UpgradeToPrime, FAQ, Dashboard
     
     var instance : UIStoryboard {
         if UIDevice.current.userInterfaceIdiom == .pad {

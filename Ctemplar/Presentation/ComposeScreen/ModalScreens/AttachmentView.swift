@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Utility
 
 protocol AttachmentDelegate {
     func deleteAttach(tag: Int)

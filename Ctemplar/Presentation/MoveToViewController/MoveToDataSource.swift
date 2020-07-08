@@ -8,36 +8,39 @@
 
 import Foundation
 import UIKit
+import Networking
 
 class MoveToDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
-    var tableView               : UITableView!
-    var parentViewController    : MoveToViewController?
+    // MARK: Properties
+    private var tableView: UITableView
+    private weak var parentViewController: MoveToViewController?
+    var customFoldersArray: [Folder] = []
+    var selectedFolderIndex: Int?
     
-    var customFoldersArray      : Array<Folder> = []    
-    var selectedFolderIndex     : Int?
-    
-    func initWith(parent: MoveToViewController, tableView: UITableView) {
-        
+    // MARK: - Constructor
+    init(parent: MoveToViewController, tableView: UITableView) {
         self.parentViewController = parent
         self.tableView = tableView
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
         
-        self.tableView.tableFooterView = UIView()
+        super.init()
         
-        registerTableViewCell()
+        setupTableView()
     }
-    
-    func registerTableViewCell() {
-                
-        self.tableView.register(UINib(nibName: k_MoveToFolderCellXibName, bundle: nil), forCellReuseIdentifier: k_MoveToFolderTableViewCellIdentifier)
+
+    // MARK: - Setuo
+    func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView()
+        tableView.register(UINib(nibName: k_MoveToFolderCellXibName, bundle: nil), forCellReuseIdentifier: k_MoveToFolderTableViewCellIdentifier)
+
+        tableView.reloadData()
     }
     
     //MARK: - table view
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return customFoldersArray.count
     }
     
@@ -62,7 +65,6 @@ class MoveToDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         if self.selectedFolderIndex == indexPath.row {
             self.selectedFolderIndex = nil
         } else {
@@ -71,26 +73,14 @@ class MoveToDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         
         setApplyButtonEnabled()
         
-        self.tableView.reloadData()
+        reloadData()
     }
     
     func reloadData() {
-        
-        if customFoldersArray.count > 0 {
-            self.tableView.isHidden = false
-        } else {
-            self.tableView.isHidden = true
-        }
-        
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
     func setApplyButtonEnabled() {
-        
-        if self.selectedFolderIndex == nil {
-            self.parentViewController?.presenter?.applyButton(enabled: false)
-        } else {
-            self.parentViewController?.presenter?.applyButton(enabled: true)
-        }
+        parentViewController?.presenter?.applyButton(enabled: selectedFolderIndex == nil ? false : true)
     }
 }

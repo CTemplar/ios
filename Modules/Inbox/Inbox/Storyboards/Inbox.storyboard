@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Brf-MD-hLc">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Inbox-->
+        <scene sceneID="PcB-kS-MaD">
+            <objects>
+                <viewController storyboardIdentifier="InboxViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7un-PS-iVo" customClass="InboxViewController" customModule="Inbox" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uet-IA-cBW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1By-Xy-Vt6">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="718"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="YsT-3b-yEr">
+                                <rect key="frame" x="83.000000000000014" y="333" width="209.33333333333337" height="146"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyInboxIcon" translatesAutoresizingMaskIntoConstraints="NO" id="6cu-Hs-Crr">
+                                        <rect key="frame" x="71.333333333333343" y="0.0" width="66.666666666666657" height="49.333333333333336"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have no Inbox messages" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Cmn-Qe-QrA">
+                                        <rect key="frame" x="0.0" y="64.333333333333314" width="209.33333333333334" height="18.666666666666671"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                        <color key="textColor" name="cellSubTitleTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="451-Rj-For">
+                                        <rect key="frame" x="80.666666666666657" y="98" width="48" height="48"/>
+                                        <color key="tintColor" red="0.86274509799999999" green="0.30588235289999999" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="Refresh"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="taQ-ku-DZ7">
+                                <rect key="frame" x="299" y="642" width="60" height="60"/>
+                                <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="Q8C-Bt-bP5"/>
+                                    <constraint firstAttribute="height" constant="60" id="UJT-BW-TYf"/>
+                                </constraints>
+                                <state key="normal" image="ComposeButton"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onTapCompose:" destination="7un-PS-iVo" eventType="touchUpInside" id="K53-XB-7Ow"/>
+                                </connections>
+                            </button>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="doU-vU-6l7">
+                                <rect key="frame" x="0.0" y="718" width="375" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="hCy-0T-hra"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem image="darkSpam" id="stG-vi-ogB">
+                                        <color key="tintColor" name="redColor"/>
+                                        <connections>
+                                            <action selector="onTapSpam:" destination="7un-PS-iVo" id="Cri-SF-jlk"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="4nY-LT-IiW"/>
+                                    <barButtonItem image="moveMessage" id="wUb-ya-qUy">
+                                        <color key="tintColor" name="redColor"/>
+                                        <connections>
+                                            <action selector="onTapMoveTo:" destination="7un-PS-iVo" id="aqH-PD-1fv"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="n0f-wj-xyQ"/>
+                                    <barButtonItem image="trashMessage" id="eNj-VD-Ka2">
+                                        <color key="tintColor" name="redColor"/>
+                                        <connections>
+                                            <action selector="onTapTrash:" destination="7un-PS-iVo" id="z2s-BE-yI6"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="8Sk-rZ-GG5"/>
+                                    <barButtonItem image="MoreButton" id="W4C-2B-9qh">
+                                        <color key="tintColor" name="redColor"/>
+                                        <connections>
+                                            <action selector="onTapMore:" destination="7un-PS-iVo" id="6KU-2u-a2B"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PjB-IV-Kjy">
+                                <rect key="frame" x="0.0" y="718" width="375" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="pLc-3f-0Nn"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="XO5-zo-i2K"/>
+                                    <barButtonItem image="trashMessage" id="ROd-fA-n9m">
+                                        <color key="tintColor" red="0.035294117649999998" green="0.1215686275" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="onTapTrash:" destination="7un-PS-iVo" id="6bY-QA-zmF"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="vF1-7A-oIw"/>
+                                </items>
+                            </toolbar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cEX-fQ-ef4">
+                                <rect key="frame" x="0.0" y="718" width="375" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="ITU-ap-Fhs"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="dwd-mf-EMn"/>
+                                    <barButtonItem systemItem="undo" id="lT7-Vf-NXg">
+                                        <color key="tintColor" name="redColor"/>
+                                        <connections>
+                                            <action selector="onTapUndo:" destination="7un-PS-iVo" id="14h-ST-1Rt"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="3Nf-OS-FKr"/>
+                                </items>
+                            </toolbar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HQg-sx-co3">
+                                <rect key="frame" x="0.0" y="718" width="375" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="pxg-eL-H84"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem image="FilterButton" id="I5H-Kl-5pa">
+                                        <color key="tintColor" name="redColor"/>
+                                        <connections>
+                                            <action selector="onTapFilter:" destination="7un-PS-iVo" id="q8F-BQ-nVY"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="KlJ-sv-7DN"/>
+                                    <barButtonItem style="plain" id="FZk-if-ond">
+                                        <view key="customView" contentMode="scaleToFill" id="Mm7-rP-MgC">
+                                            <rect key="frame" x="67.666666666666686" y="12" width="240" height="36"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Jad-C7-YdN">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="36"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="345 emails" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RT6-Iy-m5Y">
+                                                            <rect key="frame" x="0.0" y="0.0" width="240" height="16.333333333333332"/>
+                                                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                                            <color key="textColor" name="readMessageCountText"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 unread" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xi1-vJ-NTQ">
+                                                            <rect key="frame" x="0.0" y="18.333333333333329" width="240" height="17.666666666666671"/>
+                                                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                                            <color key="textColor" red="0.57647058819999997" green="0.56862745100000001" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="Jad-C7-YdN" firstAttribute="leading" secondItem="Mm7-rP-MgC" secondAttribute="leading" id="J5g-d9-vLj"/>
+                                                <constraint firstAttribute="trailing" secondItem="Jad-C7-YdN" secondAttribute="trailing" id="LgH-qa-ZI7"/>
+                                                <constraint firstItem="Jad-C7-YdN" firstAttribute="top" secondItem="Mm7-rP-MgC" secondAttribute="top" id="NpV-80-W4Z"/>
+                                                <constraint firstAttribute="bottom" secondItem="Jad-C7-YdN" secondAttribute="bottom" id="nTD-Gf-bOu"/>
+                                            </constraints>
+                                        </view>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="PLs-5q-Zyt"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="doU-vU-6l7" firstAttribute="trailing" secondItem="HQg-sx-co3" secondAttribute="trailing" id="03L-s2-s5j"/>
+                            <constraint firstItem="doU-vU-6l7" firstAttribute="top" secondItem="HQg-sx-co3" secondAttribute="top" id="0eY-6t-56H"/>
+                            <constraint firstItem="gw0-lR-CL4" firstAttribute="trailing" secondItem="1By-Xy-Vt6" secondAttribute="trailing" id="CJA-cu-jgN"/>
+                            <constraint firstItem="gw0-lR-CL4" firstAttribute="bottom" secondItem="taQ-ku-DZ7" secondAttribute="bottom" constant="76" id="Dxx-D5-waQ"/>
+                            <constraint firstItem="cEX-fQ-ef4" firstAttribute="top" secondItem="PjB-IV-Kjy" secondAttribute="top" id="HZW-lH-slQ"/>
+                            <constraint firstItem="YsT-3b-yEr" firstAttribute="centerX" secondItem="uet-IA-cBW" secondAttribute="centerX" id="Hd1-gw-4aC"/>
+                            <constraint firstItem="HQg-sx-co3" firstAttribute="leading" secondItem="gw0-lR-CL4" secondAttribute="leading" id="J2Q-Qg-Cbn"/>
+                            <constraint firstItem="doU-vU-6l7" firstAttribute="top" secondItem="1By-Xy-Vt6" secondAttribute="bottom" id="KcN-0q-hlW"/>
+                            <constraint firstItem="HQg-sx-co3" firstAttribute="top" secondItem="taQ-ku-DZ7" secondAttribute="bottom" constant="16" id="Nk6-Y7-LzJ"/>
+                            <constraint firstItem="1By-Xy-Vt6" firstAttribute="leading" secondItem="gw0-lR-CL4" secondAttribute="leading" id="RNR-tY-kWP"/>
+                            <constraint firstItem="PjB-IV-Kjy" firstAttribute="bottom" secondItem="doU-vU-6l7" secondAttribute="bottom" id="Rv1-xR-Jp9"/>
+                            <constraint firstAttribute="bottom" secondItem="1By-Xy-Vt6" secondAttribute="bottom" constant="94" id="VYm-lE-e2d"/>
+                            <constraint firstItem="HQg-sx-co3" firstAttribute="trailing" secondItem="gw0-lR-CL4" secondAttribute="trailing" id="Y0Z-xK-dEY"/>
+                            <constraint firstItem="cEX-fQ-ef4" firstAttribute="leading" secondItem="PjB-IV-Kjy" secondAttribute="leading" id="Zk3-o9-Eja"/>
+                            <constraint firstItem="cEX-fQ-ef4" firstAttribute="bottom" secondItem="PjB-IV-Kjy" secondAttribute="bottom" id="aM0-Xj-KJS"/>
+                            <constraint firstItem="1By-Xy-Vt6" firstAttribute="top" secondItem="uet-IA-cBW" secondAttribute="top" id="eJh-vU-g28"/>
+                            <constraint firstItem="gw0-lR-CL4" firstAttribute="trailing" secondItem="taQ-ku-DZ7" secondAttribute="trailing" constant="16" id="eLJ-Bk-U3G"/>
+                            <constraint firstItem="cEX-fQ-ef4" firstAttribute="trailing" secondItem="PjB-IV-Kjy" secondAttribute="trailing" id="fBv-Ld-aXu"/>
+                            <constraint firstItem="PjB-IV-Kjy" firstAttribute="top" secondItem="doU-vU-6l7" secondAttribute="top" id="q2N-gf-pPQ"/>
+                            <constraint firstItem="YsT-3b-yEr" firstAttribute="centerY" secondItem="uet-IA-cBW" secondAttribute="centerY" id="qzR-K8-f8M"/>
+                            <constraint firstItem="doU-vU-6l7" firstAttribute="bottom" secondItem="HQg-sx-co3" secondAttribute="bottom" id="rhJ-D7-6Kj"/>
+                            <constraint firstItem="gw0-lR-CL4" firstAttribute="bottom" secondItem="HQg-sx-co3" secondAttribute="bottom" id="sXi-Gc-PJZ"/>
+                            <constraint firstItem="PjB-IV-Kjy" firstAttribute="trailing" secondItem="doU-vU-6l7" secondAttribute="trailing" id="tSM-1A-dj4"/>
+                            <constraint firstItem="doU-vU-6l7" firstAttribute="leading" secondItem="HQg-sx-co3" secondAttribute="leading" id="tqS-f3-6NS"/>
+                            <constraint firstItem="PjB-IV-Kjy" firstAttribute="leading" secondItem="doU-vU-6l7" secondAttribute="leading" id="y79-fs-m4J"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gw0-lR-CL4"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Inbox" id="TI5-s6-LLo"/>
+                    <connections>
+                        <outlet property="composeButton" destination="taQ-ku-DZ7" id="RfU-Qq-w4L"/>
+                        <outlet property="composeButtonBottomConstraintToSafeArea" destination="Dxx-D5-waQ" id="VyO-Rc-G4I"/>
+                        <outlet property="composeButtonBottomConstraintToToolbar" destination="Nk6-Y7-LzJ" id="plu-Hr-rUK"/>
+                        <outlet property="draftToolbar" destination="PjB-IV-Kjy" id="IrM-pu-PXe"/>
+                        <outlet property="generalToolbar" destination="HQg-sx-co3" id="uqK-D8-ayt"/>
+                        <outlet property="inboxEmptyImageView" destination="6cu-Hs-Crr" id="0oH-X4-4Nf"/>
+                        <outlet property="inboxEmptyLabel" destination="Cmn-Qe-QrA" id="T6A-jj-GtC"/>
+                        <outlet property="messagesLabel" destination="RT6-Iy-m5Y" id="yJ6-HW-qjb"/>
+                        <outlet property="noMessagePromptStackView" destination="YsT-3b-yEr" id="2ex-Ji-qKJ"/>
+                        <outlet property="reloadButton" destination="451-Rj-For" id="w7D-DB-dE4"/>
+                        <outlet property="selectionToolBar" destination="doU-vU-6l7" id="f79-GB-Zgm"/>
+                        <outlet property="tableView" destination="1By-Xy-Vt6" id="6EF-7F-sTK"/>
+                        <outlet property="tableViewBottomConstraintToSafeArea" destination="VYm-lE-e2d" id="7Ga-UI-Uw2"/>
+                        <outlet property="tableViewBottomConstraintToToolbar" destination="KcN-0q-hlW" id="yfS-ur-tyg"/>
+                        <outlet property="undoBarButtonItem" destination="lT7-Vf-NXg" id="rNT-op-l1I"/>
+                        <outlet property="undoToolBar" destination="cEX-fQ-ef4" id="Tsf-Pc-ZJw"/>
+                        <outlet property="unreadMessagesLabel" destination="Xi1-vJ-NTQ" id="yc7-IC-WuJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fy2-Fn-OBf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-356" y="92.364532019704441"/>
+        </scene>
+        <!--Inbox Filter View Controller-->
+        <scene sceneID="uOQ-VH-wnP">
+            <objects>
+                <viewController storyboardIdentifier="InboxFilterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Brf-MD-hLc" customClass="InboxFilterViewController" customModule="Inbox" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vfw-Q9-MHJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="R42-KF-axj">
+                                <rect key="frame" x="0.0" y="140" width="375" height="672"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="InboxFilterCell" textLabel="njf-XZ-VL1" rowHeight="60" style="IBUITableViewCellStyleDefault" id="uiA-cR-yEh">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uiA-cR-yEh" id="j71-kC-9Dj">
+                                            <rect key="frame" x="0.0" y="0.0" width="336" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="njf-XZ-VL1">
+                                                    <rect key="frame" x="15" y="0.0" width="313" height="60"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="tintColor" name="redColor"/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g8q-xW-2cx">
+                                <rect key="frame" x="0.0" y="44" width="375" height="96"/>
+                                <items>
+                                    <navigationItem title="Filters" id="ewh-bS-JY3">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="A7c-kR-WYf">
+                                            <color key="tintColor" name="folderCellTextColor"/>
+                                            <connections>
+                                                <action selector="onTapClose:" destination="Brf-MD-hLc" id="pSf-2O-uge"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem title="Apply" style="done" id="VRk-zg-7jk">
+                                                <color key="tintColor" name="folderCellTextColor"/>
+                                                <connections>
+                                                    <action selector="onTapApplyFilters:" destination="Brf-MD-hLc" id="D0Q-TR-W0a"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem systemItem="refresh" id="krW-Hy-8HG">
+                                                <color key="tintColor" name="folderCellTextColor"/>
+                                                <connections>
+                                                    <action selector="onTapReset:" destination="Brf-MD-hLc" id="kNa-G9-J7F"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="R42-KF-axj" firstAttribute="trailing" secondItem="NvC-ps-zA2" secondAttribute="trailing" id="H4X-fe-wnQ"/>
+                            <constraint firstAttribute="bottom" secondItem="R42-KF-axj" secondAttribute="bottom" id="YDp-MK-g5s"/>
+                            <constraint firstItem="g8q-xW-2cx" firstAttribute="top" secondItem="NvC-ps-zA2" secondAttribute="top" id="f46-kC-vKd"/>
+                            <constraint firstItem="g8q-xW-2cx" firstAttribute="leading" secondItem="vfw-Q9-MHJ" secondAttribute="leading" id="fM8-EP-BfP"/>
+                            <constraint firstAttribute="trailing" secondItem="g8q-xW-2cx" secondAttribute="trailing" id="hUT-jK-b1H"/>
+                            <constraint firstItem="R42-KF-axj" firstAttribute="top" secondItem="g8q-xW-2cx" secondAttribute="bottom" id="s1s-gd-YxI"/>
+                            <constraint firstItem="R42-KF-axj" firstAttribute="leading" secondItem="NvC-ps-zA2" secondAttribute="leading" id="vPX-x9-6fr"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="NvC-ps-zA2"/>
+                    </view>
+                    <connections>
+                        <outlet property="applyBarButtonItem" destination="VRk-zg-7jk" id="awF-Mf-sjg"/>
+                        <outlet property="filterTableView" destination="R42-KF-axj" id="YFx-JT-keD"/>
+                        <outlet property="navigationBar" destination="g8q-xW-2cx" id="vUu-cJ-Rfy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Mz-Pe-rCe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="484" y="92.203898050974516"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ComposeButton" width="44" height="44"/>
+        <image name="EmptyInboxIcon" width="66.666664123535156" height="49.333332061767578"/>
+        <image name="FilterButton" width="44" height="44"/>
+        <image name="MoreButton" width="20" height="20"/>
+        <image name="Refresh" width="48" height="48"/>
+        <image name="darkSpam" width="20" height="20"/>
+        <image name="moveMessage" width="44" height="44"/>
+        <image name="trashMessage" width="44" height="44"/>
+        <namedColor name="cellSubTitleTextColor">
+            <color red="0.1289999932050705" green="0.1289999932050705" blue="0.1289999932050705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="folderCellTextColor">
+            <color red="0.090000003576278687" green="0.19599999487400055" blue="0.30199998617172241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="readMessageCountText">
+            <color red="0.32899999618530273" green="0.32899999618530273" blue="0.32899999618530273" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="redColor">
+            <color red="0.90600001811981201" green="0.29800000786781311" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -8,8 +8,7 @@
 
 import Foundation
 import UIKit
-import AlertHelperKit
-import PKHUD
+import Utility
 
 class SelectLanguageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
    
@@ -51,14 +50,13 @@ class SelectLanguageViewController: UIViewController, UITableViewDataSource, UIT
         switch indexPath.row {
         case Languages.english.rawValue:
             languageName = LanguagesName.english.rawValue
-            break
         case Languages.russian.rawValue:
             languageName = LanguagesName.russian.rawValue
-            break
         case Languages.french.rawValue:
             languageName = LanguagesName.french.rawValue
-        default:
-            break
+        case Languages.slovak.rawValue:
+            languageName = LanguagesName.slovak.rawValue
+        default: break
         }
         
         let selected = self.isLanguageSelected(index: indexPath.row)
@@ -77,15 +75,14 @@ class SelectLanguageViewController: UIViewController, UITableViewDataSource, UIT
         switch indexPath.row {
         case Languages.english.rawValue:
             languagePrefix = LanguagesBundlePrefix.english
-            break
         case Languages.russian.rawValue:
             languagePrefix = LanguagesBundlePrefix.russian
-            break
         case Languages.french.rawValue:
             languagePrefix = LanguagesBundlePrefix.french
+        case Languages.slovak.rawValue:
+            languagePrefix = LanguagesBundlePrefix.slovak
         default:
             languagePrefix = LanguagesBundlePrefix.english
-            break
         }
         
         self.selectLangage(language: languagePrefix)
@@ -116,11 +113,10 @@ class SelectLanguageViewController: UIViewController, UITableViewDataSource, UIT
         self.viewWillAppear(true)
         self.reloadData()
         
-        NotificationCenter.default.post(name: Notification.Name(k_reloadViewControllerNotificationID), object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: .reloadViewControllerNotificationID, object: nil, userInfo: nil)
     }
     
     func isLanguageSelected(index: Int) -> Bool {
-        
         var language : String = ""
         let currentLanguage = Bundle.getLanguage()
         
@@ -131,6 +127,8 @@ class SelectLanguageViewController: UIViewController, UITableViewDataSource, UIT
             language = LanguagesBundlePrefix.russian.rawValue
         case Languages.french.rawValue:
             language = LanguagesBundlePrefix.french.rawValue
+        case Languages.slovak.rawValue:
+            language = LanguagesBundlePrefix.slovak.rawValue
         default:
             language = LanguagesBundlePrefix.english.rawValue
         }

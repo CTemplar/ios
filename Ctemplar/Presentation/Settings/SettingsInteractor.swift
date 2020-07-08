@@ -7,8 +7,9 @@
 //
 
 import Foundation
-import AlertHelperKit
-import PKHUD
+import Networking
+import Utility
+import UIKit
 
 class SettingsInteractor {
     
@@ -23,46 +24,37 @@ class SettingsInteractor {
     }
     
     func SettingsCellPressed(indexPath: IndexPath) {
-        
         let section = indexPath.section
         let row = indexPath.row
         
         switch section {
         case SettingsSections.general.rawValue:
             self.SettingsGeneralCellPressed(index: row)
-            break
         case SettingsSections.folders.rawValue:
             self.SettingsFoldersCellPressed(index: row)
-            break
         case SettingsSections.security.rawValue:
             self.SettingsSecurityCellPressed(index: row)
-            break
         case SettingsSections.mail.rawValue:
             self.SettingsMailCellPressed(index: row)
-            break
         case SettingsSections.about.rawValue:
             self.SettingsAboutCellPressed(index: row)
-            break
         default:
             break
         }
     }
     
     func SettingsGeneralCellPressed(index: Int) {
-        
         switch index {
         case SettingsGeneralSection.language.rawValue:
-            self.viewController?.router?.showSelectLanguageViewController()
-            break
+            viewController?.router?.showSelectLanguageViewController()
         case SettingsGeneralSection.notification.rawValue:
             UIApplication.openAppSettings()
-            break
         case SettingsGeneralSection.contacts.rawValue:
-            self.viewController?.router?.showSavingContactsViewController()
-            break
+            viewController?.router?.showSavingContactsViewController()
         case SettingsGeneralSection.whiteBlackList.rawValue:
-            self.viewController?.router?.showWhiteBlackListsViewController()
-            break
+            viewController?.router?.showWhiteBlackListsViewController()
+        case SettingsGeneralSection.dashboard.rawValue:
+            viewController?.router?.showDashboard()
         default:
             break
         }
@@ -148,6 +140,8 @@ class SettingsInteractor {
             currentLanguage = LanguagesName.russian.rawValue
         case LanguagesBundlePrefix.french.rawValue:
             currentLanguage = LanguagesName.french.rawValue
+        case LanguagesBundlePrefix.slovak.rawValue:
+            currentLanguage = LanguagesName.slovak.rawValue
         default:
             currentLanguage = LanguagesName.english.rawValue
         }
@@ -169,11 +163,13 @@ class SettingsInteractor {
                 
                 self.viewController?.dataSource?.reloadData()
                 
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: value)
+                NotificationCenter.default.post(name: .updateUserDataNotificationID, object: value)
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "User Myself Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "User Myself Error",
+                               message: error.localizedDescription,
+                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }

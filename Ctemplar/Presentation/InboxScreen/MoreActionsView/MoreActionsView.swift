@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Utility
 
 protocol MoreActionsDelegate {
     func applyAction(_ sender: AnyObject, isButton: Bool)

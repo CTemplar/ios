@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import WebKit
-import PKHUD
+import Utility
 
 class PrivacyAndTermsViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
    
@@ -61,17 +61,14 @@ class PrivacyAndTermsViewController: UIViewController, WKNavigationDelegate, WKU
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        
-        HUD.hide()
+        Loader.stop()
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        
-        HUD.show(.progress)
+        Loader.start()
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        
-        HUD.hide()
+        Loader.stop()
     }
 }

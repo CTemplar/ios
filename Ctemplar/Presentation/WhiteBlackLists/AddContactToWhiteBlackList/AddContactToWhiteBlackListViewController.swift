@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Utility
 
 protocol AddContactToWhiteBlackListDelegate {
     func addAction(name: String, email: String)
@@ -40,7 +41,7 @@ class AddContactToWhiteBlackListViewController: UIViewController, UITextFieldDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.formatterService = appDelegate.applicationManager.formatterService
+        self.formatterService = UtilityManager.shared.formatterService
         
         self.nameTextField.delegate = self
         self.emailTextField.delegate = self

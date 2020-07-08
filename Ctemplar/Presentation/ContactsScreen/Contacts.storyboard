@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,21 +19,21 @@
             <objects>
                 <viewController storyboardIdentifier="ContactsViewController" id="2vi-x4-vcD" customClass="ContactsViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kf4-dK-U3s">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HMB-Ka-V96">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyContactsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="VIS-Uv-COX">
-                                        <rect key="frame" x="137.5" y="136.5" width="100" height="100"/>
+                                        <rect key="frame" x="137.66666666666666" y="170" width="100" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="fZw-Uw-uxP"/>
                                             <constraint firstAttribute="width" secondItem="VIS-Uv-COX" secondAttribute="height" multiplier="1:1" id="r3O-GU-Kfq"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="noContacts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="bHr-zi-ycR" customClass="UILocalizedLabel" customModule="Ctemplar" customModuleProvider="target">
-                                        <rect key="frame" x="27.5" y="268.5" width="320" height="18"/>
+                                        <rect key="frame" x="27.666666666666657" y="302" width="320" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="320" id="AgM-c5-YNg"/>
                                             <constraint firstAttribute="width" secondItem="bHr-zi-ycR" secondAttribute="height" multiplier="160:9" id="NyQ-J7-YHB"/>
@@ -43,10 +43,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gEa-jr-Tvw">
-                                        <rect key="frame" x="0.0" y="618" width="375" height="85"/>
+                                        <rect key="frame" x="0.0" y="685" width="375" height="85"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jdu-YA-ZOz">
-                                                <rect key="frame" x="67.5" y="0.0" width="240" height="49"/>
+                                                <rect key="frame" x="67.666666666666686" y="0.0" width="240" height="49"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhitePlus" translatesAutoresizingMaskIntoConstraints="NO" id="RXt-ml-DY4">
                                                         <rect key="frame" x="0.0" y="14" width="20" height="20"/>
@@ -84,7 +84,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzb-ZQ-8jY">
-                                        <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                        <rect key="frame" x="0.0" y="685" width="375" height="49"/>
                                         <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="49" id="NNT-BV-4ND"/>
@@ -123,7 +123,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YgK-U5-uKT">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roundDark" translatesAutoresizingMaskIntoConstraints="NO" id="KYN-CJ-sLW">
                                         <rect key="frame" x="12" y="12" width="22" height="22"/>
@@ -167,16 +167,16 @@
                                 </constraints>
                             </view>
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fnW-W7-n63">
-                                <rect key="frame" x="0.0" y="50" width="375" height="568"/>
+                                <rect key="frame" x="0.0" y="94" width="375" height="669"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="biL-Im-4PQ">
-                                <rect key="frame" x="0.0" y="618" width="375" height="83"/>
+                                <rect key="frame" x="0.0" y="763" width="375" height="49"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Sw-jN-jMH">
-                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <rect key="frame" x="0.0" y="763" width="375" height="49"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Au-uK-daW">
                                         <rect key="frame" x="0.0" y="3" width="375" height="44"/>
@@ -198,7 +198,7 @@
                         </subviews>
                         <color key="backgroundColor" name="viewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="xAf-DS-WX6" firstAttribute="bottom" secondItem="6Sw-jN-jMH" secondAttribute="bottom" id="0ij-Kd-5z5"/>
+                            <constraint firstAttribute="bottom" secondItem="6Sw-jN-jMH" secondAttribute="bottom" id="0ij-Kd-5z5"/>
                             <constraint firstItem="fnW-W7-n63" firstAttribute="leading" secondItem="xAf-DS-WX6" secondAttribute="leading" id="0tC-al-GOy"/>
                             <constraint firstItem="YgK-U5-uKT" firstAttribute="trailing" secondItem="xAf-DS-WX6" secondAttribute="trailing" id="7cE-St-eZB"/>
                             <constraint firstItem="biL-Im-4PQ" firstAttribute="bottom" secondItem="xAf-DS-WX6" secondAttribute="bottom" constant="34" id="Btk-iM-VwK"/>

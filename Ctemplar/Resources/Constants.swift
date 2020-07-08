@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import Utility
 
 // view controllers ID
 
@@ -85,6 +86,7 @@ let k_SetSignatureStoryboardName           = "SetSignature"
 let k_PGPKeysStoryboardName                = "PgpKeys"
 let k_PrivacyAndTermsStoryboardName        = "PrivacyAndTerms"
 let k_AddContactStoryboardName             = "AddContact"
+let k_DashboardStoryboardName              = "Dashboard"
 
 let k_InboxMessageTableViewCellXibName     = "InboxMessageTableViewCell"
 let k_InboxFilterViewXibName               = "InboxFilter"
@@ -126,6 +128,7 @@ let k_AttachmentCollcetionViewCellIdentifier    = "attachmentCollcetionViewCellI
 let k_SettingsBaseTableViewCellIdentifier       = "settingsBaseTableViewCellIdentifier"
 let k_SettingsAppVersionTableViewCellIdentifier         = "settingsAppVersuinCellIdentifier"
 let k_SettingsStorageTableViewCellIdentifier       = "settingsStorageTableViewCellIdentifier"
+let k_SettingsDashboardTableViewCellIdentifier     = "settingsDashboardTableViewCellIdentifier"
 
 // view controllers iPad storyboards name
 
@@ -137,181 +140,6 @@ let k_ForgotPasswordStoryboardName_iPad    = "ForgotPassword-iPad"
 let k_AboutAsStoryboardName_iPad           = "AboutAs-iPad"
 let k_InboxFilterViewXibName_iPad          = "InboxFilter-iPad"
 let k_AddFolderStoryboardName_iPad         = "AddFolder-iPad"
-
-
-// notifications
-
-let k_updateUserDataNotificationID          = "UpdateUserDataNotificationIdentifier"
-let k_updateUserSettingsNotificationID      = "UpdateUserSettingsNotificationIdentifier"
-let k_updateInboxMessagesNotificationID     = "updateInboxMessagesNotification"
-let k_attachUploadUpdateNotificationID      = "attachUploadUpdateNotificationIdentifier"
-let k_reloadViewControllerNotificationID    = "ReloadViewControllerNotificationIdentifier"
-let k_reloadViewControllerDataSourceNotificationID    = "ReloadViewControllerDataSourceNotificationIdentifier"
-let k_updateCustomFolderNotificationID = "UpdateCustomFoldersNotificationIdentifier"
-// colors
-
-var k_navBar_titleColor: UIColor {
-    return UIColor(named: "navBarTitleColor")!
-} //= UIColor(red: 44/255, green: 62/255, blue: 80/255, alpha: 0.87)
-var k_navBar_backgroundColor: UIColor {
-    return UIColor(named: "navBarBackgroundColor")!
-} //= UIColor(red: 250/255, green: 251/255, blue: 251/255, alpha: 1.0)
-var k_navButtonTintColor: UIColor {
-    return UIColor(named: "navButtonTintColor")!
-}
-var k_searchBar_backgroundColor: UIColor {
-    return UIColor(named: "searchBarBackgroundColor")!
-}
-var k_lightRedColor: UIColor {
-    return UIColor(named: "lightRedColor")!
-} //= UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 0.2)
-var k_redColor: UIColor {
-    return UIColor(named: "redColor")!
-} //= UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 1.0)
-
-var k_sideMenuColor: UIColor {
-    return UIColor(named: "sideMenuColor")!
-} //= UIColor(red: 23.0/255.0, green: 50.0/255.0, blue: 77.0/255.0, alpha: 1.0)
-var k_sideMenuSeparatorColor: UIColor {
-    return UIColor(named: "sideMenuSeparatorColor")!
-} //= UIColor(red: 23.0/255.0, green: 50.0/255.0, blue: 77.0/255.0, alpha: 0.1)
-var k_sideMenuFadeColor: UIColor {
-    return UIColor(named: "sideMenuFadeColor")!
-} //= UIColor(red: 2.0/255.0, green: 13.0/255.0, blue: 25.0/255.0, alpha: 0.56)
-var k_sideMenuTextFadeColor: UIColor {
-    return UIColor(named: "sideMenuTextFadeColor")!
-} //= UIColor(red: 52.0/255.0, green: 73.0/255.0, blue: 94.0/255.0, alpha: 0.4)
-
-var k_urlColor: UIColor {
-    return UIColor(named: "urlColor")!
-} //= UIColor(red: 74.0 / 255.0, green: 144.0 / 255.0, blue: 226.0 / 255.0, alpha: 1.0)
-var k_lightGrayColor: UIColor {
-    return UIColor(named: "lightGrayColor")!
-} //= UIColor(white: 0.0, alpha: 0.54)
-
-var k_whiteBlackListTextLabelColor: UIColor {
-    return UIColor(named: "whiteBlackListTextLabelColor")!
-}
-var k_emailToColor: UIColor {
-    return UIColor(named: "emailToColor")!
-} //= UIColor(white: 158.0 / 255.0, alpha: 1.0)
-var k_emailToInputColor: UIColor {
-    return UIColor(named: "emailToInputColor")!
-} //= UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 0.5)
-var k_emailToInputColor1: UIColor {
-    return UIColor(named: "emailToInputColor1")!
-}
-
-var k_lightGrayTextColor: UIColor {
-    return UIColor(named: "lightGrayTextColor")!
-} //= UIColor(red: 147.0 / 255.0, green: 145.0 / 255.0, blue: 145.0 / 255.0, alpha: 1.0)
-
-var k_mainInboxColor: UIColor {
-    return UIColor(named: "mainInboxColor")!
-} //= UIColor(red: 242.0 / 255.0, green: 240.0 / 255.0, blue: 240.0 / 255.0, alpha: 1.0)
-var k_foundTextBackgroundColor: UIColor {
-    return UIColor(named: "foundTextBackgroundColor")!
-} //= UIColor(red: 217.0 / 255.0, green: 235.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
-
-var k_whiteColor: UIColor {
-    return UIColor(named: "whiteColor")!
-} //= UIColor(red: 250.0 / 255.0, green: 251.0 / 255.0, blue: 251.0 / 255.0, alpha: 1.0)
-var k_selectedFolderColor: UIColor {
-    return UIColor(named: "selectedFolderColor")!
-} //= UIColor(red: 18.0 / 255.0, green: 45.0 / 255.0, blue: 71.0 / 255.0, alpha: 0.1)
-
-var k_readMessageColor : UIColor {
-    return UIColor(named: "readMessageColor")!
-} //= UIColor(white: 245/255, alpha: 1.0)
-
-var k_unreadMessageColor : UIColor {
-    return UIColor(named: "unreadMessageColor")!
-} //= UIColor(white: 1.0, alpha: 1.0)
-
-var k_actionMessageColor : UIColor {
-    return UIColor(named: "actionMessageColor")!
-} //= UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 1.0)
-
-var k_contactsBarTintColor : UIColor {
-    return UIColor(named: "contactsBarTintColor")!
-} //= UIColor(red: 44.0 / 255.0, green: 62.0 / 255.0, blue: 80.0 / 255.0, alpha: 1.0)
-var k_passwordBarTintColor : UIColor {
-    return UIColor(named: "passwordBarTintColor")!
-} //= UIColor(red: 44.0 / 255.0, green: 62.0 / 255.0, blue: 80.0 / 255.0, alpha: 0.87)
-
-var k_mainFolderTextColor : UIColor {
-    return UIColor(named: "mainFolderTextColor")!
-} //= UIColor(red: 9.0 / 255.0, green: 31.0 / 255.0, blue: 53.0 / 255.0, alpha: 0.5)
-
-var k_folderCellTextColor: UIColor {
-    return UIColor(named: "folderCellTextColor")!
-}
-var k_orangeColor : UIColor {
-    return UIColor(named: "orangeColor")!
-} //= UIColor(red: 255.0 / 255.0, green: 170.0 / 255.0, blue: 14.0 / 255.0, alpha: 1.0)
-var k_greenColor : UIColor {
-    return UIColor(named: "greenColor")!
-} //= UIColor(red: 0.0 / 255.0, green: 116.0 / 255.0, blue: 33.0 / 255.0, alpha: 1.0)
-
-var k_blueColor : UIColor {
-    return UIColor(named: "blueColor")!
-} //= UIColor(red: 52.0 / 255.0, green: 152.0 / 255.0, blue: 219.0 / 255.0, alpha: 1.0)
-
-var k_docColor : UIColor {
-    return UIColor(named: "docColor")!
-} //= UIColor(red: 0.0 / 255.0, green: 150.0 / 255.0, blue: 230.0 / 255.0, alpha: 1.0)
-var k_pdfColor : UIColor {
-    return UIColor(named: "pdfColor")!
-} //= UIColor(red: 204.0 / 255.0, green: 75.0 / 255.0, blue: 76.0 / 255.0, alpha: 1.0)
-var k_pngColor : UIColor {
-    return UIColor(named: "pngColor")!
-} //= UIColor(red: 101.0 / 255.0, green: 156.0 / 255.0, blue: 53.0 / 255.0, alpha: 1.0)
-var k_jpgColor : UIColor {
-    return UIColor(named: "jpgColor")!
-} //= UIColor(red: 19.0 / 255.0, green: 160.0 / 255.0, blue: 133.0 / 255.0, alpha: 1.0)
-var k_otherColor : UIColor {
-    return UIColor(named: "otherColor")!
-} //= UIColor(red: 148.0 / 255.0, green: 165.0 / 255.0, blue: 165.0 / 255.0, alpha: 1.0)
-
-var k_fileNameColor : UIColor {
-    return UIColor(named: "fileNameColor")!
-}//= UIColor(red: 90.0 / 255.0, green: 90.0 / 255.0, blue: 90.0 / 255.0, alpha: 1.0)
-
-var k_settingHeaderLineColor: UIColor {
-    return UIColor(named: "settingHeaderLineColor")!
-} //= UIColor(red: 235.0 / 255.0, green: 235.0 / 255.0, blue: 235.0 / 255.0, alpha: 1.0)
-
-var k_mailboxTextColor: UIColor {
-    return UIColor(named: "mailboxTextColor")!
-} //= UIColor(red: 52.0/255.0, green: 73.0/255.0, blue: 94.0/255.0, alpha: 1.0)
-
-var k_cellTitleTextColor: UIColor {
-    return UIColor(named: "cellTitleTextColor")!
-}
-
-var k_cellSubTitleTextColor: UIColor {
-    return UIColor(named: "cellSubTitleTextColor")!
-}
-
-var k_messageCountLabelTextColor: UIColor {
-    return UIColor(named: "messageCountLabelTextColor")!
-}
-
-var k_settingsHeaderBackgroundColor: UIColor {
-    return UIColor(named: "settingsHeaderBackgroundColor")!
-}
-
-var k_fingerprintTextColor: UIColor {
-    return UIColor(named: "fingerprintTextColor")!
-}
-
-var k_sideMenuCellBackgroundColor: UIColor {
-    return UIColor(named: "sideMenuCellBackgroundColor")!
-}
-
-var k_sideMenuSelectedCellBackgroundColor: UIColor {
-    return UIColor(named: "sideMenuSelectedCellBackgroundColor")!
-}
 
 //size constants
 
@@ -456,6 +284,7 @@ let k_darkArchiveIconImageName      = "darkArchive"
 let k_darkDraftIconImageName        = "darkDraft"
 let k_darkInboxIconImageName        = "darkInbox"
 let k_darkSentIconImageName         = "darkSent"
+let k_darkFAQIconImageName          = "darkFAQ"
 let k_darkOutboxIconImageName       = "darkOutbox"
 let k_darkSpamIconImageName         = "darkSpam"
 let k_darkStarIconImageName         = "darkStar"
@@ -529,7 +358,9 @@ let k_privacyURL                   = "https://ctemplar.com/privacy"
 let k_termsURL                     = "https://ctemplar.com/terms"
 let k_mainSiteURL                  = "https://ctemplar.com/"
 let k_upgradeURL                   = "https://ctemplar.com/pricing"
+let k_faqURL                       = "https://ctemplar.com/faqs/"
 let k_supportURL                   = "support@ctemplar.com."
+let k_FAQURL                       = "https://ctemplar.com/faqs/"
 
 let k_signature_decoding_issue = "error decoding signature."
 
@@ -543,7 +374,7 @@ let k_tokenHoursRefresh            = 1920
 let k_undoActionBarShowingSecs     = 5.0
 
 let k_numberOfCustomFoldersShowing = 3
-let k_customFoldersLimitForNonPremium = 3
+let k_customFoldersLimitForNonPremium = 5
 
 let k_colorButtonsTag = 200
 
@@ -558,22 +389,6 @@ let k_platform = "ios"
 let k_mobileSignatureKey = k_mainDomain + ".mobileSignatureKey"
 
 enum InboxSideMenuOptionsName: String {
-    /*
-    case inbox            = "Inbox"
-    case draft            = "Draft"
-    case sent             = "Sent"
-    case outbox           = "Outbox"
-    case starred          = "Starred"
-    case archive          = "Archive"
-    case spam             = "Spam"
-    case trash            = "Trash"
-    case allMails         = "All Mails"
-    case contacts         = "Contacts"
-    case settings         = "Settings"
-    case help             = "Help"
-    case logout           = "Logout"
-    case manageFolders    = "Manage Folders"*/
-    
     case inbox            = "inbox"
     case draft            = "draft"
     case sent             = "sent"
@@ -586,12 +401,12 @@ enum InboxSideMenuOptionsName: String {
     case contacts         = "contacts"
     case settings         = "settings"
     case help             = "help"
+    case FAQ              = "FAQ"
     case logout           = "logout"
     case manageFolders    = "manageFolders"    
 }
 
 enum MessagesFoldersName: String, CaseIterable {
-    
     case inbox            = "inbox"
     case draft            = "draft"
     case sent             = "sent"    
@@ -600,95 +415,80 @@ enum MessagesFoldersName: String, CaseIterable {
     case archive          = "archive"
     case spam             = "spam"
     case trash            = "trash"
-    //case foldersCount     = "foldersCount"
     case outboxSD         = "outbox_self_destruct_counter"
     case outboxDD         = "outbox_delayed_delivery_counter"
     case outboxDM         = "outbox_dead_man_counter"
 }
 
 enum InboxCellButtonsIndex: Int {
-    
-    case right           = 0
-    case middle          = 1
-    case left            = 2
+    case right = 0
+    case middle
+    case left
 }
 
 enum InboxFilterButtonsTag: Int, CaseIterable {
-    
-    //case all              = 201
     case starred          = 202
     case unread           = 203
     case withAttachment   = 204
 }
 
 enum InboxFilterImagesTag: Int, CaseIterable {
-    
     case starred          = 301
     case unread           = 302
     case withAttachment   = 303
 }
 
 enum InboxFilterLablesTag: Int, CaseIterable {
-    
-    case starred          = 401
-    case unread           = 402
-    case withAttachment   = 403
+    case starred = 401
+    case unread = 402
+    case withAttachment = 403
 }
 
 enum InboxFilterViewButtonsTag: Int {
-    
-    case clearAllButton   = 205
-    case cancelButton     = 206
-    case applyButton      = 207
+    case clearAllButton = 205
+    case cancelButton = 206
+    case applyButton = 207
 }
 
 enum SideMenuSectionIndex: Int {
-    
-    case mainFolders      = 0
-    case options          = 1
-    case manageFolders    = 2
-    case customFolders    = 3
-    case sectionsCount    = 4
+    case mainFolders = 0
+    case options
+    case manageFolders
+    case customFolders
+    case sectionsCount
 }
 
 enum MoreViewButtonsTag: Int, CaseIterable {
-    
-    case cancel           = 401
-    case bottom           = 402
-    case middle           = 403
-    case upper            = 404
+    case cancel = 401
+    case bottom = 402
+    case middle = 403
+    case upper = 404
 }
 
 enum MoreActionsTitles: String, CaseIterable {
-    
-    case markAsSpam       = "markAsSpam"
-    case markAsRead       = "markAsRead"
-    case markAsUnread     = "markAsUnread"
-    //case markAsStarred    = ""
-    case moveToTrach      = "moveToTrash"
-    case moveToArchive    = "moveToArchive"
-    case moveToInbox      = "moveToInbox"
-    //case moveTo           = ""
-    case emptyFolder      = "emptyFolder"
-    case cancel           = "cancel"
- 
+    case markAsSpam = "markAsSpam"
+    case markAsRead = "markAsRead"
+    case markAsUnread = "markAsUnread"
+    case moveToTrach = "moveToTrash"
+    case moveToArchive = "moveToArchive"
+    case moveToInbox = "moveToInbox"
+    case emptyFolder = "emptyFolder"
+    case cancel = "cancel"
 }
 
 enum ActionsIndex: Int, CaseIterable {
-
-    case markAsSpam       = 1
-    case markAsRead       = 2
-    case markAsStarred    = 3
-    case moveToTrach      = 4
-    case moveToArchive    = 5
-    case moveToInbox      = 6
-    case moveTo           = 7
-    case delete           = 8
-    case noAction         = 9
+    case markAsSpam = 1
+    case markAsRead
+    case markAsStarred
+    case moveToTrach
+    case moveToArchive
+    case moveToInbox
+    case moveTo
+    case delete
+    case noAction
 }
 
 enum DocumentsExtension: String, CaseIterable {
-    
     case doc       = "doc"
     case pdf       = "pdf"
     case png       = "png"
@@ -696,7 +496,6 @@ enum DocumentsExtension: String, CaseIterable {
 }
 
 enum ComposeSubViewTags: Int {
-    
     case emailToTextViewTag  = 200
     case ccToTextViewTag     = 300
     case bccToTextViewTag    = 400
@@ -704,7 +503,6 @@ enum ComposeSubViewTags: Int {
 }
 
 enum AnswerMessageMode: String {
-    
     case newMessage = "New Message"
     case reply      = "Reply"
     case replyAll   = "Reply All"
@@ -712,94 +510,82 @@ enum AnswerMessageMode: String {
 }
 
 enum SchedulerMode: String {
-    
     case selfDestructTimer = "Self-destructing Timer"
     case deadManTimer      = "Dead Man's Timer"
     case delayedDelivery   = "Delayed delivery"
 }
 
 enum SettingsSectionsName: String, CaseIterable {
-    
-    case general           = "generalSettings"
-    case folders           = "foldersSettings"
-    case security          = "securitySettings"
-    case mail              = "mailSettings"
-    case about             = "aboutSettings"
-    case storage           = "storageSettings"
-    case logout            = "logoutSettings"
+    case general = "generalSettings"
+    case folders = "foldersSettings"
+    case security = "securitySettings"
+    case mail = "mailSettings"
+    case about = "aboutSettings"
+    case storage = "storageSettings"
+    case logout = "logoutSettings"
 }
 
 enum SettingsSections: Int, CaseIterable {
-    
-    case general           = 0
-    case folders           = 1
-    case security          = 2
-    case mail              = 3
-    case about             = 4
-    case storage           = 5
-    case logout            = 6
+    case general = 0
+    case folders
+    case security
+    case mail
+    case about
+    case storage
+    case logout
 }
 
 enum SettingsGeneralSection: Int, CaseIterable {
-    
-    case notification      = 0
-    case language          = 1
-    case contacts          = 2
-    case whiteBlackList    = 3
+    case notification = 0
+    case language
+    case contacts
+    case whiteBlackList
+    case dashboard
 }
 
 enum SettingsFoldersSection: Int, CaseIterable {
-    
-    case folder            = 0
+    case folder = 0
 }
 
 enum SettingsSecuritySection: Int, CaseIterable {
-    
-    case password          = 0
-    case recovery          = 1
-    case encryption        = 2
+    case password = 0
+    case recovery
+    case encryption
 }
 
 enum SettingsMailSection: Int, CaseIterable {
-    
-    case mail              = 0
-    case signature         = 1
-    case mobileSignature   = 2
-    case keys              = 3
+    case mail = 0
+    case signature
+    case mobileSignature
+    case keys
 }
 
 enum SettingsAboutSection: Int, CaseIterable {
-    
-    //case aboutAs           = 0
-    //case privacy           = 1
-  //  case terms            = 2
-//    case appVersion        = 3
-    case appVersion        = 0
+    case appVersion = 0
 }
 
 enum TextControllerMode: Int, CaseIterable {
-    
-    case privacyPolicy      = 0
-    case termsAndConditions = 1
+    case privacyPolicy = 0
+    case termsAndConditions
 }
 
 enum Languages: Int, CaseIterable {
-    
     case english            = 0
     case russian            = 1
     case french             = 2
+    case slovak             = 3
 }
 
 enum LanguagesName: String {
-    
     case english            = "English"
     case russian            = "Русский"
     case french             = "Français"
+    case slovak             = "Slovenský"
 }
 
 enum LanguagesBundlePrefix: String {
-    
     case english            = "en"
     case russian            = "ru"
     case french             = "fr"
+    case slovak             = "sk"
 }

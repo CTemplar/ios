@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import AlertHelperKit
-import PKHUD
+import Utility
+import UIKit
 
 class InboxPresenter {
     
@@ -56,17 +56,20 @@ class InboxPresenter {
         }
         
         var composeImage: UIImage?
+
         
-        if Device.IS_IPHONE_X_OR_ABOVE {
-            viewController?.grayBorder.isHidden = true
-            composeImage = UIImage.init(named: k_composeRedImageName)
-            viewController?.rightComposeButton.backgroundColor = UIColor.white
-        } else {
-            viewController?.grayBorder.isHidden = false
-            composeImage = UIImage.init(named: k_composeImageName)
-            viewController?.rightComposeButton.backgroundColor = k_redColor
+        if #available(iOS 13.0, *) {
+            if UITraitCollection.current.userInterfaceStyle == .dark {
+                viewController?.grayBorder.isHidden = true
+                composeImage = UIImage.init(named: k_composeImageName)
+                viewController?.rightComposeButton.backgroundColor = UIColor.clear
+            }else {
+                viewController?.grayBorder.isHidden = false
+                composeImage = UIImage.init(named: k_composeImageName)
+                viewController?.rightComposeButton.backgroundColor = k_redColor
+            }
         }
-        
+                
         viewController?.rightComposeButton.setImage(composeImage, for: .normal)
         
         viewController?.undoBar.isHidden = true
@@ -80,12 +83,6 @@ class InboxPresenter {
             viewController?.emptyInbox.isHidden = true
         } else {
             viewController?.emptyInbox.isHidden = false
-        }
-        
-        //temp
-        if (Device.IS_IPAD) {
-            self.viewController?.leftBarButtonItem = self.viewController?.navigationItem.leftBarButtonItem
-            self.setupNavigationLeftItem()
         }
     }
     
@@ -132,21 +129,12 @@ class InboxPresenter {
     
     func setupNavigationLeftItem() {
         
-        if UIDevice.current.orientation.isLandscape {
-            print("Landscape")
-            //self.viewController?.navigationItem.leftBarButtonItem = nil
+        if !(self.viewController?.dataSource?.selectionMode)! {
+            self.viewController?.leftBarButtonItem.image = UIImage(named: k_menuImageName)
+            self.viewController?.leftBarButtonItem.isEnabled = true
+        } else {
             self.viewController?.leftBarButtonItem.image = nil
             self.viewController?.leftBarButtonItem.isEnabled = false
-        } else {
-            print("Portrait")
-           //self.viewController?.navigationItem.leftBarButtonItem = self.viewController?.leftBarButtonItem
-            if !(self.viewController?.dataSource?.selectionMode)! {
-                self.viewController?.leftBarButtonItem.image = UIImage(named: k_menuImageName)
-                self.viewController?.leftBarButtonItem.isEnabled = true
-            } else {
-                self.viewController?.leftBarButtonItem.image = nil
-                self.viewController?.leftBarButtonItem.isEnabled = false
-            }
         }
     }
             
@@ -525,28 +513,21 @@ class InboxPresenter {
             switch title {
             case MoreActionsTitles.cancel.rawValue.localized():
                 print("cancel btn more actions")
-                
-                break
             case MoreActionsTitles.markAsRead.rawValue.localized():
                 print("markAsRead btn more actions")
                 self.markSelectedMessagesAsRead()
-                break
             case MoreActionsTitles.markAsUnread.rawValue.localized():
                 print("markAsUnread btn more actions")
                 self.markSelectedMessagesAsRead()
-                break
             case MoreActionsTitles.moveToArchive.rawValue.localized():
                 print("moveToArchive btn more actions")
                 self.moveSelectedMessagesToArchive()
-                break
             case MoreActionsTitles.moveToInbox.rawValue.localized():
                 print("moveToInbox btn more actions")
                 self.moveSelectedMessagesToInbox()
-                break
             case MoreActionsTitles.emptyFolder.rawValue.localized():
                 print("emptyFolder btn more actions")
                 self.applyEmptyFolderAction()
-                break
             default:
                 print("more actions: default")
             }
@@ -718,9 +699,8 @@ class InboxPresenter {
     }
     
     func markSelectedMessagesAsTrash() {
-        
         if self.viewController?.appliedActionMessage != nil {
-            if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! > 0 {                
+            if self.viewController?.dataSource?.selectedMessagesIDArray.isEmpty == false {
                 if self.viewController?.currentFolder == InboxSideMenuOptionsName.trash.rawValue {
                     self.interactor?.deleteMessagesList(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, withUndo: "")
                 } else {
@@ -733,9 +713,8 @@ class InboxPresenter {
     }
     
     func moveSelectedMessagesToArchive() {
-        
         if self.viewController?.appliedActionMessage != nil {
-            if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! > 0 {
+            if self.viewController?.dataSource?.selectedMessagesIDArray.isEmpty == false {
                 self.interactor?.moveMessagesListToArchive(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!, withUndo: "undoMoveToArchive".localized())
             } else {
                 print("messages not selected!!!")
@@ -744,7 +723,6 @@ class InboxPresenter {
     }
     
     func moveSelectedMessagesToInbox() {
-        
         if self.viewController?.appliedActionMessage != nil {
             if (self.viewController?.dataSource?.selectedMessagesIDArray.count)! > 0 {
                 self.interactor?.moveMessagesListToInbox(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, lastSelectedMessage: (self.viewController?.appliedActionMessage!)!, withUndo: "undoMoveToInbox".localized())
@@ -755,23 +733,22 @@ class InboxPresenter {
     }
     
     func deleteMessagesPermanently() {
-     
-        let params = Parameters(
+        let params = AlertKitParams(
             title: "deleteTitle".localized(),
             message: "deleteMessage".localized(),
             cancelButton: "cancelButton".localized(),
             otherButtons: ["deleteButton".localized()]
         )
         
-        AlertHelperKit().showAlertWithHandler(self.viewController!, parameters: params) { buttonIndex in
-            switch buttonIndex {
+        viewController?.showAlert(with: params, onCompletion: { [weak self] (index) in
+            switch index {
             case 0:
-                print("Cancel Delete")
+                DPrint("Cancel Delete")
             default:
-                print("Delete")
-                self.interactor?.deleteMessagesList(selectedMessagesIdArray: (self.viewController?.dataSource?.selectedMessagesIDArray)!, withUndo: "")
+                DPrint("Delete")
+                self?.interactor?.deleteMessagesList(selectedMessagesIdArray: self?.viewController?.dataSource?.selectedMessagesIDArray ?? [], withUndo: "")
             }
-        }
+        })
     }
 }
 

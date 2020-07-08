@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import MGSwipeTableCell
+import Utility
+import Networking
 
 class InboxMessageTableViewCell: MGSwipeTableCell {
     

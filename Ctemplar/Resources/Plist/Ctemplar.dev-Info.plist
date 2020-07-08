@@ -21,7 +21,7 @@
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
-		<string>ae275793b27694227e56433d8b6312c21196ecd1</string>
+		<string></string>
 		<key>Kits</key>
 		<array>
 			<dict>
@@ -64,8 +64,6 @@
 	<string>LaunchScreen</string>
 	<key>UILaunchStoryboardName~ipad</key>
 	<string>LaunchScreen-iPad</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>Main-iPad</string>
 	<key>UIRequiredDeviceCapabilities</key>

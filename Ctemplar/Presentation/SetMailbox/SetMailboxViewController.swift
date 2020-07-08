@@ -8,8 +8,8 @@
 
 import Foundation
 import UIKit
-import AlertHelperKit
-import PKHUD
+import Utility
+import Networking
 
 class SetMailboxViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -33,8 +33,8 @@ class SetMailboxViewController: UIViewController, UITableViewDataSource, UITable
         
         self.mailboxesArray = self.user.mailboxesList!
         
-        self.formatterService = appDelegate.applicationManager.formatterService
-        self.apiService = appDelegate.applicationManager.apiService
+        self.formatterService = UtilityManager.shared.formatterService
+        self.apiService = NetworkManager.shared.apiService
        
         self.tableView.tableFooterView = UIView()
         
@@ -97,60 +97,45 @@ class SetMailboxViewController: UIViewController, UITableViewDataSource, UITable
     //MARK: - API
     
     func setDefaultMailbox(mailbox: Mailbox) {
-        
         let mailboxID = mailbox.mailboxID?.description
         let isDefault = true
         
-        HUD.show(.progress)
+        Loader.start()
         
-        apiService?.updateMailbox(mailboxID: mailboxID!, userSignature: "", displayName: "", isDefault: isDefault) {(result) in
-            
+        apiService?.updateMailbox(mailboxID: mailboxID!, userSignature: "", displayName: "", isDefault: isDefault) { [weak self] (result) in
             switch(result) {
-                
             case .success(let value):
                 print("setDefaultMailbox value:", value)
-                self.userMyself()
-                
+                self?.userMyself()
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self, title: "Update Settings Error", message: error.localizedDescription, button: "closeButton".localized())
+                self?.showAlert(with: "Update Settings Error", message: error.localizedDescription, buttonTitle: Strings.Button.closeButton.localized)
             }
             
-            HUD.hide()
+            Loader.stop()
         }
     }
     
     func userMyself() {
-        
-        HUD.show(.progress)
-        
-        apiService?.userMyself() {(result) in
-            
+        Loader.start()
+        apiService?.userMyself() { [weak self] (result) in
             switch(result) {
-                
             case .success(let value):
-                //print("userMyself value:", value)
-                
                 let userMyself = value as! UserMyself
-                
                 if let mailboxes = userMyself.mailboxesList {
-                    self.mailboxesArray = mailboxes
+                    self?.mailboxesArray = mailboxes
                 }
-                
-                self.reloadData()
-                self.postUpdateUserSettingsNotification()
-                
+                self?.reloadData()
+                self?.postUpdateUserSettingsNotification()
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self, title: "User Myself Error", message: error.localizedDescription, button: "closeButton".localized())
+                self?.showAlert(with: "User Myself Error", message: error.localizedDescription, buttonTitle: Strings.Button.closeButton.localized)
             }
-            
-            HUD.hide()
+            Loader.stop()
         }
     }
     
     func postUpdateUserSettingsNotification() {
-        
-        NotificationCenter.default.post(name: Notification.Name(k_updateUserSettingsNotificationID), object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: .updateUserSettingsNotificationID, object: nil, userInfo: nil)
     }
 }

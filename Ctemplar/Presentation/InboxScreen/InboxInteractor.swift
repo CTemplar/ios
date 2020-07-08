@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import AlertHelperKit
-import PKHUD
+import Utility
+import Networking
 
 class InboxInteractor {
     
@@ -20,6 +20,7 @@ class InboxInteractor {
     var totalItems = 0
     var unreadEmails = 0
     var offset = 0
+    var loadMoreInProgress = false
     
     private var isFetchInProgress = false
     //MARK: - data
@@ -168,7 +169,7 @@ class InboxInteractor {
     
     func messagesList(folder: String, withUndo: String, silent: Bool) {
         
-        if self.offset >= self.totalItems && self.offset > 0 {
+        if self.offset >= self.totalItems, self.offset > 0 {
             return
         }
         if isFetchInProgress {
@@ -177,73 +178,73 @@ class InboxInteractor {
         isFetchInProgress = true
         DispatchQueue.main.async {
             if !silent {
-                HUD.show(.labeledProgress(title: "updateMessages".localized(), subtitle: ""))
+                Loader.start()
             }
         }
+        
         let pageSize: Int
-        if self.viewController?.allMessagesArray.count == 0 {
+        
+        if self.viewController?.allMessagesArray.isEmpty == true {
             if Device.IS_IPAD {
                 pageSize = k_firstLoadPageLimit_iPad
-            }else {
+            } else {
                 pageSize = k_firstLoadPageLimit
             }
-            
-        }else {
+        } else {
             pageSize = k_pageLimit
         }
         
-        apiService?.messagesList(folder: folder, messagesIDIn: "", seconds: 0, offset: offset, pageLimit: pageSize) {(result) in
+        apiService?.messagesList(folder: folder, messagesIDIn: "", seconds: 0, offset: offset, pageLimit: pageSize) { [weak self] (result) in
+            guard let self = self else {
+                return
+            }
             self.isFetchInProgress = false
+            
+            if self.loadMoreInProgress {
+                self.loadMoreInProgress = false
+                self.viewController?.dataSource?.resetFooterView()
+            }
+            
             switch(result) {
-                
             case .success(let value):
-                
                 let emailMessages = value as! EmailMessagesList
                 self.totalItems = emailMessages.totalCount ?? 0
                 self.setInboxData(messages: emailMessages.messagesList!, totalEmails: self.totalItems)
-                
-                if withUndo.count > 0 {
+                if !withUndo.isEmpty {
                     self.presenter?.showUndoBar(text: withUndo)
                 }
-                
-                self.offset = self.offset + pageSize
-                
+                self.offset += pageSize
             case .failure(let error):
                 print("error:", error)
-                if !silent {
-                    AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                if !silent, let vc = self.viewController {
+                    vc.showAlert(with: "Messages Error",
+                                 message: error.localizedDescription,
+                                 buttonTitle: Strings.Button.closeButton.localized)
                 }
             }
-            
             print("messagesList complete")
-            HUD.hide()
+            Loader.stop()
         }
     }
     
     func allMessagesList() {
-        
-        HUD.show(.progress)
-        
+        Loader.start()
         apiService?.messagesList(folder: "", messagesIDIn: "", seconds: 0, offset: -1) {(result) in
-            
             switch(result) {
-                
             case .success(let value):
                 print("allMessagesList value:", value)
-                
                // let emailMessages = value as! EmailMessagesList
-               break
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Messages Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
-            
-            HUD.hide()
+            Loader.stop()
         }
     }
     
     func checkStoredPGPKeys() -> Bool {
-        
         if pgpService?.getStoredPGPKeys() == nil {
             self.mailboxesList(storeKeys: true)
         } else {
@@ -251,7 +252,6 @@ class InboxInteractor {
             //self.mailboxesList(storeKeys: false)
             return true
         }
-        
         return false
     }
     
@@ -286,12 +286,14 @@ class InboxInteractor {
                             }
                         }
                     }
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateInboxMessagesNotificationID), object: nil)
+                    NotificationCenter.default.post(name: .updateInboxMessagesNotificationID, object: nil)
                 }
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Mailboxes Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Mailboxes Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
@@ -307,7 +309,7 @@ class InboxInteractor {
                     
                     var userMyself = value as! UserMyself
                     if userMyself.username == self.viewController?.user.username {
-                        userMyself.contactsList = self.viewController?.user.contactsList
+                        userMyself.update(contactsList: self.viewController?.user.contactsList)
                     }
                     self.viewController?.user = userMyself
                     
@@ -322,11 +324,13 @@ class InboxInteractor {
                     self.viewController?.bottomComposeButton.isEnabled = true
                     self.viewController?.rightComposeButton.isEnabled = true
                     
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: k_updateUserDataNotificationID), object: value)
+                    NotificationCenter.default.post(name: .updateUserDataNotificationID, object: value)
                     self.userContactsList()
                 case .failure(let error):
                     print("error:", error)
-                    AlertHelperKit().showAlert(self.viewController!, title: "User Myself Error", message: error.localizedDescription, button: "closeButton".localized())
+                    self.viewController?.showAlert(with: "User Myself Error",
+                                                   message: error.localizedDescription,
+                                                   buttonTitle: Strings.Button.closeButton.localized)
                 }
             }
         }
@@ -343,7 +347,7 @@ class InboxInteractor {
                     switch result {
                     case .success(let value):
                         if let contactsList = value as? ContactsList {
-                            self.viewController?.user.contactsList = contactsList.contactsList ?? []
+                            self.viewController?.user.update(contactsList: contactsList.contactsList ?? [])
                         }
                         break
                     case .failure(let error):
@@ -367,7 +371,9 @@ class InboxInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Public Key Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Public Key Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
@@ -759,13 +765,7 @@ class InboxInteractor {
     //MARK: - Selection Bar Actions
     
     func markMessagesListAsSpam(selectedMessagesIdArray: Array<Int>, lastSelectedMessage: EmailMessage, withUndo: String) {
-        
-        var folder = lastSelectedMessage.folder
-        
-        if withUndo.count > 0 {
-            folder = MessagesFoldersName.spam.rawValue
-        }
-        
+        let folder = withUndo.isEmpty == false ? MessagesFoldersName.spam.rawValue : lastSelectedMessage.folder
         var messagesIDList : String = ""
         
         for message in selectedMessagesIdArray {
@@ -774,20 +774,22 @@ class InboxInteractor {
         
         messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex)) //remove last ","
         
-        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: folder!, starred: false, read: false, updateFolder: true, updateStarred: false, updateRead: false)  {(result) in
+        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: folder!, starred: false, read: false, updateFolder: true, updateStarred: false, updateRead: false) { [weak self] (result) in
+            guard let self = self else {
+                return
+            }
             
             switch(result) {
-                
             case .success( _):
-                //print("value:", value)
                 print("marked list as spam")
                 self.viewController?.lastAction = ActionsIndex.markAsSpam
                 self.offset = 0
                 self.updateMessages(withUndo: withUndo, silent: false)
-                
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Nessages Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
@@ -817,54 +819,45 @@ class InboxInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Messages Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
     
     func markMessagesListAsTrash(selectedMessagesIdArray: Array<Int>, lastSelectedMessage: EmailMessage, withUndo: String) {
-        
-        var folder = lastSelectedMessage.folder
-        
-        if withUndo.count > 0 {
-            folder = MessagesFoldersName.trash.rawValue
-        }
-        
-        var messagesIDList : String = ""
+        let folder = withUndo.isEmpty == false ? MessagesFoldersName.trash.rawValue : lastSelectedMessage.folder
+        var messagesIDList = ""
         
         for message in selectedMessagesIdArray {
             messagesIDList = messagesIDList + message.description + ","
         }
         
         messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex)) //remove last ","
-        
-        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: folder!, starred: false, read: false, updateFolder: true, updateStarred: false, updateRead: false)  {(result) in
-            
+
+        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: folder!, starred: false, read: false, updateFolder: true, updateStarred: false, updateRead: false)  { [weak self] (result) in
+            guard let self = self else {
+                return
+            }
             switch(result) {
-                
             case .success( _):
-                //print("value:", value)
                 print("marked list as trash")
                 self.viewController?.lastAction = ActionsIndex.moveToTrach
                 self.offset = 0
                 self.updateMessages(withUndo: withUndo, silent: false)
-                
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Messages Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
     
     func moveMessagesListToArchive(selectedMessagesIdArray: Array<Int>, lastSelectedMessage: EmailMessage, withUndo: String) {
-        
-        var folder = lastSelectedMessage.folder
-        
-        if withUndo.count > 0 {
-            folder = MessagesFoldersName.archive.rawValue
-        }
-        
-        var messagesIDList : String = ""
+        let folder = withUndo.isEmpty == false ? MessagesFoldersName.archive.rawValue : lastSelectedMessage.folder
+        var messagesIDList = ""
         
         for message in selectedMessagesIdArray {
             messagesIDList = messagesIDList + message.description + ","
@@ -872,12 +865,12 @@ class InboxInteractor {
         
         messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex)) //remove last ","
         
-        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: folder!, starred: lastSelectedMessage.starred!, read: lastSelectedMessage.read!, updateFolder: true, updateStarred: false, updateRead: false)  {(result) in
-            
+        apiService?.updateMessages(messageID: "", messagesIDIn: messagesIDList, folder: folder!, starred: lastSelectedMessage.starred!, read: lastSelectedMessage.read!, updateFolder: true, updateStarred: false, updateRead: false)  { [weak self] (result) in
+            guard let self = self else {
+                return
+            }
             switch(result) {
-                
             case .success( _):
-                //print("value:", value)
                 print("move list to archive")
                 self.viewController?.lastAction = ActionsIndex.moveToArchive
                 self.offset = 0
@@ -885,7 +878,9 @@ class InboxInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Messages Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
@@ -919,7 +914,9 @@ class InboxInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Messages Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
@@ -949,7 +946,9 @@ class InboxInteractor {
                 
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Messages Error", message: error.localizedDescription, button: "closeButton".localized())
+                self.viewController?.showAlert(with: "Messages Error",
+                                               message: error.localizedDescription,
+                                               buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }

@@ -1,11 +1,3 @@
-/* 
-  Localizable.strings
-  Ctemplar
-
-  Created by Tatarinov Dmitry on 24.10.2018.
-  Copyright © 2018 CTemplar. All rights reserved.
-*/
-
 "invalidEnteredPassword" = "Entered Password is not valid";
 "invalidEnteredEmail" = "Entered Email is not valid";
 
@@ -33,6 +25,9 @@
 "emailPlaceholder" = "Email";
 "passwordPlaceholder" = "Password";
 "usernamePlaceholder" = "Username";
+"userNameNotFound" = "Username is not available";
+"userNameFound" = "Username is available";
+"invitationCodePlaceholder" = "Invitation Code";
 
 "twoFAPlaceholder" = "2FA code";
 
@@ -41,44 +36,30 @@
 "createAccount" = "Create account";
 "rememberMe" = "Keep me logged in";
 
-//Sign Up
-
+// Sign Up
 "usernameAndDomain" = "Username and domain";
 "ctemplarEmailAddress" = "This will be your new Ctemplar email address.";
-
 "choosePasswordPlaceholder" = "Choose password";
 "confirmPasswordPlaceholder" = "Confirm password";
 "recoveryEmailPlaceholder" = "Recovery email";
-
 "passwordMust" = "Your password must be at least 10 characters. Password can contain only latin letters and cannot contain symbols such «-+!@. etc.";
-
 "thisIsUsed" = "This is used to recover your account if you get locked out or forget your password";
-
 "usernameResetHint" = "Ctemplar username to reset";
 "usernameResetPlaceholder" = "Ctemplar username to reset";
 "resetCodePlaceholder" = "Reset Code";
 "newPasswordPlaceholder" = "New password";
 "confirmNewPasswordPlaceholder" = "Confirm new password";
-
 "resetLink" = "We will send reset link to your recovery email";
-
 "confirmResetPassword" = "Confirm Reset Password";
-
 "areYouSure" = "Are you sure you want to reset your password?";
-
 "supportDescription" = "Your encryption key is connected to your password. Because of this you will not be able to decrypt old messages, attachments and contacts if you reset your password. \nIf you have further questions please email support@ctemplar.com.";
-
 "supportDescriptionAttr" = "you will not be able to decrypt old messages, attachments and contacts";
-
 "resetPassword" = "Reset Password";
-
 "weHave" = "We have sent a reset code to your\nrecovery email to reset your password. ";
 "recoveryEmailAttr" = "recovery email ";
-
 "enterIt" = "Enter it below for confirmation.";
-
 "forgetPass" = "Don’t forget this password, it can’t be restored.";
-
+"createAccount" = "Create Account";
 // inbox
 
 "selected" = "Selected";
@@ -88,7 +69,7 @@
 "unread" = "unread";
 
 "filtered" = "Filtered";
-"noInboxMessage" = "You have no Inbox messages";
+"noInboxMessage" = "You have no messages";
 "noFilteredMessage" = "There are no messages match the filter";
 
 "starredFilter" = "Starred";
@@ -106,8 +87,7 @@
 "clearAll" = "Clear all";
 "selectedFilters" = "Select filters";
 
-//more actions buttons
-
+// More Action buttons
 "markAsSpam" = "Mark as spam";
 "markAsRead" = "Mark as read";
 "markAsUnread" = "Mark as unread";
@@ -116,6 +96,16 @@
 "moveToInbox" = "Move to inbox";
 "emptyFolder" = "Empty folder";
 "cancel" = "Cancel";
+"moreActions" = "More Actions";
+
+// Action Banner
+"movingToArchive" = "Moving to archive";
+"movingToSpam" = "Moving to spam";
+"movingToTrash" = "Moving to trash";
+"markingAsUnread" = "Marking as unread";
+"markingAsRead" = "Marking as read";
+"actionFailed" = "Action failed";
+"done" = "Done";
 
 //undo actions buttons
 
@@ -189,7 +179,8 @@
 "subject" = "Subject: ";
 
 "infoTitle" = "Information:";
-"mailSendMessage" = "Mail was sent successfully";
+"mailSendMessage" = "Mail sent successfully.";
+"mailSendingAlert" = "Sending mail…";
 
 "saveDraft" = "Save draft";
 "discardDraft" = "Discard draft";
@@ -212,23 +203,22 @@
 
 "search" = "Search";
 
-//Side Menu Cells
-
-"inbox"            = "Inbox";
-"draft"            = "Draft";
-"sent"             = "Sent";
-"outbox"           = "Outbox";
-"starred"          = "Starred";
-"archive"          = "Archive";
-"spam"             = "Spam";
-"trash"            = "Trash";
-"allMails"         = "All Mails";
-"contacts"         = "Contacts";
-"settings"         = "Settings";
-"help"             = "Get Support";
-"logout"           = "Logout";
-"manageFolders"    = "Manage Folders";
-
+// Side Menu Cells
+"inbox" = "Inbox";
+"draft" = "Draft";
+"sent" = "Sent";
+"outbox" = "Outbox";
+"starred" = "Starred";
+"archive" = "Archive";
+"spam" = "Spam";
+"trash" = "Trash";
+"allMails" = "All Mails";
+"contacts" = "Contacts";
+"settings" = "Settings";
+"help" = "Get Support";
+"FAQ" = "FAQ";
+"logout" = "Logout";
+"manageFolders" = "Manage Folders";
 "showMoreFolders" = "Show More Folders";
 "hideFolders" = "Hide Folders";
 
@@ -285,6 +275,7 @@
 "notifications" = "Notifications";
 "savingContact" = "Saving contacts";
 "whiteBlackList" = "Whitelist / Blacklist";
+"dashboard" = "Dashboard";
 "security" = "Security";
 
 "manageFolders" = "Manage folders";
@@ -420,3 +411,15 @@
 "attachmentEncryptionWasDisabled" = "Attachment Encryption Was Disabled";
 
 "featureIsComing" = "Feature coming soon. Please, login on desktop to update your password.";
+
+// Logout
+"logoutErrorTitle" = "Logout Error";
+"success" = "Success";
+"logoutErrorMessage" = "Unable to sign you out at this moment, please try again later.";
+
+// Dashboard
+"accountType" = "Account Type";
+"userName" = "Username";
+"customDomainNumber" = "No. of Custom Domains";
+"addressNumber" = "No. of Addresses";
+"notAvailable" = "Not Available";

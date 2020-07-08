@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import AlertHelperKit
-import PKHUD
+import Utility
+import Networking
 
 class AddContactInteractor {
     
@@ -19,7 +19,7 @@ class AddContactInteractor {
     func createContact(name: String, email: String, phone: String, address: String, note: String, encrypted: Bool) {
         
         if encrypted {
-            HUD.show(.progress)
+            Loader.start()
             
             apiService?.createEncryptedContact(name: name, email: email, phone: phone, address: address, note: note) {(result) in
                 
@@ -31,13 +31,15 @@ class AddContactInteractor {
                     
                 case .failure(let error):
                     print("error:", error)
-                    AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+                    self.viewController?.showAlert(with: "Contacts Error",
+                                                   message: error.localizedDescription,
+                                                   buttonTitle: Strings.Button.closeButton.localized)
                 }
                 
-                HUD.hide()
+                Loader.stop()
             }
         } else {
-            HUD.show(.progress)
+            Loader.start()
             
             apiService?.createContact(name: name, email: email, phone: phone, address: address, note: note) {(result) in
                 
@@ -51,10 +53,12 @@ class AddContactInteractor {
                     
                 case .failure(let error):
                     print("error:", error)
-                    AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+                    self.viewController?.showAlert(with: "Contacts Error",
+                                                   message: error.localizedDescription,
+                                                   buttonTitle: Strings.Button.closeButton.localized)
                 }
                 
-                HUD.hide()
+                Loader.stop()
             }
         }
     }
@@ -62,7 +66,7 @@ class AddContactInteractor {
     func updateContact(contactID: String, name: String, email: String, phone: String, address: String, note: String, encrypted: Bool) {
         
         if encrypted {
-            HUD.show(.progress)
+            Loader.start()
             
             apiService?.updateEncryptedContact(contactID: contactID, name: name, email: email, phone: phone, address: address, note: note) {(result) in
                 
@@ -74,28 +78,29 @@ class AddContactInteractor {
                     
                 case .failure(let error):
                     print("error:", error)
-                    AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+                    self.viewController?.showAlert(with: "Contacts Error",
+                                                   message: error.localizedDescription,
+                                                   buttonTitle: Strings.Button.closeButton.localized)
                 }
                 
-                HUD.hide()
+                Loader.stop()
             }
         } else {
-            HUD.show(.progress)
+            Loader.start()
             
             apiService?.updateContact(contactID: contactID, name: name, email: email, phone: phone, address: address, note: note) {(result) in
-                
                 switch(result) {
-                    
                 case .success(let value):
                     print("updateContact:", value)
                     self.viewController?.navigationController?.popViewController(animated: true)
-                    
                 case .failure(let error):
                     print("error:", error)
-                    AlertHelperKit().showAlert(self.viewController!, title: "Contacts Error", message: error.localizedDescription, button: "closeButton".localized())
+                    self.viewController?.showAlert(with: "Contacts Error",
+                                                   message: error.localizedDescription,
+                                                   buttonTitle: Strings.Button.closeButton.localized)
                 }
                 
-                HUD.hide()
+                Loader.stop()
             }
         }
     }   

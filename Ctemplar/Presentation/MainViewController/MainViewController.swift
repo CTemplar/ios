@@ -8,16 +8,13 @@
 
 import UIKit
 import Foundation
-import PKHUD
-import AlertHelperKit
+import Utility
+import Networking
+import Login
+import SideMenu
 
 class MainViewController: UIViewController, HashingService {
-    
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var apiService      : APIService?
-    
-//    var inboxNavigationController: InboxNavigationController! = nil
-//    var iPadSplitViewController : SplitViewController! = nil
+    var apiService: APIService?
     
     var mainTimer: Timer!
     
@@ -26,31 +23,20 @@ class MainViewController: UIViewController, HashingService {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        apiService = appDelegate.applicationManager.apiService
-        
-        configurePKHUD()
-        
-//        initInboxNavigationController()
-//
-//        if (Device.IS_IPAD) {
-//            initSplitViewController()
-//        }
-        
-        
+        apiService = NetworkManager.shared.apiService
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let keyChainService = apiService?.keychainService
-        let isRememberMeEnabled = keyChainService?.getRememberMeValue() ?? false
-        let twoFAstatus = keyChainService?.getTwoFAstatus() ?? true
+        let keyChainService = UtilityManager.shared.keychainService
+        let isRememberMeEnabled = keyChainService.getRememberMeValue() 
+        let twoFAstatus = keyChainService.getTwoFAstatus() 
         
         if (isRememberMeEnabled && (apiService?.canTokenRefresh() ?? false)) || (apiService?.isTokenValid() ?? false) {
             moveToNext()
         }else if isRememberMeEnabled && !twoFAstatus {
-            let username = keyChainService?.getUserName() ?? ""
-            let password = keyChainService?.getPassword() ?? ""
+            let username = keyChainService.getUserName() 
+            let password = keyChainService.getPassword() 
             authenticateUser(with: username, and: password)
         }else {
             showLoginViewController()
@@ -58,17 +44,11 @@ class MainViewController: UIViewController, HashingService {
     }
     
     func moveToNext() {
-//        if (!Device.IS_IPAD) {
-            showInboxNavigationController()
-//        } else {
-//            showSplitViewController()
-//        }
+        showInboxNavigationController()
     }
     
     func setAutoUpdaterTimer() {
-        
-        print("start AutoUpdaterTimer")
-        
+        DPrint("start AutoUpdaterTimer")
         mainTimer = Timer.scheduledTimer(timeInterval: 60,
                              target: self,
                              selector: #selector(self.sendUpdateNotification),
@@ -77,146 +57,57 @@ class MainViewController: UIViewController, HashingService {
     }
     
     func stopAutoUpdaterTimer() {
-        
         if mainTimer != nil {
-            print("stop AutoUpdaterTimer")
+            DPrint("stop AutoUpdaterTimer")
             mainTimer.invalidate()
             mainTimer = nil
         }
     }
     
     @objc func sendUpdateNotification() {
-        
         let silent = true
-        NotificationCenter.default.post(name: Notification.Name(k_updateInboxMessagesNotificationID), object: silent, userInfo: nil)
-        print("sendUpdateNotification")
-    }
-    
-    func configurePKHUD() {
-        
-        PKHUD.sharedHUD.dimsBackground = true
-        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
+        NotificationCenter.default.post(name: .updateInboxMessagesNotificationID, object: silent, userInfo: nil)
+        DPrint("sendUpdateNotification")
     }
     
     func showLoginViewController() {
-        
-        print("show login VC")
-        
-        DispatchQueue.main.async {
-            
-            var storyboardName : String = k_LoginStoryboardName
-            
-            if (Device.IS_IPAD) {
-                storyboardName = k_LoginStoryboardName_iPad
-            }
-            
-            let storyboard: UIStoryboard = UIStoryboard(name: storyboardName, bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: k_LoginViewControllerID) as! LoginViewController
-//            vc.mainViewController = self
-            vc.modalPresentationStyle = .fullScreen
-            if let window = UIApplication.shared.getKeyWindow() {
-                window.setRootViewController(vc)
-            }else {
-                self.show(vc, sender: self)
-            }
-        }
+//        DPrint("show login VC")
+//        DispatchQueue.main.async {
+//            let loginCoordinator = LoginCoordinator()
+//            loginCoordinator.showLogin(from: self, withSideMenu: self.sideMenu())
+//        }
     }
     
     func showInboxNavigationController() {
         DispatchQueue.main.async {
-            let slideMenuController = self.getSlideMenuController(with: self.messageID)
-            slideMenuController.modalPresentationStyle = .fullScreen
+            let sideMenu = self.sideMenu(with: self.messageID)
+            sideMenu.modalPresentationStyle = .fullScreen
+            
             if let window = UIApplication.shared.getKeyWindow() {
-                window.setRootViewController(slideMenuController)
-            }else {
-                self.show(slideMenuController, sender: self)
+                window.setRootViewController(sideMenu)
+            } else {
+                self.show(sideMenu, sender: self)
             }
         }
     }
-    
-//    func initInboxNavigationController() {
-//
-//        let storyboard: UIStoryboard = UIStoryboard(name: k_InboxStoryboardName, bundle: nil)
-//        self.inboxNavigationController = storyboard.instantiateViewController(withIdentifier: k_InboxNavigationControllerID) as? InboxNavigationController
-//
-//        let inboxViewController = self.inboxNavigationController.viewControllers.first as! InboxViewController
-//        inboxViewController.messageID = messageID
-//        if (!Device.IS_IPAD) {
-//            self.initAndSetupInboxSideMenuController(inboxViewController: inboxViewController)
-//        }
-//    }
-    
-    //MARK: - Side Menu
-    
-//    func initAndSetupInboxSideMenuController(inboxViewController: InboxViewController) {
-//
-//        let storyboard: UIStoryboard = UIStoryboard(name: k_InboxSideMenuStoryboardName, bundle: nil)
-//
-//        let inboxSideMenuViewController = storyboard.instantiateViewController(withIdentifier: k_InboxSideMenuViewControllerID) as? InboxSideMenuViewController
-//
-//        inboxSideMenuViewController?.mainViewController = self
-//        inboxSideMenuViewController?.inboxViewController = inboxViewController
-//        inboxSideMenuViewController?.dataSource?.selectedIndexPath = IndexPath(row: 0, section: SideMenuSectionIndex.mainFolders.rawValue)
-//
-//        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: (inboxSideMenuViewController)!)
-//
-//        SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
-//        SideMenuManager.default.menuFadeStatusBar = false
-//        SideMenuManager.default.menuAnimationFadeStrength = 0.5
-//        SideMenuManager.default.menuAnimationBackgroundColor = k_sideMenuFadeColor
-//
-//        SideMenuManager.default.menuPresentMode = .menuSlideIn
-//        let frame = self.view.frame
-//        SideMenuManager.default.menuWidth = max(round(min((frame.width), (frame.height)) * 0.67), 240)
-//    }
-    
-//    func initSplitViewController() {
-//
-//        let storyboard: UIStoryboard = UIStoryboard(name: k_SplitStoryboardName, bundle: nil)
-//        self.iPadSplitViewController = storyboard.instantiateViewController(withIdentifier: k_SplitViewControllerID) as? SplitViewController
-//        self.iPadSplitViewController.mainViewController = self
-//
-//        self.iPadSplitViewController.showDetailViewController(self.inboxNavigationController, sender: self)
-//    }
-    
-//    func showSplitViewController() {
-//        
-//        DispatchQueue.main.async {
-//            let splitViewController = self.getSplitViewController(with: self.messageID)
-//            if let window = UIApplication.shared.getKeyWindow() {
-//                window.setRootViewController(splitViewController)
-//            }else {
-//                self.show(splitViewController, sender: self)
-//            }
-////            self.iPadSplitViewController.modalPresentationStyle = .fullScreen
-////            self.show(self.iPadSplitViewController , sender: self)
-//        }
-//    }
 }
 
 //MARK: - SlideMenu Setup
 
 extension MainViewController {
-    func getSlideMenuController(with messageId: Int = -1) -> SlideMenuController {
+    func sideMenu(with messageId: Int = -1) -> SideMenuController {
         let inboxViewController = InboxViewController.instantiate(fromAppStoryboard: .Inbox)
         inboxViewController.messageID = messageId
         
-        let inboxNavigationController = getNavController(rootViewController: inboxViewController)
+        let inboxNavigationController = UIViewController.getNavController(rootViewController: inboxViewController)
         
         let leftMenuController = InboxSideMenuViewController.instantiate(fromAppStoryboard: .InboxSideMenu)
-//        leftMenuController.mainViewController = self
         leftMenuController.inboxViewController = inboxViewController
         leftMenuController.dataSource?.selectedIndexPath = IndexPath(row: 0, section: SideMenuSectionIndex.mainFolders.rawValue)
+
+        let sideMenuController = SideMenuController(contentViewController: inboxNavigationController, menuViewController: leftMenuController)
         
-        SlideMenuOptions.rightViewWidth = UIScreen.main.bounds.width / 1.3
-        SlideMenuOptions.contentViewOpacity = 0.3
-        SlideMenuOptions.panGesturesEnabled = false
-        
-        SlideMenuOptions.contentViewScale = 1
-        
-        let slideMenuController = SlideMenuController(mainViewController: inboxNavigationController, leftMenuViewController: leftMenuController)
-        
-        return slideMenuController
+        return sideMenuController
     }
 }
 
@@ -242,19 +133,19 @@ extension MainViewController {
 
 extension MainViewController {
     func authenticateUser(with username: String, and password: String) {
-        HUD.show(.progress)
+        Loader.start()
         generateHashedPassword(for: username, password: password) { (result) in
             guard let value = try? result.get() else {
-                HUD.hide()
+                Loader.stop()
                 self.showLoginViewController()
                 return
             }
-            AppManager.shared.networkService.loginUser(with: LoginDetails(userName: username, password: value, twoFAcode: nil)) { (result) in
-                HUD.hide()
+            NetworkManager.shared.networkService.loginUser(with: LoginDetails(userName: username, password: value)) { (result) in
+                Loader.stop()
                 switch result {
                 case .success(let value):
                     if let token = value.token {
-                        self.apiService?.keychainService?.saveToken(token: token)
+                        UtilityManager.shared.keychainService.saveToken(token: token)
                         self.moveToNext()
                     }else {
                         self.showLoginViewController()

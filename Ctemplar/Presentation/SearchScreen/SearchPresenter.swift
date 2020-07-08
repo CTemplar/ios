@@ -7,8 +7,7 @@
 //
 
 import Foundation
-import AlertHelperKit
-import PKHUD
+import UIKit
 
 class SearchPresenter {
     
@@ -45,7 +44,6 @@ class SearchPresenter {
     }
     
     func updateMessges() {
-        
         self.interactor!.offset = 0
         self.interactor!.getCount = 0
         self.interactor!.currentCount = 0

@@ -8,6 +8,9 @@
 
 import Foundation
 import UIKit
+import Utility
+import Networking
+import SideMenu
 
 class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
@@ -250,14 +253,7 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         tableView.deselectRow(at: indexPath, animated: true)
         
         if self.selectedIndexPath == indexPath {
-            
-//            if (!Device.IS_IPAD) {
-//                self.parentViewController?.dismiss(animated: true, completion: nil)
-                self.parentViewController?.slideMenuController()?.closeLeft()
-//            } else {
-//                self.parentViewController?.splitViewController?.toggleMasterView()
-//            }
-            
+            parentViewController?.sideMenuController?.hideMenu()
             return
         }
         
@@ -283,7 +279,6 @@ class InboxSideMenuDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
                 self.parentViewController?.presenter?.interactor?.selectSideMenuAction(optionName: optionName)
                 break
             case SideMenuSectionIndex.customFolders.rawValue:
-                
                 if self.showAllFolders {
                     if indexPath.row < self.customFoldersArray.count {
                         let folder = self.customFoldersArray[indexPath.row]

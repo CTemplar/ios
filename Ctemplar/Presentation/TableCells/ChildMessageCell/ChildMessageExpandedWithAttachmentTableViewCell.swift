@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 import WebKit
-
+import Utility
+import Networking
 
 class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -165,9 +166,9 @@ class ChildMessageExpandedWithAttachmentTableViewCell: UITableViewCell, UICollec
     
     func setupFromToHeaderHeight(message: EmailMessage) {
         
-        var fromName: String = ""
+        let fromName: String = ""
         var fromEmail: String = ""
-        var toNamesArray : Array<String> = []
+        let toNamesArray : Array<String> = []
         var toEmailsArray : Array<String> = []
         var ccArray : Array<String> = []
         var bccArray : Array<String> = []
@@ -302,6 +303,25 @@ extension ChildMessageExpandedWithAttachmentTableViewCell: WKNavigationDelegate 
             }
 
             })
+    }
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.navigationType == .linkActivated  {
+            if let url = navigationAction.request.url,
+                let host = url.host, !host.hasPrefix("www.google.com"),
+                UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+                print(url)
+                print("Redirected to browser. No need to open it locally")
+                decisionHandler(.cancel)
+            } else {
+                print("Open it locally")
+                decisionHandler(.allow)
+            }
+        } else {
+            print("not a user click")
+            decisionHandler(.allow)
+        }
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {

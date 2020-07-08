@@ -8,6 +8,9 @@
 
 import Foundation
 import UIKit
+import Utility
+import Networking
+import Inbox
 
 class InboxViewController: UIViewController {
     
@@ -46,9 +49,10 @@ class InboxViewController: UIViewController {
     //var senderEmail: String = ""
     
     @IBOutlet var inboxTableView        : UITableView!
-    
+    @IBOutlet weak var refreshButton    : UIButton!
     @IBOutlet var messagesLabel         : UILabel!
     @IBOutlet var unreadMessagesLabel   : UILabel!
+    @IBOutlet var messageAlertTitle     : UILabel!
     
     @IBOutlet var emptyInbox            : UIView!
     @IBOutlet var inboxEmptyImageView   : UIImageView!
@@ -60,11 +64,13 @@ class InboxViewController: UIViewController {
     @IBOutlet var selectionToolBar      : UIView!
     @IBOutlet var selectionDraftToolBar : UIView!
     @IBOutlet var undoBar               : UIView!
+    @IBOutlet var viewMailSendingAlert  : UIView!
     
     @IBOutlet var bottomComposeButton   : UIButton!
     @IBOutlet var rightComposeButton    : UIButton!
     @IBOutlet var leftFilterButton      : UIButton!
     @IBOutlet var undoButton            : UIButton!
+    @IBOutlet var alertButton           : UIButton!
     
     @IBOutlet var leftBarButtonItem     : UIBarButtonItem!
     @IBOutlet var rightBarButtonItem    : UIBarButtonItem!
@@ -100,7 +106,7 @@ class InboxViewController: UIViewController {
             self.presenter?.interactor?.updateMessages(withUndo: "", silent: false)
 //        })
         
-        NotificationCenter.default.addObserver(self, selector: #selector(userSettingsUpdate), name: NSNotification.Name(rawValue: k_updateUserSettingsNotificationID), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userSettingsUpdate), name: .updateUserSettingsNotificationID, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -186,11 +192,16 @@ class InboxViewController: UIViewController {
         }
     }
     
+    @IBAction func alertButtonPressed(_ sender: Any) {
+        viewMailSendingAlert.isHidden = true
+    }
+    
+    
     //MARK: - notification
     
     func adddNotificationObserver() {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.reciveUpdateNotification(notification:)), name: Notification.Name(k_updateInboxMessagesNotificationID), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reciveUpdateNotification(notification:)), name: .updateInboxMessagesNotificationID, object: nil)
     }
     
     @objc func reciveUpdateNotification(notification: Notification) {
@@ -247,5 +258,18 @@ extension InboxViewController: MoreActionsDelegate {
     func applyAction(_ sender: AnyObject, isButton: Bool) {
         
         presenter?.applyMoreAction(sender, isButton: isButton)
+    }
+}
+
+extension InboxViewController: ViewInboxEmailDelegate {
+    func didUpdateReadStatus(for message: EmailMessage, status: Bool) {
+        for i in 0..<allMessagesArray.count {
+            if allMessagesArray[i].messsageID == message.messsageID {
+                allMessagesArray[i].update(readStatus: status)
+                break
+            }
+        }
+        dataSource?.updateMessageStatus(message: message, status: status)
+        NotificationCenter.default.post(name: .updateMessagesReadCountNotificationID, object: ["name": self.currentFolder, "isRead": status])
     }
 }

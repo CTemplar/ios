@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import AlertHelperKit
-import PKHUD
+import Utility
+import Networking
 
 class PgpKeysInteractor {
     
@@ -17,22 +17,20 @@ class PgpKeysInteractor {
     var presenter       : PgpKeysPresenter!
     
     func mailboxList() {
-        HUD.show(.progress)
-        apiService?.mailboxesList(completionHandler: { (result) in
+        Loader.start()
+        apiService?.mailboxesList(completionHandler: { [weak self] (result) in
             switch result {
             case .success(let value):
                 let mailboxes = value as! Mailboxes
                 if let mailboxesList = mailboxes.mailboxesResultsList {
-                    self.viewController.mailboxList = mailboxesList
-                    self.presenter.setValues()
+                    self?.viewController.mailboxList = mailboxesList
+                    self?.presenter.setValues()
                 }
-                break
             case .failure(let error):
                 print("error:", error)
-                AlertHelperKit().showAlert(self.viewController!, title: "Mailboxes Error", message: error.localizedDescription, button: "closeButton".localized())
-                break
+                self?.viewController.showAlert(with: "Mailboxes Error", message: error.localizedDescription, buttonTitle: Strings.Button.closeButton.localized)
             }
-            HUD.hide()
+            Loader.stop()
         })
     }
     

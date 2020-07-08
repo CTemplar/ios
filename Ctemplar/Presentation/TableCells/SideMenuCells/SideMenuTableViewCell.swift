@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import Utility
 
 class SideMenuTableViewCell: UITableViewCell {
     
