@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4457DD17249F9B54009D0447 /* Signup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4457DD16249F9B54009D0447 /* Signup.framework */; };
-		4457DD18249F9B54009D0447 /* Signup.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4457DD16249F9B54009D0447 /* Signup.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		44A41B67249E106200A21664 /* ForgetPassword.h in Headers */ = {isa = PBXBuildFile; fileRef = 44A41B65249E106200A21664 /* ForgetPassword.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		44A41B79249E108200A21664 /* ForgetPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44A41B78249E108200A21664 /* ForgetPassword.storyboard */; };
 		44A41B7C249E10CD00A21664 /* ForgetPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A41B7B249E10CD00A21664 /* ForgetPasswordPresenter.swift */; };
@@ -23,23 +22,7 @@
 		44A41B8F249E118B00A21664 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A41B8E249E118B00A21664 /* NewPasswordViewController.swift */; };
 		44A41B91249E14AD00A21664 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44A41B90249E14AD00A21664 /* Assets.xcassets */; };
 		44A41B94249E14B800A21664 /* Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44A41B93249E14B800A21664 /* Utility.framework */; };
-		44A41B95249E14B800A21664 /* Utility.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44A41B93249E14B800A21664 /* Utility.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		44A41B96249E14B800A21664 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				4457DD18249F9B54009D0447 /* Signup.framework in Embed Frameworks */,
-				44A41B95249E14B800A21664 /* Utility.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4457DD16249F9B54009D0447 /* Signup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Signup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,7 +150,6 @@
 				44A41B5E249E106200A21664 /* Sources */,
 				44A41B5F249E106200A21664 /* Frameworks */,
 				44A41B60249E106200A21664 /* Resources */,
-				44A41B96249E14B800A21664 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -299,7 +281,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -356,7 +338,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -380,6 +362,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ForgetPassword/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -388,6 +371,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.dev.ForgetPassword;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -406,6 +390,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ForgetPassword/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -414,6 +399,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.dev.ForgetPassword;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

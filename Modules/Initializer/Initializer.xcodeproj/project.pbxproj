@@ -8,35 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		440F7D8124AF614300B9BA2D /* Inbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 440F7D8024AF614300B9BA2D /* Inbox.framework */; };
-		440F7D8224AF614300B9BA2D /* Inbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 440F7D8024AF614300B9BA2D /* Inbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		444D654824A4D57C00690B3E /* Initializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 444D654624A4D57C00690B3E /* Initializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		444D655B24A4D5C300690B3E /* InitializerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D655A24A4D5C300690B3E /* InitializerController.swift */; };
 		444D656224A4D5FD00690B3E /* Login.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444D655F24A4D5FD00690B3E /* Login.framework */; };
-		444D656324A4D5FD00690B3E /* Login.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 444D655F24A4D5FD00690B3E /* Login.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		444D656424A4D5FD00690B3E /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444D656024A4D5FD00690B3E /* Networking.framework */; };
-		444D656524A4D5FD00690B3E /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 444D656024A4D5FD00690B3E /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		444D656624A4D5FD00690B3E /* Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444D656124A4D5FD00690B3E /* Utility.framework */; };
-		444D656724A4D5FD00690B3E /* Utility.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 444D656124A4D5FD00690B3E /* Utility.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		444D656B24A4DAEE00690B3E /* Initializer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 444D656A24A4DAEE00690B3E /* Initializer.storyboard */; };
 		444D656D24A4DB8C00690B3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 444D656C24A4DB8C00690B3E /* Assets.xcassets */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		444D656824A4D5FD00690B3E /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				444D656724A4D5FD00690B3E /* Utility.framework in Embed Frameworks */,
-				444D656524A4D5FD00690B3E /* Networking.framework in Embed Frameworks */,
-				444D656324A4D5FD00690B3E /* Login.framework in Embed Frameworks */,
-				440F7D8224AF614300B9BA2D /* Inbox.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		440F7D8024AF614300B9BA2D /* Inbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Inbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,7 +123,6 @@
 				444D653F24A4D57C00690B3E /* Sources */,
 				444D654024A4D57C00690B3E /* Frameworks */,
 				444D654124A4D57C00690B3E /* Resources */,
-				444D656824A4D5FD00690B3E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -263,7 +241,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -320,7 +298,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -344,7 +322,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Initializer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -353,6 +331,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.dev.Initializer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -371,7 +350,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Initializer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -380,6 +359,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.dev.Initializer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -15,7 +15,7 @@ public final class InboxSideMenuController: UIViewController {
     }()
 
     private var currentParent: UIViewController?
-    private (set) var presenter: InboxSideMenuPresenter?
+    public private (set) var presenter: InboxSideMenuPresenter?
     private (set) var dataSource: InboxSideMenuDataSource?
     private (set) var router: InboxSideMenuRouter?
     private (set) weak var inbox: InboxViewController?

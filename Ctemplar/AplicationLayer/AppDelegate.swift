@@ -177,7 +177,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 private extension AppDelegate {
     func configureSideMenu() {
         SideMenuController.preferences.basic.menuWidth = 240
-        SideMenuController.preferences.basic.statusBarBehavior = .hideOnMenu
         SideMenuController.preferences.basic.position = .sideBySide
         SideMenuController.preferences.basic.direction = .left
         SideMenuController.preferences.basic.enablePanGesture = true
@@ -205,18 +204,7 @@ private extension AppDelegate {
             .pushViewController(viewInboxVC, animated: true
         )
     }
-    
-    func showSearch(withMessage messages: [EmailMessage],
-                    user: UserMyself,
-                    presenter: UIViewController?) {
-        let searchVC: SearchViewController = UIStoryboard(storyboard: .search,
-                                                          bundle: Bundle(for: SearchViewController.self)
-        ).instantiateViewController()
-        searchVC.messagesList = messages
-        searchVC.user = user
-        presenter?.navigationController?.pushViewController(searchVC, animated: true)
-    }
-    
+
     func showCompose(withMode mode: Utility.AnswerMessageMode,
                      user: UserMyself,
                      presenter: UIViewController?) {
@@ -361,15 +349,7 @@ private extension AppDelegate {
                             delegate: delegate
             )
         }
-        
-        // Open Search
-        initializer.onTapSearch = { [weak self] (messages, user, inboxViewController) in
-            self?.showSearch(withMessage: messages,
-                             user: user,
-                             presenter: inboxViewController
-            )
-        }
-        
+
         // Open Contacts
         initializer.onTapContacts = { [weak self] (contacts, contactsEncrypted, inboxViewController) in
             self?.showContacts(withList: contacts,

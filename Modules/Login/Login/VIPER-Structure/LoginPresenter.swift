@@ -1,6 +1,8 @@
 import Foundation
 import UIKit
 import Utility
+import Networking
+import BJOTPViewController
 
 final class LoginPresenter {
     // MARK: Properties
@@ -15,6 +17,12 @@ final class LoginPresenter {
     private var password = "" {
         didSet {
             loginViewController?.configurator?.update(password: password)
+        }
+    }
+    
+    private var twoFACode = "" {
+        didSet {
+            loginViewController?.configurator?.update(twoFACode: twoFACode)
         }
     }
     
@@ -55,6 +63,10 @@ final class LoginPresenter {
         self.password = password
     }
     
+    func update(twoFACode: String) {
+        self.twoFACode = twoFACode
+    }
+    
     // MARK: - Sub-Controllers Config
     func changeButtonState(button: UIButton, disabled: Bool) {
         if disabled {
@@ -80,8 +92,49 @@ final class LoginPresenter {
         shouldShow ? loginViewController?.startLoader() : loginViewController?.stopLoader()
     }
     
+    func showOTPScreen(with loginResponse: LoginResult, password: String) {
+        // Initialise view controller
+        let oneTimePasswordVC = BJOTPViewController(withHeading: Strings.Login.TwoFactorAuth.twoFATitle.localized,
+                                                    withNumberOfCharacters: 6,
+                                                    delegate: self)
+        // Modal presentation Style
+        oneTimePasswordVC.modalPresentationStyle = .formSheet
+        
+        // Button title. Optional. Default is "AUTHENTICATE".
+        oneTimePasswordVC.authenticateButtonTitle = Strings.Login.TwoFactorAuth.twoFAButtonTitle.localized
+        
+        // Secondary Header Title. Default is Nil
+        oneTimePasswordVC.secondaryHeaderTitle = Strings.Login.TwoFactorAuth.twoFASecondaryTitle.localized
+
+        // Sets the overall accent of the view controller. Optional. Default is system blue.
+        oneTimePasswordVC.accentColor = AppStyle.Colors.loaderColor.color
+
+        // Currently selected text field color. Optional. This takes precedence over the accent color.
+        oneTimePasswordVC.currentTextFieldColor = AppStyle.Colors.loaderColor.color
+
+        // Button color. Optional. This takes precedence over the accent color.
+        oneTimePasswordVC.authenticateButtonColor = AppStyle.Colors.loaderColor.color
+        
+        loginViewController?.present(oneTimePasswordVC, animated: true, completion: nil)
+    }
+    
     // MARK: - Login
-    func login() {
-        interactor?.authenticateUser()
+    func login(fromPresenter presenter: UIViewController? = nil) {
+        interactor?.authenticateUser(fromPresenter: presenter)
+    }
+}
+
+//Conform to BJOTPViewControllerDelegate
+extension LoginPresenter: BJOTPViewControllerDelegate {
+    func authenticate(_ otp: String, from viewController: BJOTPViewController) {
+        // Make API calls, show loading animation in viewController, do whatever you want.
+        // You can dismiss the viewController when you're done.
+        // This method will get called only after the validation is successful, i.e.,
+        // after the user has filled all the textfields.
+        self.twoFACode = otp
+        
+        if otp.count == 6 {
+            login(fromPresenter: viewController)
+        }
     }
 }

@@ -22,7 +22,7 @@ public enum EndPoint: String {
     #if DEBUG
     case baseUrl = "https://devapi.ctemplar.net/"
     #else
-    case baseUrl = "https://mail.ctemplar.com/api/" //"https://api.ctemplar.com/"
+    case baseUrl = "https://api.ctemplar.com/" // https://mail.ctemplar.com/api/
     #endif
     case signIn = "auth/sign-in/"
     case signUp = "auth/sign-up/"
@@ -34,6 +34,7 @@ public enum EndPoint: String {
     case refreshToken = "auth/refresh/"
     case signOut = "auth/sign-out/"
     case messages = "emails/messages/"
+    case searchMessages = "/search/messages/"
     case mailboxes = "emails/mailboxes/"
     case publicKeys = "emails/keys/"
     case unreadCounter = "emails/unread/"

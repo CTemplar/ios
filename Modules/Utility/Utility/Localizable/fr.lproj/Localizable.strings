@@ -32,13 +32,15 @@
 "actionFailed" = "Action: échoué";
 "done" = "Terminé";
 
-//login
-
+// Login
 "emailPlaceholder" = "Email";
 "passwordPlaceholder" = "Mot de passe";
 "usernamePlaceholder" = "Nom utilisateur";
 
-"twoFAPlaceholder" = "Code 2FA";
+// 2FA
+"twoFAButtonTitle" = "AUTHENTIFIER";
+"twoFATitle" = "Authentification à deux facteurs";
+"twoFASecondaryTitle" = "Veuillez fournir le code à 6 chiffres de n'importe quelle application d'authentification configurée";
 
 "forgotPassword" = "Mot de passe oublié ?";
 "login" = "Se connecter";
@@ -204,9 +206,7 @@
 "noActionTitle" = "No";                                                                         //Localize
 
 // Search Screen
-
 "noResults" = "Aucun résultat";
-
 "search" = "Rechercher";
 
 // Side Menu Cells

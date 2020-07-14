@@ -10,6 +10,7 @@ import Foundation
 import Networking
 import Utility
 import UIKit
+import Inbox
 
 class SettingsInteractor {
     
@@ -18,9 +19,13 @@ class SettingsInteractor {
     var apiService      : APIService?
 
     func logOut() {
-        
-        self.viewController?.navigationController?.popViewController(animated: true)
-        self.viewController?.sideMenuViewController?.presenter?.interactor?.logOut()
+        viewController?.navigationController?.popViewController(animated: true)
+        (viewController?
+            .sideMenuController?
+            .menuViewController as? InboxSideMenuController)?
+            .presenter?
+            .interactor?
+            .logOut()
     }
     
     func SettingsCellPressed(indexPath: IndexPath) {

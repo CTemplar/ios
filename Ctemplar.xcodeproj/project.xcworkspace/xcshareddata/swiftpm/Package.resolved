@@ -1,0 +1,88 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Alamofire",
+        "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
+        "state": {
+          "branch": null,
+          "revision": "2777659076fda38bd4e487739ee331c7a65b5924",
+          "version": "5.2.1"
+        }
+      },
+      {
+        "package": "AlertHelperKit",
+        "repositoryURL": "https://github.com/sohamb1390/AlertHelperKitPackage.git",
+        "state": {
+          "branch": null,
+          "revision": "9e97a433ff65b0f5912f7314b2ba2f9d4d287be5",
+          "version": "1.0.1"
+        }
+      },
+      {
+        "package": "CryptoHelperKit",
+        "repositoryURL": "https://github.com/sohamb1390/CryptoHelperPackage.git",
+        "state": {
+          "branch": null,
+          "revision": "73e1cbae8741f00ce5106800b1783d940a82af3b",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "IQKeyboardManagerSwift",
+        "repositoryURL": "https://github.com/hackiftekhar/IQKeyboardManager.git",
+        "state": {
+          "branch": null,
+          "revision": "b0f0a127cca6bb39378447baa2afff74123abd09",
+          "version": "6.5.5"
+        }
+      },
+      {
+        "package": "KDLoadingHelperKit",
+        "repositoryURL": "https://github.com/sohamb1390/KDLoadingViewHelper.git",
+        "state": {
+          "branch": null,
+          "revision": "543c233029093217899d03b14bb5fba944a18d9a",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "KeychainSwift",
+        "repositoryURL": "https://github.com/evgenyneu/keychain-swift.git",
+        "state": {
+          "branch": null,
+          "revision": "96fb84f45a96630e7583903bd7e08cf095c7a7ef",
+          "version": "19.0.0"
+        }
+      },
+      {
+        "package": "QuickLayout",
+        "repositoryURL": "https://github.com/huri000/QuickLayout.git",
+        "state": {
+          "branch": null,
+          "revision": "6be62decbe508d8fc8f9dbafc349d05bab03c38b",
+          "version": "3.0.1"
+        }
+      },
+      {
+        "package": "SideMenu",
+        "repositoryURL": "https://github.com/kukushi/SideMenu.git",
+        "state": {
+          "branch": null,
+          "revision": "17a661eb76d3385a76688acf842a24f641f913fd",
+          "version": "2.0.5"
+        }
+      },
+      {
+        "package": "SwiftEntryKit",
+        "repositoryURL": "https://github.com/huri000/SwiftEntryKit.git",
+        "state": {
+          "branch": null,
+          "revision": "796981500de29ee72f72ef8e9c46eaed2fe6364e",
+          "version": "1.2.3"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

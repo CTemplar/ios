@@ -13,15 +13,18 @@ import Utility
 public struct LoginDetails {
     public var userName: String
     public var password: String
+    public var twoFACode: String
     
     public init() {
         userName = ""
         password = ""
+        twoFACode = ""
     }
     
-    public init(userName: String, password: String) {
+    public init(userName: String, password: String, twoFACode: String) {
         self.userName = userName
         self.password = password
+        self.twoFACode = twoFACode
     }
 }
 
@@ -117,6 +120,7 @@ extension NetworkService: AuthService {
     public func loginUser(with details: LoginDetails,
                    completionHandler: @escaping Completion<LoginResult>) {
         perform(request: RouterAuth.login(details: details),
+                shouldRefreshToken: false,
                 completionHandler: completionHandler)
     }
     

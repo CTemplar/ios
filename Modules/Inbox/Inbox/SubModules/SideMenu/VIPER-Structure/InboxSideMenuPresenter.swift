@@ -2,10 +2,10 @@ import Foundation
 import Utility
 import Networking
 
-final class InboxSideMenuPresenter {
+public final class InboxSideMenuPresenter {
     // MARK: Properties
     private (set) weak var viewController: InboxSideMenuController?
-    private (set) var interactor: InboxSideMenuInteractor?
+    public private (set) var interactor: InboxSideMenuInteractor?
     
     // MARK: - Setup
     func setup(viewController: InboxSideMenuController) {

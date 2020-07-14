@@ -23,13 +23,15 @@
 "termsAndConditionsFullText" = "Zaškrtnite toto políčko ak súhlasíte s dodržiavaním našich zmluvných podmienok.";
 "termsAndConditionsPhrase" = "Zmluvné podmienky";
 
-//login
-
+// Login
 "emailPlaceholder" = "E-mail";
 "passwordPlaceholder" = "Heslo";
 "usernamePlaceholder" = "Prihlasovacie meno";
 
-"twoFAPlaceholder" = "2-FA kód";
+// 2FA
+"twoFAButtonTitle" = "AUTHENTICATE";
+"twoFATitle" = "Autentifikácia s dvoma faktormi";
+"twoFASecondaryTitle" = "Zadajte 6-ciferný kód z ľubovoľnej nakonfigurovanej aplikácie autentifikátora";
 
 "forgotPassword" = "Zabudli ste heslo?";
 "login" = "Prihlásiť sa";
@@ -203,7 +205,6 @@
 
 // Search Screen
 "noResults" = "Neboli nájdené žiadne výsledky";
-
 "search" = "Hľadať";
 
 //Side Menu Cells

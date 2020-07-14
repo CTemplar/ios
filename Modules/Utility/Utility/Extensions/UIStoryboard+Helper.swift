@@ -14,7 +14,7 @@ public extension UIStoryboard {
         case compose = "Compose"
         case initializer = "Initializer"
         case inboxDetails = "ViewInboxEmail"
-        case search = "Search"
+        case search = "GlobalSearch"
         case contacts = "Contacts"
         case settings = "Settings"
         case FAQ = "FAQ"
@@ -70,7 +70,7 @@ public extension UIStoryboard.Storyboard {
         case .inboxDetails:
             return "ViewInboxEmailViewController"
         case .search:
-            return "SearchViewController"
+            return "GlobalSearchViewController"
         case .contacts:
             return "ContactsViewController"
         case .settings:

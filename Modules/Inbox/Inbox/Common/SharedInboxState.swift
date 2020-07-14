@@ -1,8 +1,8 @@
 import Foundation
 
-final class SharedInboxState {
-    static let shared = SharedInboxState()
-    private (set) var selectedMenu: MenuConfigurable?
+public final class SharedInboxState {
+    public static let shared = SharedInboxState()
+    public private (set) var selectedMenu: MenuConfigurable?
     private (set) var selectedPreferences: Menu.Preferences?
     private (set) var selectedCustomFolderIndexPath: IndexPath?
     private (set) var appliedFilters: [InboxFilter] = []

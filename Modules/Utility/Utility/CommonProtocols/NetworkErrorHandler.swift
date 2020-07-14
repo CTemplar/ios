@@ -28,11 +28,8 @@ public extension NetworkErrorHandler {
     }
     
     func showLoginViewController() {
-        let loginViewController = UIStoryboard(storyboard: .login,
-                                               bundle: UIStoryboard.Storyboard.login.bundle)
-            .instantiateViewController(withIdentifier: UIStoryboard.Storyboard.login.viewControllerId)
-        if let window = UIApplication.shared.getKeyWindow() {
-            window.setRootViewController(loginViewController)
-        }
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        // Inbox list update notification
+        NotificationCenter.default.post(name: .logoutCompleteNotificationID, object: nil)
     }
 }

@@ -10,6 +10,7 @@
 		44099D9D24A285D800583630 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 44099D9C24A285D800583630 /* SideMenu */; };
 		440F7E5A24AF7B1A00B9BA2D /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7E5924AF7B1A00B9BA2D /* Toast.swift */; };
 		443A1EE524B22B59009BC733 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443A1EE424B22B59009BC733 /* UINavigationController+Extension.swift */; };
+		44457FA524BD6D1300E7EBFC /* KDLoadingHelperKit in Frameworks */ = {isa = PBXBuildFile; productRef = 44457FA424BD6D1300E7EBFC /* KDLoadingHelperKit */; };
 		444BD2752491EFD5001D0C5F /* FormatterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444BD2742491EFD5001D0C5F /* FormatterService.swift */; };
 		444BD28124920A39001D0C5F /* SharedDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444BD28024920A39001D0C5F /* SharedDateFormatter.swift */; };
 		444BD28624920F57001D0C5F /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444BD28524920F57001D0C5F /* Date+Helpers.swift */; };
@@ -45,6 +46,8 @@
 		445BF9E424AD22DC00DAC3B3 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 445BF9E224AD22C900DAC3B3 /* libbz2.tbd */; };
 		445BF9EF24AD248D00DAC3B3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 445BF9EE24AD248D00DAC3B3 /* Security.framework */; };
 		445CFAE9249BF45B0017DC40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 445CFAE8249BF45B0017DC40 /* Assets.xcassets */; };
+		4466379724BDEC3B006C9F5E /* CryptoHelperKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4466379624BDEC3B006C9F5E /* CryptoHelperKit */; };
+		4466379A24BDEC63006C9F5E /* AlertHelperKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4466379924BDEC63006C9F5E /* AlertHelperKit */; };
 		44727D3C249F223D003B99FC /* PasswordChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44727D3B249F223D003B99FC /* PasswordChecker.swift */; };
 		44727D3E249F225B003B99FC /* EmailChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44727D3D249F225B003B99FC /* EmailChecker.swift */; };
 		447C2A442491760000EC426B /* UIStoryboard+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447C2A432491760000EC426B /* UIStoryboard+Helper.swift */; };
@@ -150,11 +153,14 @@
 			files = (
 				44BD63F42490B46400CB4A73 /* QuickLayout in Frameworks */,
 				445BF9E424AD22DC00DAC3B3 /* libbz2.tbd in Frameworks */,
+				4466379724BDEC3B006C9F5E /* CryptoHelperKit in Frameworks */,
 				445BF9E324AD22D100DAC3B3 /* libz.tbd in Frameworks */,
 				444BD2D0249223CD001D0C5F /* KeychainSwift in Frameworks */,
 				44BD63FB2490B93E00CB4A73 /* SwiftEntryKit in Frameworks */,
+				44457FA524BD6D1300E7EBFC /* KDLoadingHelperKit in Frameworks */,
 				44099D9D24A285D800583630 /* SideMenu in Frameworks */,
 				445BF9EF24AD248D00DAC3B3 /* Security.framework in Frameworks */,
+				4466379A24BDEC63006C9F5E /* AlertHelperKit in Frameworks */,
 				F667DD49A75B6FE0252F8096 /* Pods_Utility.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,6 +393,9 @@
 				44BD63FA2490B93E00CB4A73 /* SwiftEntryKit */,
 				444BD2CF249223CD001D0C5F /* KeychainSwift */,
 				44099D9C24A285D800583630 /* SideMenu */,
+				44457FA424BD6D1300E7EBFC /* KDLoadingHelperKit */,
+				4466379624BDEC3B006C9F5E /* CryptoHelperKit */,
+				4466379924BDEC63006C9F5E /* AlertHelperKit */,
 			);
 			productName = Utility;
 			productReference = 44BD637324909D9E00CB4A73 /* Utility.framework */;
@@ -423,6 +432,9 @@
 				44BD63F92490B93E00CB4A73 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */,
 				444BD2CE249223CD001D0C5F /* XCRemoteSwiftPackageReference "keychain-swift" */,
 				44099D9B24A285D800583630 /* XCRemoteSwiftPackageReference "SideMenu" */,
+				44457FA324BD6D1300E7EBFC /* XCRemoteSwiftPackageReference "KDLoadingViewHelper" */,
+				4466379524BDEC3B006C9F5E /* XCRemoteSwiftPackageReference "CryptoHelperPackage" */,
+				4466379824BDEC63006C9F5E /* XCRemoteSwiftPackageReference "AlertHelperKitPackage" */,
 			);
 			productRefGroup = 44BD637424909D9E00CB4A73 /* Products */;
 			projectDirPath = "";
@@ -600,7 +612,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -658,7 +670,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -684,7 +696,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Utility/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -695,6 +707,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -714,7 +727,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Utility/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -725,6 +738,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -762,12 +776,36 @@
 				minimumVersion = 2.0.5;
 			};
 		};
+		44457FA324BD6D1300E7EBFC /* XCRemoteSwiftPackageReference "KDLoadingViewHelper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sohamb1390/KDLoadingViewHelper.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		444BD2CE249223CD001D0C5F /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 19.0.0;
+			};
+		};
+		4466379524BDEC3B006C9F5E /* XCRemoteSwiftPackageReference "CryptoHelperPackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sohamb1390/CryptoHelperPackage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		4466379824BDEC63006C9F5E /* XCRemoteSwiftPackageReference "AlertHelperKitPackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sohamb1390/AlertHelperKitPackage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
 			};
 		};
 		44BD63F22490B46400CB4A73 /* XCRemoteSwiftPackageReference "QuickLayout" */ = {
@@ -794,10 +832,25 @@
 			package = 44099D9B24A285D800583630 /* XCRemoteSwiftPackageReference "SideMenu" */;
 			productName = SideMenu;
 		};
+		44457FA424BD6D1300E7EBFC /* KDLoadingHelperKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 44457FA324BD6D1300E7EBFC /* XCRemoteSwiftPackageReference "KDLoadingViewHelper" */;
+			productName = KDLoadingHelperKit;
+		};
 		444BD2CF249223CD001D0C5F /* KeychainSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 444BD2CE249223CD001D0C5F /* XCRemoteSwiftPackageReference "keychain-swift" */;
 			productName = KeychainSwift;
+		};
+		4466379624BDEC3B006C9F5E /* CryptoHelperKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4466379524BDEC3B006C9F5E /* XCRemoteSwiftPackageReference "CryptoHelperPackage" */;
+			productName = CryptoHelperKit;
+		};
+		4466379924BDEC63006C9F5E /* AlertHelperKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4466379824BDEC63006C9F5E /* XCRemoteSwiftPackageReference "AlertHelperKitPackage" */;
+			productName = AlertHelperKit;
 		};
 		44BD63F32490B46400CB4A73 /* QuickLayout */ = {
 			isa = XCSwiftPackageProductDependency;

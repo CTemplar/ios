@@ -97,7 +97,7 @@ class EditFolderViewController: UIViewController {
 
     func setup(selectedHexColor: String) {
         self.selectedHexColor = selectedHexColor
-        colorPicker.set(color: UIColor.hexStringToUIColor(hex: selectedHexColor), colorSpace: .extendedSRGB)
+        colorPicker.set(color: UIColor.hexToColor(selectedHexColor), colorSpace: .extendedSRGB)
     }
     
     // MARK: - Color Picker Actions

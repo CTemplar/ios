@@ -3,15 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4400832B24B729B900F8AD00 /* Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F739ED2498C37C00688086 /* Utility.framework */; };
+		444EE55824BCEC20000E7C5A /* BJOTPViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 444EE55724BCEC20000E7C5A /* BJOTPViewController */; };
 		4457DD14249F9A98009D0447 /* ForgetPassword.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4457DD13249F9A98009D0447 /* ForgetPassword.framework */; };
-		4457DD15249F9A98009D0447 /* ForgetPassword.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4457DD13249F9A98009D0447 /* ForgetPassword.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		445CFAE7249BF3F60017DC40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 445CFAE6249BF3F60017DC40 /* Assets.xcassets */; };
 		446C4B3A2499F26A005D413F /* Signup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 446C4B392499F26A005D413F /* Signup.framework */; };
-		446C4B3B2499F26A005D413F /* Signup.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 446C4B392499F26A005D413F /* Signup.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		44F739C62498B01800688086 /* Login.h in Headers */ = {isa = PBXBuildFile; fileRef = 44F739C42498B01800688086 /* Login.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		44F739D72498B09B00688086 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F739D62498B09B00688086 /* LoginPresenter.swift */; };
 		44F739D92498B0A600688086 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F739D82498B0A600688086 /* LoginRouter.swift */; };
@@ -20,26 +20,8 @@
 		44F739DF2498B0D600688086 /* LoginConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F739DE2498B0D600688086 /* LoginConfigurator.swift */; };
 		44F739E22498B21300688086 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F739E12498B21300688086 /* LoginViewController.swift */; };
 		44F739E52498B53C00688086 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44F739E42498B53C00688086 /* Login.storyboard */; };
-		44F739EE2498C37C00688086 /* Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F739ED2498C37C00688086 /* Utility.framework */; };
-		44F739EF2498C37C00688086 /* Utility.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44F739ED2498C37C00688086 /* Utility.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		44F739F62498F99900688086 /* LoginConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F739F52498F99900688086 /* LoginConstants.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		44F739F02498C37C00688086 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				4457DD15249F9A98009D0447 /* ForgetPassword.framework in Embed Frameworks */,
-				446C4B3B2499F26A005D413F /* Signup.framework in Embed Frameworks */,
-				44F739EF2498C37C00688086 /* Utility.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4457DD13249F9A98009D0447 /* ForgetPassword.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ForgetPassword.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,9 +46,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4400832B24B729B900F8AD00 /* Utility.framework in Frameworks */,
+				444EE55824BCEC20000E7C5A /* BJOTPViewController in Frameworks */,
 				4457DD14249F9A98009D0447 /* ForgetPassword.framework in Frameworks */,
 				446C4B3A2499F26A005D413F /* Signup.framework in Frameworks */,
-				44F739EE2498C37C00688086 /* Utility.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,7 +155,6 @@
 				44F739BD2498B01800688086 /* Sources */,
 				44F739BE2498B01800688086 /* Frameworks */,
 				44F739BF2498B01800688086 /* Resources */,
-				44F739F02498C37C00688086 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -180,6 +162,7 @@
 			);
 			name = Login;
 			packageProductDependencies = (
+				444EE55724BCEC20000E7C5A /* BJOTPViewController */,
 			);
 			productName = Login;
 			productReference = 44F739C12498B01800688086 /* Login.framework */;
@@ -210,6 +193,7 @@
 			);
 			mainGroup = 44F739B72498B01800688086;
 			packageReferences = (
+				444EE55624BCEC20000E7C5A /* XCRemoteSwiftPackageReference "BJOTPViewController" */,
 			);
 			productRefGroup = 44F739C22498B01800688086 /* Products */;
 			projectDirPath = "";
@@ -301,7 +285,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -358,7 +342,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -382,6 +366,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Login/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -390,6 +375,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.dev.Login;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -408,6 +394,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Login/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -416,6 +403,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.dev.Login;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -443,6 +431,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		444EE55624BCEC20000E7C5A /* XCRemoteSwiftPackageReference "BJOTPViewController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/BadhanGanesh/BJOTPViewController.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		444EE55724BCEC20000E7C5A /* BJOTPViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 444EE55624BCEC20000E7C5A /* XCRemoteSwiftPackageReference "BJOTPViewController" */;
+			productName = BJOTPViewController;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 44F739B82498B01800688086 /* Project object */;
 }
