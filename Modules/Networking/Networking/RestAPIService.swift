@@ -112,6 +112,37 @@ public class RestAPIService {
         }
     }
     
+    func searchMessages(withToken token: String,
+                        searchQuery: String,
+                        offset: Int,
+                        pageLimit: Int = GeneralConstant.OffsetValue.pageLimit.rawValue,
+                        completionHandler: @escaping (APIResult<Any>) -> Void) {
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let limitParams = offset > -1 ? "?q=\(searchQuery)&limit=\(pageLimit)&offset=\(offset)" : ""
+        
+        var url = "\(EndPoint.baseUrl.rawValue)\(EndPoint.searchMessages.rawValue)\(limitParams)"
+        
+        url = url.replacingOccurrences(of: " ", with: "%20")
+        
+        DPrint("messagesList url:", url)
+        
+        AF.request(url, method: .get, parameters: nil,
+                   encoding: JSONEncoding.default,
+                   headers: headers).responseJSON { (response: AFDataResponse<Any>) in
+            DPrint("messagesList responce:", response)
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
     func updateMessages(token: String, messageID: String, messagesIDIn: String, folder: String, starred: Bool, read: Bool, updateFolder: Bool, updateStarred: Bool, updateRead: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [

@@ -4,7 +4,7 @@ import Networking
 import UIKit
 import Login
 
-final class InboxSideMenuInteractor {
+public final class InboxSideMenuInteractor {
     // MARK: Properties
     private weak var viewController: InboxSideMenuController?
     
@@ -34,7 +34,7 @@ final class InboxSideMenuInteractor {
     }
 
     // MARK: - API Handlers
-    func logOut() {
+    public func logOut() {
         Loader.start()
         apiService.logOut(completionHandler: { [weak self] (isSucceeded) in
             DispatchQueue.main.async {

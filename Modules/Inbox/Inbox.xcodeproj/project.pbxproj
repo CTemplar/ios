@@ -46,21 +46,18 @@
 		444D659224A70AA300690B3E /* InboxSideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D659124A70AA300690B3E /* InboxSideMenuController.swift */; };
 		444D659424A70B5C00690B3E /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D659324A70B5C00690B3E /* InboxViewController.swift */; };
 		444D659B24A70BA500690B3E /* Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444D659A24A70BA500690B3E /* Utility.framework */; };
-		444D659C24A70BA500690B3E /* Utility.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 444D659A24A70BA500690B3E /* Utility.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		444D659E24A70BFC00690B3E /* Inbox.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 444D659D24A70BFC00690B3E /* Inbox.storyboard */; };
 		444D65A024A70C7600690B3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 444D659F24A70C7500690B3E /* Assets.xcassets */; };
 		444D65A224A70D8C00690B3E /* InboxNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65A124A70D8C00690B3E /* InboxNavigationController.swift */; };
 		444D65A424A7201E00690B3E /* LeftBarButtonItemConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65A324A7201E00690B3E /* LeftBarButtonItemConfigurable.swift */; };
 		444D65A624A7217600690B3E /* InboxRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65A524A7217600690B3E /* InboxRouter.swift */; };
 		444D65A824A723D300690B3E /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444D65A724A723D300690B3E /* Networking.framework */; };
-		444D65A924A723D300690B3E /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 444D65A724A723D300690B3E /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		444D65AB24A72C7500690B3E /* InboxSideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 444D65AA24A72C7500690B3E /* InboxSideMenu.storyboard */; };
 		444D65AE24A72D0100690B3E /* InboxSideMenuConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65AD24A72D0100690B3E /* InboxSideMenuConfigurator.swift */; };
 		444D65B024A72D3000690B3E /* InboxSideMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65AF24A72D3000690B3E /* InboxSideMenuRouter.swift */; };
 		444D65B224A735AB00690B3E /* InboxSideMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65B124A735AB00690B3E /* InboxSideMenuPresenter.swift */; };
 		444D65B424A7360000690B3E /* InboxSideMenuInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65B324A7360000690B3E /* InboxSideMenuInteractor.swift */; };
 		444D65B624A736C500690B3E /* Login.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444D65B524A736C500690B3E /* Login.framework */; };
-		444D65B724A736C600690B3E /* Login.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 444D65B524A736C500690B3E /* Login.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		444D65B924A7389E00690B3E /* InboxSideMenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65B824A7389E00690B3E /* InboxSideMenuDataSource.swift */; };
 		444D65C724A73EFD00690B3E /* SharedInboxState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65C624A73EFD00690B3E /* SharedInboxState.swift */; };
 		444D65CF24A7415300690B3E /* SideMenuTableSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 444D65C924A7415300690B3E /* SideMenuTableSectionHeader.xib */; };
@@ -82,22 +79,6 @@
 		44DBC7E424A8A3D7009EFDB9 /* InboxDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBC7E324A8A3D7009EFDB9 /* InboxDatasource.swift */; };
 		E8CAD30EC95C444EA423E6FE /* Pods_Inbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 691DDFE2EF3988074189416A /* Pods_Inbox.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		444D659924A70BA000690B3E /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				444D65B724A736C600690B3E /* Login.framework in Embed Frameworks */,
-				444D659C24A70BA500690B3E /* Utility.framework in Embed Frameworks */,
-				444D65A924A723D300690B3E /* Networking.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		440F7D7A24AF245D00B9BA2D /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
@@ -621,7 +602,6 @@
 				444D657424A4DC7600690B3E /* Sources */,
 				444D657524A4DC7600690B3E /* Frameworks */,
 				444D657624A4DC7600690B3E /* Resources */,
-				444D659924A70BA000690B3E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -828,7 +808,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -885,7 +865,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -910,6 +890,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Inbox/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -918,6 +899,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.dev.Inbox;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -937,6 +919,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Inbox/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -945,6 +928,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.dev.Inbox;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

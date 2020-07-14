@@ -54,15 +54,23 @@ public extension NetworkService {
         }
     }
     
-    func perform(request: URLRequestConvertible, completionHandler: @escaping Completion<Void>) {
+    func perform(request: URLRequestConvertible,
+                 shouldRefreshToken: Bool = true,
+                 completionHandler: @escaping Completion<Void>) {
         if let router = request as? BaseRouter, router.usesToken {
-            checkToken {
-                guard let result = try? $0.get(),
-                    var request = try? request.asURLRequest() else {
-                        completionHandler(.failure(AppError.cryptoFailed))
-                        return
+            if shouldRefreshToken {
+                checkToken {
+                    guard let result = try? $0.get(),
+                        var request = try? request.asURLRequest() else {
+                            completionHandler(.failure(AppError.cryptoFailed))
+                            return
+                    }
+                    request.addValue("JWT " + result.token, forHTTPHeaderField: "Authorization")
+                    self.session.request(request)
+                        .validate(statusCode: 200..<300)
+                        .responseData(completionHandler: self.handler(for: completionHandler))
                 }
-                request.addValue("JWT " + result.token, forHTTPHeaderField: "Authorization")
+            } else {
                 self.session.request(request)
                     .validate(statusCode: 200..<300)
                     .responseData(completionHandler: self.handler(for: completionHandler))
@@ -73,15 +81,24 @@ public extension NetworkService {
                 .responseData(completionHandler: handler(for: completionHandler))
         }
     }
-    func perform<T: Codable>(request: URLRequestConvertible, completionHandler: @escaping Completion<T>) {
+    
+    func perform<T: Codable>(request: URLRequestConvertible,
+                             shouldRefreshToken: Bool = true,
+                             completionHandler: @escaping Completion<T>) {
         if let router = request as? BaseRouter, router.usesToken {
-            checkToken {
-                guard let result = try? $0.get(),
-                    var request = try? request.asURLRequest() else {
-                        completionHandler(.failure(AppError.cryptoFailed))
-                        return
+            if shouldRefreshToken {
+                checkToken {
+                    guard let result = try? $0.get(),
+                        var request = try? request.asURLRequest() else {
+                            completionHandler(.failure(AppError.cryptoFailed))
+                            return
+                    }
+                    request.addValue("JWT " + result.token, forHTTPHeaderField: "Authorization")
+                    self.session.request(request)
+                        .validate(statusCode: 200..<300)
+                        .responseData(completionHandler: self.handler(for: completionHandler))
                 }
-                request.addValue("JWT " + result.token, forHTTPHeaderField: "Authorization")
+            } else {
                 self.session.request(request)
                     .validate(statusCode: 200..<300)
                     .responseData(completionHandler: self.handler(for: completionHandler))

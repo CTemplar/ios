@@ -167,33 +167,56 @@ public class APIService: HashingService {
             if complete {
                 if let token = self?.getToken() {
                     DispatchQueue.global(qos: .background).async {
-                        self?.restAPIService.messagesList(token: token, folder: folderFilter, messagesIDIn: messagesIDInParameter, filter: "", seconds: seconds, offset: offset, pageLimit: pageLimit) { [weak self] (result) in
+                        self?.restAPIService.messagesList(token: token, folder: folderFilter, messagesIDIn: messagesIDInParameter, filter: "", seconds: seconds, offset: offset, pageLimit: pageLimit) { (result) in
                             DispatchQueue.main.async {
-                                switch(result) {
-                                case .success(let value):
-                                    if let response = value as? Dictionary<String, Any> {
-                                        if let message = self?.parseServerResponse(response:response) {
-                                            DPrint("messagesList message:", message)
-                                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
-                                            completionHandler(APIResult.failure(error))
-                                        } else {
-                                            let emailMessages = EmailMessagesList(dictionary: response)
-                                            completionHandler(APIResult.success(emailMessages))
-                                        }
-                                    } else {
-                                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Response have unknown format"])
-                                        completionHandler(APIResult.failure(error))
-                                    }
-                                    
-                                case .failure(let error):
-                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
-                                    completionHandler(APIResult.failure(error))
-                                }
+                                self?.handleMessageResponse(with: result, completionHandler: completionHandler)
                             }
                         }
                     }
                 }
             }
+        }
+    }
+    
+    public func searchMessageList(withQuery searchQuery: String,
+                                  offset: Int,
+                                  pageLimit: Int = GeneralConstant.OffsetValue.pageLimit.rawValue,
+                                  completionHandler: @escaping (APIResult<Any>) -> Void) {
+        checkTokenExpiration() { [weak self] (complete) in
+            if complete {
+                if let token = self?.getToken() {
+                    DispatchQueue.global(qos: .background).async {
+                        self?.restAPIService.searchMessages(withToken: token, searchQuery: searchQuery, offset: offset, pageLimit: pageLimit, completionHandler: { (result) in
+                            DispatchQueue.main.async {
+                                self?.handleMessageResponse(with: result, completionHandler: completionHandler)
+                            }
+                        })
+                    }
+                }
+            }
+        }
+    }
+    
+    private func handleMessageResponse(with result: APIResult<Any>, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        switch(result) {
+        case .success(let value):
+            if let response = value as? Dictionary<String, Any> {
+                if let message = parseServerResponse(response:response) {
+                    DPrint("messagesList message:", message)
+                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                    completionHandler(APIResult.failure(error))
+                } else {
+                    let emailMessages = EmailMessagesList(dictionary: response)
+                    completionHandler(APIResult.success(emailMessages))
+                }
+            } else {
+                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Response have unknown format"])
+                completionHandler(APIResult.failure(error))
+            }
+            
+        case .failure(let error):
+            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+            completionHandler(APIResult.failure(error))
         }
     }
     
