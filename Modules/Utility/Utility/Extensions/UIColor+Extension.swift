@@ -39,8 +39,8 @@ public extension UIColor {
     /// Converts Hex String into  UIColor
     /// - Parameters:
     ///    - hex: Hex String
-    static func hexStringToUIColor (hex: String) -> UIColor {
-        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+    static func hexToColor(hex: String) -> UIColor {
+        var cString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         
         if (cString.hasPrefix("#")) {
             cString.remove(at: cString.startIndex)
@@ -50,9 +50,9 @@ public extension UIColor {
             return UIColor.gray
         }
         
-        var rgbValue:UInt32 = 0
+        var rgbValue: UInt64 = 0
         
-        Scanner(string: cString).scanHexInt32(&rgbValue)
+        Scanner(string: cString).scanHexInt64(&rgbValue)
         
         return UIColor(
             red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,

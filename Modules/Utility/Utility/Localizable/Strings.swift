@@ -88,6 +88,12 @@ public enum Strings {
         case createAccount
         case rememberMe
         case loginError
+        
+        public enum TwoFactorAuth: String, Localizable {
+            case twoFAButtonTitle
+            case twoFATitle
+            case twoFASecondaryTitle
+        }
     }
     
     public enum Banner: String, Localizable {
@@ -211,5 +217,10 @@ public enum Strings {
         case andMore
         case upgradeBig
         case notNow
+    }
+    
+    public enum Search: String, Localizable {
+        case noResults
+        case search
     }
 }

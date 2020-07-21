@@ -44,7 +44,7 @@ final class EditFolderInteractor {
     }
     
     func setSaveButton(enable: Bool) {
-        viewController?.saveBarButtonItem.isEnabled = enable
+        viewController?.navigationItem.rightBarButtonItem?.isEnabled = enable
     }
     
     // MARK: - API Calls
@@ -52,11 +52,9 @@ final class EditFolderInteractor {
         apiService.updateCustomFolder(folderID: folderID.description, name: name, color: colorHex) { [weak self] (result) in
             DispatchQueue.main.async {
                 switch(result) {
-                case .success(let value):
-                    DPrint("value:", value)
-                    self?.viewController!.navigationController?.popViewController(animated: true)
+                case .success:
+                    self?.viewController?.navigationController?.popViewController(animated: true)
                 case .failure(let error):
-                    DPrint("error:", error)
                     self?.viewController?.showAlert(with: Strings.AppError.foldersError.localized,
                                message: error.localizedDescription,
                                buttonTitle: Strings.Button.closeButton.localized

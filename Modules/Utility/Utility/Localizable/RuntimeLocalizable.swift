@@ -6,7 +6,20 @@ public protocol Localizable {
 
 extension Localizable where Self: RawRepresentable, Self.RawValue == String {
   public var localized: String {
-    return NSLocalizedString(self.rawValue, tableName: RuntimeLocalizable.tableName, bundle: RuntimeLocalizable.shared.localizedBundle ?? Bundle(for: RuntimeLocalizable.self), comment: "")
+    let bundle = Bundle(for: RuntimeLocalizable.self)
+    
+    if let path = bundle.path(forResource: Bundle.getLanguage(), ofType: "lproj"),
+        let bundle = Bundle(path: path) {
+        return bundle.localizedString(forKey: self.rawValue,
+                                       value: self.rawValue,
+                                       table: RuntimeLocalizable.tableName)
+    } else {
+         return NSLocalizedString(self.rawValue,
+                                  tableName: RuntimeLocalizable.tableName,
+                                  bundle: RuntimeLocalizable.shared.localizedBundle ?? Bundle(for: RuntimeLocalizable.self),
+                                  comment: ""
+        )
+    }
   }
 }
 

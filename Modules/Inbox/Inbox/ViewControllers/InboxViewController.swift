@@ -97,7 +97,8 @@ class InboxViewController: UIViewController {
     var onTapComposeWithDraft: ((AnswerMessageMode, EmailMessage, UserMyself, UIViewController?) -> Void)?
     var onTapCompose: ((AnswerMessageMode, UserMyself, UIViewController?) -> Void)?
     var onTapViewInbox: ((EmailMessage, String, UserMyself, ViewInboxEmailDelegate?) -> Void)?
-    
+    var onTapMoveTo: ((MoveToViewControllerDelegate?, [Int], UserMyself, UIViewController?) -> Void)?
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,7 +109,8 @@ class InboxViewController: UIViewController {
                                 onTapCompose: onTapCompose,
                                 onTapComposeWithDraft: onTapComposeWithDraft,
                                 onTapSearch: onTapSearch,
-                                onTapViewInbox: onTapViewInbox
+                                onTapViewInbox: onTapViewInbox,
+                                onTapMoveTo: onTapMoveTo
         )
 
         dataSource = InboxDatasource(tableView: tableView, parentViewController: self, messages: [])

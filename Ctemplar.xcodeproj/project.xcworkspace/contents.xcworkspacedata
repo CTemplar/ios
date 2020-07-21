@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Ctemplar.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>

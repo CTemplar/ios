@@ -33,24 +33,37 @@ final class ManageFoldersPresenter {
         viewController?.emptyFolderStackView.isHidden = showEmptyState == false
     }
     
-    func setupBackButton() {
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "BackArrowDark"), style: .plain, target: self, action: #selector(backAction))
-        backButton.tintColor = k_navButtonTintColor
-        viewController?.navigationItem.leftBarButtonItem = backButton
+    func setupCloseButton() {
+        viewController?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close,
+                                                                            target: self,
+                                                                            action: #selector(backAction))
     }
     
     func setupNavigationLeftItem() {
-        let emptyButton = UIBarButtonItem(image: UIImage(), style: .done, target: self, action: nil)
-        if UIDevice.current.orientation.isLandscape {
-            viewController?.navigationItem.leftBarButtonItem = emptyButton
+        func menuItem() -> UIBarButtonItem {
+            return UIBarButtonItem(image: #imageLiteral(resourceName: "MenuButton"), style: .plain, target: self, action: #selector(menuAction))
+        }
+        
+        if Device.IS_IPAD {
+            let emptyButton = UIBarButtonItem(image: UIImage(), style: .done, target: self, action: nil)
+            if UIDevice.current.orientation.isLandscape {
+                viewController?.navigationItem.leftBarButtonItem = emptyButton
+            } else {
+                viewController?.navigationItem.leftBarButtonItem = menuItem()
+            }
         } else {
-            viewController?.navigationItem.leftBarButtonItem = self.viewController?.leftBarButtonItem
+            viewController?.navigationItem.leftBarButtonItem = menuItem()
         }
     }
     
     @objc
     private func backAction() {
         viewController?.router?.backAction()
+    }
+    
+    @objc
+    private func menuAction() {
+        viewController?.router?.showInboxSideMenu()
     }
     
     func addFolderButtonPressed() {

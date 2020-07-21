@@ -15,6 +15,8 @@ class LoginViewController: UIViewController {
             passwordTextField.delegate = self
         }
     }
+    
+    @IBOutlet weak var containerViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var userNamePlaceholderLabel: UILabel!
     @IBOutlet weak var passwordPlaceholderLabel: UILabel!
     @IBOutlet weak var rememberMeLabel: UILabel!
@@ -95,6 +97,11 @@ class LoginViewController: UIViewController {
         eyeButton.setImage(#imageLiteral(resourceName: "EyeOnIcon"), for: .normal)
         eyeButton.setImage(#imageLiteral(resourceName: "EyeIcon"), for: .selected)
         eyeButton.isSelected = false
+        
+        if Device.IS_IPHONE {
+            containerViewWidthConstraint.constant = UIScreen.main.bounds.size.width - 20.0
+            view.layoutIfNeeded()
+        }
         
         defaultUIState()
     }

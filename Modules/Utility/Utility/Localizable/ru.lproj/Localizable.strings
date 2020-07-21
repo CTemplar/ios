@@ -31,13 +31,15 @@
 "actionFailed" = "Действие не удалось";
 "done" = "Выполнено";
 
-//login
-
+// Login
 "emailPlaceholder" = "Почта";
 "passwordPlaceholder" = "Пароль";
 "usernamePlaceholder" = "Имя";
 
-"twoFAPlaceholder" = "2FA код";
+// 2FA
+"twoFAButtonTitle" = "AUTHENTICATE";
+"twoFATitle" = "Двухфакторная аутентификация";
+"twoFASecondaryTitle" = "Пожалуйста, предоставьте 6-значный код из любого настроенного приложения для проверки подлинности";
 
 "forgotPassword" = "Забыли пароль?";
 "login" = "Войти";
@@ -206,9 +208,7 @@
 "noActionTitle" = "нет";
 
 // Search Screen
-
 "noResults" = "Нет результатов";
-
 "search" = "Поиск";
 
 // Side Menu Cells

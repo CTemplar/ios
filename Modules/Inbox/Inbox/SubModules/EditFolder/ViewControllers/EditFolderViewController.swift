@@ -17,20 +17,36 @@ class EditFolderViewController: UIViewController {
     private let k_colorPickerOffset: CGFloat = 32.0
     
     private var k_colorPickeriPadHeight: CGFloat = 180.0
-    
+
     // MARK: IBOutlets
-    @IBOutlet var deleteButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton! {
+        didSet {
+            deleteButton.setTitle(Strings.ManageFolder.deleteFolderTitle.localized, for: .normal)
+        }
+    }
     
-    @IBOutlet var saveBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var folderNameTextField: UITextField! {
+        didSet {
+            folderNameTextField.placeholder = Strings.ManageFolder.folderName.localized
+        }
+    }
     
-    @IBOutlet var folderNameTextField: UITextField!
+    @IBOutlet weak var darkLineView: UIView!
     
-    @IBOutlet var darkLineView: UIView!
+    @IBOutlet weak var colorPicker: ColorPicker!
     
-    @IBOutlet var colorPicker: ColorPicker!
+    @IBOutlet weak var chooseColorLabel: UILabel! {
+        didSet {
+            chooseColorLabel.text = Strings.ManageFolder.chooseColor.localized
+        }
+    }
     
-    @IBOutlet var colorPickerSuperViewHeightConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var folderNameLabel: UILabel! {
+        didSet {
+            folderNameLabel.text = Strings.ManageFolder.folderName.localized
+        }
+    }
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,9 +62,18 @@ class EditFolderViewController: UIViewController {
         }
         
         interactor?.validateFolderName(text: folderName)
-
+        
         let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
         self.view.addGestureRecognizer(freeSpaceViewGesture)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: Strings.Button.saveButton.localized,
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(saveButtonPressed))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,14 +88,11 @@ class EditFolderViewController: UIViewController {
         }
     }
     
-    @IBAction func saveButtonPressed(_ sender: AnyObject) {
+    @objc
+    private func saveButtonPressed() {
         if let folderID = folder?.folderID {
             interactor?.updateCustomFolder(folderID: folderID, name: folderName, colorHex: selectedHexColor)
         }
-    }
-    
-    @IBAction func cancelButtonPressed(_ sender: AnyObject) {
-        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func textTyped(_ sender: UITextField) {
@@ -97,7 +119,7 @@ class EditFolderViewController: UIViewController {
 
     func setup(selectedHexColor: String) {
         self.selectedHexColor = selectedHexColor
-        colorPicker.set(color: UIColor.hexStringToUIColor(hex: selectedHexColor), colorSpace: .extendedSRGB)
+        colorPicker.set(color: UIColor.hexToColor(hex: selectedHexColor), colorSpace: .sRGB)
     }
     
     // MARK: - Color Picker Actions

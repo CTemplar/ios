@@ -177,7 +177,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 private extension AppDelegate {
     func configureSideMenu() {
         SideMenuController.preferences.basic.menuWidth = 240
-        SideMenuController.preferences.basic.statusBarBehavior = .hideOnMenu
         SideMenuController.preferences.basic.position = .sideBySide
         SideMenuController.preferences.basic.direction = .left
         SideMenuController.preferences.basic.enablePanGesture = true
@@ -205,18 +204,7 @@ private extension AppDelegate {
             .pushViewController(viewInboxVC, animated: true
         )
     }
-    
-    func showSearch(withMessage messages: [EmailMessage],
-                    user: UserMyself,
-                    presenter: UIViewController?) {
-        let searchVC: SearchViewController = UIStoryboard(storyboard: .search,
-                                                          bundle: Bundle(for: SearchViewController.self)
-        ).instantiateViewController()
-        searchVC.messagesList = messages
-        searchVC.user = user
-        presenter?.navigationController?.pushViewController(searchVC, animated: true)
-    }
-    
+
     func showCompose(withMode mode: Utility.AnswerMessageMode,
                      user: UserMyself,
                      presenter: UIViewController?) {
@@ -282,24 +270,7 @@ private extension AppDelegate {
                 presenter?.sideMenuController?.hideMenu()
         })
     }
-    
-    func showManageFolders(withFolders folders: [Folder],
-                           user: UserMyself,
-                           presenter: UIViewController?) {
-        let manageFoldersVC: ManageFoldersViewController = UIStoryboard(storyboard: .manageFolders,
-                                                              bundle: Bundle(for: ManageFoldersViewController.self)
-        ).instantiateViewController()
-        manageFoldersVC.setup(folderList: folders)
-        manageFoldersVC.setup(user: user)
-        let navController = UIViewController.getNavController(rootViewController: manageFoldersVC)
-        navController.prefersLargeTitle = true
-        presenter?
-            .sideMenuController?
-            .setContentViewController(to: navController, animated: true, completion: {
-                presenter?.sideMenuController?.hideMenu()
-        })
-    }
-    
+
     func showSettings(ofUser user: UserMyself, presenter: UIViewController?) {
         let settingsVC: SettingsViewController = UIStoryboard(storyboard: .settings,
                                                               bundle: Bundle(for: SettingsViewController.self)
@@ -362,14 +333,6 @@ private extension AppDelegate {
             )
         }
         
-        // Open Search
-        initializer.onTapSearch = { [weak self] (messages, user, inboxViewController) in
-            self?.showSearch(withMessage: messages,
-                             user: user,
-                             presenter: inboxViewController
-            )
-        }
-        
         // Open Contacts
         initializer.onTapContacts = { [weak self] (contacts, contactsEncrypted, inboxViewController) in
             self?.showContacts(withList: contacts,
@@ -382,15 +345,7 @@ private extension AppDelegate {
         initializer.onTapSettings = { [weak self] (user, inboxViewController) in
             self?.showSettings(ofUser: user, presenter: inboxViewController)
         }
-        
-        // Open Manage Folders
-        initializer.onTapManageFolders = { [weak self] (folders, user, inboxViewController) in
-            self?.showManageFolders(withFolders: folders,
-                                    user: user,
-                                    presenter: inboxViewController
-            )
-        }
-        
+
         // Open FAQ
         initializer.onTapFAQ = { [weak self] (inboxViewController) in
             self?.showFAQ(from: inboxViewController)

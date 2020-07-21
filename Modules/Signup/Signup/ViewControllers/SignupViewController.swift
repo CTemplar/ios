@@ -46,6 +46,8 @@ class SignupViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var containerViewWidthConstraint: NSLayoutConstraint!
+    
     // MARK: Properties
     private (set) var signupPageViewController: SignupPageViewController?
     // Add a searchTask property to your controller
@@ -73,6 +75,11 @@ class SignupViewController: UIViewController {
         nextButton.setTitle(Strings.Button.nextButton.localized, for: .normal)
         userNameAndDomainLabel.text = Strings.Signup.usernameAndDomain.localized
         emailSubtitleLabel.text = Strings.Signup.ctemplarEmailAddress.localized
+        
+        if Device.IS_IPHONE {
+            containerViewWidthConstraint.constant = UIScreen.main.bounds.size.width - (Device.IS_IPHONE_5 ? 40.0 : 20.0)
+            view.layoutIfNeeded()
+        }
         
         defaultUIState()
     }

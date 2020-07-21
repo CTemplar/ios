@@ -75,6 +75,8 @@ class SignupRecoveryEmailViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var containerViewWidthConstraint: NSLayoutConstraint!
+    
     // MARK: Properties
     private (set) var signupPageViewController: SignupPageViewController?
 
@@ -107,6 +109,12 @@ class SignupRecoveryEmailViewController: UIViewController {
         recorveyEmailTitleLabel.text = Strings.Signup.recoveryEmailAttr.localized
         recorveyEmailSubtitleLabel.text = Strings.Signup.thisIsUsed.localized
         supportMailTextView.text = Strings.Signup.supportEmailString.localized
+        
+        if Device.IS_IPHONE {
+            containerViewWidthConstraint.constant = UIScreen.main.bounds.size.width - (Device.IS_IPHONE_5 ? 40.0 : 20.0)
+            view.layoutIfNeeded()
+        }
+        
         defaultUIState()
     }
     

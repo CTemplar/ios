@@ -23,7 +23,6 @@
 "termsAndConditionsPhrase" = "Terms and Conditions";
 
 // Login
-
 "emailPlaceholder" = "Email";
 "passwordPlaceholder" = "Password";
 "usernamePlaceholder" = "Username";
@@ -31,7 +30,10 @@
 "userNameFound" = "Username is available";
 "invitationCodePlaceholder" = "Invitation Code";
 
-"twoFAPlaceholder" = "2FA code";
+// 2FA
+"twoFAButtonTitle" = "AUTHENTICATE";
+"twoFATitle" = "Two Factor Authentication";
+"twoFASecondaryTitle" = "Please provide the 6 digit code from any of the configured authenticator application";
 
 "forgotPassword" = "Forgot Password?";
 "login" = "Log in";
@@ -209,9 +211,7 @@
 "noActionTitle" = "No";
 
 // Search Screen
-
 "noResults" = "No results found";
-
 "search" = "Search";
 
 // Side Menu Cells

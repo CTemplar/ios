@@ -5,9 +5,10 @@ import Networking
 import Login
 import SideMenu
 import Inbox
+import GlobalSearch
 
 public class InitializerController: UIViewController, HashingService {
-
+    
     // MARK: Properties
     private let apiService = NetworkManager.shared.apiService
     
@@ -26,16 +27,14 @@ public class InitializerController: UIViewController, HashingService {
     }()
     
     private var messageId = -1
-    public var onTapSearch: (([EmailMessage], UserMyself, UIViewController?) -> Void)?
     public var onTapComposeWithDraft: ((AnswerMessageMode, EmailMessage, UserMyself, UIViewController?) -> Void)?
     public var onTapCompose: ((AnswerMessageMode, UserMyself, UIViewController?) -> Void)?
     public var onTapViewInbox: ((EmailMessage, String, UserMyself, ViewInboxEmailDelegate?) -> Void)?
-
     public var onTapContacts: (([Contact], Bool, UIViewController?) -> Void)?
     public var onTapSettings: ((UserMyself, UIViewController?) -> Void)?
     public var onTapManageFolders: (([Folder], UserMyself, UIViewController?) -> Void)?
     public var onTapFAQ: ((UIViewController?) -> Void)?
-
+    
     // MARK: - Lifecycle
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +48,7 @@ public class InitializerController: UIViewController, HashingService {
         } else if isRememberMeEnabled && !twoFAstatus {
             let username = keyChainService.getUserName()
             let password = keyChainService.getPassword()
-            authenticateUser(with: username, and: password)
+            authenticateUser(with: username, and: password, with: "")
         } else {
             showLoginViewController()
         }
@@ -91,12 +90,23 @@ extension InitializerController {
     func sideMenu() -> SideMenuController {
         let response = inboxCoordinator.showInbox(onTapCompose: onTapCompose,
                                                   onTapComposeWithDraft: onTapComposeWithDraft,
-                                                  onTapSearch: onTapSearch,
-                                                  onTapViewInbox: onTapViewInbox,
-                                                  onTapContacts: onTapContacts,
-                                                  onTapSettings: onTapSettings,
-                                                  onTapManageFolders: onTapManageFolders,
-                                                  onTapFAQ: onTapFAQ)
+                                                  onTapSearch:
+            { (_, user, presenter) in
+                let searchCoordinator = GlobalSearchCoordinator()
+                searchCoordinator.showSearch(from: presenter,
+                                             withUser: user)
+                { [weak self] (message, user) in
+                    self?.onTapViewInbox?(message,
+                                          SharedInboxState.shared.selectedMenu?.menuName ?? "",
+                                          user,
+                                          presenter as? ViewInboxEmailDelegate
+                    )
+                }
+        }, onTapViewInbox: onTapViewInbox,
+           onTapContacts: onTapContacts,
+           onTapSettings: onTapSettings,
+           onTapFAQ: onTapFAQ
+        )
         
         let sideMenuController = SideMenuController(contentViewController: response.content, menuViewController: response.menu)
         return sideMenuController
@@ -105,7 +115,7 @@ extension InitializerController {
 
 // MARK: - Authentication
 extension InitializerController {
-    func authenticateUser(with username: String, and password: String) {
+    func authenticateUser(with username: String, and password: String, with twoFACode: String) {
         Loader.start()
         generateHashedPassword(for: username, password: password) { (result) in
             guard let value = try? result.get() else {
@@ -113,7 +123,10 @@ extension InitializerController {
                 self.showLoginViewController()
                 return
             }
-            NetworkManager.shared.networkService.loginUser(with: LoginDetails(userName: username, password: value)) { (result) in
+            NetworkManager.shared.networkService.loginUser(with: LoginDetails(userName: username,
+                                                                              password: value,
+                                                                              twoFACode: twoFACode)
+            ) { (result) in
                 Loader.stop()
                 DispatchQueue.main.async {
                     switch result {

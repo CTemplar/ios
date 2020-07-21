@@ -11,6 +11,10 @@ extension LoginDetails {
     mutating func update(password: String) {
         self.password = password
     }
+    
+    mutating func update(twoFACode: String) {
+        self.twoFACode = twoFACode
+    }
 }
 
 final class LoginConfigurator {
@@ -38,7 +42,11 @@ final class LoginConfigurator {
                                                 }), .showHideLoader({ [weak self] (shouldShowLoader) in
                                                     // Show/Hide Loader
                                                     self?.loginViewController?.presenter?.toggleLoader(shouldShow: shouldShowLoader)
-                                                })])
+                                                }), .showOTPValidation({ [weak self] (loginResponse, password) in
+                                                    // Show OTP screen for those users who have enabled 2-FA
+                                                    self?.loginViewController?.presenter?.showOTPScreen(with: loginResponse, password: password)
+                                                })
+        ])
         presenter.setup(interactor: interactor!)
         
         viewController.setup(presenter: presenter)
@@ -57,6 +65,10 @@ final class LoginConfigurator {
     
     func update(password: String) {
         loginViewController?.presenter?.interactor?.update(password: password)
+    }
+    
+    func update(twoFACode: String) {
+        loginViewController?.presenter?.interactor?.update(twoFACode: twoFACode)
     }
     
     func update(state: RememberCredentialState) {

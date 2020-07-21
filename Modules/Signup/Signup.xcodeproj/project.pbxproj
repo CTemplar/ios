@@ -16,7 +16,6 @@
 		44382466248F99FC00DEA4F3 /* Signup.h in Headers */ = {isa = PBXBuildFile; fileRef = 44382464248F99FC00DEA4F3 /* Signup.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4438247A248F9AE400DEA4F3 /* Signup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44382479248F9AE400DEA4F3 /* Signup.storyboard */; };
 		444BD2B5249216E1001D0C5F /* Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444BD2B4249216E1001D0C5F /* Utility.framework */; };
-		444BD2B6249216E1001D0C5F /* Utility.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 444BD2B4249216E1001D0C5F /* Utility.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4458B6F624968C3C00F787F5 /* SignupConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4458B6F524968C3C00F787F5 /* SignupConstants.swift */; };
 		445CFAE5249BF3DE0017DC40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 445CFAE4249BF3DE0017DC40 /* Assets.xcassets */; };
 		44BD63612490995200CB4A73 /* SignupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD63602490995200CB4A73 /* SignupPresenter.swift */; };
@@ -24,24 +23,8 @@
 		44BD63652490996800CB4A73 /* SignupConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD63642490996800CB4A73 /* SignupConfigurator.swift */; };
 		44BD636724909A6900CB4A73 /* SignupInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD636624909A6900CB4A73 /* SignupInteractor.swift */; };
 		44C6E04C249563ED00D7C614 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6E04B249563ED00D7C614 /* Networking.framework */; };
-		44C6E04D249563ED00D7C614 /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6E04B249563ED00D7C614 /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		44F739EB2498C35D00688086 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 44F739EA2498C35D00688086 /* IQKeyboardManagerSwift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		444BD2B7249216E1001D0C5F /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				44C6E04D249563ED00D7C614 /* Networking.framework in Embed Frameworks */,
-				444BD2B6249216E1001D0C5F /* Utility.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		440F1FD92495E511007B335D /* SignupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupCoordinator.swift; sourceTree = "<group>"; };
@@ -180,7 +163,6 @@
 				4438245D248F99FC00DEA4F3 /* Sources */,
 				4438245E248F99FC00DEA4F3 /* Frameworks */,
 				4438245F248F99FC00DEA4F3 /* Resources */,
-				444BD2B7249216E1001D0C5F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -316,7 +298,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -374,7 +356,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -399,7 +381,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Signup/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -410,6 +392,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -429,7 +412,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Signup/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -440,6 +423,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

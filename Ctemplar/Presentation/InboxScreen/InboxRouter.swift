@@ -52,13 +52,6 @@ class InboxRouter {
     }
     
     func showSearchViewController() {
-        
-        let storyboard: UIStoryboard = UIStoryboard(name: k_SearchStoryboardName, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: k_SearchViewControllerID) as! SearchViewController
-        vc.messagesList = (self.viewController?.allMessagesArray)!//(self.viewController?.dataSource?.messagesArray)!
-        //vc.mailboxesList = (self.viewController?.mailboxesList)!
-        vc.user = (self.viewController?.user)!
-        self.viewController?.show(vc, sender: self)
     }
     
     func showViewInboxEmailViewController(message: EmailMessage) {
@@ -77,14 +70,5 @@ class InboxRouter {
     }
     
     func showMoveToViewController() {
-        let storyboard: UIStoryboard = UIStoryboard(name: k_MoveToStoryboardName, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: k_MoveToViewControllerID) as! MoveToViewController
-        if let selectedMessages = self.viewController?.dataSource?.selectedMessagesIDArray {
-            vc.selectedMessagesIDArray = selectedMessages
-        }
-        vc.delegate = self.viewController?.presenter
-        vc.user = (self.viewController?.user)!
-        vc.modalPresentationStyle = .formSheet
-        self.viewController?.present(vc, animated: true, completion: nil)
     }
 }
