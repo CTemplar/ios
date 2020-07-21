@@ -1,7 +1,5 @@
 import Foundation
-import CryptoHelperKit
-import CoreGraphics
-import UIKit
+import BCryptSwift
 
 public class FormatterService {
     // MARK: - Constructor

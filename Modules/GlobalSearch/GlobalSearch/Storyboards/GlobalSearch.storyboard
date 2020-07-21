@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -53,6 +53,7 @@
                     </view>
                     <connections>
                         <outlet property="emptyStateStackView" destination="w0c-lK-590" id="aM3-LM-j9g"/>
+                        <outlet property="noResultsLabel" destination="DLd-NU-PKf" id="oFV-oL-Ttt"/>
                         <outlet property="searchTableView" destination="w6c-3p-VCD" id="Uw1-13-t1b"/>
                     </connections>
                 </viewController>

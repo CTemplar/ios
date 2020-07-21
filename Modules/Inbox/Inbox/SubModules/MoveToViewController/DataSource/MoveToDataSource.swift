@@ -33,6 +33,12 @@ class MoveToDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         tableView.reloadData()
     }
     
+    // MARK: - Update
+    func update(by folders: [Folder]) {
+        customFoldersArray = folders
+        tableView.reloadData()
+    }
+    
     //MARK: - table view
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

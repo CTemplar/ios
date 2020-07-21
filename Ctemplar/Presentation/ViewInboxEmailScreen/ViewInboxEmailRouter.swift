@@ -8,22 +8,23 @@
 
 import Foundation
 import UIKit
-
+import Inbox
 
 class ViewInboxEmailRouter {
     
     var viewController: ViewInboxEmailViewController?
     
     func showMoveToViewController() {
+        guard let id = viewController?.message?.messsageID,
+            let user = viewController?.user else {
+            return
+        }
         
-        let storyboard: UIStoryboard = UIStoryboard(name: k_MoveToStoryboardName, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: k_MoveToViewControllerID) as! MoveToViewController
-        
-        let selectedMessages: Array<Int> = [(self.viewController?.message?.messsageID)!]
-        vc.selectedMessagesIDArray = selectedMessages
-        vc.user = (self.viewController?.user)!
-        
-        self.viewController?.present(vc, animated: true, completion: nil)
+        let inboxCoordinator = InboxCoordinator()
+        inboxCoordinator.showMoveToController(withMoveToDelegate: nil, selectedMessageIds: [id],
+                                              user: user,
+                                              presenter: viewController
+        )
     }
     
     func showComposeViewController(answerMode: AnswerMessageMode, subject: String) {

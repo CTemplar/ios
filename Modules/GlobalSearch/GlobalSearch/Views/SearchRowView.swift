@@ -59,7 +59,7 @@ struct SearchRowView: View {
 #if DEBUG
 struct SearchRowView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchRowView(sender: "Soham")
+        SearchRowView(sender: "search")
     }
 }
 #endif

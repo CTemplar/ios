@@ -29,11 +29,6 @@
 		440F7E1724AF6C1900B9BA2D /* MoveToConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7DFE24AF6C1800B9BA2D /* MoveToConfigurator.swift */; };
 		440F7E1824AF6C1900B9BA2D /* MoveToDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7DFF24AF6C1800B9BA2D /* MoveToDelegate.swift */; };
 		440F7E1924AF6C1900B9BA2D /* MoveToDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7E0024AF6C1800B9BA2D /* MoveToDataSource.swift */; };
-		440F7E1A24AF6C1900B9BA2D /* AddFolder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 440F7E0224AF6C1800B9BA2D /* AddFolder.storyboard */; };
-		440F7E1B24AF6C1900B9BA2D /* AddFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7E0324AF6C1800B9BA2D /* AddFolderViewController.swift */; };
-		440F7E1C24AF6C1900B9BA2D /* AddFolderConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7E0424AF6C1900B9BA2D /* AddFolderConfigurator.swift */; };
-		440F7E1D24AF6C1900B9BA2D /* AddFolderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7E0524AF6C1900B9BA2D /* AddFolderProtocol.swift */; };
-		440F7E1E24AF6C1900B9BA2D /* AddFolderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7E0624AF6C1900B9BA2D /* AddFolderInteractor.swift */; };
 		440F7E3A24AF6D7900B9BA2D /* UpgradeToPrime.xib in Resources */ = {isa = PBXBuildFile; fileRef = 440F7E3824AF6D7900B9BA2D /* UpgradeToPrime.xib */; };
 		440F7E3B24AF6D7900B9BA2D /* UpgradeToPrimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7E3924AF6D7900B9BA2D /* UpgradeToPrimeView.swift */; };
 		440F7E4324AF6DDD00B9BA2D /* MoveToFolderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 440F7E4124AF6DDD00B9BA2D /* MoveToFolderTableViewCell.xib */; };
@@ -73,6 +68,11 @@
 		444D65F624A88E1A00690B3E /* InboxMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 444D65F424A88E1A00690B3E /* InboxMessageTableViewCell.xib */; };
 		444D65F724A88E1A00690B3E /* InboxMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65F524A88E1A00690B3E /* InboxMessageTableViewCell.swift */; };
 		445BF9F124AE77CB00DAC3B3 /* InboxDataSource+APIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445BF9F024AE77CB00DAC3B3 /* InboxDataSource+APIHelpers.swift */; };
+		44D9671524C23C6E0050ED46 /* AddFolder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44D9671024C23C6E0050ED46 /* AddFolder.storyboard */; };
+		44D9671624C23C6E0050ED46 /* AddFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D9671124C23C6E0050ED46 /* AddFolderViewController.swift */; };
+		44D9671724C23C6E0050ED46 /* AddFolderConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D9671224C23C6E0050ED46 /* AddFolderConfigurator.swift */; };
+		44D9671824C23C6E0050ED46 /* AddFolderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D9671324C23C6E0050ED46 /* AddFolderProtocol.swift */; };
+		44D9671924C23C6E0050ED46 /* AddFolderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D9671424C23C6E0050ED46 /* AddFolderInteractor.swift */; };
 		44DBC7DD24A89297009EFDB9 /* InboxMessageTablelViewCell+Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBC7DC24A89297009EFDB9 /* InboxMessageTablelViewCell+Labels.swift */; };
 		44DBC7DF24A8957B009EFDB9 /* InboxMessageTablelViewCell+LayoutConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBC7DE24A8957B009EFDB9 /* InboxMessageTablelViewCell+LayoutConstraints.swift */; };
 		44DBC7E124A89741009EFDB9 /* InboxMessageTablelViewCell+Badges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBC7E024A89741009EFDB9 /* InboxMessageTablelViewCell+Badges.swift */; };
@@ -103,11 +103,6 @@
 		440F7DFE24AF6C1800B9BA2D /* MoveToConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveToConfigurator.swift; sourceTree = "<group>"; };
 		440F7DFF24AF6C1800B9BA2D /* MoveToDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveToDelegate.swift; sourceTree = "<group>"; };
 		440F7E0024AF6C1800B9BA2D /* MoveToDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveToDataSource.swift; sourceTree = "<group>"; };
-		440F7E0224AF6C1800B9BA2D /* AddFolder.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AddFolder.storyboard; path = ../AddFolder.storyboard; sourceTree = "<group>"; };
-		440F7E0324AF6C1800B9BA2D /* AddFolderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddFolderViewController.swift; path = ../AddFolderViewController.swift; sourceTree = "<group>"; };
-		440F7E0424AF6C1900B9BA2D /* AddFolderConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddFolderConfigurator.swift; path = ../AddFolderConfigurator.swift; sourceTree = "<group>"; };
-		440F7E0524AF6C1900B9BA2D /* AddFolderProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddFolderProtocol.swift; path = ../AddFolderProtocol.swift; sourceTree = "<group>"; };
-		440F7E0624AF6C1900B9BA2D /* AddFolderInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddFolderInteractor.swift; path = ../AddFolderInteractor.swift; sourceTree = "<group>"; };
 		440F7E3824AF6D7900B9BA2D /* UpgradeToPrime.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpgradeToPrime.xib; sourceTree = "<group>"; };
 		440F7E3924AF6D7900B9BA2D /* UpgradeToPrimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpgradeToPrimeView.swift; sourceTree = "<group>"; };
 		440F7E4124AF6DDD00B9BA2D /* MoveToFolderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoveToFolderTableViewCell.xib; sourceTree = "<group>"; };
@@ -151,6 +146,11 @@
 		444D65F424A88E1A00690B3E /* InboxMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InboxMessageTableViewCell.xib; sourceTree = "<group>"; };
 		444D65F524A88E1A00690B3E /* InboxMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxMessageTableViewCell.swift; sourceTree = "<group>"; };
 		445BF9F024AE77CB00DAC3B3 /* InboxDataSource+APIHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InboxDataSource+APIHelpers.swift"; sourceTree = "<group>"; };
+		44D9671024C23C6E0050ED46 /* AddFolder.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddFolder.storyboard; sourceTree = "<group>"; };
+		44D9671124C23C6E0050ED46 /* AddFolderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFolderViewController.swift; sourceTree = "<group>"; };
+		44D9671224C23C6E0050ED46 /* AddFolderConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFolderConfigurator.swift; sourceTree = "<group>"; };
+		44D9671324C23C6E0050ED46 /* AddFolderProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFolderProtocol.swift; sourceTree = "<group>"; };
+		44D9671424C23C6E0050ED46 /* AddFolderInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFolderInteractor.swift; sourceTree = "<group>"; };
 		44DBC7DC24A89297009EFDB9 /* InboxMessageTablelViewCell+Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InboxMessageTablelViewCell+Labels.swift"; sourceTree = "<group>"; };
 		44DBC7DE24A8957B009EFDB9 /* InboxMessageTablelViewCell+LayoutConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InboxMessageTablelViewCell+LayoutConstraints.swift"; sourceTree = "<group>"; };
 		44DBC7E024A89741009EFDB9 /* InboxMessageTablelViewCell+Badges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InboxMessageTablelViewCell+Badges.swift"; sourceTree = "<group>"; };
@@ -189,7 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				440F7E3624AF6D2B00B9BA2D /* VIPER-Structure */,
-				440F7E3524AF6D1F00B9BA2D /* Storyboards */,
 				440F7E3424AF6D1800B9BA2D /* ViewControllers */,
 				440F7E3324AF6D1100B9BA2D /* Views */,
 			);
@@ -220,50 +219,6 @@
 			path = MoveToViewController;
 			sourceTree = "<group>";
 		};
-		440F7E0124AF6C1800B9BA2D /* AddFolder */ = {
-			isa = PBXGroup;
-			children = (
-				440F7E3124AF6CDA00B9BA2D /* Common */,
-				440F7E3024AF6CBC00B9BA2D /* ViewController */,
-				440F7E2F24AF6CAE00B9BA2D /* VIPER-Structure */,
-				440F7E2E24AF6CA700B9BA2D /* Storyboards */,
-			);
-			path = AddFolder;
-			sourceTree = "<group>";
-		};
-		440F7E2E24AF6CA700B9BA2D /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				440F7E0224AF6C1800B9BA2D /* AddFolder.storyboard */,
-			);
-			path = Storyboards;
-			sourceTree = "<group>";
-		};
-		440F7E2F24AF6CAE00B9BA2D /* VIPER-Structure */ = {
-			isa = PBXGroup;
-			children = (
-				440F7E0424AF6C1900B9BA2D /* AddFolderConfigurator.swift */,
-				440F7E0624AF6C1900B9BA2D /* AddFolderInteractor.swift */,
-			);
-			path = "VIPER-Structure";
-			sourceTree = "<group>";
-		};
-		440F7E3024AF6CBC00B9BA2D /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				440F7E0324AF6C1800B9BA2D /* AddFolderViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		440F7E3124AF6CDA00B9BA2D /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				440F7E0524AF6C1900B9BA2D /* AddFolderProtocol.swift */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		440F7E3324AF6D1100B9BA2D /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,13 +233,6 @@
 				440F7DEC24AF6C1800B9BA2D /* EditFolderViewController.swift */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		440F7E3524AF6D1F00B9BA2D /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		440F7E3624AF6D2B00B9BA2D /* VIPER-Structure */ = {
@@ -431,8 +379,8 @@
 		444D658924A4DC8800690B3E /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
+				44D9670F24C23C6E0050ED46 /* AddFolder */,
 				440F7E3724AF6D7900B9BA2D /* UpgradeScreen */,
-				440F7E0124AF6C1800B9BA2D /* AddFolder */,
 				440F7DEB24AF6C1800B9BA2D /* EditFolder */,
 				440F7DF024AF6C1800B9BA2D /* ManageFolders */,
 				440F7DF824AF6C1800B9BA2D /* MoveToViewController */,
@@ -569,6 +517,50 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		44D9670F24C23C6E0050ED46 /* AddFolder */ = {
+			isa = PBXGroup;
+			children = (
+				44D9671D24C23CA00050ED46 /* Storyboards */,
+				44D9671C24C23C930050ED46 /* ViewControllers */,
+				44D9671B24C23C8A0050ED46 /* Common */,
+				44D9671A24C23C750050ED46 /* VIPER-Structure */,
+			);
+			path = AddFolder;
+			sourceTree = "<group>";
+		};
+		44D9671A24C23C750050ED46 /* VIPER-Structure */ = {
+			isa = PBXGroup;
+			children = (
+				44D9671224C23C6E0050ED46 /* AddFolderConfigurator.swift */,
+				44D9671424C23C6E0050ED46 /* AddFolderInteractor.swift */,
+			);
+			path = "VIPER-Structure";
+			sourceTree = "<group>";
+		};
+		44D9671B24C23C8A0050ED46 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				44D9671324C23C6E0050ED46 /* AddFolderProtocol.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		44D9671C24C23C930050ED46 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				44D9671124C23C6E0050ED46 /* AddFolderViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		44D9671D24C23CA00050ED46 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				44D9671024C23C6E0050ED46 /* AddFolder.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		44DBC7E224A8A3CA009EFDB9 /* Datasource */ = {
 			isa = PBXGroup;
 			children = (
@@ -652,6 +644,7 @@
 			files = (
 				440F7E0924AF6C1900B9BA2D /* EditFolder.storyboard in Resources */,
 				440F7E3A24AF6D7900B9BA2D /* UpgradeToPrime.xib in Resources */,
+				44D9671524C23C6E0050ED46 /* AddFolder.storyboard in Resources */,
 				444D65D824A745D200690B3E /* CustomFolderTableViewCell.xib in Resources */,
 				444D65AB24A72C7500690B3E /* InboxSideMenu.storyboard in Resources */,
 				444D65D424A7415300690B3E /* SideMenuTableManageFolderCell.xib in Resources */,
@@ -660,7 +653,6 @@
 				444D65A024A70C7600690B3E /* Assets.xcassets in Resources */,
 				440F7E1424AF6C1900B9BA2D /* MoveTo.storyboard in Resources */,
 				444D659E24A70BFC00690B3E /* Inbox.storyboard in Resources */,
-				440F7E1A24AF6C1900B9BA2D /* AddFolder.storyboard in Resources */,
 				444D65F624A88E1A00690B3E /* InboxMessageTableViewCell.xib in Resources */,
 				444D65CF24A7415300690B3E /* SideMenuTableSectionHeader.xib in Resources */,
 				440F7E1124AF6C1900B9BA2D /* ManageFolders.storyboard in Resources */,
@@ -699,7 +691,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				440F7E1E24AF6C1900B9BA2D /* AddFolderInteractor.swift in Sources */,
 				440F7E1624AF6C1900B9BA2D /* MoveToPresenter.swift in Sources */,
 				444D65AE24A72D0100690B3E /* InboxSideMenuConfigurator.swift in Sources */,
 				444D65DA24A7A44D00690B3E /* InboxInteractor.swift in Sources */,
@@ -722,11 +713,9 @@
 				440F7D7B24AF245D00B9BA2D /* Protocols.swift in Sources */,
 				444D65A424A7201E00690B3E /* LeftBarButtonItemConfigurable.swift in Sources */,
 				444D65B924A7389E00690B3E /* InboxSideMenuDataSource.swift in Sources */,
-				440F7E1C24AF6C1900B9BA2D /* AddFolderConfigurator.swift in Sources */,
 				440F7E0C24AF6C1900B9BA2D /* ManageFoldersConfigurator.swift in Sources */,
 				444D65F724A88E1A00690B3E /* InboxMessageTableViewCell.swift in Sources */,
 				444D65D024A7415300690B3E /* SideMenuTableSectionHeaderView.swift in Sources */,
-				440F7E1D24AF6C1900B9BA2D /* AddFolderProtocol.swift in Sources */,
 				440F7E0A24AF6C1900B9BA2D /* EditFolderInteractor.swift in Sources */,
 				440F7D7D24AF2A1200B9BA2D /* InboxConfigurator.swift in Sources */,
 				440F7E1524AF6C1900B9BA2D /* MoveToViewController.swift in Sources */,
@@ -734,9 +723,11 @@
 				445BF9F124AE77CB00DAC3B3 /* InboxDataSource+APIHelpers.swift in Sources */,
 				440F7E1724AF6C1900B9BA2D /* MoveToConfigurator.swift in Sources */,
 				444D23C224A8F30D00BDF79F /* InboxFilterViewController.swift in Sources */,
+				44D9671724C23C6E0050ED46 /* AddFolderConfigurator.swift in Sources */,
 				444D659424A70B5C00690B3E /* InboxViewController.swift in Sources */,
 				444D65A224A70D8C00690B3E /* InboxNavigationController.swift in Sources */,
 				440F7E3B24AF6D7900B9BA2D /* UpgradeToPrimeView.swift in Sources */,
+				44D9671924C23C6E0050ED46 /* AddFolderInteractor.swift in Sources */,
 				444D65B424A7360000690B3E /* InboxSideMenuInteractor.swift in Sources */,
 				440F7E1324AF6C1900B9BA2D /* MoveToInteractor.swift in Sources */,
 				444D65D124A7415300690B3E /* SideMenuTableViewCell.swift in Sources */,
@@ -745,9 +736,10 @@
 				443A1EE724B26BC1009BC733 /* InboxSideMenuDataSource+Helpers.swift in Sources */,
 				440F7E1024AF6C1900B9BA2D /* ManageFoldersRouter.swift in Sources */,
 				440F7D7F24AF2B3B00B9BA2D /* InboxCoordinator.swift in Sources */,
-				440F7E1B24AF6C1900B9BA2D /* AddFolderViewController.swift in Sources */,
 				440F7E0824AF6C1900B9BA2D /* EditFolderConfigurator.swift in Sources */,
 				444D659024A4E76F00690B3E /* Constants.swift in Sources */,
+				44D9671824C23C6E0050ED46 /* AddFolderProtocol.swift in Sources */,
+				44D9671624C23C6E0050ED46 /* AddFolderViewController.swift in Sources */,
 				444D65B024A72D3000690B3E /* InboxSideMenuRouter.swift in Sources */,
 				444D65E924A8523900690B3E /* InboxPresenter.swift in Sources */,
 				44DBC7E424A8A3D7009EFDB9 /* InboxDatasource.swift in Sources */,

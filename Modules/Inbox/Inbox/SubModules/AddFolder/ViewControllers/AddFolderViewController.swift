@@ -19,15 +19,35 @@ class AddFolderViewController: UIViewController {
     var k_colorPickeriPadHeight: CGFloat = 90.0
 
     // MARK: IBOutlets
-    @IBOutlet var addButton: UIBarButtonItem!
+    @IBOutlet weak var addButton: UIBarButtonItem!
     
-    @IBOutlet var folderNameTextField: UITextField!
+    @IBOutlet weak var folderNameTextField: UITextField! {
+        didSet {
+            folderNameTextField.placeholder = Strings.ManageFolder.folderName.localized
+        }
+    }
     
-    @IBOutlet var darkLineView: UIView!
+    @IBOutlet weak var darkLineView: UIView!
    
-    @IBOutlet var colorPicker: ColorPicker!
+    @IBOutlet weak var colorPicker: ColorPicker!
     
-    @IBOutlet var colorPickerSuperViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var chooseColorLabel: UILabel! {
+        didSet {
+            chooseColorLabel.text = Strings.ManageFolder.chooseColor.localized
+        }
+    }
+    
+    @IBOutlet weak var folderNameLabel: UILabel! {
+        didSet {
+            folderNameLabel.text = Strings.ManageFolder.folderName.localized
+        }
+    }
+    
+    @IBOutlet weak var navigationBar: UINavigationBar! {
+        didSet {
+            navigationBar.topItem?.title = Strings.ManageFolder.addFolder.localized
+        }
+    }
     
     // MARK: - Lifecycle
     override func viewDidLoad() {

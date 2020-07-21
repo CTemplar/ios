@@ -28,7 +28,7 @@ class CustomFolderTableViewCell: UITableViewCell {
         leftSelectionView.isHidden = !selected
         
         let imageIcon = #imageLiteral(resourceName: "folderIcon").withRenderingMode(.alwaysTemplate)
-        iconImageView.tintColor = UIColor.hexToColor(iconColor)
+        iconImageView.tintColor = UIColor.hexToColor(hex: iconColor)
         iconImageView.image = imageIcon
         titleLabel.text = title
         unreadCountLabel.text = unreadCount.description

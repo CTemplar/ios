@@ -105,7 +105,6 @@ extension InitializerController {
         }, onTapViewInbox: onTapViewInbox,
            onTapContacts: onTapContacts,
            onTapSettings: onTapSettings,
-           onTapManageFolders: onTapManageFolders,
            onTapFAQ: onTapFAQ
         )
         

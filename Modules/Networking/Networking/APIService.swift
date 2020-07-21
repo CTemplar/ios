@@ -323,9 +323,9 @@ public class APIService: HashingService {
                                 if let message = self?.parseServerResponse(response:response) {
                                     let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
                                     completionHandler(APIResult.failure(error))
-                                } else {                              
+                                } else {
                                     completionHandler(APIResult.success(response))
-                                }                            
+                                }
                             } else {
                                 let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
                                 completionHandler(APIResult.failure(error))
@@ -987,7 +987,7 @@ public class APIService: HashingService {
                         case .failure(let error):
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                             completionHandler(APIResult.failure(error))
-                        }                        
+                        }
                     }
                 }
             }
@@ -1293,7 +1293,7 @@ public class APIService: HashingService {
                     return true
                 }
             }
-        }    
+        }
         return false
     }
     
@@ -1342,7 +1342,7 @@ public class APIService: HashingService {
             case APIResponse.nonFieldError.rawValue:
                 message = extractErrorTextFrom(value: dictionary.value)
             
-                if let texts = dictionary.value as? Array<Any> { // when checking Token verification catch if Token expired 
+                if let texts = dictionary.value as? Array<Any> { // when checking Token verification catch if Token expired
                     if let value = texts.first as? String {
                         DPrint("value: ", value)
                         if value == APIResponse.tokenExpiredValue.rawValue || value == APIResponse.noCredentials.rawValue {

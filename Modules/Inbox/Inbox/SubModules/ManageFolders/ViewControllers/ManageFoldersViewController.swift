@@ -3,7 +3,7 @@ import UIKit
 import Networking
 import Utility
 
-class ManageFoldersViewController: UIViewController {
+class ManageFoldersViewController: UIViewController, LeftBarButtonItemConfigurable {
     
     // MARK: Properties
     private (set) var presenter: ManageFoldersPresenter?
@@ -14,8 +14,6 @@ class ManageFoldersViewController: UIViewController {
 
     var showFromSideMenu = true
     
-    var showFromSettings = false
-    
     var upgradeToPrimeView: UpgradeToPrimeView?
     
     private var folders: [Folder] = []
@@ -23,7 +21,6 @@ class ManageFoldersViewController: UIViewController {
     private var user: UserMyself?
     
     @IBOutlet weak var foldersTableView: UITableView!
-    @IBOutlet weak var leftBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var emptyFolderStackView: UIStackView!
     @IBOutlet weak var emptyFolderLabel: UILabel!
     @IBOutlet weak var addFolderBarButtonItem: UIBarButtonItem!
@@ -32,10 +29,6 @@ class ManageFoldersViewController: UIViewController {
         super.viewDidLoad()
         let configurator = ManageFoldersConfigurator()
         configurator.configure(viewController: self)
-        
-        if !showFromSideMenu {
-            presenter?.setupBackButton()
-        }
         
         // Setup Datasource
         dataSource = ManageFoldersDataSource(parent: self,
@@ -53,15 +46,17 @@ class ManageFoldersViewController: UIViewController {
         super.viewWillAppear(animated)
         // Fetch Folders
         presenter?.interactor?.foldersList(silent: false)
-        
-        if Device.IS_IPAD {
-            if showFromSideMenu {
-                presenter?.setupNavigationLeftItem()
-            }
-        }
     }
     
     // MARK: - Setup
+    func setupLeftBarButtonItems() {
+        if !showFromSideMenu {
+            presenter?.setupCloseButton()
+        } else {
+            presenter?.setupNavigationLeftItem()
+        }
+    }
+    
     func setup(presenter: ManageFoldersPresenter) {
         self.presenter = presenter
     }

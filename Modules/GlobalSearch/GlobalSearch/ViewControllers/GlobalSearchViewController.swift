@@ -8,6 +8,7 @@ class GlobalSearchViewController: UIViewController {
     // MARK: IBOutlets
     @IBOutlet weak var searchTableView: UITableView!
     @IBOutlet weak var emptyStateStackView: UIStackView!
+    @IBOutlet weak var noResultsLabel: UILabel!
     
     // MARK: Properties
     private (set) var presenter: GlobalSearchPresenter?
@@ -25,12 +26,17 @@ class GlobalSearchViewController: UIViewController {
         dataSource = GlobalSearchDataSource(tableView: searchTableView, presenter: self.presenter)
         dataSource?.updateDatasource(by: [])
         presenter?.setupUI()
-        presenter?.tweakSearchController()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.presenter?.tweakSearchController()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         presenter?.updateNavigationColors()
+        
         if presenter?.isViewControllerAppearing == false {
             presenter?.tweakSearchController()
         }

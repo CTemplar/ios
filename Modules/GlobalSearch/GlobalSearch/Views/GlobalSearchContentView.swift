@@ -3,7 +3,6 @@
 //  GlobalSearch
 //
 
-
 import SwiftUI
 import UIKit
 

@@ -55,6 +55,7 @@ final class ManageFoldersDataSource: NSObject, UITableViewDataSource, UITableVie
     // MARK: - DataSource Updater
     func update(folders: [Folder]) {
         self.folders = folders
+        NotificationCenter.default.post(name: .updateCustomFolderNotificationID, object: folders)
     }
     
     func add(folder: Folder) {

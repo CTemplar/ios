@@ -9,9 +9,6 @@ final class GlobalSearchPresenter: NSObject {
     private (set) var interactor: GlobalSearchInteractor
     private var router: GlobalSearchRouter
     var isViewControllerAppearing = false
-    var searchQuery: String {
-        return searchController.searchBar.text ?? ""
-    }
     
     // MARK: Properties
     private (set) lazy var searchController: UISearchController = {
@@ -32,6 +29,10 @@ final class GlobalSearchPresenter: NSObject {
         return searchActive && isSearchBarEmpty == false
     }
     
+    var searchQuery: String {
+        return searchController.searchBar.text ?? ""
+    }
+    
     // MARK: - Constructor
     init(searchController: GlobalSearchViewController, interactor: GlobalSearchInteractor, router: GlobalSearchRouter) {
         self.searchViewController = searchController
@@ -42,6 +43,7 @@ final class GlobalSearchPresenter: NSObject {
     
     // MARK: - UI Setup
     func setupUI() {
+        searchViewController?.noResultsLabel.text = Strings.Search.noResults.localized
         searchViewController?.extendedLayoutIncludesOpaqueBars = true
         searchViewController?.edgesForExtendedLayout = []
         searchViewController?.emptyStateStackView.isHidden = true
@@ -66,17 +68,10 @@ final class GlobalSearchPresenter: NSObject {
     
     func tweakSearchController() {
         if searchController.isActive == false {
-            searchController.isActive = true
             searchController.becomeFirstResponder()
-            delay(0.5) { [weak self] in
-                self?.searchController.searchBar.becomeFirstResponder()
-            }
+            searchController.searchBar.becomeFirstResponder()
+            searchController.isActive = true
         }
-    }
-    
-    func delay(_ delay: Double, closure: @escaping ()->()) {
-        let when = DispatchTime.now() + delay
-        DispatchQueue.main.asyncAfter(deadline: when, execute: closure)
     }
     
     func updateEmptyState(shouldShow: Bool) {

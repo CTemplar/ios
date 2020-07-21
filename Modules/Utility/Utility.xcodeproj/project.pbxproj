@@ -42,12 +42,12 @@
 		444BD3B32494E96F001D0C5F /* EmailKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444BD3B22494E96F001D0C5F /* EmailKeys.swift */; };
 		4457748B2499D31200B8E502 /* Notitifcation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4457748A2499D31200B8E502 /* Notitifcation+Extension.swift */; };
 		4458B6F824968D4C00F787F5 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4458B6F724968D4C00F787F5 /* UITextField+Extension.swift */; };
+		445993EC24BE2D5900BB7732 /* AlertHelperKit in Frameworks */ = {isa = PBXBuildFile; productRef = 445993EB24BE2D5900BB7732 /* AlertHelperKit */; };
+		445993EF24BE2D7600BB7732 /* CryptoHelperKit in Frameworks */ = {isa = PBXBuildFile; productRef = 445993EE24BE2D7600BB7732 /* CryptoHelperKit */; };
 		445BF9E324AD22D100DAC3B3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 445BF9E124AD22BA00DAC3B3 /* libz.tbd */; };
 		445BF9E424AD22DC00DAC3B3 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 445BF9E224AD22C900DAC3B3 /* libbz2.tbd */; };
 		445BF9EF24AD248D00DAC3B3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 445BF9EE24AD248D00DAC3B3 /* Security.framework */; };
 		445CFAE9249BF45B0017DC40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 445CFAE8249BF45B0017DC40 /* Assets.xcassets */; };
-		4466379724BDEC3B006C9F5E /* CryptoHelperKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4466379624BDEC3B006C9F5E /* CryptoHelperKit */; };
-		4466379A24BDEC63006C9F5E /* AlertHelperKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4466379924BDEC63006C9F5E /* AlertHelperKit */; };
 		44727D3C249F223D003B99FC /* PasswordChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44727D3B249F223D003B99FC /* PasswordChecker.swift */; };
 		44727D3E249F225B003B99FC /* EmailChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44727D3D249F225B003B99FC /* EmailChecker.swift */; };
 		447C2A442491760000EC426B /* UIStoryboard+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447C2A432491760000EC426B /* UIStoryboard+Helper.swift */; };
@@ -153,14 +153,14 @@
 			files = (
 				44BD63F42490B46400CB4A73 /* QuickLayout in Frameworks */,
 				445BF9E424AD22DC00DAC3B3 /* libbz2.tbd in Frameworks */,
-				4466379724BDEC3B006C9F5E /* CryptoHelperKit in Frameworks */,
 				445BF9E324AD22D100DAC3B3 /* libz.tbd in Frameworks */,
 				444BD2D0249223CD001D0C5F /* KeychainSwift in Frameworks */,
 				44BD63FB2490B93E00CB4A73 /* SwiftEntryKit in Frameworks */,
+				445993EF24BE2D7600BB7732 /* CryptoHelperKit in Frameworks */,
 				44457FA524BD6D1300E7EBFC /* KDLoadingHelperKit in Frameworks */,
+				445993EC24BE2D5900BB7732 /* AlertHelperKit in Frameworks */,
 				44099D9D24A285D800583630 /* SideMenu in Frameworks */,
 				445BF9EF24AD248D00DAC3B3 /* Security.framework in Frameworks */,
-				4466379A24BDEC63006C9F5E /* AlertHelperKit in Frameworks */,
 				F667DD49A75B6FE0252F8096 /* Pods_Utility.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,8 +394,8 @@
 				444BD2CF249223CD001D0C5F /* KeychainSwift */,
 				44099D9C24A285D800583630 /* SideMenu */,
 				44457FA424BD6D1300E7EBFC /* KDLoadingHelperKit */,
-				4466379624BDEC3B006C9F5E /* CryptoHelperKit */,
-				4466379924BDEC63006C9F5E /* AlertHelperKit */,
+				445993EB24BE2D5900BB7732 /* AlertHelperKit */,
+				445993EE24BE2D7600BB7732 /* CryptoHelperKit */,
 			);
 			productName = Utility;
 			productReference = 44BD637324909D9E00CB4A73 /* Utility.framework */;
@@ -433,8 +433,8 @@
 				444BD2CE249223CD001D0C5F /* XCRemoteSwiftPackageReference "keychain-swift" */,
 				44099D9B24A285D800583630 /* XCRemoteSwiftPackageReference "SideMenu" */,
 				44457FA324BD6D1300E7EBFC /* XCRemoteSwiftPackageReference "KDLoadingViewHelper" */,
-				4466379524BDEC3B006C9F5E /* XCRemoteSwiftPackageReference "CryptoHelperPackage" */,
-				4466379824BDEC63006C9F5E /* XCRemoteSwiftPackageReference "AlertHelperKitPackage" */,
+				445993EA24BE2D5900BB7732 /* XCRemoteSwiftPackageReference "AlertHelperKitPackage" */,
+				445993ED24BE2D7600BB7732 /* XCRemoteSwiftPackageReference "CryptoHelperPackage" */,
 			);
 			productRefGroup = 44BD637424909D9E00CB4A73 /* Products */;
 			projectDirPath = "";
@@ -792,20 +792,20 @@
 				minimumVersion = 19.0.0;
 			};
 		};
-		4466379524BDEC3B006C9F5E /* XCRemoteSwiftPackageReference "CryptoHelperPackage" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sohamb1390/CryptoHelperPackage.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-		4466379824BDEC63006C9F5E /* XCRemoteSwiftPackageReference "AlertHelperKitPackage" */ = {
+		445993EA24BE2D5900BB7732 /* XCRemoteSwiftPackageReference "AlertHelperKitPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sohamb1390/AlertHelperKitPackage.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.1;
+			};
+		};
+		445993ED24BE2D7600BB7732 /* XCRemoteSwiftPackageReference "CryptoHelperPackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sohamb1390/CryptoHelperPackage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 		44BD63F22490B46400CB4A73 /* XCRemoteSwiftPackageReference "QuickLayout" */ = {
@@ -842,15 +842,15 @@
 			package = 444BD2CE249223CD001D0C5F /* XCRemoteSwiftPackageReference "keychain-swift" */;
 			productName = KeychainSwift;
 		};
-		4466379624BDEC3B006C9F5E /* CryptoHelperKit */ = {
+		445993EB24BE2D5900BB7732 /* AlertHelperKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4466379524BDEC3B006C9F5E /* XCRemoteSwiftPackageReference "CryptoHelperPackage" */;
-			productName = CryptoHelperKit;
-		};
-		4466379924BDEC63006C9F5E /* AlertHelperKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4466379824BDEC63006C9F5E /* XCRemoteSwiftPackageReference "AlertHelperKitPackage" */;
+			package = 445993EA24BE2D5900BB7732 /* XCRemoteSwiftPackageReference "AlertHelperKitPackage" */;
 			productName = AlertHelperKit;
+		};
+		445993EE24BE2D7600BB7732 /* CryptoHelperKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 445993ED24BE2D7600BB7732 /* XCRemoteSwiftPackageReference "CryptoHelperPackage" */;
+			productName = CryptoHelperKit;
 		};
 		44BD63F32490B46400CB4A73 /* QuickLayout */ = {
 			isa = XCSwiftPackageProductDependency;
