@@ -82,10 +82,7 @@ public final class InboxSideMenuController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(userDataUpdate), name: .updateUserDataNotificationID, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(customFoldersUpdated(notification:)), name: .updateCustomFolderNotificationID, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateUnreadMessageCount(notification:)), name: .updateMessagesReadCountNotificationID, object: nil)
-        
-        if (Device.IS_IPAD) {
-            NotificationCenter.default.addObserver(self, selector: #selector(reloadSideMenu), name: .reloadViewControllerNotificationID, object: nil)
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadSideMenu), name: .reloadViewControllerNotificationID, object: nil)
     }
     
     func setup(inboxVC: InboxViewController) {

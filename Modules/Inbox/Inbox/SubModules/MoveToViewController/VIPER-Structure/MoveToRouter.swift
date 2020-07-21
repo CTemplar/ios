@@ -20,8 +20,9 @@ class MoveToRouter {
         manageFolderVC.setup(folderList: viewController?.dataSource?.customFoldersArray ?? [])
         manageFolderVC.showFromSideMenu = false
         manageFolderVC.setup(user: viewController?.user)
+        manageFolderVC.showFromSideMenu = false
         
-        let navigationController = UINavigationController(rootViewController: manageFolderVC)
+        let navigationController = InboxNavigationController(rootViewController: manageFolderVC)
         navigationController.modalPresentationStyle = .formSheet
         viewController?.present(navigationController, animated: true, completion: nil)
     }

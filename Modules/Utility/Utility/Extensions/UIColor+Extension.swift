@@ -39,7 +39,7 @@ public extension UIColor {
     /// Converts Hex String into  UIColor
     /// - Parameters:
     ///    - hex: Hex String
-    static func hexToColor(_ hex: String) -> UIColor {
+    static func hexToColor(hex: String) -> UIColor {
         var cString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         
         if (cString.hasPrefix("#")) {
@@ -51,6 +51,7 @@ public extension UIColor {
         }
         
         var rgbValue: UInt64 = 0
+        
         Scanner(string: cString).scanHexInt64(&rgbValue)
         
         return UIColor(

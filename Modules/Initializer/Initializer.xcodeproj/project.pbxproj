@@ -15,6 +15,7 @@
 		444D656624A4D5FD00690B3E /* Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444D656124A4D5FD00690B3E /* Utility.framework */; };
 		444D656B24A4DAEE00690B3E /* Initializer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 444D656A24A4DAEE00690B3E /* Initializer.storyboard */; };
 		444D656D24A4DB8C00690B3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 444D656C24A4DB8C00690B3E /* Assets.xcassets */; };
+		8B8E66C324BE3C9D00DAB23D /* GlobalSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8E66C224BE3C9D00DAB23D /* GlobalSearch.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		444D656124A4D5FD00690B3E /* Utility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		444D656A24A4DAEE00690B3E /* Initializer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Initializer.storyboard; sourceTree = "<group>"; };
 		444D656C24A4DB8C00690B3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../Ctemplar/Resources/Assets.xcassets; sourceTree = "<group>"; };
+		8B8E66C224BE3C9D00DAB23D /* GlobalSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GlobalSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +40,7 @@
 				444D656624A4D5FD00690B3E /* Utility.framework in Frameworks */,
 				444D656424A4D5FD00690B3E /* Networking.framework in Frameworks */,
 				444D656224A4D5FD00690B3E /* Login.framework in Frameworks */,
+				8B8E66C324BE3C9D00DAB23D /* GlobalSearch.framework in Frameworks */,
 				440F7D8124AF614300B9BA2D /* Inbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,6 +88,7 @@
 		444D655E24A4D5FD00690B3E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8B8E66C224BE3C9D00DAB23D /* GlobalSearch.framework */,
 				440F7D8024AF614300B9BA2D /* Inbox.framework */,
 				444D655F24A4D5FD00690B3E /* Login.framework */,
 				444D656024A4D5FD00690B3E /* Networking.framework */,

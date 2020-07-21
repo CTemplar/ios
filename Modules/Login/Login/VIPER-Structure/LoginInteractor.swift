@@ -144,14 +144,15 @@ final class LoginInteractor: Configurable, HashingService {
             keychainService.saveUserCredentials(userName: username, password: password)
             keychainService.saveTwoFAvalue(isTwoFAenabled: value.isTwoFAEnabled)
 
-            NotificationCenter.default.post(name: .updateInboxMessagesNotification, object: nil, userInfo: nil)
-            
-            sendAPNDeviceToken()
             
             if value.isTwoFAEnabled, value.token == nil {
                 // Show OTP Validation screen
                 showOTPValidation?(value, password)
             } else {
+                NotificationCenter.default.post(name: .updateInboxMessagesNotification, object: nil, userInfo: nil)
+                
+                sendAPNDeviceToken()
+
                 presenter?.dismiss(animated: true, completion: nil)
                 // Show Inbox
                 onScreenTransition?()

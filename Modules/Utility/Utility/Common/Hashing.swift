@@ -1,4 +1,4 @@
-import CryptoHelperKit
+import BCryptSwift
 import Foundation
 
 public struct CryptoInfo {

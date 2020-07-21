@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Utility
 import SideMenu
+import Inbox
 
 class SettingsRouter {
     
@@ -33,11 +34,6 @@ class SettingsRouter {
                        message: "featureIsComing".localized(),
                        buttonTitle: Strings.Button.closeButton.localized)
         return
-        
-//        let storyboard: UIStoryboard = UIStoryboard(name: k_ChangePasswordStoryboardName, bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: k_ChangePasswordViewControllerID) as! ChangePasswordViewController
-//        vc.user = (self.viewController?.user)!
-//        self.viewController?.show(vc, sender: self)
     }
     
     func showSelectLanguageViewController() {
@@ -82,13 +78,15 @@ class SettingsRouter {
     }
     
     func showManageFoldersViewController() {
-        let storyboard: UIStoryboard = UIStoryboard(name: k_ManageFoldersStoryboardName, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: k_ManageFoldersViewControllerID) as! ManageFoldersViewController
-        vc.setup(folderList: viewController?.user.foldersList ?? [])
-        vc.setup(user: viewController?.user)
-        vc.showFromSideMenu = false
-        vc.showFromSettings = true
-        self.viewController?.show(vc, sender: self)
+        guard let user = viewController?.user else {
+            return
+        }
+        
+        let inboxCoordinator = InboxCoordinator()
+        inboxCoordinator.openManageFolders(withFolders: user.foldersList ?? [],
+                                           user: user,
+                                           from: viewController,
+                                           fromSideMenu: false)
     }
     
     func showSetMailboxViewController() {

@@ -119,7 +119,7 @@ class SearchTableViewCell: UITableViewCell {
             let hexColorCode = folder.color else {
             return k_mainInboxColor
         }
-        let colorValue = UIColor.hexToColor(hexColorCode)
+        let colorValue = UIColor.hexToColor(hex: hexColorCode)
         return colorValue
     }
 }

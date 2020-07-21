@@ -20,25 +20,17 @@ public extension UIApplication {
     }
     
     class func openAppSettings() {
-        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!,
-                                  options: [:],
-                                  completionHandler: { (enabled) in
-            // ... handle if enabled
-        })
-    }
-    
-    class func openAppNotificationsSetting() {
-        if let url = URL(string:"App-Prefs:root=NOTIFICATIONS_ID") {
-            if UIApplication.shared.canOpenURL(url) {
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                } else {
-                    UIApplication.shared.openURL(url)
-                }
-            }
+        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+            return
+        }
+        
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                print("Settings opened: \(success)") // Prints true
+            })
         }
     }
-    
+
     func getKeyWindow() -> UIWindow? {
         let newWindow = UIApplication.shared.windows.first { $0.isKeyWindow }
         return newWindow

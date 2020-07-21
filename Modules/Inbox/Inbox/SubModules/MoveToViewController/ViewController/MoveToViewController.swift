@@ -40,6 +40,12 @@ class MoveToViewController: UIViewController {
         let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture(gesture:)))
         swipeDownGesture.direction = .down
         view.addGestureRecognizer(swipeDownGesture)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(customFoldersUpdated(notification:)), name: .updateCustomFolderNotificationID, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .updateCustomFolderNotificationID, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,5 +86,12 @@ class MoveToViewController: UIViewController {
         if gesture.direction == UISwipeGestureRecognizer.Direction.down {
             dismiss(animated: true, completion: nil)
         }
+    }
+    
+    // MARK: - Observer Actions
+    @objc
+    private func customFoldersUpdated(notification: Notification) {
+        let customFolders = notification.object as? [Folder] ?? []
+        dataSource?.update(by: customFolders)
     }
 }

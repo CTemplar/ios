@@ -22,7 +22,7 @@ public enum EndPoint: String {
     #if DEBUG
     case baseUrl = "https://devapi.ctemplar.net/"
     #else
-    case baseUrl = "https://api.ctemplar.com/" // https://mail.ctemplar.com/api/
+    case baseUrl = "https://api.ctemplar.com/"  //"https://mail.ctemplar.com/api/"
     #endif
     case signIn = "auth/sign-in/"
     case signUp = "auth/sign-up/"

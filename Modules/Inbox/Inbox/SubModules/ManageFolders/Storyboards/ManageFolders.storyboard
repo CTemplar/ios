@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YA6-S9-hED">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YA6-S9-hED">
     <device id="retina5_9" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -17,7 +16,7 @@
         <!--Manage Folders View Controller-->
         <scene sceneID="9Cb-MT-7gO">
             <objects>
-                <viewController storyboardIdentifier="ManageFoldersViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YA6-S9-hED" customClass="ManageFoldersViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ManageFoldersViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YA6-S9-hED" customClass="ManageFoldersViewController" customModule="Inbox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Cbc-XY-WZW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -82,20 +81,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Pif-uN-fdq"/>
                     </view>
-                    <navigationItem key="navigationItem" id="cJG-jK-wJr">
-                        <barButtonItem key="leftBarButtonItem" image="MenuButton" id="4TW-th-Nws">
-                            <color key="tintColor" name="navButtonTintColor"/>
-                            <connections>
-                                <action selector="menuButtonPressed:" destination="YA6-S9-hED" id="bbf-Ne-N1G"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="cJG-jK-wJr"/>
                     <connections>
                         <outlet property="addFolderBarButtonItem" destination="tWH-dQ-Ssx" id="7ig-VW-r5D"/>
                         <outlet property="emptyFolderLabel" destination="28f-Nz-aId" id="OXV-cT-Qf3"/>
                         <outlet property="emptyFolderStackView" destination="V4J-Mz-ey1" id="cMR-tR-KvD"/>
                         <outlet property="foldersTableView" destination="QZM-cZ-HkL" id="T5Y-ts-xXx"/>
-                        <outlet property="leftBarButtonItem" destination="4TW-th-Nws" id="TYh-dZ-owU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VHe-42-zlu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -105,12 +96,8 @@
     </scenes>
     <resources>
         <image name="EmptyFoldersIcon" width="100" height="100"/>
-        <image name="MenuButton" width="20" height="14"/>
         <namedColor name="cellSubTitleTextColor">
             <color red="0.1289999932050705" green="0.1289999932050705" blue="0.1289999932050705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="navButtonTintColor">
-            <color red="0.17299999296665192" green="0.24300000071525574" blue="0.31400001049041748" alpha="0.87000000476837158" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="redColor">
             <color red="0.90600001811981201" green="0.29800000786781311" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

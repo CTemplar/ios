@@ -11,19 +11,21 @@ final class InboxRouter {
     private var onTapComposeWithDraft: ((AnswerMessageMode, EmailMessage, UserMyself, UIViewController?) -> Void)?
     private var onTapCompose: ((AnswerMessageMode, UserMyself, UIViewController?) -> Void)?
     private var onTapViewInbox: ((EmailMessage, String, UserMyself, ViewInboxEmailDelegate?) -> Void)?
+    private var onTapMoveTo: ((MoveToViewControllerDelegate?, [Int], UserMyself, UIViewController?) -> Void)?
 
     // MARK: - Constructor
     init(inboxViewController: InboxViewController?,
          onTapCompose: ((AnswerMessageMode, UserMyself, UIViewController?) -> Void)?,
          onTapComposeWithDraft: ((AnswerMessageMode, EmailMessage, UserMyself, UIViewController?) -> Void)?,
          onTapSearch: (([EmailMessage], UserMyself, UIViewController?) -> Void)?,
-         onTapViewInbox: ((EmailMessage, String, UserMyself, ViewInboxEmailDelegate?) -> Void)?
-    ) {
+         onTapViewInbox: ((EmailMessage, String, UserMyself, ViewInboxEmailDelegate?) -> Void)?,
+         onTapMoveTo: ((MoveToViewControllerDelegate?, [Int], UserMyself, UIViewController?) -> Void)?) {
         self.inboxViewController = inboxViewController
         self.onTapCompose = onTapCompose
         self.onTapComposeWithDraft = onTapComposeWithDraft
         self.onTapSearch = onTapSearch
         self.onTapViewInbox = onTapViewInbox
+        self.onTapMoveTo = onTapMoveTo
     }
     
     // MARK: - Navigations
@@ -52,20 +54,10 @@ final class InboxRouter {
     }
     
     func showMoveToController(withSelectedMessages messageIds: [Int]) {
-        let moveToViewController: MoveToViewController = UIStoryboard(storyboard: .moveTo,
-                                                bundle: Bundle(for: MoveToViewController.self)
-        ).instantiateViewController()
-        
-        moveToViewController.delegate = inboxViewController?.presenter
-        
-        moveToViewController.selectedMessagesIDArray = messageIds
-        
-        if let user = inboxViewController?.dataSource?.user {
-            moveToViewController.user = user
+        guard let user = inboxViewController?.dataSource?.user else {
+            return
         }
         
-        moveToViewController.modalPresentationStyle = .formSheet
-        
-        inboxViewController?.present(moveToViewController, animated: true, completion: nil)
+        onTapMoveTo?(inboxViewController?.presenter, messageIds, user, inboxViewController)
     }
 }

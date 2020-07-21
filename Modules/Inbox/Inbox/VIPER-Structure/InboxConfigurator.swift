@@ -8,14 +8,16 @@ class InboxConfigurator {
                    onTapCompose: ((AnswerMessageMode, UserMyself, UIViewController?) -> Void)?,
                    onTapComposeWithDraft: ((AnswerMessageMode, EmailMessage, UserMyself, UIViewController?) -> Void)?,
                    onTapSearch: (([EmailMessage], UserMyself, UIViewController?) -> Void)?,
-                   onTapViewInbox: ((EmailMessage, String, UserMyself, ViewInboxEmailDelegate?) -> Void)?
+                   onTapViewInbox: ((EmailMessage, String, UserMyself, ViewInboxEmailDelegate?) -> Void)?,
+                   onTapMoveTo: ((MoveToViewControllerDelegate?, [Int], UserMyself, UIViewController?) -> Void)?
     ) {
         
         let router = InboxRouter(inboxViewController: inboxViewController,
                                  onTapCompose: onTapCompose,
                                  onTapComposeWithDraft: onTapComposeWithDraft,
                                  onTapSearch: onTapSearch,
-                                 onTapViewInbox: onTapViewInbox
+                                 onTapViewInbox: onTapViewInbox,
+                                 onTapMoveTo: onTapMoveTo
         )
         
         let interactor = InboxInteractor(viewController: inboxViewController)

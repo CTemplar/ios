@@ -17,6 +17,7 @@ final class GlobalSearchDataSource: NSObject {
         self.presenter = presenter
         super.init()
         
+        self.tableView?.keyboardDismissMode = .interactive
         self.tableView?.contentInsetAdjustmentBehavior = .never
         self.tableView?.tableFooterView = UIView()
         self.tableView?.delegate = self

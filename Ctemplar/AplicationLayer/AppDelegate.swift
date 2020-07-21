@@ -270,24 +270,7 @@ private extension AppDelegate {
                 presenter?.sideMenuController?.hideMenu()
         })
     }
-    
-    func showManageFolders(withFolders folders: [Folder],
-                           user: UserMyself,
-                           presenter: UIViewController?) {
-        let manageFoldersVC: ManageFoldersViewController = UIStoryboard(storyboard: .manageFolders,
-                                                              bundle: Bundle(for: ManageFoldersViewController.self)
-        ).instantiateViewController()
-        manageFoldersVC.setup(folderList: folders)
-        manageFoldersVC.setup(user: user)
-        let navController = UIViewController.getNavController(rootViewController: manageFoldersVC)
-        navController.prefersLargeTitle = true
-        presenter?
-            .sideMenuController?
-            .setContentViewController(to: navController, animated: true, completion: {
-                presenter?.sideMenuController?.hideMenu()
-        })
-    }
-    
+
     func showSettings(ofUser user: UserMyself, presenter: UIViewController?) {
         let settingsVC: SettingsViewController = UIStoryboard(storyboard: .settings,
                                                               bundle: Bundle(for: SettingsViewController.self)
@@ -349,7 +332,7 @@ private extension AppDelegate {
                             delegate: delegate
             )
         }
-
+        
         // Open Contacts
         initializer.onTapContacts = { [weak self] (contacts, contactsEncrypted, inboxViewController) in
             self?.showContacts(withList: contacts,
@@ -362,15 +345,7 @@ private extension AppDelegate {
         initializer.onTapSettings = { [weak self] (user, inboxViewController) in
             self?.showSettings(ofUser: user, presenter: inboxViewController)
         }
-        
-        // Open Manage Folders
-        initializer.onTapManageFolders = { [weak self] (folders, user, inboxViewController) in
-            self?.showManageFolders(withFolders: folders,
-                                    user: user,
-                                    presenter: inboxViewController
-            )
-        }
-        
+
         // Open FAQ
         initializer.onTapFAQ = { [weak self] (inboxViewController) in
             self?.showFAQ(from: inboxViewController)
