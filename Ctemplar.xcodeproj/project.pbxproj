@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		24379C7398FE6396A9DAD32D /* Pods_Ctemplar_dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A89063C1DD754A3207EC3 /* Pods_Ctemplar_dev.framework */; };
-		30503EA323D8EE70004B04D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30503EA023D8EE6A004B04D6 /* GoogleService-Info.plist */; };
-		30503EA423D8EE74004B04D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30503EA223D8EE6A004B04D6 /* GoogleService-Info.plist */; };
+
+		3778ABAB256ED7AF4127CBE3 /* Pods_Ctemplar_dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E76E298507003EB40EF17CC1 /* Pods_Ctemplar_dev.framework */; };
+		444BD31924923AC5001D0C5F /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444BD2EF249234C3001D0C5F /* Networking.framework */; };
 		444BD47F2495306D001D0C5F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444BD47E2495306C001D0C5F /* Security.framework */; };
 		444BD48124953084001D0C5F /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 444BD48024953077001D0C5F /* libz.tbd */; };
 		444BD48224953187001D0C5F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444BD47E2495306C001D0C5F /* Security.framework */; };
@@ -600,9 +600,8 @@
 /* Begin PBXFileReference section */
 		0058DAFDA87317E08239CF55 /* Pods_Ctemplar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EDB8FDEA70AFB3DF080798D /* Pods-Ctemplar.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.dev.debug.xcconfig"; path = "Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev.debug.xcconfig"; sourceTree = "<group>"; };
-		30503EA023D8EE6A004B04D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		30503EA223D8EE6A004B04D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3A53DB65761DAAA415609C1D /* Pods-Ctemplar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.release.xcconfig"; path = "Target Support Files/Pods-Ctemplar/Pods-Ctemplar.release.xcconfig"; sourceTree = "<group>"; };
+
 		4438246C248F9A1200DEA4F3 /* Signup.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Signup.xcodeproj; path = Signup/Signup.xcodeproj; sourceTree = "<group>"; };
 		444BD2EA249234C2001D0C5F /* Networking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Networking.xcodeproj; path = Networking/Networking.xcodeproj; sourceTree = "<group>"; };
 		444BD47E2495306C001D0C5F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -909,7 +908,6 @@
 		30503E9F23D8EE6A004B04D6 /* prod */ = {
 			isa = PBXGroup;
 			children = (
-				30503EA023D8EE6A004B04D6 /* GoogleService-Info.plist */,
 			);
 			path = prod;
 			sourceTree = "<group>";
@@ -917,7 +915,6 @@
 		30503EA123D8EE6A004B04D6 /* dev */ = {
 			isa = PBXGroup;
 			children = (
-				30503EA223D8EE6A004B04D6 /* GoogleService-Info.plist */,
 			);
 			path = dev;
 			sourceTree = "<group>";
@@ -1954,7 +1951,6 @@
 				E399BBF823E87AFA00EEA708 /* rich_editor.js in Resources */,
 				8433FF24216201A500C57DC8 /* LaunchScreen.storyboard in Resources */,
 				E399BBEA23E87AFA00EEA708 /* insert_image@2x.png in Resources */,
-				30503EA323D8EE70004B04D6 /* GoogleService-Info.plist in Resources */,
 				8436AD532180663800D16008 /* Localizable.strings in Resources */,
 				8440141A21D377D600FC450C /* PrivacyAndTerms.storyboard in Resources */,
 				8433DFBC219ECDC600375609 /* ChildMessageTableViewCell.xib in Resources */,
@@ -2077,7 +2073,6 @@
 				E399BBF923E87AFA00EEA708 /* rich_editor.js in Resources */,
 				CC6909662384500100956E9B /* LaunchScreen.storyboard in Resources */,
 				E399BBEB23E87AFA00EEA708 /* insert_image@2x.png in Resources */,
-				30503EA423D8EE74004B04D6 /* GoogleService-Info.plist in Resources */,
 				CC6909672384500100956E9B /* Localizable.strings in Resources */,
 				CC6909692384500100956E9B /* PrivacyAndTerms.storyboard in Resources */,
 				CC69096A2384500100956E9B /* ChildMessageTableViewCell.xib in Resources */,
