@@ -16,6 +16,7 @@
 "encryptButton" = "Encrypt";
 "decryptButton" = "Decrypt";
 "okButton" = "Ok";
+"updateButton" = "Update";
 
 "deleteRow" = "Delete";
 
@@ -113,6 +114,7 @@
 
 // Action Banner
 "movingToArchive" = "Moving to archive";
+"movingToInbox" = "Moving to inbox";
 "movingToSpam" = "Moving to spam";
 "movingToTrash" = "Moving to trash";
 "markingAsUnread" = "Marking as unread";
@@ -160,16 +162,12 @@
 "address" = "Address";
 "note" = "Note";
 
-// Pgp Keys
-
+// PGP Keys
 "fingerprint" = "Fingerprint";
-"publicKey" = "Public Key";
-"privateKey" = "Private Key";
-"publicKeyDownload" = "Download public key (4096 bit)";
-"privateKeyDownload" = "Download private key (4096 bit)";
+"publicKeyDownload" = "Public Key\n(4096 bit)";
+"privateKeyDownload" = "Private Key\n(4096 bit)";
 
-// View message
-
+// View Message
 "viewDetails" = "View details";
 "hideDetails" = "Hide details";
 
@@ -187,8 +185,6 @@
 "forwardLine" = "---------- Forwarded message ----------";
 "date" = "Date: ";
 "subject" = "Subject: ";
-
-"infoTitle" = "Information:";
 
 // Banner
 "mailSendMessage" = "Mail sent successfully.";
@@ -272,7 +268,6 @@
 "folders" = "folders";
 
 // Settings
-
 "enableRecoveryEmail" = "Enable recovery email";
 "typeRecoveryEmail" = "Type your recovery email";
 "recoveryEmail" = "Recovery email";
@@ -283,86 +278,91 @@
 "whiteBlackList" = "Whitelist / Blacklist";
 "dashboard" = "Dashboard";
 "security" = "Security";
-
 "manageFolders" = "Manage folders";
 "manageSecurity" = "Encryption";
-
 "signature" = "Signature";
 "mobileSignature" = "Mobile signature";
-"default" = "Default";
+"defaultText" = "Default";
 "keys" = "Keys";
-
 "aboutUs" = "About us";
 "privacyPolicy" = "Privacy Policy";
 "terms" = "Terms & Conditions";
-
 "recoveryEmailUpdatedMessage" = "Recovery Email was updated successfully";
 "passwordUpdatedMessage" = "Password was updated successfully";
 "userSignature" = "Signature was updated successfully";
-
 "currentPasswordPlaceholder" = "Current password";
 "newPasswordPlaceholder" = "New password";
-
 "saveContacts" = "Automatically save contacts";
-
 "selectDefaulfAddress" = "Select default address";
 "addresses" = "Addresses";
-
 "subjectEncryption" = "Subject encryption";
 "сontactsEncryption" = "Contacts encryption";
 "attachmentEncryption" = "Attachment encryption";
-
 "enableSignature" = "Enable signature";
 "typeSignature" = "Type your signature";
-
 "privacyPolicy" = "Privacy Policy";
 "termsAndConditions" = "Terms & Conditions";
-
-"appVersion" = "AppVersion ";
+"appVersion" = "AppVersion";
+"generalSettings" = "General";
+"foldersSettings" = "Folders";
+"securitySettings" = "Security";
+"mailSettings" = "Mail";
+"aboutSettings" = "About";
+"storageSettings" = "Storage";
+"logoutSettings" = "Log out";
+"featureIsComing" = "Feature coming soon. Please, login on desktop to update your password.";
+"saveContactsAlertTitle" = "Save Contacts in %s";
+"saveContactsAlertMessage" = "Currently the contact saving option is %a. Do you want to change your preference?";
+"enabled" = "Enabled";
+"disabled" = "Disabled";
+"encryptionDisabled" = "This option is currently disabled since you are using a free account. Please upgrade to premium in order to access all the features!";
+"insertLink" = "Insert Link";
+"urlRequired" = "URL (required)";
+"title" = "Title";
+"insert" = "Insert";
+"infoTitle" = "Information";
+"typeMessage" = "Type message here...";
+"clear" = "Clear";
+"done" = "Done";
+"recoveryEmailEnabledAlertMessage" = "Currently you have a recovery email added in your CTemplar Account. Please find the details below. You can update your recovery email by changing it from the below field and then tap on the Update Option. If you want to disable the recovery email option, you can always do that by tapping on the Disable option. Remember: you can add a recovery email again from the settings.";
+"addRecoveryEmailTitle" = "Add Recovery Email";
+"addRecoveryEmailMessage" = "Add your recovery email below";
+"recoveryEmailDisabledAlertMessage" = "Currently you don't have any recovery email added in your CTemplar Account. If you want to add a recovery email please tap on Enable option.";
+"enable" = "Enable";
+"disable" = "Disable";
+"changePasswordTitle" = "Change Password";
+"updateAndKeepData" = "Update & Keep Data";
+"updateAndDeleteData" = "Update & Delete Data";
+"changePasswordMessage" = "Your encryption key is connected to your password. You have the option to either keep all the data and encryption keys and just change the password or you can delete all the data and generate new encryption keys. Choose your option carefully.";
 
 "takeBack" = "Take Back Your Liberty";
 "withEncrypted" = "with Encrypted Communication";
 "sendUnbreakable" = "Send unbreakable emails and protect your key professional and personal details trough next-gen encryption. End-to-end PKI encription keeps your private information safe from governments, corporations and hackers-for-hire.";
 "goToWebVersion" = "GO TO WEB VERSION";
+"changePasswordNotAvailableMessage" = "Currently this feature is under development on iOS. In order to change your password, please use the Android App or visit our Web Application";
 
 "settings" = "Settings";
 
-"generalSettings"           = "General settings";
-"foldersSettings"           = "Folders";
-"securitySettings"          = "Security";
-"mailSettings"              = "Mail";
-"aboutSettings"             = "About";
-"storageSettings"           = "Storage";
-"logoutSettings"            = "Log out";
-
 // White/Black List
-
 "whiteListText" = "Messages from contacts in the whitelist always go to Inbox folder. Marking a message as not spam adds the address to the Whitelist";
 "blackListText" = "Messages from contacts in the blacklist always go to Spam folder. Marking a message as spam adds the address to the Blacklist";
-
 "whiteListAttributedText" = "Inbox folder";
 "blackListAttributedText" = "Spam folder";
-
 "addWhiteList" = "Add whitelist contact";
 "addBlackList" = "Add blacklist contact";
-
 "deleteContactFromBlackList" = "Do you want to delete this contact from Blacklist?";
 "deleteContactFromWhiteList" = "Do you want to delete this contact from Whitelist?";
-
 "whitelistBlacklist" = "Whitelist / Blacklist";
 "whitelist" = "WHITELIST";
 "blacklist" = "BLACKLIST";
-
 "addContactW" = "Add Contact";
 "name" = "Name";
 "email" = "Email";
 
 // Language
-
 "languageTitle" = "Language";
 
 // Formatter
-
 "toPrefix" = "To: ";
 "ccPrefix" = "CC: ";
 "bccPrefix" = "BCC: ";
@@ -403,6 +403,7 @@
 "hashing" = "Hashing...";
 "updateToken" = "Update Token";
 
+// Encryption/Decryption
 "encryptContactsTitle" = "By enabling contacts encryption";
 "encryptContacts" = "All your contacts will be encrypted. Contacts suggestion on compose email won't be available anymore. Contacts can't be searched anymore";
 "decryptContactsTitle" = "Are you sure you want to disable contacts encryption?";
@@ -410,11 +411,14 @@
 "decryptingContacts" = "Decrypting...";
 "allContactsWasEncrypted" = "All Contacts was encrypted";
 "allContactsWasDecrypted" = "All Contacts was decrypted";
-
 "attachmentEncryptionWasEnabled" = "Attachment Encryption Was Enabled";
 "attachmentEncryptionWasDisabled" = "Attachment Encryption Was Disabled";
-
-"featureIsComing" = "Feature coming soon. Please, login on desktop to update your password.";
+"subjectEncrypted" = "Subject is now encrypted";
+"subjectDecrypted" = "Subject is now decrypted";
+"contactsEncrypted" = "Contacts are now encrypted";
+"contactsDecrypted" = "Contacts are now decrypted";
+"attachmentEncrypted" = "Attachment is now encrypted";
+"attachmentDecrypted" = "Attachment is now decrypted";
 
 // Logout
 "logoutErrorTitle" = "Logout Error";
@@ -440,6 +444,10 @@
 "messagesError" = "Messages Error";
 "mailBoxesError" = "Mailboxes Error";
 "userError" = "User Error";
+"fileDownloadError" = "File Download Error";
+"attachmentErrorTitle" = "Attachment Error";
+"attachmentErrorMessage" = "Attachment File is corrupted or cannot be decrypted";
+"contactEncryptionError" = "Contact Encryption Error";
 
 // Signup Error
 "signupError" = "Signup Failed";
@@ -451,3 +459,7 @@
 "passwordMatched" = "Password Matched";
 "passwordNotMatched" = "Password Not Matched";
 "minPasswordLengthError" = "Password should be at least 10 characters";
+
+// Contacts
+"unknownName" = "Unknown name";
+"unknownEmail" = "Unknown email";

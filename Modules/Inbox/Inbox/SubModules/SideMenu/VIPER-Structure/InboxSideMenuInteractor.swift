@@ -12,17 +12,17 @@ public final class InboxSideMenuInteractor {
     
     private let apiService = NetworkManager.shared.apiService
     
-    private lazy var user: UserMyself = {
+    private var user: UserMyself {
         return viewController?.inbox?.dataSource?.user ?? UserMyself()
-    }()
+    }
     
-    private lazy var folders: [Folder] = {
+    private var folders: [Folder] {
         return (user.foldersList ?? [])
-    }()
+    }
     
-    private lazy var contacts: [Contact] = {
+    private var contacts: [Contact] {
         return (user.contactsList ?? [])
-    }()
+    }
     
     // MARK: - Setup
     func setup(viewController: InboxSideMenuController) {
@@ -43,6 +43,7 @@ public final class InboxSideMenuInteractor {
                     UtilityManager.shared.keychainService.deleteUserCredentialsAndToken()
                     self?.resetAppIconBadgeValue()
                     self?.resetRootController()
+                    NotificationCenter.default.post(name: .logoutCompleteNotificationID, object: nil)
                 } else {
                    if let currentVC = self?.viewController {
                     currentVC.showAlert(with: Strings.Logout.logoutErrorTitle.localized,

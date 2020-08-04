@@ -2,6 +2,7 @@ import Foundation
 import Utility
 import Networking
 import UIKit
+import Inbox
 
 public final class GlobalSearchCoordinator {
     // MARK: Properties
@@ -12,14 +13,15 @@ public final class GlobalSearchCoordinator {
     
     public func showSearch(from viewController: UIViewController?,
                            withUser user: UserMyself,
-                           onTapMessage: @escaping ((EmailMessage, UserMyself) -> Void)) {
-        let search: GlobalSearchViewController = UIStoryboard(storyboard: .search,
+                           onTapMessage: @escaping ((EmailMessage, UserMyself, ViewInboxEmailDelegate?, UIViewController?) -> Void)) {
+        searchController = UIStoryboard(storyboard: .search,
             bundle: Bundle(for: GlobalSearchViewController.self)).instantiateViewController()
         
         let configurator = GlobalSearchConfigurator()
-        configurator.configure(withSearchController: search, user: user, onTapMessage: onTapMessage)
-        
-        searchController = search
+        configurator.configure(withSearchController: searchController!,
+                               user: user) { [weak self] (message, user, delegate) in
+                                onTapMessage(message, user, delegate, self?.searchController)
+        }
         
         viewController?.navigationController?.pushViewController(searchController!, animated: true)
     }

@@ -56,3 +56,18 @@ class GlobalSearchViewController: UIViewController {
         dataSource?.update(user: user)
     }
 }
+
+extension GlobalSearchViewController: ViewInboxEmailDelegate {
+    func didUpdateReadStatus(for message: EmailMessage, status: Bool) {
+        dataSource?.updateMessageStatus(message: message, status: status)
+        if let menu = SharedInboxState.shared.selectedMenu {
+            NotificationCenter.default.post(name: .updateMessagesReadCountNotificationID,
+                                            object:
+                [
+                    "name": menu.menuName,
+                    "isRead": status
+                ]
+            )
+        }
+    }
+}

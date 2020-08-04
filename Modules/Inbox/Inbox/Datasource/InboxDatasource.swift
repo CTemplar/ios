@@ -23,7 +23,7 @@ enum InboxFilter: CaseIterable {
 
 final class InboxDatasource: NSObject {
     // MARK: Properties
-    private var tableView: UITableView
+    private weak var tableView: UITableView?
     
     private weak var parentViewController: InboxViewController?
     
@@ -85,22 +85,22 @@ final class InboxDatasource: NSObject {
     
     // MARK: - Setup
     func registerTableViewCell() {
-        tableView.register(UINib(nibName: InboxMessageTableViewCell.className, bundle: Bundle(for: type(of: self))),
+        tableView?.register(UINib(nibName: InboxMessageTableViewCell.className, bundle: Bundle(for: type(of: self))),
                            forCellReuseIdentifier: InboxMessageTableViewCell.className
         )
     }
     
     private func setupTableView() {
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(sender:)))
-        tableView.addGestureRecognizer(longPressRecognizer)
+        tableView?.addGestureRecognizer(longPressRecognizer)
         
-        tableView.tableFooterView = UIView()
+        tableView?.tableFooterView = UIView()
         
-        tableView.delegate = self
+        tableView?.delegate = self
         
-        tableView.dataSource = self
+        tableView?.dataSource = self
         
-        tableView.addSubview(self.refreshControl)
+        tableView?.addSubview(self.refreshControl)
         
         parentViewController?.reloadButton.addTarget(self, action: #selector(handleRefresh(_:)), for: .touchUpInside)
     }
@@ -125,7 +125,7 @@ final class InboxDatasource: NSObject {
         
         if sender.state == .began {
             let touchPoint = sender.location(in: self.tableView)
-            if let indexPath = tableView.indexPathForRow(at: touchPoint) {
+            if let indexPath = tableView?.indexPathForRow(at: touchPoint) {
                 let message = messages[indexPath.row]
                 DPrint("Long pressed row: \(indexPath.row)")
                 if selectionMode == false {
@@ -141,12 +141,12 @@ final class InboxDatasource: NSObject {
     }
     
     func reload() {
-        tableView.reloadData()
+        tableView?.reloadData()
         refreshControl.endRefreshing()
     }
     
     func resetFooterView() {
-        tableView.tableFooterView = UIView()
+        tableView?.tableFooterView = UIView()
     }
     
     // MARK: - Datasource Handlers
@@ -340,14 +340,12 @@ final class InboxDatasource: NSObject {
     
     func showDetails(of message: EmailMessage) {
         messageId = -1
-        if let menu = SharedInboxState.shared.selectedMenu {
-            parentViewController?
-                .router?
-                .showViewInboxEmailViewController(message: message,
-                                                  currentFolderFilter: menu.menuName,
-                                                  user: user
-            )
-        }
+        parentViewController?
+            .router?
+            .showViewInboxEmailViewController(message: message,
+                                              user: user,
+                                              delegate: parentViewController
+        )
     }
     
     func searchAttributes() -> (messages: [EmailMessage], user: UserMyself) {
@@ -360,7 +358,7 @@ final class InboxDatasource: NSObject {
             var message = messages[index]
             message.update(readStatus: status)
             messages[index] = message
-            tableView.reloadData()
+            tableView?.reloadData()
         }
         // Keep syncing the original messages by messages
         originalMessages = messages
@@ -371,6 +369,14 @@ final class InboxDatasource: NSObject {
     }
     
     func update(messages: [EmailMessage]) {
+//        let folderFilter = messages.filter({ $0.folder == SharedInboxState.shared.selectedMenu?.menuName })
+//        folderFilter.forEach { (message) in
+//            self.messages.removeAll(where: { $0.messsageID == message.messsageID })
+//            self.messages.append(message)
+//        }
+//        self.originalMessages = self.messages
+//        parentViewController?.presenter?.updateNoMessagePrompt()
+        
         messages.forEach { (message) in
             self.messages.removeAll(where: { $0.messsageID == message.messsageID })
             self.messages.append(message)
@@ -390,6 +396,7 @@ final class InboxDatasource: NSObject {
     
     func update(unreadCount: Int) {
         self.unreadCount = unreadCount
+        parentViewController?.presenter?.updateBadge(number: unreadCount)
     }
     
     func update(mailboxList: [Mailbox]) {
@@ -589,14 +596,12 @@ extension InboxDatasource: UITableViewDelegate, UITableViewDataSource {
                                                user: user
                 )
             } else {
-                if let menu = SharedInboxState.shared.selectedMenu {
-                    parentViewController?
-                        .router?
-                        .showViewInboxEmailViewController(message: message,
-                                                          currentFolderFilter: menu.menuName,
-                                                          user: user
-                    )
-                }
+                parentViewController?
+                    .router?
+                    .showViewInboxEmailViewController(message: message,
+                                                      user: user,
+                                                      delegate: parentViewController
+                )
             }
         } else {
             let selected = selectedMessageIds.filter({ $0 == message.messsageID }).isEmpty == false
@@ -628,7 +633,7 @@ extension InboxDatasource: UITableViewDelegate, UITableViewDataSource {
     }
     
     private func configureMailCell(at indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: InboxMessageTableViewCell.className,
+        guard let cell = tableView?.dequeueReusableCell(withIdentifier: InboxMessageTableViewCell.className,
                                                        for: indexPath) as? InboxMessageTableViewCell else {
             return UITableViewCell()
         }
@@ -645,7 +650,7 @@ extension InboxDatasource: UITableViewDelegate, UITableViewDataSource {
         
         let isSubjectEncrypted = NetworkManager.shared.apiService.isSubjectEncrypted(message: message)
         
-        cell.setupCellWithData(message: message, header: "", subjectEncrypted: isSubjectEncrypted, isSelectionMode: selectionMode, isSelected: selected, frameWidth: tableView.frame.width)
+        cell.setupCellWithData(message: message, header: "", subjectEncrypted: isSubjectEncrypted, isSelectionMode: selectionMode, isSelected: selected, frameWidth: tableView?.frame.width ?? .zero)
         return cell
     }
 }
@@ -660,7 +665,7 @@ extension InboxDatasource: MGSwipeTableCellDelegate {
     }
     
     func swipeTableCell(_ cell: MGSwipeTableCell, tappedButtonAt index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
-        guard let indexPath = tableView.indexPath(for: cell) else {
+        guard let indexPath = tableView?.indexPath(for: cell) else {
             return true
         }
         

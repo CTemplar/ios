@@ -1,5 +1,5 @@
 import Foundation
 
-public protocol MoveToViewControllerDelegate {
+public protocol MoveToViewControllerDelegate: class {
     func didMoveMessage(to folder: String)
 }

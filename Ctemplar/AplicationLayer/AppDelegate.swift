@@ -10,7 +10,8 @@ import UIKit
 import Fabric
 import Crashlytics
 import UserNotifications
-import Firebase
+import FirebaseCore
+import FirebaseMessaging
 import Utility
 import Networking
 import Initializer
@@ -187,26 +188,9 @@ private extension AppDelegate {
 // MARK: - Common Callbacks
 /// Common Callbacks from different Module
 private extension AppDelegate {
-    func showInbox(withMessage message: EmailMessage,
-                   folder: String,
-                   user: UserMyself,
-                   delegate: ViewInboxEmailDelegate?) {
-        let viewInboxVC: ViewInboxEmailViewController = UIStoryboard(storyboard: .inboxDetails,
-                                                                     bundle: Bundle(for: ViewInboxEmailViewController.self)
-        ).instantiateViewController()
-        viewInboxVC.message = message
-        viewInboxVC.messageID = message.messsageID
-        viewInboxVC.currentFolderFilter = folder
-        viewInboxVC.viewInboxEmailDelegate = delegate
-        viewInboxVC.user = user
-        (delegate as? UIViewController)?
-            .navigationController?
-            .pushViewController(viewInboxVC, animated: true
-        )
-    }
-
     func showCompose(withMode mode: Utility.AnswerMessageMode,
                      user: UserMyself,
+                     message: EmailMessage? = nil,
                      presenter: UIViewController?) {
         let composeVC: ComposeViewController = UIStoryboard(storyboard: .compose,
                                                           bundle: Bundle(for: ComposeViewController.self)
@@ -222,7 +206,27 @@ private extension AppDelegate {
             composeVC.answerMode = AnswerMessageMode.replyAll
         }
         composeVC.user = user
+        
+        if let message = message {
+            composeVC.message = message
+            composeVC.subject = message.subject ?? ""
+            let content = extractMessageContent(message: message)
+            composeVC.dercyptedMessagesArray = [content]
+        }
+        
         presenter?.navigationController?.pushViewController(composeVC, animated: true)
+    }
+    
+    private func extractMessageContent(message: EmailMessage) -> String {
+        if let content = message.content {
+            if NetworkManager.shared.apiService.isMessageEncrypted(message: message) {
+                let decryptedContent = UtilityManager.shared.pgpService.decryptMessage(encryptedContet: content)
+                return decryptedContent
+            } else {
+                return content
+            }
+        }
+        return "Error"
     }
     
     func showComposeWithDraft(withMessage message: EmailMessage,
@@ -270,20 +274,6 @@ private extension AppDelegate {
                 presenter?.sideMenuController?.hideMenu()
         })
     }
-
-    func showSettings(ofUser user: UserMyself, presenter: UIViewController?) {
-        let settingsVC: SettingsViewController = UIStoryboard(storyboard: .settings,
-                                                              bundle: Bundle(for: SettingsViewController.self)
-        ).instantiateViewController()
-        settingsVC.user = user
-        let navController = UIViewController.getNavController(rootViewController: settingsVC)
-        navController.prefersLargeTitle = true
-        presenter?
-            .sideMenuController?
-            .setContentViewController(to: navController, animated: true, completion: {
-                presenter?.sideMenuController?.hideMenu()
-        })
-    }
     
     func showContacts(withList contacts: [Contact],
                       contactsEncrypted: Bool,
@@ -323,16 +313,6 @@ private extension AppDelegate {
     func handleCallbacks(from initializer: InitializerController) {
         // Handle Callbacks
         
-        // Show Inbox
-        initializer.onTapViewInbox = { [weak self]
-            (message, folder, user, delegate) in
-            self?.showInbox(withMessage: message,
-                            folder: folder,
-                            user: user,
-                            delegate: delegate
-            )
-        }
-        
         // Open Contacts
         initializer.onTapContacts = { [weak self] (contacts, contactsEncrypted, inboxViewController) in
             self?.showContacts(withList: contacts,
@@ -341,20 +321,16 @@ private extension AppDelegate {
             )
         }
         
-        // Open Settings
-        initializer.onTapSettings = { [weak self] (user, inboxViewController) in
-            self?.showSettings(ofUser: user, presenter: inboxViewController)
-        }
-
         // Open FAQ
         initializer.onTapFAQ = { [weak self] (inboxViewController) in
             self?.showFAQ(from: inboxViewController)
         }
         
         // Compose
-        initializer.onTapCompose = { [weak self] (mode, user, inboxViewController) in
+        initializer.onTapCompose = { [weak self] (mode, user, message, inboxViewController) in
             self?.showCompose(withMode: mode,
                               user: user,
+                              message: message,
                               presenter: inboxViewController
             )
         }

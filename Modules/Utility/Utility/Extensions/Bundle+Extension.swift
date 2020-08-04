@@ -33,4 +33,8 @@ public extension Bundle {
         let preferredLanguages = Locale.preferredLanguages.first
         return preferredLanguages
     }
+    
+    var displayName: String? {
+        return object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
+    }
 }

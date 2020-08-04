@@ -118,7 +118,6 @@ let k_SideMenuTableViewCellIdentifier           = "sideMenuTableViewCellIdentifi
 let k_CustomFolderTableViewCellIdentifier       = "customFolderTableViewCellIdentifier"
 let k_MoveToFolderTableViewCellIdentifier       = "moveToFolderTableViewCellIdentifier"
 let k_SearchTableViewCellIdentifier             = "searchTableViewCellIdentifier"
-let k_ContactTableViewCellIdentifier            = "contactTableViewCellIdentifier"
 let k_ChildMessageTableViewCellIdentifier       = "childMessageTableViewCellIdentifier"
 let k_ChildMessageExpandedTableViewCellIdentifier       = "childMessageExpandedTableViewCellIdentifier"
 let k_ChildMessageExpandedWithAttachmentTableViewCellIdentifier       = "childMessageExpandedWithAttachmentTableViewCellIdentifier"

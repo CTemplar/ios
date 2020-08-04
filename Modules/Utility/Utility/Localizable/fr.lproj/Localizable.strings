@@ -17,6 +17,7 @@
 "encryptButton" = "Chiffrer";
 "decryptButton" = "Décrypter";
 "okButton" = "D'accord";
+"updateButton" = "Mettre à jour";
 
 "deleteRow" = "Supprimer";
 
@@ -25,6 +26,7 @@
 
 // Action Banner
 "movingToArchive" = "Passer aux archives";
+"movingToInbox" = "Déplacement vers la boîte de réception";
 "movingToSpam" = "Passer au spam";
 "movingToTrash" = "Passer à la poubelle";
 "markingAsUnread" = "Marquage comme non lu";
@@ -157,14 +159,12 @@
 "address" = "Addresse";
 "note" = "Note";
 
+// PGP Keys
 "fingerprint" = "Empreinte digitale";
-"publicKey" = "Clé publique";
-"privateKey" = "Clé privée";
-"publicKeyDownload" = "Télécharger la clé publique (4096 bits)";
-"privateKeyDownload" = "Télécharger la clé privée (4096 bits)";
+"publicKeyDownload" = "Clé publique\n(4096 bits)";
+"privateKeyDownload" = "Clé privée\n(4096 bits)";
 
-//view message
-
+// View Message
 "viewDetails" = "Afficher";
 "hideDetails" = "Masquer";
 
@@ -182,8 +182,6 @@
 "forwardLine" = "---------- Message transféré ----------";
 "date" = "Date : ";
 "subject" = "Objet : ";
-
-"infoTitle" = "Confirmation :";
 
 // Banner
 "mailSendMessage" = "Courrier envoyé avec succès.";
@@ -266,8 +264,7 @@
 "folder" = "dossier";
 "folders" = "Dossiers";
 
-//Settings
-
+// Settings
 "enableRecoveryEmail" = "Activer l'email de récupération";
 "typeRecoveryEmail" = "Saisir l'email de récupération";
 "recoveryEmail" = "Email de récupération";
@@ -278,90 +275,95 @@
 "whiteBlackList" = "Liste blanche / Liste noire";
 "dashboard" = "Tableau de bord";
 "security" = "Sécurité";
-
 "manageFolders" = "Gérer les dossiers";
 "manageSecurity" = "Chiffrement";
-
 "signature" = "Signature";
 "mobileSignature" = "Signature mobile";
-"default" = "Défaut";
+"defaultText" = "Défaut";
 "keys" = "Clés";
-
 "aboutUs" = "A propos";
 "privacyPolicy" = "Privacy Policy";
 "terms" = "Termes & Conditions";
-
 "recoveryEmailUpdatedMessage" = "Email de récupération mis à jour";
 "passwordUpdatedMessage" = "Mot de passe mis à jour";
 "userSignature" = "Signature mise à jour";
-
 "currentPasswordPlaceholder" = "Mot de passe actuel";
 "newPasswordPlaceholder" = "Nouveau mot de passe";
-
 "saveContacts" = "Sauvegarder les contacts automatiquement";
-
 "selectDefaulfAddress" = "Sélectionner l'adresse par défaut";
 "addresses" = "Adresses";
-
-"subjectEncryption" = "Subject encryption";                                         //Localize
+"subjectEncryption" = "Subject encryption";
 "сontactsEncryption" = "Contacts chiffrés";
 "attachmentEncryption" = "Pièces jointes chiffrées";
-
 "enableSignature" = "Activer signature";
 "typeSignature" = "Votre signature";
-
 "privacyPolicy" = "Privacy Policy";
 "termsAndConditions" = "Termes & Conditions";
-
-"appVersion" = "Version ";
+"appVersion" = "Version";
+"generalSettings" = "Général";
+"foldersSettings" = "Dossiers";
+"securitySettings" = "Sécurité";
+"mailSettings" = "Email";
+"aboutSettings" = "A propos";
+"storageSettings" = "Stockage";
+"logoutSettings" = "Se déconnecter";
+"featureIsComing" = "Fonctionnalité bientôt disponible. Pour modifier votre mot de passe, vous pouvez vous connecter au site web. Feature coming soon.";
+"saveContactsAlertTitle" = "Enregistrer les contacts dans %s";
+"saveContactsAlertMessage" = "Actuellement, l'option d'enregistrement des contacts est %a. Voulez-vous modifier vos préférences?";
+"enabled" = "Activé";
+"disabled" = "désactivé";
+"encryptionDisabled" = "Cette option est actuellement désactivée puisque vous utilisez un compte gratuit. Veuillez passer à la version premium pour accéder à toutes les fonctionnalités!";
+"insertLink" = "Insérer un lien";
+"urlRequired" = "URL (obligatoire)";
+"title" = "Titre";
+"insert" = "Insérer";
+"infoTitle" = "Confirmation";
+"typeMessage" = "Tapez le message ici...";
+"clear" = "Claire";
+"done" = "Terminé";
+"recoveryEmailEnabledAlertMessage" = "Actuellement, vous avez un e-mail de récupération ajouté à votre compte CTemplar. Veuillez trouver les détails ci-dessous. Vous pouvez mettre à jour votre e-mail de récupération en le modifiant à partir du champ ci-dessous, puis en appuyant sur l'option de mise à jour. Si vous souhaitez désactiver l'option e-mail de récupération, vous pouvez toujours le faire en appuyant sur l'option Désactiver. N'oubliez pas: vous pouvez à nouveau ajouter un e-mail de récupération depuis les paramètres.";
+"addRecoveryEmailTitle" = "Ajouter un e-mail de récupération";
+"addRecoveryEmailMessage" = "Ajoutez votre e-mail de récupération ci-dessous.";
+"recoveryEmailDisabledAlertMessage" = "Actuellement, aucun e-mail de récupération n'a été ajouté à votre compte CTemplar. Si vous souhaitez ajouter un e-mail de récupération, appuyez sur l'option Activer.";
+"enable" = "Activer";
+"disable" = "Désactiver";
+"changePasswordTitle" = "Changer le mot de passe";
+"updateAndKeepData" = "Mettre à jour et conserver les données";
+"updateAndDeleteData" = "Mettre à jour et supprimer les données";
+"changePasswordMessage" = "Votre clé de cryptage est connectée à votre mot de passe. Vous avez la possibilité de conserver toutes les données et clés de cryptage et de simplement changer le mot de passe ou vous pouvez supprimer toutes les données et générer de nouvelles clés de cryptage. Choisissez soigneusement votre option.";
 
 "takeBack" = "Take Back Your Liberty";
 "withEncrypted" = "with Encrypted Communication";
 "sendUnbreakable" = "Send unbreakable emails and protect your key professional and personal details trough next-gen encryption. End-to-end PKI encription keeps your private information safe from governments, corporations and hackers-for-hire.";
 "goToWebVersion" = "GO TO WEB VERSION";
+"changePasswordNotAvailableMessage" = "Actuellement, cette fonctionnalité est en cours de développement sur iOS. Afin de changer votre mot de passe, veuillez utiliser l'application Android ou visiter notre application Web";
 
 "settings" = "Paramètres";
 
-"generalSettings"           = "Général";
-"foldersSettings"           = "Dossiers";
-"securitySettings"          = "Sécurité";
-"mailSettings"              = "Email";
-"aboutSettings"             = "A propos";
-"storageSettings"           = "Stockage";
-"logoutSettings"            = "Se déconnecter";
-
-//White/Black List
-
+// White/Black List
 "whiteListText" = "Messages from contacts in the whitelist always go to Inbox folder. Marking a message as not spam adds the address to the Whitelist";
 "blackListText" = "Messages from contacts in the blacklist always go to Spam folder. Marking a message as spam adds the address to the Blacklist";
-
 "whiteListAttributedText" = "Boîte de réception";
 "blackListAttributedText" = "Dossier Spam";
-
 "addWhiteList" = "Ajouter le contact à la liste blanche";
 "addBlackList" = "Ajouter le contact à la liste noire";
-
 "deleteContactFromBlackList" = "Souhaitez-vous supprimer le contact de la liste noire ?";
 "deleteContactFromWhiteList" = "Souhaitez-vous supprimer le contact de la liste blanche ?";
-
 "whitelistBlacklist" = "Liste blanche / Liste noire";
 "whitelist" = "LISTE BLANCHE";
 "blacklist" = "LISTE NOIRE";
-
 "addContactW" = "Ajouter contact";
 "name" = "Nom";
 "email" = "Email";
 
-//language
-
+// Language
 "languageTitle" = "Langues";
 
-//formatter
-
-"toPrefix" = "À : ";
-"ccPrefix" = "CC : ";
-"bccPrefix" = "BCC : ";
-"fromPrefix" = "De : ";
+// Formatter
+"toPrefix" = "À: ";
+"ccPrefix" = "CC: ";
+"bccPrefix" = "BCC: ";
+"fromPrefix" = "De: ";
 
 "yesterday" = "Hier";
 
@@ -398,6 +400,7 @@
 "hashing" = "Hashing...";
 "updateToken" = "Mise à jour de la session";
 
+// Encryption/Decryption
 "encryptContactsTitle" = "By enabling contacts encryption";
 "encryptContacts" = "All your contacts will be encrypted. Contacts suggestion on compose email won't be available anymore. Contacts can't be searched anymore";
 "decryptContactsTitle" = "Êtes-vous certain de vouloir décrypter vos contacts ?";
@@ -405,11 +408,14 @@
 "decryptingContacts" = "Décryptage en cours...";
 "allContactsWasEncrypted" = "Tous les contacts sont chiffrés";
 "allContactsWasDecrypted" = "Tous les contacts sont décryptés";
-
 "attachmentEncryptionWasEnabled" = "Le chiffrement des pièces jointes est activé";
 "attachmentEncryptionWasDisabled" = "Le chiffrement des pièces jointes est désactivé";
-
-"featureIsComing" = "Fonctionnalité bientôt disponible. Pour modifier votre mot de passe, vous pouvez vous connecter au site web. Feature coming soon.";
+"subjectEncrypted" = "Le sujet est maintenant chiffré";
+"subjectDecrypted" = "Le sujet est maintenant déchiffré";
+"contactsEncrypted" = "Les contacts sont désormais cryptés";
+"contactsDecrypted" = "Les contacts sont maintenant déchiffrés";
+"attachmentEncrypted" = "La pièce jointe est désormais cryptée";
+"attachmentDecrypted" = "La pièce jointe est maintenant déchiffrée";
 
 // Logout
 "logoutErrorTitle" = "Erreur de déconnexion";
@@ -435,6 +441,10 @@
 "messagesError" = "Erreur de messages";
 "mailBoxesError" = "Erreur de boîtes aux lettres";
 "userError" = "Erreur utilisateur";
+"fileDownloadError" = "Erreur de téléchargement de fichier";
+"attachmentErrorTitle" = "Erreur de pièce jointe";
+"attachmentErrorMessage" = "Le fichier de pièce jointe est corrompu ou ne peut pas être déchiffré";
+"contactEncryptionError" = "Erreur de cryptage des contacts";
 
 // Signup Error
 "signupError" = "Échec de l'inscription";
@@ -446,3 +456,7 @@
 "passwordMatched" = "Mot de passe correspondant";
 "passwordNotMatched" = "Mot de passe ne correspondant pas";
 "minPasswordLengthError" = "Le mot de passe doit contenir au moins 10 caractères";
+
+// Contacts
+"unknownName" = "Nom inconnu";
+"unknownEmail" = "Email inconnu";

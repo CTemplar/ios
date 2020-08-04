@@ -6,6 +6,12 @@ public typealias Completion<T> = (AppResult<T>) -> Void
 public typealias PGPKey = Key
 public typealias SecurityKey = Key
 
+public enum Domain: String {
+    case main = "ctemplar.com"
+    case dev = "dev.ctemplar.net"
+    case devOld = "dev.ctemplar.com"
+}
+
 public struct AppStyle {
     public enum Colors: Int {
         case loaderColor = 0xe74c3c
@@ -104,6 +110,59 @@ public struct GeneralConstant {
     public static let updateInboxMessagesNotificationID = "updateInboxMessagesNotification"
     public static let numberOfCustomFoldersShowing = 3
     public static let customFoldersLimitForNonPremium = 5
+    
+    public enum DocumentsExtension: String, CaseIterable {
+        case doc = "doc"
+        case pdf = "pdf"
+        case png = "png"
+        case jpg = "jpg"
+        
+        public var color: UIColor {
+            switch self {
+            case .doc:
+                return k_docColor
+            case .pdf:
+                return k_pdfColor
+            case .png:
+                return k_pngColor
+            case .jpg:
+                return k_jpgColor
+            }
+        }
+    }
+
+    public enum Language: Int, CaseIterable {
+        case english = 0
+        case russian
+        case french
+        case slovak
+        
+        public var prefix: String {
+            switch self {
+            case .english:
+                return "en"
+            case .russian:
+                return "ru"
+            case .french:
+                return "fr"
+            case .slovak:
+                return "sk"
+            }
+        }
+        
+        public var name: String {
+            switch self {
+            case .english:
+                return "English"
+            case .russian:
+                return "Русский"
+            case .french:
+                return "Français"
+            case .slovak:
+                return "Slovenský"
+            }
+        }
+    }
 }
 
 public enum AnswerMessageMode {
@@ -169,6 +228,38 @@ public var k_navButtonTintColor: UIColor {
 
 public var k_searchBar_backgroundColor: UIColor {
     return UIColor(named: "searchBarBackgroundColor")!
+}
+
+public var k_settingsCellTextColor: UIColor {
+    return UIColor(named: "settingsCellTextColor")!
+}
+
+public var k_settingsCellSecondaryTextColor: UIColor {
+    return UIColor(named: "settingsCellSecondaryTextColor")!
+}
+
+public var k_attachmentCellColor: UIColor {
+    return UIColor(named: "attachmentCellColor")!
+}
+
+public var k_borderColor: UIColor {
+    return UIColor(named: "borderColor")!
+}
+
+public var k_mailSenderCellBackgroundColor: UIColor {
+    return UIColor(named: "mailSenderCellBackgroundColor")!
+}
+
+public var k_viewMessageCellDetailsBackground: UIColor {
+    return UIColor(named: "viewMessageCellDetailsBackground")!
+}
+
+public var k_bottomBarBackgroundColor: UIColor {
+    return UIColor(named: "bottomBarBackgroundColor")!
+}
+
+public var k_viewBackgroundColor: UIColor {
+    return UIColor(named: "viewBackgroundColor")!
 }
 
 public var k_lightRedColor: UIColor {

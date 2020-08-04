@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 import SideMenu
 import Networking
+import Utility
 
 final class InboxSideMenuRouter {
     // MARK: Properties

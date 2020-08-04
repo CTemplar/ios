@@ -16,6 +16,7 @@
 "encryptButton" = "Encrypt";
 "decryptButton" = "Decrypt";
 "okButton" = "Хорошо";
+"updateButton" = "Обновить";
 
 "deleteRow" = "Удалить";
 
@@ -24,6 +25,7 @@
 
 // Action Banner
 "movingToArchive" = "Переезд в архив";
+"movingToInbox" = "Переезд во входящие";
 "movingToSpam" = "Переезд в спам";
 "movingToTrash" = "Переезд в мусор";
 "markingAsUnread" = "Пометить как непрочитанное";
@@ -156,16 +158,12 @@
 "address" = "Адрес";
 "note" = "Примечание";
 
-//Pgp Keys
-
+// PGP Keys
 "fingerprint" = "отпечаток пальца";
-"publicKey" = "Открытый ключ";
-"privateKey" = "Закрытый ключ";
-"publicKeyDownload" = "Загрузить открытый ключ (4096 бит)";
-"privateKeyDownload" = "Скачать приватный ключ (4096 бит)";
+"publicKeyDownload" = "Открытый ключ\n(4096 бит)";
+"privateKeyDownload" = "Закрытый ключ\n(4096 бит)";
 
-//view message
-
+// View Message
 "viewDetails" = "Показать детали";
 "hideDetails" = "Скрыть детали";
 
@@ -183,8 +181,6 @@
 "forwardLine" = "---------- Пересылаемое сообщение ----------";
 "date" = "Дата: ";
 "subject" = "Тема: ";
-
-"infoTitle" = "Информация:";
 
 // Banner
 "mailSendMessage" = "Мел св. Сусассуфули.";
@@ -269,7 +265,6 @@
 "folders" = "папки";
 
 //Settings
-
 "enableRecoveryEmail" = "Включить почту для восстановленя";
 "typeRecoveryEmail" = "Введите почту для восстановления";
 "recoveryEmail" = "Почта для восстановления";
@@ -280,86 +275,91 @@
 "whiteBlackList" = "Белый список / Черный список";
 "dashboard" = "Приборная панель";
 "security" = "Безопасность";
-
 "manageFolders" = "Управление папками";
 "manageSecurity" = "Шифрование";
-
 "signature" = "Подпись";
 "mobileSignature" = "Мобильная подпись";
-"default" = "Основная";
+"defaultText" = "Основная";
 "keys" = "Ключи";
-
 "aboutUs" = "О нас";
 "privacyPolicy" = "Политика конфиденциальности";
 "terms" = "Условия использования";
-
 "recoveryEmailUpdatedMessage" = "Запасной почтовый ящик был успешно обновлен";
 "passwordUpdatedMessage" = "Пароль был успешно обновлен";
 "userSignature" = "Подпись была успешно обновлена";
-
 "currentPasswordPlaceholder" = "Текущий пароль";
 "newPasswordPlaceholder" = "Новый пароль";
-
 "saveContacts" = "Автоматически сохранять контакты";
-
 "selectDefaulfAddress" = "Выберите почтовый ящик по умолчанию";
 "addresses" = "Адреса";
-
 "subjectEncryption" = "предметное шифрование";
 "contactsEncryption" = "Шифровать контакты";
 "attachmentEncryption" = "Шифровать вложения";
-
 "enableSignature" = "Включить подпись";
 "typeSignature" = "Введите вашу подпись";
-
 "privacyPolicy" = "Политика конфиденциальности";
 "termsAndConditions" = "Условия использования";
-
-"appVersion" = "Версия приложения ";
+"appVersion" = "Версия приложения";
+"generalSettings" = "Основные настройки";
+"foldersSettings" = "Папки";
+"securitySettings" = "Безопасность";
+"mailSettings" = "Почта";
+"aboutSettings" = "О приложении";
+"storageSettings" = "Хранилище";
+"logoutSettings" = "Выйти";
+"featureIsComing" = "Функция скоро появится. Пожалуйста, войдите на рабочий стол, чтобы обновить свой пароль.";
+"saveContactsAlertTitle" = "Сохранить контакты в %s";
+"saveContactsAlertMessage" = "В настоящее время опция сохранения контактов %a. Вы хотите изменить свои предпочтения?";
+"enabled" = "Включено";
+"disabled" = "Отключено";
+"encryptionDisabled" = "Эта опция в настоящее время отключена, так как вы используете бесплатный аккаунт. Пожалуйста, обновите до премиум-класса, чтобы получить доступ ко всем функциям!";
+"insertLink" = "Вставить ссылку";
+"urlRequired" = "URL (обязательно)";
+"title" = "заглавие";
+"insert" = "Вставить";
+"infoTitle" = "Информация";
+"typeMessage" = "Введите сообщение здесь...";
+"clear" = "Очистить";
+"done" = "Готово";
+"recoveryEmailEnabledAlertMessage" = "В настоящее время в вашей учетной записи CTemplar добавлено письмо для восстановления. Пожалуйста, найдите детали ниже. Вы можете обновить адрес электронной почты для восстановления, изменив его в поле ниже, а затем нажмите «Обновить». Если вы хотите отключить опцию восстановления электронной почты, вы всегда можете сделать это, нажав на опцию Отключить. Помните: вы можете добавить восстановление электронной почты снова из настроек.";
+"addRecoveryEmailTitle" = "Добавить адрес для восстановления";
+"addRecoveryEmailMessage" = "Добавьте адрес электронной почты для восстановления ниже.";
+"recoveryEmailDisabledAlertMessage" = "В настоящее время у вас нет восстановительного письма в вашей учетной записи CTemplar. Если вы хотите добавить письмо для восстановления, пожалуйста, нажмите на опцию Включить.";
+"enable" = "включить";
+"disable" = "Отключить";
+"changePasswordTitle" = "Сменить пароль";
+"updateAndKeepData" = "Обновить и сохранить данные";
+"updateAndDeleteData" = "Обновить и удалить данные";
+"changePasswordMessage" = "Ваш ключ шифрования связан с вашим паролем. У вас есть возможность либо сохранить все данные и ключи шифрования и просто изменить пароль, либо вы можете удалить все данные и сгенерировать новые ключи шифрования. Тщательно выбирайте свой вариант.";
 
 "takeBack" = "Верни свою свободу";
 "withEncrypted" = "с Зашифрованной Связью";
 "sendUnbreakable" = "Отправляйте электронные письма и защищайте свои ключевые профессиональные и личные данные с помощью шифрования следующего поколения. Комплексная система PKI защищает вашу личную информацию от правительств, корпораций и нанятых хакеров.";
 "goToWebVersion" = "ПЕРЕЙТИ НА САЙТ";
+"changePasswordNotAvailableMessage" = "В настоящее время эта функция находится в разработке на iOS. Чтобы изменить свой пароль, пожалуйста, используйте приложение для Android или посетите наше веб-приложение.";
 
 "settings" = "Настройки";
 
-"generalSettings"           = "Основные настройки";
-"foldersSettings"           = "Папки";
-"securitySettings"          = "Безопасность";
-"mailSettings"              = "Почта";
-"aboutSettings"             = "О приложении";
-"storageSettings"           = "Хранилище";
-"logoutSettings"            = "Выйти";
-
-//White/Black List
-
+// White/Black List
 "whiteListText" = "Сообщения от контактов в белом списке всегда отправляются в папку Входящие. Пометка сообщения как не-спам добавляет адрес в белый список";
 "blackListText" = "Сообщения от контактов из черного списка всегда отправляются в папку Спам. Пометка сообщения как спам добавляет адрес в черный список";
-
 "whiteListAttributedText" = "папку Входящие";
 "blackListAttributedText" = "папку Спам";
-
 "addWhiteList" = "Добавить контакт в белый список";
 "addBlackList" = "Добавить контакт в черный список";
-
 "deleteContactFromBlackList" = "Вы хотите удалить контакт из Белого списка?";
 "deleteContactFromWhiteList" = "Вы хотите удалить контакт из Черного списка?";
-
 "whitelistBlacklist" = "Черный / Белый списки";
 "whitelist" = "БЕЛЫЙ СПИСОК";
 "blacklist" = "ЧЕРНЫЙ СПИСОК";
-
 "addContactW" = "Добавить Контакт";
 "name" = "Имя";
 "email" = "Почта";
 
-//language
-
+// Language
 "languageTitle" = "Язык";
 
-//formatter
-
+// Formatter
 "toPrefix" = "Кому: ";
 "ccPrefix" = "Копия: ";
 "bccPrefix" = "Скрытая копия: ";
@@ -400,6 +400,7 @@
 "hashing" = "Хеширование...";
 "updateToken" = "Обновление Токена";
 
+// Encryption/Decryption
 "encryptContactsTitle" = "By enabling contacts encryption";
 "encryptContacts" = "All your contacts will be encrypted. Contacts suggestion on compose email won't be available anymore. Contacts can't be searched anymore";
 "decryptContactsTitle" = "Are you sure you want to disable contacts encryption?";
@@ -407,9 +408,14 @@
 "decryptingContacts" = "Decrypting Contacts...";
 "allContactsWasEncrypted" = "All Contacts was encrypted";
 "allContactsWasDecrypted" = "All Contacts was decrypted";
-
 "attachmentEncryptionWasEnabled" = "Attachment Encryption Was Enabled";
 "attachmentEncryptionWasDisabled" = "Attachment Encryption Was Disabled";
+"subjectEncrypted" = "Тема теперь зашифрована";
+"subjectDecrypted" = "Тема теперь расшифрована";
+"contactsEncrypted" = "Контакты теперь зашифрованы";
+"contactsDecrypted" = "Контакты теперь расшифрованы";
+"attachmentEncrypted" = "Вложение теперь зашифровано";
+"attachmentDecrypted" = "Приложение теперь расшифровано";
 
 // Logout
 "logoutErrorTitle" = "Ошибка выхода";
@@ -435,6 +441,10 @@
 "messagesError" = "Сообщения об ошибках";
 "mailBoxesError" = "Ошибка почтовых ящиков";
 "userError" = "Ошибка пользователя";
+"fileDownloadError" = "Ошибка загрузки файла";
+"attachmentErrorTitle" = "Ошибка вложения";
+"attachmentErrorMessage" = "Файл вложений поврежден или не может быть расшифрован";
+"contactEncryptionError" = "Ошибка шифрования контакта";
 
 // Signup Error
 "signupError" = "Регистрация прошла неудачно";
@@ -446,3 +456,7 @@
 "passwordMatched" = "Пароль соответствует";
 "passwordNotMatched" = "Пароль не совпадает";
 "minPasswordLengthError" = "Пароль должен содержать не менее 10 символов";
+
+// Contacts
+"unknownName" = "Неизвестное имя";
+"unknownEmail" = "Неизвестный адрес электронной почты";

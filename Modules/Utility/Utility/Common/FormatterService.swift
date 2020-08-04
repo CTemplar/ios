@@ -1,5 +1,7 @@
 import Foundation
-import BCryptSwift
+import CryptoHelperKit
+import CoreGraphics
+import UIKit
 
 public class FormatterService {
     // MARK: - Constructor
@@ -351,4 +353,63 @@ public class FormatterService {
                                                  formatter: GeneralConstant.DateFormatStyle.YYYYMMddTHHmmssSSSZZZZZ.rawValue,
                                                  timeZone: TimeZone(secondsFromGMT: 0))
     }
+    
+    public func formatStorageValue(value: Int) -> String {
+        var textValue = ""
+        if value > 1000 {
+            if value > 1000000 {
+                //GB
+                let valueInGigabytes = value/1024/1024
+                textValue = valueInGigabytes.description + " GB"
+            } else {
+                //MB
+                let valueInMegabytes = value/1024
+                textValue = valueInMegabytes.description + " MB"
+            }
+        } else {
+            //KB
+            textValue = value.description + " KB"
+        }
+        
+        return textValue
+    }
+    
+    public struct Units {
+        
+        public let bytes: Int64
+        
+        public var kilobytes: Double {
+            return Double(bytes) / 1_024
+        }
+        
+        public var megabytes: Double {
+            return kilobytes / 1_024
+        }
+        
+        public var gigabytes: Double {
+            return megabytes / 1_024
+        }
+        
+        public init(bytes: Int64) {
+            self.bytes = bytes
+        }
+        
+        public func getReadableUnit() -> String {
+            
+            switch bytes {
+            case 0..<1_024:
+                return "\(bytes) bytes"
+            case 1_024..<(1_024 * 1_024):
+                return "\(String(format: "%.2f", kilobytes)) kb"
+            case 1_024..<(1_024 * 1_024 * 1_024):
+                return "\(String(format: "%.2f", megabytes)) mb"
+            case (1_024 * 1_024 * 1_024)...Int64.max:
+                return "\(String(format: "%.2f", gigabytes)) gb"
+            default:
+                return "\(bytes) bytes"
+            }
+        }
+    }
 }
+
+

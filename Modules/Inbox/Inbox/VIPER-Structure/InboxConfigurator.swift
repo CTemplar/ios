@@ -7,8 +7,8 @@ class InboxConfigurator {
     func configure(inboxViewController: InboxViewController,
                    onTapCompose: ((AnswerMessageMode, UserMyself, UIViewController?) -> Void)?,
                    onTapComposeWithDraft: ((AnswerMessageMode, EmailMessage, UserMyself, UIViewController?) -> Void)?,
-                   onTapSearch: (([EmailMessage], UserMyself, UIViewController?) -> Void)?,
-                   onTapViewInbox: ((EmailMessage, String, UserMyself, ViewInboxEmailDelegate?) -> Void)?,
+                   onTapSearch: ((UserMyself, UIViewController?) -> Void)?,
+                   onTapViewInbox: ((EmailMessage?, UserMyself?, ViewInboxEmailDelegate?, UIViewController?) -> Void)?,
                    onTapMoveTo: ((MoveToViewControllerDelegate?, [Int], UserMyself, UIViewController?) -> Void)?
     ) {
         

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BNO-T6-P89">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Encryption Controller-->
+        <scene sceneID="Dfj-IO-jSn">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ki0-N3-sKX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="EncryptionController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BNO-T6-P89" customClass="EncryptionController" customModule="AppSettings" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OlL-ub-IZB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HeO-78-aBA">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="HeO-78-aBA" firstAttribute="trailing" secondItem="cUp-eU-7an" secondAttribute="trailing" id="B9H-rz-KEk"/>
+                            <constraint firstAttribute="bottom" secondItem="HeO-78-aBA" secondAttribute="bottom" id="RUF-Ia-6aw"/>
+                            <constraint firstItem="HeO-78-aBA" firstAttribute="top" secondItem="OlL-ub-IZB" secondAttribute="top" id="fSE-nW-Ahl"/>
+                            <constraint firstItem="HeO-78-aBA" firstAttribute="leading" secondItem="cUp-eU-7an" secondAttribute="leading" id="hGv-r8-OjH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cUp-eU-7an"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="HeO-78-aBA" id="ZHt-bn-TIx"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-59.420289855072468" y="120.53571428571428"/>
+        </scene>
+    </scenes>
+</document>

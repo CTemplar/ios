@@ -43,8 +43,6 @@
 		444D659B24A70BA500690B3E /* Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444D659A24A70BA500690B3E /* Utility.framework */; };
 		444D659E24A70BFC00690B3E /* Inbox.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 444D659D24A70BFC00690B3E /* Inbox.storyboard */; };
 		444D65A024A70C7600690B3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 444D659F24A70C7500690B3E /* Assets.xcassets */; };
-		444D65A224A70D8C00690B3E /* InboxNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65A124A70D8C00690B3E /* InboxNavigationController.swift */; };
-		444D65A424A7201E00690B3E /* LeftBarButtonItemConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65A324A7201E00690B3E /* LeftBarButtonItemConfigurable.swift */; };
 		444D65A624A7217600690B3E /* InboxRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65A524A7217600690B3E /* InboxRouter.swift */; };
 		444D65A824A723D300690B3E /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444D65A724A723D300690B3E /* Networking.framework */; };
 		444D65AB24A72C7500690B3E /* InboxSideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 444D65AA24A72C7500690B3E /* InboxSideMenu.storyboard */; };
@@ -80,6 +78,16 @@
 		E8CAD30EC95C444EA423E6FE /* Pods_Inbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 691DDFE2EF3988074189416A /* Pods_Inbox.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		4417771224D2908D000F56B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4422CEE124C2CCC5005C85F1 /* InboxViewer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 44695A5724C0375300CE6AE6;
+			remoteInfo = InboxViewer;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		440F7D7A24AF245D00B9BA2D /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		440F7D7C24AF2A1200B9BA2D /* InboxConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxConfigurator.swift; sourceTree = "<group>"; };
@@ -107,6 +115,7 @@
 		440F7E3924AF6D7900B9BA2D /* UpgradeToPrimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpgradeToPrimeView.swift; sourceTree = "<group>"; };
 		440F7E4124AF6DDD00B9BA2D /* MoveToFolderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoveToFolderTableViewCell.xib; sourceTree = "<group>"; };
 		440F7E4224AF6DDD00B9BA2D /* MoveToFolderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveToFolderTableViewCell.swift; sourceTree = "<group>"; };
+		4422CEE124C2CCC5005C85F1 /* InboxViewer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = InboxViewer.xcodeproj; path = InboxViewer/InboxViewer.xcodeproj; sourceTree = "<group>"; };
 		443A1EE624B26BC1009BC733 /* InboxSideMenuDataSource+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InboxSideMenuDataSource+Helpers.swift"; sourceTree = "<group>"; };
 		444D23C124A8F30D00BDF79F /* InboxFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxFilterViewController.swift; sourceTree = "<group>"; };
 		444D23C324A8F46600BDF79F /* InboxFilterDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxFilterDatasource.swift; sourceTree = "<group>"; };
@@ -120,8 +129,6 @@
 		444D659A24A70BA500690B3E /* Utility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		444D659D24A70BFC00690B3E /* Inbox.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Inbox.storyboard; sourceTree = "<group>"; };
 		444D659F24A70C7500690B3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../Ctemplar/Resources/Assets.xcassets; sourceTree = "<group>"; };
-		444D65A124A70D8C00690B3E /* InboxNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxNavigationController.swift; sourceTree = "<group>"; };
-		444D65A324A7201E00690B3E /* LeftBarButtonItemConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftBarButtonItemConfigurable.swift; sourceTree = "<group>"; };
 		444D65A524A7217600690B3E /* InboxRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxRouter.swift; sourceTree = "<group>"; };
 		444D65A724A723D300690B3E /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		444D65AA24A72C7500690B3E /* InboxSideMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InboxSideMenu.storyboard; sourceTree = "<group>"; };
@@ -340,6 +347,22 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		4422CEC724C2CC81005C85F1 /* InboxViewer */ = {
+			isa = PBXGroup;
+			children = (
+				4422CEE124C2CCC5005C85F1 /* InboxViewer.xcodeproj */,
+			);
+			path = InboxViewer;
+			sourceTree = "<group>";
+		};
+		4422CEE224C2CCC5005C85F1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4417771324D2908D000F56B9 /* InboxViewer.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		444D656E24A4DC7600690B3E = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +402,7 @@
 		444D658924A4DC8800690B3E /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
+				4422CEC724C2CC81005C85F1 /* InboxViewer */,
 				44D9670F24C23C6E0050ED46 /* AddFolder */,
 				440F7E3724AF6D7900B9BA2D /* UpgradeScreen */,
 				440F7DEB24AF6C1800B9BA2D /* EditFolder */,
@@ -405,7 +429,6 @@
 			isa = PBXGroup;
 			children = (
 				444D659324A70B5C00690B3E /* InboxViewController.swift */,
-				444D65A124A70D8C00690B3E /* InboxNavigationController.swift */,
 				444D23C124A8F30D00BDF79F /* InboxFilterViewController.swift */,
 			);
 			path = ViewControllers;
@@ -435,7 +458,6 @@
 			isa = PBXGroup;
 			children = (
 				444D658F24A4E76F00690B3E /* Constants.swift */,
-				444D65A324A7201E00690B3E /* LeftBarButtonItemConfigurable.swift */,
 				444D65C624A73EFD00690B3E /* SharedInboxState.swift */,
 				440F7D7A24AF245D00B9BA2D /* Protocols.swift */,
 			);
@@ -630,12 +652,28 @@
 			mainGroup = 444D656E24A4DC7600690B3E;
 			productRefGroup = 444D657924A4DC7600690B3E /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 4422CEE224C2CCC5005C85F1 /* Products */;
+					ProjectRef = 4422CEE124C2CCC5005C85F1 /* InboxViewer.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				444D657724A4DC7600690B3E /* Inbox */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		4417771324D2908D000F56B9 /* InboxViewer.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = InboxViewer.framework;
+			remoteRef = 4417771224D2908D000F56B9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		444D657624A4DC7600690B3E /* Resources */ = {
@@ -711,7 +749,6 @@
 				444D23C424A8F46600BDF79F /* InboxFilterDatasource.swift in Sources */,
 				44DBC7DF24A8957B009EFDB9 /* InboxMessageTablelViewCell+LayoutConstraints.swift in Sources */,
 				440F7D7B24AF245D00B9BA2D /* Protocols.swift in Sources */,
-				444D65A424A7201E00690B3E /* LeftBarButtonItemConfigurable.swift in Sources */,
 				444D65B924A7389E00690B3E /* InboxSideMenuDataSource.swift in Sources */,
 				440F7E0C24AF6C1900B9BA2D /* ManageFoldersConfigurator.swift in Sources */,
 				444D65F724A88E1A00690B3E /* InboxMessageTableViewCell.swift in Sources */,
@@ -725,7 +762,6 @@
 				444D23C224A8F30D00BDF79F /* InboxFilterViewController.swift in Sources */,
 				44D9671724C23C6E0050ED46 /* AddFolderConfigurator.swift in Sources */,
 				444D659424A70B5C00690B3E /* InboxViewController.swift in Sources */,
-				444D65A224A70D8C00690B3E /* InboxNavigationController.swift in Sources */,
 				440F7E3B24AF6D7900B9BA2D /* UpgradeToPrimeView.swift in Sources */,
 				44D9671924C23C6E0050ED46 /* AddFolderInteractor.swift in Sources */,
 				444D65B424A7360000690B3E /* InboxSideMenuInteractor.swift in Sources */,

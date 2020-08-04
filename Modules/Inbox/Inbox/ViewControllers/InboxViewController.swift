@@ -93,16 +93,15 @@ class InboxViewController: UIViewController {
     private var runOnce = true
     
     // Callbacks
-    var onTapSearch: (([EmailMessage], UserMyself, UIViewController?) -> Void)?
+    var onTapSearch: ((UserMyself, UIViewController?) -> Void)?
     var onTapComposeWithDraft: ((AnswerMessageMode, EmailMessage, UserMyself, UIViewController?) -> Void)?
     var onTapCompose: ((AnswerMessageMode, UserMyself, UIViewController?) -> Void)?
-    var onTapViewInbox: ((EmailMessage, String, UserMyself, ViewInboxEmailDelegate?) -> Void)?
+    var onTapViewInbox: ((EmailMessage?, UserMyself?, ViewInboxEmailDelegate?, UIViewController?) -> Void)?
     var onTapMoveTo: ((MoveToViewControllerDelegate?, [Int], UserMyself, UIViewController?) -> Void)?
-
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         configurator = InboxConfigurator()
         configurator?.configure(inboxViewController: self,
@@ -269,7 +268,7 @@ class InboxViewController: UIViewController {
     }
     
     @IBAction func onTapMore(_ sender: UIBarButtonItem) {
-        presenter?.showMoreActions()
+        presenter?.showMoreActions(from: sender)
     }
     
     @IBAction func onTapMoveTo(_ sender: UIBarButtonItem) {

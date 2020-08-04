@@ -10,6 +10,24 @@ import UIKit
 import Foundation
 import Networking
 import Utility
+import Inbox
+
+// MARK: - LeftBarButtonItemConfigurable
+extension ComposeViewController: LeftBarButtonItemConfigurable {
+    @objc
+    private func backButtonPressed() {
+        self.presenter?.backButtonPressed()
+    }
+    
+    func setupLeftBarButtonItems() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "BackArrowDark"),
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(backButtonPressed
+            )
+        )
+    }
+}
 
 class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate, UIDocumentPickerDelegate {
     
@@ -118,7 +136,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var lastContentOffset: CGFloat = 0
     let fromViewRange: Range<CGFloat> = (-46 ..< 0)
     let toolbarViewRange: Range<CGFloat> = (-56 ..< -1)
-    var upgradeToPrimeView : UpgradeToPrimeView?
+//    var upgradeToPrimeView : UpgradeToPrimeView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,6 +147,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         } else {
             // Fallback on earlier versions
         }
+        
+        setupLeftBarButtonItems()
         
         self.addGesureRecognizers()
         
@@ -256,13 +276,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     }
     
     //MARK: - IBActions
-    
-    @IBAction func backButtonPressed(_ sender: AnyObject) {
-        
-        //self.navigationController?.popViewController(animated: true)
-        self.presenter?.backButtonPressed()
-    }
-    
+
     @IBAction func mailboxesButtonPressed(_ sender: AnyObject) {
         
         self.presenter?.mailboxesButtonPressed()

@@ -3,7 +3,7 @@ import UIKit
 import Utility
 
 let defaultSideMenuCell = "DefaultSideMenuCell"
-let undoActionDuration = 5
+public let undoActionDuration = 5
 let headerCharacters = 50
 
 public enum PageLimit: Int {
@@ -150,7 +150,7 @@ public enum Menu: String, MenuConfigurable {
         case customFolders
     }
     
-    enum Action {
+    public enum Action {
         case markAsSpam
         case markAsRead
         case markAsStarred
@@ -194,7 +194,7 @@ enum InboxCellButtonsIndex: Int {
     case left
 }
 
-enum MoreAction: CaseIterable {
+public enum MoreAction: CaseIterable {
     case moveToArchive
     case markAsUnread
     case markAsRead
@@ -202,8 +202,9 @@ enum MoreAction: CaseIterable {
     case markAsSpam
     case moveToTrash
     case cancel
+    case moveTo
     
-    var localized: String {
+    public var localized: String {
         switch self {
         case .moveToArchive:
             return Strings.Inbox.MoreAction.moveToArchive.localized
@@ -217,6 +218,8 @@ enum MoreAction: CaseIterable {
             return Strings.Inbox.MoreAction.markAsSpam.localized
         case .moveToTrash:
             return Strings.Inbox.MoreAction.moveToTrash.localized
+        case .moveTo:
+            return Strings.ManageFolder.moveTo.localized
         case .cancel:
             return Strings.Button.cancelButton.localized
         }

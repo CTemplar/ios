@@ -25,12 +25,12 @@ public final class InboxSideMenuController: UIViewController {
     public var onTapSettings: ((UserMyself) -> Void)?
     public var onTapManageFolders: (([Folder], UserMyself) -> Void)?
     public var onTapFAQ: (() -> Void)?
+    public var onTapMoveTo: ()
 
     // MARK: IBOutlets
     @IBOutlet weak var inboxSideMenuTableView: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var triangle: UIImageView!
     
     // MARK: - Lifecycle
     public override func viewDidLoad() {
@@ -132,6 +132,8 @@ public final class InboxSideMenuController: UIViewController {
         if let mailboxes = userData.mailboxesList {
             presenter?.setupUserProfileBar(mailboxes: mailboxes, userName: userName)
         }
+        
+        presenter?.viewController?.inbox?.dataSource?.update(user: userData)
         
         DispatchQueue.main.async {
             self.presenter?.interactor?.unreadMessagesCounter()

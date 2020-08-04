@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="prK-33-FMA">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--White Black Lists View Controller-->
+        <scene sceneID="hZm-zP-iyW">
+            <objects>
+                <viewController storyboardIdentifier="WhiteBlackListsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="prK-33-FMA" customClass="WhiteBlackListsViewController" customModule="AppSettings" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dDG-Z3-okC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="m5L-YR-Jtb">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hFx-Ek-ScQ">
+                                <rect key="frame" x="16" y="425.33333333333331" width="382" height="45.666666666666686"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Messages from contacts in the whitelist always go to ">
+                                        <attributes>
+                                            <color key="NSColor" red="0.33333000000000002" green="0.30196000000000001" blue="0.33724999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Inbox folder">
+                                        <attributes>
+                                            <color key="NSColor" red="0.33333000000000002" green="0.30196000000000001" blue="0.33724999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                            <integer key="NSUnderline" value="1"/>
+                                            <color key="NSUnderlineColor" red="0.050979999999999998" green="0.81176000000000004" blue="0.85489999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=". Marking a message as not spam adds the address to the Whitelist">
+                                        <attributes>
+                                            <color key="NSColor" red="0.33333000000000002" green="0.30196000000000001" blue="0.33724999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                            <color key="NSUnderlineColor" red="0.050979999999999998" green="0.81176000000000004" blue="0.85489999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qf3-lf-1Ee">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="0K2-1a-cFA"/>
+                                    <barButtonItem style="plain" id="4rI-rN-MML">
+                                        <view key="customView" contentMode="scaleToFill" id="Y6C-41-biX">
+                                            <rect key="frame" x="87" y="9" width="240" height="36"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gBw-ts-pIm">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="36"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="240" id="CQw-QT-ZCZ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                                    <color key="tintColor" name="redColor"/>
+                                                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="Add Whitelist contact" image="person.crop.circle.fill.badge.plus" catalog="system">
+                                                        <color key="titleColor" name="clearButtonTextColor"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="addContactButtonPressed:" destination="prK-33-FMA" eventType="touchUpInside" id="OMC-nI-0Bl"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="gBw-ts-pIm" secondAttribute="trailing" id="7Hf-un-oyX"/>
+                                                <constraint firstItem="gBw-ts-pIm" firstAttribute="leading" secondItem="Y6C-41-biX" secondAttribute="leading" id="c61-0W-EFO"/>
+                                                <constraint firstAttribute="bottom" secondItem="gBw-ts-pIm" secondAttribute="bottom" id="eUr-gK-7ZI"/>
+                                                <constraint firstItem="gBw-ts-pIm" firstAttribute="top" secondItem="Y6C-41-biX" secondAttribute="top" id="uwZ-yf-ZQe"/>
+                                            </constraints>
+                                        </view>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="TVz-lw-kj9"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" name="viewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Qf3-lf-1Ee" firstAttribute="trailing" secondItem="VBR-N5-6Yp" secondAttribute="trailing" id="5MT-8P-Dck"/>
+                            <constraint firstItem="Qf3-lf-1Ee" firstAttribute="top" secondItem="m5L-YR-Jtb" secondAttribute="bottom" id="9iU-xd-7jF"/>
+                            <constraint firstItem="VBR-N5-6Yp" firstAttribute="trailing" secondItem="hFx-Ek-ScQ" secondAttribute="trailing" constant="16" id="Lbz-LJ-Bzp"/>
+                            <constraint firstItem="Qf3-lf-1Ee" firstAttribute="leading" secondItem="VBR-N5-6Yp" secondAttribute="leading" id="U1Y-4P-gFY"/>
+                            <constraint firstItem="m5L-YR-Jtb" firstAttribute="top" secondItem="VBR-N5-6Yp" secondAttribute="top" id="bjp-Rt-b81"/>
+                            <constraint firstItem="Qf3-lf-1Ee" firstAttribute="bottom" secondItem="VBR-N5-6Yp" secondAttribute="bottom" id="cWP-J9-iFq"/>
+                            <constraint firstItem="hFx-Ek-ScQ" firstAttribute="leading" secondItem="VBR-N5-6Yp" secondAttribute="leading" constant="16" id="gFT-fB-Akr"/>
+                            <constraint firstItem="hFx-Ek-ScQ" firstAttribute="centerX" secondItem="dDG-Z3-okC" secondAttribute="centerX" id="pQ7-z1-XWs"/>
+                            <constraint firstItem="m5L-YR-Jtb" firstAttribute="trailing" secondItem="VBR-N5-6Yp" secondAttribute="trailing" id="r7c-sw-eeL"/>
+                            <constraint firstItem="m5L-YR-Jtb" firstAttribute="leading" secondItem="VBR-N5-6Yp" secondAttribute="leading" id="t8k-80-iNz"/>
+                            <constraint firstItem="hFx-Ek-ScQ" firstAttribute="centerY" secondItem="dDG-Z3-okC" secondAttribute="centerY" id="uEx-87-rMv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VBR-N5-6Yp"/>
+                    </view>
+                    <connections>
+                        <outlet property="addContactButton" destination="gBw-ts-pIm" id="UGA-MB-Aya"/>
+                        <outlet property="tableView" destination="m5L-YR-Jtb" id="gvE-4m-IkG"/>
+                        <outlet property="textLabel" destination="hFx-Ek-ScQ" id="JlX-U5-ffX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mkj-61-6qZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-39.130434782608695" y="26.785714285714285"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="person.crop.circle.fill.badge.plus" catalog="system" width="128" height="101"/>
+        <namedColor name="clearButtonTextColor">
+            <color red="0.17299999296665192" green="0.24300000071525574" blue="0.31400001049041748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="redColor">
+            <color red="0.90600001811981201" green="0.29800000786781311" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="viewBackgroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

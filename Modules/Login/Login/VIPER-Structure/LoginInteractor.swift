@@ -143,7 +143,6 @@ final class LoginInteractor: Configurable, HashingService {
             keychainService.saveRememberMeValue(rememberMe: shouldRememberCredentials)
             keychainService.saveUserCredentials(userName: username, password: password)
             keychainService.saveTwoFAvalue(isTwoFAenabled: value.isTwoFAEnabled)
-
             
             if value.isTwoFAEnabled, value.token == nil {
                 // Show OTP Validation screen

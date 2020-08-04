@@ -120,4 +120,8 @@ public struct EmailMessage {
     public mutating func update(readStatus: Bool) {
         self.read = readStatus
     }
+    
+    public mutating func update(isStarred: Bool) {
+        self.starred = isStarred
+    }
 }
