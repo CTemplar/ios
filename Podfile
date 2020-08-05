@@ -11,11 +11,12 @@ def ctemplarPods
   pod 'Firebase/Messaging'
 end
 
-def shared_pods
-  pod 'AlertHelperKit', :git => 'https://github.com/keygx/AlertHelperKit'
-  pod 'MaterialComponents/ActivityIndicator'
-  pod 'BCryptSwift'
+def pgp_pods
   pod 'ObjectivePGP'
+end
+
+def shared_pods
+  pod 'MaterialComponents/ActivityIndicator'
 end
 
 def inbox_pods
@@ -26,6 +27,13 @@ end
 target 'Utility' do
   project 'Modules/Utility/Utility.xcodeproj'
   shared_pods
+  pgp_pods
+end
+
+target 'AppSettings' do
+  project 'Modules/AppSettings/AppSettings.xcodeproj'
+  shared_pods
+  pgp_pods
 end
 
 target 'Inbox' do
@@ -36,13 +44,20 @@ end
 target 'Ctemplar' do
   ctemplarPods
   shared_pods
+  pgp_pods
   inbox_pods
 end
 
 target 'Ctemplar.dev' do
   ctemplarPods
   shared_pods
+  pgp_pods
   inbox_pods
+end
+
+target "Ctemplar.devTests" do
+  use_frameworks!
+  pod 'iOSSnapshotTestCase'
 end
 
 post_install do |installer|

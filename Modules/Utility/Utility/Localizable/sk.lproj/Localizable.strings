@@ -17,6 +17,7 @@
 "encryptButton" = "Zašifrovať";
 "decryptButton" = "Dešifrovať";
 "okButton" = "Ok";
+"updateButton" = "aktualizovať";
 
 "deleteRow" = "Vymazať";
 
@@ -111,6 +112,7 @@
 
 // Action Banner
 "movingToArchive" = "Prebieha sťahovanie do archívu";
+"movingToInbox" = "Prebieha prechod na doručenú poštu";
 "movingToSpam" = "Prebieha prechod na spam";
 "movingToTrash" = "Prebieha presun do koša";
 "markingAsUnread" = "Označenie ako neprečítané";
@@ -156,14 +158,12 @@
 "address" = "Adresa";
 "note" = "Poznámky";
 
-//Pgp Keys
+// PGP Keys
 "fingerprint" = "Odtlačok";
-"publicKey" = "Verejný kľúč";
-"privateKey" = "Súkromný kľúč";
-"publicKeyDownload" = "Stiahnuť verejný kľúč (4096 bitov)";
-"privateKeyDownload" = "Stiahnuť súkromný kľúč (4096 bitov)";
+"publicKeyDownload" = "Verejný kľúč\n(4096 bitov)";
+"privateKeyDownload" = "Súkromný kľúč\n(4096 bitov)";
 
-//view message
+// View Message
 "viewDetails" = "Zobraziť podrobnosti";
 "hideDetails" = "Skryť podrobnosti";
 
@@ -180,8 +180,6 @@
 "forwardLine" = "---------- Preposlaná správa ----------";
 "date" = "Dátum: ";
 "subject" = "Predmet: ";
-
-"infoTitle" = "Informácie:";
 
 // Banner
 "mailSendMessage" = "Správa bola úspešne odoslaná";
@@ -264,7 +262,7 @@
 "folder" = "zložka";
 "folders" = "zložky";
 
-//Settings
+// Settings
 "enableRecoveryEmail" = "Povoliť e-mail na obnovenie účtu";
 "typeRecoveryEmail" = "Zadajte svoj e-mail na obnovenie účtu";
 "recoveryEmail" = "E-mail na obnovenie účtu";
@@ -274,83 +272,91 @@
 "savingContact" = "Ukladanie kontaktov";
 "whiteBlackList" = "Biela listina / Čierna listina";
 "security" = "Bezpečnosť";
-
 "manageFolders" = "Spravovať zložky";
 "manageSecurity" = "Šifrovanie";
-
 "signature" = "Podpis";
 "mobileSignature" = "Podpis mobilným telefónom";
-"default" = "Prednastavené";
+"defaultText" = "Prednastavené";
 "keys" = "Kľúče";
-
 "aboutUs" = "O projekte";
 "privacyPolicy" = "Zásady ochrany osobných údajov";
 "terms" = "Požiadavky a podmienky";
-
 "recoveryEmailUpdatedMessage" = "E-mail na obnovenie účtu bol úspešne aktualizovaný";
 "passwordUpdatedMessage" = "Heslo bolo úspešne aktualizované";
 "userSignature" = "Podpis bol úspešne aktualizovaný";
-
 "currentPasswordPlaceholder" = "Súčasné heslo";
 "newPasswordPlaceholder" = "Nové heslo";
-
 "saveContacts" = "Automaticky uložiť kontakty";
-
 "selectDefaulfAddress" = "Vyberte predvolenú adresu";
 "addresses" = "Adresy";
-
 "subjectEncryption" = "Šifrovanie predmetu správy";
 "сontactsEncryption" = "Šifrovanie kontaktov";
 "attachmentEncryption" = "Šifrovanie prílohy";
-
 "enableSignature" = "Povoliť podpis";
 "typeSignature" = "Zadajte svoj podpis";
-
 "privacyPolicy" = "Zásady ochrany osobných údajov";
 "termsAndConditions" = "Požiadavky a Podmienky";
-
-"appVersion" = "Verzia aplikácie ";
+"appVersion" = "Verzia aplikácie";
+"generalSettings" = "Všeobecné nastavenia";
+"foldersSettings" = "Zložky";
+"securitySettings" = "Bezpečnosť";
+"mailSettings" = "E-mail";
+"aboutSettings" = "O používateľovi";
+"storageSettings" = "Úložisko";
+"logoutSettings" = "Odhlásiť sa";
+"featureIsComing" = "Funkcia bude čoskoro k dispozícii. Ak chcete aktualizovať svoje heslo, prihláste sa.";
+"saveContactsAlertTitle" = "Uložiť kontakty do %s";
+"saveContactsAlertMessage" = "V súčasnosti je možnosť uloženia kontaktu %a. Chcete zmeniť svoje preferencie?";
+"enabled" = "povolené";
+"disabled" = "invalidný";
+"encryptionDisabled" = "Táto možnosť je momentálne zakázaná, pretože používate bezplatný účet. Ak chcete získať prístup k všetkým funkciám, inovujte na prémiu.";
+"insertLink" = "Vložte odkaz";
+"urlRequired" = "URL (povinné)";
+"title" = "Nadpis";
+"insert" = "vložka";
+"infoTitle" = "Informácie";
+"typeMessage" = "Sem napíšte správu...";
+"clear" = "jasný";
+"done" = "hotový";
+"recoveryEmailEnabledAlertMessage" = "V súčasnosti máte vo svojom účte CTemplar pridaný e-mail na obnovenie účtu. Podrobnosti nájdete nižšie. E-mailovú adresu na obnovenie účtu môžete aktualizovať tak, že ju zmeníte z nižšie uvedeného poľa a potom klepnete na možnosť Aktualizovať. Ak chcete zakázať možnosť na obnovenie e-mailu, môžete to urobiť vždy klepnutím na možnosť Vypnúť. Nezabudnite: z nastavení môžete znova pridať e-mail na obnovenie účtu.";
+"addRecoveryEmailTitle" = "Pridajte e-mail na obnovenie účtu.";
+"addRecoveryEmailMessage" = "Nižšie zadajte svoj e-mail na obnovenie účtu.";
+"recoveryEmailDisabledAlertMessage" = "Momentálne nemáte vo svojom účte CTemplar pridaný žiadny e-mail na obnovenie účtu. Ak chcete pridať e-mail na obnovenie, kliknite na možnosť Povoliť.";
+"enable" = "umožniť";
+"disable" = "zakázať";
+"changePasswordTitle" = "Zmeniť heslo";
+"updateAndKeepData" = "Aktualizácia a uchovávanie údajov";
+"updateAndDeleteData" = "Aktualizácia a odstránenie údajov";
+"changePasswordMessage" = "Váš šifrovací kľúč je pripojený k vášmu heslu. Máte možnosť ponechať všetky údaje a šifrovacie kľúče a jednoducho zmeniť heslo alebo môžete všetky údaje odstrániť a vygenerovať nové šifrovacie kľúče. Vyberte si starostlivo svoju voľbu.";
 
 "takeBack" = "Vezmite si späť svoju slobodu";
 "withEncrypted" = "prostedníctvom šifrovanej komunikácie";
 "sendUnbreakable" = "Posielajte neprelomiteľné e-maily a chráňte tým svoje dôležité profesionálne a osobné údaje prostredníctvom šifrovania novej generácie. Úplné koncové šifrovanie PKI chráni vaše súkromné informácie pred vládou, korporáciami a hackermi.";
 "goToWebVersion" = "PREJSŤ NA WEBOVÚ VERZIU";
+"changePasswordNotAvailableMessage" = "V súčasnosti sa táto funkcia vyvíja v systéme iOS. Ak chcete zmeniť svoje heslo, použite aplikáciu pre Android alebo navštívte našu webovú aplikáciu";
 
 "settings" = "Nastavenia";
 
-"generalSettings"           = "Všeobecné nastavenia";
-"foldersSettings"           = "Zložky";
-"securitySettings"          = "Bezpečnosť";
-"mailSettings"              = "E-mail";
-"aboutSettings"             = "O používateľovi";
-"storageSettings"           = "Úložisko";
-"logoutSettings"            = "Odhlásiť sa";
-
-//White/Black List
+// White/Black List
 "whiteListText" = "Správy od kontaktov v bielej listine sa vždy nachádzajú v priečinku Prijatých správ. Ak správu označíte ako nevyžiadanú, pridá ju na bielu listinu";
 "blackListText" = "Správy od kontaktov v čiernej listine budú vždy presmerované do priečinka Spam. Označením správy ako spamu sa adresa pridá na čiernu listinu";
-
 "whiteListAttributedText" = "Priečinok prijatých správ";
 "blackListAttributedText" = "Priečinok nevyžiadanej pošty";
-
 "addWhiteList" = "Pridať kontakt na bielu listinu";
 "addBlackList" = "Pridať kontakt na čiernu listinu";
-
 "deleteContactFromBlackList" = "Chcete odstrániť tento kontakt z čiernej listiny?";
 "deleteContactFromWhiteList" = "Chcete odstrániť tento kontakt z bielej listiny?";
-
 "whitelistBlacklist" = "Biela listina / Čierna listina";
 "whitelist" = "BIELA LISTINA";
 "blacklist" = "ČIERNA LISTINA";
-
 "addContactW" = "Pridať kontakt";
 "name" = "Meno";
 "email" = "E-mail";
 
-//language
+// Language
 "languageTitle" = "Jazyk";
 
-//formatter
+// Formatter
 "toPrefix" = "Komu: ";
 "ccPrefix" = "Kópia: ";
 "bccPrefix" = "Skrytá kópia: ";
@@ -390,6 +396,7 @@
 "hashing" = "Zatrieďovanie...";
 "updateToken" = "Aktualizovať označenie";
 
+// Encryption/Decryption
 "encryptContactsTitle" = "Povolením šifrovania kontaktov";
 "encryptContacts" = "Všetky Vaše kontakty budú šifrované. Návrhy kontaktov na písanie e-mailu nebudú k dispozícii. Kontakty nebude možné vyhľadávať";
 "decryptContactsTitle" = "Naozaj chcete zakázať šifrovanie kontaktov?";
@@ -397,11 +404,14 @@
 "decryptingContacts" = "Dešifrujem...";
 "allContactsWasEncrypted" = "Všetky kontakty boli zašifrované";
 "allContactsWasDecrypted" = "Všetky kontakty boli dešifrované";
-
 "attachmentEncryptionWasEnabled" = "Šifrovanie príloh bolo povolené";
 "attachmentEncryptionWasDisabled" = "Šifrovanie príloh bolo zakázané";
-
-"featureIsComing" = "Funkcia bude čoskoro k dispozícii. Ak chcete aktualizovať svoje heslo, prihláste sa.";
+"subjectEncrypted" = "Predmet je teraz šifrovaný";
+"subjectDecrypted" = "Predmet je teraz dešifrovaný";
+"contactsEncrypted" = "Kontakty sú teraz šifrované";
+"contactsDecrypted" = "Kontakty sú teraz dešifrované";
+"attachmentEncrypted" = "Príloha je teraz šifrovaná";
+"attachmentDecrypted" = "Príloha je teraz dešifrovaná";
 
 // Logout
 "logoutErrorTitle" = "Chyba pri odhlásení";
@@ -427,6 +437,10 @@
 "messagesError" = "Chyba správ";
 "mailBoxesError" = "Chyba poštových schránok";
 "userError" = "Chyba používateľa";
+"fileDownloadError" = "Chyba sťahovania súboru";
+"attachmentErrorTitle" = "Chyba prílohy";
+"attachmentErrorMessage" = "Súbor prílohy je poškodený alebo ho nemožno dešifrovať";
+"contactEncryptionError" = "Chyba šifrovania kontaktov";
 
 // Signup Error
 "signupError" = "Registrácia zlyhala";
@@ -438,3 +452,7 @@
 "passwordMatched" = "Heslo sa zhoduje";
 "passwordNotMatched" = "Heslo sa nezhoduje";
 "minPasswordLengthError" = "Heslo by malo mať najmenej 10 znakov";
+
+// Contacts
+"unknownName" = "Neznámy názov";
+"unknownEmail" = "Neznámy e-mail";

@@ -28,9 +28,10 @@ public extension NetworkErrorHandler {
     }
     
     func showLoginViewController() {
-        let loginViewController = UIStoryboard(storyboard: .login,
-                                               bundle: UIStoryboard.Storyboard.login.bundle)
-            .instantiateViewController(withIdentifier: UIStoryboard.Storyboard.login.viewControllerId)
+        let loginViewController = UIStoryboard(storyboard: .initializer,
+            bundle: UIStoryboard.Storyboard.initializer.bundle)
+            .instantiateViewController(withIdentifier: UIStoryboard.Storyboard.initializer.viewControllerId.storyboardId)
+        
         if let window = UIApplication.shared.getKeyWindow() {
             window.setRootViewController(loginViewController)
         }

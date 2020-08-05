@@ -40,6 +40,8 @@ class ManageFoldersViewController: UIViewController, LeftBarButtonItemConfigurab
         dataSource?.onUpdateDataSource = { [weak self] (dataAvailable) in
             self?.presenter?.toggleEmptyState(showEmptyState: dataAvailable == false)
         }
+        
+        setupLeftBarButtonItems()
     }
     
     override func viewWillAppear(_ animated: Bool) {

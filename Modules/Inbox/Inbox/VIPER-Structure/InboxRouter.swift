@@ -7,18 +7,18 @@ import Utility
 final class InboxRouter {
     // MARK: Properties
     private weak var inboxViewController: InboxViewController?
-    private var onTapSearch: (([EmailMessage], UserMyself, UIViewController?) -> Void)?
+    private var onTapSearch: ((UserMyself, UIViewController?) -> Void)?
     private var onTapComposeWithDraft: ((AnswerMessageMode, EmailMessage, UserMyself, UIViewController?) -> Void)?
     private var onTapCompose: ((AnswerMessageMode, UserMyself, UIViewController?) -> Void)?
-    private var onTapViewInbox: ((EmailMessage, String, UserMyself, ViewInboxEmailDelegate?) -> Void)?
+    private var onTapViewInbox: ((EmailMessage?, UserMyself?, ViewInboxEmailDelegate?, UIViewController?) -> Void)?
     private var onTapMoveTo: ((MoveToViewControllerDelegate?, [Int], UserMyself, UIViewController?) -> Void)?
 
     // MARK: - Constructor
     init(inboxViewController: InboxViewController?,
          onTapCompose: ((AnswerMessageMode, UserMyself, UIViewController?) -> Void)?,
          onTapComposeWithDraft: ((AnswerMessageMode, EmailMessage, UserMyself, UIViewController?) -> Void)?,
-         onTapSearch: (([EmailMessage], UserMyself, UIViewController?) -> Void)?,
-         onTapViewInbox: ((EmailMessage, String, UserMyself, ViewInboxEmailDelegate?) -> Void)?,
+         onTapSearch: ((UserMyself, UIViewController?) -> Void)?,
+         onTapViewInbox: ((EmailMessage?, UserMyself?, ViewInboxEmailDelegate?, UIViewController?) -> Void)?,
          onTapMoveTo: ((MoveToViewControllerDelegate?, [Int], UserMyself, UIViewController?) -> Void)?) {
         self.inboxViewController = inboxViewController
         self.onTapCompose = onTapCompose
@@ -44,13 +44,13 @@ final class InboxRouter {
     }
     
     func showViewInboxEmailViewController(message: EmailMessage,
-                                          currentFolderFilter: String,
-                                          user: UserMyself) {
-        onTapViewInbox?(message, currentFolderFilter, user, inboxViewController)
+                                          user: UserMyself,
+                                          delegate: ViewInboxEmailDelegate?) {
+        onTapViewInbox?(message, user, delegate, inboxViewController)
     }
     
-    func showSearchViewController(with messages: [EmailMessage], user: UserMyself) {
-        onTapSearch?(messages, user, inboxViewController)
+    func showSearchViewController(with user: UserMyself) {
+        onTapSearch?(user, inboxViewController)
     }
     
     func showMoveToController(withSelectedMessages messageIds: [Int]) {

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Iao-Rd-6n0">
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Inbox Viewer Controller-->
+        <scene sceneID="LkV-YE-aPE">
+            <objects>
+                <viewController storyboardIdentifier="InboxViewerController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Iao-Rd-6n0" customClass="InboxViewerController" customModule="InboxViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XI5-Vb-roF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1qa-uq-5Ze">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="802"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t56-fp-20C">
+                                <rect key="frame" x="0.0" y="802" width="414" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="AhK-mX-9BU"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem image="replyButton" style="done" id="yjW-MB-Phq">
+                                        <color key="tintColor" name="redColor"/>
+                                        <connections>
+                                            <action selector="onTapReply:" destination="Iao-Rd-6n0" id="sPQ-ds-kGe"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="GBw-tq-ZkX"/>
+                                    <barButtonItem image="replyAllButton" style="done" id="2Df-6k-4fd">
+                                        <color key="tintColor" name="redColor"/>
+                                        <connections>
+                                            <action selector="onTapReplyAll:" destination="Iao-Rd-6n0" id="AY7-2O-bzh"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="vx7-eC-DSh"/>
+                                    <barButtonItem image="forwardButton" style="done" id="ca7-r9-v4L">
+                                        <color key="tintColor" name="redColor"/>
+                                        <connections>
+                                            <action selector="onTapForward:" destination="Iao-Rd-6n0" id="nBZ-AQ-8JH"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P5Q-TM-FLW">
+                                <rect key="frame" x="0.0" y="802" width="414" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Af4-qb-tYO"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="QxG-mq-YYZ"/>
+                                    <barButtonItem systemItem="undo" id="yck-iJ-hgQ">
+                                        <color key="tintColor" name="redColor"/>
+                                        <connections>
+                                            <action selector="onTapUndo:" destination="Iao-Rd-6n0" id="bY8-g4-0ZA"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="HJD-TO-X8Z"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="t56-fp-20C" firstAttribute="leading" secondItem="nHC-we-npd" secondAttribute="leading" id="6Sf-BJ-EKp"/>
+                            <constraint firstItem="t56-fp-20C" firstAttribute="trailing" secondItem="nHC-we-npd" secondAttribute="trailing" id="Bna-cY-UhX"/>
+                            <constraint firstItem="P5Q-TM-FLW" firstAttribute="trailing" secondItem="nHC-we-npd" secondAttribute="trailing" id="Obi-uB-1cp"/>
+                            <constraint firstItem="P5Q-TM-FLW" firstAttribute="leading" secondItem="nHC-we-npd" secondAttribute="leading" id="Qan-b5-lzP"/>
+                            <constraint firstItem="1qa-uq-5Ze" firstAttribute="top" secondItem="XI5-Vb-roF" secondAttribute="top" id="adS-PZ-5oo"/>
+                            <constraint firstItem="1qa-uq-5Ze" firstAttribute="leading" secondItem="nHC-we-npd" secondAttribute="leading" id="dgT-zc-01J"/>
+                            <constraint firstItem="P5Q-TM-FLW" firstAttribute="top" secondItem="1qa-uq-5Ze" secondAttribute="bottom" id="gwA-sq-Sdy"/>
+                            <constraint firstItem="t56-fp-20C" firstAttribute="bottom" secondItem="nHC-we-npd" secondAttribute="bottom" id="sMd-cM-tYV"/>
+                            <constraint firstItem="P5Q-TM-FLW" firstAttribute="bottom" secondItem="nHC-we-npd" secondAttribute="bottom" id="uza-5Q-rjw"/>
+                            <constraint firstItem="1qa-uq-5Ze" firstAttribute="trailing" secondItem="nHC-we-npd" secondAttribute="trailing" id="xrc-UW-eE3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="nHC-we-npd"/>
+                    </view>
+                    <connections>
+                        <outlet property="generalToolbar" destination="t56-fp-20C" id="l9D-Br-2eJ"/>
+                        <outlet property="tableView" destination="1qa-uq-5Ze" id="DJT-dB-mFy"/>
+                        <outlet property="undoItem" destination="yck-iJ-hgQ" id="Ai3-6d-bWG"/>
+                        <outlet property="undoToolbar" destination="P5Q-TM-FLW" id="tEi-uU-Teh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fgB-dm-QQo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-71.014492753623188" y="144.64285714285714"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="forwardButton" width="44" height="31"/>
+        <image name="replyAllButton" width="44" height="31"/>
+        <image name="replyButton" width="44" height="31"/>
+        <namedColor name="redColor">
+            <color red="0.90600001811981201" green="0.29800000786781311" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

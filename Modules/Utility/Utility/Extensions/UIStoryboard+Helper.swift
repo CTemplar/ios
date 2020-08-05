@@ -6,6 +6,7 @@ public extension UIStoryboard {
         case login = "Login"
         case forgetPassword = "ForgetPassword"
         case inbox, inboxFilter = "Inbox"
+        case inboxViewer = "InboxViewer"
         case inboxSideMenu = "InboxSideMenu"
         case manageFolders = "ManageFolders"
         case moveTo = "MoveTo"
@@ -16,8 +17,14 @@ public extension UIStoryboard {
         case inboxDetails = "ViewInboxEmail"
         case search = "GlobalSearch"
         case contacts = "Contacts"
-        case settings = "Settings"
         case FAQ = "FAQ"
+        case dashboard = "Dashboard"
+        case settings = "AppSettings"
+        case whiteBlackLists = "WhiteBlackLists"
+        case language = "SelectLanguage"
+        case encryption = "Encryption"
+        case signature = "Signature"
+        case key = "PGPKey"
     }
     
     // MARK: - Convenience Initializers
@@ -41,47 +48,61 @@ public extension UIStoryboard {
 }
 
 public extension UIStoryboard.Storyboard {
-    var viewControllerId: String {
+    var viewControllerId: (bundlename: String, storyboardId: String) {
         switch self {
         case .login:
-            return "Login.LoginViewController"
+            return (bundlename: "Login.LoginViewController", storyboardId: "LoginViewController")
         case .signup:
-            return "Signup.SignupViewController"
+            return (bundlename: "Signup.SignupViewController", storyboardId: "SignupViewController")
         case .forgetPassword:
-            return "ForgetPassword.ForgetPasswordViewController"
+            return (bundlename: "ForgetPassword.ForgetPasswordViewController", storyboardId: "ForgetPasswordViewController")
         case .inbox:
-            return "Inbox.InboxViewController"
+            return (bundlename: "Inbox.InboxViewController", storyboardId: "InboxViewController")
+        case .inboxViewer:
+            return (bundlename: "Inbox.InboxViewer.InboxViewerController", storyboardId: "InboxViewerController")
         case .inboxFilter:
-            return "Inbox.InboxFilterViewController"
+            return (bundlename: "Inbox.InboxFilterViewController", storyboardId: "InboxFilterViewController")
         case .inboxSideMenu:
-            return "Inbox.InboxSideMenu"
+            return (bundlename: "Inbox.InboxSideMenuController", storyboardId: "InboxSideMenuController")
         case .manageFolders:
-            return "Inbox.ManageFolders"
+            return (bundlename: "Inbox.ManageFoldersViewController", storyboardId: "ManageFoldersViewController")
         case .moveTo:
-            return "Inbox.MoveToViewController"
+            return (bundlename: "InboxViewer.InboxViewerController", storyboardId: "InboxViewerController")
         case .editFolder:
-            return "Inbox.EditFolderViewController"
+            return (bundlename: "Inbox.EditFolderViewController", storyboardId: "EditFolderViewController")
         case .addFolder:
-            return "Inbox.AddFolderViewController"
+            return (bundlename: "Inbox.AddFolderViewController", storyboardId: "AddFolderViewController")
         case .compose:
-            return "ComposeViewController"
+            return (bundlename: "Main.ComposeViewController", storyboardId: "ComposeViewController")
         case .initializer:
-            return "Initializer.InitializerController"
+            return (bundlename: "Initializer.InitializerController", storyboardId: "InitializerController")
         case .inboxDetails:
-            return "ViewInboxEmailViewController"
+            return (bundlename: "InboxViewer.InboxViewerController", storyboardId: "InboxViewerController")
         case .search:
-            return "GlobalSearchViewController"
+            return (bundlename: "GlobalSearch.GlobalSearchViewController", storyboardId: "GlobalSearchViewController")
         case .contacts:
-            return "ContactsViewController"
+            return (bundlename: "Main.ContactsViewController", storyboardId: "ContactsViewController")
         case .settings:
-            return "SettingsViewController"
+            return (bundlename: "AppSettings.AppSettingsController", storyboardId: "AppSettingsController")
+        case .dashboard:
+            return (bundlename: "AppSettings.DashboardTableViewController", storyboardId: "DashboardTableViewController")
         case .FAQ:
-            return "FAQViewController"
+            return (bundlename: "AppSettings.FAQViewController", storyboardId: "FAQViewController")
+        case .whiteBlackLists:
+            return (bundlename: "AppSettings.WhiteBlackListsViewController", storyboardId: "WhiteBlackListsViewController")
+        case .language:
+            return (bundlename: "AppSettings.SelectLanguageViewController", storyboardId: "SelectLanguageViewController")
+        case .encryption:
+            return (bundlename: "AppSettings.EncryptionController", storyboardId: "EncryptionController")
+        case .signature:
+            return (bundlename: "AppSettings.SignatureViewController", storyboardId: "SignatureViewController")
+        case .key:
+            return (bundlename: "AppSettings.PGPKeysViewController", storyboardId: "PGPKeysViewController")
         }
     }
     
     var bundle: Bundle {
-        guard let classType = NSClassFromString(self.viewControllerId) else {
+        guard let classType = NSClassFromString(self.viewControllerId.bundlename) else {
             fatalError("Couldn't find class with identifier: \(self.viewControllerId)")
         }
         return Bundle(for: classType)

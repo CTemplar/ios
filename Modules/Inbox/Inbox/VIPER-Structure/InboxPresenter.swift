@@ -80,6 +80,10 @@ final class InboxPresenter {
         viewController?.noMessagePromptStackView.isHidden = viewController?.dataSource?.messagesAvailable == true
     }
     
+    func updateBadge(number: Int) {
+        UIApplication.shared.applicationIconBadgeNumber = number
+    }
+    
     // MARK: - UI Formatting
     private func formatAppliedFilters() -> String {
         var appliedFiltersText = ""
@@ -142,8 +146,7 @@ final class InboxPresenter {
     @objc
     private func onTapSearch() {
         if let searchAttribute = viewController?.dataSource?.searchAttributes() {
-            viewController?.router?.showSearchViewController(with: searchAttribute.messages,
-                                                             user: searchAttribute.user)
+            viewController?.router?.showSearchViewController(with: searchAttribute.user)
         }
     }
     
@@ -211,8 +214,8 @@ final class InboxPresenter {
     }
     
     // MARK: - Toolbar Actions
-    func showMoreActions() {
-        showMoreActionsAlert()
+    func showMoreActions(from sender: UIBarButtonItem) {
+        showMoreActionsAlert(from: sender)
     }
 
     func showFilterView(from sender: UIBarButtonItem) {
@@ -282,7 +285,7 @@ extension InboxPresenter {
 
 // MARK: - More Actions
 extension InboxPresenter {
-    private func showMoreActionsAlert() {
+    private func showMoreActionsAlert(from sender: UIBarButtonItem) {
         var actions: [MoreAction] = []
         
         guard let menu = SharedInboxState.shared.selectedMenu as? Menu else {
@@ -357,6 +360,11 @@ extension InboxPresenter {
                                                 }
             })
             actionSheet.addAction(alertAction)
+        }
+        
+        if let popoverController = actionSheet.popoverPresentationController {
+            popoverController.barButtonItem = sender
+            popoverController.sourceView = viewController?.view
         }
         
         viewController?.present(actionSheet, animated: true, completion: nil)

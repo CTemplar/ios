@@ -80,4 +80,24 @@ public struct Settings: Hashable {
         self.notificationEmail = dictionary["notification_email"] as? String
         self.planType = dictionary["plan_type"] as? String
     }
+    
+    mutating func update(contactsEncrypted: Bool) {
+        self.isContactsEncrypted = contactsEncrypted
+    }
+    
+    mutating func update(subjectEncrypted: Bool) {
+        self.isSubjectEncrypted = subjectEncrypted
+    }
+    
+    mutating func update(attachmentEncrypted: Bool) {
+        self.isAttachmentsEncrypted = attachmentEncrypted
+    }
+    
+    mutating func update(saveContacts: Bool) {
+        self.saveContacts = saveContacts
+    }
+    
+    mutating func update(recoveryEmail: String?) {
+        self.recoveryEmail = recoveryEmail
+    }
 }

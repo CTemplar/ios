@@ -524,14 +524,7 @@ public class APIService: HashingService {
     }
     
     public func defaultMailbox(mailboxes: Array<Mailbox>) -> Mailbox {
-        for mailbox in mailboxes {
-            if let defaultMailbox = mailbox.isDefault {
-                if defaultMailbox {
-                    return mailbox
-                }
-            }
-        }
-        return mailboxes.first!
+        return mailboxes.first(where: { $0.isDefault == true }) ?? mailboxes.first!
     }
     
     public func publicKeyList(completionHandler: @escaping (APIResult<Any>) -> Void) {

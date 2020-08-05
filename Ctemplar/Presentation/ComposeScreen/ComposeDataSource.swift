@@ -42,7 +42,7 @@ class ComposeDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     func registerTableViewCell() {
         
         self.tableView.register(UINib(nibName: k_UserMailboxCellXibName, bundle: nil), forCellReuseIdentifier: k_UserMailboxTableViewCellIdentifier)
-        self.tableView.register(UINib(nibName: k_ContactCellXibName, bundle: nil), forCellReuseIdentifier: k_ContactTableViewCellIdentifier)        
+        self.tableView.register(UINib(nibName: ContactTableViewCell.className, bundle: nil), forCellReuseIdentifier: ContactTableViewCell.className)        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -74,7 +74,7 @@ class ComposeDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             }
         } else {
             
-            cell = tableView.dequeueReusableCell(withIdentifier: k_ContactTableViewCellIdentifier)! as! ContactTableViewCell
+            cell = tableView.dequeueReusableCell(withIdentifier: ContactTableViewCell.className)! as! ContactTableViewCell
             
             let contact = contactsArray[indexPath.row]
             

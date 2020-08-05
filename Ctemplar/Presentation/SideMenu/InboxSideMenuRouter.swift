@@ -41,16 +41,7 @@ class InboxSideMenuRouter {
     }
     
     func showSettingsViewController() {
-        let vc = SettingsViewController.instantiate(fromAppStoryboard: .Settings)
-        self.viewController?.currentParentViewController = vc
-        vc.sideMenuViewController = self.viewController
-        vc.user = (self.viewController?.inboxViewController?.user)!
-        let navController = UIViewController.getNavController(rootViewController: vc)
-        viewController?.sideMenuController?.setContentViewController(to: navController,
-                                                                     animated: true,
-                                                                     completion: { [weak self] in
-                                                                        self?.viewController?.sideMenuController?.hideMenu()
-        })
+
     }
     
     func showFAQ() {

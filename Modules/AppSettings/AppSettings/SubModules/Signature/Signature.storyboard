@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="szc-dT-3Qs">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Signature View Controller-->
+        <scene sceneID="rJC-da-sHZ">
+            <objects>
+                <viewController storyboardIdentifier="SignatureViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="szc-dT-3Qs" customClass="SignatureViewController" customModule="AppSettings" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Why-Le-prj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable Signature" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yV-LZ-18L">
+                                <rect key="frame" x="20" y="64" width="122" height="19"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                <color key="textColor" name="settingsCellTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gy1-jd-DLF">
+                                <rect key="frame" x="345" y="58" width="51" height="31"/>
+                                <color key="tintColor" name="redColor"/>
+                                <color key="onTintColor" name="redColor"/>
+                                <connections>
+                                    <action selector="switchStateDidChange:" destination="szc-dT-3Qs" eventType="touchUpInside" id="372-wb-Vpr"/>
+                                </connections>
+                            </switch>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zI1-sn-dcE">
+                                <rect key="frame" x="0.0" y="97" width="414" height="799"/>
+                                <subviews>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1zm-zJ-H7F" customClass="RichEditorView" customModule="Utility">
+                                        <rect key="frame" x="16" y="8" width="382" height="783"/>
+                                        <color key="backgroundColor" name="viewBackgroundColor"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="1zm-zJ-H7F" firstAttribute="leading" secondItem="zI1-sn-dcE" secondAttribute="leading" constant="16" id="OgA-rY-FSl"/>
+                                    <constraint firstAttribute="bottom" secondItem="1zm-zJ-H7F" secondAttribute="bottom" constant="8" id="WYg-b8-yiR"/>
+                                    <constraint firstItem="1zm-zJ-H7F" firstAttribute="top" secondItem="zI1-sn-dcE" secondAttribute="top" constant="8" id="enb-T9-yAi"/>
+                                    <constraint firstAttribute="trailing" secondItem="1zm-zJ-H7F" secondAttribute="trailing" constant="16" id="mTE-u9-UBV"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="gy1-jd-DLF" firstAttribute="centerY" secondItem="8yV-LZ-18L" secondAttribute="centerY" id="ApI-ow-KY9"/>
+                            <constraint firstItem="zR9-6L-Lbk" firstAttribute="trailing" secondItem="gy1-jd-DLF" secondAttribute="trailing" constant="20" id="F2P-vc-9dH"/>
+                            <constraint firstAttribute="bottom" secondItem="zI1-sn-dcE" secondAttribute="bottom" id="I56-Es-Lxn"/>
+                            <constraint firstItem="8yV-LZ-18L" firstAttribute="top" secondItem="zR9-6L-Lbk" secondAttribute="top" constant="20" id="NFX-yv-KKc"/>
+                            <constraint firstItem="8yV-LZ-18L" firstAttribute="leading" secondItem="zR9-6L-Lbk" secondAttribute="leading" constant="20" id="bCh-e1-hK2"/>
+                            <constraint firstItem="zI1-sn-dcE" firstAttribute="leading" secondItem="zR9-6L-Lbk" secondAttribute="leading" id="l78-Ap-Z6J"/>
+                            <constraint firstItem="zI1-sn-dcE" firstAttribute="top" secondItem="gy1-jd-DLF" secondAttribute="bottom" constant="8" id="m6S-Sf-pFw"/>
+                            <constraint firstItem="zI1-sn-dcE" firstAttribute="trailing" secondItem="zR9-6L-Lbk" secondAttribute="trailing" id="nIp-T7-JDf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zR9-6L-Lbk"/>
+                    </view>
+                    <connections>
+                        <outlet property="signatureEditorView" destination="1zm-zJ-H7F" id="sIf-dg-Fbd"/>
+                        <outlet property="signatureToggleSwitch" destination="gy1-jd-DLF" id="4fG-SY-GLi"/>
+                        <outlet property="textFieldView" destination="zI1-sn-dcE" id="lpJ-FY-BuL"/>
+                        <outlet property="titleLabel" destination="8yV-LZ-18L" id="1xl-ze-Wrg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kfG-ix-tpV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-55.072463768115945" y="120.53571428571428"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="redColor">
+            <color red="0.90600001811981201" green="0.29800000786781311" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="settingsCellTextColor">
+            <color red="0.20399999618530273" green="0.28600001335144043" blue="0.36899998784065247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="viewBackgroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

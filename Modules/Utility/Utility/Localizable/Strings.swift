@@ -17,6 +17,7 @@ public enum Strings {
         case encryptButton
         case decryptButton
         case okButton
+        case updateButton
     }
     
     public enum Formatter: String, Localizable {
@@ -47,6 +48,10 @@ public enum Strings {
         case messagesError
         case mailBoxesError
         case userError
+        case fileDownloadError
+        case attachmentErrorTitle
+        case attachmentErrorMessage
+        case contactEncryptionError
     }
     
     public enum Signup: String, Localizable {
@@ -88,6 +93,7 @@ public enum Strings {
         case createAccount
         case rememberMe
         case loginError
+        case emailPlaceholder
         
         public enum TwoFactorAuth: String, Localizable {
             case twoFAButtonTitle
@@ -222,5 +228,157 @@ public enum Strings {
     public enum Search: String, Localizable {
         case noResults
         case search
+    }
+    
+    public enum InboxViewer: String, Localizable {
+        case viewDetails
+        case hideDetails
+        
+        public enum SenderPrefix: String, Localizable {
+            case toPrefix
+            case ccPrefix
+            case bccPrefix
+            case fromPrefix
+        }
+        
+        public enum Action: String, Localizable {
+            case movingToArchive
+            case movingToInbox
+            case movingToSpam
+            case movingToTrash
+            case markingAsUnread
+            case markingAsRead
+            case actionFailed
+            case done
+        }
+    }
+    
+    public enum AppSettings: String, Localizable {
+        case enableRecoveryEmail
+        case typeRecoveryEmail
+        case recoveryEmail
+        case password
+        case language
+        case notifications
+        case savingContact
+        case whiteBlackList
+        case dashboard
+        case security
+        case manageFolders
+        case manageSecurity
+        case signature
+        case mobileSignature
+        case defaultText
+        case keys
+        case aboutUs
+        case privacyPolicy
+        case terms
+        case recoveryEmailUpdatedMessage
+        case passwordUpdatedMessage
+        case userSignature
+        case currentPasswordPlaceholder
+        case newPasswordPlaceholder
+        case saveContacts
+        case selectDefaulfAddress
+        case addresses
+        case subjectEncryption
+        case сontactsEncryption
+        case attachmentEncryption
+        case enableSignature
+        case typeSignature
+        case termsAndConditions
+        case appVersion
+        case generalSettings
+        case foldersSettings
+        case securitySettings
+        case mailSettings
+        case aboutSettings
+        case storageSettings
+        case logoutSettings
+        case featureIsComing
+        case saveContactsAlertTitle
+        case saveContactsAlertMessage
+        case enabled
+        case disabled
+        case encryptionDisabled
+        case insertLink
+        case urlRequired
+        case title
+        case insert
+        case infoTitle
+        case typeMessage
+        case clear
+        case done
+        case recoveryEmailEnabledAlertMessage
+        case addRecoveryEmailTitle
+        case addRecoveryEmailMessage
+        case recoveryEmailDisabledAlertMessage
+        case enable
+        case disable
+        case changePasswordTitle
+        case changePasswordMessage
+        case updateAndKeepData
+        case updateAndDeleteData
+        case changePasswordNotAvailableMessage
+        case goToWebVersion
+    }
+    
+    public enum Dashboard: String, Localizable {
+        case accountType
+        case userName
+        case customDomainNumber
+        case addressNumber
+        case notAvailable
+    }
+    
+    public enum WhiteBlackListContact: String, Localizable {
+        case whiteListText
+        case blackListText
+        case whiteListAttributedText
+        case blackListAttributedText
+        case addWhiteList
+        case addBlackList
+        case deleteContactFromBlackList
+        case deleteContactFromWhiteList
+        case whitelistBlacklist
+        case whitelist
+        case blacklist
+        case addContactW
+        case name
+        case email
+    }
+    
+    public enum Contacts: String, Localizable {
+        case unknownName
+        case unknownEmail
+        case emailAddress
+    }
+    
+    public enum Language: String, Localizable {
+        case languageTitle
+    }
+    
+    public enum EncryptionDecryption: String, Localizable {
+        case encryptContactsTitle
+        case encryptContacts
+        case decryptContactsTitle
+        case decryptContacts
+        case decryptingContacts
+        case allContactsWasEncrypted
+        case allContactsWasDecrypted
+        case attachmentEncryptionWasEnabled
+        case attachmentEncryptionWasDisabled
+        case subjectEncrypted
+        case subjectDecrypted
+        case contactsEncrypted
+        case contactsDecrypted
+        case attachmentEncrypted
+        case attachmentDecrypted
+    }
+    
+    public enum PGPKey: String, Localizable {
+        case fingerprint
+        case publicKeyDownload
+        case privateKeyDownload
     }
 }

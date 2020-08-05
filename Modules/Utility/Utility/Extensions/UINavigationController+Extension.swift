@@ -12,4 +12,8 @@ public extension UINavigationController {
     func updateTintColor(_ tintColor: UIColor = AppStyle.Colors.loaderColor.color) {
         navigationBar.tintColor = tintColor
     }
+    
+    func updateBackgroundColor() {
+        view.backgroundColor = .systemBackground
+    }
 }

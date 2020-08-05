@@ -5,7 +5,9 @@ import Networking
 import Login
 import SideMenu
 import Inbox
+import InboxViewer
 import GlobalSearch
+import AppSettings
 
 public class InitializerController: UIViewController, HashingService {
     
@@ -28,12 +30,12 @@ public class InitializerController: UIViewController, HashingService {
     
     private var messageId = -1
     public var onTapComposeWithDraft: ((AnswerMessageMode, EmailMessage, UserMyself, UIViewController?) -> Void)?
-    public var onTapCompose: ((AnswerMessageMode, UserMyself, UIViewController?) -> Void)?
-    public var onTapViewInbox: ((EmailMessage, String, UserMyself, ViewInboxEmailDelegate?) -> Void)?
+    public var onTapCompose: ((AnswerMessageMode, UserMyself, EmailMessage?, UIViewController?) -> Void)?
     public var onTapContacts: (([Contact], Bool, UIViewController?) -> Void)?
-    public var onTapSettings: ((UserMyself, UIViewController?) -> Void)?
-    public var onTapManageFolders: (([Folder], UserMyself, UIViewController?) -> Void)?
     public var onTapFAQ: ((UIViewController?) -> Void)?
+    private var globalSearchCoordinator: GlobalSearchCoordinator?
+    private var sideMenuResponse: (menu: InboxSideMenuController, content: UIViewController)?
+    private var sideMenuVC: SideMenuController?
     
     // MARK: - Lifecycle
     public override func viewDidLoad() {
@@ -71,10 +73,11 @@ public class InitializerController: UIViewController, HashingService {
     
     func showInboxNavigationController() {
         DispatchQueue.main.async {
-            let sideMenu = self.sideMenu()
-            sideMenu.modalPresentationStyle = .fullScreen
-            if let keyWindow = UIApplication.shared.keyWindow {
-                keyWindow.setRootViewController(sideMenu, options: .init(direction: .toRight, style: .easeInOut))
+            if let sideMenu = self.sideMenu() {
+                sideMenu.modalPresentationStyle = .fullScreen
+                if let keyWindow = UIApplication.shared.keyWindow {
+                    keyWindow.setRootViewController(sideMenu, options: .init(direction: .toRight, style: .easeInOut))
+                }
             }
         }
     }
@@ -87,29 +90,76 @@ public class InitializerController: UIViewController, HashingService {
 
 // MARK: - SlideMenu Setup
 extension InitializerController {
-    func sideMenu() -> SideMenuController {
-        let response = inboxCoordinator.showInbox(onTapCompose: onTapCompose,
-                                                  onTapComposeWithDraft: onTapComposeWithDraft,
-                                                  onTapSearch:
-            { (_, user, presenter) in
-                let searchCoordinator = GlobalSearchCoordinator()
-                searchCoordinator.showSearch(from: presenter,
-                                             withUser: user)
-                { [weak self] (message, user) in
-                    self?.onTapViewInbox?(message,
-                                          SharedInboxState.shared.selectedMenu?.menuName ?? "",
-                                          user,
-                                          presenter as? ViewInboxEmailDelegate
-                    )
-                }
-        }, onTapViewInbox: onTapViewInbox,
-           onTapContacts: onTapContacts,
-           onTapSettings: onTapSettings,
-           onTapFAQ: onTapFAQ
-        )
+    func sideMenu() -> SideMenuController? {
+        sideMenuResponse = inboxCoordinator.showInbox(onTapCompose: { (mode, user, presenter) in
+            self.onTapCompose?(mode, user, nil, presenter)
+        }, onTapComposeWithDraft: { (mode, message, user, presenter) in
+            self.onTapComposeWithDraft?(mode, message, user, presenter)
+        }, onTapSearch: { (user, presenter) in
+            self.openSearch(from: presenter, user: user)
+        }, onTapViewInbox: { (message, user, delegate, presenter) in
+            self.openInboxViewer(withMessage: message, user: user, delegate: delegate, presenter: presenter)
+        }, onTapContacts: { (contacts, toggle, presenter) in
+            self.onTapContacts?(contacts, toggle, presenter)
+        }, onTapSettings: { (user, presenter) in
+            self.openSettings(withUser: user, presenter: presenter)
+        }) { (presenter) in
+            self.onTapFAQ?(presenter)
+        }
         
-        let sideMenuController = SideMenuController(contentViewController: response.content, menuViewController: response.menu)
-        return sideMenuController
+        sideMenuVC = SideMenuController(contentViewController: sideMenuResponse?.content ?? UIViewController(),
+                                                    menuViewController: sideMenuResponse?.menu ?? UIViewController())
+        return sideMenuVC
+    }
+    
+    private func openSearch(from presenter: UIViewController?, user: UserMyself) {
+        globalSearchCoordinator = GlobalSearchCoordinator()
+        globalSearchCoordinator?.showSearch(from: presenter,
+                                            withUser: user) { [weak self] (message, user, delegate, searchController) in
+                                                self?.openInboxViewer(withMessage: message,
+                                                              user: user,
+                                                              delegate: delegate,
+                                                              presenter: searchController)
+        }
+    }
+    
+    private func openSettings(withUser user: UserMyself, presenter: UIViewController?) {
+        let settingsCoordinator = AppSettingsCoordinator()
+        settingsCoordinator.showSettings(withUser: user, presenter: presenter)
+    }
+    
+    private func openInboxViewer(withMessage message: EmailMessage?,
+                                 user: UserMyself?,
+                                 delegate: ViewInboxEmailDelegate?,
+                                 presenter: UIViewController?) {
+        let inboxViewerCoordinator = InboxViewerCoordinator()
+        inboxViewerCoordinator
+            .showInboxViewer(withUser: user,
+                             message: message,
+                             onReply: { [weak self] (mode, message, presenter) in
+                                self?.showCompose(withMode: mode, message: message, user: user, presenter: presenter)
+                }, onForward: { [weak self] (mode, message, presenter) in
+                    self?.showCompose(withMode: mode, message: message, user: user, presenter: presenter)
+                }, onReplyAll: { [weak self] (mode, message, presenter) in
+                    self?.showCompose(withMode: mode, message: message, user: user, presenter: presenter)
+                }, onMoveTo: { [weak self] (delegate, messageId, user, presenter) in
+                    self?.inboxCoordinator.showMoveToController(withMoveToDelegate: delegate,
+                                                                selectedMessageIds: [messageId],
+                                                                user: user,
+                                                                presenter: presenter
+                    )
+            }, viewInboxDelegate: delegate,
+               presenter: presenter
+        )
+    }
+    
+    private func showCompose(withMode mode: AnswerMessageMode,
+                             message: EmailMessage?,
+                             user: UserMyself?,
+                             presenter: UIViewController?) {
+        if let user = user {
+            onTapCompose?(mode, user, message, presenter)
+        }
     }
 }
 

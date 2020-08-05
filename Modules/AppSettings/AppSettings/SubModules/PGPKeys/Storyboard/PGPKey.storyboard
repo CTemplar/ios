@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Bold.ttf">
+            <string>Lato-Bold</string>
+        </array>
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Keys View Controller-->
+        <scene sceneID="JOA-l8-Vtb">
+            <objects>
+                <viewController storyboardIdentifier="PGPKeysViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qna-6l-dxC" customClass="PGPKeysViewController" customModule="AppSettings" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="v9E-fg-MXn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="574-Xm-x87">
+                                <rect key="frame" x="20" y="64" width="109" height="20"/>
+                                <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
+                                <color key="textColor" name="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select your email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5DC-Kq-3yy">
+                                <rect key="frame" x="20" y="92" width="335" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="gAs-LE-4B5"/>
+                                </constraints>
+                                <color key="textColor" name="settingsCellTextColor"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DuB-l3-SOV">
+                                <rect key="frame" x="311" y="99" width="44" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Svy-ij-o4B"/>
+                                    <constraint firstAttribute="width" constant="44" id="flS-Ui-lt2"/>
+                                </constraints>
+                                <color key="tintColor" name="redColor"/>
+                                <state key="normal" image="chevron.down" catalog="system"/>
+                                <connections>
+                                    <action selector="onTapMailBox:" destination="qna-6l-dxC" eventType="touchUpInside" id="lkp-xy-XkH"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6bH-CL-FHX">
+                                <rect key="frame" x="20" y="136" width="335" height="1"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="jh8-yI-o7o"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="IsN-dg-4R6">
+                                <rect key="frame" x="20" y="185" width="335" height="55.666666666666657"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fingerprint" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cE4-EB-pQO">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="20"/>
+                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
+                                        <color key="textColor" name="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="433fsfsdjajwebsdj12kfsnfkasknadk43fsfasf" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36H-K9-9FM">
+                                        <rect key="frame" x="0.0" y="37" width="335" height="18.666666666666671"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                        <color key="textColor" name="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="9ga-PH-Vhw">
+                                <rect key="frame" x="20" y="288.66666666666669" width="335" height="150"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ok9-3B-KPM">
+                                        <rect key="frame" x="0.0" y="0.0" width="157.66666666666666" height="150"/>
+                                        <color key="backgroundColor" name="redColor"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
+                                        <color key="tintColor" name="whiteColor"/>
+                                        <inset key="titleEdgeInsets" minX="-20" minY="60" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="70" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Public Key (4096 bit)" image="icloud.and.arrow.down.fill" catalog="system">
+                                            <color key="titleColor" name="whiteColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onTapDownloadPublicKey:" destination="qna-6l-dxC" eventType="touchUpInside" id="dce-iQ-Xkc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lDK-jL-7Qx">
+                                        <rect key="frame" x="177.66666666666663" y="0.0" width="157.33333333333337" height="150"/>
+                                        <color key="backgroundColor" name="redColor"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
+                                        <color key="tintColor" name="whiteColor"/>
+                                        <inset key="titleEdgeInsets" minX="-20" minY="60" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="70" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Private Key (4096 bit)" image="icloud.and.arrow.down.fill" catalog="system">
+                                            <color key="titleColor" name="whiteColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="onTapDownloadPrivateKey:" destination="qna-6l-dxC" eventType="touchUpInside" id="F5w-9b-NMV"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="8kq-s5-hUg"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6bH-CL-FHX" firstAttribute="trailing" secondItem="5DC-Kq-3yy" secondAttribute="trailing" id="4Ao-7w-ICz"/>
+                            <constraint firstItem="9ga-PH-Vhw" firstAttribute="top" secondItem="IsN-dg-4R6" secondAttribute="bottom" constant="48" id="Fgu-Hp-pw8"/>
+                            <constraint firstItem="574-Xm-x87" firstAttribute="leading" secondItem="u7Y-0e-Fip" secondAttribute="leading" constant="20" id="GKb-eu-T1y"/>
+                            <constraint firstItem="574-Xm-x87" firstAttribute="top" secondItem="u7Y-0e-Fip" secondAttribute="top" constant="20" id="LOb-JF-T2F"/>
+                            <constraint firstItem="9ga-PH-Vhw" firstAttribute="leading" secondItem="IsN-dg-4R6" secondAttribute="leading" id="OXP-Tb-WBU"/>
+                            <constraint firstItem="6bH-CL-FHX" firstAttribute="leading" secondItem="5DC-Kq-3yy" secondAttribute="leading" id="UWg-Lx-vaa"/>
+                            <constraint firstItem="IsN-dg-4R6" firstAttribute="centerX" secondItem="v9E-fg-MXn" secondAttribute="centerX" id="Ynp-WX-hbL"/>
+                            <constraint firstItem="5DC-Kq-3yy" firstAttribute="top" secondItem="574-Xm-x87" secondAttribute="bottom" constant="8" id="cPo-uV-PuS"/>
+                            <constraint firstItem="6bH-CL-FHX" firstAttribute="top" secondItem="5DC-Kq-3yy" secondAttribute="bottom" id="eU2-DW-xn6"/>
+                            <constraint firstItem="DuB-l3-SOV" firstAttribute="trailing" secondItem="6bH-CL-FHX" secondAttribute="trailing" id="ede-66-zmP"/>
+                            <constraint firstItem="IsN-dg-4R6" firstAttribute="trailing" secondItem="5DC-Kq-3yy" secondAttribute="trailing" id="egY-Vf-MOK"/>
+                            <constraint firstItem="DuB-l3-SOV" firstAttribute="centerY" secondItem="5DC-Kq-3yy" secondAttribute="centerY" id="fpQ-NL-pKK"/>
+                            <constraint firstItem="9ga-PH-Vhw" firstAttribute="trailing" secondItem="IsN-dg-4R6" secondAttribute="trailing" id="iml-a5-dc5"/>
+                            <constraint firstItem="IsN-dg-4R6" firstAttribute="top" secondItem="6bH-CL-FHX" secondAttribute="bottom" constant="48" id="kkS-u3-Ekw"/>
+                            <constraint firstItem="u7Y-0e-Fip" firstAttribute="trailing" secondItem="5DC-Kq-3yy" secondAttribute="trailing" constant="20" id="mss-Hv-LSd"/>
+                            <constraint firstItem="IsN-dg-4R6" firstAttribute="leading" secondItem="5DC-Kq-3yy" secondAttribute="leading" id="q8k-8a-6pz"/>
+                            <constraint firstItem="5DC-Kq-3yy" firstAttribute="leading" secondItem="574-Xm-x87" secondAttribute="leading" id="tDB-VF-kZ1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="u7Y-0e-Fip"/>
+                    </view>
+                    <connections>
+                        <outlet property="downButton" destination="DuB-l3-SOV" id="ZlW-pH-wCD"/>
+                        <outlet property="emailTileLabel" destination="574-Xm-x87" id="NRw-ph-4wJ"/>
+                        <outlet property="emailValueTextField" destination="5DC-Kq-3yy" id="0Ng-t3-yfF"/>
+                        <outlet property="fingerprintTitleLabel" destination="cE4-EB-pQO" id="ncP-wz-XL4"/>
+                        <outlet property="fingerprintValueLabel" destination="36H-K9-9FM" id="GeS-an-bgY"/>
+                        <outlet property="privateKeyDownloadButton" destination="lDK-jL-7Qx" id="Woc-gn-O1B"/>
+                        <outlet property="publicKeyDownloadButton" destination="Ok9-3B-KPM" id="Yph-bB-cof"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bZF-ge-gln" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-197.10144927536234" y="99.776785714285708"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="chevron.down" catalog="system" width="128" height="72"/>
+        <image name="icloud.and.arrow.down.fill" catalog="system" width="128" height="112"/>
+        <namedColor name="redColor">
+            <color red="0.90600001811981201" green="0.29800000786781311" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="settingsCellTextColor">
+            <color red="0.20399999618530273" green="0.28600001335144043" blue="0.36899998784065247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textColor">
+            <color red="0.20399999618530273" green="0.28600001335144043" blue="0.36899998784065247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="whiteColor">
+            <color red="0.98000001907348633" green="0.98400002717971802" blue="0.98400002717971802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

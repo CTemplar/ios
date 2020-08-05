@@ -10,8 +10,8 @@ public class InboxCoordinator {
     
     public func showInbox(onTapCompose: ((AnswerMessageMode, UserMyself, UIViewController?) -> Void)?,
                           onTapComposeWithDraft: ((AnswerMessageMode, EmailMessage, UserMyself, UIViewController?) -> Void)?,
-                          onTapSearch: (([EmailMessage], UserMyself, UIViewController?) -> Void)?,
-                          onTapViewInbox: ((EmailMessage, String, UserMyself, ViewInboxEmailDelegate?) -> Void)?,
+                          onTapSearch: ((UserMyself, UIViewController?) -> Void)?,
+                          onTapViewInbox: ((EmailMessage?, UserMyself?, ViewInboxEmailDelegate?, UIViewController?) -> Void)?,
                           onTapContacts: (([Contact], Bool, UIViewController?) -> Void)?,
                           onTapSettings: ((UserMyself, UIViewController?) -> Void)?,
                           onTapFAQ: ((UIViewController?) -> Void)?) -> (menu: InboxSideMenuController, content: UIViewController) {

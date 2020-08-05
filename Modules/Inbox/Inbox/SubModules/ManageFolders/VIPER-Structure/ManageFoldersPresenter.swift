@@ -19,6 +19,7 @@ final class ManageFoldersPresenter {
     // MARK: - Setup UI
     private func initialiseUI() {
         viewController?.navigationItem.title = Strings.Menu.manageFolders.localized
+        viewController?.navigationController?.updateTintColor()
         initAddFolderLimitView()
         setAddFolderButton(enable: true)
         updateState()

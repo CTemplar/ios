@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -338,7 +337,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NRs-SL-oAk">
                                 <rect key="frame" x="0.0" y="320" width="375" height="458"/>
                                 <subviews>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mBI-rr-9aJ" customClass="RichEditorView" customModule="Ctemplar" customModuleProvider="target">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mBI-rr-9aJ" customClass="RichEditorView" customModule="Utility">
                                         <rect key="frame" x="16" y="10" width="343" height="355"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -459,12 +458,6 @@
                         <viewLayoutGuide key="safeArea" id="0Fb-Xb-J8e"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Message" id="guL-6M-zUR">
-                        <barButtonItem key="leftBarButtonItem" image="BackArrowDark" id="Bfv-6J-0xf">
-                            <color key="tintColor" name="navButtonTintColor"/>
-                            <connections>
-                                <action selector="backButtonPressed:" destination="Paf-AF-Vql" id="ojg-Ee-C6N"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="SendButton" id="pjB-4q-8ts">
                             <color key="tintColor" name="navButtonTintColor"/>
                             <connections>
@@ -517,7 +510,6 @@
     </scenes>
     <resources>
         <image name="Attach" width="44" height="44"/>
-        <image name="BackArrowDark" width="11.333333015441895" height="20.333333969116211"/>
         <image name="DarkPlusBig" width="44" height="44"/>
         <image name="SendButton" width="19.666666030883789" height="16"/>
         <image name="deadMan" width="44" height="44"/>

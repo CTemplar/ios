@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Folder Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGD-8a-GTk">
-                                <rect key="frame" x="16" y="16" width="79" height="15"/>
+                                <rect key="frame" x="16" y="16" width="81" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="9rI-ZH-h24"/>
                                 </constraints>
