@@ -199,7 +199,7 @@
                                                     <fragment content="To:">
                                                         <attributes>
                                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                            <font key="NSFont" metaFont="menu" size="14"/>
+                                                            <font key="NSFont" size="16" name="Lato-Regular"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
@@ -243,7 +243,7 @@
                                                 <attributedString key="attributedText">
                                                     <fragment content="Cc:">
                                                         <attributes>
-                                                            <font key="NSFont" metaFont="menu" size="14"/>
+                                                            <font key="NSFont" size="16" name="Lato-Regular"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
@@ -281,7 +281,7 @@
                                                     <fragment content="Bcc:">
                                                         <attributes>
                                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                            <font key="NSFont" metaFont="menu" size="14"/>
+                                                            <font key="NSFont" size="16" name="Lato-Regular"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
@@ -335,7 +335,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NRs-SL-oAk">
-                                <rect key="frame" x="0.0" y="320" width="375" height="458"/>
+                                <rect key="frame" x="0.0" y="320" width="375" height="492"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mBI-rr-9aJ" customClass="RichEditorView" customModule="Utility">
                                         <rect key="frame" x="16" y="10" width="343" height="355"/>
@@ -348,7 +348,7 @@
                                 <constraints>
                                     <constraint firstItem="mBI-rr-9aJ" firstAttribute="leading" secondItem="NRs-SL-oAk" secondAttribute="leading" constant="16" id="1ey-u8-QPa"/>
                                     <constraint firstItem="mBI-rr-9aJ" firstAttribute="centerX" secondItem="NRs-SL-oAk" secondAttribute="centerX" id="epC-sy-S8M"/>
-                                    <constraint firstAttribute="bottom" secondItem="mBI-rr-9aJ" secondAttribute="bottom" constant="10" id="jq0-Pp-v4w"/>
+                                    <constraint firstAttribute="bottom" secondItem="mBI-rr-9aJ" secondAttribute="bottom" id="jq0-Pp-v4w"/>
                                     <constraint firstItem="mBI-rr-9aJ" firstAttribute="top" secondItem="NRs-SL-oAk" secondAttribute="top" constant="10" id="kTL-ZA-OZq"/>
                                     <constraint firstAttribute="trailing" secondItem="mBI-rr-9aJ" secondAttribute="trailing" constant="16" id="kuT-TZ-ZMD"/>
                                 </constraints>
@@ -385,24 +385,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mnP-Oe-gne">
-                                <rect key="frame" x="0.0" y="729" width="375" height="49"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="49" id="s7O-pg-YME"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tnr-NY-PEc">
                                 <rect key="frame" x="0.0" y="87" width="375" height="725"/>
                                 <color key="backgroundColor" name="viewMessageCellColor"/>
@@ -434,11 +416,9 @@
                             <constraint firstItem="JlZ-Fv-gSA" firstAttribute="top" secondItem="o09-Ex-Zdt" secondAttribute="bottom" constant="-3" id="2bZ-nC-Nip"/>
                             <constraint firstAttribute="bottom" secondItem="Tnr-NY-PEc" secondAttribute="bottom" id="40c-GB-BoZ"/>
                             <constraint firstItem="SvU-Rf-Cm0" firstAttribute="trailing" secondItem="0Fb-Xb-J8e" secondAttribute="trailing" id="BJc-Od-JUW"/>
-                            <constraint firstItem="mnP-Oe-gne" firstAttribute="leading" secondItem="0Fb-Xb-J8e" secondAttribute="leading" id="GjR-KG-ThB"/>
                             <constraint firstItem="o09-Ex-Zdt" firstAttribute="trailing" secondItem="0Fb-Xb-J8e" secondAttribute="trailing" id="IpJ-eC-IT8"/>
                             <constraint firstItem="Tnr-NY-PEc" firstAttribute="leading" secondItem="0Fb-Xb-J8e" secondAttribute="leading" id="KR3-d5-KSm"/>
                             <constraint firstItem="HDc-VP-u4e" firstAttribute="trailing" secondItem="0Fb-Xb-J8e" secondAttribute="trailing" id="Lwg-sQ-h4z"/>
-                            <constraint firstItem="mnP-Oe-gne" firstAttribute="trailing" secondItem="0Fb-Xb-J8e" secondAttribute="trailing" id="NqF-Zj-jI6"/>
                             <constraint firstItem="o09-Ex-Zdt" firstAttribute="leading" secondItem="0Fb-Xb-J8e" secondAttribute="leading" id="OVR-rH-afO"/>
                             <constraint firstItem="HDc-VP-u4e" firstAttribute="top" secondItem="0Fb-Xb-J8e" secondAttribute="top" id="Ob6-Bg-iqd"/>
                             <constraint firstItem="NRs-SL-oAk" firstAttribute="top" secondItem="SvU-Rf-Cm0" secondAttribute="bottom" id="Prl-tV-UPU"/>
@@ -451,9 +431,8 @@
                             <constraint firstItem="SvU-Rf-Cm0" firstAttribute="top" secondItem="JlZ-Fv-gSA" secondAttribute="bottom" constant="-1" id="ocn-bq-SDv"/>
                             <constraint firstItem="NRs-SL-oAk" firstAttribute="trailing" secondItem="0Fb-Xb-J8e" secondAttribute="trailing" id="q0e-Uq-Qo9"/>
                             <constraint firstItem="0Fb-Xb-J8e" firstAttribute="trailing" secondItem="Tnr-NY-PEc" secondAttribute="trailing" id="st6-ff-ea8"/>
-                            <constraint firstItem="0Fb-Xb-J8e" firstAttribute="bottom" secondItem="mnP-Oe-gne" secondAttribute="bottom" id="v13-JW-5Rc"/>
                             <constraint firstItem="Tnr-NY-PEc" firstAttribute="top" secondItem="0Fb-Xb-J8e" secondAttribute="top" constant="43" id="xRo-tu-AUz"/>
-                            <constraint firstItem="0Fb-Xb-J8e" firstAttribute="bottom" secondItem="NRs-SL-oAk" secondAttribute="bottom" id="zdm-Hn-rVo"/>
+                            <constraint firstAttribute="bottom" secondItem="NRs-SL-oAk" secondAttribute="bottom" id="zdm-Hn-rVo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0Fb-Xb-J8e"/>
                     </view>
@@ -470,7 +449,6 @@
                         <outlet property="bccToSubSectionView" destination="dHS-5H-Asp" id="lFO-ez-ovI"/>
                         <outlet property="bccToTextView" destination="3bd-UD-qSZ" id="Uge-cn-rvS"/>
                         <outlet property="bccViewSubsectionHeightConstraint" destination="ty1-0H-OkN" id="2Dr-rl-w4W"/>
-                        <outlet property="bottomBarView" destination="mnP-Oe-gne" id="7uK-F1-3S1"/>
                         <outlet property="ccToSubSectionView" destination="8q3-3o-rcs" id="Oyd-c8-4N7"/>
                         <outlet property="ccToTextView" destination="B63-yb-luf" id="5d9-Ms-9bs"/>
                         <outlet property="ccViewSubsectionHeightConstraint" destination="v49-If-loW" id="ib2-hI-X4k"/>

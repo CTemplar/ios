@@ -34,6 +34,8 @@ import WebKit
     /// Called when custom actions are called by callbacks in the JS
     /// By default, this method is not used unless called by some custom JS that you add
     @objc optional func richEditor(_ editor: RichEditorView, handle action: String)
+    
+    @objc optional func didBeginEditing()
 }
 
 /// The value we hold in order to be able to set the line height before the JS completely loads.
@@ -588,6 +590,7 @@ public class RichEditorWebView: WKWebView {
         if !webView.isFirstResponder {
             let point = tapRecognizer.location(in: webView)
             focus(at: point)
+            delegate?.didBeginEditing?()
         }
     }
     override open func becomeFirstResponder() -> Bool {
@@ -597,6 +600,7 @@ public class RichEditorWebView: WKWebView {
         } else {
             return false
         }
+        
     }
     
     open override func resignFirstResponder() -> Bool {

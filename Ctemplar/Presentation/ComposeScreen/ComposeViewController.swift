@@ -29,7 +29,7 @@ extension ComposeViewController: LeftBarButtonItemConfigurable {
     }
 }
 
-class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate, UIDocumentPickerDelegate {
+class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate, UIDocumentPickerDelegate, EmptyStateMachine {
     
     @IBOutlet var tableView           : UITableView!
     
@@ -39,12 +39,11 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet var bccToSubSectionView : UIView!
     @IBOutlet var subjectView         : UIView!
     @IBOutlet var toolBarView         : UIView!
-    @IBOutlet var bottomBarView       : UIView!
     
     @IBOutlet var emailFrom           : UILabel!
     @IBOutlet var subjectTextField    : UITextField!
     
-
+    
     
     @IBOutlet weak var messageTextEditor    :    RichEditorView!
     @IBOutlet var scrollView          : UIScrollView!
@@ -87,8 +86,6 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var interactor  : ComposeInteractor?
     var router      : ComposeRouter?
     var dataSource  : ComposeDataSource?
-    
-    var draftActionsView : MoreActionsView?
     
     var answerMode : AnswerMessageMode!
     //var navBarTitle: String = ""
@@ -133,10 +130,12 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     var runOnce : Bool = true
     
+    private var isKeyboardOpened = false
+    
     var lastContentOffset: CGFloat = 0
     let fromViewRange: Range<CGFloat> = (-46 ..< 0)
     let toolbarViewRange: Range<CGFloat> = (-56 ..< -1)
-//    var upgradeToPrimeView : UpgradeToPrimeView?
+    //    var upgradeToPrimeView : UpgradeToPrimeView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -158,8 +157,6 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.navigationItem.rightBarButtonItem?.isEnabled = false        
         self.presenter?.setupNavigationBarTitle(mode: self.answerMode)
         
-        self.presenter!.initDraftActionsView()
-        
         emailToTextView.delegate = self
         emailToTextView.autocorrectionType = .no
         
@@ -173,7 +170,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         messageTextEditor.delegate = self
         messageTextEditor.isScrollEnabled = false
-
+        
         scrollView.delegate = self
         
         ccToSubSectionView.isHidden = true
@@ -192,7 +189,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         self.dataSource?.initWith(parent: self, tableView: tableView)
         self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset)
-            
+        
         if self.message != nil {
             
             if message?.folder == MessagesFoldersName.draft.rawValue { //if message is already in Draft folder we do not need to create new Draft instance
@@ -215,7 +212,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             
             self.interactor?.setupSubject(subject: self.subject, message: self.message!, answerMode: self.answerMode)
             //self.presenter?.setupSubject(subjectText: subject, answerMode: answerMode)
-
+            
         } else {
             self.interactor?.createDraft(showHud: false)
             self.presenter?.setupSubject(subjectText: subject, answerMode: answerMode)
@@ -225,14 +222,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         if !isContactsEncrypted {
             self.interactor?.userContactsList(silent: true)
         }
-            
+        
         self.presenter?.setupSchedulersButtons()
         
-        self.presenter?.initAddFolderLimitView()
-        
         self.addNotificationObserver()
-        
-        //print("isAttachmentsEncrypted:", user.settings.isAttachmentsEncrypted)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -242,18 +235,13 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        //self.presenter?.setupMessageSection(emailsArray: self.messagesArray)
-        if self.runOnce == true { 
-        //    self.presenter?.setupMessageSectionSize()
+        if self.runOnce == true {
             self.runOnce = false
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-     
         NotificationCenter.default.removeObserver(self)
-        
     }
     
     func addGesureRecognizers() {
@@ -275,119 +263,90 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.bccToTextView.addGestureRecognizer(tapBccToGesture)
     }
     
-    //MARK: - IBActions
-
+    // MARK: - IBActions
     @IBAction func mailboxesButtonPressed(_ sender: AnyObject) {
-        
         self.presenter?.mailboxesButtonPressed()
     }
     
     @IBAction func expandButtonPressed(_ sender: AnyObject) {
-        
         self.presenter?.expandButtonPressed()
     }    
     
     @IBAction func sendButtonPressed(_ sender: AnyObject) {
-                
         self.interactor!.prepareMessadgeToSend()
     }
     
-    @IBAction func attachmentButtonPressed(_ sender: AnyObject) {
- 
-        self.presenter!.showAttachActionsView()
+    @IBAction func attachmentButtonPressed(_ sender: UIButton) {
+        self.presenter?.showAttachActionsView(sender)
     }
     
     @IBAction func encryptedButtonPressed(_ sender: AnyObject) {
-        
-        self.presenter!.encryptedButtonPressed()
+        self.presenter?.encryptedButtonPressed()
     }
     
     @IBAction func selfDestructedButtonPressed(_ sender: AnyObject) {
-        
-        self.presenter!.checkIsPrimeAccount(mode: SchedulerMode.selfDestructTimer)
+        self.presenter?.checkIsPrimeAccount(mode: SchedulerMode.selfDestructTimer)
     }
     
     @IBAction func delayedDeliveryButtonPressed(_ sender: AnyObject) {
-        
-        self.presenter!.checkIsPrimeAccount(mode: SchedulerMode.delayedDelivery)
+        presenter?.checkIsPrimeAccount(mode: SchedulerMode.delayedDelivery)
     }
     
     @IBAction func deadManButtonPressed(_ sender: AnyObject) {
-        
-        self.presenter!.checkIsPrimeAccount(mode: SchedulerMode.deadManTimer)
+        presenter?.checkIsPrimeAccount(mode: SchedulerMode.deadManTimer)
     }
-        
+    
     //MARK: - textView delegate
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         
         print("textViewDidBeginEditing")
         
-//        if textView != self.messageTextView {
+        //        if textView != self.messageTextView {
+        
+        //temp
+        let isContactsEncrypted = self.user.settings.isContactsEncrypted ?? false
+        if !isContactsEncrypted {
             
-            //temp
-            let isContactsEncrypted = self.user.settings.isContactsEncrypted ?? false
-            if !isContactsEncrypted {
-            
-                self.tableView.isHidden = false
-                self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset + self.emailToSectionView.frame.height/*self.toViewSectionHeightConstraint.constant*/ - 5.0)
-                self.dataSource?.currentTextView = textView
-                self.dataSource?.reloadData(setMailboxData: false)
-                self.interactor?.setFilteredList(searchText: "")
-            }
-            //
-            
-//            if self.messageTextView.text.isEmpty {
-//                self.presenter?.setPlaceholderToMessageTextView(show: true)
-//            }
-//        } else {
-//            self.presenter?.setPlaceholderToMessageTextView(show: false)
-//        }
+            self.tableView.isHidden = false
+            self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset + self.emailToSectionView.frame.height/*self.toViewSectionHeightConstraint.constant*/ - 5.0)
+            self.dataSource?.currentTextView = textView
+            self.dataSource?.reloadData(setMailboxData: false)
+            self.interactor?.setFilteredList(searchText: "")
+        }
     }
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-  
-        print("textViewShouldBeginEditing")
         
         return true
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
+        tapSelectedEmail = ""
+        tapSelectedCcEmail = ""
+        tapSelectedBccEmail = ""
         
-        print("textViewDidEndEditing")
-        
-        self.tapSelectedEmail = ""
-        self.tapSelectedCcEmail = ""
-        self.tapSelectedBccEmail = ""
-        
-        self.tableView.isHidden = true
-        //self.interactor?.setFilteredList(searchText: "")
-        
-        //self.presenter?.setupEmailToSection(emailToText: self.emailToSting, ccToText: self.ccToSting, bccToText: self.bccToSting)
-        
-        var inputText : String = ""
+        tableView.isHidden = true
+        var inputText = ""
         
         switch textView {
         case self.emailToTextView:
-            let inputDroppedPrefixText = self.interactor?.dropPrefix(text: textView.text, prefix: "emailToPrefix".localized())
-            //inputText =  (self.interactor?.getLastInputEmail(input: inputDroppedPrefixText!))!
-            inputText = (self.interactor?.getLastInputText(input: inputDroppedPrefixText!, emailsArray: self.emailsToArray))!
-            self.interactor?.setEmail(textView: self.emailToTextView, inputEmail: inputText, clearInputtedChars: false)
+            let inputDroppedPrefixText = interactor?.dropPrefix(text: textView.text, prefix: "emailToPrefix".localized())
+            inputText = interactor?.getLastInputText(input: inputDroppedPrefixText!, emailsArray: emailsToArray) ?? ""
+            interactor?.setEmail(textView: self.emailToTextView, inputEmail: inputText, clearInputtedChars: false)
         case self.ccToTextView:
             let inputDroppedPrefixText = self.interactor?.dropPrefix(text: textView.text, prefix: "ccToPrefix".localized())
-            //inputText =  (self.interactor?.getLastInputEmail(input: inputDroppedPrefixText!))!
             inputText = (self.interactor?.getLastInputText(input: inputDroppedPrefixText!, emailsArray: self.ccToArray))!
             self.interactor?.setEmail(textView: self.ccToTextView, inputEmail: inputText, clearInputtedChars: false)
         case self.bccToTextView:
             let inputDroppedPrefixText = self.interactor?.dropPrefix(text: textView.text, prefix: "bccToPrefix".localized())
-            //inputText =  (self.interactor?.getLastInputEmail(input: inputDroppedPrefixText!))!
             inputText = (self.interactor?.getLastInputText(input: inputDroppedPrefixText!, emailsArray: self.bccToArray))!
             self.interactor?.setEmail(textView: self.bccToTextView, inputEmail: inputText, clearInputtedChars: false)
         default:
             break
         }
         
-        self.presenter!.enabledSendButton()
+        self.presenter?.enabledSendButton()
     }
     
     func textViewDidChange(_ textView: UITextView) {
@@ -420,11 +379,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
         self.interactor?.setFilteredList(searchText: inputText)
         self.presenter?.setupTableView(topOffset: k_composeTableViewTopOffset + self.emailToSectionView.frame.height - 5.0)
-        self.presenter!.enabledSendButton()
+        self.presenter?.enabledSendButton()
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        
         switch textView {
         case self.emailToTextView:
             return (self.interactor?.holdEmailToTextViewInput(textView: self.emailToTextView, shouldChangeTextIn: range, replacementText: text))!
@@ -442,23 +400,20 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     //MARK: - textField delegate
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
         self.subject = textField.text!
-        self.presenter!.enabledSendButton()
+        self.presenter?.enabledSendButton()
         
         return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
         self.subject = textField.text!
-        self.presenter!.enabledSendButton()
+        self.presenter?.enabledSendButton()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         self.subject = textField.text!
-        self.presenter!.enabledSendButton()
+        self.presenter?.enabledSendButton()
         textField.resignFirstResponder()
         
         return true;
@@ -576,13 +531,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     }
     
     func addNotificationObserver() {
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(self.attachDownloadUpdate), name: .attachUploadUpdateNotificationID, object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
     }
     
@@ -594,57 +544,30 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
                     keyboardHeight = keyboardHeight - view.safeAreaInsets.bottom
                 }
             }
+            
             if keyboardHeight == 0 {
                 scrollViewBottomOffsetConstraint.constant = 0.0
                 tableViewBottomOffsetConstraint.constant = 0.0
-            }else {
+            } else {
                 scrollViewBottomOffsetConstraint.constant = keyboardHeight
                 tableViewBottomOffsetConstraint.constant = keyboardHeight
             }
+            
             self.view.layoutIfNeeded()
             self.presenter?.setupMessageSectionSize()
         }
     }
     
-//    @objc func keyboardWillShow(notification: Notification) {
-//
-//        if self.messageTextEditor.isFirstResponder {
-//            if self.view.frame.origin.y == 0 {
-//                //self.view.frame.origin.y -= CGFloat(keyboardOffset)
-//
-//                scrollViewBottomOffsetConstraint.constant = CGFloat(k_KeyboardHeight) + (UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0)
-//                self.presenter?.setupMessageSectionSize()
-//            }
-//        }
-//
-//        tableViewBottomOffsetConstraint.constant = CGFloat(k_KeyboardHeight)
-//    }
-//
-//    @objc func keyboardWillHide(notification: Notification) {
-//
-//        if self.view.frame.origin.y != 0 {
-//            self.view.frame.origin.y += CGFloat(k_KeyboardHeight)
-//        }
-//
-//        scrollViewBottomOffsetConstraint.constant = 0.0
-//        self.presenter?.setupMessageSectionSize()
-//        tableViewBottomOffsetConstraint.constant = 0.0
-//    }
-    
     @objc func attachDownloadUpdate(notification: Notification) {
-        
         let uploadValue = notification.object
         
         let procent = uploadValue as! Double * 100
         
-        print("procent:", procent)
-        
         if self.viewAttachmentsList.count > 0 {
-        
             let attachment = self.viewAttachmentsList.last
             attachment?.backgroundProgressView.isHidden = false
             attachment?.progressViewWidthConstraint.constant = CGFloat(procent)
-        
+            
             if procent == 100 {
                 attachment?.backgroundProgressView.isHidden = true
             }
@@ -652,9 +575,6 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     }
     
     @objc func appMovedToBackground() {
-        
-        print("appMovedToBackground")
-        
         self.interactor?.saveDraft()
     }
 }
@@ -668,51 +588,84 @@ extension ComposeViewController: RichEditorDelegate {
         toolbarViewTopConstraint.constant = -1
         fromView.isHidden = false
         toolBarView.isHidden = false
+        isKeyboardOpened = false
         UIView.animate(withDuration: 0.2) {
             self.view.layoutIfNeeded()
         }
     }
     
     func richEditor(_ editor: RichEditorView, contentDidChange content: String) {
-        self.presenter!.enabledSendButton()
+        self.presenter?.enabledSendButton()
         self.presenter?.setupMessageSectionSize()
+        
+        changeHeight()
+    }
+    
+    func didBeginEditing() {
+        guard isKeyboardOpened == false else {
+            return
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            let frameHeight = self.scrollView.frame.size.height
+            let contentHeight = self.scrollView.contentSize.height
+            let delta = contentHeight - frameHeight
+            if delta > 50 {
+                self.fromViewTopConstraint.constant = max(-50, self.fromViewTopConstraint.constant - delta)
+                self.toolbarViewTopConstraint.constant = max(-51, self.toolbarViewTopConstraint.constant - delta)
+                self.scrollTextViewToBottom(textView: self.messageTextEditor)
+                self.isKeyboardOpened = true
+                UIView.animate(withDuration: 0.2) {
+                    self.view.layoutIfNeeded()
+                }
+            }
+        }
+    }
+    
+    private func scrollTextViewToBottom(textView: RichEditorView) {
+        let scrollPoint = CGPoint(x: 0, y: textView.webView.scrollView.contentSize.height)
+        textView.webView.scrollView.setContentOffset(scrollPoint, animated: true)
     }
     
     func richEditor(_ editor: RichEditorView, heightDidChange height: Int) {
         self.presenter?.setupMessageSectionSize()
     }
     
-}
-
-extension ComposeViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    private func changeHeight() {
         if scrollView == self.scrollView {
             let frameHeight = scrollView.frame.size.height
             let contentHeight = scrollView.contentSize.height
             let offsetY = scrollView.contentOffset.y
-            let delta = scrollView.contentOffset.y - lastContentOffset
-            print("delta: \(delta)")
-            if scrollView.contentOffset.y == 0 {
+            let delta = lastContentOffset - offsetY
+            
+            if contentHeight > 20.0,
+                fromViewTopConstraint.constant <= 0,
+                toolbarViewTopConstraint.constant <= 0 {
+                return
+            }
+            
+            if offsetY == 0 {
                 fromViewTopConstraint.constant = 0
                 toolbarViewTopConstraint.constant = -1
-            }else if offsetY + frameHeight == contentHeight {
+            } else if offsetY + frameHeight == contentHeight {
                 fromViewTopConstraint.constant = -50
                 toolbarViewTopConstraint.constant = -51
-            }
-            else if delta < 0 {
+            } else if delta < 0 {
                 fromViewTopConstraint.constant = min(fromViewTopConstraint.constant - delta, 0)
                 toolbarViewTopConstraint.constant = min(toolbarViewTopConstraint.constant - delta, -1)
-            }else {
+            } else {
                 fromViewTopConstraint.constant = max(-50, fromViewTopConstraint.constant - delta)
                 toolbarViewTopConstraint.constant = max(-51, toolbarViewTopConstraint.constant - delta)
             }
-            lastContentOffset = scrollView.contentOffset.y
+            
             UIView.animate(withDuration: 0.2) {
                 self.view.layoutIfNeeded()
             }
         }
     }
+}
 
+extension ComposeViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         if scrollView == self.scrollView {
             lastContentOffset = scrollView.contentOffset.y
@@ -721,51 +674,33 @@ extension ComposeViewController: UIScrollViewDelegate {
 }
 
 extension ComposeViewController: SetPasswordDelegate {
-
+    
     func applyAction(password: String, passwordHint: String, expiredTime: Int) {
-        
         self.interactor?.sendPasswordForCreatingMessage(password: password, passwordHint: passwordHint, expiredTime: expiredTime)
     }
     
     func cancelAction() {
-        
-        self.presenter!.encryptedButtonPressed()
+        self.presenter?.encryptedButtonPressed()
     }
 }
 
 extension ComposeViewController: SchedulerDelegate {
-    
     func applyAction(date: Date, mode: SchedulerMode) {
-        print("scheduledDate:", date)
-        
         switch mode {
-        case SchedulerMode.selfDestructTimer:
+        case .selfDestructTimer:
             self.selfDestructionDate = date
             self.presenter?.setSelfDestructionButtonMode(applied: true)
-            break
-        case SchedulerMode.deadManTimer:
+        case .deadManTimer:
             self.deadManDate = date
             self.presenter?.setDeadManButtonMode(applied: true)
-            break
-        case SchedulerMode.delayedDelivery:
+        case .delayedDelivery:
             self.delayedDeliveryDate = date
             self.presenter?.setDelayedDeliveryButtonMode(applied: true)
-            break
         }
-        
         self.presenter?.setupSchedulersButtons()
     }
     
     func cancelSchedulerAction() {
-        
-    }
-}
-
-extension ComposeViewController: MoreActionsDelegate {
-    
-    func applyAction(_ sender: AnyObject, isButton: Bool) {
-        
-        self.presenter?.applyDraftAction(sender, isButton: isButton)
     }
 }
 

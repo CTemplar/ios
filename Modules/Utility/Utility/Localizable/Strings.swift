@@ -381,4 +381,52 @@ public enum Strings {
         case publicKeyDownload
         case privateKeyDownload
     }
+    
+    public enum Compose: String, Localizable {
+        case emailFromPrefix
+        case emailToPrefix
+        case ccToPrefix
+        case bccToPrefix
+        case composeEmail
+        case SelectDraftOption
+        case replyOn
+        case wroteBy
+        case atTime
+        case forwardLine
+        case date
+        case subject
+        case discardDraft
+        case saveDraft
+        case fromAnotherApp
+        case photoLibrary
+        case camera
+        case newMessage
+        case reply
+        case relpyAll
+        case forward
+    }
+    
+    public enum Scheduler: String, Localizable {
+        case selfDestructTimer
+        case deadManTimer
+        case delayedDelivery
+        case selfDestructTimerText
+        case deadManTimerText
+        case delayedDeliveryText
+        case setPassword
+        case encryptForNon
+        case messagePassword
+        case expirationTime
+        case days
+        case hours
+        case expireTimeAlert
+        case passwordsMustMatch
+        case passwordHint
+        case encryptedMessagesTo
+    }
+    
+    public enum NetworkError: String, Localizable {
+        case networkErrorTitle
+        case networkErrorMessage
+    }
 }

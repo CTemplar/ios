@@ -167,32 +167,29 @@
 "viewDetails" = "Показать детали";
 "hideDetails" = "Скрыть детали";
 
-//compose
-
+// Compose
 "emailFromPrefix" = "От: ";
 "emailToPrefix" = "Кому: ";
 "ccToPrefix" = "Копия: ";
 "bccToPrefix" = "Скрытая: ";
 "composeEmail" = "Написать письмо";
-
+"SelectDraftOption" = "Пожалуйста, выберите один из вариантов, чтобы продолжить";
 "replyOn" = "На: ";
 "wroteBy" = "писал:";
 "atTime" = " от ";
 "forwardLine" = "---------- Пересылаемое сообщение ----------";
 "date" = "Дата: ";
 "subject" = "Тема: ";
+"saveDraft" = "Сохранить черновик";
+"discardDraft" = "Удалить черновик";
+"fromAnotherApp" = "Импортировать из...";
+"photoLibrary" = "Медиатека";
+"camera" = "Камера";
 
 // Banner
 "mailSendMessage" = "Мел св. Сусассуфули.";
 "mailSendingAlert" = "Отправка почты…";
 "sendMailError" = "Не удалось отправить письмо, попробуйте позже";
-
-"saveDraft" = "Сохранить черновик";
-"discardDraft" = "Удалить черновик";
-
-"fromAnotherApp" = "Импортировать из...";
-"photoLibrary" = "Медиатека";
-"camera" = "Камера";
 
 "forwardSubject" = "Fwd: ";
 "replySubject" = "Re: ";
@@ -460,3 +457,7 @@
 // Contacts
 "unknownName" = "Неизвестное имя";
 "unknownEmail" = "Неизвестный адрес электронной почты";
+
+// Network Error
+"networkErrorTitle" = "Мы сожалеем";
+"networkErrorMessage" = "Похоже, ваше устройство не подключено к сети. Подождите, пока мы ищем любую доступную сеть.";

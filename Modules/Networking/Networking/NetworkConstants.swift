@@ -104,6 +104,7 @@ public enum JSONKey: String {
     case fileType = "file_type"
     case attachments = "attachments"
     case parent = "parent"
+    case isHTML = "is_html"
     case selfDestructionDate = "destruct_date"
     case delayedDeliveryDate = "delayed_delivery"
     case deadManDate = "dead_man_duration"

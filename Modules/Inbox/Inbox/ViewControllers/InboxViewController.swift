@@ -2,8 +2,9 @@ import UIKit
 import SideMenu
 import Networking
 import Utility
+import Combine
 
-class InboxViewController: UIViewController {
+class InboxViewController: UIViewController, EmptyStateMachine {
 
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -92,6 +93,9 @@ class InboxViewController: UIViewController {
     private var configurator: InboxConfigurator?
     private var runOnce = true
     
+    @Published var shouldEnableComposeButton = false
+    var composeButtonCancellable: AnyCancellable?
+    
     // Callbacks
     var onTapSearch: ((UserMyself, UIViewController?) -> Void)?
     var onTapComposeWithDraft: ((AnswerMessageMode, EmailMessage, UserMyself, UIViewController?) -> Void)?
@@ -103,7 +107,12 @@ class InboxViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        self.composeButtonCancellable = self.$shouldEnableComposeButton
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.isEnabled, on: self.composeButton)
+        
         configurator = InboxConfigurator()
+        
         configurator?.configure(inboxViewController: self,
                                 onTapCompose: onTapCompose,
                                 onTapComposeWithDraft: onTapComposeWithDraft,

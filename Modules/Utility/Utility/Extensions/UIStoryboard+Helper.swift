@@ -25,6 +25,7 @@ public extension UIStoryboard {
         case encryption = "Encryption"
         case signature = "Signature"
         case key = "PGPKey"
+        case emptyState = "EmptyState"
     }
     
     // MARK: - Convenience Initializers
@@ -98,6 +99,8 @@ public extension UIStoryboard.Storyboard {
             return (bundlename: "AppSettings.SignatureViewController", storyboardId: "SignatureViewController")
         case .key:
             return (bundlename: "AppSettings.PGPKeysViewController", storyboardId: "PGPKeysViewController")
+        case .emptyState:
+            return (bundlename: "Utility.EmptyStateViewController", storyboardId: "EmptyStateViewController")
         }
     }
     

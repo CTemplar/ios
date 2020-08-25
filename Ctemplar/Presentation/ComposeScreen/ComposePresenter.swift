@@ -29,20 +29,15 @@ class ComposePresenter {
     //MARK: - Setup Answer Mode
     
     func setupNavigationBarTitle(mode: AnswerMessageMode) {
-        
         switch mode {
         case AnswerMessageMode.newMessage:
-            self.viewController!.navigationItem.title = "newMessage".localized()
-            break
+            viewController?.navigationItem.title = Strings.Compose.newMessage.localized
         case AnswerMessageMode.reply:
-            self.viewController!.navigationItem.title = "reply".localized()
-            break
+            viewController?.navigationItem.title = Strings.Compose.reply.localized
         case AnswerMessageMode.replyAll:
-            self.viewController!.navigationItem.title = "relpyAll".localized()
-            break
+            viewController?.navigationItem.title = Strings.Compose.relpyAll.localized
         case AnswerMessageMode.forward:
-            self.viewController!.navigationItem.title = "forward".localized()
-            break
+            viewController?.navigationItem.title = Strings.Compose.forward.localized
         }
     }
     
@@ -72,7 +67,7 @@ class ComposePresenter {
     
     func backButtonPressed() {
         if shouldSaveDraft() {
-            self.showDraftActionsView()
+            self.showDraftActionsView(viewController?.navigationItem.leftBarButtonItem)
         } else {
             self.interactor?.deleteDraft()
             self.viewController!.navigationController?.popViewController(animated: true)
@@ -200,24 +195,6 @@ class ComposePresenter {
     }
     
     func checkIsPrimeAccount(mode: SchedulerMode) {
-        
-        switch mode {
-        case SchedulerMode.selfDestructTimer:
-            break
-        case SchedulerMode.deadManTimer:
-            if !(self.viewController?.user.isPrime)! {
-                self.showUpgradeToPrimeView()
-                return
-            }
-            break
-        case SchedulerMode.delayedDelivery:
-            if !(self.viewController?.user.isPrime)! {
-                self.showUpgradeToPrimeView()
-                return
-            }
-            break
-        }
-        
         self.showScheduler(mode: mode)
     }
     
@@ -243,27 +220,7 @@ class ComposePresenter {
     }
     
     func setupSchedulersButtons() {
-        
         self.viewController?.selfDestructedButton.isEnabled = true
-        /*
-        if (self.viewController?.user.isPrime)! {
-        
-            if self.viewController?.deadManDate != nil {
-                self.viewController?.delayedDeliveryButton.isEnabled = false
-            } else {
-                self.viewController?.delayedDeliveryButton.isEnabled = true
-            }
-            
-            if self.viewController?.delayedDeliveryDate != nil {
-                self.viewController?.deadManButton.isEnabled = false
-            } else {
-                self.viewController?.deadManButton.isEnabled = true
-            }
-        } else {
-            self.viewController?.delayedDeliveryButton.isEnabled = false
-            self.viewController?.deadManButton.isEnabled = false
-        }*/
-        
         self.viewController?.delayedDeliveryButton.isEnabled = true
         self.viewController?.deadManButton.isEnabled = true
     }
@@ -582,7 +539,7 @@ class ComposePresenter {
         forwardHeader = forwardHeader + "forwardLine".localized()
         
         if let sender = message.sender {
-            forwardHeader = forwardHeader + "\n" + "emailFromPrefix".localized() + "<" + sender + "> " + "\n"
+            forwardHeader = "\(forwardHeader)\n\(Strings.Compose.emailFromPrefix.localized)<\(sender)>\n"
         }
         
         if let sentAtDate = message.updated { //message.sentAt
@@ -595,9 +552,7 @@ class ComposePresenter {
             }
         }
         
-        //if let subject = message.subject {
-            forwardHeader = forwardHeader + "subject".localized() + subject + "\n"
-        //}
+        forwardHeader = forwardHeader + Strings.Compose.subject.localized + subject + "\n"
         
         if let recieversArray = message.receivers  {
             for email in recieversArray as! [String] {
@@ -1193,116 +1148,86 @@ class ComposePresenter {
         self.addAttachToList(url: imageUrl)
     }
     
-    //MARK: - Draft Actions
-    
-    func initDraftActionsView() {
+    // MARK: - Draft Actions
+    func showDraftActionsView(_ sender: UIBarButtonItem?) {
+        let discardActionSheet = UIAlertController(title: Strings.Compose.SelectDraftOption.localized,
+                                                   message: nil,
+                                                   preferredStyle: .actionSheet)
+        discardActionSheet.addAction(.init(title: Strings.Compose.discardDraft.localized,
+                                                   style: .destructive, handler:
+            { [weak self] (_) in
+                self?.interactor?.deleteDraft()
+                self?.viewController?.navigationController?.popViewController(animated: true)
+        }))
         
-        self.viewController?.draftActionsView = Bundle.main.loadNibNamed(k_MoreActionsViewXibName, owner: nil, options: nil)?.first as? MoreActionsView
+        discardActionSheet.addAction(UIAlertAction(title: Strings.Compose.saveDraft.localized,
+                                                   style: .default, handler:
+            { [weak self] (_) in
+                self?.interactor?.saveDraft()
+                self?.viewController?.navigationController?.popViewController(animated: true)
+        }))
         
-        let frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
+        discardActionSheet.addAction(.init(title: Strings.Button.cancelButton.localized,
+                                           style: .cancel,
+                                           handler:
+            { (_) in
+                discardActionSheet.dismiss(animated: true, completion: nil)
+        }))
         
-        self.viewController?.draftActionsView?.frame = frame
-        self.viewController?.draftActionsView?.delegate = self.viewController
-        
-        self.viewController?.navigationController!.view.addSubview((self.viewController?.draftActionsView)!)
-        
-        self.viewController?.draftActionsView?.isHidden = true
-    }
-    
-    func showDraftActionsView() {
-        
-        var actionsButtonsName: Array<String> = []
-
-        actionsButtonsName = self.setupDraftActionsButtons()
-        
-        self.viewController?.draftActionsView?.setup(buttonsNameArray: actionsButtonsName)
-        
-        let hidden = self.viewController?.draftActionsView?.isHidden
-        
-        self.viewController?.draftActionsView?.isHidden = !hidden!
-        
-        self.viewController!.view.endEditing(true)
-    }
-    
-    func setupDraftActionsButtons() -> Array<String> {
-        
-        let actionsButtonsName: Array<String> = ["cancel".localized(), "discardDraft".localized(), "saveDraft".localized()]
-        
-        return actionsButtonsName
-    }
-    
-    func showAttachActionsView() {
-        
-        var actionsButtonsName: Array<String> = []
-        
-        actionsButtonsName = self.setupAttachActionsButtons()
-        
-        self.viewController?.draftActionsView?.setup(buttonsNameArray: actionsButtonsName)
-        
-        let hidden = self.viewController?.draftActionsView?.isHidden
-        
-        self.viewController?.draftActionsView?.isHidden = !hidden!
-        
-        self.viewController!.view.endEditing(true)
-    }
-    
-    func setupAttachActionsButtons() -> Array<String> {
-        
-        let actionsButtonsName: Array<String> = ["cancel".localized(), "fromAnotherApp".localized(), "photoLibrary".localized(), "camera".localized()]
-        
-        return actionsButtonsName
-    }
-    
-    func applyDraftAction(_ sender: AnyObject, isButton: Bool) {
-        
-        if isButton {
-            
-            let button = sender as! UIButton
-            
-            let title = button.title(for: .normal)
-            
-            //print("title:", title as Any)
-            
-            switch title {
-            case MoreActionsTitles.cancel.rawValue.localized():
-                print("cancel btn Draft action")
-                
-                break
-            case "discardDraft".localized():
-                print("discardDraft btn Draft action")
-                self.interactor?.deleteDraft()
-//                self.interactor?.postUpdateInboxNotification()
-                self.viewController!.navigationController?.popViewController(animated: true)
-                break
-            case "saveDraft".localized():
-                print("saveDraft btn Draft action")
-                //self.interactor?.postUpdateInboxNotification()
-                self.interactor?.saveDraft()
-                self.viewController!.navigationController?.popViewController(animated: true)
-                break
-            case "fromAnotherApp".localized():
-                self.showAttachPicker()
-                break
-            case "photoLibrary".localized():
-                self.viewController!.router?.showImagePickerWithLibrary()
-                break
-            case "camera".localized():
-                self.viewController!.router?.showImagePickerWithCamera()
-
-            default:
-                print("more actions: default")
-            }
+        if let popoverController = discardActionSheet.popoverPresentationController {
+            popoverController.barButtonItem = sender
+            popoverController.sourceView = viewController?.view
         }
- 
-        self.viewController?.draftActionsView?.isHidden = true
+        
+        viewController?.present(discardActionSheet, animated: true, completion: nil)
     }
     
-    //MARK: - Attachment View
-    
+    func showAttachActionsView(_ sender: UIButton) {
+        let pickerAlert = UIAlertController(title: Strings.Compose.SelectDraftOption.localized,
+                                            message: nil,
+                                            preferredStyle: .actionSheet)
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            pickerAlert.addAction(.init(title: Strings.Compose.camera.localized,
+                                        style: .default, handler:
+                { [weak self] (_) in
+                    self?.viewController?.router?.showImagePickerWithCamera()
+            }))
+        }
+        
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) || UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+            pickerAlert.addAction(.init(title: Strings.Compose.photoLibrary.localized,
+                                        style: .default, handler:
+                { [weak self] (_) in
+                    self?.viewController?.router?.showImagePickerWithLibrary()
+            }))
+        }
+        
+        pickerAlert.addAction(.init(title: Strings.Compose.fromAnotherApp.localized,
+                                    style: .default, handler:
+            { [weak self] (_) in
+                self?.showAttachPicker()
+        }))
+        
+        pickerAlert.addAction(.init(title: Strings.Button.cancelButton.localized,
+                                           style: .cancel,
+                                           handler:
+            { (_) in
+                pickerAlert.dismiss(animated: true, completion: nil)
+        }))
+
+        if let popoverController = pickerAlert.popoverPresentationController {
+            popoverController.sourceRect = sender.frame
+            popoverController.sourceView = viewController?.view
+        }
+        
+        viewController?.present(pickerAlert, animated: true, completion: nil)
+    }
+
+    // MARK: - Attachment View
     func createAttachment(frame: CGRect, tag: Int, fileUrl: URL) -> AttachmentView {
         
         let attachmentView = Bundle.main.loadNibNamed(k_AttachmentViewXibName, owner: nil, options: nil)?.first as? AttachmentView
-//        attachmentView?.frame = frame
         attachmentView?.tag = tag
         attachmentView?.delegate = self.viewController
         attachmentView?.setup(fileUrl: fileUrl)
@@ -1333,30 +1258,7 @@ class ComposePresenter {
         }
     }
     
-    //MARK: - Upgrade to Prime
-    
-    func showUpgradeToPrimeView() {
-        
-//        self.viewController?.upgradeToPrimeView?.isHidden = !(self.viewController?.upgradeToPrimeView?.isHidden)!
-    }
-    
-    func initAddFolderLimitView() {
-        
-//        self.viewController?.upgradeToPrimeView = Bundle.main.loadNibNamed(k_UpgradeToPrimeViewXibName, owner: nil, options: nil)?.first as? UpgradeToPrimeView
-//        
-//        let frame = CGRect(x: 0.0, y: 0.0, width: self.viewController!.view.frame.width, height: self.viewController!.view.frame.height)
-//        
-//        if Device.IS_IPAD {
-//            // frame = CGRect(x: 0.0, y: 0.0, width: (self.viewController!.splitViewController?.secondaryViewController?.view.frame.width)!, height: (self.viewController!.splitViewController?.secondaryViewController?.view.frame.height)!)
-//        }
-//        
-//        self.viewController?.upgradeToPrimeView?.frame = frame
-//        
-//        self.viewController?.navigationController!.view.addSubview((self.viewController?.upgradeToPrimeView)!)
-//        
-//        self.viewController?.upgradeToPrimeView?.isHidden = true
-    }
-    
+    // MARK: - Upgrade to Prime
     func attachmentStackView(from list: [AttachmentView]) -> UIStackView {
         list.forEach {
             $0.removeFromSuperview()
