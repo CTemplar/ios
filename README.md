@@ -6,6 +6,10 @@
 + Key-chain sharing
 + CocoaPods
 
+## important instructions
+After cloning the repo , please  install the pods, "pod install --repo-update"
+ 
+
 ## Runtime Requirements
 + iOS 10.0 or later
 
