@@ -16,6 +16,9 @@ final class InboxPresenter {
          viewController: InboxViewController) {
         self.interactor = interactor
         self.viewController = viewController
+        
+        // Start reachability
+        UtilityManager.shared.startReachability()
     }
     
     // MARK: - UI Setup

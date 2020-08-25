@@ -9,7 +9,6 @@ class FAQViewController: UIViewController {
 
     // MARK: Properties
     var dataSource: FAQDataSource?
-    var sideMenuViewController: InboxSideMenuViewController?
     var presenter: FAQPresenter?
     var router: FAQRouter?
     private var webView: WKWebView?

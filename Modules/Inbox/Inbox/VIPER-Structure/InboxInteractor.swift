@@ -108,15 +108,13 @@ final class InboxInteractor {
                     self?.viewController?.dataSource?.update(mailboxList: mailboxList)
                     // Save the keys conditionally
                     for mailbox in mailboxList {
-                        if mailbox.isDefault == true || mailboxList.count == 1 {
-                            if storeKeys {
-                                if let privateKey = mailbox.privateKey {
-                                    self?.pgpService.extractAndSavePGPKeyFromString(key: privateKey)
-                                }
-                                
-                                if let publicKey = mailbox.publicKey {
-                                    self?.pgpService.extractAndSavePGPKeyFromString(key: publicKey)
-                                }
+                        if storeKeys {
+                            if let privateKey = mailbox.privateKey {
+                                self?.pgpService.extractAndSavePGPKeyFromString(key: privateKey)
+                            }
+                            
+                            if let publicKey = mailbox.publicKey {
+                                self?.pgpService.extractAndSavePGPKeyFromString(key: publicKey)
                             }
                         }
                     }
@@ -136,7 +134,7 @@ final class InboxInteractor {
     }
     
     /// Fetches the latest update of the current user
-    func userMyself() {
+    func userMyself(_ onCompletion: (() -> Void)? = nil) {
         DispatchQueue.global(qos: .background).async {
             self.apiService.userMyself() { [weak self] (result) in
                 switch(result) {
@@ -172,6 +170,8 @@ final class InboxInteractor {
                                                     buttonTitle: Strings.Button.closeButton.localized
                     )
                 }
+                
+                onCompletion?()
             }
         }
     }

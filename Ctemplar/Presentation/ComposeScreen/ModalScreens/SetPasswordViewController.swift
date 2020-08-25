@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Utility
+import IQKeyboardManagerSwift
 
 protocol SetPasswordDelegate {
     func applyAction(password: String, passwordHint: String, expiredTime: Int)
@@ -19,38 +20,64 @@ class SetPasswordViewController: UIViewController, UITextFieldDelegate {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    var formatterService : FormatterService?
+    var formatterService: FormatterService?
     
-    var delegate    : SetPasswordDelegate?
+    var delegate: SetPasswordDelegate?
+
+    @IBOutlet weak var subtitleLabel: UILabel! {
+        didSet {
+            subtitleLabel.text = Strings.Scheduler.encryptForNon.localized
+        }
+    }
     
-    @IBOutlet var applyButton           : UIButton!
-    @IBOutlet var mainView              : UIView!
-    @IBOutlet var bottomView            : UIView!
+    @IBOutlet weak var setPasswordTextField: UITextField! {
+        didSet {
+            setPasswordTextField.placeholder = Strings.Scheduler.messagePassword.localized
+        }
+    }
     
-    @IBOutlet var setPasswordTextField      : UITextField!
-    @IBOutlet var confirmPasswordTextField  : UITextField!
-    @IBOutlet var hintPasswordTextField     : UITextField!
+    @IBOutlet weak var confirmPasswordTextField: UITextField! {
+        didSet {
+            confirmPasswordTextField.placeholder = Strings.Signup.confirmPasswordPlaceholder.localized
+        }
+    }
     
-    @IBOutlet var daysTextField             : UITextField!
-    @IBOutlet var hoursTextField            : UITextField!
+    @IBOutlet weak var hintPasswordTextField: UITextField! {
+        didSet {
+            hintPasswordTextField.placeholder = Strings.Scheduler.passwordHint.localized
+        }
+    }
     
-    @IBOutlet var darkLineView              : UIView!
-    @IBOutlet var redLineView               : UIView!
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
-    @IBOutlet var passWarningLabel          : UILabel!
+    @IBOutlet weak var applyBarButtonItem: UIBarButtonItem! {
+        didSet {
+            applyBarButtonItem.isEnabled = false
+        }
+    }
+    
+    @IBOutlet var daysTextField: UITextField!
+    @IBOutlet var hoursTextField: UITextField!
+    @IBOutlet var darkLineView: UIView!
+    @IBOutlet var redLineView: UIView!
+    @IBOutlet var passWarningLabel: UILabel!
 
     var keyboardOffset = 0.0
     
-    var password                : String = ""
-    var confirmedPassword       : String = ""
-    var passwordHint            : String = ""
-    var days                    : String = ""
-    var hours                   : String = ""
+    var password = ""
+    var confirmedPassword = ""
+    var passwordHint = ""
+    var days = ""
+    var hours = ""
 
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if !IQKeyboardManager.shared.enable {
+            IQKeyboardManager.shared.enable = true
+        }
         
         self.formatterService = UtilityManager.shared.formatterService
         
@@ -68,9 +95,7 @@ class SetPasswordViewController: UIViewController, UITextFieldDelegate {
         days = "5"
         hours = "0"
         
-        //let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture(gesture:)))
-        //swipeDownGesture.direction = .down
-        //self.view.addGestureRecognizer(swipeDownGesture)
+        navigationBar.topItem?.title = Strings.Scheduler.setPassword.localized
         
         if (Device.IS_IPHONE_5) {
             keyboardOffset = k_setPasswordKeyboardOffset
@@ -85,7 +110,6 @@ class SetPasswordViewController: UIViewController, UITextFieldDelegate {
         super.viewDidAppear(animated)
         
         self.setPasswordTextField.becomeFirstResponder()
-        //self.view.frame.origin.y -= CGFloat(keyboardOffset)
     }
     
     //MARK: - IBActions
@@ -214,7 +238,7 @@ class SetPasswordViewController: UIViewController, UITextFieldDelegate {
     
     func setupHints() {
         
-        self.redLineView.backgroundColor = k_sideMenuColor
+        self.redLineView.backgroundColor = .label
         
         var passwordMatched: Bool = false
         
@@ -248,12 +272,10 @@ class SetPasswordViewController: UIViewController, UITextFieldDelegate {
     func setApplyButton(enabled: Bool) {
         
         if enabled {
-            self.applyButton.isEnabled = true
-            self.applyButton.alpha = 1.0
+            applyBarButtonItem.isEnabled = true
         } else {
-            self.applyButton.isEnabled = false
-            self.applyButton.alpha = 0.6
-        }        
+            applyBarButtonItem.isEnabled = false
+        }
     }
     
     func checkExpirationTime() -> Bool {

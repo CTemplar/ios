@@ -3,7 +3,7 @@ import Utility
 import Networking
 import Inbox
 
-class GlobalSearchViewController: UIViewController {
+class GlobalSearchViewController: UIViewController, EmptyStateMachine {
 
     // MARK: IBOutlets
     @IBOutlet weak var searchTableView: UITableView!

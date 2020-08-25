@@ -19,6 +19,10 @@ def shared_pods
   pod 'MaterialComponents/ActivityIndicator'
 end
 
+def emptyState_pods
+  pod 'EmptyStateKit'
+end
+
 def inbox_pods
   pod "Colorful", "~> 3.0"
   pod 'MGSwipeTableCell'
@@ -27,6 +31,7 @@ end
 target 'Utility' do
   project 'Modules/Utility/Utility.xcodeproj'
   shared_pods
+  emptyState_pods
   pgp_pods
 end
 
@@ -44,6 +49,7 @@ end
 target 'Ctemplar' do
   ctemplarPods
   shared_pods
+  emptyState_pods
   pgp_pods
   inbox_pods
 end
@@ -51,6 +57,7 @@ end
 target 'Ctemplar.dev' do
   ctemplarPods
   shared_pods
+  emptyState_pods
   pgp_pods
   inbox_pods
 end

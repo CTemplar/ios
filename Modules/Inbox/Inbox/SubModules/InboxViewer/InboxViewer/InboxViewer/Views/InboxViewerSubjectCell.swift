@@ -13,6 +13,7 @@ public final class InboxViewerSubjectCell: UITableViewCell, Cellable {
         label.textColor = .label
         label.font = AppStyle.CustomFontStyle.Bold.font(withSize: 16.0)
         label.textAlignment = .left
+        label.numberOfLines = 1
         return label
     }()
     
@@ -118,6 +119,7 @@ public final class InboxViewerSubjectCell: UITableViewCell, Cellable {
             }
             make.leading.equalTo(titleLabel.snp.trailing).offset(8.0)
             make.centerY.equalTo(safeSelf.titleLabel.snp.centerY)
+            make.trailing.equalTo(safeSelf.starButton.snp.leading).offset(-8.0)
         }
         
         starButton.snp.makeConstraints { (make) in

@@ -9,7 +9,7 @@ import InboxViewer
 import GlobalSearch
 import AppSettings
 
-public class InitializerController: UIViewController, HashingService {
+public class InitializerController: UIViewController, HashingService, EmptyStateMachine {
     
     // MARK: Properties
     private let apiService = NetworkManager.shared.apiService

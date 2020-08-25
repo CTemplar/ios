@@ -2,7 +2,7 @@ import UIKit
 import Utility
 import Networking
 
-class AppSettingsController: UIViewController, LeftBarButtonItemConfigurable {
+class AppSettingsController: UIViewController, LeftBarButtonItemConfigurable, EmptyStateMachine {
 
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!

@@ -49,7 +49,11 @@ final class InboxDatasource: NSObject {
     
     private let formatterService = UtilityManager.shared.formatterService
     
-    private (set) var user = UserMyself()
+    private (set) var user = UserMyself() {
+        didSet {
+            parentViewController?.shouldEnableComposeButton = user.mailboxesList != nil
+        }
+    }
     
     var messagesAvailable: Bool {
         return messages.isEmpty == false
@@ -108,13 +112,15 @@ final class InboxDatasource: NSObject {
     // MARK: - Actions
     @objc
     private func handleRefresh(_ sender: Any) {
-        parentViewController?.presenter?.interactor?.update(offset: 0)
-        parentViewController?
-            .presenter?
-            .interactor?
-            .updateMessages(withUndo: "",
-                            silent: sender is UIButton ? false : true,
-                            menu: SharedInboxState.shared.selectedMenu)
+        parentViewController?.presenter?.interactor?.userMyself({ [weak self] in
+            self?.parentViewController?.presenter?.interactor?.update(offset: 0)
+            self?.parentViewController?
+                .presenter?
+                .interactor?
+                .updateMessages(withUndo: "",
+                                silent: sender is UIButton ? false : true,
+                                menu: SharedInboxState.shared.selectedMenu)
+        })
     }
     
     @objc

@@ -172,31 +172,28 @@
 "hideDetails" = "Hide details";
 
 // Compose
-
 "emailFromPrefix" = "From: ";
 "emailToPrefix" = "To: ";
 "ccToPrefix" = "Cc: ";
 "bccToPrefix" = "Bcc: ";
 "composeEmail" = "Compose email";
-
+"SelectDraftOption" = "Please select one of the options to continue";
 "replyOn" = "On: ";
 "wroteBy" = "wrote:";
 "atTime" = " at ";
 "forwardLine" = "---------- Forwarded message ----------";
 "date" = "Date: ";
 "subject" = "Subject: ";
+"saveDraft" = "Save draft";
+"discardDraft" = "Discard draft";
+"fromAnotherApp" = "From another app";
+"photoLibrary" = "Photo library";
+"camera" = "Camera";
 
 // Banner
 "mailSendMessage" = "Mail sent successfully.";
 "mailSendingAlert" = "Sending mail…";
 "sendMailError" = "Couldn't send the mail, please try again later.";
-
-"saveDraft" = "Save draft";
-"discardDraft" = "Discard draft";
-
-"fromAnotherApp" = "From another app";
-"photoLibrary" = "Photo library";
-"camera" = "Camera";
 
 "forwardSubject" = "Fwd: ";
 "replySubject" = "Re: ";
@@ -463,3 +460,7 @@
 // Contacts
 "unknownName" = "Unknown name";
 "unknownEmail" = "Unknown email";
+
+// Network Error
+"networkErrorTitle" = "We’re Sorry";
+"networkErrorMessage" = "Looks like, your device is not connected to the network. Please wait while we are looking for any available network.";

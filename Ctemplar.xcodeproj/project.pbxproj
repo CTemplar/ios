@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2ED31A5465C12FA49DD69BD0 /* Pods_Ctemplar_devTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF13D6896C50E6B44E7A8C43 /* Pods_Ctemplar_devTests.framework */; };
 		30503EA323D8EE70004B04D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30503EA023D8EE6A004B04D6 /* GoogleService-Info.plist */; };
 		30503EA423D8EE74004B04D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30503EA223D8EE6A004B04D6 /* GoogleService-Info.plist */; };
 		4422CEE824C2CD55005C85F1 /* InboxViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4422CEE724C2CD55005C85F1 /* InboxViewer.framework */; };
@@ -81,7 +82,6 @@
 		44D9668A24C17C150050ED46 /* Ctemplar_devTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D9668924C17C150050ED46 /* Ctemplar_devTests.swift */; };
 		44D966AC24C181230050ED46 /* InboxViewerTitleCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D966AB24C181230050ED46 /* InboxViewerTitleCellTests.swift */; };
 		44D966B224C184920050ED46 /* FBSnapshotBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D966B124C184920050ED46 /* FBSnapshotBase.swift */; };
-		7342CA2DCDCCCFEC766CC4B7 /* Pods_Ctemplar_devTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88540352277BB984926E1D8F /* Pods_Ctemplar_devTests.framework */; };
 		840249852191758D00CDDB0F /* CustomFolderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840249832191758D00CDDB0F /* CustomFolderTableViewCell.xib */; };
 		840249862191758D00CDDB0F /* CustomFolderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840249842191758D00CDDB0F /* CustomFolderTableViewCell.swift */; };
 		840249942191C23800CDDB0F /* MoveToFolderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840249922191C23800CDDB0F /* MoveToFolderTableViewCell.swift */; };
@@ -93,31 +93,9 @@
 		8403BDE821A4051A00EE8DCD /* AddContactPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403BDE721A4051A00EE8DCD /* AddContactPresenter.swift */; };
 		8403BDEA21A4052800EE8DCD /* AddContactInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403BDE921A4052800EE8DCD /* AddContactInteractor.swift */; };
 		8406B2162193FD8A009F0375 /* UnreadMessagesCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406B2152193FD8A009F0375 /* UnreadMessagesCounter.swift */; };
-		84085B3321C15216002733DE /* SideMenuTableManageFolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84085B3221C15216002733DE /* SideMenuTableManageFolderCell.swift */; };
-		84085B3521C152CB002733DE /* SideMenuTableManageFoldersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84085B3421C152CB002733DE /* SideMenuTableManageFoldersCell.xib */; };
-		84304298217D9D1C00DB5787 /* InboxSideMenuConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84304297217D9D1C00DB5787 /* InboxSideMenuConfigurator.swift */; };
-		8430429A217D9D2D00DB5787 /* InboxSideMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84304299217D9D2D00DB5787 /* InboxSideMenuRouter.swift */; };
-		8430429C217D9D3F00DB5787 /* InboxSideMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8430429B217D9D3F00DB5787 /* InboxSideMenuPresenter.swift */; };
-		8430429E217D9D5100DB5787 /* InboxSideMenuInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8430429D217D9D5100DB5787 /* InboxSideMenuInteractor.swift */; };
-		843042A0217D9D5D00DB5787 /* InboxSideMenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8430429F217D9D5D00DB5787 /* InboxSideMenuDataSource.swift */; };
 		8430C29321B554F100ACB559 /* SetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8430C29221B554F100ACB559 /* SetPasswordViewController.swift */; };
 		8430C29521B5566D00ACB559 /* SetPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8430C29421B5566D00ACB559 /* SetPassword.storyboard */; };
-		84312188218AF7F20014560D /* ViewInboxEmailConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84312187218AF7F20014560D /* ViewInboxEmailConfigurator.swift */; };
-		8431218A218AF80E0014560D /* ViewInboxEmailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84312189218AF80E0014560D /* ViewInboxEmailRouter.swift */; };
-		8431218C218AF81B0014560D /* ViewInboxEmailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431218B218AF81B0014560D /* ViewInboxEmailPresenter.swift */; };
-		8431218E218AF82C0014560D /* ViewInboxEmailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431218D218AF82C0014560D /* ViewInboxEmailInteractor.swift */; };
 		8432070B21784B0100F18E5A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8432070A21784B0100F18E5A /* WebKit.framework */; };
-		8432071321785F8400F18E5A /* InboxMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8432071221785F8400F18E5A /* InboxMessageTableViewCell.xib */; };
-		843207152178C75000F18E5A /* InboxMessageTablelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843207142178C75000F18E5A /* InboxMessageTablelViewCell.swift */; };
-		8432B2FC2186F39F006C901C /* SideMenuTableSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8432B2FB2186F39F006C901C /* SideMenuTableSectionHeaderView.swift */; };
-		8432B2FE2186F403006C901C /* SideMenuTableSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8432B2FD2186F403006C901C /* SideMenuTableSectionHeader.xib */; };
-		8432B300218709C9006C901C /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8432B2FF218709C9006C901C /* SideMenuTableViewCell.swift */; };
-		8432B302218709F5006C901C /* SideMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8432B301218709F5006C901C /* SideMenuTableViewCell.xib */; };
-		8433A53A218974B5008E1C85 /* InboxFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433A539218974B5008E1C85 /* InboxFilterView.swift */; };
-		8433A53C21897595008E1C85 /* InboxFilter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8433A53B21897595008E1C85 /* InboxFilter.xib */; };
-		8433DFB7219EC92100375609 /* ViewInboxEmailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433DFB6219EC92100375609 /* ViewInboxEmailDataSource.swift */; };
-		8433DFBA219ECD7000375609 /* ChildMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433DFB9219ECD7000375609 /* ChildMessageTableViewCell.swift */; };
-		8433DFBC219ECDC600375609 /* ChildMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8433DFBB219ECDC600375609 /* ChildMessageTableViewCell.xib */; };
 		8433FF1A216201A300C57DC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF19216201A300C57DC8 /* AppDelegate.swift */; };
 		8433FF1F216201A300C57DC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF1D216201A300C57DC8 /* Main.storyboard */; };
 		8433FF24216201A500C57DC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF22216201A500C57DC8 /* LaunchScreen.storyboard */; };
@@ -132,14 +110,6 @@
 		8434D9B6219C4E2800D2C3A5 /* ContactsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D9B5219C4E2800D2C3A5 /* ContactsInteractor.swift */; };
 		8434D9B8219C4E3900D2C3A5 /* ContactsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D9B7219C4E3900D2C3A5 /* ContactsDataSource.swift */; };
 		8434E18B21EF175600E15766 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8434E18A21EF175600E15766 /* Main-iPad.storyboard */; };
-		84356859216F2736002101D3 /* InboxNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84356858216F2736002101D3 /* InboxNavigationController.swift */; };
-		8435685B216F2748002101D3 /* Inbox.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8435685A216F2748002101D3 /* Inbox.storyboard */; };
-		8435685D216F2DB3002101D3 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8435685C216F2DB3002101D3 /* InboxViewController.swift */; };
-		8435685F216F2DCD002101D3 /* InboxDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8435685E216F2DCD002101D3 /* InboxDataSource.swift */; };
-		84356861216F2DE3002101D3 /* InboxConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84356860216F2DE3002101D3 /* InboxConfigurator.swift */; };
-		84356863216F2DFE002101D3 /* InboxRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84356862216F2DFE002101D3 /* InboxRouter.swift */; };
-		84356865216F2E0D002101D3 /* InboxPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84356864216F2E0D002101D3 /* InboxPresenter.swift */; };
-		84356867216F2E20002101D3 /* InboxInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84356866216F2E20002101D3 /* InboxInteractor.swift */; };
 		8435900621C287EB00F7D34D /* SchedulerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8435900521C287EB00F7D34D /* SchedulerViewController.swift */; };
 		8435900821C2912300F7D34D /* Scheduler.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8435900721C2912300F7D34D /* Scheduler.storyboard */; };
 		8436AD532180663800D16008 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8436AD552180663800D16008 /* Localizable.strings */; };
@@ -155,23 +125,14 @@
 		84405BB621AD0CBE0048D8AC /* ComposePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84405BB521AD0CBE0048D8AC /* ComposePresenter.swift */; };
 		84405BB821AD0CCB0048D8AC /* ComposeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84405BB721AD0CCB0048D8AC /* ComposeInteractor.swift */; };
 		84405BBA21AD0CD90048D8AC /* ComposeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84405BB921AD0CD90048D8AC /* ComposeDataSource.swift */; };
-		8441026521F9A8E40072691C /* InboxFilter-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441026421F9A8E30072691C /* InboxFilter-iPad.xib */; };
-		8441098E2177238A00F0BE18 /* ViewInboxEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441098D2177238A00F0BE18 /* ViewInboxEmailViewController.swift */; };
-		84410990217723CE00F0BE18 /* ViewInboxEmail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8441098F217723CE00F0BE18 /* ViewInboxEmail.storyboard */; };
 		8441099221776B5100F0BE18 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8441099121776B4C00F0BE18 /* Lato-Bold.ttf */; };
 		8441099421776B6400F0BE18 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8441099321776B6400F0BE18 /* README.md */; };
-		8441227D21A66E3A00B56857 /* ChildMessageExpandedWithAttachmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441227B21A66E3A00B56857 /* ChildMessageExpandedWithAttachmentTableViewCell.swift */; };
-		8441227E21A66E3A00B56857 /* ChildMessageExpandedWithAttachmentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441227C21A66E3A00B56857 /* ChildMessageExpandedWithAttachmentTableViewCell.xib */; };
 		8441228121A67A5D00B56857 /* AttachmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441228021A67A5D00B56857 /* AttachmentCollectionViewCell.swift */; };
 		8441228321A6823F00B56857 /* AttachmentCollcetionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441228221A6823F00B56857 /* AttachmentCollcetionViewCell.xib */; };
 		8441559321BF8AA90053C39F /* AttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441559221BF8AA90053C39F /* AttachmentView.swift */; };
 		8441559521BF8CF90053C39F /* Attachment.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441559421BF8CF90053C39F /* Attachment.xib */; };
-		844655BC218C264200B2F2E4 /* MoreActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F348532181B20C00F00E37 /* MoreActionsView.swift */; };
-		844655BD218C264E00B2F2E4 /* MoreActions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F348552181B21C00F00E37 /* MoreActions.xib */; };
 		844F4B5A216B3A380057C758 /* UserPGPKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F4B59216B3A380057C758 /* UserPGPKey.swift */; };
 		84527B9121EE13B300FF87AA /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84527B9021EE13B300FF87AA /* SplitViewController.swift */; };
-		845E64392170849C008612FE /* InboxSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E64382170849C008612FE /* InboxSideMenuViewController.swift */; };
-		845E643B21709330008612FE /* InboxSideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845E643A21709330008612FE /* InboxSideMenu.storyboard */; };
 		845E643E2170A46C008612FE /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E643D2170A46C008612FE /* ComposeViewController.swift */; };
 		845E64402170A4A2008612FE /* Compose.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845E643F2170A4A2008612FE /* Compose.storyboard */; };
 		845E64432170BD21008612FE /* AboutAs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845E64422170BD21008612FE /* AboutAs.storyboard */; };
@@ -183,117 +144,73 @@
 		8462C62621CCC16C005B3D74 /* SettingsBaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8462C62521CCC16C005B3D74 /* SettingsBaseTableViewCell.xib */; };
 		8462C62921CCD570005B3D74 /* SettingsStorageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8462C62821CCD570005B3D74 /* SettingsStorageTableViewCell.xib */; };
 		8462C62B21CCD57C005B3D74 /* SettingsStorageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462C62A21CCD57C005B3D74 /* SettingsStorageTableViewCell.swift */; };
-		846EDE9221A284C200EE9A88 /* ChildMessageExpandedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EDE9121A284C200EE9A88 /* ChildMessageExpandedTableViewCell.swift */; };
-		846EDE9421A284D400EE9A88 /* ChildMessageExpandedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846EDE9321A284D400EE9A88 /* ChildMessageExpandedTableViewCell.xib */; };
 		84732CA021B17B3F00B6F799 /* UserMailboxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84732C9F21B17B3F00B6F799 /* UserMailboxTableViewCell.swift */; };
 		84732CA221B17B8D00B6F799 /* UserMailboxTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84732CA121B17B8D00B6F799 /* UserMailboxTableViewCell.xib */; };
 		84BB2E4E230ADB4C00E9C162 /* Captcha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BB2E4D230ADB4C00E9C162 /* Captcha.swift */; };
 		84F348582181F4E300F00E37 /* BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F348572181F4E300F00E37 /* BlurEffect.swift */; };
 		84FF7E3C219DB71500E3E56A /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF7E3B219DB71500E3E56A /* ContactTableViewCell.swift */; };
 		84FF7E3E219DB7E600E3E56A /* ContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FF7E3D219DB7E600E3E56A /* ContactTableViewCell.xib */; };
-		99FC598A459AC2F9530C3E7B /* Pods_Ctemplar_dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D94FB9D26B61723D13712B /* Pods_Ctemplar_dev.framework */; };
-		C4981D9B4B24A2AE7739B9C7 /* Pods_Ctemplar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DC7BF1B8770694EB82A00 /* Pods_Ctemplar.framework */; };
-		CC6908A82384500100956E9B /* ChildMessageExpandedWithAttachmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441227B21A66E3A00B56857 /* ChildMessageExpandedWithAttachmentTableViewCell.swift */; };
+		9C67C8C5602D63834BC63169 /* Pods_Ctemplar_dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE139AD7E63CE1D43F9A4E88 /* Pods_Ctemplar_dev.framework */; };
 		CC6908AB2384500100956E9B /* SchedulerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8435900521C287EB00F7D34D /* SchedulerViewController.swift */; };
 		CC6908AD2384500100956E9B /* ComposeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84405BB321AD0CB20048D8AC /* ComposeRouter.swift */; };
-		CC6908B12384500100956E9B /* InboxSideMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8430429B217D9D3F00DB5787 /* InboxSideMenuPresenter.swift */; };
 		CC6908B22384500100956E9B /* ComposeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84405BB721AD0CCB0048D8AC /* ComposeInteractor.swift */; };
 		CC6908B42384500100956E9B /* UserMailboxBigTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440141421D35D5200FC450C /* UserMailboxBigTableViewCell.swift */; };
-		CC6908B72384500100956E9B /* InboxSideMenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8430429F217D9D5D00DB5787 /* InboxSideMenuDataSource.swift */; };
 		CC6908B82384500100956E9B /* ContactsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D9B3219C4E1200D2C3A5 /* ContactsPresenter.swift */; };
 		CC6908BC2384500100956E9B /* AddContactConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403BDE321A404FE00EE8DCD /* AddContactConfigurator.swift */; };
 		CC6908BE2384500100956E9B /* AddContactRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403BDE521A4050C00EE8DCD /* AddContactRouter.swift */; };
 		CC6908C12384500100956E9B /* SettingsStorageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462C62A21CCD57C005B3D74 /* SettingsStorageTableViewCell.swift */; };
-		CC6908C22384500100956E9B /* InboxSideMenuConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84304297217D9D1C00DB5787 /* InboxSideMenuConfigurator.swift */; };
 		CC6908C42384500100956E9B /* ComposeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84405BB121AD0CA40048D8AC /* ComposeConfigurator.swift */; };
-		CC6908C52384500100956E9B /* InboxConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84356860216F2DE3002101D3 /* InboxConfigurator.swift */; };
 		CC6908C72384500100956E9B /* ComposeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84405BB921AD0CD90048D8AC /* ComposeDataSource.swift */; };
 		CC6908C92384500100956E9B /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E972E21634E7800147CBE /* LaunchScreenViewController.swift */; };
-		CC6908CB2384500100956E9B /* InboxRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84356862216F2DFE002101D3 /* InboxRouter.swift */; };
 		CC6908CC2384500100956E9B /* UnreadMessagesCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406B2152193FD8A009F0375 /* UnreadMessagesCounter.swift */; };
-		CC6908CD2384500100956E9B /* MoreActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F348532181B20C00F00E37 /* MoreActionsView.swift */; };
-		CC6908CE2384500100956E9B /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8432B2FF218709C9006C901C /* SideMenuTableViewCell.swift */; };
 		CC6908CF2384500100956E9B /* ComposePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84405BB521AD0CBE0048D8AC /* ComposePresenter.swift */; };
-		CC6908D12384500100956E9B /* ViewInboxEmailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433DFB6219EC92100375609 /* ViewInboxEmailDataSource.swift */; };
 		CC6908D72384500100956E9B /* AddContactScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403BDDF21A3EEB100EE8DCD /* AddContactScreenViewController.swift */; };
 		CC6908DC2384500100956E9B /* PrivacyAndTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440141B21D377E400FC450C /* PrivacyAndTermsViewController.swift */; };
 		CC6908DF2384500100956E9B /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D9AB219BFD1E00D2C3A5 /* ContactsViewController.swift */; };
 		CC6908E22384500100956E9B /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84527B9021EE13B300FF87AA /* SplitViewController.swift */; };
 		CC6908E72384500100956E9B /* CustomFolderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840249842191758D00CDDB0F /* CustomFolderTableViewCell.swift */; };
-		CC6908E92384500100956E9B /* InboxInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84356866216F2E20002101D3 /* InboxInteractor.swift */; };
 		CC6908EA2384500100956E9B /* UserMailboxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84732C9F21B17B3F00B6F799 /* UserMailboxTableViewCell.swift */; };
 		CC6908EC2384500100956E9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF19216201A300C57DC8 /* AppDelegate.swift */; };
 		CC6908EF2384500100956E9B /* UserPGPKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F4B59216B3A380057C758 /* UserPGPKey.swift */; };
-		CC6908F02384500100956E9B /* InboxSideMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84304299217D9D2D00DB5787 /* InboxSideMenuRouter.swift */; };
 		CC6908F62384500100956E9B /* DeviceScreenConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FBF18216E4FE500148FC1 /* DeviceScreenConstants.swift */; };
-		CC6908F92384500100956E9B /* ChildMessageExpandedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EDE9121A284C200EE9A88 /* ChildMessageExpandedTableViewCell.swift */; };
-		CC6908FA2384500100956E9B /* ViewInboxEmailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431218D218AF82C0014560D /* ViewInboxEmailInteractor.swift */; };
-		CC6908FB2384500100956E9B /* ChildMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433DFB9219ECD7000375609 /* ChildMessageTableViewCell.swift */; };
 		CC6909022384500100956E9B /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E643D2170A46C008612FE /* ComposeViewController.swift */; };
-		CC6909032384500100956E9B /* InboxPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84356864216F2E0D002101D3 /* InboxPresenter.swift */; };
-		CC6909052384500100956E9B /* InboxFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433A539218974B5008E1C85 /* InboxFilterView.swift */; };
 		CC6909072384500100956E9B /* ContactsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D9AF219C4DF500D2C3A5 /* ContactsConfigurator.swift */; };
-		CC69090A2384500100956E9B /* ViewInboxEmailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84312189218AF80E0014560D /* ViewInboxEmailRouter.swift */; };
-		CC69090D2384500100956E9B /* InboxSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E64382170849C008612FE /* InboxSideMenuViewController.swift */; };
 		CC69090E2384500100956E9B /* Captcha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BB2E4D230ADB4C00E9C162 /* Captcha.swift */; };
-		CC6909122384500100956E9B /* InboxNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84356858216F2736002101D3 /* InboxNavigationController.swift */; };
 		CC6909132384500100956E9B /* AddContactInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403BDE921A4052800EE8DCD /* AddContactInteractor.swift */; };
-		CC6909152384500100956E9B /* SideMenuTableSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8432B2FB2186F39F006C901C /* SideMenuTableSectionHeaderView.swift */; };
-		CC6909172384500100956E9B /* InboxDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8435685E216F2DCD002101D3 /* InboxDataSource.swift */; };
 		CC6909192384500100956E9B /* AttachmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441228021A67A5D00B56857 /* AttachmentCollectionViewCell.swift */; };
 		CC69091B2384500100956E9B /* AboutAsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E64452170C5A4008612FE /* AboutAsViewController.swift */; };
 		CC69091D2384500100956E9B /* ContactsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D9B5219C4E2800D2C3A5 /* ContactsInteractor.swift */; };
 		CC69091F2384500100956E9B /* MoveToFolderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840249922191C23800CDDB0F /* MoveToFolderTableViewCell.swift */; };
-		CC6909212384500100956E9B /* ViewInboxEmailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431218B218AF81B0014560D /* ViewInboxEmailPresenter.swift */; };
 		CC6909232384500100956E9B /* ContactsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D9B7219C4E3900D2C3A5 /* ContactsDataSource.swift */; };
-		CC6909242384500100956E9B /* SideMenuTableManageFolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84085B3221C15216002733DE /* SideMenuTableManageFolderCell.swift */; };
 		CC6909252384500100956E9B /* BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F348572181F4E300F00E37 /* BlurEffect.swift */; };
 		CC6909272384500100956E9B /* AttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441559221BF8AA90053C39F /* AttachmentView.swift */; };
-		CC69092C2384500100956E9B /* InboxSideMenuInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8430429D217D9D5100DB5787 /* InboxSideMenuInteractor.swift */; };
-		CC69092D2384500100956E9B /* ViewInboxEmailConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84312187218AF7F20014560D /* ViewInboxEmailConfigurator.swift */; };
 		CC69092F2384500100956E9B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF592162181E00C57DC8 /* Constants.swift */; };
-		CC6909302384500100956E9B /* ViewInboxEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441098D2177238A00F0BE18 /* ViewInboxEmailViewController.swift */; };
 		CC6909312384500100956E9B /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF7E3B219DB71500E3E56A /* ContactTableViewCell.swift */; };
-		CC6909332384500100956E9B /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8435685C216F2DB3002101D3 /* InboxViewController.swift */; };
 		CC6909352384500100956E9B /* SettingsBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462C62321CCC15C005B3D74 /* SettingsBaseTableViewCell.swift */; };
 		CC6909362384500100956E9B /* SetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8430C29221B554F100ACB559 /* SetPasswordViewController.swift */; };
 		CC6909372384500100956E9B /* AddContactPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403BDE721A4051A00EE8DCD /* AddContactPresenter.swift */; };
-		CC69093D2384500100956E9B /* InboxMessageTablelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843207142178C75000F18E5A /* InboxMessageTablelViewCell.swift */; };
 		CC6909422384500100956E9B /* ContactsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D9B1219C4E0200D2C3A5 /* ContactsRouter.swift */; };
 		CC6909472384500100956E9B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8432070A21784B0100F18E5A /* WebKit.framework */; };
 		CC69094B2384500100956E9B /* MoveToFolderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840249932191C23800CDDB0F /* MoveToFolderTableViewCell.xib */; };
-		CC69094C2384500100956E9B /* ViewInboxEmail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8441098F217723CE00F0BE18 /* ViewInboxEmail.storyboard */; };
 		CC69094E2384500100956E9B /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 845E64442170BF8F008612FE /* Lato-Black.ttf */; };
 		CC69094F2384500100956E9B /* AboutAs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845E64422170BD21008612FE /* AboutAs.storyboard */; };
 		CC6909522384500100956E9B /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 843E973521635F6D00147CBE /* Roboto-Bold.ttf */; };
 		CC6909532384500100956E9B /* Scheduler.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8435900721C2912300F7D34D /* Scheduler.storyboard */; };
 		CC6909552384500100956E9B /* UserMailboxTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84732CA121B17B8D00B6F799 /* UserMailboxTableViewCell.xib */; };
-		CC6909562384500100956E9B /* InboxFilter-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441026421F9A8E30072691C /* InboxFilter-iPad.xib */; };
 		CC6909582384500100956E9B /* SettingsStorageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8462C62821CCD570005B3D74 /* SettingsStorageTableViewCell.xib */; };
 		CC69095C2384500100956E9B /* Attachment.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441559421BF8CF90053C39F /* Attachment.xib */; };
 		CC6909602384500100956E9B /* AttachmentCollcetionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441228221A6823F00B56857 /* AttachmentCollcetionViewCell.xib */; };
-		CC6909612384500100956E9B /* InboxSideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845E643A21709330008612FE /* InboxSideMenu.storyboard */; };
 		CC6909632384500100956E9B /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8441099121776B4C00F0BE18 /* Lato-Bold.ttf */; };
 		CC6909642384500100956E9B /* Compose.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845E643F2170A4A2008612FE /* Compose.storyboard */; };
-		CC6909652384500100956E9B /* ChildMessageExpandedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846EDE9321A284D400EE9A88 /* ChildMessageExpandedTableViewCell.xib */; };
 		CC6909662384500100956E9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF22216201A500C57DC8 /* LaunchScreen.storyboard */; };
 		CC6909672384500100956E9B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8436AD552180663800D16008 /* Localizable.strings */; };
 		CC6909692384500100956E9B /* PrivacyAndTerms.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8440141921D377D600FC450C /* PrivacyAndTerms.storyboard */; };
-		CC69096A2384500100956E9B /* ChildMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8433DFBB219ECDC600375609 /* ChildMessageTableViewCell.xib */; };
-		CC69096B2384500100956E9B /* MoreActions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F348552181B21C00F00E37 /* MoreActions.xib */; };
 		CC69096C2384500100956E9B /* SetPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8430C29421B5566D00ACB559 /* SetPassword.storyboard */; };
 		CC69096D2384500100956E9B /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8434D9AD219BFD3300D2C3A5 /* Contacts.storyboard */; };
-		CC6909702384500100956E9B /* Inbox.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8435685A216F2748002101D3 /* Inbox.storyboard */; };
 		CC6909712384500100956E9B /* AddContact.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8403BDE121A3F00B00EE8DCD /* AddContact.storyboard */; };
 		CC6909722384500100956E9B /* SplitiPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF4B21620DBD00C57DC8 /* SplitiPad.storyboard */; };
 		CC6909732384500100956E9B /* SettingsBaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8462C62521CCC16C005B3D74 /* SettingsBaseTableViewCell.xib */; };
 		CC6909742384500100956E9B /* AboutAs-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844018B921F6EBED00A3D115 /* AboutAs-iPad.storyboard */; };
-		CC6909752384500100956E9B /* SideMenuTableSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8432B2FD2186F403006C901C /* SideMenuTableSectionHeader.xib */; };
-		CC6909772384500100956E9B /* SideMenuTableManageFoldersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84085B3421C152CB002733DE /* SideMenuTableManageFoldersCell.xib */; };
-		CC6909782384500100956E9B /* InboxFilter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8433A53B21897595008E1C85 /* InboxFilter.xib */; };
-		CC69097A2384500100956E9B /* ChildMessageExpandedWithAttachmentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8441227C21A66E3A00B56857 /* ChildMessageExpandedWithAttachmentTableViewCell.xib */; };
-		CC69097C2384500100956E9B /* SideMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8432B301218709F5006C901C /* SideMenuTableViewCell.xib */; };
-		CC69097F2384500100956E9B /* InboxMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8432071221785F8400F18E5A /* InboxMessageTableViewCell.xib */; };
 		CC6909802384500100956E9B /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8434E18A21EF175600E15766 /* Main-iPad.storyboard */; };
 		CC6909812384500100956E9B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8441099321776B6400F0BE18 /* README.md */; };
 		CC6909822384500100956E9B /* UserMailboxBigTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8440141621D35D5D00FC450C /* UserMailboxBigTableViewCell.xib */; };
@@ -304,6 +221,7 @@
 		CC69098A2384500100956E9B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF1D216201A300C57DC8 /* Main.storyboard */; };
 		CCB2F6AA23AB8F8800B661FA /* MyselfService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB2F6A923AB8F8800B661FA /* MyselfService.swift */; };
 		CCB2F6AB23AB8F8800B661FA /* MyselfService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB2F6A923AB8F8800B661FA /* MyselfService.swift */; };
+		CDDBD5F19DEB612D23BCD88A /* Pods_Ctemplar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CE5BFF64002B0851F53482 /* Pods_Ctemplar.framework */; };
 		E3E22E5624398FDD00DCE5B7 /* AppStoryBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E22E5524398FDC00DCE5B7 /* AppStoryBoard.swift */; };
 		E3E22E5724398FDD00DCE5B7 /* AppStoryBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E22E5524398FDC00DCE5B7 /* AppStoryBoard.swift */; };
 /* End PBXBuildFile section */
@@ -425,7 +343,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		134DC7BF1B8770694EB82A00 /* Pods_Ctemplar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		30503EA023D8EE6A004B04D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		30503EA223D8EE6A004B04D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4422CEE724C2CD55005C85F1 /* InboxViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = InboxViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -467,8 +384,9 @@
 		44D966AB24C181230050ED46 /* InboxViewerTitleCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewerTitleCellTests.swift; sourceTree = "<group>"; };
 		44D966B124C184920050ED46 /* FBSnapshotBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBSnapshotBase.swift; sourceTree = "<group>"; };
 		44F739CC2498B01800688086 /* Login.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Login.xcodeproj; path = Login/Login.xcodeproj; sourceTree = "<group>"; };
-		6225F2EFCBFB934F0D2DA0A3 /* Pods-Ctemplar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.debug.xcconfig"; path = "Target Support Files/Pods-Ctemplar/Pods-Ctemplar.debug.xcconfig"; sourceTree = "<group>"; };
-		6F5F64CBD100612B96B308B8 /* Pods-Ctemplar.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.dev.release.xcconfig"; path = "Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev.release.xcconfig"; sourceTree = "<group>"; };
+		66FCB54F54C3BA13154D5DD7 /* Pods-Ctemplar.devTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.devTests.release.xcconfig"; path = "Target Support Files/Pods-Ctemplar.devTests/Pods-Ctemplar.devTests.release.xcconfig"; sourceTree = "<group>"; };
+		745F109FE4BC59EAEFE5DACE /* Pods-Ctemplar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.release.xcconfig"; path = "Target Support Files/Pods-Ctemplar/Pods-Ctemplar.release.xcconfig"; sourceTree = "<group>"; };
+		7E291A3261FA4EB436FB02C1 /* Pods-Ctemplar.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.dev.release.xcconfig"; path = "Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev.release.xcconfig"; sourceTree = "<group>"; };
 		840249832191758D00CDDB0F /* CustomFolderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomFolderTableViewCell.xib; sourceTree = "<group>"; };
 		840249842191758D00CDDB0F /* CustomFolderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFolderTableViewCell.swift; sourceTree = "<group>"; };
 		840249922191C23800CDDB0F /* MoveToFolderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveToFolderTableViewCell.swift; sourceTree = "<group>"; };
@@ -480,31 +398,9 @@
 		8403BDE721A4051A00EE8DCD /* AddContactPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactPresenter.swift; sourceTree = "<group>"; };
 		8403BDE921A4052800EE8DCD /* AddContactInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactInteractor.swift; sourceTree = "<group>"; };
 		8406B2152193FD8A009F0375 /* UnreadMessagesCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadMessagesCounter.swift; sourceTree = "<group>"; };
-		84085B3221C15216002733DE /* SideMenuTableManageFolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableManageFolderCell.swift; sourceTree = "<group>"; };
-		84085B3421C152CB002733DE /* SideMenuTableManageFoldersCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuTableManageFoldersCell.xib; sourceTree = "<group>"; };
-		84304297217D9D1C00DB5787 /* InboxSideMenuConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuConfigurator.swift; sourceTree = "<group>"; };
-		84304299217D9D2D00DB5787 /* InboxSideMenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuRouter.swift; sourceTree = "<group>"; };
-		8430429B217D9D3F00DB5787 /* InboxSideMenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuPresenter.swift; sourceTree = "<group>"; };
-		8430429D217D9D5100DB5787 /* InboxSideMenuInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuInteractor.swift; sourceTree = "<group>"; };
-		8430429F217D9D5D00DB5787 /* InboxSideMenuDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuDataSource.swift; sourceTree = "<group>"; };
 		8430C29221B554F100ACB559 /* SetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordViewController.swift; sourceTree = "<group>"; };
 		8430C29421B5566D00ACB559 /* SetPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetPassword.storyboard; sourceTree = "<group>"; };
-		84312187218AF7F20014560D /* ViewInboxEmailConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewInboxEmailConfigurator.swift; sourceTree = "<group>"; };
-		84312189218AF80E0014560D /* ViewInboxEmailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewInboxEmailRouter.swift; sourceTree = "<group>"; };
-		8431218B218AF81B0014560D /* ViewInboxEmailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewInboxEmailPresenter.swift; sourceTree = "<group>"; };
-		8431218D218AF82C0014560D /* ViewInboxEmailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewInboxEmailInteractor.swift; sourceTree = "<group>"; };
 		8432070A21784B0100F18E5A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		8432071221785F8400F18E5A /* InboxMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InboxMessageTableViewCell.xib; sourceTree = "<group>"; };
-		843207142178C75000F18E5A /* InboxMessageTablelViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageTablelViewCell.swift; sourceTree = "<group>"; };
-		8432B2FB2186F39F006C901C /* SideMenuTableSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableSectionHeaderView.swift; sourceTree = "<group>"; };
-		8432B2FD2186F403006C901C /* SideMenuTableSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuTableSectionHeader.xib; sourceTree = "<group>"; };
-		8432B2FF218709C9006C901C /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
-		8432B301218709F5006C901C /* SideMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuTableViewCell.xib; sourceTree = "<group>"; };
-		8433A539218974B5008E1C85 /* InboxFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxFilterView.swift; sourceTree = "<group>"; };
-		8433A53B21897595008E1C85 /* InboxFilter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InboxFilter.xib; sourceTree = "<group>"; };
-		8433DFB6219EC92100375609 /* ViewInboxEmailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewInboxEmailDataSource.swift; sourceTree = "<group>"; };
-		8433DFB9219ECD7000375609 /* ChildMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildMessageTableViewCell.swift; sourceTree = "<group>"; };
-		8433DFBB219ECDC600375609 /* ChildMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChildMessageTableViewCell.xib; sourceTree = "<group>"; };
 		8433FF16216201A300C57DC8 /* Ctemplar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ctemplar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8433FF19216201A300C57DC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8433FF1E216201A300C57DC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -520,14 +416,6 @@
 		8434D9B5219C4E2800D2C3A5 /* ContactsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsInteractor.swift; sourceTree = "<group>"; };
 		8434D9B7219C4E3900D2C3A5 /* ContactsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsDataSource.swift; sourceTree = "<group>"; };
 		8434E18A21EF175600E15766 /* Main-iPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Main-iPad.storyboard"; sourceTree = "<group>"; };
-		84356858216F2736002101D3 /* InboxNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxNavigationController.swift; sourceTree = "<group>"; };
-		8435685A216F2748002101D3 /* Inbox.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Inbox.storyboard; sourceTree = "<group>"; };
-		8435685C216F2DB3002101D3 /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
-		8435685E216F2DCD002101D3 /* InboxDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxDataSource.swift; sourceTree = "<group>"; };
-		84356860216F2DE3002101D3 /* InboxConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxConfigurator.swift; sourceTree = "<group>"; };
-		84356862216F2DFE002101D3 /* InboxRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxRouter.swift; sourceTree = "<group>"; };
-		84356864216F2E0D002101D3 /* InboxPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxPresenter.swift; sourceTree = "<group>"; };
-		84356866216F2E20002101D3 /* InboxInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxInteractor.swift; sourceTree = "<group>"; };
 		8435900521C287EB00F7D34D /* SchedulerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerViewController.swift; sourceTree = "<group>"; };
 		8435900721C2912300F7D34D /* Scheduler.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Scheduler.storyboard; sourceTree = "<group>"; };
 		8436AD4F2180650900D16008 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -549,21 +437,14 @@
 		84405BB521AD0CBE0048D8AC /* ComposePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposePresenter.swift; sourceTree = "<group>"; };
 		84405BB721AD0CCB0048D8AC /* ComposeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeInteractor.swift; sourceTree = "<group>"; };
 		84405BB921AD0CD90048D8AC /* ComposeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeDataSource.swift; sourceTree = "<group>"; };
-		8441026421F9A8E30072691C /* InboxFilter-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "InboxFilter-iPad.xib"; sourceTree = "<group>"; };
-		8441098D2177238A00F0BE18 /* ViewInboxEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewInboxEmailViewController.swift; sourceTree = "<group>"; };
-		8441098F217723CE00F0BE18 /* ViewInboxEmail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ViewInboxEmail.storyboard; sourceTree = "<group>"; };
 		8441099121776B4C00F0BE18 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		8441099321776B6400F0BE18 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
-		8441227B21A66E3A00B56857 /* ChildMessageExpandedWithAttachmentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildMessageExpandedWithAttachmentTableViewCell.swift; sourceTree = "<group>"; };
-		8441227C21A66E3A00B56857 /* ChildMessageExpandedWithAttachmentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChildMessageExpandedWithAttachmentTableViewCell.xib; sourceTree = "<group>"; };
 		8441228021A67A5D00B56857 /* AttachmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCollectionViewCell.swift; sourceTree = "<group>"; };
 		8441228221A6823F00B56857 /* AttachmentCollcetionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AttachmentCollcetionViewCell.xib; sourceTree = "<group>"; };
 		8441559221BF8AA90053C39F /* AttachmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentView.swift; sourceTree = "<group>"; };
 		8441559421BF8CF90053C39F /* Attachment.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Attachment.xib; sourceTree = "<group>"; };
 		844F4B59216B3A380057C758 /* UserPGPKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPGPKey.swift; sourceTree = "<group>"; };
 		84527B9021EE13B300FF87AA /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
-		845E64382170849C008612FE /* InboxSideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxSideMenuViewController.swift; sourceTree = "<group>"; };
-		845E643A21709330008612FE /* InboxSideMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InboxSideMenu.storyboard; sourceTree = "<group>"; };
 		845E643D2170A46C008612FE /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		845E643F2170A4A2008612FE /* Compose.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Compose.storyboard; sourceTree = "<group>"; };
 		845E64422170BD21008612FE /* AboutAs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutAs.storyboard; sourceTree = "<group>"; };
@@ -573,28 +454,24 @@
 		8462C62521CCC16C005B3D74 /* SettingsBaseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsBaseTableViewCell.xib; sourceTree = "<group>"; };
 		8462C62821CCD570005B3D74 /* SettingsStorageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsStorageTableViewCell.xib; sourceTree = "<group>"; };
 		8462C62A21CCD57C005B3D74 /* SettingsStorageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStorageTableViewCell.swift; sourceTree = "<group>"; };
-		846EDE9121A284C200EE9A88 /* ChildMessageExpandedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildMessageExpandedTableViewCell.swift; sourceTree = "<group>"; };
-		846EDE9321A284D400EE9A88 /* ChildMessageExpandedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChildMessageExpandedTableViewCell.xib; sourceTree = "<group>"; };
 		84732C9F21B17B3F00B6F799 /* UserMailboxTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMailboxTableViewCell.swift; sourceTree = "<group>"; };
 		84732CA121B17B8D00B6F799 /* UserMailboxTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserMailboxTableViewCell.xib; sourceTree = "<group>"; };
 		84BB2E4D230ADB4C00E9C162 /* Captcha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Captcha.swift; sourceTree = "<group>"; };
-		84F348532181B20C00F00E37 /* MoreActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreActionsView.swift; sourceTree = "<group>"; };
-		84F348552181B21C00F00E37 /* MoreActions.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreActions.xib; sourceTree = "<group>"; };
+		84CE5BFF64002B0851F53482 /* Pods_Ctemplar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F348572181F4E300F00E37 /* BlurEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurEffect.swift; sourceTree = "<group>"; };
 		84FF7E3B219DB71500E3E56A /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		84FF7E3D219DB7E600E3E56A /* ContactTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactTableViewCell.xib; sourceTree = "<group>"; };
-		88540352277BB984926E1D8F /* Pods_Ctemplar_devTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar_devTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1E4F8D50C6EBADDA15604E4 /* Pods-Ctemplar.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.dev.debug.xcconfig"; path = "Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev.debug.xcconfig"; sourceTree = "<group>"; };
-		A363FCAE6152E30742A1482E /* Pods-Ctemplar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.release.xcconfig"; path = "Target Support Files/Pods-Ctemplar/Pods-Ctemplar.release.xcconfig"; sourceTree = "<group>"; };
-		A9A92130A41867E39AC1EBBA /* Pods-Ctemplar.devTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.devTests.debug.xcconfig"; path = "Target Support Files/Pods-Ctemplar.devTests/Pods-Ctemplar.devTests.debug.xcconfig"; sourceTree = "<group>"; };
+		97356A516CDB72D896FED846 /* Pods-Ctemplar.devTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.devTests.debug.xcconfig"; path = "Target Support Files/Pods-Ctemplar.devTests/Pods-Ctemplar.devTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CB8DDFA84B1241D5F5EF5440 /* Pods-Ctemplar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.debug.xcconfig"; path = "Target Support Files/Pods-Ctemplar/Pods-Ctemplar.debug.xcconfig"; sourceTree = "<group>"; };
 		CC3C27EE23844AAB005828BF /* Ctemplar-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Ctemplar-Info.plist"; sourceTree = "<group>"; };
 		CC6909922384500100956E9B /* Ctemplar.dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ctemplar.dev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC690994238450BB00956E9B /* Ctemplar.dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Ctemplar.dev-Info.plist"; sourceTree = "<group>"; };
 		CCB2F6A923AB8F8800B661FA /* MyselfService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyselfService.swift; sourceTree = "<group>"; };
+		DE139AD7E63CE1D43F9A4E88 /* Pods_Ctemplar_dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar_dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E32DB9E9240C127700FF0069 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E3E22E5524398FDC00DCE5B7 /* AppStoryBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoryBoard.swift; sourceTree = "<group>"; };
-		E6D94FB9D26B61723D13712B /* Pods_Ctemplar_dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar_dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F159723F952C3A7BA98B5F7C /* Pods-Ctemplar.devTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.devTests.release.xcconfig"; path = "Target Support Files/Pods-Ctemplar.devTests/Pods-Ctemplar.devTests.release.xcconfig"; sourceTree = "<group>"; };
+		EF13D6896C50E6B44E7A8C43 /* Pods_Ctemplar_devTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar_devTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8A99C657FAF50AF9054240E /* Pods-Ctemplar.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.dev.debug.xcconfig"; path = "Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -603,7 +480,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				446641C724C4CF520093A6DE /* SnapshotTesting in Frameworks */,
-				7342CA2DCDCCCFEC766CC4B7 /* Pods_Ctemplar_devTests.framework in Frameworks */,
+				2ED31A5465C12FA49DD69BD0 /* Pods_Ctemplar_devTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,7 +501,7 @@
 				44CA251B24B758110063DB93 /* Signup.framework in Frameworks */,
 				444BD47F2495306D001D0C5F /* Security.framework in Frameworks */,
 				44CA251D24B758150063DB93 /* Utility.framework in Frameworks */,
-				C4981D9B4B24A2AE7739B9C7 /* Pods_Ctemplar.framework in Frameworks */,
+				CDDBD5F19DEB612D23BCD88A /* Pods_Ctemplar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -645,7 +522,7 @@
 				444D65E424A7BA3600690B3E /* Inbox.framework in Frameworks */,
 				444D65E624A7BA3600690B3E /* Initializer.framework in Frameworks */,
 				444BD48224953187001D0C5F /* Security.framework in Frameworks */,
-				99FC598A459AC2F9530C3E7B /* Pods_Ctemplar_dev.framework in Frameworks */,
+				9C67C8C5602D63834BC63169 /* Pods_Ctemplar_dev.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -831,20 +708,11 @@
 				444BD48024953077001D0C5F /* libz.tbd */,
 				444BD47E2495306C001D0C5F /* Security.framework */,
 				8432070A21784B0100F18E5A /* WebKit.framework */,
-				134DC7BF1B8770694EB82A00 /* Pods_Ctemplar.framework */,
-				E6D94FB9D26B61723D13712B /* Pods_Ctemplar_dev.framework */,
-				88540352277BB984926E1D8F /* Pods_Ctemplar_devTests.framework */,
+				84CE5BFF64002B0851F53482 /* Pods_Ctemplar.framework */,
+				DE139AD7E63CE1D43F9A4E88 /* Pods_Ctemplar_dev.framework */,
+				EF13D6896C50E6B44E7A8C43 /* Pods_Ctemplar_devTests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		840223F8218C20E600FE29BE /* MoreActionsView */ = {
-			isa = PBXGroup;
-			children = (
-				84F348532181B20C00F00E37 /* MoreActionsView.swift */,
-				84F348552181B21C00F00E37 /* MoreActions.xib */,
-			);
-			path = MoreActionsView;
 			sourceTree = "<group>";
 		};
 		840249822191737B00CDDB0F /* CustomFolderCells */ = {
@@ -903,52 +771,14 @@
 		8432070C21785E0D00F18E5A /* TableCells */ = {
 			isa = PBXGroup;
 			children = (
-				8432070F21785E7500F18E5A /* InboxCells */,
-				8432B2FA2186DC1C006C901C /* SideMenuCells */,
 				840249822191737B00CDDB0F /* CustomFolderCells */,
 				840249912191C1E800CDDB0F /* MoveToFolderCells */,
 				84FF7E3A219DB6ED00E3E56A /* ContactCell */,
-				8433DFB8219ECD4400375609 /* ChildMessageCell */,
 				84732C9E21B17A3200B6F799 /* UserMailboxCell */,
 				8462C62221CCC0E5005B3D74 /* SettingsBaseCell */,
 				8462C62721CCD547005B3D74 /* SetttingsStorageCell */,
 			);
 			path = TableCells;
-			sourceTree = "<group>";
-		};
-		8432070F21785E7500F18E5A /* InboxCells */ = {
-			isa = PBXGroup;
-			children = (
-				843207142178C75000F18E5A /* InboxMessageTablelViewCell.swift */,
-				8432071221785F8400F18E5A /* InboxMessageTableViewCell.xib */,
-			);
-			path = InboxCells;
-			sourceTree = "<group>";
-		};
-		8432B2FA2186DC1C006C901C /* SideMenuCells */ = {
-			isa = PBXGroup;
-			children = (
-				8432B2FB2186F39F006C901C /* SideMenuTableSectionHeaderView.swift */,
-				8432B2FD2186F403006C901C /* SideMenuTableSectionHeader.xib */,
-				84085B3221C15216002733DE /* SideMenuTableManageFolderCell.swift */,
-				84085B3421C152CB002733DE /* SideMenuTableManageFoldersCell.xib */,
-				8432B2FF218709C9006C901C /* SideMenuTableViewCell.swift */,
-				8432B301218709F5006C901C /* SideMenuTableViewCell.xib */,
-			);
-			path = SideMenuCells;
-			sourceTree = "<group>";
-		};
-		8433DFB8219ECD4400375609 /* ChildMessageCell */ = {
-			isa = PBXGroup;
-			children = (
-				8433DFB9219ECD7000375609 /* ChildMessageTableViewCell.swift */,
-				8433DFBB219ECDC600375609 /* ChildMessageTableViewCell.xib */,
-				846EDE9121A284C200EE9A88 /* ChildMessageExpandedTableViewCell.swift */,
-				846EDE9321A284D400EE9A88 /* ChildMessageExpandedTableViewCell.xib */,
-				8441227B21A66E3A00B56857 /* ChildMessageExpandedWithAttachmentTableViewCell.swift */,
-				8441227C21A66E3A00B56857 /* ChildMessageExpandedWithAttachmentTableViewCell.xib */,
-			);
-			path = ChildMessageCell;
 			sourceTree = "<group>";
 		};
 		8433FF0D216201A300C57DC8 = {
@@ -1032,11 +862,8 @@
 				8441227F21A679E700B56857 /* CollectionCells */,
 				8432070C21785E0D00F18E5A /* TableCells */,
 				843E972D21634E4800147CBE /* LaunchScreen */,
-				84356857216F2702002101D3 /* InboxScreen */,
 				845E643C2170A440008612FE /* ComposeScreen */,
-				8441098C2177233800F0BE18 /* ViewInboxEmailScreen */,
 				8434D9AA219BFCE700D2C3A5 /* ContactsScreen */,
-				845E643721708453008612FE /* SideMenu */,
 				84527B8F21EE139100FF87AA /* SplitViewController */,
 				8440141821D377AE00FC450C /* PrivacyAndTerms */,
 				845E64412170BD08008612FE /* AboutAsScreen */,
@@ -1072,23 +899,6 @@
 			path = ContactsScreen;
 			sourceTree = "<group>";
 		};
-		84356857216F2702002101D3 /* InboxScreen */ = {
-			isa = PBXGroup;
-			children = (
-				840223F8218C20E600FE29BE /* MoreActionsView */,
-				84F348512181B1AB00F00E37 /* FilterView */,
-				84356858216F2736002101D3 /* InboxNavigationController.swift */,
-				8435685C216F2DB3002101D3 /* InboxViewController.swift */,
-				84356860216F2DE3002101D3 /* InboxConfigurator.swift */,
-				84356862216F2DFE002101D3 /* InboxRouter.swift */,
-				84356864216F2E0D002101D3 /* InboxPresenter.swift */,
-				84356866216F2E20002101D3 /* InboxInteractor.swift */,
-				8435685E216F2DCD002101D3 /* InboxDataSource.swift */,
-				8435685A216F2748002101D3 /* Inbox.storyboard */,
-			);
-			path = InboxScreen;
-			sourceTree = "<group>";
-		};
 		843E972B2163493800147CBE /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1119,20 +929,6 @@
 			path = PrivacyAndTerms;
 			sourceTree = "<group>";
 		};
-		8441098C2177233800F0BE18 /* ViewInboxEmailScreen */ = {
-			isa = PBXGroup;
-			children = (
-				8441098D2177238A00F0BE18 /* ViewInboxEmailViewController.swift */,
-				84312187218AF7F20014560D /* ViewInboxEmailConfigurator.swift */,
-				84312189218AF80E0014560D /* ViewInboxEmailRouter.swift */,
-				8431218B218AF81B0014560D /* ViewInboxEmailPresenter.swift */,
-				8431218D218AF82C0014560D /* ViewInboxEmailInteractor.swift */,
-				8433DFB6219EC92100375609 /* ViewInboxEmailDataSource.swift */,
-				8441098F217723CE00F0BE18 /* ViewInboxEmail.storyboard */,
-			);
-			path = ViewInboxEmailScreen;
-			sourceTree = "<group>";
-		};
 		8441227F21A679E700B56857 /* CollectionCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -1157,20 +953,6 @@
 				8433FF4B21620DBD00C57DC8 /* SplitiPad.storyboard */,
 			);
 			path = SplitViewController;
-			sourceTree = "<group>";
-		};
-		845E643721708453008612FE /* SideMenu */ = {
-			isa = PBXGroup;
-			children = (
-				845E64382170849C008612FE /* InboxSideMenuViewController.swift */,
-				84304297217D9D1C00DB5787 /* InboxSideMenuConfigurator.swift */,
-				84304299217D9D2D00DB5787 /* InboxSideMenuRouter.swift */,
-				8430429B217D9D3F00DB5787 /* InboxSideMenuPresenter.swift */,
-				8430429D217D9D5100DB5787 /* InboxSideMenuInteractor.swift */,
-				8430429F217D9D5D00DB5787 /* InboxSideMenuDataSource.swift */,
-				845E643A21709330008612FE /* InboxSideMenu.storyboard */,
-			);
-			path = SideMenu;
 			sourceTree = "<group>";
 		};
 		845E643C2170A440008612FE /* ComposeScreen */ = {
@@ -1227,16 +1009,6 @@
 			path = UserMailboxCell;
 			sourceTree = "<group>";
 		};
-		84F348512181B1AB00F00E37 /* FilterView */ = {
-			isa = PBXGroup;
-			children = (
-				8433A539218974B5008E1C85 /* InboxFilterView.swift */,
-				8433A53B21897595008E1C85 /* InboxFilter.xib */,
-				8441026421F9A8E30072691C /* InboxFilter-iPad.xib */,
-			);
-			path = FilterView;
-			sourceTree = "<group>";
-		};
 		84FF7E3A219DB6ED00E3E56A /* ContactCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1249,12 +1021,12 @@
 		9D1353D465645685A49242B7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6225F2EFCBFB934F0D2DA0A3 /* Pods-Ctemplar.debug.xcconfig */,
-				A363FCAE6152E30742A1482E /* Pods-Ctemplar.release.xcconfig */,
-				A1E4F8D50C6EBADDA15604E4 /* Pods-Ctemplar.dev.debug.xcconfig */,
-				6F5F64CBD100612B96B308B8 /* Pods-Ctemplar.dev.release.xcconfig */,
-				A9A92130A41867E39AC1EBBA /* Pods-Ctemplar.devTests.debug.xcconfig */,
-				F159723F952C3A7BA98B5F7C /* Pods-Ctemplar.devTests.release.xcconfig */,
+				CB8DDFA84B1241D5F5EF5440 /* Pods-Ctemplar.debug.xcconfig */,
+				745F109FE4BC59EAEFE5DACE /* Pods-Ctemplar.release.xcconfig */,
+				F8A99C657FAF50AF9054240E /* Pods-Ctemplar.dev.debug.xcconfig */,
+				7E291A3261FA4EB436FB02C1 /* Pods-Ctemplar.dev.release.xcconfig */,
+				97356A516CDB72D896FED846 /* Pods-Ctemplar.devTests.debug.xcconfig */,
+				66FCB54F54C3BA13154D5DD7 /* Pods-Ctemplar.devTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1292,11 +1064,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 44D9669824C17C150050ED46 /* Build configuration list for PBXNativeTarget "Ctemplar.devTests" */;
 			buildPhases = (
-				C0A8CCA5B7388C2C32D2EA2B /* [CP] Check Pods Manifest.lock */,
+				6B03B5A84992337395EC1E20 /* [CP] Check Pods Manifest.lock */,
 				44D9668324C17C150050ED46 /* Sources */,
 				44D9668424C17C150050ED46 /* Frameworks */,
 				44D9668524C17C150050ED46 /* Resources */,
-				11F6CFF2108919938265730D /* [CP] Embed Pods Frameworks */,
+				01DFA57550364C1B5710E27E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1315,13 +1087,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8433FF28216201A500C57DC8 /* Build configuration list for PBXNativeTarget "Ctemplar" */;
 			buildPhases = (
-				C0CB0711A7BB3F6EFD4BBCE7 /* [CP] Check Pods Manifest.lock */,
+				6BA9DBE1F0ED72AA2617C582 /* [CP] Check Pods Manifest.lock */,
 				8433FF12216201A300C57DC8 /* Sources */,
 				8433FF13216201A300C57DC8 /* Frameworks */,
 				8433FF14216201A300C57DC8 /* Resources */,
 				84405BB021AD09290048D8AC /* ShellScript */,
 				44CA250B24B757F50063DB93 /* Embed Frameworks */,
-				4AF16BA9458EA7ECABF4772D /* [CP] Embed Pods Frameworks */,
+				A040AFDAF1B317BEC502BDAA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1336,13 +1108,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CC69098F2384500100956E9B /* Build configuration list for PBXNativeTarget "Ctemplar.dev" */;
 			buildPhases = (
-				0789CFD479F2154430CCA455 /* [CP] Check Pods Manifest.lock */,
+				402A63C86DCF0995315CA6F1 /* [CP] Check Pods Manifest.lock */,
 				CC6908A72384500100956E9B /* Sources */,
 				CC6909462384500100956E9B /* Frameworks */,
 				CC6909492384500100956E9B /* Resources */,
 				CC69098E2384500100956E9B /* ShellScript */,
 				445CFAD0249BEBC90017DC40 /* Embed Frameworks */,
-				4E04723916BD706B4FAE6173 /* [CP] Embed Pods Frameworks */,
+				3576A54859643377BAB9DB5E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1535,41 +1307,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				840249952191C23800CDDB0F /* MoveToFolderTableViewCell.xib in Resources */,
-				84410990217723CE00F0BE18 /* ViewInboxEmail.storyboard in Resources */,
 				845E64482170CAEF008612FE /* Lato-Black.ttf in Resources */,
 				845E64432170BD21008612FE /* AboutAs.storyboard in Resources */,
 				845E64492170CAF2008612FE /* Roboto-Bold.ttf in Resources */,
 				8435900821C2912300F7D34D /* Scheduler.storyboard in Resources */,
 				445CFAE3249BF3B50017DC40 /* Assets.xcassets in Resources */,
 				84732CA221B17B8D00B6F799 /* UserMailboxTableViewCell.xib in Resources */,
-				8441026521F9A8E40072691C /* InboxFilter-iPad.xib in Resources */,
 				8462C62921CCD570005B3D74 /* SettingsStorageTableViewCell.xib in Resources */,
 				8441559521BF8CF90053C39F /* Attachment.xib in Resources */,
 				8441228321A6823F00B56857 /* AttachmentCollcetionViewCell.xib in Resources */,
-				845E643B21709330008612FE /* InboxSideMenu.storyboard in Resources */,
 				8441099221776B5100F0BE18 /* Lato-Bold.ttf in Resources */,
 				845E64402170A4A2008612FE /* Compose.storyboard in Resources */,
-				846EDE9421A284D400EE9A88 /* ChildMessageExpandedTableViewCell.xib in Resources */,
 				8433FF24216201A500C57DC8 /* LaunchScreen.storyboard in Resources */,
 				30503EA323D8EE70004B04D6 /* GoogleService-Info.plist in Resources */,
 				8436AD532180663800D16008 /* Localizable.strings in Resources */,
 				8440141A21D377D600FC450C /* PrivacyAndTerms.storyboard in Resources */,
-				8433DFBC219ECDC600375609 /* ChildMessageTableViewCell.xib in Resources */,
-				844655BD218C264E00B2F2E4 /* MoreActions.xib in Resources */,
 				8430C29521B5566D00ACB559 /* SetPassword.storyboard in Resources */,
 				8434D9AE219BFD3300D2C3A5 /* Contacts.storyboard in Resources */,
-				8435685B216F2748002101D3 /* Inbox.storyboard in Resources */,
 				8403BDE221A3F00B00EE8DCD /* AddContact.storyboard in Resources */,
 				8433FF4C21620DBD00C57DC8 /* SplitiPad.storyboard in Resources */,
 				8462C62621CCC16C005B3D74 /* SettingsBaseTableViewCell.xib in Resources */,
 				844018BA21F6EBED00A3D115 /* AboutAs-iPad.storyboard in Resources */,
-				8432B2FE2186F403006C901C /* SideMenuTableSectionHeader.xib in Resources */,
 				4497F1DA248BDF5200AF83F5 /* FAQ.storyboard in Resources */,
-				84085B3521C152CB002733DE /* SideMenuTableManageFoldersCell.xib in Resources */,
-				8433A53C21897595008E1C85 /* InboxFilter.xib in Resources */,
-				8441227E21A66E3A00B56857 /* ChildMessageExpandedWithAttachmentTableViewCell.xib in Resources */,
-				8432B302218709F5006C901C /* SideMenuTableViewCell.xib in Resources */,
-				8432071321785F8400F18E5A /* InboxMessageTableViewCell.xib in Resources */,
 				8434E18B21EF175600E15766 /* Main-iPad.storyboard in Resources */,
 				8441099421776B6400F0BE18 /* README.md in Resources */,
 				8440141721D35D5D00FC450C /* UserMailboxBigTableViewCell.xib in Resources */,
@@ -1586,40 +1345,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC69094B2384500100956E9B /* MoveToFolderTableViewCell.xib in Resources */,
-				CC69094C2384500100956E9B /* ViewInboxEmail.storyboard in Resources */,
 				CC69094E2384500100956E9B /* Lato-Black.ttf in Resources */,
 				CC69094F2384500100956E9B /* AboutAs.storyboard in Resources */,
 				CC6909522384500100956E9B /* Roboto-Bold.ttf in Resources */,
 				CC6909532384500100956E9B /* Scheduler.storyboard in Resources */,
 				445CFAEA249BF4A90017DC40 /* Assets.xcassets in Resources */,
 				CC6909552384500100956E9B /* UserMailboxTableViewCell.xib in Resources */,
-				CC6909562384500100956E9B /* InboxFilter-iPad.xib in Resources */,
 				CC6909582384500100956E9B /* SettingsStorageTableViewCell.xib in Resources */,
 				CC69095C2384500100956E9B /* Attachment.xib in Resources */,
 				CC6909602384500100956E9B /* AttachmentCollcetionViewCell.xib in Resources */,
-				CC6909612384500100956E9B /* InboxSideMenu.storyboard in Resources */,
 				CC6909632384500100956E9B /* Lato-Bold.ttf in Resources */,
 				CC6909642384500100956E9B /* Compose.storyboard in Resources */,
-				CC6909652384500100956E9B /* ChildMessageExpandedTableViewCell.xib in Resources */,
 				CC6909662384500100956E9B /* LaunchScreen.storyboard in Resources */,
 				30503EA423D8EE74004B04D6 /* GoogleService-Info.plist in Resources */,
 				CC6909672384500100956E9B /* Localizable.strings in Resources */,
 				CC6909692384500100956E9B /* PrivacyAndTerms.storyboard in Resources */,
-				CC69096A2384500100956E9B /* ChildMessageTableViewCell.xib in Resources */,
-				CC69096B2384500100956E9B /* MoreActions.xib in Resources */,
 				CC69096C2384500100956E9B /* SetPassword.storyboard in Resources */,
 				CC69096D2384500100956E9B /* Contacts.storyboard in Resources */,
-				CC6909702384500100956E9B /* Inbox.storyboard in Resources */,
 				CC6909712384500100956E9B /* AddContact.storyboard in Resources */,
 				CC6909722384500100956E9B /* SplitiPad.storyboard in Resources */,
 				CC6909732384500100956E9B /* SettingsBaseTableViewCell.xib in Resources */,
 				CC6909742384500100956E9B /* AboutAs-iPad.storyboard in Resources */,
-				CC6909752384500100956E9B /* SideMenuTableSectionHeader.xib in Resources */,
-				CC6909772384500100956E9B /* SideMenuTableManageFoldersCell.xib in Resources */,
-				CC6909782384500100956E9B /* InboxFilter.xib in Resources */,
-				CC69097A2384500100956E9B /* ChildMessageExpandedWithAttachmentTableViewCell.xib in Resources */,
-				CC69097C2384500100956E9B /* SideMenuTableViewCell.xib in Resources */,
-				CC69097F2384500100956E9B /* InboxMessageTableViewCell.xib in Resources */,
 				CC6909802384500100956E9B /* Main-iPad.storyboard in Resources */,
 				CC6909812384500100956E9B /* README.md in Resources */,
 				CC6909822384500100956E9B /* UserMailboxBigTableViewCell.xib in Resources */,
@@ -1635,7 +1381,41 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0789CFD479F2154430CCA455 /* [CP] Check Pods Manifest.lock */ = {
+		01DFA57550364C1B5710E27E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.devTests/Pods-Ctemplar.devTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.devTests/Pods-Ctemplar.devTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.devTests/Pods-Ctemplar.devTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3576A54859643377BAB9DB5E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		402A63C86DCF0995315CA6F1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1657,75 +1437,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		11F6CFF2108919938265730D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.devTests/Pods-Ctemplar.devTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.devTests/Pods-Ctemplar.devTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.devTests/Pods-Ctemplar.devTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4AF16BA9458EA7ECABF4772D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Ctemplar/Pods-Ctemplar-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Ctemplar/Pods-Ctemplar-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Ctemplar/Pods-Ctemplar-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4E04723916BD706B4FAE6173 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		84405BB021AD09290048D8AC /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" ae275793b27694227e56433d8b6312c21196ecd1 ff3c364d767c460bac9c33cfc5386793b8caecc261ddf24294d6d2e1d4e4fc03\n";
-		};
-		C0A8CCA5B7388C2C32D2EA2B /* [CP] Check Pods Manifest.lock */ = {
+		6B03B5A84992337395EC1E20 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1747,7 +1459,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C0CB0711A7BB3F6EFD4BBCE7 /* [CP] Check Pods Manifest.lock */ = {
+		6BA9DBE1F0ED72AA2617C582 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1767,6 +1479,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		84405BB021AD09290048D8AC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" ae275793b27694227e56433d8b6312c21196ecd1 ff3c364d767c460bac9c33cfc5386793b8caecc261ddf24294d6d2e1d4e4fc03\n";
+		};
+		A040AFDAF1B317BEC502BDAA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Ctemplar/Pods-Ctemplar-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Ctemplar/Pods-Ctemplar-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Ctemplar/Pods-Ctemplar-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CC69098E2384500100956E9B /* ShellScript */ = {
@@ -1813,78 +1559,50 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8441227D21A66E3A00B56857 /* ChildMessageExpandedWithAttachmentTableViewCell.swift in Sources */,
 				8435900621C287EB00F7D34D /* SchedulerViewController.swift in Sources */,
 				84405BB421AD0CB20048D8AC /* ComposeRouter.swift in Sources */,
 				4497F1E2248BE50D00AF83F5 /* FAQRouter.swift in Sources */,
-				8430429C217D9D3F00DB5787 /* InboxSideMenuPresenter.swift in Sources */,
 				84405BB821AD0CCB0048D8AC /* ComposeInteractor.swift in Sources */,
 				8440141521D35D5200FC450C /* UserMailboxBigTableViewCell.swift in Sources */,
-				843042A0217D9D5D00DB5787 /* InboxSideMenuDataSource.swift in Sources */,
 				8434D9B4219C4E1200D2C3A5 /* ContactsPresenter.swift in Sources */,
 				8403BDE421A404FE00EE8DCD /* AddContactConfigurator.swift in Sources */,
 				8403BDE621A4050C00EE8DCD /* AddContactRouter.swift in Sources */,
 				8462C62B21CCD57C005B3D74 /* SettingsStorageTableViewCell.swift in Sources */,
-				84304298217D9D1C00DB5787 /* InboxSideMenuConfigurator.swift in Sources */,
 				4497F1DC248BE02000AF83F5 /* FAQConfigurator.swift in Sources */,
 				84405BB221AD0CA40048D8AC /* ComposeConfigurator.swift in Sources */,
-				84356861216F2DE3002101D3 /* InboxConfigurator.swift in Sources */,
 				84405BBA21AD0CD90048D8AC /* ComposeDataSource.swift in Sources */,
 				843E972F21634E7900147CBE /* LaunchScreenViewController.swift in Sources */,
 				4497F1DE248BE04300AF83F5 /* FAQDataSource.swift in Sources */,
-				84356863216F2DFE002101D3 /* InboxRouter.swift in Sources */,
 				8406B2162193FD8A009F0375 /* UnreadMessagesCounter.swift in Sources */,
-				844655BC218C264200B2F2E4 /* MoreActionsView.swift in Sources */,
-				8432B300218709C9006C901C /* SideMenuTableViewCell.swift in Sources */,
 				84405BB621AD0CBE0048D8AC /* ComposePresenter.swift in Sources */,
-				8433DFB7219EC92100375609 /* ViewInboxEmailDataSource.swift in Sources */,
 				8403BDE021A3EEB100EE8DCD /* AddContactScreenViewController.swift in Sources */,
 				8440141C21D377E400FC450C /* PrivacyAndTermsViewController.swift in Sources */,
 				8434D9AC219BFD1E00D2C3A5 /* ContactsViewController.swift in Sources */,
 				84527B9121EE13B300FF87AA /* SplitViewController.swift in Sources */,
 				840249862191758D00CDDB0F /* CustomFolderTableViewCell.swift in Sources */,
-				84356867216F2E20002101D3 /* InboxInteractor.swift in Sources */,
 				84732CA021B17B3F00B6F799 /* UserMailboxTableViewCell.swift in Sources */,
 				8433FF1A216201A300C57DC8 /* AppDelegate.swift in Sources */,
 				844F4B5A216B3A380057C758 /* UserPGPKey.swift in Sources */,
-				8430429A217D9D2D00DB5787 /* InboxSideMenuRouter.swift in Sources */,
 				843FBF19216E4FE500148FC1 /* DeviceScreenConstants.swift in Sources */,
-				846EDE9221A284C200EE9A88 /* ChildMessageExpandedTableViewCell.swift in Sources */,
-				8431218E218AF82C0014560D /* ViewInboxEmailInteractor.swift in Sources */,
-				8433DFBA219ECD7000375609 /* ChildMessageTableViewCell.swift in Sources */,
 				845E643E2170A46C008612FE /* ComposeViewController.swift in Sources */,
-				84356865216F2E0D002101D3 /* InboxPresenter.swift in Sources */,
-				8433A53A218974B5008E1C85 /* InboxFilterView.swift in Sources */,
 				8434D9B0219C4DF500D2C3A5 /* ContactsConfigurator.swift in Sources */,
 				4497F1D8248BDF4000AF83F5 /* FAQViewController.swift in Sources */,
-				8431218A218AF80E0014560D /* ViewInboxEmailRouter.swift in Sources */,
-				845E64392170849C008612FE /* InboxSideMenuViewController.swift in Sources */,
 				84BB2E4E230ADB4C00E9C162 /* Captcha.swift in Sources */,
-				84356859216F2736002101D3 /* InboxNavigationController.swift in Sources */,
 				8403BDEA21A4052800EE8DCD /* AddContactInteractor.swift in Sources */,
-				8432B2FC2186F39F006C901C /* SideMenuTableSectionHeaderView.swift in Sources */,
-				8435685F216F2DCD002101D3 /* InboxDataSource.swift in Sources */,
 				8441228121A67A5D00B56857 /* AttachmentCollectionViewCell.swift in Sources */,
 				845E64462170C5A4008612FE /* AboutAsViewController.swift in Sources */,
 				8434D9B6219C4E2800D2C3A5 /* ContactsInteractor.swift in Sources */,
 				840249942191C23800CDDB0F /* MoveToFolderTableViewCell.swift in Sources */,
-				8431218C218AF81B0014560D /* ViewInboxEmailPresenter.swift in Sources */,
 				8434D9B8219C4E3900D2C3A5 /* ContactsDataSource.swift in Sources */,
-				84085B3321C15216002733DE /* SideMenuTableManageFolderCell.swift in Sources */,
 				84F348582181F4E300F00E37 /* BlurEffect.swift in Sources */,
 				8441559321BF8AA90053C39F /* AttachmentView.swift in Sources */,
 				4497F1E0248BE3CF00AF83F5 /* FAQPresenter.swift in Sources */,
-				8430429E217D9D5100DB5787 /* InboxSideMenuInteractor.swift in Sources */,
-				84312188218AF7F20014560D /* ViewInboxEmailConfigurator.swift in Sources */,
 				8433FF5A2162181E00C57DC8 /* Constants.swift in Sources */,
-				8441098E2177238A00F0BE18 /* ViewInboxEmailViewController.swift in Sources */,
 				84FF7E3C219DB71500E3E56A /* ContactTableViewCell.swift in Sources */,
 				E3E22E5624398FDD00DCE5B7 /* AppStoryBoard.swift in Sources */,
-				8435685D216F2DB3002101D3 /* InboxViewController.swift in Sources */,
 				8462C62421CCC15C005B3D74 /* SettingsBaseTableViewCell.swift in Sources */,
 				8430C29321B554F100ACB559 /* SetPasswordViewController.swift in Sources */,
 				8403BDE821A4051A00EE8DCD /* AddContactPresenter.swift in Sources */,
-				843207152178C75000F18E5A /* InboxMessageTablelViewCell.swift in Sources */,
 				8434D9B2219C4E0200D2C3A5 /* ContactsRouter.swift in Sources */,
 				CCB2F6AA23AB8F8800B661FA /* MyselfService.swift in Sources */,
 			);
@@ -1894,78 +1612,50 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC6908A82384500100956E9B /* ChildMessageExpandedWithAttachmentTableViewCell.swift in Sources */,
 				CC6908AB2384500100956E9B /* SchedulerViewController.swift in Sources */,
 				CC6908AD2384500100956E9B /* ComposeRouter.swift in Sources */,
-				CC6908B12384500100956E9B /* InboxSideMenuPresenter.swift in Sources */,
 				CC6908B22384500100956E9B /* ComposeInteractor.swift in Sources */,
 				CC6908B42384500100956E9B /* UserMailboxBigTableViewCell.swift in Sources */,
-				CC6908B72384500100956E9B /* InboxSideMenuDataSource.swift in Sources */,
 				CC6908B82384500100956E9B /* ContactsPresenter.swift in Sources */,
 				CC6908BC2384500100956E9B /* AddContactConfigurator.swift in Sources */,
 				CC6908BE2384500100956E9B /* AddContactRouter.swift in Sources */,
 				CC6908C12384500100956E9B /* SettingsStorageTableViewCell.swift in Sources */,
-				CC6908C22384500100956E9B /* InboxSideMenuConfigurator.swift in Sources */,
 				CC6908C42384500100956E9B /* ComposeConfigurator.swift in Sources */,
-				CC6908C52384500100956E9B /* InboxConfigurator.swift in Sources */,
 				CC6908C72384500100956E9B /* ComposeDataSource.swift in Sources */,
 				CC6908C92384500100956E9B /* LaunchScreenViewController.swift in Sources */,
-				CC6908CB2384500100956E9B /* InboxRouter.swift in Sources */,
 				CC6908CC2384500100956E9B /* UnreadMessagesCounter.swift in Sources */,
-				CC6908CD2384500100956E9B /* MoreActionsView.swift in Sources */,
-				CC6908CE2384500100956E9B /* SideMenuTableViewCell.swift in Sources */,
 				CC6908CF2384500100956E9B /* ComposePresenter.swift in Sources */,
-				CC6908D12384500100956E9B /* ViewInboxEmailDataSource.swift in Sources */,
 				CC6908D72384500100956E9B /* AddContactScreenViewController.swift in Sources */,
 				CC6908DC2384500100956E9B /* PrivacyAndTermsViewController.swift in Sources */,
 				CC6908DF2384500100956E9B /* ContactsViewController.swift in Sources */,
 				CC6908E22384500100956E9B /* SplitViewController.swift in Sources */,
 				CC6908E72384500100956E9B /* CustomFolderTableViewCell.swift in Sources */,
-				CC6908E92384500100956E9B /* InboxInteractor.swift in Sources */,
 				CC6908EA2384500100956E9B /* UserMailboxTableViewCell.swift in Sources */,
 				CC6908EC2384500100956E9B /* AppDelegate.swift in Sources */,
 				CC6908EF2384500100956E9B /* UserPGPKey.swift in Sources */,
-				CC6908F02384500100956E9B /* InboxSideMenuRouter.swift in Sources */,
 				444BD51C24955D4C001D0C5F /* FAQRouter.swift in Sources */,
 				444BD51B24955D49001D0C5F /* FAQPresenter.swift in Sources */,
 				CC6908F62384500100956E9B /* DeviceScreenConstants.swift in Sources */,
-				CC6908F92384500100956E9B /* ChildMessageExpandedTableViewCell.swift in Sources */,
-				CC6908FA2384500100956E9B /* ViewInboxEmailInteractor.swift in Sources */,
-				CC6908FB2384500100956E9B /* ChildMessageTableViewCell.swift in Sources */,
 				CC6909022384500100956E9B /* ComposeViewController.swift in Sources */,
-				CC6909032384500100956E9B /* InboxPresenter.swift in Sources */,
-				CC6909052384500100956E9B /* InboxFilterView.swift in Sources */,
 				CC6909072384500100956E9B /* ContactsConfigurator.swift in Sources */,
 				444BD51924955D43001D0C5F /* FAQConfigurator.swift in Sources */,
-				CC69090A2384500100956E9B /* ViewInboxEmailRouter.swift in Sources */,
-				CC69090D2384500100956E9B /* InboxSideMenuViewController.swift in Sources */,
 				CC69090E2384500100956E9B /* Captcha.swift in Sources */,
-				CC6909122384500100956E9B /* InboxNavigationController.swift in Sources */,
 				CC6909132384500100956E9B /* AddContactInteractor.swift in Sources */,
-				CC6909152384500100956E9B /* SideMenuTableSectionHeaderView.swift in Sources */,
-				CC6909172384500100956E9B /* InboxDataSource.swift in Sources */,
 				CC6909192384500100956E9B /* AttachmentCollectionViewCell.swift in Sources */,
 				CC69091B2384500100956E9B /* AboutAsViewController.swift in Sources */,
 				CC69091D2384500100956E9B /* ContactsInteractor.swift in Sources */,
 				CC69091F2384500100956E9B /* MoveToFolderTableViewCell.swift in Sources */,
-				CC6909212384500100956E9B /* ViewInboxEmailPresenter.swift in Sources */,
 				CC6909232384500100956E9B /* ContactsDataSource.swift in Sources */,
-				CC6909242384500100956E9B /* SideMenuTableManageFolderCell.swift in Sources */,
 				CC6909252384500100956E9B /* BlurEffect.swift in Sources */,
 				CC6909272384500100956E9B /* AttachmentView.swift in Sources */,
 				444BD51A24955D46001D0C5F /* FAQDataSource.swift in Sources */,
-				CC69092C2384500100956E9B /* InboxSideMenuInteractor.swift in Sources */,
-				CC69092D2384500100956E9B /* ViewInboxEmailConfigurator.swift in Sources */,
 				CC69092F2384500100956E9B /* Constants.swift in Sources */,
-				CC6909302384500100956E9B /* ViewInboxEmailViewController.swift in Sources */,
 				CC6909312384500100956E9B /* ContactTableViewCell.swift in Sources */,
 				E3E22E5724398FDD00DCE5B7 /* AppStoryBoard.swift in Sources */,
-				CC6909332384500100956E9B /* InboxViewController.swift in Sources */,
 				CC6909352384500100956E9B /* SettingsBaseTableViewCell.swift in Sources */,
 				CC6909362384500100956E9B /* SetPasswordViewController.swift in Sources */,
 				444BD51324955D00001D0C5F /* FAQViewController.swift in Sources */,
 				CC6909372384500100956E9B /* AddContactPresenter.swift in Sources */,
-				CC69093D2384500100956E9B /* InboxMessageTablelViewCell.swift in Sources */,
 				CC6909422384500100956E9B /* ContactsRouter.swift in Sources */,
 				CCB2F6AB23AB8F8800B661FA /* MyselfService.swift in Sources */,
 			);
@@ -2018,7 +1708,7 @@
 /* Begin XCBuildConfiguration section */
 		44D9668E24C17C150050ED46 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A9A92130A41867E39AC1EBBA /* Pods-Ctemplar.devTests.debug.xcconfig */;
+			baseConfigurationReference = 97356A516CDB72D896FED846 /* Pods-Ctemplar.devTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -2039,7 +1729,7 @@
 		};
 		44D9668F24C17C150050ED46 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F159723F952C3A7BA98B5F7C /* Pods-Ctemplar.devTests.release.xcconfig */;
+			baseConfigurationReference = 66FCB54F54C3BA13154D5DD7 /* Pods-Ctemplar.devTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -2182,7 +1872,7 @@
 		};
 		8433FF29216201A500C57DC8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6225F2EFCBFB934F0D2DA0A3 /* Pods-Ctemplar.debug.xcconfig */;
+			baseConfigurationReference = CB8DDFA84B1241D5F5EF5440 /* Pods-Ctemplar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
@@ -2198,7 +1888,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.2;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2211,7 +1901,7 @@
 		};
 		8433FF2A216201A500C57DC8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A363FCAE6152E30742A1482E /* Pods-Ctemplar.release.xcconfig */;
+			baseConfigurationReference = 745F109FE4BC59EAEFE5DACE /* Pods-Ctemplar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
@@ -2226,7 +1916,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.2;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2239,12 +1929,12 @@
 		};
 		CC6909902384500100956E9B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A1E4F8D50C6EBADDA15604E4 /* Pods-Ctemplar.dev.debug.xcconfig */;
+			baseConfigurationReference = F8A99C657FAF50AF9054240E /* Pods-Ctemplar.dev.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development: nivrit gupta (76PJN97HS9)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = N2Z7XM6798;
@@ -2259,7 +1949,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Ctemplar Dev";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2267,12 +1957,12 @@
 		};
 		CC6909912384500100956E9B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6F5F64CBD100612B96B308B8 /* Pods-Ctemplar.dev.release.xcconfig */;
+			baseConfigurationReference = 7E291A3261FA4EB436FB02C1 /* Pods-Ctemplar.dev.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development: nivrit gupta (76PJN97HS9)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = N2Z7XM6798;
@@ -2287,7 +1977,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Ctemplar Dev";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

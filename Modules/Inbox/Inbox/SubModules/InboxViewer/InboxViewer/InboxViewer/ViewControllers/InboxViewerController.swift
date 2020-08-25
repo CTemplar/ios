@@ -3,7 +3,7 @@ import Utility
 import Networking
 import Inbox
 
-class InboxViewerController: UIViewController {
+class InboxViewerController: UIViewController, EmptyStateMachine {
 
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
