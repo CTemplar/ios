@@ -15,7 +15,7 @@ Official iOS client for the CTemplar secure email service.
 
 ## Installation
 
-run 'pod install' command in terminal in application source folder to install all need libraries.
+run 'pod install' command in terminal in application source folder to install all need libraries, if 'pod install' doesn't work then please try to run 'pod install --repo-update'
 
 ## Run
 run Ctemplar.xcworkspace
