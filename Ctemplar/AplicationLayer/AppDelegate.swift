@@ -17,6 +17,7 @@ import Networking
 import Initializer
 import SideMenu
 import Inbox
+import Combine
 
 typealias AppResult<T> = Result<T, Error>
 typealias Completion<T> = (AppResult<T>) -> Void
@@ -28,8 +29,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UserDefaults.standard.setValue(false, forKey:"_UIConstraintBasedLayoutLogUnsatisfiable")
         
-        DPrint("currentDeviceLanguageCode:", Locale.current.languageCode as Any)
-        DPrint("currentAppLanguage:", Locale.preferredLanguages[0])
+        UtilityManager.shared.setupReachability()
+        
+        UtilityManager
+            .shared
+            .subject
+            .subscribe(on: RunLoop.main)
+            .sink(receiveCompletion: { (completion) in
+                DPrint(completion)
+            }) { [weak self] (isNetworkAvailable) in
+                DPrint("Network Available: \(isNetworkAvailable)")
+                if !isNetworkAvailable {
+                    self?.presentEmptyState()
+                } else {
+                    self?.removeEmptyState()
+                }
+        }
         
         configureWindow()
         
@@ -80,6 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        UtilityManager.shared.stopReachability()
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
@@ -342,6 +358,25 @@ private extension AppDelegate {
                                        user: user,
                                        presenter: inboxViewController
             )
+        }
+    }
+}
+
+// MARK: - Empty State Presentation
+extension AppDelegate {
+    func presentEmptyState() {
+        if let root = window?.rootViewController as? SideMenuController,
+            let inboxNav = root.children.first(where: { $0 is InboxNavigationController }) as? InboxNavigationController,
+            let topVC = inboxNav.topViewController as? EmptyStateMachine {
+            topVC.showEmptyState()
+        }
+    }
+    
+    func removeEmptyState() {
+        if let root = window?.rootViewController as? SideMenuController,
+            let inboxNav = root.children.first(where: { $0 is InboxNavigationController }) as? InboxNavigationController,
+            let topVC = inboxNav.topViewController as? EmptyStateMachine {
+            topVC.removeEmptyState()
         }
     }
 }

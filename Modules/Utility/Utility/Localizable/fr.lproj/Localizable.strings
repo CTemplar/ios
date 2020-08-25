@@ -168,32 +168,29 @@
 "viewDetails" = "Afficher";
 "hideDetails" = "Masquer";
 
-//compose
-
+// Compose
 "emailFromPrefix" = "De : ";
 "emailToPrefix" = "À : ";
 "ccToPrefix" = "Cc : ";
 "bccToPrefix" = "Bcc : ";
 "composeEmail" = "Nouveau message";
-
+"SelectDraftOption" = "Veuillez sélectionner l'une des options pour continuer";
 "replyOn" = "Date : ";
 "wroteBy" = "De :";
 "atTime" = "Date ";
 "forwardLine" = "---------- Message transféré ----------";
 "date" = "Date : ";
 "subject" = "Objet : ";
+"saveDraft" = "Sauvegardé brouillon";
+"discardDraft" = "Annuler";
+"fromAnotherApp" = "A partir d'une autre application";
+"photoLibrary" = "Photos";
+"camera" = "Prendre une photo";
 
 // Banner
 "mailSendMessage" = "Courrier envoyé avec succès.";
 "mailSendingAlert" = "Envoi de mail…";
 "sendMailError" = "Impossible d'envoyer le courrier, veuillez réessayer plus tard";
-
-"saveDraft" = "Sauvegardé brouillon";
-"discardDraft" = "Annuler";
-
-"fromAnotherApp" = "A partir d'une autre application";
-"photoLibrary" = "Photos";
-"camera" = "Prendre une photo";
 
 "forwardSubject" = "Fwd : ";
 "replySubject" = "Re : ";
@@ -460,3 +457,7 @@
 // Contacts
 "unknownName" = "Nom inconnu";
 "unknownEmail" = "Email inconnu";
+
+// Network Error
+"networkErrorTitle" = "Nous sommes désolés";
+"networkErrorMessage" = "Apparemment, votre appareil n'est pas connecté au réseau. Veuillez patienter pendant que nous recherchons un réseau disponible.";

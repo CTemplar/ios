@@ -16,8 +16,6 @@ class ContactsViewController: UIViewController, UISearchResultsUpdating, UISearc
     var router      : ContactsRouter?
     var dataSource  : ContactsDataSource?
     
-    var sideMenuViewController : InboxSideMenuViewController?
-    
     var contactsList : Array<Contact> = []
     var filterdContactsList : Array<Contact> = []
     var contactsEncrypted: Bool = false

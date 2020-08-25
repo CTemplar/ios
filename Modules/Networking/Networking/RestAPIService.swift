@@ -204,7 +204,7 @@ public class RestAPIService {
         }
     }
     
-    func createMessage(token: String, parentID: String, content: String, subject: String, recieversList: [[String]], folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String], attachments: Array<[String : String]>, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func createMessage(token: String, parentID: String, content: String, subject: String, recieversList: [[String]], folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String], attachments: Array<[String : String]>, isHTML: Bool = false, completionHandler: @escaping (APIResult<Any>) -> Void) {
     
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -221,7 +221,8 @@ public class RestAPIService {
             JSONKey.encrypted.rawValue : encrypted,
             JSONKey.encryption.rawValue : encryptionObject,
             JSONKey.attachments.rawValue : attachments,
-            JSONKey.parent.rawValue : parentID
+            JSONKey.parent.rawValue : parentID,
+            JSONKey.isHTML.rawValue: isHTML
         ]
         
         if recieversList[1].count > 0 {

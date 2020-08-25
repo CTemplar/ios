@@ -37,7 +37,6 @@ final class InboxViewerInteractor {
                         self?.inboxViewerController?.router?.backToParent()
                     }
                 case .failure(let error):
-                    print("error:", error)
                     self?.inboxViewerController?
                         .presenter?
                         .showAlert(withTitle: Strings.AppError.messagesError.localized,

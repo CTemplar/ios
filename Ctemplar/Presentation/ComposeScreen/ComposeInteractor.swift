@@ -813,28 +813,13 @@ class ComposeInteractor {
             return false
         }
                 
-        if self.returnPressed(input: text) {
-            /*
-            let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "emailToPrefix".localized())
-            //let inputEmail = self.getLastInputEmail(input: inputDroppedPrefixText)
-            let inputEmail = self.getLastInputText(input: inputDroppedPrefixText, emailsArray: self.viewController!.emailsToArray)
-            
-            self.setEmail(textView: textView, inputEmail: inputEmail, clearInputtedChars: false)
-            */
-            self.viewController?.view.endEditing(true)
-            
+        if returnPressed(input: text) {
+            viewController?.view.endEditing(true)
             return false
         }
         
         if self.spacePressed(input: text) {
-            /*
-            let inputDroppedPrefixText = self.dropPrefix(text: textView.text, prefix: "emailToPrefix".localized())
-            let inputEmail = self.getLastInputText(input: inputDroppedPrefixText, emailsArray: self.viewController!.emailsToArray)
-            
-            self.setEmail(textView: textView, inputEmail: inputEmail, clearInputtedChars: false)
-            */
-            self.viewController?.view.endEditing(true)
-            
+            viewController?.view.endEditing(true)
             return false
         }
         
@@ -1066,25 +1051,20 @@ class ComposeInteractor {
     }
     
     func setEmail(textView: UITextView, inputEmail: String, clearInputtedChars: Bool) {
-        
-        var inputText : String = ""
+        var inputText = ""
         
         if clearInputtedChars {
             self.setFilteredList(searchText: "")
             let lastInput = self.getLastWord(textView: textView)
             let text = textView.text.dropLast((lastInput?.count)!)
-            //inputText = text + inputEmail + " "
             inputText = text + " <" + inputEmail + "> "
         } else {
-            if inputEmail.count > 0 {
-                //inputText = textView.text + " "
+            if !inputEmail.isEmpty, !inputEmail.contains("<") {
                 let textBefore = String(textView.text.dropLast(inputEmail.count))
-                print("textBefore", textBefore)
+                DPrint("textBefore", textBefore)
                 inputText = textBefore + " <" + inputEmail + "> "
-                
             } else {
-                inputText = textView.text + " " //if user want to delete email, delete backspace after input, but change self mind
-                //hide keyboard?
+                inputText = textView.text + " "
             }
         }
         
@@ -1096,15 +1076,13 @@ class ComposeInteractor {
                 let textBefore = String(textView.text.dropLast(inputEmail.count))
                 self.viewController!.emailToSting = textBefore
             } else {
-                if inputEmail.count > 0 {
-                    self.viewController!.emailsToArray.append(inputEmail)
+                if !inputEmail.isEmpty {
+                    viewController?.emailsToArray.append(inputEmail)
                 }
-                self.viewController!.emailToSting = inputText
+                viewController?.emailToSting = inputText
             }
             
-            self.viewController!.emailToSting = self.viewController!.emailToSting.replacingOccurrences(of: "  ", with: " ")//remove double spaces
-            
-            break
+            viewController?.emailToSting = viewController?.emailToSting.replacingOccurrences(of: "  ", with: " ") ?? ""
         case self.viewController!.ccToTextView:
             print("inputCcEmail:", inputEmail as Any)
             
@@ -1119,7 +1097,6 @@ class ComposeInteractor {
             }
      
             self.viewController!.ccToSting = self.viewController!.ccToSting.replacingOccurrences(of: "  ", with: " ")//remove double spaces
-            break
         case self.viewController!.bccToTextView:
             print("inputBccEmail:", inputEmail as Any)
             
@@ -1134,7 +1111,6 @@ class ComposeInteractor {
             }
 
             self.viewController!.bccToSting = self.viewController!.bccToSting.replacingOccurrences(of: "  ", with: " ")//remove double spaces
-            break
         default:
             break
         }
@@ -1260,7 +1236,6 @@ class ComposeInteractor {
     }
     
     func dropPrefix(text: String, prefix: String) -> String {
-        
         guard text.hasPrefix(prefix) else { return text }
         
         return String(text.dropFirst(prefix.count))

@@ -1,11 +1,3 @@
-//
-//  SchedulerViewController.swift
-//  Ctemplar
-//
-//  Created by Tatarinov Dmitry on 13.12.2018.
-//  Copyright © 2018 CTemplar. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import Utility
@@ -17,24 +9,20 @@ protocol SchedulerDelegate {
 
 class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var formatterService: FormatterService?
     
-    var formatterService : FormatterService?
+    var delegate: SchedulerDelegate?
     
-    var delegate    : SchedulerDelegate?
-    
-    @IBOutlet var scheduleButton        : UIButton!
-    @IBOutlet var titleLabel            : UILabel!
-    @IBOutlet var textLabel             : UILabel!
-    @IBOutlet var dateLabel             : UILabel!
-    @IBOutlet var datePicker            : UIDatePicker!
-    @IBOutlet var customDatePicker      : UIPickerView!
-    @IBOutlet var mainView              : UIView!
+    @IBOutlet weak var scheduleButton: UIBarButtonItem!
+    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var customDatePicker: UIPickerView!
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
     var mode: SchedulerMode!
     var scheduledDate = Date()
     var pickerData: [[String]] = [[String]]()
-    
     var days = 0
     var hours = 0
     
@@ -69,7 +57,6 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         var hourSuffix = ""
         
         for day in 0...99 {
-            
             var daysLastDigit = 0
             
             if day < 10 || day > 19 {
@@ -80,16 +67,16 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             }
 
             if daysLastDigit == 1 {
-                daySuffix = "oneDay".localized()
+                daySuffix = Strings.Formatter.oneDay.localized
             } else {
-                daySuffix = "manyDays".localized()
+                daySuffix = Strings.Formatter.manyDays.localized
                 if daysLastDigit < 5 {
-                    daySuffix = "manyDaysx".localized()
+                    daySuffix = Strings.Formatter.manyDaysx.localized
                 }
             }
             
             if daysLastDigit == 0 {
-                daySuffix = "manyDays".localized()
+                daySuffix = Strings.Formatter.manyDays.localized
             }
             
             let dayString = String(format: "%i ", day) + daySuffix.dropLast()
@@ -97,7 +84,6 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         }
         
         for hour in 0...24 {
-            
             var hoursLastDigit = 0
             
             if hour < 10 || hour > 19 {
@@ -108,16 +94,16 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             }
             
             if hoursLastDigit == 1 {
-                hourSuffix = "oneHour".localized()
+                hourSuffix = Strings.Formatter.oneHour.localized
             } else {
-                hourSuffix = "manyHours".localized()
+                hourSuffix = Strings.Formatter.manyHours.localized
                 if hoursLastDigit < 5 {
-                    hourSuffix = "manyHoursx".localized()
+                    hourSuffix = Strings.Formatter.manyHoursx.localized
                 }
             }
             
             if hoursLastDigit == 0 {
-                hourSuffix = "manyHours".localized()
+                hourSuffix = Strings.Formatter.manyHours.localized
             }
             
             let hourString = String(format: "%i ", hour) + hourSuffix
@@ -129,58 +115,47 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     func setupScreen() {
-        
-        switch self.mode! {
-        case SchedulerMode.selfDestructTimer:
-            self.titleLabel.text = "selfDestructTimer".localized()
-            self.textLabel.text = "selfDestructTimerText".localized()
-            break
-        case SchedulerMode.deadManTimer:
-            self.titleLabel.text = "deadManTimer".localized()
-            self.textLabel.text = "deadManTimerText".localized()
-            break
-        case SchedulerMode.delayedDelivery:
-            self.titleLabel.text = "delayedDelivery".localized()
-            self.textLabel.text = "delayedDeliveryText".localized()
-            break 
+        switch mode {
+        case .selfDestructTimer:
+            navigationBar.topItem?.title = Strings.Scheduler.selfDestructTimer.localized
+            textLabel.text = Strings.Scheduler.selfDestructTimerText.localized
+        case .deadManTimer:
+            navigationBar.topItem?.title = Strings.Scheduler.deadManTimer.localized
+            textLabel.text = Strings.Scheduler.deadManTimerText.localized
+        case .delayedDelivery:
+            navigationBar.topItem?.title = Strings.Scheduler.delayedDelivery.localized
+            textLabel.text = Strings.Scheduler.delayedDeliveryText.localized
+        case .none: break
         }
-        
-        self.setDateLabel()
+        setDateLabel()
     }
     
     func setDateLabel() {
-        
-        switch self.mode! {
-        case SchedulerMode.selfDestructTimer:
-            self.dateLabel.text = self.scheduledDate.formatScheduleDestructionTimeToString(days: self.days, hours: self.hours, minutes: 0)
-            break
-        case SchedulerMode.deadManTimer:
-            self.dateLabel.text = self.scheduledDate.formatScheduleDestructionTimeToString(days: self.days, hours: self.hours, minutes: 0)
-            break
-        case SchedulerMode.delayedDelivery:
-            self.dateLabel.text = self.formatterService?.formatDateToDelayedDeliveryDateString(date: self.scheduledDate)
-            break
+        switch mode {
+        case .selfDestructTimer:
+            dateLabel.text = self.scheduledDate.formatScheduleDestructionTimeToString(days: days, hours: hours, minutes: 0)
+        case .deadManTimer:
+            dateLabel.text = self.scheduledDate.formatScheduleDestructionTimeToString(days: days, hours: hours, minutes: 0)
+        case .delayedDelivery:
+            dateLabel.text = self.formatterService?.formatDateToDelayedDeliveryDateString(date: scheduledDate)
+        case .none: break
         }
     }
     
     func setupPicker() {
-        
-        switch self.mode! {
-        case SchedulerMode.selfDestructTimer:
-            self.datePicker.isHidden = true
-            self.customDatePicker.isHidden = false
-            break
-        case SchedulerMode.deadManTimer:
-            self.datePicker.isHidden = true
-            self.customDatePicker.isHidden = false
-            break
-        case SchedulerMode.delayedDelivery:
-            self.datePicker.datePickerMode = .dateAndTime
-            self.datePicker.isHidden = false
-            self.customDatePicker.isHidden = true
-            break
+        switch mode {
+        case .selfDestructTimer:
+            datePicker.isHidden = true
+            customDatePicker.isHidden = false
+        case .deadManTimer:
+            datePicker.isHidden = true
+            customDatePicker.isHidden = false
+        case .delayedDelivery:
+            datePicker.datePickerMode = .dateAndTime
+            datePicker.isHidden = false
+            customDatePicker.isHidden = true
+        case .none: break
         }
-        
         let appLang = UserDefaults.standard.string(forKey: "app_lang") ?? "en"
         self.datePicker.locale = Locale.init(identifier: appLang)
         self.datePicker.date = self.scheduledDate
@@ -216,25 +191,20 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         }
     }
     
-    //MARK: - Custom Date Picker Delegate
-    
+    // MARK: - Custom Date Picker Delegate
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        
         return pickerData.count
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
         return pickerData[component].count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
         return pickerData[component][row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
         switch component {
         case 0:
              let pickedDaysString = pickerData[component][row]
@@ -251,25 +221,18 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         default:
             break
         }
-        
-        //print("days:", days, "hours:", hours)
-        
-        self.scheduledDate = self.formatScheduledDateWith(days: self.days, hours: self.hours)
-        self.setDateLabel()
-        self.validateScheduledDate()
+        scheduledDate = self.formatScheduledDateWith(days: self.days, hours: self.hours)
+        setDateLabel()
+        validateScheduledDate()
     }
     
     func formatScheduledDateWith(days: Int, hours: Int) -> Date {
-        
         let hoursTotal = (self.days * 24) + self.hours
-        
-        let date = self.formatterService?.formatDeadManDurationToDate(duration: hoursTotal)
-        
-        return date!
+        let date = formatterService?.formatDeadManDurationToDate(duration: hoursTotal)
+        return date ?? Date()
     }
     
     func setCustomPickerScheduledDate() {
-        
         if let minutes = self.formatterService?.calculateMinutesCountFor(date: self.scheduledDate) {
             let hours = lroundf(Float(minutes)/60.0)
             
@@ -283,26 +246,14 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                 currentHour = hours
             }
             
-            print("currentDay:", currentDay)
-            print("currentHour:", currentHour)
-            
             self.customDatePicker.selectRow(currentDay, inComponent: 0, animated: false)
             self.customDatePicker.selectRow(currentHour, inComponent: 1, animated: false)
         }
     }
     
     func validateScheduledDate() {
-                
         if let minutes = self.formatterService?.calculateMinutesCountFor(date: self.scheduledDate) {
-            print("minutes from now:", minutes)
-        
-            if minutes > 0 {
-                scheduleButton.isEnabled = true
-                scheduleButton.alpha = 1.0
-            } else {
-                scheduleButton.isEnabled = false
-                scheduleButton.alpha = 0.6
-            }
+            scheduleButton.isEnabled = minutes > 0
         }
     }
 }

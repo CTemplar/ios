@@ -210,12 +210,11 @@ public class APIService: HashingService {
                     completionHandler(APIResult.success(emailMessages))
                 }
             } else {
-                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Response have unknown format"])
+                let error = NSError(domain:"", code: URLError.unknown.rawValue, userInfo:[NSLocalizedDescriptionKey: "Response have unknown format"])
                 completionHandler(APIResult.failure(error))
             }
             
         case .failure(let error):
-            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
             completionHandler(APIResult.failure(error))
         }
     }
@@ -340,7 +339,7 @@ public class APIService: HashingService {
         }
     }
     
-    public func createMessage(parentID: String, content: String, subject: String, recieversList: [[String]], folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String: String], attachments: Array<[String: String]>, showHud: Bool = true, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    public func createMessage(parentID: String, content: String, subject: String, recieversList: [[String]], folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String: String], attachments: Array<[String: String]>, isHTML: Bool = false, showHud: Bool = true, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         checkTokenExpiration() { [weak self] (complete) in
             if complete {
