@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		0405C8F82DA938D7BDE72417 /* Pods_Ctemplar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B67CD22B089E7EBC3673BD4 /* Pods_Ctemplar.framework */; };
 		1908853273F0A7E0A5229C56 /* Pods_Ctemplar_devTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72F57A500F350D4461731323 /* Pods_Ctemplar_devTests.framework */; };
-		30503EA323D8EE70004B04D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30503EA023D8EE6A004B04D6 /* GoogleService-Info.plist */; };
-		30503EA423D8EE74004B04D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30503EA223D8EE6A004B04D6 /* GoogleService-Info.plist */; };
 		4422CEE824C2CD55005C85F1 /* InboxViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4422CEE724C2CD55005C85F1 /* InboxViewer.framework */; };
 		4422CEE924C2CD55005C85F1 /* InboxViewer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4422CEE724C2CD55005C85F1 /* InboxViewer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		443DD3ED24CDCB1100771AE5 /* AppSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 443DD3EC24CDCAF700771AE5 /* AppSettings.framework */; };
@@ -53,7 +51,7 @@
 		446641B424C495080093A6DE /* DOCAttachmentCollectionCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446641B324C495080093A6DE /* DOCAttachmentCollectionCellTests.swift */; };
 		446641B824C4A3AD0093A6DE /* AttachmentCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446641B724C4A3AD0093A6DE /* AttachmentCellTests.swift */; };
 		446641BC24C4B6700093A6DE /* InboxViewerWebMailBodyCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446641BB24C4B6700093A6DE /* InboxViewerWebMailBodyCellTests.swift */; };
-		446641C724C4CF520093A6DE /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 446641C624C4CF520093A6DE /* SwiftPackageProductDependency */; };
+		446641C724C4CF520093A6DE /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 446641C624C4CF520093A6DE /* SnapshotTesting */; };
 		4497F1D8248BDF4000AF83F5 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4497F1D7248BDF4000AF83F5 /* FAQViewController.swift */; };
 		4497F1DA248BDF5200AF83F5 /* FAQ.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4497F1D9248BDF5200AF83F5 /* FAQ.storyboard */; };
 		4497F1DC248BE02000AF83F5 /* FAQConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4497F1DB248BE02000AF83F5 /* FAQConfigurator.swift */; };
@@ -345,8 +343,6 @@
 /* Begin PBXFileReference section */
 		01EB1F2765626467EAB94121 /* Pods-Ctemplar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.release.xcconfig"; path = "Target Support Files/Pods-Ctemplar/Pods-Ctemplar.release.xcconfig"; sourceTree = "<group>"; };
 		193901AC06C5DF103B6A96E1 /* Pods-Ctemplar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.debug.xcconfig"; path = "Target Support Files/Pods-Ctemplar/Pods-Ctemplar.debug.xcconfig"; sourceTree = "<group>"; };
-		30503EA023D8EE6A004B04D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		30503EA223D8EE6A004B04D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4422CEE724C2CD55005C85F1 /* InboxViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = InboxViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4438246C248F9A1200DEA4F3 /* Signup.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Signup.xcodeproj; path = Signup/Signup.xcodeproj; sourceTree = "<group>"; };
 		443DD3E724CDCAF600771AE5 /* AppSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AppSettings.xcodeproj; path = AppSettings/AppSettings.xcodeproj; sourceTree = "<group>"; };
@@ -479,7 +475,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				446641C724C4CF520093A6DE /* BuildFile in Frameworks */,
+				446641C724C4CF520093A6DE /* SnapshotTesting in Frameworks */,
 				1908853273F0A7E0A5229C56 /* Pods_Ctemplar_devTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -541,7 +537,6 @@
 		30503E9F23D8EE6A004B04D6 /* prod */ = {
 			isa = PBXGroup;
 			children = (
-				30503EA023D8EE6A004B04D6 /* GoogleService-Info.plist */,
 			);
 			path = prod;
 			sourceTree = "<group>";
@@ -549,7 +544,6 @@
 		30503EA123D8EE6A004B04D6 /* dev */ = {
 			isa = PBXGroup;
 			children = (
-				30503EA223D8EE6A004B04D6 /* GoogleService-Info.plist */,
 			);
 			path = dev;
 			sourceTree = "<group>";
@@ -1077,7 +1071,7 @@
 			);
 			name = Ctemplar.devTests;
 			packageProductDependencies = (
-				446641C624C4CF520093A6DE /* SwiftPackageProductDependency */,
+				446641C624C4CF520093A6DE /* SnapshotTesting */,
 			);
 			productName = Ctemplar.devTests;
 			productReference = 44D9668724C17C150050ED46 /* Ctemplar.devTests.xctest */;
@@ -1175,9 +1169,9 @@
 			);
 			mainGroup = 8433FF0D216201A300C57DC8;
 			packageReferences = (
-				443059FF248AE01C00C3DB28 /* RemoteSwiftPackageReference */,
-				44BD63E92490B37E00CB4A73 /* RemoteSwiftPackageReference */,
-				446641C524C4CF520093A6DE /* RemoteSwiftPackageReference */,
+				443059FF248AE01C00C3DB28 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */,
+				44BD63E92490B37E00CB4A73 /* XCRemoteSwiftPackageReference "QuickLayout" */,
+				446641C524C4CF520093A6DE /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = 8433FF17216201A300C57DC8 /* Products */;
 			projectDirPath = "";
@@ -1319,7 +1313,6 @@
 				8441099221776B5100F0BE18 /* Lato-Bold.ttf in Resources */,
 				845E64402170A4A2008612FE /* Compose.storyboard in Resources */,
 				8433FF24216201A500C57DC8 /* LaunchScreen.storyboard in Resources */,
-				30503EA323D8EE70004B04D6 /* GoogleService-Info.plist in Resources */,
 				8436AD532180663800D16008 /* Localizable.strings in Resources */,
 				8440141A21D377D600FC450C /* PrivacyAndTerms.storyboard in Resources */,
 				8430C29521B5566D00ACB559 /* SetPassword.storyboard in Resources */,
@@ -1357,7 +1350,6 @@
 				CC6909632384500100956E9B /* Lato-Bold.ttf in Resources */,
 				CC6909642384500100956E9B /* Compose.storyboard in Resources */,
 				CC6909662384500100956E9B /* LaunchScreen.storyboard in Resources */,
-				30503EA423D8EE74004B04D6 /* GoogleService-Info.plist in Resources */,
 				CC6909672384500100956E9B /* Localizable.strings in Resources */,
 				CC6909692384500100956E9B /* PrivacyAndTerms.storyboard in Resources */,
 				CC69096C2384500100956E9B /* SetPassword.storyboard in Resources */,
@@ -2025,7 +2017,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		443059FF248AE01C00C3DB28 /* RemoteSwiftPackageReference */ = {
+		443059FF248AE01C00C3DB28 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/huri000/SwiftEntryKit.git";
 			requirement = {
@@ -2033,7 +2025,7 @@
 				minimumVersion = 1.2.3;
 			};
 		};
-		446641C524C4CF520093A6DE /* RemoteSwiftPackageReference */ = {
+		446641C524C4CF520093A6DE /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
 			requirement = {
@@ -2041,7 +2033,7 @@
 				minimumVersion = 1.8.1;
 			};
 		};
-		44BD63E92490B37E00CB4A73 /* RemoteSwiftPackageReference */ = {
+		44BD63E92490B37E00CB4A73 /* XCRemoteSwiftPackageReference "QuickLayout" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/huri000/QuickLayout.git";
 			requirement = {
@@ -2052,9 +2044,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		446641C624C4CF520093A6DE /* SwiftPackageProductDependency */ = {
+		446641C624C4CF520093A6DE /* SnapshotTesting */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 446641C524C4CF520093A6DE /* RemoteSwiftPackageReference */;
+			package = 446641C524C4CF520093A6DE /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
 			productName = SnapshotTesting;
 		};
 /* End XCSwiftPackageProductDependency section */
