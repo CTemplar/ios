@@ -18,6 +18,7 @@ import Initializer
 import SideMenu
 import Inbox
 import Combine
+import IQKeyboardManagerSwift
 
 typealias AppResult<T> = Result<T, Error>
 typealias Completion<T> = (AppResult<T>) -> Void
@@ -25,13 +26,14 @@ typealias Completion<T> = (AppResult<T>) -> Void
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    private var anyCancellable: AnyCancellable?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UserDefaults.standard.setValue(false, forKey:"_UIConstraintBasedLayoutLogUnsatisfiable")
         
         UtilityManager.shared.setupReachability()
         
-        UtilityManager
+        anyCancellable = UtilityManager
             .shared
             .subject
             .subscribe(on: RunLoop.main)
@@ -45,6 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self?.removeEmptyState()
                 }
         }
+        
+        IQKeyboardManager.shared.enable = true
         
         configureWindow()
         
@@ -60,6 +64,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                name: .logoutCompleteNotificationID,
                                                object: nil
         )
+        
+        NotificationCenter.default.addObserver(forName: .disableIQKeyboardManagerNotificationID,
+                                               object: nil,
+                                               queue: .main) { (notification) in
+                                                if let vc = notification.object as? UIViewController {
+                                                    IQKeyboardManager.shared.disabledToolbarClasses = [type(of: vc)]
+                                                }
+        }
         
         Fabric.with([Crashlytics.self])
         
@@ -96,6 +108,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         UtilityManager.shared.stopReachability()
+        anyCancellable?.cancel()
+        anyCancellable = nil
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
@@ -204,81 +218,6 @@ private extension AppDelegate {
 // MARK: - Common Callbacks
 /// Common Callbacks from different Module
 private extension AppDelegate {
-    func showCompose(withMode mode: Utility.AnswerMessageMode,
-                     user: UserMyself,
-                     message: EmailMessage? = nil,
-                     presenter: UIViewController?) {
-        let composeVC: ComposeViewController = UIStoryboard(storyboard: .compose,
-                                                          bundle: Bundle(for: ComposeViewController.self)
-        ).instantiateViewController()
-        switch mode {
-        case .forward:
-            composeVC.answerMode = AnswerMessageMode.forward
-        case .newMessage:
-            composeVC.answerMode = AnswerMessageMode.newMessage
-        case .reply:
-            composeVC.answerMode = AnswerMessageMode.reply
-        case .replyAll:
-            composeVC.answerMode = AnswerMessageMode.replyAll
-        }
-        composeVC.user = user
-        
-        if let message = message {
-            composeVC.message = message
-            composeVC.subject = message.subject ?? ""
-            let content = extractMessageContent(message: message)
-            composeVC.dercyptedMessagesArray = [content]
-        }
-        
-        presenter?.navigationController?.pushViewController(composeVC, animated: true)
-    }
-    
-    private func extractMessageContent(message: EmailMessage) -> String {
-        if let content = message.content {
-            if NetworkManager.shared.apiService.isMessageEncrypted(message: message) {
-                let decryptedContent = UtilityManager.shared.pgpService.decryptMessage(encryptedContet: content)
-                return decryptedContent
-            } else {
-                return content
-            }
-        }
-        return "Error"
-    }
-    
-    func showComposeWithDraft(withMessage message: EmailMessage,
-                              withMode mode: Utility.AnswerMessageMode,
-                              user: UserMyself,
-                              presenter: UIViewController?) {
-        let composeVC: ComposeViewController = UIStoryboard(storyboard: .compose,
-                                                          bundle: Bundle(for: ComposeViewController.self)
-        ).instantiateViewController()
-        
-        composeVC.message = message
-        composeVC.user = user
-        
-        if let children = message.children {
-            if !children.isEmpty {
-                composeVC.messagesArray = children
-            }
-        }
-        
-        if let draftSubject = message.subject {
-            composeVC.subject = draftSubject
-        }
-        
-        switch mode {
-        case .forward:
-            composeVC.answerMode = AnswerMessageMode.forward
-        case .newMessage:
-            composeVC.answerMode = AnswerMessageMode.newMessage
-        case .reply:
-            composeVC.answerMode = AnswerMessageMode.reply
-        case .replyAll:
-            composeVC.answerMode = AnswerMessageMode.replyAll
-        }
-        presenter?.show(composeVC, sender: self)
-    }
-    
     func showFAQ(from presenter: UIViewController?) {
         let faqVC: FAQViewController = UIStoryboard(storyboard: .FAQ,
                                                               bundle: Bundle(for: FAQViewController.self)
@@ -340,24 +279,6 @@ private extension AppDelegate {
         // Open FAQ
         initializer.onTapFAQ = { [weak self] (inboxViewController) in
             self?.showFAQ(from: inboxViewController)
-        }
-        
-        // Compose
-        initializer.onTapCompose = { [weak self] (mode, user, message, inboxViewController) in
-            self?.showCompose(withMode: mode,
-                              user: user,
-                              message: message,
-                              presenter: inboxViewController
-            )
-        }
-        
-        // Compose with draft
-        initializer.onTapComposeWithDraft = { [weak self] (mode, message, user, inboxViewController) in
-            self?.showComposeWithDraft(withMessage: message,
-                                       withMode: mode,
-                                       user: user,
-                                       presenter: inboxViewController
-            )
         }
     }
 }

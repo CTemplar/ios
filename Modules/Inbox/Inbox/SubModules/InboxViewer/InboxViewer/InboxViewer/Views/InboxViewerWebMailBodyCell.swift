@@ -6,8 +6,6 @@ import WebKit
 public final class InboxViewerWebMailBodyCell: UITableViewCell, Cellable {
     
     // MARK: Properties
-    public typealias ModelType = TextMail
-    
     var onHeightChange: (() -> Void)?
     
     private let mailBodyWebView: WKWebView = {
@@ -72,7 +70,11 @@ public final class InboxViewerWebMailBodyCell: UITableViewCell, Cellable {
     }
     
     // MARK: - Configuration
-    public func configure(with model: TextMail) {
+    public func configure(with model: Modelable) {
+        guard let model = model as? TextMail else {
+            fatalError("Couldn't Find TextMail")
+        }
+        
         activityIndicatorView.startAnimating()
         mailBodyWebView.navigationDelegate = self
         

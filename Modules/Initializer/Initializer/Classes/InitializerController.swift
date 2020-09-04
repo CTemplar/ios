@@ -8,6 +8,7 @@ import Inbox
 import InboxViewer
 import GlobalSearch
 import AppSettings
+import Compose
 
 public class InitializerController: UIViewController, HashingService, EmptyStateMachine {
     
@@ -92,13 +93,16 @@ public class InitializerController: UIViewController, HashingService, EmptyState
 extension InitializerController {
     func sideMenu() -> SideMenuController? {
         sideMenuResponse = inboxCoordinator.showInbox(onTapCompose: { (mode, user, presenter) in
-            self.onTapCompose?(mode, user, nil, presenter)
+            self.showCompose(withMode: mode, message: nil, user: user, presenter: presenter)
         }, onTapComposeWithDraft: { (mode, message, user, presenter) in
-            self.onTapComposeWithDraft?(mode, message, user, presenter)
+            self.showCompose(withMode: mode, message: message, user: user, presenter: presenter)
         }, onTapSearch: { (user, presenter) in
             self.openSearch(from: presenter, user: user)
         }, onTapViewInbox: { (message, user, delegate, presenter) in
-            self.openInboxViewer(withMessage: message, user: user, delegate: delegate, presenter: presenter)
+            self.openInboxViewer(withMessage: message,
+                                 user: user,
+                                 delegate: delegate,
+                                 presenter: presenter)
         }, onTapContacts: { (contacts, toggle, presenter) in
             self.onTapContacts?(contacts, toggle, presenter)
         }, onTapSettings: { (user, presenter) in
@@ -137,11 +141,20 @@ extension InitializerController {
             .showInboxViewer(withUser: user,
                              message: message,
                              onReply: { [weak self] (mode, message, presenter) in
-                                self?.showCompose(withMode: mode, message: message, user: user, presenter: presenter)
+                                self?.showCompose(withMode: mode,
+                                                  message: message,
+                                                  user: user,
+                                                  presenter: presenter)
                 }, onForward: { [weak self] (mode, message, presenter) in
-                    self?.showCompose(withMode: mode, message: message, user: user, presenter: presenter)
+                    self?.showCompose(withMode: mode,
+                                      message: message,
+                                      user: user,
+                                      presenter: presenter)
                 }, onReplyAll: { [weak self] (mode, message, presenter) in
-                    self?.showCompose(withMode: mode, message: message, user: user, presenter: presenter)
+                    self?.showCompose(withMode: mode,
+                                      message: message,
+                                      user: user,
+                                      presenter: presenter)
                 }, onMoveTo: { [weak self] (delegate, messageId, user, presenter) in
                     self?.inboxCoordinator.showMoveToController(withMoveToDelegate: delegate,
                                                                 selectedMessageIds: [messageId],
@@ -158,7 +171,48 @@ extension InitializerController {
                              user: UserMyself?,
                              presenter: UIViewController?) {
         if let user = user {
-            onTapCompose?(mode, user, message, presenter)
+            let composeCoordinator = ComposeCoordinator()
+
+            if mode == .forward,
+                let email = message,
+                email.attachments?.isEmpty == false {
+                
+                let alertController = UIAlertController(title: Strings.Compose.SelectDraftOption.localized,
+                                                        message: nil, preferredStyle: .actionSheet)
+                
+                alertController.addAction(.init(title: Strings.Compose.includeAttachments.localized,
+                                                style: .default, handler:
+                    { (_) in
+                        composeCoordinator.showCompose(from: presenter,
+                                                       withUser: user,
+                                                       existingEmail: message,
+                                                       answerMode: mode,
+                                                       includeAttachments: true)
+                }))
+                
+                alertController.addAction(.init(title: Strings.Compose.dontIncludeAttachments.localized,
+                                                style: .default, handler:
+                    { (_) in
+                        composeCoordinator.showCompose(from: presenter,
+                                                       withUser: user,
+                                                       existingEmail: message,
+                                                       answerMode: mode,
+                                                       includeAttachments: false)
+                }))
+                
+                alertController.addAction(.init(title: Strings.Button.cancelButton.localized,
+                                                style: .cancel,
+                                                handler:
+                    { (_) in
+                        alertController.dismiss(animated: true, completion: nil)
+                }))
+            } else {
+                composeCoordinator.showCompose(from: presenter,
+                                               withUser: user,
+                                               existingEmail: message,
+                                               answerMode: mode,
+                                               includeAttachments: false)
+            }
         }
     }
 }

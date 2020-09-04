@@ -1,8 +1,8 @@
 import Foundation
 import Networking
 
-struct InboxViewerConstant {
-    static let attachmentFileName = "tempFile"
+public struct InboxViewerConstant {
+    public static let attachmentFileName = "tempFile"
 }
 
 enum InboxViewerSection {

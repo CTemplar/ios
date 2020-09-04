@@ -6,8 +6,6 @@ import SnapKit
 public final class AppSettingsStorageCell: UITableViewCell, Cellable {
     
     // MARK: Properties
-    public typealias ModelType = AppSettingsModel
-
     lazy private var storageSlider: UISlider = {
         let slider = UISlider()
         slider.minimumTrackTintColor = AppStyle.Colors.loaderColor.color
@@ -68,7 +66,11 @@ public final class AppSettingsStorageCell: UITableViewCell, Cellable {
     }
     
     // MARK: - Configuration
-    public func configure(with model: AppSettingsModel) {
+    public func configure(with model: Modelable) {
+        guard let model = model as? AppSettingsModel else {
+            fatalError("Couldn't Find AppSettingsModel")
+        }
+        
         titleLabel.text = model.title
         titleLabel.textAlignment = model.titleAlignment
         accessoryType = model.showDetailIndicator ? .disclosureIndicator : .none

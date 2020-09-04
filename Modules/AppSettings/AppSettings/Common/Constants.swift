@@ -1,7 +1,5 @@
 import Utility
 
-let mobileSignatureKey = Domain.main.rawValue + ".mobileSignatureKey"
-
 enum SettingsSection: CaseIterable {
     case general
     case folder

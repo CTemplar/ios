@@ -11,6 +11,7 @@ public struct Contact: Hashable {
     public private (set) var isEncrypted: Bool?
     public private (set) var emailHash: String?
     public private (set) var encryptedData: String?
+    public private (set) var isSelected: Bool = false
     
     // MARK: Constructor
     public init() {}
@@ -48,5 +49,9 @@ public struct Contact: Hashable {
         self.note = decryptedDictionary["note"] as? String
         self.isEncrypted = false
         self.emailHash = decryptedDictionary["email_hash"] as? String
+    }
+    
+    public mutating func update(isSelected: Bool) {
+        self.isSelected = isSelected
     }
 }

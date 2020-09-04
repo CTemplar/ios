@@ -185,6 +185,10 @@
 "fromAnotherApp" = "Z inej aplikácie";
 "photoLibrary" = "Z albumu fotografií";
 "camera" = "Snímka z kamery";
+"includeAttachments" = "Zahrnúť prílohy";
+"dontIncludeAttachments" = "Neuvádzajte prílohy";
+"removeAttachmentAlertTitle" = "Odstrániť prílohu";
+"removeAttachmentAlertDesc" = "Naozaj chcete odstrániť prílohu?";
 
 // Banner
 "mailSendMessage" = "Správa bola úspešne odoslaná";

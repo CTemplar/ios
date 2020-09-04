@@ -6,10 +6,18 @@ public typealias Completion<T> = (AppResult<T>) -> Void
 public typealias PGPKey = Key
 public typealias SecurityKey = Key
 
+public let mobileSignatureKey = Domain.main.rawValue + ".mobileSignatureKey"
+
 public enum Domain: String {
     case main = "ctemplar.com"
     case dev = "dev.ctemplar.net"
     case devOld = "dev.ctemplar.com"
+}
+
+public enum SchedulerMode: String {
+    case selfDestructTimer = "Self-destructing Timer"
+    case deadManTimer = "Dead Man's Timer"
+    case delayedDelivery = "Delayed delivery"
 }
 
 public struct AppStyle {
@@ -116,6 +124,7 @@ public struct GeneralConstant {
         case pdf = "pdf"
         case png = "png"
         case jpg = "jpg"
+        case jpeg = "jpeg"
         
         public var color: UIColor {
             switch self {
@@ -125,7 +134,7 @@ public struct GeneralConstant {
                 return k_pdfColor
             case .png:
                 return k_pngColor
-            case .jpg:
+            case .jpg, .jpeg:
                 return k_jpgColor
             }
         }
@@ -296,6 +305,10 @@ public var k_lightGrayColor: UIColor {
 
 public var k_whiteBlackListTextLabelColor: UIColor {
     return UIColor(named: "whiteBlackListTextLabelColor")!
+}
+
+public var k_encryptSeperatorColor: UIColor {
+    return UIColor(named: "encryptSeperatorColor")!
 }
 
 public var k_emailToColor: UIColor {

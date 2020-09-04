@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Scheduler View Controller-->
+        <scene sceneID="4AE-MB-iad">
+            <objects>
+                <viewController storyboardIdentifier="SchedulerViewController" id="Tbh-3a-1e6" customClass="SchedulerViewController" customModule="Compose" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ehV-ho-t31">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Sj-px-eG3">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Delayed delivery" id="hIm-wA-gS0">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" image="xmark" catalog="system" style="done" id="MZo-ro-xS8">
+                                            <color key="tintColor" name="redColor"/>
+                                            <connections>
+                                                <action selector="cancelButtonPressed:" destination="Tbh-3a-1e6" id="Ecz-7C-8e8"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" enabled="NO" image="timer" catalog="system" style="plain" id="uun-Sy-aXN">
+                                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="scheduleButtonPressed:" destination="Tbh-3a-1e6" id="Lbz-HD-z2W"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email will be send automatically at the set time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="taU-8K-Coy">
+                                <rect key="frame" x="23.666666666666657" y="104" width="328" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="nBB-FF-9Cu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                <color key="textColor" name="encryptSubtitleColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wed 9 Sep 10:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PsJ-ik-uBH">
+                                <rect key="frame" x="126" y="378" width="123" height="19"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                <color key="textColor" name="actionMessageColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xCg-tp-1xA">
+                                <rect key="frame" x="86.666666666666671" y="405" width="201.66666666666663" height="2"/>
+                                <color key="backgroundColor" name="encryptSeperatorColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="aHw-oq-jdt"/>
+                                </constraints>
+                            </view>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="QhJ-l3-SH4">
+                                <rect key="frame" x="0.0" y="562" width="375" height="216"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" red="0.81568627450980391" green="0.81568627450980391" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="datePickerValueChangedWithSender:" destination="Tbh-3a-1e6" eventType="valueChanged" id="8fV-L7-9LU"/>
+                                </connections>
+                            </datePicker>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2FM-YG-0lR">
+                                <rect key="frame" x="0.0" y="562" width="375" height="216"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Tbh-3a-1e6" id="fPa-Dy-BE1"/>
+                                    <outlet property="delegate" destination="Tbh-3a-1e6" id="s7S-DS-eai"/>
+                                </connections>
+                            </pickerView>
+                        </subviews>
+                        <color key="backgroundColor" name="viewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="taU-8K-Coy" firstAttribute="width" secondItem="ehV-ho-t31" secondAttribute="width" multiplier="0.874667" id="3Iw-y8-SJw"/>
+                            <constraint firstItem="xCg-tp-1xA" firstAttribute="centerX" secondItem="ehV-ho-t31" secondAttribute="centerX" id="6Ff-q4-aPX"/>
+                            <constraint firstItem="taU-8K-Coy" firstAttribute="top" secondItem="9Sj-px-eG3" secondAttribute="bottom" constant="16" id="8nM-xm-46e"/>
+                            <constraint firstItem="2FM-YG-0lR" firstAttribute="bottom" secondItem="6Ns-hh-tWy" secondAttribute="bottom" id="Oj5-rZ-AZF"/>
+                            <constraint firstItem="QhJ-l3-SH4" firstAttribute="trailing" secondItem="6Ns-hh-tWy" secondAttribute="trailing" id="RXf-8R-vRB"/>
+                            <constraint firstItem="2FM-YG-0lR" firstAttribute="leading" secondItem="6Ns-hh-tWy" secondAttribute="leading" id="WRe-dX-7AL"/>
+                            <constraint firstItem="taU-8K-Coy" firstAttribute="centerX" secondItem="ehV-ho-t31" secondAttribute="centerX" id="Whf-VV-8YO"/>
+                            <constraint firstItem="xCg-tp-1xA" firstAttribute="width" secondItem="PsJ-ik-uBH" secondAttribute="width" multiplier="1.63934" id="YhT-lz-HTk"/>
+                            <constraint firstItem="QhJ-l3-SH4" firstAttribute="leading" secondItem="6Ns-hh-tWy" secondAttribute="leading" id="bWt-SQ-X1d"/>
+                            <constraint firstItem="6Ns-hh-tWy" firstAttribute="bottom" secondItem="QhJ-l3-SH4" secondAttribute="bottom" id="euo-uS-RmS"/>
+                            <constraint firstItem="PsJ-ik-uBH" firstAttribute="centerX" secondItem="xCg-tp-1xA" secondAttribute="centerX" id="fQr-8g-pCk"/>
+                            <constraint firstItem="9Sj-px-eG3" firstAttribute="trailing" secondItem="6Ns-hh-tWy" secondAttribute="trailing" id="fcN-Mt-8ub"/>
+                            <constraint firstItem="9Sj-px-eG3" firstAttribute="leading" secondItem="6Ns-hh-tWy" secondAttribute="leading" id="kbd-uX-wnb"/>
+                            <constraint firstItem="xCg-tp-1xA" firstAttribute="top" secondItem="PsJ-ik-uBH" secondAttribute="bottom" constant="8" id="m4g-TP-xPa"/>
+                            <constraint firstItem="9Sj-px-eG3" firstAttribute="top" secondItem="6Ns-hh-tWy" secondAttribute="top" id="oIt-wq-Cp6"/>
+                            <constraint firstItem="2FM-YG-0lR" firstAttribute="trailing" secondItem="6Ns-hh-tWy" secondAttribute="trailing" id="w2u-Zb-VhS"/>
+                            <constraint firstItem="xCg-tp-1xA" firstAttribute="centerY" secondItem="ehV-ho-t31" secondAttribute="centerY" id="wMT-RQ-aoP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Ns-hh-tWy"/>
+                    </view>
+                    <connections>
+                        <outlet property="customDatePicker" destination="2FM-YG-0lR" id="bxA-to-gmp"/>
+                        <outlet property="dateLabel" destination="PsJ-ik-uBH" id="xq2-gH-pdc"/>
+                        <outlet property="datePicker" destination="QhJ-l3-SH4" id="mBz-9P-Nz3"/>
+                        <outlet property="navigationBar" destination="9Sj-px-eG3" id="qlj-Ne-Bp7"/>
+                        <outlet property="scheduleButton" destination="uun-Sy-aXN" id="6R2-st-RNY"/>
+                        <outlet property="textLabel" destination="taU-8K-Coy" id="h6Z-dM-eqf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W0C-4o-W1w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-250.40000000000001" y="145.27736131934034"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="timer" catalog="system" width="128" height="121"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="actionMessageColor">
+            <color red="0.035000000149011612" green="0.12200000137090683" blue="0.20800000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="encryptSeperatorColor">
+            <color red="0.090000003576278687" green="0.19599999487400055" blue="0.30199998617172241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="encryptSubtitleColor">
+            <color red="0.21600000560283661" green="0.22400000691413879" blue="0.23100000619888306" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="redColor">
+            <color red="0.90600001811981201" green="0.29800000786781311" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="viewBackgroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

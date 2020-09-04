@@ -43,7 +43,7 @@ final class GlobalSearchDataSource: NSObject {
     func updateMessageStatus(message: EmailMessage, status: Bool) {
         if let index = messages.firstIndex(where: { $0.messsageID == message.messsageID }) {
             var message = messages[index]
-            message.update(readStatus: status)
+            message.update(status)
             messages[index] = message
             tableView?.reloadData()
         }

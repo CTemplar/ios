@@ -186,6 +186,10 @@
 "fromAnotherApp" = "A partir d'une autre application";
 "photoLibrary" = "Photos";
 "camera" = "Prendre une photo";
+"includeAttachments" = "Inclure les pièces jointes";
+"dontIncludeAttachments" = "Ne pas inclure les pièces jointes";
+"removeAttachmentAlertTitle" = "Supprimer la pièce jointe";
+"removeAttachmentAlertDesc" = "Voulez-vous vraiment supprimer la pièce jointe?";
 
 // Banner
 "mailSendMessage" = "Courrier envoyé avec succès.";

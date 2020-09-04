@@ -128,7 +128,7 @@ class InboxViewController: UIViewController, EmptyStateMachine {
         setupLeftBarButtonItems()
         
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.reciveUpdateNotification(notification:)),
+                                               selector: #selector(reciveUpdateNotification(notification:)),
                                                name: .updateInboxMessagesNotificationID,
                                                object: nil
         )
@@ -139,6 +139,18 @@ class InboxViewController: UIViewController, EmptyStateMachine {
                                                object: nil
         )
         
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(receiveMailSentNotification(notification:)),
+                                               name: .mailSentNotificationID,
+                                               object: nil
+        )
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(receiveMailSentErrorNotification(notification:)),
+                                               name: .mailSentErrorNotificationID,
+                                               object: nil
+        )
+
         edgesForExtendedLayout = []
         
         // Fetch emails
@@ -181,6 +193,23 @@ class InboxViewController: UIViewController, EmptyStateMachine {
                                               silent: silent,
                                               menu: SharedInboxState.shared.selectedMenu)
         presenter?.interactor?.userMyself()
+    }
+    
+    @objc
+    private func receiveMailSentNotification(notification: Notification) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            let text = notification.object as? String ?? ""
+            self.showBanner(withTitle: text,
+                            additionalConfigs: [.displayDuration(2.0),
+                                                .showButton(true)])
+        }
+    }
+    
+    @objc
+    private func receiveMailSentErrorNotification(notification: Notification) {
+        if let params = notification.object as? AlertKitParams {
+            showAlert(with: params, onCompletion: {})
+        }
     }
     
     @objc

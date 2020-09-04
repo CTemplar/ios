@@ -143,24 +143,6 @@ final class InboxViewerPresenter {
         viewController?.undoToolbar.isHidden = true
     }
     
-    // MARK: - File Handlers
-    func getFileUrlDocuments(withURLString: String) -> URL {
-        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! + "/" + (withURLString as NSString).lastPathComponent
-        let url = URL(fileURLWithPath: path)
-        return url
-    }
-    
-    func checkIsFileExist(url: URL) -> Bool {
-        let filePath = url.path
-        let fileManager = FileManager.default
-        
-        if fileManager.fileExists(atPath: filePath) {
-            return true
-        } else {
-            return false
-        }
-    }
-    
     // MARK: - Actions
     @objc
     private func onTapMore(_ sender: UIBarButtonItem) {

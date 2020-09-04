@@ -6,34 +6,34 @@ public struct EmailMessage {
     public private (set) var bcc: Array<Any>?
     public private (set) var cc: Array<Any>?
     public private (set) var children: Array<EmailMessage>?
-    public private (set) var content : String?
-    public private (set) var createdAt : String?
-    public private (set) var deadManDuration : Int?
-    public private (set) var delayedDelivery : String?
-    public private (set) var destructDay : String?
-    public private (set) var encryption : EncryptionObject?
-    public private (set) var folder : String?
-    public private (set) var hasChildren : Bool?
+    public private (set) var content: String?
+    public private (set) var createdAt: String?
+    public private (set) var deadManDuration: Int?
+    public private (set) var delayedDelivery: String?
+    public private (set) var destructDay: String?
+    public private (set) var encryption: EncryptionObject?
+    public private (set) var folder: String?
+    public private (set) var hasChildren: Bool?
     public private (set) var childrenCount: Int?
-    public private (set) var hash : String?
-    public private (set) var messsageID : Int?
-    public private (set) var isEncrypted : Bool?
-    public private (set) var isProtected : Bool?
-    public private (set) var isHtml : Bool?
-    public private (set) var isSubjectEncrypted : Bool?
-    public private (set) var mailbox : String?
-    public private (set) var parent : String?
-    public private (set) var read : Bool?
-    public private (set) var receivers : Array<Any>?
-    public private (set) var receivers_display : [String] = []
-    public private (set) var send : String?
-    public private (set) var sender : String?
+    public private (set) var hash: String?
+    public private (set) var messsageID: Int?
+    public private (set) var isEncrypted: Bool?
+    public private (set) var isProtected: Bool?
+    public private (set) var isHtml: Bool?
+    public private (set) var isSubjectEncrypted: Bool?
+    public private (set) var mailbox: String?
+    public private (set) var parent: String?
+    public private (set) var read: Bool?
+    public private (set) var receivers: Array<Any>?
+    public private (set) var receivers_display: [String] = []
+    public private (set) var send: String?
+    public private (set) var sender: String?
     public private (set) var sender_display: String?
-    public private (set) var sentAt : String?
-    public private (set) var starred : Bool?
-    public private (set) var subject : String?
-    public private (set) var incomingHeader : String?
-    public private (set) var updated : String?
+    public private (set) var sentAt: String?
+    public private (set) var starred: Bool?
+    public private (set) var subject: String?
+    public private (set) var incomingHeader: String?
+    public private (set) var updated: String?
     public private (set) var forwardAttachmentsMessage: Int?
     
     // MARK: - Constructor
@@ -116,12 +116,138 @@ public struct EmailMessage {
         let attachmentResult = EncryptionObject(dictionary: dictionary)
         return attachmentResult
     }
-    
-    public mutating func update(readStatus: Bool) {
+}
+// MARK: - Update
+public extension EmailMessage {
+    mutating func update(_ readStatus: Bool) {
         self.read = readStatus
     }
     
-    public mutating func update(isStarred: Bool) {
+    mutating func update(isStarred: Bool) {
         self.starred = isStarred
+    }
+    
+    mutating func update(attachments: [Attachment]?) {
+        self.attachments = attachments
+    }
+    
+    mutating func update(bcc: [String]?) {
+        self.bcc = bcc
+    }
+    
+    mutating func update(cc: [String]?) {
+        self.cc = cc
+    }
+    
+    mutating func update(children: [EmailMessage]) {
+        self.children = children
+    }
+    
+    mutating func update(content: String?) {
+        self.content = content
+    }
+    
+    mutating func update(createdAt: String?) {
+        self.createdAt = createdAt
+    }
+    
+    mutating func update(deadManDuration: Int?) {
+        self.deadManDuration = deadManDuration
+    }
+    
+    mutating func update(delayedDelivery: String?) {
+        self.delayedDelivery = delayedDelivery
+    }
+    
+    mutating func update(destructDay: String?) {
+        self.destructDay = destructDay
+    }
+    
+    mutating func update(encryption: EncryptionObject?) {
+        self.encryption = encryption
+    }
+    
+    mutating func update(folder: String?) {
+        self.folder = folder
+    }
+    
+    mutating func update(hasChildren: Bool?) {
+        self.hasChildren = hasChildren
+    }
+    
+    mutating func update(childrenCount: Int?) {
+        self.childrenCount = childrenCount
+    }
+    
+    mutating func update(hash: String?) {
+        self.hash = hash
+    }
+    
+    mutating func update(messsageID: Int?) {
+        self.messsageID = messsageID
+    }
+    
+    mutating func update(isEncrypted: Bool?) {
+        self.isEncrypted = isEncrypted
+    }
+    
+    mutating func update(isProtected: Bool?) {
+        self.isProtected = isProtected
+    }
+    
+    mutating func update(isHtml: Bool?) {
+        self.isHtml = isHtml
+    }
+    
+    mutating func update(isSubjectEncrypted: Bool?) {
+        self.isSubjectEncrypted = isSubjectEncrypted
+    }
+    
+    mutating func update(mailbox: String?) {
+        self.mailbox = mailbox
+    }
+    
+    mutating func update(parent: String?) {
+        self.parent = parent
+    }
+    
+    mutating func update(receivers: [Any]?) {
+        self.receivers = receivers
+    }
+    
+    mutating func update(receiversDisplay: [String]) {
+        self.receivers_display = receiversDisplay
+    }
+    
+    mutating func update(send: String?) {
+        self.send = send
+    }
+    
+    mutating func update(senderDisplay: String?) {
+        self.sender_display = senderDisplay
+    }
+    
+    mutating func update(sender: String?) {
+        self.sender = sender
+    }
+    
+    mutating func update(sentAt: String?) {
+        self.sentAt = sentAt
+    }
+    
+    mutating func update(subject: String?) {
+        self.subject = subject
+    }
+    
+    mutating func update(incomingHeader: String?) {
+        self.incomingHeader = incomingHeader
+    }
+    
+    mutating func update(updated: String?) {
+        self.updated = updated
+    }
+    
+    mutating func update(forwardAttachmentsMessage: Int?) {
+        self.forwardAttachmentsMessage = forwardAttachmentsMessage
     }
 }
