@@ -11,4 +11,7 @@ public extension Notification.Name {
     static let updateCustomFolderNotificationID = Notification.Name("UpdateCustomFoldersNotificationIdentifier")
     static let updateMessagesReadCountNotificationID = Notification.Name("updateMessagesReadCountNotification")
     static let logoutCompleteNotificationID = Notification.Name("logoutCompleteNotification")
+    static let mailSentNotificationID = Notification.Name("mailSentNotification")
+    static let mailSentErrorNotificationID = Notification.Name("mailSentErrorNotification")
+    static let disableIQKeyboardManagerNotificationID = Notification.Name(rawValue: "disableIQKeyboardManagerNotification")
 }

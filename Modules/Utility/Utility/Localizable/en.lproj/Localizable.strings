@@ -189,6 +189,10 @@
 "fromAnotherApp" = "From another app";
 "photoLibrary" = "Photo library";
 "camera" = "Camera";
+"includeAttachments" = "Include Attachments";
+"dontIncludeAttachments" = "Don't include Attachments";
+"removeAttachmentAlertTitle" = "Remove Attachment";
+"removeAttachmentAlertDesc" = "Do you really want to remove the attachment?";
 
 // Banner
 "mailSendMessage" = "Mail sent successfully.";

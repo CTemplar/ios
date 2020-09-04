@@ -5,8 +5,6 @@ import Utility
 public final class InboxViewerTextMailBodyCell: UITableViewCell, Cellable {
     
     // MARK: Properties
-    public typealias ModelType = TextMail
-
     private let mailBodyTextLabel: UILabel = {
         let label = UILabel()
         label.font = AppStyle.CustomFontStyle.Regular.font(withSize: 16.0)
@@ -46,7 +44,10 @@ public final class InboxViewerTextMailBodyCell: UITableViewCell, Cellable {
     }
     
     // MARK: - Configuration
-    public func configure(with model: TextMail) {
+    public func configure(with model: Modelable) {
+        guard let model = model as? TextMail else {
+            fatalError("Couldn't Find TextMail")
+        }
         mailBodyTextLabel.text = model.content
     }
 }

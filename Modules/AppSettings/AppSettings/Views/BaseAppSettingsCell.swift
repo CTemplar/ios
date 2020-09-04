@@ -4,8 +4,6 @@ import Utility
 class BaseAppSettingsCell: UITableViewCell, Cellable {
 
     // MARK: Properties
-    public typealias ModelType = AppSettingsModel
-    
     lazy private var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = k_settingsCellTextColor
@@ -70,7 +68,11 @@ class BaseAppSettingsCell: UITableViewCell, Cellable {
     }
 
     // MARK: - Configuration
-    public func configure(with model: AppSettingsModel) {
+    public func configure(with model: Modelable) {
+        guard let model = model as? AppSettingsModel else {
+            fatalError("Couldn't Find AppSettingsModel")
+        }
+        
         titleLabel.text = model.title
         titleLabel.textAlignment = model.titleAlignment
         subtitleLabel.textAlignment = .right

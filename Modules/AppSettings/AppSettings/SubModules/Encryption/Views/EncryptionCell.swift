@@ -5,7 +5,6 @@ import SnapKit
 public final class EncryptionCell: UITableViewCell, Cellable {
     
     // MARK: Properties
-    public typealias ModelType = Encryption
     var onChangeValue: ((Bool) -> Void)?
 
     private lazy var titleLabel: UILabel = {
@@ -90,7 +89,11 @@ public final class EncryptionCell: UITableViewCell, Cellable {
     }
     
     // MARK: - Configuration
-    public func configure(with model: Encryption) {
+    public func configure(with model: Modelable) {
+        guard let model = model as? Encryption else {
+            fatalError("Couldn't Find Encryption")
+        }
+        
         titleLabel.text = model.title
         encryptionSwitch.isOn = model.isOn
         encryptionSwitch.isEnabled = model.isEnabled

@@ -1,13 +1,16 @@
 import UIKit
 import Utility
 import SnapKit
+import Combine
 
 public class AttachmentCell: UITableViewCell, Cellable {
     // MARK: Properties
-    public typealias ModelType = MailAttachmentCellModel
     private var models: [MailAttachment] = []
-    var onTapAttachment: ((String, Bool) -> Void)?
-    
+    private var viewModel: MailAttachmentCellModel!
+    public var onTapAttachment: ((String, Bool) -> Void)?
+    public var onDeleteAttachment: ((String) -> Void)?
+    private var bindables = Set<AnyCancellable>()
+
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
         collectionView.register(AttachmentCollectionCell.self, forCellWithReuseIdentifier: AttachmentCollectionCell.className)
@@ -21,14 +24,24 @@ public class AttachmentCell: UITableViewCell, Cellable {
     // MARK: - Constructor
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        buildLayout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - UI Setup
+    // MARK: - Setup
+    private func setupObserver() {
+        viewModel
+            .$attachments
+            .subscribe(on: RunLoop.main)
+            .sink(receiveValue: { [weak self] in
+                self?.models = $0
+                self?.collectionView.reloadData()
+        })
+            .store(in: &bindables)
+    }
+    
     private func buildLayout() {
         backgroundColor = .systemBackground
         
@@ -48,16 +61,32 @@ public class AttachmentCell: UITableViewCell, Cellable {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         layout.scrollDirection = .horizontal
-        layout.minimumInteritemSpacing = 5
-        layout.minimumLineSpacing = 5
+        layout.minimumInteritemSpacing = viewModel.spacing
+        layout.minimumLineSpacing = viewModel.spacing
         layout.itemSize = CGSize(width: 100.0, height: 70.0)
         return layout
     }
     
     // MARK: - Configuration
-    public func configure(with model: MailAttachmentCellModel) {
-        self.models = model.attachmentes
+    public func configure(with model: Modelable) {
+        guard let model = model as? MailAttachmentCellModel else {
+            fatalError("Couldn't Find AppSettingsModel")
+        }
+        self.viewModel = model
+        
+        buildLayout()
+        
+        setupObserver()
+
+        self.models = model.attachments
         collectionView.reloadData()
+    }
+    
+    // MARK: - Actions
+    @objc
+    private func onDeleteAttachment(from sender: UIButton) {
+        let model = models[sender.tag]
+        onDeleteAttachment?(model.contentURL)
     }
 }
 
@@ -72,7 +101,14 @@ extension AttachmentCell: UICollectionViewDelegate, UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         let model = models[indexPath.row]
+        
         cell.configure(with: model)
+       
+        if model.shoulDisplayRemove {
+            cell.deleteButton.tag = indexPath.row
+            cell.deleteButton.addTarget(self, action: #selector(onDeleteAttachment(from:)), for: .allTouchEvents)
+        }
+        
         return cell
     }
     

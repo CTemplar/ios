@@ -16,6 +16,7 @@
 		444D656624A4D5FD00690B3E /* Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444D656124A4D5FD00690B3E /* Utility.framework */; };
 		444D656B24A4DAEE00690B3E /* Initializer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 444D656A24A4DAEE00690B3E /* Initializer.storyboard */; };
 		444D656D24A4DB8C00690B3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 444D656C24A4DB8C00690B3E /* Assets.xcassets */; };
+		4477555624F031B8009B89D6 /* Compose.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4477555524F031B8009B89D6 /* Compose.framework */; };
 		44B1622124C94AB200BDD4B3 /* InboxViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44B1622024C94AB200BDD4B3 /* InboxViewer.framework */; };
 		8B8E66C324BE3C9D00DAB23D /* GlobalSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8E66C224BE3C9D00DAB23D /* GlobalSearch.framework */; };
 /* End PBXBuildFile section */
@@ -32,6 +33,7 @@
 		444D656124A4D5FD00690B3E /* Utility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		444D656A24A4DAEE00690B3E /* Initializer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Initializer.storyboard; sourceTree = "<group>"; };
 		444D656C24A4DB8C00690B3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../Ctemplar/Resources/Assets.xcassets; sourceTree = "<group>"; };
+		4477555524F031B8009B89D6 /* Compose.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Compose.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B1622024C94AB200BDD4B3 /* InboxViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = InboxViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B8E66C224BE3C9D00DAB23D /* GlobalSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GlobalSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -44,6 +46,7 @@
 				443DD3F524CDCBC300771AE5 /* AppSettings.framework in Frameworks */,
 				444D656624A4D5FD00690B3E /* Utility.framework in Frameworks */,
 				444D656424A4D5FD00690B3E /* Networking.framework in Frameworks */,
+				4477555624F031B8009B89D6 /* Compose.framework in Frameworks */,
 				444D656224A4D5FD00690B3E /* Login.framework in Frameworks */,
 				44B1622124C94AB200BDD4B3 /* InboxViewer.framework in Frameworks */,
 				8B8E66C324BE3C9D00DAB23D /* GlobalSearch.framework in Frameworks */,
@@ -94,6 +97,7 @@
 		444D655E24A4D5FD00690B3E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4477555524F031B8009B89D6 /* Compose.framework */,
 				443DD3F424CDCBC300771AE5 /* AppSettings.framework */,
 				44B1622024C94AB200BDD4B3 /* InboxViewer.framework */,
 				8B8E66C224BE3C9D00DAB23D /* GlobalSearch.framework */,

@@ -31,14 +31,13 @@ class InboxViewerController: UIViewController, EmptyStateMachine {
         presenter?.markAsRead()
         documentInteractionController.delegate = self
         
-        navigationController?.prefersLargeTitle = false
-
         // Fetch Message
         self.presenter?.fetchMessageDetails()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.prefersLargeTitle = false
         navigationController?.updateTintColor()
     }
 

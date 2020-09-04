@@ -7,7 +7,7 @@ public class UtilityManager {
     public private (set) var formatterService: FormatterService
     public private (set) var keychainService: KeychainService
     private var reachability: Reachability?
-    public private (set) var subject = PassthroughSubject<Bool, Never>() // CurrentValueSubject<Bool, Never>(true)
+    public private (set) var subject = PassthroughSubject<Bool, Never>()
     
     private init() {
         formatterService = FormatterService()

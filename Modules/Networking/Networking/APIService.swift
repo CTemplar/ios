@@ -303,8 +303,6 @@ public class APIService: HashingService {
                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                             completionHandler(APIResult.failure(error))
                         }
-                        
-                        Loader.stop()
                     }
                 }
             }
@@ -370,9 +368,6 @@ public class APIService: HashingService {
                                 case .failure(let error):
                                     let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
                                     completionHandler(APIResult.failure(error))
-                                }
-                                if showHud {
-                                    Loader.stop()
                                 }
                             }
                         }

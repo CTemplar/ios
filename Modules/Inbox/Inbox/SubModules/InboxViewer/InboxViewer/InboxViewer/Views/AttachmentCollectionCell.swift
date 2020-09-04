@@ -4,8 +4,6 @@ import SnapKit
 
 public class AttachmentCollectionCell: UICollectionViewCell, Cellable {
     // MARK: - Properties
-    public typealias ModelType = MailAttachment
-    
     private lazy var roundedBackgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = k_attachmentCellColor
@@ -37,6 +35,13 @@ public class AttachmentCollectionCell: UICollectionViewCell, Cellable {
         return label
     }()
     
+    lazy var deleteButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "minus.circle.fill"), for: .normal)
+        button.tintColor = k_redColor
+        return button
+    }()
+    
     // MARK: - Initialization
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,6 +53,10 @@ public class AttachmentCollectionCell: UICollectionViewCell, Cellable {
     
     public override func layoutSubviews() {
         setupUI()
+    }
+    
+    public override func updateConstraints() {
+        super.updateConstraints()
     }
     
     // MARK: - Setup UI
@@ -85,8 +94,27 @@ public class AttachmentCollectionCell: UICollectionViewCell, Cellable {
         }
     }
     
+    private func setupRemoveButton() {
+        roundedBackgroundView.addSubview(deleteButton)
+        
+        deleteButton.snp.makeConstraints { (make) in
+            make.width.equalTo(12.0)
+            make.height.equalTo(12.0)
+            make.top.equalToSuperview().inset(2.0)
+            make.trailing.equalToSuperview().inset(2.0)
+        }
+    }
+    
     // MARK: - Configuration
-    public func configure(with model: MailAttachment) {
+    public func configure(with model: Modelable) {
+        guard let model = model as? MailAttachment else {
+            fatalError("Couldn't Find AppSettingsModel")
+        }
+        
+        if model.shoulDisplayRemove {
+            setupRemoveButton()
+        }
+        
         titleLabel.text = model.attachmentTitle
         attachmentTypeLabel.text = model.attachmentType.rawValue.uppercased()
         attachmentTypeLabel.backgroundColor = model.attachmentType.color

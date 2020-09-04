@@ -29,7 +29,7 @@ class AttachmentCellTests: FBSnapshotBase {
     
     func testAttachmentCell() {
         let cell = AttachmentCell(style: .default, reuseIdentifier: InboxViewerSubjectCell.className)
-        cell.configure(with: MailAttachmentCellModel(attachmentes: models))
+        cell.configure(with: MailAttachmentCellModel(attachments: models))
         cell.frame.size.height = 80.0
         FBSnapshotVerifyView(cell)
     }

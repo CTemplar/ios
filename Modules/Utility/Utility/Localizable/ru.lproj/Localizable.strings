@@ -185,6 +185,10 @@
 "fromAnotherApp" = "Импортировать из...";
 "photoLibrary" = "Медиатека";
 "camera" = "Камера";
+"includeAttachments" = "Включить вложения";
+"dontIncludeAttachments" = "Не включать вложения";
+"removeAttachmentAlertTitle" = "Удалить вложение";
+"removeAttachmentAlertDesc" = "Вы действительно хотите удалить вложение?";
 
 // Banner
 "mailSendMessage" = "Мел св. Сусассуфули.";

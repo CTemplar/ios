@@ -311,9 +311,11 @@ public class FormatterService {
     
     public func formatDateToDelayedDeliveryDateString(date: Date) -> String {
         let appLang = UserDefaults.standard.string(forKey: "app_lang") ?? "en"
-        return SharedDateFormatter.shared.string(from: date,
-                                                 formatter: GeneralConstant.DateFormatStyle.EddMMMHHMM.rawValue,
-                                                 locale: Locale(identifier: appLang))
+        let dateformatter = DateFormatter()
+        dateformatter.dateStyle = .medium
+        dateformatter.timeStyle = .short
+        dateformatter.locale = Locale(identifier: appLang)
+        return dateformatter.string(from: date)
     }
     
     public func calculateDaysCountFromCreate(date: Date) -> Int? {

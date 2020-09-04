@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Attachment {
+public struct Attachment: Equatable {
     // MARK: Properties
     public var contentID: Int?
     public var contentUrl: String?
@@ -34,5 +34,12 @@ public struct Attachment {
                 "is_encrypted": encrypted?.description ?? "",
                 "localUrl"  : localUrl ?? ""
         ]
+    }
+    
+    public static func ==(lhs: Attachment, rhs: Attachment) -> Bool {
+        if let id1 = lhs.attachmentID, let id2 = rhs.attachmentID {
+            return id1 == id2
+        }
+        return false
     }
 }

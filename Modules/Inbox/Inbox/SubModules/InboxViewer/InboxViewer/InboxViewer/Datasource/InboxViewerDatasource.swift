@@ -123,8 +123,8 @@ final class InboxViewerDatasource: NSObject {
             var attachmentModels: [MailAttachment] = []
             attachments.forEach({
                 if let url = $0.contentUrl,
-                    let fileName = self.fileName(fileUrl: url),
-                    let fileExtension = self.fileExtension(fileUrl: url),
+                    let fileName = FileManager.fileName(fileUrl: url),
+                    let fileExtension = FileManager.fileExtension(fileUrl: url),
                     let extensionType = GeneralConstant.DocumentsExtension(rawValue: fileExtension.lowercased()) {
                     let attachment = MailAttachment(attachmentTitle: fileName,
                                                     attachmentType: extensionType,
@@ -133,7 +133,7 @@ final class InboxViewerDatasource: NSObject {
                     attachmentModels.append(attachment)
                 }
             })
-            let model = MailAttachmentCellModel(attachmentes: attachmentModels)
+            let model = MailAttachmentCellModel(attachments: attachmentModels)
             sectionList.append(.attachment(model))
         }
         
@@ -154,19 +154,7 @@ final class InboxViewerDatasource: NSObject {
         }
         return nil
     }
-    
-    private func fileName(fileUrl: String) -> String? {
-        var fileName = ""
-        fileName = URL(fileURLWithPath: fileUrl).lastPathComponent
-        return fileName
-    }
-    
-    private func fileExtension(fileUrl: String) -> String? {
-        var fileExtension = ""
-        fileExtension = URL(fileURLWithPath: fileUrl).pathExtension
-        return fileExtension.uppercased()
-    }
-    
+
     func getHeaderModel(withMessageId messageId: Int?, state: InboxHeaderState) -> InboxViewerMailSenderHeader? {
         var message: EmailMessage?
         
@@ -558,22 +546,17 @@ extension InboxViewerDatasource: UITableViewDataSource, UITableViewDelegate {
         
         // Attachment Handler
         cell.onTapAttachment = { [weak self] (contentURLString, encrypted) in
-            if let url = self?.inboxViewerController?
-                .presenter?
-                .getFileUrlDocuments(withURLString: contentURLString) {
-                
-                if self?.inboxViewerController?
+            let url = FileManager.getFileUrlDocuments(withURLString: contentURLString)
+            
+            if FileManager.checkIsFileExist(url: url) == true {
+                self?.inboxViewerController?
                     .presenter?
-                    .checkIsFileExist(url: url) == true {
-                    self?.inboxViewerController?
-                        .presenter?
-                        .showPreviewScreen(url: url, encrypted: encrypted)
-                } else {
-                    self?.inboxViewerController?
-                        .presenter?
-                        .interactor?
-                        .loadAttachFile(url: contentURLString, encrypted: encrypted)
-                }
+                    .showPreviewScreen(url: url, encrypted: encrypted)
+            } else {
+                self?.inboxViewerController?
+                    .presenter?
+                    .interactor?
+                    .loadAttachFile(url: contentURLString, encrypted: encrypted)
             }
         }
         return cell

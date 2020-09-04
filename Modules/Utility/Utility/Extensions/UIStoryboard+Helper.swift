@@ -26,6 +26,8 @@ public extension UIStoryboard {
         case signature = "Signature"
         case key = "PGPKey"
         case emptyState = "EmptyState"
+        case setPassword = "SetPassword"
+        case scheduler = "Scheduler"
     }
     
     // MARK: - Convenience Initializers
@@ -101,6 +103,10 @@ public extension UIStoryboard.Storyboard {
             return (bundlename: "AppSettings.PGPKeysViewController", storyboardId: "PGPKeysViewController")
         case .emptyState:
             return (bundlename: "Utility.EmptyStateViewController", storyboardId: "EmptyStateViewController")
+        case .setPassword:
+            return (bundlename: "Compose.SetPasswordViewController", storyboardId: "SetPasswordViewController")
+        case .scheduler:
+            return (bundlename: "Compose.SchedulerViewController", storyboardId: "SchedulerViewController")
         }
     }
     

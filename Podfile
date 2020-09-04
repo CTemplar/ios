@@ -35,6 +35,11 @@ target 'Utility' do
   pgp_pods
 end
 
+target 'Compose' do
+  project 'Modules/Compose/Compose.xcodeproj'
+  pgp_pods
+end
+
 target 'AppSettings' do
   project 'Modules/AppSettings/AppSettings.xcodeproj'
   shared_pods

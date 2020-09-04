@@ -5,8 +5,6 @@ import SnapKit
 public final class InboxViewerMailSenderHeaderView: UIView, Cellable {
     
     // MARK: Properties
-    public typealias ModelType = InboxViewerMailSenderHeader
-
     private var model: InboxViewerMailSenderHeader?
     
     private var collapsedState: InboxHeaderState = .collapsed
@@ -293,7 +291,11 @@ public final class InboxViewerMailSenderHeaderView: UIView, Cellable {
     }
     
     // MARK: - Configuration
-    public func configure(with model: InboxViewerMailSenderHeader) {
+    public func configure(with model: Modelable) {
+        guard let model = model as? InboxViewerMailSenderHeader else {
+            fatalError("Couldn't Find AppSettingsModel")
+        }
+        
         self.model = model
         
         fromNameLabel.text = model.senderName

@@ -18,6 +18,8 @@ public enum Strings {
         case decryptButton
         case okButton
         case updateButton
+        case yesActionTitle
+        case noActionTitle
     }
     
     public enum Formatter: String, Localizable {
@@ -404,6 +406,10 @@ public enum Strings {
         case reply
         case relpyAll
         case forward
+        case includeAttachments
+        case dontIncludeAttachments
+        case removeAttachmentAlertTitle
+        case removeAttachmentAlertDesc
     }
     
     public enum Scheduler: String, Localizable {

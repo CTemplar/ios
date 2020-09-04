@@ -5,7 +5,6 @@ import Utility
 
 public final class InboxViewerSubjectCell: UITableViewCell, Cellable {
     // MARK: Properties
-    public typealias ModelType = Subject
     private (set) var model: Subject?
     
     lazy private var titleLabel: UILabel = {
@@ -140,7 +139,11 @@ public final class InboxViewerSubjectCell: UITableViewCell, Cellable {
     }
     
     // MARK: - Configuration
-    public func configure(with model: Subject) {
+    public func configure(with model: Modelable) {
+        guard let model = model as? Subject else {
+            fatalError("Couldn't Find Subject")
+        }
+        
         titleLabel.text = model.title
         
         if !model.isProtected {
