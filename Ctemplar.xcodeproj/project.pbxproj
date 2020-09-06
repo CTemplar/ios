@@ -52,6 +52,8 @@
 		4477555A24F031C3009B89D6 /* Compose.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4477552A24F03069009B89D6 /* Compose.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4477555B24F031C9009B89D6 /* Compose.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4477552A24F03069009B89D6 /* Compose.framework */; };
 		4477555C24F031C9009B89D6 /* Compose.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4477552A24F03069009B89D6 /* Compose.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4487545825029B6F0097F830 /* InboxViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4487545725029B6F0097F830 /* InboxViewer.framework */; };
+		4487545925029B6F0097F830 /* InboxViewer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4487545725029B6F0097F830 /* InboxViewer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4497F1D8248BDF4000AF83F5 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4497F1D7248BDF4000AF83F5 /* FAQViewController.swift */; };
 		4497F1DA248BDF5200AF83F5 /* FAQ.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4497F1D9248BDF5200AF83F5 /* FAQ.storyboard */; };
 		4497F1DC248BE02000AF83F5 /* FAQConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4497F1DB248BE02000AF83F5 /* FAQConfigurator.swift */; };
@@ -289,6 +291,7 @@
 				44CA250A24B757F40063DB93 /* ForgetPassword.framework in Embed Frameworks */,
 				44CA251A24B758000063DB93 /* Networking.framework in Embed Frameworks */,
 				4477555C24F031C9009B89D6 /* Compose.framework in Embed Frameworks */,
+				4487545925029B6F0097F830 /* InboxViewer.framework in Embed Frameworks */,
 				44CA251C24B758110063DB93 /* Signup.framework in Embed Frameworks */,
 				44CA251424B757F60063DB93 /* Inbox.framework in Embed Frameworks */,
 			);
@@ -319,6 +322,7 @@
 		446641B724C4A3AD0093A6DE /* AttachmentCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCellTests.swift; sourceTree = "<group>"; };
 		446641BB24C4B6700093A6DE /* InboxViewerWebMailBodyCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewerWebMailBodyCellTests.swift; sourceTree = "<group>"; };
 		4477552424F03068009B89D6 /* Compose.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Compose.xcodeproj; path = Compose/Compose.xcodeproj; sourceTree = "<group>"; };
+		4487545725029B6F0097F830 /* InboxViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = InboxViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		448F45B2248CC5EE00C4A276 /* sk */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = sk; path = sk.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		448F45B4248CC5EF00C4A276 /* sk */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = sk; path = sk.lproj/Main.storyboard; sourceTree = "<group>"; };
 		448F45B5248CC5EF00C4A276 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -424,6 +428,7 @@
 				443DD3ED24CDCB1100771AE5 /* AppSettings.framework in Frameworks */,
 				44CA250924B757F40063DB93 /* ForgetPassword.framework in Frameworks */,
 				44CA251524B757F90063DB93 /* Initializer.framework in Frameworks */,
+				4487545825029B6F0097F830 /* InboxViewer.framework in Frameworks */,
 				44CA251B24B758110063DB93 /* Signup.framework in Frameworks */,
 				4477555B24F031C9009B89D6 /* Compose.framework in Frameworks */,
 				444BD47F2495306D001D0C5F /* Security.framework in Frameworks */,
@@ -631,6 +636,7 @@
 		6B9D5D9669D4ECC4B64F115A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4487545725029B6F0097F830 /* InboxViewer.framework */,
 				44C96A7C24C078EF003D2D3B /* InboxViewer.framework */,
 				44C96A7124C078E9003D2D3B /* InboxViewer.framework */,
 				444BD48024953077001D0C5F /* libz.tbd */,
@@ -1668,9 +1674,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 10;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = N2Z7XM6798;
 				ENABLE_BITCODE = NO;
@@ -1680,11 +1686,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.3;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Ctemplar AppStore";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1697,9 +1703,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = N2Z7XM6798;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Ctemplar/Resources/Plist/Ctemplar-Info.plist";
@@ -1708,11 +1714,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.3;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Ctemplar AppStore";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1725,8 +1731,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = N2Z7XM6798;
@@ -1741,7 +1747,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Ctemplar Dev";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1753,8 +1759,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = N2Z7XM6798;
@@ -1769,7 +1775,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Ctemplar Dev";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

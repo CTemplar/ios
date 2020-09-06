@@ -321,16 +321,23 @@ final class ComposeFetcher {
                 if let responseDictionary = value as? [String: Any] {
                     var emailsKeys = EmailsKeys(dict: responseDictionary)
                     if emailsKeys.encrypt {
-                        for emailKey in emailsKeys.keys {
-                            if let userPublicKey = UtilityManager
-                                .shared
-                                .pgpService
-                                .readPGPKeysFromString(key: emailKey.publicKey)?.first {
-                                emailsKeys.updatePGPkeys(by: userPublicKey)
+                        DispatchQueue.global().sync {
+                            for emailKey in emailsKeys.keys {
+                                if let userPublicKey = UtilityManager
+                                    .shared
+                                    .pgpService
+                                    .readPGPKeysFromString(key: emailKey.publicKey)?.first {
+                                    emailsKeys.updatePGPkeys(by: userPublicKey)
+                                }
+                            }
+                            
+                            DispatchQueue.main.async {
+                                completion(emailsKeys)
                             }
                         }
+                    } else {
+                        completion(emailsKeys)
                     }
-                    completion(emailsKeys)
                 } else {
                     completion(nil)
                 }
@@ -340,7 +347,7 @@ final class ComposeFetcher {
                     message: error.localizedDescription,
                     cancelButton: Strings.Button.closeButton.localized
                 )
-                
+                completion(nil)
                 onCompletionWithAlert(params, false)
             }
         }

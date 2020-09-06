@@ -46,6 +46,7 @@ extension ComposeViewModel {
             { (_) in
                 Loader.stop()
         }, onCompletionWithBanner: { (bannerText) in
+            Loader.stop()
             NotificationCenter.default.post(name: .mailSentNotificationID, object: bannerText)
         }) { (params, _) in
             Loader.stop()
@@ -101,6 +102,7 @@ extension ComposeViewModel {
                     { (_) in
                         Loader.stop()
                 }, onCompletionWithBanner: { (bannerText) in
+                    Loader.stop()
                     NotificationCenter.default.post(name: .mailSentNotificationID, object: bannerText)
                 }) { (params, _) in
                     Loader.stop()
@@ -127,6 +129,7 @@ extension ComposeViewModel {
                 { (_) in
                     Loader.stop()
             }, onCompletionWithBanner: { (bannerText) in
+                Loader.stop()
                 NotificationCenter.default.post(name: .mailSentNotificationID, object: bannerText)
             }) { (params, _) in
                 Loader.stop()
@@ -160,6 +163,200 @@ extension ComposeViewModel {
                                                  index: 0,
                                                  publicKeys: [],
                                                  messageID: messageId)
+        }
+    }
+}
+// MARK: - Attachment Helpers
+extension ComposeViewModel {
+    
+    private func getAttachmentData(from attachment: Attachment) -> (data: Data?, url: URL?) {
+        if let contentURL = attachment.contentUrl, let fileUrl = URL(string: contentURL) {
+            return (data: try? Data(contentsOf: fileUrl), url: fileUrl)
+        }
+        
+        if let localFileURL = attachment.localUrl {
+            let fileUrl = URL(fileURLWithPath: localFileURL)
+            return (data: try? Data(contentsOf: fileUrl), url: fileUrl)
+        }
+
+        return (data: nil, url: nil)
+    }
+    
+    func updateAttachments(publicKeys: [PGPKey], messageID: Int) {
+        var attachmentsCount = email.attachments?.count ?? 0
+        
+        for attachment in email.attachments ?? [] {
+            let response = getAttachmentData(from: attachment)
+            
+            guard let fileData = response.data,
+                let fileURL = response.url,
+                let attachmentId = attachment.attachmentID else {
+                    Loader.stop()
+                    let params = AlertKitParams(
+                        title: Strings.AppError.error.localized,
+                        message: Strings.AppError.unknownError.localized,
+                        cancelButton: Strings.Button.closeButton.localized
+                    )
+                    NotificationCenter.default.post(name: .mailSentErrorNotificationID, object: params)
+                    return
+            }
+            
+            if user.settings.isAttachmentsEncrypted == true {
+                if !publicKeys.isEmpty {
+                    guard let encryptedfileData = pgpService.encryptAsData(data: fileData, keys: publicKeys) else {
+                        Loader.stop()
+                        let params = AlertKitParams(
+                            title: Strings.AppError.error.localized,
+                            message: Strings.AppError.unknownError.localized,
+                            cancelButton: Strings.Button.closeButton.localized
+                        )
+                        NotificationCenter.default.post(name: .mailSentErrorNotificationID, object: params)
+                        return
+                    }
+                    
+                    // Send to CTemplar User
+                    NetworkManager
+                        .shared
+                        .apiService
+                        .updateAttachment(attachmentID: attachmentId.description,
+                                          fileUrl: fileURL,
+                                          fileData: encryptedfileData,
+                                          messageID: messageID,
+                                          encrypt: true) { (_) in
+                                            attachmentsCount -= 1
+                                            if attachmentsCount == 0 {
+                                                self.sendEncryptedEmailForCtemplarUser(publicKeys: publicKeys)
+                                            }
+                    }
+                } else {
+                    // Send to Non-CTemplar User
+                    NetworkManager
+                        .shared
+                        .apiService
+                        .updateAttachment(attachmentID: attachmentId.description,
+                                          fileUrl: fileURL,
+                                          fileData: fileData,
+                                          messageID: messageID,
+                                          encrypt: false)
+                        { (_) in
+                            attachmentsCount -=  1
+                            if attachmentsCount == 0 {
+                                self.sendEmailForNonCtemplarUser(messageID: messageID.description,
+                                                                 attachments: [attachment])
+                            }
+                    }
+                }
+            } else {
+                // Send to CTemplar User
+                NetworkManager
+                    .shared
+                    .apiService
+                    .updateAttachment(attachmentID: attachmentId.description,
+                                      fileUrl: fileURL,
+                                      fileData: fileData,
+                                      messageID: messageID,
+                                      encrypt: false)
+                    { (_) in
+                        attachmentsCount -= 1
+                        if attachmentsCount == 0 {
+                            self.sendEncryptedEmailForCtemplarUser(publicKeys: publicKeys)
+                        }
+                }
+            }
+        }
+    }
+    
+    func updateAttachmentsForNonCtemplarUsers(attachments: [Attachment],
+                                              index: Int,
+                                              publicKeys: [PGPKey],
+                                              messageID: Int) {
+        if index >= attachments.count {
+            sendEmailForNonCtemplarUser(messageID: "\(messageID)", attachments: attachments)
+            return
+        }
+        
+        var attachments1 = attachments
+        let attachment = attachments1[index]
+        
+        let isAttachmentEncrypted = user.settings.isAttachmentsEncrypted ?? false
+        
+        let response = getAttachmentData(from: attachment)
+        
+        guard let data = response.data, let fileUrl = response.url else {
+            Loader.stop()
+
+            let params = AlertKitParams(
+                title: Strings.AppError.error.localized,
+                message: Strings.AppError.unknownError.localized,
+                cancelButton: Strings.Button.closeButton.localized
+            )
+            NotificationCenter.default.post(name: .mailSentErrorNotificationID, object: params)
+            return
+        }
+        
+        let attachID = attachment.attachmentID?.description ?? ""
+        
+        if !publicKeys.isEmpty {
+            if let encryptedfileData = pgpService.encryptAsData(data: data, keys: publicKeys) {
+                NetworkManager
+                    .shared
+                    .apiService
+                    .updateAttachment(attachmentID: attachID,
+                                      fileUrl: fileUrl,
+                                      fileData: encryptedfileData,
+                                      messageID: messageID,
+                                      encrypt: true,
+                                      completionHandler:
+                        { (result) in
+                            switch result {
+                            case .success(let value):
+                                if let newAttachment = value as? Attachment {
+                                    attachments1[index] = newAttachment
+                                }
+                                self.updateAttachmentsForNonCtemplarUsers(attachments: attachments1,
+                                                                          index: index + 1, publicKeys: publicKeys,
+                                                                          messageID: messageID)
+                            case .failure(let error):
+                                Loader.stop()
+                                let params = AlertKitParams(
+                                    title: Strings.AppError.error.localized,
+                                    message: error.localizedDescription,
+                                    cancelButton: Strings.Button.closeButton.localized
+                                )
+                                NotificationCenter.default.post(name: .mailSentErrorNotificationID, object: params)
+                            }
+                    })
+            }
+        } else {
+            NetworkManager
+                .shared
+                .apiService
+                .updateAttachment(attachmentID: attachID,
+                                  fileUrl: fileUrl,
+                                  fileData: data,
+                                  messageID: messageID,
+                                  encrypt: isAttachmentEncrypted,
+                                  completionHandler:
+                    { (result) in
+                        switch result {
+                        case .success(let value):
+                            if let newAttachment = value as? Attachment {
+                                attachments1[index] = newAttachment
+                            }
+                            self.updateAttachmentsForNonCtemplarUsers(attachments: attachments1,
+                                                                      index: index + 1,
+                                                                      publicKeys: publicKeys,
+                                                                      messageID: messageID)
+                        case .failure(let error):
+                            Loader.stop()
+                            let params = AlertKitParams(
+                                title: Strings.AppError.error.localized,
+                                message: error.localizedDescription,
+                                cancelButton: Strings.Button.closeButton.localized
+                            )
+                            NotificationCenter.default.post(name: .mailSentErrorNotificationID, object: params)
+                        }
+                })
         }
     }
 }
