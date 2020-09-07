@@ -45,6 +45,7 @@ final class ComposeController: UITableViewController, EmptyStateMachine  {
         documentInteractionController.delegate = self
 
         extendedLayoutIncludesOpaqueBars = true
+        
         edgesForExtendedLayout = []
         
         setupTableView()
@@ -56,6 +57,24 @@ final class ComposeController: UITableViewController, EmptyStateMachine  {
         setupObservers()
         
         NotificationCenter.default.post(name: .disableIQKeyboardManagerNotificationID, object: self)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(receiveMailSentErrorNotification(notification:)),
+                                               name: .mailSentErrorNotificationID,
+                                               object: nil
+        )
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(onMailSentSuccessfully(notification:)),
+                                               name: .updateInboxMessagesNotificationID,
+                                               object: nil
+        )
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(onMailSentSuccessfully(notification:)),
+                                               name: .mailSentNotificationID,
+                                               object: nil
+        )
     }
     
     deinit {
@@ -63,6 +82,7 @@ final class ComposeController: UITableViewController, EmptyStateMachine  {
             $0.cancel()
         })
         bindables.removeAll()
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Setup
@@ -162,6 +182,22 @@ final class ComposeController: UITableViewController, EmptyStateMachine  {
         ]
     }
     
+    @objc
+    private func receiveMailSentErrorNotification(notification: Notification) {
+        DispatchQueue.main.async {
+            if let params = notification.object as? AlertKitParams {
+                self.showAlert(with: params, onCompletion: {})
+            }
+        }
+    }
+    
+    @objc
+    private func onMailSentSuccessfully(notification: Notification) {
+        DispatchQueue.main.async {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
     // MARK: - UI
     private func updateNavigationTitle(by output: AnswerMessageMode) {
         switch output {
@@ -193,7 +229,6 @@ final class ComposeController: UITableViewController, EmptyStateMachine  {
     @objc
     private func onTapSend(_ sender: UIBarButtonItem) {
         view.endEditing(true)
-        navigationController?.popViewController(animated: true)
         showBanner(withTitle: Strings.Banner.mailSendingAlert.localized,
                    additionalConfigs: [.displayDuration(2.0),
                                        .showButton(false)]

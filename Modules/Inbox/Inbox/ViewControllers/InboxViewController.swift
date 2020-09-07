@@ -207,8 +207,10 @@ class InboxViewController: UIViewController, EmptyStateMachine {
     
     @objc
     private func receiveMailSentErrorNotification(notification: Notification) {
-        if let params = notification.object as? AlertKitParams {
-            showAlert(with: params, onCompletion: {})
+        DispatchQueue.main.async {
+            if let params = notification.object as? AlertKitParams {
+                self.showAlert(with: params, onCompletion: {})
+            }
         }
     }
     

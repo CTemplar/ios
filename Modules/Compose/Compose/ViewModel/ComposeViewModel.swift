@@ -103,6 +103,10 @@ final class ComposeViewModel: Modelable {
         }.store(in: &bindables)
     }
     
+    deinit {
+        DPrint("ComposeViewModel deinitialized")
+    }
+    
     // MARK: - Setup Datasource
     func setupDatasource() {
         setupMailboxWithSignature()
@@ -151,7 +155,7 @@ final class ComposeViewModel: Modelable {
                 if messageContent.contains("BEGIN PGP"), let decryptedContent = decryptedMailContent() {
                     messageContent = decryptedContent
                 }
-
+                
                 let list = receiversList()
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: {
@@ -265,7 +269,7 @@ final class ComposeViewModel: Modelable {
             .sink { [weak self] (subject) in
                 self?.email.update(subject: subject)
                 self?.sendButtonState.send()
-
+                
         }
         .store(in: &bindables)
         
@@ -321,7 +325,7 @@ final class ComposeViewModel: Modelable {
                 self?.email.update(content: content)
                 self?.contentCellVM?.content = content
                 self?.sendButtonState.send()
-
+                
         }
         .store(in: &bindables)
         
@@ -604,13 +608,13 @@ final class ComposeViewModel: Modelable {
         guard let filteredAttachment = existingAttachments.filter({ $0.contentUrl == contentURL }).first else {
             return
         }
-                
+        
         guard let id = filteredAttachment.attachmentID else {
             return
         }
         
         Loader.start()
-
+        
         self.fetcher.deleteAttachment(withId: id.description,
                                       onCompletion:
             { [weak self] in
@@ -811,184 +815,45 @@ final class ComposeViewModel: Modelable {
         
         Loader.start()
         fetcher.publicKeysFor(userEmailsArray: receivers, completion: { [weak self] (keys) in
+            guard let strong = self else {
+                DispatchQueue.main.async {
+                    Loader.stop()
+                }
+                return
+            }
+            
             if let emailsKeys = keys {
                 if emailsKeys.encrypt {
                     if let messageID = self?.email.messsageID {
                         let attachmentsCount = self?.email.attachments?.count ?? 0
                         if attachmentsCount > 0,
-                            self?.user.settings.isAttachmentsEncrypted == true {
-                            self?.updateAttachments(publicKeys: emailsKeys.pgpKeys, messageID: messageID)
+                            strong.user.settings.isAttachmentsEncrypted == true {
+                            strong.updateAttachments(publicKeys: emailsKeys.pgpKeys, messageID: messageID)
                         } else {
-                            self?.sendEncryptedEmailForCtemplarUser(publicKeys: emailsKeys.pgpKeys)
+                            strong.sendEncryptedEmailForCtemplarUser(publicKeys: emailsKeys.pgpKeys)
+                        }
+                    } else {
+                        let params = AlertKitParams(
+                            title: Strings.AppError.error.localized,
+                            message: Strings.AppError.error.localized,
+                            cancelButton: Strings.Button.closeButton.localized
+                        )
+                        DispatchQueue.main.async {
+                            Loader.stop()
+                            strong.showAlert.send((params, true))
                         }
                     }
                 } else {
-                    self?.prepareEmailForNonCtemplarUser()
+                    strong.prepareEmailForNonCtemplarUser()
                 }
             } else {
-                self?.prepareEmailForNonCtemplarUser()
+                strong.prepareEmailForNonCtemplarUser()
             }
         }) { [weak self] (params, backToRoot) in
             DispatchQueue.main.async {
                 Loader.stop()
                 self?.showAlert.send((params, backToRoot))
             }
-        }
-    }
-    
-    // MARK: - Send Message Helpers
-    func updateAttachments(publicKeys: [PGPKey], messageID: Int) {
-        var attachmentsCount = email.attachments?.count ?? 0
-        
-        for attachment in email.attachments ?? [] {
-            if let url = attachment.localUrl {
-                guard let attachmentId = attachment.attachmentID else {
-                    return
-                }
-                
-                let fileURL = URL(fileURLWithPath: url)
-                
-                if let fileData = try? Data(contentsOf: fileURL) {
-                    if user.settings.isAttachmentsEncrypted == true {
-                        if !publicKeys.isEmpty {
-                            guard let encryptedfileData = pgpService.encryptAsData(data: fileData, keys: publicKeys) else {
-                                return
-                            }
-                            
-                            // Send to CTemplar User
-                            NetworkManager
-                                .shared
-                                .apiService
-                                .updateAttachment(attachmentID: attachmentId.description,
-                                                  fileUrl: fileURL,
-                                                  fileData: encryptedfileData,
-                                                  messageID: messageID,
-                                                  encrypt: true) { (_) in
-                                                    attachmentsCount -= 1
-                                                    if attachmentsCount == 0 {
-                                                        self.sendEncryptedEmailForCtemplarUser(publicKeys: publicKeys)
-                                                    }
-                            }
-                        } else {
-                            // Send to Non-CTemplar User
-                            NetworkManager
-                                .shared
-                                .apiService
-                                .updateAttachment(attachmentID: attachmentId.description,
-                                                  fileUrl: fileURL,
-                                                  fileData: fileData,
-                                                  messageID: messageID,
-                                                  encrypt: false) { (_) in
-                                                    attachmentsCount -=  1
-                                                    if attachmentsCount == 0 {
-                                                        self.sendEmailForNonCtemplarUser(messageID: messageID.description,
-                                                                                          attachments: [attachment])
-                                                    }
-                            }
-                        }
-                    } else {
-                        // Send to CTemplar User
-                        NetworkManager
-                            .shared
-                            .apiService
-                            .updateAttachment(attachmentID: attachmentId.description,
-                                              fileUrl: fileURL,
-                                              fileData: fileData,
-                                              messageID: messageID,
-                                              encrypt: false) { (updated) in
-                                                attachmentsCount -= 1
-                                                if attachmentsCount == 0 {
-                                                    self.sendEncryptedEmailForCtemplarUser(publicKeys: publicKeys)
-                                                }
-                        }
-                    }
-                }
-            } else {
-                DPrint("attach fileData is nil")
-            }
-        }
-    }
-    
-    private func getAttachmentData(from attachment: Attachment) -> (data: Data?, url: URL?) {
-        if let localFileURL = attachment.localUrl {
-            let fileUrl = URL(fileURLWithPath: localFileURL)
-            return (data: try? Data(contentsOf: fileUrl), url: fileUrl)
-        }
-        
-        if let contentURL = attachment.contentUrl, let fileUrl = URL(string: contentURL) {
-            return (data: try? Data(contentsOf: fileUrl), url: fileUrl)
-        }
-        
-        return (data: nil, url: nil)
-    }
-    
-    func updateAttachmentsForNonCtemplarUsers(attachments: [Attachment],
-                                                      index: Int,
-                                                      publicKeys: [PGPKey],
-                                                      messageID: Int) {
-        if index >= attachments.count {
-            sendEmailForNonCtemplarUser(messageID: "\(messageID)", attachments: attachments)
-            return
-        }
-        
-        var attachments1 = attachments
-        let attachment = attachments1[index]
-        
-        let isAttachmentEncrypted = user.settings.isAttachmentsEncrypted ?? false
-                
-        let response = getAttachmentData(from: attachment)
-        
-        guard let data = response.data, let fileUrl = response.url else {
-            Loader.stop()
-            return
-        }
-        
-        let attachID = attachment.attachmentID?.description ?? ""
-
-        if publicKeys.count > 0 {
-            if let encryptedfileData = pgpService.encryptAsData(data: data, keys: publicKeys) {
-                NetworkManager
-                    .shared
-                    .apiService
-                    .updateAttachment(attachmentID: attachID,
-                                      fileUrl: fileUrl,
-                                      fileData: encryptedfileData,
-                                      messageID: messageID,
-                                      encrypt: true,
-                                      completionHandler:
-                        { (result) in
-                            switch result {
-                            case .success(let value):
-                                if let newAttachment = value as? Attachment {
-                                    attachments1[index] = newAttachment
-                                }
-                            case .failure(let error):
-                                DPrint(error.localizedDescription)
-                            }
-                            self.updateAttachmentsForNonCtemplarUsers(attachments: attachments1, index: index + 1, publicKeys: publicKeys, messageID: messageID)
-                    })
-            }
-        } else if isAttachmentEncrypted {
-            NetworkManager
-                .shared
-                .apiService
-                .updateAttachment(attachmentID: attachID,
-                                  fileUrl: fileUrl,
-                                  fileData: data,
-                                  messageID: messageID,
-                                  encrypt: false,
-                                  completionHandler:
-                    { (result) in
-                        switch result {
-                        case .success(let value):
-                            if let newAttachment = value as? Attachment {
-                                attachments1[index] = newAttachment
-                            }
-                        case .failure(let error):
-                            DPrint(error.localizedDescription)
-                        }
-                        self.updateAttachmentsForNonCtemplarUsers(attachments: attachments1, index: index + 1, publicKeys: publicKeys, messageID: messageID)
-                })
         }
     }
 }

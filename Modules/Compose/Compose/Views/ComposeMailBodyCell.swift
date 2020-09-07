@@ -48,21 +48,32 @@ public final class ComposeMailBodyCell: UITableViewCell, Cellable {
         
         toolbar.delegate = self
         
-        let clearItem = RichEditorOptionItem(image: nil,
-                                             title: Strings.AppSettings.clear.localized) { (toolbar) in
-            toolbar.editor?.html = ""
+        var otherOptions: [RichEditorOption] = []
+        
+        if !toolbar.options.contains(where: { $0.title == Strings.AppSettings.clear.localized }) {
+            let clearItem = RichEditorOptionItem(image: nil,
+                                                 title: Strings.AppSettings.clear.localized) { (toolbar) in
+                toolbar.editor?.html = ""
+            }
+            otherOptions.append(clearItem)
         }
         
-        let doneItem = RichEditorOptionItem(image: nil,
-                                            title: Strings.AppSettings.done.localized) { [weak self] (toolbar) in
-            self?.messageTextEditor.endEditing(true)
+        if !toolbar.options.contains(where: { $0.title == Strings.AppSettings.done.localized }) {
+            let doneItem = RichEditorOptionItem(image: nil,
+                                                title: Strings.AppSettings.done.localized) { [weak self] (toolbar) in
+                self?.messageTextEditor.endEditing(true)
+            }
+            otherOptions.append(doneItem)
         }
         
-        var options = toolbar.options
         
-        options.append(contentsOf: [clearItem, doneItem])
-        
-        toolbar.options = options
+        if !otherOptions.isEmpty {
+            var options = toolbar.options
+            
+            options.append(contentsOf: otherOptions)
+            
+            toolbar.options = options
+        }
         
         messageTextEditor.setEditorFontColor(.label)
     }
@@ -73,9 +84,8 @@ public final class ComposeMailBodyCell: UITableViewCell, Cellable {
             fatalError("Couldn't typecast ComposeMailSubjectModel")
         }
         self.model = model
-        
+                
         setupEditor()
-        
         messageTextEditor.html = model.content
     }
 }
