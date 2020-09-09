@@ -193,6 +193,8 @@
 "dontIncludeAttachments" = "Don't include Attachments";
 "removeAttachmentAlertTitle" = "Remove Attachment";
 "removeAttachmentAlertDesc" = "Do you really want to remove the attachment?";
+"simpleText" = "Simple Text";
+"htmlText" = "Rich Text";
 
 // Banner
 "mailSendMessage" = "Mail sent successfully.";

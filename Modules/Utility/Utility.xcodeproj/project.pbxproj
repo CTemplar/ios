@@ -149,6 +149,8 @@
 		44BD63F42490B46400CB4A73 /* QuickLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 44BD63F32490B46400CB4A73 /* QuickLayout */; };
 		44BD63F62490B78000CB4A73 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD63F52490B78000CB4A73 /* UIColor+Extension.swift */; };
 		44BD63FB2490B93E00CB4A73 /* SwiftEntryKit in Frameworks */ = {isa = PBXBuildFile; productRef = 44BD63FA2490B93E00CB4A73 /* SwiftEntryKit */; };
+		44DA91952506593100B2724D /* more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44DA91932506593100B2724D /* more@2x.png */; };
+		44DA91962506593100B2724D /* more.png in Resources */ = {isa = PBXBuildFile; fileRef = 44DA91942506593100B2724D /* more.png */; };
 		44E499EC24F68BB40007CFA7 /* FileManager+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E499EB24F68BB40007CFA7 /* FileManager+Helpers.swift */; };
 		F667DD49A75B6FE0252F8096 /* Pods_Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E703B50CC5FDE28F6FAAE49 /* Pods_Utility.framework */; };
 /* End PBXBuildFile section */
@@ -293,6 +295,8 @@
 		44BD63E22490B17A00CB4A73 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		44BD63E32490B19700CB4A73 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		44BD63F52490B78000CB4A73 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		44DA91932506593100B2724D /* more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more@2x.png"; sourceTree = "<group>"; };
+		44DA91942506593100B2724D /* more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more.png; sourceTree = "<group>"; };
 		44E499EB24F68BB40007CFA7 /* FileManager+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Helpers.swift"; sourceTree = "<group>"; };
 		98462D750337A7B64820C39F /* Pods-Utility.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Utility.release.xcconfig"; path = "Target Support Files/Pods-Utility/Pods-Utility.release.xcconfig"; sourceTree = "<group>"; };
 		D98444ABC394312D4DA1F688 /* Pods-Utility.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Utility.debug.xcconfig"; path = "Target Support Files/Pods-Utility/Pods-Utility.debug.xcconfig"; sourceTree = "<group>"; };
@@ -354,6 +358,8 @@
 		4417782D24D2D148000F56B9 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				44DA91942506593100B2724D /* more.png */,
+				44DA91932506593100B2724D /* more@2x.png */,
 				4417782E24D2D148000F56B9 /* h2@2x.png */,
 				4417782F24D2D148000F56B9 /* outdent.png */,
 				4417783024D2D148000F56B9 /* text_color@2x.png */,
@@ -758,6 +764,7 @@
 				441778A724D2D149000F56B9 /* rich_editor.html in Resources */,
 				4417789424D2D148000F56B9 /* italic@2x.png in Resources */,
 				4417789824D2D148000F56B9 /* subscript@2x.png in Resources */,
+				44DA91952506593100B2724D /* more@2x.png in Resources */,
 				4417788324D2D148000F56B9 /* h5.png in Resources */,
 				441778A224D2D149000F56B9 /* bg_color@2x.png in Resources */,
 				4417789F24D2D149000F56B9 /* text_color.png in Resources */,
@@ -776,6 +783,7 @@
 				4417787F24D2D148000F56B9 /* h6@2x.png in Resources */,
 				4417787A24D2D148000F56B9 /* clear.png in Resources */,
 				4417789324D2D148000F56B9 /* bold@2x.png in Resources */,
+				44DA91962506593100B2724D /* more.png in Resources */,
 				4417787924D2D148000F56B9 /* ordered_list@2x.png in Resources */,
 				4417787224D2D148000F56B9 /* bg_color.png in Resources */,
 				4417789A24D2D148000F56B9 /* justify_right.png in Resources */,

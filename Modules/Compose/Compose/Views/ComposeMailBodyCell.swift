@@ -25,6 +25,10 @@ public final class ComposeMailBodyCell: UITableViewCell, Cellable {
 
     private var anyCancellables = Set<AnyCancellable>()
     
+    private var doneButton: RichEditorOptionItem?
+    
+    private var clearButton: RichEditorOptionItem?
+    
     // MARK: - Lifecycle
     public override func awakeFromNib() {
         super.awakeFromNib()
@@ -49,24 +53,23 @@ public final class ComposeMailBodyCell: UITableViewCell, Cellable {
         toolbar.delegate = self
         
         var otherOptions: [RichEditorOption] = []
-        
+
         if !toolbar.options.contains(where: { $0.title == Strings.AppSettings.clear.localized }) {
-            let clearItem = RichEditorOptionItem(image: nil,
+            clearButton = RichEditorOptionItem(image: nil,
                                                  title: Strings.AppSettings.clear.localized) { (toolbar) in
                 toolbar.editor?.html = ""
             }
-            otherOptions.append(clearItem)
+            otherOptions.append(clearButton!)
         }
         
         if !toolbar.options.contains(where: { $0.title == Strings.AppSettings.done.localized }) {
-            let doneItem = RichEditorOptionItem(image: nil,
+            doneButton = RichEditorOptionItem(image: nil,
                                                 title: Strings.AppSettings.done.localized) { [weak self] (toolbar) in
                 self?.messageTextEditor.endEditing(true)
             }
-            otherOptions.append(doneItem)
+            otherOptions.append(doneButton!)
         }
-        
-        
+                
         if !otherOptions.isEmpty {
             var options = toolbar.options
             
@@ -119,6 +122,41 @@ extension ComposeMailBodyCell: RichEditorToolbarDelegate {
         toolbar.editor?.setTextBackgroundColor(color)
     }
     
+    public func onTapMore(_ toolbar: RichEditorToolbar) {
+        let alertController = UIAlertController(title: Strings.Compose.SelectDraftOption.localized,
+                                                message: nil, preferredStyle: .actionSheet)
+        alertController.addAction(.init(title: Strings.Compose.simpleText.localized,
+                                        style: .default,
+                                        handler:
+            { [unowned self] (_) in
+                self.model.contentTypeSubject.send(.normalText)
+                toolbar.disableAllOptions(except:
+                    [
+                        RichEditorDefaultOption.more,
+                        self.clearButton!,
+                        self.doneButton!
+                    ]
+                )
+        }))
+        
+        alertController.addAction(.init(title: Strings.Compose.htmlText.localized,
+                                        style: .default,
+                                        handler:
+            { [unowned self] (_) in
+                self.model.contentTypeSubject.send(.htmlText)
+                toolbar.enableAllOptions()
+        }))
+        
+        alertController.addAction(.init(title: Strings.Button.cancelButton.localized,
+                                        style: .cancel,
+                                        handler:
+            { (_) in
+                toolbar.enableAllOptions()
+        }))
+        
+        parentViewController?.present(alertController, animated: true, completion: nil)
+    }
+    
     public func richEditorToolbarInsertLink(_ toolbar: RichEditorToolbar) {
         toolbar.editor?.hasRangeSelection(handler: { [weak self] (isRangedSelection) in
             if isRangedSelection {
@@ -169,7 +207,13 @@ extension ComposeMailBodyCell: RichEditorDelegate {
     }
     
     public func richEditor(_ editor: RichEditorView, contentDidChange content: String) {
-        model.subject.send(content)
+        if model.contentType == .htmlText {
+            model.subject.send(content)
+        } else {
+            editor.getText { [weak self] (text) in
+                self?.model.subject.send(text)
+            }
+        }
     }
     
     public func didBeginEditing() {

@@ -73,6 +73,7 @@ public enum RichEditorDefaultOption: RichEditorOption {
     case alignRight
     case image
     case link
+    case more
     
     public static let all: [RichEditorDefaultOption] = [
         //.clear,
@@ -81,7 +82,7 @@ public enum RichEditorDefaultOption: RichEditorOption {
         .textColor, .textBackgroundColor,
         .header(1), .header(2), .header(3), .header(4), .header(5), .header(6),
         .indent, outdent, orderedList, unorderedList,
-        .alignLeft, .alignCenter, .alignRight, .image, .link
+        .alignLeft, .alignCenter, .alignRight, .image, .link, .more
     ]
 
     // MARK: RichEditorOption
@@ -109,6 +110,7 @@ public enum RichEditorDefaultOption: RichEditorOption {
         case .alignRight: name = "justify_right"
         case .image: name = "insert_image"
         case .link: name = "insert_link"
+        case .more: name = "more"
         }
         
         let bundle = Bundle(for: RichEditorToolbar.self)
@@ -138,6 +140,7 @@ public enum RichEditorDefaultOption: RichEditorOption {
         case .alignRight: return NSLocalizedString("Right", comment: "")
         case .image: return NSLocalizedString("Image", comment: "")
         case .link: return NSLocalizedString("Link", comment: "")
+        case .more: return NSLocalizedString("more", comment: "")
         }
     }
     
@@ -164,6 +167,7 @@ public enum RichEditorDefaultOption: RichEditorOption {
         case .alignRight: toolbar.editor?.alignRight()
         case .image: toolbar.delegate?.richEditorToolbarInsertImage?(toolbar)
         case .link: toolbar.delegate?.richEditorToolbarInsertLink?(toolbar)
+        case .more: toolbar.delegate?.onTapMore?(toolbar)
         }
     }
 }

@@ -189,6 +189,8 @@
 "dontIncludeAttachments" = "Не включать вложения";
 "removeAttachmentAlertTitle" = "Удалить вложение";
 "removeAttachmentAlertDesc" = "Вы действительно хотите удалить вложение?";
+"simpleText" = "Простой текст";
+"htmlText" = "Богатый текст";
 
 // Banner
 "mailSendMessage" = "Мел св. Сусассуфули.";

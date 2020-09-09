@@ -190,6 +190,8 @@
 "dontIncludeAttachments" = "Ne pas inclure les pièces jointes";
 "removeAttachmentAlertTitle" = "Supprimer la pièce jointe";
 "removeAttachmentAlertDesc" = "Voulez-vous vraiment supprimer la pièce jointe?";
+"simpleText" = "Texte simple";
+"htmlText" = "Texte riche";
 
 // Banner
 "mailSendMessage" = "Courrier envoyé avec succès.";

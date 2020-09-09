@@ -410,6 +410,8 @@ public enum Strings {
         case dontIncludeAttachments
         case removeAttachmentAlertTitle
         case removeAttachmentAlertDesc
+        case simpleText
+        case htmlText
     }
     
     public enum Scheduler: String, Localizable {

@@ -189,6 +189,8 @@
 "dontIncludeAttachments" = "Neuvádzajte prílohy";
 "removeAttachmentAlertTitle" = "Odstrániť prílohu";
 "removeAttachmentAlertDesc" = "Naozaj chcete odstrániť prílohu?";
+"simpleText" = "Jednoduchý text";
+"htmlText" = "Bohatý text";
 
 // Banner
 "mailSendMessage" = "Správa bola úspešne odoslaná";
