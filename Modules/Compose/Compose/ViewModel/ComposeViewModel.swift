@@ -318,7 +318,7 @@ final class ComposeViewModel: Modelable {
         let content = initialiseEmailContent()
         
         contentCellVM = ComposeMailSubjectModel(content: content,
-                                                contentType: email.isHtml == true ? .htmlText : .normalText)
+                                                contentType: user.settings.isHtmlDisabled == false ? .htmlText : .normalText)
         
         contentCellVM?
             .subject

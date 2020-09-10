@@ -12,7 +12,7 @@ final class AppSettingsDatasource: NSObject {
     
     private var user = UserMyself()
     
-    private var dataSource: [SettingsSection: [AppSettingsModel]] = [:]
+    private var dataSource: [SettingsSection: [Modelable]] = [:]
     
     private let apiService = NetworkManager.shared.apiService
     
@@ -39,7 +39,7 @@ final class AppSettingsDatasource: NSObject {
     private lazy var dispatchGroup: DispatchGroup = {
         return DispatchGroup()
     }()
-    
+        
     var appLanguage: String {
         var currentLanguage = ""
         let language = Bundle.getLanguage()
@@ -105,7 +105,8 @@ final class AppSettingsDatasource: NSObject {
         
         tableView?.register(BaseAppSettingsCell.self, forCellReuseIdentifier: BaseAppSettingsCell.className)
         tableView?.register(AppSettingsStorageCell.self, forCellReuseIdentifier: AppSettingsStorageCell.className)
-        
+        tableView?.register(AppSettingsSwitchCell.self, forCellReuseIdentifier: AppSettingsSwitchCell.className)
+
         let backgroundView = UIView()
         backgroundView.backgroundColor = .systemBackground
         tableView?.backgroundView = backgroundView
@@ -118,9 +119,9 @@ final class AppSettingsDatasource: NSObject {
     
     private func initialiseModel(for section: SettingsSection) {
         let rows = section.rows
-        var models: [AppSettingsModel] = []
+        var models: [Modelable] = []
         for row in rows {
-            var model: AppSettingsModel?
+            var model: Modelable?
             switch row {
             case .notifications:
                 model = AppSettingsModel(title: Strings.AppSettings.notifications.localized)
@@ -186,6 +187,14 @@ final class AppSettingsDatasource: NSObject {
                                          titleAlignment: .center,
                                          titleColor: AppStyle.Colors.loaderColor.color,
                                          titleFont: AppStyle.CustomFontStyle.Bold.font(withSize: 16.0)!)
+            case .blockExternalImages:
+                model = AppSettingsSwitchModel(title: Strings.AppSettings.blockExternalImages.localized,
+                                               value: user.settings.blockExternalImage ?? false,
+                                               rowType: row)
+            case .htmlEditor:
+                model = AppSettingsSwitchModel(title: Strings.AppSettings.htmlEditor.localized,
+                                               value: user.settings.isHtmlDisabled == false ? true : false,
+                                               rowType: row)
             }
             
             if let model = model {
@@ -289,6 +298,8 @@ extension AppSettingsDatasource: UITableViewDelegate, UITableViewDataSource {
                 return configureBasicCell(at: indexPath, sectionType: sectionType)
             case .storage:
                 return configureStorageCell(at: indexPath, sectionType: sectionType)
+            case .blockExternalImages, .htmlEditor:
+                return configureSettingsSwitchCell(at: indexPath, sectionType: sectionType)
             }
         }
         return UITableViewCell()
@@ -374,10 +385,9 @@ extension AppSettingsDatasource: UITableViewDelegate, UITableViewDataSource {
                 parentViewController?.router?.onTapSignature(with: .mobile)
             case .keys:
                 parentViewController?.router?.onTapKeys()
-            case .appVersion: break
-            case .storage: break
             case .logout:
                 parentViewController?.router?.onTapLogOut()
+            case .appVersion, .storage, .blockExternalImages, .htmlEditor: break
             }
         }
     }
@@ -410,7 +420,33 @@ extension AppSettingsDatasource: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+    
+    private func configureSettingsSwitchCell(at indexPath: IndexPath, sectionType: SettingsSection) -> UITableViewCell {
+        guard let cell = tableView?.dequeueReusableCell(withIdentifier: AppSettingsSwitchCell.className,
+                                                        for: indexPath) as? AppSettingsSwitchCell,
+            let models = dataSource[sectionType],
+            models.count > indexPath.row else {
+                return UITableViewCell()
+        }
+        
+        let model = models[indexPath.row]
+        cell.configure(with: model)
+        cell.onChangeValue = { [weak self] (value) in
+            if let cellViewModel = model as? AppSettingsSwitchModel {
+                switch cellViewModel.rowType {
+                case .blockExternalImages:
+                    self?.user.settings.update(blockExternalImage: value)
+                case .htmlEditor:
+                    self?.user.settings.update(htmlEditor: value == false ? true : false)
+                default: break
+                }
+                self?.updateSettings()
+            }
+        }
+        return cell
+    }
 }
+
 // MARK: - Save Contacts
 private extension AppSettingsDatasource {
     func onTapSavingContacts() {
@@ -453,7 +489,9 @@ private extension AppSettingsDatasource {
                                   savingContacts: shouldEnable,
                                   encryptContacts: user.settings.isContactsEncrypted ?? false,
                                   encryptAttachment: user.settings.isAttachmentsEncrypted ?? false,
-                                  encryptSubject: user.settings.isSubjectEncrypted ?? false)
+                                  encryptSubject: user.settings.isSubjectEncrypted ?? false,
+                                  blockExternalImages: user.settings.blockExternalImage ?? false,
+                                  htmlDisabled: user.settings.isHtmlDisabled ?? false)
         { [weak self] (result) in
             DispatchQueue.main.async {
                 Loader.stop()
@@ -560,7 +598,16 @@ private extension AppSettingsDatasource {
         let savingContacts = user.settings.saveContacts
         
         Loader.start(presenter: parentViewController)
-        apiService.updateSettings(settingsID: settingsID, recoveryEmail: email, dispalyName: "", savingContacts: savingContacts ?? false, encryptContacts: user.settings.isContactsEncrypted ?? false, encryptAttachment: user.settings.isAttachmentsEncrypted ?? false, encryptSubject: user.settings.isSubjectEncrypted ?? false) { [weak self] (result) in
+        apiService.updateSettings(settingsID: settingsID,
+                                  recoveryEmail: email,
+                                  dispalyName: "",
+                                  savingContacts: savingContacts ?? false,
+                                  encryptContacts: user.settings.isContactsEncrypted ?? false,
+                                  encryptAttachment: user.settings.isAttachmentsEncrypted ?? false,
+                                  encryptSubject: user.settings.isSubjectEncrypted ?? false,
+                                  blockExternalImages: user.settings.blockExternalImage ?? false,
+                                  htmlDisabled: user.settings.isHtmlDisabled ?? false)
+        { [weak self] (result) in
             DispatchQueue.main.async {
                 Loader.stop(in: self?.parentViewController)
                 switch(result) {
@@ -585,6 +632,38 @@ private extension AppSettingsDatasource {
         parentViewController?.showAlert(with: params, onCompletion: {
             NotificationCenter.default.post(name: .updateUserSettingsNotificationID, object: nil, userInfo: nil)
         })
+    }
+}
+
+// MARK: - Update Settings Properties
+private extension AppSettingsDatasource {
+    func updateSettings() {
+        let settingsID = user.settings.settingsID ?? 0
+        
+        Loader.start(presenter: parentViewController)
+        
+        apiService.updateSettings(settingsID: settingsID,
+                                  recoveryEmail: user.settings.recoveryEmail ?? "",
+                                  dispalyName: user.settings.displayName ?? "",
+                                  savingContacts: user.settings.saveContacts ?? false,
+                                  encryptContacts: user.settings.isContactsEncrypted ?? false,
+                                  encryptAttachment: user.settings.isAttachmentsEncrypted ?? false,
+                                  encryptSubject: user.settings.isSubjectEncrypted ?? false,
+                                  blockExternalImages: user.settings.blockExternalImage ?? false,
+                                  htmlDisabled: user.settings.isHtmlDisabled ?? false)
+        { [weak self] (result) in
+            DispatchQueue.main.async {
+                Loader.stop(in: self?.parentViewController)
+                switch(result) {
+                case .success:
+                    NotificationCenter.default.post(name: .updateUserSettingsNotificationID, object: nil, userInfo: nil)
+                case .failure(let error):
+                    self?.parentViewController?.showAlert(with: Strings.AppError.error.localized,
+                                                          message: error.localizedDescription,
+                                                          buttonTitle: Strings.Button.closeButton.localized)
+                }
+            }
+        }
     }
 }
 

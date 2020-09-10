@@ -310,6 +310,8 @@
 "aboutSettings" = "A propos";
 "storageSettings" = "Stockage";
 "logoutSettings" = "Se déconnecter";
+"blockExternalImages" = "Bloquer les images externes";
+"htmlEditor" = "Éditeur HTML";
 "featureIsComing" = "Fonctionnalité bientôt disponible. Pour modifier votre mot de passe, vous pouvez vous connecter au site web. Feature coming soon.";
 "saveContactsAlertTitle" = "Enregistrer les contacts dans %s";
 "saveContactsAlertMessage" = "Actuellement, l'option d'enregistrement des contacts est %a. Voulez-vous modifier vos préférences?";

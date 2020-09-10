@@ -313,6 +313,8 @@
 "aboutSettings" = "About";
 "storageSettings" = "Storage";
 "logoutSettings" = "Log out";
+"blockExternalImages" = "Block External Images";
+"htmlEditor" = "HTML Editor";
 "featureIsComing" = "Feature coming soon. Please, login on desktop to update your password.";
 "saveContactsAlertTitle" = "Save Contacts in %s";
 "saveContactsAlertMessage" = "Currently the contact saving option is %a. Do you want to change your preference?";

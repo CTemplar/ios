@@ -38,6 +38,7 @@ public struct Settings: Hashable {
     public private (set) var isHtmlDisabled: Bool?
     public private (set) var notificationEmail: String?
     public private (set) var planType: String?
+    public private (set) var blockExternalImage: Bool?
     
     // MARK: Constrcutor
     public init() {}
@@ -79,6 +80,7 @@ public struct Settings: Hashable {
         self.isHtmlDisabled = dictionary["is_html_disabled"] as? Bool
         self.notificationEmail = dictionary["notification_email"] as? String
         self.planType = dictionary["plan_type"] as? String
+        self.blockExternalImage = dictionary["is_disable_loading_images"] as? Bool
     }
     
     mutating func update(contactsEncrypted: Bool) {
@@ -99,5 +101,13 @@ public struct Settings: Hashable {
     
     mutating func update(recoveryEmail: String?) {
         self.recoveryEmail = recoveryEmail
+    }
+    
+   public  mutating func update(blockExternalImage: Bool) {
+        self.blockExternalImage = blockExternalImage
+    }
+    
+    public mutating func update(htmlEditor: Bool) {
+        self.isHtmlDisabled = htmlEditor
     }
 }

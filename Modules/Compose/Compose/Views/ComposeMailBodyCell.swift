@@ -79,6 +79,17 @@ public final class ComposeMailBodyCell: UITableViewCell, Cellable {
         }
         
         messageTextEditor.setEditorFontColor(.label)
+        
+        // Setting the content type
+        if model.contentType == .normalText {
+            toolbar.disableAllOptions(except:
+                [
+                    RichEditorDefaultOption.more,
+                    self.clearButton!,
+                    self.doneButton!
+                ]
+            )
+        }
     }
     
     // MARK: - Configuration
@@ -89,6 +100,7 @@ public final class ComposeMailBodyCell: UITableViewCell, Cellable {
         self.model = model
                 
         setupEditor()
+       
         messageTextEditor.html = model.content
     }
 }
@@ -123,9 +135,13 @@ extension ComposeMailBodyCell: RichEditorToolbarDelegate {
     }
     
     public func onTapMore(_ toolbar: RichEditorToolbar) {
+        let simpleTextTitle = model.contentType == .normalText ? "\(Strings.Compose.simpleText.localized) ✔︎" : Strings.Compose.simpleText.localized
+        
+        let htmlTextTitle = model.contentType == .htmlText ? "\(Strings.Compose.htmlText.localized) ✔︎" : Strings.Compose.htmlText.localized
+        
         let alertController = UIAlertController(title: Strings.Compose.SelectDraftOption.localized,
                                                 message: nil, preferredStyle: .actionSheet)
-        alertController.addAction(.init(title: Strings.Compose.simpleText.localized,
+        alertController.addAction(.init(title: simpleTextTitle,
                                         style: .default,
                                         handler:
             { [unowned self] (_) in
@@ -139,7 +155,7 @@ extension ComposeMailBodyCell: RichEditorToolbarDelegate {
                 )
         }))
         
-        alertController.addAction(.init(title: Strings.Compose.htmlText.localized,
+        alertController.addAction(.init(title: htmlTextTitle,
                                         style: .default,
                                         handler:
             { [unowned self] (_) in

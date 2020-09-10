@@ -297,6 +297,8 @@ public enum Strings {
         case aboutSettings
         case storageSettings
         case logoutSettings
+        case blockExternalImages
+        case htmlEditor
         case featureIsComing
         case saveContactsAlertTitle
         case saveContactsAlertMessage

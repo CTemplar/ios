@@ -1,6 +1,6 @@
 import Utility
 
-enum SettingsSection: CaseIterable {
+public enum SettingsSection: CaseIterable {
     case general
     case folder
     case security
@@ -31,7 +31,7 @@ enum SettingsSection: CaseIterable {
     var rows: [SettingsRow] {
         switch self {
         case .general:
-            return [.notifications, .language, .contacts, .whiteOrBlackList, .dashboard]
+            return [.notifications, .language, .contacts, .whiteOrBlackList, .dashboard, .blockExternalImages, .htmlEditor]
         case .folder:
             return [.manageFolders]
         case .security:
@@ -48,7 +48,7 @@ enum SettingsSection: CaseIterable {
     }
 }
 
-enum SettingsRow {
+public enum SettingsRow {
     case notifications
     case language
     case contacts
@@ -65,6 +65,8 @@ enum SettingsRow {
     case appVersion
     case storage
     case logout
+    case blockExternalImages
+    case htmlEditor
 }
 
 enum SignatureType {
