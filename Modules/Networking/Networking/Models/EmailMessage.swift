@@ -250,4 +250,8 @@ public extension EmailMessage {
     mutating func update(forwardAttachmentsMessage: Int?) {
         self.forwardAttachmentsMessage = forwardAttachmentsMessage
     }
+    
+    mutating func update(isHtml: Bool) {
+        self.isHtml = isHtml
+    }
 }

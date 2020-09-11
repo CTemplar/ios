@@ -297,6 +297,8 @@ public enum Strings {
         case aboutSettings
         case storageSettings
         case logoutSettings
+        case blockExternalImages
+        case htmlEditor
         case featureIsComing
         case saveContactsAlertTitle
         case saveContactsAlertMessage
@@ -410,6 +412,8 @@ public enum Strings {
         case dontIncludeAttachments
         case removeAttachmentAlertTitle
         case removeAttachmentAlertDesc
+        case simpleText
+        case htmlText
     }
     
     public enum Scheduler: String, Localizable {

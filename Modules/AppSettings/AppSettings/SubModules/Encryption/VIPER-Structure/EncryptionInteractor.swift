@@ -26,7 +26,9 @@ final class EncryptionInteractor {
                                   savingContacts: settings.saveContacts ?? false,
                                   encryptContacts: encryptContacts,
                                   encryptAttachment: encryptAttachment,
-                                  encryptSubject: encryptSubject)
+                                  encryptSubject: encryptSubject,
+                                  blockExternalImages: settings.blockExternalImage ?? false,
+                                  htmlDisabled: settings.isHtmlDisabled ?? false)
         { [weak self] (result) in
             DispatchQueue.main.async {
                 switch(result) {

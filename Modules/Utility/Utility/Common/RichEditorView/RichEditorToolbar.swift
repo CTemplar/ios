@@ -21,6 +21,9 @@ import UIKit
 
     /// Called when the Insert Link toolbar item is pressed.
     @objc optional func richEditorToolbarInsertLink(_ toolbar: RichEditorToolbar)
+    
+    /// Called when the more toolbar item is pressed
+    @objc optional func onTapMore(_ toolbar: RichEditorToolbar)
 }
 
 /// RichBarButtonItem is a subclass of UIBarButtonItem that takes a callback as opposed to the target-action pattern
@@ -152,4 +155,17 @@ import UIKit
         toolbarScroll.contentSize.width = width
     }
     
+    public func disableAllOptions(except options: [RichEditorOption]) {
+        toolbar.items?.forEach({ (item) in
+            if !options.contains(where: { $0.title == item.title || $0.image == item.image }) {
+                item.isEnabled = false
+            }
+        })
+    }
+    
+    public func enableAllOptions() {
+        toolbar.items?.forEach({
+            $0.isEnabled = true
+        })
+    }
 }

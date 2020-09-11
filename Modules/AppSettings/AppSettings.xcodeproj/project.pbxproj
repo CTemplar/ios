@@ -49,6 +49,8 @@
 		443DD43124CEE38700771AE5 /* DashboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DD42D24CEE38700771AE5 /* DashboardTableViewController.swift */; };
 		443DD43224CEE38700771AE5 /* DashboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DD42E24CEE38700771AE5 /* DashboardDataSource.swift */; };
 		443DD43324CEE38700771AE5 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 443DD42F24CEE38700771AE5 /* Dashboard.storyboard */; };
+		4461776C2507977E0088F138 /* AppSettingsSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4461776B2507977E0088F138 /* AppSettingsSwitchCell.swift */; };
+		4461776E2509059A0088F138 /* AppSettingsSwitchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4461776D2509059A0088F138 /* AppSettingsSwitchModel.swift */; };
 		C0E0629D75FD8DF8CC6DC07F /* Pods_AppSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF5B97E24BE3B896EE7FC03A /* Pods_AppSettings.framework */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +99,8 @@
 		443DD42D24CEE38700771AE5 /* DashboardTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardTableViewController.swift; sourceTree = "<group>"; };
 		443DD42E24CEE38700771AE5 /* DashboardDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardDataSource.swift; sourceTree = "<group>"; };
 		443DD42F24CEE38700771AE5 /* Dashboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
+		4461776B2507977E0088F138 /* AppSettingsSwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsSwitchCell.swift; sourceTree = "<group>"; };
+		4461776D2509059A0088F138 /* AppSettingsSwitchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsSwitchModel.swift; sourceTree = "<group>"; };
 		667FB86A896E9248827C1F9D /* Pods-AppSettings.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSettings.debug.xcconfig"; path = "Target Support Files/Pods-AppSettings/Pods-AppSettings.debug.xcconfig"; sourceTree = "<group>"; };
 		DBF25F08A8E1FEB6AF295B68 /* Pods-AppSettings.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSettings.release.xcconfig"; path = "Target Support Files/Pods-AppSettings/Pods-AppSettings.release.xcconfig"; sourceTree = "<group>"; };
 		FF5B97E24BE3B896EE7FC03A /* Pods_AppSettings.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSettings.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -341,6 +345,7 @@
 			children = (
 				443DD40824CEA61100771AE5 /* BaseAppSettingsCell.swift */,
 				443DD40C24CEA6C100771AE5 /* AppSettingsStorageCell.swift */,
+				4461776B2507977E0088F138 /* AppSettingsSwitchCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -388,6 +393,7 @@
 			children = (
 				443DD40624CDD69100771AE5 /* AppSettingsDatasource.swift */,
 				443DD40A24CEA69100771AE5 /* AppSettingsModel.swift */,
+				4461776D2509059A0088F138 /* AppSettingsSwitchModel.swift */,
 			);
 			path = Datasource;
 			sourceTree = "<group>";
@@ -550,6 +556,8 @@
 				443926C724D0648600112A09 /* SelectLanguageViewController.swift in Sources */,
 				443926DC24D140E700112A09 /* EncryptionController.swift in Sources */,
 				4417771A24D2B489000F56B9 /* SignatureViewController.swift in Sources */,
+				4461776C2507977E0088F138 /* AppSettingsSwitchCell.swift in Sources */,
+				4461776E2509059A0088F138 /* AppSettingsSwitchModel.swift in Sources */,
 				443DD40924CEA61100771AE5 /* BaseAppSettingsCell.swift in Sources */,
 				443DD41824CEBD2900771AE5 /* AppSettingsRouter.swift in Sources */,
 				443926C224D0572D00112A09 /* ContactTableViewCell.swift in Sources */,

@@ -1,7 +1,7 @@
 import UIKit
 import Utility
 
-class BaseAppSettingsCell: UITableViewCell, Cellable {
+class AppSettingsSwitchCell: UITableViewCell, Modelable {
 
     // MARK: Properties
     lazy private var titleLabel: UILabel = {
@@ -11,13 +11,16 @@ class BaseAppSettingsCell: UITableViewCell, Cellable {
         return label
     }()
     
-    lazy private var subtitleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = k_settingsCellSecondaryTextColor
-        label.font = AppStyle.CustomFontStyle.Regular.font(withSize: 14.0)
-        return label
+    lazy private var settingsSwitch: UISwitch = {
+        let aSwitch = UISwitch()
+        aSwitch.onTintColor = AppStyle.Colors.loaderColor.color
+        return aSwitch
     }()
-
+    
+    private var viewModel: AppSettingsSwitchModel?
+    
+    var onChangeValue: ((Bool) -> Void)?
+    
     // MARK: - Constructor
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -33,14 +36,6 @@ class BaseAppSettingsCell: UITableViewCell, Cellable {
         super.awakeFromNib()
         // Initialization code
     }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        textLabel?.text = nil
-        detailTextLabel?.text = nil
-        accessoryType = .none
-        selectionStyle = .none
-    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -53,7 +48,8 @@ class BaseAppSettingsCell: UITableViewCell, Cellable {
         backgroundColor = .systemBackground
         
         [
-            titleLabel
+            titleLabel,
+            settingsSwitch
         ].forEach({
             $0.translatesAutoresizingMaskIntoConstraints = false
             addSubview($0)
@@ -64,32 +60,36 @@ class BaseAppSettingsCell: UITableViewCell, Cellable {
             make.trailing.equalToSuperview().offset(-16.0)
             make.centerY.equalToSuperview()
         }
+        
+        settingsSwitch.snp.makeConstraints { (make) in
+            make.trailing.equalToSuperview().offset(-16.0)
+            make.centerY.equalToSuperview()
+        }
+        
+        settingsSwitch.addTarget(self, action: #selector(onChangeValue(_:)), for: .valueChanged)
+    }
+    
+    // MARK: - Actions
+    @objc
+    private func onChangeValue(_ sender: UISwitch) {
+        viewModel?.update(value: sender.isOn)
+        onChangeValue?(sender.isOn)
     }
 
     // MARK: - Configuration
     public func configure(with model: Modelable) {
-        guard let model = model as? AppSettingsModel else {
+        guard let model = model as? AppSettingsSwitchModel else {
             fatalError("Couldn't Find AppSettingsModel")
         }
-        
         titleLabel.text = model.title
-        titleLabel.textAlignment = model.titleAlignment
-        subtitleLabel.textAlignment = .right
-        accessoryType = model.showDetailIndicator ? .disclosureIndicator : .none
-        selectionStyle = model.selectable ? .default : .none
+        titleLabel.textAlignment = .left
+        accessoryType = .none
+        selectionStyle = .none
         titleLabel.font = model.titleFont
         titleLabel.textColor = model.titleColor
         
-        if model.subtitle?.isEmpty == false {
-            addSubview(subtitleLabel)
-            subtitleLabel.text = model.subtitle
-            subtitleLabel.snp.makeConstraints { [weak self] (make) in
-                guard let safeSelf = self else {
-                    return
-                }
-                make.centerY.equalTo(safeSelf.titleLabel)
-                make.trailing.equalToSuperview().inset(model.showDetailIndicator ? 32.0 : 16.0)
-            }
-        }
+        settingsSwitch.isOn = model.value
+        
+        viewModel = model
     }
 }

@@ -20,7 +20,7 @@ public enum MessagesFoldersName: String, CaseIterable {
 
 public enum EndPoint: String {
     #if DEBUG
-    case baseUrl = "https://devapi.ctemplar.net/" // "https://devapi.ctemplar.net/"
+    case baseUrl = "https://api.ctemplar.com/" // "https://devapi.ctemplar.net/"
     #else
     case baseUrl = "https://api.ctemplar.com/"  //"https://mail.ctemplar.com/api/"
     #endif
@@ -124,6 +124,8 @@ public enum JSONKey: String {
     case attachmentEncrypted = "is_attachments_encrypted"
     case platform = "platform"
     case forwardAttachmentsMessage = "forward_attachments_of_message"
+    case blockExternalImages = "is_disable_loading_images"
+    case htmlEditor = "is_html_disabled"
 }
 
 public enum TokenConstant: Int {

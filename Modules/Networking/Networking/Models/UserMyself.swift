@@ -15,7 +15,7 @@ public struct UserMyself {
     public private (set) var username: String?
     public private (set) var isTrial: Bool?
     public private (set) var isPrime: Bool?
-    public private (set) var settings: Settings = Settings()
+    public var settings: Settings = Settings()
         
     // MARK: - Constrcutor
     public init() {}

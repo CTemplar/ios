@@ -193,6 +193,8 @@
 "dontIncludeAttachments" = "Don't include Attachments";
 "removeAttachmentAlertTitle" = "Remove Attachment";
 "removeAttachmentAlertDesc" = "Do you really want to remove the attachment?";
+"simpleText" = "Simple Text";
+"htmlText" = "Rich Text";
 
 // Banner
 "mailSendMessage" = "Mail sent successfully.";
@@ -311,6 +313,8 @@
 "aboutSettings" = "About";
 "storageSettings" = "Storage";
 "logoutSettings" = "Log out";
+"blockExternalImages" = "Block External Images";
+"htmlEditor" = "HTML Editor";
 "featureIsComing" = "Feature coming soon. Please, login on desktop to update your password.";
 "saveContactsAlertTitle" = "Save Contacts in %s";
 "saveContactsAlertMessage" = "Currently the contact saving option is %a. Do you want to change your preference?";

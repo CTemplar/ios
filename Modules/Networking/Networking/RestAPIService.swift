@@ -1091,7 +1091,17 @@ public class RestAPIService {
     }
     
     // MARK: - Settings
-    func updateSettings(token: String, settingsID: Int, recoveryEmail: String, dispalyName: String, savingContacts: Bool, encryptContacts: Bool, encryptAttachment: Bool, encryptSubject: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateSettings(token: String,
+                        settingsID: Int,
+                        recoveryEmail: String,
+                        dispalyName: String,
+                        savingContacts: Bool,
+                        encryptContacts: Bool,
+                        encryptAttachment: Bool,
+                        encryptSubject: Bool,
+                        blockExternalImages: Bool,
+                        htmlDisabled: Bool,
+                        completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -1099,10 +1109,12 @@ public class RestAPIService {
         ]
         
         var parameters: Parameters = [
-            JSONKey.subjectEncrypted.rawValue : encryptSubject,
-            JSONKey.savingContacts.rawValue : savingContacts,
-            JSONKey.contactsEncrypted.rawValue : encryptContacts,
-            JSONKey.attachmentEncrypted.rawValue : encryptAttachment
+            JSONKey.subjectEncrypted.rawValue: encryptSubject,
+            JSONKey.savingContacts.rawValue: savingContacts,
+            JSONKey.contactsEncrypted.rawValue: encryptContacts,
+            JSONKey.attachmentEncrypted.rawValue: encryptAttachment,
+            JSONKey.blockExternalImages.rawValue: blockExternalImages,
+            JSONKey.htmlEditor.rawValue: htmlDisabled
         ]
         
         if !recoveryEmail.isEmpty {

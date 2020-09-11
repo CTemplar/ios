@@ -189,6 +189,8 @@
 "dontIncludeAttachments" = "Не включать вложения";
 "removeAttachmentAlertTitle" = "Удалить вложение";
 "removeAttachmentAlertDesc" = "Вы действительно хотите удалить вложение?";
+"simpleText" = "Простой текст";
+"htmlText" = "Богатый текст";
 
 // Banner
 "mailSendMessage" = "Мел св. Сусассуфули.";
@@ -308,6 +310,8 @@
 "aboutSettings" = "О приложении";
 "storageSettings" = "Хранилище";
 "logoutSettings" = "Выйти";
+"blockExternalImages" = "Блокировать внешние изображения";
+"htmlEditor" = "HTML редактор";
 "featureIsComing" = "Функция скоро появится. Пожалуйста, войдите на рабочий стол, чтобы обновить свой пароль.";
 "saveContactsAlertTitle" = "Сохранить контакты в %s";
 "saveContactsAlertMessage" = "В настоящее время опция сохранения контактов %a. Вы хотите изменить свои предпочтения?";

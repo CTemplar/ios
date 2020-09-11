@@ -1139,11 +1139,30 @@ public class APIService: HashingService {
     }
     
     // MARK: - Settings
-    public func updateSettings(settingsID: Int, recoveryEmail: String, dispalyName: String, savingContacts: Bool, encryptContacts: Bool, encryptAttachment: Bool, encryptSubject: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    public func updateSettings(settingsID: Int,
+                               recoveryEmail: String,
+                               dispalyName: String,
+                               savingContacts: Bool,
+                               encryptContacts: Bool,
+                               encryptAttachment: Bool,
+                               encryptSubject: Bool,
+                               blockExternalImages: Bool,
+                               htmlDisabled: Bool,
+                               completionHandler: @escaping (APIResult<Any>) -> Void) {
         checkTokenExpiration() { [weak self] (complete) in
             if complete {
                 if let token = self?.getToken() {
-                    self?.restAPIService.updateSettings(token: token, settingsID: settingsID, recoveryEmail: recoveryEmail, dispalyName: dispalyName, savingContacts: savingContacts, encryptContacts: encryptContacts, encryptAttachment: encryptAttachment, encryptSubject: encryptSubject) { (result) in
+                    self?.restAPIService.updateSettings(token: token,
+                                                        settingsID: settingsID,
+                                                        recoveryEmail: recoveryEmail,
+                                                        dispalyName: dispalyName,
+                                                        savingContacts: savingContacts,
+                                                        encryptContacts: encryptContacts,
+                                                        encryptAttachment: encryptAttachment,
+                                                        encryptSubject: encryptSubject,
+                                                        blockExternalImages: blockExternalImages,
+                                                        htmlDisabled: htmlDisabled)
+                    { (result) in
                         switch(result) {
                         case .success(let value):
                             completionHandler(APIResult.success(value))

@@ -189,6 +189,8 @@
 "dontIncludeAttachments" = "Neuvádzajte prílohy";
 "removeAttachmentAlertTitle" = "Odstrániť prílohu";
 "removeAttachmentAlertDesc" = "Naozaj chcete odstrániť prílohu?";
+"simpleText" = "Jednoduchý text";
+"htmlText" = "Bohatý text";
 
 // Banner
 "mailSendMessage" = "Správa bola úspešne odoslaná";
@@ -305,6 +307,8 @@
 "aboutSettings" = "O používateľovi";
 "storageSettings" = "Úložisko";
 "logoutSettings" = "Odhlásiť sa";
+"blockExternalImages" = "Blokovať externé obrázky";
+"htmlEditor" = "Editor HTML";
 "featureIsComing" = "Funkcia bude čoskoro k dispozícii. Ak chcete aktualizovať svoje heslo, prihláste sa.";
 "saveContactsAlertTitle" = "Uložiť kontakty do %s";
 "saveContactsAlertMessage" = "V súčasnosti je možnosť uloženia kontaktu %a. Chcete zmeniť svoje preferencie?";

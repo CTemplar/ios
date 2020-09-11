@@ -262,7 +262,8 @@ final class ComposeViewModel: Modelable {
         .store(in: &bindables)
         
         // Subject
-        subjectCellVM = ComposeMailSubjectModel(content: email.subject ?? "")
+        subjectCellVM = ComposeMailSubjectModel(content: email.subject ?? "",
+                                                contentType: .normalText)
         
         subjectCellVM?
             .subject
@@ -316,7 +317,8 @@ final class ComposeViewModel: Modelable {
         // Body
         let content = initialiseEmailContent()
         
-        contentCellVM = ComposeMailSubjectModel(content: content)
+        contentCellVM = ComposeMailSubjectModel(content: content,
+                                                contentType: user.settings.isHtmlDisabled == false ? .htmlText : .normalText)
         
         contentCellVM?
             .subject
@@ -325,6 +327,14 @@ final class ComposeViewModel: Modelable {
                 self?.email.update(content: content)
                 self?.contentCellVM?.content = content
                 self?.sendButtonState.send()
+                
+        }
+        .store(in: &bindables)
+        
+        contentCellVM?
+            .contentTypeSubject
+            .sink { [weak self] (contentType) in
+                self?.email.update(isHtml: contentType == .htmlText)
                 
         }
         .store(in: &bindables)
