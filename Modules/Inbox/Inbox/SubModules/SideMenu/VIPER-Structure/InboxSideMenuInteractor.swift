@@ -143,30 +143,33 @@ public final class InboxSideMenuInteractor {
         var delayedDeliveryUnreadMessagesCount = 0
         var deadManUnreadMessagesCount = 0
         
-        for object in unreadMessages {
-            if object.folderName == apiFolderName {
-                unreadMessagesCount = object.unreadMessagesCount!
-            }
+        for object in unreadMessages where object.folderName == apiFolderName {
+            unreadMessagesCount = object.unreadMessagesCount ?? 0
 
             if object.folderName == MessagesFoldersName.outboxSD.rawValue {
-                selfDestructUnreadMessagesCount = object.unreadMessagesCount!
+                selfDestructUnreadMessagesCount = object.unreadMessagesCount ?? 0
             }
             
             if object.folderName == MessagesFoldersName.outboxDD.rawValue {
-                delayedDeliveryUnreadMessagesCount = object.unreadMessagesCount!
+                delayedDeliveryUnreadMessagesCount = object.unreadMessagesCount ?? 0
             }
             
             if object.folderName == MessagesFoldersName.outboxDM.rawValue {
-                deadManUnreadMessagesCount = object.unreadMessagesCount!
+                deadManUnreadMessagesCount = object.unreadMessagesCount ?? 0
             }
-        }
-        
-        if apiFolderName == MessagesFoldersName.draft.rawValue {
-            unreadMessagesCount = 0
+            
+            if object.folderName == MessagesFoldersName.outboxDM.rawValue {
+                deadManUnreadMessagesCount = object.unreadMessagesCount ?? 0
+            }
         }
         
         if apiFolderName == MessagesFoldersName.outbox.rawValue {
             unreadMessagesCount = selfDestructUnreadMessagesCount + delayedDeliveryUnreadMessagesCount + deadManUnreadMessagesCount
+        }
+        
+        if folder == Menu.unread.menuName,
+            let unreadMessage = unreadMessages.first(where: { $0.folderName == MessagesFoldersName.inbox.rawValue }) {
+            unreadMessagesCount = unreadMessage.unreadMessagesCount ?? 0
         }
         
         return unreadMessagesCount

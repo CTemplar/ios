@@ -337,7 +337,7 @@ public class APIService: HashingService {
         }
     }
     
-    public func createMessage(parentID: String, content: String, subject: String, recieversList: [[String]], folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String: String], attachments: Array<[String: String]>, isHTML: Bool = false, showHud: Bool = true, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    public func createMessage(parentID: String, content: String, subject: String, recieversList: [[String]], folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String: String], attachments: Array<[String: String]>, isSubjectEncrypted: Bool, sender: String, isHTML: Bool = false, showHud: Bool = true, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         checkTokenExpiration() { [weak self] (complete) in
             if complete {
@@ -348,7 +348,7 @@ public class APIService: HashingService {
                         }
                     }
                     DispatchQueue.global(qos: .background).async {
-                        self?.restAPIService.createMessage(token: token, parentID: parentID, content: content, subject: subject, recieversList: recieversList, folder: folder, mailboxID: mailboxID, send: send, encrypted: encrypted, encryptionObject: encryptionObject, attachments: attachments) { (result) in
+                        self?.restAPIService.createMessage(token: token, parentID: parentID, content: content, subject: subject, recieversList: recieversList, folder: folder, mailboxID: mailboxID, send: send, encrypted: encrypted, encryptionObject: encryptionObject, attachments: attachments, isSubjectEncrypted: isSubjectEncrypted, sender: sender) { (result) in
                             DispatchQueue.main.async {
                                 switch(result) {
                                 case .success(let value):

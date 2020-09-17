@@ -358,6 +358,11 @@ final class InboxDatasource: NSObject {
         return (messages: messages, user: user)
     }
     
+    func openInboxViewer(of messageId: Int) {
+        self.messageId = messageId
+        NotificationCenter.default.post(name: .updateInboxMessagesNotificationID, object: false, userInfo: nil)
+    }
+    
     // MARK: - Update Datasource
     func updateMessageStatus(message: EmailMessage, status: Bool) {
         if let index = messages.firstIndex(where: { $0.messsageID == message.messsageID }) {
@@ -375,19 +380,13 @@ final class InboxDatasource: NSObject {
     }
     
     func update(messages: [EmailMessage]) {
-//        let folderFilter = messages.filter({ $0.folder == SharedInboxState.shared.selectedMenu?.menuName })
-//        folderFilter.forEach { (message) in
-//            self.messages.removeAll(where: { $0.messsageID == message.messsageID })
-//            self.messages.append(message)
-//        }
-//        self.originalMessages = self.messages
-//        parentViewController?.presenter?.updateNoMessagePrompt()
-        
         messages.forEach { (message) in
             self.messages.removeAll(where: { $0.messsageID == message.messsageID })
             self.messages.append(message)
         }
+        
         self.originalMessages = self.messages
+        
         parentViewController?.presenter?.updateNoMessagePrompt()
     }
     

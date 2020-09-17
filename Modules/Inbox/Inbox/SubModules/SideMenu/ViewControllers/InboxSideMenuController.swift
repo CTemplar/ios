@@ -105,6 +105,10 @@ public final class InboxSideMenuController: UIViewController {
         self.dataSource = dataSource
     }
     
+    public func resetToInbox() {
+        self.dataSource?.didSelect(menu: .inbox)
+    }
+    
     public func setup(onTapContacts: (([Contact], Bool) -> Void)?,
                onTapSettings: ((UserMyself) -> Void)?,
                onTapManageFolders: (([Folder], UserMyself) -> Void)?,

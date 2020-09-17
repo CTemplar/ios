@@ -237,6 +237,8 @@ final class ComposeFetcher {
                             encrypted: Bool,
                             encryptionObject: [String: String],
                             attachments: [[String: String]],
+                            isSubjectEncrypted: Bool,
+                            sender: String,
                             onCompletion: @escaping CompletionWithMessage,
                             onCompletionWithAlert: @escaping CompletionWithAlert) {
         DispatchQueue.global(qos: .background).async {
@@ -248,7 +250,9 @@ final class ComposeFetcher {
                                           send: send,
                                           encrypted: encrypted,
                                           encryptionObject: encryptionObject,
-                                          attachments: attachments)
+                                          attachments: attachments,
+                                          isSubjectEncrypted: isSubjectEncrypted,
+                                          sender: sender)
             { (result) in
                 DispatchQueue.main.async {
                     switch(result) {
@@ -271,6 +275,8 @@ final class ComposeFetcher {
                                content: String,
                                recievers: [[String]],
                                mailboxID: Int,
+                               isSubjectEncrypted: Bool,
+                               sender: String,
                                onCompletion: @escaping CompletionWithMessage,
                                onCompletionWithAlert: @escaping CompletionWithAlert) {
         
@@ -290,6 +296,8 @@ final class ComposeFetcher {
                            encrypted: message.isEncrypted ?? false,
                            encryptionObject: encryptionObjectDictionary,
                            attachments: message.attachments?.map({ $0.toDictionary() }) ?? [],
+                           isSubjectEncrypted: isSubjectEncrypted,
+                           sender: sender,
                            onCompletion: onCompletion, onCompletionWithAlert: onCompletionWithAlert)
     }
     

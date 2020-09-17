@@ -360,3 +360,9 @@ extension InboxViewController: LeftBarButtonItemConfigurable {
         )
     }
 }
+// MARK: - InboxViewerPushable
+extension InboxViewController: InboxViewerPushable {
+    func openInboxViewer(of messageId: Int) {
+        dataSource?.openInboxViewer(of: messageId)
+    }
+}

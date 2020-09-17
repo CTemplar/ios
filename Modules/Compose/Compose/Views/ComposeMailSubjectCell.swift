@@ -24,7 +24,7 @@ public final class ComposeMailSubjectCell: UITableViewCell, Cellable {
     // MARK: - Constructor
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+        selectionStyle = .none
         buildLayout()
     }
     
