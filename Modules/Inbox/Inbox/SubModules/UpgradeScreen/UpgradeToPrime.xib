@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina5_5" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,11 +18,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="UpgradeToPrimeView" customModule="Inbox" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pHX-pL-J1M">
-                    <rect key="frame" x="24" y="91" width="366" height="514"/>
+                    <rect key="frame" x="24" y="176" width="366" height="514"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upgrade" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8VG-Uy-gGU">
                             <rect key="frame" x="10" y="26" width="346" height="20"/>
@@ -44,7 +43,7 @@
                                         <constraint firstAttribute="width" secondItem="EIe-Oy-xtF" secondAttribute="height" multiplier="1:1" id="pa7-m0-cjF"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1user" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VbF-8U-mn5" customClass="UILocalizedLabel" customModule="Inbox" customModuleProvider="target">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 user" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VbF-8U-mn5" customClass="UILocalizedLabel" customModule="Inbox" customModuleProvider="target">
                                     <rect key="frame" x="32" y="14" width="286" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="16" id="gIy-6n-xDr"/>
@@ -84,7 +83,7 @@
                                         <constraint firstAttribute="width" secondItem="t4T-xc-OEK" secondAttribute="height" multiplier="1:1" id="rGo-4W-Ump"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5storage" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYQ-N4-aHd" customClass="UILocalizedLabel" customModule="Inbox" customModuleProvider="target">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 storage" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYQ-N4-aHd" customClass="UILocalizedLabel" customModule="Inbox" customModuleProvider="target">
                                     <rect key="frame" x="32" y="14" width="286" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="16" id="VEh-Bw-FaR"/>
@@ -124,7 +123,7 @@
                                         <constraint firstAttribute="width" secondItem="tbs-Yi-ztp" secondAttribute="height" multiplier="1:1" id="tQg-xb-5uJ"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zO3-OI-JO0" customClass="UILocalizedLabel" customModule="Inbox" customModuleProvider="target">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 emails" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zO3-OI-JO0" customClass="UILocalizedLabel" customModule="Inbox" customModuleProvider="target">
                                     <rect key="frame" x="32" y="14" width="286" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="16" id="8Hj-MY-7hT"/>
@@ -164,7 +163,7 @@
                                         <constraint firstAttribute="width" secondItem="EUw-TX-KaY" secondAttribute="height" multiplier="1:1" id="WIN-Vv-iCm"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1custom" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaX-TT-XX6" customClass="UILocalizedLabel" customModule="Inbox" customModuleProvider="target">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 custom" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaX-TT-XX6" customClass="UILocalizedLabel" customModule="Inbox" customModuleProvider="target">
                                     <rect key="frame" x="32" y="14" width="286" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="16" id="Fmk-Yp-3q7"/>
@@ -204,7 +203,7 @@
                                         <constraint firstAttribute="width" secondItem="ptW-Wn-RIV" secondAttribute="height" multiplier="1:1" id="ffH-K8-eHp"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000messages" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2P-2H-xIR" customClass="UILocalizedLabel" customModule="Inbox" customModuleProvider="target">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000 messages" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2P-2H-xIR" customClass="UILocalizedLabel" customModule="Inbox" customModuleProvider="target">
                                     <rect key="frame" x="32" y="14" width="286" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="16" id="ZWj-Q8-id6"/>
@@ -244,7 +243,7 @@
                                         <constraint firstAttribute="width" secondItem="kpJ-6T-jaL" secondAttribute="height" multiplier="1:1" id="fcx-u9-ai6"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200folders" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gd9-TT-Y9a" customClass="UILocalizedLabel" customModule="Inbox" customModuleProvider="target">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200 folders" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gd9-TT-Y9a" customClass="UILocalizedLabel" customModule="Inbox" customModuleProvider="target">
                                     <rect key="frame" x="32" y="14" width="286" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="16" id="fdn-G6-vk8"/>
@@ -293,13 +292,13 @@
                                     <color key="textColor" white="0.0" alpha="0.86506932219999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="andMore" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8y-K6-blt" customClass="UILocalizedLabel" customModule="Inbox" customModuleProvider="target">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="and More" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8y-K6-blt" customClass="UILocalizedLabel" customModule="Inbox" customModuleProvider="target">
                                     <rect key="frame" x="32" y="40" width="286" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="16" id="AyA-1G-ICh"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
-                                    <color key="textColor" red="0.20392156859999999" green="0.59607843140000005" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>

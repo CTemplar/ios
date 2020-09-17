@@ -109,6 +109,16 @@ final class ComposeViewModel: Modelable {
     
     // MARK: - Setup Datasource
     func setupDatasource() {
+        switch answerMode {
+        case .reply:
+            email.update(receivers: [email.sender ?? ""])
+        case .replyAll:
+            var receivers = email.receivers as? [String] ?? []
+            receivers.append(email.sender ?? "")
+            email.update(receivers: receivers)
+        default: break
+        }
+        
         setupMailboxWithSignature()
         
         // When user tapped on compose mail
@@ -128,6 +138,8 @@ final class ComposeViewModel: Modelable {
                                        encrypted: false,
                                        encryptionObject: [:],
                                        attachments: email.attachments?.map({ $0.toDictionary() }) ?? [],
+                                       isSubjectEncrypted: user.settings.isSubjectEncrypted ?? false,
+                                       sender: email.sender ?? "",
                                        onCompletion:
                 { [weak self] (message) in
                     if let email = message {
@@ -163,6 +175,8 @@ final class ComposeViewModel: Modelable {
                                                        content: messageContent,
                                                        recievers: list,
                                                        mailboxID: self.mailboxId,
+                                                       isSubjectEncrypted: self.user.settings.isSubjectEncrypted ?? false,
+                                                       sender: self.email.sender ?? "",
                                                        onCompletion:
                         { [weak self] (message) in
                             if let email = message {

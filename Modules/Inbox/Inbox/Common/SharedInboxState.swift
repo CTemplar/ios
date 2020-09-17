@@ -6,6 +6,7 @@ public final class SharedInboxState {
     private (set) var selectedPreferences: Menu.Preferences?
     private (set) var selectedCustomFolderIndexPath: IndexPath?
     private (set) var appliedFilters: [InboxFilter] = []
+    private (set) var incomingMessageId: Int = -1
     
     // MARK: Constructor
     private init() {
@@ -27,5 +28,9 @@ public final class SharedInboxState {
     
     func update(appliedFilters: [InboxFilter]) {
         self.appliedFilters = appliedFilters
+    }
+
+    public func update(incomingMessageId: Int) {
+        self.incomingMessageId = incomingMessageId
     }
 }

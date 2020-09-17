@@ -17,6 +17,7 @@ import Networking
 import Initializer
 import SideMenu
 import Inbox
+import InboxViewer
 import Combine
 import IQKeyboardManagerSwift
 
@@ -179,7 +180,7 @@ extension AppDelegate: MessagingDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         NotificationCenter.default.post(name: .updateInboxMessagesNotificationID, object: false, userInfo: nil)
-        completionHandler([.sound])
+        completionHandler([.sound, .alert])
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
@@ -187,10 +188,16 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             DPrint("Notification data:\n\(userInfo)")
             if let messageId = Int(userInfo["gcm.notification.message_id"] as? String ?? "0") {
                 if let window = UIApplication.shared.getKeyWindow() {
-                    if let initialzer = window.rootViewController as? InitializerController {
-                        initialzer.update(messageId: messageId)
-                    } else {
-                       initRoot()
+                    if let sideMenu = window.rootViewController as? SideMenuController,
+                        let contentVC = sideMenu.contentViewController as? InboxNavigationController {
+                        if let inboxListVC = contentVC.viewControllers.first as? InboxViewerPushable {
+                            inboxListVC.openInboxViewer(of: messageId)
+                        } else {
+                            if let inboxSideMenu = sideMenu.menuViewController as? InboxSideMenuController {
+                                SharedInboxState.shared.update(incomingMessageId: messageId)
+                                inboxSideMenu.resetToInbox()
+                            }
+                        }
                     }
                 }
             }

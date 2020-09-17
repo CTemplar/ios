@@ -204,9 +204,12 @@ extension InboxSideMenuDataSource: UITableViewDataSource, UITableViewDelegate {
             let folderName = folder.folderName ?? ""
             let selected = SharedInboxState.shared.selectedCustomFolderIndexPath == indexPath
             let folderColor = folder.color ?? ""
-            let unreadCount = parentController?.presenter?.interactor?.getUnreadMessagesCount(with: unreadMessages,
-                                                                                              folder: folderName,
-                                                                                              apiFolderName: folderName) ?? 0
+            let unreadCount = parentController?
+                .presenter?
+                .interactor?
+                .getUnreadMessagesCount(with: unreadMessages,
+                                        folder: folderName,
+                                        apiFolderName: folderName) ?? 0
             cell.setupCustomFolderTableCell(selected: selected, iconColor: folderColor, title: folderName, unreadCount: unreadCount)
             return cell
         }

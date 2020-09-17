@@ -20,9 +20,9 @@ public enum MessagesFoldersName: String, CaseIterable {
 
 public enum EndPoint: String {
     #if DEBUG
-    case baseUrl = "https://api.ctemplar.com/" // "https://devapi.ctemplar.net/"
+    case baseUrl = "https://devapi.ctemplar.net/" // "https://api.ctemplar.com/"
     #else
-    case baseUrl = "https://api.ctemplar.com/"  //"https://mail.ctemplar.com/api/"
+    case baseUrl = "https://api.ctemplar.com/"
     #endif
     case signIn = "auth/sign-in/"
     case signUp = "auth/sign-up/"
