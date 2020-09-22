@@ -78,9 +78,11 @@ public final class InboxViewerWebMailBodyCell: UITableViewCell, Cellable {
         activityIndicatorView.startAnimating()
         mailBodyWebView.navigationDelegate = self
         
+        let content = model.content.replacingOccurrences(of: "\n", with: "<br>")
+        
         let colorCode = traitCollection.userInterfaceStyle == .light ? "color:#000000;" : "color:#ffffff;"
         
-        let mailString = model.content.replacingOccurrences(of: "color: rgb(0, 0, 0);", with: colorCode)
+        let mailString = content.replacingOccurrences(of: "color: rgb(0, 0, 0);", with: colorCode)
         
         mailBodyWebView.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />" + "<div style=\"color:\(traitCollection.userInterfaceStyle == .dark ? "#ffffff" : "#000000")\">" + mailString.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "\r", with: "") + "</div>", baseURL: nil)
     }

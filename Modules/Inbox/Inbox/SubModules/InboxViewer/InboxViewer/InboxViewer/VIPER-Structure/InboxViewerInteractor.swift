@@ -28,6 +28,12 @@ final class InboxViewerInteractor {
                         let messages = emailMessages.messagesList,
                         let message = messages.first {
                         self?.inboxViewerController?.dataSource?.update(by: message)
+                        self?.inboxViewerController?
+                            .dataSource?
+                            .update(lastSelectedAction: .markAsRead)
+                        self?.inboxViewerController?
+                            .viewInboxDelegate?
+                            .didUpdateReadStatus(for: message, status: true)
                     } else {
                         self?.inboxViewerController?
                             .presenter?
@@ -259,6 +265,26 @@ final class InboxViewerInteractor {
         }
     }
 
+    func markAsRead(messageId: String, onCompletion: @escaping ((Bool) -> Void)) {
+        apiService.updateMessages(messageID: "",
+                                  messagesIDIn: messageId,
+                                  folder: "",
+                                  starred: false,
+                                  read: true,
+                                  updateFolder: false,
+                                  updateStarred: false,
+                                  updateRead: true) { (result) in
+                                    DispatchQueue.main.async {
+                                        switch(result) {
+                                        case .success( _):
+                                            onCompletion(true)
+                                        case .failure(_):
+                                            onCompletion(false)
+                                        }
+                                    }
+        }
+    }
+    
     func toggleReadStatus(lastSelectedMessage: EmailMessage,
                           asRead: Bool,
                           withUndo: String,

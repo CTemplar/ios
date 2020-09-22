@@ -65,7 +65,11 @@ extension ComposeViewModel {
             if let date = formatterService.formatStringToDate(date: sentAtDate) {
                 let formattedDate = formatterService.formatReplyDate(date: date)
                 let formattedTime = formatterService.formatDateToStringTimeFull(date: date)
-                replyHeader = "<br><br>" + "<p>" + Strings.Compose.replyOn.localized + formattedDate + Strings.Compose.atTime.localized + formattedTime + "</p>"
+                replyHeader = """
+                    <div><br></div><div>--------Original Message---------</div><div>
+                    \(Strings.Compose.replyOn.localized) \(formattedDate)
+                    \(Strings.Compose.atTime.localized) \(formattedTime)
+                    """
             }
         }
         

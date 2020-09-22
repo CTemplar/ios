@@ -12,14 +12,15 @@ extension ComposeViewModel {
         var contentString = ""
         
         if !messageContent.isEmpty {
-            
             let replyHeader = generateHtmlHeader(message: email, answerMode: answerMode)
             
             contentString.append(replyHeader)
+            contentString.append("<div><div class='originalblock'>")
             contentString.append(messageContent)
+            contentString.append("</div></div>")
             
             if currentSignature?.isEmpty == false {
-                contentString.append(currentSignature!)
+                contentString.append("<br><br>\(currentSignature!)")
             }
         } else {
             guard let signature = currentSignature else {

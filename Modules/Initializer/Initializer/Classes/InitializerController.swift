@@ -206,6 +206,9 @@ extension InitializerController {
                     { (_) in
                         alertController.dismiss(animated: true, completion: nil)
                 }))
+                
+                presenter?.present(alertController, animated: true, completion: nil)
+                
             } else {
                 composeCoordinator.showCompose(from: presenter,
                                                withUser: user,

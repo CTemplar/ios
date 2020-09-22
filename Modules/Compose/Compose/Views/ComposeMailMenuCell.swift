@@ -162,7 +162,7 @@ public final class ComposeMailMenuCell: UITableViewCell, Cellable {
         horizontalStackView.axis = .horizontal
         horizontalStackView.distribution = .fillProportionally
 
-        addSubview(horizontalStackView)
+        contentView.addSubview(horizontalStackView)
         
         horizontalStackView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()

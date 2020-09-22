@@ -78,12 +78,10 @@ final class ComposeFetcher {
     
     func uploadAttachment(withURL url: URL,
                           messageID: String,
-                          isAttachmentsEncrypted: Bool,
                           onCompletionWithAttachment: @escaping ((Attachment?) -> Void),
                           onCompletionWithAlert: @escaping CompletionWithAlert) {
         apiService.createAttachment(fileUrl: url,
-                                    messageID: messageID,
-                                    encrypt: isAttachmentsEncrypted)
+                                    messageID: messageID)
         { (result) in
             DispatchQueue.main.async {
                 switch(result) {
