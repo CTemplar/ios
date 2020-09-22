@@ -160,7 +160,7 @@ public class RestAPIService {
             configureParameters[JSONKey.starred.rawValue] = starred
         }
         
-        if updateRead{
+        if updateRead {
             configureParameters[JSONKey.read.rawValue] = read
         }
         
@@ -982,7 +982,6 @@ public class RestAPIService {
         
         let parameters: Parameters = [
             JSONKey.messageID.rawValue: messageID,
-            //JSONKey.fileData.rawValue: file,
             JSONKey.inline.rawValue: false,
             JSONKey.encrypted.rawValue: encrypted
         ]
@@ -999,6 +998,7 @@ public class RestAPIService {
                 if let value = param.value as? String {
                     multipartFormData.append(value.data(using: .utf8)!, withName: param.key)
                 }
+                
                 if let value = param.value as? Bool {
                     multipartFormData.append(value.description.data(using: .utf8)!, withName: param.key)
                 }

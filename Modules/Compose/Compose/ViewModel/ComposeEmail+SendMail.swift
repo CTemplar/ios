@@ -12,6 +12,8 @@ extension ComposeViewModel {
         
         var messageContent = getMailContent()
         
+        messageContent = messageContent.replacingOccurrences(of: "\n", with: "<br>")
+        
         if !messageContent.contains("BEGIN PGP") {
             messageContent = encryptMessage(publicKeys: publicKeys, message: messageContent)
         }

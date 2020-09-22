@@ -28,7 +28,6 @@ class InboxViewerController: UIViewController, EmptyStateMachine {
         dataSource = InboxViewerDatasource(inboxViewerController: self, tableView: tableView)
         dataSource?.update(by: message)
         presenter?.setupUI()
-        presenter?.markAsRead()
         documentInteractionController.delegate = self
         
         // Fetch Message

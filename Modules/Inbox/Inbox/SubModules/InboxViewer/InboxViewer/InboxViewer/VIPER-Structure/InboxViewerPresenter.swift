@@ -39,15 +39,15 @@ final class InboxViewerPresenter {
         guard let messageId = viewController?.message?.messsageID else {
             return
         }
-        interactor?.getMessage(messageID: messageId)
+        // First mark the message as read the fetch the details of the message
+        interactor?
+            .markAsRead(messageId: messageId.description,
+                        onCompletion: { [weak self] (success) in
+                            DPrint("Message marked as read: \(success)")
+                            self?.interactor?.getMessage(messageID: messageId)
+        })
     }
-    
-    func markAsRead() {
-        if viewController?.message?.read == false {
-            toggleMessageStatus(shouldMarkAsRead: true, shouldPop: false)
-        }
-    }
-    
+
     func showPreviewScreen(url: URL, encrypted: Bool) {
         if encrypted {
             guard let data = try? Data(contentsOf: url) else {
@@ -58,7 +58,7 @@ final class InboxViewerPresenter {
                 return
             }
             
-            if let tempUrl = self.decryptAttachment(data: data) {
+            if let tempUrl = self.decryptAttachment(data: data, name: url.lastPathComponent) {
                 viewController?.documentInteractionController.url = tempUrl
             } else {
                 DPrint("Attachment decrypted content data error!")
@@ -83,7 +83,7 @@ final class InboxViewerPresenter {
         Loader.start()
     }
     
-    private func decryptAttachment(data: Data) -> URL? {
+    private func decryptAttachment(data: Data, name: String) -> URL? {
         let decryptedAttachment = pgpService.decrypt(encryptedData: data)
         
         DPrint("decryptedAttachment:", decryptedAttachment as Any)
@@ -92,9 +92,7 @@ final class InboxViewerPresenter {
             return nil
         }
         
-        let tempFileUrl = GeneralConstant
-            .getApplicationSupportDirectoryDirectory()
-            .appendingPathComponent(InboxViewerConstant.attachmentFileName)
+        let tempFileUrl = GeneralConstant.getApplicationSupportDirectoryDirectory().appendingPathComponent(name)
         
         do {
             try attachment.write(to: tempFileUrl)

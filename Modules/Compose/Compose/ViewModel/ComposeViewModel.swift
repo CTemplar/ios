@@ -81,7 +81,7 @@ final class ComposeViewModel: Modelable {
         self.user = user
         self.email = EmailMessage()
         self.email.update(messsageID: 0)
-        self.includeAttachments = false
+        self.includeAttachments = true
         
         sendButtonState
             .debounce(for: 2.0, scheduler: DispatchQueue.main)
@@ -352,25 +352,7 @@ final class ComposeViewModel: Modelable {
                 
         }
         .store(in: &bindables)
-        
-        var indeces: [Int] = []
-        
-        if let index = sections.firstIndex(of: .prefix) {
-            indeces.append(index)
-        }
-        
-        if let index = sections.firstIndex(of: .subject) {
-            indeces.append(index)
-        }
-        
-        if let index = sections.firstIndex(of: .menu) {
-            indeces.append(index)
-        }
-        
-        if let index = sections.firstIndex(of: .body) {
-            indeces.append(index)
-        }
-        
+
         reloadWholeList.send()
         
         Loader.stop()
@@ -401,7 +383,8 @@ final class ComposeViewModel: Modelable {
         }
         let section = sections[section]
         return section.rows(isCollapsed: collapsed,
-                            attachmentCount: email.attachments?.count ?? 0).count
+                            attachmentCount: email.attachments?.count ?? 0,
+                            includeAttachments: includeAttachments).count
     }
     
     func rowDetails(at indexPath: IndexPath) -> ComposeRow? {
@@ -412,7 +395,8 @@ final class ComposeViewModel: Modelable {
         let section = sections[indexPath.section]
         
         let rows = section.rows(isCollapsed: collapsed,
-                                attachmentCount: email.attachments?.count ?? 0)
+                                attachmentCount: email.attachments?.count ?? 0,
+                                includeAttachments: includeAttachments)
         
         guard rows.count > indexPath.row else {
             return nil
@@ -431,7 +415,8 @@ final class ComposeViewModel: Modelable {
         let section = sections[indexPath.section]
         
         let rows = section.rows(isCollapsed: collapsed,
-                                attachmentCount: email.attachments?.count ?? 0)
+                                attachmentCount: email.attachments?.count ?? 0,
+                                includeAttachments: includeAttachments)
         
         guard rows.count > indexPath.row else {
             return nil
@@ -463,7 +448,8 @@ final class ComposeViewModel: Modelable {
         let section = sections[indexPath.section]
         
         let rows = section.rows(isCollapsed: collapsed,
-                                attachmentCount: email.attachments?.count ?? 0)
+                                attachmentCount: email.attachments?.count ?? 0,
+                                includeAttachments: includeAttachments)
         
         guard rows.count > indexPath.row else {
             return nil
@@ -731,9 +717,7 @@ final class ComposeViewModel: Modelable {
         if let messageID = email.messsageID {
             Loader.start()
             fetcher.uploadAttachment(withURL: url,
-                                     messageID: messageID.description,
-                                     isAttachmentsEncrypted: user.settings.isAttachmentsEncrypted ?? false,
-                                     onCompletionWithAttachment:
+                                     messageID: messageID.description, onCompletionWithAttachment:
                 { [weak self] (attachment) in
                     if let attachment = attachment {
                         
@@ -836,9 +820,15 @@ final class ComposeViewModel: Modelable {
     
     func prepareMessadgeToSend() {
         let receivers = email.receivers as? [String] ?? []
+        let ccMailIds = email.cc as? [String] ?? []
+        let bccMailIds = email.bcc as? [String] ?? []
+        let sender = [email.sender].compactMap({ $0 })
+        
+        let allMailIds = Array(receivers + ccMailIds + bccMailIds + sender)
         
         Loader.start()
-        fetcher.publicKeysFor(userEmailsArray: receivers, completion: { [weak self] (keys) in
+        
+        fetcher.publicKeysFor(userEmailsArray: allMailIds, completion: { [weak self] (keys) in
             guard let strong = self else {
                 DispatchQueue.main.async {
                     Loader.stop()

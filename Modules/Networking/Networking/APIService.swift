@@ -1026,19 +1026,18 @@ public class APIService: HashingService {
     }
     
     // MARK: - Attachments
-    public func createAttachment(fileUrl: URL, messageID: String, encrypt: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    public func createAttachment(fileUrl: URL, messageID: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
-        guard var fileData = try? Data(contentsOf: fileUrl) else {
+        guard let fileData = try? Data(contentsOf: fileUrl) else {
             fatalError("File URL not found")
         }
         
-        if encrypt {
-            if let encryptedFileData = pgpService.encryptAsData(data: fileData) {
-                fileData = encryptedFileData
-            } else {
-                fatalError("Unable to Encrypt File Data")
-            }
-        }
+        // TODO: Will come back later
+//        if let encryptedFileData = pgpService.encryptAttachment(from: fileData) {
+//            fileData = encryptedFileData
+//        } else {
+//            fatalError("Unable to Encrypt File Data")
+//        }
         
         let fileName = fileUrl.lastPathComponent
         let mimeType = self.mimeTypeForFileAt(url: fileUrl)
@@ -1046,7 +1045,7 @@ public class APIService: HashingService {
         checkTokenExpiration() { [weak self] (complete) in
             if complete {
                 if let token = self?.getToken() {
-                    self?.restAPIService.createAttachment(token: token, file: fileData, fileName: fileName, mimeType: mimeType, messageID: messageID, encrypted: encrypt) { (result) in
+                    self?.restAPIService.createAttachment(token: token, file: fileData, fileName: fileName, mimeType: mimeType, messageID: messageID, encrypted: false) { (result) in
                         switch(result) {
                         case .success(let value):
                             

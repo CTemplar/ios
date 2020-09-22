@@ -4,7 +4,7 @@ enum ComposeSection: CaseIterable {
     case menu
     case body
     
-    func rows(isCollapsed: Bool, attachmentCount: Int) -> [ComposeRow] {
+    func rows(isCollapsed: Bool, attachmentCount: Int, includeAttachments: Bool) -> [ComposeRow] {
         switch self {
         case .prefix:
             return isCollapsed ? [.from, .to] : [.from, .to, .cc, .bcc]
@@ -13,7 +13,7 @@ enum ComposeSection: CaseIterable {
         case .menu:
             return [.menu]
         case .body:
-            return attachmentCount == 0 ? [.body] : [.attachment, .body]
+            return includeAttachments == false ? [.body] : (attachmentCount == 0 ? [.body] : [.attachment, .body])
         }
     }
 }

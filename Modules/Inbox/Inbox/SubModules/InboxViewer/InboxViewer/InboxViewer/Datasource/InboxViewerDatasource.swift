@@ -99,15 +99,26 @@ final class InboxViewerDatasource: NSObject {
         if var children = messageObject.children, !children.isEmpty {
             // Append Parent
             children.append(messageObject)
-            children.forEach({ [weak self] in
-                if let content = self?.getDecryptedContent(from: $0) {
-                    sectionList.append(.mailBody(TextMail(messageId: $0.messsageID,
+            
+            children = children.sorted(by: { (m1, m2) -> Bool in
+                if let createdDateString1 = m1.createdAt, let createdDateString2 = m2.createdAt {
+                    if let date1 = formatterService.formatStringToDate(date: createdDateString1),
+                       let date2 = formatterService.formatStringToDate(date: createdDateString2) {
+                        return date1.compare(date2) == .orderedAscending
+                    }
+                }
+                return false
+            })
+            
+            for (index, child) in children.enumerated() {
+                if let content = getDecryptedContent(from: child) {
+                    sectionList.append(.mailBody(TextMail(messageId: child.messsageID,
                                                           content: content,
-                                                          state: $0.children?.isEmpty == false ? .expanded : .collapsed),
-                                                 $0.isHtml ?? false)
+                                                          state: (index == children.count - 1) ? .expanded : .collapsed),
+                                                 child.isHtml ?? false)
                     )
                 }
-            })
+            }
         } else {
             if let content = getDecryptedContent(from: messageObject) {
                 sectionList.append(.mailBody(TextMail(messageId: messageObject.messsageID,

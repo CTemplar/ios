@@ -12,6 +12,7 @@ public final class ComposeMailSubjectCell: UITableViewCell, Cellable {
         let textfield = UITextField()
         textfield.font = AppStyle.CustomFontStyle.Regular.font(withSize: 16.0)
         textfield.textColor = .label
+        textfield.tintColor = .label
         textfield.returnKeyType = .done
         textfield.textAlignment = .left
         textfield.adjustsFontSizeToFitWidth = true
@@ -66,7 +67,7 @@ public final class ComposeMailSubjectCell: UITableViewCell, Cellable {
         
         subjectTextField.delegate = self
         
-        addSubview(subjectTextField)
+        contentView.addSubview(subjectTextField)
         
         subjectTextField.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
@@ -80,7 +81,9 @@ public final class ComposeMailSubjectCell: UITableViewCell, Cellable {
             fatalError("Couldn't typecast ComposeMailSubjectModel")
         }
         self.model = model
+        
         setupObservers()
+        
         layoutIfNeeded()
     }
 }

@@ -167,7 +167,9 @@ public final class InboxSideMenuController: UIViewController {
             for i in 0..<unreadCounters.count {
                 if unreadCounters[i].folderName == folderName {
                     if isRead {
-                        unreadCounters[i].unreadMessagesCount = ((unreadCounters[i].unreadMessagesCount ?? 1) - 1)
+                        var count = ((unreadCounters[i].unreadMessagesCount ?? 1) - 1)
+                        count = count < 0 ? 0 : count
+                        unreadCounters[i].unreadMessagesCount = count
                     } else {
                         unreadCounters[i].unreadMessagesCount = ((unreadCounters[i].unreadMessagesCount ?? 0) + 1)
                     }
