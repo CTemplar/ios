@@ -84,7 +84,7 @@ public final class InboxViewerWebMailBodyCell: UITableViewCell, Cellable {
         
         let mailString = content.replacingOccurrences(of: "color: rgb(0, 0, 0);", with: colorCode)
         
-        mailBodyWebView.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />" + "<div style=\"color:\(traitCollection.userInterfaceStyle == .dark ? "#ffffff" : "#000000")\">" + mailString.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "\r", with: "") + "</div>", baseURL: nil)
+        mailBodyWebView.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />" + "<div style=\"color:\(traitCollection.userInterfaceStyle == .dark ? "#ffffff" : "#000000")\">" + mailString.replacingOccurrences(of: "\n", with: "<br>").replacingOccurrences(of: "\r", with: "") + "</div>", baseURL: nil)
     }
 }
 // MARK: - WKUIDelegate

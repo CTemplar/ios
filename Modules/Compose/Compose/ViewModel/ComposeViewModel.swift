@@ -839,9 +839,7 @@ final class ComposeViewModel: Modelable {
             if let emailsKeys = keys {
                 if emailsKeys.encrypt {
                     if let messageID = self?.email.messsageID {
-                        let attachmentsCount = self?.email.attachments?.count ?? 0
-                        if attachmentsCount > 0,
-                            strong.user.settings.isAttachmentsEncrypted == true {
+                        if strong.email.attachments?.isEmpty == false {
                             strong.updateAttachments(publicKeys: emailsKeys.pgpKeys, messageID: messageID)
                         } else {
                             strong.sendEncryptedEmailForCtemplarUser(publicKeys: emailsKeys.pgpKeys)

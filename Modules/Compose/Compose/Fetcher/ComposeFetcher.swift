@@ -80,8 +80,9 @@ final class ComposeFetcher {
                           messageID: String,
                           onCompletionWithAttachment: @escaping ((Attachment?) -> Void),
                           onCompletionWithAlert: @escaping CompletionWithAlert) {
-        apiService.createAttachment(fileUrl: url,
-                                    messageID: messageID)
+        apiService
+            .createAttachment(fileUrl: url,
+                              messageID: messageID)
         { (result) in
             DispatchQueue.main.async {
                 switch(result) {
