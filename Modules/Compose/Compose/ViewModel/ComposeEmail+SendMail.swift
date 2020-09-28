@@ -12,7 +12,7 @@ extension ComposeViewModel {
         
         var messageContent = getMailContent()
         
-        messageContent = messageContent.replacingOccurrences(of: "\n", with: "<br>")
+        messageContent = messageContent.replacingOccurrences(of: "\n", with: "<br><br>")
         
         if !messageContent.contains("BEGIN PGP") {
             messageContent = encryptMessage(publicKeys: publicKeys, message: messageContent)
@@ -203,53 +203,34 @@ extension ComposeViewModel {
                     return
             }
             
-            if user.settings.isAttachmentsEncrypted == true {
-                if !publicKeys.isEmpty {
-                    guard let encryptedfileData = pgpService.encryptAsData(data: fileData, keys: publicKeys) else {
-                        Loader.stop()
-                        let params = AlertKitParams(
-                            title: Strings.AppError.error.localized,
-                            message: Strings.AppError.unknownError.localized,
-                            cancelButton: Strings.Button.closeButton.localized
-                        )
-                        NotificationCenter.default.post(name: .mailSentErrorNotificationID, object: params)
-                        return
-                    }
-                    
-                    // Send to CTemplar User
-                    NetworkManager
-                        .shared
-                        .apiService
-                        .updateAttachment(attachmentID: attachmentId.description,
-                                          fileUrl: fileURL,
-                                          fileData: encryptedfileData,
-                                          messageID: messageID,
-                                          encrypt: true) { (_) in
-                                            attachmentsCount -= 1
-                                            if attachmentsCount == 0 {
-                                                self.sendEncryptedEmailForCtemplarUser(publicKeys: publicKeys)
-                                            }
-                    }
-                } else {
-                    // Send to Non-CTemplar User
-                    NetworkManager
-                        .shared
-                        .apiService
-                        .updateAttachment(attachmentID: attachmentId.description,
-                                          fileUrl: fileURL,
-                                          fileData: fileData,
-                                          messageID: messageID,
-                                          encrypt: false)
-                        { (_) in
-                            attachmentsCount -=  1
-                            if attachmentsCount == 0 {
-                                self.sendEmailForNonCtemplarUser(messageID: messageID.description,
-                                                                 attachments: [attachment])
-                            }
-                    }
+            if !publicKeys.isEmpty {
+                guard let encryptedfileData = pgpService.encryptAsData(data: fileData, keys: publicKeys) else {
+                    Loader.stop()
+                    let params = AlertKitParams(
+                        title: Strings.AppError.error.localized,
+                        message: Strings.AppError.unknownError.localized,
+                        cancelButton: Strings.Button.closeButton.localized
+                    )
+                    NotificationCenter.default.post(name: .mailSentErrorNotificationID, object: params)
+                    return
+                }
+                
+                // Send to CTemplar User
+                NetworkManager
+                    .shared
+                    .apiService
+                    .updateAttachment(attachmentID: attachmentId.description,
+                                      fileUrl: fileURL,
+                                      fileData: encryptedfileData,
+                                      messageID: messageID,
+                                      encrypt: true) { (_) in
+                                        attachmentsCount -= 1
+                                        if attachmentsCount == 0 {
+                                            self.sendEncryptedEmailForCtemplarUser(publicKeys: publicKeys)
+                                        }
                 }
             } else {
-                // Send to CTemplar User
+                // Send to Non-CTemplar User
                 NetworkManager
                     .shared
                     .apiService
@@ -259,9 +240,10 @@ extension ComposeViewModel {
                                       messageID: messageID,
                                       encrypt: false)
                     { (_) in
-                        attachmentsCount -= 1
+                        attachmentsCount -=  1
                         if attachmentsCount == 0 {
-                            self.sendEncryptedEmailForCtemplarUser(publicKeys: publicKeys)
+                            self.sendEmailForNonCtemplarUser(messageID: messageID.description,
+                                                             attachments: [attachment])
                         }
                 }
             }

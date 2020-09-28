@@ -28,6 +28,7 @@ public struct InboxViewerMailSenderHeader: Modelable {
     let detailMailIdsWithAttribute: [SenderType] // Like CC: nirit@dev.ctemplar.com
     let emailProperty: EmailProperty?
     let isTappable: Bool
+    let folder: String
     let state: InboxHeaderState
     
     // MARK: - Constructor
@@ -36,12 +37,14 @@ public struct InboxViewerMailSenderHeader: Modelable {
                 mailSentDate: String,
                 detailMailIdsWithAttribute: [SenderType],
                 emailProperty: EmailProperty?,
+                folder: String,
                 isTappable: Bool = false,
                 state: InboxHeaderState = .collapsed) {
         self.senderName = senderName
         self.receiverEmailId = receiverEmailId
         self.mailSentDate = mailSentDate
         self.detailMailIdsWithAttribute = detailMailIdsWithAttribute
+        self.folder = folder
         self.emailProperty = emailProperty
         self.isTappable = isTappable
         self.state = state

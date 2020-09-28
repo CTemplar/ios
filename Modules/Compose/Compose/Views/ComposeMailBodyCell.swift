@@ -247,10 +247,6 @@ extension ComposeMailBodyCell: RichEditorDelegate {
         UIView.performWithoutAnimation {
             self.tableView?.beginUpdates()
             self.tableView?.endUpdates()
-            
-            if let thisIndexPath = tableView?.indexPath(for: self) {
-                tableView?.scrollToRow(at: thisIndexPath, at: .bottom, animated: false)
-            }
         }
     }
 }

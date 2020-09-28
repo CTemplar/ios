@@ -123,6 +123,11 @@ final class ComposeController: UITableViewController, EmptyStateMachine  {
         tableView?.separatorInset = .zero
         
         tableView.keyboardDismissMode = .interactive
+        
+        tableView.contentInsetAdjustmentBehavior = .never
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
     }
     
     private func setupVM() {

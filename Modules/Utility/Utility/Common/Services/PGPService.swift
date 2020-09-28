@@ -16,11 +16,23 @@ public class PGPService {
     
     public func encrypt(data: Data) -> String? {
         if let keys = getStoredPGPKeys() {
-            guard let encryptedBin = try? ObjectivePGP.encrypt(data, addSignature: false, using: keys) else {return ""}
+            guard let encryptedBin = try? ObjectivePGP.encrypt(data, addSignature: false, using: keys) else { return "" }
             let encrypted = Armor.armored(encryptedBin, as: .message)
             return encrypted
         }
         return ""
+    }
+    
+    public func encryptAttachment(data: Data) -> Data? {
+        guard let keys = getStoredPGPKeys() else {
+            return nil
+        }
+        
+        guard let encryptedString = encrypt(data: data, keys: keys) else {
+            return nil
+        }
+        
+        return encodeString(message: encryptedString)
     }
     
     public func encryptAsData(data: Data) -> Data? {
@@ -31,12 +43,12 @@ public class PGPService {
     }
     
     public func encryptAsData(data: Data, keys: Array<PGPKey>) -> Data? {
-        guard let encryptedBin = try? ObjectivePGP.encrypt(data, addSignature: false, using: keys) else {return nil}
+        guard let encryptedBin = try? ObjectivePGP.encrypt(data, addSignature: false, using: keys) else { return nil }
         return encryptedBin
     }
 
     public func encrypt(data: Data, keys: Array<PGPKey>) -> String? {
-        guard let encryptedBin = try? ObjectivePGP.encrypt(data, addSignature: false, using: keys) else {return ""}
+        guard let encryptedBin = try? ObjectivePGP.encrypt(data, addSignature: false, using: keys) else { return "" }
         let encrypted = Armor.armored(encryptedBin, as: .message)
         return encrypted
     }

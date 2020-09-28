@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30503EA323D8EE70004B04D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30503EA023D8EE6A004B04D6 /* GoogleService-Info.plist */; };
+		30503EA423D8EE74004B04D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30503EA223D8EE6A004B04D6 /* GoogleService-Info.plist */; };
 		443DD3ED24CDCB1100771AE5 /* AppSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 443DD3EC24CDCAF700771AE5 /* AppSettings.framework */; };
 		443DD3EE24CDCB1100771AE5 /* AppSettings.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 443DD3EC24CDCAF700771AE5 /* AppSettings.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		443DD3EF24CDCB1B00771AE5 /* AppSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 443DD3EC24CDCAF700771AE5 /* AppSettings.framework */; };
@@ -301,6 +303,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		30503EA023D8EE6A004B04D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		30503EA223D8EE6A004B04D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		38C73926A9B57BF10D00B269 /* Pods-Ctemplar.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.dev.release.xcconfig"; path = "Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev.release.xcconfig"; sourceTree = "<group>"; };
 		4438246C248F9A1200DEA4F3 /* Signup.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Signup.xcodeproj; path = Signup/Signup.xcodeproj; sourceTree = "<group>"; };
 		443DD3E724CDCAF600771AE5 /* AppSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AppSettings.xcodeproj; path = AppSettings/AppSettings.xcodeproj; sourceTree = "<group>"; };
@@ -474,6 +478,7 @@
 		30503E9F23D8EE6A004B04D6 /* prod */ = {
 			isa = PBXGroup;
 			children = (
+				30503EA023D8EE6A004B04D6 /* GoogleService-Info.plist */,
 			);
 			path = prod;
 			sourceTree = "<group>";
@@ -481,6 +486,7 @@
 		30503EA123D8EE6A004B04D6 /* dev */ = {
 			isa = PBXGroup;
 			children = (
+				30503EA223D8EE6A004B04D6 /* GoogleService-Info.plist */,
 			);
 			path = dev;
 			sourceTree = "<group>";
@@ -1165,6 +1171,7 @@
 				445CFAE3249BF3B50017DC40 /* Assets.xcassets in Resources */,
 				8441099221776B5100F0BE18 /* Lato-Bold.ttf in Resources */,
 				8433FF24216201A500C57DC8 /* LaunchScreen.storyboard in Resources */,
+				30503EA323D8EE70004B04D6 /* GoogleService-Info.plist in Resources */,
 				8436AD532180663800D16008 /* Localizable.strings in Resources */,
 				8440141A21D377D600FC450C /* PrivacyAndTerms.storyboard in Resources */,
 				8434D9AE219BFD3300D2C3A5 /* Contacts.storyboard in Resources */,
@@ -1191,6 +1198,7 @@
 				445CFAEA249BF4A90017DC40 /* Assets.xcassets in Resources */,
 				CC6909632384500100956E9B /* Lato-Bold.ttf in Resources */,
 				CC6909662384500100956E9B /* LaunchScreen.storyboard in Resources */,
+				30503EA423D8EE74004B04D6 /* GoogleService-Info.plist in Resources */,
 				CC6909672384500100956E9B /* Localizable.strings in Resources */,
 				CC6909692384500100956E9B /* PrivacyAndTerms.storyboard in Resources */,
 				CC69096D2384500100956E9B /* Contacts.storyboard in Resources */,
@@ -1686,7 +1694,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.3.4;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1714,7 +1722,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.3.4;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";

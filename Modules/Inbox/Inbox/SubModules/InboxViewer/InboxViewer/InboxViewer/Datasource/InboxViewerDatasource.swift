@@ -212,6 +212,7 @@ final class InboxViewerDatasource: NSObject {
                                                       mailSentDate: dateText,
                                                       detailMailIdsWithAttribute: getMailSenderTypes(from: messageObj),
                                                       emailProperty: getMailProperty(from: messageObj),
+                                                      folder: messageObj.folder?.firstUppercased ?? "N/A",
                                                       isTappable: shouldHeaderTappable,
                                                       state: state)
         return headerModel

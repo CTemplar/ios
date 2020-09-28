@@ -1031,16 +1031,9 @@ public class APIService: HashingService {
         guard let fileData = try? Data(contentsOf: fileUrl) else {
             fatalError("File URL not found")
         }
-        
-        // TODO: Will come back later
-//        if let encryptedFileData = pgpService.encryptAttachment(from: fileData) {
-//            fileData = encryptedFileData
-//        } else {
-//            fatalError("Unable to Encrypt File Data")
-//        }
-        
+
         let fileName = fileUrl.lastPathComponent
-        let mimeType = self.mimeTypeForFileAt(url: fileUrl)
+        let mimeType = mimeTypeForFileAt(url: fileUrl)
         
         checkTokenExpiration() { [weak self] (complete) in
             if complete {

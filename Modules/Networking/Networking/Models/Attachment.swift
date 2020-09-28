@@ -14,7 +14,7 @@ public struct Attachment: Equatable {
     public init() {
     }
     
-    init(dictionary: [String: Any]) {
+    public init(dictionary: [String: Any]) {
         self.contentID = dictionary["content_id"] as? Int
         self.contentUrl = dictionary["document"] as? String
         self.attachmentID = dictionary["id"] as? Int

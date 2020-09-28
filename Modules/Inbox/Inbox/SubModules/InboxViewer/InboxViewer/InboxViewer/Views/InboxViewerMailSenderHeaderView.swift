@@ -59,6 +59,17 @@ public final class InboxViewerMailSenderHeaderView: UIView, Cellable {
         return view
     }()
     
+    private let folderLabel: PaddingLabel = {
+        let label = PaddingLabel()
+        label.layer.cornerRadius = 5.0
+        label.layer.masksToBounds = true
+        label.textColor = .white
+        label.font = AppStyle.CustomFontStyle.Regular.font(withSize: 10.0)
+        label.textAlignment = .center
+        label.backgroundColor = k_sideMenuColor
+        return label
+    }()
+    
     private lazy var timerLabel: PaddingLabel = {
         let label = PaddingLabel()
         label.textColor = .white
@@ -101,6 +112,7 @@ public final class InboxViewerMailSenderHeaderView: UIView, Cellable {
         
         [
             toggleButton,
+            folderLabel,
             mailDetailContainerView,
             borderView
         ].forEach({
@@ -154,6 +166,15 @@ public final class InboxViewerMailSenderHeaderView: UIView, Cellable {
         toggleButton.snp.makeConstraints { (make) in
             make.trailing.equalToSuperview().offset(-8.0)
             make.bottom.equalTo(leadingStackView.snp.bottom).inset(-4.0)
+        }
+        
+        folderLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        folderLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+
+        folderLabel.snp.makeConstraints { [weak self] (make) in
+            guard let safeSelf = self else { return }
+            make.trailing.equalTo(safeSelf.toggleButton)
+            make.bottom.equalTo(safeSelf.toggleButton.snp.top).offset(4.0)
         }
     }
     
@@ -299,9 +320,14 @@ public final class InboxViewerMailSenderHeaderView: UIView, Cellable {
         self.model = model
         
         fromNameLabel.text = model.senderName
+        
         toNameLabel.text = model.receiverEmailId
+        
         dateLabel.text = model.mailSentDate
+        
         toggleButton.isHidden = model.detailMailIdsWithAttribute.isEmpty
+        
+        folderLabel.text = model.folder
         
         collapsedState = model.state
         
