@@ -70,7 +70,7 @@ final class InboxViewerDatasource: NSObject {
         
         tableView.register(InboxViewerSubjectCell.self, forCellReuseIdentifier: InboxViewerSubjectCell.className)
         tableView.register(InboxViewerTextMailBodyCell.self, forCellReuseIdentifier: InboxViewerTextMailBodyCell.className)
-        tableView.register(InboxViewerWebMailBodyCell.self, forCellReuseIdentifier: InboxViewerWebMailBodyCell.className)
+        tableView.register(UINib(nibName: InboxViewerWebMailBodyCell.className, bundle: Bundle(for: InboxViewerWebMailBodyCell.self)), forCellReuseIdentifier: InboxViewerWebMailBodyCell.className)
         tableView.register(AttachmentCell.self, forCellReuseIdentifier: AttachmentCell.className)
     }
     

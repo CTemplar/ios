@@ -2,21 +2,6 @@ import Utility
 import Networking
 
 extension ComposeViewModel {
-    func generateHeader(message: EmailMessage, answerMode: AnswerMessageMode) -> NSAttributedString {
-        var attributedString = NSAttributedString()
-        
-        switch answerMode {
-        case .newMessage: break
-        case .reply:
-            attributedString = generateReplyHeader(message: message)
-        case .replyAll:
-            attributedString = generateReplyHeader(message: message)
-        case .forward:
-            attributedString = generateForwardHeader(message: message, subject: email.subject ?? "")
-        }
-        return attributedString
-    }
-    
     func generateHtmlHeader(message: EmailMessage, answerMode: AnswerMessageMode) -> String {
         var string = ""
         switch answerMode {
@@ -34,18 +19,24 @@ extension ComposeViewModel {
     func generateReplyHeader(message: EmailMessage) -> NSAttributedString {
         var replyHeader = ""
         
-        if let sentAtDate = message.updated { //message.sentAt
+        func createIterativeReplyHeader(from email: EmailMessage) {
+            if let sentAtDate = message.updated { //message.sentAt
+                if  let date = formatterService.formatStringToDate(date: sentAtDate) {
+                    let formattedDate = formatterService.formatReplyDate(date: date)
+                    let formattedTime = formatterService.formatDateToStringTimeFull(date: date)
+                    replyHeader = "\n" + Strings.Compose.replyOn.localized + replyHeader + formattedDate + Strings.Compose.atTime.localized + formattedTime + "\n"
+                }
+            }
             
-            if  let date = formatterService.formatStringToDate(date: sentAtDate) {
-                let formattedDate = formatterService.formatReplyDate(date: date)
-                let formattedTime = formatterService.formatDateToStringTimeFull(date: date)
-                
-                replyHeader = "\n\n" + "replyOn".localized() + replyHeader + formattedDate + Strings.Compose.atTime.localized + formattedTime + "\n"
+            if let sender = message.sender {
+                replyHeader = replyHeader + "<p>\"" + sender + "\" " + Strings.Compose.wroteBy.localized + "</p>"
             }
         }
         
-        if let sender = message.sender {
-            replyHeader = replyHeader + "<" + sender + "> " + Strings.Compose.wroteBy.localized + "\n\n"
+        if let lastMessage = message.children?.last {
+            createIterativeReplyHeader(from: lastMessage)
+        } else {
+            createIterativeReplyHeader(from: message)
         }
         
         let font = AppStyle.CustomFontStyle.Regular.font(withSize: 14.0)!
@@ -61,62 +52,66 @@ extension ComposeViewModel {
     
     func generateHtmlReplyHeader(message: EmailMessage) -> String{
         var replyHeader = ""
-        if let sentAtDate = message.updated {
-            if let date = formatterService.formatStringToDate(date: sentAtDate) {
-                let formattedDate = formatterService.formatReplyDate(date: date)
-                let formattedTime = formatterService.formatDateToStringTimeFull(date: date)
-                replyHeader = """
-                    <div><br></div><div>--------Original Message---------</div><div>
-                    \(Strings.Compose.replyOn.localized) \(formattedDate)
-                    \(Strings.Compose.atTime.localized) \(formattedTime)
-                    """
+        
+        func createIterativeReplyHeader(from email: EmailMessage) {
+            if let sentAtDate = message.updated {
+                if let date = formatterService.formatStringToDate(date: sentAtDate) {
+                    let formattedDate = formatterService.formatReplyDate(date: date)
+                    let formattedTime = formatterService.formatDateToStringTimeFull(date: date)
+                    replyHeader = """
+                        <br><div>--------Original Message---------</div>
+                        \(Strings.Compose.replyOn.localized) \(formattedDate)
+                        \(Strings.Compose.atTime.localized) \(formattedTime)
+                        """
+                }
+            }
+            
+            if let sender = message.sender {
+                replyHeader = replyHeader + "<p>\"" + sender + "\" " + Strings.Compose.wroteBy.localized + "</p>"
             }
         }
         
-        if let sender = message.sender {
-            replyHeader = replyHeader + "<p>\"" + sender + "\" " + Strings.Compose.wroteBy.localized + "</p><br>"
+        if let lastMessage = message.children?.last {
+            createIterativeReplyHeader(from: lastMessage)
+        } else {
+            createIterativeReplyHeader(from: message)
         }
         
         return replyHeader
     }
     
     func generateForwardHeader(message: EmailMessage, subject: String) -> NSAttributedString {
-        /*
-         ---------- Forwarded message ----------
-         
-         From: <atif1@dev.ctemplar.com>
-         
-         Date: Dec 14, 2018, 11:10:23 AM
-         
-         Subject: Self-destructing Msg
-         
-         To: <dmitry3@dev.ctemplar.com>
-         */
-        var forwardHeader = ""
+        var forwardHeader = Strings.Compose.forwardLine.localized
         
-        forwardHeader = forwardHeader + Strings.Compose.forwardLine.localized
-        
-        if let sender = message.sender {
-            forwardHeader = "\(forwardHeader)\n\(Strings.Compose.emailFromPrefix.localized)<\(sender)>\n"
-        }
-        
-        if let sentAtDate = message.updated {
-            if  let date = formatterService.formatStringToDate(date: sentAtDate) {
-                let formattedDate = formatterService.formatReplyDate(date: date)
-                let formattedTime = formatterService.formatDateToStringTimeFull(date: date)
-                forwardHeader = forwardHeader + Strings.Compose.date.localized + formattedDate + Strings.Compose.atTime.localized + formattedTime + "\n"
+        func createIterativeForwardHeader(from email: EmailMessage) {
+            if let sender = message.sender {
+                forwardHeader = "\(forwardHeader)\n\(Strings.Compose.emailFromPrefix.localized)<\(sender)>\n"
             }
-        }
-        
-        forwardHeader = forwardHeader + Strings.Compose.subject.localized + subject + "\n"
-        
-        if let recieversArray = message.receivers as? [String]  {
-            for email in recieversArray {
-                forwardHeader = forwardHeader + Strings.Compose.emailToPrefix.localized + "<" + email + "> "
+            
+            if let sentAtDate = message.updated {
+                if  let date = formatterService.formatStringToDate(date: sentAtDate) {
+                    let formattedDate = formatterService.formatReplyDate(date: date)
+                    let formattedTime = formatterService.formatDateToStringTimeFull(date: date)
+                    forwardHeader = forwardHeader + Strings.Compose.date.localized + formattedDate + Strings.Compose.atTime.localized + formattedTime + "\n"
+                }
             }
+            
+            forwardHeader = forwardHeader + Strings.Compose.subject.localized + subject + "\n"
+            
+            if let recieversArray = message.receivers as? [String]  {
+                for email in recieversArray {
+                    forwardHeader = forwardHeader + Strings.Compose.emailToPrefix.localized + "<" + email + "> "
+                }
+            }
+            
+            forwardHeader = forwardHeader + "\n"
         }
         
-        forwardHeader = forwardHeader + "\n\n"
+        if let lastMessage = message.children?.last {
+            createIterativeForwardHeader(from: lastMessage)
+        } else {
+            createIterativeForwardHeader(from: message)
+        }
         
         let font = AppStyle.CustomFontStyle.Regular.font(withSize: 14.0)!
 
@@ -130,7 +125,7 @@ extension ComposeViewModel {
     }
     
     func generateHtmlForwardHeader(message: EmailMessage, subject: String) -> String{
-        var forwardHeader : String = "<br>"
+        var forwardHeader = "<br>"
         forwardHeader = forwardHeader + "<p>" + Strings.Compose.forwardLine.localized + "</p>"
         
         if let sender = message.sender {

@@ -48,6 +48,6 @@ public final class InboxViewerTextMailBodyCell: UITableViewCell, Cellable {
         guard let model = model as? TextMail else {
             fatalError("Couldn't Find TextMail")
         }
-        mailBodyTextLabel.text = model.content
+        mailBodyTextLabel.text = model.content.replacingOccurrences(of: "<br>", with: "\n")
     }
 }
