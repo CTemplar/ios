@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tKd-OF-9DY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tKd-OF-9DY">
     <device id="retina5_9" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -23,7 +25,7 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="76U-yz-xdD">
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <items>
                                     <navigationItem title="Add Folder" id="S3c-ND-UKp">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="qeZ-YZ-fBn">
@@ -32,7 +34,7 @@
                                                 <action selector="cancelButtonPressed:" destination="tKd-OF-9DY" id="fs7-2F-E0W"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="daC-0u-xOg">
+                                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="daC-0u-xOg">
                                             <color key="tintColor" name="redColor"/>
                                             <connections>
                                                 <action selector="addButtonPressed:" destination="tKd-OF-9DY" id="XkC-1v-wZw"/>
@@ -124,7 +126,8 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="HWa-Yz-qum"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="76U-yz-xdD" firstAttribute="leading" secondItem="HWa-Yz-qum" secondAttribute="leading" id="8JA-A0-RCL"/>
                             <constraint firstItem="HWa-Yz-qum" firstAttribute="trailing" secondItem="76U-yz-xdD" secondAttribute="trailing" id="8LY-PP-lHY"/>
@@ -134,7 +137,6 @@
                             <constraint firstItem="3fr-6e-Ztf" firstAttribute="top" secondItem="76U-yz-xdD" secondAttribute="bottom" id="hoi-yg-bLM"/>
                             <constraint firstItem="3fr-6e-Ztf" firstAttribute="trailing" secondItem="HWa-Yz-qum" secondAttribute="trailing" id="t0x-4y-Dt7"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="HWa-Yz-qum"/>
                     </view>
                     <connections>
                         <outlet property="addButton" destination="daC-0u-xOg" id="0jD-Fo-1Xi"/>
@@ -164,5 +166,8 @@
         <namedColor name="redColor">
             <color red="0.90600001811981201" green="0.29800000786781311" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

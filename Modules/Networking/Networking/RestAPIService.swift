@@ -204,7 +204,7 @@ public class RestAPIService {
         }
     }
     
-    func createMessage(token: String, parentID: String, content: String, subject: String, recieversList: [[String]], folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String], attachments: Array<[String: String]>, isSubjectEncrypted: Bool, sender: String, isHTML: Bool = false, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func createMessage(token: String, parentID: String, content: String, subject: String, lastActionParentId: String?, recieversList: [[String]], folder: String, mailboxID: Int, send: Bool, encrypted: Bool, encryptionObject: [String : String], attachments: Array<[String: String]>, isSubjectEncrypted: Bool, sender: String, isHTML: Bool = false, lastAction: String?, completionHandler: @escaping (APIResult<Any>) -> Void) {
     
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -239,6 +239,14 @@ public class RestAPIService {
             parameters[JSONKey.forwardAttachmentsMessage.rawValue] = parentID
         }
         
+        if let lastActionParentId = lastActionParentId {
+            parameters[JSONKey.lastActionParentId.rawValue] = lastActionParentId
+        }
+        
+        if let lastAction = lastAction {
+            parameters[JSONKey.lastAction.rawValue] = lastAction
+        }
+        
         let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue
         
         DPrint("createMessage url:", url)
@@ -263,20 +271,17 @@ public class RestAPIService {
         ]
         
         var parameters: Parameters = [
-            JSONKey.content.rawValue : encryptedMessage,
+            JSONKey.content.rawValue: encryptedMessage,
             JSONKey.folder.rawValue: folder,
             JSONKey.mailbox.rawValue: mailboxID,
             JSONKey.sender.rawValue: sender,
             JSONKey.subject.rawValue: subject,
             JSONKey.receiver.rawValue: recieversList[0],
             JSONKey.send.rawValue: send,
-            JSONKey.encryption.rawValue : encryptionObject,
-            JSONKey.encrypted.rawValue : encrypted,
+            JSONKey.encryption.rawValue: encryptionObject,
+            JSONKey.encrypted.rawValue: encrypted,
             JSONKey.subjectEncrypted.rawValue: subjectEncrypted,
-            JSONKey.attachments.rawValue : attachments,
-            //JSONKey.selfDestructionDate.rawValue : selfDestructionDate,
-            //JSONKey.delayedDeliveryDate.rawValue : delayedDeliveryDate,
-            //JSONKey.deadManDate.rawValue : deadManDate
+            JSONKey.attachments.rawValue: attachments,
         ]
         
         if selfDestructionDate.count > 0 {

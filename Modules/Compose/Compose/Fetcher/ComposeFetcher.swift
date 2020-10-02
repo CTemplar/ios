@@ -238,20 +238,26 @@ final class ComposeFetcher {
                             attachments: [[String: String]],
                             isSubjectEncrypted: Bool,
                             sender: String,
+                            lastAction: String?,
                             onCompletion: @escaping CompletionWithMessage,
                             onCompletionWithAlert: @escaping CompletionWithAlert) {
         DispatchQueue.global(qos: .background).async {
-            self.apiService.createMessage(parentID: parentID,
-                                          content: content,
-                                          subject: subject,
-                                          recieversList: recievers,
-                                          folder: folder, mailboxID: mailboxID,
-                                          send: send,
-                                          encrypted: encrypted,
-                                          encryptionObject: encryptionObject,
-                                          attachments: attachments,
-                                          isSubjectEncrypted: isSubjectEncrypted,
-                                          sender: sender)
+            self.apiService
+                .createMessage(parentID: parentID,
+                               lastActionParentId: parentID.isEmpty ? nil : parentID,
+                               content: content,
+                               subject: subject,
+                               recieversList: recievers,
+                               folder: folder,
+                               mailboxID: mailboxID,
+                               send: send,
+                               encrypted: encrypted,
+                               encryptionObject: encryptionObject,
+                               attachments: attachments,
+                               isSubjectEncrypted: isSubjectEncrypted,
+                               sender: sender,
+                               lastAction: lastAction
+                )
             { (result) in
                 DispatchQueue.main.async {
                     switch(result) {
@@ -269,37 +275,7 @@ final class ComposeFetcher {
             }
         }
     }
-    
-    func createDraftWithParent(message: EmailMessage,
-                               content: String,
-                               recievers: [[String]],
-                               mailboxID: Int,
-                               isSubjectEncrypted: Bool,
-                               sender: String,
-                               onCompletion: @escaping CompletionWithMessage,
-                               onCompletionWithAlert: @escaping CompletionWithAlert) {
-        
-        var encryptionObjectDictionary = [String: String]()
-        
-        if let encryptionObject = message.encryption {
-            encryptionObjectDictionary = encryptionObject.toDictionary()
-        }
-        
-        createDraftMessage(parentID: message.messsageID?.description ?? "",
-                           content: content,
-                           subject: message.subject ?? "",
-                           recievers: recievers,
-                           folder: MessagesFoldersName.draft.rawValue,
-                           mailboxID: mailboxID,
-                           send: false,
-                           encrypted: message.isEncrypted ?? false,
-                           encryptionObject: encryptionObjectDictionary,
-                           attachments: message.attachments?.map({ $0.toDictionary() }) ?? [],
-                           isSubjectEncrypted: isSubjectEncrypted,
-                           sender: sender,
-                           onCompletion: onCompletion, onCompletionWithAlert: onCompletionWithAlert)
-    }
-    
+ 
     func fetchContacts(_ onCompletion: @escaping (([Contact]) -> Void)) {
         apiService.userContacts(fetchAll: true, offset: 0, silent: true) { (result) in
             DispatchQueue.main.async {

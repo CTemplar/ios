@@ -179,6 +179,19 @@ public enum AnswerMessageMode {
     case reply
     case replyAll
     case forward
+    
+    public var localized: String? {
+        switch self {
+        case .newMessage:
+            return nil
+        case .forward:
+            return "FORWARD"
+        case .reply:
+            return "REPLY"
+        case .replyAll:
+            return "REPLYALL"
+        }
+    }
 }
 
 enum AppSecurity: String {

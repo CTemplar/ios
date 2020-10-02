@@ -120,6 +120,8 @@ public enum JSONKey: String {
     case emailHash = "email_hash"
     case encryptedData = "encrypted_data"
     case subjectEncrypted = "is_subject_encrypted"
+    case lastActionParentId = "last_action_parent_id"
+    case lastAction = "last_action"
     case contactsEncrypted = "is_contacts_encrypted"
     case attachmentEncrypted = "is_attachments_encrypted"
     case platform = "platform"

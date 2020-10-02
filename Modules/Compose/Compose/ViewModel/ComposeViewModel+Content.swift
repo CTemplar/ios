@@ -3,51 +3,38 @@ import Networking
 
 extension ComposeViewModel {
     func initialiseEmailContent() -> String {
-        var messageContent = getMailContent()
+        var messageContent = getMailContent(from: parentMail?.children?.last ?? email)
         
-        if messageContent.contains("BEGIN PGP"), let decryptedContent = decryptedMailContent() {
+        if messageContent.contains("BEGIN PGP"),
+           let decryptedContent = decryptedMailContent(from: parentMail?.children?.last ?? email) {
             messageContent = decryptedContent
         }
         
         var contentString = ""
         
         if !messageContent.isEmpty {
-            let replyHeader = generateHtmlHeader(message: email, answerMode: answerMode)
+            let replyHeader = generateHtmlHeader(message: parentMail?.children?.last ?? email, answerMode: answerMode)
             
             contentString.append(replyHeader)
-            contentString.append("<div><div class='originalblock'>")
             contentString.append(messageContent)
-            contentString.append("</div></div>")
             
             if currentSignature?.isEmpty == false {
-                contentString.append("<br><br>\(currentSignature!)")
+                contentString.append("<br>\(currentSignature!)")
             }
         } else {
             guard let signature = currentSignature else {
                 return contentString
             }
-            contentString.append("<br><br>\(signature)")
+            contentString.append("<br>\(signature)")
         }
         return contentString
     }
     
-    func getMailContent() -> String {
-//        var messageContent = email.content ?? ""
-//        let signature = currentSignature ?? ""
-//
-//        if let range = messageContent.range(of: signature) {
-//            messageContent = messageContent.replacingCharacters(in: range, with: "")
-//            messageContent.append("<br>\(signature)")
-//        }
-//
-//        if messageContent == Strings.Compose.composeEmail.localized {
-//            messageContent = ""
-//        }
-//        return messageContent
+    func getMailContent(from email: EmailMessage) -> String {
         return email.content ?? ""
     }
     
-    func decryptedMailContent() -> String? {
+    func decryptedMailContent(from email: EmailMessage) -> String? {
         if let content = email.content {
             let message = pgpService.decryptMessage(encryptedContet: content)
             if message == "#D_FAILED_ERROR#" {

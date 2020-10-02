@@ -63,27 +63,27 @@ class InboxViewerController: UIViewController, EmptyStateMachine {
     
     // MARK: - Actions
     @IBAction func onTapReply(_ sender: Any) {
-        var messageObject = message
-        if messageObject?.children?.isEmpty == false {
-            messageObject = messageObject?.children?.last
-        }
-        router?.onTapReply(withMode: .reply, message: messageObject)
+//        var messageObject = message
+//        if messageObject?.children?.isEmpty == false {
+//            messageObject = messageObject?.children?.last
+//        }
+        router?.onTapReply(withMode: .reply, message: message)
     }
     
     @IBAction func onTapReplyAll(_ sender: Any) {
-        var messageObject = message
-        if messageObject?.children?.isEmpty == false {
-            messageObject = messageObject?.children?.last
-        }
-        router?.onTapReplyAll(withMode: .replyAll, message: messageObject)
+//        var messageObject = message
+//        if messageObject?.children?.isEmpty == false {
+//            messageObject = messageObject?.children?.last
+//        }
+        router?.onTapReplyAll(withMode: .replyAll, message: message)
     }
     
     @IBAction func onTapForward(_ sender: Any) {
-        var messageObject = message
-        if messageObject?.children?.isEmpty == false {
-            messageObject = messageObject?.children?.last
-        }
-        router?.onTapForward(withMode: .forward, message: messageObject)
+//        var messageObject = message
+//        if messageObject?.children?.isEmpty == false {
+//            messageObject = messageObject?.children?.last
+//        }
+        router?.onTapForward(withMode: .forward, message: message)
     }
     
     @IBAction func onTapUndo(_ sender: Any) {

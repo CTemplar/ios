@@ -63,6 +63,8 @@ final class ComposeViewModel: Modelable {
     
     private var contacts: [Contact] = []
     
+    private (set) var parentMail: EmailMessage?
+    
     private var isContactEncrypted: Bool {
         return user.settings.isContactsEncrypted ?? false
     }
@@ -93,6 +95,7 @@ final class ComposeViewModel: Modelable {
     init(answerMode: AnswerMessageMode, user: UserMyself, message: EmailMessage, includeAttachments: Bool) {
         self.answerMode = answerMode
         self.user = user
+        self.parentMail = message
         self.email = message
         self.includeAttachments = includeAttachments
         
@@ -111,36 +114,46 @@ final class ComposeViewModel: Modelable {
     func setupDatasource() {
         switch answerMode {
         case .reply:
-            email.update(receivers: [email.sender ?? ""])
+            if let lastChild = email.children?.last {
+                email.update(receivers: [lastChild.sender ?? ""])
+            } else {
+                email.update(receivers: [email.sender ?? ""])
+            }
         case .replyAll:
-            var receivers = email.receivers as? [String] ?? []
-            receivers.append(email.sender ?? "")
+            var receivers: [String] = []
+            if let lastChild = email.children?.last {
+                receivers = lastChild.receivers as? [String] ?? []
+            } else {
+                receivers = email.receivers as? [String] ?? []
+            }
             email.update(receivers: receivers)
         default: break
         }
         
         setupMailboxWithSignature()
         
+        let list = receiversList()
+
         // When user tapped on compose mail
         if email.messsageID == 0 {
             let messageContent = encryptMessageWithOwnPublicKey(message: "")
-            let list = receiversList()
-            
             Loader.start()
             
-            fetcher.createDraftMessage(parentID: "",
-                                       content: messageContent,
-                                       subject: email.subject ?? "",
-                                       recievers: list,
-                                       folder: MessagesFoldersName.draft.rawValue,
-                                       mailboxID: mailboxId,
-                                       send: false,
-                                       encrypted: false,
-                                       encryptionObject: [:],
-                                       attachments: email.attachments?.map({ $0.toDictionary() }) ?? [],
-                                       isSubjectEncrypted: user.settings.isSubjectEncrypted ?? false,
-                                       sender: email.sender ?? "",
-                                       onCompletion:
+            fetcher
+                .createDraftMessage(parentID: "",
+                                    content: messageContent,
+                                    subject: email.subject ?? "",
+                                    recievers: list,
+                                    folder: MessagesFoldersName.draft.rawValue,
+                                    mailboxID: mailboxId,
+                                    send: false,
+                                    encrypted: false,
+                                    encryptionObject: [:],
+                                    attachments: email.attachments?.map({ $0.toDictionary() }) ?? [],
+                                    isSubjectEncrypted: user.settings.isSubjectEncrypted ?? false,
+                                    sender: email.sender ?? "",
+                                    lastAction: answerMode.localized,
+                                    onCompletion:
                 { [weak self] (message) in
                     if let email = message {
                         self?.email = email
@@ -163,36 +176,45 @@ final class ComposeViewModel: Modelable {
                     self?.setupCellVMs()
                 })
             } else {
-                var messageContent = getMailContent()
-                if messageContent.contains("BEGIN PGP"), let decryptedContent = decryptedMailContent() {
+                var messageContent = getMailContent(from: email)
+                
+                if messageContent.contains("BEGIN PGP"), let decryptedContent = decryptedMailContent(from: email) {
                     messageContent = decryptedContent
                 }
                 
-                let list = receiversList()
+                var encryptionObjectDictionary = [String: String]()
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: {
-                    self.fetcher.createDraftWithParent(message: self.email,
-                                                       content: messageContent,
-                                                       recievers: list,
-                                                       mailboxID: self.mailboxId,
-                                                       isSubjectEncrypted: self.user.settings.isSubjectEncrypted ?? false,
-                                                       sender: self.email.sender ?? "",
-                                                       onCompletion:
-                        { [weak self] (message) in
-                            if let email = message {
-                                self?.email = email
-                                
-                                // Fetch Contacts
-                                self?.fetcher.fetchContacts({ (contacts) in
-                                    self?.contacts = contacts
-                                    self?.setupCellVMs()
-                                })
-                            }
-                    }) { [weak self] (params, backToRoot) in
-                        Loader.stop()
-                        self?.showAlert.send((params, backToRoot))
-                    }
-                })
+                if let encryptionObject = email.encryption {
+                    encryptionObjectDictionary = encryptionObject.toDictionary()
+                }
+                
+                fetcher
+                    .createDraftMessage(parentID: email.messsageID?.description ?? "",
+                                        content: messageContent,
+                                        subject: email.subject ?? "",
+                                        recievers: list,
+                                        folder: MessagesFoldersName.draft.rawValue,
+                                        mailboxID: mailboxId,
+                                        send: false,
+                                        encrypted: email.isEncrypted ?? true,
+                                        encryptionObject: encryptionObjectDictionary,
+                                        attachments: email.attachments?.map({ $0.toDictionary() }) ?? [],
+                                        isSubjectEncrypted: user.settings.isSubjectEncrypted ?? false,
+                                        sender: email.sender ?? "",
+                                        lastAction: answerMode.localized)
+                    { [weak self] (message) in
+                        if let message  = message {
+                            self?.email = message
+                            // Fetch Contacts
+                            self?.fetcher.fetchContacts({ (contacts) in
+                                self?.contacts = contacts
+                                self?.setupCellVMs()
+                            })
+                        }
+                } onCompletionWithAlert: { [weak self] (params, backToRoot) in
+                    Loader.stop()
+                    self?.showAlert.send((params, backToRoot))
+                }
             }
         }
     }
@@ -544,9 +566,9 @@ final class ComposeViewModel: Modelable {
             return true
         }
         
-        var messageContent = getMailContent()
+        var messageContent = getMailContent(from: email)
         
-        if messageContent.contains("BEGIN PGP"), let decryptedContent = decryptedMailContent() {
+        if messageContent.contains("BEGIN PGP"), let decryptedContent = decryptedMailContent(from: email) {
             messageContent = decryptedContent
         }
         
@@ -667,7 +689,7 @@ final class ComposeViewModel: Modelable {
         
         emailPassword = password
         
-        let messageContent = encryptMessageWithOwnPublicKey(message: getMailContent())
+        let messageContent = encryptMessageWithOwnPublicKey(message: getMailContent(from: email))
         
         let encryptionObject = EncryptionObject(password: password,
                                                 passwordHint: hint,
@@ -787,7 +809,7 @@ final class ComposeViewModel: Modelable {
         
         let encrypted = true
         
-        var messageContent = getMailContent()
+        var messageContent = getMailContent(from: email)
         
         messageContent = messageContent.replacingOccurrences(of: currentSignature ?? "", with: "")
         

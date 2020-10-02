@@ -10,7 +10,7 @@ extension ComposeViewModel {
             return
         }
         
-        var messageContent = getMailContent()
+        var messageContent = getMailContent(from: email)
         
         messageContent = messageContent.replacingOccurrences(of: "\n", with: "<br><br>")
         
@@ -64,9 +64,9 @@ extension ComposeViewModel {
             return
         }
         
-        var messageContent = getMailContent()
+        var messageContent = getMailContent(from: email)
         
-        if messageContent.contains("BEGIN PGP"), let decryptedContent = decryptedMailContent() {
+        if messageContent.contains("BEGIN PGP"), let decryptedContent = decryptedMailContent(from: email) {
             messageContent = decryptedContent
         }
         
