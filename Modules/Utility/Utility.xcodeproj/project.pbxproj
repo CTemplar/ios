@@ -126,6 +126,7 @@
 		447C2A442491760000EC426B /* UIStoryboard+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447C2A432491760000EC426B /* UIStoryboard+Helper.swift */; };
 		447C2A4D2491767200EC426B /* Storyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447C2A4C2491767200EC426B /* Storyboardable.swift */; };
 		4480A467250D1EF700A7DDFF /* InboxViewerPushsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4480A466250D1EF700A7DDFF /* InboxViewerPushsable.swift */; };
+		448FE9ED252EC1DB00DDBC45 /* AppDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448FE9EC252EC1DB00DDBC45 /* AppDelegate+Extension.swift */; };
 		44B1620324C61B1B00BDD4B3 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B1620224C61B1B00BDD4B3 /* UIView+Extension.swift */; };
 		44B1620524C61B3400BDD4B3 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B1620424C61B3400BDD4B3 /* UITableView+Extension.swift */; };
 		44B500B024C0773F002F515A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 44B500AF24C0773F002F515A /* SnapKit */; };
@@ -271,6 +272,7 @@
 		447C2A432491760000EC426B /* UIStoryboard+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Helper.swift"; sourceTree = "<group>"; };
 		447C2A4C2491767200EC426B /* Storyboardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboardable.swift; sourceTree = "<group>"; };
 		4480A466250D1EF700A7DDFF /* InboxViewerPushsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewerPushsable.swift; sourceTree = "<group>"; };
+		448FE9EC252EC1DB00DDBC45 /* AppDelegate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Extension.swift"; sourceTree = "<group>"; };
 		44B1620224C61B1B00BDD4B3 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		44B1620424C61B3400BDD4B3 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		44BD637324909D9E00CB4A73 /* Utility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Utility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -577,6 +579,7 @@
 				44B1620424C61B3400BDD4B3 /* UITableView+Extension.swift */,
 				4477558F24F2C6CB009B89D6 /* UITextField+Combine.swift */,
 				44E499EB24F68BB40007CFA7 /* FileManager+Helpers.swift */,
+				448FE9EC252EC1DB00DDBC45 /* AppDelegate+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -849,6 +852,7 @@
 				444BD29724921320001D0C5F /* UItextView+Extension.swift in Sources */,
 				447C2A4D2491767200EC426B /* Storyboardable.swift in Sources */,
 				444BD28124920A39001D0C5F /* SharedDateFormatter.swift in Sources */,
+				448FE9ED252EC1DB00DDBC45 /* AppDelegate+Extension.swift in Sources */,
 				44BD63A624909E1400CB4A73 /* ViewConfigurable.swift in Sources */,
 				4477559024F2C6CB009B89D6 /* UITextField+Combine.swift in Sources */,
 				447754CA24EFA5BF009B89D6 /* EmptyStateMachine.swift in Sources */,

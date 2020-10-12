@@ -21,6 +21,8 @@ public final class ComposeMailBodyCell: UITableViewCell, Cellable {
         return 200.0
     }
     
+    private var keyboardHeight: CGFloat = .zero
+    
     private var model: ComposeMailSubjectModel!
 
     private var anyCancellables = Set<AnyCancellable>()
@@ -32,12 +34,49 @@ public final class ComposeMailBodyCell: UITableViewCell, Cellable {
     // MARK: - Lifecycle
     public override func awakeFromNib() {
         super.awakeFromNib()
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillDismiss),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     public override func layoutSubviews() {
         super.layoutSubviews()
         messageTextEditor.setEditorFontColor(.label)
         messageTextEditor.placeholder = Strings.AppSettings.typeMessage.localized
+    }
+    
+    // MARK: - Observers
+    @objc
+    private func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            messageTextEditor.isScrollEnabled = true
+            keyboardHeight = keyboardRectangle.height
+        }
+    }
+    
+    @objc
+    private func keyboardWillDismiss(_ notification: Notification) {
+        messageTextEditor.isScrollEnabled = false
+        model.cellHeight = CGFloat(messageTextEditor.editorHeight)
+        messageTextEditorHeightConstraint.constant = model.cellHeight
+        self.tableView?.beginUpdates()
+        self.tableView?.endUpdates()
     }
 
     // MARK: - Setup
@@ -236,12 +275,18 @@ extension ComposeMailBodyCell: RichEditorDelegate {
     }
 
     public func richEditor(_ editor: RichEditorView, heightDidChange height: Int) {
-        if height < Int(thresholdHeight) {
-            model.cellHeight = 200.0
+        if UIApplication.shared.isKeyboardPresented, keyboardHeight > 0.0 {
+            var actualHeight = keyboardHeight - thresholdHeight
+            actualHeight = actualHeight < thresholdHeight ? thresholdHeight : actualHeight
+            model.cellHeight = actualHeight
         } else {
-            model.cellHeight = CGFloat(height)
+            if height < Int(thresholdHeight) {
+                model.cellHeight = 200.0
+            } else {
+                model.cellHeight = CGFloat(height)
+            }
         }
-        
+                
         messageTextEditorHeightConstraint.constant = model.cellHeight
         
         UIView.performWithoutAnimation {

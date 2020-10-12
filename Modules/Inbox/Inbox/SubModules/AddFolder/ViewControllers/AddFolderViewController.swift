@@ -58,7 +58,7 @@ class AddFolderViewController: UIViewController {
 
         colorPicker.addTarget(self, action: #selector(handleColorChanged(picker:)), for: .valueChanged)
         colorPicker.set(color: .red, colorSpace: .extendedSRGB)
-        
+        selectedHexColor = colorPicker.color.hex
         interactor?.validateFolderName(text: folderName ?? "")
         
         let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture(gesture:)))

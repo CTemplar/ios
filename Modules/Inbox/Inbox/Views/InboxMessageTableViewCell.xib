@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Lato-Bold.ttf">
+            <string>Lato-Bold</string>
+        </array>
         <array key="Lato-Regular.ttf">
             <string>Lato-Regular</string>
         </array>
@@ -207,12 +211,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G38-y1-Kgj">
-                                <rect key="frame" x="0.0" y="25" width="37.5" height="18"/>
+                                <rect key="frame" x="0.0" y="25" width="24.5" height="18"/>
                                 <subviews>
                                     <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7e3-cH-JZh">
-                                        <rect key="frame" x="10" y="0.0" width="17.5" height="18"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="14.5" height="18"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
                                         <color key="textColor" name="cellSubTitleTextColor"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
@@ -230,7 +234,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="7e3-cH-JZh" firstAttribute="leading" secondItem="G38-y1-Kgj" secondAttribute="leading" constant="10" id="MFG-Rj-qbC"/>
+                                    <constraint firstItem="7e3-cH-JZh" firstAttribute="leading" secondItem="G38-y1-Kgj" secondAttribute="leading" id="MFG-Rj-qbC"/>
                                     <constraint firstAttribute="bottom" secondItem="7e3-cH-JZh" secondAttribute="bottom" id="Ofh-0w-AeK"/>
                                     <constraint firstAttribute="height" constant="18" id="k5T-cX-S3m"/>
                                     <constraint firstAttribute="trailing" secondItem="7e3-cH-JZh" secondAttribute="trailing" constant="10" id="n9P-gZ-XfE"/>
@@ -278,21 +282,21 @@
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SecureIcon" translatesAutoresizingMaskIntoConstraints="NO" id="1oJ-nU-efR">
-                        <rect key="frame" x="348" y="11" width="16" height="16"/>
+                        <rect key="frame" x="348" y="13" width="16" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="1oJ-nU-efR" secondAttribute="height" multiplier="1:1" id="Csa-D7-XKj"/>
                             <constraint firstAttribute="height" constant="16" id="DnF-aT-1Lc"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="OGH-zi-U9d">
-                        <rect key="frame" x="348" y="36" width="16" height="16"/>
+                        <rect key="frame" x="348" y="38" width="16" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="OGH-zi-U9d" secondAttribute="height" multiplier="1:1" id="8aV-HR-R3k"/>
                             <constraint firstAttribute="width" constant="16" id="eqI-CU-dbn"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AttachIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ri0-gV-UDM">
-                        <rect key="frame" x="324" y="36" width="16" height="16"/>
+                        <rect key="frame" x="324" y="38" width="16" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="FvR-Rt-rad"/>
                             <constraint firstAttribute="width" secondItem="ri0-gV-UDM" secondAttribute="height" multiplier="1:1" id="w6v-k0-S45"/>
@@ -309,9 +313,9 @@
                     <constraint firstItem="gQA-43-osU" firstAttribute="top" secondItem="8au-y8-0Qc" secondAttribute="topMargin" constant="2" id="aM5-7j-NPq"/>
                     <constraint firstItem="ZVU-xo-7UT" firstAttribute="leading" secondItem="8au-y8-0Qc" secondAttribute="leading" constant="13" id="bfc-f9-wX1"/>
                     <constraint firstItem="OGH-zi-U9d" firstAttribute="leading" secondItem="ri0-gV-UDM" secondAttribute="trailing" constant="8" id="gXW-vn-5bq"/>
+                    <constraint firstItem="1oJ-nU-efR" firstAttribute="top" secondItem="gQA-43-osU" secondAttribute="top" id="hfZ-HO-v4l"/>
                     <constraint firstItem="OGH-zi-U9d" firstAttribute="centerY" secondItem="ri0-gV-UDM" secondAttribute="centerY" id="iDG-mm-6sB"/>
                     <constraint firstItem="1oJ-nU-efR" firstAttribute="leading" secondItem="gQA-43-osU" secondAttribute="trailing" constant="13" id="olw-X6-Rzl"/>
-                    <constraint firstItem="1oJ-nU-efR" firstAttribute="top" secondItem="8au-y8-0Qc" secondAttribute="top" constant="11" id="qlo-BW-VfO"/>
                     <constraint firstItem="ZVU-xo-7UT" firstAttribute="centerY" secondItem="8au-y8-0Qc" secondAttribute="centerY" id="vBX-DI-YAp"/>
                 </constraints>
             </tableViewCellContentView>

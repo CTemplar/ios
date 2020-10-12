@@ -204,10 +204,10 @@ final class InboxViewerPresenter {
                                                     self?.markAsSpam()
                                                 case .moveTo:
                                                     self?.onTapMoveTo()
+                                                case .moveToTrash:
+                                                    self?.moveToTrash()
                                                 case .cancel:
                                                     actionSheet.dismiss(animated: true, completion: nil)
-                                                default:
-                                                    DPrint("Do Nothing")
                                                 }
             })
             actionSheet.addAction(alertAction)
@@ -238,6 +238,12 @@ final class InboxViewerPresenter {
         if let lastMessage = viewController?.message {
             interactor?.markMessagesAsArchived(lastSelectedMessage: lastMessage,
                                                withUndo: Strings.Inbox.MoreAction.moveToArchive.localized)
+        }
+    }
+    
+    private func moveToTrash() {
+        if let lastMessage = viewController?.message {
+            interactor?.markMessagesAsTrash(lastSelectedMessage: lastMessage, withUndo: Strings.Inbox.MoreAction.moveToTrash.localized)
         }
     }
     

@@ -52,7 +52,7 @@ class AppSettingsSwitchCell: UITableViewCell, Modelable {
             settingsSwitch
         ].forEach({
             $0.translatesAutoresizingMaskIntoConstraints = false
-            addSubview($0)
+            contentView.addSubview($0)
         })
 
         titleLabel.snp.makeConstraints { (make) in

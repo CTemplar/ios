@@ -194,6 +194,7 @@ final class ComposeFetcher {
                           selfDestructionDate: String,
                           delayedDeliveryDate: String,
                           deadManDate: String,
+                          mailbox: String?,
                           onCompletion: @escaping (() -> Void),
                           onCompletionWithAlert: @escaping CompletionWithAlert) {
         apiService.saveDraftMesssage(messageID: messageID,
@@ -205,7 +206,8 @@ final class ComposeFetcher {
                                      encrypted: encrypted,
                                      selfDestructionDate: selfDestructionDate,
                                      delayedDeliveryDate: delayedDeliveryDate,
-                                     deadManDate: deadManDate)
+                                     deadManDate: deadManDate,
+                                     mailbox: mailbox)
         { (result) in
             DispatchQueue.main.async {
                 switch(result) {

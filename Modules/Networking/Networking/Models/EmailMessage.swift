@@ -67,7 +67,9 @@ public struct EmailMessage {
         self.isProtected = dictionary["is_protected"] as? Bool
         self.isHtml = dictionary["is_html"] as? Bool
         self.isSubjectEncrypted = dictionary["is_subject_encrypted"] as? Bool
-        self.mailbox = dictionary["mailbox"] as? String
+        if let mailboxId = dictionary["mailbox"] as? Int  {
+            self.mailbox = String(mailboxId)
+        }
         self.parent = dictionary["parent"] as? String
         self.read = dictionary["read"] as? Bool
         self.receivers = dictionary["receiver"] as? Array<Any>

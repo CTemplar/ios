@@ -95,7 +95,9 @@ final class InboxViewerInteractor {
                                   starred: starred,
                                   read: false,
                                   updateFolder: false,
-                                  updateStarred: true, updateRead: false)
+                                  updateStarred: true,
+                                  updateRead: false,
+                                  mailboxId: message.mailbox)
         { [weak self] (result) in
             DispatchQueue.main.async {
                 switch(result) {
@@ -244,7 +246,8 @@ final class InboxViewerInteractor {
                                   read: false,
                                   updateFolder: true,
                                   updateStarred: false,
-                                  updateRead: false)
+                                  updateRead: false,
+                                  mailboxId: message.mailbox)
         { [weak self] (result) in
             DispatchQueue.main.async {
                 switch(result) {
@@ -298,13 +301,14 @@ final class InboxViewerInteractor {
         }
         
         apiService.updateMessages(messageID: "",
-                                  messagesIDIn: "",
+                                  messagesIDIn: lastSelectedMessage.messsageID?.description ?? "",
                                   folder: "",
                                   starred: false,
                                   read: asRead,
                                   updateFolder: false,
                                   updateStarred: false,
-                                  updateRead: true)
+                                  updateRead: true,
+                                  mailboxId: lastSelectedMessage.mailbox)
         { [weak self] (result) in
             DispatchQueue.main.async {
                 guard let weakSelf = self else {
