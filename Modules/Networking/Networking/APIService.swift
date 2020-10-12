@@ -219,7 +219,16 @@ public class APIService: HashingService {
         }
     }
     
-    public func updateMessages(messageID: String, messagesIDIn: String, folder: String, starred: Bool, read: Bool, updateFolder: Bool, updateStarred: Bool, updateRead: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    public func updateMessages(messageID: String,
+                               messagesIDIn: String,
+                               folder: String,
+                               starred: Bool,
+                               read: Bool,
+                               updateFolder: Bool,
+                               updateStarred: Bool,
+                               updateRead: Bool,
+                               mailboxId: String? = nil,
+                               completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let messageIDParameter = messageID.isEmpty == false ? "\(messageID)/" : ""
     
@@ -228,7 +237,7 @@ public class APIService: HashingService {
         checkTokenExpiration() { [weak self] (complete) in
             if complete {
                 if let token = self?.getToken() {
-                    self?.restAPIService.updateMessages(token: token, messageID: messageIDParameter, messagesIDIn: messagesIDInParameter, folder: folder, starred: starred, read: read, updateFolder: updateFolder, updateStarred: updateStarred, updateRead: updateRead) { (result) in
+                    self?.restAPIService.updateMessages(token: token, messageID: messageIDParameter, messagesIDIn: messagesIDInParameter, folder: folder, starred: starred, read: read, updateFolder: updateFolder, updateStarred: updateStarred, updateRead: updateRead, mailboxId: mailboxId) { (result) in
                         switch(result) {
                         case .success(let value):
                             DPrint("updateMessages success:", value)
@@ -416,7 +425,7 @@ public class APIService: HashingService {
         }
     }
     
-    public func saveDraftMesssage(messageID: String, messageContent: String, subject: String, recieversList: [[String]], folder: String, encryptionObject: [String: String], encrypted: Bool, selfDestructionDate: String, delayedDeliveryDate: String, deadManDate: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    public func saveDraftMesssage(messageID: String, messageContent: String, subject: String, recieversList: [[String]], folder: String, encryptionObject: [String: String], encrypted: Bool, selfDestructionDate: String, delayedDeliveryDate: String, deadManDate: String, mailbox: String?, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         var deadManTimer = 0
         
@@ -427,7 +436,7 @@ public class APIService: HashingService {
         checkTokenExpiration() { [weak self] (complete) in
             if complete {
                 if let token = self?.getToken() {
-                    self?.restAPIService.saveDraftMesssage(token: token, messageID: messageID, messageContent: messageContent, subject: subject, recieversList: recieversList, folder: folder, encryptionObject: encryptionObject, encrypted: encrypted, selfDestructionDate: selfDestructionDate, delayedDeliveryDate: delayedDeliveryDate, deadManTimer: deadManTimer) { (result) in
+                    self?.restAPIService.saveDraftMesssage(token: token, messageID: messageID, messageContent: messageContent, subject: subject, recieversList: recieversList, folder: folder, encryptionObject: encryptionObject, encrypted: encrypted, selfDestructionDate: selfDestructionDate, delayedDeliveryDate: delayedDeliveryDate, deadManTimer: deadManTimer, mailbox: mailbox) { (result) in
                         
                         switch(result) {
                         case .success(let value):

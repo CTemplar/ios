@@ -82,7 +82,7 @@ extension ComposeViewModel {
     
     func generateForwardHeader(message: EmailMessage, subject: String) -> NSAttributedString {
         var forwardHeader = Strings.Compose.forwardLine.localized
-        
+    
         func createIterativeForwardHeader(from email: EmailMessage) {
             if let sender = message.sender {
                 forwardHeader = "\(forwardHeader)\n\(Strings.Compose.emailFromPrefix.localized)<\(sender)>\n"

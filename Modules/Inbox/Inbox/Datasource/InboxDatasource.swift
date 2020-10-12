@@ -246,35 +246,29 @@ final class InboxDatasource: NSObject {
     
     func applyFilters() {
         if SharedInboxState.shared.appliedFilters.isEmpty {
-            clearFilters()
             return
         }
         
-        guard !messages.isEmpty else {
+        guard !originalMessages.isEmpty else {
             return
         }
         
-        var filteredMessages: [EmailMessage] = []
+        var filteredMessages = originalMessages
         
         SharedInboxState.shared.appliedFilters.forEach { (filter) in
             switch filter {
             case .unread:
-                let filtered = originalMessages.filter({ $0.read == false })
-                filteredMessages.append(contentsOf: filtered)
+                filteredMessages = filteredMessages.filter({ $0.read == false })
             case .starred:
-                let filtered = originalMessages.filter({ $0.starred == true })
-                filteredMessages.append(contentsOf: filtered)
+                filteredMessages = filteredMessages.filter({ $0.starred == true })
             case .attachments:
-                let filtered = originalMessages.filter({ $0.attachments?.isEmpty == false })
-                filteredMessages.append(contentsOf: filtered)
+                filteredMessages = filteredMessages.filter({ $0.attachments?.isEmpty == false })
             }
         }
         
-        if !filteredMessages.isEmpty {
-            messages = filteredMessages
-            parentViewController?.presenter?.updateNoMessagePrompt()
-            sortMessages()
-        }
+        messages = filteredMessages
+        parentViewController?.presenter?.updateNoMessagePrompt()
+        sortMessages()
         
         // Reload Inbox
         reload()
@@ -396,7 +390,18 @@ final class InboxDatasource: NSObject {
     
     func update(filters: [InboxFilter]) {
         SharedInboxState.shared.update(appliedFilters: filters)
-        applyFilters()
+        if !filters.isEmpty {
+            parentViewController?
+                .presenter?
+                .interactor?
+                .messagesList(folder: SharedInboxState.shared.selectedMenu?.menuName ?? "",
+                              withUndo: "",
+                              silent: false
+            )
+        } else {
+            clearFilters()
+            handleRefresh(parentViewController?.reloadButton ?? UIButton())
+        }
     }
     
     func update(unreadCount: Int) {

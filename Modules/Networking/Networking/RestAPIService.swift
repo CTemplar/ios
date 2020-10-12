@@ -143,7 +143,7 @@ public class RestAPIService {
         }
     }
     
-    func updateMessages(token: String, messageID: String, messagesIDIn: String, folder: String, starred: Bool, read: Bool, updateFolder: Bool, updateStarred: Bool, updateRead: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateMessages(token: String, messageID: String, messagesIDIn: String, folder: String, starred: Bool, read: Bool, updateFolder: Bool, updateStarred: Bool, updateRead: Bool, mailboxId: String?, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -162,6 +162,10 @@ public class RestAPIService {
         
         if updateRead {
             configureParameters[JSONKey.read.rawValue] = read
+        }
+        
+        if let mailboxId = mailboxId {
+            configureParameters[JSONKey.mailbox.rawValue] = mailboxId
         }
         
         let parameters: Parameters = configureParameters as! Parameters
@@ -320,7 +324,7 @@ public class RestAPIService {
         }
     }
     
-    func saveDraftMesssage(token: String, messageID: String, messageContent: String, subject: String, recieversList: [[String]], folder: String, encryptionObject: [String: String], encrypted: Bool, selfDestructionDate: String, delayedDeliveryDate: String, deadManTimer: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func saveDraftMesssage(token: String, messageID: String, messageContent: String, subject: String, recieversList: [[String]], folder: String, encryptionObject: [String: String], encrypted: Bool, selfDestructionDate: String, delayedDeliveryDate: String, deadManTimer: Int, mailbox: String?, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -355,6 +359,10 @@ public class RestAPIService {
         
         if recieversList[2].count > 0 {
             parameters[JSONKey.blindCarbonCopy.rawValue] = recieversList[2]
+        }
+        
+        if let mailbox = mailbox {
+            parameters[JSONKey.mailbox.rawValue] = mailbox
         }
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messageID + "/"

@@ -562,26 +562,33 @@ final class ComposeViewModel: Modelable {
     }
     
     func shouldSaveDraft() -> Bool {
-        guard email.attachments?.isEmpty == true else {
-            return true
+        if email.receivers?.isEmpty == true {
+            return false
         }
         
+        if email.subject?.isEmpty == true {
+            return false
+        }
+
         var messageContent = getMailContent(from: email)
         
         if messageContent.contains("BEGIN PGP"), let decryptedContent = decryptedMailContent(from: email) {
             messageContent = decryptedContent
         }
-        
-        if let signature = currentSignature, messageContent == "<br><br>\(signature)" {
-            messageContent = ""
+                
+        if let signature = currentSignature {
+            messageContent = messageContent.replacingOccurrences(of: signature, with: "")
         }
         
-        if email.receivers?.isEmpty == true,
-            email.subject?.isEmpty == true,
-            messageContent.isEmpty {
-            return false
+        messageContent = messageContent.stripOutHtml() ?? ""
+
+        messageContent = messageContent.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if !messageContent.isEmpty {
+            return true
         }
-        return true
+        
+        return false
     }
     
     func formattedDate(for mode: SchedulerMode) -> Date {
@@ -813,6 +820,8 @@ final class ComposeViewModel: Modelable {
         
         messageContent = messageContent.replacingOccurrences(of: currentSignature ?? "", with: "")
         
+        messageContent = messageContent.stripOutHtml() ?? ""
+        
         messageContent = encryptMessageWithOwnPublicKey(message: messageContent)
         
         if let encryptionObject = email.encryption {
@@ -832,6 +841,7 @@ final class ComposeViewModel: Modelable {
                                  selfDestructionDate: email.destructDay ?? "",
                                  delayedDeliveryDate: email.delayedDelivery ?? "",
                                  deadManDate: email.deadManDuration?.description ?? "",
+                                 mailbox: email.mailbox,
                                  onCompletion: {
                                     Loader.stop()
         }) { [weak self] (params, backToRoot) in
@@ -888,6 +898,20 @@ final class ComposeViewModel: Modelable {
                 Loader.stop()
                 self?.showAlert.send((params, backToRoot))
             }
+        }
+    }
+}
+
+extension String {
+    func stripOutHtml() -> String? {
+        do {
+            guard let data = self.data(using: .unicode) else {
+                return nil
+            }
+            let attributed = try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
+            return attributed.string
+        } catch {
+            return nil
         }
     }
 }
