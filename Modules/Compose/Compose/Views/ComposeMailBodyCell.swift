@@ -45,7 +45,7 @@ public final class ComposeMailBodyCell: UITableViewCell, Cellable {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyboardWillDismiss),
-            name: UIResponder.keyboardWillHideNotification,
+            name: UIResponder.keyboardDidHideNotification,
             object: nil
         )
     }
@@ -67,16 +67,15 @@ public final class ComposeMailBodyCell: UITableViewCell, Cellable {
             let keyboardRectangle = keyboardFrame.cgRectValue
             messageTextEditor.isScrollEnabled = true
             keyboardHeight = keyboardRectangle.height
+            changeHeight(Int(keyboardHeight))
         }
     }
     
     @objc
     private func keyboardWillDismiss(_ notification: Notification) {
         messageTextEditor.isScrollEnabled = false
-        model.cellHeight = CGFloat(messageTextEditor.editorHeight)
-        messageTextEditorHeightConstraint.constant = model.cellHeight
-        self.tableView?.beginUpdates()
-        self.tableView?.endUpdates()
+        keyboardHeight = 0.0
+        changeHeight(messageTextEditor.editorHeight)
     }
 
     // MARK: - Setup
@@ -275,6 +274,10 @@ extension ComposeMailBodyCell: RichEditorDelegate {
     }
 
     public func richEditor(_ editor: RichEditorView, heightDidChange height: Int) {
+        changeHeight(height)
+    }
+    
+    private func changeHeight(_ height: Int) {
         if UIApplication.shared.isKeyboardPresented, keyboardHeight > 0.0 {
             var actualHeight = keyboardHeight - thresholdHeight
             actualHeight = actualHeight < thresholdHeight ? thresholdHeight : actualHeight

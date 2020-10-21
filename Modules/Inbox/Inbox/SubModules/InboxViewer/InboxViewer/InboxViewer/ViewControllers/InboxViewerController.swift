@@ -10,6 +10,7 @@ class InboxViewerController: UIViewController, EmptyStateMachine {
     @IBOutlet weak var generalToolbar: UIToolbar!
     @IBOutlet weak var undoToolbar: UIToolbar!
     @IBOutlet weak var undoItem: UIBarButtonItem!
+    @IBOutlet weak var replyAllButton: UIBarButtonItem!
     
     // MARK: Properties
     let documentInteractionController = UIDocumentInteractionController()
@@ -25,7 +26,7 @@ class InboxViewerController: UIViewController, EmptyStateMachine {
         super.viewDidLoad()
         extendedLayoutIncludesOpaqueBars = true
         edgesForExtendedLayout = []
-        dataSource = InboxViewerDatasource(inboxViewerController: self, tableView: tableView)
+        dataSource = InboxViewerDatasource(inboxViewerController: self, tableView: tableView, user: user)
         dataSource?.update(by: message)
         presenter?.setupUI()
         documentInteractionController.delegate = self

@@ -902,7 +902,7 @@ final class ComposeViewModel: Modelable {
     }
 }
 
-extension String {
+public extension String {
     func stripOutHtml() -> String? {
         do {
             guard let data = self.data(using: .unicode) else {

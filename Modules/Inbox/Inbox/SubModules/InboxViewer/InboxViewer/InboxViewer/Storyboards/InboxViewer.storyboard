@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Iao-Rd-6n0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Iao-Rd-6n0">
     <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,7 +20,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1qa-uq-5Ze">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="802"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t56-fp-20C">
                                 <rect key="frame" x="0.0" y="802" width="414" height="60"/>
@@ -65,7 +67,8 @@
                                 </items>
                             </toolbar>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="nHC-we-npd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="t56-fp-20C" firstAttribute="leading" secondItem="nHC-we-npd" secondAttribute="leading" id="6Sf-BJ-EKp"/>
                             <constraint firstItem="t56-fp-20C" firstAttribute="trailing" secondItem="nHC-we-npd" secondAttribute="trailing" id="Bna-cY-UhX"/>
@@ -78,10 +81,10 @@
                             <constraint firstItem="P5Q-TM-FLW" firstAttribute="bottom" secondItem="nHC-we-npd" secondAttribute="bottom" id="uza-5Q-rjw"/>
                             <constraint firstItem="1qa-uq-5Ze" firstAttribute="trailing" secondItem="nHC-we-npd" secondAttribute="trailing" id="xrc-UW-eE3"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="nHC-we-npd"/>
                     </view>
                     <connections>
                         <outlet property="generalToolbar" destination="t56-fp-20C" id="l9D-Br-2eJ"/>
+                        <outlet property="replyAllButton" destination="2Df-6k-4fd" id="N79-0H-cvh"/>
                         <outlet property="tableView" destination="1qa-uq-5Ze" id="DJT-dB-mFy"/>
                         <outlet property="undoItem" destination="yck-iJ-hgQ" id="Ai3-6d-bWG"/>
                         <outlet property="undoToolbar" destination="P5Q-TM-FLW" id="tEi-uU-Teh"/>
@@ -99,5 +102,8 @@
         <namedColor name="redColor">
             <color red="0.90600001811981201" green="0.29800000786781311" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

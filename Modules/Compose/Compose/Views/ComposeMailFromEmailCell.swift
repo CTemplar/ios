@@ -80,7 +80,7 @@ class ComposeMailFromEmailCell: UITableViewCell, Cellable {
             prefixLabel,
             emailIdTextLabel
         ].forEach({
-            addSubview($0)
+            contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         })
 

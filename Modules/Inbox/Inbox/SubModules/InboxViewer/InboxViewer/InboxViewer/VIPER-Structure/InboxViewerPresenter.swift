@@ -22,6 +22,7 @@ final class InboxViewerPresenter {
     func setupUI() {
         viewController?.undoToolbar.isHidden = true
         viewController?.generalToolbar.isHidden = false
+        toggleReplyAll(shouldHide: true)
         setupRightNavigationItems()
     }
     
@@ -139,6 +140,11 @@ final class InboxViewerPresenter {
         viewController?.generalToolbar.isHidden = false
         viewController?.undoToolbar.alpha = 1.0
         viewController?.undoToolbar.isHidden = true
+    }
+    
+    func toggleReplyAll(shouldHide: Bool) {
+        viewController?.replyAllButton.tintColor = shouldHide ? .clear : UIColor(appColor: .loaderColor)
+        viewController?.replyAllButton.isEnabled = shouldHide ? false : true
     }
     
     // MARK: - Actions

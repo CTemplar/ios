@@ -24,6 +24,8 @@ final class InboxViewerDatasource: NSObject {
     
     private (set) var lastSelectedAction: Menu.Action?
     
+    private var user: UserMyself
+    
     // we set a variable to hold the contentOffSet before scroll view scrolls
     var lastContentOffset: CGFloat = 0
     
@@ -32,9 +34,10 @@ final class InboxViewerDatasource: NSObject {
     }
     
     // MARK: - Constructor
-    init(inboxViewerController: InboxViewerController, tableView: UITableView) {
+    init(inboxViewerController: InboxViewerController, tableView: UITableView, user: UserMyself) {
         self.inboxViewerController = inboxViewerController
         self.tableView = tableView
+        self.user = user
         super.init()
         
         setupTableView()
@@ -114,7 +117,8 @@ final class InboxViewerDatasource: NSObject {
                 if let content = getDecryptedContent(from: child) {
                     sectionList.append(.mailBody(TextMail(messageId: child.messsageID,
                                                           content: content,
-                                                          state: (index == children.count - 1) ? .expanded : .collapsed),
+                                                          state: (index == children.count - 1) ? .expanded : .collapsed,
+                                                          shouldBlockExternalImages: user.settings.blockExternalImage ?? false),
                                                  child.isHtml ?? false)
                     )
                 }
@@ -123,7 +127,8 @@ final class InboxViewerDatasource: NSObject {
             if let content = getDecryptedContent(from: messageObject) {
                 sectionList.append(.mailBody(TextMail(messageId: messageObject.messsageID,
                                                       content: content,
-                                                      state: .expanded),
+                                                      state: .expanded,
+                                                      shouldBlockExternalImages: user.settings.blockExternalImage ?? false),
                                              messageObject.isHtml ?? false)
                 )
             }
