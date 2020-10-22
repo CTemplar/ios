@@ -61,6 +61,10 @@ public final class InboxViewerWebMailBodyCell: UITableViewCell, Cellable {
         
         activityIndicatorView.startAnimating()
         
+        if model.shouldBlockExternalImages {
+            messageTextEditor.blockExternalImages()
+        }
+        
         messageTextEditor.html = model.content
     }
 }

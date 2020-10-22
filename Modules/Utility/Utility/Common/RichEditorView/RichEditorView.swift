@@ -128,6 +128,18 @@ public class RichEditorWebView: WKWebView {
         }
     }
     
+    private let blockRules = """
+          [{
+             "trigger": {
+                 "url-filter": ".*",
+                 "resource-type": ["image"]
+             },
+             "action": {
+                 "type": "block"
+             }
+         }]
+      """
+    
     // MARK: Initialization
     
     public override init(frame: CGRect) {
@@ -251,6 +263,21 @@ public class RichEditorWebView: WKWebView {
     public func hasRangeOrCaretSelection(handler: @escaping (Bool) -> Void) {
         runJS("RE.rangeOrCaretSelectionExists()") { r in
             handler(r == "true" ? true : false)
+        }
+    }
+    
+    /// Block External Images
+    public func blockExternalImages() {
+        WKContentRuleListStore.default().compileContentRuleList(
+            forIdentifier: "ContentBlockingRules",
+            encodedContentRuleList: blockRules) { (contentRuleList, error) in
+            
+            if let _ = error {
+                return
+            }
+            
+            let configuration = self.webView.configuration
+            configuration.userContentController.add(contentRuleList!)
         }
     }
     

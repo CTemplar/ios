@@ -28,6 +28,7 @@ final class InboxViewerInteractor {
                         let messages = emailMessages.messagesList,
                         let message = messages.first {
                         self?.inboxViewerController?.dataSource?.update(by: message)
+                        self?.inboxViewerController?.presenter?.toggleReplyAll(shouldHide: (message.receivers ?? []).count < 3)
                         self?.inboxViewerController?
                             .dataSource?
                             .update(lastSelectedAction: .markAsRead)

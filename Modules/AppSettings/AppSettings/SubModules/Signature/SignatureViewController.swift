@@ -133,7 +133,8 @@ class SignatureViewController: UIViewController {
     }
     
     private func rigthBarButtonEnabled() {
-        navigationItem.rightBarButtonItem?.isEnabled = formatterService.validateNameLench(enteredName: userSignature)
+        let trimmedText = userSignature.removeHTMLTag.trimmingCharacters(in: .whitespacesAndNewlines)
+        navigationItem.rightBarButtonItem?.isEnabled = formatterService.validateNameLench(enteredName: trimmedText)
     }
     
     @IBAction func switchStateDidChange(_ sender: UISwitch) {

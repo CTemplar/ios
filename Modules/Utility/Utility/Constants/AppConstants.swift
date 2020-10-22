@@ -189,7 +189,7 @@ public enum AnswerMessageMode {
         case .reply:
             return "REPLY"
         case .replyAll:
-            return "REPLYALL"
+            return "REPLY_ALL"
         }
     }
 }
