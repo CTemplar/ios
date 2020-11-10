@@ -1,6 +1,6 @@
 //
 //  AuthResult.swift
-//  Ctemplar
+//  CTemplar
 //
 //  Created by romkh on 11.12.2019.
 //  Copyright © 2019 CTemplar. All rights reserved.

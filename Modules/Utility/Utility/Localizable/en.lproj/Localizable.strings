@@ -47,14 +47,14 @@
 
 // Sign Up
 "usernameAndDomain" = "Username and domain";
-"ctemplarEmailAddress" = "This will be your new Ctemplar email address.";
+"ctemplarEmailAddress" = "This will be your new CTemplar email address.";
 "choosePasswordPlaceholder" = "Choose password";
 "confirmPasswordPlaceholder" = "Confirm password";
 "recoveryEmailPlaceholder" = "Recovery email";
 "passwordMust" = "Your password must be at least 10 characters. Password can contain only latin letters and cannot contain symbols such «-+!@. etc.";
 "thisIsUsed" = "This is used to recover your account if you get locked out or forget your password";
-"usernameResetHint" = "Ctemplar username to reset";
-"usernameResetPlaceholder" = "Ctemplar username to reset";
+"usernameResetHint" = "CTemplar username to reset";
+"usernameResetPlaceholder" = "CTemplar username to reset";
 "resetCodePlaceholder" = "Reset Code";
 "newPasswordPlaceholder" = "New password";
 "confirmNewPasswordPlaceholder" = "Confirm new password";
@@ -245,7 +245,7 @@
 "delayedDeliveryText"   = "Email will be send automatically at the set time";
 
 "setPassword" = "Set Password";
-"encryptForNon" = "Encrypt for non-Ctemplar Mail Users";
+"encryptForNon" = "Encrypt for non-CTemplar Mail Users";
 "messagePassword" = "Message Password";
 "expirationTime" = "Expiration Time";
 "days" = "Days";
@@ -255,7 +255,7 @@
 "passwordsMustMatch" = "Passwords must match";
 "passwordHint" = "Password Hint";
 
-"encryptedMessagesTo" = "Encrypted messages to non-Ctemplar recipients will expire in 28 days unless a shorter expiration time is set.";
+"encryptedMessagesTo" = "Encrypted messages to non-CTemplar recipients will expire in 28 days unless a shorter expiration time is set.";
 
 // Manage Folders
 "deleteFolderTitle" = "Delete folder?";

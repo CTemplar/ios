@@ -1,6 +1,6 @@
 /* 
   Localizable.strings
-  Ctemplar
+  CTemplar
 
   Created by Tatarinov Dmitry on 24.10.2018.
   Copyright © 2018 CTemplar. All rights reserved.
@@ -49,8 +49,8 @@
 "recoveryEmailPlaceholder" = "E-mail na obnovenie účtu";
 "passwordMust" = "Heslo musí obsahovať najmenej 10 znakov. Heslo môže obsahovať iba latinské písmená a nemôže obsahovať symboly ako «-+!@ atď.";
 "thisIsUsed" = "Používa sa na obnovenie účtu, ak ste zablokovaný alebo zabudli svoje heslo";
-"usernameResetHint" = "Ctemplar prihlasovacie meno na obnovenie účtu";
-"usernameResetPlaceholder" = "Ctemplar prihlasovacie meno na obnovenie účtu";
+"usernameResetHint" = "CTemplar prihlasovacie meno na obnovenie účtu";
+"usernameResetPlaceholder" = "CTemplar prihlasovacie meno na obnovenie účtu";
 "resetCodePlaceholder" = "Obnoviť kód";
 "newPasswordPlaceholder" = "Nové heslo";
 "confirmNewPasswordPlaceholder" = "Potvrdiť nové heslo";

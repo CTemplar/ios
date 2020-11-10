@@ -1,6 +1,6 @@
 //
 //  ContactsRouter.swift
-//  Ctemplar
+//  CTemplar
 //
 //  Created by Tatarinov Dmitry on 14.11.2018.
 //  Copyright © 2018 CTemplar. All rights reserved.

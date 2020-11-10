@@ -1,6 +1,6 @@
 //
 //  BlurEffect.swift
-//  Ctemplar
+//  CTemplar
 //
 //  Created by Tatarinov Dmitry on 25.10.2018.
 //  Copyright © 2018 CTemplar. All rights reserved.

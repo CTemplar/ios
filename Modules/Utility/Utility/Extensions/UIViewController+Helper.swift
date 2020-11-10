@@ -1,6 +1,6 @@
 //
 //  UIViewController+Helper.swift
-//  Ctemplar
+//  CTemplar
 //
 //  Created by Majid Hussain on 05/04/2020.
 //  Copyright © 2020 CTemplar. All rights reserved.

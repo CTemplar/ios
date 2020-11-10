@@ -1,6 +1,6 @@
 //
 //  ContactTableViewCell.swift
-//  Ctemplar
+//  CTemplar
 //
 //  Created by Tatarinov Dmitry on 15.11.2018.
 //  Copyright © 2018 CTemplar. All rights reserved.

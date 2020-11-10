@@ -1,6 +1,6 @@
 //
 //  SplitViewController.swift
-//  Ctemplar
+//  CTemplar
 //
 //  Created by Tatarinov Dmitry on 15.01.2019.
 //  Copyright © 2019 CTemplar. All rights reserved.

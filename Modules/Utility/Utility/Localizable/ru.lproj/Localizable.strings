@@ -54,14 +54,14 @@
 
 // Sign Up
 "usernameAndDomain" = "Имя и домен";
-"ctemplarEmailAddress" = "Это будет ваш новый Ctemplar почтовый адрес.";
+"ctemplarEmailAddress" = "Это будет ваш новый CTemplar почтовый адрес.";
 "choosePasswordPlaceholder" = "Выберите пароль";
 "confirmPasswordPlaceholder" = "Подтвердите пароль";
 "recoveryEmailPlaceholder" = "Запасная почта";
 "passwordMust" = "Ваш пароль должен быть длинне 10 символов. Пароль может содержать только латинские буквы и не может содержать символы типа «-+!@. etc.";
 "thisIsUsed" = "Необходимо для восстановления вашей учетной записи, если вы заблокированы или забыли пароль";
-"usernameResetHint" = "Ctemplar имя";
-"usernameResetPlaceholder" = "Ctemplar имя для сброса";
+"usernameResetHint" = "CTemplar имя";
+"usernameResetPlaceholder" = "CTemplar имя для сброса";
 "resetCodePlaceholder" = "Код для сброса";
 "newPasswordPlaceholder" = "Новый пароль";
 "confirmNewPasswordPlaceholder" = "Подтвердите новый пароль";
@@ -242,7 +242,7 @@
 "delayedDeliveryText"   = "Электронная почта будет отправлена автоматически в установленное время";
 
 "setPassword" = "Установить пароль";
-"encryptForNon" = "Шифровать для не-Ctemplar пользователей";
+"encryptForNon" = "Шифровать для не-CTemplar пользователей";
 "messagePassword" = "Пароль сообщения";
 "expirationTime" = "Время жизни";
 "days" = "Дни";
@@ -252,7 +252,7 @@
 "passwordsMustMatch" = "Пароли должны совпадать";
 "passwordHint" = "Подсказка для пароля";
 
-"encryptedMessagesTo" = "Срок действия зашифрованных сообщений для не-Ctemplar пользователей, истекает через 28 дней, если не установлен более короткий срок.";
+"encryptedMessagesTo" = "Срок действия зашифрованных сообщений для не-CTemplar пользователей, истекает через 28 дней, если не установлен более короткий срок.";
 
 // Manage Folders
 "deleteFolderTitle" = "Удалить папку?";

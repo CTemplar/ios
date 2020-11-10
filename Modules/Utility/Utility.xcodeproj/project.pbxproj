@@ -699,7 +699,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1150;
-				ORGANIZATIONNAME = cTemplar;
+				ORGANIZATIONNAME = CTemplar;
 				TargetAttributes = {
 					44BD637224909D9E00CB4A73 = {
 						CreatedOnToolsVersion = 11.5;
