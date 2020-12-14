@@ -4,13 +4,15 @@ import Utility
 import Networking
 
 extension InboxMessageTableViewCell {
-    func setupLabelsAndImages(message: EmailMessage, header: String, subjectEncrypted: Bool) {
+    func setupLabelsAndImages(message: EmailMessage, subjectEncrypted: Bool) {
+        
+        senderLabel.font = .withType(.Default(.Bold))
         
         if message.folder == Menu.sent.rawValue {
             if !message.receivers_display.isEmpty {
                 let namesString = message.receivers_display.joined(separator: ", ")
                 senderLabel.text = namesString
-            } else if let receivers = message.receivers as? [String] {
+            } else if let receivers = message.receivers {
                 let namesString = receivers.joined(separator: ", ")
                 senderLabel.text = namesString
             }
@@ -23,17 +25,19 @@ extension InboxMessageTableViewCell {
         }
         
         if subjectEncrypted {
-            encryptedSubjectView.isHidden = false
-            subjectLabel.text = ""
+            subjectLabel.text = Strings.Inbox.mailEncryptedMessage.localized
+            subjectLabel.font = .withType(.Large(.Bold))
         } else {
-            encryptedSubjectView.isHidden = true
-            if let subject = message.subject {
+            subjectLabel.font = .withType(.Large(.Normal))
+            let subject = message.subject ?? ""
+            if subject.contains("BEGIN PGP") == true, let decryptedSubject = decrypt(content: subject) {
+                subjectLabel.text = decryptedSubject
+            } else {
                 subjectLabel.text = subject
             }
         }
-        
+
         leftLabel.text = ""
-        headMessageLabel.text = header
         
         if let createdDate = message.createdAt {
             if  let date = formatterService.formatStringToDate(date: createdDate) {
@@ -41,34 +45,21 @@ extension InboxMessageTableViewCell {
             }
         }
         
-        if let isRead = message.read {
-            isReadImageView.isHidden = isRead
-            if !isRead {
-                senderLabel.font = AppStyle.SystemFontStyle.semiBold.font(withSize: 16.0)
-                subjectLabel.font = AppStyle.CustomFontStyle.Bold.font(withSize: 14.0)
-                backgroundColor = k_unreadMessageColor
-            } else {
-                senderLabel.font = AppStyle.SystemFontStyle.semiBold.font(withSize: 16.0)
-                subjectLabel.font = AppStyle.CustomFontStyle.Bold.font(withSize: 14.0)
-                backgroundColor = k_readMessageColor
-            }
-        }
+        isReadView.isHidden = message.read == true
         
         if let childrenCount = message.childrenCount {
-            if childrenCount > 0 {
-                countLabel.isHidden = false
-                let totalCount = childrenCount + 1
-                countLabel.text = totalCount.description
-            } else {
-                countLabel.isHidden = true
-            }
+            let totalCount = childrenCount + 1
+            countLabel.text = totalCount.description
+            countLabel.isHidden = childrenCount < 1
         }
         
         leftlabelView.isHidden = true
+        
         rightlabelView.isHidden = true
+        
         leftLabel.textAlignment = .center
         
-        let short = self.isShortNeed(message: message)
+        let short = isShortNeed(message: message)
         let now = Date()
         
         if let delayedDelivery = message.delayedDelivery {
@@ -79,7 +70,7 @@ extension InboxMessageTableViewCell {
                 if date <= now || (date.timeIntervalSince(now) < 120 && date.timeIntervalSince(now) > 0) {
                     leftLabel.attributedText = NSAttributedString(string: Strings.Inbox.inProgress.localized,
                                                                   attributes: [
-                                                                    .font: AppStyle.CustomFontStyle.Regular.font(withSize: 9.0)!,
+                                                                    .font: UIFont.withType(.ExtraSmall(.Normal)),
                                                                     .foregroundColor: UIColor.white,
                                                                     .kern: 0.0]
                     )
@@ -105,7 +96,7 @@ extension InboxMessageTableViewCell {
                 formatterService.formatDestructionTimeStringToDateTest(date: destructionDate) {
                 if date <= now || (date.timeIntervalSince(now) < 120 && date.timeIntervalSince(now) > 0) {
                     leftLabel.attributedText = NSAttributedString(string: Strings.Inbox.inProgress.localized,
-                                                                  attributes: [.font: AppStyle.CustomFontStyle.Regular.font(withSize: 9.0)!,
+                                                                  attributes: [.font: UIFont.withType(.ExtraSmall(.Normal)),
                                                                                .foregroundColor: UIColor.white, .kern: 0.0]
                     )
                 } else {
@@ -122,44 +113,36 @@ extension InboxMessageTableViewCell {
             rightlabelView.isHidden = true
         }
         
-        if let isSecured = message.isProtected {
-            if isSecured {
-                isSecuredImageView.image = #imageLiteral(resourceName: "SecureOn")
-            } else {
-                isSecuredImageView.image = #imageLiteral(resourceName: "SecureOff")
-            }
-        }
+        isSecuredImageView.image = message.isProtected == true ? UIImage(systemName: "lock.fill") : UIImage(systemName: "lock.slash.fill")
         
-        if let isStarred = message.starred {
-            if isStarred {
-                isStaredImageView.image = #imageLiteral(resourceName: "StarOn")
-            } else {
-                isStaredImageView.image = #imageLiteral(resourceName: "StarOff")
-            }
+        isStaredImageView.image = message.starred == true ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+
+        hasAttachmentImageView.isHidden = message.attachments?.isEmpty == true
+    }
+
+    private func decrypt(content: String) -> String? {
+        let decryptedSubject = UtilityManager.shared.pgpService.decryptMessage(encryptedContet: content)
+        if decryptedSubject == "#D_FAILED_ERROR#" {
+            return nil
         }
-        
-        if let attachments = message.attachments {
-            if attachments.count > 0 {
-                hasAttachmentImageView.isHidden = false
-            } else {
-                hasAttachmentImageView.isHidden = true
-            }
-        }
+        return decryptedSubject
     }
     
-    func setupSenderLabelsAndBadgesView(short: Bool) {
-        guard let sender = senderLabel.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
-            return
+    func isShortNeed(message: EmailMessage) -> Bool {
+        var short = false
+        var leftLabelShowing = false
+        
+        if Device.IS_IPHONE_5 {
+            short = true
+        } else {
+            if message.delayedDelivery != nil || message.deadManDuration != nil {
+                leftLabelShowing = true
+            }
+            
+            if message.destructDay != nil, leftLabelShowing {
+                short = true
+            }
         }
-        
-        let senderTextWidth = sender.widthOfString(usingFont: senderLabel.font) + 5.0
-        
-        let badgesViewWidth = calculateBadgesViewWidth(short: short)
-        
-        badgesViewWidthConstraint.constant = badgesViewWidth
-        
-        let availableSpace = cellWidth - badgesViewWidth - 120.0 - isSelectedImageTrailingConstraint.constant - isSelectedImageWidthConstraint.constant
-
-        senderLabelWidthConstraint.constant = (senderTextWidth > availableSpace) ? availableSpace : senderTextWidth
+        return short
     }
 }

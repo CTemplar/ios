@@ -1,10 +1,10 @@
 import Foundation
 
-public struct EmailMessage {
+public struct EmailMessage: Hashable {
     // MARK: Properties
     public private (set) var attachments: Array<Attachment>?
-    public private (set) var bcc: Array<Any>?
-    public private (set) var cc: Array<Any>?
+    public private (set) var bcc: [String]?
+    public private (set) var cc: [String]?
     public private (set) var children: Array<EmailMessage>?
     public private (set) var content: String?
     public private (set) var createdAt: String?
@@ -24,7 +24,7 @@ public struct EmailMessage {
     public private (set) var mailbox: String?
     public private (set) var parent: String?
     public private (set) var read: Bool?
-    public private (set) var receivers: Array<Any>?
+    public private (set) var receivers: [String]?
     public private (set) var receivers_display: [String] = []
     public private (set) var send: String?
     public private (set) var sender: String?
@@ -43,8 +43,8 @@ public struct EmailMessage {
         if let attachmentsArray = dictionary["attachments"] as? Array<Any> {
             self.attachments = self.parsAttachmentsFromList(array: attachmentsArray)
         }
-        self.bcc = dictionary["bcc"] as? Array<Any>
-        self.cc = dictionary["cc"] as? Array<Any>
+        self.bcc = dictionary["bcc"] as? [String]
+        self.cc = dictionary["cc"] as? [String]
         
         if let childrenArray = dictionary["children"] as? Array<Any> {
             self.children = self.parsResultsFromList(array: childrenArray)
@@ -72,7 +72,7 @@ public struct EmailMessage {
         }
         self.parent = dictionary["parent"] as? String
         self.read = dictionary["read"] as? Bool
-        self.receivers = dictionary["receiver"] as? Array<Any>
+        self.receivers = dictionary["receiver"] as? [String]
         self.send = dictionary["send"] as? String
         self.sender = dictionary["sender"] as? String
         self.sentAt = dictionary["sent_at"] as? String
@@ -117,6 +117,10 @@ public struct EmailMessage {
     public func parsEncryptionFrom(dictionary: Dictionary<String, Any>) -> EncryptionObject {
         let attachmentResult = EncryptionObject(dictionary: dictionary)
         return attachmentResult
+    }
+    
+    public static func == (lhs: EmailMessage, rhs: EmailMessage) -> Bool {
+        return lhs.messsageID == rhs.messsageID
     }
 }
 // MARK: - Update
@@ -213,7 +217,7 @@ public extension EmailMessage {
         self.parent = parent
     }
     
-    mutating func update(receivers: [Any]?) {
+    mutating func update(receivers: [String]?) {
         self.receivers = receivers
     }
     

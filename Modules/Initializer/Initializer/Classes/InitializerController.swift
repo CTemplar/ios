@@ -76,7 +76,7 @@ public class InitializerController: UIViewController, HashingService, EmptyState
         DispatchQueue.main.async {
             if let sideMenu = self.sideMenu() {
                 sideMenu.modalPresentationStyle = .fullScreen
-                if let keyWindow = UIApplication.shared.keyWindow {
+                if let keyWindow = UIApplication.shared.windows.first {
                     keyWindow.setRootViewController(sideMenu, options: .init(direction: .toRight, style: .easeInOut))
                 }
             }
@@ -173,9 +173,7 @@ extension InitializerController {
         if let user = user {
             let composeCoordinator = ComposeCoordinator()
 
-            if mode == .forward,
-                let email = message,
-                email.attachments?.isEmpty == false {
+            if let email = message, email.attachments?.isEmpty == false {
                 
                 let alertController = UIAlertController(title: Strings.Compose.SelectDraftOption.localized,
                                                         message: nil, preferredStyle: .actionSheet)

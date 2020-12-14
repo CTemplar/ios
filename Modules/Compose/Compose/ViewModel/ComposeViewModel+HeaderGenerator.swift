@@ -11,7 +11,12 @@ extension ComposeViewModel {
         case .replyAll:
             string = generateHtmlReplyHeader(message: message)
         case .forward:
-            string = generateHtmlForwardHeader(message: message, subject: email.subject ?? "")
+            var subject = email.subject ?? ""
+            if subject.contains("BEGIN PGP"),
+               let decryptedContent = decryptedMailContent(from: subject) {
+                subject = decryptedContent
+            }
+            string = generateHtmlForwardHeader(message: message, subject: subject)
         }
         return string
     }
@@ -82,7 +87,7 @@ extension ComposeViewModel {
     
     func generateForwardHeader(message: EmailMessage, subject: String) -> NSAttributedString {
         var forwardHeader = Strings.Compose.forwardLine.localized
-    
+        
         func createIterativeForwardHeader(from email: EmailMessage) {
             if let sender = message.sender {
                 forwardHeader = "\(forwardHeader)\n\(Strings.Compose.emailFromPrefix.localized)<\(sender)>\n"
@@ -98,7 +103,7 @@ extension ComposeViewModel {
             
             forwardHeader = forwardHeader + Strings.Compose.subject.localized + subject + "\n"
             
-            if let recieversArray = message.receivers as? [String]  {
+            if let recieversArray = message.receivers  {
                 for email in recieversArray {
                     forwardHeader = forwardHeader + Strings.Compose.emailToPrefix.localized + "<" + email + "> "
                 }
@@ -140,9 +145,9 @@ extension ComposeViewModel {
             }
         }
         
-        forwardHeader = forwardHeader + "<p>" + Strings.Compose.subject.localized.replacingOccurrences(of: ": ", with: "") + subject + "</p>"
+        forwardHeader = forwardHeader + "<p>" + Strings.Compose.subject.localized + subject + "</p>"
         
-        if let recieversArray = message.receivers as? [String]  {
+        if let recieversArray = message.receivers {
             forwardHeader = forwardHeader + "<p>"
             for email in recieversArray {
                 forwardHeader = forwardHeader + Strings.Compose.emailToPrefix.localized + "\"" + email + "\" "

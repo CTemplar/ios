@@ -1,6 +1,6 @@
 //
 //  APIService.swift
-//  CTemplar
+//  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 01.10.2018.
 //  Copyright © 2018 CTemplar. All rights reserved.
@@ -682,10 +682,6 @@ public class APIService: HashingService {
     }
     
     // MARK: - Contacts
-    
-    public func decryptContactData(encryptedData: String) {
-    }
-    
     public func userContacts(fetchAll: Bool, offset: Int, silent: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         checkTokenExpiration() { [weak self] (complete) in
             if complete {
@@ -1396,6 +1392,12 @@ public class APIService: HashingService {
             return value as? String
         }
         return ""
+    }
+    
+    public func checkAppVersion(onCompletion: @escaping ((String, Bool) -> Void)) {
+        restAPIService.checkAppVersion(onCompletion: { (version, isForceUpdate) in
+            onCompletion(version, isForceUpdate)
+        })
     }
 }
 // MARK: - Application Logic

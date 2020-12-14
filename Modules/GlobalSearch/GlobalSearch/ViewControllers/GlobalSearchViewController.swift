@@ -55,6 +55,14 @@ class GlobalSearchViewController: UIViewController, EmptyStateMachine {
     func setup(user: UserMyself) {
         dataSource?.update(user: user)
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        let hasUserInterfaceStyleChanged = previousTraitCollection?.hasDifferentColorAppearance(comparedTo: traitCollection) ?? false
+        if hasUserInterfaceStyleChanged {
+            searchTableView.reloadData()
+        }
+    }
 }
 
 extension GlobalSearchViewController: ViewInboxEmailDelegate {

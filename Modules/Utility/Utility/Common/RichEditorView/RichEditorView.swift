@@ -170,18 +170,22 @@ public class RichEditorWebView: WKWebView {
         
         addSubview(webView)
         
-        if let filePath = Bundle(for: RichEditorView.self).path(forResource: "rich_editor", ofType: "html") {
-            let url = URL(fileURLWithPath: filePath, isDirectory: false)
-            webView.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent())
-        }
+        updateEditorHTML(false)
         
         tapRecognizer.addTarget(self, action: #selector(viewWasTapped))
         tapRecognizer.delegate = self
         addGestureRecognizer(tapRecognizer)
     }
     
-    // MARK: - Rich Text Editing
+    // MARK: - Update Rich Editor Setup HTML
+    public func updateEditorHTML(_ isForCompose: Bool) {
+        if let filePath = Bundle(for: RichEditorView.self).path(forResource: isForCompose ? "rich_editor_compose" : "rich_editor", ofType: "html") {
+            let url = URL(fileURLWithPath: filePath, isDirectory: false)
+            webView.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent())
+        }
+    }
     
+    // MARK: - Rich Text Editing
     open func isEditingEnabled(handler: @escaping (Bool) -> Void) {
         isContentEditable(handler: handler)
     }

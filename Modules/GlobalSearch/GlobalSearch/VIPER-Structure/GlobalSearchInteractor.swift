@@ -60,16 +60,11 @@ final class GlobalSearchInteractor: NSObject {
     }
     
     func searchMessages(withQuery searchQuery: String) {
-        if offset >= totalItems, offset > 0 {
+        if (totalItems > 0 && offset >= totalItems) || isFetchInProgress {
             presenter?.turnOffLoading()
             return
         }
-        
-        if isFetchInProgress {
-            presenter?.turnOffLoading()
-            return
-        }
-        
+
         isFetchInProgress = true
         
         apiService.searchMessageList(withQuery: searchQuery, offset: offset) { [weak self] (result) in

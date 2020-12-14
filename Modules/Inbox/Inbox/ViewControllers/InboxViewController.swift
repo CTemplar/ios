@@ -102,6 +102,7 @@ class InboxViewController: UIViewController, EmptyStateMachine {
     var onTapCompose: ((AnswerMessageMode, UserMyself, UIViewController?) -> Void)?
     var onTapViewInbox: ((EmailMessage?, UserMyself?, ViewInboxEmailDelegate?, UIViewController?) -> Void)?
     var onTapMoveTo: ((MoveToViewControllerDelegate?, [Int], UserMyself, UIViewController?) -> Void)?
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -154,9 +155,11 @@ class InboxViewController: UIViewController, EmptyStateMachine {
         edgesForExtendedLayout = []
         
         // Fetch emails
-        presenter?.interactor?.updateMessages(withUndo: "",
-                                              silent: false,
-                                              menu: SharedInboxState.shared.selectedMenu
+        presenter?
+            .interactor?
+            .updateMessages(withUndo: "",
+                            silent: false,
+                            menu: SharedInboxState.shared.selectedMenu
         )
     }
     
@@ -174,6 +177,16 @@ class InboxViewController: UIViewController, EmptyStateMachine {
                                             selectionMode: dataSource?.selectionMode ?? false,
                                             currentFolder: SharedInboxState.shared.selectedMenu ?? Menu.inbox
         )
+        
+        NotificationCenter.default.post(.init(name: .showForceAppUpdateAlertNotificationID))
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            dataSource?.reload()
+        }
     }
 
     deinit {

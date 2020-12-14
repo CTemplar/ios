@@ -29,6 +29,15 @@
         }
       },
       {
+        "package": "Colorful",
+        "repositoryURL": "https://github.com/hayashi311/Color-Picker-for-iOS.git",
+        "state": {
+          "branch": null,
+          "revision": "a2f4419367e5e06187f317a649f3ef7b9c5e9d0a",
+          "version": "3.0.1"
+        }
+      },
+      {
         "package": "CryptoHelperKit",
         "repositoryURL": "https://github.com/sohamb1390/CryptoHelperPackage.git",
         "state": {
@@ -116,6 +125,15 @@
           "branch": null,
           "revision": "796981500de29ee72f72ef8e9c46eaed2fe6364e",
           "version": "1.2.3"
+        }
+      },
+      {
+        "package": "SwipeCellKit",
+        "repositoryURL": "https://github.com/SwipeCellKit/SwipeCellKit.git",
+        "state": {
+          "branch": null,
+          "revision": "7219cad3098637176ace311510d11467dbfb9bb0",
+          "version": "2.7.1"
         }
       }
     ]

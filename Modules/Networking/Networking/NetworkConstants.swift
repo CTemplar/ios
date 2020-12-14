@@ -20,7 +20,7 @@ public enum MessagesFoldersName: String, CaseIterable {
 
 public enum EndPoint: String {
     #if DEBUG
-    case baseUrl = "https://devapi.ctemplar.net/" // "https://api.ctemplar.com/"
+    case baseUrl = "https://api.ctemplar.com/" // "https://devapi.ctemplar.net/"
     #else
     case baseUrl = "https://api.ctemplar.com/"
     #endif
@@ -50,6 +50,7 @@ public enum EndPoint: String {
     case captcha = "auth/captcha"
     case verifyCaptcha = "auth/captcha-verify/"
     case appToken = "users/app-token/"
+    case appVersion = "/version-info/?platform=ios"
 }
 
 public enum JSONKey: String {

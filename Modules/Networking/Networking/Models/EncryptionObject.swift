@@ -1,7 +1,7 @@
 import Foundation
 import Utility
 
-public struct EncryptionObject: Encodable {
+public struct EncryptionObject: Encodable, Hashable {
     // MARK: Properties
     public var created: String?
     public var expires: String?
@@ -75,5 +75,9 @@ public struct EncryptionObject: Encodable {
                 "password_hint": passwordHint ?? "",
                 "expiry_hours" : "\(expiryHours ?? 120)"
         ]
+    }
+    
+    public static func == (lhs: EncryptionObject, rhs: EncryptionObject) -> Bool {
+        return lhs.messageID == rhs.messageID
     }
 }

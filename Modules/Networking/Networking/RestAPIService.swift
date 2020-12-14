@@ -1,6 +1,6 @@
 //
 //  RestAPIService.swift
-//  CTemplar
+//  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 01.10.2018.
 //  Copyright © 2018 CTemplar. All rights reserved.
@@ -1184,6 +1184,27 @@ public class RestAPIService {
                 completionHandler(APIResult.success(value))
             case .failure(let error):
                 completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    // MARK: - App Version Check
+    func checkAppVersion(onCompletion: @escaping ((String, Bool) -> Void)) {
+        let url = "\(EndPoint.baseUrl.rawValue)\(EndPoint.appVersion.rawValue)"
+        DPrint("App Version Check URL: \(url)")
+        AF.request(url).response { (data) in
+            do {
+                if let response = try JSONSerialization.jsonObject(with: data.data!, options: .mutableLeaves) as? [String: Any],
+                   let version = response["version"] as? Double,
+                   let isForceUpdate = response["is_force_update"] as? Bool {
+                    onCompletion(String(version), isForceUpdate)
+                    // onCompletion("1.4.2", true)
+                } else {
+                    onCompletion("", false)
+                }
+            } catch {
+                DPrint(error.localizedDescription)
+                onCompletion("", false)
             }
         }
     }

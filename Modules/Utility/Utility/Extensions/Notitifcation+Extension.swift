@@ -14,4 +14,5 @@ public extension Notification.Name {
     static let mailSentNotificationID = Notification.Name("mailSentNotification")
     static let mailSentErrorNotificationID = Notification.Name("mailSentErrorNotification")
     static let disableIQKeyboardManagerNotificationID = Notification.Name(rawValue: "disableIQKeyboardManagerNotification")
+    static let showForceAppUpdateAlertNotificationID = Notification.Name(rawValue: "showForceAppUpdateAlertNotificationID")
 }

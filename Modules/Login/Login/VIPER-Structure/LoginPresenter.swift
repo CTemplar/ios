@@ -126,6 +126,12 @@ final class LoginPresenter {
 
 //Conform to BJOTPViewControllerDelegate
 extension LoginPresenter: BJOTPViewControllerDelegate {
+    func didClose(_ viewController: BJOTPViewController) {
+    }
+    
+    func didTap(footer button: UIButton, from viewController: BJOTPViewController) {
+    }
+    
     func authenticate(_ otp: String, from viewController: BJOTPViewController) {
         // Make API calls, show loading animation in viewController, do whatever you want.
         // You can dismiss the viewController when you're done.

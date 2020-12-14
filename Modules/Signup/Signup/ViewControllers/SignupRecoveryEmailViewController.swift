@@ -4,30 +4,17 @@ import Utility
 class SignupRecoveryEmailViewController: UIViewController {
 
     // MARK: IBOutlets
-    @IBOutlet weak var logoImageView: UIImageView! {
-        didSet {
-            logoImageView.image = #imageLiteral(resourceName: "Logo")
-        }
-    }
-    
     @IBOutlet weak var backButton: UIButton! {
         didSet {
-            if #available(iOS 12.0, *) {
-                backButton.setImage(UIImage(named: "BackArrowDark", in: .main, compatibleWith: .init(userInterfaceStyle: .light)), for: .normal)
-            } else {
-                // Fallback on earlier versions
-                backButton.setImage(#imageLiteral(resourceName: "BackArrowDark"), for: .normal)
-            }
+            backButton.setImage(UIImage(named: "BackArrowDark", in: .main, compatibleWith: .init(userInterfaceStyle: .light)), for: .normal)
         }
     }
-    
-    @IBOutlet weak var backgroundImageView: UIImageView! {
+
+    @IBOutlet weak var nextButton: UIButton! {
         didSet {
-            backgroundImageView.image = #imageLiteral(resourceName: "LightBackground")
+            nextButton.titleLabel?.font = UIFont.withType(.Default(.Bold))
         }
     }
-    
-    @IBOutlet weak var nextButton: UIButton!
     
     @IBOutlet weak var recoveryEmailPlaceholderLabel: UILabel!
     
@@ -51,15 +38,20 @@ class SignupRecoveryEmailViewController: UIViewController {
     
     @IBOutlet weak var recorveyEmailSubtitleLabel: UILabel!
     
-    @IBOutlet weak var supportMailTextView: UITextView!
+    @IBOutlet weak var supportMailTextView: UITextView! {
+        didSet {
+            supportMailTextView.textAlignment = .center
+            supportMailTextView.font = UIFont.withType(.ExtraSmall(.Normal))
+        }
+    }
     
     @IBOutlet weak var termsAndConditionTextView: UITextView!
 
     @IBOutlet weak var termsAndConditionButton: UIButton! {
         didSet {
-            backButton.tintColor = recorveyEmailTitleLabel.textColor
-            termsAndConditionButton.setImage(#imageLiteral(resourceName: "roundDark").withRenderingMode(.alwaysTemplate), for: .normal)
-            termsAndConditionButton.setImage(#imageLiteral(resourceName: "selectedRoundDark").withRenderingMode(.alwaysTemplate), for: .selected)
+            termsAndConditionButton.tintColor = recorveyEmailTitleLabel.textColor
+            termsAndConditionButton.setImage(UIImage(systemName: "circlebadge"), for: .normal)
+            termsAndConditionButton.setImage(UIImage(systemName: "circlebadge.fill"), for: .selected)
             termsAndConditionButton.isSelected = false
         }
     }
@@ -75,8 +67,6 @@ class SignupRecoveryEmailViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var containerViewWidthConstraint: NSLayoutConstraint!
-    
     // MARK: Properties
     private (set) var signupPageViewController: SignupPageViewController?
 
@@ -88,17 +78,16 @@ class SignupRecoveryEmailViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         signupPageViewController = self.parent as? SignupPageViewController
         
         let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
         view.addGestureRecognizer(freeSpaceViewGesture)
 
         initialUISetup()
+        defaultUIState()
         setupAttributesForTextView()
     }
-    
+
     deinit {
         print("deinit called from \(self.className)")
     }
@@ -109,13 +98,6 @@ class SignupRecoveryEmailViewController: UIViewController {
         recorveyEmailTitleLabel.text = Strings.Signup.recoveryEmailAttr.localized
         recorveyEmailSubtitleLabel.text = Strings.Signup.thisIsUsed.localized
         supportMailTextView.text = Strings.Signup.supportEmailString.localized
-        
-        if Device.IS_IPHONE {
-            containerViewWidthConstraint.constant = UIScreen.main.bounds.size.width - (Device.IS_IPHONE_5 ? 40.0 : 20.0)
-            view.layoutIfNeeded()
-        }
-        
-        defaultUIState()
     }
     
     private func defaultUIState() {
@@ -149,25 +131,14 @@ class SignupRecoveryEmailViewController: UIViewController {
     }
     
     private func setupAttributesForTextView() {
-        var attributedString: NSMutableAttributedString?
-        
-        if #available(iOS 12.0, *) {
-            attributedString = NSMutableAttributedString(string: Strings.Signup.termsAndConditionsFullText.localized, attributes: [
-                .font: AppStyle.CustomFontStyle.Regular.font(withSize: 14.0)!,
-                .foregroundColor: recorveyEmailTitleLabel.textColor!,
-                .kern: 0.0
-            ])
-        } else {
-            // Fallback on earlier versions
-            attributedString = NSMutableAttributedString(string: Strings.Signup.termsAndConditionsFullText.localized, attributes: [
-                .font: AppStyle.CustomFontStyle.Regular.font(withSize: 14.0)!,
-                .foregroundColor: k_lightGrayColor,
-                .kern: 0.0
-            ])
-        }
+        let attributedString = NSMutableAttributedString(string: Strings.Signup.termsAndConditionsFullText.localized, attributes: [
+            .font: UIFont.withType(.Small(.Normal)),
+            .foregroundColor: recorveyEmailTitleLabel.textColor!,
+            .kern: 0.0
+        ])
                 
-        _ = attributedString?.setAsLink(textToFind: Strings.Signup.termsAndConditionsPhrase.localized, linkURL: GeneralConstant.Link.TermsURL.rawValue)
-        _ = attributedString?.setForgroundColor(textToFind: Strings.Signup.termsAndConditionsPhrase.localized, color: k_urlColor)
+        _ = attributedString.setAsLink(textToFind: Strings.Signup.termsAndConditionsPhrase.localized, linkURL: GeneralConstant.Link.TermsURL.rawValue)
+        _ = attributedString.setForgroundColor(textToFind: Strings.Signup.termsAndConditionsPhrase.localized, color: k_urlColor)
         
         termsAndConditionTextView.attributedText = attributedString
         

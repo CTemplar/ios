@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import Utility
 import Networking
-import MGSwipeTableCell
+import SwipeCellKit
 
 enum InboxFilter: CaseIterable {
     case starred
@@ -25,18 +25,18 @@ final class InboxDatasource: NSObject {
     // MARK: Properties
     private weak var tableView: UITableView?
     
-    private weak var parentViewController: InboxViewController?
+    private (set) weak var parentViewController: InboxViewController?
     
-    private var messages: [EmailMessage]
+    private (set) var messages: [EmailMessage]
     
     private var originalMessages: [EmailMessage] = []
     
     private var mailboxList: [Mailbox] = []
     
-    private var selectedMessageIds: [Int] = []
+    var selectedMessageIds: [Int] = []
     
     var selectionMode: Bool {
-        return selectedMessageIds.isEmpty == false
+        return tableView?.isEditing == true
     }
     
     private (set) var lastAppliedActionMessage: EmailMessage?
@@ -74,7 +74,11 @@ final class InboxDatasource: NSObject {
         
         return refreshControl
     }()
-
+    
+    lazy var defaultOptions: SwipeOptions = {
+        return SwipeOptions()
+    }()
+    
     // MARK: - Constructor
     init(tableView: UITableView, parentViewController: InboxViewController, messages: [EmailMessage]) {
         self.tableView = tableView
@@ -95,15 +99,20 @@ final class InboxDatasource: NSObject {
     }
     
     private func setupTableView() {
-        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(sender:)))
-        tableView?.addGestureRecognizer(longPressRecognizer)
-        
         tableView?.tableFooterView = UIView()
         
         tableView?.delegate = self
         
         tableView?.dataSource = self
+                
+        tableView?.setEditing(false, animated: true)
         
+        tableView?.separatorStyle = .none
+        
+        tableView?.backgroundColor = .systemGroupedBackground
+        
+        tableView?.showsVerticalScrollIndicator = false
+                
         tableView?.addSubview(self.refreshControl)
         
         parentViewController?.reloadButton.addTarget(self, action: #selector(handleRefresh(_:)), for: .touchUpInside)
@@ -122,28 +131,17 @@ final class InboxDatasource: NSObject {
                                 menu: SharedInboxState.shared.selectedMenu)
         })
     }
+
+    func enableSelectionMode() {
+        tableView?.allowsMultipleSelection = true
+        tableView?.allowsMultipleSelectionDuringEditing = true
+        tableView?.setEditing(true, animated: true)
+    }
     
-    @objc
-    private func longPressed(sender: UILongPressGestureRecognizer) {
-        guard SharedInboxState.shared.selectedMenu?.menuName != Menu.allMails.menuName else {
-            return
-        }
-        
-        if sender.state == .began {
-            let touchPoint = sender.location(in: self.tableView)
-            if let indexPath = tableView?.indexPathForRow(at: touchPoint) {
-                let message = messages[indexPath.row]
-                DPrint("Long pressed row: \(indexPath.row)")
-                if selectionMode == false {
-                    selectedMessageIds.removeAll()
-                    lastAppliedActionMessage = message
-                    selectedMessageIds.append(message.messsageID!)
-                    parentViewController?
-                        .presenter?
-                        .enableSelectionMode()
-                }
-            }
-        }
+    func disableSelectionMode() {
+        tableView?.allowsMultipleSelection = false
+        tableView?.allowsMultipleSelectionDuringEditing = false
+        tableView?.setEditing(false, animated: true)
     }
     
     func reload() {
@@ -156,38 +154,6 @@ final class InboxDatasource: NSObject {
     }
     
     // MARK: - Datasource Handlers
-    private func setupSwipeActionsButton() -> [MGSwipeButton] {
-        var swipeButtonsArray: [MGSwipeButton] = []
-        
-        let trashButton = MGSwipeButton(title: "", icon: #imageLiteral(resourceName: "whiteTrash"), backgroundColor: k_sideMenuColor)
-        let unreadButton = MGSwipeButton(title: "", icon: #imageLiteral(resourceName: "whiteUnread"), backgroundColor: k_sideMenuColor)
-        let spamButton = MGSwipeButton(title: "", icon: #imageLiteral(resourceName: "whiteSpam"), backgroundColor: k_sideMenuColor)
-        let moveToButton = MGSwipeButton(title: "", icon: #imageLiteral(resourceName: "whiteMoveTo"), backgroundColor: k_sideMenuColor)
-        
-        guard let menu = SharedInboxState.shared.selectedMenu as? Menu else {
-            return []
-        }
-        
-        switch menu {
-        case .inbox,
-             .sent,
-             .outbox,
-             .starred,
-             .archive,
-             .trash,
-             .allMails,
-             .unread,
-             .manageFolders:
-            swipeButtonsArray = [trashButton, moveToButton, spamButton]
-        case .draft:
-            swipeButtonsArray = [trashButton]
-        case .spam:
-            swipeButtonsArray = [trashButton, moveToButton, unreadButton]
-        }
-        
-        return swipeButtonsArray
-    }
-    
     func needReadAction() -> Bool {
         for messageID in selectedMessageIds {
             if let message = messages.filter({ $0.messsageID == messageID }).first {
@@ -226,11 +192,7 @@ final class InboxDatasource: NSObject {
             return date1 > date2
         }
     }
-    
-    func disableSelectionIfSelected() {
-        parentViewController?.presenter?.disableSelectionMode()
-    }
-    
+
     func invokeRefreshUI() {
         let unreadEmailsCount = messages.filter({
             $0.read == false
@@ -430,19 +392,21 @@ final class InboxDatasource: NSObject {
     }
     
     // MARK: - More Actions
-    func toggleReadStatusOfSelectedMessage() {
-        if let lastSelectedMessage = lastAppliedActionMessage {
-            let readStatus = lastSelectedMessage.read ?? false
-            let undoMessage = readStatus == false ?
-            Strings.Inbox.UndoAction.undoMarkAsUnread.localized :
-            Strings.Inbox.UndoAction.undoMarkAsRead.localized
-            parentViewController?.presenter?.interactor?.toggleReadStatus(forMessageIds: selectedMessageIds,
-                                                                          asRead: readStatus,
-                                                                          withUndo: undoMessage
-            )
-        } else {
-            DPrint("Messages are not selected")
+    func toggleReadStatusOfSelectedMessage(_ readStatus: Bool, for messageIds: [Int]) {
+        guard !messageIds.isEmpty else {
+            return
         }
+        
+        let undoMessage = readStatus == false ?
+        Strings.Inbox.UndoAction.undoMarkAsUnread.localized :
+        Strings.Inbox.UndoAction.undoMarkAsRead.localized
+        parentViewController?
+            .presenter?
+            .interactor?
+            .toggleReadStatus(forMessageIds: messageIds,
+                              asRead: readStatus,
+                              withUndo: undoMessage
+        )
     }
     
     func moveMessagesToTrash() {
@@ -592,11 +556,34 @@ extension InboxDatasource: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 88.0
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let message = messages[indexPath.row]
-        
+        if selectionMode {
+            if let index = selectedMessageIds.firstIndex(where: {$0 == message.messsageID}) {
+                DPrint("deselected")
+                selectedMessageIds.remove(at: index)
+            }
+            
+            parentViewController?
+                .presenter?
+                .updateNavigationBarTitle(basedOnMessageCount: selectedMessagesCount,
+                                          selectionMode: selectionMode,
+                                          currentFolder: SharedInboxState.shared.selectedMenu ?? Menu.inbox
+            )
+            
+            if selectedMessageIds.isEmpty {
+                parentViewController?.presenter?.disableSelectionMode()
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let message = messages[indexPath.row]
+
         if selectionMode == false {
             if SharedInboxState.shared.selectedMenu?.menuName == Menu.draft.menuName {
                 parentViewController?
@@ -614,25 +601,12 @@ extension InboxDatasource: UITableViewDelegate, UITableViewDataSource {
                 )
             }
         } else {
-            let selected = selectedMessageIds.filter({ $0 == message.messsageID }).isEmpty == false
-            
-            if selected {
-                if let index = selectedMessageIds.firstIndex(where: {$0 == message.messsageID}) {
-                    DPrint("deselected")
-                    selectedMessageIds.remove(at: index)
-                }
-            } else {
+            if let selectedMessageId = message.messsageID, !selectedMessageIds.contains(selectedMessageId) {
                 DPrint("selected")
                 selectedMessageIds.append(message.messsageID!)
                 lastAppliedActionMessage = message
             }
-            
-            if selectedMessageIds.isEmpty {
-                parentViewController?.presenter?.disableSelectionMode()
-            }
-            
-            reload()
-            
+
             parentViewController?
                 .presenter?
                 .updateNavigationBarTitle(basedOnMessageCount: selectedMessagesCount,
@@ -651,113 +625,16 @@ extension InboxDatasource: UITableViewDelegate, UITableViewDataSource {
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = .zero
         cell.layoutMargins = .zero
-        
-        cell.rightButtons = setupSwipeActionsButton()
         cell.delegate = self
+        cell.onTapMore = { [weak self] in
+            self?.parentViewController?.presenter?.showMoreActions(for: indexPath)
+        }
         
         let message = messages[indexPath.row]
-        let selected = selectedMessageIds.filter({ $0 == message.messsageID }).isEmpty == false
         
         let isSubjectEncrypted = NetworkManager.shared.apiService.isSubjectEncrypted(message: message)
         
-        cell.setupCellWithData(message: message, header: "", subjectEncrypted: isSubjectEncrypted, isSelectionMode: selectionMode, isSelected: selected, frameWidth: tableView?.frame.width ?? .zero)
+        cell.configure(with: InboxMessageTableViewCell.Model(message: message, subjectEncrypted: isSubjectEncrypted))
         return cell
-    }
-}
-
-// MARK: - MGSwipeTableCellDelegate
-extension InboxDatasource: MGSwipeTableCellDelegate {
-    func swipeTableCell(_ cell: MGSwipeTableCell, didChange state: MGSwipeState, gestureIsActive: Bool) {
-    }
-    
-    func swipeTableCell(_ cell: MGSwipeTableCell, canSwipe direction: MGSwipeDirection, from point: CGPoint) -> Bool {
-        return selectionMode ? false : true
-    }
-    
-    func swipeTableCell(_ cell: MGSwipeTableCell, tappedButtonAt index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
-        guard let indexPath = tableView?.indexPath(for: cell) else {
-            return true
-        }
-        
-        let message = messages[indexPath.row]
-        
-        guard let id = message.messsageID else {
-            return true
-        }
-        
-        // Needed for undo action
-        lastAppliedActionMessage = message
-        
-        selectedMessageIds.removeAll()
-        selectedMessageIds.append(id)
-        
-        guard let menu = SharedInboxState.shared.selectedMenu as? Menu else {
-            return true
-        }
-        
-        switch menu {
-        case .inbox,
-             .sent,
-             .outbox,
-             .starred,
-             .archive,
-             .trash,
-             .allMails,
-             .unread,
-             .manageFolders:
-            generalSwipeAction(index: index, message: message)
-        case .draft:
-            draftSwipeAction(index: index, message: message)
-        case .spam:
-            spamSwipeAction(index: index, message: message)
-        }
-        return true
-    }
-}
-
-// MARK: - Swipe Actions
-private extension InboxDatasource {
-    func generalSwipeAction(index: Int, message: EmailMessage) {
-        switch index {
-        case InboxCellButtonsIndex.right.rawValue:
-            DPrint("trash tapped")
-            parentViewController?.presenter?.interactor?.markMessageAsTrash(message: message)
-        case InboxCellButtonsIndex.middle.rawValue:
-            DPrint("move to tapped")
-            parentViewController?.presenter?.interactor?.showMoveTo(message: message)
-        case InboxCellButtonsIndex.left.rawValue:
-            DPrint("spam tapped")
-            parentViewController?.presenter?.interactor?.markMessageAsSpam(message: message)
-        default: break
-        }
-    }
-    
-    func draftSwipeAction(index: Int, message: EmailMessage) {
-        switch index {
-        case InboxCellButtonsIndex.right.rawValue:
-            DPrint("trash tapped")
-            parentViewController?.presenter?.interactor?.markMessageAsTrash(message: message)
-        case InboxCellButtonsIndex.middle.rawValue:
-            break
-        case InboxCellButtonsIndex.left.rawValue:
-            break
-        default:
-            break
-        }
-    }
-    
-    func spamSwipeAction(index: Int, message: EmailMessage) {
-        switch index {
-        case InboxCellButtonsIndex.right.rawValue:
-            DPrint("trash tapped")
-            parentViewController?.presenter?.interactor?.markMessageAsTrash(message: message)
-        case InboxCellButtonsIndex.middle.rawValue:
-            DPrint("move to tapped")
-            parentViewController?.presenter?.interactor?.showMoveTo(message: message)
-        case InboxCellButtonsIndex.left.rawValue:
-            DPrint("read tapped")
-            parentViewController?.presenter?.interactor?.markMessageAsRead(message: message)
-        default: break
-        }
     }
 }

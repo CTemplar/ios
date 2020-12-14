@@ -20,7 +20,7 @@ public class ForgetPasswordCoordinator {
         
         let embeddedNavigationController = ForgotPasswordNavigationController(rootViewController: forgetPasswordViewController!)
         embeddedNavigationController.modalPresentationStyle = .formSheet
-        embeddedNavigationController.navigationBar.tintColor = k_sideMenuColor
+        embeddedNavigationController.navigationBar.barTintColor = k_sideMenuColor
         embeddedNavigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: k_sideMenuColor]
         presentingViewController.show(embeddedNavigationController, sender: presentingViewController)
     }
@@ -37,6 +37,9 @@ class ForgotPasswordNavigationController: UINavigationController, UINavigationCo
     
     // MARK: - NavigationBar setup
     func setupNavigationBar() {
+        // UIBarbuttonItem tint color
+        UINavigationBar.appearance().tintColor = k_sideMenuColor
+        
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         // Sets shadow (line below the bar) to a blank image
         UINavigationBar.appearance().shadowImage = UIImage()
@@ -47,7 +50,12 @@ class ForgotPasswordNavigationController: UINavigationController, UINavigationCo
     }
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        let item = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
-        viewController.navigationItem.backBarButtonItem = item
+        if #available(iOS 14.0, *) {
+            self.navigationItem.backButtonTitle = " "
+            self.navigationItem.backButtonDisplayMode = .minimal
+        } else {
+            let item = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+            viewController.navigationItem.backBarButtonItem = item
+        }
     }
 }

@@ -72,10 +72,11 @@ final class InboxPresenter {
     func updateRightNavigationItems(basedOn selectionMode: Bool) {
         if selectionMode {
             let cancelItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onTapCancel))
-            viewController?.navigationItem.rightBarButtonItem = cancelItem
+            viewController?.navigationItem.rightBarButtonItems = [cancelItem]
         } else {
             let searchItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(onTapSearch))
-            viewController?.navigationItem.rightBarButtonItem = searchItem
+            let editItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(enableSelectionMode))
+            viewController?.navigationItem.rightBarButtonItems = [editItem, searchItem]
         }
     }
     
@@ -165,11 +166,12 @@ final class InboxPresenter {
         viewController?.sideMenuController?.revealMenu()
     }
         
-    func enableSelectionMode() {
-        // Reload Datasource
+    @objc
+    private func enableSelectionMode() {
+        // Enabling Editing Mode
         viewController?
             .dataSource?
-            .reload()
+            .enableSelectionMode()
         
         // Update Navigation Bar buttons
         updateLeftNavigationItem(basedOn: viewController?.dataSource?.selectionMode ?? false)
@@ -191,10 +193,10 @@ final class InboxPresenter {
     }
     
     func disableSelectionMode() {
-        // Switch off selection mode
+        // Disabling Editing Mode
         viewController?
             .dataSource?
-            .resetSelectionMode()
+            .disableSelectionMode()
         
         // Reload Datasource
         viewController?
@@ -217,8 +219,12 @@ final class InboxPresenter {
     }
     
     // MARK: - Toolbar Actions
+    func showMoreActions(for indexPath: IndexPath) {
+        showMoreActionsAlert(for: indexPath)
+    }
+    
     func showMoreActions(from sender: UIBarButtonItem) {
-        showMoreActionsAlert(from: sender)
+        showMoreActionsAlert(barbuttonItem: sender)
     }
 
     func showFilterView(from sender: UIBarButtonItem) {
@@ -288,7 +294,7 @@ extension InboxPresenter {
 
 // MARK: - More Actions
 extension InboxPresenter {
-    private func showMoreActionsAlert(from sender: UIBarButtonItem) {
+    private func showMoreActionsAlert(for indexPath: IndexPath? = nil, barbuttonItem: UIBarButtonItem? = nil) {
         var actions: [MoreAction] = []
         
         guard let menu = SharedInboxState.shared.selectedMenu as? Menu else {
@@ -353,7 +359,8 @@ extension InboxPresenter {
                                                 case .moveToArchive:
                                                     self?.moveToArchive()
                                                 case .markAsRead, .markAsUnread:
-                                                    self?.toggleMessageStatus()
+                                                    self?.toggleMessageStatus(readStatus: action == .markAsRead,
+                                                                              for: self?.viewController?.dataSource?.selectedMessageIds ?? [])
                                                 case .markAsSpam:
                                                     self?.markAsSpam()
                                                 case .cancel:
@@ -366,8 +373,14 @@ extension InboxPresenter {
         }
         
         if let popoverController = actionSheet.popoverPresentationController {
-            popoverController.barButtonItem = sender
-            popoverController.sourceView = viewController?.view
+            if let sender = barbuttonItem {
+                popoverController.barButtonItem = sender
+            } else if let indexPath = indexPath {
+                let cellRect = viewController?.tableView.rectForRow(at: indexPath) ?? .zero
+                popoverController.sourceView = viewController?.tableView
+                popoverController.sourceRect = cellRect
+                popoverController.permittedArrowDirections = .any
+            }
         }
         
         viewController?.present(actionSheet, animated: true, completion: nil)
@@ -385,10 +398,10 @@ extension InboxPresenter {
             .moveMessagesToArchive()
     }
     
-    func toggleMessageStatus() {
+    func toggleMessageStatus(readStatus: Bool, for messageIds: [Int]) {
         viewController?
             .dataSource?
-            .toggleReadStatusOfSelectedMessage()
+            .toggleReadStatusOfSelectedMessage(readStatus, for: messageIds)
     }
 
     func markAsSpam() {

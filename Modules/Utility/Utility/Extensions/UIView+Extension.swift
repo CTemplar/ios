@@ -18,5 +18,20 @@ public extension UIView {
         }
         return nil
     }
+    
+    func applyDropShadow(shadowOpacity: Float = 0.7,
+                         shadowColor: UIColor = k_shadowColor,
+                         shadowRadius: CGFloat = 12.0,
+                         shadowOffset: CGSize = CGSize(width: 0.0, height: 1.0)) {
+        layer.shadowColor = shadowColor.cgColor
+        layer.shadowOffset = shadowOffset
+        layer.shadowRadius = 12.0
+        layer.shadowOpacity = 0.7
+    }
+    
+    func setBorder(color: UIColor, width: CGFloat) {
+        layer.borderColor = color.cgColor
+        layer.borderWidth = width
+    }
 }
 

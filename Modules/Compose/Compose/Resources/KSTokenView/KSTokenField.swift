@@ -37,6 +37,9 @@ enum KSTokenFieldState {
     @objc optional func tokenFieldDidEndEditing(_ tokenField: KSTokenField)
 }
 
+extension UITextContentType {
+    public static let unspecified = UITextContentType(rawValue: "unspecified")
+}
 
 open class KSTokenField: UITextField {
     
@@ -163,6 +166,7 @@ open class KSTokenField: UITextField {
         autocapitalizationType = UITextAutocapitalizationType.words
         contentVerticalAlignment = UIControl.ContentVerticalAlignment.top
         returnKeyType = UIReturnKeyType.done
+        textContentType = .unspecified
         text = KSTextEmpty
         backgroundColor = UIColor.white
         clipsToBounds = true

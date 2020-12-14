@@ -1,6 +1,6 @@
 //
 //  UIView+Layer.swift
-//  CTemplar
+//  Ctemplar
 //
 //  Created by Majid Hussain on 29/03/2020.
 //  Copyright © 2020 CTemplar. All rights reserved.
@@ -9,7 +9,6 @@
 import UIKit
 
 public extension UIView {
-    
     func addBlurEffect() {
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.regular)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)

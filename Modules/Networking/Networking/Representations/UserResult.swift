@@ -1,6 +1,6 @@
 //
 //  UserResult.swift
-//  CTemplar
+//  Ctemplar
 //
 //  Created by Roman Kharchenko on 2019-12-18.
 //  Copyright © 2019 CTemplar. All rights reserved.

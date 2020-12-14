@@ -171,6 +171,8 @@ final class ComposeFetcher {
             DispatchQueue.main.async {
                 switch(result) {
                 case .success(_):
+                    NotificationCenter.default.post(name: .updateInboxMessagesNotificationID,
+                                                    object: true, userInfo: nil)
                     onCompletion(true)
                 case .failure(let error):
                     let params = AlertKitParams(

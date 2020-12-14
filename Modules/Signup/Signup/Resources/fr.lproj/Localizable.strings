@@ -5,8 +5,8 @@
 "recoveryEmailPlaceholder" = "Email de récupération";
 "passwordMust" = "Le mot de passe doit contenir au moins 10 lettres/chiffres. Password can contain only latin letters and cannot contain symbols such «-+!@. etc.";
 "thisIsUsed" = "Cet email sera utilisé si vous perdez votre mot de passe.";
-"usernameResetHint" = "CTemplar username to reset";
-"usernameResetPlaceholder" = "CTemplar username to reset";
+"usernameResetHint" = "Ctemplar username to reset";
+"usernameResetPlaceholder" = "Ctemplar username to reset";
 "resetCodePlaceholder" = "Reset Code";
 "newPasswordPlaceholder" = "Nouveau mot de passe";
 "confirmNewPasswordPlaceholder" = "Confirmer le nouveau mot de passe";

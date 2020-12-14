@@ -206,8 +206,8 @@ public final class InboxSideMenuInteractor {
                                                                isContactEncrypted: user.settings.isContactsEncrypted ?? false)
         case .settings:
             viewController?.router?.showSettingsViewController(withUser: user)
-        case .FAQ:
-            viewController?.router?.showFAQ()
+//        case .FAQ:
+//            viewController?.router?.showFAQ()
         case .help:
             openSupportURL()
         case .logout:

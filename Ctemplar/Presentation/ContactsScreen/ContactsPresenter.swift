@@ -1,6 +1,6 @@
 //
 //  ContactsPresenter.swift
-//  CTemplar
+//  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 14.11.2018.
 //  Copyright © 2018 CTemplar. All rights reserved.
@@ -231,10 +231,10 @@ class ContactsPresenter {
         
     func deleteContactPermanently(selectedContactsArray: Array<Contact>) {
         let params = AlertKitParams(
-            title: "deleteTitle".localized(),
-            message: "deleteContact".localized(),
-            cancelButton: "cancelButton".localized(),
-            otherButtons: ["deleteButton".localized()]
+            title: Strings.Inbox.Alert.deleteTitle.localized,
+            message: Strings.Inbox.Alert.deleteContact.localized,
+            cancelButton: Strings.Button.cancelButton.localized,
+            otherButtons: [Strings.Button.deleteButton.localized]
         )
         
         viewController?.showAlert(with: params, onCompletion: { [weak self] (index) in

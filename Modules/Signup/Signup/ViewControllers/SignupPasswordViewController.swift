@@ -4,20 +4,9 @@ import Utility
 class SignupPasswordViewController: UIViewController {
 
     // MARK: IBOutlets
-    @IBOutlet weak var logoImageView: UIImageView! {
-        didSet {
-            logoImageView.image = #imageLiteral(resourceName: "Logo")
-        }
-    }
-    
     @IBOutlet weak var backButton: UIButton! {
         didSet {
-            if #available(iOS 12.0, *) {
-                backButton.setImage(UIImage(named: "BackArrowDark", in: .main, compatibleWith: .init(userInterfaceStyle: .light)), for: .normal)
-            } else {
-                // Fallback on earlier versions
-                backButton.setImage(#imageLiteral(resourceName: "BackArrowDark"), for: .normal)
-            }
+            backButton.setImage(UIImage(named: "BackArrowDark", in: .main, compatibleWith: .init(userInterfaceStyle: .light)), for: .normal)
         }
     }
     
@@ -35,7 +24,11 @@ class SignupPasswordViewController: UIViewController {
     
     @IBOutlet weak var confirmPasswordPlaceholderLabel: UILabel!
     
-    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton! {
+        didSet {
+            nextButton.titleLabel?.font = UIFont.withType(.Default(.Bold))
+        }
+    }
     
     @IBOutlet weak var passwordEyeButton: UIButton! {
         didSet {
@@ -53,7 +46,12 @@ class SignupPasswordViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var supportMailTextView: UITextView!
+    @IBOutlet weak var supportMailTextView: UITextView! {
+        didSet {
+            supportMailTextView.textAlignment = .center
+            supportMailTextView.font = UIFont.withType(.ExtraSmall(.Normal))
+        }
+    }
     
     @IBOutlet weak var passwordTextField: UITextField! {
         didSet {
@@ -73,25 +71,23 @@ class SignupPasswordViewController: UIViewController {
     
     @IBOutlet weak var passwordCheckerLabel: UILabel!
     
-    @IBOutlet weak var containerViewWidthConstraint: NSLayoutConstraint!
-    
     // MARK: Properties
     private (set) var signupPageViewController: SignupPageViewController?
     
-    // Add a passwordTask property to your controller
+    /// Add a passwordTask property to your controller
     private var passwordTask: DispatchWorkItem?
-
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
         signupPageViewController = self.parent as? SignupPageViewController
         
         let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
         view.addGestureRecognizer(freeSpaceViewGesture)
 
         initialUISetup()
+        defaultUIState()
     }
     
     deinit {
@@ -108,13 +104,6 @@ class SignupPasswordViewController: UIViewController {
         supportMailTextView.text = Strings.Signup.supportEmailString.localized
         signupPageViewController?.presenter?.changePasswordEntryStyle(passwordEyeButton.isSelected == false, textField: passwordTextField)
         signupPageViewController?.presenter?.changePasswordEntryStyle(confirmPasswordEyeButton.isSelected == false, textField: confirmPasswordTextField)
-        
-        if Device.IS_IPHONE {
-            containerViewWidthConstraint.constant = UIScreen.main.bounds.size.width - (Device.IS_IPHONE_5 ? 40.0 : 20.0)
-            view.layoutIfNeeded()
-        }
-        
-        defaultUIState()
     }
     
     private func defaultUIState() {
@@ -123,6 +112,9 @@ class SignupPasswordViewController: UIViewController {
         
         passwordCheckerImageView.image = nil
         passwordCheckerLabel.text = ""
+        
+        passwordTextField.text = ""
+        confirmPasswordTextField.text = ""
         
         signupPageViewController?.presenter?.changeButtonState(button: nextButton, disabled: true)
     }

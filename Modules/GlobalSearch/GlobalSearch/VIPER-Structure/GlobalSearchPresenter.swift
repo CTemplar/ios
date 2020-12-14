@@ -2,13 +2,21 @@ import Foundation
 import Utility
 import UIKit
 import Networking
+import Combine
 
 final class GlobalSearchPresenter: NSObject {
     // MARK: Properties
     private (set) weak var searchViewController: GlobalSearchViewController?
+    
     private (set) var interactor: GlobalSearchInteractor
+    
     private var router: GlobalSearchRouter
+    
     var isViewControllerAppearing = false
+    
+    @Published private var searchText: String = ""
+    
+    private var subscription: Set<AnyCancellable> = []
     
     // MARK: Properties
     private (set) lazy var searchController: UISearchController = {
@@ -39,9 +47,30 @@ final class GlobalSearchPresenter: NSObject {
         self.interactor = interactor
         self.router = router
         super.init()
+        
+        self.setupObserver()
     }
     
-    // MARK: - UI Setup
+    // MARK: - Setup
+    private func setupObserver() {
+        $searchText
+            .debounce(for: .milliseconds(800), scheduler: DispatchQueue.main) // debounces the string publisher, such that it delays the process of sending request to remote server.
+            .removeDuplicates()
+            .map({ (string) -> String? in
+                return string
+            }) // prevents sending numerous requests and sends nil if the count of the characters is less than 1.
+            .compactMap{ $0 } // removes the nil values so the search string does not get passed down to the publisher chain
+            .sink { (_) in
+                //
+            } receiveValue: { [weak self] (searchField) in
+                if self?.isViewControllerAppearing == false {
+                    self?.isViewControllerAppearing = true
+                    return
+                }
+                self?.performSearch(by: searchField)
+            }.store(in: &subscription)
+    }
+    
     func setupUI() {
         searchViewController?.noResultsLabel.text = Strings.Search.noResults.localized
         searchViewController?.extendedLayoutIncludesOpaqueBars = true
@@ -105,19 +134,13 @@ final class GlobalSearchPresenter: NSObject {
 // MARK: - UISearchResultsUpdating
 extension GlobalSearchPresenter: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        if !isViewControllerAppearing {
-            isViewControllerAppearing = true
-            return
-        }
-        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(reload(_:)),
-                                               object: searchController.searchBar)
-        perform(#selector(reload(_:)), with: searchController.searchBar, afterDelay: 0.75)
+        searchText = searchController.searchBar.text ?? ""
     }
     
     @objc
-    private func reload(_ searchBar: UISearchBar) {
-        guard let query = searchBar.text, query.trimmingCharacters(in: .whitespaces).isEmpty == false else {
-            print("nothing to search")
+    private func performSearch(by query: String) {
+        guard query.trimmingCharacters(in: .whitespaces).isEmpty == false else {
+            DPrint("nothing to search")
             interactor.update(offset: 0)
             interactor.update(totalItems: 0)
             searchViewController?.dataSource?.updateDatasource(by: [])
@@ -125,7 +148,7 @@ extension GlobalSearchPresenter: UISearchResultsUpdating {
         }
         
         if searchController.isActive {
-            searchBar.isLoading = true
+            searchController.searchBar.isLoading = true
             interactor.searchMessages(withQuery: query)
         }
     }

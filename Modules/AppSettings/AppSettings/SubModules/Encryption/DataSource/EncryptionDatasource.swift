@@ -84,7 +84,7 @@ final class EncryptionDatasource: NSObject {
 
         let minHeight = tableFooterView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
         let currentFooterHeight = tableFooterView.frame.height
-        let safeAreaBottomHeight = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0.0
+        let safeAreaBottomHeight = UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0.0
         let fitHeight = table.frame.height - table.adjustedContentInset.top - table.contentSize.height + currentFooterHeight - safeAreaBottomHeight
         let nextHeight = (fitHeight > minHeight) ? fitHeight : minHeight
 

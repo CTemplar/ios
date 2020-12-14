@@ -1,9 +1,9 @@
 //
 //  String+Error.swift
-//  CTemplar
+//  Ctemplar
 //
 //  Created by Majid Hussain on 10/05/2020.
-//  Copyright © 2020 CTemplar. All rights reserved.
+//  Copyright © 2020 Ctemplar. All rights reserved.
 //
 
 import Foundation

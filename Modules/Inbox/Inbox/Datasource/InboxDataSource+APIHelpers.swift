@@ -27,7 +27,7 @@ extension InboxDatasource {
         reload()
         
         // Disable the selection mode
-        disableSelectionIfSelected()
+        disableSelectionMode()
         
         // Refresh Inbox UI
         invokeRefreshUI()

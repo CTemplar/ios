@@ -5,7 +5,11 @@ class SignupViewController: UIViewController {
 
     // MARK: IBOutlets
     @IBOutlet weak var userExistanceImageView: UIImageView!
-    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton! {
+        didSet {
+            nextButton.titleLabel?.font = UIFont.withType(.Default(.Bold))
+        }
+    }
     @IBOutlet weak var userExistanceLabel: UILabel!
     @IBOutlet weak var userNamePlaceholderLabel: UILabel! {
         didSet {
@@ -20,12 +24,6 @@ class SignupViewController: UIViewController {
     }
     @IBOutlet weak var userNameAndDomainLabel: UILabel!
     @IBOutlet weak var emailSubtitleLabel: UILabel!
-    @IBOutlet weak var logoImageView: UIImageView! {
-        didSet {
-            logoImageView.image = #imageLiteral(resourceName: "Logo")
-        }
-    }
-    
     @IBOutlet weak var backButton: UIButton! {
         didSet {
             backButton.imageView?.tintColor = .black

@@ -56,7 +56,7 @@ public final class EncryptionCell: UITableViewCell, Cellable {
             activityIndicatorView
         ].forEach({
             $0.translatesAutoresizingMaskIntoConstraints = false
-            addSubview($0)
+            contentView.addSubview($0)
         })
         
         titleLabel.snp.makeConstraints { (make) in

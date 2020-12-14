@@ -60,8 +60,8 @@
 "recoveryEmailPlaceholder" = "Email de récupération";
 "passwordMust" = "Le mot de passe doit contenir au moins 10 lettres/chiffres. Password can contain only latin letters and cannot contain symbols such «-+!@. etc.";
 "thisIsUsed" = "Cet email sera utilisé si vous perdez votre mot de passe.";
-"usernameResetHint" = "CTemplar username to reset";
-"usernameResetPlaceholder" = "CTemplar username to reset";
+"usernameResetHint" = "Ctemplar username to reset";
+"usernameResetPlaceholder" = "Ctemplar username to reset";
 "resetCodePlaceholder" = "Reset Code";
 "newPasswordPlaceholder" = "Nouveau mot de passe";
 "confirmNewPasswordPlaceholder" = "Confirmer le nouveau mot de passe";
@@ -87,10 +87,12 @@
 "email" = "email";
 "emailsx" = "emails";
 "unread" = "Non lu";
+"read" = "Lis";
 "filtered" = "Filtrés";
 "noInboxMessage" = "Vous n'avez pas de messages";
 "noFilteredMessage" = "Aucun message ne correspond à votre filtre";
 "messageMovedTo" = "Message déplacé vers";
+"mailEncryptedMessage" = "Cet e-mail est crypté";
 
 // Inbox Filter
 "starredFilter" = "Favoris";
@@ -118,6 +120,7 @@
 "emptyFolder" = "Vider le dossier";
 "cancel" = "Annuler";
 "moreActions" = "Plus d'actions";
+"more" = "Plus";
 
 // Undo actions buttons
 "undoMarkAsSpam" = "Annuler";
@@ -252,7 +255,7 @@
 "passwordsMustMatch" = "Les mots de passe doivent être identiques";
 "passwordHint" = "Indice mot de passe";
 
-"encryptedMessagesTo" = "Encrypted messages to non-CTemplar recipients will expire in 28 days unless a shorter expiration time is set.";
+"encryptedMessagesTo" = "Encrypted messages to non-Ctemplar recipients will expire in 28 days unless a shorter expiration time is set.";
 
 // Manage Folders
 "deleteFolderTitle" = "Supprimer dossier ?";
@@ -469,3 +472,8 @@
 // Network Error
 "networkErrorTitle" = "Nous sommes désolés";
 "networkErrorMessage" = "Apparemment, votre appareil n'est pas connecté au réseau. Veuillez patienter pendant que nous recherchons un réseau disponible.";
+
+// Force Update
+"UpdateAvailableTitle" = "Mise à jour disponible";
+"UpdateAvailableMessage" = "Une nouvelle version de CTemplar est disponible. Veuillez mettre à jour vers la version %s maintenant.";
+"GoToStore" = "Aller au magasin";

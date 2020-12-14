@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,26 +18,30 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XBk-K7-uhj" customClass="RichEditorView" customModule="Utility">
-                        <rect key="frame" x="16" y="16" width="288" height="118"/>
+                    <wkWebView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pw6-2d-ZEq">
+                        <rect key="frame" x="16" y="12" width="288" height="126"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="uOR-Za-yDu"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="126" id="i6Z-qN-mQ8"/>
                         </constraints>
-                    </view>
+                        <wkWebViewConfiguration key="configuration" allowsInlineMediaPlayback="YES">
+                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                            <wkPreferences key="preferences"/>
+                        </wkWebViewConfiguration>
+                    </wkWebView>
                 </subviews>
                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="XBk-K7-uhj" secondAttribute="bottom" constant="16" id="7yx-dT-TyS"/>
-                    <constraint firstItem="XBk-K7-uhj" firstAttribute="top" secondItem="YnG-dK-T53" secondAttribute="top" constant="16" id="H7s-Z8-v9Z"/>
-                    <constraint firstAttribute="trailing" secondItem="XBk-K7-uhj" secondAttribute="trailing" constant="16" id="hye-qt-eNR"/>
-                    <constraint firstItem="XBk-K7-uhj" firstAttribute="leading" secondItem="YnG-dK-T53" secondAttribute="leading" constant="16" id="s6h-yw-k4s"/>
+                    <constraint firstAttribute="bottom" secondItem="pw6-2d-ZEq" secondAttribute="bottom" constant="12" id="aRi-jG-uEw"/>
+                    <constraint firstAttribute="trailing" secondItem="pw6-2d-ZEq" secondAttribute="trailing" constant="16" id="shR-dC-UVv"/>
+                    <constraint firstItem="pw6-2d-ZEq" firstAttribute="top" secondItem="YnG-dK-T53" secondAttribute="top" constant="12" id="uUt-ga-g44"/>
+                    <constraint firstItem="pw6-2d-ZEq" firstAttribute="leading" secondItem="YnG-dK-T53" secondAttribute="leading" constant="16" id="uc5-EE-8Wn"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="Rvj-Vz-MRM"/>
             <connections>
-                <outlet property="messageTextEditor" destination="XBk-K7-uhj" id="ERR-Xo-GwR"/>
-                <outlet property="messageTextEditorHeightConstraint" destination="uOR-Za-yDu" id="7nh-KZ-bVL"/>
+                <outlet property="webView" destination="pw6-2d-ZEq" id="YLp-p7-qHs"/>
+                <outlet property="webViewHeightConstraint" destination="i6Z-qN-mQ8" id="gSm-yH-lKS"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="150.66964285714286"/>
         </tableViewCell>

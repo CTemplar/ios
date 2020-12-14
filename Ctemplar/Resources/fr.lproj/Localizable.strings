@@ -1,6 +1,6 @@
 /*
   Localizable.strings
-  CTemplar
+  Ctemplar
 
   Created by CTemplar on 24.10.2018.
   Copyright © 2020 CTemplar. All rights reserved.
@@ -58,8 +58,8 @@
 "recoveryEmailPlaceholder" = "Email de récupération";
 "passwordMust" = "Le mot de passe doit contenir au moins 10 lettres/chiffres. Password can contain only latin letters and cannot contain symbols such «-+!@. etc.";
 "thisIsUsed" = "Cet email sera utilisé si vous perdez votre mot de passe.";
-"usernameResetHint" = "CTemplar username to reset";
-"usernameResetPlaceholder" = "CTemplar username to reset";
+"usernameResetHint" = "Ctemplar username to reset";
+"usernameResetPlaceholder" = "Ctemplar username to reset";
 "resetCodePlaceholder" = "Reset Code";
 "newPasswordPlaceholder" = "Nouveau mot de passe";
 "confirmNewPasswordPlaceholder" = "Confirmer le nouveau mot de passe";
@@ -249,7 +249,7 @@
 "passwordsMustMatch" = "Les mots de passe doivent être identiques";
 "passwordHint" = "Indice mot de passe";
 
-"encryptedMessagesTo" = "Encrypted messages to non-CTemplar recipients will expire in 28 days unless a shorter expiration time is set.";
+"encryptedMessagesTo" = "Encrypted messages to non-Ctemplar recipients will expire in 28 days unless a shorter expiration time is set.";
 
 //Manage Folders
 
