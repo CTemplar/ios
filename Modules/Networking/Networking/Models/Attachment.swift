@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Attachment: Equatable {
+public struct Attachment: Equatable, Hashable {
     // MARK: Properties
     public var contentID: Int?
     public var contentUrl: String?

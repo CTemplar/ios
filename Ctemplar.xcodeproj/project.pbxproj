@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E890424D41C7869CBFB83B9 /* Pods_Ctemplar_dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B96BE475BA4E7304D21D148F /* Pods_Ctemplar_dev.framework */; };
 		443DD3ED24CDCB1100771AE5 /* AppSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 443DD3EC24CDCAF700771AE5 /* AppSettings.framework */; };
 		443DD3EE24CDCB1100771AE5 /* AppSettings.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 443DD3EC24CDCAF700771AE5 /* AppSettings.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		443DD3EF24CDCB1B00771AE5 /* AppSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 443DD3EC24CDCAF700771AE5 /* AppSettings.framework */; };
@@ -84,14 +85,16 @@
 		44D966AC24C181230050ED46 /* InboxViewerTitleCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D966AB24C181230050ED46 /* InboxViewerTitleCellTests.swift */; };
 		44D966B224C184920050ED46 /* FBSnapshotBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D966B124C184920050ED46 /* FBSnapshotBase.swift */; };
 		44E499F824F697580007CFA7 /* AttachmentCellWithDeleteButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E499F724F697580007CFA7 /* AttachmentCellWithDeleteButtonTests.swift */; };
-		6F8261F96155C02DECBD0E66 /* Pods_Ctemplar_devTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7B725DDA0685182397D7A08 /* Pods_Ctemplar_devTests.framework */; };
+		44F54801257A9061005CB1D1 /* AppVersionAlertConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F54800257A9061005CB1D1 /* AppVersionAlertConfig.swift */; };
+		44F54802257A9061005CB1D1 /* AppVersionAlertConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F54800257A9061005CB1D1 /* AppVersionAlertConfig.swift */; };
+		7123D3B73A50C334EA2A1220 /* Pods_Ctemplar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25FE3A19C11DF088AD9A34FF /* Pods_Ctemplar.framework */; };
 		8403BDE021A3EEB100EE8DCD /* AddContactScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403BDDF21A3EEB100EE8DCD /* AddContactScreenViewController.swift */; };
 		8403BDE221A3F00B00EE8DCD /* AddContact.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8403BDE121A3F00B00EE8DCD /* AddContact.storyboard */; };
 		8403BDE421A404FE00EE8DCD /* AddContactConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403BDE321A404FE00EE8DCD /* AddContactConfigurator.swift */; };
 		8403BDE621A4050C00EE8DCD /* AddContactRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403BDE521A4050C00EE8DCD /* AddContactRouter.swift */; };
 		8403BDE821A4051A00EE8DCD /* AddContactPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403BDE721A4051A00EE8DCD /* AddContactPresenter.swift */; };
 		8403BDEA21A4052800EE8DCD /* AddContactInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403BDE921A4052800EE8DCD /* AddContactInteractor.swift */; };
-		8406B2162193FD8A009F0375 /* UnreadMessagesCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406B2152193FD8A009F0375 /* UnreadMessagesCounter.swift */; };
+		8406B2162193FD8A009F0375 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		8432070B21784B0100F18E5A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8432070A21784B0100F18E5A /* WebKit.framework */; };
 		8433FF1A216201A300C57DC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FF19216201A300C57DC8 /* AppDelegate.swift */; };
 		8433FF1F216201A300C57DC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8433FF1D216201A300C57DC8 /* Main.storyboard */; };
@@ -122,16 +125,15 @@
 		845E64472170CA6F008612FE /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 843E972C2163494400147CBE /* Lato-Regular.ttf */; };
 		845E64482170CAEF008612FE /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 845E64442170BF8F008612FE /* Lato-Black.ttf */; };
 		845E64492170CAF2008612FE /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 843E973521635F6D00147CBE /* Roboto-Bold.ttf */; };
-		84BB2E4E230ADB4C00E9C162 /* Captcha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BB2E4D230ADB4C00E9C162 /* Captcha.swift */; };
 		84F348582181F4E300F00E37 /* BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F348572181F4E300F00E37 /* BlurEffect.swift */; };
 		84FF7E3C219DB71500E3E56A /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF7E3B219DB71500E3E56A /* ContactTableViewCell.swift */; };
 		84FF7E3E219DB7E600E3E56A /* ContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FF7E3D219DB7E600E3E56A /* ContactTableViewCell.xib */; };
-		898090A21632DCBC04EC0B9A /* Pods_Ctemplar_dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF85543C387BDFD0708284D /* Pods_Ctemplar_dev.framework */; };
+		AF2BAF7359F808C4507ABF85 /* Pods_Ctemplar_devTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A187BF5C6E4133659CA14E5 /* Pods_Ctemplar_devTests.framework */; };
 		CC6908B82384500100956E9B /* ContactsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D9B3219C4E1200D2C3A5 /* ContactsPresenter.swift */; };
 		CC6908BC2384500100956E9B /* AddContactConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403BDE321A404FE00EE8DCD /* AddContactConfigurator.swift */; };
 		CC6908BE2384500100956E9B /* AddContactRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403BDE521A4050C00EE8DCD /* AddContactRouter.swift */; };
 		CC6908C92384500100956E9B /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E972E21634E7800147CBE /* LaunchScreenViewController.swift */; };
-		CC6908CC2384500100956E9B /* UnreadMessagesCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406B2152193FD8A009F0375 /* UnreadMessagesCounter.swift */; };
+		CC6908CC2384500100956E9B /* (null) in Sources */ = {isa = PBXBuildFile; };
 		CC6908D72384500100956E9B /* AddContactScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403BDDF21A3EEB100EE8DCD /* AddContactScreenViewController.swift */; };
 		CC6908DC2384500100956E9B /* PrivacyAndTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440141B21D377E400FC450C /* PrivacyAndTermsViewController.swift */; };
 		CC6908DF2384500100956E9B /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D9AB219BFD1E00D2C3A5 /* ContactsViewController.swift */; };
@@ -140,7 +142,6 @@
 		CC6908EF2384500100956E9B /* UserPGPKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F4B59216B3A380057C758 /* UserPGPKey.swift */; };
 		CC6908F62384500100956E9B /* DeviceScreenConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FBF18216E4FE500148FC1 /* DeviceScreenConstants.swift */; };
 		CC6909072384500100956E9B /* ContactsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D9AF219C4DF500D2C3A5 /* ContactsConfigurator.swift */; };
-		CC69090E2384500100956E9B /* Captcha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BB2E4D230ADB4C00E9C162 /* Captcha.swift */; };
 		CC6909132384500100956E9B /* AddContactInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403BDE921A4052800EE8DCD /* AddContactInteractor.swift */; };
 		CC69091B2384500100956E9B /* AboutAsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E64452170C5A4008612FE /* AboutAsViewController.swift */; };
 		CC69091D2384500100956E9B /* ContactsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D9B5219C4E2800D2C3A5 /* ContactsInteractor.swift */; };
@@ -172,7 +173,6 @@
 		CCB2F6AB23AB8F8800B661FA /* MyselfService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB2F6A923AB8F8800B661FA /* MyselfService.swift */; };
 		E3E22E5624398FDD00DCE5B7 /* AppStoryBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E22E5524398FDC00DCE5B7 /* AppStoryBoard.swift */; };
 		E3E22E5724398FDD00DCE5B7 /* AppStoryBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E22E5524398FDC00DCE5B7 /* AppStoryBoard.swift */; };
-		E98E5A73C435E4A592BF9230 /* Pods_Ctemplar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFAD2BF79C584ADE5E3F6671 /* Pods_Ctemplar.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -301,7 +301,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		38C73926A9B57BF10D00B269 /* Pods-Ctemplar.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.dev.release.xcconfig"; path = "Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev.release.xcconfig"; sourceTree = "<group>"; };
+		1835AE7EBB6E6BE80EADF7A5 /* Pods-Ctemplar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.debug.xcconfig"; path = "Target Support Files/Pods-Ctemplar/Pods-Ctemplar.debug.xcconfig"; sourceTree = "<group>"; };
+		25FE3A19C11DF088AD9A34FF /* Pods_Ctemplar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		28E11FD23A17B5230CA5E15F /* Pods-Ctemplar.devTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.devTests.debug.xcconfig"; path = "Target Support Files/Pods-Ctemplar.devTests/Pods-Ctemplar.devTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2A2D3B2788A878ACC4716546 /* Pods-Ctemplar.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.dev.release.xcconfig"; path = "Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev.release.xcconfig"; sourceTree = "<group>"; };
 		4438246C248F9A1200DEA4F3 /* Signup.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Signup.xcodeproj; path = Signup/Signup.xcodeproj; sourceTree = "<group>"; };
 		443DD3E724CDCAF600771AE5 /* AppSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AppSettings.xcodeproj; path = AppSettings/AppSettings.xcodeproj; sourceTree = "<group>"; };
 		443DD41524CEB65300771AE5 /* AppSettingsStorageCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsStorageCellTests.swift; sourceTree = "<group>"; };
@@ -342,14 +345,15 @@
 		44D966AB24C181230050ED46 /* InboxViewerTitleCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewerTitleCellTests.swift; sourceTree = "<group>"; };
 		44D966B124C184920050ED46 /* FBSnapshotBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBSnapshotBase.swift; sourceTree = "<group>"; };
 		44E499F724F697580007CFA7 /* AttachmentCellWithDeleteButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCellWithDeleteButtonTests.swift; sourceTree = "<group>"; };
+		44F54800257A9061005CB1D1 /* AppVersionAlertConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionAlertConfig.swift; sourceTree = "<group>"; };
 		44F739CC2498B01800688086 /* Login.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Login.xcodeproj; path = Login/Login.xcodeproj; sourceTree = "<group>"; };
+		7A187BF5C6E4133659CA14E5 /* Pods_Ctemplar_devTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar_devTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8403BDDF21A3EEB100EE8DCD /* AddContactScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactScreenViewController.swift; sourceTree = "<group>"; };
 		8403BDE121A3F00B00EE8DCD /* AddContact.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddContact.storyboard; sourceTree = "<group>"; };
 		8403BDE321A404FE00EE8DCD /* AddContactConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactConfigurator.swift; sourceTree = "<group>"; };
 		8403BDE521A4050C00EE8DCD /* AddContactRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactRouter.swift; sourceTree = "<group>"; };
 		8403BDE721A4051A00EE8DCD /* AddContactPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactPresenter.swift; sourceTree = "<group>"; };
 		8403BDE921A4052800EE8DCD /* AddContactInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactInteractor.swift; sourceTree = "<group>"; };
-		8406B2152193FD8A009F0375 /* UnreadMessagesCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadMessagesCounter.swift; sourceTree = "<group>"; };
 		8432070A21784B0100F18E5A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		8433FF16216201A300C57DC8 /* Ctemplar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ctemplar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8433FF19216201A300C57DC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -385,24 +389,19 @@
 		845E64422170BD21008612FE /* AboutAs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutAs.storyboard; sourceTree = "<group>"; };
 		845E64442170BF8F008612FE /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
 		845E64452170C5A4008612FE /* AboutAsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAsViewController.swift; sourceTree = "<group>"; };
-		84BB2E4D230ADB4C00E9C162 /* Captcha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Captcha.swift; sourceTree = "<group>"; };
 		84F348572181F4E300F00E37 /* BlurEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurEffect.swift; sourceTree = "<group>"; };
 		84FF7E3B219DB71500E3E56A /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		84FF7E3D219DB7E600E3E56A /* ContactTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactTableViewCell.xib; sourceTree = "<group>"; };
-		89E0095346B9331C944057A7 /* Pods-Ctemplar.devTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.devTests.release.xcconfig"; path = "Target Support Files/Pods-Ctemplar.devTests/Pods-Ctemplar.devTests.release.xcconfig"; sourceTree = "<group>"; };
-		93B9C6731EF152B9B2A95433 /* Pods-Ctemplar.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.dev.debug.xcconfig"; path = "Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev.debug.xcconfig"; sourceTree = "<group>"; };
-		A9E9F97F40ABC09718B3AC1B /* Pods-Ctemplar.devTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.devTests.debug.xcconfig"; path = "Target Support Files/Pods-Ctemplar.devTests/Pods-Ctemplar.devTests.debug.xcconfig"; sourceTree = "<group>"; };
-		AA503657CE1E83FBA14A3CAE /* Pods-Ctemplar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.debug.xcconfig"; path = "Target Support Files/Pods-Ctemplar/Pods-Ctemplar.debug.xcconfig"; sourceTree = "<group>"; };
-		BDF85543C387BDFD0708284D /* Pods_Ctemplar_dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar_dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F367019D14CA042B21EB595 /* Pods-Ctemplar.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.dev.debug.xcconfig"; path = "Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev.debug.xcconfig"; sourceTree = "<group>"; };
+		B36CFFDDBB720EB66C309AB0 /* Pods-Ctemplar.devTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.devTests.release.xcconfig"; path = "Target Support Files/Pods-Ctemplar.devTests/Pods-Ctemplar.devTests.release.xcconfig"; sourceTree = "<group>"; };
+		B96BE475BA4E7304D21D148F /* Pods_Ctemplar_dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar_dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC3C27EE23844AAB005828BF /* Ctemplar-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Ctemplar-Info.plist"; sourceTree = "<group>"; };
 		CC6909922384500100956E9B /* Ctemplar.dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ctemplar.dev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC690994238450BB00956E9B /* Ctemplar.dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Ctemplar.dev-Info.plist"; sourceTree = "<group>"; };
 		CCB2F6A923AB8F8800B661FA /* MyselfService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyselfService.swift; sourceTree = "<group>"; };
-		CFAD2BF79C584ADE5E3F6671 /* Pods_Ctemplar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D7B725DDA0685182397D7A08 /* Pods_Ctemplar_devTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar_devTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DF06C2967328E29E88E0BEB3 /* Pods-Ctemplar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.release.xcconfig"; path = "Target Support Files/Pods-Ctemplar/Pods-Ctemplar.release.xcconfig"; sourceTree = "<group>"; };
 		E32DB9E9240C127700FF0069 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E3E22E5524398FDC00DCE5B7 /* AppStoryBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoryBoard.swift; sourceTree = "<group>"; };
+		ED4208A5E693B7F1FB928EB9 /* Pods-Ctemplar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.release.xcconfig"; path = "Target Support Files/Pods-Ctemplar/Pods-Ctemplar.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -411,7 +410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				446641C724C4CF520093A6DE /* SnapshotTesting in Frameworks */,
-				6F8261F96155C02DECBD0E66 /* Pods_Ctemplar_devTests.framework in Frameworks */,
+				AF2BAF7359F808C4507ABF85 /* Pods_Ctemplar_devTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,7 +432,7 @@
 				4477555B24F031C9009B89D6 /* Compose.framework in Frameworks */,
 				444BD47F2495306D001D0C5F /* Security.framework in Frameworks */,
 				44CA251D24B758150063DB93 /* Utility.framework in Frameworks */,
-				E98E5A73C435E4A592BF9230 /* Pods_Ctemplar.framework in Frameworks */,
+				7123D3B73A50C334EA2A1220 /* Pods_Ctemplar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,7 +454,7 @@
 				4477555924F031C3009B89D6 /* Compose.framework in Frameworks */,
 				444D65E624A7BA3600690B3E /* Initializer.framework in Frameworks */,
 				444BD48224953187001D0C5F /* Security.framework in Frameworks */,
-				898090A21632DCBC04EC0B9A /* Pods_Ctemplar_dev.framework in Frameworks */,
+				3E890424D41C7869CBFB83B9 /* Pods_Ctemplar_dev.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,9 +641,9 @@
 				444BD48024953077001D0C5F /* libz.tbd */,
 				444BD47E2495306C001D0C5F /* Security.framework */,
 				8432070A21784B0100F18E5A /* WebKit.framework */,
-				CFAD2BF79C584ADE5E3F6671 /* Pods_Ctemplar.framework */,
-				BDF85543C387BDFD0708284D /* Pods_Ctemplar_dev.framework */,
-				D7B725DDA0685182397D7A08 /* Pods_Ctemplar_devTests.framework */,
+				25FE3A19C11DF088AD9A34FF /* Pods_Ctemplar.framework */,
+				B96BE475BA4E7304D21D148F /* Pods_Ctemplar_dev.framework */,
+				7A187BF5C6E4133659CA14E5 /* Pods_Ctemplar_devTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -660,15 +659,6 @@
 				8403BDE121A3F00B00EE8DCD /* AddContact.storyboard */,
 			);
 			path = AddContactScreen;
-			sourceTree = "<group>";
-		};
-		8407AD90216CC5C400AF2E7B /* Network Models */ = {
-			isa = PBXGroup;
-			children = (
-				8406B2152193FD8A009F0375 /* UnreadMessagesCounter.swift */,
-				84BB2E4D230ADB4C00E9C162 /* Captcha.swift */,
-			);
-			path = "Network Models";
 			sourceTree = "<group>";
 		};
 		8432070C21785E0D00F18E5A /* TableCells */ = {
@@ -730,7 +720,7 @@
 			isa = PBXGroup;
 			children = (
 				844F4B5B216B3A830057C758 /* Local Models */,
-				8407AD90216CC5C400AF2E7B /* Network Models */,
+				44F54800257A9061005CB1D1 /* AppVersionAlertConfig.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -863,12 +853,12 @@
 		9D1353D465645685A49242B7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				AA503657CE1E83FBA14A3CAE /* Pods-Ctemplar.debug.xcconfig */,
-				DF06C2967328E29E88E0BEB3 /* Pods-Ctemplar.release.xcconfig */,
-				93B9C6731EF152B9B2A95433 /* Pods-Ctemplar.dev.debug.xcconfig */,
-				38C73926A9B57BF10D00B269 /* Pods-Ctemplar.dev.release.xcconfig */,
-				A9E9F97F40ABC09718B3AC1B /* Pods-Ctemplar.devTests.debug.xcconfig */,
-				89E0095346B9331C944057A7 /* Pods-Ctemplar.devTests.release.xcconfig */,
+				1835AE7EBB6E6BE80EADF7A5 /* Pods-Ctemplar.debug.xcconfig */,
+				ED4208A5E693B7F1FB928EB9 /* Pods-Ctemplar.release.xcconfig */,
+				8F367019D14CA042B21EB595 /* Pods-Ctemplar.dev.debug.xcconfig */,
+				2A2D3B2788A878ACC4716546 /* Pods-Ctemplar.dev.release.xcconfig */,
+				28E11FD23A17B5230CA5E15F /* Pods-Ctemplar.devTests.debug.xcconfig */,
+				B36CFFDDBB720EB66C309AB0 /* Pods-Ctemplar.devTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -906,11 +896,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 44D9669824C17C150050ED46 /* Build configuration list for PBXNativeTarget "Ctemplar.devTests" */;
 			buildPhases = (
-				D418D1B1A6BAC26C330D43A3 /* [CP] Check Pods Manifest.lock */,
+				204B1A3C74EB0C010AB08AD6 /* [CP] Check Pods Manifest.lock */,
 				44D9668324C17C150050ED46 /* Sources */,
 				44D9668424C17C150050ED46 /* Frameworks */,
 				44D9668524C17C150050ED46 /* Resources */,
-				8B264679FAF28B089C521F15 /* [CP] Embed Pods Frameworks */,
+				24C95967043820658E50EC3D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -929,13 +919,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8433FF28216201A500C57DC8 /* Build configuration list for PBXNativeTarget "Ctemplar" */;
 			buildPhases = (
-				0115C55400B863EFEAFAFF17 /* [CP] Check Pods Manifest.lock */,
+				AA73747A8248166EC15C90C4 /* [CP] Check Pods Manifest.lock */,
 				8433FF12216201A300C57DC8 /* Sources */,
 				8433FF13216201A300C57DC8 /* Frameworks */,
 				8433FF14216201A300C57DC8 /* Resources */,
 				84405BB021AD09290048D8AC /* ShellScript */,
 				44CA250B24B757F50063DB93 /* Embed Frameworks */,
-				FF19F5ACC76D9D74D79CC360 /* [CP] Embed Pods Frameworks */,
+				B563B2A5768BE799C6D26403 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -950,13 +940,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CC69098F2384500100956E9B /* Build configuration list for PBXNativeTarget "Ctemplar.dev" */;
 			buildPhases = (
-				77E7E059B1DE80A7892A5B8D /* [CP] Check Pods Manifest.lock */,
+				1330DFA4EE51FF719ABE7AB6 /* [CP] Check Pods Manifest.lock */,
 				CC6908A72384500100956E9B /* Sources */,
 				CC6909462384500100956E9B /* Frameworks */,
 				CC6909492384500100956E9B /* Resources */,
 				CC69098E2384500100956E9B /* ShellScript */,
 				445CFAD0249BEBC90017DC40 /* Embed Frameworks */,
-				622767D3EDF23B0E0DEA2A67 /* [CP] Embed Pods Frameworks */,
+				856DF47A17A15CDE1AC921E8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -974,7 +964,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1160;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = Ctemplar;
 				TargetAttributes = {
 					44D9668624C17C150050ED46 = {
@@ -1210,46 +1200,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0115C55400B863EFEAFAFF17 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Ctemplar-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		622767D3EDF23B0E0DEA2A67 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		77E7E059B1DE80A7892A5B8D /* [CP] Check Pods Manifest.lock */ = {
+		1330DFA4EE51FF719ABE7AB6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1271,58 +1222,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		84405BB021AD09290048D8AC /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" ae275793b27694227e56433d8b6312c21196ecd1 ff3c364d767c460bac9c33cfc5386793b8caecc261ddf24294d6d2e1d4e4fc03\n";
-		};
-		8B264679FAF28B089C521F15 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.devTests/Pods-Ctemplar.devTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.devTests/Pods-Ctemplar.devTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.devTests/Pods-Ctemplar.devTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CC69098E2384500100956E9B /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" ae275793b27694227e56433d8b6312c21196ecd1 ff3c364d767c460bac9c33cfc5386793b8caecc261ddf24294d6d2e1d4e4fc03\n";
-		};
-		D418D1B1A6BAC26C330D43A3 /* [CP] Check Pods Manifest.lock */ = {
+		204B1A3C74EB0C010AB08AD6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1344,7 +1244,80 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FF19F5ACC76D9D74D79CC360 /* [CP] Embed Pods Frameworks */ = {
+		24C95967043820658E50EC3D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.devTests/Pods-Ctemplar.devTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.devTests/Pods-Ctemplar.devTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.devTests/Pods-Ctemplar.devTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		84405BB021AD09290048D8AC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" ae275793b27694227e56433d8b6312c21196ecd1 ff3c364d767c460bac9c33cfc5386793b8caecc261ddf24294d6d2e1d4e4fc03\n";
+		};
+		856DF47A17A15CDE1AC921E8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AA73747A8248166EC15C90C4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Ctemplar-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B563B2A5768BE799C6D26403 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1360,6 +1333,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Ctemplar/Pods-Ctemplar-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		CC69098E2384500100956E9B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" ae275793b27694227e56433d8b6312c21196ecd1 ff3c364d767c460bac9c33cfc5386793b8caecc261ddf24294d6d2e1d4e4fc03\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1396,17 +1386,17 @@
 				4497F1DC248BE02000AF83F5 /* FAQConfigurator.swift in Sources */,
 				843E972F21634E7900147CBE /* LaunchScreenViewController.swift in Sources */,
 				4497F1DE248BE04300AF83F5 /* FAQDataSource.swift in Sources */,
-				8406B2162193FD8A009F0375 /* UnreadMessagesCounter.swift in Sources */,
+				8406B2162193FD8A009F0375 /* (null) in Sources */,
 				8403BDE021A3EEB100EE8DCD /* AddContactScreenViewController.swift in Sources */,
 				8440141C21D377E400FC450C /* PrivacyAndTermsViewController.swift in Sources */,
 				8434D9AC219BFD1E00D2C3A5 /* ContactsViewController.swift in Sources */,
 				84527B9121EE13B300FF87AA /* SplitViewController.swift in Sources */,
 				8433FF1A216201A300C57DC8 /* AppDelegate.swift in Sources */,
+				44F54801257A9061005CB1D1 /* AppVersionAlertConfig.swift in Sources */,
 				844F4B5A216B3A380057C758 /* UserPGPKey.swift in Sources */,
 				843FBF19216E4FE500148FC1 /* DeviceScreenConstants.swift in Sources */,
 				8434D9B0219C4DF500D2C3A5 /* ContactsConfigurator.swift in Sources */,
 				4497F1D8248BDF4000AF83F5 /* FAQViewController.swift in Sources */,
-				84BB2E4E230ADB4C00E9C162 /* Captcha.swift in Sources */,
 				8403BDEA21A4052800EE8DCD /* AddContactInteractor.swift in Sources */,
 				845E64462170C5A4008612FE /* AboutAsViewController.swift in Sources */,
 				8434D9B6219C4E2800D2C3A5 /* ContactsInteractor.swift in Sources */,
@@ -1430,7 +1420,7 @@
 				CC6908BC2384500100956E9B /* AddContactConfigurator.swift in Sources */,
 				CC6908BE2384500100956E9B /* AddContactRouter.swift in Sources */,
 				CC6908C92384500100956E9B /* LaunchScreenViewController.swift in Sources */,
-				CC6908CC2384500100956E9B /* UnreadMessagesCounter.swift in Sources */,
+				CC6908CC2384500100956E9B /* (null) in Sources */,
 				CC6908D72384500100956E9B /* AddContactScreenViewController.swift in Sources */,
 				CC6908DC2384500100956E9B /* PrivacyAndTermsViewController.swift in Sources */,
 				CC6908DF2384500100956E9B /* ContactsViewController.swift in Sources */,
@@ -1439,10 +1429,10 @@
 				CC6908EF2384500100956E9B /* UserPGPKey.swift in Sources */,
 				444BD51C24955D4C001D0C5F /* FAQRouter.swift in Sources */,
 				444BD51B24955D49001D0C5F /* FAQPresenter.swift in Sources */,
+				44F54802257A9061005CB1D1 /* AppVersionAlertConfig.swift in Sources */,
 				CC6908F62384500100956E9B /* DeviceScreenConstants.swift in Sources */,
 				CC6909072384500100956E9B /* ContactsConfigurator.swift in Sources */,
 				444BD51924955D43001D0C5F /* FAQConfigurator.swift in Sources */,
-				CC69090E2384500100956E9B /* Captcha.swift in Sources */,
 				CC6909132384500100956E9B /* AddContactInteractor.swift in Sources */,
 				CC69091B2384500100956E9B /* AboutAsViewController.swift in Sources */,
 				CC69091D2384500100956E9B /* ContactsInteractor.swift in Sources */,
@@ -1506,7 +1496,7 @@
 /* Begin XCBuildConfiguration section */
 		44D9668E24C17C150050ED46 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A9E9F97F40ABC09718B3AC1B /* Pods-Ctemplar.devTests.debug.xcconfig */;
+			baseConfigurationReference = 28E11FD23A17B5230CA5E15F /* Pods-Ctemplar.devTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1527,7 +1517,7 @@
 		};
 		44D9668F24C17C150050ED46 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89E0095346B9331C944057A7 /* Pods-Ctemplar.devTests.release.xcconfig */;
+			baseConfigurationReference = B36CFFDDBB720EB66C309AB0 /* Pods-Ctemplar.devTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1573,6 +1563,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1637,6 +1628,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1670,13 +1662,13 @@
 		};
 		8433FF29216201A500C57DC8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA503657CE1E83FBA14A3CAE /* Pods-Ctemplar.debug.xcconfig */;
+			baseConfigurationReference = 1835AE7EBB6E6BE80EADF7A5 /* Pods-Ctemplar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = N2Z7XM6798;
 				ENABLE_BITCODE = NO;
@@ -1686,7 +1678,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.8;
+				MARKETING_VERSION = 1.4.3;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1699,13 +1691,13 @@
 		};
 		8433FF2A216201A500C57DC8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF06C2967328E29E88E0BEB3 /* Pods-Ctemplar.release.xcconfig */;
+			baseConfigurationReference = ED4208A5E693B7F1FB928EB9 /* Pods-Ctemplar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = N2Z7XM6798;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Ctemplar/Resources/Plist/Ctemplar-Info.plist";
@@ -1714,7 +1706,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.8;
+				MARKETING_VERSION = 1.4.3;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1727,7 +1719,7 @@
 		};
 		CC6909902384500100956E9B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93B9C6731EF152B9B2A95433 /* Pods-Ctemplar.dev.debug.xcconfig */;
+			baseConfigurationReference = 8F367019D14CA042B21EB595 /* Pods-Ctemplar.dev.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
@@ -1755,7 +1747,7 @@
 		};
 		CC6909912384500100956E9B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38C73926A9B57BF10D00B269 /* Pods-Ctemplar.dev.release.xcconfig */;
+			baseConfigurationReference = 2A2D3B2788A878ACC4716546 /* Pods-Ctemplar.dev.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;

@@ -56,24 +56,33 @@ final class ComposeController: UITableViewController, EmptyStateMachine  {
 
         setupObservers()
         
-        NotificationCenter.default.post(name: .disableIQKeyboardManagerNotificationID, object: self)
+        NotificationCenter
+            .default
+            .post(name: .disableIQKeyboardManagerNotificationID,
+                  object: self
+            )
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(receiveMailSentErrorNotification(notification:)),
-                                               name: .mailSentErrorNotificationID,
-                                               object: nil
+        NotificationCenter
+            .default
+            .addObserver(self,
+                         selector: #selector(receiveMailSentErrorNotification(notification:)),
+                         name: .mailSentErrorNotificationID,
+                         object: nil
         )
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(onMailSentSuccessfully(notification:)),
-                                               name: .updateInboxMessagesNotificationID,
-                                               object: nil
+        NotificationCenter
+            .default
+            .addObserver(self,
+                         selector: #selector(onMailSentSuccessfully(notification:)),
+                         name: .updateInboxMessagesNotificationID,
+                         object: nil
         )
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(onMailSentSuccessfully(notification:)),
-                                               name: .mailSentNotificationID,
-                                               object: nil
+        NotificationCenter
+            .default
+            .addObserver(self, selector: #selector(onMailSentSuccessfully(notification:)),
+                         name: .mailSentNotificationID,
+                         object: nil
         )
     }
     

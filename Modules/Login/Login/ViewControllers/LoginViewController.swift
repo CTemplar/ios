@@ -7,40 +7,55 @@ class LoginViewController: UIViewController {
     // MARK: IBOutlets
     @IBOutlet weak var userNameTextField: UITextField! {
         didSet {
+            userNameTextField.textColor = .label
             userNameTextField.delegate = self
         }
     }
     @IBOutlet weak var passwordTextField: UITextField! {
         didSet {
+            passwordTextField.textColor = .label
             passwordTextField.delegate = self
         }
     }
     
+    @IBOutlet weak var welcomeTextLabel: UILabel! {
+        didSet {
+            welcomeTextLabel.font = .withType(.ExtraLarge(.Normal))
+        }
+    }
+    
+    @IBOutlet weak var welcomeSubtextLabel: UILabel! {
+        didSet {
+            welcomeSubtextLabel.font = .withType(.title1(.Bold))
+        }
+    }
+    
     @IBOutlet weak var containerViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var userNamePlaceholderLabel: UILabel!
-    @IBOutlet weak var passwordPlaceholderLabel: UILabel!
+    @IBOutlet weak var userNamePlaceholderLabel: UILabel! {
+        didSet {
+            userNamePlaceholderLabel.textColor = .label
+        }
+    }
+    @IBOutlet weak var passwordPlaceholderLabel: UILabel! {
+        didSet {
+            passwordPlaceholderLabel.textColor = .label
+        }
+    }
     @IBOutlet weak var rememberMeLabel: UILabel!
     @IBOutlet weak var rememberMeButton: UIButton!
     @IBOutlet weak var eyeButton: UIButton!
-    @IBOutlet weak var signInButton: UIButton!
-    @IBOutlet weak var signUpButton: UIButton!
-    @IBOutlet weak var forgotPasswordButton: UIButton!
-    @IBOutlet weak var logoImageView: UIImageView! {
+    @IBOutlet weak var signInButton: UIButton! {
         didSet {
-            logoImageView.image = #imageLiteral(resourceName: "Logo")
+            signInButton.titleLabel?.font = UIFont.withType(.Default(.Bold))
         }
     }
+    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var forgotPasswordButton: UIButton!
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView! {
         didSet {
             activityIndicator.hidesWhenStopped = true
             activityIndicator.isHidden = true
-        }
-    }
-    
-    @IBOutlet weak var backgroundImageView: UIImageView! {
-        didSet {
-            backgroundImageView.image = #imageLiteral(resourceName: "Background")
         }
     }
     
@@ -62,6 +77,11 @@ class LoginViewController: UIViewController {
         
         let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(tappedViewAction(sender:)))
         view.addGestureRecognizer(freeSpaceViewGesture)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.post(.init(name: .showForceAppUpdateAlertNotificationID))
     }
     
     // MARK: - Setup
@@ -89,13 +109,14 @@ class LoginViewController: UIViewController {
         
         forgotPasswordButton.setTitle(Strings.Login.forgotPassword.localized, for: .normal)
         
-        rememberMeButton.backgroundColor = .white
+        rememberMeButton.imageView?.tintColor = AppStyle.Colors.loaderColor.color
         rememberMeButton.setImage(RememberCredentialState.doNotRemember.stateImage(), for: .normal)
         rememberMeButton.setImage(RememberCredentialState.remember.stateImage(), for: .selected)
         rememberMeButton.isSelected = false
         
-        eyeButton.setImage(#imageLiteral(resourceName: "EyeOnIcon"), for: .normal)
-        eyeButton.setImage(#imageLiteral(resourceName: "EyeIcon"), for: .selected)
+        eyeButton.imageView?.tintColor = .label
+        eyeButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
+        eyeButton.setImage(UIImage(systemName: "eye"), for: .selected)
         eyeButton.isSelected = false
         
         if Device.IS_IPHONE {

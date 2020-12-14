@@ -65,8 +65,10 @@ extension SignupPageViewController: UIPageViewControllerDataSource, UIPageViewCo
     
     public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed, finished {
-            let pageContentViewController = pageViewController.viewControllers![0]
-            pageControl.currentPage = orderedViewControllers.firstIndex(of: pageContentViewController)!
+            if let pageContentViewController = pageViewController.viewControllers?.first {
+                pageControl.currentPage = orderedViewControllers.firstIndex(of: pageContentViewController)!
+            }
+            
         }
     }
 }

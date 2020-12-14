@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -33,6 +33,9 @@
 		440F7E3B24AF6D7900B9BA2D /* UpgradeToPrimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7E3924AF6D7900B9BA2D /* UpgradeToPrimeView.swift */; };
 		440F7E4324AF6DDD00B9BA2D /* MoveToFolderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 440F7E4124AF6DDD00B9BA2D /* MoveToFolderTableViewCell.xib */; };
 		440F7E4424AF6DDD00B9BA2D /* MoveToFolderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F7E4224AF6DDD00B9BA2D /* MoveToFolderTableViewCell.swift */; };
+		441342D82583307700E87540 /* InboxDatasource+SwipeActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441342D72583307700E87540 /* InboxDatasource+SwipeActions.swift */; };
+		441342DC258334AB00E87540 /* InboxCellDisplayConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441342DB258334AB00E87540 /* InboxCellDisplayConstants.swift */; };
+		4413430C2583478100E87540 /* Colorful in Frameworks */ = {isa = PBXBuildFile; productRef = 4413430B2583478100E87540 /* Colorful */; };
 		443A1EE724B26BC1009BC733 /* InboxSideMenuDataSource+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443A1EE624B26BC1009BC733 /* InboxSideMenuDataSource+Helpers.swift */; };
 		444D23C224A8F30D00BDF79F /* InboxFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D23C124A8F30D00BDF79F /* InboxFilterViewController.swift */; };
 		444D23C424A8F46600BDF79F /* InboxFilterDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D23C324A8F46600BDF79F /* InboxFilterDatasource.swift */; };
@@ -66,16 +69,14 @@
 		444D65F624A88E1A00690B3E /* InboxMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 444D65F424A88E1A00690B3E /* InboxMessageTableViewCell.xib */; };
 		444D65F724A88E1A00690B3E /* InboxMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65F524A88E1A00690B3E /* InboxMessageTableViewCell.swift */; };
 		445BF9F124AE77CB00DAC3B3 /* InboxDataSource+APIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445BF9F024AE77CB00DAC3B3 /* InboxDataSource+APIHelpers.swift */; };
+		44BA11EA25832D9300088D53 /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = 44BA11E925832D9300088D53 /* SwipeCellKit */; };
 		44D9671524C23C6E0050ED46 /* AddFolder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44D9671024C23C6E0050ED46 /* AddFolder.storyboard */; };
 		44D9671624C23C6E0050ED46 /* AddFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D9671124C23C6E0050ED46 /* AddFolderViewController.swift */; };
 		44D9671724C23C6E0050ED46 /* AddFolderConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D9671224C23C6E0050ED46 /* AddFolderConfigurator.swift */; };
 		44D9671824C23C6E0050ED46 /* AddFolderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D9671324C23C6E0050ED46 /* AddFolderProtocol.swift */; };
 		44D9671924C23C6E0050ED46 /* AddFolderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D9671424C23C6E0050ED46 /* AddFolderInteractor.swift */; };
 		44DBC7DD24A89297009EFDB9 /* InboxMessageTablelViewCell+Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBC7DC24A89297009EFDB9 /* InboxMessageTablelViewCell+Labels.swift */; };
-		44DBC7DF24A8957B009EFDB9 /* InboxMessageTablelViewCell+LayoutConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBC7DE24A8957B009EFDB9 /* InboxMessageTablelViewCell+LayoutConstraints.swift */; };
-		44DBC7E124A89741009EFDB9 /* InboxMessageTablelViewCell+Badges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBC7E024A89741009EFDB9 /* InboxMessageTablelViewCell+Badges.swift */; };
 		44DBC7E424A8A3D7009EFDB9 /* InboxDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBC7E324A8A3D7009EFDB9 /* InboxDatasource.swift */; };
-		E8CAD30EC95C444EA423E6FE /* Pods_Inbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 691DDFE2EF3988074189416A /* Pods_Inbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +116,8 @@
 		440F7E3924AF6D7900B9BA2D /* UpgradeToPrimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpgradeToPrimeView.swift; sourceTree = "<group>"; };
 		440F7E4124AF6DDD00B9BA2D /* MoveToFolderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoveToFolderTableViewCell.xib; sourceTree = "<group>"; };
 		440F7E4224AF6DDD00B9BA2D /* MoveToFolderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveToFolderTableViewCell.swift; sourceTree = "<group>"; };
+		441342D72583307700E87540 /* InboxDatasource+SwipeActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InboxDatasource+SwipeActions.swift"; sourceTree = "<group>"; };
+		441342DB258334AB00E87540 /* InboxCellDisplayConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxCellDisplayConstants.swift; sourceTree = "<group>"; };
 		4422CEE124C2CCC5005C85F1 /* InboxViewer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = InboxViewer.xcodeproj; path = InboxViewer/InboxViewer.xcodeproj; sourceTree = "<group>"; };
 		443A1EE624B26BC1009BC733 /* InboxSideMenuDataSource+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InboxSideMenuDataSource+Helpers.swift"; sourceTree = "<group>"; };
 		444D23C124A8F30D00BDF79F /* InboxFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxFilterViewController.swift; sourceTree = "<group>"; };
@@ -159,12 +162,7 @@
 		44D9671324C23C6E0050ED46 /* AddFolderProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFolderProtocol.swift; sourceTree = "<group>"; };
 		44D9671424C23C6E0050ED46 /* AddFolderInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFolderInteractor.swift; sourceTree = "<group>"; };
 		44DBC7DC24A89297009EFDB9 /* InboxMessageTablelViewCell+Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InboxMessageTablelViewCell+Labels.swift"; sourceTree = "<group>"; };
-		44DBC7DE24A8957B009EFDB9 /* InboxMessageTablelViewCell+LayoutConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InboxMessageTablelViewCell+LayoutConstraints.swift"; sourceTree = "<group>"; };
-		44DBC7E024A89741009EFDB9 /* InboxMessageTablelViewCell+Badges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InboxMessageTablelViewCell+Badges.swift"; sourceTree = "<group>"; };
 		44DBC7E324A8A3D7009EFDB9 /* InboxDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxDatasource.swift; sourceTree = "<group>"; };
-		4E189E93A102D1073EF74CB2 /* Pods-Inbox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Inbox.debug.xcconfig"; path = "Target Support Files/Pods-Inbox/Pods-Inbox.debug.xcconfig"; sourceTree = "<group>"; };
-		691DDFE2EF3988074189416A /* Pods_Inbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Inbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7AC15A26C40132A855CD244B /* Pods-Inbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Inbox.release.xcconfig"; path = "Target Support Files/Pods-Inbox/Pods-Inbox.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,24 +172,15 @@
 			files = (
 				444D65B624A736C500690B3E /* Login.framework in Frameworks */,
 				444D659B24A70BA500690B3E /* Utility.framework in Frameworks */,
+				4413430C2583478100E87540 /* Colorful in Frameworks */,
 				444D65A824A723D300690B3E /* Networking.framework in Frameworks */,
-				E8CAD30EC95C444EA423E6FE /* Pods_Inbox.framework in Frameworks */,
+				44BA11EA25832D9300088D53 /* SwipeCellKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		161FEDC7704E45CD721A8E2E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				4E189E93A102D1073EF74CB2 /* Pods-Inbox.debug.xcconfig */,
-				7AC15A26C40132A855CD244B /* Pods-Inbox.release.xcconfig */,
-			);
-			name = Pods;
-			path = ../../Pods;
-			sourceTree = "<group>";
-		};
 		440F7DEB24AF6C1800B9BA2D /* EditFolder */ = {
 			isa = PBXGroup;
 			children = (
@@ -370,7 +359,6 @@
 				444D657A24A4DC7600690B3E /* Inbox */,
 				444D657924A4DC7600690B3E /* Products */,
 				444D659524A70BA000690B3E /* Frameworks */,
-				161FEDC7704E45CD721A8E2E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -460,6 +448,7 @@
 				444D658F24A4E76F00690B3E /* Constants.swift */,
 				444D65C624A73EFD00690B3E /* SharedInboxState.swift */,
 				440F7D7A24AF245D00B9BA2D /* Protocols.swift */,
+				441342DB258334AB00E87540 /* InboxCellDisplayConstants.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -471,7 +460,6 @@
 				444D65A724A723D300690B3E /* Networking.framework */,
 				444D659A24A70BA500690B3E /* Utility.framework */,
 				444D659624A70BA000690B3E /* Initializer.framework */,
-				691DDFE2EF3988074189416A /* Pods_Inbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -533,8 +521,6 @@
 				444D65F524A88E1A00690B3E /* InboxMessageTableViewCell.swift */,
 				444D65F424A88E1A00690B3E /* InboxMessageTableViewCell.xib */,
 				44DBC7DC24A89297009EFDB9 /* InboxMessageTablelViewCell+Labels.swift */,
-				44DBC7DE24A8957B009EFDB9 /* InboxMessageTablelViewCell+LayoutConstraints.swift */,
-				44DBC7E024A89741009EFDB9 /* InboxMessageTablelViewCell+Badges.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -587,6 +573,7 @@
 			isa = PBXGroup;
 			children = (
 				44DBC7E324A8A3D7009EFDB9 /* InboxDatasource.swift */,
+				441342D72583307700E87540 /* InboxDatasource+SwipeActions.swift */,
 				445BF9F024AE77CB00DAC3B3 /* InboxDataSource+APIHelpers.swift */,
 				444D23C324A8F46600BDF79F /* InboxFilterDatasource.swift */,
 			);
@@ -611,7 +598,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 444D658024A4DC7600690B3E /* Build configuration list for PBXNativeTarget "Inbox" */;
 			buildPhases = (
-				A32132764B1F8E5C0926928D /* [CP] Check Pods Manifest.lock */,
 				444D657324A4DC7600690B3E /* Headers */,
 				444D657424A4DC7600690B3E /* Sources */,
 				444D657524A4DC7600690B3E /* Frameworks */,
@@ -622,6 +608,10 @@
 			dependencies = (
 			);
 			name = Inbox;
+			packageProductDependencies = (
+				44BA11E925832D9300088D53 /* SwipeCellKit */,
+				4413430B2583478100E87540 /* Colorful */,
+			);
 			productName = Inbox;
 			productReference = 444D657824A4DC7600690B3E /* Inbox.framework */;
 			productType = "com.apple.product-type.framework";
@@ -632,8 +622,8 @@
 		444D656F24A4DC7600690B3E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1150;
-				ORGANIZATIONNAME = CTemplar;
+				LastUpgradeCheck = 1220;
+				ORGANIZATIONNAME = cTemplar;
 				TargetAttributes = {
 					444D657724A4DC7600690B3E = {
 						CreatedOnToolsVersion = 11.5;
@@ -650,6 +640,10 @@
 				Base,
 			);
 			mainGroup = 444D656E24A4DC7600690B3E;
+			packageReferences = (
+				44BA11E825832D9300088D53 /* XCRemoteSwiftPackageReference "SwipeCellKit" */,
+				4413430A2583478100E87540 /* XCRemoteSwiftPackageReference "Color-Picker-for-iOS" */,
+			);
 			productRefGroup = 444D657924A4DC7600690B3E /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -699,31 +693,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		A32132764B1F8E5C0926928D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Inbox-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		444D657424A4DC7600690B3E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -737,7 +706,6 @@
 				444D659224A70AA300690B3E /* InboxSideMenuController.swift in Sources */,
 				440F7E1224AF6C1900B9BA2D /* MoveToRouter.swift in Sources */,
 				444D65D324A7415300690B3E /* SideMenuTableManageFolderCell.swift in Sources */,
-				44DBC7E124A89741009EFDB9 /* InboxMessageTablelViewCell+Badges.swift in Sources */,
 				440F7E0E24AF6C1900B9BA2D /* ManageFoldersDataSource.swift in Sources */,
 				444D65D724A745D200690B3E /* CustomFolderTableViewCell.swift in Sources */,
 				440F7E0B24AF6C1900B9BA2D /* ManageFoldersInteractor.swift in Sources */,
@@ -747,9 +715,9 @@
 				44DBC7DD24A89297009EFDB9 /* InboxMessageTablelViewCell+Labels.swift in Sources */,
 				440F7E4424AF6DDD00B9BA2D /* MoveToFolderTableViewCell.swift in Sources */,
 				444D23C424A8F46600BDF79F /* InboxFilterDatasource.swift in Sources */,
-				44DBC7DF24A8957B009EFDB9 /* InboxMessageTablelViewCell+LayoutConstraints.swift in Sources */,
 				440F7D7B24AF245D00B9BA2D /* Protocols.swift in Sources */,
 				444D65B924A7389E00690B3E /* InboxSideMenuDataSource.swift in Sources */,
+				441342D82583307700E87540 /* InboxDatasource+SwipeActions.swift in Sources */,
 				440F7E0C24AF6C1900B9BA2D /* ManageFoldersConfigurator.swift in Sources */,
 				444D65F724A88E1A00690B3E /* InboxMessageTableViewCell.swift in Sources */,
 				444D65D024A7415300690B3E /* SideMenuTableSectionHeaderView.swift in Sources */,
@@ -777,6 +745,7 @@
 				44D9671824C23C6E0050ED46 /* AddFolderProtocol.swift in Sources */,
 				44D9671624C23C6E0050ED46 /* AddFolderViewController.swift in Sources */,
 				444D65B024A72D3000690B3E /* InboxSideMenuRouter.swift in Sources */,
+				441342DC258334AB00E87540 /* InboxCellDisplayConstants.swift in Sources */,
 				444D65E924A8523900690B3E /* InboxPresenter.swift in Sources */,
 				44DBC7E424A8A3D7009EFDB9 /* InboxDatasource.swift in Sources */,
 			);
@@ -811,6 +780,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -874,6 +844,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -907,7 +878,6 @@
 		};
 		444D658124A4DC7600690B3E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E189E93A102D1073EF74CB2 /* Pods-Inbox.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -936,7 +906,6 @@
 		};
 		444D658224A4DC7600690B3E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7AC15A26C40132A855CD244B /* Pods-Inbox.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -984,6 +953,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4413430A2583478100E87540 /* XCRemoteSwiftPackageReference "Color-Picker-for-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hayashi311/Color-Picker-for-iOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.1;
+			};
+		};
+		44BA11E825832D9300088D53 /* XCRemoteSwiftPackageReference "SwipeCellKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwipeCellKit/SwipeCellKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4413430B2583478100E87540 /* Colorful */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4413430A2583478100E87540 /* XCRemoteSwiftPackageReference "Color-Picker-for-iOS" */;
+			productName = Colorful;
+		};
+		44BA11E925832D9300088D53 /* SwipeCellKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 44BA11E825832D9300088D53 /* XCRemoteSwiftPackageReference "SwipeCellKit" */;
+			productName = SwipeCellKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 444D656F24A4DC7600690B3E /* Project object */;
 }

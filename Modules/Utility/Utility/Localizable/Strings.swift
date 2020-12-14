@@ -181,6 +181,7 @@ public enum Strings {
         case email
         case emailsx
         case unread
+        case read
         case filtered
         case noInboxMessage
         case noFilteredMessage
@@ -188,6 +189,7 @@ public enum Strings {
         case moveTo
         case deleteRow
         case messageMovedTo
+        case mailEncryptedMessage
         
         public enum Filter: String, Localizable {
             case starredFilter
@@ -203,6 +205,7 @@ public enum Strings {
             case moveToArchive
             case moveToInbox
             case moreActions
+            case more
         }
         
         public enum UndoAction: String, Localizable {
@@ -217,6 +220,7 @@ public enum Strings {
         public enum Alert: String, Localizable {
             case deleteTitle
             case deleteMessage
+            case deleteContact
         }
     }
     
@@ -438,5 +442,11 @@ public enum Strings {
     public enum NetworkError: String, Localizable {
         case networkErrorTitle
         case networkErrorMessage
+    }
+    
+    public enum ForceUpdate: String, Localizable {
+        case UpdateAvailableTitle
+        case UpdateAvailableMessage
+        case GoToStore
     }
 }

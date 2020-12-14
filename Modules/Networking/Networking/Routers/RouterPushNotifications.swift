@@ -1,6 +1,6 @@
 //
 //  RouterPushNotifications.swift
-//  CTemplar
+//  Ctemplar
 //
 //  Created by Roman K. on 12/6/19.
 //  Copyright © 2019 CTemplar. All rights reserved.

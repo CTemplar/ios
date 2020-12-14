@@ -1,12 +1,43 @@
 import Foundation
 import UIKit
 import Utility
+import WebKit
+
+public extension WKWebView {
+    private var blockRules: String { """
+          [{
+             "trigger": {
+                 "url-filter": ".*",
+                 "resource-type": ["image"]
+             },
+             "action": {
+                 "type": "block"
+             }
+         }]
+      """
+    }
+    
+    // Block External Images
+    func blockExternalImages() {
+        WKContentRuleListStore.default().compileContentRuleList(
+            forIdentifier: "ContentBlockingRules",
+            encodedContentRuleList: blockRules) { (contentRuleList, error) in
+            
+            if let _ = error {
+                return
+            }
+            
+            let configuration = self.configuration
+            configuration.userContentController.add(contentRuleList!)
+        }
+    }
+}
 
 public final class InboxViewerWebMailBodyCell: UITableViewCell, Cellable {
     
     // MARK: IBOutlets
-    @IBOutlet weak var messageTextEditorHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var messageTextEditor: RichEditorView!
+    @IBOutlet weak var webViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var webView: WKWebView!
     
     // MARK: Properties
     var thresholdHeight: CGFloat {
@@ -26,25 +57,23 @@ public final class InboxViewerWebMailBodyCell: UITableViewCell, Cellable {
     public override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .systemBackground
-        setupEditor()
+        setupWebView()
     }
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        messageTextEditor.setEditorFontColor(k_mailboxTextColor)
     }
     
     // MARK: - Setup UI
-    private func setupEditor() {
-        messageTextEditor.isScrollEnabled = false
-        
-        messageTextEditor.delegate = self
-        
-        messageTextEditor.editingEnabled = false
-                
-        messageTextEditor.setEditorFontColor(.label)
+    private func setupWebView() {
+        webView.isOpaque = false
+        webView.backgroundColor = .systemBackground
+        webView.navigationDelegate = self
+        webViewHeightConstraint.constant = thresholdHeight
+        webView.contentMode = .scaleAspectFit
+        onHeightChange?()
     }
-    
+
     // MARK: - Configuration
     public func configure(with model: Modelable) {
         guard let model = model as? TextMail else {
@@ -62,33 +91,70 @@ public final class InboxViewerWebMailBodyCell: UITableViewCell, Cellable {
         activityIndicatorView.startAnimating()
         
         if model.shouldBlockExternalImages {
-            messageTextEditor.blockExternalImages()
+            webView.blockExternalImages()
         }
         
-        messageTextEditor.html = model.content
+        activityIndicatorView.startAnimating()
+        
+        if model.content.contains("color:") {
+            webView.loadHTMLString(model.content.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "\r", with: ""), baseURL: nil)
+        } else {
+            webView.loadHTMLString("<div style=\"color:\(traitCollection.userInterfaceStyle == .dark ? "#ffffff" : "#000000")\">" + model.content.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "\r", with: "") + "</div>", baseURL: nil)
+
+        }
+    }
+    
+    private func applyJS() {
+        var scriptContent = "var meta = document.createElement('meta');"
+        scriptContent += "meta.name='viewport';"
+        scriptContent += "meta.content='width=device-width';"
+        scriptContent += "document.getElementsByTagName('head')[0].appendChild(meta);"
+        scriptContent += "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust='\(150)%'"
+        webView.evaluateJavaScript(scriptContent, completionHandler: nil)
     }
 }
 
-// MARK: - RichEditorDelegate
-extension InboxViewerWebMailBodyCell: RichEditorDelegate {
-    public func richEditorTookFocus(_ editor: RichEditorView) {
-    }
-    
-    public func richEditorLostFocus(_ editor: RichEditorView) {
-        // model.update(content: "\(editor.contentHTML)")
-    }
-    
-    public func richEditor(_ editor: RichEditorView, contentDidChange content: String) {
+// MARK: - WKUIDelegate
+extension InboxViewerWebMailBodyCell: WKNavigationDelegate {
+    public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         activityIndicatorView.stopAnimating()
+        let js = "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust='300%'"//dual size
+        webView.evaluateJavaScript(js, completionHandler: nil)
+
+        self.webView.evaluateJavaScript("document.readyState", completionHandler: { [weak self] (complete, error) in
+            if complete != nil {
+                self?.webView.evaluateJavaScript("document.body.scrollHeight", completionHandler: { (height, error) in
+                    if let height = height as? CGFloat {
+                        self?.webViewHeightConstraint.constant = height
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                            self?.onHeightChange?()
+                        }
+                    }
+                })
+            }
+        })
     }
     
-    public func didBeginEditing() {
-    }
-    
-    public func richEditor(_ editor: RichEditorView, heightDidChange height: Int) {
-        messageTextEditorHeightConstraint.constant = CGFloat(height)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.onHeightChange?()
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.navigationType == .linkActivated  {
+            if let url = navigationAction.request.url,
+                let host = url.host, !host.hasPrefix("www.google.com"),
+                UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+                DPrint(url)
+                DPrint("Redirected to browser. No need to open it locally")
+                decisionHandler(.cancel)
+            } else {
+                DPrint("Open it locally")
+                decisionHandler(.allow)
+            }
+        } else {
+            DPrint("not a user click")
+            decisionHandler(.allow)
         }
+    }
+
+    public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        DPrint("web view loading failed: \(error.localizedDescription)")
     }
 }

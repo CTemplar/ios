@@ -5,7 +5,7 @@ enum RememberCredentialState {
     case doNotRemember
     
     func stateImage() -> UIImage? {
-        return self == .remember ? #imageLiteral(resourceName: "checked") : nil
+        return self == .remember ? UIImage(systemName: "checkmark.square.fill") : UIImage(systemName: "square")
     }
     
     static func getState(from selectionState: Bool) -> RememberCredentialState {

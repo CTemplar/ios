@@ -33,6 +33,15 @@ final class InboxViewerDatasource: NSObject {
         return message?.folder == Menu.spam.menuName
     }
     
+    private var decryptedSubject: String {
+        var subject = message?.subject ?? ""
+        
+        if subject.contains("BEGIN PGP") == true, let decryptedSubject = decrypt(content: subject) {
+            subject = decryptedSubject
+        }
+        return subject
+    }
+    
     // MARK: - Constructor
     init(inboxViewerController: InboxViewerController, tableView: UITableView, user: UserMyself) {
         self.inboxViewerController = inboxViewerController
@@ -86,11 +95,10 @@ final class InboxViewerDatasource: NSObject {
         let isProtected = messageObject.isProtected ?? false
         let isStarred = messageObject.starred ?? false
         let isSecured = true
-        let title = messageObject.subject ?? ""
-        
+
         var sectionList: [InboxViewerSection] = [
             .subject(Subject(
-                title: title,
+                title: decryptedSubject,
                 isProtected: isProtected,
                 isSecured: isSecured,
                 isStarred: isStarred
@@ -200,7 +208,7 @@ final class InboxViewerDatasource: NSObject {
         // Receiver's Mail Id(s)
         var receiver = ""
         
-        if let recievers = messageObj.receivers as? [String], !recievers.isEmpty {
+        if let recievers = messageObj.receivers, !recievers.isEmpty {
             receiver = formatterService.formatToString(toEmailsArray: recievers)
         }
         
@@ -232,17 +240,17 @@ final class InboxViewerDatasource: NSObject {
             senderTypes.append(.from(formattedSender))
         }
         
-        if let recievers = message.receivers as? [String], !recievers.isEmpty {
+        if let recievers = message.receivers, !recievers.isEmpty {
             let receiver = formatterService.formatToString(toEmailsArray: recievers)
             senderTypes.append(.to(receiver))
         }
         
-        if let ccMailIds = message.cc as? [String], !ccMailIds.isEmpty {
+        if let ccMailIds = message.cc, !ccMailIds.isEmpty {
             let cc = formatterService.formatToString(toEmailsArray: ccMailIds)
             senderTypes.append(.cc(cc))
         }
         
-        if let bccMailIds = message.bcc as? [String], !bccMailIds.isEmpty {
+        if let bccMailIds = message.bcc, !bccMailIds.isEmpty {
             let bcc = formatterService.formatToString(toEmailsArray: bccMailIds)
             senderTypes.append(.bcc(bcc))
         }
@@ -356,6 +364,14 @@ final class InboxViewerDatasource: NSObject {
     
     func needReadAction() -> Bool {
         return message?.read ?? false
+    }
+    
+    func decrypt(content: String) -> String? {
+        let decryptedSubject = pgpService.decryptMessage(encryptedContet: content)
+        if decryptedSubject == "#D_FAILED_ERROR#" {
+            return nil
+        }
+        return decryptedSubject
     }
 }
 
@@ -521,10 +537,18 @@ extension InboxViewerDatasource: UITableViewDataSource, UITableViewDelegate {
     
     // while scrolling this delegate is being called so you may now check which direction your scrollView is being scrolled to
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        if scrollView.contentOffset.y <= 10.0 {
+//            inboxViewerController?.navigationItem.title = nil
+//        } else if scrollView.contentOffset.y > 15 {
+//            inboxViewerController?.navigationItem.title = decryptedSubject
+//        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y <= 10.0 {
             inboxViewerController?.navigationItem.title = nil
         } else if scrollView.contentOffset.y > 15 {
-            inboxViewerController?.navigationItem.title = message?.subject
+            inboxViewerController?.navigationItem.title = decryptedSubject
         }
     }
 

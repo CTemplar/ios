@@ -1,45 +1,56 @@
 import Foundation
 import UIKit
-import MGSwipeTableCell
+import SwipeCellKit
 import Utility
 import Networking
 
-class InboxMessageTableViewCell: MGSwipeTableCell {
+class InboxMessageTableViewCell: SwipeTableViewCell, Cellable {
     
     // MARK: IBOutlets
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var senderLabel: UILabel!
     @IBOutlet weak var subjectLabel: UILabel!
-    @IBOutlet weak var headMessageLabel: UILabel!
-    @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var countLabel: UILabel! {
+        didSet {
+            countLabel.backgroundColor = k_redColor
+            countLabel.font = .withType(.ExtraSmall(.Bold))
+        }
+    }
     @IBOutlet weak var deleteLabel: UILabel!
     @IBOutlet weak var leftLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var encryptedSubjectLabel: UILabel!
-    @IBOutlet weak var isSelectedImageView: UIImageView!
-    @IBOutlet weak var isReadImageView: UIImageView!
-    @IBOutlet weak var isSecuredImageView: UIImageView!
-    @IBOutlet weak var isStaredImageView: UIImageView!
+    @IBOutlet weak var timeLabel: UILabel! {
+        didSet {
+            timeLabel.textColor = .systemGray2
+            timeLabel.font = .withType(.Small(.Bold))
+        }
+    }
+    @IBOutlet weak var isReadView: UIView! {
+        didSet {
+            isReadView.cornerRadius = isReadView.frame.size.width / 2.0
+        }
+    }
+    @IBOutlet weak var isSecuredImageView: UIImageView! {
+        didSet {
+            isSecuredImageView.tintColor = k_mailboxTextColor
+        }
+    }
+    @IBOutlet weak var isStaredImageView: UIImageView! {
+        didSet {
+            isStaredImageView.tintColor = .systemYellow
+        }
+    }
     @IBOutlet weak var hasAttachmentImageView: UIImageView!
-    @IBOutlet weak var badgesView: UIView!
     @IBOutlet weak var timerlabelsView: UIView!
     @IBOutlet weak var leftlabelView: UIView!
     @IBOutlet weak var rightlabelView: UIView!
-    @IBOutlet weak var encryptedSubjectView: UIView!
-    @IBOutlet weak var senderLabelWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var isSelectedImageTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var isSelectedImageWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var dotImageWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var dotImageTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var countLabelWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var countLabelTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var deleteLabelWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var badgesViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var timerlabelsViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var leftlabelViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var rightlabelViewWidthConstraint: NSLayoutConstraint!
     
     // MARK: Properties
-    var cellWidth: CGFloat = 0.0
+    struct Model: Modelable {
+        let message: EmailMessage
+        let subjectEncrypted: Bool
+    }
+    
+    var onTapMore: (() -> Void)?
    
     lazy var formatterService: FormatterService = {
         return UtilityManager.shared.formatterService
@@ -49,45 +60,30 @@ class InboxMessageTableViewCell: MGSwipeTableCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        selectedBackgroundView = UIView()
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        containerView.shadowColor = traitCollection.userInterfaceStyle == .dark ? UIColor.black.withAlphaComponent(0.2) : UIColor.systemGray5
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        // Configure the view for the selected state
+        self.selectedBackgroundView?.backgroundColor = .clear
     }
     
-    // MARK: - Setup
-    func setupCellWithData(message: EmailMessage,
-                           header: String,
-                           subjectEncrypted: Bool,
-                           isSelectionMode: Bool,
-                           isSelected: Bool,
-                           frameWidth: CGFloat) {
-        
-        cellWidth = frameWidth
-        setupLabelsAndImages(message: message, header: header, subjectEncrypted: subjectEncrypted)
-        setupConstraints(message: message, isSelectionMode: isSelectionMode)
-        isSelectedImageView.image = isSelected ? #imageLiteral(resourceName: "checkedBoxDark") : #imageLiteral(resourceName: "roundDark")
+    // MARK: - Configuration
+    func configure(with model: Modelable) {
+        let model = model as! Model
+        setupLabelsAndImages(message: model.message, subjectEncrypted: model.subjectEncrypted)
     }
     
-    func isShortNeed(message: EmailMessage) -> Bool {
-        var short = false
-        var leftLabelShowing = false
-        
-        if Device.IS_IPHONE_5 {
-            short = true
-        } else {
-            if message.delayedDelivery != nil || message.deadManDuration != nil {
-                leftLabelShowing = true
-            }
-            
-            if message.destructDay != nil {
-                if leftLabelShowing {
-                    short = true
-                }
-            }
-        }
-        return short
+    // MARK: - Actions
+    @IBAction func onTapMore(_ sender: Any) {
+        onTapMore?()
     }
 }

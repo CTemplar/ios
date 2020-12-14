@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YFy-fy-PJe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YFy-fy-PJe">
     <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--View Controller-->
         <scene sceneID="Unz-Zc-j8u">
             <objects>
-                <viewController storyboardIdentifier="MainViewController" id="YFy-fy-PJe" customClass="MainViewController" customModule="Ctemplar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="YFy-fy-PJe" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cCM-mM-DCs">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,6 +34,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="n6o-uB-nzh"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="8VH-mh-L7y" firstAttribute="centerX" secondItem="cCM-mM-DCs" secondAttribute="centerX" id="ECw-8B-zxv"/>
@@ -46,7 +47,6 @@
                             <constraint firstAttribute="trailing" secondItem="9ch-aq-D7Y" secondAttribute="trailing" id="qQY-qz-S40"/>
                             <constraint firstItem="9ch-aq-D7Y" firstAttribute="leading" secondItem="cCM-mM-DCs" secondAttribute="leading" id="vB2-y1-PnN"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="n6o-uB-nzh"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R8E-PD-PVu" userLabel="First Responder" sceneMemberID="firstResponder"/>

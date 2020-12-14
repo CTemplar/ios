@@ -1,6 +1,6 @@
 //
 //  Constants.swift
-//  CTemplar
+//  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 01.10.2018.
 //  Copyright © 2018 CTemplar. All rights reserved.

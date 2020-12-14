@@ -34,14 +34,22 @@ extension ComposeViewModel {
         return email.content ?? ""
     }
     
-    func decryptedMailContent(from email: EmailMessage) -> String? {
-        if let content = email.content {
-            let message = pgpService.decryptMessage(encryptedContet: content)
-            if message == "#D_FAILED_ERROR#" {
-                return nil
-            }
-            return message
+    func decryptedMailContent(from content: String) -> String? {
+        let message = pgpService.decryptMessage(encryptedContet: content)
+        if message == "#D_FAILED_ERROR#" {
+            return nil
         }
-        return nil
+        return message
+    }
+    
+    func decryptedMailContent(from email: EmailMessage) -> String? {
+        var message: String?
+        DispatchQueue.global(qos: .background).sync {
+            if let content = email.content {
+                message = pgpService.decryptMessage(encryptedContet: content)
+            }
+        }
+        
+        return message
     }
 }

@@ -29,7 +29,7 @@ final class ComposeViewModel: Modelable {
     
     private (set) var email: EmailMessage
     
-    private var includeAttachments: Bool
+    private (set) var includeAttachments: Bool
     
     private let sections = ComposeSection.allCases
     
@@ -122,9 +122,9 @@ final class ComposeViewModel: Modelable {
         case .replyAll:
             var receivers: [String] = []
             if let lastChild = email.children?.last {
-                receivers = lastChild.receivers as? [String] ?? []
+                receivers = lastChild.receivers ?? []
             } else {
-                receivers = email.receivers as? [String] ?? []
+                receivers = email.receivers ?? []
             }
             email.update(receivers: receivers)
         default: break
@@ -149,7 +149,7 @@ final class ComposeViewModel: Modelable {
                                     send: false,
                                     encrypted: false,
                                     encryptionObject: [:],
-                                    attachments: email.attachments?.map({ $0.toDictionary() }) ?? [],
+                                    attachments: self.includeAttachments ? email.attachments?.map({ $0.toDictionary() }) ?? [] : [],
                                     isSubjectEncrypted: user.settings.isSubjectEncrypted ?? false,
                                     sender: email.sender ?? "",
                                     lastAction: answerMode.localized,
@@ -198,7 +198,7 @@ final class ComposeViewModel: Modelable {
                                         send: false,
                                         encrypted: email.isEncrypted ?? true,
                                         encryptionObject: encryptionObjectDictionary,
-                                        attachments: email.attachments?.map({ $0.toDictionary() }) ?? [],
+                                        attachments: self.includeAttachments ? email.attachments?.map({ $0.toDictionary() }) ?? [] : [],
                                         isSubjectEncrypted: user.settings.isSubjectEncrypted ?? false,
                                         sender: email.sender ?? "",
                                         lastAction: answerMode.localized)
@@ -254,7 +254,7 @@ final class ComposeViewModel: Modelable {
         .store(in: &bindables)
         
         // To Prefix
-        let receiversList: [String] = answerMode == .forward ? [] : email.receivers as? [String] ?? []
+        let receiversList: [String] = answerMode == .forward ? [] : email.receivers ?? []
         toCellVM = ComposeMailOtherEmailModel(mode: .to,
                                               contacts: contacts,
                                               mailIds: receiversList,
@@ -272,7 +272,7 @@ final class ComposeViewModel: Modelable {
         // CC Prefix
         ccCellVM = ComposeMailOtherEmailModel(mode: .cc,
                                               contacts: contacts,
-                                              mailIds: email.cc as? [String] ?? [],
+                                              mailIds: email.cc ?? [],
                                               isContactsEncrypted: isContactEncrypted,
                                               indexPath: IndexPath(row: 1, section: 0))
         ccCellVM?
@@ -286,7 +286,7 @@ final class ComposeViewModel: Modelable {
         // BCC Prefix
         bccCellVM = ComposeMailOtherEmailModel(mode: .bcc,
                                                contacts: contacts,
-                                               mailIds: email.bcc as? [String] ?? [],
+                                               mailIds: email.bcc ?? [],
                                                isContactsEncrypted: isContactEncrypted,
                                                indexPath: IndexPath(row: 2, section: 0))
         bccCellVM?
@@ -298,7 +298,13 @@ final class ComposeViewModel: Modelable {
         .store(in: &bindables)
         
         // Subject
-        subjectCellVM = ComposeMailSubjectModel(content: email.subject ?? "",
+        var subject = email.subject ?? ""
+        
+        if subject.contains("BEGIN PGP") == true, let decryptedSubject = decryptedMailContent(from: subject) {
+            subject = decryptedSubject
+        }
+        
+        subjectCellVM = ComposeMailSubjectModel(content: subject,
                                                 contentType: .normalText)
         
         subjectCellVM?
@@ -505,9 +511,9 @@ final class ComposeViewModel: Modelable {
     
     func receiversList() -> [[String]] {
         var recieversList = [[String]]()
-        recieversList.append(email.receivers as? [String] ?? [])
-        recieversList.append(email.cc as? [String] ?? [])
-        recieversList.append(email.bcc as? [String] ?? [])
+        recieversList.append(email.receivers ?? [])
+        recieversList.append(email.cc ?? [])
+        recieversList.append(email.bcc ?? [])
         return recieversList
     }
     
@@ -851,9 +857,9 @@ final class ComposeViewModel: Modelable {
     }
     
     func prepareMessadgeToSend() {
-        let receivers = email.receivers as? [String] ?? []
-        let ccMailIds = email.cc as? [String] ?? []
-        let bccMailIds = email.bcc as? [String] ?? []
+        let receivers = email.receivers ?? []
+        let ccMailIds = email.cc ?? []
+        let bccMailIds = email.bcc ?? []
         let sender = [email.sender].compactMap({ $0 })
         
         let allMailIds = Array(receivers + ccMailIds + bccMailIds + sender)
@@ -871,7 +877,7 @@ final class ComposeViewModel: Modelable {
             if let emailsKeys = keys {
                 if emailsKeys.encrypt {
                     if let messageID = self?.email.messsageID {
-                        if strong.email.attachments?.isEmpty == false {
+                        if strong.email.attachments?.isEmpty == false, strong.includeAttachments {
                             strong.updateAttachments(publicKeys: emailsKeys.pgpKeys, messageID: messageID)
                         } else {
                             strong.sendEncryptedEmailForCtemplarUser(publicKeys: emailsKeys.pgpKeys)

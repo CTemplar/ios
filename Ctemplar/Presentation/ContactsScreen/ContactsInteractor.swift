@@ -1,6 +1,6 @@
 //
 //  ContactsInteractor.swift
-//  CTemplar
+//  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 14.11.2018.
 //  Copyright © 2018 CTemplar. All rights reserved.
@@ -73,56 +73,47 @@ class ContactsInteractor {
         if self.offset >= self.totalItems && self.offset > 0 {
             return
         }
+        
         let fetchAll = !self.viewController!.contactsEncrypted
         
-        apiService?.userContacts(fetchAll: fetchAll, offset: offset, silent: false) {(result) in
-            
+        apiService?.userContacts(fetchAll: fetchAll, offset: offset, silent: false) { [weak self] (result) in
             switch(result) {
-                
             case .success(let value):
-                //print("userContactsList:", value)
-                
                 let contactsList = value as! ContactsList
-                if let totalCount = contactsList.totalCount {
-                    self.totalItems = totalCount
-                }
                 
-                self.offset = self.offset + k_contactPageLimit
-                self.setContactsData(contactsList: contactsList, withOffset: !fetchAll)
-                                
+                if let totalCount = contactsList.totalCount {
+                    self?.totalItems = totalCount
+                }
+                self?.offset = (self?.offset ?? 0) + k_contactPageLimit
+                self?.setContactsData(contactsList: contactsList, withOffset: !fetchAll)
             case .failure(let error):
-                print("error:", error)
-                self.viewController?.showAlert(with: "Contacts Error",
+                self?.viewController?.showAlert(with: Strings.AppError.error.localized,
                            message: error.localizedDescription,
                            buttonTitle: Strings.Button.closeButton.localized)
             }
         }
     }
        
-    func deleteContactsList(selectedContactsArray: Array<Contact>, withUndo: String) {
-        
-        var contactsIDList : String = ""
+    func deleteContactsList(selectedContactsArray: [Contact], withUndo: String) {
+        var contactsIDList = ""
         
         for contact in selectedContactsArray {
-            contactsIDList = contactsIDList + contact.contactID!.description + ","
+            if let contactId = contact.contactID?.description {
+                contactsIDList = contactsIDList + contactId + ","
+            }
         }
         
-        contactsIDList.remove(at: contactsIDList.index(before: contactsIDList.endIndex)) //remove last ","
+        contactsIDList.remove(at: contactsIDList.index(before: contactsIDList.endIndex))
         
         Loader.start()
         
-        apiService?.deleteContacts(contactsIDIn: contactsIDList) {(result) in
-            
+        apiService?.deleteContacts(contactsIDIn: contactsIDList) { [weak self] (result) in
             switch(result) {
-                
             case .success( _):
-              
-                print("deleteContactsList")
-                self.userContactsList()
-                
+                self?.offset = 0
+                self?.userContactsList()
             case .failure(let error):
-                print("error:", error)
-                self.viewController?.showAlert(with: "Contacts Error",
+                self?.viewController?.showAlert(with: Strings.AppError.error.localized,
                            message: error.localizedDescription,
                            buttonTitle: Strings.Button.closeButton.localized)
             }

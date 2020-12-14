@@ -1,6 +1,6 @@
 //
 //  PGPKey.swift
-//  CTemplar
+//  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 08.10.2018.
 //  Copyright © 2018 CTemplar. All rights reserved.

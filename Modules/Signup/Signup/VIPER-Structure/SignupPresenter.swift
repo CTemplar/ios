@@ -116,7 +116,7 @@ final class SignupPresenter {
         pageViewController.pageControl.currentPage = nextIndex
         
         let nextViewController = orderedControllers[nextIndex]
-        
+
         pageViewController.setViewControllers([nextViewController],
                                                 direction: .forward,
                                                 animated: true,

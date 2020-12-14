@@ -7,6 +7,7 @@ import Inbox
 class SearchTableViewCell: UITableViewCell {
     // MARK: IBOutlets
     @IBOutlet weak var folderNameBackground: UIView!
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var folderNameLabel: UILabel!
     @IBOutlet weak var subjectLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -24,6 +25,10 @@ class SearchTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        selectionStyle = .none
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
+        containerView.backgroundColor = .systemBackground
     }
     
     override func prepareForReuse() {
@@ -32,6 +37,13 @@ class SearchTableViewCell: UITableViewCell {
         subjectLabel.text = ""
         dateLabel.text = ""
         senderLabel.text = ""
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        containerView.applyDropShadow()
+        containerView.cornerRadius = 10.0
+        containerView.setBorder(color: k_borderColor, width: 1.0)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

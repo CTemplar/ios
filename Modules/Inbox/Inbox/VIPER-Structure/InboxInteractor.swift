@@ -214,14 +214,18 @@ extension InboxInteractor {
         guard let menu = menu else {
             return
         }
+        
         if pgpService.getStoredPGPKeys() == nil {
-            mailboxesList(storeKeys: true)
+            DispatchQueue.global(qos: .background).async {
+                self.mailboxesList(storeKeys: true)
+            }
         } else {
             DPrint("local PGPKeys exist")
-            messagesList(folder: menu.menuName,
-                         withUndo: withUndo,
-                         silent: silent
-            )
+            DispatchQueue.global(qos: .background).async {
+                self.messagesList(folder: menu.menuName,
+                                   withUndo: withUndo,
+                                   silent: silent)
+            }
         }
     }
     

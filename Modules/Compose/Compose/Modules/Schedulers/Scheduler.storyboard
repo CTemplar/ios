@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -32,7 +34,7 @@
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" enabled="NO" image="timer" catalog="system" style="plain" id="uun-Sy-aXN">
-                                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="tintColor" systemColor="systemRedColor"/>
                                             <connections>
                                                 <action selector="scheduleButtonPressed:" destination="Tbh-3a-1e6" id="Lbz-HD-z2W"/>
                                             </connections>
@@ -81,6 +83,7 @@
                                 </connections>
                             </pickerView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Ns-hh-tWy"/>
                         <color key="backgroundColor" name="viewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="taU-8K-Coy" firstAttribute="width" secondItem="ehV-ho-t31" secondAttribute="width" multiplier="0.874667" id="3Iw-y8-SJw"/>
@@ -101,7 +104,6 @@
                             <constraint firstItem="2FM-YG-0lR" firstAttribute="trailing" secondItem="6Ns-hh-tWy" secondAttribute="trailing" id="w2u-Zb-VhS"/>
                             <constraint firstItem="xCg-tp-1xA" firstAttribute="centerY" secondItem="ehV-ho-t31" secondAttribute="centerY" id="wMT-RQ-aoP"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Ns-hh-tWy"/>
                     </view>
                     <connections>
                         <outlet property="customDatePicker" destination="2FM-YG-0lR" id="bxA-to-gmp"/>
@@ -135,5 +137,8 @@
         <namedColor name="viewBackgroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

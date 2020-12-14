@@ -1,6 +1,6 @@
 //
 //  PageResult.swift
-//  CTemplar
+//  Ctemplar
 //
 //  Created by romkh on 19.12.2019.
 //  Copyright © 2019 CTemplar. All rights reserved.

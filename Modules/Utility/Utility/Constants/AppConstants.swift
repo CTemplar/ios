@@ -268,6 +268,10 @@ public var k_borderColor: UIColor {
     return UIColor(named: "borderColor")!
 }
 
+public var k_shadowColor: UIColor {
+    return UIColor(named: "composeMessageShadowColor")!
+}
+
 public var k_mailSenderCellBackgroundColor: UIColor {
     return UIColor(named: "mailSenderCellBackgroundColor")!
 }

@@ -68,6 +68,8 @@ public final class ComposeMailBodyCell: UITableViewCell, Cellable {
             messageTextEditor.isScrollEnabled = true
             keyboardHeight = keyboardRectangle.height
             changeHeight(Int(keyboardHeight))
+            tableView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardRectangle.height, right: 0)
+            tableView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardRectangle.height, right: 0)
         }
     }
     
@@ -80,6 +82,8 @@ public final class ComposeMailBodyCell: UITableViewCell, Cellable {
 
     // MARK: - Setup
     private func setupEditor() {
+        messageTextEditor.updateEditorHTML(true)
+
         messageTextEditor.inputAccessoryView = toolbar
         
         messageTextEditor.delegate = self
@@ -87,7 +91,7 @@ public final class ComposeMailBodyCell: UITableViewCell, Cellable {
         messageTextEditor.isScrollEnabled = false
         
         toolbar.editor = messageTextEditor
-        
+                
         toolbar.delegate = self
         
         var otherOptions: [RichEditorOption] = []
@@ -139,7 +143,9 @@ public final class ComposeMailBodyCell: UITableViewCell, Cellable {
                 
         setupEditor()
        
-        messageTextEditor.html = model.content
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.messageTextEditor.html = model.content
+        }
     }
 }
 

@@ -26,7 +26,7 @@ extension ComposeViewModel {
             subject = encryptMessage(publicKeys: publicKeys, message: subject)
         }
         
-        let attachments: [[String: String]] = email.attachments?.map({ $0.toDictionary() }) ?? []
+        let attachments: [[String: String]] = self.includeAttachments ? email.attachments?.map({ $0.toDictionary() }) ?? [] : []
         
         let message = Message(messageID: messsageID,
                               encryptedMessage: messageContent,
@@ -70,7 +70,7 @@ extension ComposeViewModel {
             messageContent = decryptedContent
         }
         
-        let attachments: [[String: String]] = email.attachments?.map({ $0.toDictionary() }) ?? []
+        let attachments: [[String: String]] = self.includeAttachments ? email.attachments?.map({ $0.toDictionary() }) ?? [] : []
         
         if menuCellVM?.selectedMenus.contains(.mailEncryption) == true {
             if let encryptionObject = email.encryption {
@@ -156,12 +156,12 @@ extension ComposeViewModel {
             
             pgpKeys.append(nonCtemplarPGPKey)
             
-            updateAttachmentsForNonCtemplarUsers(attachments: email.attachments ?? [],
+            updateAttachmentsForNonCtemplarUsers(attachments: self.includeAttachments ? email.attachments ?? [] : [],
                                                  index: 0,
                                                  publicKeys: pgpKeys,
                                                  messageID: messageId)
         } else {
-            updateAttachmentsForNonCtemplarUsers(attachments: email.attachments ?? [],
+            updateAttachmentsForNonCtemplarUsers(attachments: self.includeAttachments ? email.attachments ?? [] : [],
                                                  index: 0,
                                                  publicKeys: [],
                                                  messageID: messageId)

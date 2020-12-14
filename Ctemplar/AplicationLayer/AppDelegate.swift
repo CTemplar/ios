@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  CTemplar
+//  Ctemplar
 //
 //  Created by Tatarinov Dmitry on 01.10.2018.
 //  Copyright © 2018 CTemplar. All rights reserved.
@@ -20,6 +20,7 @@ import Inbox
 import InboxViewer
 import Combine
 import IQKeyboardManagerSwift
+import EMAlertController
 
 typealias AppResult<T> = Result<T, Error>
 typealias Completion<T> = (AppResult<T>) -> Void
@@ -69,9 +70,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationCenter.default.addObserver(forName: .disableIQKeyboardManagerNotificationID,
                                                object: nil,
                                                queue: .main) { (notification) in
-                                                if let vc = notification.object as? UIViewController {
-                                                    IQKeyboardManager.shared.disabledToolbarClasses = [type(of: vc)]
-                                                }
+            if let vc = notification.object as? UIViewController {
+                IQKeyboardManager.shared.disabledToolbarClasses = [type(of: vc)]
+            }
+        }
+        
+        NotificationCenter.default.addObserver(forName: .showForceAppUpdateAlertNotificationID,
+                                               object: nil,
+                                               queue: .main) { (_) in
+            self.showForceUpdateAlert()
         }
         
         Fabric.with([Crashlytics.self])
@@ -99,6 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        showForceUpdateAlert()
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -168,9 +176,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate: MessagingDelegate {
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        guard let fcmToken = fcmToken else {
+            return
+        }
+        
         DPrint("Firebase registration token: \(fcmToken)")
-        self.saveAPNDeviceToken(fcmToken)
+        
+        saveAPNDeviceToken(fcmToken)
+        
         if !UtilityManager.shared.keychainService.getUserName().isEmpty {
             NetworkManager.shared.networkService.send(deviceToken: fcmToken) { _ in }
         }
@@ -267,7 +281,6 @@ private extension AppDelegate {
         let initializer: InitializerController = UIStoryboard(storyboard: .initializer,
                                                               bundle: Bundle(for: InitializerController.self)
         ).instantiateViewController()
-        
         handleCallbacks(from: initializer)
         window?.rootViewController = initializer
     }
@@ -305,6 +318,71 @@ extension AppDelegate {
             let inboxNav = root.children.first(where: { $0 is InboxNavigationController }) as? InboxNavigationController,
             let topVC = inboxNav.topViewController as? EmptyStateMachine {
             topVC.removeEmptyState()
+        }
+    }
+}
+
+// MARK: - Force Update Alert
+private extension AppDelegate {
+    func showForceUpdateAlert() {
+        guard let storeVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
+            return
+        }
+        
+        DispatchQueue.global(qos: .background).async {
+            NetworkManager.shared.apiService.checkAppVersion { (appVersion, isForceUpdate) in
+                DispatchQueue.main.async {
+                    if storeVersion.compare(appVersion, options: .numeric) == .orderedAscending, isForceUpdate {
+                        var message = Strings.ForceUpdate.UpdateAvailableMessage.localized
+                        message = message.replacingOccurrences(of: "%s", with: appVersion)
+                        let alertConfig = AppVersionAlertConfig(title: Strings.ForceUpdate.UpdateAvailableTitle.localized,
+                                                                message: message,
+                                                                image: #imageLiteral(resourceName: "Slice"),
+                                                                alertButtons: [.init(title: Strings.ForceUpdate.GoToStore.localized,
+                                                                                     type: .cancel,
+                                                                                     action: {
+                                                                                        if let url = URL(string: "itms-apps://apple.com/app/id1495837525") {
+                                                                                            UIApplication.shared.open(url)
+                                                                                        }
+                                                                                     })
+                                                                ]
+                        )
+                        
+                        self.showImageAlert(withConfig: alertConfig)
+                    }
+                }
+            }
+        }
+    }
+    
+    func showImageAlert(withConfig config: AppVersionAlertConfig) {
+        let alert = EMAlertController(title: config.title, message: config.message)
+        alert.iconImage = config.image
+        alert.dataDetectorTypes = .all
+        alert.backgroundColor = .systemBackground
+        alert.titleColor = .label
+        alert.messageColor = .label
+        alert.cornerRadius = 10
+        for button in config.alertButtons {
+            let alertButton = EMAlertAction(title: button.title, style: button.type, action: button.action)
+            alertButton.titleFont = UIFont.preferredFont(forTextStyle: .headline)
+            alert.addAction(alertButton)
+        }
+        
+        if let window = UIApplication.shared.getKeyWindow() {
+            if let sideMenu = window.rootViewController as? SideMenuController,
+                let contentNavigationVC = sideMenu.contentViewController as? InboxNavigationController {
+                contentNavigationVC.topViewController?.present(alert, animated: true, completion: nil)
+            } else if let initializerController = window.rootViewController as? InitializerController,
+                      let loginController = initializerController.children.first {
+                if let signupVC = loginController.presentedViewController {
+                    signupVC.present(alert, animated: true, completion: nil)
+                } else {
+                    loginController.present(alert, animated: true, completion: nil)
+                }
+            } else {
+                fatalError("Not able to find any root controller")
+            }
         }
     }
 }

@@ -39,10 +39,10 @@ public final class InboxSideMenuController: UIViewController {
         setupNotifications()
         navigationController?.navigationBar.isHidden = true
     }
-    
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        DispatchQueue.main.async {
+
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        DispatchQueue.global(qos: .background).async {
             self.presenter?.interactor?.unreadMessagesCounter()
         }
     }
