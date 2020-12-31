@@ -203,7 +203,7 @@ public final class InboxSideMenuInteractor {
         switch preference {
         case .contacts:
             viewController?.router?.showContactsViewController(withUserContacts: contacts,
-                                                               isContactEncrypted: user.settings.isContactsEncrypted ?? false)
+                                                               user: user)
         case .settings:
             viewController?.router?.showSettingsViewController(withUser: user)
 //        case .FAQ:

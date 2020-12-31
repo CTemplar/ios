@@ -6,15 +6,15 @@ class BaseAppSettingsCell: UITableViewCell, Cellable {
     // MARK: Properties
     lazy private var titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = k_settingsCellTextColor
-        label.font = AppStyle.CustomFontStyle.Regular.font(withSize: 16.0)
+        label.textColor = .label
+        label.font = .withType(.Default(.Normal))
         return label
     }()
     
     lazy private var subtitleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = k_settingsCellSecondaryTextColor
-        label.font = AppStyle.CustomFontStyle.Regular.font(withSize: 14.0)
+        label.textColor = .secondaryLabel
+        label.font = .withType(.Small(.Normal))
         return label
     }()
 
@@ -36,8 +36,8 @@ class BaseAppSettingsCell: UITableViewCell, Cellable {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        textLabel?.text = nil
-        detailTextLabel?.text = nil
+        titleLabel.text = nil
+        subtitleLabel.text = nil
         accessoryType = .none
         selectionStyle = .none
     }
@@ -53,7 +53,7 @@ class BaseAppSettingsCell: UITableViewCell, Cellable {
         backgroundColor = .systemBackground
         
         [
-            titleLabel
+            titleLabel,
         ].forEach({
             $0.translatesAutoresizingMaskIntoConstraints = false
             addSubview($0)

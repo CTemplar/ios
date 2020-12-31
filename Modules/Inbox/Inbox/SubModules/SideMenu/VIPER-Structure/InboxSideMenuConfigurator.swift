@@ -6,7 +6,7 @@ import Networking
 class InboxSideMenuConfigurator {
     // MARK: - Configuration
     func configure(viewController: InboxSideMenuController,
-                   onTapContacts: (([Contact], Bool) -> Void)?,
+                   onTapContacts: (([Contact], UserMyself) -> Void)?,
                    onTapSettings: ((UserMyself) -> Void)?,
                    onTapManageFolders: (([Folder], UserMyself) -> Void)?,
                    onTapFAQ: (() -> Void)?) {

@@ -54,4 +54,24 @@ public struct Contact: Hashable {
     public mutating func update(isSelected: Bool) {
         self.isSelected = isSelected
     }
+    
+    public mutating func update(name: String) {
+        self.contactName = name
+    }
+    
+    public mutating func update(email: String) {
+        self.email = email
+    }
+    
+    public mutating func update(phone: String) {
+        self.phone = phone
+    }
+    
+    public mutating func update(address: String) {
+        self.address = address
+    }
+    
+    public mutating func update(note: String) {
+        self.note = note
+    }
 }

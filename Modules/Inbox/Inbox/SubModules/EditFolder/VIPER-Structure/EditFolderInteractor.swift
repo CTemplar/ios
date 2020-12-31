@@ -29,18 +29,15 @@ final class EditFolderInteractor {
     }
     
     func validateFolderName(text: String) {
-        var nameValid = false
-        
-        if formatterService.validateFolderNameFormat(enteredName: text) {
-            viewController?.setup(folderName: text)
-            viewController?.darkLineView.backgroundColor = k_sideMenuColor
-            nameValid = true
-        } else {
+        guard !text.trimmingCharacters(in: .whitespaces).isEmpty,
+              formatterService.validateFolderNameFormat(enteredName: text) else {
             viewController?.darkLineView.backgroundColor = k_redColor
-            nameValid = false
+            setSaveButton(enable: false)
+            return
         }
-        
-        setSaveButton(enable: ((viewController?.selectedHexColor.count ?? 0) > 0) && nameValid)
+        viewController?.setup(folderName: text)
+        viewController?.darkLineView.backgroundColor = k_sideMenuColor
+        setSaveButton(enable: true)
     }
     
     func setSaveButton(enable: Bool) {

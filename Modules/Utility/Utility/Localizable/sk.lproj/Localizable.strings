@@ -158,6 +158,7 @@
 "contactName" = "Meno kontaktu";
 "emailAddress" = "E-mailová adresa";
 "phoneNumber" = "Telefónne číslo";
+"call" = "Volajte";
 "address" = "Adresa";
 "note" = "Poznámky";
 
@@ -176,6 +177,7 @@
 "ccToPrefix" = "Kópia: ";
 "bccToPrefix" = "Skrytá kópia: ";
 "composeEmail" = "Napísať správu";
+"compose" = "Napísať";
 "SelectDraftOption" = "Vyberte jednu z možností a pokračujte";
 "replyOn" = "Odpoveď na: ";
 "wroteBy" = "napísal(a):";
@@ -312,6 +314,7 @@
 "logoutSettings" = "Odhlásiť sa";
 "blockExternalImages" = "Blokovať externé obrázky";
 "htmlEditor" = "Editor HTML";
+"biometric" = "Povoliť biometrické overenie";
 "featureIsComing" = "Funkcia bude čoskoro k dispozícii. Ak chcete aktualizovať svoje heslo, prihláste sa.";
 "saveContactsAlertTitle" = "Uložiť kontakty do %s";
 "saveContactsAlertMessage" = "V súčasnosti je možnosť uloženia kontaktu %a. Chcete zmeniť svoje preferencie?";
@@ -473,3 +476,21 @@
 "UpdateAvailableTitle" = "Aktualizácia je dostupná";
 "UpdateAvailableMessage" = "K dispozícii je nová verzia CTemplar. Aktualizujte teraz na verziu %s.";
 "GoToStore" = "Choď do obchodu";
+
+// Biometric Error
+"biometricAuth" = "Biometrická autentifikácia";
+"usePasscode" = "Use Passcode";
+"authText" = "CTemplar chce autentifikovať používateľa";
+"biometricAuthAlert" = "Povolením tejto možnosti zakaždým, keď sa vrátite do aplikácie z pozadia, budete sa musieť autentifikovať pomocou svojho %s, aby ste mali prístup k aplikácii.";
+"authenticationFailed" = "Používateľ nedokázal poskytnúť platné poverenia.";
+"appCancel" = "Autentifikácia bola zrušená aplikáciou.";
+"invalidContext" = "Kontext je neplatný.";
+"notInteractive" = "Not interactive.";
+"passcodeNotSet" = "Nie je interaktívne.";
+"systemCancel" = "Autentifikácia bola systémom zrušená.";
+"userCancel" = "The user did cancel.";
+"userFallback" = "Používateľ sa rozhodol použiť záložnú reklamu.";
+"biometryNotAvailable" = "Overovanie sa nepodarilo spustiť, pretože zariadenie nepodporuje biometrické overenie.";
+"biometryLockout" = "Autentifikácia nemohla pokračovať, pretože používateľ bol uzamknutý z biometrického overovania, pretože autentifikácia zlyhala príliš často.";
+"biometryNotEnrolled" = "Autentifikáciu nebolo možné spustiť, pretože používateľ sa nezaregistroval na biometrické overenie.";
+"defaultBiometricError" = "Nenašiel sa chybový kód na objekte LAError.";

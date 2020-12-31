@@ -39,6 +39,7 @@ class InboxMessageTableViewCell: SwipeTableViewCell, Cellable {
             isStaredImageView.tintColor = .systemYellow
         }
     }
+    @IBOutlet weak var moreActionButton: UIButton!
     @IBOutlet weak var hasAttachmentImageView: UIImageView!
     @IBOutlet weak var timerlabelsView: UIView!
     @IBOutlet weak var leftlabelView: UIView!
@@ -67,6 +68,7 @@ class InboxMessageTableViewCell: SwipeTableViewCell, Cellable {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        moreActionButton.isHidden = isEditing
         containerView.shadowColor = traitCollection.userInterfaceStyle == .dark ? UIColor.black.withAlphaComponent(0.2) : UIColor.systemGray5
     }
     

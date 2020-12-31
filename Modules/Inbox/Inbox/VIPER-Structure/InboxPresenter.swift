@@ -173,6 +173,11 @@ final class InboxPresenter {
             .dataSource?
             .enableSelectionMode()
         
+        // Remove any selected message ids or last selected action
+        viewController?
+            .dataSource?
+            .removeSelection()
+        
         // Update Navigation Bar buttons
         updateLeftNavigationItem(basedOn: viewController?.dataSource?.selectionMode ?? false)
         
@@ -220,7 +225,10 @@ final class InboxPresenter {
     
     // MARK: - Toolbar Actions
     func showMoreActions(for indexPath: IndexPath) {
-        showMoreActionsAlert(for: indexPath)
+        showMoreActionsAlert(for: indexPath, onTapCancel: { [weak self] in
+            self?.viewController?.dataSource?.removeSelection()
+            self?.viewController?.dataSource?.update(lastAppliedActionMessage: nil)
+        })
     }
     
     func showMoreActions(from sender: UIBarButtonItem) {
@@ -256,7 +264,6 @@ extension InboxPresenter {
     func showUndoBar(text: String) {
         DPrint("show undo bar")
         viewController?.turnOnUndoToolbar()
-        viewController?.undoBarButtonItem.title = text
         counter = 0
         timer?.invalidate()
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fadeUndoBar), userInfo: nil, repeats: true)
@@ -268,7 +275,7 @@ extension InboxPresenter {
         
         let alpha = 1.0/Double(counter)
         
-        viewController?.undoToolBar.alpha = CGFloat(alpha)
+        viewController?.undoButton.alpha = CGFloat(alpha)
         
         if counter == undoActionDuration {
             hideUndoBar()
@@ -288,13 +295,15 @@ extension InboxPresenter {
         timer?.invalidate()
         timer = nil
         viewController?.toggleGeneralToolbar(shouldShow: true)
-        viewController?.undoToolBar.alpha = 1.0
+        viewController?.undoButton.alpha = 1.0
     }
 }
 
 // MARK: - More Actions
 extension InboxPresenter {
-    private func showMoreActionsAlert(for indexPath: IndexPath? = nil, barbuttonItem: UIBarButtonItem? = nil) {
+    private func showMoreActionsAlert(for indexPath: IndexPath? = nil,
+                                      barbuttonItem: UIBarButtonItem? = nil,
+                                      onTapCancel: (() -> Void)? = nil) {
         var actions: [MoreAction] = []
         
         guard let menu = SharedInboxState.shared.selectedMenu as? Menu else {
@@ -365,6 +374,7 @@ extension InboxPresenter {
                                                     self?.markAsSpam()
                                                 case .cancel:
                                                     actionSheet.dismiss(animated: true, completion: nil)
+                                                    onTapCancel?()
                                                 default:
                                                     DPrint("Do Nothing")
                                                 }
@@ -435,10 +445,7 @@ extension InboxPresenter {
     
     func undo() {
         if let lastMessage = viewController?.dataSource?.lastAppliedActionMessage {
-            if let count = viewController?.dataSource?.selectedMessagesCount,
-                count > 0 {
-                interactor?.undoLastAction(message: lastMessage)
-            }
+            interactor?.undoLastAction(message: lastMessage)
         }
     }
 }

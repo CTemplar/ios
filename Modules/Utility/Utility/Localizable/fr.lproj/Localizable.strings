@@ -159,6 +159,7 @@
 "contactName" = "Nom du contact";
 "emailAddress" = "Addresse email";
 "phoneNumber" = "Numéro de téléphone";
+"call" = "Appel";
 "address" = "Addresse";
 "note" = "Note";
 
@@ -177,6 +178,7 @@
 "ccToPrefix" = "Cc : ";
 "bccToPrefix" = "Bcc : ";
 "composeEmail" = "Nouveau message";
+"compose" = "Nouveau";
 "SelectDraftOption" = "Veuillez sélectionner l'une des options pour continuer";
 "replyOn" = "Date : ";
 "wroteBy" = "De :";
@@ -315,6 +317,7 @@
 "logoutSettings" = "Se déconnecter";
 "blockExternalImages" = "Bloquer les images externes";
 "htmlEditor" = "Éditeur HTML";
+"biometric" = "Activer l'authentification biométrique";
 "featureIsComing" = "Fonctionnalité bientôt disponible. Pour modifier votre mot de passe, vous pouvez vous connecter au site web. Feature coming soon.";
 "saveContactsAlertTitle" = "Enregistrer les contacts dans %s";
 "saveContactsAlertMessage" = "Actuellement, l'option d'enregistrement des contacts est %a. Voulez-vous modifier vos préférences?";
@@ -477,3 +480,21 @@
 "UpdateAvailableTitle" = "Mise à jour disponible";
 "UpdateAvailableMessage" = "Une nouvelle version de CTemplar est disponible. Veuillez mettre à jour vers la version %s maintenant.";
 "GoToStore" = "Aller au magasin";
+
+// Biometric Error
+"biometricAuth" = "Authentification biométrique";
+"usePasscode" = "Utiliser le mot de passe";
+"authText" = "CTemplar veut authentifier l'utilisateur";
+"biometricAuthAlert" = "En activant cette option, chaque fois que vous revenez à l'application depuis l'arrière-plan, vous devrez vous authentifier à l'aide de votre %s afin d'accéder à l'application.";
+"authenticationFailed" = "L'utilisateur n'a pas réussi à fournir des informations d'identification valides.";
+"appCancel" = "L'authentification a été annulée par l'application.";
+"invalidContext" = "Le contexte est invalide.";
+"notInteractive" = "Pas interactif.";
+"passcodeNotSet" = "Le code d'accès n'est pas défini sur l'appareil.";
+"systemCancel" = "L'authentification a été annulée par le système.";
+"userCancel" = "L'utilisateur a annulé.";
+"userFallback" = "L'utilisateur a choisi d'utiliser la solution de secours.";
+"biometryNotAvailable" = "L'authentification n'a pas pu démarrer car l'appareil ne prend pas en charge l'authentification biométrique.";
+"biometryLockout" = "L'authentification n'a pas pu continuer car l'utilisateur a été verrouillé hors de l'authentification biométrique, en raison d'un échec de l'authentification trop souvent.";
+"biometryNotEnrolled" = "L'authentification n'a pas pu démarrer car l'utilisateur ne s'est pas inscrit à l'authentification biométrique.";
+"defaultBiometricError" = "Code d'erreur introuvable sur l'objet LAError";

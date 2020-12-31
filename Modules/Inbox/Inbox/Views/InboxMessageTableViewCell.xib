@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -26,11 +26,11 @@
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="8wG-yC-A9M"/>
-                                    <constraint firstAttribute="width" constant="10" id="uYT-gv-5Iz"/>
+                                    <constraint firstAttribute="width" constant="10" id="bLX-RW-f2d"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yMO-lH-s8U">
-                                <rect key="frame" x="12" y="35" width="10" height="22"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yMO-lH-s8U">
+                                <rect key="frame" x="0.0" y="35" width="22" height="22"/>
                                 <state key="normal" image="moreOptions"/>
                                 <connections>
                                     <action selector="onTapMore:" destination="05r-7M-Vpj" eventType="touchUpInside" id="NBz-0G-b3B"/>
@@ -73,10 +73,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="143" height="18"/>
                                         <subviews>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cBc-cd-Beb">
-                                                <rect key="frame" x="0.0" y="0.0" width="93" height="18"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="86" height="18"/>
                                                 <subviews>
                                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FfO-R7-mWh">
-                                                        <rect key="frame" x="0.0" y="0.0" width="93" height="18"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="86" height="18"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -114,10 +114,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GKT-yQ-VWu">
-                                                <rect key="frame" x="93" y="0.0" width="50" height="18"/>
+                                                <rect key="frame" x="86" y="0.0" width="57" height="18"/>
                                                 <subviews>
                                                     <label hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VLh-Ex-4Na">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="18"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="57" height="18"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                         <color key="textColor" name="whiteColor"/>
@@ -223,11 +223,11 @@
                             <constraint firstItem="fmA-X3-fCi" firstAttribute="top" secondItem="sB2-Xd-ZvY" secondAttribute="top" constant="16" id="Z2O-S4-CfB"/>
                             <constraint firstItem="HeS-Ks-OrC" firstAttribute="centerY" secondItem="hre-l6-zHW" secondAttribute="centerY" id="bgc-Kz-egw"/>
                             <constraint firstItem="XCp-iz-PG3" firstAttribute="top" secondItem="fmA-X3-fCi" secondAttribute="top" constant="-4" id="ckw-TT-f7d"/>
+                            <constraint firstItem="yMO-lH-s8U" firstAttribute="leading" secondItem="sB2-Xd-ZvY" secondAttribute="leading" id="dQs-XP-8kY"/>
                             <constraint firstAttribute="trailing" secondItem="Hxc-YG-giY" secondAttribute="trailing" constant="8" id="haY-d2-86P"/>
-                            <constraint firstItem="yMO-lH-s8U" firstAttribute="leading" secondItem="fmA-X3-fCi" secondAttribute="leading" id="hor-ty-cnT"/>
                             <constraint firstItem="hre-l6-zHW" firstAttribute="centerY" secondItem="XCp-iz-PG3" secondAttribute="centerY" id="l5N-No-eC7"/>
-                            <constraint firstItem="yMO-lH-s8U" firstAttribute="trailing" secondItem="fmA-X3-fCi" secondAttribute="trailing" id="ngm-qz-aAN"/>
                             <constraint firstItem="ojL-O5-Vff" firstAttribute="centerY" secondItem="HeS-Ks-OrC" secondAttribute="centerY" id="pC6-9o-3Ok"/>
+                            <constraint firstItem="yMO-lH-s8U" firstAttribute="trailing" secondItem="fmA-X3-fCi" secondAttribute="trailing" id="qmd-AW-gkb"/>
                             <constraint firstItem="fmA-X3-fCi" firstAttribute="leading" secondItem="sB2-Xd-ZvY" secondAttribute="leading" constant="12" id="tw1-6c-dgM"/>
                             <constraint firstItem="x7N-NB-U2F" firstAttribute="leading" secondItem="XCp-iz-PG3" secondAttribute="leading" id="xcQ-cF-w0U"/>
                             <constraint firstItem="Hxc-YG-giY" firstAttribute="leading" secondItem="x7N-NB-U2F" secondAttribute="trailing" constant="8" id="yrn-cW-rib"/>
@@ -269,6 +269,7 @@
                 <outlet property="isStaredImageView" destination="OGH-zi-U9d" id="MzC-SY-cTU"/>
                 <outlet property="leftLabel" destination="FfO-R7-mWh" id="CTd-Fh-YW5"/>
                 <outlet property="leftlabelView" destination="cBc-cd-Beb" id="A6M-mO-Beo"/>
+                <outlet property="moreActionButton" destination="yMO-lH-s8U" id="J29-Tc-ygD"/>
                 <outlet property="rightlabelView" destination="GKT-yQ-VWu" id="T2E-sH-55S"/>
                 <outlet property="senderLabel" destination="XCp-iz-PG3" id="8b3-wf-cqG"/>
                 <outlet property="subjectLabel" destination="x7N-NB-U2F" id="bSZ-kY-cbU"/>

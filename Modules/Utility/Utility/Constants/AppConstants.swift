@@ -7,6 +7,7 @@ public typealias PGPKey = Key
 public typealias SecurityKey = Key
 
 public let mobileSignatureKey = Domain.main.rawValue + ".mobileSignatureKey"
+public let biometricEnabled = Domain.main.rawValue + ".biometricEnabled"
 
 public enum Domain: String {
     case main = "ctemplar.com"
@@ -174,15 +175,16 @@ public struct GeneralConstant {
     }
 }
 
-public enum AnswerMessageMode {
+public enum AnswerMessageMode: Equatable {
     case newMessage
+    case newMessageWithReceiverEmail(String)
     case reply
     case replyAll
     case forward
     
     public var localized: String? {
         switch self {
-        case .newMessage:
+        case .newMessage, .newMessageWithReceiverEmail:
             return nil
         case .forward:
             return "FORWARD"

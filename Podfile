@@ -10,6 +10,8 @@ def ctemplarPods
   pod 'Crashlytics'
   pod 'Firebase/Messaging'
   pod 'EMAlertController'
+  pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :tag => '6.0.12'
+
 end
 
 def pgp_pods

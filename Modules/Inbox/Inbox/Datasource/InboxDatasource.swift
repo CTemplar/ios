@@ -169,7 +169,6 @@ final class InboxDatasource: NSObject {
     func reset() {
         messages.removeAll()
         originalMessages.removeAll()
-        resetSelectionMode()
         parentViewController?.presenter?.updateNoMessagePrompt()
     }
     
@@ -622,16 +621,19 @@ extension InboxDatasource: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
+        let message = messages[indexPath.row]
+
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = .zero
         cell.layoutMargins = .zero
         cell.delegate = self
         cell.onTapMore = { [weak self] in
+            self?.update(lastAppliedActionMessage: message)
+            self?.selectedMessageIds.removeAll()
+            self?.selectedMessageIds.append(message.messsageID!)
             self?.parentViewController?.presenter?.showMoreActions(for: indexPath)
         }
-        
-        let message = messages[indexPath.row]
-        
+                
         let isSubjectEncrypted = NetworkManager.shared.apiService.isSubjectEncrypted(message: message)
         
         cell.configure(with: InboxMessageTableViewCell.Model(message: message, subjectEncrypted: isSubjectEncrypted))

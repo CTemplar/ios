@@ -18,6 +18,8 @@
 		444D656D24A4DB8C00690B3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 444D656C24A4DB8C00690B3E /* Assets.xcassets */; };
 		4477555624F031B8009B89D6 /* Compose.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4477555524F031B8009B89D6 /* Compose.framework */; };
 		44B1622124C94AB200BDD4B3 /* InboxViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44B1622024C94AB200BDD4B3 /* InboxViewer.framework */; };
+		44D988ED25935E650017376A /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44D988EC25935E650017376A /* Contacts.framework */; };
+		44D9890C259360880017376A /* AppContacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44D9890B259360880017376A /* AppContacts.framework */; };
 		8B8E66C324BE3C9D00DAB23D /* GlobalSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8E66C224BE3C9D00DAB23D /* GlobalSearch.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +37,8 @@
 		444D656C24A4DB8C00690B3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../Ctemplar/Resources/Assets.xcassets; sourceTree = "<group>"; };
 		4477555524F031B8009B89D6 /* Compose.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Compose.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B1622024C94AB200BDD4B3 /* InboxViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = InboxViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		44D988EC25935E650017376A /* Contacts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Contacts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		44D9890B259360880017376A /* AppContacts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppContacts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B8E66C224BE3C9D00DAB23D /* GlobalSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GlobalSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -45,10 +49,12 @@
 			files = (
 				443DD3F524CDCBC300771AE5 /* AppSettings.framework in Frameworks */,
 				444D656624A4D5FD00690B3E /* Utility.framework in Frameworks */,
+				44D988ED25935E650017376A /* Contacts.framework in Frameworks */,
 				444D656424A4D5FD00690B3E /* Networking.framework in Frameworks */,
 				4477555624F031B8009B89D6 /* Compose.framework in Frameworks */,
 				444D656224A4D5FD00690B3E /* Login.framework in Frameworks */,
 				44B1622124C94AB200BDD4B3 /* InboxViewer.framework in Frameworks */,
+				44D9890C259360880017376A /* AppContacts.framework in Frameworks */,
 				8B8E66C324BE3C9D00DAB23D /* GlobalSearch.framework in Frameworks */,
 				440F7D8124AF614300B9BA2D /* Inbox.framework in Frameworks */,
 			);
@@ -97,6 +103,8 @@
 		444D655E24A4D5FD00690B3E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				44D9890B259360880017376A /* AppContacts.framework */,
+				44D988EC25935E650017376A /* Contacts.framework */,
 				4477555524F031B8009B89D6 /* Compose.framework */,
 				443DD3F424CDCBC300771AE5 /* AppSettings.framework */,
 				44B1622024C94AB200BDD4B3 /* InboxViewer.framework */,

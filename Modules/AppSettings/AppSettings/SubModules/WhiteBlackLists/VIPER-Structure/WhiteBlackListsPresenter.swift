@@ -38,14 +38,14 @@ class WhiteBlackListsPresenter: NSObject {
     
     lazy private (set) var segmentControl: UISegmentedControl = {
         let segment = UISegmentedControl()
-        segment.insertSegment(withTitle: Strings.WhiteBlackListContact.whitelist.localized, at: 0, animated: true)
-        segment.insertSegment(withTitle: Strings.WhiteBlackListContact.blacklist.localized, at: 1, animated: true)
+        segment.insertSegment(withTitle: Strings.WhiteBlackListContact.whitelist.localized.lowercased().firstUppercased, at: 0, animated: true)
+        segment.insertSegment(withTitle: Strings.WhiteBlackListContact.blacklist.localized.lowercased().firstUppercased, at: 1, animated: true)
         segment.setTitleTextAttributes([
-            NSAttributedString.Key.font: AppStyle.CustomFontStyle.Regular.font(withSize: 14.0)!,
+            NSAttributedString.Key.font: UIFont.withType(.ExtraSmall(.Bold)),
             NSAttributedString.Key.foregroundColor: k_sideMenuTextFadeColor
             ], for: .normal)
         segment.setTitleTextAttributes([
-            NSAttributedString.Key.font: AppStyle.CustomFontStyle.Bold.font(withSize: 14.0)!,
+            NSAttributedString.Key.font: UIFont.withType(.ExtraSmall(.Bold)),
             NSAttributedString.Key.foregroundColor: k_redColor
             ], for: .selected)
         segment.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
@@ -92,11 +92,9 @@ class WhiteBlackListsPresenter: NSObject {
     func setupTableAndDataSource(listMode: WhiteBlackListsMode) {
         let contactsList = listMode == .whiteList ? whiteListContacts : blackListContacts
         if !contactsList.isEmpty {
-            viewController?.tableView.isHidden = false
             viewController?.textLabel.isHidden = true
             setupSearchController()
         } else {
-            viewController?.tableView.isHidden = true
             viewController?.textLabel.isHidden = false
             searchController.isActive = false
             viewController?.navigationItem.searchController = nil
@@ -116,7 +114,7 @@ class WhiteBlackListsPresenter: NSObject {
         
         segmentedControlValueChanged(segmentControl)
     }
-    
+
     func setupLabelText(listMode: WhiteBlackListsMode) {
         var text = ""
         var textWithAttribute = ""

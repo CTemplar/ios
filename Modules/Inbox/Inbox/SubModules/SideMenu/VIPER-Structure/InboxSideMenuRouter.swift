@@ -9,12 +9,12 @@ final class InboxSideMenuRouter {
     private weak var viewController: InboxSideMenuController?
     var onTapSettings: ((UserMyself) -> Void)?
     var onTapManageFolders: (([Folder], UserMyself) -> Void)?
-    var onTapContacts: (([Contact], Bool) -> Void)?
+    var onTapContacts: (([Contact], UserMyself) -> Void)?
     var onTapFAQ: (() -> Void)?
 
     // MARK: - Constructor
     init(viewController: InboxSideMenuController,
-         onTapContacts: (([Contact], Bool) -> Void)?,
+         onTapContacts: (([Contact], UserMyself) -> Void)?,
          onTapSettings: ((UserMyself) -> Void)?,
          onTapManageFolders: (([Folder], UserMyself) -> Void)?,
          onTapFAQ: (() -> Void)?) {
@@ -36,8 +36,8 @@ final class InboxSideMenuRouter {
         })
     }
     
-    func showContactsViewController(withUserContacts contacts: [Contact], isContactEncrypted: Bool) {
-        onTapContacts?(contacts, isContactEncrypted)
+    func showContactsViewController(withUserContacts contacts: [Contact], user: UserMyself) {
+        onTapContacts?(contacts, user)
     }
     
     func showManageFoldersViewController(withList folderList: [Folder], user: UserMyself) {

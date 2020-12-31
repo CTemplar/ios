@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AppContactsCell" id="1ox-TW-BQx" customClass="AppContactsCell" customModule="AppContacts" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1ox-TW-BQx" id="pOK-5G-JRr">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gLY-Cc-Fyk">
+                        <rect key="frame" x="8" y="8" width="359" height="84"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rlj-gJ-sjq">
+                                <rect key="frame" x="12" y="22" width="40" height="40"/>
+                                <color key="backgroundColor" name="composeMessageShadowColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="rlj-gJ-sjq" secondAttribute="height" multiplier="1:1" id="E2S-Qb-mXz"/>
+                                    <constraint firstAttribute="width" constant="40" id="hl4-bD-QI5"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="composeMessageShadowColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1re-EK-e9e">
+                                <rect key="frame" x="12" y="22" width="40" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Yr7-r5-qvX">
+                                <rect key="frame" x="64" y="8" width="283" height="68"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Andrew Smith" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y7C-uK-Z3s">
+                                        <rect key="frame" x="0.0" y="0.0" width="283" height="24.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="andrewsmith@gmail.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bWb-mB-0Tf">
+                                        <rect key="frame" x="0.0" y="26.5" width="283" height="19.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234567890" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KhR-fk-hnP">
+                                        <rect key="frame" x="0.0" y="48" width="283" height="20"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                        <color key="textColor" name="emailToColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1re-EK-e9e" firstAttribute="top" secondItem="rlj-gJ-sjq" secondAttribute="top" id="2n4-kT-fws"/>
+                            <constraint firstItem="1re-EK-e9e" firstAttribute="leading" secondItem="rlj-gJ-sjq" secondAttribute="leading" id="7Q4-i1-pt0"/>
+                            <constraint firstItem="rlj-gJ-sjq" firstAttribute="centerY" secondItem="gLY-Cc-Fyk" secondAttribute="centerY" id="9s9-bH-b9w"/>
+                            <constraint firstAttribute="trailing" secondItem="Yr7-r5-qvX" secondAttribute="trailing" constant="12" id="Hfy-1v-JjE"/>
+                            <constraint firstItem="Yr7-r5-qvX" firstAttribute="leading" secondItem="rlj-gJ-sjq" secondAttribute="trailing" constant="12" id="a0U-9j-ZBM"/>
+                            <constraint firstItem="rlj-gJ-sjq" firstAttribute="leading" secondItem="gLY-Cc-Fyk" secondAttribute="leading" constant="12" id="cfJ-MI-9Yn"/>
+                            <constraint firstItem="1re-EK-e9e" firstAttribute="bottom" secondItem="rlj-gJ-sjq" secondAttribute="bottom" id="d2j-9s-9B2"/>
+                            <constraint firstItem="1re-EK-e9e" firstAttribute="trailing" secondItem="rlj-gJ-sjq" secondAttribute="trailing" id="jbe-fH-Fvf"/>
+                            <constraint firstItem="Yr7-r5-qvX" firstAttribute="top" secondItem="gLY-Cc-Fyk" secondAttribute="top" constant="8" id="seE-zI-28W"/>
+                            <constraint firstAttribute="bottom" secondItem="Yr7-r5-qvX" secondAttribute="bottom" constant="8" id="tQg-Ea-1EC"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                <color key="value" systemColor="systemGray5Color"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                <size key="value" width="0.0" height="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                <real key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="gLY-Cc-Fyk" firstAttribute="leading" secondItem="pOK-5G-JRr" secondAttribute="leading" constant="8" id="GYz-Ro-DbT"/>
+                    <constraint firstAttribute="trailing" secondItem="gLY-Cc-Fyk" secondAttribute="trailing" constant="8" id="MAu-IE-whm"/>
+                    <constraint firstAttribute="bottom" secondItem="gLY-Cc-Fyk" secondAttribute="bottom" constant="8" id="qQU-EL-kUO"/>
+                    <constraint firstItem="gLY-Cc-Fyk" firstAttribute="top" secondItem="pOK-5G-JRr" secondAttribute="top" constant="8" id="tn1-uh-jnB"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" name="readMessageColor"/>
+            <connections>
+                <outlet property="avatarImageView" destination="rlj-gJ-sjq" id="1B2-Jm-2cw"/>
+                <outlet property="containerView" destination="gLY-Cc-Fyk" id="FlO-9O-59Q"/>
+                <outlet property="emailLabel" destination="bWb-mB-0Tf" id="QW4-hT-LSU"/>
+                <outlet property="initialsLabel" destination="1re-EK-e9e" id="qzG-2V-qUH"/>
+                <outlet property="nameLabel" destination="Y7C-uK-Z3s" id="Oje-lO-VGm"/>
+                <outlet property="phoneLabel" destination="KhR-fk-hnP" id="Cwc-y7-wdv"/>
+            </connections>
+            <point key="canvasLocation" x="136.80000000000001" y="133.13343328335833"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="composeMessageShadowColor">
+            <color red="0.89800000190734863" green="0.89800000190734863" blue="0.89800000190734863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="emailToColor">
+            <color red="0.62000000476837158" green="0.62000000476837158" blue="0.62000000476837158" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="readMessageColor">
+            <color red="0.96100002527236938" green="0.96100002527236938" blue="0.96100002527236938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

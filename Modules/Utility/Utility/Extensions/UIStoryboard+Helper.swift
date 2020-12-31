@@ -16,7 +16,7 @@ public extension UIStoryboard {
         case initializer = "Initializer"
         case inboxDetails = "ViewInboxEmail"
         case search = "GlobalSearch"
-        case contacts = "Contacts"
+        case contacts = "AppContacts"
         case FAQ = "FAQ"
         case dashboard = "Dashboard"
         case settings = "AppSettings"
@@ -84,7 +84,7 @@ public extension UIStoryboard.Storyboard {
         case .search:
             return (bundlename: "GlobalSearch.GlobalSearchViewController", storyboardId: "GlobalSearchViewController")
         case .contacts:
-            return (bundlename: "Main.ContactsViewController", storyboardId: "ContactsViewController")
+            return (bundlename: "AppContacts.AppContactsViewController", storyboardId: "AppContactsViewController")
         case .settings:
             return (bundlename: "AppSettings.AppSettingsController", storyboardId: "AppSettingsController")
         case .dashboard:

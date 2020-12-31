@@ -17,7 +17,7 @@ class AddFolderInteractor {
     
     // MARK: - Validations
     func validateFolderName(text: String?) {
-        guard let text = text else {
+        guard let text = text, !text.trimmingCharacters(in: .whitespaces).isEmpty else {
             viewController?.darkLineView.backgroundColor = k_redColor
             setAddButton(enable: false)
             return

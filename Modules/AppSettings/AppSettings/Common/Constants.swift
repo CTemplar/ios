@@ -1,4 +1,5 @@
 import Utility
+import LocalAuthentication
 
 public enum SettingsSection: CaseIterable {
     case general
@@ -35,7 +36,7 @@ public enum SettingsSection: CaseIterable {
         case .folder:
             return [.manageFolders]
         case .security:
-            return [.password, .recoveryEmail, .encryption]
+            return LAContext.getAvailableBiometricType() == .none ? [.password, .recoveryEmail, .encryption] : [.password, .recoveryEmail, .encryption, .biometric]
         case .mail:
             return [.mail, .signature, .mobileSignature, .keys]
         case .aboutTheApp:
@@ -67,6 +68,7 @@ public enum SettingsRow {
     case logout
     case blockExternalImages
     case htmlEditor
+    case biometric
 }
 
 enum SignatureType {

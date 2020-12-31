@@ -12,7 +12,7 @@ public class InboxCoordinator {
                           onTapComposeWithDraft: ((AnswerMessageMode, EmailMessage, UserMyself, UIViewController?) -> Void)?,
                           onTapSearch: ((UserMyself, UIViewController?) -> Void)?,
                           onTapViewInbox: ((EmailMessage?, UserMyself?, ViewInboxEmailDelegate?, UIViewController?) -> Void)?,
-                          onTapContacts: (([Contact], Bool, UIViewController?) -> Void)?,
+                          onTapContacts: (([Contact], UserMyself, UIViewController?) -> Void)?,
                           onTapSettings: ((UserMyself, UIViewController?) -> Void)?,
                           onTapFAQ: ((UIViewController?) -> Void)?) -> (menu: InboxSideMenuController, content: UIViewController) {
         
@@ -31,8 +31,8 @@ public class InboxCoordinator {
                                                                        bundle: Bundle(for: type(of: self))
         ).instantiateViewController()
         
-        leftMenuController.onTapContacts = { (contacts, encrypted) in
-            onTapContacts?(contacts, encrypted, leftMenuController)
+        leftMenuController.onTapContacts = { (contacts, user) in
+            onTapContacts?(contacts, user, leftMenuController)
         }
         
         leftMenuController.onTapSettings = { (user) in
