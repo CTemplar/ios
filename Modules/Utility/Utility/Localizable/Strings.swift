@@ -303,6 +303,7 @@ public enum Strings {
         case logoutSettings
         case blockExternalImages
         case htmlEditor
+        case biometric
         case featureIsComing
         case saveContactsAlertTitle
         case saveContactsAlertMessage
@@ -360,6 +361,8 @@ public enum Strings {
         case unknownName
         case unknownEmail
         case emailAddress
+        case noContacts
+        case call
     }
     
     public enum Language: String, Localizable {
@@ -418,6 +421,7 @@ public enum Strings {
         case removeAttachmentAlertDesc
         case simpleText
         case htmlText
+        case compose
     }
     
     public enum Scheduler: String, Localizable {
@@ -448,5 +452,24 @@ public enum Strings {
         case UpdateAvailableTitle
         case UpdateAvailableMessage
         case GoToStore
+    }
+    
+    public enum BiometricError: String, Localizable {
+        case authenticationFailed
+        case appCancel
+        case invalidContext
+        case notInteractive
+        case passcodeNotSet
+        case systemCancel
+        case userCancel
+        case userFallback
+        case biometryNotAvailable
+        case biometryLockout
+        case biometryNotEnrolled
+        case defaultBiometricError
+        case usePasscode
+        case authText
+        case biometricAuthAlert
+        case biometricAuth
     }
 }

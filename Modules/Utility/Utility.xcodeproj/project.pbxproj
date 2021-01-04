@@ -74,7 +74,6 @@
 		441778A924D2D149000F56B9 /* normalize.css in Resources */ = {isa = PBXBuildFile; fileRef = 4417786924D2D148000F56B9 /* normalize.css */; };
 		441778AA24D2D149000F56B9 /* RichEditorToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4417786A24D2D148000F56B9 /* RichEditorToolbar.swift */; };
 		441778AB24D2D149000F56B9 /* RichEditorOptionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4417786B24D2D148000F56B9 /* RichEditorOptionItem.swift */; };
-		4420572F258100610002C646 /* SemiCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4420572E258100610002C646 /* SemiCircleView.swift */; };
 		443A1EE524B22B59009BC733 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443A1EE424B22B59009BC733 /* UINavigationController+Extension.swift */; };
 		443DD41024CEA74200771AE5 /* Cellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DD40F24CEA74200771AE5 /* Cellable.swift */; };
 		443DD41224CEA75C00771AE5 /* Modelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DD41124CEA75C00771AE5 /* Modelable.swift */; };
@@ -131,6 +130,8 @@
 		447C2A4D2491767200EC426B /* Storyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447C2A4C2491767200EC426B /* Storyboardable.swift */; };
 		4480A467250D1EF700A7DDFF /* InboxViewerPushsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4480A466250D1EF700A7DDFF /* InboxViewerPushsable.swift */; };
 		448FE9ED252EC1DB00DDBC45 /* AppDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448FE9EC252EC1DB00DDBC45 /* AppDelegate+Extension.swift */; };
+		44913DF0259221AD00B25697 /* SwipActionDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44913DEF259221AD00B25697 /* SwipActionDescriptor.swift */; };
+		44A96A3F258797BE00405667 /* AppBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A96A3E258797BE00405667 /* AppBlurView.swift */; };
 		44B1620324C61B1B00BDD4B3 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B1620224C61B1B00BDD4B3 /* UIView+Extension.swift */; };
 		44B1620524C61B3400BDD4B3 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B1620424C61B3400BDD4B3 /* UITableView+Extension.swift */; };
 		44B500B024C0773F002F515A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 44B500AF24C0773F002F515A /* SnapKit */; };
@@ -230,7 +231,6 @@
 		4417786924D2D148000F56B9 /* normalize.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = normalize.css; sourceTree = "<group>"; };
 		4417786A24D2D148000F56B9 /* RichEditorToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichEditorToolbar.swift; sourceTree = "<group>"; };
 		4417786B24D2D148000F56B9 /* RichEditorOptionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichEditorOptionItem.swift; sourceTree = "<group>"; };
-		4420572E258100610002C646 /* SemiCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemiCircleView.swift; sourceTree = "<group>"; };
 		443A1EE424B22B59009BC733 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		443DD40F24CEA74200771AE5 /* Cellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cellable.swift; sourceTree = "<group>"; };
 		443DD41124CEA75C00771AE5 /* Modelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modelable.swift; sourceTree = "<group>"; };
@@ -282,6 +282,8 @@
 		447C2A4C2491767200EC426B /* Storyboardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboardable.swift; sourceTree = "<group>"; };
 		4480A466250D1EF700A7DDFF /* InboxViewerPushsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewerPushsable.swift; sourceTree = "<group>"; };
 		448FE9EC252EC1DB00DDBC45 /* AppDelegate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Extension.swift"; sourceTree = "<group>"; };
+		44913DEF259221AD00B25697 /* SwipActionDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipActionDescriptor.swift; sourceTree = "<group>"; };
+		44A96A3E258797BE00405667 /* AppBlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBlurView.swift; sourceTree = "<group>"; };
 		44B1620224C61B1B00BDD4B3 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		44B1620424C61B3400BDD4B3 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		44BD637324909D9E00CB4A73 /* Utility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Utility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -476,7 +478,8 @@
 				44727D3B249F223D003B99FC /* PasswordChecker.swift */,
 				44727D3D249F225B003B99FC /* EmailChecker.swift */,
 				4466418C24C2F0AD0093A6DE /* PaddingLabel.swift */,
-				4420572E258100610002C646 /* SemiCircleView.swift */,
+				44A96A3E258797BE00405667 /* AppBlurView.swift */,
+				44913DEF259221AD00B25697 /* SwipActionDescriptor.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -892,7 +895,6 @@
 				443DD41224CEA75C00771AE5 /* Modelable.swift in Sources */,
 				4417771024D29086000F56B9 /* LeftBarButtonItemConfigurable.swift in Sources */,
 				4466418D24C2F0AD0093A6DE /* PaddingLabel.swift in Sources */,
-				4420572F258100610002C646 /* SemiCircleView.swift in Sources */,
 				4417786D24D2D148000F56B9 /* String+Extensions.swift in Sources */,
 				441778AB24D2D149000F56B9 /* RichEditorOptionItem.swift in Sources */,
 				4457748B2499D31200B8E502 /* Notitifcation+Extension.swift in Sources */,
@@ -909,6 +911,7 @@
 				44B1620324C61B1B00BDD4B3 /* UIView+Extension.swift in Sources */,
 				447C2A442491760000EC426B /* UIStoryboard+Helper.swift in Sources */,
 				44BD63DB2490B01200CB4A73 /* RuntimeLocalizable.swift in Sources */,
+				44A96A3F258797BE00405667 /* AppBlurView.swift in Sources */,
 				44BD63A324909E1400CB4A73 /* MatericalIndicator.swift in Sources */,
 				44BD639A24909E1400CB4A73 /* UIView+Layer.swift in Sources */,
 				447754CF24EFA7DC009B89D6 /* EmptyStateViewController.swift in Sources */,
@@ -926,6 +929,7 @@
 				4417770E24D2905A000F56B9 /* InboxNavigationController.swift in Sources */,
 				444BD293249212A5001D0C5F /* AttributedString+Helpers.swift in Sources */,
 				444BD2752491EFD5001D0C5F /* FormatterService.swift in Sources */,
+				44913DF0259221AD00B25697 /* SwipActionDescriptor.swift in Sources */,
 				44BD639924909E1400CB4A73 /* NSObject+ClassName.swift in Sources */,
 				444BD2CA24922199001D0C5F /* PGPService.swift in Sources */,
 				444BD2A724921612001D0C5F /* URL+Extension.swift in Sources */,

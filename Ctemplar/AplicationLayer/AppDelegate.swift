@@ -21,6 +21,8 @@ import InboxViewer
 import Combine
 import IQKeyboardManagerSwift
 import EMAlertController
+import Sentry
+
 
 typealias AppResult<T> = Result<T, Error>
 typealias Completion<T> = (AppResult<T>) -> Void
@@ -32,6 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UserDefaults.standard.setValue(false, forKey:"_UIConstraintBasedLayoutLogUnsatisfiable")
+        
+        
+        SentrySDK.start { options in
+               options.dsn = "https://dfb816a066a0448ba631d7602bef50da@o190614.ingest.sentry.io/5461858"
+               options.debug = true // Enabled debug when first installing is always helpful
+           }
+        
+        
         
         UtilityManager.shared.setupReachability()
         
@@ -97,6 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+        addBlurViewToTheWindow()
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -112,6 +123,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         application.applicationIconBadgeNumber = 0
+        
+        if let blurView = UIApplication.shared.getKeyWindow()?.subviews.first(where: { $0 is AppBlurView }) as? AppBlurView {
+            let topVC = getTopViewController()
+            
+            guard let parent = topVC.parent, !(parent is InitializerController) else {
+                blurView.removeFromSuperview()
+                return
+            }
+            
+            blurView.triggerBiometric {
+                DispatchQueue.main.async {
+                    blurView.removeFromSuperview()
+                }
+            } onFailure: { [weak self] (message) in
+                DispatchQueue.main.async {
+                    let topVC = self?.getTopViewController()
+                    topVC?.showAlert(with: "Unautorized", message: message, buttonTitle: "Ok")
+                }
+            }
+        }
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
@@ -250,23 +281,6 @@ private extension AppDelegate {
                 presenter?.sideMenuController?.hideMenu()
         })
     }
-    
-    func showContacts(withList contacts: [Contact],
-                      contactsEncrypted: Bool,
-                      presenter: UIViewController?) {
-        let contactsVC: ContactsViewController = UIStoryboard(storyboard: .contacts,
-                                                              bundle: Bundle(for: ContactsViewController.self)
-        ).instantiateViewController()
-        contactsVC.contactsList = contacts
-        contactsVC.contactsEncrypted = contactsEncrypted
-        let navController = UIViewController.getNavController(rootViewController: contactsVC)
-        navController.prefersLargeTitle = true
-        presenter?
-            .sideMenuController?
-            .setContentViewController(to: navController, animated: true, completion: {
-                presenter?.sideMenuController?.hideMenu()
-        })
-    }
 }
 
 // MARK: - Root Initialization
@@ -287,15 +301,7 @@ private extension AppDelegate {
     
     func handleCallbacks(from initializer: InitializerController) {
         // Handle Callbacks
-        
-        // Open Contacts
-        initializer.onTapContacts = { [weak self] (contacts, contactsEncrypted, inboxViewController) in
-            self?.showContacts(withList: contacts,
-                               contactsEncrypted: contactsEncrypted,
-                               presenter: inboxViewController
-            )
-        }
-        
+
         // Open FAQ
         initializer.onTapFAQ = { [weak self] (inboxViewController) in
             self?.showFAQ(from: inboxViewController)
@@ -319,6 +325,18 @@ extension AppDelegate {
             let topVC = inboxNav.topViewController as? EmptyStateMachine {
             topVC.removeEmptyState()
         }
+    }
+    
+    private func addBlurViewToTheWindow() {
+        guard let window = UIApplication.shared.getKeyWindow(),
+              !window.subviews.contains(where: { $0 is AppBlurView }) else {
+            return
+        }
+        
+        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffectView = AppBlurView(effect: blurEffect)
+        blurEffectView.frame = window.frame
+        window.addSubview(blurEffectView)
     }
 }
 
@@ -369,20 +387,26 @@ private extension AppDelegate {
             alert.addAction(alertButton)
         }
         
+        let topVC = getTopViewController()
+        topVC.present(alert, animated: true, completion: nil)
+    }
+    
+    func getTopViewController() -> UIViewController {
         if let window = UIApplication.shared.getKeyWindow() {
             if let sideMenu = window.rootViewController as? SideMenuController,
                 let contentNavigationVC = sideMenu.contentViewController as? InboxNavigationController {
-                contentNavigationVC.topViewController?.present(alert, animated: true, completion: nil)
+                return contentNavigationVC
             } else if let initializerController = window.rootViewController as? InitializerController,
                       let loginController = initializerController.children.first {
                 if let signupVC = loginController.presentedViewController {
-                    signupVC.present(alert, animated: true, completion: nil)
+                    return signupVC
                 } else {
-                    loginController.present(alert, animated: true, completion: nil)
+                    return loginController
                 }
             } else {
                 fatalError("Not able to find any root controller")
             }
         }
+        fatalError("Not able to find any key window")
     }
 }

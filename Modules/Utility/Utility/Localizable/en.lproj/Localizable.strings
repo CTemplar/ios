@@ -161,6 +161,7 @@
 "contactName" = "Contact Name";
 "emailAddress" = "Email Address";
 "phoneNumber" = "Phone Number";
+"call" = "Call";
 "address" = "Address";
 "note" = "Note";
 
@@ -179,6 +180,7 @@
 "ccToPrefix" = "Cc: ";
 "bccToPrefix" = "Bcc: ";
 "composeEmail" = "Compose email";
+"compose" = "Compose";
 "SelectDraftOption" = "Please select one of the options to continue";
 "replyOn" = "On: ";
 "wroteBy" = "wrote:";
@@ -318,6 +320,7 @@
 "logoutSettings" = "Log out";
 "blockExternalImages" = "Block External Images";
 "htmlEditor" = "HTML Editor";
+"biometric" = "Enable Biometric Authentication";
 "featureIsComing" = "Feature coming soon. Please, login on desktop to update your password.";
 "saveContactsAlertTitle" = "Save Contacts in %s";
 "saveContactsAlertMessage" = "Currently the contact saving option is %a. Do you want to change your preference?";
@@ -480,3 +483,21 @@
 "UpdateAvailableTitle" = "Update Available";
 "UpdateAvailableMessage" = "A new version of CTemplar is available. Please update to the version %s now.";
 "GoToStore" = "Go to Store";
+
+// Biometric Error
+"biometricAuth" = "Biometric Authentication";
+"usePasscode" = "Use Passcode";
+"authText" = "CTemplar wants to authenticate the user";
+"biometricAuthAlert" = "By Enabling this option, every time you come back to the App from the background, You will have to authenticate yourself using your %s in order to access the App.";
+"authenticationFailed" = "The user failed to provide valid credentials";
+"appCancel" = "Authentication was cancelled by application";
+"invalidContext" = "The context is invalid";
+"notInteractive" = "Not interactive";
+"passcodeNotSet" = "Passcode is not set on the device";
+"systemCancel" = "Authentication was cancelled by the system";
+"userCancel" = "The user did cancel";
+"userFallback" = "The user chose to use the fallback";
+"biometryNotAvailable" = "Authentication could not start because the device does not support biometric authentication.";
+"biometryLockout" = "Authentication could not continue because the user has been locked out of biometric authentication, due to failing authentication too many times.";
+"biometryNotEnrolled" = "Authentication could not start because the user has not enrolled in biometric authentication.";
+"defaultBiometricError" = "Did not find error code on LAError object";

@@ -21,7 +21,7 @@ public final class InboxSideMenuController: UIViewController {
     private (set) weak var inbox: InboxViewController?
     private var configurator: InboxSideMenuConfigurator?
     
-    public var onTapContacts: (([Contact], Bool) -> Void)?
+    public var onTapContacts: (([Contact], UserMyself) -> Void)?
     public var onTapSettings: ((UserMyself) -> Void)?
     public var onTapManageFolders: (([Folder], UserMyself) -> Void)?
     public var onTapFAQ: (() -> Void)?
@@ -109,7 +109,7 @@ public final class InboxSideMenuController: UIViewController {
         self.dataSource?.didSelect(menu: .inbox)
     }
     
-    public func setup(onTapContacts: (([Contact], Bool) -> Void)?,
+    public func setup(onTapContacts: (([Contact], UserMyself) -> Void)?,
                onTapSettings: ((UserMyself) -> Void)?,
                onTapManageFolders: (([Folder], UserMyself) -> Void)?,
                onTapFAQ: (() -> Void)?) {

@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 import Utility
 import Networking
+import SwipeCellKit
 
 final class WhiteBlackListsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     // MARK: Properties
@@ -16,7 +17,12 @@ final class WhiteBlackListsDataSource: NSObject, UITableViewDataSource, UITableV
     private (set) var filteredContacts: [Contact] = []
     
     private (set) var searchText = ""
+    
     private (set) var filtered = false
+    
+    private lazy var defaultOptions: SwipeOptions = {
+        return SwipeOptions()
+    }()
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -24,7 +30,7 @@ final class WhiteBlackListsDataSource: NSObject, UITableViewDataSource, UITableV
         refreshControl.tintColor = UIColor.gray
         return refreshControl
     }()
-    
+
     // MARK: - Constructor
     init(parent: WhiteBlackListsViewController, tableView: UITableView) {
         self.parentViewController = parent
@@ -35,16 +41,17 @@ final class WhiteBlackListsDataSource: NSObject, UITableViewDataSource, UITableV
     
     // MARK: - Setup
     func setupTableView() {
-        self.tableView?.delegate = self
-        self.tableView?.dataSource = self
-        
-        self.tableView?.addSubview(self.refreshControl)
-        self.tableView?.tableFooterView = UIView()
+        tableView?.delegate = self
+        tableView?.dataSource = self
+        tableView?.separatorStyle = .none
+        tableView?.addSubview(self.refreshControl)
+        tableView?.tableFooterView = UIView()
+        tableView?.backgroundColor = .systemGroupedBackground
         tableView?.register(UINib(nibName: ContactTableViewCell.className,
                                   bundle: Bundle(for: ContactTableViewCell.self)),
                            forCellReuseIdentifier: ContactTableViewCell.className)
     }
-    
+
     // MARK: - Update Datasource
     func update(filteredContacts: [Contact]) {
         self.filteredContacts = filteredContacts
@@ -66,7 +73,7 @@ final class WhiteBlackListsDataSource: NSObject, UITableViewDataSource, UITableV
         refreshControl.endRefreshing()
         tableView?.reloadData()
     }
-    
+
     // MARK: - Actions
     @objc
     private func handleRefresh(_ refreshControl: UIRefreshControl) {
@@ -85,23 +92,68 @@ final class WhiteBlackListsDataSource: NSObject, UITableViewDataSource, UITableV
         }
         
         let contact = filtered ? filteredContacts[indexPath.row] : contacts[indexPath.row]
-        
-        cell.setupCellWithData(contact: contact, isSelectionMode: false, isSelected: false, foundText: searchText)
+        cell.configure(with: contact, foundText: searchText)
+        cell.delegate = self
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 85.0
+    }
+}
+
+// MARK: - SwipeTableViewCellDelegate
+extension WhiteBlackListsDataSource: SwipeTableViewCellDelegate {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        switch orientation {
+        case .left:
+            return nil
+        case .right:
+            return rightSwipeAction(for: indexPath)
+        }
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete) {
-            let contact = contacts[indexPath.row]
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+        var options = SwipeOptions()
+        options.expansionStyle = .selection
+        options.transitionStyle = defaultOptions.transitionStyle
+        options.buttonSpacing = 4
+        options.backgroundColor = .clear
+        return options
+    }
+}
+
+// MARK: - Swipe Actions
+private extension WhiteBlackListsDataSource {
+    func rightSwipeAction(for indexPath: IndexPath) -> [SwipeAction]? {
+        guard contacts.count > indexPath.row else {
+            return nil
+        }
+
+        let contact = contacts[indexPath.row]
+
+        let trashAction = SwipeAction(style: .default, title: nil) { [weak self] (action, indexPath) in
             if let contactID = contact.contactID?.description,
-                let listMode = parentViewController?.listMode {
-                parentViewController?.presenter?.deleteContactFromList(contactID: contactID,
-                                                                       listMode: listMode)
+               let listMode = self?.parentViewController?.listMode {
+                self?.parentViewController?
+                    .presenter?
+                    .deleteContactFromList(contactID: contactID,
+                                           listMode: listMode)
             }
         }
+        
+        trashAction.hidesWhenSelected = true
+        configure(action: trashAction, with: .trash)
+        
+        return [trashAction]
+    }
+    
+    private func configure(action: SwipeAction, with descriptor: ActionDescriptor) {
+        action.title = descriptor.title(forDisplayMode: .titleAndImage)
+        action.image = descriptor.image(forStyle: .circular, displayMode: .titleAndImage)
+        action.backgroundColor = .clear
+        action.textColor = descriptor.color(forStyle: .circular)
+        action.font = .withType(.ExtraSmall(.Bold))
+        action.transitionDelegate = ScaleTransition.default
     }
 }

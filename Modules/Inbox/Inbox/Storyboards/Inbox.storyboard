@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Brf-MD-hLc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Brf-MD-hLc">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -47,6 +48,57 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="doU-vU-6l7">
+                                <rect key="frame" x="0.0" y="718" width="375" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="hCy-0T-hra"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem id="stG-vi-ogB">
+                                        <imageReference key="image" image="exclamationmark.circle" catalog="system" symbolScale="medium"/>
+                                        <color key="tintColor" name="redColor"/>
+                                        <connections>
+                                            <action selector="onTapSpam:" destination="7un-PS-iVo" id="Cri-SF-jlk"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="4nY-LT-IiW"/>
+                                    <barButtonItem id="wUb-ya-qUy">
+                                        <imageReference key="image" image="folder.badge.plus" catalog="system" symbolScale="medium"/>
+                                        <color key="tintColor" name="redColor"/>
+                                        <connections>
+                                            <action selector="onTapMoveTo:" destination="7un-PS-iVo" id="aqH-PD-1fv"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="n0f-wj-xyQ"/>
+                                    <barButtonItem id="eNj-VD-Ka2">
+                                        <imageReference key="image" image="trash" catalog="system" symbolScale="medium"/>
+                                        <color key="tintColor" name="redColor"/>
+                                        <connections>
+                                            <action selector="onTapTrash:" destination="7un-PS-iVo" id="z2s-BE-yI6"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="8Sk-rZ-GG5"/>
+                                    <barButtonItem id="W4C-2B-9qh">
+                                        <imageReference key="image" image="ellipsis" catalog="system" symbolScale="medium"/>
+                                        <color key="tintColor" name="redColor"/>
+                                        <connections>
+                                            <action selector="onTapMore:" destination="7un-PS-iVo" id="6KU-2u-a2B"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4f9-Sa-8pI">
+                                <rect key="frame" x="219" y="642" width="60" height="60"/>
+                                <color key="backgroundColor" name="redColor"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <color key="tintColor" name="whiteColor"/>
+                                <inset key="titleEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="-25"/>
+                                <inset key="imageEdgeInsets" minX="20" minY="-15" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Undo" image="arrow.uturn.left.circle" catalog="system"/>
+                                <connections>
+                                    <action selector="onTapUndo:" destination="7un-PS-iVo" eventType="touchUpInside" id="wlZ-HI-zCF"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="taQ-ku-DZ7">
                                 <rect key="frame" x="299" y="642" width="60" height="60"/>
                                 <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -67,41 +119,6 @@
                                     <action selector="onTapCompose:" destination="7un-PS-iVo" eventType="touchUpInside" id="K53-XB-7Ow"/>
                                 </connections>
                             </button>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="doU-vU-6l7">
-                                <rect key="frame" x="0.0" y="718" width="375" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="hCy-0T-hra"/>
-                                </constraints>
-                                <items>
-                                    <barButtonItem image="darkSpam" id="stG-vi-ogB">
-                                        <color key="tintColor" name="redColor"/>
-                                        <connections>
-                                            <action selector="onTapSpam:" destination="7un-PS-iVo" id="Cri-SF-jlk"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="4nY-LT-IiW"/>
-                                    <barButtonItem image="moveMessage" id="wUb-ya-qUy">
-                                        <color key="tintColor" name="redColor"/>
-                                        <connections>
-                                            <action selector="onTapMoveTo:" destination="7un-PS-iVo" id="aqH-PD-1fv"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="n0f-wj-xyQ"/>
-                                    <barButtonItem image="trashMessage" id="eNj-VD-Ka2">
-                                        <color key="tintColor" name="redColor"/>
-                                        <connections>
-                                            <action selector="onTapTrash:" destination="7un-PS-iVo" id="z2s-BE-yI6"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="8Sk-rZ-GG5"/>
-                                    <barButtonItem image="MoreButton" id="W4C-2B-9qh">
-                                        <color key="tintColor" name="redColor"/>
-                                        <connections>
-                                            <action selector="onTapMore:" destination="7un-PS-iVo" id="6KU-2u-a2B"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PjB-IV-Kjy">
                                 <rect key="frame" x="0.0" y="718" width="375" height="60"/>
                                 <constraints>
@@ -116,22 +133,6 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="vF1-7A-oIw"/>
-                                </items>
-                            </toolbar>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cEX-fQ-ef4">
-                                <rect key="frame" x="0.0" y="718" width="375" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="ITU-ap-Fhs"/>
-                                </constraints>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="dwd-mf-EMn"/>
-                                    <barButtonItem systemItem="undo" id="lT7-Vf-NXg">
-                                        <color key="tintColor" name="redColor"/>
-                                        <connections>
-                                            <action selector="onTapUndo:" destination="7un-PS-iVo" id="14h-ST-1Rt"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="3Nf-OS-FKr"/>
                                 </items>
                             </toolbar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HQg-sx-co3">
@@ -188,9 +189,11 @@
                         <constraints>
                             <constraint firstItem="doU-vU-6l7" firstAttribute="trailing" secondItem="HQg-sx-co3" secondAttribute="trailing" id="03L-s2-s5j"/>
                             <constraint firstItem="doU-vU-6l7" firstAttribute="top" secondItem="HQg-sx-co3" secondAttribute="top" id="0eY-6t-56H"/>
+                            <constraint firstItem="4f9-Sa-8pI" firstAttribute="width" secondItem="taQ-ku-DZ7" secondAttribute="width" id="8i5-0J-dd7"/>
                             <constraint firstItem="gw0-lR-CL4" firstAttribute="trailing" secondItem="1By-Xy-Vt6" secondAttribute="trailing" id="CJA-cu-jgN"/>
+                            <constraint firstItem="taQ-ku-DZ7" firstAttribute="leading" secondItem="4f9-Sa-8pI" secondAttribute="trailing" constant="20" id="DPI-R3-P1P"/>
                             <constraint firstItem="gw0-lR-CL4" firstAttribute="bottom" secondItem="taQ-ku-DZ7" secondAttribute="bottom" constant="76" id="Dxx-D5-waQ"/>
-                            <constraint firstItem="cEX-fQ-ef4" firstAttribute="top" secondItem="PjB-IV-Kjy" secondAttribute="top" id="HZW-lH-slQ"/>
+                            <constraint firstItem="4f9-Sa-8pI" firstAttribute="height" secondItem="taQ-ku-DZ7" secondAttribute="height" id="FZa-w2-jw5"/>
                             <constraint firstItem="YsT-3b-yEr" firstAttribute="centerX" secondItem="uet-IA-cBW" secondAttribute="centerX" id="Hd1-gw-4aC"/>
                             <constraint firstItem="HQg-sx-co3" firstAttribute="leading" secondItem="gw0-lR-CL4" secondAttribute="leading" id="J2Q-Qg-Cbn"/>
                             <constraint firstItem="doU-vU-6l7" firstAttribute="top" secondItem="1By-Xy-Vt6" secondAttribute="bottom" id="KcN-0q-hlW"/>
@@ -199,11 +202,9 @@
                             <constraint firstItem="PjB-IV-Kjy" firstAttribute="bottom" secondItem="doU-vU-6l7" secondAttribute="bottom" id="Rv1-xR-Jp9"/>
                             <constraint firstAttribute="bottom" secondItem="1By-Xy-Vt6" secondAttribute="bottom" constant="94" id="VYm-lE-e2d"/>
                             <constraint firstItem="HQg-sx-co3" firstAttribute="trailing" secondItem="gw0-lR-CL4" secondAttribute="trailing" id="Y0Z-xK-dEY"/>
-                            <constraint firstItem="cEX-fQ-ef4" firstAttribute="leading" secondItem="PjB-IV-Kjy" secondAttribute="leading" id="Zk3-o9-Eja"/>
-                            <constraint firstItem="cEX-fQ-ef4" firstAttribute="bottom" secondItem="PjB-IV-Kjy" secondAttribute="bottom" id="aM0-Xj-KJS"/>
                             <constraint firstItem="1By-Xy-Vt6" firstAttribute="top" secondItem="uet-IA-cBW" secondAttribute="top" id="eJh-vU-g28"/>
                             <constraint firstItem="gw0-lR-CL4" firstAttribute="trailing" secondItem="taQ-ku-DZ7" secondAttribute="trailing" constant="16" id="eLJ-Bk-U3G"/>
-                            <constraint firstItem="cEX-fQ-ef4" firstAttribute="trailing" secondItem="PjB-IV-Kjy" secondAttribute="trailing" id="fBv-Ld-aXu"/>
+                            <constraint firstItem="4f9-Sa-8pI" firstAttribute="centerY" secondItem="taQ-ku-DZ7" secondAttribute="centerY" id="iaw-1F-bu3"/>
                             <constraint firstItem="PjB-IV-Kjy" firstAttribute="top" secondItem="doU-vU-6l7" secondAttribute="top" id="q2N-gf-pPQ"/>
                             <constraint firstItem="YsT-3b-yEr" firstAttribute="centerY" secondItem="uet-IA-cBW" secondAttribute="centerY" id="qzR-K8-f8M"/>
                             <constraint firstItem="doU-vU-6l7" firstAttribute="bottom" secondItem="HQg-sx-co3" secondAttribute="bottom" id="rhJ-D7-6Kj"/>
@@ -229,8 +230,7 @@
                         <outlet property="tableView" destination="1By-Xy-Vt6" id="6EF-7F-sTK"/>
                         <outlet property="tableViewBottomConstraintToSafeArea" destination="VYm-lE-e2d" id="7Ga-UI-Uw2"/>
                         <outlet property="tableViewBottomConstraintToToolbar" destination="KcN-0q-hlW" id="yfS-ur-tyg"/>
-                        <outlet property="undoBarButtonItem" destination="lT7-Vf-NXg" id="rNT-op-l1I"/>
-                        <outlet property="undoToolBar" destination="cEX-fQ-ef4" id="Tsf-Pc-ZJw"/>
+                        <outlet property="undoButton" destination="4f9-Sa-8pI" id="D7h-cQ-wPh"/>
                         <outlet property="unreadMessagesLabel" destination="Xi1-vJ-NTQ" id="yc7-IC-WuJ"/>
                     </connections>
                 </viewController>
@@ -325,10 +325,12 @@
         <image name="ComposeButton" width="44" height="44"/>
         <image name="EmptyInboxIcon" width="66.666664123535156" height="49.333332061767578"/>
         <image name="FilterButton" width="44" height="44"/>
-        <image name="MoreButton" width="20" height="20"/>
         <image name="Refresh" width="48" height="48"/>
-        <image name="darkSpam" width="20" height="20"/>
-        <image name="moveMessage" width="44" height="44"/>
+        <image name="arrow.uturn.left.circle" catalog="system" width="128" height="121"/>
+        <image name="ellipsis" catalog="system" width="128" height="37"/>
+        <image name="exclamationmark.circle" catalog="system" width="128" height="121"/>
+        <image name="folder.badge.plus" catalog="system" width="128" height="91"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
         <image name="trashMessage" width="44" height="44"/>
         <namedColor name="cellSubTitleTextColor">
             <color red="0.1289999932050705" green="0.1289999932050705" blue="0.1289999932050705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -341,6 +343,9 @@
         </namedColor>
         <namedColor name="redColor">
             <color red="0.90600001811981201" green="0.29800000786781311" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="whiteColor">
+            <color red="0.98000001907348633" green="0.98400002717971802" blue="0.98400002717971802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

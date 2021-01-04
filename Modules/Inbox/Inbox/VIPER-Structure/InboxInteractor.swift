@@ -240,6 +240,10 @@ extension InboxInteractor {
             viewController?.dataSource?.resetFooterView()
         }
         
+        DispatchQueue.main.async {
+            Loader.stop()
+        }
+        
         switch(result) {
         case .success(let value):
             if let emailMessages = value as? EmailMessagesList {
@@ -327,7 +331,6 @@ extension InboxInteractor {
     func toggleReadStatus(forMessageIds messageIds: [Int],
                           asRead: Bool,
                           withUndo: String) {
-        
         var messagesIDList = ""
         
         for message in messageIds {
@@ -336,6 +339,8 @@ extension InboxInteractor {
         
         messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex))
         
+        Loader.start()
+
         apiService.updateMessages(messageID: "",
                                   messagesIDIn: messagesIDList,
                                   folder: "",
@@ -347,6 +352,9 @@ extension InboxInteractor {
         { [weak self] (result) in
             guard let weakSelf = self else {
                 return
+            }
+            DispatchQueue.main.async {
+                Loader.stop()
             }
             switch(result) {
             case .success( _):
@@ -373,10 +381,17 @@ extension InboxInteractor {
         
         messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex))
         
+        Loader.start()
+
         apiService.deleteMessages(messagesIDIn: messagesIDList) { [weak self] (result) in
             guard let weakSelf = self else {
                 return
             }
+            
+            DispatchQueue.main.async {
+                Loader.stop()
+            }
+            
             switch(result) {
             case .success( _):
                 DPrint("deleteMessagesList")
@@ -410,6 +425,8 @@ extension InboxInteractor {
         
         messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex))
         
+        Loader.start()
+
         apiService.updateMessages(messageID: "",
                                   messagesIDIn: messagesIDList,
                                   folder: folder,
@@ -422,6 +439,11 @@ extension InboxInteractor {
             guard let weakSelf = self else {
                 return
             }
+            
+            DispatchQueue.main.async {
+                Loader.stop()
+            }
+            
             switch(result) {
             case .success( _):
                 DPrint("marked list as trash")
@@ -441,7 +463,6 @@ extension InboxInteractor {
     func markMessagesAsArchived(forMessageIds messageIds: [Int],
                                 lastSelectedMessage: EmailMessage,
                                 withUndo: String) {
-        
         guard let folder = withUndo.isEmpty == false ?
             MessagesFoldersName.archive.rawValue :
             lastSelectedMessage.folder else {
@@ -460,6 +481,8 @@ extension InboxInteractor {
         
         messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex))
         
+        Loader.start()
+
         apiService.updateMessages(messageID: "",
                                   messagesIDIn: messagesIDList,
                                   folder: folder,
@@ -472,6 +495,11 @@ extension InboxInteractor {
             guard let weakSelf = self else {
                 return
             }
+            
+            DispatchQueue.main.async {
+                Loader.stop()
+            }
+            
             switch(result) {
             case .success( _):
                 DPrint("move list to archive")
@@ -491,6 +519,7 @@ extension InboxInteractor {
     func markMessagesAsSpam(forMessageIds messageIds: [Int],
                             lastSelectedMessage: EmailMessage,
                             withUndo: String) {
+        Loader.start()
         
         let folder = withUndo.isEmpty == false ?
             MessagesFoldersName.spam.rawValue :
@@ -515,6 +544,10 @@ extension InboxInteractor {
         { [weak self] (result) in
             guard let weakSelf = self else {
                 return
+            }
+            
+            DispatchQueue.main.async {
+                Loader.stop()
             }
             
             switch(result) {
@@ -554,6 +587,8 @@ extension InboxInteractor {
         
         messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex))
         
+        Loader.start()
+
         apiService.updateMessages(messageID: "",
                                   messagesIDIn: messagesIDList,
                                   folder: folder,
@@ -565,6 +600,10 @@ extension InboxInteractor {
         { [weak self] (result) in
             guard let weakSelf = self else {
                 return
+            }
+            
+            DispatchQueue.main.async {
+                Loader.stop()
             }
             
             switch(result) {

@@ -9,6 +9,7 @@ import InboxViewer
 import GlobalSearch
 import AppSettings
 import Compose
+import AppContacts
 
 public class InitializerController: UIViewController, HashingService, EmptyStateMachine {
     
@@ -32,7 +33,6 @@ public class InitializerController: UIViewController, HashingService, EmptyState
     private var messageId = -1
     public var onTapComposeWithDraft: ((AnswerMessageMode, EmailMessage, UserMyself, UIViewController?) -> Void)?
     public var onTapCompose: ((AnswerMessageMode, UserMyself, EmailMessage?, UIViewController?) -> Void)?
-    public var onTapContacts: (([Contact], Bool, UIViewController?) -> Void)?
     public var onTapFAQ: ((UIViewController?) -> Void)?
     private var globalSearchCoordinator: GlobalSearchCoordinator?
     private var sideMenuResponse: (menu: InboxSideMenuController, content: UIViewController)?
@@ -103,8 +103,8 @@ extension InitializerController {
                                  user: user,
                                  delegate: delegate,
                                  presenter: presenter)
-        }, onTapContacts: { (contacts, toggle, presenter) in
-            self.onTapContacts?(contacts, toggle, presenter)
+        }, onTapContacts: { (contacts, user, presenter) in
+            self.openContacts(with: contacts, user: user, presenter: presenter)
         }, onTapSettings: { (user, presenter) in
             self.openSettings(withUser: user, presenter: presenter)
         }) { (presenter) in
@@ -130,6 +130,14 @@ extension InitializerController {
     private func openSettings(withUser user: UserMyself, presenter: UIViewController?) {
         let settingsCoordinator = AppSettingsCoordinator()
         settingsCoordinator.showSettings(withUser: user, presenter: presenter)
+    }
+    
+    private func openContacts(with contacts: [Contact], user: UserMyself, presenter: UIViewController?) {
+        let contactsCoordinator = AppContactsCoordinator()
+        contactsCoordinator.showContactScreen(from: presenter,
+                                              user: user) { [weak self] (emailId, vc) in
+            self?.showCompose(withMode: .newMessageWithReceiverEmail(emailId), message: nil, user: user, presenter: vc)
+        }
     }
     
     private func openInboxViewer(withMessage message: EmailMessage?,

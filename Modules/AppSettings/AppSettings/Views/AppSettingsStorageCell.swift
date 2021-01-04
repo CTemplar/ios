@@ -17,8 +17,8 @@ public final class AppSettingsStorageCell: UITableViewCell, Cellable {
     
     lazy private var titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = k_settingsCellTextColor
-        label.font = AppStyle.CustomFontStyle.Regular.font(withSize: 16.0)
+        label.textColor = .label
+        label.font = .withType(.Default(.Normal))
         return label
     }()
     

@@ -43,6 +43,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Need camera access for uploading Images</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>CTemplar wants to authorize the user with the device's Biometric Authentication</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Allows saving photos to the Photo Library</string>
 	<key>NSPhotoLibraryUsageDescription</key>

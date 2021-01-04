@@ -215,7 +215,7 @@ final class ComposeController: UITableViewController, EmptyStateMachine  {
     // MARK: - UI
     private func updateNavigationTitle(by output: AnswerMessageMode) {
         switch output {
-        case .newMessage:
+        case .newMessage, .newMessageWithReceiverEmail:
             navigationItem.title = Strings.Compose.newMessage.localized
         case .reply:
             navigationItem.title = Strings.Compose.reply.localized

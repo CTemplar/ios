@@ -3,6 +3,7 @@ import UIKit
 import Utility
 import Networking
 import ObjectivePGP
+import LocalAuthentication
 
 final class AppSettingsDatasource: NSObject {
     // MARK: Properties
@@ -174,7 +175,7 @@ final class AppSettingsDatasource: NSObject {
                     model = AppSettingsModel(title: "\(Strings.AppSettings.appVersion.localized) \(appVersion) (\(buildNumber))",
                         showDetailIndicator: false,
                         titleAlignment: .center,
-                        titleColor: k_settingsCellSecondaryTextColor)
+                        titleColor: .secondaryLabel)
                 }
             case .storage:
                 if let usedStorage = user.settings.usedStorage, let allocatedStorage = user.settings.allocatedStorage {
@@ -186,7 +187,7 @@ final class AppSettingsDatasource: NSObject {
                                          showDetailIndicator: false,
                                          titleAlignment: .center,
                                          titleColor: AppStyle.Colors.loaderColor.color,
-                                         titleFont: AppStyle.CustomFontStyle.Bold.font(withSize: 16.0)!)
+                                         titleFont: .withType(.Default(.Bold)))
             case .blockExternalImages:
                 model = AppSettingsSwitchModel(title: Strings.AppSettings.blockExternalImages.localized,
                                                value: user.settings.blockExternalImage ?? false,
@@ -194,6 +195,11 @@ final class AppSettingsDatasource: NSObject {
             case .htmlEditor:
                 model = AppSettingsSwitchModel(title: Strings.AppSettings.htmlEditor.localized,
                                                value: user.settings.isHtmlDisabled == false ? true : false,
+                                               rowType: row)
+            case .biometric:
+                let isBiometricEnabled = UserDefaults.standard.bool(forKey: biometricEnabled)
+                model = AppSettingsSwitchModel(title: Strings.AppSettings.biometric.localized,
+                                               value: isBiometricEnabled,
                                                rowType: row)
             }
             
@@ -298,7 +304,7 @@ extension AppSettingsDatasource: UITableViewDelegate, UITableViewDataSource {
                 return configureBasicCell(at: indexPath, sectionType: sectionType)
             case .storage:
                 return configureStorageCell(at: indexPath, sectionType: sectionType)
-            case .blockExternalImages, .htmlEditor:
+            case .blockExternalImages, .htmlEditor, .biometric:
                 return configureSettingsSwitchCell(at: indexPath, sectionType: sectionType)
             }
         }
@@ -326,8 +332,8 @@ extension AppSettingsDatasource: UITableViewDelegate, UITableViewDataSource {
 
         let label = UILabel()
         label.text = sectionType.name
-        label.font = AppStyle.CustomFontStyle.Bold.font(withSize: 16.0)
-        label.textColor = k_cellSubTitleTextColor
+        label.font = .withType(.Default(.Bold))
+        label.textColor = .label
         label.backgroundColor = .clear
         headerView.addSubview(label)
         
@@ -387,7 +393,7 @@ extension AppSettingsDatasource: UITableViewDelegate, UITableViewDataSource {
                 parentViewController?.router?.onTapKeys()
             case .logout:
                 parentViewController?.router?.onTapLogOut()
-            case .appVersion, .storage, .blockExternalImages, .htmlEditor: break
+            case .appVersion, .storage, .blockExternalImages, .htmlEditor, .biometric: break
             }
         }
     }
@@ -436,11 +442,30 @@ extension AppSettingsDatasource: UITableViewDelegate, UITableViewDataSource {
                 switch cellViewModel.rowType {
                 case .blockExternalImages:
                     self?.user.settings.update(blockExternalImage: value)
+                    self?.updateSettings()
                 case .htmlEditor:
                     self?.user.settings.update(htmlEditor: value == false ? true : false)
+                    self?.updateSettings()
+                case .biometric:
+                    if value {
+                        var alertMessage = Strings.BiometricError.biometricAuthAlert.localized
+                        alertMessage = alertMessage.replacingOccurrences(of: "%s",
+                                                                         with: LAContext.getAvailableBiometricType().displayIdentifier)
+                        let params = AlertKitParams(
+                            title: Strings.BiometricError.biometricAuth.localized,
+                            message: alertMessage,
+                            cancelButton: Strings.Button.okButton.localized,
+                            otherButtons: []
+                        )
+                        
+                        self?.parentViewController?.showAlert(with: params, onCompletion: { (_) in
+                            UserDefaults.standard.set(value, forKey: biometricEnabled)
+                        })
+                    } else {
+                        UserDefaults.standard.set(value, forKey: biometricEnabled)
+                    }
                 default: break
                 }
-                self?.updateSettings()
             }
         }
         return cell

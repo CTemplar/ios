@@ -38,23 +38,31 @@ class InboxViewController: UIViewController, EmptyStateMachine {
             selectionToolBar.isHidden = true
         }
     }
-    
-    @IBOutlet weak var undoToolBar: UIToolbar! {
-        didSet {
-            undoToolBar.isHidden = true
-        }
-    }
-    
+
     @IBOutlet weak var inboxEmptyImageView: UIImageView!
     
     @IBOutlet weak var inboxEmptyLabel: UILabel!
     
-    @IBOutlet weak var undoBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var undoButton: UIButton! {
+        didSet {
+            undoButton.isHidden = true
+            undoButton.titleLabel?.font = .withType(.ExtraSmall(.Bold))
+            undoButton.setTitle("Undo", for: .normal)
+            undoButton.layer.cornerRadius = undoButton.frame.size.height / 2
+            undoButton.applyDropShadow(shadowOpacity: 7.0,
+                                       shadowColor: UIColor.black.withAlphaComponent(0.4),
+                                       shadowRadius: 2.0,
+                                       shadowOffset: .init(width: 0.0, height: 1.0))
+        }
+    }
     
     @IBOutlet weak var composeButton: UIButton! {
         didSet {
             composeButton.layer.cornerRadius = composeButton.frame.size.height / 2
-            composeButton.layer.masksToBounds = true
+            composeButton.applyDropShadow(shadowOpacity: 7.0,
+                                          shadowColor: UIColor.black.withAlphaComponent(0.4),
+                                          shadowRadius: 2.0,
+                                          shadowOffset: .init(width: 0.0, height: 1.0))
         }
     }
     
@@ -252,7 +260,7 @@ class InboxViewController: UIViewController, EmptyStateMachine {
     
     // MARK: - UI
     func turnOnDraftToolBar() {
-        [undoToolBar, draftToolbar]
+        [undoButton, draftToolbar]
             .forEach({
                 $0?.isHidden = true
             })
@@ -262,7 +270,7 @@ class InboxViewController: UIViewController, EmptyStateMachine {
     }
     
     func turnOnSelectionToolBar() {
-        [draftToolbar, undoToolBar]
+        [draftToolbar, undoButton]
             .forEach({
                 $0?.isHidden = true
             })
@@ -277,7 +285,7 @@ class InboxViewController: UIViewController, EmptyStateMachine {
                 $0?.isHidden = true
             })
         composeButton.isHidden = false
-        undoToolBar.isHidden = false
+        undoButton.isHidden = false
         toggleGeneralToolbar(shouldShow: false)
     }
     
@@ -286,7 +294,7 @@ class InboxViewController: UIViewController, EmptyStateMachine {
         if shouldShow {
             [draftToolbar,
              selectionToolBar,
-             undoToolBar]
+             undoButton]
                 .forEach({
                     $0?.isHidden = true
                 })

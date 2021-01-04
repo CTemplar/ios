@@ -83,6 +83,13 @@ final class ComposeViewModel: Modelable {
         self.user = user
         self.email = EmailMessage()
         self.email.update(messsageID: 0)
+        
+        switch answerMode {
+        case .newMessageWithReceiverEmail(let emailId):
+            self.email.update(receivers: [emailId])
+        default: break
+        }
+        
         self.includeAttachments = true
         
         sendButtonState
@@ -254,7 +261,7 @@ final class ComposeViewModel: Modelable {
         .store(in: &bindables)
         
         // To Prefix
-        let receiversList: [String] = answerMode == .forward ? [] : email.receivers ?? []
+        let receiversList: [String] = answerMode == AnswerMessageMode.forward ? [] : email.receivers ?? []
         toCellVM = ComposeMailOtherEmailModel(mode: .to,
                                               contacts: contacts,
                                               mailIds: receiversList,

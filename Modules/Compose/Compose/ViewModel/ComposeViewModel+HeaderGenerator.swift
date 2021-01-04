@@ -5,7 +5,7 @@ extension ComposeViewModel {
     func generateHtmlHeader(message: EmailMessage, answerMode: AnswerMessageMode) -> String {
         var string = ""
         switch answerMode {
-        case .newMessage: break
+        case .newMessage, .newMessageWithReceiverEmail: break
         case .reply:
             string = generateHtmlReplyHeader(message: message)
         case .replyAll:

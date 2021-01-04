@@ -21,6 +21,9 @@ extension InboxDatasource {
             let updatedStatus = email.read == true ? false : true
             self?.parentViewController?.presenter?.toggleMessageStatus(readStatus: updatedStatus,
                                                                        for: [email.messsageID!])
+            self?.selectedMessageIds.removeAll()
+            self?.selectedMessageIds.append(email.messsageID!)
+            self?.update(lastAppliedActionMessage: email)
         }
         
         read.hidesWhenSelected = true
@@ -45,6 +48,7 @@ extension InboxDatasource {
         
         let trashAction = SwipeAction(style: .default, title: nil) { [weak self] (action, indexPath) in
             self?.parentViewController?.presenter?.interactor?.markMessageAsTrash(message: email)
+            self?.update(lastAppliedActionMessage: email)
         }
         
         trashAction.hidesWhenSelected = true
@@ -52,6 +56,9 @@ extension InboxDatasource {
         
         let spamAction = SwipeAction(style: .default, title: nil) { [weak self] (action, indexPath) in
             self?.parentViewController?.presenter?.interactor?.markMessageAsSpam(message: email)
+            self?.selectedMessageIds.removeAll()
+            self?.selectedMessageIds.append(email.messsageID!)
+            self?.update(lastAppliedActionMessage: email)
         }
         
         spamAction.hidesWhenSelected = true
@@ -59,6 +66,9 @@ extension InboxDatasource {
         
         let moveToAction = SwipeAction(style: .default, title: nil) { [weak self] (action, indexPath) in
             self?.parentViewController?.presenter?.interactor?.showMoveTo(message: email)
+            self?.selectedMessageIds.removeAll()
+            self?.selectedMessageIds.append(email.messsageID!)
+            self?.update(lastAppliedActionMessage: email)
         }
         
         moveToAction.hidesWhenSelected = true
