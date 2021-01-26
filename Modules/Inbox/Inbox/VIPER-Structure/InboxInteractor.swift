@@ -29,6 +29,10 @@ final class InboxInteractor {
         self.offset = offset
     }
     
+    func update(totalItems: Int) {
+        self.totalItems = totalItems
+    }
+    
     func update(presenter: InboxPresenter) {
         self.presenter = presenter
     }
@@ -221,6 +225,7 @@ extension InboxInteractor {
             }
         } else {
             DPrint("local PGPKeys exist")
+            totalItems = 0
             DispatchQueue.global(qos: .background).async {
                 self.messagesList(folder: menu.menuName,
                                    withUndo: withUndo,
@@ -248,9 +253,12 @@ extension InboxInteractor {
         case .success(let value):
             if let emailMessages = value as? EmailMessagesList {
                 totalItems = emailMessages.totalCount ?? 0
-                viewController?.dataSource?.setInboxData(by: emailMessages.messagesList ?? [],
-                                                         withTotalCount: totalItems,
-                                                         pageOffset: offset
+                print("============== messages count: \(totalItems) =====================")
+                viewController?
+                    .dataSource?
+                    .setInboxData(by: emailMessages.messagesList ?? [],
+                                  withTotalCount: totalItems,
+                                  pageOffset: offset
                 )
                 if !undoMessage.isEmpty {
                     presenter?.showUndoBar(text: undoMessage)

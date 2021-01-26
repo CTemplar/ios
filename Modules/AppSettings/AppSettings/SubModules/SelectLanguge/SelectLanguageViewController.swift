@@ -52,6 +52,17 @@ class SelectLanguageViewController: UIViewController {
             language = GeneralConstant.Language.french.prefix
         case GeneralConstant.Language.slovak.rawValue:
             language = GeneralConstant.Language.slovak.prefix
+            
+        case GeneralConstant.Language.arabic.rawValue:
+            language = GeneralConstant.Language.arabic.prefix
+        case GeneralConstant.Language.chinese.rawValue:
+            language = GeneralConstant.Language.chinese.prefix
+        case GeneralConstant.Language.german.rawValue:
+            language = GeneralConstant.Language.german.prefix
+        case GeneralConstant.Language.portuguese.rawValue:
+            language = GeneralConstant.Language.portuguese.prefix
+        case GeneralConstant.Language.ukrainian.rawValue:
+            language = GeneralConstant.Language.ukrainian.prefix
         default:
             language = GeneralConstant.Language.english.prefix
         }
@@ -87,6 +98,18 @@ extension SelectLanguageViewController: UITableViewDelegate, UITableViewDataSour
             languageName = GeneralConstant.Language.french.name
         case GeneralConstant.Language.slovak.rawValue:
             languageName = GeneralConstant.Language.slovak.name
+            
+        case GeneralConstant.Language.arabic.rawValue:
+            languageName = GeneralConstant.Language.arabic.name
+        case GeneralConstant.Language.chinese.rawValue:
+            languageName = GeneralConstant.Language.chinese.name
+        case GeneralConstant.Language.german.rawValue:
+            languageName = GeneralConstant.Language.german.name
+        case GeneralConstant.Language.portuguese.rawValue:
+            languageName = GeneralConstant.Language.portuguese.name
+        case GeneralConstant.Language.ukrainian.rawValue:
+            languageName = GeneralConstant.Language.ukrainian.name
+            
         default: break
         }
         
@@ -111,6 +134,18 @@ extension SelectLanguageViewController: UITableViewDelegate, UITableViewDataSour
             languagePrefix = GeneralConstant.Language.french.prefix
         case GeneralConstant.Language.slovak.rawValue:
             languagePrefix = GeneralConstant.Language.slovak.prefix
+            
+        case GeneralConstant.Language.arabic.rawValue:
+            languagePrefix = GeneralConstant.Language.arabic.prefix
+        case GeneralConstant.Language.chinese.rawValue:
+            languagePrefix = GeneralConstant.Language.chinese.prefix
+        case GeneralConstant.Language.german.rawValue:
+            languagePrefix = GeneralConstant.Language.german.prefix
+        case GeneralConstant.Language.portuguese.rawValue:
+            languagePrefix = GeneralConstant.Language.portuguese.prefix
+        case GeneralConstant.Language.ukrainian.rawValue:
+            languagePrefix = GeneralConstant.Language.ukrainian.prefix
+            
         default:
             languagePrefix = GeneralConstant.Language.english.prefix
         }

@@ -84,6 +84,9 @@ final class ComposeController: UITableViewController, EmptyStateMachine  {
                          name: .mailSentNotificationID,
                          object: nil
         )
+        
+        let notificationCenter = NotificationCenter.default
+            notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
     
     deinit {
@@ -93,6 +96,11 @@ final class ComposeController: UITableViewController, EmptyStateMachine  {
         bindables.removeAll()
         NotificationCenter.default.removeObserver(self)
     }
+    
+    @objc func appMovedToBackground() {
+        self.viewModel?.saveDraft()
+       }
+    
     
     // MARK: - Setup
     private func setupTableView() {

@@ -42,7 +42,7 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Need camera access for uploading Images</string>
+	<string>CTemplar will use your device's camera to send photos via email</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>CTemplar wants to authorize the user with the device's Biometric Authentication</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>

@@ -93,8 +93,9 @@ final class ComposeViewModel: Modelable {
         self.includeAttachments = true
         
         sendButtonState
-            .debounce(for: 2.0, scheduler: DispatchQueue.main)
+            .debounce(for: 0.2, scheduler: DispatchQueue.main)
             .sink { [weak self] (_) in
+                self?.shouldEnableSendButton.toggle()
                 self?.updateSendButtonState()
         }.store(in: &bindables)
     }
@@ -579,9 +580,10 @@ final class ComposeViewModel: Modelable {
             return false
         }
         
-        if email.subject?.isEmpty == true {
-            return false
-        }
+        // Activating Send button without subject.
+//        if email.subject?.isEmpty == true {
+//            return false
+//        }
 
         var messageContent = getMailContent(from: email)
         

@@ -146,6 +146,11 @@ public struct GeneralConstant {
         case russian
         case french
         case slovak
+        case arabic
+        case chinese
+        case german
+        case portuguese
+        case ukrainian
         
         public var prefix: String {
             switch self {
@@ -157,6 +162,16 @@ public struct GeneralConstant {
                 return "fr"
             case .slovak:
                 return "sk"
+            case .arabic:
+                return "ar"
+            case .chinese:
+                return "zh-Hans"
+            case .german:
+                return "de"
+            case .portuguese:
+                return "pt-BR"
+            case .ukrainian:
+                return "uk"
             }
         }
         
@@ -170,6 +185,16 @@ public struct GeneralConstant {
                 return "Français"
             case .slovak:
                 return "Slovenský"
+            case .arabic:
+                return "عربى"
+            case .chinese:
+                return "中文"
+            case .german:
+                return "Deutsche"
+            case .portuguese:
+                return "Português"
+            case .ukrainian:
+                return "Український"
             }
         }
     }

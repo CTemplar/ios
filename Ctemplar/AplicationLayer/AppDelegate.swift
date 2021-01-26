@@ -33,6 +33,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var anyCancellable: AnyCancellable?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        // Clear existing any token/credentials stored.
+        if (!UserDefaults.standard.bool(forKey: "IsFirst")) {
+            UtilityManager.shared.keychainService.deleteUserCredentialsAndToken()
+            UserDefaults.standard.set(true, forKey: "IsFirst")
+        }
+        
         UserDefaults.standard.setValue(false, forKey:"_UIConstraintBasedLayoutLogUnsatisfiable")
         
         
@@ -224,7 +231,7 @@ extension AppDelegate: MessagingDelegate {
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        NotificationCenter.default.post(name: .updateInboxMessagesNotificationID, object: false, userInfo: nil)
+        NotificationCenter.default.post(name: .newMessagesNotificationID, object: true, userInfo: nil)
         completionHandler([.sound, .alert])
     }
     

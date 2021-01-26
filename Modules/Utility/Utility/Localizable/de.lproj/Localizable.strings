@@ -1,0 +1,475 @@
+"invalidEnteredPassword" = "Das eingegebene Passwort ist ungültig";
+"invalidEnteredEmail" = "Die eingegebene E-Mail ist ungültig";
+"validEnteredEmail" = "Die eingegebene E-Mail ist gültig";
+
+"closeButton" = "Schließen";
+"cancelButton" = "Abbrechen";
+"logoutButton" = "Abmelden";
+"saveButton" = "Speichern";
+"applyButton" = "Anwenden";
+"nextButton" = "Weiter";
+"resetPasswordButton" = "Passwort zurücksetzen";
+"confirmButton" = "Bestätigen";
+"addButton" = "Hinzufügen";
+"changeButton" = "Ändern";
+"deleteButton" = "Löschen";
+"encryptButton" = "Verschlüsseln";
+"decryptButton" = "Entschlüsseln";
+"okButton" = "Ok";
+"updateButton" = "Aktualisieren";
+
+"deleteRow" = "Löschen";
+
+"termsAndConditionsFullText" = "Bitte kreuzen Sie dieses Kästchen an, wenn Sie mit unseren Allgemeinen Geschäftsbedingungen einverstanden sind";
+"termsAndConditionsPhrase" = "Allgemeine Geschäftsbedingungen";
+
+// Login
+"emailPlaceholder" = "E-Mail";
+"passwordPlaceholder" = "Passwort";
+"usernamePlaceholder" = "Benutzername";
+"userNameNotFound" = "Benutzername nicht verfügbar";
+"userNameFound" = "Benutzername verfügbar";
+"invitationCodePlaceholder" = "Einladungs-Code";
+
+// 2FA
+"twoFAButtonTitle" = "AUTHENTIFIZIEREN";
+"twoFATitle" = "Zwei-Faktor-Authentifizierung";
+"twoFASecondaryTitle" = "Bitte geben Sie den 6-stelligen Code aus einer der konfigurierten Authentifizierungs-Apps ein";
+
+"forgotPassword" = "Passwort vergessen?";
+"login" = "Anmelden";
+"createAccount" = "Konto erstellen";
+"rememberMe" = "Angemeldet bleiben";
+"loginError" = "Anmelde-Fehler";
+"passwordCodeError" = "Passwort-Fehler!";
+"passwordResetError" = "Ihr Passwort konnte nicht zurückgesetzt werden!";
+"forgotUserName" = "Benutzernamen vergessen?";
+
+// Sign Up
+"usernameAndDomain" = "Benutzername und Domain";
+"ctemplarEmailAddress" = "Hierbei handelt es sich um Ihre neue Ctemplar-E-Mail-Adresse.";
+"choosePasswordPlaceholder" = "Wählen Sie Ihr Passwort";
+"confirmPasswordPlaceholder" = "Bestätigen Sie Ihr Passwort";
+"recoveryEmailPlaceholder" = "E-Mail zum Zurücksetzen";
+"passwordMust" = "Ihr Passwort muss mindestens 10 Zeichen lang sein. Das Passwort darf nur lateinische Buchstaben und keine Symbole wie \"-+!@. usw. enthalten.";
+"thisIsUsed" = "Diese wird verwendet, um Ihr Konto wiederherzustellen, falls Sie sich ausgesperrt oder Ihr Passwort vergessen haben";
+"usernameResetHint" = "Ctemplar Benutzername zum Zurücksetzen";
+"usernameResetPlaceholder" = "Ctemplar Benutzername zum Zurücksetzen";
+"resetCodePlaceholder" = "Reset-Code";
+"newPasswordPlaceholder" = "Neues Passwort";
+"confirmNewPasswordPlaceholder" = "Neues Passwort bestätigen";
+"resetLink" = "Wir werden den Reset-Link an Ihre Wiederherstellungs-Email schicken";
+"confirmResetPassword" = "Passwort zurücksetzen bestätigen";
+"areYouSure" = "Sind Sie sicher, dass Sie Ihr Passwort zurücksetzen möchten?";
+"supportDescription" = "Ihr Verschlüsselungskey ist mit Ihrem Passwort verbunden. Deshalb werden Sie alte Nachrichten, Anhänge und Kontakte nicht mehr entschlüsseln können, wenn Sie Ihr Passwort zurücksetzen. \Wenn Sie weitere Fragen haben, senden Sie bitte eine E-Mail an support@ctemplar.com.";
+"supportDescriptionAttr" = "Sie werden alte Nachrichten, Anhänge und Kontakte nicht entschlüsseln können";
+"resetPassword" = "Passwort zurücksetzen";
+"weHave" = "Wir haben einen Reset-Code an Ihre \nWiederherstellungs-Email versandt, damit Sie Ihr Passwort zurücksetzen können. ";
+"recoveryEmailAttr" = "Wiederherstellungs-Email";
+"enterIt" = "Bitte geben Sie ihn unten zur Bestätigung ein.";
+"forgetPass" = "Vergessen Sie dieses Passwort nicht, es kann nicht wiederhergestellt werden.";
+"createAccount" = "Konto erstellen";
+"enterYourEmailAddress" = "Geben Sie Ihre E-Mail-Adresse ein und wir werden Ihnen Ihren Benutzernamen schicken";
+"emailMyUserName" = "Benutzernamen mailen";
+"passwordResetSuccessTitle" = "Passwort erfolgreich zurückgesetzt";
+"passwordResetSuccessMessage" = "Sie haben Ihr Passwort erfolgreich zurückgesetzt. Bitte tippen Sie auf Ok, um fortzufahren.";
+
+// Inbox
+"selected" = "Ausgewählt(e)";
+"emails" = "E-Mails";
+"email" = "E-Mail";
+"emailsx" = "E-Mails";
+"unread" = "Ungelesen";
+"filtered" = "Gefiltert";
+"noInboxMessage" = "Sie haben keine Nachrichten";
+"noFilteredMessage" = "Es liegen keine Nachrichten für diesen Filter vor";
+"messageMovedTo" = "Nachricht verschoben zu";
+
+// Inbox Filter
+"starredFilter" = "Markiert";
+"unreadFilter" = "Ungelesen";
+"attachmentsFilter" = "Mit Anhängen";
+
+"decrypting" = "wird entschlüsselt...";
+
+"compose" = "Verfassen";
+"inProgress" = "In Arbeit";
+
+// Filter
+
+"filters" = "Filter";
+"clearAll" = "Alle löschen";
+"selectedFilters" = "Filter auswählen";
+
+// More Actions
+"markAsSpam" = "Als Spam markieren";
+"markAsRead" = "Als gelesen markieren";
+"markAsUnread" = "Als ungelesen markieren";
+"moveToTrash" = "Löschen";
+"moveToArchive" = "Ins Archiv verschieben";
+"moveToInbox" = "In Posteingang verschieben";
+"emptyFolder" = "Ordner leeren";
+"cancel" = "Abbrechen";
+"moreActions" = "Weitere Aktionen";
+
+// Action Banner
+"movingToArchive" = "Wird ins Archiv verschoben";
+"movingToInbox" = "Wird in Posteingang verschoben";
+"movingToSpam" = "Wird in Junk-Ordner verschoben";
+"movingToTrash" = "Wird in Papierkorb verschoben";
+"markingAsUnread" = "Wird als ungelesen markiert";
+"markingAsRead" = "Wird als gelesen markiert";
+"actionFailed" = "Aktion fehlgeschlagen";
+"done" = "Fertig";
+
+// Undo actions buttons
+"undoMarkAsSpam" = "Spam-Markierung rückgängig machen";
+"undoMarkAsRead" = "Gelesen-Markierung rückgängig machen";
+"undoMarkAsUnread" = "Ungelesen-Markierung rückgängig machen";
+"undoMoveToTrash" = "Löschen rückgängig machen";
+"undoMoveToArchive" = "Archivierung rückgängig machen";
+"undoMoveToInbox" = "Verschieben rückgängig machen";
+
+// Compose message titles
+
+"newMessage" = "Neue Nachricht";
+"reply" = "Antworten";
+"relpyAll" = "Allen antworten";
+"forward" = "Weiterleiten";
+
+// Delete
+"deleteTitle" = "Achtung!";
+"deleteMessage" = "Möchten Sie diese Nachricht(en) permanent löschen?";
+
+// Contacts
+
+"contacts" = "Kontakte";
+"selectAll" = "Alle auswählen";
+"deselectAll" = "Alle abwählen";
+
+"deleteContact" = "Möchten Sie diese(n) Kontakt(e) permanent löschen?";
+
+"addContact" = "Kontakt hinzufügen";
+"editContact" = "Kontakt bearbeiten";
+
+"noContacts" = "Sie haben noch keine Kontakte";
+
+"addContacts" = "Kontakte hinzufügen";
+
+"contactName" = "Kontaktname";
+"emailAddress" = "E-Mail";
+"phoneNumber" = "Telefon";
+"address" = "Adresse";
+"note" = "Notiz";
+
+// PGP Keys
+"fingerprint" = "Fingerabdruck";
+"publicKeyDownload" = "Public Key\n(4096 Bit)";
+"privateKeyDownload" = "Private Key\n(4096 Bit)";
+
+// View Message
+"viewDetails" = "Details anzeigen";
+"hideDetails" = "Details ausblenden";
+
+// Compose
+"emailFromPrefix" = "Von: ";
+"emailToPrefix" = "An: ";
+"ccToPrefix" = "Cc: ";
+"bccToPrefix" = "Bcc: ";
+"composeEmail" = "E-Mail verfassen";
+"SelectDraftOption" = "Bitte wählen Sie eine Option, um fortzufahren";
+"replyOn" = "Am: ";
+"wroteBy" = "schrieb:";
+"atTime" = " um ";
+"forwardLine" = "---------- Weitergeleitete Nachricht ----------";
+"date" = "Datum: ";
+"subject" = "Betreff: ";
+"saveDraft" = "Entwurf speichern";
+"discardDraft" = "Entwurf verwerfen";
+"fromAnotherApp" = "Von einer anderen App";
+"photoLibrary" = "Fotomediathek";
+"camera" = "Kamera";
+"includeAttachments" = "Anhänge beifügen";
+"dontIncludeAttachments" = "Anhänge nicht beifügen";
+"removeAttachmentAlertTitle" = "Anhang entfernen";
+"removeAttachmentAlertDesc" = "Möchten Sie den Anhang wirklich entfernen?";
+"simpleText" = "Einfacher Text";
+"htmlText" = "Rich-Text-Format";
+
+// Banner
+"mailSendMessage" = "E-Mail erfolgreich versandt.";
+"mailSendingAlert" = "E-Mail wird versandt…";
+"sendMailError" = "E-Mail konnte nicht versandt werden. Bitte versuchen Sie es später erneut.";
+
+"forwardSubject" = "Fwd: ";
+"replySubject" = "Re: ";
+
+"confirmForwardAttachments" = "Anhang-Weiterleitung bestätigen";
+"confirmForwardAttachmentsText" = "Möchten Sie die Anhänge dieser Nachricht weiterleiten?";
+"yesActionTitle" = "Ja";
+"noActionTitle" = "Nein";
+
+// Search Screen
+"noResults" = "Keine Ergebnisse vorhangen";
+"search" = "Suche";
+
+// Side Menu Cells
+"inbox" = "Posteingang";
+"draft" = "Entwurf";
+"sent" = "Versandt";
+"outbox" = "Postausgang";
+"starred" = "Markiert";
+"archive" = "Archiviert";
+"spam" = "Junk";
+"trash" = "Papierkorb";
+"allMails" = "Alle E-Mails";
+"contacts" = "Kontakte";
+"settings" = "Einstellungen";
+"help" = "Hilfe";
+"FAQ" = "FAQ";
+"logout" = "Abmelden";
+"manageFolders" = "Ordner verwalten";
+"unread" = "Ungelesen";
+
+"showMoreFolders" = "Weitere Ordner anzeigen";
+"hideFolders" = "Ordner ausblenden";
+
+// Scheduler Screen
+
+"selfDestructTimer" = "Selbstzerstörungs-Timer";
+"deadManTimer"      = "Totmann-Timer";
+"delayedDelivery"   = "Verzögerte Lieferung";
+
+"selfDestructTimerText" = "Diese E-Mail wird nach folgendem Zeitraum automatisch vom Empfängerkonto gelöscht";
+"deadManTimerText"      = "Wenn Sie sich für eine vordefinierte Länge nicht in Ihr Konto einloggen, wird die E-Mail nach folgendem Zeitfenster automatisch versandt";
+"delayedDeliveryText"   = "Die E-Mail wird automatisch zum festgelegten Zeitpunkt versandt";
+
+"setPassword" = "Password einrichten";
+"encryptForNon" = "Für Nicht-Ctemplar-Benutzer verschlüsseln";
+"messagePassword" = "Nachrichten-Passwort";
+"expirationTime" = "Ablaufzeit";
+"days" = "Tage";
+"hours" = "Stunden";
+"expireTimeAlert" = "Die Ablaufzeit sollte mindestens 1 Stunde und maximal 5 Tage betragen.";
+
+"passwordsMustMatch" = "Die Passwörter müssen übereinstimmen";
+"passwordHint" = "Passwort Hinweis";
+
+"encryptedMessagesTo" = "Verschlüsselte Nachrichten an Nicht-Ctemplar-Empfänger verfallen nach 28 Tagen, es sei denn, es wurde eine kürzere Ablaufzeit gewählt.";
+
+// Manage Folders
+"deleteFolderTitle" = "Ordner löschen?";
+"deleteFolder" = "Sind Sie sicher, dass Sie diesen Ordner löschen möchten?";
+"addFolder" = "Ordner hinzufügen";
+"selectfolder" = "Ordner auswählen";
+"moveTo" = "Verschieben nach...";
+"noFolders" = "Sie haben keine Ordner";
+"addFolderLimit" = "Zu Premium wechseln";
+"folderName" = "Ordner-Name";
+"chooseColor" = "Farbe wählen";
+"folder" = "Ordner";
+"folders" = "Ordner";
+
+// Settings
+"enableRecoveryEmail" = "Wiederherstellungs-Email aktivieren";
+"typeRecoveryEmail" = "Geben Sie Ihre Wiederherstellungs-Email ein";
+"recoveryEmail" = "Wiederherstellungs-Email";
+"password" = "Passwort";
+"language" = "Sprache";
+"notifications" = "Benachrichtigungen";
+"savingContact" = "Kontakte werden gespeichert";
+"whiteBlackList" = "Whitelist / Blacklist";
+"dashboard" = "Dashboard";
+"security" = "Sicherheit";
+"manageFolders" = "Ordner verwalten";
+"manageSecurity" = "Verschlüsselung";
+"signature" = "Unterschrift";
+"mobileSignature" = "Mobile Unterschrift";
+"defaultText" = "Standard";
+"keys" = "Schlüssel";
+"aboutUs" = "Über uns";
+"privacyPolicy" = "Datenschutz";
+"terms" = "Allgemeine Geschäftsbedingungen";
+"recoveryEmailUpdatedMessage" = "Wiederherstellungs-Email erfolgreich aktualisiert";
+"passwordUpdatedMessage" = "Passwort erfolgreich aktualisiert";
+"userSignature" = "Unterschrift erfolgreich aktualisiert";
+"currentPasswordPlaceholder" = "Aktuelles Passwort";
+"newPasswordPlaceholder" = "Neues Passwort";
+"saveContacts" = "Kontakte automatisch speichern";
+"selectDefaulfAddress" = "Standard-Adresse auswählen";
+"addresses" = "Adressen";
+"subjectEncryption" = "Betreff-Verschlüsselung";
+"сontactsEncryption" = "Kontakt-Verschlüsselung";
+"attachmentEncryption" = "Anhang-Verschlüsselung";
+"enableSignature" = "Unterschrift aktivieren";
+"typeSignature" = "Geben Sie Ihre Unterschrift ein";
+"privacyPolicy" = "Datenschutz";
+"termsAndConditions" = "Allgemeine Geschäftsbedingungen";
+"appVersion" = "App-Version";
+"generalSettings" = "Allgemein";
+"foldersSettings" = "Ordner";
+"securitySettings" = "Sicherheit";
+"mailSettings" = "Mail";
+"aboutSettings" = "Über";
+"storageSettings" = "Speicher";
+"logoutSettings" = "Abmelden";
+"blockExternalImages" = "Externe Bilder blockieren";
+"htmlEditor" = "HTML-Editor";
+"featureIsComing" = "Funktion demnächst verfügbar. Bitte loggen Sie sich auf Ihrem Desktop ein, um Ihr Passwort zu aktualisieren.";
+"saveContactsAlertTitle" = "Kontakte in %s\" speichern";
+"saveContactsAlertMessage" = "Derzeit ist die Kontakt-Speicheroption %a. Möchten Sie Ihre Präferenz ändern?";
+"enabled" = "aktiviert";
+"disabled" = "deaktiviert";
+"encryptionDisabled" = "Diese Option ist momentan deaktiviert, da Sie ein kostenloses Konto nutzen. Registrieren Sie sich für Premium, um alle Funktionen freizuschalten!";
+"insertLink" = "Link einfügen";
+"urlRequired" = "URL (erforderlich)";
+"title" = "Titel";
+"insert" = "Einfügen";
+"infoTitle" = "Info";
+"typeMessage" = "Geben Sie Ihre Nachricht hier ein...";
+"clear" = "Löschen";
+"done" = "Fertig";
+"recoveryEmailEnabledAlertMessage" = "Sie haben eine Wiederherstellungs-Email in Ihrem CTemplar-Konto hinterlegt, siehe Details unten. Sie können die Wiederherstellungs-Email im nachfolgenden Feld aktualisieren. Falls Sie die Wiederherstellungs-Email-Option deaktivieren möchten, tippen Sie auf Deaktivieren. Hinweis: Sie können die Wiederherstellungs-Email jederzeit erneut im Einstellungsmenü hinzufügen.";
+"addRecoveryEmailTitle" = "Wiederherstellungs-Email hinzufügen";
+"addRecoveryEmailMessage" = "Geben Sie nachfolgend Ihre Wiederherstellungs-Email ein";
+"recoveryEmailDisabledAlertMessage" = "Sie haben derzeit keine Wiederherstellungs-Email in Ihrem CTemplar Konto eingerichtet. Um eine Wiederherstellungs-Email hinzuzufügen, tippen Sie bitte auf Aktivieren.";
+"enable" = "Aktivieren";
+"disable" = "Deaktivieren";
+"changePasswordTitle" = "Passwort ändern";
+"updateAndKeepData" = "Aktualisieren & Daten behalten";
+"updateAndDeleteData" = "Aktualisieren & Daten löschen";
+"changePasswordMessage" = "Ihr Verschlüsselungskey ist mit Ihrem Passwort verknüpft. Sie haben die Option, alle Daten und Verschlüsselungskeys zu behalten und nur das Passwort zu ändern, oder Sie können alle Daten löschen und neue Verschlüsselungskeys generieren. Treffen Sie Ihre Auswahl sorgfältig.";
+
+"takeBack" = "Holen Sie sich Ihre Freiheit";
+"withEncrypted" = "mit verschlüsselter Kommunikation zurück";
+"sendUnbreakable" = "Senden Sie unknackbare E-Mails und schützen Sie Ihre wichtigen beruflichen und persönlichen Daten mit einer Verschlüsselung der nächsten Generation. Die durchgängige PKI-Verschlüsselung schützt private Informationen vor Regierungen, Unternehmen und Hackern.";
+"goToWebVersion" = "ZUR WEB-VERSION";
+"changePasswordNotAvailableMessage" = "Diese Funktion befindet sich für iOS noch in der Entwicklung. Um Ihr Passwort zu ändern, verwenden Sie bitte die Android-App oder besuchen Sie unsere Web-Applikation";
+
+"settings" = "Einstellungen";
+
+// White/Black List
+"whiteListText" = "Nachrichten von Kontakten in der Whitelist landen immer im Posteingang. Wenn Sie eine Nachricht als \"nicht Spam\" markieren, wird die Adresse zur Whitelist hinzugefügt";
+"blackListText" = "Nachrichten von Kontakten in der Blacklist landen immer im Junk-Ordner. Wenn Sie eine Nachricht als \"Junk\" markieren, wird die Adresse zur Blacklist hinzugefügt";
+"whiteListAttributedText" = "Posteingang";
+"blackListAttributedText" = "Junk-Ordner";
+"addWhiteList" = "Kontakt Whitelist hinzufügen";
+"addBlackList" = "Kontakt Blacklist hinzufügen";
+"deleteContactFromBlackList" = "Möchten Sie diesen Kontakt aus der Blacklist löschen?";
+"deleteContactFromWhiteList" = "Möchten Sie diesen Kontakt aus der Whitelist löschen?";
+"whitelistBlacklist" = "Whitelist / Blacklist";
+"whitelist" = "WHITELIST";
+"blacklist" = "BLACKLIST";
+"addContactW" = "Kontakt hinzufügen";
+"name" = "Name";
+"email" = "E-Mail";
+
+// Language
+"languageTitle" = "Sprache";
+
+// Formatter
+"toPrefix" = "An: ";
+"ccPrefix" = "CC: ";
+"bccPrefix" = "BCC: ";
+"fromPrefix" = "Von: ";
+
+"yesterday" = "Gestern";
+
+"deleteIn" = "Löschen in ";
+"daySuffix" = "T ";
+
+"deadMans" = "Totmann ";
+"delayTime" = "Verzögerungszeit ";
+
+"manyDays" = " Tage ";
+"manyDaysx" = " Tage ";
+"oneDay" = " Tag ";
+"manyHours" = " Stunden";
+"manyHoursx" = " Stunden";
+"oneHour" = " Stunde";
+
+// Upgrade Plan Screen
+
+"upgrade" = "Prime-Upgrade";
+"1user" = "1 Benutzer";
+"5storage" = "ab 5 Gb Speicher";
+"3email" = "ab 3 E-Mail Adressen";
+"1custom" = "ab 1 benutzerdefinierten Domain";
+"1000messages" = "1000 Nachrichten pro Tag";
+"200folders" = "200 Ordner";
+"deadMan" = "Totmann-Timer";
+"andMore" = "und weitere Funktionen";
+"upgradeBig" = "AUF PRIME AUFRÜSTEN";
+"notNow" = "Nicht jetzt";
+
+"supportEmailString" = "Falls Sie weitere Fragen haben, schicken Sie bitte eine E-Mail an support@ctemplar.com.";
+
+"updateMessages" = "Nachrichten aktualisieren";
+"hashing" = "Hashing läuft...";
+"updateToken" = "Token aktualisieren";
+
+// Encryption/Decryption
+"encryptContactsTitle" = "Aktivieren Sie die Kontakt-Verschlüsselung,";
+"encryptContacts" = "um alle Ihre Kontakte zu verschlüsseln. Beim Verfassen der E-Mail werden keine Kontaktvorschläge mehr gemacht. Auch die Kontakt-Suche ist nicht mehr möglich.";
+"decryptContactsTitle" = "Sind Sie sicher, dass Sie die Kontakt-Verschlüsselung deaktivieren möchten?";
+"decryptContacts" = "Achtung: Die Deaktivierung der Kontakt-Verschlüsselung kann je nach Anzahl der Kontakte mehrere Minuten dauern. Nach Ihrer Bestätigung werden alle Kontakte in Ihrem Browser entschlüsselt und auf dem Server gespeichert.";
+"decryptingContacts" = "Entschlüsselung läuft...";
+"allContactsWasEncrypted" = "Alle Kontakte wurden verschlüsselt";
+"allContactsWasDecrypted" = "Alle Kontakte wurden entschlüsselt";
+"attachmentEncryptionWasEnabled" = "Anhang-Verschlüsselung wurde aktiviert";
+"attachmentEncryptionWasDisabled" = "Anhang-Verschlüsselung wurde deaktiviert";
+"subjectEncrypted" = "Betreff ist jetzt verschlüsselt";
+"subjectDecrypted" = "Betreff ist jetzt entschlüsselt";
+"contactsEncrypted" = "Kontakte sind jetzt verschlüsselt";
+"contactsDecrypted" = "Kontakte sind jetzt entschlüsselt";
+"attachmentEncrypted" = "Anhang ist jetzt verschlüsselt";
+"attachmentDecrypted" = "Anhang ist jetzt entschlüsselt";
+
+// Logout
+"logoutErrorTitle" = "Abmelde-Fehler";
+"success" = "Erfolgreich";
+"logoutErrorMessage" = "Wir können Sie derzeit nicht abmelden, bitte versuchen Sie es in Kürze erneut.";
+"logoutTitle" = "Abmelden";
+"logoutMessage" = "Sind Sie sicher, dass Sie sich abmelden möchten?";
+
+// Dashboard
+"accountType" = "Kontoart";
+"userName" = "Benutzername";
+"customDomainNumber" = "Anz. der benutzerdefinierten Domains";
+"addressNumber" = "Anz. der Adressen";
+"notAvailable" = "Nicht verfügbar";
+
+// App Error
+"downcastFailure" = "Downcasting fehlgeschlagen";
+"hashingFailure" = "Hashing fehlgeschlagen";
+"conectionError" = "Verbindungsfehler";
+"unknownError" = "Unbekannter Fehler";
+"error" = "Fehler";
+"foldersError" = "Ordner-Fehler";
+"messagesError" = "Nachrichten-Fehler";
+"mailBoxesError" = "Postfach-Fehler";
+"userError" = "Benutzerfehler";
+"fileDownloadError" = "Fehler beim Herunterladen der Datei";
+"attachmentErrorTitle" = "Anhang-Fehler";
+"attachmentErrorMessage" = "Angehängte Datei ist beschädigt oder kann nicht entschlüsselt werden";
+"contactEncryptionError" = "Fehler bei Kontakt-Verschlüsselung";
+
+// Signup Error
+"signupError" = "Registrierungsfehler";
+"somethingWentWrong" = "Es ist ein Fehler aufgetreten";
+"userNameAvailable" = "Benutzername ist verfügbar";
+"nameAlreadyExistsError" = "Dieser Name existiert bereits!";
+"refreshTokenError" = "Token ungültig";
+"relogin" = "Bitte versuchen Sie, sich erneut anzumelden";
+"passwordMatched" = "Passwort stimmt überein";
+"passwordNotMatched" = "Passwort stimmt nicht überein";
+"minPasswordLengthError" = "Passwort muss mindestens 10 Zeichen lang sein";
+
+// Contacts
+"unknownName" = "Unbekannter Name";
+"unknownEmail" = "Unbekannte E-Mail";
+
+// Network Error
+"networkErrorTitle" = "Es tut uns leid";
+"networkErrorMessage" = "Es sieht so aus, als ob Ihr Gerät nicht mit dem Netzwerk verbunden ist. Bitte warten Sie, während wir nach einem verfügbaren Netzwerk suchen.";
+

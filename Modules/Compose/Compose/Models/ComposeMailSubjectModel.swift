@@ -23,6 +23,9 @@ public final class ComposeMailSubjectModel: Modelable {
         self.contentTypeSubject.sink(receiveValue: { [weak self] in
             self?.contentType = $0
             }).store(in: &bindables)
+        subject.sink { (str) in
+            self.content = str
+        }.store(in: &bindables)
     }
     
     deinit {

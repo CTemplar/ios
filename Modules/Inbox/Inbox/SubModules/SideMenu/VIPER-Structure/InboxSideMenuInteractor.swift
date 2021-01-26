@@ -234,17 +234,15 @@ private extension InboxSideMenuInteractor {
             return
         }
         
-        inbox.presenter?.interactor?.update(offset: 0)
+        inbox.dataSource?.reset()
+        inbox.dataSource?.resetPaginationConstants()
         inbox.dataSource?.clearFilters()
         inbox.dataSource?.resetSelectionMode()
-        
-        inbox.presenter?.interactor?.updateMessages(withUndo: "",
-                                                    silent: false,
-                                                    menu: menu
-        )
-        
-        updateInboxBottomBar(with: viewController?.dataSource?.unreadMessages ?? [], for: inbox)
         viewController?.router?.showMessagesViewController(vc: inbox)
+        updateInboxBottomBar(with: viewController?.dataSource?.unreadMessages ?? [], for: inbox)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            inbox.fetchMails()
+        }
     }
 
     func openSupportURL() {

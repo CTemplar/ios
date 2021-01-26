@@ -1,0 +1,474 @@
+"invalidEnteredPassword" = "كلمة المرور التي تم إدخالها غير صحيح";
+"invalidEnteredEmail" = "البريد الإلكتروني الذي تم إدخاله غير صحيح";
+"validEnteredEmail" = "البريد الإلكتروني الذي تم إدخاله صحيح";
+
+"closeButton" = "إغلاق";
+"cancelButton" = "إلغاء";
+"logoutButton" = "تسجيل الخروج";
+"saveButton" = "حفظ";
+"applyButton" = "تطبيق";
+"nextButton" = "التالي";
+"resetPasswordButton" = "إعادة تعيين كلمة المرور";
+"confirmButton" = "تأكيد";
+"addButton" = "إضافة";
+"changeButton" = "تغيير";
+"deleteButton" = "حذف";
+"encryptButton" = "تشفير";
+"decryptButton" = "فك تشفير";
+"okButton" = "موافق";
+"updateButton" = "تحديث";
+
+"deleteRow" = "حذف";
+
+"termsAndConditionsFullText" = "برجاء الإشارة في هذا المربع إذا كنت توافق على الشروط والأحكام الخاصة بنا";
+"termsAndConditionsPhrase" = "الشروط والأحكام";
+
+// Login
+"emailPlaceholder" = "البريد الإلكتروني";
+"passwordPlaceholder" = "كلمة المرور";
+"usernamePlaceholder" = "اسم المستخدم";
+"userNameNotFound" = "اسم المستخدم غير متاح";
+"userNameFound" = "اسم المستخدم متاح";
+"invitationCodePlaceholder" = "رمز الدعوة";
+
+// 2FA
+"twoFAButtonTitle" = "التحقق";
+"twoFATitle" = "التحقق مزدوج العامل";
+"twoFASecondaryTitle" = "برجاء تقديم الرمز المكون من 6 أرقام من تطبيق التحقق الخاص";
+
+"forgotPassword" = "هل نسيت كلمة المرور؟";
+"login" = "تسجيل الدخول";
+"createAccount" = "إنشاء حساب";
+"rememberMe" = "الحفاظ على تسجيل الدخول";
+"loginError" = "خطأ في تسجيل الدخول";
+"passwordCodeError" = "خطأ في رمز كلمة المرور!";
+"passwordResetError" = "لا يمكن إعادة تعيين كلمة المرور";
+"forgotUserName" = "هل نسيت كلمة المرور الخاصة بك؟";
+
+// Sign Up
+"usernameAndDomain" = "اسم المستخدم ونطاق الإنترنت";
+"ctemplarEmailAddress" = "سيكون هذا هو عنوان بريدك الإلكتروني علىCtemplar.";
+"choosePasswordPlaceholder" = "قم باختيار كلمة مرور";
+"confirmPasswordPlaceholder" = "تأكيد كلمة المرور";
+"recoveryEmailPlaceholder" = "البريد الإلكتروني الخاص بالاسترداد";
+"passwordMust" = "يجب أن تتكون كلمة المرور الخاصة بك من 10 خصائص على الأقل. يجب أن تتكون كلمة المرور من حروف أبجدية فقط ولا يجب أن تتضمن أي رموز مثل «-+!@. وما إلى ذلك";
+"thisIsUsed" = "يمكن استخدام ذلك لاسترداد حسابك إذا تم قفل الحساب أو إذا نسيت كلمة المرور الخاصة بك.";
+"usernameResetHint" = "إعادة تعيين اسم مستخدم Ctemplar";
+"usernameResetPlaceholder" = "إعادة تعيين اسم مستخدم Ctemplar";
+"resetCodePlaceholder" = "رمز إعادة التعيين";
+"newPasswordPlaceholder" = "كلمة مرور جديدة";
+"confirmNewPasswordPlaceholder" = "تأكيد كلمة المرور الجديدة";
+"resetLink" = "سنقوم بإرسال رابط إعادة التعيين إلى البريد الإلكتروني الخاص بالاسترداد";
+"confirmResetPassword" = "تأكيد إعادة تعيين كلمة المرور";
+"areYouSure" = "هل أنت متأكد من رغبتك في إعادة تعيين كلمة المرور الخاصة بك؟";
+"supportDescription" = "إن مفتاح التشفير الخاص بك متصل بكلمة مرورك. ونظرًا لذلك فلن تتمكن من فك تشغير الرسائل والمرفقات وجهات الاتصال القديمة إذا قمت بإعادة تعيين كلمة المرور الخاصة بك. إذا كانت لديك أي أسئلة أخرى برجاء التواصل معنا على support@ctemplar.com";
+"supportDescriptionAttr" = "لن تتمكن من فك تشفير الرسائل والمرفقات وجهات الاتصال القديمة.";
+"resetPassword" = "إعادة تعيين كلمة المرور";
+"weHave" = " لقد قمنا بإرسال رمز إعادة تعيين كلمة المرور إلى بريدك الإلكتروني الخاص بالاسترداد لإعادة تعيين كلمة مرورك.";
+"recoveryEmailAttr" = "البريد الإلكتروني الخاص بالاسترداد";
+"enterIt" = "قم بإدخال البريد الإلكتروني في الأسفل للتأكيد.";
+"forgetPass" = "لا تنسَ كلمة المرور هذه, فلا يمكن استعادتها.";
+"createAccount" = "إنشاء حساب";
+"enterYourEmailAddress" = "قم بإدخال عنوان بريدك الإلكتروني وسوف نرسل لك اسم المستخدم الخاص بك.";
+"emailMyUserName" = "إرسال اسم المستخدم الخاص بي عبر البريد الإلكتروني";
+"passwordResetSuccessTitle" = "تم إعادة تعيين كلمة المرور بنجاح";
+"passwordResetSuccessMessage" = "لقد قمت بإعادة تعيين كلمة المرور الخاصة بك بنجاح. قم بالنقر على زر موافق الآن للاستمرار.";
+
+// Inbox
+"selected" = "تم الاختيار";
+"emails" = "رسائل بريد إلكتروني";
+"email" = "رسالة بريد إلكتروني";
+"emailsx" = "رسائل بريد إلكتروني";
+"unread" = "غير مقروء";
+"filtered" = "مرشحة";
+"noInboxMessage" = "ليس لديك أي رسائل";
+"noFilteredMessage" = "ليس لديك أي رسائل من هذا النوع";
+"messageMovedTo" = "تم نقل الرسالة إلى";
+
+// Inbox Filter
+"starredFilter" = "مميزة بنجمة";
+"unreadFilter" = "غير مقروءة";
+"attachmentsFilter" = "مع مرفقات";
+
+"decrypting" = "جاري فك التشفير...";
+
+"compose" = "كتابة رسالة جديدة";
+"inProgress" = "جاري العمل";
+
+// Filter
+
+"filters" = "المرشحات";
+"clearAll" = "حذف الجميع";
+"selectedFilters" = "اختيار مرشحات";
+
+// More Actions
+"markAsSpam" = "التمييز كرسالة غير مرغوب فيها";
+"markAsRead" = "التمييز كرسالة مقروءة";
+"markAsUnread" = "التمييز كرسالة غير مقروءة";
+"moveToTrash" = "حذف";
+"moveToArchive" = "النقل إلى الأرشيف";
+"moveToInbox" = "النقل إلى صندوق الوارد";
+"emptyFolder" = "إفراغ المجلد";
+"cancel" = "إلغاء";
+"moreActions" = "مزيد من الإجراءات";
+
+// Action Banner
+"movingToArchive" = "جاري النقل إلى الأرشيف";
+"movingToInbox" = "جاري النقل إلى صندوق الوارد";
+"movingToSpam" = "جاري النقل إلى الرسائل غير المرغوب فيها";
+"movingToTrash" = "جاري النقل إلى سلة المحذوفات";
+"markingAsUnread" = "التمييز كرسالة غير مقروءة";
+"markingAsRead" = "التمييز كرسالة مقروءة";
+"actionFailed" = "لقد فشلت العملية";
+"done" = "تمت بنجاح";
+
+// Undo actions buttons
+"undoMarkAsSpam" = "التراجع عن التمييز كرسالة غير مرغوب فيها";
+"undoMarkAsRead" = "التراجع عن التمييز كرسالة مقروءة";
+"undoMarkAsUnread" = "التراجع عن التمييز كرسالة مقروءة";
+"undoMoveToTrash" = "التراجع عن الحذف";
+"undoMoveToArchive" = "التراجع عن النقل إلى الأرشيف";
+"undoMoveToInbox" = "التراجع عن النقل إلى صندوق الوارد";
+
+// Compose message titles
+
+"newMessage" = "رسالة جديدة";
+"reply" = "الرد";
+"relpyAll" = "الرد على الجميع";
+"forward" = "إعادة التوجيه";
+
+// Delete
+"deleteTitle" = "تحذير!";
+"deleteMessage" = "هل تريد حذف هذه الرسالة (الرسائل) نهائيًا؟";
+
+// Contacts
+
+"contacts" = "جهات الاتصال";
+"selectAll" = "اختيار الكل";
+"deselectAll" = "عدم اختيار الكل";
+
+"deleteContact" = "هل تريد حذف حهة (جهات) الاتصال هذه نهائيًا؟";
+
+"addContact" = "إضافة جهة اتصال";
+"editContact" = "تعديل جهة اتصال";
+
+"noContacts" = "ليس لديك جهات اتصال حتى الآن";
+
+"addContacts" = "إضافة جهات اتصال";
+
+"contactName" = "اسم جهة الاتصال";
+"emailAddress" = "عنوان البريد الإلكتروني";
+"phoneNumber" = "رقم الهاتف";
+"address" = "العنوان";
+"note" = "ملاحظة";
+
+// PGP Keys
+"fingerprint" = "بصمة الإسبع";
+"publicKeyDownload" = "مفتاح عام (4096 بت)";
+"privateKeyDownload" = "مفتاح خاص (4096 بت)";
+
+// View Message
+"viewDetails" = "مشاهدة التفاصيل";
+"hideDetails" = "إخفاء التفاصيل";
+
+// Compose
+"emailFromPrefix" = "من: ";
+"emailToPrefix" = "إلى: ";
+"ccToPrefix" = "نسخة كربونية: ";
+"bccToPrefix" = "نسخة كربونية مخفية: ";
+"composeEmail" = "كتابة رسالة جديدة";
+"SelectDraftOption" = "برجاء أحد الخيارات التالية للمتابعة";
+"replyOn" = "تشغيل: ";
+"wroteBy" = "كتب: ";
+"atTime" = " في ";
+"forwardLine" = "---------- رسالة معاد توجيهها ----------";
+"date" = "التاريخ: ";
+"subject" = "الموضوع: ";
+"saveDraft" = "حفظ مسودة";
+"discardDraft" = "حذف مسودة";
+"fromAnotherApp" = "من تطبيق آخر";
+"photoLibrary" = "مكتبة صور";
+"camera" = "كاميرا";
+"includeAttachments" = "إضافة مرفقات";
+"dontIncludeAttachments" = "عدم إضافة مرفقات";
+"removeAttachmentAlertTitle" = "إزالة مرفقات";
+"removeAttachmentAlertDesc" = "هل تريد بالفعل حذف المرفقات؟";
+"simpleText" = "نص بسيط";
+"htmlText" = "نص غني";
+
+// Banner
+"mailSendMessage" = "تم إرسال الرسالة بنجاح";
+"mailSendingAlert" = "جاري إرسال الرسالة...";
+"sendMailError" = "لا يمكن إرسال الرسالة, برجاء المحاولة مرة أخرى في وقت لاحق.";
+
+"forwardSubject" = "إعادة التوجيه: ";
+"replySubject" = "الرد: ";
+
+"confirmForwardAttachments" = "تأكيد إعادة توجيه المرفقات";
+"confirmForwardAttachmentsText" = "هل تريد توجيه المرفقات الموجودة في هذه الرسالة؟";
+"yesActionTitle" = "نعم";
+"noActionTitle" = "لا";
+
+// Search Screen
+"noResults" = "لم يتم العثور على نتائج";
+"search" = "بحث";
+
+// Side Menu Cells
+"inbox" = "صندوق الوارد";
+"draft" = "المسودات";
+"sent" = "الرسائل التي تم إرسالها";
+"outbox" = "صندوق الصادر";
+"starred" = "الرسائل المميزة بنجمة";
+"archive" = "الأرشيف";
+"spam" = "الرسائل غير المرغوب فيها";
+"trash" = "سلة المحذوفات";
+"allMails" = "جميع الرسائل";
+"contacts" = "جهات الاتصال";
+"settings" = "الإعدادات";
+"help" = "الدعم";
+"FAQ" = "الأسئلة الشائعة";
+"logout" = "تسجيل الخروج";
+"manageFolders" = "إدارة المجلدات";
+"unread" = "الرسائل غير المقروءة";
+
+"showMoreFolders" = "عرض مجلدات أكثر";
+"hideFolders" = "إخفاء مجلدات";
+
+// Scheduler Screen
+
+"selfDestructTimer" = "مؤقت التدمير الذاتي";
+"deadManTimer"      = "مؤقت الإختفاء";
+"delayedDelivery"   = "الإرسال المتأخر";
+
+"selfDestructTimerText" = "ستقوم هذه الرسالة بحذف نفسها من حساب المستلم بعد";
+"deadManTimerText"      = "إذا لم تقم بتسجيل الدخول إلى حسابك خلال مدة محددة فسيتم إرسال رسالة بريد إلكتروني بعد";
+"delayedDeliveryText"   = "سيتم إرسال رسالة بريد إلكتروني تلقائيًا في الوقت المحدد";
+
+"setPassword" = "تعيين كلمة المرور";
+"encryptForNon" = "التشفير لغير المستخدمين لتطبيق Ctemplar";
+"messagePassword" = "إرسال كلمة المرور";
+"expirationTime" = "وقت انتهاء صلاحية الرسالة";
+"days" = "أيام";
+"hours" = "ساعات";
+"expireTimeAlert" = "يجب أن يكون وقت انتهاء صلاحية الرسالة من ساعة واحدة حتى 5 أيام كحد أقصى.";
+
+"passwordsMustMatch" = "يجب أن تكون كلمات المرور متطابقة";
+"passwordHint" = "إشارة عن كلمة المرور";
+
+"encryptedMessagesTo" = "ستنتهي صلاحية الرسائل المشفرة إلى المستلمين غير المستخدمين لتطبيق Ctemplar في غضون 28 يومًا ما لم يتم تحديد وقت أقصر لانتهاء الصلاحية.";
+
+// Manage Folders
+"deleteFolderTitle" = "هل تريد حذف المجلد؟";
+"deleteFolder" = "هل أنت متأكد من رغبتك في حذف المجلد؟";
+"addFolder" = "إضافة مجلد";
+"selectfolder" = "اختيار مجلد";
+"moveTo" = "النقل إلى...";
+"noFolders" = "ليس لديك أي مجلدات";
+"addFolderLimit" = " الترقية إلى النسخة الأساسية";
+"folderName" = "اسم المجلد";
+"chooseColor" = "اختيار لون";
+"folder" = "مجلد";
+"folders" = "مجلدات";
+
+// Settings
+"enableRecoveryEmail" = "تمكين البريد الإلكتروني الخاص بالاسترداد";
+"typeRecoveryEmail" = "اكتب البريد الإلكتروني الخاص بالاسترداد";
+"recoveryEmail" = "البريد الإلكتروني الخاص بالاسترداد";
+"password" = "كلمة المرور";
+"language" = "اللغة";
+"notifications" = "الإشعارات";
+"savingContact" = "حفظ جهات الاتصال";
+"whiteBlackList" = "القائمة المسموحة \ القائمة المحظورة";
+"dashboard" = "لوحة المعلومات";
+"security" = "الأمان";
+"manageFolders" = "إدارة المجلدات";
+"manageSecurity" = "التشفير";
+"signature" = "التوقيع";
+"mobileSignature" = "التوقيع من خلال الهاتف المحمول";
+"defaultText" = "الافتراضي";
+"keys" = "المفاتيح";
+"aboutUs" = "من نحن؟";
+"privacyPolicy" = "سياسة الخصوصية";
+"terms" = "الشروط & الأحكام";
+"recoveryEmailUpdatedMessage" = "لقد تم تحديث البريد الإلكتروني الخاص بالاسترداد بنجاح";
+"passwordUpdatedMessage" = "لقد تم تحديث كلمة المرور بنجاح";
+"userSignature" = "لقد تم تحديث التوقيع بنجاح";
+"currentPasswordPlaceholder" = "كلمة المرور الحالية";
+"newPasswordPlaceholder" = "كلمة المرور الجديدة";
+"saveContacts" = "حفظ جهات الاتصال تلقائيًا";
+"selectDefaulfAddress" = "اختيار العنوان الافتراضي";
+"addresses" = "العناوين";
+"subjectEncryption" = "تشفير الموضوع";
+"сontactsEncryption" = "تشفير جهات الاتصال";
+"attachmentEncryption" = "تشفير المرفقات";
+"enableSignature" = "تمكين التوقيع";
+"typeSignature" = "اكتب توقيعك";
+"privacyPolicy" = "سياسة الخصوصية";
+"termsAndConditions" = "الشروط & الأحكام";
+"appVersion" = "إصدار التطبيق";
+"generalSettings" = "عامة";
+"foldersSettings" = "مجلدات";
+"securitySettings" = "الأمان";
+"mailSettings" = "البريد الإلكتروني";
+"aboutSettings" = "من نحن";
+"storageSettings" = "التخزين";
+"logoutSettings" = "تسجيل الخروج";
+"blockExternalImages" = "منع الصور الخارجية";
+"htmlEditor" = "محرر html";
+"featureIsComing" = "هذه الخاصية سيتم إضافتها قريبًا. برجاء تسجيل الدخول على جهاز حاسبك الشخصي لتحديث كلمة المرور الخاصة بك.";
+"saveContactsAlertTitle" = "حفظ جهات الاتصال في %s";
+"saveContactsAlertMessage" = "إن خيار حفظ جهات الاتصال حاليًا في وضعية %a. هل تريد تغيير ذلك؟";
+"enabled" = "تنشيط";
+"disabled" = "تعطيل";
+"encryptionDisabled" = "هذا الخيار غير ممكن حاليًا لأنك تقوم باستخدام حساب مجاني. برجاء الترقية إلى نسخة كاملة للحصول على جميع الخصائص!";
+"insertLink" = "إضافة رابط";
+"urlRequired" = "رابط (مطلوب)";
+"title" = "العنوان";
+"insert" = "إدخال";
+"infoTitle" = "المعلومات";
+"typeMessage" = "اكتب رسالة هنا...";
+"clear" = "حذف";
+"done" = "تم";
+"recoveryEmailEnabledAlertMessage" = "لديك عنوان بريد إلكتروني للاسترداد في حسابك على CTemplar. برجاء مراجعة التفاصيل التالية. يمكنك تحديث البريد الإلكتروني الخاص بالاسترداد من خلال تغييره من أسفل والضغط على خيار تحديث. إذا كنت تريد تعطيل خيار البريد الإلكتروني الخاص بالاسترداد فيمكنك القيام بذلك من خلال الضغط على خيار تعطيل. تذكر: يمكنك إضافة بريد إلكتروني للاسترداد مرة أخرى من الإعدادات.";
+"addRecoveryEmailTitle" = "إضافة عنوان بريد إلكتروني للاسترداد";
+"addRecoveryEmailMessage" = "قم بإضافة بريدك الإلكتروني للاسترداد";
+"recoveryEmailDisabledAlertMessage" = "لا تملك أي بريد إلكتروني للاسترداد في الوقت الحالي في حسابك على CTemplar. إذا كنت تريد إضافة بريد إلكتروني للاسترداد فيمكنك الضغط على خيار تنشيط.";
+"enable" = "تنشيط";
+"disable" = "تعطيل";
+"changePasswordTitle" = "تغيير كلمة المرور";
+"updateAndKeepData" = "تحديث & الاحتفاظ ببيانات";
+"updateAndDeleteData" = "تحديث & حذف بيانات";
+"changePasswordMessage" = "إن مفتاح التشفير الخاص بك متصل بكلمة مرورك. لديك خيار الاحتفاظ بجميع البيانات ومفاتيح التشفير وتغيير كلمة المرور فقط أو يمكنك حذف جميع البيانات وإنشاء مفاتيح تشفير جديدة. قم بالاختيار بعناية.";
+
+"takeBack" = "استعد حريتك";
+"withEncrypted" = "من خلال تواصل مشفر";
+"sendUnbreakable" = "قم بإرسال رسائل  بريد إلكتروني غير قابلة للاختراق وقم بحماية التفاصيل الشخصية والمهنية الهامة من خلال تشفير متطور. يحافظ التشفير الطرفي المعتمد على البنية التحتية للمفاتيح العامة على معلوماتك الخاصة آمنة من وصول الجهات الحكومية والشركات والقراصنة";
+"goToWebVersion" = "الانتقال إلى إصدار موقع الإنترنت";
+"changePasswordNotAvailableMessage" = "هذه الخاصية تحت التطوير على iOS في الوقت الحالي. لتغيير كلمة المرور الخاصة بك, فيجب استخدام تطبيق أندوريد أو زيارة التطبيق على موقع الإنترنت";
+
+"settings" = "الإعدادات";
+
+// White/Black List
+"whiteListText" = "الرسائل الواردة من جهات الاتصال في القائمة المسموحة تظهر في صندوق الوارد دائمًا. ويعتبر تمييز رسالة أنها ليست رسالة تطفلية غير مرغوب فيها إشارة لإضافة العنوان المرسل إلى القائمة المسموحة";
+"blackListText" = "الرسائل الواردة من جهات الاتصال في القائمة المحظورة يتم نقلها إلى مجلد الرسائل غير المرغوب فيها. ويعتبر تمييز رسالة أنها غير مرغوب فيها إشارة لإضافة العنوان المرسل إلى القائمة المحظورة";
+"whiteListAttributedText" = "مجلد صندوق الوارد";
+"blackListAttributedText" = "مجلد الرسائل غير المرغوب فيها";
+"addWhiteList" = "إضافة جهة اتصال للقائمة المسموحة";
+"addBlackList" = "إضافة جهة اتصال للقائمة المحظورة";
+"deleteContactFromBlackList" = "هل تريد حذف جهة الاتصال هذه من القائمة المحظورة؟";
+"deleteContactFromWhiteList" = "هل تريد حذف جهة الاتصال هذه من القائمة المسموحة؟";
+"whitelistBlacklist" = "القائمة المسموحة \ القائمة المحظورة";
+"whitelist" = "القائمة المسموحة";
+"blacklist" = "القائمة المحظورة";
+"addContactW" = "إضافة جهة اتصال";
+"name" = "الاسم";
+"email" = "البريد الإلكتروني";
+
+// Language
+"languageTitle" = "اللغة";
+
+// Formatter
+"toPrefix" = "إلى: ";
+"ccPrefix" = "نسخة كربونية: ";
+"bccPrefix" = "نسخة كربونسة مخفية: ";
+"fromPrefix" = "من: ";
+
+"yesterday" = "الأمس";
+
+"deleteIn" = "الحذف في";
+"daySuffix" = "يوم";
+
+"deadMans" = "الاختفاء";
+"delayTime" = "وقت التأخير ";
+
+"manyDays" = " أيام";
+"manyDaysx" = " أيام ";
+"oneDay" = " يوم ";
+"manyHours" = " ساعات";
+"manyHoursx" = " ساعات";
+"oneHour" = " ساعة";
+
+// Upgrade Plan Screen
+
+"upgrade" = "الترقية إلى النسخة الأساسية";
+"1user" = "مستخدم واحد";
+"5storage" = "تخزين بسعة 5 جيجا بايت";
+"3email" = "3 عناوين بريد إلكتروني";
+"1custom" = "نطاق إنترنت واحد";
+"1000messages" = "1000 رسالة في اليوم";
+"200folders" = "200 مجلد";
+"deadMan" = "مؤقت الاختفاء";
+"andMore" = "ومزيد من الخصائص";
+"upgradeBig" = "الترقية إلى النسخة الأساسية";
+"notNow" = "ليس الآن";
+
+"supportEmailString" = " إذا كانت لديك أي أسئلة برجاء التواصل معنا على support@ctemplar.com.";
+
+"updateMessages" = "تحديث الرسائل";
+"hashing" = "التجزئة...";
+"updateToken" = "تحديث الرمز";
+
+// Encryption/Decryption
+"encryptContactsTitle" = "من خلال تمكين تشفير جهات الاتصال";
+"encryptContacts" = "سيتم تشفير جهات الاتصال الخاصة بك. لن تكون اقتراحات جهات الاتصال متاحة بعد الآن عند خيار كتابة رسالة جديدة. ولا يمكن البحث عن جهات الاتصال كذلك.";
+"decryptContactsTitle" = "هل أنت متأكد من رغبتك في إلغاء تمكين تشفير جهات الاتصال؟";
+"decryptContacts" = "ملاحظة: إن إلغاء تمكين تشفير جهات الاتصال قد يستغرق بضع دقائق على حسب عدد جهات الاتصال التي لديك. وبعد التأكيد, فسيتم فك تشفير جميع جهات الاتصال في متصفحك وحفظها على الخادم.";
+"decryptingContacts" = "جاري فك التشفير...";
+"allContactsWasEncrypted" = "لقد تم تشفير جميع جهات الاتصال الخاصة بك";
+"allContactsWasDecrypted" = "سيتم فك تشفير جميع جهات الاتصال الخاصة بك";
+"attachmentEncryptionWasEnabled" = "لقد تم تمكين خاصية تشفير المرفقات";
+"attachmentEncryptionWasDisabled" = "لقد تم إلغاء تمكين خاصية تشفير المرفقات";
+"subjectEncrypted" = "لقد تم تشفير الموضوع";
+"subjectDecrypted" = "لقد تم فك تشفير الموضوع";
+"contactsEncrypted" = "لقد تم تشفير جهات الاتصال";
+"contactsDecrypted" = "لقد تم فك تشفير جهات الاتصال";
+"attachmentEncrypted" = "لقد تم تشفير المرفقات";
+"attachmentDecrypted" = "لقد تم فك تشفير المرفقات";
+
+// Logout
+"logoutErrorTitle" = "خطأ في تسجيل الخروج";
+"success" = "النجاح";
+"logoutErrorMessage" = "لا يمكن تسجيل الخروج في هذه اللحظة, برجاء المحاولة مرة أخرى في وقت لاحق.";
+"logoutTitle" = "تسجيل الخروج";
+"logoutMessage" = "هل أنت متأكد من رغبتك في تسجيل الخروج؟";
+
+// Dashboard
+"accountType" = "نوع الحساب";
+"userName" = "اسم المستخدم";
+"customDomainNumber" = "عدد النطاقات المخصصة";
+"addressNumber" = "عدد العناوين";
+"notAvailable" = "غير متاح";
+
+// App Error
+"downcastFailure" = "لقد فشلت عملية تقليل النسخة";
+"hashingFailure" = "لقد فشلت عملية التجزئة";
+"conectionError" = "لا يوجد خطأ في الاتصال";
+"unknownError" = "خطأ غير معروف";
+"error" = "خطأ";
+"foldersError" = "خطأ في المجلدات";
+"messagesError" = "خطأ في الرسائل";
+"mailBoxesError" = "خطأ في صندوق الوارد";
+"userError" = "خطأ في المستخدم";
+"fileDownloadError" = "خطأ في تنزيل الملف";
+"attachmentErrorTitle" = "خطأ في الإرفاق";
+"attachmentErrorMessage" = "لقد توقفت عملية إرفاق الملف أو لا يمكن فك تشفيرها";
+"contactEncryptionError" = "خطأ في تشفير جهات الاتصال";
+
+// Signup Error
+"signupError" = "لقد فشلت عملية تسجيل الاشتراك";
+"somethingWentWrong" = "حدث خطأ ما";
+"userNameAvailable" = "اسم المستخدم متاح";
+"nameAlreadyExistsError" = "هذا الاسم موجود بالفعل!";
+"refreshTokenError" = "هذا الرمز غير صالح";
+"relogin" = "برجاء محاولة تسجيل الدخول لاحقًا";
+"passwordMatched" = "كلمة المرور مطابقة";
+"passwordNotMatched" = "كلمة المرور غير متطابقة";
+"minPasswordLengthError" = "يجب أن تتكون كلمة المرور من 10 خصائص على الأقل";
+
+// Contacts
+"unknownName" = "اسم غير معروف";
+"unknownEmail" = "بريد إلكتروني غير معروف";
+
+// Network Error
+"networkErrorTitle" = "نأسف لذلك";
+"networkErrorMessage" = "يبدو أن جهازك غير متصل بالشبكة. برجاء الانتظار حتى نقوم بالبحث عن أي شبكة متاحة.";
