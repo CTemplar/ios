@@ -170,6 +170,12 @@ final class InboxDatasource: NSObject {
         messages.removeAll()
         originalMessages.removeAll()
         parentViewController?.presenter?.updateNoMessagePrompt()
+        reload()
+    }
+    
+    func resetPaginationConstants() {
+        parentViewController?.presenter?.interactor?.update(offset: 0)
+        parentViewController?.presenter?.interactor?.update(totalItems: 0)
     }
     
     func resetSelectionMode() {
@@ -339,7 +345,6 @@ final class InboxDatasource: NSObject {
             self.messages.removeAll(where: { $0.messsageID == message.messsageID })
             self.messages.append(message)
         }
-        
         self.originalMessages = self.messages
         
         parentViewController?.presenter?.updateNoMessagePrompt()

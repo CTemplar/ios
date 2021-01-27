@@ -684,7 +684,9 @@ open class KSTokenView: UIView {
     
     func tokenFieldDidEndEditing(_ tokenField: KSTokenField) {
         delegate?.tokenViewDidEndEditing?(self)
-        tokenField.untokenize()
+        if (tokenField.text?.count ?? -1 > 1) {
+            resignFirstResponder()
+        }
         _hideSearchResults()
     }
     

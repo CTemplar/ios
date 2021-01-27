@@ -53,6 +53,17 @@ final class AppSettingsDatasource: NSObject {
             currentLanguage = GeneralConstant.Language.french.name
         case GeneralConstant.Language.slovak.prefix:
             currentLanguage = GeneralConstant.Language.slovak.name
+            
+        case GeneralConstant.Language.arabic.prefix:
+            currentLanguage = GeneralConstant.Language.arabic.name
+        case GeneralConstant.Language.chinese.prefix:
+            currentLanguage = GeneralConstant.Language.chinese.name
+        case GeneralConstant.Language.german.prefix:
+            currentLanguage = GeneralConstant.Language.german.name
+        case GeneralConstant.Language.portuguese.prefix:
+            currentLanguage = GeneralConstant.Language.portuguese.name
+        case GeneralConstant.Language.ukrainian.prefix:
+            currentLanguage = GeneralConstant.Language.ukrainian.name
         default:
             currentLanguage = GeneralConstant.Language.english.name
         }

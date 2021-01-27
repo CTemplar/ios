@@ -41,7 +41,6 @@ public final class ComposeMailSubjectCell: UITableViewCell, Cellable {
     // MARK: - Lifecycle
     public override func prepareForReuse() {
         super.prepareForReuse()
-        subjectTextField.text = ""
     }
     
     // MARK: - Setup

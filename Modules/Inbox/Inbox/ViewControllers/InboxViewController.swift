@@ -143,6 +143,12 @@ class InboxViewController: UIViewController, EmptyStateMachine {
         )
         
         NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reciveUpdateNotification(notification:)),
+                                               name: .newMessagesNotificationID,
+                                               object: nil
+        )
+        
+        NotificationCenter.default.addObserver(self,
                                                selector: #selector(userSettingsUpdate),
                                                name: .updateUserSettingsNotificationID,
                                                object: nil
@@ -162,13 +168,7 @@ class InboxViewController: UIViewController, EmptyStateMachine {
 
         edgesForExtendedLayout = []
         
-        // Fetch emails
-        presenter?
-            .interactor?
-            .updateMessages(withUndo: "",
-                            silent: false,
-                            menu: SharedInboxState.shared.selectedMenu
-        )
+        fetchMails()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -199,6 +199,16 @@ class InboxViewController: UIViewController, EmptyStateMachine {
 
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    // MARK: - Fetch Data
+    func fetchMails() {
+        presenter?
+            .interactor?
+            .updateMessages(withUndo: "",
+                            silent: false,
+                            menu: SharedInboxState.shared.selectedMenu
+        )
     }
 
     // MARK: - Observers
