@@ -98,6 +98,7 @@ final class AddAppContactsViewModel: Modelable {
             })
         case .Edit:
             fetcher.updateContact(withContact: contact, isEncrypted: isContactEncrypted, onCompletion: { [weak self] (result) in
+                
                 self?.parseResponse(from: result)
             })
         }
@@ -105,12 +106,17 @@ final class AddAppContactsViewModel: Modelable {
     
     func deleteContact() {
         fetcher.deleteContact(contact) { [weak self] (result) in
+           
             self?.parseResponse(from: result)
         }
     }
     
     private func parseResponse(from result: APIResult<Any>) {
+        DispatchQueue.main.async {
+            Loader.stop()
+        }
         switch result {
+        
         case .success:
             onUpdateContact.send(true)
         case .failure(let error):
@@ -118,3 +124,4 @@ final class AddAppContactsViewModel: Modelable {
         }
     }
 }
+

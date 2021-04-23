@@ -44,6 +44,8 @@
 		444BD3AE24948ABA001D0C5F /* UserResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444BD3AA24948AB9001D0C5F /* UserResult.swift */; };
 		444D65BE24A7397300690B3E /* UnreadMessageCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65BD24A7397300690B3E /* UnreadMessageCounter.swift */; };
 		44C6E048249563A500D7C614 /* Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444BD374249379B2001D0C5F /* Utility.framework */; };
+		950D12002623351D008D2423 /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D11FF2623351D008D2423 /* MimeType.swift */; };
+		9596F60D26199D1400D64163 /* PGPFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9596F60C26199D1400D64163 /* PGPFramework.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +89,8 @@
 		444BD3A924948AB9001D0C5F /* PageResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageResult.swift; sourceTree = "<group>"; };
 		444BD3AA24948AB9001D0C5F /* UserResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResult.swift; sourceTree = "<group>"; };
 		444D65BD24A7397300690B3E /* UnreadMessageCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadMessageCounter.swift; sourceTree = "<group>"; };
+		950D11FF2623351D008D2423 /* MimeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeType.swift; sourceTree = "<group>"; };
+		9596F60C26199D1400D64163 /* PGPFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PGPFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9596F60D26199D1400D64163 /* PGPFramework.framework in Frameworks */,
 				444BD36F249375B5001D0C5F /* Alamofire in Frameworks */,
 				44C6E048249563A500D7C614 /* Utility.framework in Frameworks */,
 			);
@@ -133,6 +138,7 @@
 				444BD38524939578001D0C5F /* NetworkManager.swift */,
 				444BD2E2249234C2001D0C5F /* Networking.h */,
 				444BD2E3249234C2001D0C5F /* Info.plist */,
+				950D11FF2623351D008D2423 /* MimeType.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -169,6 +175,7 @@
 		444BD373249379B2001D0C5F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9596F60C26199D1400D64163 /* PGPFramework.framework */,
 				444BD37B249388B7001D0C5F /* Pods_Utility.framework */,
 				444BD3782493887F001D0C5F /* AlertHelperKit.framework */,
 				444BD374249379B2001D0C5F /* Utility.framework */,
@@ -305,6 +312,7 @@
 				444BD3A524948A83001D0C5F /* NetworkService+PushNotifications.swift in Sources */,
 				444BD32C249361B8001D0C5F /* FolderList.swift in Sources */,
 				444BD3AD24948ABA001D0C5F /* PageResult.swift in Sources */,
+				950D12002623351D008D2423 /* MimeType.swift in Sources */,
 				444BD39524948A1B001D0C5F /* RouterUser.swift in Sources */,
 				444BD39924948A1B001D0C5F /* RouterCaptcha.swift in Sources */,
 				444BD38D24948909001D0C5F /* NetworkService.swift in Sources */,

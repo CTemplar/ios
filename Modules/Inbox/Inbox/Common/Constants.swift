@@ -109,7 +109,7 @@ public enum Menu: String, MenuConfigurable {
         case contacts = "contacts"
         case settings = "settings"
         case help = "help"
-      //  case FAQ = "FAQ"
+        case FAQ = "FAQ"
         case logout = "logout"
         
         var image: UIImage {
@@ -120,8 +120,8 @@ public enum Menu: String, MenuConfigurable {
                 return #imageLiteral(resourceName: "darkSettings")
             case .help:
                 return #imageLiteral(resourceName: "darkHelp")
-//            case .FAQ:
-//                return #imageLiteral(resourceName: "darkFAQ")
+            case .FAQ:
+                return #imageLiteral(resourceName: "darkFAQ")
             case .logout:
                 return #imageLiteral(resourceName: "darkLogout")
             }
@@ -135,8 +135,8 @@ public enum Menu: String, MenuConfigurable {
                 return Strings.Menu.settings.localized
             case .help:
                 return Strings.Menu.help.localized
-//            case .FAQ:
-//                return Strings.Menu.FAQ.localized
+            case .FAQ:
+                return Strings.Menu.FAQ.localized
             case .logout:
                 return Strings.Menu.logout.localized
             }

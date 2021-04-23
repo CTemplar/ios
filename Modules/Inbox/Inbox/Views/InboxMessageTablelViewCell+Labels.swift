@@ -25,7 +25,8 @@ extension InboxMessageTableViewCell {
         }
         
         if subjectEncrypted {
-            subjectLabel.text = Strings.Inbox.mailEncryptedMessage.localized
+            subjectLabel.text = message.decryptedSubject != nil ? message.decryptedSubject : Strings.Inbox.mailEncryptedMessage.localized
+           // subjectLabel.text = Strings.Inbox.mailEncryptedMessage.localized
             subjectLabel.font = .withType(.Large(.Bold))
         } else {
             subjectLabel.font = .withType(.Large(.Normal))
@@ -117,7 +118,9 @@ extension InboxMessageTableViewCell {
         
         isStaredImageView.image = message.starred == true ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
 
-        hasAttachmentImageView.isHidden = message.attachments?.isEmpty == true
+       // hasAttachmentImageView.isHidden = message.attachments?.isEmpty == true
+        hasAttachmentImageView.isHidden  = message.hasAttachment == false
+
     }
 
     private func decrypt(content: String) -> String? {

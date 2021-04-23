@@ -160,6 +160,7 @@
 		44DA91962506593100B2724D /* more.png in Resources */ = {isa = PBXBuildFile; fileRef = 44DA91942506593100B2724D /* more.png */; };
 		44E499EC24F68BB40007CFA7 /* FileManager+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E499EB24F68BB40007CFA7 /* FileManager+Helpers.swift */; };
 		44F548A8257A95D7005CB1D1 /* ObjectivePGP.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F548A7257A95D7005CB1D1 /* ObjectivePGP.xcframework */; };
+		95DFA6912615D50A00C1EFFF /* PGPFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DFA6902615D50A00C1EFFF /* PGPFramework.framework */; };
 		F667DD49A75B6FE0252F8096 /* Pods_Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E703B50CC5FDE28F6FAAE49 /* Pods_Utility.framework */; };
 /* End PBXBuildFile section */
 
@@ -319,6 +320,7 @@
 		44DA91942506593100B2724D /* more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more.png; sourceTree = "<group>"; };
 		44E499EB24F68BB40007CFA7 /* FileManager+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Helpers.swift"; sourceTree = "<group>"; };
 		44F548A7257A95D7005CB1D1 /* ObjectivePGP.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ObjectivePGP.xcframework; path = ../../Pods/ObjectivePGP/Frameworks/ObjectivePGP.xcframework; sourceTree = "<group>"; };
+		95DFA6902615D50A00C1EFFF /* PGPFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PGPFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98462D750337A7B64820C39F /* Pods-Utility.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Utility.release.xcconfig"; path = "Target Support Files/Pods-Utility/Pods-Utility.release.xcconfig"; sourceTree = "<group>"; };
 		D98444ABC394312D4DA1F688 /* Pods-Utility.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Utility.debug.xcconfig"; path = "Target Support Files/Pods-Utility/Pods-Utility.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -328,6 +330,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95DFA6912615D50A00C1EFFF /* PGPFramework.framework in Frameworks */,
 				44BD63F42490B46400CB4A73 /* QuickLayout in Frameworks */,
 				44F548A8257A95D7005CB1D1 /* ObjectivePGP.xcframework in Frameworks */,
 				447754C824EFA01B009B89D6 /* Reachability in Frameworks */,
@@ -653,6 +656,7 @@
 		915CE001F1122A6FA4E963D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				95DFA6902615D50A00C1EFFF /* PGPFramework.framework */,
 				44F548A7257A95D7005CB1D1 /* ObjectivePGP.xcframework */,
 				445BF9EE24AD248D00DAC3B3 /* Security.framework */,
 				445BF9E224AD22C900DAC3B3 /* libbz2.tbd */,

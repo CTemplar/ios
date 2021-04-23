@@ -21,11 +21,10 @@ public enum BiometricType {
 public extension LAContext {
     static func getAvailableBiometricType() -> BiometricType {
         let context = LAContext()
-        
+
         if !context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
             return .none
         }
-        
         switch(context.biometryType) {
         case .none:
             return .none

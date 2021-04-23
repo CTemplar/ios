@@ -981,7 +981,7 @@ public class RestAPIService {
         AF.download(url, to: destination).downloadProgress(queue: DispatchQueue.global(qos: .utility)) { (progress) in
             DPrint("Progress: \(progress.fractionCompleted)")
             }.responseData { ( response ) in
-                completionHandler(APIResult.success(response.fileURL!))
+                completionHandler(APIResult.success(response.fileURL ?? ""))
         }
     }
     
@@ -996,7 +996,10 @@ public class RestAPIService {
         let parameters: Parameters = [
             JSONKey.messageID.rawValue: messageID,
             JSONKey.inline.rawValue: false,
-            JSONKey.encrypted.rawValue: encrypted
+            JSONKey.encrypted.rawValue: encrypted,
+            JSONKey.fileType.rawValue: mimeType,
+            JSONKey.folderName.rawValue:fileName
+            
         ]
         
         DPrint("createAttachment parameters:", parameters)
@@ -1070,7 +1073,8 @@ public class RestAPIService {
             //JSONKey.fileData.rawValue: file,
             JSONKey.inline.rawValue: false,
             JSONKey.encrypted.rawValue: encrypted,
-            JSONKey.fileType.rawValue: mimeType
+            JSONKey.fileType.rawValue: mimeType,
+            JSONKey.folderName.rawValue:fileName
         ]
         
         DPrint("updateAttachment parameters:", parameters)
@@ -1194,11 +1198,15 @@ public class RestAPIService {
         DPrint("App Version Check URL: \(url)")
         AF.request(url).response { (data) in
             do {
-                if let response = try JSONSerialization.jsonObject(with: data.data!, options: .mutableLeaves) as? [String: Any],
+                if let ldata = data.data {
+                if let response = try JSONSerialization.jsonObject(with: ldata, options: .mutableLeaves) as? [String: Any],
                    let version = response["version"] as? Double,
                    let isForceUpdate = response["is_force_update"] as? Bool {
                     onCompletion(String(version), isForceUpdate)
                     // onCompletion("1.4.2", true)
+                } else {
+                    onCompletion("", false)
+                }
                 } else {
                     onCompletion("", false)
                 }

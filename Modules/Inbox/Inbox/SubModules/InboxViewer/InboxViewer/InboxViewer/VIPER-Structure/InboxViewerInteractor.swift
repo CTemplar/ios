@@ -55,7 +55,7 @@ final class InboxViewerInteractor {
         }
     }
     
-    func loadAttachFile(url: String, encrypted: Bool) {
+    func loadAttachFile(url: String, encrypted: Bool, newUrl:String) {
         Loader.start()
         apiService.loadAttachFile(url: url) { [weak self] (result) in
             DispatchQueue.main.async {
@@ -65,7 +65,7 @@ final class InboxViewerInteractor {
                     if let savedFileUrl = value as? URL {
                         self?.inboxViewerController?
                             .presenter?
-                            .showPreviewScreen(url: savedFileUrl, encrypted: encrypted
+                            .showPreviewScreen(url: savedFileUrl, encrypted: encrypted, newUrl: newUrl
                         )
                     } else {
                         self?.inboxViewerController?

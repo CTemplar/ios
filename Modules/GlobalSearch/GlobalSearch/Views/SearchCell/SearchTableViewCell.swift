@@ -72,7 +72,7 @@ class SearchTableViewCell: UITableViewCell {
         
         isStaredImageView.image = message.starred == true ? #imageLiteral(resourceName: "StarOn") : #imageLiteral(resourceName: "StarOff")
         
-        hasAttachmentImageView.isHidden = message.attachments?.isEmpty == true
+        hasAttachmentImageView.isHidden  = message.hasAttachment == false
         
         if let folderName = message.folder {
             folderNameLabel.text = folderName

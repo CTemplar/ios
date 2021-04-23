@@ -1,5 +1,5 @@
 import Foundation
-
+import Utility
 public struct EmailMessage: Hashable {
     // MARK: Properties
     public private (set) var attachments: Array<Attachment>?
@@ -19,6 +19,7 @@ public struct EmailMessage: Hashable {
     public private (set) var messsageID: Int?
     public private (set) var isEncrypted: Bool?
     public private (set) var isProtected: Bool?
+    public private (set) var hasAttachment: Bool?
     public private (set) var isHtml: Bool?
     public private (set) var isSubjectEncrypted: Bool?
     public private (set) var mailbox: String?
@@ -35,7 +36,8 @@ public struct EmailMessage: Hashable {
     public private (set) var incomingHeader: String?
     public private (set) var updated: String?
     public private (set) var forwardAttachmentsMessage: Int?
-    
+    public  var decryptedSubject: String?
+    public var isLoading = false
     // MARK: - Constructor
     public init() {}
     
@@ -64,6 +66,7 @@ public struct EmailMessage: Hashable {
         self.hash = dictionary["hash"] as? String
         self.messsageID = dictionary["id"] as? Int
         self.isEncrypted = dictionary["is_encrypted"] as? Bool
+        self.hasAttachment = dictionary["has_attachments"] as? Bool
         self.isProtected = dictionary["is_protected"] as? Bool
         self.isHtml = dictionary["is_html"] as? Bool
         self.isSubjectEncrypted = dictionary["is_subject_encrypted"] as? Bool
@@ -81,6 +84,7 @@ public struct EmailMessage: Hashable {
         self.incomingHeader = dictionary["incoming_headers"] as? String
         self.updated = dictionary["updated"] as? String
         self.forwardAttachmentsMessage = dictionary["forward_attachments_of_message"] as? Int
+        
         if let senderDisplayDict = dictionary["sender_display"] as? [String: Any] {
             if let displayName = senderDisplayDict["name"] as? String {
                 self.sender_display = displayName
@@ -90,7 +94,16 @@ public struct EmailMessage: Hashable {
             receivers_display = receiversDisplayArray.map({ $0["name"] as? String ?? "" })
         }
     }
-    
+//
+//    // MARK: - decrypt Subject
+//    private func decrypt(content: String) -> String? {
+//        let decryptedSubject = UtilityManager.shared.pgpService.decryptMessage(encryptedContet: content)
+//        if decryptedSubject == "#D_FAILED_ERROR#" {
+//            return nil
+//        }
+//        return decryptedSubject
+//    }
+//
     // MARK: - Parser
     public func parsResultsFromList(array: Array<Any>) -> Array<EmailMessage>{
         var objectsArray: Array<EmailMessage> = []
@@ -200,6 +213,10 @@ public extension EmailMessage {
     mutating func update(isProtected: Bool?) {
         self.isProtected = isProtected
     }
+    mutating func update(hasAttachment: Bool?) {
+        self.hasAttachment = hasAttachment
+    }
+    
     
     mutating func update(isHtml: Bool?) {
         self.isHtml = isHtml

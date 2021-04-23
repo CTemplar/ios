@@ -29,6 +29,7 @@ final class AddAppContactsFetcher {
     func createContact(_ contact: Contact, isEncrypted: Bool, onCompletion: @escaping ContactUpdateResponse) {
         if isEncrypted {
             apiService.createEncryptedContact(name: contact.contactName ?? "", email: contact.email ?? "", phone: contact.phone ?? "", address: contact.address ?? "", note: contact.note ?? "") { [weak self] (result) in
+                
                 self?.getCommonResponse(from: result, onCompletion: onCompletion)
             }
         } else {

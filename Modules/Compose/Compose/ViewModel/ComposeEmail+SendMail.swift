@@ -1,8 +1,8 @@
 import Utility
 import Networking
-
+import PGPFramework
 extension ComposeViewModel {
-    func sendEncryptedEmailForCtemplarUser(publicKeys: [PGPKey]) {
+    func sendEncryptedEmailForCtemplarUser(publicKeys: [KeysModel]) {
         guard let messsageID = email.messsageID?.description else {
             DispatchQueue.main.async {
                 Loader.stop()
@@ -20,7 +20,8 @@ extension ComposeViewModel {
         
         var subject = email.subject ?? ""
         
-        let subjectEncrypted = user.settings.isSubjectEncrypted ?? false
+        // keeping same structure in case we want this feature back
+        let subjectEncrypted = true //user.settings.isSubjectEncrypted ?? false
         
         if subjectEncrypted {
             subject = encryptMessage(publicKeys: publicKeys, message: subject)
@@ -74,13 +75,13 @@ extension ComposeViewModel {
         
         if menuCellVM?.selectedMenus.contains(.mailEncryption) == true {
             if let encryptionObject = email.encryption {
-                let nonCtemplarPGPKey = pgpService.generatePGPKey(userName: userName, password: emailPassword)
+                let nonCtemplarPGPKey = pgpService.generateNewKeyModel(userName: userName, password: emailPassword)
                 
-                let encryptionObjectDictionary = setPGPKeysForEncryptionObject(object: encryptionObject, pgpKey: nonCtemplarPGPKey)
+                let encryptionObjectDictionary = setPGPKeysForEncryptionObject(object: encryptionObject, pgpKey: nonCtemplarPGPKey ?? KeysModel())
                 
-                var pgpKeys: [PGPKey] = pgpService.getStoredPGPKeys() ?? []
+                var pgpKeys: [KeysModel] = pgpService.getStoredKeysModel() ?? []
                 
-                pgpKeys.append(nonCtemplarPGPKey)
+                pgpKeys.append(nonCtemplarPGPKey ?? KeysModel())
                 
                 messageContent = encryptMessage(publicKeys: pgpKeys, message: messageContent)
                 
@@ -147,14 +148,13 @@ extension ComposeViewModel {
         
         if menuCellVM?.selectedMenus.contains(.mailEncryption) == true {
             let userName = messageId.description
-            let nonCtemplarPGPKey = pgpService.generatePGPKey(userName: userName, password: emailPassword)
-            var pgpKeys: [PGPKey] = []
+            let nonCtemplarPGPKey = pgpService.generateNewKeyModel(userName: userName, password: emailPassword)
+            var pgpKeys: [KeysModel] = []
             
-            if let userKeys = pgpService.getStoredPGPKeys(), !userKeys.isEmpty {
+            if let userKeys = pgpService.getStoredKeysModel(), !userKeys.isEmpty {
                 pgpKeys = userKeys
             }
-            
-            pgpKeys.append(nonCtemplarPGPKey)
+            pgpKeys.append(nonCtemplarPGPKey ?? KeysModel())
             
             updateAttachmentsForNonCtemplarUsers(attachments: self.includeAttachments ? email.attachments ?? [] : [],
                                                  index: 0,
@@ -172,19 +172,20 @@ extension ComposeViewModel {
 extension ComposeViewModel {
     
     private func getAttachmentData(from attachment: Attachment) -> (data: Data?, url: URL?) {
-        if let contentURL = attachment.contentUrl, let fileUrl = URL(string: contentURL) {
-            return (data: try? Data(contentsOf: fileUrl), url: fileUrl)
-        }
-        
         if let localFileURL = attachment.localUrl {
             let fileUrl = URL(fileURLWithPath: localFileURL)
             return (data: try? Data(contentsOf: fileUrl), url: fileUrl)
         }
+        
+        if let contentURL = attachment.contentUrl, let fileUrl = URL(string: contentURL) {
+            return (data: try? Data(contentsOf: fileUrl), url: fileUrl)
+        }
 
+        
         return (data: nil, url: nil)
     }
     
-    func updateAttachments(publicKeys: [PGPKey], messageID: Int) {
+    func updateAttachments(publicKeys: [KeysModel], messageID: Int) {
         var attachmentsCount = email.attachments?.count ?? 0
         
         for attachment in email.attachments ?? [] {
@@ -204,7 +205,7 @@ extension ComposeViewModel {
             }
             
             if !publicKeys.isEmpty {
-                guard let encryptedfileData = pgpService.encryptAsData(data: fileData, keys: publicKeys) else {
+                guard let encryptedfileData = pgpService.encryptAsDataWithKeyModel(data: fileData, keys: publicKeys, fileName: fileURL.lastPathComponent) else {
                     Loader.stop()
                     let params = AlertKitParams(
                         title: Strings.AppError.error.localized,
@@ -220,7 +221,7 @@ extension ComposeViewModel {
                     .shared
                     .apiService
                     .updateAttachment(attachmentID: attachmentId.description,
-                                      fileUrl: fileURL,
+                                      fileUrl: fileURL, fileName: fileURL.lastPathComponent,
                                       fileData: encryptedfileData,
                                       messageID: messageID,
                                       encrypt: true) { (_) in
@@ -235,7 +236,7 @@ extension ComposeViewModel {
                     .shared
                     .apiService
                     .updateAttachment(attachmentID: attachmentId.description,
-                                      fileUrl: fileURL,
+                                      fileUrl: fileURL, fileName: fileURL.lastPathComponent,
                                       fileData: fileData,
                                       messageID: messageID,
                                       encrypt: false)
@@ -252,7 +253,7 @@ extension ComposeViewModel {
     
     func updateAttachmentsForNonCtemplarUsers(attachments: [Attachment],
                                               index: Int,
-                                              publicKeys: [PGPKey],
+                                              publicKeys: [KeysModel],
                                               messageID: Int) {
         if index >= attachments.count {
             sendEmailForNonCtemplarUser(messageID: "\(messageID)", attachments: attachments)
@@ -281,12 +282,12 @@ extension ComposeViewModel {
         let attachID = attachment.attachmentID?.description ?? ""
         
         if !publicKeys.isEmpty {
-            if let encryptedfileData = pgpService.encryptAsData(data: data, keys: publicKeys) {
+            if let encryptedfileData = pgpService.encryptAsDataWithKeyModel(data: data, keys: publicKeys, fileName: fileUrl.lastPathComponent) {
                 NetworkManager
                     .shared
                     .apiService
                     .updateAttachment(attachmentID: attachID,
-                                      fileUrl: fileUrl,
+                                      fileUrl: fileUrl, fileName: fileUrl.lastPathComponent,
                                       fileData: encryptedfileData,
                                       messageID: messageID,
                                       encrypt: true,
@@ -316,7 +317,7 @@ extension ComposeViewModel {
                 .shared
                 .apiService
                 .updateAttachment(attachmentID: attachID,
-                                  fileUrl: fileUrl,
+                                  fileUrl: fileUrl, fileName: fileUrl.lastPathComponent,
                                   fileData: data,
                                   messageID: messageID,
                                   encrypt: isAttachmentEncrypted,

@@ -242,7 +242,7 @@ final class InboxPresenter {
         
         inboxFilterVC.onApplyFilters = { [weak self] (appliedFilters) in
             self?.viewController?.dataSource?.update(filters: appliedFilters)
-            self?.setupUI(emailsCount: self?.interactor?.totalItems ?? 0,
+            self?.setupUI(emailsCount: self?.viewController?.dataSource?.messages.count ?? 0,
                           unreadEmails: self?.viewController?.dataSource?.unreadCount ?? 0,
                           filterEnabled: self?.viewController?.dataSource?.filterEnabled ?? false)
         }

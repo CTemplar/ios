@@ -105,7 +105,7 @@ public final class InboxSideMenuInteractor {
                               for vc: InboxViewController?) {
         let filterEnabled = vc?.dataSource?.filterEnabled ?? false
         
-        let totalEmails = vc?.presenter?.interactor?.totalItems ?? 0
+        let totalEmails = vc?.dataSource?.messages.count ?? 0
         
         let currentFolder = SharedInboxState.shared.selectedMenu ?? Menu.inbox
         
@@ -206,8 +206,8 @@ public final class InboxSideMenuInteractor {
                                                                user: user)
         case .settings:
             viewController?.router?.showSettingsViewController(withUser: user)
-//        case .FAQ:
-//            viewController?.router?.showFAQ()
+        case .FAQ:
+            viewController?.router?.showFAQ()
         case .help:
             openSupportURL()
         case .logout:

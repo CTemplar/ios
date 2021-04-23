@@ -45,6 +45,7 @@ public final class InboxViewerWebMailBodyCell: UITableViewCell, Cellable {
     }
     
     var onHeightChange: (() -> Void)?
+    private var fontMultiplier = "300"
     
     private lazy var activityIndicatorView: UIActivityIndicatorView = {
         let activity = UIActivityIndicatorView(style: .medium)
@@ -66,11 +67,12 @@ public final class InboxViewerWebMailBodyCell: UITableViewCell, Cellable {
     
     // MARK: - Setup UI
     private func setupWebView() {
+
         webView.isOpaque = false
         webView.backgroundColor = .systemBackground
         webView.navigationDelegate = self
         webViewHeightConstraint.constant = thresholdHeight
-        webView.contentMode = .scaleAspectFit
+        webView.contentMode = .center
         onHeightChange?()
     }
 
@@ -96,11 +98,16 @@ public final class InboxViewerWebMailBodyCell: UITableViewCell, Cellable {
         
         activityIndicatorView.startAnimating()
         
+        if model.content.contains("!DOCTYPE html PUBLIC") {
+            fontMultiplier = "100"
+        }else {
+            fontMultiplier = "300"
+        }
+        
         if model.content.contains("color:") {
             webView.loadHTMLString(model.content.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "\r", with: ""), baseURL: nil)
         } else {
-            webView.loadHTMLString("<div style=\"color:\(traitCollection.userInterfaceStyle == .dark ? "#ffffff" : "#000000")\">" + model.content.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "\r", with: "") + "</div>", baseURL: nil)
-
+            webView.loadHTMLString("<font color= \(traitCollection.userInterfaceStyle == .dark ? "\'white\'" : "\'black\'")\">" + model.content.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "\r", with: "") + "</div>", baseURL: nil)
         }
     }
     
@@ -118,7 +125,7 @@ public final class InboxViewerWebMailBodyCell: UITableViewCell, Cellable {
 extension InboxViewerWebMailBodyCell: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         activityIndicatorView.stopAnimating()
-        let js = "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust='300%'"//dual size
+        let js = "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust='\(fontMultiplier)%'"//dual size
         webView.evaluateJavaScript(js, completionHandler: nil)
 
         self.webView.evaluateJavaScript("document.readyState", completionHandler: { [weak self] (complete, error) in

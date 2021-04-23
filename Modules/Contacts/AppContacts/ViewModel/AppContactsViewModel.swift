@@ -77,7 +77,10 @@ final class AppContactsViewModel: Modelable {
             guard let self = self else {
                 return
             }
-            self.parseResponse(from: result)
+            if (result != nil) {
+                self.parseResponse(from: result)
+            }
+           
         }
     }
     
@@ -91,6 +94,10 @@ final class AppContactsViewModel: Modelable {
     }
     
     private func parseResponse(from result: APIResult<(contacts: [Contact], didfetchAll: Bool)>) {
+        
+        DispatchQueue.main.async {
+            Loader.stop()
+        }
         switch result {
         case .success(let response):
             var existingContacts = self.contacts

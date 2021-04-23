@@ -9,6 +9,7 @@ public struct Attachment: Equatable, Hashable {
     public var messageID: Int?
     public var encrypted: Bool?
     public var localUrl: String?
+    public var name: String?
     
     // MARK: - Constructor
     public init() {
@@ -22,6 +23,13 @@ public struct Attachment: Equatable, Hashable {
         self.messageID = dictionary["message"] as? Int
         self.encrypted = dictionary["is_encrypted"] as? Bool
         self.localUrl = dictionary["localUrl"] as? String
+        if let name = dictionary["name"] as? String {
+            self.name = name
+        }
+        else {
+            name = ""
+        }
+       
     }
     
     // MARK: - Parser

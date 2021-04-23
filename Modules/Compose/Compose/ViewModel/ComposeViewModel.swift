@@ -397,14 +397,17 @@ final class ComposeViewModel: Modelable {
     func getMailAttachment(from attachment: Attachment) -> MailAttachment? {
         if let url = attachment.contentUrl,
             let fileName = FileManager.fileName(fileUrl: url),
-            let fileExtension = FileManager.fileExtension(fileUrl: url),
-            let extensionType = GeneralConstant.DocumentsExtension(rawValue: fileExtension.lowercased()) {
-            let attachment = MailAttachment(attachmentTitle: fileName,
-                                            attachmentType: extensionType,
-                                            contentURL: url,
-                                            encrypted: attachment.encrypted ?? false,
-                                            shoulDisplayRemove: true)
-            return attachment
+            let fileExtension = FileManager.fileExtension(fileUrl: url)
+            {
+            if let localUrl = attachment.localUrl, let fileExtension = FileManager.fileExtension(fileUrl: localUrl), let extensionType = GeneralConstant.DocumentsExtension(rawValue: fileExtension.lowercased()) {
+                let attachment = MailAttachment(attachmentTitle: fileName,
+                                                attachmentType: extensionType,
+                                                contentURL: url,
+                                                encrypted: attachment.encrypted ?? false,
+                                                shoulDisplayRemove: true)
+                return attachment
+            }
+            
         }
         return nil
     }
@@ -887,9 +890,9 @@ final class ComposeViewModel: Modelable {
                 if emailsKeys.encrypt {
                     if let messageID = self?.email.messsageID {
                         if strong.email.attachments?.isEmpty == false, strong.includeAttachments {
-                            strong.updateAttachments(publicKeys: emailsKeys.pgpKeys, messageID: messageID)
+                            strong.updateAttachments(publicKeys: EmailsKeys.keysModel(keys: emailsKeys.keys), messageID: messageID)
                         } else {
-                            strong.sendEncryptedEmailForCtemplarUser(publicKeys: emailsKeys.pgpKeys)
+                            strong.sendEncryptedEmailForCtemplarUser(publicKeys: EmailsKeys.keysModel(keys: emailsKeys.keys))
                         }
                     } else {
                         let params = AlertKitParams(

@@ -75,9 +75,12 @@ final class AppContactsViewController: UIViewController {
         if viewModel.shouldShowSearchControl {
             setupSearchController()
         }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            Loader.start()
+            self.viewModel.fetchContacts()
+        }
         
-        Loader.start()
-        viewModel.fetchContacts()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -140,7 +143,7 @@ final class AppContactsViewController: UIViewController {
     }
     
     private func setupTableView() {
-        edgesForExtendedLayout = []
+         edgesForExtendedLayout = []
         tableView.backgroundColor = .tertiarySystemGroupedBackground
         tableView.separatorStyle = .none
         tableView.keyboardDismissMode = .interactive
@@ -223,10 +226,15 @@ final class AppContactsViewController: UIViewController {
             let viewModel = AddAppContactsViewModel(contact: contact, mode: mode, isContactEncrypted: self.viewModel.contactEncrypted)
             addContactVC.configure(with: viewModel)
             addContactVC.onContactUpdateSuccess = { [weak self] in
-                Loader.start()
-                self?.viewModel.fetchContacts()
+                DispatchQueue.main.async {
+                    Loader.start()
+                    
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                 self?.viewModel.fetchContacts()
+                }
             }
-            navigationController?.pushViewController(addContactVC, animated: true)
+            navigationController?.pushViewController(addContactVC, animated: false)
         }
     }
 }
@@ -273,9 +281,9 @@ extension AppContactsViewController: UITableViewDelegate {
             self.noContactLabel.isHidden = contacts.isEmpty == false
             self.noContactImageView.isHidden = contacts.isEmpty == false
             self.noContactLabel.text = self.searchController.isActive ? self.viewModel.noSearchResultsText : self.viewModel.noContactsText
-            self.dataSource.apply(snapshot, animatingDifferences: true)
+            self.dataSource.apply(snapshot, animatingDifferences: false)
             
-            Loader.stop()
+             
             
             if self.refreshControl.isRefreshing {
                 self.refreshControl.endRefreshing()
