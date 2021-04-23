@@ -4,6 +4,7 @@ import Utility
 import Networking
 import SwipeCellKit
 
+
 class AppContactsCell: SwipeTableViewCell {
     // MARK: IBOutlets
     @IBOutlet weak var avatarImageView: UIImageView!

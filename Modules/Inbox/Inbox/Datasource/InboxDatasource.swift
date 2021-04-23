@@ -3,7 +3,7 @@ import UIKit
 import Utility
 import Networking
 import SwipeCellKit
-
+import PGPFramework
 enum InboxFilter: CaseIterable {
     case starred
     case unread
@@ -55,6 +55,7 @@ final class InboxDatasource: NSObject {
         }
     }
     
+  
     var messagesAvailable: Bool {
         return messages.isEmpty == false
     }
@@ -85,6 +86,7 @@ final class InboxDatasource: NSObject {
         self.parentViewController = parentViewController
         self.messages = messages
         self.originalMessages = messages
+
         super.init()
         
         setupTableView()
@@ -121,6 +123,8 @@ final class InboxDatasource: NSObject {
     // MARK: - Actions
     @objc
     private func handleRefresh(_ sender: Any) {
+       // print(self.originalMessages.count)
+        
         parentViewController?.presenter?.interactor?.userMyself({ [weak self] in
             self?.parentViewController?.presenter?.interactor?.update(offset: 0)
             self?.parentViewController?
@@ -627,7 +631,7 @@ extension InboxDatasource: UITableViewDelegate, UITableViewDataSource {
         }
         
         let message = messages[indexPath.row]
-
+        
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = .zero
         cell.layoutMargins = .zero
@@ -640,8 +644,52 @@ extension InboxDatasource: UITableViewDelegate, UITableViewDataSource {
         }
                 
         let isSubjectEncrypted = NetworkManager.shared.apiService.isSubjectEncrypted(message: message)
-        
+        if (isSubjectEncrypted == true) {
+            
+            if (message.decryptedSubject == nil && message.isLoading == false) {
+                var newmessage = messages[indexPath.row]
+                newmessage.isLoading = true
+                self.messages.remove(at: indexPath.row)
+                self.messages.insert(newmessage, at: indexPath.row)
+                DispatchQueue.global(qos: .utility).async {
+                    self.decryptMesssage(message: message, index: indexPath.row)
+                }
+            }
+        }
         cell.configure(with: InboxMessageTableViewCell.Model(message: message, subjectEncrypted: isSubjectEncrypted))
         return cell
+    }
+    
+    private func decryptMesssage(message : EmailMessage , index: Int) {
+        let decryptedSubject =  self.decrypt(content: message.subject ?? "")
+        if (self.messages.count > index) {
+            var newmessage = messages[index]
+            newmessage.decryptedSubject = decryptedSubject
+            if(message.messsageID == newmessage.messsageID) {
+                DispatchQueue.main.async {
+                    self.messages.remove(at: index)
+                    self.messages.insert(newmessage, at: index)
+                    self.tableView?.reloadData()
+                }
+            }
+        }
+    }
+    
+    // MARK: - decrypt Subject
+    private func decrypt(content: String) -> String? {
+        let password = UtilityManager.shared.keychainService.getPassword()
+        if let contentData = content.data(using: .ascii) {
+            if let data =  PGPEncryption().decryptSimpleMessage(encrypted: contentData, userPassword: password) {
+                return  String(decoding: data, as: UTF8.self)
+            }
+        }
+        else {
+            return nil
+        }
+//        let decryptedSubject = UtilityManager.shared.pgpService.decryptMessageFromInbox(encryptedContet: content)
+//        if decryptedSubject == "#D_FAILED_ERROR#" {
+//            return nil
+//        }
+        return nil
     }
 }

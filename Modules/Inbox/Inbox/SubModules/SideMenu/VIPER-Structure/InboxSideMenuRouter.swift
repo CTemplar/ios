@@ -20,7 +20,7 @@ final class InboxSideMenuRouter {
          onTapFAQ: (() -> Void)?) {
         self.viewController = viewController
         self.onTapSettings = onTapSettings
-      //  self.onTapFAQ = onTapFAQ
+        self.onTapFAQ = onTapFAQ
         self.onTapContacts = onTapContacts
         self.onTapManageFolders = onTapManageFolders
     }

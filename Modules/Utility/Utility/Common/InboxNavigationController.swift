@@ -1,5 +1,5 @@
 import UIKit
-
+import PGPFramework
 public class InboxNavigationController: UINavigationController, UINavigationControllerDelegate {
 
     // MARK: - Lifecycle

@@ -49,7 +49,7 @@ final class InboxViewerPresenter {
         })
     }
 
-    func showPreviewScreen(url: URL, encrypted: Bool) {
+    func showPreviewScreen(url: URL, encrypted: Bool, newUrl: String) {
         if encrypted {
             guard let data = try? Data(contentsOf: url) else {
                 DPrint("Attachment content data error!")
@@ -59,33 +59,84 @@ final class InboxViewerPresenter {
                 return
             }
             
-            if let tempUrl = self.decryptAttachment(data: data, name: url.lastPathComponent) {
-                viewController?.documentInteractionController.url = tempUrl
+            viewController?
+                .documentInteractionController?
+                .uti = url.typeIdentifier ?? "public.data, public.content"
+            
+            var urlName = url.lastPathComponent
+            if var tempUrl = url as? URL , tempUrl.pathExtension == "__" {
+                tempUrl.deletePathExtension()
+                if let extentionURL =  URL(string: newUrl) {
+                    tempUrl.appendPathExtension(extentionURL.pathExtension)
+                    urlName = tempUrl.lastPathComponent
+                }
+                viewController?
+                    .documentInteractionController?
+                    .uti = tempUrl.typeIdentifier ?? "public.data, public.content"
+            }
+
+            viewController?
+                .documentInteractionController?
+                .name = url.localizedName ?? urlName
+            if let tempUrl = self.decryptAttachment(data: data, name: urlName) {
+                
+                
+//                        let fileManager = FileManager.default
+//                       let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("101-Questions-New.png")
+//                       let image = UIImage(named: "101-Questions-New.png")
+//
+//                print(image)
+//                        let imageData = image!.jpegData(compressionQuality: 0.5)
+//                       fileManager.createFile(atPath: paths as String, contents: imageData, attributes: nil)
+//
+                
+                viewController?.documentInteractionController?.url = tempUrl
+
+                
+                
+//                let fileManager = FileManager.default
+//             // Here using getDirectoryPath method to get the Directory path
+//                     let imagePath = (self.getDirectoryPath() as NSString).appendingPathComponent(imageName)
+//                     if fileManager.fileExists(atPath: imagePath){
+//                         return UIImage(contentsOfFile: imagePath)!
+//                     }else{
+//                         print("No Image available")
+//                         return UIImage.init(named: "placeholder.png")! // Return placeholder image here
+//                     }
+                
+                
+                
             } else {
                 DPrint("Attachment decrypted content data error!")
-                viewController?.documentInteractionController.url = url
+                viewController?.documentInteractionController?.url = url
             }
         } else {
-            viewController?.documentInteractionController.url = url
+            viewController?.documentInteractionController?.url = url
+            viewController?
+                .documentInteractionController?
+                .uti = url.typeIdentifier ?? "public.data, public.content"
+            viewController?
+                .documentInteractionController?
+                .name = url.localizedName ?? url.lastPathComponent
         }
         
-        viewController?
-            .documentInteractionController
-            .uti = url.typeIdentifier ?? "public.data, public.content"
+       
         
-        viewController?
-            .documentInteractionController
-            .name = url.localizedName ?? url.lastPathComponent
-        
-        DispatchQueue.main.async {
-            self.viewController?.documentInteractionController.presentPreview(animated: true)
-        }
-        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3, execute: {
+            DispatchQueue.main.async {
+                Loader.stop()
+                self.viewController?.documentInteractionController?.delegate = self.viewController
+               self.viewController?.documentInteractionController?.presentPreview(animated: true)
+               // self.viewController?.documentInteractionController?.presentOpenInMenu(from: CGRect(x: 0, y: 0, width: self.viewController?.view?.frame.width ?? 0, height: self.viewController?.view?.frame.height ?? 0), in: (self.viewController?.view)!, animated: true)
+            }
+           
+
+        })
         Loader.start()
     }
     
     private func decryptAttachment(data: Data, name: String) -> URL? {
-        let decryptedAttachment = pgpService.decrypt(encryptedData: data)
+        let decryptedAttachment = pgpService.decryptImageAttachment(encryptedData: data)
         
         DPrint("decryptedAttachment:", decryptedAttachment as Any)
         
@@ -302,3 +353,4 @@ final class InboxViewerPresenter {
         }
     }
 }
+

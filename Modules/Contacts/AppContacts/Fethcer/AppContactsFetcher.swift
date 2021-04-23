@@ -15,9 +15,9 @@ final class AppContactsFetcher {
     
     // MARK: - API Services
     func fetchAllContacts(onCompletion: @escaping ContactResponse) {
-        if offset >= self.totalItems, offset > 0 {
-            return
-        }
+//        if  offset > 0 {
+//            return
+//        }
         
         let fetchAll = !isContactEncrypted
 

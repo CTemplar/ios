@@ -126,6 +126,9 @@ public struct GeneralConstant {
         case png = "png"
         case jpg = "jpg"
         case jpeg = "jpeg"
+        case xlsx = "xlsx"
+        case csv  = "csv"
+        case ods  =  "ods"
         
         public var color: UIColor {
             switch self {
@@ -137,6 +140,9 @@ public struct GeneralConstant {
                 return k_pngColor
             case .jpg, .jpeg:
                 return k_jpgColor
+            case .xlsx, .csv,.ods:
+            return k_jpgColor
+            
             }
         }
     }

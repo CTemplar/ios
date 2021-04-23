@@ -19,6 +19,7 @@ final class InboxInteractor {
     private (set) var offset = 0
     
     private (set) var totalItems = 0
+    private (set) var apiCalled = false
     
     // MARK: - Constructor
     init(viewController: InboxViewController) {
@@ -44,6 +45,10 @@ final class InboxInteractor {
     // MARK: - API Calls
     @discardableResult
     func messagesList(folder: String, withUndo: String, silent: Bool) -> Bool {
+      //  offset = self.viewController?.dataSource?.messages.count ?? 0
+        if (apiCalled == true) {
+            return true
+        }
         if offset >= totalItems, offset > 0 {
             return false
         }
@@ -51,7 +56,7 @@ final class InboxInteractor {
         if isFetchInProgress {
             return false
         }
-        
+        self.apiCalled = true
         // Start the loader
         if !silent {
             DispatchQueue.main.async {
@@ -70,6 +75,7 @@ final class InboxInteractor {
             pageSize = PageLimit.generalThreshold.rawValue
         }
         
+       
         // Fetch the latest emails
         apiService.messagesList(folder: folder,
                                 messagesIDIn: "",
@@ -77,6 +83,10 @@ final class InboxInteractor {
                                 offset: offset,
                                 pageLimit: pageSize)
         { [weak self] (result) in
+            
+            DispatchQueue.main.async  {
+                self?.apiCalled = false
+            }
             guard let self = self else {
                 DispatchQueue.main.async {
                     Loader.stop()
@@ -84,8 +94,9 @@ final class InboxInteractor {
                 return
             }
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.async  {
                 // Set the inbox data
+               
                 self.setInboxData(from: result,
                                   withUndo: withUndo,
                                   withPageSize: pageSize,
@@ -111,19 +122,22 @@ final class InboxInteractor {
                     // Update the inbox data source
                     self?.viewController?.dataSource?.update(mailboxList: mailboxList)
                     // Save the keys conditionally
-                    for mailbox in mailboxList {
-                        if storeKeys {
-                            if let privateKey = mailbox.privateKey {
-                                self?.pgpService.extractAndSavePGPKeyFromString(key: privateKey)
-                            }
-                            
-                            if let publicKey = mailbox.publicKey {
-                                self?.pgpService.extractAndSavePGPKeyFromString(key: publicKey)
-                            }
-                        }
+                    if (mailboxList.count > 0) {
+                        Mailbox.getKeysModel(keysArray: mailboxList)
                     }
+//                    for mailbox in mailboxList {
+//                        if storeKeys {
+//                            if let privateKey = mailbox.privateKey {
+//                                self?.pgpService.extractAndSavePGPKeyFromString(key: privateKey)
+//                            }
+//
+//                            if let publicKey = mailbox.publicKey {
+//                                self?.pgpService.extractAndSavePGPKeyFromString(key: publicKey)
+//                            }
+//                        }
+//                    }
+                        NotificationCenter.default.post(name: .updateInboxMessagesNotificationID, object: nil)
                     // Inbox list update notification
-                    NotificationCenter.default.post(name: .updateInboxMessagesNotificationID, object: nil)
                 }
                 
             case .failure(let error):
@@ -162,7 +176,7 @@ final class InboxInteractor {
                     }
                     
                     // User update notification
-                    NotificationCenter.default.post(name: .updateUserDataNotificationID, object: value)
+                        NotificationCenter.default.post(name: .updateUserDataNotificationID, object: value)
                     
                     // Fetch latest contacts
                     self?.userContactsList()
@@ -219,19 +233,37 @@ extension InboxInteractor {
             return
         }
         
-        if pgpService.getStoredPGPKeys() == nil {
-            DispatchQueue.global(qos: .background).async {
-                self.mailboxesList(storeKeys: true)
-            }
-        } else {
+        
+        
+        if (UserDefaults.standard.value(forKey: "keysArray") as? Data) != nil {
             DPrint("local PGPKeys exist")
-            totalItems = 0
+            //totalItems = 0
             DispatchQueue.global(qos: .background).async {
                 self.messagesList(folder: menu.menuName,
                                    withUndo: withUndo,
                                    silent: silent)
             }
         }
+        else {
+            DispatchQueue.global(qos: .background).async {
+                self.mailboxesList(storeKeys: true)
+            }
+        }
+        
+        
+//        if pgpService.getStoredPGPKeys() == nil {
+//            DispatchQueue.global(qos: .background).async {
+//                self.mailboxesList(storeKeys: true)
+//            }
+//        } else {
+//            DPrint("local PGPKeys exist")
+//            totalItems = 0
+//            DispatchQueue.global(qos: .background).async {
+//                self.messagesList(folder: menu.menuName,
+//                                   withUndo: withUndo,
+//                                   silent: silent)
+//            }
+//        }
     }
     
     private func setInboxData(from result: APIResult<Any>,
@@ -252,8 +284,9 @@ extension InboxInteractor {
         switch(result) {
         case .success(let value):
             if let emailMessages = value as? EmailMessagesList {
-                totalItems = emailMessages.totalCount ?? 0
+               // totalItems = emailMessages.totalCount ?? 0
                 print("============== messages count: \(totalItems) =====================")
+                self.totalItems = emailMessages.totalCount ?? 0
                 viewController?
                     .dataSource?
                     .setInboxData(by: emailMessages.messagesList ?? [],

@@ -47,6 +47,7 @@
 		44E49B7724FBEFB70007CFA7 /* ComposeMailBodyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E49B7524FBEFB70007CFA7 /* ComposeMailBodyCell.xib */; };
 		44E49B7924FE15820007CFA7 /* ComposeEmail+SendMail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E49B7824FE15820007CFA7 /* ComposeEmail+SendMail.swift */; };
 		44E49B7B24FE15EB0007CFA7 /* ComposeViewModel+Encryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E49B7A24FE15EB0007CFA7 /* ComposeViewModel+Encryption.swift */; };
+		950D11FD2622E2C9008D2423 /* newtest.png in Resources */ = {isa = PBXBuildFile; fileRef = 950D11FC2622E2C9008D2423 /* newtest.png */; };
 		B4B83AE767E7AC61D03EEE68 /* Pods_Compose.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C8D443774B4A871A590486 /* Pods_Compose.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +95,7 @@
 		44E49B7824FE15820007CFA7 /* ComposeEmail+SendMail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ComposeEmail+SendMail.swift"; sourceTree = "<group>"; };
 		44E49B7A24FE15EB0007CFA7 /* ComposeViewModel+Encryption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ComposeViewModel+Encryption.swift"; sourceTree = "<group>"; };
 		84A0E9FBCB54DF56A8BEC34A /* Pods-Compose.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Compose.release.xcconfig"; path = "Target Support Files/Pods-Compose/Pods-Compose.release.xcconfig"; sourceTree = "<group>"; };
+		950D11FC2622E2C9008D2423 /* newtest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newtest.png; sourceTree = "<group>"; };
 		B3C8D443774B4A871A590486 /* Pods_Compose.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Compose.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE718B9F2027800E90643FCB /* Pods-Compose.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Compose.debug.xcconfig"; path = "Target Support Files/Pods-Compose/Pods-Compose.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -188,6 +190,7 @@
 		4477553E24F030EE009B89D6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				950D11FC2622E2C9008D2423 /* newtest.png */,
 				44E49A3924FA29AA0007CFA7 /* KSTokenView */,
 			);
 			path = Resources;
@@ -380,6 +383,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				950D11FD2622E2C9008D2423 /* newtest.png in Resources */,
 				44E499FC24F6BC440007CFA7 /* Scheduler.storyboard in Resources */,
 				44E49A1D24F8FA300007CFA7 /* Compose.storyboard in Resources */,
 				44E49B7724FBEFB70007CFA7 /* ComposeMailBodyCell.xib in Resources */,

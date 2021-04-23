@@ -1,4 +1,5 @@
 import Foundation
+import PGPFramework
 
 public struct Mailbox {
     // MARK: Properties
@@ -26,4 +27,24 @@ public struct Mailbox {
         self.publicKey = dictionary["public_key"] as? String
         self.signature = dictionary["signature"] as? String
     }
+    public static func getKeysModel(keysArray: Array<Mailbox>) {
+        var array = Array<KeysModel>()
+        for key in keysArray {
+            var keyModel = KeysModel()
+            keyModel.displayName = key.displayName
+            keyModel.email = key.email
+            keyModel.fingerprint = key.fingerprint
+            keyModel.mailboxID = key.mailboxID
+            keyModel.isDefault = key.isDefault
+            keyModel.isEnabled = key.isEnabled
+            keyModel.privateKey = key.privateKey
+            keyModel.publicKey = key.publicKey
+            keyModel.signature = key.signature
+            array.append(keyModel)
+        }
+            if let data = try? JSONEncoder().encode(array) {
+                UserDefaults.standard.set(data, forKey: "keysArray")
+                UserDefaults.standard.synchronize()
+            }
+        }
 }

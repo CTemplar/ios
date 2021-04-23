@@ -1,5 +1,4 @@
 import EMAlertController
-
 public struct AppVersionAlertConfig {
     let title: String
     let message: String

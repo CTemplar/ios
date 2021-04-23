@@ -13,7 +13,7 @@ class InboxViewerController: UIViewController, EmptyStateMachine {
     @IBOutlet weak var replyAllButton: UIBarButtonItem!
     
     // MARK: Properties
-    let documentInteractionController = UIDocumentInteractionController()
+    var documentInteractionController:UIDocumentInteractionController?
     private (set) var presenter: InboxViewerPresenter?
     private (set) var dataSource: InboxViewerDatasource?
     private (set) var router: InboxViewerRouter?
@@ -29,7 +29,8 @@ class InboxViewerController: UIViewController, EmptyStateMachine {
         dataSource = InboxViewerDatasource(inboxViewerController: self, tableView: tableView, user: user)
         dataSource?.update(by: message)
         presenter?.setupUI()
-        documentInteractionController.delegate = self
+        self.documentInteractionController = UIDocumentInteractionController()
+       // self.documentInteractionController?.delegate = self
         
         // Fetch Message
         self.presenter?.fetchMessageDetails()
@@ -115,7 +116,23 @@ extension InboxViewerController: UIDocumentInteractionControllerDelegate {
     
     func documentInteractionControllerWillBeginPreview(_ controller: UIDocumentInteractionController) {
         Loader.stop()
+       // controller = nil
     }
+    
+//    func documentInteractionControllerRectForPreview(_ controller: UIDocumentInteractionController) -> CGRect {
+//        return self.view.frame
+//    }
+//
+//    func documentInteractionControllerViewForPreview(_ controller: UIDocumentInteractionController) -> UIView? {
+//        return self.view
+//    }
+
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self.tableView.reloadData()
+    }
+
 }
 
 extension InboxViewerController: ViewInboxEmailDelegate {

@@ -99,10 +99,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         Fabric.with([Crashlytics.self])
-        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.addBlurViewToTheWindow()
+            self.triggerBiometric()
+        }
         return true
     }
     
+    private func triggerBiometric () {
+        if let blurView = UIApplication.shared.getKeyWindow()?.subviews.first(where: { $0 is AppBlurView }) as? AppBlurView {
+            let topVC = getTopViewController()
+            
+            guard let parent = topVC.parent, !(parent is InitializerController) else {
+                blurView.removeFromSuperview()
+                return
+            }
+            
+            blurView.triggerBiometric {
+                DispatchQueue.main.async {
+                    blurView.removeFromSuperview()
+                }
+            } onFailure: { [weak self] (message) in
+                DispatchQueue.main.async {
+                    let topVC = self?.getTopViewController()
+                    topVC?.showAlert(with: "Unautorized", message: message, buttonTitle: "Ok")
+                }
+            }
+        }
+    }
     private func setupFirebase() {
         guard let filePath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist"),
             let options = FirebaseOptions(contentsOfFile: filePath)
@@ -131,25 +155,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         application.applicationIconBadgeNumber = 0
         
-        if let blurView = UIApplication.shared.getKeyWindow()?.subviews.first(where: { $0 is AppBlurView }) as? AppBlurView {
-            let topVC = getTopViewController()
-            
-            guard let parent = topVC.parent, !(parent is InitializerController) else {
-                blurView.removeFromSuperview()
-                return
-            }
-            
-            blurView.triggerBiometric {
-                DispatchQueue.main.async {
-                    blurView.removeFromSuperview()
-                }
-            } onFailure: { [weak self] (message) in
-                DispatchQueue.main.async {
-                    let topVC = self?.getTopViewController()
-                    topVC?.showAlert(with: "Unautorized", message: message, buttonTitle: "Ok")
-                }
-            }
-        }
+        self.triggerBiometric()
     }
     
     func applicationWillTerminate(_ application: UIApplication) {

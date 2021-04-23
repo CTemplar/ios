@@ -116,6 +116,7 @@ public class APIService: HashingService {
     
     // MARK: - User
     public func userMyself(completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
         checkTokenExpiration() { [weak self] (complete) in
             if complete {
                 if let token = self?.getToken() {
@@ -162,15 +163,15 @@ public class APIService: HashingService {
         }
         
         let messagesIDInParameter = messagesIDIn.isEmpty == false ? "?id__in=\(messagesIDIn)": ""
-        
+       // print("messageList________")
         checkTokenExpiration() { [weak self] (complete) in
             if complete {
                 if let token = self?.getToken() {
                     DispatchQueue.global(qos: .background).async {
                         self?.restAPIService.messagesList(token: token, folder: folderFilter, messagesIDIn: messagesIDInParameter, filter: "", seconds: seconds, offset: offset, pageLimit: pageLimit) { (result) in
-                            DispatchQueue.main.async {
+//                            DispatchQueue.main.async {
                                 self?.handleMessageResponse(with: result, completionHandler: completionHandler)
-                            }
+                           // }
                         }
                     }
                 }
@@ -201,14 +202,15 @@ public class APIService: HashingService {
         switch(result) {
         case .success(let value):
             if let response = value as? Dictionary<String, Any> {
-                if let message = parseServerResponse(response:response) {
-                    DPrint("messagesList message:", message)
-                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
-                    completionHandler(APIResult.failure(error))
-                } else {
-                    let emailMessages = EmailMessagesList(dictionary: response)
-                    completionHandler(APIResult.success(emailMessages))
-                }
+                    if let message = self.parseServerResponse(response:response) {
+                        DPrint("messagesList message:", message)
+                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                        completionHandler(APIResult.failure(error))
+                    } else {
+                        //print(response)
+                        let emailMessages = EmailMessagesList(dictionary: response)
+                        completionHandler(APIResult.success(emailMessages))
+                    }
             } else {
                 let error = NSError(domain:"", code: URLError.unknown.rawValue, userInfo:[NSLocalizedDescriptionKey: "Response have unknown format"])
                 completionHandler(APIResult.failure(error))
@@ -1091,8 +1093,11 @@ public class APIService: HashingService {
         }
     }
     
-    public func updateAttachment(attachmentID: String, fileUrl: URL, fileData: Data, messageID: Int, encrypt: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
-        let fileName = fileUrl.lastPathComponent
+    public func updateAttachment(attachmentID: String, fileUrl: URL, fileName: String, fileData: Data, messageID: Int, encrypt: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+       // let fileName = fileUrl.lastPathComponent
+        if let pathExtension = fileUrl.pathExtension as? String , pathExtension == "--" {
+            print(pathExtension)
+        }
         let mimeType = self.mimeTypeForFileAt(url: fileUrl)
         
         checkTokenExpiration() { [weak self] (complete) in
@@ -1132,7 +1137,7 @@ public class APIService: HashingService {
                 return mimetype as String
             }
         }
-        return "application/octet-stream"
+        return pathExtension.mimeType()
     }
     
     // MARK: - Settings

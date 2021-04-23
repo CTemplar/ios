@@ -40,21 +40,24 @@ final class EncryptionDatasource: NSObject {
         let pendingPayment = user.settings.isPendingPayment ?? true
         let isFreePlan = (currentPlan.lowercased() != "free" && pendingPayment == false) ? false : true
         
-        let subjectEncryption = Encryption(title: Strings.AppSettings.subjectEncryption.localized,
+     /*   let subjectEncryption = Encryption(title: Strings.AppSettings.subjectEncryption.localized,
                                            isOn: user.settings.isSubjectEncrypted ?? false,
                                            isEnabled: isFreePlan == false,
                                            type: .subject)
-        let contactEncryption = Encryption(title: Strings.AppSettings.сontactsEncryption.localized,
-                                           isOn: user.settings.isContactsEncrypted ?? false,
-                                           isEnabled: isFreePlan == false,
-                                           type: .contacts)
         let attachmentEncryption = Encryption(title: Strings.AppSettings.attachmentEncryption.localized,
                                               isOn: user.settings.isAttachmentsEncrypted ?? false,
                                               isEnabled: isFreePlan == false,
                                               type: .attachment)
         items.append(subjectEncryption)
+        items.append(attachmentEncryption) */
+        
+        let contactEncryption = Encryption(title: Strings.AppSettings.сontactsEncryption.localized,
+                                           isOn: user.settings.isContactsEncrypted ?? false,
+                                           isEnabled: isFreePlan == false,
+                                           type: .contacts)
+        
         items.append(contactEncryption)
-        items.append(attachmentEncryption)
+        
         
         if isFreePlan {
             let subtitle = PaddingLabel()

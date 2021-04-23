@@ -48,7 +48,7 @@ final class ManageFoldersPresenter {
         if Device.IS_IPAD {
             let emptyButton = UIBarButtonItem(image: UIImage(), style: .done, target: self, action: nil)
             if UIDevice.current.orientation.isLandscape {
-                viewController?.navigationItem.leftBarButtonItem = emptyButton
+                viewController?.navigationItem.leftBarButtonItem = menuItem()
             } else {
                 viewController?.navigationItem.leftBarButtonItem = menuItem()
             }

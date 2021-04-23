@@ -13,11 +13,12 @@ final class AppSettingsPresenter {
     
     func setupNavigationLeftItem() {
         if Device.IS_IPAD {
-            let emptyButton = UIBarButtonItem(image: UIImage(), style: .done, target: self, action: nil)
+            _ = UIBarButtonItem(image: UIImage(), style: .done, target: self, action: nil)
+            let leftNavigationItem = UIBarButtonItem(image: #imageLiteral(resourceName: "MenuButton"), style: .plain, target: self, action: #selector(menuButtonPressed))
+            
             if UIDevice.current.orientation.isLandscape {
-                parentController?.navigationItem.leftBarButtonItem = emptyButton
+                parentController?.navigationItem.leftBarButtonItem = leftNavigationItem
             } else {
-                let leftNavigationItem = UIBarButtonItem(image: #imageLiteral(resourceName: "MenuButton"), style: .plain, target: self, action: #selector(menuButtonPressed))
                 parentController?.navigationItem.leftBarButtonItem = leftNavigationItem
             }
         } else {

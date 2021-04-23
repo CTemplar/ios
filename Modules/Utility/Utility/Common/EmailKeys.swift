@@ -1,4 +1,5 @@
 import Foundation
+import PGPFramework
 
 public struct EmailKey {
     public private (set) var keyId = 0
@@ -33,4 +34,19 @@ public struct EmailsKeys {
             self.pgpKeys.append(key)
         }
     }
+    
+    public static func keysModel(keys:Array<EmailKey>)-> Array<KeysModel> {
+        var array = Array<KeysModel>()
+        for key in keys {
+            var keyModel = KeysModel()
+            keyModel.email = key.email
+            keyModel.isEnabled = key.isEnabled
+            keyModel.publicKey = key.publicKey
+            keyModel.sortOrder = key.sortOrder
+            keyModel.isFromPublicKey = true
+            array.append(keyModel)
+        }
+        return array
+    }
+    
 }

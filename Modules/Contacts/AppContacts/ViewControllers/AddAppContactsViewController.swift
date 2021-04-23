@@ -63,7 +63,7 @@ class AddAppContactsViewController: UIViewController {
                 .onUpdateContact
                 .receive(on: DispatchQueue.main)
                 .sink(receiveCompletion: { [weak self] (error) in
-                    Loader.stop()
+                   
                     switch error {
                     case .failure(let error):
                         let params = AlertKitParams(
@@ -77,8 +77,10 @@ class AddAppContactsViewController: UIViewController {
                     }
                     
                 }, receiveValue: { [weak self] (_) in
-                    self?.onContactUpdateSuccess?()
-                    self?.navigationController?.popViewController(animated: true)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+                        self?.onContactUpdateSuccess?()
+                        self?.navigationController?.popViewController(animated: true)
+                    }
                 }),
             nameTextField
                 .textPublisher

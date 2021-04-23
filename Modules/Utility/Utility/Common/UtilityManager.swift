@@ -2,6 +2,7 @@ import Foundation
 import Reachability
 import Combine
 
+
 public class UtilityManager {
     public static var shared = UtilityManager()
     public private (set) var formatterService: FormatterService
@@ -12,7 +13,7 @@ public class UtilityManager {
     private init() {
         formatterService = FormatterService()
         keychainService = KeychainService()
-    }
+    } 
     
     public lazy var pgpService: PGPService = {
         let service = PGPService(keychainService: self.keychainService)

@@ -7,7 +7,7 @@ public class AttachmentCell: UITableViewCell, Cellable {
     // MARK: Properties
     private var models: [MailAttachment] = []
     private var viewModel: MailAttachmentCellModel!
-    public var onTapAttachment: ((String, Bool) -> Void)?
+    public var onTapAttachment: ((String, Bool, String) -> Void)?
     public var onDeleteAttachment: ((String) -> Void)?
     private var bindables = Set<AnyCancellable>()
 
@@ -114,6 +114,17 @@ extension AttachmentCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = models[indexPath.row]
-        onTapAttachment?(model.contentURL, model.encrypted)
+        if var url = URL(string: model.contentURL) {
+            if url.pathExtension == "__" {
+                if let attachmentType = model.attachmentType.rawValue as? String{
+                    url.deletePathExtension()
+                    url.appendPathExtension(attachmentType)
+                    onTapAttachment?(model.contentURL, model.encrypted, url.absoluteString)
+                    return
+                    
+                }
+            }
+        }
+        onTapAttachment?(model.contentURL, model.encrypted, "")
     }
 }

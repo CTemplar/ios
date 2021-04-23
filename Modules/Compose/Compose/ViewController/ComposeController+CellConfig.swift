@@ -194,7 +194,7 @@ extension ComposeController {
         cell.configure(with: vm)
         
         // Attachment Handler
-        cell.onTapAttachment = { [weak self] (contentURLString, encrypted) in
+        cell.onTapAttachment = { [weak self] (contentURLString, encrypted, newUrl) in
             let url = FileManager.getFileUrlDocuments(withURLString: contentURLString)
             if FileManager.checkIsFileExist(url: url) == true {
                 self?.showPreviewScreen(url: url, encrypted: encrypted)
@@ -237,13 +237,14 @@ extension ComposeController {
             guard let vm = viewModel.cellViewModel(at: indexPath) else {
                 return
             }
-
+            
+            cell.indexRef = indexPath
             cell.configure(with: vm)
         }
         
         guard let cell =
-            tableView
-                .dequeueReusableCell(withIdentifier: ComposeMailBodyCell.className,
+                
+                tableView.dequeueReusableCell(withIdentifier: ComposeMailBodyCell.className,
                                      for: indexPath) as? ComposeMailBodyCell
             else {
                 let cellObject = ComposeMailBodyCell(style: .default,

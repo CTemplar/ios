@@ -41,15 +41,60 @@ import WebKit
 /// The value we hold in order to be able to set the line height before the JS completely loads.
 private let DefaultInnerLineHeight: Int = 28
 
+
+//extension WKWebView {
+//    func load(_ urlString: String) {
+//        if let url = URL(string: urlString) {
+//            let request = URLRequest(url: url)
+//            load(request)
+//        }
+//    }
+//}
+
+
+//class GLAssetHandler: NSObject, WKURLSchemeHandler {
+//    func webView(_ webView: WKWebView, start urlSchemeTask: WKURLSchemeTask) {
+//        urlSchemeTask.didFinish()
+//    }
+//
+//    func webView(_ webView: WKWebView, stop urlSchemeTask: WKURLSchemeTask) {
+//
+//    }
+//}
 public class RichEditorWebView: WKWebView {
     public var accessoryView: UIView?
     public override var inputAccessoryView: UIView? {
         return accessoryView
     }
+    
+    
+//    public init(frame: CGRect) {
+//        let conf = WKWebViewConfiguration()
+//        //conf.setURLSchemeHandler(GLAssetHandler(), forURLScheme: "glasset")
+//        super.init(frame: frame, configuration: conf)
+//    }
+    
+//        public  convenience init(config: WKWebViewConfiguration = WKWebViewConfiguration()) {
+//            let prefs = WKPreferences()
+//            prefs.minimumFontSize = 14
+//            prefs.javaScriptCanOpenWindowsAutomatically = true;
+//            config.preferences = prefs
+//            config.suppressesIncrementalRendering = false
+//            self.init(frame: .zero, configuration: config)
+//         }
+//
+//
+//    public  override init(frame: CGRect, configuration: WKWebViewConfiguration) {
+//        super.init(frame: frame, configuration: configuration)
+//    }
+//
+//    public required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
 }
 
 /// RichEditorView is a UIView that displays richly styled text, and allows it to be edited in a WYSIWYG fashion.
-@objcMembers open class RichEditorView: UIView, UIScrollViewDelegate, WKNavigationDelegate, UIGestureRecognizerDelegate {
+@objcMembers open class RichEditorView: UIView, UIScrollViewDelegate, WKNavigationDelegate, UIGestureRecognizerDelegate, WKUIDelegate {
     /// The delegate that will receive callbacks when certain actions are completed.
     open weak var delegate: RichEditorDelegate?
     
@@ -61,7 +106,7 @@ public class RichEditorWebView: WKWebView {
     }
     
     /// The internal WKWebView that is used to display the text.
-    open private(set) var webView: RichEditorWebView
+    public  var webView: RichEditorWebView!
     
     /// Whether or not scroll is enabled on the view.
     open var isScrollEnabled: Bool = true {
@@ -106,7 +151,7 @@ public class RichEditorWebView: WKWebView {
     /// Value that stores whether or not the content should be editable when the editor is loaded.
     /// Is basically `isEditingEnabled` before the editor is loaded.
     private var editingEnabledVar = true
-        
+    
     /// The HTML that is currently loaded in the editor view, if it is loaded. If it has not been loaded yet, it is the
     /// HTML that will be loaded into the editor view once it finishes initializing.
     public var html: String = "" {
@@ -140,6 +185,8 @@ public class RichEditorWebView: WKWebView {
          }]
       """
     
+    
+    
     // MARK: Initialization
     
     public override init(frame: CGRect) {
@@ -149,13 +196,14 @@ public class RichEditorWebView: WKWebView {
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        webView = RichEditorWebView()
+       webView = RichEditorWebView()
         super.init(coder: aDecoder)
         setup()
     }
-    
-    private func setup() {
+
+    public func setup() {
         // configure webview
+        webView = RichEditorWebView()
         webView.frame = bounds
         webView.navigationDelegate = self
         webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]

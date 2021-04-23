@@ -1,6 +1,7 @@
 import UIKit
 import QuickLayout
 
+
 final class BannerView: UIView, Configurable {
     // MARK: Properties
     private let titleLabel = UILabel()

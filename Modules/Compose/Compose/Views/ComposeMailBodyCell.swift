@@ -31,10 +31,11 @@ public final class ComposeMailBodyCell: UITableViewCell, Cellable {
     
     private var clearButton: RichEditorOptionItem?
     
+    var indexRef:IndexPath = IndexPath(row: 0, section: 0)
+    
     // MARK: - Lifecycle
     public override func awakeFromNib() {
         super.awakeFromNib()
-        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyboardWillShow),
@@ -66,10 +67,11 @@ public final class ComposeMailBodyCell: UITableViewCell, Cellable {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             messageTextEditor.isScrollEnabled = true
-            keyboardHeight = keyboardRectangle.height
+            keyboardHeight = keyboardRectangle.size.height
             changeHeight(Int(keyboardHeight))
             tableView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardRectangle.height, right: 0)
             tableView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardRectangle.height, right: 0)
+            tableView?.scrollToRow(at: indexRef, at: .top, animated: true)
         }
     }
     

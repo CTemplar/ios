@@ -1,6 +1,7 @@
 import Foundation
 
-public struct Contact: Hashable {
+public struct Contact: Codable {
+    public let uuid = UUID()
     // MARK: Properties
     public private (set) var email: String?
     public private (set) var contactName: String?
@@ -73,5 +74,14 @@ public struct Contact: Hashable {
     
     public mutating func update(note: String) {
         self.note = note
+    }
+}
+extension Contact : Hashable {
+    public static func ==(lhs: Contact, rhs: Contact) -> Bool {
+        return lhs.uuid == rhs.uuid
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(uuid)
     }
 }
