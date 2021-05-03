@@ -81,6 +81,14 @@ final class AppSettingsRouter {
         parentController?.show(pgpKeyViewController, sender: self)
     }
     
+    func onTapAddress() {
+        let aliasViewController: AliasController = UIStoryboard(storyboard: .address,
+                                                                       bundle: Bundle(for: AliasController.self)
+        ).instantiateViewController()
+
+        parentController?.show(aliasViewController, sender: self)
+    }
+    
     func onTapManageFolders() {
         guard let user = parentController?.user else {
             return

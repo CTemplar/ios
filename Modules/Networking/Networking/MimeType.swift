@@ -1,7 +1,6 @@
 //
 //  MimeType.swift
 //  Networking
-//
 
 
 import Foundation

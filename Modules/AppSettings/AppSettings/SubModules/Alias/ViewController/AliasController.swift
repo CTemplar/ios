@@ -1,77 +1,82 @@
+//
+//  AliasController.swift
+//  AppSettings
+//
+
+
 import UIKit
 import Utility
+import Signup
 
-class SignupViewController: UIViewController {
-
-    // MARK: IBOutlets
-    @IBOutlet weak var userExistanceImageView: UIImageView!
-    @IBOutlet weak var nextButton: UIButton! {
-        didSet {
-            nextButton.titleLabel?.font = UIFont.withType(.Default(.Bold))
-        }
-    }
+class AliasController: UIViewController {
+    @IBOutlet weak var tableView:UITableView!
+    @IBOutlet weak var lastNameLbl:UILabel!
+    @IBOutlet weak var addBtn:UIButton!
+    // MARK: Properties
+    private (set) var presenter: AliasPresenter?
+    private var searchTask: DispatchWorkItem?
     @IBOutlet weak var userExistanceLabel: UILabel!
-    @IBOutlet weak var userNamePlaceholderLabel: UILabel! {
-        didSet {
-            userNamePlaceholderLabel.text = Strings.Signup.usernamePlaceholder.localized
-        }
-    }
-    @IBOutlet weak var usernameTextField: UITextField! {
-        didSet {
-            usernameTextField.delegate = self
-            usernameTextField.keyboardType = .alphabet
-        }
-    }
-    
     @IBOutlet weak var userNameAndDomainLabel: UILabel!
     @IBOutlet weak var emailSubtitleLabel: UILabel!
-    @IBOutlet weak var backButton: UIButton! {
-        didSet {
-            backButton.imageView?.tintColor = .black
-            backButton.setImage(#imageLiteral(resourceName: "BackArrowDark").withRenderingMode(.alwaysTemplate), for: .normal)
-        }
-    }
-    
-    @IBOutlet weak var backgroundImageView: UIImageView! {
-        didSet {
-            backgroundImageView.image = #imageLiteral(resourceName: "LightBackground")
-        }
-    }
-    
+    @IBOutlet weak var userExistanceImageView: UIImageView!
+    @IBOutlet weak var containerViewWidthConstraint: NSLayoutConstraint!
+
     @IBOutlet weak var loader: UIActivityIndicatorView! {
         didSet {
             loader.hidesWhenStopped = true
             loader.isHidden = true
         }
     }
+    @IBOutlet weak var backgroundImageView: UIImageView! {
+        didSet {
+            backgroundImageView.image = #imageLiteral(resourceName: "LightBackground")
+        }
+    }
     
-    @IBOutlet weak var containerViewWidthConstraint: NSLayoutConstraint!
-    
-    // MARK: Properties
-    private (set) var signupPageViewController: SignupPageViewController?
-    // Add a searchTask property to your controller
-    private var searchTask: DispatchWorkItem?
-    
+    @IBOutlet weak var userNamePlaceholderLabel: UILabel! {
+        didSet {
+            userNamePlaceholderLabel.text = Strings.Signup.usernamePlaceholder.localized
+        }
+    }
+    @IBOutlet weak var userNameTxtField: UITextField! {
+        didSet {
+            userNameTxtField.delegate = self
+            userNameTxtField.keyboardType = .alphabet
+        }
+    }
+    @IBOutlet weak var backButton: UIButton! {
+        didSet {
+            backButton.imageView?.tintColor = .black
+            backButton.setImage(#imageLiteral(resourceName: "BackArrowDark").withRenderingMode(.alwaysTemplate), for: .normal)
+        }
+    }
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        presenter = AliasPresenter(parentController: self)
         // Do any additional setup after loading the view.
-        signupPageViewController = self.parent as? SignupPageViewController
-        
-        let freeSpaceViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tappedViewAction(sender:)))
-        view.addGestureRecognizer(freeSpaceViewGesture)
-        
         initialUISetup()
     }
     
-    deinit {
-        print("deinit called from \(self.className)")
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        title = Strings.AppSettings.addresses.localized
+        self.presenter?.setupTableView()
+       // self.navigationController?.navigationBar.isHidden = true
+    }
+
+    @IBAction func btnAddTapped(_ sender: Any) {
+        self.presenter?.interactor?.addBtnTapped()
+    }
+    
+    @IBAction func btnBackTapped(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - UI
     private func initialUISetup() {
-        nextButton.setTitle(Strings.Button.nextButton.localized, for: .normal)
+        addBtn.setTitle(Strings.Button.addButton.localized, for: .normal)
         userNameAndDomainLabel.text = Strings.Signup.usernameAndDomain.localized
         emailSubtitleLabel.text = Strings.Signup.ctemplarEmailAddress.localized
         
@@ -83,15 +88,17 @@ class SignupViewController: UIViewController {
         defaultUIState()
     }
     
-    private func defaultUIState() {
+    
+    
+     func defaultUIState() {
         if loader.isAnimating {
             loader.stopAnimating()
         }
         toggleUsernamePlaceholder(false)
         userExistanceImageView.image = nil
         userExistanceLabel.text = ""
-        
-        signupPageViewController?.presenter?.changeButtonState(button: nextButton, disabled: true)
+      
+       self.presenter?.changeButtonState(button: addBtn, disabled: true)
     }
     
     func update(by userExistance: UserExistance) {
@@ -102,40 +109,23 @@ class SignupViewController: UIViewController {
         userExistanceLabel.text = userExistance.text
         userExistanceLabel.textColor = userExistance.color
         
-        let state = (userExistance == .available && usernameTextField.text?.isEmpty == false)
-        signupPageViewController?.presenter?.changeButtonState(button: nextButton, disabled: state == false)
+        let state = (userExistance == .available && userNameTxtField.text?.isEmpty == false)
+        self.presenter?.changeButtonState(button: addBtn, disabled: state == false)
     }
     
     private func toggleUsernamePlaceholder(_ shouldShow: Bool) {
         if shouldShow {
             userNamePlaceholderLabel.isHidden = false
-            usernameTextField.placeholder = ""
+            userNameTxtField.placeholder = ""
         } else {
-            usernameTextField.placeholder = Strings.Signup.usernamePlaceholder.localized
+            userNameTxtField.placeholder = Strings.Signup.usernamePlaceholder.localized
             userNamePlaceholderLabel.isHidden = true
         }
     }
-
-    // MARK: - Actions
-    @IBAction func onTapNext(_ sender: Any) {
-        signupPageViewController?.presenter?.update(userName: usernameTextField.text ?? "")
-        signupPageViewController?.presenter?.showNext(childViewController: self)
-    }
-    
-    @IBAction func onTapBack(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @objc
-    private func tappedViewAction(sender : UITapGestureRecognizer) {
-        view.endEditing(true)
-        if usernameTextField.text?.isEmpty == true {
-            defaultUIState()
-        }
-    }
 }
+
 // MARK: - UItextField Delegate
-extension SignupViewController: UITextFieldDelegate {
+extension AliasController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let text = textField.text,
             let textRange = Range(range, in: text) {
@@ -156,7 +146,7 @@ extension SignupViewController: UITextFieldDelegate {
             let task = DispatchWorkItem { [weak self] in
                 self?.loader.isHidden = false
                 self?.loader.startAnimating()
-                self?.signupPageViewController?.presenter?.interactor?.checkUser(userName: updatedText)
+                self?.presenter?.interactor?.checkUser(userName: updatedText)
             }
             self.searchTask = task
             

@@ -107,6 +107,37 @@ final class InboxInteractor {
         return true
     }
     
+    
+    private func mailboxesBeforeMessageFetched(storeKeys: Bool){
+        apiService.mailboxesList() { [weak self] (result) in
+            switch(result) {
+            case .success(let value):
+                guard let mailboxes = value as? Mailboxes else {
+                    return
+                }
+                
+                if let mailboxList = mailboxes.mailboxesResultsList {
+                    // Update the inbox data source
+                    self?.viewController?.dataSource?.update(mailboxList: mailboxList)
+                    // Save the keys conditionally
+                    if (mailboxList.count > 0) {
+                        Mailbox.getKeysModel(keysArray: mailboxList)
+                    }
+                }
+                
+            case .failure(let error):
+                DPrint("error:", error)
+                // Show alert if the API fails
+                self?.viewController?.showAlert(with: Strings.AppError.mailBoxesError.localized,
+                                                message: error.localizedDescription,
+                                                buttonTitle: Strings.Button.closeButton.localized
+                )
+            }
+        }
+    }
+    
+    
+    
     /// Fetches the latest updates of the mailbox list
     /// - Parameters:
     ///    - storeKeys: An identifier which tells us whether we need to save the updated private-public key pair.
@@ -234,10 +265,14 @@ extension InboxInteractor {
         }
         
         
-        
+
         if (UserDefaults.standard.value(forKey: "keysArray") as? Data) != nil {
             DPrint("local PGPKeys exist")
             //totalItems = 0
+            DispatchQueue.global(qos: .background).async {
+                self.mailboxesBeforeMessageFetched(storeKeys: true)
+            }
+            
             DispatchQueue.global(qos: .background).async {
                 self.messagesList(folder: menu.menuName,
                                    withUndo: withUndo,

@@ -180,6 +180,8 @@ final class AppSettingsDatasource: NSObject {
                                          showDetailIndicator: false)
             case .keys:
                 model = AppSettingsModel(title: Strings.AppSettings.keys.localized)
+            case .address:
+                model = AppSettingsModel(title: Strings.AppSettings.addresses.localized)
             case .appVersion:
                 if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
                     let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
@@ -310,6 +312,7 @@ extension AppSettingsDatasource: UITableViewDelegate, UITableViewDataSource {
                  .signature,
                  .mobileSignature,
                  .keys,
+                 .address,
                  .appVersion,
                  .logout:
                 return configureBasicCell(at: indexPath, sectionType: sectionType)
@@ -402,6 +405,8 @@ extension AppSettingsDatasource: UITableViewDelegate, UITableViewDataSource {
                 parentViewController?.router?.onTapSignature(with: .mobile)
             case .keys:
                 parentViewController?.router?.onTapKeys()
+            case .address:
+                parentViewController?.router?.onTapAddress()
             case .logout:
                 parentViewController?.router?.onTapLogOut()
             case .appVersion, .storage, .blockExternalImages, .htmlEditor, .biometric: break
@@ -707,7 +712,7 @@ private extension AppSettingsDatasource {
 private extension AppSettingsDatasource {
 
     func onTapMail(with rect: CGRect) {
-        let userMailboxes = user.mailboxesList ?? []
+        let userMailboxes = self.mailboxes
         
         let controller = UIAlertController(title: "\(Strings.AppSettings.mailSettings.localized) \(Strings.AppSettings.addresses.localized)",
             message: nil,

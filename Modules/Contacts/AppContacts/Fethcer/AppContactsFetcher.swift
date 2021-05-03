@@ -44,6 +44,37 @@ final class AppContactsFetcher {
         }
     }
     
+    
+    func fetchAllContactsFromComposeMail(onCompletion: @escaping ContactResponse) {
+        let fetchAll = !isContactEncrypted
+
+        NetworkManager.shared.apiService.userContactsForComposeMail(fetchAll: fetchAll, offset: offset, silent: false) { [weak self] (result) in
+            guard let self = self else {
+                onCompletion(.failure(AppError.unknown))
+                return
+            }
+            
+            switch(result) {
+            case .success(let value):
+                if let contactsList = value as? ContactsList, let contacts = contactsList.contactsList {
+                    if let totalCount = contactsList.totalCount {
+                        self.totalItems = totalCount
+                    }
+                    self.offset = self.offset + contactPageLimit
+                    onCompletion(.success((contacts: contacts, didfetchAll: !fetchAll)))
+                } else {
+                    onCompletion(.failure(AppError.unknown))
+                }
+            case .failure(let error):
+                onCompletion(.failure(AppError.serverError(value: error.localizedDescription)))
+            }
+        }
+    }
+    
+    
+    
+    //userContactsForComposeMail
+    
     func deleteContacts(_ contacts: [Contact], onCompletion: @escaping ContactResponse) {
         var contactsIDList = ""
         

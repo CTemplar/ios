@@ -11,13 +11,14 @@ extension ComposeViewModel {
         }
         
         var messageContent = getMailContent(from: email)
-        
-        messageContent = messageContent.replacingOccurrences(of: "\n", with: "<br><br>")
+//        messageContent = messageContent.replacingOccurrences(of: "<br><br>", with: "")
+       /// messageContent = messageContent.replacingOccurrences(of: "<p>\\", with: "")
+        messageContent = messageContent.replacingOccurrences(of: "\n", with: "<br>")
         
         if !messageContent.contains("BEGIN PGP") {
             messageContent = encryptMessage(publicKeys: publicKeys, message: messageContent)
         }
-        
+
         var subject = email.subject ?? ""
         
         // keeping same structure in case we want this feature back

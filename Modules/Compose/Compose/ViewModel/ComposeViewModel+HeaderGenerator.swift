@@ -72,8 +72,9 @@ extension ComposeViewModel {
             }
             
             if let sender = message.sender {
-                replyHeader = replyHeader + "<p>\"" + sender + "\" " + Strings.Compose.wroteBy.localized + "</p>"
+                replyHeader = replyHeader + " &lt; " + sender + "\"" + " &gt; " + Strings.Compose.wroteBy.localized + "<br>"
             }
+            replyHeader = replyHeader.replacingOccurrences(of: "\n", with: "")
         }
         
         if let lastMessage = message.children?.last {

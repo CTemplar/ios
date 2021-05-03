@@ -51,6 +51,12 @@
 		443DD43324CEE38700771AE5 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 443DD42F24CEE38700771AE5 /* Dashboard.storyboard */; };
 		4461776C2507977E0088F138 /* AppSettingsSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4461776B2507977E0088F138 /* AppSettingsSwitchCell.swift */; };
 		4461776E2509059A0088F138 /* AppSettingsSwitchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4461776D2509059A0088F138 /* AppSettingsSwitchModel.swift */; };
+		952802F22631A6CA00B92E12 /* AliasController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952802F12631A6CA00B92E12 /* AliasController.swift */; };
+		952802F82631A79300B92E12 /* Alias.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 952802F72631A79300B92E12 /* Alias.storyboard */; };
+		952802FE2631E87A00B92E12 /* AliasInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952802FD2631E87A00B92E12 /* AliasInteractor.swift */; };
+		952803012631E92900B92E12 /* AliasPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952803002631E92900B92E12 /* AliasPresenter.swift */; };
+		95EE9CB926334B44006FFA20 /* AliasCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EE9CB726334B44006FFA20 /* AliasCell.swift */; };
+		95EE9CBA26334B44006FFA20 /* AliasCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95EE9CB826334B44006FFA20 /* AliasCell.xib */; };
 		C0E0629D75FD8DF8CC6DC07F /* Pods_AppSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF5B97E24BE3B896EE7FC03A /* Pods_AppSettings.framework */; };
 /* End PBXBuildFile section */
 
@@ -102,6 +108,12 @@
 		4461776B2507977E0088F138 /* AppSettingsSwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsSwitchCell.swift; sourceTree = "<group>"; };
 		4461776D2509059A0088F138 /* AppSettingsSwitchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsSwitchModel.swift; sourceTree = "<group>"; };
 		667FB86A896E9248827C1F9D /* Pods-AppSettings.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSettings.debug.xcconfig"; path = "Target Support Files/Pods-AppSettings/Pods-AppSettings.debug.xcconfig"; sourceTree = "<group>"; };
+		952802F12631A6CA00B92E12 /* AliasController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliasController.swift; sourceTree = "<group>"; };
+		952802F72631A79300B92E12 /* Alias.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Alias.storyboard; sourceTree = "<group>"; };
+		952802FD2631E87A00B92E12 /* AliasInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliasInteractor.swift; sourceTree = "<group>"; };
+		952803002631E92900B92E12 /* AliasPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliasPresenter.swift; sourceTree = "<group>"; };
+		95EE9CB726334B44006FFA20 /* AliasCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliasCell.swift; sourceTree = "<group>"; };
+		95EE9CB826334B44006FFA20 /* AliasCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AliasCell.xib; sourceTree = "<group>"; };
 		DBF25F08A8E1FEB6AF295B68 /* Pods-AppSettings.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSettings.release.xcconfig"; path = "Target Support Files/Pods-AppSettings/Pods-AppSettings.release.xcconfig"; sourceTree = "<group>"; };
 		FF5B97E24BE3B896EE7FC03A /* Pods_AppSettings.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSettings.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -401,6 +413,7 @@
 		443DD42124CEE31C00771AE5 /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
+				952802F42631A72500B92E12 /* Alias */,
 				441778AC24D32CBD000F56B9 /* PGPKeys */,
 				4417771424D2B30C000F56B9 /* Signature */,
 				443926C824D1362600112A09 /* Encryption */,
@@ -421,6 +434,59 @@
 				443DD42F24CEE38700771AE5 /* Dashboard.storyboard */,
 			);
 			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		952802F42631A72500B92E12 /* Alias */ = {
+			isa = PBXGroup;
+			children = (
+				952802FB2631A86300B92E12 /* Views */,
+				952802FA2631A83200B92E12 /* VIPER-Structure */,
+				952802F62631A77E00B92E12 /* Storyboard */,
+				952802F52631A73900B92E12 /* ViewController */,
+			);
+			path = Alias;
+			sourceTree = "<group>";
+		};
+		952802F52631A73900B92E12 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				952802F12631A6CA00B92E12 /* AliasController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		952802F62631A77E00B92E12 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				952802F72631A79300B92E12 /* Alias.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		952802FA2631A83200B92E12 /* VIPER-Structure */ = {
+			isa = PBXGroup;
+			children = (
+				952802FD2631E87A00B92E12 /* AliasInteractor.swift */,
+				952803002631E92900B92E12 /* AliasPresenter.swift */,
+			);
+			path = "VIPER-Structure";
+			sourceTree = "<group>";
+		};
+		952802FB2631A86300B92E12 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				952802FC2631A86D00B92E12 /* cell */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		952802FC2631A86D00B92E12 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				95EE9CB726334B44006FFA20 /* AliasCell.swift */,
+				95EE9CB826334B44006FFA20 /* AliasCell.xib */,
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 		AD1A285138DE848D5142392D /* Pods */ = {
@@ -509,8 +575,10 @@
 				443DD43324CEE38700771AE5 /* Dashboard.storyboard in Resources */,
 				443926B724D056C300112A09 /* WhiteBlackLists.storyboard in Resources */,
 				441778AF24D32CD6000F56B9 /* PGPKey.storyboard in Resources */,
+				95EE9CBA26334B44006FFA20 /* AliasCell.xib in Resources */,
 				443926C124D0572D00112A09 /* ContactTableViewCell.xib in Resources */,
 				4417771624D2B322000F56B9 /* Signature.storyboard in Resources */,
+				952802F82631A79300B92E12 /* Alias.storyboard in Resources */,
 				443926C624D0648600112A09 /* SelectLanguage.storyboard in Resources */,
 				443DD3F324CDCB3900771AE5 /* AppSettings.storyboard in Resources */,
 			);
@@ -562,7 +630,9 @@
 				443DD41824CEBD2900771AE5 /* AppSettingsRouter.swift in Sources */,
 				443926C224D0572D00112A09 /* ContactTableViewCell.swift in Sources */,
 				443926E524D1658900112A09 /* AppSettingsPresenter.swift in Sources */,
+				95EE9CB926334B44006FFA20 /* AliasCell.swift in Sources */,
 				443926BB24D056C300112A09 /* WhiteBlackListsPresenter.swift in Sources */,
+				952802FE2631E87A00B92E12 /* AliasInteractor.swift in Sources */,
 				443DD40724CDD69100771AE5 /* AppSettingsDatasource.swift in Sources */,
 				443926BC24D056C300112A09 /* WhiteBlackListsViewController.swift in Sources */,
 				443DD43224CEE38700771AE5 /* DashboardDataSource.swift in Sources */,
@@ -578,6 +648,8 @@
 				441778B924D3F5EC000F56B9 /* PGPKeysViewController.swift in Sources */,
 				443926E324D1642B00112A09 /* AppSettingsCoordinator.swift in Sources */,
 				443926D324D1392B00112A09 /* Encryption.swift in Sources */,
+				952803012631E92900B92E12 /* AliasPresenter.swift in Sources */,
+				952802F22631A6CA00B92E12 /* AliasController.swift in Sources */,
 				443DD40B24CEA69100771AE5 /* AppSettingsModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

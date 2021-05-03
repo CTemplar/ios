@@ -38,7 +38,7 @@ public enum SettingsSection: CaseIterable {
         case .security:
             return LAContext.getAvailableBiometricType() == .none ? [.password, .recoveryEmail, .encryption] : [.password, .recoveryEmail, .encryption, .biometric]
         case .mail:
-            return [.mail, .signature, .mobileSignature, .keys]
+            return [.mail, .signature, .mobileSignature, .keys, .address]
         case .aboutTheApp:
             return [.appVersion]
         case .storage:
@@ -63,6 +63,7 @@ public enum SettingsRow {
     case signature
     case mobileSignature
     case keys
+    case address
     case appVersion
     case storage
     case logout

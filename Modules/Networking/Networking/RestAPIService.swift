@@ -448,6 +448,38 @@ public class RestAPIService {
         }
     }
     
+    
+    // MARK: - Mailbox
+    func addAlias(token: String, model: AliasModel, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.email.rawValue : model.email!,
+            JSONKey.privateKey.rawValue: model.privateKey!,
+            JSONKey.publicKey.rawValue: model.publicKey!,
+            JSONKey.fingerprint.rawValue: model.fingerprint!
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.mailboxes.rawValue
+        
+        DPrint("mailboxes url:", url)
+        
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: AFDataResponse<Any>) in
+            DPrint("mailboxes responce:", response)
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    
     func updateMailbox(token: String, mailboxID: String, userSignature: String, displayName: String, isDefault: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
@@ -466,6 +498,36 @@ public class RestAPIService {
         if displayName.count > 0 {
             parameters[JSONKey.displayName.rawValue] = displayName
         }
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.mailboxes.rawValue + mailboxID + "/"
+        
+        DPrint("updateMailbox parameters:", parameters)
+        DPrint("updateMailbox url:", url)
+        
+        AF.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: AFDataResponse<Any>) in
+//
+            DPrint("updateMailbox responce:", response)
+//
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    
+    func updateMailboxStatus(token: String, mailboxID: String, isEnable: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.isEnable.rawValue : isEnable
+        ]
         
         let url = EndPoint.baseUrl.rawValue + EndPoint.mailboxes.rawValue + mailboxID + "/"
         
