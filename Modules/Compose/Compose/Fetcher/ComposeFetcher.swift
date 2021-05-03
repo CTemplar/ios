@@ -282,7 +282,7 @@ final class ComposeFetcher {
  
     func fetchContacts(_ onCompletion: @escaping (([Contact]) -> Void)) {
         apiService.userContacts(fetchAll: true, offset: 0, silent: true) { (result) in
-            DispatchQueue.main.async {
+           
                 switch(result) {
                 case .success(let value):
                     if let contactsList = value as? ContactsList,
@@ -294,9 +294,25 @@ final class ComposeFetcher {
                 case .failure(_):
                     onCompletion([])
                 }
+        }
+    }
+    
+    func fetchContactsForComposeMail(_ onCompletion: @escaping (([Contact]) -> Void)) {
+        apiService.userContactsForComposeMail(fetchAll: true, offset: 0, silent: true) { (result) in
+            switch(result) {
+            case .success(let value):
+                if let contactsList = value as? ContactsList,
+                    let contacts = contactsList.contactsList {
+                    onCompletion(contacts)
+                } else {
+                    onCompletion([])
+                }
+            case .failure(_):
+                onCompletion([])
             }
         }
     }
+    
     
     func publicKeysFor(userEmailsArray: [String],
                        completion: @escaping (_ keys: EmailsKeys?) -> Void,

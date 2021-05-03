@@ -79,33 +79,7 @@ final class InboxViewerPresenter {
                 .documentInteractionController?
                 .name = url.localizedName ?? urlName
             if let tempUrl = self.decryptAttachment(data: data, name: urlName) {
-                
-                
-//                        let fileManager = FileManager.default
-//                       let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("101-Questions-New.png")
-//                       let image = UIImage(named: "101-Questions-New.png")
-//
-//                print(image)
-//                        let imageData = image!.jpegData(compressionQuality: 0.5)
-//                       fileManager.createFile(atPath: paths as String, contents: imageData, attributes: nil)
-//
-                
                 viewController?.documentInteractionController?.url = tempUrl
-
-                
-                
-//                let fileManager = FileManager.default
-//             // Here using getDirectoryPath method to get the Directory path
-//                     let imagePath = (self.getDirectoryPath() as NSString).appendingPathComponent(imageName)
-//                     if fileManager.fileExists(atPath: imagePath){
-//                         return UIImage(contentsOfFile: imagePath)!
-//                     }else{
-//                         print("No Image available")
-//                         return UIImage.init(named: "placeholder.png")! // Return placeholder image here
-//                     }
-                
-                
-                
             } else {
                 DPrint("Attachment decrypted content data error!")
                 viewController?.documentInteractionController?.url = url
@@ -120,17 +94,17 @@ final class InboxViewerPresenter {
                 .name = url.localizedName ?? url.lastPathComponent
         }
         
-       
-        
+       // print(self.viewController?.documentInteractionController?.url)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3, execute: {
             DispatchQueue.main.async {
                 Loader.stop()
                 self.viewController?.documentInteractionController?.delegate = self.viewController
-               self.viewController?.documentInteractionController?.presentPreview(animated: true)
+                if self.viewController?.documentInteractionController?.presentPreview(animated: true) == false {
+                    print("not showing")
+                }
+                
                // self.viewController?.documentInteractionController?.presentOpenInMenu(from: CGRect(x: 0, y: 0, width: self.viewController?.view?.frame.width ?? 0, height: self.viewController?.view?.frame.height ?? 0), in: (self.viewController?.view)!, animated: true)
             }
-           
-
         })
         Loader.start()
     }

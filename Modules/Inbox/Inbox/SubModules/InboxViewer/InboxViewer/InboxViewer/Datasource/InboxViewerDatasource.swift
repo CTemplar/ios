@@ -451,13 +451,34 @@ extension InboxViewerDatasource: UITableViewDataSource, UITableViewDelegate {
             
             headerView.onTapHeader = { [weak self] (state) in
                 model.update(state: state)
+                
                 self?.sections[section] = .mailBody(model, isHTML)
-                tableView.reloadSections(IndexSet(integer: section), with: .automatic)
+//                UIView.performWithoutAnimation {
+//                    self?.tableView.reloadData()
+//
+//                }
+                DispatchQueue.main.async {
+                    let loc = self?.tableView.contentOffset
+                    UIView.performWithoutAnimation {
+                        self?.tableView.layoutIfNeeded()
+                        self?.tableView.reloadData()
+                       // tableView.reloadSections(IndexSet(integer: section), with: .none)
+                        self?.tableView.layer.removeAllAnimations()
+                    }
+                    self?.tableView.setContentOffset(loc ?? .zero, animated: false)
+                    
+                }
+               // self?.tableView.reloadData()
+                //
             }
             
             headerView.onTapViewDetails = { (isSelected) in
-                tableView.beginUpdates()
-                tableView.endUpdates()
+                UIView.performWithoutAnimation {
+                    self.tableView.beginUpdates()
+                    self.tableView.endUpdates()
+                }
+//                tableView.beginUpdates()
+//                tableView.endUpdates()
             }
             
             return headerView
@@ -512,6 +533,14 @@ extension InboxViewerDatasource: UITableViewDataSource, UITableViewDelegate {
         case .attachment:
              return 80.0
         }
+        
+        
+//        func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//            guard let videoCell = cell as? InboxViewerWebMailBodyCell else {
+//                return
+//            }
+//            videoCell.isLoaded = true
+//        }
     }
     
     // MARK: - Cell Configurations
@@ -580,17 +609,54 @@ extension InboxViewerDatasource: UITableViewDataSource, UITableViewDelegate {
     
     private func configureWebMailBodyCell(with content: TextMail,
                                           indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: InboxViewerWebMailBodyCell.className,
-                                                       for: indexPath) as? InboxViewerWebMailBodyCell else {
-                                                        return UITableViewCell()
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: InboxViewerWebMailBodyCell.className,
+//                                                       for: indexPath) as? InboxViewerWebMailBodyCell else {
+//                                                        return UITableViewCell()
+//        }
+        
+//        guard let cell = UITableViewCell(style: .default, reuseIdentifier: InboxViewerWebMailBodyCell.className) as? InboxViewerWebMailBodyCell else {
+//                                                                    return UITableViewCell()
+//                    }
+        
+//        guard  let cell = Bundle(for: InboxViewerWebMailBodyCell.self).loadNibNamed(InboxViewerWebMailBodyCell.className, owner: self, options: nil)?[0] as? InboxViewerWebMailBodyCell else {
+//            return UITableViewCell()
+//        }
+
+        let nibs = Bundle(for: InboxViewerWebMailBodyCell.self).loadNibNamed(InboxViewerWebMailBodyCell.className, owner: self, options: nil)
+        
+        guard let cell = nibs?[0] as? InboxViewerWebMailBodyCell else{
+            return UITableViewCell()
         }
+        
         cell.configure(with: content)
         cell.onHeightChange = { [weak self] in
-            self?.tableView.beginUpdates()
-            self?.tableView.endUpdates()
+            
+//            DispatchQueue.main.async {
+//                UIView.performWithoutAnimation {
+//                    self?.tableView.beginUpdates()
+//                    self?.tableView.endUpdates()
+//                }
+////                self?.tableView.beginUpdates()
+////                self?.tableView.endUpdates()
+//               // self?.tableView.reloadData()
+//            }
+           
+            DispatchQueue.main.async {
+                let loc = self?.tableView.contentOffset
+                UIView.performWithoutAnimation {
+                    self?.tableView.layoutIfNeeded()
+                    self?.tableView.beginUpdates()
+                    self?.tableView.endUpdates()
+                    self?.tableView.layer.removeAllAnimations()
+                }
+                self?.tableView.setContentOffset(loc ?? .zero, animated: false)
+                
+            }
         }
         return cell
     }
+    
+    
     
     private func configureAttachmentCell(with attachmentModel: MailAttachmentCellModel,
                                          indexPath: IndexPath) -> UITableViewCell {

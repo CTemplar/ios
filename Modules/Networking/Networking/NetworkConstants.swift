@@ -113,6 +113,7 @@ public enum JSONKey: String {
     case displayName = "display_name"
     case savingContacts = "save_contacts"
     case isDefault = "is_default"
+    case isEnable = "is_enabled"
     case userSignature = "signature"
     case signUpCaptchaKey = "captcha_key"
     case signUpCaptchaValue = "captcha_value"

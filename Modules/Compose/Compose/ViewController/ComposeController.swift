@@ -52,10 +52,8 @@ final class ComposeController: UITableViewController, EmptyStateMachine  {
         
         setupNavigationItem()
         
-        setupVM()
-
         setupObservers()
-        
+        setupVM()
         NotificationCenter
             .default
             .post(name: .disableIQKeyboardManagerNotificationID,
@@ -87,6 +85,10 @@ final class ComposeController: UITableViewController, EmptyStateMachine  {
         
         let notificationCenter = NotificationCenter.default
             notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        
+        
+        
+       
     }
     
     deinit {
@@ -138,9 +140,7 @@ final class ComposeController: UITableViewController, EmptyStateMachine  {
         
         tableView?.separatorStyle = .singleLine
         tableView?.separatorInset = .zero
-        
         tableView.keyboardDismissMode = .interactive
-        
         tableView.contentInsetAdjustmentBehavior = .never
     }
     

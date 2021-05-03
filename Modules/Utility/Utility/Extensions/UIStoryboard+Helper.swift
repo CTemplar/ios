@@ -25,6 +25,7 @@ public extension UIStoryboard {
         case encryption = "Encryption"
         case signature = "Signature"
         case key = "PGPKey"
+        case address = "Alias"
         case emptyState = "EmptyState"
         case setPassword = "SetPassword"
         case scheduler = "Scheduler"
@@ -101,6 +102,9 @@ public extension UIStoryboard.Storyboard {
             return (bundlename: "AppSettings.SignatureViewController", storyboardId: "SignatureViewController")
         case .key:
             return (bundlename: "AppSettings.PGPKeysViewController", storyboardId: "PGPKeysViewController")
+        case .address:
+            return (bundlename: "AppSettings.AliasController", storyboardId: "AliasController")
+
         case .emptyState:
             return (bundlename: "Utility.EmptyStateViewController", storyboardId: "EmptyStateViewController")
         case .setPassword:

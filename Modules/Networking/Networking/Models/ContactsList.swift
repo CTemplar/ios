@@ -1,6 +1,10 @@
 import Foundation
 import Utility
 
+struct EncryptedContactsList {
+}
+
+
 public struct ContactsList {
     // MARK: Properties
     public var totalCount: Int?
@@ -25,6 +29,28 @@ public struct ContactsList {
             self.contactsList = self.parsResultsFromList(array: resultsArray)
         }
     }
+    
+    public init(dictionary: [String: Any]) {
+        self.totalCount = dictionary["total_count"] as? Int
+        self.next = dictionary["next"] as? String
+        self.pageConut = dictionary["page_count"] as? Int
+        self.previous = dictionary["previous"] as? String
+        if let resultsArray = dictionary["results"] as? Array<Any> {
+            self.contactsList = self.parsResultsFromListForComposeMail(array: resultsArray)
+        }
+    }
+
+    public func parsResultsFromListForComposeMail(array: Array<Any>) -> Array<Contact>{
+        var objectsArray = [Contact]()
+        for object in array {
+            if let objectDictionary = object as? Dictionary<String, Any> {
+                let contactsResult = Contact(dictionary: objectDictionary)
+                objectsArray.append(contactsResult)
+            }
+        }
+        return objectsArray
+    }
+    
     
     public func parsResultsFromList(array: Array<Any>) -> Array<Contact>{
         var objectsArray = [Contact]()

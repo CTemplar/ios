@@ -4,6 +4,8 @@ import Utility
 import Networking
 import InboxViewer
 import CoreGraphics
+import PGPFramework
+
 
 final class ComposeViewModel: Modelable {
     // MARK: Properties
@@ -141,7 +143,6 @@ final class ComposeViewModel: Modelable {
         setupMailboxWithSignature()
         
         let list = receiversList()
-
         // When user tapped on compose mail
         if email.messsageID == 0 {
             let messageContent = encryptMessageWithOwnPublicKey(message: "")
@@ -166,10 +167,18 @@ final class ComposeViewModel: Modelable {
                     if let email = message {
                         self?.email = email
                         // Fetch Contacts
-                        self?.fetcher.fetchContacts({ (contacts) in
-                            self?.contacts = contacts
+                        DispatchQueue.main.async {
                             self?.setupCellVMs()
-                        })
+                        }
+                        
+                        DispatchQueue.global(qos: .background).async {
+                            self?.fetcher.fetchContactsForComposeMail({ (contacts) in
+                                    DispatchQueue.main.async {
+                                       // self?.contacts = contacts
+                                        self?.updateContacts(contacts: contacts)
+                                    }
+                            })
+                        }
                     }
             }) { [weak self] (params, backToRoot) in
                 Loader.stop()
@@ -179,10 +188,16 @@ final class ComposeViewModel: Modelable {
             Loader.start()
             
             if email.folder == MessagesFoldersName.draft.rawValue {
-                fetcher.fetchContacts({ [weak self] (contacts) in
-                    self?.contacts = contacts
-                    self?.setupCellVMs()
-                })
+                DispatchQueue.main.async {
+                    self.setupCellVMs()
+                }
+                DispatchQueue.global(qos: .background).async {
+                    self.fetcher.fetchContactsForComposeMail({ [weak self] (contacts) in
+                        DispatchQueue.main.async {
+                            self?.updateContacts(contacts: contacts)
+                        }
+                    })
+                }
             } else {
                 var messageContent = getMailContent(from: email)
                 
@@ -213,11 +228,19 @@ final class ComposeViewModel: Modelable {
                     { [weak self] (message) in
                         if let message  = message {
                             self?.email = message
-                            // Fetch Contacts
-                            self?.fetcher.fetchContacts({ (contacts) in
-                                self?.contacts = contacts
+                            DispatchQueue.main.async {
                                 self?.setupCellVMs()
-                            })
+                            }
+                            DispatchQueue.global(qos: .background).async {
+
+                                // Fetch Contacts
+                                self?.fetcher.fetchContactsForComposeMail({ (contacts) in
+                                    DispatchQueue.main.async {
+                                        //self?.contacts = contacts
+                                        self?.updateContacts(contacts: contacts)
+                                    }
+                                })
+                            }
                         }
                 } onCompletionWithAlert: { [weak self] (params, backToRoot) in
                     Loader.stop()
@@ -225,7 +248,77 @@ final class ComposeViewModel: Modelable {
                 }
             }
         }
+        
+        
     }
+    
+    
+    private func updateContacts(contacts:[Contact]) {
+        for contactsResult in contacts {
+            if contactsResult.isEncrypted ?? false {
+                if let unwrappedData = contactsResult.encryptedData {
+                    DispatchQueue.global(qos: .utility).async {
+                        self.decryptContactData(encryptedData: unwrappedData, contact: contactsResult)
+                    }
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.contacts.append(contactsResult)
+                    self.toCellVM?.updateContacts(contacts: self.contacts)
+                    self.ccCellVM?.updateContacts(contacts: self.contacts)
+                    self.bccCellVM?.updateContacts(contacts: self.contacts)
+                }
+            }
+        }
+    }
+    
+    func decryptContactData(encryptedData: String, contact: Contact)  {
+        guard let decryptedContent = self.decrypt(content: encryptedData) else {
+            DPrint("Nothing")
+            return
+        }
+        let dictionary = self.convertStringToDictionary(text: decryptedContent)
+        let encryptedContact = Contact(encryptedDictionary: dictionary, contactId: contact.contactID ?? 0, encryptedData: contact.encryptedData ?? "")
+        DispatchQueue.main.async {
+            self.contacts.append(encryptedContact)
+            self.toCellVM?.updateContacts(contacts: self.contacts)
+            self.ccCellVM?.updateContacts(contacts: self.contacts)
+            self.bccCellVM?.updateContacts(contacts: self.contacts)
+        }
+    }
+    
+    // MARK: - decrypt Contact
+     func decrypt(content: String) -> String? {
+        let password = UtilityManager.shared.keychainService.getPassword()
+        if let contentData = content.data(using: .ascii) {
+            if let data =  PGPEncryption().decryptSimpleMessage(encrypted: contentData, userPassword: password) {
+                return  String(decoding: data, as: UTF8.self)
+            }
+        }
+        else {
+            return nil
+        }
+        return nil
+    }
+    
+    
+    private func convertStringToDictionary(text: String) -> [String:Any] {
+        var dicitionary = [String: Any]()
+        if let data = text.data(using: String.Encoding.utf8) {
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                    dicitionary = json
+                }
+                return dicitionary
+                
+            } catch {
+                DPrint("convertStringToDictionary: Something went wrong string ->", text)
+                return dicitionary
+            }
+        }
+        return dicitionary
+    }
+
     
     private func setupMailboxWithSignature() {
         currentSignature = UserDefaults.standard.string(forKey: mobileSignatureKey) ?? ""
@@ -238,7 +331,6 @@ final class ComposeViewModel: Modelable {
             if let signature = currentSignature, signature.isEmpty {
                 currentSignature = defaultMailbox.signature ?? ""
             }
-            
             mailboxId = defaultMailbox.mailboxID ?? 0
         }
     }

@@ -497,12 +497,74 @@ public class APIService: HashingService {
             }
         }
     }
+    
+    
+    // MARK: - Mailbox Alias
+    public func createAlias(model: AliasModel ,completionHandler: @escaping (APIResult<Any>) -> Void) {
+        checkTokenExpiration() { [weak self] (complete) in
+            if complete {
+                if let token = self?.getToken() {
+                    self?.restAPIService.addAlias(token: token, model: model) { (result) in
+                        switch(result) {
+                        case .success(let value):
+                            if let response = value as? Dictionary<String, Any> {
+                                if let message = self?.parseServerResponse(response:response) {
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    let mailbox = Mailbox(dictionary: response)
+                                    completionHandler(APIResult.success(mailbox))
+                                }
+                            } else {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
+                            }
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     public func updateMailbox(mailboxID: String, userSignature: String, displayName: String, isDefault: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
         checkTokenExpiration() { [weak self] (complete) in
             if complete {
                 if let token = self?.getToken() {
                     self?.restAPIService.updateMailbox(token: token, mailboxID: mailboxID, userSignature: userSignature, displayName: displayName, isDefault: isDefault) { (result) in
+                        switch(result) {
+                        case .success(let value):
+                            DPrint("updateMailbox success:", value)
+                            if let response = value as? Dictionary<String, Any> {
+                                if let message = self?.parseServerResponse(response:response) {
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    let mailbox = Mailbox(dictionary: response)
+                                    completionHandler(APIResult.success(mailbox))
+                                }
+                            } else {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
+                            }
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    public func updateMailboxStatus(mailboxID: String, isEnable: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        checkTokenExpiration() { [weak self] (complete) in
+            if complete {
+                if let token = self?.getToken() {
+                    self?.restAPIService.updateMailboxStatus(token: token, mailboxID: mailboxID, isEnable: isEnable) { (result) in
                         switch(result) {
                         case .success(let value):
                             DPrint("updateMailbox success:", value)
@@ -695,7 +757,6 @@ public class APIService: HashingService {
                     }
                     DispatchQueue.global(qos: .background).async {
                         self?.restAPIService.userContacts(token: token, fetchAll: fetchAll, offset: offset) { (result) in
-                            DispatchQueue.main.async {
                                 switch(result) {
                                 case .success(let value):
                                     if let response = value as? Dictionary<String, Any> {
@@ -703,8 +764,10 @@ public class APIService: HashingService {
                                             let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
                                             completionHandler(APIResult.failure(error))
                                         } else {
-                                            let contactsList = ContactsList(dictionary: response, pgpService: self?.pgpService)
-                                            completionHandler(APIResult.success(contactsList))
+                                            DispatchQueue.global(qos: .background).async {
+                                                let contactsList = ContactsList(dictionary: response, pgpService: self?.pgpService)
+                                                completionHandler(APIResult.success(contactsList))
+                                            }
                                         }
                                     } else {
                                         let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
@@ -716,15 +779,64 @@ public class APIService: HashingService {
                                     completionHandler(APIResult.failure(error))
                                 }
                                 if !silent {
-                                    Loader.stop()
+                                    DispatchQueue.main.async {
+                                        Loader.stop()
+                                    }
                                 }
-                            }
                         }
                     }
                 }
             }
         }
     }
+    
+    
+    
+    // MARK: - Contacts
+    public func userContactsForComposeMail(fetchAll: Bool, offset: Int, silent: Bool, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        checkTokenExpiration() { [weak self] (complete) in
+            if complete {
+                if let token = self?.getToken() {
+                    DispatchQueue.main.async {
+                        if !silent {
+                            Loader.start()
+                        }
+                    }
+                    DispatchQueue.global(qos: .background).async {
+                        self?.restAPIService.userContacts(token: token, fetchAll: fetchAll, offset: offset) { (result) in
+                                switch(result) {
+                                case .success(let value):
+                                    if let response = value as? Dictionary<String, Any> {
+                                        if let message = self?.parseServerResponse(response:response) {
+                                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                            completionHandler(APIResult.failure(error))
+                                        } else {
+                                            DispatchQueue.global(qos: .background).async {
+                                                let contactsList = ContactsList(dictionary: response)
+                                                completionHandler(APIResult.success(contactsList))
+                                            }
+                                        }
+                                    } else {
+                                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                        completionHandler(APIResult.failure(error))
+                                    }
+                                    
+                                case .failure(let error):
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                                    completionHandler(APIResult.failure(error))
+                                }
+                                if !silent {
+                                    DispatchQueue.main.async {
+                                        Loader.stop()
+                                    }
+                                }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     
     public func createContact(name: String, email: String, phone: String, address: String, note: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
         checkTokenExpiration() { [weak self] (complete) in

@@ -38,8 +38,8 @@ public final class InboxViewerWebMailBodyCell: UITableViewCell, Cellable {
     // MARK: IBOutlets
     @IBOutlet weak var webViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var webView: WKWebView!
-    
     // MARK: Properties
+    var isLoaded = false
     var thresholdHeight: CGFloat {
         return 200.0
     }
@@ -61,19 +61,37 @@ public final class InboxViewerWebMailBodyCell: UITableViewCell, Cellable {
         setupWebView()
     }
     
+
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+       //fatalError("init(coder:) has not been implemented")
+    }
+//    required init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//    }
+    
     public override func layoutSubviews() {
         super.layoutSubviews()
     }
     
+    deinit {
+        if (self.webView != nil) {
+            webView.navigationDelegate = nil
+        }
+    }
+    
     // MARK: - Setup UI
     private func setupWebView() {
-
         webView.isOpaque = false
+        self.isLoaded = false
+        webView.scrollView.isScrollEnabled = false
         webView.backgroundColor = .systemBackground
+        webView.navigationDelegate = nil
         webView.navigationDelegate = self
         webViewHeightConstraint.constant = thresholdHeight
         webView.contentMode = .center
-        onHeightChange?()
+       // onHeightChange?()
     }
 
     // MARK: - Configuration
@@ -81,7 +99,7 @@ public final class InboxViewerWebMailBodyCell: UITableViewCell, Cellable {
         guard let model = model as? TextMail else {
             fatalError("Couldn't Find TextMail")
         }
-        
+        setupWebView()
         addSubview(activityIndicatorView)
         
         activityIndicatorView.snp.makeConstraints { (maker) in
@@ -109,6 +127,11 @@ public final class InboxViewerWebMailBodyCell: UITableViewCell, Cellable {
         } else {
             webView.loadHTMLString("<font color= \(traitCollection.userInterfaceStyle == .dark ? "\'white\'" : "\'black\'")\">" + model.content.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "\r", with: "") + "</div>", baseURL: nil)
         }
+        
+//        let js = "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust='\(fontMultiplier)%'"//dual size
+//        webView.evaluateJavaScript(js, completionHandler: nil)
+//        self.calculateWebviewHeight(webView: webView)
+//
     }
     
     private func applyJS() {
@@ -127,20 +150,66 @@ extension InboxViewerWebMailBodyCell: WKNavigationDelegate {
         activityIndicatorView.stopAnimating()
         let js = "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust='\(fontMultiplier)%'"//dual size
         webView.evaluateJavaScript(js, completionHandler: nil)
-
-        self.webView.evaluateJavaScript("document.readyState", completionHandler: { [weak self] (complete, error) in
+        self.calculateWebviewHeight(webView: webView)
+//        if (webView.scrollView.contentSize.height > self.webViewHeightConstraint.constant) {
+//            self.webViewHeightConstraint.constant = webView.scrollView.contentSize.height
+//        }
+//        else {
+//            if (webView.scrollView.contentSize.height > 200) {
+//                self.webViewHeightConstraint.constant = webView.scrollView.contentSize.height
+//            }
+//            else {
+//                self.webViewHeightConstraint.constant = 200
+//            }
+//
+//        }
+        print(webView.scrollView.contentSize)
+      //  return
+      
+    }
+        
+    
+    
+    private func calculateWebviewHeight(webView: WKWebView) {
+        webView.evaluateJavaScript("document.readyState", completionHandler: { [weak self] (complete, error) in
             if complete != nil {
-                self?.webView.evaluateJavaScript("document.body.scrollHeight", completionHandler: { (height, error) in
+                webView.evaluateJavaScript("document.body.offsetHeight", completionHandler: { (height, error) in
                     if let height = height as? CGFloat {
-                        self?.webViewHeightConstraint.constant = height
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                            self?.onHeightChange?()
+                        var newHeight  = height / 2.70
+                        if UIDevice.current.userInterfaceIdiom == .pad {
+                            newHeight = height + 10
+                        }
+                       
+                       
+//                        if (newHeight == 0) {
+//                            self?.webViewHeightConstraint.constant = 200
+//                        }
+//                        else if (newHeight < 200) {
+//                            self?.webViewHeightConstraint.constant = 200
+//                        }
+//                        else {
+//                            if (webView.scrollView.contentSize.height > newHeight) {
+//                                self?.webViewHeightConstraint.constant = webView.scrollView.contentSize.height
+//                            }
+//                            else  {
+//
+//                            }
+//                        }
+
+                        DispatchQueue.main.async {
+                            self?.webViewHeightConstraint.constant = newHeight
+                            webView.scrollView.contentSize = CGSize(width: webView.frame.size.width, height: newHeight)
+                            if (self?.isLoaded == false) {
+                                self?.isLoaded = true
+                                self?.onHeightChange?()
+                            }
                         }
                     }
                 })
             }
         })
     }
+    
     
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.navigationType == .linkActivated  {
@@ -158,6 +227,7 @@ extension InboxViewerWebMailBodyCell: WKNavigationDelegate {
         } else {
             DPrint("not a user click")
             decisionHandler(.allow)
+            
         }
     }
 

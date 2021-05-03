@@ -2,6 +2,7 @@ import Foundation
 import Networking
 import Utility
 import Combine
+import PGPFramework
 
 final class AppContactsViewModel: Modelable {
     // MARK: Properties
@@ -14,6 +15,8 @@ final class AppContactsViewModel: Modelable {
     @Published private (set) var contacts: [Contact] = []
     
     private var originalContacts: [Contact] = []
+    private var tempraryContacts: [Contact] = []
+    
     
     private var fetcher: AppContactsFetcher!
     
@@ -34,6 +37,9 @@ final class AppContactsViewModel: Modelable {
     var contactEncrypted: Bool {
         return isContactEncrypted
     }
+    
+    var numberOfContacts = 0
+    var countDecryptedContacts = 0
     
     private (set) var shouldEnableTrash = CurrentValueSubject<Bool, Never>(false)
     
@@ -73,14 +79,13 @@ final class AppContactsViewModel: Modelable {
     
     // MARK: - API Handlers
     func fetchContacts() {
-        fetcher.fetchAllContacts { [weak self] (result) in
+        fetcher.fetchAllContactsFromComposeMail { [weak self] (result) in
             guard let self = self else {
                 return
             }
             if (result != nil) {
                 self.parseResponse(from: result)
             }
-           
         }
     }
     
@@ -106,10 +111,100 @@ final class AppContactsViewModel: Modelable {
             } else {
                 existingContacts = response.contacts
             }
-            self.originalContacts = existingContacts
-            self.contacts = existingContacts
+            DispatchQueue.main.async {
+                Loader.stop()
+                Loader.start()
+            }
+            self.numberOfContacts = existingContacts.count
+            self.countDecryptedContacts = 0
+            self.tempraryContacts = []
+            self.updateContacts(contacts: existingContacts)
+           
         case .failure(let error):
             self.errorMetadata.send((title: Strings.AppError.error.localized, message: error.localizedDescription))
         }
     }
+
+    private func updateContacts(contacts:[Contact]) {
+        
+        for contactsResult in contacts {
+            if contactsResult.isEncrypted ?? false {
+                if let unwrappedData = contactsResult.encryptedData {
+                    DispatchQueue.global(qos: .utility).async {
+                        self.decryptContactData(encryptedData: unwrappedData, contact: contactsResult)
+                    }
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.tempraryContacts.append(contactsResult)
+                    self.countDecryptedContacts = self.countDecryptedContacts + 1
+                    if (self.numberOfContacts == self.countDecryptedContacts) {
+                        self.contacts = self.tempraryContacts
+                        self.selectedContacts = self.contacts
+                        Loader.stop()
+                    }
+//                    self.contacts = existingContacts
+                   
+                }
+            }
+        }
+    }
+    
+    func decryptContactData(encryptedData: String, contact: Contact)  {
+        guard let decryptedContent = self.decrypt(content: encryptedData) else {
+            DPrint("Nothing")
+            self.countDecryptedContacts = self.countDecryptedContacts + 1
+            if (self.numberOfContacts == self.countDecryptedContacts) {
+                self.contacts = self.tempraryContacts
+                self.selectedContacts = self.contacts
+                Loader.stop()
+            }
+            return
+        }
+        let dictionary = self.convertStringToDictionary(text: decryptedContent)
+        let encryptedContact = Contact(encryptedDictionary: dictionary, contactId: contact.contactID ?? 0, encryptedData: contact.encryptedData ?? "")
+        
+        DispatchQueue.main.async {
+            self.tempraryContacts.append(encryptedContact)
+            self.countDecryptedContacts = self.countDecryptedContacts + 1
+            if (self.numberOfContacts == self.countDecryptedContacts) {
+                self.contacts = self.tempraryContacts
+                self.selectedContacts = self.contacts
+                Loader.stop()
+            }
+        }
+    }
+    
+    // MARK: - decrypt Contact
+     func decrypt(content: String) -> String? {
+        let password = UtilityManager.shared.keychainService.getPassword()
+        if let contentData = content.data(using: .ascii) {
+            if let data =  PGPEncryption().decryptSimpleMessage(encrypted: contentData, userPassword: password) {
+                return  String(decoding: data, as: UTF8.self)
+            }
+        }
+        else {
+            return nil
+        }
+        return nil
+    }
+    
+    
+    private func convertStringToDictionary(text: String) -> [String:Any] {
+        var dicitionary = [String: Any]()
+        if let data = text.data(using: String.Encoding.utf8) {
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                    dicitionary = json
+                }
+                return dicitionary
+                
+            } catch {
+                DPrint("convertStringToDictionary: Something went wrong string ->", text)
+                return dicitionary
+            }
+        }
+        return dicitionary
+    }
+    
 }

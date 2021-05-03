@@ -57,6 +57,9 @@ public final class ComposeMailOtherEmailModel: Modelable, ObservableObject  {
         self.setupObserver()
     }
     
+    public func updateContacts(contacts: [Contact]) {
+        self.contacts = contacts
+    }
     private func setupObserver() {
         subject
             .sink(receiveValue: { [weak self] in
