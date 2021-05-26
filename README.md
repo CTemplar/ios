@@ -1,25 +1,27 @@
 # CTemplar (for iOS)
 
+Official iOS client for the CTemplar secure email service.
+
 ## Build Requirements
-+ Xcode 10
-+ iOS 11.0 SDK or later
+
++ Xcode 11
++ iOS 13 SDK or later
 + Key-chain sharing
 + CocoaPods
 
 ## Runtime Requirements
-+ iOS 10.0 or later
 
-## About Project
-
-Official iOS client for the CTemplar secure email service.
++ iOS 13 or later
 
 ## Installation
 
-run 'pod install' command in terminal in application source folder to install all need libraries, if 'pod  install' doesn't work then please try to run  'pod install --repo-update'
+Just run 'pod install' command in the terminal from the application source folder to install all need libraries. If 'pod  install' doesn't work then please try to running  'pod install --repo-update' first.
 
 ## Run
-run Ctemplar.xcworkspace
+
+Run Ctemplar.xcworkspace
 
 ## Security
-CTemplar uses bcrypt.Swift and ObjectivePGP for hashing and encryption.
+
+CTemplar uses a custom wrapper written in Swift around the well-known [GopenPGP](https://gopenpgp.org/) library.
 
