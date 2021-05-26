@@ -15,11 +15,11 @@ Official iOS and iPadOS client for the CTemplar secure (end-to-end encrypted) em
 
 ## Installation
 
-Just run 'pod install' command in the terminal from the application source folder to install all need libraries. If 'pod  install' doesn't work then please try to running  'pod install --repo-update' first.
+Just run `pod install` command in the terminal from the application source folder to install all the needed libraries. If it doesn't work, then please try running  `pod install --repo-update` first.
 
 ## Run
 
-Run Ctemplar.xcworkspace
+Run `Ctemplar.xcworkspace`.
 
 ## Security
 
