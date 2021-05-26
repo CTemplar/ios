@@ -1,6 +1,6 @@
 # CTemplar (for iOS and iPadOS)
 
-Official iOS and iPadOS client for the CTemplar secure email service.
+Official iOS and iPadOS client for the CTemplar secure (end-to-end encrypted) email service.
 
 ## Build Requirements
 
