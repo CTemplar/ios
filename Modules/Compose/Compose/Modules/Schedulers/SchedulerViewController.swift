@@ -149,6 +149,11 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             customDatePicker.isHidden = false
         case .delayedDelivery:
             datePicker.datePickerMode = .dateAndTime
+            if #available(iOS 13.4, *) {
+                datePicker.preferredDatePickerStyle = UIDatePickerStyle.wheels
+            } else {
+                // Fallback on earlier versions
+            }
             datePicker.isHidden = false
             customDatePicker.isHidden = true
         case .none: break

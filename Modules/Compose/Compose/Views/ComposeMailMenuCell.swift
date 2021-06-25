@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 import Utility
 import Combine
+import Networking
 
 public final class ComposeMailMenuCell: UITableViewCell, Cellable {
     // MARK: Properties
@@ -61,9 +62,9 @@ public final class ComposeMailMenuCell: UITableViewCell, Cellable {
     @Published private var selectDelayedDelivery: Bool = false
     
     @Published private var selectDeadmanTimer: Bool = false
-
+     var user = UserMyself()
     private var anyCancellables = Set<AnyCancellable>()
-
+    
     // MARK: - Actions
     @objc
     private func onTapAttachment(_ sender: UIButton) {
@@ -72,22 +73,26 @@ public final class ComposeMailMenuCell: UITableViewCell, Cellable {
     
     @objc
     private func onTapMailEncryption(_ sender: UIButton) {
-        onTapMailEncryption?(model.selectedMenus.contains(.mailEncryption))
+ 
+            onTapMailEncryption?(model.selectedMenus.contains(.mailEncryption))
     }
     
     @objc
     private func onTapDestruction(_ sender: UIButton) {
-        onTapDestruction?(model.selectedMenus.contains(.selfDesctructionTimer))
+      
+            onTapDestruction?(model.selectedMenus.contains(.selfDesctructionTimer))
     }
     
     @objc
     private func onTapDelayDelivery(_ sender: UIButton) {
-        onTapDelayDelivery?(model.selectedMenus.contains(.delayedDelivery))
+        
+            onTapDelayDelivery?(model.selectedMenus.contains(.delayedDelivery))
     }
     
     @objc
     private func onTapDeadManTimer(_ sender: UIButton) {
-        onTapDeadManTimer?(model.selectedMenus.contains(.deadManTimer))
+    
+            onTapDeadManTimer?(model.selectedMenus.contains(.deadManTimer))
     }
     
     // MARK: - Constructor
@@ -180,6 +185,16 @@ public final class ComposeMailMenuCell: UITableViewCell, Cellable {
         setupObservers()
     }
     
+    func setButtonState(isEnable:Bool) {
+        if (isEnable == false) {
+            self.deadManTimerButton.isEnabled = false
+            self.mailEncryptionButton.isEnabled = false
+            self.trashButton.isEnabled = false
+            self.timerButton.isEnabled = false
+        }
+        
+    }
+    
     private func updateMenu(from selectedMenus: [ComposeMailMenu]) {
         selectAttachment = false
         selectDeadmanTimer = false
@@ -196,7 +211,7 @@ public final class ComposeMailMenuCell: UITableViewCell, Cellable {
             case .delayedDelivery:
                 selectDelayedDelivery = true
             case .mailEncryption:
-                selectEncryption = true
+                selectEncryption = false
             case .selfDesctructionTimer:
                 selectDesctruction = true
             }

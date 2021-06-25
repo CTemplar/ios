@@ -33,28 +33,63 @@ class PGPKeysInteractor {
         })
     }
     
-    // MARK: - PGP Helpers
-    func createPgpPublicKeyFile(for mailbox: Mailbox) -> String{
-        let fileName = "\(mailbox.email ?? "")_publicKey_\(mailbox.fingerprint ?? "").txt"
-        let fileData = mailbox.publicKey ?? ""
-        return createPgpKeyFile(with: fileName, and: fileData)
+    // MARK: - API Calls
+    func extrakeysList() {
+        Loader.start()
+        apiService.keysList(completionHandler: { [weak self] (result) in
+            DispatchQueue.main.async {
+                Loader.stop()
+                switch result {
+                case .success(let value):
+                    let mailboxes = value as! Mailboxes
+                    if let mailboxesList = mailboxes.mailboxesResultsList {
+                        self?.parentController?.presenter?.updateExtraKeys(mailboxesList)
+                    }
+                case .failure(let error):
+                    self?.parentController?.showAlert(with: Strings.AppError.error.localized,
+                                                      message: error.localizedDescription,
+                                                      buttonTitle: Strings.Button.closeButton.localized)
+                }
+            }
+        })
     }
     
-    func createPgpPrivateKeyFile(for mailbox: Mailbox) -> String {
-        let fileName = "\(mailbox.email ?? "")_privateKey_\(mailbox.fingerprint ?? "").txt"
-        let fileData = mailbox.privateKey ?? ""
-        return createPgpKeyFile(with: fileName, and: fileData)
+    // MARK: - API Calls
+    func saveNewkeyOnServer(model: NewKeyModel) {
+        
+        apiService.createNewKey(model: model , completionHandler: { [weak self] (result) in
+            DispatchQueue.main.async {
+                Loader.stop()
+                switch result {
+                case .success(let value):
+                    var mailbox = value as! Mailbox
+                    mailbox.keyType = model.keyType
+                    DispatchQueue.main.async {
+                        self?.parentController?.presenter?.newKeyAdded(mailbox)
+                    }
+                case .failure(let error):
+                    self?.parentController?.showAlert(with: Strings.AppError.error.localized,
+                                                      message: error.localizedDescription,
+                                                      buttonTitle: Strings.Button.closeButton.localized)
+                }
+            }
+        })
     }
     
-    private func createPgpKeyFile(with fileName: String, and fileData: String) -> String {
-        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let filePath = documentDirectory.appendingPathComponent(fileName)
-        do {
-            try fileData.write(to: filePath, atomically: true, encoding: String.Encoding.utf8)
-            return filePath.absoluteString
-        } catch {
-            print(error.localizedDescription)
+    func getTrimmedUserName(name:String)-> String  {
+      return  self.trimUserName(name)
+    }
+    
+    private func trimUserName(_ userName: String) -> String {
+        var trimmedName = userName.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        let substrings = trimmedName.split(separator: "@")
+        if let domain = substrings.last {
+            if domain == Domain.main.rawValue || domain == Domain.dev.rawValue || domain == Domain.devOld.rawValue {
+                if let name = substrings.first {
+                    trimmedName = String(name)
+                }
+            }
         }
-        return ""
+        return trimmedName
     }
 }

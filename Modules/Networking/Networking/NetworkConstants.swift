@@ -52,6 +52,9 @@ public enum EndPoint: String {
     case verifyCaptcha = "auth/captcha-verify/"
     case appToken = "users/app-token/"
     case appVersion = "/version-info/?platform=ios"
+    case mailboxKeys = "emails/mailbox-keys/"
+    case setPrimaryKey = "emails/mailboxes-change-primary/"
+    case filterList = "users/filters/"
 }
 
 public enum JSONKey: String {
@@ -131,7 +134,25 @@ public enum JSONKey: String {
     case forwardAttachmentsMessage = "forward_attachments_of_message"
     case blockExternalImages = "is_disable_loading_images"
     case htmlEditor = "is_html_disabled"
+    case keyType = "key_type"
+    case idKey = "mailboxkey_id"
+    case mailBox_Id = "mailbox_id"
 }
+
+public enum JSONKeysForFilter: String {
+    case id = "id"
+    case name = "name"
+    case parameter = "parameter"
+    case conditions = "conditions"
+    case condition = "condition"
+    case folder = "folder"
+    case filterText = "filter_text"
+    case moveTo = "move_to"
+    case read = "mark_as_read"
+    case starred = "mark_as_starred"
+}
+
+
 
 public enum TokenConstant: Int {
     case tokenHoursExpiration = 120

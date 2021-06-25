@@ -33,6 +33,7 @@
 		44D3D34824CB727F00EC2F26 /* Inbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44D3D34724CB727F00EC2F26 /* Inbox.framework */; };
 		44D966AE24C183770050ED46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44D966AD24C183770050ED46 /* Assets.xcassets */; };
 		44D966E924C1EA730050ED46 /* InboxViewerMailSenderHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D966E824C1EA730050ED46 /* InboxViewerMailSenderHeaderView.swift */; };
+		95C25A662647C68700A9DAC2 /* InboxPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C25A652647C68700A9DAC2 /* InboxPasswordVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		44D3D34724CB727F00EC2F26 /* Inbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Inbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		44D966AD24C183770050ED46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../../../../Ctemplar/Resources/Assets.xcassets; sourceTree = "<group>"; };
 		44D966E824C1EA730050ED46 /* InboxViewerMailSenderHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewerMailSenderHeaderView.swift; sourceTree = "<group>"; };
+		95C25A652647C68700A9DAC2 /* InboxPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxPasswordVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				44B1621824C61D3700BDD4B3 /* InboxViewerController.swift */,
+				95C25A652647C68700A9DAC2 /* InboxPasswordVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				44B1621924C61D3700BDD4B3 /* InboxViewerController.swift in Sources */,
 				446641BA24C4A5570093A6DE /* InboxViewerWebMailBodyCell.swift in Sources */,
 				446641A824C486180093A6DE /* AttachmentCell.swift in Sources */,
+				95C25A662647C68700A9DAC2 /* InboxPasswordVC.swift in Sources */,
 				446641AC24C4928C0093A6DE /* AttachmentCollectionCell.swift in Sources */,
 				44D966E924C1EA730050ED46 /* InboxViewerMailSenderHeaderView.swift in Sources */,
 				4466418124C2DCB40093A6DE /* InboxViewerMailSenderHeader.swift in Sources */,

@@ -32,7 +32,7 @@ public enum SettingsSection: CaseIterable {
     var rows: [SettingsRow] {
         switch self {
         case .general:
-            return [.notifications, .language, .contacts, .whiteOrBlackList, .dashboard, .blockExternalImages, .htmlEditor]
+            return [.notifications, .language, .contacts, .whiteOrBlackList, .filter, .dashboard, .blockExternalImages, .htmlEditor]
         case .folder:
             return [.manageFolders]
         case .security:
@@ -54,6 +54,7 @@ public enum SettingsRow {
     case language
     case contacts
     case whiteOrBlackList
+    case filter
     case dashboard
     case manageFolders
     case password

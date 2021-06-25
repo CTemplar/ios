@@ -1,7 +1,6 @@
 //
 //  AliasController.swift
 //  AppSettings
-//
 
 
 import UIKit

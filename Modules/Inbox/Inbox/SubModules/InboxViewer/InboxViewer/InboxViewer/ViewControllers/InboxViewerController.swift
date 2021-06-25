@@ -20,7 +20,6 @@ class InboxViewerController: UIViewController, EmptyStateMachine {
     private (set) var message: EmailMessage?
     private (set) weak var viewInboxDelegate: ViewInboxEmailDelegate?
     private (set) var user = UserMyself()
-    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,15 +30,16 @@ class InboxViewerController: UIViewController, EmptyStateMachine {
         presenter?.setupUI()
         self.documentInteractionController = UIDocumentInteractionController()
        // self.documentInteractionController?.delegate = self
-        
         // Fetch Message
         self.presenter?.fetchMessageDetails()
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.prefersLargeTitle = false
         navigationController?.updateTintColor()
+        
     }
 
     // MARK: - Setup
@@ -147,4 +147,15 @@ extension InboxViewerController: ViewInboxEmailDelegate {
             )
         }
     }
+}
+
+extension InboxViewerController: InboxPasswordProtectedEmailDelegate {
+    func subjectDecrypt(password: String) {
+        self.dataSource?.setupDataAfterPasswordDecryption(password: password)
+    }
+    
+    func backToInbox() {
+        self.navigationController?.popViewController(animated: true)
+    }
+   
 }

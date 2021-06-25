@@ -7,6 +7,7 @@ import Networking
 final class InboxViewerDatasource: NSObject {
     // MARK: Properties
     private weak var inboxViewerController: InboxViewerController?
+    private  var inboxPasswordController: InboxPasswordVC?
     
     private var tableView: UITableView
     
@@ -26,9 +27,11 @@ final class InboxViewerDatasource: NSObject {
     
     private var user: UserMyself
     
+    private var isPasswordVCAdded = false
+    
     // we set a variable to hold the contentOffSet before scroll view scrolls
     var lastContentOffset: CGFloat = 0
-    
+    private var encryptionPassword:String?
     var isSpam: Bool {
         return message?.folder == Menu.spam.menuName
     }
@@ -38,6 +41,15 @@ final class InboxViewerDatasource: NSObject {
         
         if subject.contains("BEGIN PGP") == true, let decryptedSubject = decrypt(content: subject) {
             subject = decryptedSubject
+        }
+       
+        if (subject == "" && message?.encryption != nil) {
+             subject = message?.subject ?? ""
+            if subject.contains("BEGIN PGP") == true, self.encryptionPassword != nil, let decryptedSubject = getDecryptedSubjectFromPassword(from: subject, password:  self.encryptionPassword ?? "") {
+                subject = decryptedSubject
+                return decryptedSubject
+            }
+            subject = ""
         }
         return subject
     }
@@ -55,8 +67,32 @@ final class InboxViewerDatasource: NSObject {
     // MARK: - Update
     func update(by message: EmailMessage?) {
         self.message = message
+        inboxViewerController?.setup(message: self.message)
+        if (self.message?.content) != nil {
+            if (message?.encryption != nil && self.isPasswordVCAdded == false) {
+                self.isPasswordVCAdded = true
+                let inboxPassword: InboxPasswordVC = UIStoryboard(storyboard: .inboxPassword,
+                                                                  bundle: Bundle(for: InboxPasswordVC.self)
+                ).instantiateViewController()
+                inboxPassword.delegate = self.inboxViewerController
+                inboxPassword.message = self.message
+                self.inboxPasswordController = inboxPassword
+                self.inboxViewerController?.view.addSubview(inboxPassword.view)
+                return
+            }
+        }
         inboxViewerController?.setup(message: message)
         setupData()
+    }
+    
+    func setupDataAfterPasswordDecryption(password:String) {
+        self.isPasswordVCAdded = false
+        self.inboxPasswordController?.view.removeFromSuperview()
+        self.inboxPasswordController = nil
+        self.encryptionPassword = password
+       let subject =  self.decryptedSubject
+        setupData(password: password)
+        
     }
     
     func update(lastSelectedAction: Menu.Action?) {
@@ -179,6 +215,102 @@ final class InboxViewerDatasource: NSObject {
         }
     }
     
+    
+    private func setupData(password:String) {
+        guard let messageObject = message else {
+            return
+        }
+        
+        // Subject
+        let isProtected = messageObject.isProtected ?? false
+        let isStarred = messageObject.starred ?? false
+        let isSecured = true
+
+        var sectionList: [InboxViewerSection] = [
+            .subject(Subject(
+                title: decryptedSubject,
+                isProtected: isProtected,
+                isSecured: isSecured,
+                isStarred: isStarred
+                )
+            )
+        ]
+        
+        // Mail Body
+        if var children = messageObject.children, !children.isEmpty {
+            // Append Parent
+            children.append(messageObject)
+            
+            children = children.sorted(by: { (m1, m2) -> Bool in
+                if let createdDateString1 = m1.createdAt, let createdDateString2 = m2.createdAt {
+                    if let date1 = formatterService.formatStringToDate(date: createdDateString1),
+                       let date2 = formatterService.formatStringToDate(date: createdDateString2) {
+                        return date1.compare(date2) == .orderedAscending
+                    }
+                }
+                return false
+            })
+            
+            for (index, child) in children.enumerated() {
+                if let content = getDecryptedContent(from: child) {
+                    sectionList.append(.mailBody(TextMail(messageId: child.messsageID,
+                                                          content: content,
+                                                          state: (index == children.count - 1) ? .expanded : .collapsed,
+                                                          shouldBlockExternalImages: user.settings.blockExternalImage ?? false),
+                                                 child.isHtml ?? false)
+                    )
+                }
+            }
+        } else {
+            if let content = getDecryptedContentFromPassword(from: messageObject, password: password) {
+                sectionList.append(.mailBody(TextMail(messageId: messageObject.messsageID,
+                                                      content: content,
+                                                      state: .expanded,
+                                                      shouldBlockExternalImages: user.settings.blockExternalImage ?? false),
+                                             messageObject.isHtml ?? false)
+                )
+            }
+        }
+        
+        // Attachments
+        if let attachments = messageObject.attachments, !attachments.isEmpty {
+            var attachmentModels: [MailAttachment] = []
+            attachments.forEach({
+                if let url = $0.contentUrl,
+                    let fileName = FileManager.fileName(fileUrl: url),
+                    let fileExtension = FileManager.fileExtension(fileUrl: url) {
+                    if let extensionType = GeneralConstant.DocumentsExtension(rawValue: fileExtension.lowercased()) {
+                        let attachment = MailAttachment(attachmentTitle: fileName,
+                                                        attachmentType: extensionType,
+                                                        contentURL: url,
+                                                        encrypted: $0.encrypted ?? false)
+                        attachmentModels.append(attachment)
+                    }
+                    else {
+                        if fileExtension == "__", $0.name?.components(separatedBy: ".").count ?? 0 > 1, let newExtensionType = $0.name?.components(separatedBy: ".")[1], let extensionType = GeneralConstant.DocumentsExtension(rawValue: newExtensionType.lowercased()) {
+                            let attachment = MailAttachment(attachmentTitle: fileName,
+                                                            attachmentType: extensionType,
+                                                            contentURL: url,
+                                                            encrypted: $0.encrypted ?? false)
+                            attachmentModels.append(attachment)
+                        }
+                    }
+                    
+                   
+                }
+            })
+            let model = MailAttachmentCellModel(attachments: attachmentModels)
+            sectionList.append(.attachment(model))
+        }
+        
+        sections = sectionList
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    
+    
     // MARK: - Datasource Helpers
     
     private func getDecryptedContent(from message: EmailMessage) -> String? {
@@ -193,6 +325,26 @@ final class InboxViewerDatasource: NSObject {
         return nil
     }
 
+    
+    private func getDecryptedContentFromPassword(from message: EmailMessage, password:String) -> String? {
+        if let content = message.content {
+            if apiService.isMessageEncrypted(message: message) == true {
+                let decryptedContent = pgpService.decryptMessageFromPassword(encryptedContent: content, password: password)
+                return decryptedContent
+            } else {
+                return content
+            }
+        }
+        return nil
+    }
+    
+    private func getDecryptedSubjectFromPassword(from message: String, password:String) -> String? {
+        let decryptedContent = pgpService.decryptMessageFromPassword(encryptedContent: message, password: password)
+        return decryptedContent
+    }
+    
+    
+    
     func getHeaderModel(withMessageId messageId: Int?, state: InboxHeaderState) -> InboxViewerMailSenderHeader? {
         var message: EmailMessage?
         

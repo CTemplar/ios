@@ -55,6 +55,24 @@
 		952802F82631A79300B92E12 /* Alias.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 952802F72631A79300B92E12 /* Alias.storyboard */; };
 		952802FE2631E87A00B92E12 /* AliasInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952802FD2631E87A00B92E12 /* AliasInteractor.swift */; };
 		952803012631E92900B92E12 /* AliasPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952803002631E92900B92E12 /* AliasPresenter.swift */; };
+		957784542663A68500749FDD /* FilterSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 957784532663A68500749FDD /* FilterSwitchCell.xib */; };
+		957784562663A68F00749FDD /* FilterSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957784552663A68E00749FDD /* FilterSwitchCell.swift */; };
+		957784582663A6D300749FDD /* FilterTextfieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 957784572663A6D300749FDD /* FilterTextfieldCell.xib */; };
+		9577845A2663A6DA00749FDD /* FilterTextfieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957784592663A6DA00749FDD /* FilterTextfieldCell.swift */; };
+		9577845D2663AAD000749FDD /* FilterDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9577845C2663AAD000749FDD /* FilterDataModel.swift */; };
+		9577845F2663BC4500749FDD /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9577845E2663BC4400749FDD /* FilterVC.swift */; };
+		957784612663BC5500749FDD /* AddFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957784602663BC5500749FDD /* AddFilterVC.swift */; };
+		957784632663BE5B00749FDD /* FilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957784622663BE5B00749FDD /* FilterPresenter.swift */; };
+		957784652663BE6E00749FDD /* FilterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957784642663BE6E00749FDD /* FilterInteractor.swift */; };
+		9577846A2663D0D000749FDD /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957784682663D0D000749FDD /* FilterCell.swift */; };
+		9577846B2663D0D000749FDD /* FilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 957784692663D0D000749FDD /* FilterCell.xib */; };
+		9577846D2663D8E700749FDD /* AddFilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9577846C2663D8E700749FDD /* AddFilterPresenter.swift */; };
+		9577846F2663D8FC00749FDD /* AddFilterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9577846E2663D8FC00749FDD /* AddFilterInteractor.swift */; };
+		95930C86265118DB00AC7048 /* AddNewKeyModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95930C85265118DB00AC7048 /* AddNewKeyModal.swift */; };
+		95930C89265185AE00AC7048 /* FingerprintCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95930C88265185AD00AC7048 /* FingerprintCell.swift */; };
+		95930C8B265191CB00AC7048 /* AliasKeysVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95930C8A265191CB00AC7048 /* AliasKeysVC.swift */; };
+		959FA1F6265A77C3009937D3 /* AliasKeyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959FA1F5265A77C3009937D3 /* AliasKeyInteractor.swift */; };
+		959FA1FD265ABA5D009937D3 /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 959FA1FC265ABA5D009937D3 /* Filter.storyboard */; };
 		95EE9CB926334B44006FFA20 /* AliasCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EE9CB726334B44006FFA20 /* AliasCell.swift */; };
 		95EE9CBA26334B44006FFA20 /* AliasCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95EE9CB826334B44006FFA20 /* AliasCell.xib */; };
 		C0E0629D75FD8DF8CC6DC07F /* Pods_AppSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF5B97E24BE3B896EE7FC03A /* Pods_AppSettings.framework */; };
@@ -112,6 +130,24 @@
 		952802F72631A79300B92E12 /* Alias.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Alias.storyboard; sourceTree = "<group>"; };
 		952802FD2631E87A00B92E12 /* AliasInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliasInteractor.swift; sourceTree = "<group>"; };
 		952803002631E92900B92E12 /* AliasPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliasPresenter.swift; sourceTree = "<group>"; };
+		957784532663A68500749FDD /* FilterSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterSwitchCell.xib; sourceTree = "<group>"; };
+		957784552663A68E00749FDD /* FilterSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterSwitchCell.swift; sourceTree = "<group>"; };
+		957784572663A6D300749FDD /* FilterTextfieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterTextfieldCell.xib; sourceTree = "<group>"; };
+		957784592663A6DA00749FDD /* FilterTextfieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTextfieldCell.swift; sourceTree = "<group>"; };
+		9577845C2663AAD000749FDD /* FilterDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterDataModel.swift; sourceTree = "<group>"; };
+		9577845E2663BC4400749FDD /* FilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
+		957784602663BC5500749FDD /* AddFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFilterVC.swift; sourceTree = "<group>"; };
+		957784622663BE5B00749FDD /* FilterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPresenter.swift; sourceTree = "<group>"; };
+		957784642663BE6E00749FDD /* FilterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterInteractor.swift; sourceTree = "<group>"; };
+		957784682663D0D000749FDD /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
+		957784692663D0D000749FDD /* FilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCell.xib; sourceTree = "<group>"; };
+		9577846C2663D8E700749FDD /* AddFilterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFilterPresenter.swift; sourceTree = "<group>"; };
+		9577846E2663D8FC00749FDD /* AddFilterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFilterInteractor.swift; sourceTree = "<group>"; };
+		95930C85265118DB00AC7048 /* AddNewKeyModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewKeyModal.swift; sourceTree = "<group>"; };
+		95930C88265185AD00AC7048 /* FingerprintCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerprintCell.swift; sourceTree = "<group>"; };
+		95930C8A265191CB00AC7048 /* AliasKeysVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliasKeysVC.swift; sourceTree = "<group>"; };
+		959FA1F5265A77C3009937D3 /* AliasKeyInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliasKeyInteractor.swift; sourceTree = "<group>"; };
+		959FA1FC265ABA5D009937D3 /* Filter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Filter.storyboard; sourceTree = "<group>"; };
 		95EE9CB726334B44006FFA20 /* AliasCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliasCell.swift; sourceTree = "<group>"; };
 		95EE9CB826334B44006FFA20 /* AliasCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AliasCell.xib; sourceTree = "<group>"; };
 		DBF25F08A8E1FEB6AF295B68 /* Pods-AppSettings.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSettings.release.xcconfig"; path = "Target Support Files/Pods-AppSettings/Pods-AppSettings.release.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +181,8 @@
 		441778AC24D32CBD000F56B9 /* PGPKeys */ = {
 			isa = PBXGroup;
 			children = (
+				9541192B26593E4C002FCC14 /* Model */,
+				95930C872651857000AC7048 /* View */,
 				441778BA24D3FB9F000F56B9 /* VIPER-Structure */,
 				441778B724D3F5D1000F56B9 /* ViewController */,
 				441778AD24D32CC5000F56B9 /* Storyboard */,
@@ -164,6 +202,8 @@
 			isa = PBXGroup;
 			children = (
 				441778B824D3F5EC000F56B9 /* PGPKeysViewController.swift */,
+				95930C85265118DB00AC7048 /* AddNewKeyModal.swift */,
+				95930C8A265191CB00AC7048 /* AliasKeysVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -173,6 +213,7 @@
 			children = (
 				441778BB24D3FBB5000F56B9 /* PGPKeysPresenter.swift */,
 				441778BD24D40046000F56B9 /* PGPKeysInteractor.swift */,
+				959FA1F5265A77C3009937D3 /* AliasKeyInteractor.swift */,
 			);
 			path = "VIPER-Structure";
 			sourceTree = "<group>";
@@ -413,6 +454,7 @@
 		443DD42124CEE31C00771AE5 /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
+				959FA1F7265AB9ED009937D3 /* Filter */,
 				952802F42631A72500B92E12 /* Alias */,
 				441778AC24D32CBD000F56B9 /* PGPKeys */,
 				4417771424D2B30C000F56B9 /* Signature */,
@@ -487,6 +529,82 @@
 				95EE9CB826334B44006FFA20 /* AliasCell.xib */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		9541192B26593E4C002FCC14 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9577845B2663AAA200749FDD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9577845C2663AAD000749FDD /* FilterDataModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		95930C872651857000AC7048 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				95930C88265185AD00AC7048 /* FingerprintCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		959FA1F7265AB9ED009937D3 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				9577845B2663AAA200749FDD /* Model */,
+				959FA1FB265ABA1D009937D3 /* Viper-Structure */,
+				959FA1FA265ABA0F009937D3 /* Controller */,
+				959FA1F9265ABA09009937D3 /* View */,
+				959FA1F8265AB9FD009937D3 /* Storyboard */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
+		959FA1F8265AB9FD009937D3 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				959FA1FC265ABA5D009937D3 /* Filter.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		959FA1F9265ABA09009937D3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				957784592663A6DA00749FDD /* FilterTextfieldCell.swift */,
+				957784572663A6D300749FDD /* FilterTextfieldCell.xib */,
+				957784552663A68E00749FDD /* FilterSwitchCell.swift */,
+				957784532663A68500749FDD /* FilterSwitchCell.xib */,
+				957784682663D0D000749FDD /* FilterCell.swift */,
+				957784692663D0D000749FDD /* FilterCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		959FA1FA265ABA0F009937D3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9577845E2663BC4400749FDD /* FilterVC.swift */,
+				957784602663BC5500749FDD /* AddFilterVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		959FA1FB265ABA1D009937D3 /* Viper-Structure */ = {
+			isa = PBXGroup;
+			children = (
+				957784622663BE5B00749FDD /* FilterPresenter.swift */,
+				957784642663BE6E00749FDD /* FilterInteractor.swift */,
+				9577846C2663D8E700749FDD /* AddFilterPresenter.swift */,
+				9577846E2663D8FC00749FDD /* AddFilterInteractor.swift */,
+			);
+			path = "Viper-Structure";
 			sourceTree = "<group>";
 		};
 		AD1A285138DE848D5142392D /* Pods */ = {
@@ -572,12 +690,16 @@
 			files = (
 				443926CD24D1372800112A09 /* Encryption.storyboard in Resources */,
 				443DD41424CEB3E900771AE5 /* Assets.xcassets in Resources */,
+				959FA1FD265ABA5D009937D3 /* Filter.storyboard in Resources */,
 				443DD43324CEE38700771AE5 /* Dashboard.storyboard in Resources */,
 				443926B724D056C300112A09 /* WhiteBlackLists.storyboard in Resources */,
 				441778AF24D32CD6000F56B9 /* PGPKey.storyboard in Resources */,
 				95EE9CBA26334B44006FFA20 /* AliasCell.xib in Resources */,
+				957784542663A68500749FDD /* FilterSwitchCell.xib in Resources */,
 				443926C124D0572D00112A09 /* ContactTableViewCell.xib in Resources */,
+				9577846B2663D0D000749FDD /* FilterCell.xib in Resources */,
 				4417771624D2B322000F56B9 /* Signature.storyboard in Resources */,
+				957784582663A6D300749FDD /* FilterTextfieldCell.xib in Resources */,
 				952802F82631A79300B92E12 /* Alias.storyboard in Resources */,
 				443926C624D0648600112A09 /* SelectLanguage.storyboard in Resources */,
 				443DD3F324CDCB3900771AE5 /* AppSettings.storyboard in Resources */,
@@ -619,17 +741,25 @@
 				441778BC24D3FBB5000F56B9 /* PGPKeysPresenter.swift in Sources */,
 				443DD3FB24CDCC1E00771AE5 /* AppSettingsController.swift in Sources */,
 				443DD43024CEE38700771AE5 /* DashboardConfigurator.swift in Sources */,
+				957784562663A68F00749FDD /* FilterSwitchCell.swift in Sources */,
 				443926E124D163C700112A09 /* AppSettingsConfigurator.swift in Sources */,
 				441778BE24D40046000F56B9 /* PGPKeysInteractor.swift in Sources */,
 				443926C724D0648600112A09 /* SelectLanguageViewController.swift in Sources */,
+				9577845A2663A6DA00749FDD /* FilterTextfieldCell.swift in Sources */,
 				443926DC24D140E700112A09 /* EncryptionController.swift in Sources */,
+				959FA1F6265A77C3009937D3 /* AliasKeyInteractor.swift in Sources */,
+				9577846D2663D8E700749FDD /* AddFilterPresenter.swift in Sources */,
+				9577846A2663D0D000749FDD /* FilterCell.swift in Sources */,
 				4417771A24D2B489000F56B9 /* SignatureViewController.swift in Sources */,
 				4461776C2507977E0088F138 /* AppSettingsSwitchCell.swift in Sources */,
 				4461776E2509059A0088F138 /* AppSettingsSwitchModel.swift in Sources */,
 				443DD40924CEA61100771AE5 /* BaseAppSettingsCell.swift in Sources */,
 				443DD41824CEBD2900771AE5 /* AppSettingsRouter.swift in Sources */,
 				443926C224D0572D00112A09 /* ContactTableViewCell.swift in Sources */,
+				9577846F2663D8FC00749FDD /* AddFilterInteractor.swift in Sources */,
 				443926E524D1658900112A09 /* AppSettingsPresenter.swift in Sources */,
+				95930C89265185AE00AC7048 /* FingerprintCell.swift in Sources */,
+				95930C8B265191CB00AC7048 /* AliasKeysVC.swift in Sources */,
 				95EE9CB926334B44006FFA20 /* AliasCell.swift in Sources */,
 				443926BB24D056C300112A09 /* WhiteBlackListsPresenter.swift in Sources */,
 				952802FE2631E87A00B92E12 /* AliasInteractor.swift in Sources */,
@@ -639,12 +769,18 @@
 				443DD3FE24CDCC3F00771AE5 /* Constants.swift in Sources */,
 				443DD40D24CEA6C100771AE5 /* AppSettingsStorageCell.swift in Sources */,
 				443926DE24D1427200112A09 /* EncryptionInteractor.swift in Sources */,
+				9577845F2663BC4500749FDD /* FilterVC.swift in Sources */,
 				443DD43124CEE38700771AE5 /* DashboardTableViewController.swift in Sources */,
+				95930C86265118DB00AC7048 /* AddNewKeyModal.swift in Sources */,
 				443926BA24D056C300112A09 /* WhiteBlackListsConfigurator.swift in Sources */,
+				957784612663BC5500749FDD /* AddFilterVC.swift in Sources */,
+				957784632663BE5B00749FDD /* FilterPresenter.swift in Sources */,
 				443926B824D056C300112A09 /* WhiteBlackListsDataSource.swift in Sources */,
 				443926B924D056C300112A09 /* WhiteBlackListsInteractor.swift in Sources */,
 				443926DA24D13B6500112A09 /* EncryptionDatasource.swift in Sources */,
 				443926D024D1382200112A09 /* EncryptionCell.swift in Sources */,
+				957784652663BE6E00749FDD /* FilterInteractor.swift in Sources */,
+				9577845D2663AAD000749FDD /* FilterDataModel.swift in Sources */,
 				441778B924D3F5EC000F56B9 /* PGPKeysViewController.swift in Sources */,
 				443926E324D1642B00112A09 /* AppSettingsCoordinator.swift in Sources */,
 				443926D324D1392B00112A09 /* Encryption.swift in Sources */,

@@ -1,7 +1,6 @@
 //
 //  PGPFrameworkTests.swift
 //  PGPFrameworkTests
-//
 
 
 import XCTest

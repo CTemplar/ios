@@ -110,20 +110,21 @@ extension ComposeController {
         }
         
         cell.configure(with: vm)
-        
+        cell.setButtonState(isEnable: viewModel.user.isPrime ?? false)
         cell.onTapAttachment = { [weak self] (sender, isAlreadySelected) in
             self?.view.endEditing(true)
             self?.onTapAttachment(sender, onCompletion: { (url) in
                 self?.viewModel.updateAttachment(withURL: url)
             })
         }
-        
+    
         cell.onTapDestruction = { [weak self] (isAlreadySelected) in
             self?.view.endEditing(true)
             self?.onTapSchedulerMenu(with: .selfDestructTimer,
                                      menu: .selfDesctructionTimer,
                                      alreadySelected: isAlreadySelected)
         }
+        
         
         cell.onTapDeadManTimer = { [weak self] (isAlreadySelected) in
             self?.view.endEditing(true)

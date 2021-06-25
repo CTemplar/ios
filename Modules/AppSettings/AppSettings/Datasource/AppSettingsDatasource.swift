@@ -148,6 +148,8 @@ final class AppSettingsDatasource: NSObject {
                                          showDetailIndicator: false)
             case .whiteOrBlackList:
                 model = AppSettingsModel(title: Strings.AppSettings.whiteBlackList.localized)
+            case .filter:
+                model = AppSettingsModel(title: "Filter")
             case .dashboard:
                 model = AppSettingsModel(title: Strings.AppSettings.dashboard.localized)
             case .manageFolders:
@@ -303,6 +305,7 @@ extension AppSettingsDatasource: UITableViewDelegate, UITableViewDataSource {
                  .language,
                  .contacts,
                  .whiteOrBlackList,
+                 .filter,
                  .dashboard,
                  .manageFolders,
                  .password,
@@ -385,6 +388,8 @@ extension AppSettingsDatasource: UITableViewDelegate, UITableViewDataSource {
                 onTapSavingContacts()
             case .whiteOrBlackList:
                 parentViewController?.router?.onTapWhiteBlackList()
+            case .filter:
+                parentViewController?.router?.onTapFilter()
             case .dashboard:
                 parentViewController?.router?.onTapDashboard()
             case .manageFolders:

@@ -1,8 +1,6 @@
 //
 //  AliasInteractor.swift
 //  AppSettings
-//
-
 
 import Foundation
 import Utility

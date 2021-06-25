@@ -285,7 +285,22 @@ public class PGPEncryption {
         return plainMessage?.getBinary()
     }
     
-    public func generateNewKeyModel(userName: String, password: String) -> KeysModel {
+    public func decryptFromPassword(encrypted: String, token: String) throws -> String? {
+            let tokenBytes = token.data(using: .utf8)
+            var error: NSError?
+            let pgpMsg = CryptoNewPGPMessageFromArmored(encrypted, &error)
+            if let err = error {
+                throw err
+            }
+            let message = CryptoDecryptMessageWithPassword(pgpMsg, tokenBytes, &error)
+            if let err = error {
+                throw err
+            }
+            return message?.getString()
+        }
+    
+    
+    public func generateNewKeyModel(userName: String, password: String ,_ keyType:String = "Ecc") -> KeysModel {
         let err:NSErrorPointer = NSErrorPointer(nilLiteral: ())
         var email = ""
         var name = ""
@@ -296,6 +311,7 @@ public class PGPEncryption {
             }
             else {
                email = userName
+                name = ""
             }
         }
         else {
@@ -303,19 +319,52 @@ public class PGPEncryption {
             email = userName + "@ctemplar.com"
         }
         
-        let privatePGPKey = HelperGenerateKey(name, email, Data(password.utf8), "x25519", 0, err)
-        let key = CryptoNewKeyFromArmored(privatePGPKey, err)
-        let publicPGPKey =  key?.getArmoredPublicKey(err)
-        var keyModel = KeysModel()
-        keyModel.email = userName
-        keyModel.isEnabled = true
-        keyModel.privateKey = privatePGPKey
-        keyModel.publicKey = publicPGPKey
-        keyModel.fingerprint = key?.getFingerprint()
-        keyModel.isFromPublicKey = true
-        
-        return keyModel
+        if (keyType == "Ecc") {
+            let privatePGPKey = HelperGenerateKey(name, email, Data(password.utf8), "x25519", 0, err)
+            let key = CryptoNewKeyFromArmored(privatePGPKey, err)
+            let publicPGPKey =  key?.getArmoredPublicKey(err)
+            var keyModel = KeysModel()
+            keyModel.email = userName
+            keyModel.isEnabled = true
+            keyModel.privateKey = privatePGPKey
+            keyModel.publicKey = publicPGPKey
+            keyModel.fingerprint = key?.getFingerprint()
+            keyModel.isFromPublicKey = true
+            
+            return keyModel
+        }
+        else {
+            let privatePGPKey = HelperGenerateKey(name, email, Data(password.utf8), "rsa", 4096, err)
+            let key = CryptoNewKeyFromArmored(privatePGPKey, err)
+            let publicPGPKey =  key?.getArmoredPublicKey(err)
+            var keyModel = KeysModel()
+            keyModel.email = userName
+            keyModel.isEnabled = true
+            keyModel.privateKey = privatePGPKey
+            keyModel.publicKey = publicPGPKey
+            keyModel.fingerprint = key?.getFingerprint()
+            keyModel.isFromPublicKey = true
+            
+            return keyModel
+        }
+       
     }
+    
+    public func encrypt(plainText: String, token: String) throws -> String? {
+         let plainTextMessage = CryptoNewPlainMessageFromString(plainText)
+         let tokenBytes = token.data(using: .utf8)
+         var error: NSError?
+         let encryptedMessage = CryptoEncryptMessageWithPassword(plainTextMessage, tokenBytes, &error)
+         if let err = error {
+             throw err
+         }
+         
+         let armoredMessage = encryptedMessage?.getArmored(&error)
+         if let err = error {
+             throw err
+         }
+         return armoredMessage
+     }
     
     
 //    func generateFreshKeys(){
@@ -531,6 +580,7 @@ public class PGPEncryption {
             }
             return encryptedString!
         }
+        
     }
 
     public func encryptAttachment(keys:Array<KeysModel>, data:Data, fileName:String)-> String {

@@ -449,6 +449,30 @@ public class RestAPIService {
     }
     
     
+    // MARK: - Keys
+    func keysList(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.mailboxKeys.rawValue
+        
+        DPrint("mailboxes url:", url)
+        
+        AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: AFDataResponse<Any>) in
+            DPrint("mailboxes responce:", response)
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    
     // MARK: - Mailbox
     func addAlias(token: String, model: AliasModel, completionHandler: @escaping (APIResult<Any>) -> Void) {
         
@@ -469,6 +493,91 @@ public class RestAPIService {
         DPrint("mailboxes url:", url)
         
         AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: AFDataResponse<Any>) in
+            DPrint("mailboxes responce:", response)
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    
+    func addNewKey(token: String, model: NewKeyModel, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.password.rawValue : model.password!,
+            JSONKey.privateKey.rawValue: model.privateKey!,
+            JSONKey.publicKey.rawValue: model.publicKey!,
+            JSONKey.fingerprint.rawValue: model.fingerprint!,
+            JSONKey.keyType.rawValue: model.keyType!,
+            JSONKey.mailbox.rawValue: model.mailboxID!
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.mailboxKeys.rawValue
+        
+        DPrint("mailboxes url:", url, parameters)
+        
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: AFDataResponse<Any>) in
+            DPrint("mailboxes responce:", response)
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    
+    func setKeyAsPrimary(token: String, id: Int, mailboxId: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.idKey.rawValue : id,
+            JSONKey.mailBox_Id.rawValue: mailboxId
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.setPrimaryKey.rawValue
+        
+        DPrint("mailboxes url:", url, parameters)
+        
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: AFDataResponse<Any>) in
+            DPrint("mailboxes responce:", response)
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    func deleteKey(token: String, id: Int, password: String,completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.password.rawValue : password
+        ]
+        let url = EndPoint.baseUrl.rawValue + EndPoint.mailboxKeys.rawValue + String(id) + "/"
+        
+        DPrint("mailboxes url:", url)
+        
+        AF.request(url, method: .delete, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: AFDataResponse<Any>) in
             DPrint("mailboxes responce:", response)
             switch(response.result) {
             case .success(let value):
@@ -588,6 +697,130 @@ public class RestAPIService {
         
         AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response: AFDataResponse<Any>) in
             DPrint("publicKeyFor responce:", response)
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    // MARK: - Keys
+    func filterList(token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.filterList.rawValue
+        
+        DPrint("filterList url:", url)
+        
+        AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: AFDataResponse<Any>) in
+            DPrint("FilterList responce:", response)
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    
+    
+    
+    // MARK: - Keys
+    func addFilter(filter: Filter ,token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        let parameters: Parameters = [
+            JSONKeysForFilter.name.rawValue: filter.name ?? "",
+           
+            JSONKeysForFilter.conditions.rawValue:[[                JSONKeysForFilter.condition.rawValue: filter.condition ?? "",
+                JSONKeysForFilter.filterText.rawValue: filter.filter_text ?? "",
+                JSONKeysForFilter.parameter.rawValue: filter.parameter ?? ""
+            ]],
+            JSONKeysForFilter.folder.rawValue: filter.folder ?? "",
+            JSONKeysForFilter.moveTo.rawValue: filter.move_to ?? true,
+            JSONKeysForFilter.read.rawValue: filter.mark_as_read ?? true,
+            JSONKeysForFilter.starred.rawValue: filter.mark_as_starred ?? true
+        ]
+        /*
+         "conditions": [{
+                 "parameter": "subject",
+                 "condition": "contains",
+                 "filter_text": "New"
+             }]
+         */
+        let url = EndPoint.baseUrl.rawValue + EndPoint.filterList.rawValue
+        
+        DPrint("filterList url:", url, parameters)
+        
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: AFDataResponse<Any>) in
+            DPrint("FilterList responce:", response)
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    // MARK: - Keys
+    func deleteFilter(filterId: String ,token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        let url = EndPoint.baseUrl.rawValue + EndPoint.filterList.rawValue + filterId + "/"
+        
+        DPrint("filterList url:", url)
+        
+        AF.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: AFDataResponse<Any>) in
+            DPrint("FilterList responce:", response)
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
+    
+    // MARK: - Keys
+    func editFilter(filter: Filter ,token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        let parameters: Parameters = [
+            JSONKeysForFilter.id.rawValue: filter.id ?? 0,
+            JSONKeysForFilter.name.rawValue: filter.name ?? "",
+            JSONKeysForFilter.conditions.rawValue:[[                JSONKeysForFilter.condition.rawValue: filter.condition ?? "",
+                JSONKeysForFilter.filterText.rawValue: filter.filter_text ?? "",
+                JSONKeysForFilter.parameter.rawValue: filter.parameter ?? ""
+            ]],
+            JSONKeysForFilter.folder.rawValue: filter.folder ?? "",
+            JSONKeysForFilter.moveTo.rawValue: filter.move_to ?? false,
+            JSONKeysForFilter.read.rawValue: filter.mark_as_read ?? false,
+            JSONKeysForFilter.starred.rawValue: filter.mark_as_starred ?? false
+        ]
+        let url = EndPoint.baseUrl.rawValue + EndPoint.filterList.rawValue + String((filter.id ?? 0)) + "/"
+        
+        DPrint("filterList url:", url, parameters)
+        
+        AF.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: AFDataResponse<Any>) in
+            DPrint("FilterList responce:", response)
             switch(response.result) {
             case .success(let value):
                 completionHandler(APIResult.success(value))

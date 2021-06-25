@@ -11,10 +11,11 @@ class PGPKeysViewController: UIViewController {
     
     @IBOutlet weak var downButton: UIButton!
     
-    @IBOutlet weak var privateKeyDownloadButton: UIButton!
     
-    @IBOutlet weak var publicKeyDownloadButton: UIButton!
+    @IBOutlet weak var addNewKeyBtn: UIButton!
     
+    @IBOutlet weak var tableView: UITableView!
+
     // MARK: Properties
     private (set) var presenter: PGPKeysPresenter?
     
@@ -43,11 +44,20 @@ class PGPKeysViewController: UIViewController {
         presenter?.onTapMailbox(from: sender)
     }
     
-    @IBAction func onTapDownloadPrivateKey(_ sender: Any) {
-        presenter?.downloadPrivateKey()
+   
+    
+    @IBAction func addNewKeyBtnTapped(_ sender: Any) {
+        presenter?.onTapAddKey()
+    }
+}
+
+extension PGPKeysViewController: AliasKeyDelegate {
+    func getEmail() -> String {
+        return  self.presenter?.getEmail() ?? ""
     }
     
-    @IBAction func onTapDownloadPublicKey(_ sender: Any) {
-        presenter?.downloadPublicKey()
+    
+    func refreshData() {
+        self.presenter?.getMailBoxList(true)
     }
 }
