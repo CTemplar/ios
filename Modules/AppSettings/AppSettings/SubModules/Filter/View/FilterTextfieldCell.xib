@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-SemiBold.ttf">
+            <string>Montserrat-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilterTextfieldCell" rowHeight="71" id="KGk-i7-Jjw" customClass="FilterTextfieldCell" customModule="AppSettings" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="71"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="71"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CkE-cL-T3Y">
+                        <rect key="frame" x="15" y="10" width="290" height="50"/>
+                        <color key="backgroundColor" red="0.96470588450000005" green="0.96470588450000005" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="7yw-TK-LTD"/>
+                        </constraints>
+                    </imageView>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Company Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Aj-Yd-NfR">
+                        <rect key="frame" x="25" y="18" width="275" height="34"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.2117646933" green="0.82745099070000006" blue="0.72156864399999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="sqT-XS-ASF"/>
+                        </constraints>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="13"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downArrowOrange" translatesAutoresizingMaskIntoConstraints="NO" id="avs-uO-EUK">
+                        <rect key="frame" x="265" y="30.5" width="14" height="9"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="14" id="Z14-y5-N4A"/>
+                            <constraint firstAttribute="height" constant="9" id="ohW-Mc-Ggx"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="0Aj-Yd-NfR" secondAttribute="trailing" constant="20" id="3ya-RN-8e8"/>
+                    <constraint firstItem="avs-uO-EUK" firstAttribute="centerY" secondItem="0Aj-Yd-NfR" secondAttribute="centerY" id="AfC-RC-yF3"/>
+                    <constraint firstAttribute="bottom" secondItem="CkE-cL-T3Y" secondAttribute="bottom" constant="10" id="F5V-7l-R4z"/>
+                    <constraint firstItem="0Aj-Yd-NfR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="SYq-uP-Gnz"/>
+                    <constraint firstAttribute="trailing" secondItem="avs-uO-EUK" secondAttribute="trailing" constant="41" id="aUd-Id-vnc"/>
+                    <constraint firstAttribute="trailing" secondItem="CkE-cL-T3Y" secondAttribute="trailing" constant="15" id="baq-Zz-nbK"/>
+                    <constraint firstItem="CkE-cL-T3Y" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="dt7-YM-6M6"/>
+                    <constraint firstItem="0Aj-Yd-NfR" firstAttribute="centerY" secondItem="CkE-cL-T3Y" secondAttribute="centerY" id="jRf-4w-79J"/>
+                    <constraint firstItem="CkE-cL-T3Y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="nKv-bS-6LV"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="downArrow" destination="avs-uO-EUK" id="M2N-t6-FoU"/>
+                <outlet property="textField" destination="0Aj-Yd-NfR" id="dd4-iI-tev"/>
+                <outlet property="textFieldBackImageView" destination="CkE-cL-T3Y" id="wD7-96-hgs"/>
+            </connections>
+            <point key="canvasLocation" x="179.71014492753625" y="96.763392857142847"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="downArrowOrange" width="31" height="21"/>
+    </resources>
+</document>

@@ -20,6 +20,15 @@ extension ComposeViewModel {
         return ""
     }
     
+    func encryptMessageForPassword(password: String, message: String) -> String {
+        let messageData = pgpService.encodeString(message: message)
+        if let encryptedMessage = pgpService.encryptWithFromPassword(data: message, password: password) {
+            DPrint("encryptedMessage:", encryptedMessage)
+            return encryptedMessage
+        }
+        return ""
+    }
+    
     func setPGPKeysForEncryptionObject(object: EncryptionObject, pgpKey: KeysModel) -> [String: String] {
         var encryptionObjectDictionary: [String: String] = [:]
         var encryptionObject = object

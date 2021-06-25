@@ -268,6 +268,7 @@ public enum Strings {
         case notifications
         case savingContact
         case whiteBlackList
+        case filter
         case dashboard
         case security
         case manageFolders

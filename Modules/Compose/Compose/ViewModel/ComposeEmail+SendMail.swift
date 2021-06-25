@@ -84,7 +84,7 @@ extension ComposeViewModel {
                 
                 pgpKeys.append(nonCtemplarPGPKey ?? KeysModel())
                 
-                messageContent = encryptMessage(publicKeys: pgpKeys, message: messageContent)
+                messageContent = encryptMessageForPassword(password: emailPassword, message: messageContent)
                 
                 let message = Message(messageID: userName,
                                       encryptedMessage: messageContent,

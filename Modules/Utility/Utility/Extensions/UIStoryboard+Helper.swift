@@ -29,6 +29,13 @@ public extension UIStoryboard {
         case emptyState = "EmptyState"
         case setPassword = "SetPassword"
         case scheduler = "Scheduler"
+        case filter = "Filter"
+        
+        
+      public  static var inboxPassword:Storyboard { .inboxViewer}
+      public  static var addNewKey:Storyboard { .key}
+
+        
     }
     
     // MARK: - Convenience Initializers
@@ -111,7 +118,10 @@ public extension UIStoryboard.Storyboard {
             return (bundlename: "Compose.SetPasswordViewController", storyboardId: "SetPasswordViewController")
         case .scheduler:
             return (bundlename: "Compose.SchedulerViewController", storyboardId: "SchedulerViewController")
+        case .filter:
+            return (bundlename: "Filter.FilterVC", storyboardId: "FilterVC")
         }
+        
     }
     
     var bundle: Bundle {

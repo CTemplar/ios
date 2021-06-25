@@ -66,6 +66,15 @@ public class PGPService {
         return self.encryptionObj.encryptMessage(keys: keys, data: data)
     }
     
+    public func encryptWithFromPassword(data: String, password:String) -> String? {
+        do {
+            return try self.encryptionObj.encrypt(plainText: data, token: password)
+        }
+        catch {
+            return nil
+        }
+    }
+    
     public func decrypt(encryptedData: Data) -> Data? {
         let password = keychainService.getPassword()
         if let data =  self.encryptionObj.decryptSimpleMessage(encrypted: encryptedData, userPassword: password) {
@@ -116,6 +125,22 @@ public class PGPService {
             }
         }
         return ""
+    }
+    
+    
+    public func decryptMessageFromPassword(encryptedContent: String, password:String) -> String {
+        do {
+            if let decryptedMessage = try self.encryptionObj.decryptFromPassword(encrypted: encryptedContent, token: password) {
+                return decryptedMessage
+            } else {
+                DPrint("decrypting failed")
+                return "#D_FAILED_ERROR#"
+            }
+        }
+        catch {
+            DPrint("decrypting failed")
+            return "#D_FAILED_ERROR#"
+        }
     }
     
     public func decryptMessageFromInbox(encryptedContet: String) -> String {
@@ -174,6 +199,10 @@ public class PGPService {
         return pgpKey
     }
     
+    public func getPasswordFromKeychain() -> String {
+       return keychainService.getPassword()
+
+    }
     public func generateNewKeyModel(userName: String, password: String) -> KeysModel? {
         return self.encryptionObj.generateNewKeyModel(userName: userName, password: password)
     }

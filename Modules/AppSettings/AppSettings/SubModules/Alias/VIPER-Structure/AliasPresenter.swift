@@ -1,7 +1,6 @@
 //
 //  AliasPresenter.swift
 //  AppSettings
-//
 
 
 import Foundation

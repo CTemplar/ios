@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-SemiBold.ttf">
+            <string>Montserrat-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilterSwitchCell" rowHeight="66" id="KGk-i7-Jjw" customClass="FilterSwitchCell" customModule="AppSettings" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1qG-LS-m8t">
+                        <rect key="frame" x="10" y="6" width="300" height="50"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H9k-32-q3n">
+                                <rect key="frame" x="7" y="15" width="231" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="mwn-ZR-j1T"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rJF-B3-zAy">
+                                <rect key="frame" x="243" y="9.5" width="51" height="31"/>
+                                <color key="onTintColor" name="GIGL Aqua Marine"/>
+                                <connections>
+                                    <action selector="switchValueChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="vje-X3-Qk3"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0S-Xa-2i7">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="2.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2.5" id="rCp-e5-zbj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rJF-B3-zAy" firstAttribute="leading" secondItem="H9k-32-q3n" secondAttribute="trailing" constant="5" id="CnY-Ug-WBK"/>
+                            <constraint firstItem="H9k-32-q3n" firstAttribute="leading" secondItem="1qG-LS-m8t" secondAttribute="leading" constant="7" id="Dqm-Rg-Mov"/>
+                            <constraint firstItem="rJF-B3-zAy" firstAttribute="centerY" secondItem="1qG-LS-m8t" secondAttribute="centerY" id="EDe-I7-jmL"/>
+                            <constraint firstAttribute="trailing" secondItem="rJF-B3-zAy" secondAttribute="trailing" constant="8" id="FME-o1-ibn"/>
+                            <constraint firstItem="D0S-Xa-2i7" firstAttribute="leading" secondItem="1qG-LS-m8t" secondAttribute="leading" id="cNX-tI-kF4"/>
+                            <constraint firstAttribute="height" constant="50" id="hcH-xV-WAH"/>
+                            <constraint firstItem="H9k-32-q3n" firstAttribute="centerY" secondItem="rJF-B3-zAy" secondAttribute="centerY" id="ilZ-td-Ryr"/>
+                            <constraint firstItem="D0S-Xa-2i7" firstAttribute="top" secondItem="1qG-LS-m8t" secondAttribute="top" id="j9P-8d-mKR"/>
+                            <constraint firstAttribute="trailing" secondItem="D0S-Xa-2i7" secondAttribute="trailing" id="rxX-C9-nH0"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="1qG-LS-m8t" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Nii-zm-cfz"/>
+                    <constraint firstItem="1qG-LS-m8t" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="ZSu-9l-bdy"/>
+                    <constraint firstAttribute="bottom" secondItem="1qG-LS-m8t" secondAttribute="bottom" constant="5" id="d65-ak-9n4"/>
+                    <constraint firstAttribute="trailing" secondItem="1qG-LS-m8t" secondAttribute="trailing" constant="10" id="p3W-co-dez"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="switchBtn" destination="rJF-B3-zAy" id="Ho2-0R-EPC"/>
+                <outlet property="titleLbl" destination="H9k-32-q3n" id="CuF-4U-s9x"/>
+            </connections>
+            <point key="canvasLocation" x="-191.30434782608697" y="50.892857142857139"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="GIGL Aqua Marine">
+            <color red="0.21176470588235294" green="0.82745098039215681" blue="0.72156862745098038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

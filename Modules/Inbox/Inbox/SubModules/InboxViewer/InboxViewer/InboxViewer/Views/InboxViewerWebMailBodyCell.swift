@@ -40,6 +40,7 @@ public final class InboxViewerWebMailBodyCell: UITableViewCell, Cellable {
     @IBOutlet weak var webView: WKWebView!
     // MARK: Properties
     var isLoaded = false
+    var isFromAfterTopCall = false
     var thresholdHeight: CGFloat {
         return 200.0
     }
@@ -171,16 +172,29 @@ extension InboxViewerWebMailBodyCell: WKNavigationDelegate {
     
     
     private func calculateWebviewHeight(webView: WKWebView) {
+        self.heightOFcontent()
+       // return
+            
         webView.evaluateJavaScript("document.readyState", completionHandler: { [weak self] (complete, error) in
             if complete != nil {
-                webView.evaluateJavaScript("document.body.offsetHeight", completionHandler: { (height, error) in
+                let javascriptString = "" +
+                            "var body = document.body;" +
+                            "var html = document.documentElement;" +
+                            "Math.max(" +
+                            "   body.scrollHeight," +
+                            "   body.offsetHeight," +
+                            "   html.clientHeight," +
+                            "   html.offsetHeight" +
+                        ");"
+
+                webView.evaluateJavaScript(javascriptString, completionHandler: { (height, error) in
                     if let height = height as? CGFloat {
                         var newHeight  = height / 2.70
                         if UIDevice.current.userInterfaceIdiom == .pad {
                             newHeight = height + 10
                         }
-                       
-                       
+
+
 //                        if (newHeight == 0) {
 //                            self?.webViewHeightConstraint.constant = 200
 //                        }
@@ -200,6 +214,7 @@ extension InboxViewerWebMailBodyCell: WKNavigationDelegate {
                             self?.webViewHeightConstraint.constant = newHeight
                             webView.scrollView.contentSize = CGSize(width: webView.frame.size.width, height: newHeight)
                             if (self?.isLoaded == false) {
+                                self?.isFromAfterTopCall = true
                                 self?.isLoaded = true
                                 self?.onHeightChange?()
                             }
@@ -208,6 +223,91 @@ extension InboxViewerWebMailBodyCell: WKNavigationDelegate {
                 })
             }
         })
+    }
+    
+    
+    public func heightOFcontent() {
+        webView.evaluateJavaScript("document.readyState", completionHandler: { (complete, error) in
+                if complete != nil {
+                    self.webView.evaluateJavaScript("document.body.scrollHeight", completionHandler: { (height, error) in
+                        let bodyScrollHeight = height as! CGFloat
+                        var bodyoffsetheight: CGFloat = 0
+                        var htmloffsetheight: CGFloat = 0
+                        var htmlclientheight: CGFloat = 0
+                        var htmlscrollheight: CGFloat = 0
+                        var wininnerheight: CGFloat = 0
+                        var winpageoffset: CGFloat = 0
+                        var winheight: CGFloat = 0
+
+                        //body.offsetHeight
+                        self.webView.evaluateJavaScript("document.body.offsetHeight", completionHandler: { (offsetHeight, error) in
+                            bodyoffsetheight = offsetHeight as! CGFloat
+
+                            self.webView.evaluateJavaScript("document.documentElement.offsetHeight", completionHandler: { (offsetHeight, error) in
+                                htmloffsetheight = offsetHeight as! CGFloat
+
+                                self.webView.evaluateJavaScript("document.documentElement.clientHeight", completionHandler: { (clientHeight, error) in
+                                    htmlclientheight = clientHeight as! CGFloat
+
+                                    self.webView.evaluateJavaScript("document.documentElement.scrollHeight", completionHandler: { (scrollHeight, error) in
+                                        htmlscrollheight = scrollHeight as! CGFloat
+
+                                        self.webView.evaluateJavaScript("window.innerHeight", completionHandler: { (winHeight, error) in
+                                            if error != nil {
+                                                wininnerheight = -1
+                                            } else {
+                                                wininnerheight = winHeight as! CGFloat
+                                            }
+
+                                            self.webView.evaluateJavaScript("window.pageYOffset", completionHandler: { (winpageOffset, error) in
+                                                winpageoffset = winpageOffset as! CGFloat
+
+                                                if( htmloffsetheight == htmlscrollheight) {
+                                                    var newHeight  = htmloffsetheight
+                                                    if UIDevice.current.userInterfaceIdiom == .pad {
+                                                        newHeight = htmloffsetheight + 10
+                                                    }
+                                                    DispatchQueue.main.async {
+                                                        self.webViewHeightConstraint.constant = newHeight
+                                                        self.webView.scrollView.contentSize = CGSize(width: self.webView.frame.size.width, height: newHeight)
+                                                        if (self.isLoaded == false || self.isFromAfterTopCall == true) {
+                                                            self.isFromAfterTopCall = false
+                                                            self.isLoaded = true
+                                                            self.onHeightChange?()
+                                                        }
+                                                    }
+                                                }
+                                                else {
+                                                    var newHeight  = htmloffsetheight / 2.70
+                                                    if UIDevice.current.userInterfaceIdiom == .pad {
+                                                        newHeight = htmloffsetheight + 10
+                                                    }
+                                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                                        self.webViewHeightConstraint.constant = newHeight
+                                                        self.webView.scrollView.contentSize = CGSize(width: self.webView.frame.size.width, height: newHeight)
+                                                        if (self.isLoaded == false || self.isFromAfterTopCall == true) {
+                                                            self.isFromAfterTopCall = false
+                                                            self.isLoaded = true
+                                                            self.onHeightChange?()
+                                                        }
+                                                    }
+                                                }
+                                            })
+
+                                        })
+
+                                    })
+
+                                })
+
+                            })
+                        })
+
+
+                    })
+                }
+
+            })
     }
     
     
@@ -235,3 +335,51 @@ extension InboxViewerWebMailBodyCell: WKNavigationDelegate {
         DPrint("web view loading failed: \(error.localizedDescription)")
     }
 }
+/*
+ private func heightOFcontent() {
+     webView.evaluateJavaScript("document.readyState", completionHandler: { (complete, error) in
+         if complete != nil {
+                 var htmloffsetheight: CGFloat = 0
+                 var htmlscrollheight: CGFloat = 0
+                 self.webView.evaluateJavaScript("document.documentElement.offsetHeight", completionHandler: { (offsetHeight, error) in
+                     htmloffsetheight = offsetHeight as! CGFloat
+                     
+                     self.webView.evaluateJavaScript("document.documentElement.scrollHeight", completionHandler: { (scrollHeight, error) in
+                         htmlscrollheight = scrollHeight as! CGFloat
+                         
+                         if( htmloffsetheight == htmlscrollheight) {
+                             var newHeight  = htmloffsetheight
+                             if UIDevice.current.userInterfaceIdiom == .pad {
+                                 newHeight = htmloffsetheight + 10
+                             }
+                             DispatchQueue.main.async {
+                                 self.webViewHeightConstraint.constant = newHeight
+                                 self.webView.scrollView.contentSize = CGSize(width: self.webView.frame.size.width, height: newHeight)
+                                 if (self.isLoaded == false) {
+                                     self.isLoaded = true
+                                     self.onHeightChange?()
+                                 }
+                             }
+                         }
+                         else {
+                             var newHeight  = htmloffsetheight / 2.70
+                             if UIDevice.current.userInterfaceIdiom == .pad {
+                                 newHeight = htmloffsetheight + 10
+                             }
+                             DispatchQueue.main.async {
+                                 self.webViewHeightConstraint.constant = newHeight
+                                 self.webView.scrollView.contentSize = CGSize(width: self.webView.frame.size.width, height: newHeight)
+                                 if (self.isLoaded == false) {
+                                     self.isLoaded = true
+                                     self.onHeightChange?()
+                                 }
+                             }
+                         }
+                         
+                     })
+             })
+         }
+         
+     })
+ }
+ */

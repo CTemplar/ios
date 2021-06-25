@@ -499,6 +499,230 @@ public class APIService: HashingService {
     }
     
     
+    // MARK: - Filter List
+    public func filterList(completionHandler: @escaping (APIResult<Any>) -> Void) {
+        checkTokenExpiration() { [weak self] (complete) in
+            if complete {
+                if let token = self?.getToken() {
+                    self?.restAPIService.filterList(token: token) { (result) in
+                        switch(result) {
+                        case .success(let value):
+                            if let response = value as? Dictionary<String, Any> {
+                                if let message = self?.parseServerResponse(response:response) {
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    if  let filterList = Filter.filterList(array: response["results"] as? Array<Any> ?? []) as? [Filter] {
+                                        completionHandler(APIResult.success(filterList))
+                                    }
+                                }
+                            } else {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
+                            }
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    // MARK: - Mailbox
+    public func keysList(completionHandler: @escaping (APIResult<Any>) -> Void) {
+        checkTokenExpiration() { [weak self] (complete) in
+            if complete {
+                if let token = self?.getToken() {
+                    self?.restAPIService.keysList(token: token) { (result) in
+                        switch(result) {
+                        case .success(let value):
+                            if let response = value as? Dictionary<String, Any> {
+                                if let message = self?.parseServerResponse(response:response) {
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    let mailboxes = Mailboxes(dictionary: response, true)
+                                    completionHandler(APIResult.success(mailboxes))
+                                }
+                            } else {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
+                            }
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    public func addFilter(model: Filter ,completionHandler: @escaping (APIResult<Any>) -> Void) {
+        checkTokenExpiration() { [weak self] (complete) in
+            if complete {
+                if let token = self?.getToken() {
+                    self?.restAPIService.addFilter(filter: model, token: token) { (result) in
+                        switch(result) {
+                        case .success(let value):
+                            if let response = value as? Dictionary<String, Any> {
+                                if let message = self?.parseServerResponse(response:response) {
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    let filter = Filter(dictionary: response)
+                                    completionHandler(APIResult.success(filter))
+                                }
+                            } else {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
+                            }
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    public func editFilter(model: Filter ,completionHandler: @escaping (APIResult<Any>) -> Void) {
+        checkTokenExpiration() { [weak self] (complete) in
+            if complete {
+                if let token = self?.getToken() {
+                    self?.restAPIService.editFilter(filter: model, token: token) { (result) in
+                        switch(result) {
+                        case .success(let value):
+                            if let response = value as? Dictionary<String, Any> {
+                                if let message = self?.parseServerResponse(response:response) {
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    let filter = Filter(dictionary: response)
+                                    completionHandler(APIResult.success(filter))
+                                }
+                            } else {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
+                            }
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    public func deleteFilter(filterId: String ,completionHandler: @escaping (APIResult<Any>) -> Void) {
+        checkTokenExpiration() { [weak self] (complete) in
+            if complete {
+                if let token = self?.getToken() {
+                    self?.restAPIService.deleteFilter(filterId: filterId, token: token) { (result) in
+                        switch(result) {
+                        case .success(_):
+                            completionHandler(APIResult.success(""))
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    public func createNewKey(model: NewKeyModel ,completionHandler: @escaping (APIResult<Any>) -> Void) {
+        checkTokenExpiration() { [weak self] (complete) in
+            if complete {
+                if let token = self?.getToken() {
+                    self?.restAPIService.addNewKey(token: token, model: model) { (result) in
+                        switch(result) {
+                        case .success(let value):
+                            if let response = value as? Dictionary<String, Any> {
+                                if let message = self?.parseServerResponse(response:response) {
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    let mailbox = Mailbox(dictionary: response, true)
+                                    completionHandler(APIResult.success(mailbox))
+                                }
+                            } else {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
+                            }
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    public func setKeyAsPrimary(id:Int , mailboxId: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        checkTokenExpiration() { [weak self] (complete) in
+            if complete {
+                if let token = self?.getToken() {
+                    self?.restAPIService.setKeyAsPrimary(token: token,id: id, mailboxId: mailboxId) { (result) in
+                        switch(result) {
+                        case .success(let value):
+                            if let response = value as? Dictionary<String, Any> {
+                                if let message = self?.parseServerResponse(response:response) {
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    completionHandler(APIResult.success(response))
+                                }
+                            } else {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
+                            }
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    public func deleteKey(id:Int, password: String,completionHandler: @escaping (APIResult<Any>) -> Void) {
+        checkTokenExpiration() { [weak self] (complete) in
+            if complete {
+                if let token = self?.getToken() {
+                    self?.restAPIService.deleteKey(token: token,id: id, password:password) { (result) in
+                        switch(result) {
+                        case .success(_):
+                            completionHandler(APIResult.success(""))
+                             
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     // MARK: - Mailbox Alias
     public func createAlias(model: AliasModel ,completionHandler: @escaping (APIResult<Any>) -> Void) {
         checkTokenExpiration() { [weak self] (complete) in

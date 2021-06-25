@@ -45,6 +45,7 @@
 		444D65BE24A7397300690B3E /* UnreadMessageCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D65BD24A7397300690B3E /* UnreadMessageCounter.swift */; };
 		44C6E048249563A500D7C614 /* Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444BD374249379B2001D0C5F /* Utility.framework */; };
 		950D12002623351D008D2423 /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D11FF2623351D008D2423 /* MimeType.swift */; };
+		957784672663C12C00749FDD /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957784662663C12C00749FDD /* Filter.swift */; };
 		9596F60D26199D1400D64163 /* PGPFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9596F60C26199D1400D64163 /* PGPFramework.framework */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,7 @@
 		444BD3AA24948AB9001D0C5F /* UserResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResult.swift; sourceTree = "<group>"; };
 		444D65BD24A7397300690B3E /* UnreadMessageCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadMessageCounter.swift; sourceTree = "<group>"; };
 		950D11FF2623351D008D2423 /* MimeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeType.swift; sourceTree = "<group>"; };
+		957784662663C12C00749FDD /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		9596F60C26199D1400D64163 /* PGPFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PGPFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -168,6 +170,7 @@
 				444BD32924935FFD001D0C5F /* Mailboxes.swift */,
 				444BD32B249361B8001D0C5F /* FolderList.swift */,
 				444D65BD24A7397300690B3E /* UnreadMessageCounter.swift */,
+				957784662663C12C00749FDD /* Filter.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				444BD324249350C5001D0C5F /* Attachment.swift in Sources */,
 				444BD39624948A1B001D0C5F /* RouterPushNotifications.swift in Sources */,
 				444BD31424923849001D0C5F /* Folder.swift in Sources */,
+				957784672663C12C00749FDD /* Filter.swift in Sources */,
 				444BD30D249235F4001D0C5F /* RestAPIService.swift in Sources */,
 				444BD31824923970001D0C5F /* Settings.swift in Sources */,
 				444BD310249237AC001D0C5F /* UserMyself.swift in Sources */,

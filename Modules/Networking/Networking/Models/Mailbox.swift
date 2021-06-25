@@ -12,21 +12,35 @@ public struct Mailbox {
     public private (set) var privateKey: String?
     public private (set) var publicKey: String?
     public private (set) var signature: String?
-    
+    public var keyType: String?
+    public private (set) var keyID: Int?
+    public var extraKeys: Array<Mailbox>?
     // MARK: Constructor
     public init() {}
     
-    public init(dictionary: [String: Any]) {
+    public init(dictionary: [String: Any], _ isfromExtraKeys: Bool = false) {
         self.displayName = dictionary["display_name"] as? String
         self.email = dictionary["email"] as? String
         self.fingerprint = dictionary["fingerprint"] as? String
-        self.mailboxID = dictionary["id"] as? Int
+        if(isfromExtraKeys == true) {
+            self.mailboxID = dictionary["mailbox"] as? Int
+            self.keyID = dictionary["id"] as? Int
+        }
+        else {
+            self.mailboxID = dictionary["id"] as? Int
+        }
         self.isDefault = dictionary["is_default"] as? Bool
         self.isEnabled = dictionary["is_enabled"] as? Bool
         self.privateKey = dictionary["private_key"] as? String
         self.publicKey = dictionary["public_key"] as? String
         self.signature = dictionary["signature"] as? String
+        self.keyType = dictionary["key_type"] as? String
+        self.keyType = dictionary["key_type"] as? String
+       
+        
     }
+    
+    
     public static func getKeysModel(keysArray: Array<Mailbox>) {
         var array = Array<KeysModel>()
         for key in keysArray {

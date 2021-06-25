@@ -435,7 +435,7 @@ final class ComposeViewModel: Modelable {
             selectedMenus.append(.mailEncryption)
         }
         
-        if email.destructDay?.isEmpty == false {
+        if email.destructDay?.isEmpty == false  {
             selectedMenus.append(.selfDesctructionTimer)
         }
         
