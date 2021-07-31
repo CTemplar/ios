@@ -34,6 +34,8 @@ public class InitializerController: UIViewController, HashingService, EmptyState
     public var onTapComposeWithDraft: ((AnswerMessageMode, EmailMessage, UserMyself, UIViewController?) -> Void)?
     public var onTapCompose: ((AnswerMessageMode, UserMyself, EmailMessage?, UIViewController?) -> Void)?
     public var onTapFAQ: ((UIViewController?) -> Void)?
+    public var onTapSubscriptions: ((UIViewController?) -> Void)?
+
     private var globalSearchCoordinator: GlobalSearchCoordinator?
     private var sideMenuResponse: (menu: InboxSideMenuController, content: UIViewController)?
     private var sideMenuVC: SideMenuController?
@@ -109,7 +111,10 @@ extension InitializerController {
             self.openSettings(withUser: user, presenter: presenter)
         }) { (presenter) in
             self.onTapFAQ?(presenter)
+        } onTapSubscriptions:  { (user, presenter) in
+            self.openSubscriptions(withUser: user, presenter: presenter)
         }
+            
         
         sideMenuVC = SideMenuController(contentViewController: sideMenuResponse?.content ?? UIViewController(),
                                                     menuViewController: sideMenuResponse?.menu ?? UIViewController())
@@ -126,7 +131,10 @@ extension InitializerController {
                                                               presenter: searchController)
         }
     }
-    
+    private func openSubscriptions(withUser user: UserMyself, presenter: UIViewController?) {
+        let settingsCoordinator = AppSubscriptionsCoordinator()
+        settingsCoordinator.showSubscriptions(withUser: user, presenter: presenter)
+    }
     private func openSettings(withUser user: UserMyself, presenter: UIViewController?) {
         let settingsCoordinator = AppSettingsCoordinator()
         settingsCoordinator.showSettings(withUser: user, presenter: presenter)

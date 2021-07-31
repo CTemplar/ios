@@ -21,9 +21,9 @@ public enum MessagesFoldersName: String, CaseIterable {
 public enum EndPoint: String {
     #if DEBUG
    // case baseUrl = "https://devapi.ctemplar.net/" // "https://devapi.ctemplar.net/" // "https://devapi.ctemplar.net/"
-    case baseUrl = "https://api.ctemplar.com/"
+    case baseUrl = "https://devapi.ctemplar.net/"//"https://api.ctemplar.com/"
     #else
-    case baseUrl = "https://api.ctemplar.com/"
+    case baseUrl = "https://devapi.ctemplar.net/"//"https://api.ctemplar.com/"
     #endif
     case signIn = "auth/sign-in/"
     case signUp = "auth/sign-up/"
@@ -55,8 +55,8 @@ public enum EndPoint: String {
     case mailboxKeys = "emails/mailbox-keys/"
     case setPrimaryKey = "emails/mailboxes-change-primary/"
     case filterList = "users/filters/"
+    case subscribePlan = "auth/mobile-upgrade/"
 }
-
 public enum JSONKey: String {
     case userName = "username"
     case password = "password"
@@ -137,8 +137,12 @@ public enum JSONKey: String {
     case keyType = "key_type"
     case idKey = "mailboxkey_id"
     case mailBox_Id = "mailbox_id"
-}
+    case customer_identifier = "customer_identifier"
+    case payment_identifier = "payment_identifier"
+    case payment_method = "payment_method"
+    case plan_type = "plan_type"
 
+}    
 public enum JSONKeysForFilter: String {
     case id = "id"
     case name = "name"

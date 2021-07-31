@@ -38,3 +38,20 @@ public struct NewKeyModel {
         self.mailboxID = mailboxID
     }
 }
+
+public struct PurchaseModel {
+    public var customer_identifier:String?
+    public var payment_identifier:String?
+    public var payment_method:String?
+    public var payment_type:String?
+    public var plan_type:String?
+
+    public init(customer_identifier: String, payment_identifier: String, payment_method: String, payment_type: String, plan_type: String) {
+        self.customer_identifier = customer_identifier
+        self.payment_method = payment_method
+        self.payment_identifier = payment_identifier
+        self.payment_type = payment_type
+        self.plan_type = plan_type
+    }
+    
+}

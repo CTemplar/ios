@@ -76,6 +76,64 @@
 		95EE9CB926334B44006FFA20 /* AliasCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EE9CB726334B44006FFA20 /* AliasCell.swift */; };
 		95EE9CBA26334B44006FFA20 /* AliasCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95EE9CB826334B44006FFA20 /* AliasCell.xib */; };
 		C0E0629D75FD8DF8CC6DC07F /* Pods_AppSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF5B97E24BE3B896EE7FC03A /* Pods_AppSettings.framework */; };
+		D426CA8E2691921500961323 /* plans.json in Resources */ = {isa = PBXBuildFile; fileRef = D426CA8D2691921500961323 /* plans.json */; };
+		D426CB682691B39D00961323 /* SKProduct+LocalizedPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB592691B39D00961323 /* SKProduct+LocalizedPrice.swift */; };
+		D426CB692691B39D00961323 /* InAppProductQueryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB5A2691B39D00961323 /* InAppProductQueryRequest.swift */; };
+		D426CB6A2691B39D00961323 /* InAppReceiptRefreshRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB5B2691B39D00961323 /* InAppReceiptRefreshRequest.swift */; };
+		D426CB6B2691B39D00961323 /* SwiftyStoreKit+Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB5C2691B39D00961323 /* SwiftyStoreKit+Types.swift */; };
+		D426CB6C2691B39D00961323 /* InAppReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB5D2691B39D00961323 /* InAppReceipt.swift */; };
+		D426CB6D2691B39D00961323 /* SwiftyStoreKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB5E2691B39D00961323 /* SwiftyStoreKit.swift */; };
+		D426CB6E2691B39D00961323 /* ProductsInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB5F2691B39D00961323 /* ProductsInfoController.swift */; };
+		D426CB6F2691B39D00961323 /* CompleteTransactionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB602691B39D00961323 /* CompleteTransactionsController.swift */; };
+		D426CB702691B39D00961323 /* PaymentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB612691B39D00961323 /* PaymentsController.swift */; };
+		D426CB712691B39D00961323 /* OS.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB622691B39D00961323 /* OS.swift */; };
+		D426CB722691B39D00961323 /* RestorePurchasesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB632691B39D00961323 /* RestorePurchasesController.swift */; };
+		D426CB732691B39D00961323 /* PaymentQueueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB642691B39D00961323 /* PaymentQueueController.swift */; };
+		D426CB742691B39D00961323 /* InAppReceiptVerificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB652691B39D00961323 /* InAppReceiptVerificator.swift */; };
+		D426CB752691B39D00961323 /* SKProductDiscount+LocalizedPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB662691B39D00961323 /* SKProductDiscount+LocalizedPrice.swift */; };
+		D426CB762691B39D00961323 /* AppleReceiptValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB672691B39D00961323 /* AppleReceiptValidator.swift */; };
+		D426CB852691B3AC00961323 /* Defaults+StringToBool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB782691B3AA00961323 /* Defaults+StringToBool.swift */; };
+		D426CB862691B3AC00961323 /* DefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB792691B3AA00961323 /* DefaultsKey.swift */; };
+		D426CB872691B3AC00961323 /* DefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB7A2691B3AA00961323 /* DefaultsKeys.swift */; };
+		D426CB882691B3AC00961323 /* DefaultsBridges.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB7B2691B3AA00961323 /* DefaultsBridges.swift */; };
+		D426CB892691B3AC00961323 /* Defaults+Subscripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB7C2691B3AB00961323 /* Defaults+Subscripts.swift */; };
+		D426CB8A2691B3AC00961323 /* BuiltIns.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB7D2691B3AB00961323 /* BuiltIns.swift */; };
+		D426CB8B2691B3AC00961323 /* DefaultsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB7E2691B3AB00961323 /* DefaultsAdapter.swift */; };
+		D426CB8C2691B3AC00961323 /* Defaults+Observing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB7F2691B3AB00961323 /* Defaults+Observing.swift */; };
+		D426CB8D2691B3AC00961323 /* DefaultsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB802691B3AB00961323 /* DefaultsObserver.swift */; };
+		D426CB8E2691B3AC00961323 /* PropertyWrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB812691B3AB00961323 /* PropertyWrappers.swift */; };
+		D426CB8F2691B3AC00961323 /* OptionalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB822691B3AB00961323 /* OptionalType.swift */; };
+		D426CB902691B3AC00961323 /* DefaultsSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB832691B3AB00961323 /* DefaultsSerializable.swift */; };
+		D426CB912691B3AC00961323 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CB842691B3AB00961323 /* Defaults.swift */; };
+		D426CB952691B98900961323 /* InApp.storekit in Resources */ = {isa = PBXBuildFile; fileRef = D426CB942691B98900961323 /* InApp.storekit */; };
+		D426CBE12691C3B600961323 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426CBE02691C3B500961323 /* IAPHelper.swift */; };
+		D43C630A269B671E00EDA4E4 /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C6309269B671D00EDA4E4 /* LoadingButton.swift */; };
+		D43C630C269B676300EDA4E4 /* DispatchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C630B269B676300EDA4E4 /* DispatchHelper.swift */; };
+		D43C630E269B678F00EDA4E4 /* UINavigationController+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C630D269B678F00EDA4E4 /* UINavigationController+Helper.swift */; };
+		D43C6310269B67B300EDA4E4 /* SubscribeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C630F269B67B300EDA4E4 /* SubscribeRouter.swift */; };
+		D43C6312269B681800EDA4E4 /* SubscribeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C6311269B681800EDA4E4 /* SubscribeConfigurator.swift */; };
+		D43C6314269B690B00EDA4E4 /* AppSubscriptionsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C6313269B690B00EDA4E4 /* AppSubscriptionsCoordinator.swift */; };
+		D43C6316269B69A100EDA4E4 /* SubscriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C6315269B69A000EDA4E4 /* SubscriptionPresenter.swift */; };
+		D43C631B269B6A8400EDA4E4 /* SubscribeController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C631A269B6A8400EDA4E4 /* SubscribeController+Ext.swift */; };
+		D4921E002690AFCC0009879B /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4921DEE2690AFC90009879B /* HeaderCell.swift */; };
+		D4921E012690AFCC0009879B /* FeatureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4921DEF2690AFC90009879B /* FeatureCell.xib */; };
+		D4921E022690AFCC0009879B /* MorePlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4921DF02690AFC90009879B /* MorePlanCell.swift */; };
+		D4921E032690AFCC0009879B /* HeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4921DF12690AFCA0009879B /* HeaderCell.xib */; };
+		D4921E042690AFCC0009879B /* SubscriptionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4921DF22690AFCA0009879B /* SubscriptionListController.swift */; };
+		D4921E052690AFCC0009879B /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4921DF32690AFCA0009879B /* AppFont.swift */; };
+		D4921E062690AFCC0009879B /* PurchaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4921DF42690AFCA0009879B /* PurchaseCell.swift */; };
+		D4921E072690AFCC0009879B /* MorePlanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4921DF52690AFCA0009879B /* MorePlanCell.xib */; };
+		D4921E082690AFCC0009879B /* PurchaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4921DF62690AFCB0009879B /* PurchaseCell.xib */; };
+		D4921E092690AFCC0009879B /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4921DF72690AFCB0009879B /* Plan.swift */; };
+		D4921E0A2690AFCC0009879B /* FeatureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4921DF82690AFCB0009879B /* FeatureCell.swift */; };
+		D4921E0B2690AFCD0009879B /* PlanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4921DF92690AFCB0009879B /* PlanCell.xib */; };
+		D4921E0C2690AFCD0009879B /* PackageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4921DFA2690AFCB0009879B /* PackageCell.swift */; };
+		D4921E0D2690AFCD0009879B /* SubscribeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4921DFB2690AFCC0009879B /* SubscribeController.swift */; };
+		D4921E0E2690AFCD0009879B /* SubscriptionDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4921DFC2690AFCC0009879B /* SubscriptionDetailController.swift */; };
+		D4921E0F2690AFCD0009879B /* PackageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4921DFD2690AFCC0009879B /* PackageCell.xib */; };
+		D4921E102690AFCD0009879B /* PlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4921DFE2690AFCC0009879B /* PlanCell.swift */; };
+		D4921E112690AFCD0009879B /* Subscription.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4921DFF2690AFCC0009879B /* Subscription.storyboard */; };
+		D4921E142690B1630009879B /* SubscribeNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4921E132690B1630009879B /* SubscribeNavigation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -150,6 +208,66 @@
 		959FA1FC265ABA5D009937D3 /* Filter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Filter.storyboard; sourceTree = "<group>"; };
 		95EE9CB726334B44006FFA20 /* AliasCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliasCell.swift; sourceTree = "<group>"; };
 		95EE9CB826334B44006FFA20 /* AliasCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AliasCell.xib; sourceTree = "<group>"; };
+		D426CA8D2691921500961323 /* plans.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = plans.json; sourceTree = "<group>"; };
+		D426CAAB2691A86600961323 /* SwiftyStoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyStoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D426CAAC2691A86600961323 /* SwiftyUserDefaults.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyUserDefaults.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D426CB592691B39D00961323 /* SKProduct+LocalizedPrice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKProduct+LocalizedPrice.swift"; sourceTree = "<group>"; };
+		D426CB5A2691B39D00961323 /* InAppProductQueryRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppProductQueryRequest.swift; sourceTree = "<group>"; };
+		D426CB5B2691B39D00961323 /* InAppReceiptRefreshRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppReceiptRefreshRequest.swift; sourceTree = "<group>"; };
+		D426CB5C2691B39D00961323 /* SwiftyStoreKit+Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftyStoreKit+Types.swift"; sourceTree = "<group>"; };
+		D426CB5D2691B39D00961323 /* InAppReceipt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppReceipt.swift; sourceTree = "<group>"; };
+		D426CB5E2691B39D00961323 /* SwiftyStoreKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyStoreKit.swift; sourceTree = "<group>"; };
+		D426CB5F2691B39D00961323 /* ProductsInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsInfoController.swift; sourceTree = "<group>"; };
+		D426CB602691B39D00961323 /* CompleteTransactionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteTransactionsController.swift; sourceTree = "<group>"; };
+		D426CB612691B39D00961323 /* PaymentsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentsController.swift; sourceTree = "<group>"; };
+		D426CB622691B39D00961323 /* OS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OS.swift; sourceTree = "<group>"; };
+		D426CB632691B39D00961323 /* RestorePurchasesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestorePurchasesController.swift; sourceTree = "<group>"; };
+		D426CB642691B39D00961323 /* PaymentQueueController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentQueueController.swift; sourceTree = "<group>"; };
+		D426CB652691B39D00961323 /* InAppReceiptVerificator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppReceiptVerificator.swift; sourceTree = "<group>"; };
+		D426CB662691B39D00961323 /* SKProductDiscount+LocalizedPrice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKProductDiscount+LocalizedPrice.swift"; sourceTree = "<group>"; };
+		D426CB672691B39D00961323 /* AppleReceiptValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleReceiptValidator.swift; sourceTree = "<group>"; };
+		D426CB782691B3AA00961323 /* Defaults+StringToBool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Defaults+StringToBool.swift"; sourceTree = "<group>"; };
+		D426CB792691B3AA00961323 /* DefaultsKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsKey.swift; sourceTree = "<group>"; };
+		D426CB7A2691B3AA00961323 /* DefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsKeys.swift; sourceTree = "<group>"; };
+		D426CB7B2691B3AA00961323 /* DefaultsBridges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsBridges.swift; sourceTree = "<group>"; };
+		D426CB7C2691B3AB00961323 /* Defaults+Subscripts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Defaults+Subscripts.swift"; sourceTree = "<group>"; };
+		D426CB7D2691B3AB00961323 /* BuiltIns.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuiltIns.swift; sourceTree = "<group>"; };
+		D426CB7E2691B3AB00961323 /* DefaultsAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsAdapter.swift; sourceTree = "<group>"; };
+		D426CB7F2691B3AB00961323 /* Defaults+Observing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Defaults+Observing.swift"; sourceTree = "<group>"; };
+		D426CB802691B3AB00961323 /* DefaultsObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsObserver.swift; sourceTree = "<group>"; };
+		D426CB812691B3AB00961323 /* PropertyWrappers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyWrappers.swift; sourceTree = "<group>"; };
+		D426CB822691B3AB00961323 /* OptionalType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalType.swift; sourceTree = "<group>"; };
+		D426CB832691B3AB00961323 /* DefaultsSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsSerializable.swift; sourceTree = "<group>"; };
+		D426CB842691B3AB00961323 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		D426CB942691B98900961323 /* InApp.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = InApp.storekit; sourceTree = "<group>"; };
+		D426CBE02691C3B500961323 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		D43C6309269B671D00EDA4E4 /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
+		D43C630B269B676300EDA4E4 /* DispatchHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchHelper.swift; sourceTree = "<group>"; };
+		D43C630D269B678F00EDA4E4 /* UINavigationController+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Helper.swift"; sourceTree = "<group>"; };
+		D43C630F269B67B300EDA4E4 /* SubscribeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeRouter.swift; sourceTree = "<group>"; };
+		D43C6311269B681800EDA4E4 /* SubscribeConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeConfigurator.swift; sourceTree = "<group>"; };
+		D43C6313269B690B00EDA4E4 /* AppSubscriptionsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSubscriptionsCoordinator.swift; sourceTree = "<group>"; };
+		D43C6315269B69A000EDA4E4 /* SubscriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPresenter.swift; sourceTree = "<group>"; };
+		D43C631A269B6A8400EDA4E4 /* SubscribeController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubscribeController+Ext.swift"; sourceTree = "<group>"; };
+		D4921DEE2690AFC90009879B /* HeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
+		D4921DEF2690AFC90009879B /* FeatureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeatureCell.xib; sourceTree = "<group>"; };
+		D4921DF02690AFC90009879B /* MorePlanCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorePlanCell.swift; sourceTree = "<group>"; };
+		D4921DF12690AFCA0009879B /* HeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderCell.xib; sourceTree = "<group>"; };
+		D4921DF22690AFCA0009879B /* SubscriptionListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionListController.swift; sourceTree = "<group>"; };
+		D4921DF32690AFCA0009879B /* AppFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
+		D4921DF42690AFCA0009879B /* PurchaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseCell.swift; sourceTree = "<group>"; };
+		D4921DF52690AFCA0009879B /* MorePlanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MorePlanCell.xib; sourceTree = "<group>"; };
+		D4921DF62690AFCB0009879B /* PurchaseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PurchaseCell.xib; sourceTree = "<group>"; };
+		D4921DF72690AFCB0009879B /* Plan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
+		D4921DF82690AFCB0009879B /* FeatureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureCell.swift; sourceTree = "<group>"; };
+		D4921DF92690AFCB0009879B /* PlanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlanCell.xib; sourceTree = "<group>"; };
+		D4921DFA2690AFCB0009879B /* PackageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PackageCell.swift; sourceTree = "<group>"; };
+		D4921DFB2690AFCC0009879B /* SubscribeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeController.swift; sourceTree = "<group>"; };
+		D4921DFC2690AFCC0009879B /* SubscriptionDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionDetailController.swift; sourceTree = "<group>"; };
+		D4921DFD2690AFCC0009879B /* PackageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PackageCell.xib; sourceTree = "<group>"; };
+		D4921DFE2690AFCC0009879B /* PlanCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanCell.swift; sourceTree = "<group>"; };
+		D4921DFF2690AFCC0009879B /* Subscription.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Subscription.storyboard; sourceTree = "<group>"; };
+		D4921E132690B1630009879B /* SubscribeNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeNavigation.swift; sourceTree = "<group>"; };
 		DBF25F08A8E1FEB6AF295B68 /* Pods-AppSettings.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSettings.release.xcconfig"; path = "Target Support Files/Pods-AppSettings/Pods-AppSettings.release.xcconfig"; sourceTree = "<group>"; };
 		FF5B97E24BE3B896EE7FC03A /* Pods_AppSettings.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSettings.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -378,6 +496,7 @@
 				443DD3F924CDCC0A00771AE5 /* ViewControllers */,
 				443DD3F824CDCBCF00771AE5 /* Views */,
 				443DD3F124CDCB2400771AE5 /* Storyboards */,
+				D4921DED2690AFB70009879B /* Subscribe */,
 				443DD42124CEE31C00771AE5 /* SubModules */,
 				443DD3DF24CDCAF600771AE5 /* AppSettings.h */,
 				443DD3E024CDCAF600771AE5 /* Info.plist */,
@@ -422,6 +541,8 @@
 		443DD3FF24CDCC7000771AE5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D426CAAB2691A86600961323 /* SwiftyStoreKit.framework */,
+				D426CAAC2691A86600961323 /* SwiftyUserDefaults.framework */,
 				443DD41D24CEC04600771AE5 /* Networking.framework */,
 				443DD41924CEBF1800771AE5 /* Inbox.framework */,
 				443DD40024CDCC7000771AE5 /* Utility.framework */,
@@ -617,6 +738,119 @@
 			path = ../../Pods;
 			sourceTree = "<group>";
 		};
+		D426CB582691B39D00961323 /* SwiftyStoreKit */ = {
+			isa = PBXGroup;
+			children = (
+				D426CB592691B39D00961323 /* SKProduct+LocalizedPrice.swift */,
+				D426CB5A2691B39D00961323 /* InAppProductQueryRequest.swift */,
+				D426CB5B2691B39D00961323 /* InAppReceiptRefreshRequest.swift */,
+				D426CB5C2691B39D00961323 /* SwiftyStoreKit+Types.swift */,
+				D426CB5D2691B39D00961323 /* InAppReceipt.swift */,
+				D426CB5E2691B39D00961323 /* SwiftyStoreKit.swift */,
+				D426CB5F2691B39D00961323 /* ProductsInfoController.swift */,
+				D426CB602691B39D00961323 /* CompleteTransactionsController.swift */,
+				D426CB612691B39D00961323 /* PaymentsController.swift */,
+				D426CB622691B39D00961323 /* OS.swift */,
+				D426CB632691B39D00961323 /* RestorePurchasesController.swift */,
+				D426CB642691B39D00961323 /* PaymentQueueController.swift */,
+				D426CB652691B39D00961323 /* InAppReceiptVerificator.swift */,
+				D426CB662691B39D00961323 /* SKProductDiscount+LocalizedPrice.swift */,
+				D426CB672691B39D00961323 /* AppleReceiptValidator.swift */,
+			);
+			path = SwiftyStoreKit;
+			sourceTree = "<group>";
+		};
+		D426CB772691B3AA00961323 /* SwiftyUserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				D426CB782691B3AA00961323 /* Defaults+StringToBool.swift */,
+				D426CB792691B3AA00961323 /* DefaultsKey.swift */,
+				D426CB7A2691B3AA00961323 /* DefaultsKeys.swift */,
+				D426CB7B2691B3AA00961323 /* DefaultsBridges.swift */,
+				D426CB7C2691B3AB00961323 /* Defaults+Subscripts.swift */,
+				D426CB7D2691B3AB00961323 /* BuiltIns.swift */,
+				D426CB7E2691B3AB00961323 /* DefaultsAdapter.swift */,
+				D426CB7F2691B3AB00961323 /* Defaults+Observing.swift */,
+				D426CB802691B3AB00961323 /* DefaultsObserver.swift */,
+				D426CB812691B3AB00961323 /* PropertyWrappers.swift */,
+				D426CB822691B3AB00961323 /* OptionalType.swift */,
+				D426CB832691B3AB00961323 /* DefaultsSerializable.swift */,
+				D426CB842691B3AB00961323 /* Defaults.swift */,
+			);
+			path = SwiftyUserDefaults;
+			sourceTree = "<group>";
+		};
+		D43C6317269B69DC00EDA4E4 /* SubscriptionHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				D4921DF32690AFCA0009879B /* AppFont.swift */,
+				D426CBE02691C3B500961323 /* IAPHelper.swift */,
+				D43C630D269B678F00EDA4E4 /* UINavigationController+Helper.swift */,
+				D43C630B269B676300EDA4E4 /* DispatchHelper.swift */,
+				D43C6309269B671D00EDA4E4 /* LoadingButton.swift */,
+				D426CB942691B98900961323 /* InApp.storekit */,
+			);
+			path = SubscriptionHelpers;
+			sourceTree = "<group>";
+		};
+		D43C6318269B69F500EDA4E4 /* SubscriptionsController */ = {
+			isa = PBXGroup;
+			children = (
+				D4921DF22690AFCA0009879B /* SubscriptionListController.swift */,
+				D43C6311269B681800EDA4E4 /* SubscribeConfigurator.swift */,
+				D43C6315269B69A000EDA4E4 /* SubscriptionPresenter.swift */,
+				D43C6313269B690B00EDA4E4 /* AppSubscriptionsCoordinator.swift */,
+				D43C630F269B67B300EDA4E4 /* SubscribeRouter.swift */,
+			);
+			path = SubscriptionsController;
+			sourceTree = "<group>";
+		};
+		D43C6319269B6A1A00EDA4E4 /* SubscriptionDetails */ = {
+			isa = PBXGroup;
+			children = (
+				D4921E132690B1630009879B /* SubscribeNavigation.swift */,
+				D4921DFB2690AFCC0009879B /* SubscribeController.swift */,
+				D43C631A269B6A8400EDA4E4 /* SubscribeController+Ext.swift */,
+				D4921DFC2690AFCC0009879B /* SubscriptionDetailController.swift */,
+			);
+			path = SubscriptionDetails;
+			sourceTree = "<group>";
+		};
+		D4921DED2690AFB70009879B /* Subscribe */ = {
+			isa = PBXGroup;
+			children = (
+				D43C6317269B69DC00EDA4E4 /* SubscriptionHelpers */,
+				D4921E122690AFD30009879B /* SubscriptionCells */,
+				D4921DFF2690AFCC0009879B /* Subscription.storyboard */,
+				D43C6319269B6A1A00EDA4E4 /* SubscriptionDetails */,
+				D43C6318269B69F500EDA4E4 /* SubscriptionsController */,
+				D426CB772691B3AA00961323 /* SwiftyUserDefaults */,
+				D426CB582691B39D00961323 /* SwiftyStoreKit */,
+				D426CA8D2691921500961323 /* plans.json */,
+			);
+			path = Subscribe;
+			sourceTree = "<group>";
+		};
+		D4921E122690AFD30009879B /* SubscriptionCells */ = {
+			isa = PBXGroup;
+			children = (
+				D4921DF82690AFCB0009879B /* FeatureCell.swift */,
+				D4921DEF2690AFC90009879B /* FeatureCell.xib */,
+				D4921DEE2690AFC90009879B /* HeaderCell.swift */,
+				D4921DF12690AFCA0009879B /* HeaderCell.xib */,
+				D4921DF02690AFC90009879B /* MorePlanCell.swift */,
+				D4921DF52690AFCA0009879B /* MorePlanCell.xib */,
+				D4921DFA2690AFCB0009879B /* PackageCell.swift */,
+				D4921DFD2690AFCC0009879B /* PackageCell.xib */,
+				D4921DF72690AFCB0009879B /* Plan.swift */,
+				D4921DFE2690AFCC0009879B /* PlanCell.swift */,
+				D4921DF92690AFCB0009879B /* PlanCell.xib */,
+				D4921DF42690AFCA0009879B /* PurchaseCell.swift */,
+				D4921DF62690AFCB0009879B /* PurchaseCell.xib */,
+			);
+			path = SubscriptionCells;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -694,14 +928,23 @@
 				443DD43324CEE38700771AE5 /* Dashboard.storyboard in Resources */,
 				443926B724D056C300112A09 /* WhiteBlackLists.storyboard in Resources */,
 				441778AF24D32CD6000F56B9 /* PGPKey.storyboard in Resources */,
+				D4921E0F2690AFCD0009879B /* PackageCell.xib in Resources */,
+				D4921E112690AFCD0009879B /* Subscription.storyboard in Resources */,
 				95EE9CBA26334B44006FFA20 /* AliasCell.xib in Resources */,
+				D426CB952691B98900961323 /* InApp.storekit in Resources */,
+				D4921E072690AFCC0009879B /* MorePlanCell.xib in Resources */,
+				D4921E082690AFCC0009879B /* PurchaseCell.xib in Resources */,
 				957784542663A68500749FDD /* FilterSwitchCell.xib in Resources */,
 				443926C124D0572D00112A09 /* ContactTableViewCell.xib in Resources */,
 				9577846B2663D0D000749FDD /* FilterCell.xib in Resources */,
 				4417771624D2B322000F56B9 /* Signature.storyboard in Resources */,
 				957784582663A6D300749FDD /* FilterTextfieldCell.xib in Resources */,
+				D4921E032690AFCC0009879B /* HeaderCell.xib in Resources */,
+				D4921E012690AFCC0009879B /* FeatureCell.xib in Resources */,
+				D4921E0B2690AFCD0009879B /* PlanCell.xib in Resources */,
 				952802F82631A79300B92E12 /* Alias.storyboard in Resources */,
 				443926C624D0648600112A09 /* SelectLanguage.storyboard in Resources */,
+				D426CA8E2691921500961323 /* plans.json in Resources */,
 				443DD3F324CDCB3900771AE5 /* AppSettings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -738,55 +981,104 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4921E102690AFCD0009879B /* PlanCell.swift in Sources */,
 				441778BC24D3FBB5000F56B9 /* PGPKeysPresenter.swift in Sources */,
+				D426CB702691B39D00961323 /* PaymentsController.swift in Sources */,
 				443DD3FB24CDCC1E00771AE5 /* AppSettingsController.swift in Sources */,
 				443DD43024CEE38700771AE5 /* DashboardConfigurator.swift in Sources */,
 				957784562663A68F00749FDD /* FilterSwitchCell.swift in Sources */,
+				D4921E092690AFCC0009879B /* Plan.swift in Sources */,
 				443926E124D163C700112A09 /* AppSettingsConfigurator.swift in Sources */,
 				441778BE24D40046000F56B9 /* PGPKeysInteractor.swift in Sources */,
 				443926C724D0648600112A09 /* SelectLanguageViewController.swift in Sources */,
+				D426CB752691B39D00961323 /* SKProductDiscount+LocalizedPrice.swift in Sources */,
+				D43C6316269B69A100EDA4E4 /* SubscriptionPresenter.swift in Sources */,
+				D43C6314269B690B00EDA4E4 /* AppSubscriptionsCoordinator.swift in Sources */,
+				D4921E0A2690AFCC0009879B /* FeatureCell.swift in Sources */,
+				D426CB6B2691B39D00961323 /* SwiftyStoreKit+Types.swift in Sources */,
 				9577845A2663A6DA00749FDD /* FilterTextfieldCell.swift in Sources */,
+				D426CB902691B3AC00961323 /* DefaultsSerializable.swift in Sources */,
 				443926DC24D140E700112A09 /* EncryptionController.swift in Sources */,
 				959FA1F6265A77C3009937D3 /* AliasKeyInteractor.swift in Sources */,
+				D4921E142690B1630009879B /* SubscribeNavigation.swift in Sources */,
 				9577846D2663D8E700749FDD /* AddFilterPresenter.swift in Sources */,
 				9577846A2663D0D000749FDD /* FilterCell.swift in Sources */,
 				4417771A24D2B489000F56B9 /* SignatureViewController.swift in Sources */,
 				4461776C2507977E0088F138 /* AppSettingsSwitchCell.swift in Sources */,
 				4461776E2509059A0088F138 /* AppSettingsSwitchModel.swift in Sources */,
+				D43C630C269B676300EDA4E4 /* DispatchHelper.swift in Sources */,
 				443DD40924CEA61100771AE5 /* BaseAppSettingsCell.swift in Sources */,
 				443DD41824CEBD2900771AE5 /* AppSettingsRouter.swift in Sources */,
 				443926C224D0572D00112A09 /* ContactTableViewCell.swift in Sources */,
+				D43C630A269B671E00EDA4E4 /* LoadingButton.swift in Sources */,
+				D426CB912691B3AC00961323 /* Defaults.swift in Sources */,
+				D426CB882691B3AC00961323 /* DefaultsBridges.swift in Sources */,
 				9577846F2663D8FC00749FDD /* AddFilterInteractor.swift in Sources */,
+				D43C630E269B678F00EDA4E4 /* UINavigationController+Helper.swift in Sources */,
 				443926E524D1658900112A09 /* AppSettingsPresenter.swift in Sources */,
+				D426CB6E2691B39D00961323 /* ProductsInfoController.swift in Sources */,
 				95930C89265185AE00AC7048 /* FingerprintCell.swift in Sources */,
+				D426CB8D2691B3AC00961323 /* DefaultsObserver.swift in Sources */,
+				D426CB712691B39D00961323 /* OS.swift in Sources */,
 				95930C8B265191CB00AC7048 /* AliasKeysVC.swift in Sources */,
 				95EE9CB926334B44006FFA20 /* AliasCell.swift in Sources */,
+				D43C6312269B681800EDA4E4 /* SubscribeConfigurator.swift in Sources */,
 				443926BB24D056C300112A09 /* WhiteBlackListsPresenter.swift in Sources */,
+				D4921E052690AFCC0009879B /* AppFont.swift in Sources */,
+				D426CB8A2691B3AC00961323 /* BuiltIns.swift in Sources */,
 				952802FE2631E87A00B92E12 /* AliasInteractor.swift in Sources */,
+				D43C631B269B6A8400EDA4E4 /* SubscribeController+Ext.swift in Sources */,
+				D426CB862691B3AC00961323 /* DefaultsKey.swift in Sources */,
 				443DD40724CDD69100771AE5 /* AppSettingsDatasource.swift in Sources */,
+				D426CB892691B3AC00961323 /* Defaults+Subscripts.swift in Sources */,
 				443926BC24D056C300112A09 /* WhiteBlackListsViewController.swift in Sources */,
+				D426CB6D2691B39D00961323 /* SwiftyStoreKit.swift in Sources */,
 				443DD43224CEE38700771AE5 /* DashboardDataSource.swift in Sources */,
+				D426CB8F2691B3AC00961323 /* OptionalType.swift in Sources */,
 				443DD3FE24CDCC3F00771AE5 /* Constants.swift in Sources */,
 				443DD40D24CEA6C100771AE5 /* AppSettingsStorageCell.swift in Sources */,
+				D426CB6F2691B39D00961323 /* CompleteTransactionsController.swift in Sources */,
+				D426CB8E2691B3AC00961323 /* PropertyWrappers.swift in Sources */,
+				D426CB6C2691B39D00961323 /* InAppReceipt.swift in Sources */,
 				443926DE24D1427200112A09 /* EncryptionInteractor.swift in Sources */,
 				9577845F2663BC4500749FDD /* FilterVC.swift in Sources */,
+				D426CB6A2691B39D00961323 /* InAppReceiptRefreshRequest.swift in Sources */,
 				443DD43124CEE38700771AE5 /* DashboardTableViewController.swift in Sources */,
 				95930C86265118DB00AC7048 /* AddNewKeyModal.swift in Sources */,
 				443926BA24D056C300112A09 /* WhiteBlackListsConfigurator.swift in Sources */,
+				D426CBE12691C3B600961323 /* IAPHelper.swift in Sources */,
+				D4921E022690AFCC0009879B /* MorePlanCell.swift in Sources */,
 				957784612663BC5500749FDD /* AddFilterVC.swift in Sources */,
+				D4921E062690AFCC0009879B /* PurchaseCell.swift in Sources */,
+				D4921E002690AFCC0009879B /* HeaderCell.swift in Sources */,
+				D426CB682691B39D00961323 /* SKProduct+LocalizedPrice.swift in Sources */,
+				D4921E0D2690AFCD0009879B /* SubscribeController.swift in Sources */,
 				957784632663BE5B00749FDD /* FilterPresenter.swift in Sources */,
+				D426CB8B2691B3AC00961323 /* DefaultsAdapter.swift in Sources */,
+				D426CB732691B39D00961323 /* PaymentQueueController.swift in Sources */,
 				443926B824D056C300112A09 /* WhiteBlackListsDataSource.swift in Sources */,
+				D426CB852691B3AC00961323 /* Defaults+StringToBool.swift in Sources */,
+				D426CB742691B39D00961323 /* InAppReceiptVerificator.swift in Sources */,
+				D426CB692691B39D00961323 /* InAppProductQueryRequest.swift in Sources */,
+				D4921E042690AFCC0009879B /* SubscriptionListController.swift in Sources */,
 				443926B924D056C300112A09 /* WhiteBlackListsInteractor.swift in Sources */,
+				D426CB872691B3AC00961323 /* DefaultsKeys.swift in Sources */,
 				443926DA24D13B6500112A09 /* EncryptionDatasource.swift in Sources */,
+				D426CB8C2691B3AC00961323 /* Defaults+Observing.swift in Sources */,
 				443926D024D1382200112A09 /* EncryptionCell.swift in Sources */,
 				957784652663BE6E00749FDD /* FilterInteractor.swift in Sources */,
+				D426CB722691B39D00961323 /* RestorePurchasesController.swift in Sources */,
 				9577845D2663AAD000749FDD /* FilterDataModel.swift in Sources */,
 				441778B924D3F5EC000F56B9 /* PGPKeysViewController.swift in Sources */,
 				443926E324D1642B00112A09 /* AppSettingsCoordinator.swift in Sources */,
+				D4921E0E2690AFCD0009879B /* SubscriptionDetailController.swift in Sources */,
+				D4921E0C2690AFCD0009879B /* PackageCell.swift in Sources */,
 				443926D324D1392B00112A09 /* Encryption.swift in Sources */,
 				952803012631E92900B92E12 /* AliasPresenter.swift in Sources */,
 				952802F22631A6CA00B92E12 /* AliasController.swift in Sources */,
+				D43C6310269B67B300EDA4E4 /* SubscribeRouter.swift in Sources */,
 				443DD40B24CEA69100771AE5 /* AppSettingsModel.swift in Sources */,
+				D426CB762691B39D00961323 /* AppleReceiptValidator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -926,6 +1218,15 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MDFInternationalization\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MaterialComponents\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MotionAnimator\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MotionInterchange\"",
+					"\"${PODS_ROOT}/ObjectivePGP/Frameworks\"",
+					"\"${PODS_XCFRAMEWORKS_BUILD_DIR}/ObjectivePGP\"",
+				);
 				INFOPLIST_FILE = AppSettings/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -955,6 +1256,15 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MDFInternationalization\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MaterialComponents\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MotionAnimator\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MotionInterchange\"",
+					"\"${PODS_ROOT}/ObjectivePGP/Frameworks\"",
+					"\"${PODS_XCFRAMEWORKS_BUILD_DIR}/ObjectivePGP\"",
+				);
 				INFOPLIST_FILE = AppSettings/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

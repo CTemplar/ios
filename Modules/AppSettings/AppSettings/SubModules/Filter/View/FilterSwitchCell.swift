@@ -2,6 +2,7 @@
 //  FilterSwitchCell.swift
 //
 
+
 import UIKit
 
 class FilterSwitchCell: UITableViewCell {

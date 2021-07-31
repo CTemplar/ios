@@ -26,6 +26,7 @@ public final class InboxSideMenuController: UIViewController {
     public var onTapManageFolders: (([Folder], UserMyself) -> Void)?
     public var onTapFAQ: (() -> Void)?
     public var onTapMoveTo: ()
+    public var onTapSubscriptions: ((UserMyself) -> Void)?
 
     // MARK: IBOutlets
     @IBOutlet weak var inboxSideMenuTableView: UITableView!
@@ -58,7 +59,7 @@ public final class InboxSideMenuController: UIViewController {
                                 onTapContacts: onTapContacts,
                                 onTapSettings: onTapSettings,
                                 onTapManageFolders: onTapManageFolders,
-                                onTapFAQ: onTapFAQ
+                                onTapFAQ: onTapFAQ, onTapSubscriptions: onTapSubscriptions
         )
         dataSource?.setup(parent: self)
         dataSource?.setup(tableView: inboxSideMenuTableView)
@@ -112,11 +113,12 @@ public final class InboxSideMenuController: UIViewController {
     public func setup(onTapContacts: (([Contact], UserMyself) -> Void)?,
                onTapSettings: ((UserMyself) -> Void)?,
                onTapManageFolders: (([Folder], UserMyself) -> Void)?,
-               onTapFAQ: (() -> Void)?) {
+               onTapFAQ: (() -> Void)?,onTapSubscriptions: ((UserMyself) -> Void)?) {
         self.onTapContacts = onTapContacts
         self.onTapSettings = onTapSettings
         self.onTapManageFolders = onTapManageFolders
         self.onTapFAQ = onTapFAQ
+        self.onTapSubscriptions = onTapSubscriptions
     }
     
     // MARK: - Observers
@@ -180,5 +182,9 @@ public final class InboxSideMenuController: UIViewController {
                 }
             }
         }
+    }
+    
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        self.inboxSideMenuTableView.reloadData()
     }
 }

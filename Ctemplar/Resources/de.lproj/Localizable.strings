@@ -225,6 +225,8 @@
 "allMails" = "Alle E-Mails";
 "contacts" = "Kontakte";
 "settings" = "Einstellungen";
+"subscriptions" = "Abonnements";
+
 "help" = "Hilfe";
 "FAQ" = "FAQ";
 "logout" = "Abmelden";

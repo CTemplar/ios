@@ -14,7 +14,8 @@ public class InboxCoordinator {
                           onTapViewInbox: ((EmailMessage?, UserMyself?, ViewInboxEmailDelegate?, UIViewController?) -> Void)?,
                           onTapContacts: (([Contact], UserMyself, UIViewController?) -> Void)?,
                           onTapSettings: ((UserMyself, UIViewController?) -> Void)?,
-                          onTapFAQ: ((UIViewController?) -> Void)?) -> (menu: InboxSideMenuController, content: UIViewController) {
+                          onTapFAQ: ((UIViewController?) -> Void)?,
+                          onTapSubscriptions: ((UserMyself, UIViewController?) -> Void)?) -> (menu: InboxSideMenuController, content: UIViewController) {
         
         SharedInboxState.shared.update(menu: Menu.inbox)
         
@@ -49,7 +50,9 @@ public class InboxCoordinator {
         leftMenuController.onTapFAQ = {
             onTapFAQ?(leftMenuController)
         }
-        
+        leftMenuController.onTapSubscriptions = { (user) in
+            onTapSubscriptions?(user, leftMenuController)
+        }
         inboxViewController.onTapMoveTo = { [weak self] (delegate, ids, user, presenter) in
             self?.showMoveToController(withMoveToDelegate: delegate,
                                        selectedMessageIds: ids,

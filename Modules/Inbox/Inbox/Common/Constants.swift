@@ -108,6 +108,7 @@ public enum Menu: String, MenuConfigurable {
     enum Preferences: String, CaseIterable {
         case contacts = "contacts"
         case settings = "settings"
+        case subscriptions = "subscriptions"
         case help = "help"
         case FAQ = "FAQ"
         case logout = "logout"
@@ -124,6 +125,9 @@ public enum Menu: String, MenuConfigurable {
                 return #imageLiteral(resourceName: "darkFAQ")
             case .logout:
                 return #imageLiteral(resourceName: "darkLogout")
+            case .subscriptions:
+                guard let img = UIImage(systemName: "hand.tap") else { return UIImage(named: "subscribe")! }
+                return img
             }
         }
         
@@ -139,6 +143,8 @@ public enum Menu: String, MenuConfigurable {
                 return Strings.Menu.FAQ.localized
             case .logout:
                 return Strings.Menu.logout.localized
+            case .subscriptions:
+                return Strings.Menu.subscriptions.localized.capitalized
             }
         }
     }
@@ -224,4 +230,37 @@ public enum MoreAction: CaseIterable {
             return Strings.Button.cancelButton.localized
         }
     }
+}
+extension UIImage {
+
+    func maskWithColor(color: UIColor) -> UIImage? {
+        let maskImage = cgImage!
+
+        let width = size.width
+        let height = size.height
+        let bounds = CGRect(x: 0, y: 0, width: width, height: height)
+
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
+        let context = CGContext(data: nil, width: Int(width), height: Int(height), bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)!
+
+        context.clip(to: bounds, mask: maskImage)
+        context.setFillColor(color.cgColor)
+        context.fill(bounds)
+
+        if let cgImage = context.makeImage() {
+            let coloredImage = UIImage(cgImage: cgImage)
+            return coloredImage
+        } else {
+            return nil
+        }
+    }
+
+}
+extension UIImageView {
+  func setImageColor(color: UIColor) {
+    let templateImage = self.image?.withRenderingMode(.alwaysTemplate)
+    self.image = templateImage
+    self.tintColor = color
+  }
 }

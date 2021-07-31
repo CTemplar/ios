@@ -8,6 +8,8 @@ extension InboxSideMenuDataSource {
             return
         }
         
+        
+        
         SharedInboxState.shared.update(menu: menu)
         SharedInboxState.shared.update(preferences: nil)
         

@@ -212,8 +212,15 @@ public final class InboxSideMenuInteractor {
             openSupportURL()
         case .logout:
             viewController?.presenter?.logOut()
+        case .subscriptions:
+            viewController?.router?.showSubscriptions(withUser: user)
         }
     }
+    
+    func openSubscriptions(){
+        print("tap Tapped")
+    }
+    
     
     func onTapCustomFolder(with folderName: String) {
         let formattedFolderName = formatFolderNameLikeUrl(folderName: folderName)

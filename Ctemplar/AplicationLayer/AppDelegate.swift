@@ -22,7 +22,7 @@ import Combine
 import IQKeyboardManagerSwift
 import EMAlertController
 import Sentry
-
+import AppSettings
 
 typealias AppResult<T> = Result<T, Error>
 typealias Completion<T> = (AppResult<T>) -> Void
@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UtilityManager.shared.keychainService.deleteUserCredentialsAndToken()
             UserDefaults.standard.set(true, forKey: "IsFirst")
         }
+   
         
         UserDefaults.standard.setValue(false, forKey:"_UIConstraintBasedLayoutLogUnsatisfiable")
         
@@ -48,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                options.debug = true // Enabled debug when first installing is always helpful
            }
         
+ 
         
         
         UtilityManager.shared.setupReachability()
@@ -77,6 +79,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         registerForPushNotifications()
         
+        registerForInAPP()
+        
         application.applicationIconBadgeNumber = 0
         
         NotificationCenter.default.addObserver(self, selector: #selector(onCompleteLogout),
@@ -104,6 +108,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.triggerBiometric()
         }
         return true
+    }
+
+    func registerForInAPP(){
+        SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
+            for purchase in purchases {
+                switch purchase.transaction.transactionState {
+                case .purchased, .restored:
+                    if purchase.needsFinishTransaction {
+                        // Deliver content from server, then:
+                        SwiftyStoreKit.finishTransaction(purchase.transaction)
+                    }
+                // Unlock content
+                case .failed, .purchasing, .deferred:
+                    break // do nothing
+                @unknown default:
+                    break
+                }
+            }
+        }
     }
     
     private func triggerBiometric () {

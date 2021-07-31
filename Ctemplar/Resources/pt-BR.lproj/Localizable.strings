@@ -302,6 +302,8 @@
 "goToWebVersion" = "IR PARA A VERSÃO WEB";
 "changePasswordNotAvailableMessage" = "Atualmente esta funcionalidade está em desenvolvimento no iOS. Para mudar a sua palavra-passe, por favor use a App em Android ou visite a nossa aplicação na Web";
 "settings" = "Definições";
+"subscriptions" = "assinaturas";
+
 // White/Black List
 "whiteListText" = "As mensagens dos contactos que estejam na lista branca irão aparecer sempre na caixa de entrada. Marcar uma mensagem como não sendo spam, adiciona o endereço que a enviou à lista branca";
 "blackListText" = "As mensagens dos contactos que estejam na lista negra vão sempre para a pasta de Spam. Marcar uma mensagem como spam adiciona o endereço que a enviou à lista negra";

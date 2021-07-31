@@ -83,6 +83,10 @@ public struct Settings: Hashable {
         self.blockExternalImage = dictionary["is_disable_loading_images"] as? Bool
     }
     
+    public mutating func update(plan: String) {
+        self.planType = plan
+    }
+    
     mutating func update(contactsEncrypted: Bool) {
         self.isContactsEncrypted = contactsEncrypted
     }

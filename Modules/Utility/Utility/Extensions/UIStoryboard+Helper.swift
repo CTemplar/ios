@@ -20,6 +20,7 @@ public extension UIStoryboard {
         case FAQ = "FAQ"
         case dashboard = "Dashboard"
         case settings = "AppSettings"
+        case subscribe = "Subscription"
         case whiteBlackLists = "WhiteBlackLists"
         case language = "SelectLanguage"
         case encryption = "Encryption"
@@ -120,6 +121,8 @@ public extension UIStoryboard.Storyboard {
             return (bundlename: "Compose.SchedulerViewController", storyboardId: "SchedulerViewController")
         case .filter:
             return (bundlename: "Filter.FilterVC", storyboardId: "FilterVC")
+        case .subscribe:
+            return (bundlename: "AppSettings.SubscriptionListController", storyboardId: "SubscriptionListController")
         }
         
     }

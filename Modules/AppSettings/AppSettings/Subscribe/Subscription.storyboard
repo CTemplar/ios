@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qiA-u1-4jc">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Subscription-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="SubscriptionListController" id="Y6W-OH-hqX" customClass="SubscriptionListController" customModule="AppSettings" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RLe-nl-Vwc">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="RLe-nl-Vwc" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="Szs-1G-pnR"/>
+                            <constraint firstAttribute="bottom" secondItem="RLe-nl-Vwc" secondAttribute="bottom" id="YVD-Ey-3aZ"/>
+                            <constraint firstItem="RLe-nl-Vwc" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="bWh-Lb-C15"/>
+                            <constraint firstAttribute="trailing" secondItem="RLe-nl-Vwc" secondAttribute="trailing" id="mJ8-S1-elI"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Subscription" id="O8g-Gs-W2z" customClass="UILocalizedUINavigationItem" customModule="Utility"/>
+                    <connections>
+                        <outlet property="subscriptionTable" destination="RLe-nl-Vwc" id="9ZT-lL-Hba"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="88" y="35"/>
+        </scene>
+        <!--Subscribe Controller-->
+        <scene sceneID="3Ai-2I-fh0">
+            <objects>
+                <viewController storyboardIdentifier="SubscribeController" id="71g-fU-F1s" customClass="SubscribeController" customModule="AppSettings" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1i5-Nb-7EG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EWI-fd-qhL">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Vpc-0b-WWf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Vpc-0b-WWf" firstAttribute="trailing" secondItem="EWI-fd-qhL" secondAttribute="trailing" id="BCI-mn-bLK"/>
+                            <constraint firstAttribute="bottom" secondItem="EWI-fd-qhL" secondAttribute="bottom" id="SQK-Pp-yQq"/>
+                            <constraint firstItem="EWI-fd-qhL" firstAttribute="leading" secondItem="Vpc-0b-WWf" secondAttribute="leading" id="soR-w1-STl"/>
+                            <constraint firstItem="EWI-fd-qhL" firstAttribute="top" secondItem="1i5-Nb-7EG" secondAttribute="top" id="tfr-ey-y2K"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="subscribeTable" destination="EWI-fd-qhL" id="IGw-6p-F0M"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XFK-tJ-UuF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2666.666666666667" y="61.607142857142854"/>
+        </scene>
+        <!--Subscription Detail Controller-->
+        <scene sceneID="I6S-08-u2N">
+            <objects>
+                <viewController storyboardIdentifier="SubscriptionDetailController" id="2IF-wA-wvH" customClass="SubscriptionDetailController" customModule="AppSettings" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Sem-DB-Ihy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ioY-ek-0Df">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rhQ-PU-hkW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="ioY-ek-0Df" secondAttribute="bottom" id="Giw-fj-KzW"/>
+                            <constraint firstItem="rhQ-PU-hkW" firstAttribute="trailing" secondItem="ioY-ek-0Df" secondAttribute="trailing" id="IhR-XW-YVs"/>
+                            <constraint firstItem="ioY-ek-0Df" firstAttribute="leading" secondItem="rhQ-PU-hkW" secondAttribute="leading" id="ZFT-yk-I8m"/>
+                            <constraint firstItem="ioY-ek-0Df" firstAttribute="top" secondItem="Sem-DB-Ihy" secondAttribute="top" id="ayS-gm-yDS"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="3uX-6C-5YQ"/>
+                    <connections>
+                        <outlet property="featureTable" destination="ioY-ek-0Df" id="Nof-y3-pGO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dwe-Rw-DQ2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1949.2753623188407" y="61.607142857142854"/>
+        </scene>
+        <!--Subscribe Navigation-->
+        <scene sceneID="Yo0-Yt-z92">
+            <objects>
+                <navigationController storyboardIdentifier="SubscribeNavigation" automaticallyAdjustsScrollViewInsets="NO" id="qiA-u1-4jc" customClass="SubscribeNavigation" customModule="AppSettings" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Z2L-MZ-dKt">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v2i-xe-V5J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-700" y="47"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

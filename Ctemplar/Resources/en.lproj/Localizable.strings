@@ -215,6 +215,8 @@
 "allMails" = "All Mails";
 "contacts" = "Contacts";
 "settings" = "Settings";
+"settings" = "Settings";
+"subscriptions" = "subscriptions";
 "help" = "Get Support";
 "FAQ" = "FAQ";
 "logout" = "Logout";
