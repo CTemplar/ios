@@ -269,6 +269,7 @@ public enum Strings {
         case notifications
         case savingContact
         case whiteBlackList
+        case universalSpamFilter
         case filter
         case dashboard
         case security

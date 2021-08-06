@@ -57,7 +57,7 @@ extension SubscribeController{
             switch result {
             case .success(let receiptData):
                 self.recieptBase64 = receiptData.base64EncodedString(options: [])
-                self.validateReciept()
+                self.notifyServerForPurchase()
             case .error(let error):
                 print("Fetch receipt failed: \(error)")
             }

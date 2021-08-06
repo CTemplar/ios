@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		1ADE5ED316920A73EB01E24E /* Pods_Ctemplar_devTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 295776008D45E0C9009F44A2 /* Pods_Ctemplar_devTests.framework */; };
 		2A68028DB16B642DF39AC6AF /* Pods_Ctemplar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 594CADE798E7043400C37FC4 /* Pods_Ctemplar.framework */; };
-		30503EA323D8EE70004B04D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30503EA023D8EE6A004B04D6 /* GoogleService-Info.plist */; };
-		30503EA423D8EE74004B04D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30503EA223D8EE6A004B04D6 /* GoogleService-Info.plist */; };
 		443DD3ED24CDCB1100771AE5 /* AppSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 443DD3EC24CDCAF700771AE5 /* AppSettings.framework */; };
 		443DD3EE24CDCB1100771AE5 /* AppSettings.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 443DD3EC24CDCAF700771AE5 /* AppSettings.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		443DD3EF24CDCB1B00771AE5 /* AppSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 443DD3EC24CDCAF700771AE5 /* AppSettings.framework */; };
@@ -310,8 +308,6 @@
 		1CB7A3A162E9B419CABE5E7A /* Pods-Ctemplar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.debug.xcconfig"; path = "Target Support Files/Pods-Ctemplar/Pods-Ctemplar.debug.xcconfig"; sourceTree = "<group>"; };
 		2250BBB4D82A31E0D5F29531 /* Pods-Ctemplar.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.dev.release.xcconfig"; path = "Target Support Files/Pods-Ctemplar.dev/Pods-Ctemplar.dev.release.xcconfig"; sourceTree = "<group>"; };
 		295776008D45E0C9009F44A2 /* Pods_Ctemplar_devTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar_devTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		30503EA023D8EE6A004B04D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		30503EA223D8EE6A004B04D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		372909883E526A2B4F72D295 /* Pods_Ctemplar_dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctemplar_dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A1B330625B7FD7100ECCF21 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		3A1B330725B7FD7200ECCF21 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
@@ -415,6 +411,12 @@
 		CC690994238450BB00956E9B /* Ctemplar.dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Ctemplar.dev-Info.plist"; sourceTree = "<group>"; };
 		CCB2F6A923AB8F8800B661FA /* MyselfService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyselfService.swift; sourceTree = "<group>"; };
 		D426CBA32691BD2700961323 /* SwiftyStoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyStoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D487FA3426B6624A004599A1 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		D487FA3526B6624B004599A1 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Main.strings; sourceTree = "<group>"; };
+		D487FA3826B6626D004599A1 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		D487FA3926B6626D004599A1 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Main.strings; sourceTree = "<group>"; };
+		D487FA3B26B6626E004599A1 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D49B759526BAD3C000A7EEDE /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E32DB9E9240C127700FF0069 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E3E22E5524398FDC00DCE5B7 /* AppStoryBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoryBoard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -491,7 +493,6 @@
 		30503E9F23D8EE6A004B04D6 /* prod */ = {
 			isa = PBXGroup;
 			children = (
-				30503EA023D8EE6A004B04D6 /* GoogleService-Info.plist */,
 			);
 			path = prod;
 			sourceTree = "<group>";
@@ -499,7 +500,6 @@
 		30503EA123D8EE6A004B04D6 /* dev */ = {
 			isa = PBXGroup;
 			children = (
-				30503EA223D8EE6A004B04D6 /* GoogleService-Info.plist */,
 			);
 			path = dev;
 			sourceTree = "<group>";
@@ -1022,6 +1022,8 @@
 				de,
 				uk,
 				"pt-BR",
+				ro,
+				pl,
 			);
 			mainGroup = 8433FF0D216201A300C57DC8;
 			packageReferences = (
@@ -1202,7 +1204,6 @@
 				445CFAE3249BF3B50017DC40 /* Assets.xcassets in Resources */,
 				8441099221776B5100F0BE18 /* Lato-Bold.ttf in Resources */,
 				8433FF24216201A500C57DC8 /* LaunchScreen.storyboard in Resources */,
-				30503EA323D8EE70004B04D6 /* GoogleService-Info.plist in Resources */,
 				8436AD532180663800D16008 /* Localizable.strings in Resources */,
 				8440141A21D377D600FC450C /* PrivacyAndTerms.storyboard in Resources */,
 				8433FF4C21620DBD00C57DC8 /* SplitiPad.storyboard in Resources */,
@@ -1227,7 +1228,6 @@
 				445CFAEA249BF4A90017DC40 /* Assets.xcassets in Resources */,
 				CC6909632384500100956E9B /* Lato-Bold.ttf in Resources */,
 				CC6909662384500100956E9B /* LaunchScreen.storyboard in Resources */,
-				30503EA423D8EE74004B04D6 /* GoogleService-Info.plist in Resources */,
 				CC6909672384500100956E9B /* Localizable.strings in Resources */,
 				CC6909692384500100956E9B /* PrivacyAndTerms.storyboard in Resources */,
 				CC6909722384500100956E9B /* SplitiPad.storyboard in Resources */,
@@ -1494,6 +1494,8 @@
 				3A1B331125B7FF3B00ECCF21 /* de */,
 				3A1B331525B7FF5B00ECCF21 /* uk */,
 				3A1B331B25B8047D00ECCF21 /* pt-BR */,
+				D487FA3526B6624B004599A1 /* ro */,
+				D487FA3926B6626D004599A1 /* pl */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1509,6 +1511,8 @@
 				3A1B331025B7FF3B00ECCF21 /* de */,
 				3A1B331425B7FF5B00ECCF21 /* uk */,
 				3A1B331A25B8047D00ECCF21 /* pt-BR */,
+				D487FA3426B6624A004599A1 /* ro */,
+				D487FA3826B6626D004599A1 /* pl */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1525,6 +1529,8 @@
 				3A1B331D25B8047E00ECCF21 /* pt-BR */,
 				3A1B334825B80E0300ECCF21 /* ar */,
 				3A1B334925B80E0600ECCF21 /* en */,
+				D487FA3B26B6626E004599A1 /* pl */,
+				D49B759526BAD3C000A7EEDE /* ro */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

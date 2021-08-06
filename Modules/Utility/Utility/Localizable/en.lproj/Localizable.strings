@@ -321,6 +321,8 @@
 "blockExternalImages" = "Block External Images";
 "htmlEditor" = "HTML Editor";
 "biometric" = "Enable Biometric Authentication";
+"universalSpamFilter" = "Universal Spam Filter";
+
 "featureIsComing" = "Feature coming soon. Please, login on desktop to update your password.";
 "saveContactsAlertTitle" = "Save Contacts in %s";
 "saveContactsAlertMessage" = "Currently the contact saving option is %a. Do you want to change your preference?";

@@ -141,6 +141,7 @@ public enum JSONKey: String {
     case payment_identifier = "payment_identifier"
     case payment_method = "payment_method"
     case plan_type = "plan_type"
+    case universalSpam = "universal_spam_filter"
 
 }    
 public enum JSONKeysForFilter: String {

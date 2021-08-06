@@ -1444,6 +1444,7 @@ public class RestAPIService {
                         encryptSubject: Bool,
                         blockExternalImages: Bool,
                         htmlDisabled: Bool,
+                        universalSpam: Bool,
                         completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
@@ -1457,7 +1458,8 @@ public class RestAPIService {
             JSONKey.contactsEncrypted.rawValue: encryptContacts,
             JSONKey.attachmentEncrypted.rawValue: encryptAttachment,
             JSONKey.blockExternalImages.rawValue: blockExternalImages,
-            JSONKey.htmlEditor.rawValue: htmlDisabled
+            JSONKey.htmlEditor.rawValue: htmlDisabled,
+            JSONKey.universalSpam.rawValue: universalSpam
         ]
         
         if !recoveryEmail.isEmpty {

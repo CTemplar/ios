@@ -1521,6 +1521,7 @@ public class APIService: HashingService {
                                encryptSubject: Bool,
                                blockExternalImages: Bool,
                                htmlDisabled: Bool,
+                               universalSpam: Bool,
                                completionHandler: @escaping (APIResult<Any>) -> Void) {
         checkTokenExpiration() { [weak self] (complete) in
             if complete {
@@ -1534,7 +1535,7 @@ public class APIService: HashingService {
                                                         encryptAttachment: encryptAttachment,
                                                         encryptSubject: encryptSubject,
                                                         blockExternalImages: blockExternalImages,
-                                                        htmlDisabled: htmlDisabled)
+                                                        htmlDisabled: htmlDisabled, universalSpam: universalSpam)
                     { (result) in
                         switch(result) {
                         case .success(let value):
