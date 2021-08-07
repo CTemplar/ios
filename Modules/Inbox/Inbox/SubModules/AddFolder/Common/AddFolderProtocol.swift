@@ -1,6 +1,6 @@
 import Foundation
 import Networking
 
-protocol AddFolderDelegate: class {
+protocol AddFolderDelegate: AnyObject {
     func didAddFolder(_ folder: Folder)
 }
