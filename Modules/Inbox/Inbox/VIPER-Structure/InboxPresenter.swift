@@ -84,6 +84,7 @@ final class InboxPresenter {
         viewController?.noMessagePromptStackView.isHidden = viewController?.dataSource?.messagesAvailable == true
     }
     
+    
     func updateBadge(number: Int) {
         UIApplication.shared.applicationIconBadgeNumber = number
     }
@@ -155,7 +156,7 @@ final class InboxPresenter {
     }
     
     @objc
-    private func onTapCancel() {
+    func onTapCancel() {
         disableSelectionMode()
         viewController?.dataSource?.update(lastAppliedActionMessage: nil)
         viewController?.dataSource?.removeSelection()

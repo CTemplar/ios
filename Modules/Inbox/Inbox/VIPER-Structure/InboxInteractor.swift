@@ -200,6 +200,7 @@ final class InboxInteractor {
                     
                     // Update User instance
                     self?.viewController?.dataSource?.update(user: userMyself)
+                    self?.viewController?.presenter?.onTapCancel()
                     
                     // Update user's mail box
                     if let mailboxes = userMyself.mailboxesList {
@@ -438,6 +439,7 @@ extension InboxInteractor {
                 weakSelf.viewController?.dataSource?.update(lastSelectedAction: .markAsRead)
                 weakSelf.offset = 0
                 weakSelf.updateMessages(withUndo: withUndo, silent: false, menu: SharedInboxState.shared.selectedMenu)
+                weakSelf.viewController?.presenter?.onTapCancel()
             case .failure(let error):
                 DPrint("error:", error)
                 weakSelf.viewController?.showAlert(with: Strings.AppError.messagesError.localized,
@@ -474,6 +476,7 @@ extension InboxInteractor {
                 weakSelf.viewController?.dataSource?.update(lastSelectedAction: .delete)
                 weakSelf.offset = 0
                 weakSelf.updateMessages(withUndo: withUndo, silent: false, menu: SharedInboxState.shared.selectedMenu)
+                weakSelf.viewController?.presenter?.onTapCancel()
             case .failure(let error):
                 print("error:", error)
                 weakSelf.viewController?.showAlert(with: Strings.AppError.messagesError.localized,
@@ -526,6 +529,7 @@ extension InboxInteractor {
                 weakSelf.viewController?.dataSource?.update(lastSelectedAction: .moveToTrash)
                 weakSelf.offset = 0
                 weakSelf.updateMessages(withUndo: withUndo, silent: false, menu: SharedInboxState.shared.selectedMenu)
+                weakSelf.viewController?.presenter?.onTapCancel()
             case .failure(let error):
                 DPrint("error:", error)
                 weakSelf.viewController?.showAlert(with: Strings.AppError.messagesError.localized,
@@ -582,6 +586,7 @@ extension InboxInteractor {
                 weakSelf.viewController?.dataSource?.update(lastSelectedAction: .moveToArchive)
                 weakSelf.offset = 0
                 weakSelf.updateMessages(withUndo: withUndo, silent: false, menu: SharedInboxState.shared.selectedMenu)
+                weakSelf.viewController?.presenter?.onTapCancel()
             case .failure(let error):
                 DPrint("error:", error)
                 weakSelf.viewController?.showAlert(with: Strings.AppError.messagesError.localized,
@@ -632,6 +637,7 @@ extension InboxInteractor {
                 weakSelf.viewController?.dataSource?.update(lastSelectedAction: .markAsSpam)
                 weakSelf.offset = 0
                 weakSelf.updateMessages(withUndo: withUndo, silent: false, menu: SharedInboxState.shared.selectedMenu)
+                weakSelf.viewController?.presenter?.onTapCancel()
             case .failure(let error):
                 DPrint("error:", error)
                 weakSelf.viewController?.showAlert(with: Strings.AppError.messagesError.localized,
@@ -688,6 +694,7 @@ extension InboxInteractor {
                 weakSelf.viewController?.dataSource?.update(lastSelectedAction: .moveToInbox)
                 weakSelf.offset = 0
                 weakSelf.updateMessages(withUndo: withUndo, silent: false, menu: SharedInboxState.shared.selectedMenu)
+                weakSelf.viewController?.presenter?.onTapCancel()
             case .failure(let error):
                 DPrint("error:", error)
                 weakSelf.viewController?.showAlert(with: Strings.AppError.messagesError.localized,

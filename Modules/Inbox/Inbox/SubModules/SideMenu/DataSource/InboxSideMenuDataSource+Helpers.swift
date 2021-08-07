@@ -7,9 +7,7 @@ extension InboxSideMenuDataSource {
         if SharedInboxState.shared.selectedMenu?.menuName == menu.menuName {
             return
         }
-        
-        
-        
+ 
         SharedInboxState.shared.update(menu: menu)
         SharedInboxState.shared.update(preferences: nil)
         
