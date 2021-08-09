@@ -57,7 +57,7 @@ class AddFolderViewController: UIViewController {
         configurator.configure(viewController: self)
 
         colorPicker.addTarget(self, action: #selector(handleColorChanged(picker:)), for: .valueChanged)
-        colorPicker.set(color: .red, colorSpace: .extendedSRGB)
+        colorPicker.set(color: .red, colorSpace: .sRGB)
         selectedHexColor = colorPicker.color.hex
         interactor?.validateFolderName(text: folderName ?? "")
         
