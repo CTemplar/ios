@@ -32,7 +32,7 @@ class MoveToRouter {
                                                                 bundle: Bundle(for: AddFolderViewController.self)
         ).instantiateViewController()
         
-        addFolderVC.modalPresentationStyle = .formSheet
+        addFolderVC.modalPresentationStyle = .fullScreen
         viewController?.present(addFolderVC, animated: true, completion: nil)
     }
 }
