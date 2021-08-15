@@ -26,6 +26,7 @@ final class FilterPresenter:NSObject {
     init(parentController: FilterVC?) {
         self.parentController = parentController
         self.tableView = self.parentController?.tableView
+        self.tableView?.tableFooterView = UIView()
         self.interactor = FilterInteractor(parentController: parentController)
         
     }
