@@ -393,9 +393,25 @@ extension InboxPresenter {
                 popoverController.permittedArrowDirections = .any
             }
         }
-        
-        viewController?.present(actionSheet, animated: true, completion: nil)
+        if actions.count > 0{
+            viewController?.present(actionSheet, animated: true, completion: nil)
+        }else{
+            self.showError(message: "There is no action that can be taken on this mail.")
+        }
     }
+    
+    func showError(message : String){
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        viewController?.present(alert, animated: true)
+            
+        // duration in seconds
+        let duration: Double = 2
+            
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + duration) {
+            alert.dismiss(animated: true)
+        }
+    }
+    
     
     func moveToInbox() {
         viewController?
