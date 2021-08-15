@@ -25,7 +25,10 @@ class FilterInteractor:NSObject {
     
     // MARK: - API Calls
     func filterList(_ isFromEdit:Bool = false) {
-        Loader.start()
+        if (isFromEdit == false) {
+            Loader.start()
+        }
+//        Loader.start()
         apiService.filterList(completionHandler: { [weak self] (result) in
             DispatchQueue.main.async {
                 if (isFromEdit == true) {
@@ -46,12 +49,14 @@ class FilterInteractor:NSObject {
         })
     }
     // MARK: - API Calls
-    func deleteFilter(id:String) {
-        Loader.start()
+    func deleteFilter(id:String,path : IndexPath) {
+        //Loader.start()
         apiService.deleteFilter(filterId: id, completionHandler: { [weak self] (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(_):
+                    self?.parentController?.presenter?.filterModel?.remove(at: path.row)
+                    self?.parentController?.tableView?.reloadData()
                     self?.parentController?.presenter?.refreshFilterAfterDelete()
                 case .failure(let error):
                     self?.parentController?.showAlert(with: Strings.AppError.error.localized,

@@ -59,7 +59,8 @@ final class AddFilterPresenter:NSObject {
     func setupTableView() {
     }
     func submitBtnClicked() {
-        if(self.checkValidation() == true) {
+        let (check, message) = checkValidation()
+        if(check == true) {
           var filter = Filter()
             filter.setFilterData(name: self.filterModel?.array[0][0].title ?? "" , parameter:self.filterModel?.array[1][1].selectedValue?.serverValue ?? "" , condition:self.filterModel?.array[1][0].selectedValue?.serverValue ?? "" , filterText:self.filterModel?.array[1][2].title ?? "" , folder:self.filterModel?.array[2][1].title ?? "" , moveTo:self.filterModel?.array[2][0].isSelected ?? true , read:self.filterModel?.array[2][2].isSelected ?? true , starred:self.filterModel?.array[2][3].isSelected ?? true, id: self.parentController?.filterModel?.id ?? 0)
             if (self.parentController?.isForEdit == true) {
@@ -72,42 +73,55 @@ final class AddFilterPresenter:NSObject {
            
         }
         else {
-            let alert = UIAlertController(title: "", message: "Fill all the fields!", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
 
             alert.addAction(UIAlertAction(title: Strings.Button.okButton.localized, style: .cancel))
             self.parentController?.present(alert, animated: true)
         }
         
     }
-    private func checkValidation()-> Bool {
+    
+    private func validate() -> Bool{
+        return true
+    }
+    
+    
+    private func checkValidation()-> (Bool ,String) {
         if let array = self.filterModel?.array {
             for (index, item) in array.enumerated() {
                 if (index == 0) {
                     for name in item {
                         if (name.title == "") {
-                            return false
+                            return (false,"Please enter filter name.")
                         }
                     }
                 }
                 else if (index == 1) {
                     for name in item {
                         if(name.title == "") {
-                            return false
+                            var str = name.placeholder
+                            if str.lowercased() == "select"{
+                                str = "condition"
+                            }
+                            return (false,"Please select \(str)")
                         }
                     }
                 }
+                
                 else {
-                    for (index, name) in item.enumerated() {
-                        if (index == 1) {
-                            if (name.title == "") {
-                                return false
-                            }
-                        }
-                    }
+                    return (true,"")
+
+//                    for (index, name) in item.enumerated() {
+//                        if (index == 1) {
+//                            if (name.title == "") {
+//                                return (false,"")
+//                            }
+//                        }
+//                    }
                 }
             }
         }
-        return true
+        return (true,"")
     }
 }
 

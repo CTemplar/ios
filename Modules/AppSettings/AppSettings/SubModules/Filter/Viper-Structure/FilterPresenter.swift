@@ -72,7 +72,8 @@ final class FilterPresenter:NSObject {
 
         let loginAction = UIAlertAction(title: Strings.Button.okButton.localized, style: .default) { [unowned self] (_) in
             DispatchQueue.main.async {
-                self.interactor?.deleteFilter(id: String(self.filterModel?[indexPath.row].id ?? 0))
+               
+                self.interactor?.deleteFilter(id: String(self.filterModel?[indexPath.row].id ?? 0), path: indexPath)
             }
         }
 

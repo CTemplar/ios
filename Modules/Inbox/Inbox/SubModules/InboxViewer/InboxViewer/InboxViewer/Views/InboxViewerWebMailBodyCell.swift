@@ -118,8 +118,8 @@ public final class InboxViewerWebMailBodyCell: UITableViewCell, Cellable {
         
         activityIndicatorView.startAnimating()
         
-        //        if model.content.contains("!DOCTYPE html PUBLIC") {
-        if isHtml(model.content) || model.content.contains("!DOCTYPE html PUBLIC"){
+             if model.content.contains("!DOCTYPE html PUBLIC") {
+//        if isHtml(model.content) || model.content.contains("!DOCTYPE html PUBLIC"){
             fontMultiplier = "100"
         }else {
             fontMultiplier = "300"
