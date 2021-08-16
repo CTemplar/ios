@@ -28,14 +28,12 @@ final class FilterPresenter:NSObject {
         self.tableView = self.parentController?.tableView
         self.tableView?.tableFooterView = UIView()
         self.interactor = FilterInteractor(parentController: parentController)
-        
     }
     
     func setupUI() {
         self.tableView?.register(UINib(nibName: FilterCell.className,
                                        bundle: Bundle(for: FilterCell.self)),
                                  forCellReuseIdentifier: FilterCell.className)
-        
         self.tableView?.delegate = self
         self.tableView?.dataSource = self
         self.interactor?.filterList()

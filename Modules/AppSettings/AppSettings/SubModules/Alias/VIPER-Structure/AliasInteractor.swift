@@ -58,6 +58,7 @@ class AliasInteractor:NSObject, HashingService {
         let backgroundView = UIView()
         backgroundView.backgroundColor = .systemBackground
         tableView?.backgroundView = backgroundView
+        tableView?.tableFooterView = UIView()
         self.fetchMailboxList()
     }
     
@@ -126,11 +127,14 @@ class AliasInteractor:NSObject, HashingService {
                             return
                         }
                         
-                        self?.mailboxes.remove(at: sender.tag)
-                        self?.mailboxes.insert(mailbox, at: sender.tag)
-                        self?.mailboxes.append(mailbox)
+//                        self?.mailboxes.remove(at: sender.tag)
+//                        self?.mailboxes.insert(mailbox, at: sender.tag)
+//                        self?.mailboxes.append(mailbox)
+                      
                         DispatchQueue.main.async {
-                            self?.tableView?.reloadData()
+                            self?.mailboxes[sender.tag] = mailbox
+                            self?.tableView?.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .fade)
+//                            self?.tableView?.reloadData()
                         }
                        
                     }
