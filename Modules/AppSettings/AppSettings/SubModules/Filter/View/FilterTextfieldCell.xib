@@ -36,7 +36,6 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="34" id="sqT-XS-ASF"/>
                         </constraints>
-                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="13"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
