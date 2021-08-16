@@ -35,7 +35,12 @@ class SideMenuTableViewCell: UITableViewCell {
         backgroundColor = selected ? k_sideMenuSelectedCellBackgroundColor : k_sideMenuCellBackgroundColor
         
         leftSelectionView.isHidden = !selected
-        iconImageView.image = icon
+        if title.lowercased() == "subscriptions"{
+            iconImageView.image = icon
+            iconImageView.setImageColor(color: (self.traitCollection.userInterfaceStyle == .dark) ? UIColor.white : k_sideMenuColor)
+        }else{
+            iconImageView.image = icon
+        }
         titleLabel.text = title
         unreadCountLabel.text = unreadCount.description
         unreadCountLabel.isHidden = (unreadCount > 0) ? false : true

@@ -471,7 +471,36 @@ public class RestAPIService {
             }
         }
     }
-    
+    // MARK: - Subscriptions
+    public func purchasePlan(token: String, model: PurchaseModel, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            JSONKey.customer_identifier.rawValue : model.customer_identifier!,
+            JSONKey.payment_identifier.rawValue: model.payment_identifier!,
+            JSONKey.payment_method.rawValue: model.payment_method!,
+            JSONKey.plan_type.rawValue: model.plan_type!,
+            "payment_type": model.payment_type!
+        ]
+        
+        let url = EndPoint.baseUrl.rawValue + EndPoint.subscribePlan.rawValue
+        
+        DPrint("subscription url:", url)
+        
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: AFDataResponse<Any>) in
+            DPrint("subscription responce:", response)
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
     
     // MARK: - Mailbox
     func addAlias(token: String, model: AliasModel, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -1415,6 +1444,7 @@ public class RestAPIService {
                         encryptSubject: Bool,
                         blockExternalImages: Bool,
                         htmlDisabled: Bool,
+                        universalSpam: Bool,
                         completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
@@ -1428,7 +1458,8 @@ public class RestAPIService {
             JSONKey.contactsEncrypted.rawValue: encryptContacts,
             JSONKey.attachmentEncrypted.rawValue: encryptAttachment,
             JSONKey.blockExternalImages.rawValue: blockExternalImages,
-            JSONKey.htmlEditor.rawValue: htmlDisabled
+            JSONKey.htmlEditor.rawValue: htmlDisabled,
+            JSONKey.universalSpam.rawValue: universalSpam
         ]
         
         if !recoveryEmail.isEmpty {

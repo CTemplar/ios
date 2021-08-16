@@ -165,6 +165,7 @@ public enum Strings {
         case allMails
         case contacts
         case settings
+        case subscriptions
         case help
         case FAQ
         case logout
@@ -268,6 +269,7 @@ public enum Strings {
         case notifications
         case savingContact
         case whiteBlackList
+        case universalSpamFilter
         case filter
         case dashboard
         case security

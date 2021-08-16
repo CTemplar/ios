@@ -38,8 +38,17 @@ class SelectLanguageViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
 
+    static func languages() -> [String] {
+        var languages = [String]()
+        let currentLocale = NSLocale.current as NSLocale
+        for languageCode in NSLocale.availableLocaleIdentifiers {             if let name = currentLocale.displayName(forKey: NSLocale.Key.languageCode, value: languageCode), !languages.contains(name) {                 languages.append(name)
+            }
+        }
+        return languages.sorted()
+    }
     // MARK: - Language Helper
     func isLanguageSelected(index: Int) -> Bool {
+        //print(SelectLanguageViewController.languages())
         var language = ""
         let currentLanguage = Bundle.getLanguage()
         
@@ -63,6 +72,11 @@ class SelectLanguageViewController: UIViewController {
             language = GeneralConstant.Language.portuguese.prefix
         case GeneralConstant.Language.ukrainian.rawValue:
             language = GeneralConstant.Language.ukrainian.prefix
+            
+        case GeneralConstant.Language.romanian.rawValue:
+            language = GeneralConstant.Language.romanian.prefix
+        case GeneralConstant.Language.polish.rawValue:
+            language = GeneralConstant.Language.polish.prefix
         default:
             language = GeneralConstant.Language.english.prefix
         }
@@ -109,7 +123,11 @@ extension SelectLanguageViewController: UITableViewDelegate, UITableViewDataSour
             languageName = GeneralConstant.Language.portuguese.name
         case GeneralConstant.Language.ukrainian.rawValue:
             languageName = GeneralConstant.Language.ukrainian.name
-            
+        case GeneralConstant.Language.romanian.rawValue:
+            languageName = GeneralConstant.Language.romanian.name
+        case GeneralConstant.Language.polish.rawValue:
+            languageName = GeneralConstant.Language.polish.name
+
         default: break
         }
         
@@ -145,7 +163,11 @@ extension SelectLanguageViewController: UITableViewDelegate, UITableViewDataSour
             languagePrefix = GeneralConstant.Language.portuguese.prefix
         case GeneralConstant.Language.ukrainian.rawValue:
             languagePrefix = GeneralConstant.Language.ukrainian.prefix
-            
+      
+        case GeneralConstant.Language.romanian.rawValue:
+            languagePrefix = GeneralConstant.Language.romanian.prefix
+        case GeneralConstant.Language.polish.rawValue:
+            languagePrefix = GeneralConstant.Language.polish.prefix
         default:
             languagePrefix = GeneralConstant.Language.english.prefix
         }

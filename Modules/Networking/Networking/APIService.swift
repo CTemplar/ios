@@ -723,6 +723,41 @@ public class APIService: HashingService {
         }
     }
     
+    // MARK: - Subscription Plan Purchasing
+    public func subscribePlan(model: PurchaseModel ,completionHandler: @escaping (APIResult<Any>) -> Void) {
+        checkTokenExpiration() { [weak self] (complete) in
+            if complete {
+                if let token = self?.getToken() {
+                    self?.restAPIService.purchasePlan(token: token, model: model, completionHandler: { (result) in
+                        switch(result) {
+                        case .success(let value):
+                            if let response = value as? [String : Any]{
+                                if let status = response["status"] as? Bool{
+                                    if status{
+                                        completionHandler(APIResult.success(status))
+                                    }else{
+                                        let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Purchase is failed"])
+                                        completionHandler(APIResult.failure(error))
+                                    }
+                                }else{
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Purchase is failed"])
+                                    completionHandler(APIResult.failure(error))
+                                }
+                            }else{
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
+                            }
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                    })
+                }
+            }
+        }
+    }
+    
+    
     // MARK: - Mailbox Alias
     public func createAlias(model: AliasModel ,completionHandler: @escaping (APIResult<Any>) -> Void) {
         checkTokenExpiration() { [weak self] (complete) in
@@ -1486,6 +1521,7 @@ public class APIService: HashingService {
                                encryptSubject: Bool,
                                blockExternalImages: Bool,
                                htmlDisabled: Bool,
+                               universalSpam: Bool,
                                completionHandler: @escaping (APIResult<Any>) -> Void) {
         checkTokenExpiration() { [weak self] (complete) in
             if complete {
@@ -1499,7 +1535,7 @@ public class APIService: HashingService {
                                                         encryptAttachment: encryptAttachment,
                                                         encryptSubject: encryptSubject,
                                                         blockExternalImages: blockExternalImages,
-                                                        htmlDisabled: htmlDisabled)
+                                                        htmlDisabled: htmlDisabled, universalSpam: universalSpam)
                     { (result) in
                         switch(result) {
                         case .success(let value):

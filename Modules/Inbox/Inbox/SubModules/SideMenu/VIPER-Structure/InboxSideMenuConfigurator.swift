@@ -9,13 +9,13 @@ class InboxSideMenuConfigurator {
                    onTapContacts: (([Contact], UserMyself) -> Void)?,
                    onTapSettings: ((UserMyself) -> Void)?,
                    onTapManageFolders: (([Folder], UserMyself) -> Void)?,
-                   onTapFAQ: (() -> Void)?) {
+                   onTapFAQ: (() -> Void)?,onTapSubscriptions: ((UserMyself) -> Void)?) {
         
         let router = InboxSideMenuRouter(viewController: viewController,
                                          onTapContacts: onTapContacts,
                                          onTapSettings: onTapSettings,
                                          onTapManageFolders: onTapManageFolders,
-                                         onTapFAQ: onTapFAQ
+                                         onTapFAQ: onTapFAQ, onTapSubscriptions: onTapSubscriptions
         )
                 
         let presenter = InboxSideMenuPresenter()

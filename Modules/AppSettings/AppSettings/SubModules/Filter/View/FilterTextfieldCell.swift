@@ -5,6 +5,7 @@
 
 import UIKit
 import Networking
+import Utility
 
 class FilterTextfieldCell: UITableViewCell {
 
@@ -18,7 +19,7 @@ class FilterTextfieldCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+   
         self.textFieldBackImageView.layer.cornerRadius = 7
         self.textFieldBackImageView.layer.masksToBounds = true
         self.selectionStyle = .none
@@ -64,6 +65,9 @@ class FilterTextfieldCell: UITableViewCell {
             self.downArrow.isHidden = true
             self.textField.inputView = nil
         }
+        
+        textField.attributedPlaceholder = NSAttributedString(string: model.placeholder,
+                                                             attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
     }
     
     @objc func doneButtonClickedFromPicker() {

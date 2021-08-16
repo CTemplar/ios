@@ -4,7 +4,7 @@ import FBSnapshotTestCase
 
 class AppSettingsStorageCellTests: FBSnapshotBase {
     private var subject: Subject {
-        return Subject(title: "Welcome to CTemplar!", isProtected: true, isSecured: true, isStarred: true)
+        return Subject(title: "Welcome to CTemplar!", isProtected: true, isSecured: true, is969-+7*: true)
     }
     
     override func setUp() {

@@ -11,18 +11,21 @@ final class InboxSideMenuRouter {
     var onTapManageFolders: (([Folder], UserMyself) -> Void)?
     var onTapContacts: (([Contact], UserMyself) -> Void)?
     var onTapFAQ: (() -> Void)?
+    var onTapSubscriptions: ((UserMyself) -> Void)?
 
     // MARK: - Constructor
     init(viewController: InboxSideMenuController,
          onTapContacts: (([Contact], UserMyself) -> Void)?,
          onTapSettings: ((UserMyself) -> Void)?,
          onTapManageFolders: (([Folder], UserMyself) -> Void)?,
-         onTapFAQ: (() -> Void)?) {
+         onTapFAQ: (() -> Void)?,
+         onTapSubscriptions: ((UserMyself) -> Void)?) {
         self.viewController = viewController
         self.onTapSettings = onTapSettings
         self.onTapFAQ = onTapFAQ
         self.onTapContacts = onTapContacts
         self.onTapManageFolders = onTapManageFolders
+        self.onTapSubscriptions = onTapSubscriptions
     }
     
     // MARK: - navigations
@@ -50,5 +53,9 @@ final class InboxSideMenuRouter {
     
     func showFAQ() {
         onTapFAQ?()
+    }
+    
+    func showSubscriptions(withUser user: UserMyself) {
+        onTapSubscriptions?(user)
     }
 }

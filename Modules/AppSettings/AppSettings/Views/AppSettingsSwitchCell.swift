@@ -11,7 +11,7 @@ class AppSettingsSwitchCell: UITableViewCell, Modelable {
         return label
     }()
     
-    lazy private var settingsSwitch: UISwitch = {
+    lazy public var settingsSwitch: UISwitch = {
         let aSwitch = UISwitch()
         aSwitch.onTintColor = AppStyle.Colors.loaderColor.color
         return aSwitch
@@ -87,7 +87,6 @@ class AppSettingsSwitchCell: UITableViewCell, Modelable {
         selectionStyle = .none
         titleLabel.font = model.titleFont
         titleLabel.textColor = model.titleColor
-        
         settingsSwitch.isOn = model.value
         
         viewModel = model

@@ -23,6 +23,7 @@
 		44AF48362594AD86007300D0 /* AddAppContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF48352594AD86007300D0 /* AddAppContactsViewController.swift */; };
 		44AF483A2594AE5E007300D0 /* AddAppContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF48392594AE5E007300D0 /* AddAppContactsViewModel.swift */; };
 		44D988E925935BD30017376A /* AppContactsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D988E825935BD30017376A /* AppContactsCoordinator.swift */; };
+		D488722D26BE9F02001C5BA9 /* GrowingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D488722C26BE9F02001C5BA9 /* GrowingTextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		44AF48352594AD86007300D0 /* AddAppContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppContactsViewController.swift; sourceTree = "<group>"; };
 		44AF48392594AE5E007300D0 /* AddAppContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppContactsViewModel.swift; sourceTree = "<group>"; };
 		44D988E825935BD30017376A /* AppContactsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContactsCoordinator.swift; sourceTree = "<group>"; };
+		D488722C26BE9F02001C5BA9 /* GrowingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowingTextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			children = (
 				44913E232592272200B25697 /* AppContactsViewController.swift */,
 				44AF48352594AD86007300D0 /* AddAppContactsViewController.swift */,
+				D488722C26BE9F02001C5BA9 /* GrowingTextView.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4436A94F25959CE200E550BE /* AddAppContactsFetcher.swift in Sources */,
+				D488722D26BE9F02001C5BA9 /* GrowingTextView.swift in Sources */,
 				44913E2D259227D900B25697 /* AppContactsCell.swift in Sources */,
 				448C6D97259306D7007CB9CC /* AppContactsFetcher.swift in Sources */,
 				44913E6E2592561400B25697 /* AppContactsViewModel.swift in Sources */,

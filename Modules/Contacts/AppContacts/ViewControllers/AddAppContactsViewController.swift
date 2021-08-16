@@ -8,10 +8,13 @@ class AddAppContactsViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailAddressTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
-    @IBOutlet weak var addressTextField: UITextField!
-    @IBOutlet weak var noteTextField: UITextField!
     @IBOutlet weak var deleteContactButton: UIButton!
     
+    @IBOutlet weak var noteField: GrowingTextView!
+    @IBOutlet weak var addressField: GrowingTextView!
+    @IBOutlet weak var addressField_Height: NSLayoutConstraint!
+    @IBOutlet weak var noteField_Height: NSLayoutConstraint!
+
     // MARK: Properties
     private var subscriptions = Set<AnyCancellable>()
     private var viewModel: AddAppContactsViewModel!
@@ -49,10 +52,10 @@ class AddAppContactsViewController: UIViewController {
                 .assign(to: \.text!, on: phoneNumberTextField),
             viewModel
                 .$contactAddress
-                .assign(to: \.text!, on: addressTextField),
+                .assign(to: \.text!, on: addressField),
             viewModel
                 .$contactNote
-                .assign(to: \.text!, on: noteTextField),
+                .assign(to: \.text!, on: noteField),
             viewModel
                 .$hideDeleteContactOption
                 .assign(to: \.isHidden, on: deleteContactButton),
@@ -97,12 +100,12 @@ class AddAppContactsViewController: UIViewController {
                 .sink(receiveValue: { [unowned self] (value) in
                     self.viewModel.update(phone: value)
                 }),
-            addressTextField
+            addressField
                 .textPublisher
                 .sink(receiveValue: { [unowned self] (value) in
                     self.viewModel.update(address: value)
                 }),
-            noteTextField
+            noteField
                 .textPublisher
                 .sink(receiveValue: { [unowned self] (value) in
                     self.viewModel.update(note: value)
@@ -144,5 +147,24 @@ extension AddAppContactsViewController: Bindable {
     
     func configure(with model: AddAppContactsViewModel) {
         self.viewModel = model
+    }
+}
+
+extension AddAppContactsViewController : GrowingTextViewDelegate{
+    func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
+        if textView == addressField{
+            self.addressField_Height.constant = height
+        }else{
+            self.noteField_Height.constant = height
+        }
+    }
+}
+public extension UITextView {
+    var textPublisher: AnyPublisher<String, Never> {
+        NotificationCenter.default
+            .publisher(for: UITextView.textDidChangeNotification, object: self)
+            .compactMap { $0.object as? UITextView } // receiving notifications with objects which are instances of UITextFields
+            .map { $0.text ?? "" } // mapping UITextField to extract text
+            .eraseToAnyPublisher()
     }
 }

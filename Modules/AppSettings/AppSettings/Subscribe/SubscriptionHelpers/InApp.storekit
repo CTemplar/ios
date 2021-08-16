@@ -1,0 +1,143 @@
+{
+  "identifier" : "408EF495",
+  "nonRenewingSubscriptions" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "2F8B2436",
+      "localizations" : [
+        {
+          "description" : "Get all features unlocked at $0.99",
+          "displayName" : "Get prim for a month",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.ctemplar.corp.iosapp.primemonthly",
+      "referenceName" : "CTemplar Prime Monthly  ",
+      "type" : "NonRenewingSubscription"
+    },
+    {
+      "displayPrice" : "12.99",
+      "familyShareable" : false,
+      "internalID" : "0151FFBF",
+      "localizations" : [
+        {
+          "description" : "Get all features unlocked at $12.99",
+          "displayName" : "Get prime for a year",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.ctemplar.corp.iosapp.primeyearly",
+      "referenceName" : "CTemplar Prime Yearly",
+      "type" : "NonRenewingSubscription"
+    },
+    {
+      "displayPrice" : "2.99",
+      "familyShareable" : false,
+      "internalID" : "1252C530",
+      "localizations" : [
+        {
+          "description" : "Get all features unlocked at $2.99",
+          "displayName" : "Get knight for a month",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.ctemplar.corp.iosapp.knightmonthly",
+      "referenceName" : "CTemplar Knight Monthly",
+      "type" : "NonRenewingSubscription"
+    },
+    {
+      "displayPrice" : "24.99",
+      "familyShareable" : false,
+      "internalID" : "B7E972C1",
+      "localizations" : [
+        {
+          "description" : "Get all features unlocked at $24.99",
+          "displayName" : "Get knight for a year",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.ctemplar.corp.iosapp.knightyearly",
+      "referenceName" : "CTemplar Knight Yearly",
+      "type" : "NonRenewingSubscription"
+    },
+    {
+      "displayPrice" : "3.99",
+      "familyShareable" : false,
+      "internalID" : "0F3A09B5",
+      "localizations" : [
+        {
+          "description" : "Get all features unlocked at $3.99",
+          "displayName" : "Get marshal for a month",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.ctemplar.corp.iosapp.marshallmonthly",
+      "referenceName" : "CTemplar Marshall Monthly",
+      "type" : "NonRenewingSubscription"
+    },
+    {
+      "displayPrice" : "33.99",
+      "familyShareable" : false,
+      "internalID" : "E59AF348",
+      "localizations" : [
+        {
+          "description" : "Get all features unlocked at $33.99",
+          "displayName" : "Get marshal for a year",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.ctemplar.corp.iosapp.marshallyearly",
+      "referenceName" : "CTemplar Marshall Yearly",
+      "type" : "NonRenewingSubscription"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "56E68CF5",
+      "localizations" : [
+        {
+          "description" : "Get all features unlocked at $4.99",
+          "displayName" : "Get champion for a month",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.ctemplar.corp.iosapp.championmonthly",
+      "referenceName" : "CTemplar Champion Monthly",
+      "type" : "NonRenewingSubscription"
+    },
+    {
+      "displayPrice" : "44.99",
+      "familyShareable" : false,
+      "internalID" : "EE19BE9F",
+      "localizations" : [
+        {
+          "description" : "Get all features unlocked at $44.99",
+          "displayName" : "Champion for year",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "Get all features unlocked at $44.99",
+          "displayName" : "Champion for year",
+          "locale" : "en_GB"
+        }
+      ],
+      "productID" : "com.ctemplar.corp.iosapp.championyearly",
+      "referenceName" : "CTemplar Champion Yearly",
+      "type" : "NonRenewingSubscription"
+    }
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 1,
+    "minor" : 1
+  }
+}

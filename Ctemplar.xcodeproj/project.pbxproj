@@ -410,6 +410,13 @@
 		CC6909922384500100956E9B /* Ctemplar.dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ctemplar.dev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC690994238450BB00956E9B /* Ctemplar.dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Ctemplar.dev-Info.plist"; sourceTree = "<group>"; };
 		CCB2F6A923AB8F8800B661FA /* MyselfService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyselfService.swift; sourceTree = "<group>"; };
+		D426CBA32691BD2700961323 /* SwiftyStoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyStoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D487FA3426B6624A004599A1 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		D487FA3526B6624B004599A1 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Main.strings; sourceTree = "<group>"; };
+		D487FA3826B6626D004599A1 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		D487FA3926B6626D004599A1 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Main.strings; sourceTree = "<group>"; };
+		D487FA3B26B6626E004599A1 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D49B759526BAD3C000A7EEDE /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E32DB9E9240C127700FF0069 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E3E22E5524398FDC00DCE5B7 /* AppStoryBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoryBoard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -658,6 +665,7 @@
 		6B9D5D9669D4ECC4B64F115A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D426CBA32691BD2700961323 /* SwiftyStoreKit.framework */,
 				44D989082593607F0017376A /* AppContacts.framework */,
 				44D98904259360750017376A /* AppContacts.framework */,
 				4487545725029B6F0097F830 /* InboxViewer.framework */,
@@ -1014,6 +1022,8 @@
 				de,
 				uk,
 				"pt-BR",
+				ro,
+				pl,
 			);
 			mainGroup = 8433FF0D216201A300C57DC8;
 			packageReferences = (
@@ -1484,6 +1494,8 @@
 				3A1B331125B7FF3B00ECCF21 /* de */,
 				3A1B331525B7FF5B00ECCF21 /* uk */,
 				3A1B331B25B8047D00ECCF21 /* pt-BR */,
+				D487FA3526B6624B004599A1 /* ro */,
+				D487FA3926B6626D004599A1 /* pl */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1499,6 +1511,8 @@
 				3A1B331025B7FF3B00ECCF21 /* de */,
 				3A1B331425B7FF5B00ECCF21 /* uk */,
 				3A1B331A25B8047D00ECCF21 /* pt-BR */,
+				D487FA3426B6624A004599A1 /* ro */,
+				D487FA3826B6626D004599A1 /* pl */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1515,6 +1529,8 @@
 				3A1B331D25B8047E00ECCF21 /* pt-BR */,
 				3A1B334825B80E0300ECCF21 /* ar */,
 				3A1B334925B80E0600ECCF21 /* en */,
+				D487FA3B26B6626E004599A1 /* pl */,
+				D49B759526BAD3C000A7EEDE /* ro */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1712,9 +1728,9 @@
 				);
 				MARKETING_VERSION = 1.4.5;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Ctemplar Dev";
+				PROVISIONING_PROFILE_SPECIFIER = "Development Profile";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1744,9 +1760,9 @@
 				);
 				MARKETING_VERSION = 1.4.5;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Ctemplar Dev";
+				PROVISIONING_PROFILE_SPECIFIER = "Development Profile";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -26,15 +26,14 @@ final class FilterPresenter:NSObject {
     init(parentController: FilterVC?) {
         self.parentController = parentController
         self.tableView = self.parentController?.tableView
+        self.tableView?.tableFooterView = UIView()
         self.interactor = FilterInteractor(parentController: parentController)
-        
     }
     
     func setupUI() {
         self.tableView?.register(UINib(nibName: FilterCell.className,
                                        bundle: Bundle(for: FilterCell.self)),
                                  forCellReuseIdentifier: FilterCell.className)
-        
         self.tableView?.delegate = self
         self.tableView?.dataSource = self
         self.interactor?.filterList()
@@ -71,7 +70,8 @@ final class FilterPresenter:NSObject {
 
         let loginAction = UIAlertAction(title: Strings.Button.okButton.localized, style: .default) { [unowned self] (_) in
             DispatchQueue.main.async {
-                self.interactor?.deleteFilter(id: String(self.filterModel?[indexPath.row].id ?? 0))
+               
+                self.interactor?.deleteFilter(id: String(self.filterModel?[indexPath.row].id ?? 0), path: indexPath)
             }
         }
 

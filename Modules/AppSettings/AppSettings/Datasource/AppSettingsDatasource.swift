@@ -64,6 +64,11 @@ final class AppSettingsDatasource: NSObject {
             currentLanguage = GeneralConstant.Language.portuguese.name
         case GeneralConstant.Language.ukrainian.prefix:
             currentLanguage = GeneralConstant.Language.ukrainian.name
+            
+        case GeneralConstant.Language.polish.prefix:
+            currentLanguage = GeneralConstant.Language.polish.name
+        case GeneralConstant.Language.romanian.prefix:
+            currentLanguage = GeneralConstant.Language.romanian.name
         default:
             currentLanguage = GeneralConstant.Language.english.name
         }
@@ -216,6 +221,11 @@ final class AppSettingsDatasource: NSObject {
                 model = AppSettingsSwitchModel(title: Strings.AppSettings.biometric.localized,
                                                value: isBiometricEnabled,
                                                rowType: row)
+            case .universalSpamFilter:
+                model = AppSettingsSwitchModel(title: Strings.AppSettings.universalSpamFilter.localized,
+                                               value: user.settings.isUniversalSpam ?? false,
+                                               rowType: row)
+                
             }
             
             if let model = model {
@@ -321,7 +331,7 @@ extension AppSettingsDatasource: UITableViewDelegate, UITableViewDataSource {
                 return configureBasicCell(at: indexPath, sectionType: sectionType)
             case .storage:
                 return configureStorageCell(at: indexPath, sectionType: sectionType)
-            case .blockExternalImages, .htmlEditor, .biometric:
+            case .blockExternalImages,.universalSpamFilter, .htmlEditor, .biometric:
                 return configureSettingsSwitchCell(at: indexPath, sectionType: sectionType)
             }
         }
@@ -414,7 +424,7 @@ extension AppSettingsDatasource: UITableViewDelegate, UITableViewDataSource {
                 parentViewController?.router?.onTapAddress()
             case .logout:
                 parentViewController?.router?.onTapLogOut()
-            case .appVersion, .storage, .blockExternalImages, .htmlEditor, .biometric: break
+            case .appVersion,.universalSpamFilter, .storage, .blockExternalImages, .htmlEditor, .biometric: break
             }
         }
     }
@@ -467,6 +477,14 @@ extension AppSettingsDatasource: UITableViewDelegate, UITableViewDataSource {
                 case .htmlEditor:
                     self?.user.settings.update(htmlEditor: value == false ? true : false)
                     self?.updateSettings()
+                case .universalSpamFilter:
+                    let str = self?.user.settings.planType ?? ""
+                    if str != "FREE"{
+                        self?.user.settings.update(universalSpam: value)
+                        self?.updateSettings()
+                    }else{
+                        cell.settingsSwitch.setOn(!value, animated: false)
+                    }
                 case .biometric:
                     if value {
                         var alertMessage = Strings.BiometricError.biometricAuthAlert.localized
@@ -537,7 +555,7 @@ private extension AppSettingsDatasource {
                                   encryptAttachment: user.settings.isAttachmentsEncrypted ?? false,
                                   encryptSubject: user.settings.isSubjectEncrypted ?? false,
                                   blockExternalImages: user.settings.blockExternalImage ?? false,
-                                  htmlDisabled: user.settings.isHtmlDisabled ?? false)
+                                  htmlDisabled: user.settings.isHtmlDisabled ?? false, universalSpam: user.settings.isUniversalSpam ?? false)
         { [weak self] (result) in
             DispatchQueue.main.async {
                 Loader.stop()
@@ -652,7 +670,7 @@ private extension AppSettingsDatasource {
                                   encryptAttachment: user.settings.isAttachmentsEncrypted ?? false,
                                   encryptSubject: user.settings.isSubjectEncrypted ?? false,
                                   blockExternalImages: user.settings.blockExternalImage ?? false,
-                                  htmlDisabled: user.settings.isHtmlDisabled ?? false)
+                                  htmlDisabled: user.settings.isHtmlDisabled ?? false, universalSpam: user.settings.isUniversalSpam ?? false)
         { [weak self] (result) in
             DispatchQueue.main.async {
                 Loader.stop(in: self?.parentViewController)
@@ -696,7 +714,7 @@ private extension AppSettingsDatasource {
                                   encryptAttachment: user.settings.isAttachmentsEncrypted ?? false,
                                   encryptSubject: user.settings.isSubjectEncrypted ?? false,
                                   blockExternalImages: user.settings.blockExternalImage ?? false,
-                                  htmlDisabled: user.settings.isHtmlDisabled ?? false)
+                                  htmlDisabled: user.settings.isHtmlDisabled ?? false, universalSpam: user.settings.isUniversalSpam ?? false)
         { [weak self] (result) in
             DispatchQueue.main.async {
                 Loader.stop(in: self?.parentViewController)

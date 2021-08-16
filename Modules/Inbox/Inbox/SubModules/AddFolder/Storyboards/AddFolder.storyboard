@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tKd-OF-9DY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tKd-OF-9DY">
     <device id="retina5_9" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -42,15 +42,15 @@
                                 <rect key="frame" x="0.0" y="88" width="375" height="724"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Folder Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smi-Mt-keG" customClass="UILocalizedLabel" customModule="Inbox" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="16" width="77.333333333333329" height="15.666666666666664"/>
+                                        <rect key="frame" x="16" y="16" width="72" height="14.333333333333336"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fD8-us-aI5">
-                                        <rect key="frame" x="16" y="39.666666666666671" width="343" height="60"/>
+                                        <rect key="frame" x="16" y="38.333333333333329" width="343" height="60"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add your folder name" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Cn-KY-Ch2" customClass="UILocalizedTextField" customModule="Inbox" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="7.9999999999999858" width="327" height="42"/>
+                                                <rect key="frame" x="8" y="8.0000000000000142" width="327" height="42"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="name"/>
                                                 <connections>
@@ -59,7 +59,7 @@
                                                 </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V2y-0R-uTt">
-                                                <rect key="frame" x="0.0" y="57.999999999999986" width="343" height="2"/>
+                                                <rect key="frame" x="0.0" y="58.000000000000014" width="343" height="2"/>
                                                 <color key="backgroundColor" systemColor="labelColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="2" id="PHL-Xx-EoB"/>
@@ -90,12 +90,12 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Color" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVU-ag-v42" customClass="UILocalizedLabel" customModule="Inbox" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="123.66666666666667" width="343" height="15.666666666666671"/>
+                                        <rect key="frame" x="16" y="122.33333333333333" width="343" height="14.333333333333329"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VyG-aG-Jlh" customClass="ColorPicker" customModule="Colorful">
-                                        <rect key="frame" x="16" y="151.33333333333337" width="343" height="300"/>
+                                        <rect key="frame" x="16" y="148.66666666666663" width="343" height="300"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="300" id="f2g-xj-AQj"/>

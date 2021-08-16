@@ -36,6 +36,7 @@ public struct Settings: Hashable {
     public private (set) var forwardingAddress: String?
     public private (set) var isAntiPhishingEnabled: Bool?
     public private (set) var isHtmlDisabled: Bool?
+    public private (set) var isUniversalSpam: Bool?
     public private (set) var notificationEmail: String?
     public private (set) var planType: String?
     public private (set) var blockExternalImage: Bool?
@@ -78,9 +79,15 @@ public struct Settings: Hashable {
         self.forwardingAddress = dictionary["forwarding_address"] as? String
         self.isAntiPhishingEnabled = dictionary["is_anti_phishing_enabled"] as? Bool
         self.isHtmlDisabled = dictionary["is_html_disabled"] as? Bool
+        let universalSpam = dictionary["universal_spam_filter"] as? Bool
+        self.isUniversalSpam  = universalSpam
         self.notificationEmail = dictionary["notification_email"] as? String
         self.planType = dictionary["plan_type"] as? String
         self.blockExternalImage = dictionary["is_disable_loading_images"] as? Bool
+    }
+    
+    public mutating func update(plan: String) {
+        self.planType = plan
     }
     
     mutating func update(contactsEncrypted: Bool) {
@@ -109,5 +116,9 @@ public struct Settings: Hashable {
     
     public mutating func update(htmlEditor: Bool) {
         self.isHtmlDisabled = htmlEditor
+    }
+    
+    public mutating func update(universalSpam: Bool) {
+        self.isUniversalSpam = universalSpam
     }
 }

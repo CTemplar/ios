@@ -302,6 +302,8 @@
 "goToWebVersion" = "前往网页版本";
 "changePasswordNotAvailableMessage" = "目前该功能在iOS上正在开发中。要更改密码，请使用安卓应用程序或访问我们的网页应用程序";
 "settings" = "设置";
+"subscriptions" = "订阅";
+
 // White/Black List
 "whiteListText" = "来自白名单的联系人的消息总是收进收件箱文件夹中。标记为非垃圾邮件的消息会将该地址添加到白名单中";
 "blackListText" = "来自黑名单的联系人的信息总是收进垃圾邮件文件夹中。将消息标记为垃圾邮件会将该地址添加到黑名单中";

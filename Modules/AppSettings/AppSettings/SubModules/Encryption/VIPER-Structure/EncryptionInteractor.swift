@@ -28,7 +28,7 @@ final class EncryptionInteractor {
                                   encryptAttachment: encryptAttachment,
                                   encryptSubject: encryptSubject,
                                   blockExternalImages: settings.blockExternalImage ?? false,
-                                  htmlDisabled: settings.isHtmlDisabled ?? false)
+                                  htmlDisabled: settings.isHtmlDisabled ?? false, universalSpam : settings.isUniversalSpam ?? false)
         { [weak self] (result) in
             DispatchQueue.main.async {
                 switch(result) {

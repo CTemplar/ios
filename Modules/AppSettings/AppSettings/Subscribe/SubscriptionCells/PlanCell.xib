@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="KGk-i7-Jjw" customClass="PlanCell" customModule="AppSettings" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="97o-LT-YKv">
+                        <rect key="frame" x="60" y="8" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yl5-aW-dBA">
+                        <rect key="frame" x="60" y="27" width="42" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJt-bM-Z1B">
+                        <rect key="frame" x="20" y="52.5" width="280" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="AtB-7P-tc8"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next" translatesAutoresizingMaskIntoConstraints="NO" id="Rvs-B5-Yr1">
+                        <rect key="frame" x="285" y="14.5" width="15" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Rvs-B5-Yr1" secondAttribute="height" id="aoy-63-pnW"/>
+                            <constraint firstAttribute="width" constant="15" id="p58-Li-Jsv"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="V3s-GV-7kW">
+                        <rect key="frame" x="20" y="8" width="28" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="V3s-GV-7kW" secondAttribute="height" id="GZL-RS-tbB"/>
+                            <constraint firstAttribute="height" constant="28" id="nB2-oL-TDT"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="97o-LT-YKv" firstAttribute="leading" secondItem="V3s-GV-7kW" secondAttribute="trailing" constant="12" id="4jY-QU-rjf"/>
+                    <constraint firstItem="V3s-GV-7kW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="7Fn-yY-jas"/>
+                    <constraint firstItem="Yl5-aW-dBA" firstAttribute="leading" secondItem="97o-LT-YKv" secondAttribute="leading" id="Dvm-Li-GVf"/>
+                    <constraint firstItem="RJt-bM-Z1B" firstAttribute="top" secondItem="Yl5-aW-dBA" secondAttribute="bottom" constant="5" id="ESw-ph-649"/>
+                    <constraint firstItem="Rvs-B5-Yr1" firstAttribute="centerY" secondItem="V3s-GV-7kW" secondAttribute="centerY" id="Icj-DN-ec1"/>
+                    <constraint firstItem="V3s-GV-7kW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="N0r-e0-M7P"/>
+                    <constraint firstItem="RJt-bM-Z1B" firstAttribute="leading" secondItem="V3s-GV-7kW" secondAttribute="leading" id="N4X-9m-2JB"/>
+                    <constraint firstItem="Yl5-aW-dBA" firstAttribute="top" secondItem="97o-LT-YKv" secondAttribute="bottom" constant="-2" id="RAn-NF-hjl"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="RJt-bM-Z1B" secondAttribute="bottom" constant="8" id="Wn1-3h-bXy"/>
+                    <constraint firstAttribute="trailing" secondItem="RJt-bM-Z1B" secondAttribute="trailing" constant="20" id="aaR-f7-v6b"/>
+                    <constraint firstItem="Yl5-aW-dBA" firstAttribute="trailing" secondItem="97o-LT-YKv" secondAttribute="trailing" id="dqB-ZU-O1R"/>
+                    <constraint firstItem="Rvs-B5-Yr1" firstAttribute="trailing" secondItem="RJt-bM-Z1B" secondAttribute="trailing" id="qxB-Gl-u3C"/>
+                    <constraint firstItem="97o-LT-YKv" firstAttribute="top" secondItem="V3s-GV-7kW" secondAttribute="top" id="vzo-aB-zcp"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="appName" destination="97o-LT-YKv" id="pOQ-Mu-Zfg"/>
+                <outlet property="forwardImgView" destination="Rvs-B5-Yr1" id="sqn-Se-qCx"/>
+                <outlet property="planName" destination="Yl5-aW-dBA" id="WHp-Ww-smR"/>
+                <outlet property="seperatorLBL" destination="RJt-bM-Z1B" id="ANK-0K-P9N"/>
+            </connections>
+            <point key="canvasLocation" x="76.811594202898561" y="51.5625"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Logo" width="103" height="102"/>
+        <image name="next" width="30" height="30"/>
+    </resources>
+</document>

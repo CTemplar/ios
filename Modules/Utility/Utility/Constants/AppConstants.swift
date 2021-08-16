@@ -157,7 +157,9 @@ public struct GeneralConstant {
         case german
         case portuguese
         case ukrainian
-        
+        case romanian
+        case polish
+
         public var prefix: String {
             switch self {
             case .english:
@@ -178,6 +180,10 @@ public struct GeneralConstant {
                 return "pt-BR"
             case .ukrainian:
                 return "uk"
+            case .romanian:
+                return "ro"
+            case .polish:
+                return "pl"
             }
         }
         
@@ -201,6 +207,10 @@ public struct GeneralConstant {
                 return "Português"
             case .ukrainian:
                 return "Український"
+            case .romanian:
+                return "Română"
+            case .polish:
+                return "Polskie"
             }
         }
     }

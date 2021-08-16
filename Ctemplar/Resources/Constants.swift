@@ -573,8 +573,6 @@ enum Languages: Int, CaseIterable {
     case russian            = 1
     case french             = 2
     case slovak             = 3
-    case polish             = 4
-    case romanian           = 5
 }
 
 enum LanguagesName: String {
@@ -582,8 +580,6 @@ enum LanguagesName: String {
     case russian            = "Русский"
     case french             = "Français"
     case slovak             = "Slovenský"
-    case polish             = "Polski"
-    case romanian           = "Romanian"
 }
 
 enum LanguagesBundlePrefix: String {
@@ -591,6 +587,4 @@ enum LanguagesBundlePrefix: String {
     case russian            = "ru"
     case french             = "fr"
     case slovak             = "sk"
-    case polish             = "pl"
-    case romanian           = "ro"
 }
