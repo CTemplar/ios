@@ -90,9 +90,7 @@ final class InboxViewerDatasource: NSObject {
         self.inboxPasswordController?.view.removeFromSuperview()
         self.inboxPasswordController = nil
         self.encryptionPassword = password
-       let subject =  self.decryptedSubject
         setupData(password: password)
-        
     }
     
     func update(lastSelectedAction: Menu.Action?) {
@@ -118,7 +116,7 @@ final class InboxViewerDatasource: NSObject {
         
         tableView.register(InboxViewerSubjectCell.self, forCellReuseIdentifier: InboxViewerSubjectCell.className)
         tableView.register(InboxViewerTextMailBodyCell.self, forCellReuseIdentifier: InboxViewerTextMailBodyCell.className)
-        tableView.register(UINib(nibName: InboxViewerWebMailBodyCell.className, bundle: Bundle(for: InboxViewerWebMailBodyCell.self)), forCellReuseIdentifier: InboxViewerWebMailBodyCell.className)
+        tableView.register(InboxViewerWebMailBodyCell.self, forCellReuseIdentifier: InboxViewerWebMailBodyCell.className)
         tableView.register(AttachmentCell.self, forCellReuseIdentifier: AttachmentCell.className)
     }
     
@@ -162,6 +160,7 @@ final class InboxViewerDatasource: NSObject {
                     sectionList.append(.mailBody(TextMail(messageId: child.messsageID,
                                                           content: content,
                                                           state: (index == children.count - 1) ? .expanded : .collapsed,
+                                                          contentHeight: [child.messsageID!: 0.0],
                                                           shouldBlockExternalImages: user.settings.blockExternalImage ?? false),
                                                  child.isHtml ?? false)
                     )
@@ -172,6 +171,7 @@ final class InboxViewerDatasource: NSObject {
                 sectionList.append(.mailBody(TextMail(messageId: messageObject.messsageID,
                                                       content: content,
                                                       state: .expanded,
+                                                      contentHeight: [messageObject.messsageID!: 0.0],
                                                       shouldBlockExternalImages: user.settings.blockExternalImage ?? false),
                                              messageObject.isHtml ?? false)
                 )
@@ -256,6 +256,7 @@ final class InboxViewerDatasource: NSObject {
                     sectionList.append(.mailBody(TextMail(messageId: child.messsageID,
                                                           content: content,
                                                           state: (index == children.count - 1) ? .expanded : .collapsed,
+                                                          contentHeight: [child.messsageID!: 0.0],
                                                           shouldBlockExternalImages: user.settings.blockExternalImage ?? false),
                                                  child.isHtml ?? false)
                     )
@@ -266,6 +267,7 @@ final class InboxViewerDatasource: NSObject {
                 sectionList.append(.mailBody(TextMail(messageId: messageObject.messsageID,
                                                       content: content,
                                                       state: .expanded,
+                                                      contentHeight: [messageObject.messsageID!: 0.0],
                                                       shouldBlockExternalImages: user.settings.blockExternalImage ?? false),
                                              messageObject.isHtml ?? false)
                 )
@@ -342,9 +344,7 @@ final class InboxViewerDatasource: NSObject {
         let decryptedContent = pgpService.decryptMessageFromPassword(encryptedContent: message, password: password)
         return decryptedContent
     }
-    
-    
-    
+
     func getHeaderModel(withMessageId messageId: Int?, state: InboxHeaderState) -> InboxViewerMailSenderHeader? {
         var message: EmailMessage?
         
@@ -605,23 +605,17 @@ extension InboxViewerDatasource: UITableViewDataSource, UITableViewDelegate {
                 model.update(state: state)
                 
                 self?.sections[section] = .mailBody(model, isHTML)
-//                UIView.performWithoutAnimation {
-//                    self?.tableView.reloadData()
-//
-//                }
                 DispatchQueue.main.async {
                     let loc = self?.tableView.contentOffset
-                    UIView.performWithoutAnimation {
+                    self?.tableView.performBatchUpdates({
+                        self?.tableView.reloadSections(IndexSet(integer: section), with: .none)
+                    }, completion: { _ in
                         self?.tableView.layoutIfNeeded()
-                        self?.tableView.reloadData()
-                       // tableView.reloadSections(IndexSet(integer: section), with: .none)
                         self?.tableView.layer.removeAllAnimations()
-                    }
-                    self?.tableView.setContentOffset(loc ?? .zero, animated: false)
+                    })
+                    // self?.tableView.setContentOffset(loc ?? .zero, animated: false)
                     
                 }
-               // self?.tableView.reloadData()
-                //
             }
             
             headerView.onTapViewDetails = { (isSelected) in
@@ -629,8 +623,6 @@ extension InboxViewerDatasource: UITableViewDataSource, UITableViewDelegate {
                     self.tableView.beginUpdates()
                     self.tableView.endUpdates()
                 }
-//                tableView.beginUpdates()
-//                tableView.endUpdates()
             }
             
             return headerView
@@ -685,14 +677,6 @@ extension InboxViewerDatasource: UITableViewDataSource, UITableViewDelegate {
         case .attachment:
              return 80.0
         }
-        
-        
-//        func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//            guard let videoCell = cell as? InboxViewerWebMailBodyCell else {
-//                return
-//            }
-//            videoCell.isLoaded = true
-//        }
     }
     
     // MARK: - Cell Configurations
@@ -761,54 +745,20 @@ extension InboxViewerDatasource: UITableViewDataSource, UITableViewDelegate {
     
     private func configureWebMailBodyCell(with content: TextMail,
                                           indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: InboxViewerWebMailBodyCell.className,
-//                                                       for: indexPath) as? InboxViewerWebMailBodyCell else {
-//                                                        return UITableViewCell()
-//        }
-        
-//        guard let cell = UITableViewCell(style: .default, reuseIdentifier: InboxViewerWebMailBodyCell.className) as? InboxViewerWebMailBodyCell else {
-//                                                                    return UITableViewCell()
-//                    }
-        
-//        guard  let cell = Bundle(for: InboxViewerWebMailBodyCell.self).loadNibNamed(InboxViewerWebMailBodyCell.className, owner: self, options: nil)?[0] as? InboxViewerWebMailBodyCell else {
-//            return UITableViewCell()
-//        }
-
-        let nibs = Bundle(for: InboxViewerWebMailBodyCell.self).loadNibNamed(InboxViewerWebMailBodyCell.className, owner: self, options: nil)
-        
-        guard let cell = nibs?[0] as? InboxViewerWebMailBodyCell else{
-            return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: InboxViewerWebMailBodyCell.className,
+                                                       for: indexPath) as? InboxViewerWebMailBodyCell else {
+                                                        return UITableViewCell()
         }
         
         cell.configure(with: content)
         cell.onHeightChange = { [weak self] in
-            
-//            DispatchQueue.main.async {
-//                UIView.performWithoutAnimation {
-//                    self?.tableView.beginUpdates()
-//                    self?.tableView.endUpdates()
-//                }
-////                self?.tableView.beginUpdates()
-////                self?.tableView.endUpdates()
-//               // self?.tableView.reloadData()
-//            }
-           
             DispatchQueue.main.async {
-                let loc = self?.tableView.contentOffset
-                UIView.performWithoutAnimation {
-                    self?.tableView.layoutIfNeeded()
-                    self?.tableView.beginUpdates()
-                    self?.tableView.endUpdates()
-                    self?.tableView.layer.removeAllAnimations()
-                }
-                self?.tableView.setContentOffset(loc ?? .zero, animated: false)
-                
-            }
+                self?.tableView.beginUpdates()
+                self?.tableView.endUpdates()
+           }
         }
         return cell
     }
-    
-    
     
     private func configureAttachmentCell(with attachmentModel: MailAttachmentCellModel,
                                          indexPath: IndexPath) -> UITableViewCell {

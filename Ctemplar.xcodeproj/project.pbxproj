@@ -66,6 +66,7 @@
 		44BF494824BE2E5E00CF8693 /* GlobalSearch.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44BF494024BE2E4E00CF8693 /* GlobalSearch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		44BF494924BE312300CF8693 /* GlobalSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44BF494024BE2E4E00CF8693 /* GlobalSearch.framework */; };
 		44BF494A24BE312300CF8693 /* GlobalSearch.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44BF494024BE2E4E00CF8693 /* GlobalSearch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		44C2E0E726DA9B7000310F62 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 44C2E0D926DA9B7000310F62 /* style.css */; };
 		44C96A7224C078E9003D2D3B /* InboxViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C96A7124C078E9003D2D3B /* InboxViewer.framework */; };
 		44C96A7324C078E9003D2D3B /* InboxViewer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44C96A7124C078E9003D2D3B /* InboxViewer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		44CA250924B757F40063DB93 /* ForgetPassword.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44A41B72249E106300A21664 /* ForgetPassword.framework */; };
@@ -119,8 +120,8 @@
 		84F348582181F4E300F00E37 /* BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F348572181F4E300F00E37 /* BlurEffect.swift */; };
 		84FF7E3C219DB71500E3E56A /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF7E3B219DB71500E3E56A /* ContactTableViewCell.swift */; };
 		84FF7E3E219DB7E600E3E56A /* ContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FF7E3D219DB7E600E3E56A /* ContactTableViewCell.xib */; };
-		9595FFA32625AFF2008E319B /* PGPFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DFA68C2615D4C400C1EFFF /* PGPFramework.framework */; };
-		9595FFA42625AFF2008E319B /* PGPFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 95DFA68C2615D4C400C1EFFF /* PGPFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8BBE9E842625AC5B0033F7F2 /* PGPFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 958E89E7261F5F5000A8B4CF /* PGPFramework.framework */; };
+		8BBE9E852625AC5B0033F7F2 /* PGPFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 958E89E7261F5F5000A8B4CF /* PGPFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B3BB43B76E492D780B251AC0 /* Pods_Ctemplar_dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 372909883E526A2B4F72D295 /* Pods_Ctemplar_dev.framework */; };
 		CC6908C92384500100956E9B /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E972E21634E7800147CBE /* LaunchScreenViewController.swift */; };
 		CC6908CC2384500100956E9B /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -240,16 +241,16 @@
 			remoteGlobalIDString = 44F739C12498B01800688086;
 			remoteInfo = Login;
 		};
-		95DFA68B2615D4C400C1EFFF /* PBXContainerItemProxy */ = {
+		958E89E6261F5F5000A8B4CF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 95DFA6862615D4C400C1EFFF /* PGPFramework.xcodeproj */;
+			containerPortal = 958E89E1261F5F5000A8B4CF /* PGPFramework.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 95DFA6292615D3BF00C1EFFF;
 			remoteInfo = PGPFramework;
 		};
-		95DFA68D2615D4C400C1EFFF /* PBXContainerItemProxy */ = {
+		958E89E8261F5F5000A8B4CF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 95DFA6862615D4C400C1EFFF /* PGPFramework.xcodeproj */;
+			containerPortal = 958E89E1261F5F5000A8B4CF /* PGPFramework.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 95DFA6322615D3BF00C1EFFF;
 			remoteInfo = PGPFrameworkTests;
@@ -290,7 +291,7 @@
 				44BF494A24BE312300CF8693 /* GlobalSearch.framework in Embed Frameworks */,
 				44CA251824B757FE0063DB93 /* Login.framework in Embed Frameworks */,
 				44CA251624B757F90063DB93 /* Initializer.framework in Embed Frameworks */,
-				9595FFA42625AFF2008E319B /* PGPFramework.framework in Embed Frameworks */,
+				8BBE9E852625AC5B0033F7F2 /* PGPFramework.framework in Embed Frameworks */,
 				44D9890A2593607F0017376A /* AppContacts.framework in Embed Frameworks */,
 				44CA250A24B757F40063DB93 /* ForgetPassword.framework in Embed Frameworks */,
 				44CA251A24B758000063DB93 /* Networking.framework in Embed Frameworks */,
@@ -358,6 +359,7 @@
 		4497F1E1248BE50D00AF83F5 /* FAQRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQRouter.swift; sourceTree = "<group>"; };
 		44A41B6D249E106200A21664 /* ForgetPassword.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ForgetPassword.xcodeproj; path = ForgetPassword/ForgetPassword.xcodeproj; sourceTree = "<group>"; };
 		44BF493A24BE2E4E00CF8693 /* GlobalSearch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GlobalSearch.xcodeproj; path = GlobalSearch/GlobalSearch.xcodeproj; sourceTree = "<group>"; };
+		44C2E0D926DA9B7000310F62 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		44C96A7124C078E9003D2D3B /* InboxViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = InboxViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		44C96A7C24C078EF003D2D3B /* InboxViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = InboxViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		44D9668724C17C150050ED46 /* Ctemplar.devTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Ctemplar.devTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -404,7 +406,7 @@
 		84FF7E3B219DB71500E3E56A /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		84FF7E3D219DB7E600E3E56A /* ContactTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactTableViewCell.xib; sourceTree = "<group>"; };
 		88FA96780E9F11829E06C5E7 /* Pods-Ctemplar.devTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.devTests.debug.xcconfig"; path = "Target Support Files/Pods-Ctemplar.devTests/Pods-Ctemplar.devTests.debug.xcconfig"; sourceTree = "<group>"; };
-		95DFA6862615D4C400C1EFFF /* PGPFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PGPFramework.xcodeproj; path = PGPFramework/PGPFramework.xcodeproj; sourceTree = "<group>"; };
+		958E89E1261F5F5000A8B4CF /* PGPFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PGPFramework.xcodeproj; path = PGPFramework/PGPFramework.xcodeproj; sourceTree = "<group>"; };
 		96CEE13DED62A1B07738862B /* Pods-Ctemplar.devTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctemplar.devTests.release.xcconfig"; path = "Target Support Files/Pods-Ctemplar.devTests/Pods-Ctemplar.devTests.release.xcconfig"; sourceTree = "<group>"; };
 		CC3C27EE23844AAB005828BF /* Ctemplar-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Ctemplar-Info.plist"; sourceTree = "<group>"; };
 		CC6909922384500100956E9B /* Ctemplar.dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ctemplar.dev.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -435,7 +437,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9595FFA32625AFF2008E319B /* PGPFramework.framework in Frameworks */,
+				8BBE9E842625AC5B0033F7F2 /* PGPFramework.framework in Frameworks */,
 				44CA251924B758000063DB93 /* Networking.framework in Frameworks */,
 				44D989092593607F0017376A /* AppContacts.framework in Frameworks */,
 				444BD48124953084001D0C5F /* libz.tbd in Frameworks */,
@@ -515,7 +517,7 @@
 		44382456248F99D900DEA4F3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				95DFA6862615D4C400C1EFFF /* PGPFramework.xcodeproj */,
+				958E89E1261F5F5000A8B4CF /* PGPFramework.xcodeproj */,
 				44913E072592257E00B25697 /* AppContacts.xcodeproj */,
 				4477552424F03068009B89D6 /* Compose.xcodeproj */,
 				443DD3E724CDCAF600771AE5 /* AppSettings.xcodeproj */,
@@ -778,6 +780,7 @@
 		8433FF58216217DC00C57DC8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				44C2E0D926DA9B7000310F62 /* style.css */,
 				445CFAE2249BF3B40017DC40 /* Assets.xcassets */,
 				CC3C27EC23844AAB005828BF /* Plist */,
 				843E972B2163493800147CBE /* Fonts */,
@@ -854,11 +857,11 @@
 			path = ContactCell;
 			sourceTree = "<group>";
 		};
-		95DFA6872615D4C400C1EFFF /* Products */ = {
+		958E89E2261F5F5000A8B4CF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				95DFA68C2615D4C400C1EFFF /* PGPFramework.framework */,
-				95DFA68E2615D4C400C1EFFF /* PGPFrameworkTests.xctest */,
+				958E89E7261F5F5000A8B4CF /* PGPFramework.framework */,
+				958E89E9261F5F5000A8B4CF /* PGPFrameworkTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1071,8 +1074,8 @@
 					ProjectRef = 444BD2EA249234C2001D0C5F /* Networking.xcodeproj */;
 				},
 				{
-					ProductGroup = 95DFA6872615D4C400C1EFFF /* Products */;
-					ProjectRef = 95DFA6862615D4C400C1EFFF /* PGPFramework.xcodeproj */;
+					ProductGroup = 958E89E2261F5F5000A8B4CF /* Products */;
+					ProjectRef = 958E89E1261F5F5000A8B4CF /* PGPFramework.xcodeproj */;
 				},
 				{
 					ProductGroup = 4438246D248F9A1200DEA4F3 /* Products */;
@@ -1170,18 +1173,18 @@
 			remoteRef = 44F739D02498B01900688086 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		95DFA68C2615D4C400C1EFFF /* PGPFramework.framework */ = {
+		958E89E7261F5F5000A8B4CF /* PGPFramework.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = PGPFramework.framework;
-			remoteRef = 95DFA68B2615D4C400C1EFFF /* PBXContainerItemProxy */;
+			remoteRef = 958E89E6261F5F5000A8B4CF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		95DFA68E2615D4C400C1EFFF /* PGPFrameworkTests.xctest */ = {
+		958E89E9261F5F5000A8B4CF /* PGPFrameworkTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = PGPFrameworkTests.xctest;
-			remoteRef = 95DFA68D2615D4C400C1EFFF /* PBXContainerItemProxy */;
+			remoteRef = 958E89E8261F5F5000A8B4CF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1204,6 +1207,7 @@
 				445CFAE3249BF3B50017DC40 /* Assets.xcassets in Resources */,
 				8441099221776B5100F0BE18 /* Lato-Bold.ttf in Resources */,
 				8433FF24216201A500C57DC8 /* LaunchScreen.storyboard in Resources */,
+				44C2E0E726DA9B7000310F62 /* style.css in Resources */,
 				8436AD532180663800D16008 /* Localizable.strings in Resources */,
 				8440141A21D377D600FC450C /* PrivacyAndTerms.storyboard in Resources */,
 				8433FF4C21620DBD00C57DC8 /* SplitiPad.storyboard in Resources */,
@@ -1710,9 +1714,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = N2Z7XM6798;
 				ENABLE_BITCODE = NO;
@@ -1726,11 +1730,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.5;
+				MARKETING_VERSION = 1.5.9;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Development Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1743,9 +1747,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Ctemplar/Ctemplar.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = N2Z7XM6798;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1758,11 +1762,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.5;
+				MARKETING_VERSION = 1.5.9;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ctemplar.corp.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Development Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

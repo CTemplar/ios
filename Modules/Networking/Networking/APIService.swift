@@ -1009,11 +1009,7 @@ public class APIService: HashingService {
         checkTokenExpiration() { [weak self] (complete) in
             if complete {
                 if let token = self?.getToken() {
-                    DispatchQueue.main.async {
-                        if !silent {
-                            Loader.start()
-                        }
-                    }
+
                     DispatchQueue.global(qos: .background).async {
                         self?.restAPIService.userContacts(token: token, fetchAll: fetchAll, offset: offset) { (result) in
                                 switch(result) {

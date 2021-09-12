@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		444B6FA625258536008C6147 /* InboxViewerWebMailBodyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 444B6FA425258536008C6147 /* InboxViewerWebMailBodyCell.xib */; };
 		4466418124C2DCB40093A6DE /* InboxViewerMailSenderHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4466418024C2DCB40093A6DE /* InboxViewerMailSenderHeader.swift */; };
 		4466419124C33ED00093A6DE /* InboxViewerTextMailBodyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4466419024C33ED00093A6DE /* InboxViewerTextMailBodyCell.swift */; };
 		4466419C24C34D1C0093A6DE /* TextMail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4466419B24C34D1C0093A6DE /* TextMail.swift */; };
@@ -37,7 +36,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		444B6FA425258536008C6147 /* InboxViewerWebMailBodyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InboxViewerWebMailBodyCell.xib; sourceTree = "<group>"; };
 		4466418024C2DCB40093A6DE /* InboxViewerMailSenderHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewerMailSenderHeader.swift; sourceTree = "<group>"; };
 		4466419024C33ED00093A6DE /* InboxViewerTextMailBodyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewerTextMailBodyCell.swift; sourceTree = "<group>"; };
 		4466419B24C34D1C0093A6DE /* TextMail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMail.swift; sourceTree = "<group>"; };
@@ -159,7 +157,6 @@
 				44D966E824C1EA730050ED46 /* InboxViewerMailSenderHeaderView.swift */,
 				4466419024C33ED00093A6DE /* InboxViewerTextMailBodyCell.swift */,
 				446641B924C4A5570093A6DE /* InboxViewerWebMailBodyCell.swift */,
-				444B6FA425258536008C6147 /* InboxViewerWebMailBodyCell.xib */,
 				446641A724C486180093A6DE /* AttachmentCell.swift */,
 				446641AB24C4928C0093A6DE /* AttachmentCollectionCell.swift */,
 			);
@@ -267,7 +264,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				44D966AE24C183770050ED46 /* Assets.xcassets in Resources */,
-				444B6FA625258536008C6147 /* InboxViewerWebMailBodyCell.xib in Resources */,
 				44B1621724C61C2600BDD4B3 /* InboxViewer.storyboard in Resources */,
 				44B1622524C971BB00BDD4B3 /* stylesheet.css in Resources */,
 			);

@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9596F660261AFAAF00D64163 /* Gopenpgp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DFA6552615D43600C1EFFF /* Gopenpgp.framework */; };
+		8BBE9E7C2625AB780033F7F2 /* Gopenpgp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 958E89BB261F5D2000A8B4CF /* Gopenpgp.framework */; };
+		9595FEF32625A509008E319B /* PGPEncryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9595FEF22625A509008E319B /* PGPEncryption.swift */; };
 		95DFA6332615D3BF00C1EFFF /* PGPFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DFA6292615D3BF00C1EFFF /* PGPFramework.framework */; };
 		95DFA6382615D3BF00C1EFFF /* PGPFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DFA6372615D3BF00C1EFFF /* PGPFrameworkTests.swift */; };
 		95DFA63A2615D3BF00C1EFFF /* PGPFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 95DFA62C2615D3BF00C1EFFF /* PGPFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		95DFA6462615D3ED00C1EFFF /* PGPEncryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DFA6452615D3ED00C1EFFF /* PGPEncryption.swift */; };
 		95DFA6502615D41A00C1EFFF /* 101-Questions-New.png in Resources */ = {isa = PBXBuildFile; fileRef = 95DFA64F2615D41A00C1EFFF /* 101-Questions-New.png */; };
 /* End PBXBuildFile section */
 
@@ -26,17 +26,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		955F324A2618B35F0061265C /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		955F32782618B6E50061265C /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		958E89BB261F5D2000A8B4CF /* Gopenpgp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Gopenpgp.framework; sourceTree = "<group>"; };
+		9595FEF22625A509008E319B /* PGPEncryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PGPEncryption.swift; sourceTree = "<group>"; };
 		95DFA6292615D3BF00C1EFFF /* PGPFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PGPFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95DFA62C2615D3BF00C1EFFF /* PGPFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PGPFramework.h; sourceTree = "<group>"; };
 		95DFA62D2615D3BF00C1EFFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95DFA6322615D3BF00C1EFFF /* PGPFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PGPFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		95DFA6372615D3BF00C1EFFF /* PGPFrameworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PGPFrameworkTests.swift; sourceTree = "<group>"; };
 		95DFA6392615D3BF00C1EFFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		95DFA6452615D3ED00C1EFFF /* PGPEncryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PGPEncryption.swift; sourceTree = "<group>"; };
 		95DFA64F2615D41A00C1EFFF /* 101-Questions-New.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "101-Questions-New.png"; sourceTree = "<group>"; };
-		95DFA6552615D43600C1EFFF /* Gopenpgp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Gopenpgp.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,7 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9596F660261AFAAF00D64163 /* Gopenpgp.framework in Frameworks */,
+				8BBE9E7C2625AB780033F7F2 /* Gopenpgp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,15 +57,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		955F32492618B35F0061265C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				955F32782618B6E50061265C /* Networking.framework */,
-				955F324A2618B35F0061265C /* Networking.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		95DFA61F2615D3BF00C1EFFF = {
 			isa = PBXGroup;
 			children = (
@@ -75,7 +64,6 @@
 				95DFA62B2615D3BF00C1EFFF /* PGPFramework */,
 				95DFA6362615D3BF00C1EFFF /* PGPFrameworkTests */,
 				95DFA62A2615D3BF00C1EFFF /* Products */,
-				955F32492618B35F0061265C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,8 +79,8 @@
 		95DFA62B2615D3BF00C1EFFF /* PGPFramework */ = {
 			isa = PBXGroup;
 			children = (
-				95DFA6552615D43600C1EFFF /* Gopenpgp.framework */,
-				95DFA6452615D3ED00C1EFFF /* PGPEncryption.swift */,
+				958E89BB261F5D2000A8B4CF /* Gopenpgp.framework */,
+				9595FEF22625A509008E319B /* PGPEncryption.swift */,
 				95DFA62C2615D3BF00C1EFFF /* PGPFramework.h */,
 				95DFA62D2615D3BF00C1EFFF /* Info.plist */,
 			);
@@ -218,7 +206,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95DFA6462615D3ED00C1EFFF /* PGPEncryption.swift in Sources */,
+				9595FEF32625A509008E319B /* PGPEncryption.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,7 +281,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -351,7 +339,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -372,13 +360,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PGPFramework",
 				);
 				INFOPLIST_FILE = PGPFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -390,7 +378,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = Debug;
 		};
@@ -403,13 +390,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PGPFramework",
 				);
 				INFOPLIST_FILE = PGPFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -420,7 +407,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = Release;
 		};

@@ -2,7 +2,6 @@
 import UIKit
 import Gopenpgp
 import CryptoKit
-//import Networking
 typealias KeyRing             = CryptoKeyRing
 typealias SplitMessage        = CryptoPGPSplitMessage
 typealias PlainMessage        = CryptoPlainMessage
@@ -555,8 +554,8 @@ public class PGPEncryption {
 //        let pbRing = CryptoKeyRing(pbKey)
 //        let pvRing = CryptoKeyRing(pvkey)
 //        let messageEncrypted = try! pbRing?.encrypt(CryptoPlainMessage(from: message), privateKey: pvRing)
-//       
-//        
+//
+//
 //    }
     
     

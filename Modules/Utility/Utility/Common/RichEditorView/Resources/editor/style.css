@@ -30,7 +30,19 @@ body {
     font: -apple-system-body;
 }
 
-body, h1, p, ul, ol {
+body {
+    margin: 0;
+}
+
+h1 {
+    font: -apple-system-headline;
+    color: red;
+    margin: 0;
+}
+
+h2 {
+    font: -apple-system-subheadline;
+    color: green;
     margin: 0;
 }
 
