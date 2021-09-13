@@ -26,6 +26,7 @@ public class Loader {
     }
     
     public class func stop(in presenter: UIViewController? = nil) {
+        
         KDLoadingView.stop(in: presenter)
     }
 }

@@ -1323,7 +1323,6 @@ public class RestAPIService {
             JSONKey.encrypted.rawValue: encrypted,
             JSONKey.fileType.rawValue: mimeType,
             JSONKey.folderName.rawValue:fileName
-            
         ]
         
         DPrint("createAttachment parameters:", parameters)
