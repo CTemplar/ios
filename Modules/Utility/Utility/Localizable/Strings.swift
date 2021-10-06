@@ -271,6 +271,7 @@ public enum Strings {
         case whiteBlackList
         case universalSpamFilter
         case filter
+        case composer
         case dashboard
         case security
         case manageFolders

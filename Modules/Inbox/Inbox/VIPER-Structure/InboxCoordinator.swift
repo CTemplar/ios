@@ -108,6 +108,12 @@ public class InboxCoordinator {
         moveToViewController.selectedMessagesIDArray = selectedMessageIds
         
         moveToViewController.user = user
+       if  let controller = presenter as? InboxViewController
+        {
+           moveToViewController.allMailsSelected = controller.dataSource?.allMailsSelected ?? false
+           moveToViewController.lastAppliedActionMessage = controller.dataSource?.lastAppliedActionMessage
+        }
+       
         
         moveToViewController.modalPresentationStyle = .formSheet
         

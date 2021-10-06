@@ -141,6 +141,10 @@ RE.setFontSize = function(size) {
     RE.editor.style.fontSize = size;
 };
 
+RE.setFontFamily = function(size) {
+    RE.editor.style.fontFamily = size;
+};
+
 RE.setBackgroundColor = function(color) {
     RE.editor.style.backgroundColor = color;
 };
@@ -182,15 +186,27 @@ RE.setUnderline = function() {
 };
 
 RE.setTextColor = function(color) {
-    RE.restorerange();
-    document.execCommand("styleWithCSS", null, true);
+    //RE.restorerange();
+    document.execCommand('styleWithCSS', false, true);
     document.execCommand('foreColor', false, color);
     document.execCommand("styleWithCSS", null, false);
 };
 
+RE.setNewFontSize = function(size) {
+    //RE.restorerange();
+    document.execCommand('styleWithCSS', false, true);
+    document.execCommand('fontSize', false, size);
+    document.execCommand("styleWithCSS", null, false);
+};
+RE.setNewFontName = function(name) {
+    //RE.restorerange();
+    document.execCommand('styleWithCSS', false, true);
+    document.execCommand('fontName', false, name);
+    document.execCommand("styleWithCSS", null, false);
+};
 RE.setTextBackgroundColor = function(color) {
-    RE.restorerange();
-    document.execCommand("styleWithCSS", null, true);
+    //RE.restorerange();
+    document.execCommand("styleWithCSS", false, true);
     document.execCommand('hiliteColor', false, color);
     document.execCommand("styleWithCSS", null, false);
 };

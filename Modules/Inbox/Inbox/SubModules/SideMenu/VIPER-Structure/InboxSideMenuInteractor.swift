@@ -212,8 +212,8 @@ public final class InboxSideMenuInteractor {
             openSupportURL()
         case .logout:
             viewController?.presenter?.logOut()
-//        case .subscriptions:
-//            viewController?.router?.showSubscriptions(withUser: user)
+        case .subscriptions:
+            viewController?.router?.showSubscriptions(withUser: user)
         }
     }
 

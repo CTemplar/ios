@@ -3,12 +3,14 @@ import UIKit
 import Utility
 import SnapKit
 import Combine
+import Networking
 
 public final class ComposeMailBodyCell: UITableViewCell, Cellable {
     // MARK: IBOutlets
     @IBOutlet weak var messageTextEditorHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var messageTextEditor: RichEditorView!
-    
+    var user: UserMyself?
+
     // MARK: Properties
     private lazy var toolbar: RichEditorToolbar = {
         let toolbar = RichEditorToolbar(frame: CGRect(x: 0, y: 0, width: bounds.width, height: 44))
@@ -49,6 +51,7 @@ public final class ComposeMailBodyCell: UITableViewCell, Cellable {
             name: UIResponder.keyboardDidHideNotification,
             object: nil
         )
+       
     }
     
     deinit {
@@ -57,8 +60,100 @@ public final class ComposeMailBodyCell: UITableViewCell, Cellable {
 
     public override func layoutSubviews() {
         super.layoutSubviews()
-        messageTextEditor.setEditorFontColor(.label)
+       // messageTextEditor.setEditorFontColor(.label)
         messageTextEditor.placeholder = Strings.AppSettings.typeMessage.localized
+
+        if (self.user != nil) {
+            let textColor = self.getColorFromString(color: self.user?.settings.color ?? "none")
+           let textbackgroundColor = self.getColorFromString(color: self.user?.settings.backgroundColor ?? "none")
+          //messageTextEditor.webView.tintColor =
+           if (textColor == .clear) {
+               if (textbackgroundColor == .black) {
+                   messageTextEditor.setTextColor(self.traitCollection.userInterfaceStyle == .dark ? .white : .white)
+               }
+               else {
+                   messageTextEditor.setTextColor(self.traitCollection.userInterfaceStyle == .dark ? .white : .black)
+               }
+           }
+           else {
+               if (textColor == .white) {
+                   if (textbackgroundColor == .clear) {
+                      messageTextEditor.setTextColor(self.traitCollection.userInterfaceStyle == .dark ? .white : .black)
+                   }
+                   else {
+                       messageTextEditor.setTextColor(textColor)
+                   }
+               }
+               else if (textColor == .black) {
+                   if (textbackgroundColor == .white) {
+                       messageTextEditor.setTextColor(textColor)
+                   }
+                   else if (textbackgroundColor == .clear) {
+                       messageTextEditor.setTextColor(self.traitCollection.userInterfaceStyle == .dark ? .white : .black)
+                   }
+                   else  if (textbackgroundColor == .black) {
+                       messageTextEditor.setTextColor(self.traitCollection.userInterfaceStyle == .dark ? .white : .white)
+                   }
+                   else {
+                       messageTextEditor.setTextColor(textColor)
+                   }
+               }
+               else {
+                   messageTextEditor.setTextColor(textColor)
+
+               }
+           }
+         
+           if (textbackgroundColor != .clear) {
+               if (textbackgroundColor == .white) {
+                   if (self.traitCollection.userInterfaceStyle == .dark) {
+                       if (textColor == .white) {
+                           messageTextEditor.setTextBackgroundColor(.black)
+                       }
+                       else {
+                           messageTextEditor.setTextBackgroundColor(textbackgroundColor)
+                       }
+                   }
+                   else {
+                       messageTextEditor.setTextBackgroundColor(textbackgroundColor)
+                   }
+                   
+               }
+               else if (textbackgroundColor == .black) {
+                   messageTextEditor.setTextBackgroundColor(textbackgroundColor)
+               }
+               else {
+                   messageTextEditor.setTextBackgroundColor(textbackgroundColor)
+               }
+           }
+           let newSize = self.user?.settings.size ?? 12
+            let size = String(newSize/6)
+           messageTextEditor.setTextFontSize(size)
+           messageTextEditor.setTextFontName(self.user?.settings.plainTextFont ?? "Roboto" + "-Regular")
+       }
+    }
+    
+    private func getColorFromString(color:String)-> UIColor {
+        switch color {
+        case EditorColor.none:
+            return .clear
+        case EditorColor.red:
+            return .red
+        case EditorColor.blue:
+            return .blue
+        case EditorColor.green:
+            return .green
+        case EditorColor.white:
+            return .white
+        case EditorColor.pink:
+            return .systemPink
+        case EditorColor.grey:
+            return .gray
+        case EditorColor.black:
+            return .black
+        default:
+           return .clear
+        }
     }
     
     // MARK: - Observers
@@ -122,7 +217,7 @@ public final class ComposeMailBodyCell: UITableViewCell, Cellable {
             toolbar.options = options
         }
         
-        messageTextEditor.setEditorFontColor(.label)
+       // messageTextEditor.setEditorFontColor(.label)
         
         // Setting the content type
         if model.contentType == .normalText {
@@ -134,6 +229,108 @@ public final class ComposeMailBodyCell: UITableViewCell, Cellable {
                 ]
             )
         }
+        
+        if (self.user != nil) {
+             let textColor = self.getColorFromString(color: self.user?.settings.color ?? "none")
+            let textbackgroundColor = self.getColorFromString(color: self.user?.settings.backgroundColor ?? "none")
+           //messageTextEditor.webView.tintColor =
+             if (textColor == .clear) {
+                if (textbackgroundColor == .black) {
+                    messageTextEditor.setTextColor(self.traitCollection.userInterfaceStyle == .dark ? .white : .white)
+                }
+                else {
+                    messageTextEditor.setTextColor(self.traitCollection.userInterfaceStyle == .dark ? .white : .black)
+                }
+            }
+            else {
+                if (textColor == .white) {
+                    if (textbackgroundColor == .clear) {
+                       messageTextEditor.setTextColor(self.traitCollection.userInterfaceStyle == .dark ? .white : .black)
+                    }
+                    else {
+                        messageTextEditor.setTextColor(textColor)
+                    }
+                }
+                else if (textColor == .black) {
+                    if (textbackgroundColor == .white) {
+                        messageTextEditor.setTextColor(textColor)
+                    }
+                    else if (textbackgroundColor == .clear) {
+                        messageTextEditor.setTextColor(self.traitCollection.userInterfaceStyle == .dark ? .white : .black)
+                    }
+                    else  if (textbackgroundColor == .black) {
+                        messageTextEditor.setTextColor(self.traitCollection.userInterfaceStyle == .dark ? .white : .white)
+                    }
+                    else {
+                        messageTextEditor.setTextColor(textColor)
+                    }
+                }
+                else {
+                    messageTextEditor.setTextColor(textColor)
+
+                }
+            }
+          
+            if (textbackgroundColor != .clear) {
+                if (textbackgroundColor == .white) {
+                    if (self.traitCollection.userInterfaceStyle == .dark) {
+                        if (textColor == .white) {
+                            messageTextEditor.setTextBackgroundColor(.black)
+                        }
+                        else {
+                            messageTextEditor.setTextBackgroundColor(textbackgroundColor)
+                        }
+                    }
+                    else {
+                        messageTextEditor.setTextBackgroundColor(textbackgroundColor)
+                    }
+                    
+                }
+                else if (textbackgroundColor == .black) {
+                    messageTextEditor.setTextBackgroundColor(textbackgroundColor)
+                }
+                else {
+                    messageTextEditor.setTextBackgroundColor(textbackgroundColor)
+                }
+            }
+            let newSize = self.user?.settings.size ?? 12
+             let size = String(newSize/6)
+            messageTextEditor.setTextFontSize(size)
+            messageTextEditor.setTextFontName(self.user?.settings.plainTextFont ?? "Roboto" + "-Regular")
+        }
+    }
+    
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if model.content.contains("color=") {
+            if model.content.contains("color=\"#000000\"") {
+                if (model.content.contains("background-color:")) {
+                    
+                }
+                else {
+                    let newContent = self.traitCollection.userInterfaceStyle == .dark ? model.content.replacingOccurrences(of: "color=\"#000000\"", with: "color=\"#ffffff\"") : model.content
+                     //model.content = newContent
+                     messageTextEditor.html = newContent
+     //                if model.contentType == .htmlText {
+     //                    model.subject.send(newContent)
+     //                }
+                }
+           }
+            else  if model.content.contains("color=\"#ffffff\"") {
+                if (model.content.contains("background-color:")) {
+                    
+                }
+                else {
+                    let newContent = self.traitCollection.userInterfaceStyle == .dark ? model.content : model.content.replacingOccurrences(of: "color=\"#ffffff\"", with: "color=\"#000000\"")
+                    // model.content = newContent
+                    messageTextEditor.html = newContent
+                    //               if model.contentType == .htmlText {
+                    //                   model.subject.send(newContent)
+                    //               }
+                }
+            }
+        }
+        self.setupEditor()
     }
     
     // MARK: - Configuration
@@ -305,4 +502,14 @@ extension ComposeMailBodyCell: RichEditorDelegate {
             self.tableView?.endUpdates()
         }
     }
+}
+struct EditorColor {
+    static let none = "none"
+    static let red = "red"
+    static let blue = "blue"
+    static let green = "green"
+    static let white = "white"
+    static let black = "black"
+    static let pink = "pink"
+    static let grey = "grey"
 }

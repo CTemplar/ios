@@ -18,6 +18,7 @@ enum FilterHeaders: Int {
     case markAsRead
     case markAsStarred
 }
+
 struct ConditionValues {
   var serverValue = ""
   var frontValue = ""

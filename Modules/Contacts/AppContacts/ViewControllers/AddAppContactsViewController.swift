@@ -40,22 +40,36 @@ class AddAppContactsViewController: UIViewController {
     // MARK: - Bindings & Observers
     private func setupBindings() {
         // Properties that can be assigned using default assign method
+   
         subscriptions = [
             viewModel
                 .$contactName
-                .assign(to: \.text!, on: nameTextField),
+                .receive(on: DispatchQueue.main)
+                .sink(receiveValue: { [unowned self] (value) in
+                    self.nameTextField.text = value
+                }),
+            
+                //.assign(to: \.text, on: self.nameTextField),
             viewModel
                 .$contactEmailAddress
-                .assign(to: \.text!, on: emailAddressTextField),
+                .receive(on: DispatchQueue.main)
+                .sink(receiveValue: { [unowned self] (value) in
+                    self.emailAddressTextField.text = value
+                }),
+              //  .assign(to: \.text , on: self.emailAddressTextField),
             viewModel
                 .$contactPhoneNumber
-                .assign(to: \.text!, on: phoneNumberTextField),
+                .receive(on: DispatchQueue.main)
+                .sink(receiveValue: { [unowned self] (value) in
+                    self.phoneNumberTextField.text = value
+                }),
+                //.assign(to: \.text, on: phoneNumberTextField),
             viewModel
                 .$contactAddress
-                .assign(to: \.text!, on: addressField),
+                .assign(to: \.text, on: addressField),
             viewModel
                 .$contactNote
-                .assign(to: \.text!, on: noteField),
+                .assign(to: \.text, on: noteField),
             viewModel
                 .$hideDeleteContactOption
                 .assign(to: \.isHidden, on: deleteContactButton),
@@ -113,7 +127,7 @@ class AddAppContactsViewController: UIViewController {
         ]
         
     }
-    
+
     // MARK: - Actions
     @objc
     private func onTapSave() {

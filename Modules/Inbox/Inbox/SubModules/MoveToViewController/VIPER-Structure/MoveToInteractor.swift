@@ -62,7 +62,7 @@ class MoveToInteractor {
                                    read: false,
                                    updateFolder: true,
                                    updateStarred: false,
-                                   updateRead: false)
+                                   updateRead: false, allfolder: self.viewController?.lastAppliedActionMessage?.folder ?? "", allSelected: self.viewController?.allMailsSelected ?? false)
         { [weak self] (result) in
             DispatchQueue.main.async {
                 switch(result) {

@@ -114,8 +114,8 @@
         "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing.git",
         "state": {
           "branch": null,
-          "revision": "2fd91357e90efe82bfa6845d1e7d5bc2f5025d35",
-          "version": "1.8.1"
+          "revision": "f8a9c997c3c1dab4e216a8ec9014e23144cbab37",
+          "version": "1.9.0"
         }
       },
       {
@@ -123,8 +123,8 @@
         "repositoryURL": "https://github.com/huri000/SwiftEntryKit.git",
         "state": {
           "branch": null,
-          "revision": "796981500de29ee72f72ef8e9c46eaed2fe6364e",
-          "version": "1.2.3"
+          "revision": "c2d42574e4fe4e1f9719843f35add7922942a16b",
+          "version": "1.2.7"
         }
       },
       {

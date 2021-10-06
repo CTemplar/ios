@@ -343,6 +343,10 @@ public class RichEditorWebView: WKWebView {
         runJS("RE.setFontSize('\(size)px')")
     }
     
+    public func setFontFamily(_ font: String) {
+        runJS("RE.setFontFamily('\(font.escaped)')")
+    }
+    
     public func setEditorBackgroundColor(_ color: UIColor) {
         runJS("RE.setBackgroundColor('\(color.hex)')")
     }
@@ -392,7 +396,14 @@ public class RichEditorWebView: WKWebView {
         runJS("RE.prepareInsert()")
         runJS("RE.setTextBackgroundColor('\(color.hex)')")
     }
-    
+    public func setTextFontSize(_ size: String) {
+        runJS("RE.prepareInsert()")
+        runJS("RE.setNewFontSize('\(size.escaped)')")
+    }
+    public func setTextFontName(_ name: String) {
+        runJS("RE.prepareInsert()")
+        runJS("RE.setNewFontName('\(name.escaped)')")
+    }
     public func header(_ h: Int) {
         runJS("RE.setHeading('\(h)')")
     }

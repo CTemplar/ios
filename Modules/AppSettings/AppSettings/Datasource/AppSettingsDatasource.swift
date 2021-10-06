@@ -11,7 +11,7 @@ final class AppSettingsDatasource: NSObject {
     
     private weak var parentViewController: AppSettingsController?
     
-    private var user = UserMyself()
+    var user = UserMyself()
     
     private var dataSource: [SettingsSection: [Modelable]] = [:]
     
@@ -155,6 +155,8 @@ final class AppSettingsDatasource: NSObject {
                 model = AppSettingsModel(title: Strings.AppSettings.whiteBlackList.localized)
             case .filter:
                 model = AppSettingsModel(title: "Filter")
+            case .composer:
+                model = AppSettingsModel(title: "Composer")
             case .dashboard:
                 model = AppSettingsModel(title: Strings.AppSettings.dashboard.localized)
             case .manageFolders:
@@ -316,6 +318,7 @@ extension AppSettingsDatasource: UITableViewDelegate, UITableViewDataSource {
                  .contacts,
                  .whiteOrBlackList,
                  .filter,
+                 .composer,
                  .dashboard,
                  .manageFolders,
                  .password,
@@ -400,6 +403,8 @@ extension AppSettingsDatasource: UITableViewDelegate, UITableViewDataSource {
                 parentViewController?.router?.onTapWhiteBlackList()
             case .filter:
                 parentViewController?.router?.onTapFilter()
+            case .composer:
+                parentViewController?.router?.onTapComposer()
             case .dashboard:
                 parentViewController?.router?.onTapDashboard()
             case .manageFolders:

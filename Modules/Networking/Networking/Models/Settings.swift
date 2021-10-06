@@ -40,14 +40,24 @@ public struct Settings: Hashable {
     public private (set) var notificationEmail: String?
     public private (set) var planType: String?
     public private (set) var blockExternalImage: Bool?
+    //Compose values
+    public private (set) var plainTextFont: String?
+    public private (set) var backgroundColor: String?
+    public private (set) var color: String?
+    public private (set) var size: Int?
     
     // MARK: Constrcutor
     public init() {}
     
     public init(dictionary: [String: Any]) {
+       // print(dictionary)
         self.allocatedStorage = dictionary["allocated_storage"] as? Int
         self.autoresponder = dictionary["autoresponder"] as? Bool
         self.defaultFont = dictionary["default_font"] as? String
+        self.plainTextFont = dictionary["plain_text_font"] as? String
+        self.backgroundColor = dictionary["default_background"] as? String
+        self.color = dictionary["default_color"] as? String
+        self.size = dictionary["default_size"] as? Int
         self.displayName = dictionary["display_name"] as? String
         self.domainCount = dictionary["domain_count"] as? Int
         self.emailCount = dictionary["email_count"] as? Int

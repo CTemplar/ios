@@ -75,13 +75,12 @@ final class AppContactsViewController: UIViewController {
         if viewModel.shouldShowSearchControl {
             setupSearchController()
         }
-        
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            Loader.stop()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             Loader.start()
             self.viewModel.fetchContacts()
         }
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -113,7 +112,7 @@ final class AppContactsViewController: UIViewController {
                 .errorMetadata
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] (result) in
-                    
+                    Loader.stop()
                     self?.showAlert(with: result.title,
                                     message: result.message,
                                     buttonTitle: Strings.Button.closeButton.localized)
@@ -230,7 +229,6 @@ final class AppContactsViewController: UIViewController {
             addContactVC.configure(with: viewModel)
             addContactVC.onContactUpdateSuccess = { [weak self] in
                 DispatchQueue.main.async {
-                    Loader.stop()
                     Loader.start()
                     
                 }

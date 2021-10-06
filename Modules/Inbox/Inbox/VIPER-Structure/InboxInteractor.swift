@@ -370,18 +370,18 @@ extension InboxInteractor {
         )
     }
     
-    func markMessageAsRead(message: EmailMessage) {
-        guard let id = message.messsageID,
-            let readStatus = message.read else {
-                return
-        }
-        
-        let undoMessage = readStatus == true ?
-            Strings.Inbox.UndoAction.undoMarkAsUnread.localized :
-            Strings.Inbox.UndoAction.undoMarkAsRead.localized
-        
-        toggleReadStatus(forMessageIds: [id], asRead: readStatus, withUndo: undoMessage)
-    }
+//    func markMessageAsRead(message: EmailMessage) {
+//        guard let id = message.messsageID,
+//            let readStatus = message.read else {
+//                return
+//        }
+//        
+//        let undoMessage = readStatus == true ?
+//            Strings.Inbox.UndoAction.undoMarkAsUnread.localized :
+//            Strings.Inbox.UndoAction.undoMarkAsRead.localized
+//        
+//        toggleReadStatus(forMessageIds: [id], asRead: readStatus, withUndo: undoMessage)
+//    }
     
     func markMessageAsTrash(message: EmailMessage) {
         guard let id = message.messsageID else {
@@ -393,7 +393,7 @@ extension InboxInteractor {
         } else {
             markMessagesAsTrash(forMessageIds: [id],
                                 lastSelectedMessage: message,
-                                withUndo: Strings.Inbox.UndoAction.undoMoveToTrash.localized
+                                withUndo: Strings.Inbox.UndoAction.undoMoveToTrash.localized, allSelected: false
             )
         }
     }
@@ -407,7 +407,7 @@ extension InboxInteractor {
 extension InboxInteractor {
     func toggleReadStatus(forMessageIds messageIds: [Int],
                           asRead: Bool,
-                          withUndo: String) {
+                          withUndo: String, allSelected:Bool, lastSelectedMessage: EmailMessage) {
         var messagesIDList = ""
         
         for message in messageIds {
@@ -425,7 +425,7 @@ extension InboxInteractor {
                                   read: asRead,
                                   updateFolder: false,
                                   updateStarred: false,
-                                  updateRead: true)
+                                  updateRead: true,allfolder: lastSelectedMessage.folder ?? "" , allSelected: allSelected)
         { [weak self] (result) in
             guard let weakSelf = self else {
                 return
@@ -489,7 +489,7 @@ extension InboxInteractor {
     
     func markMessagesAsTrash(forMessageIds messageIds: [Int],
                              lastSelectedMessage: EmailMessage,
-                             withUndo: String) {
+                             withUndo: String, allSelected:Bool) {
         guard let folder = withUndo.isEmpty == false ?
             MessagesFoldersName.trash.rawValue :
             lastSelectedMessage.folder else {
@@ -497,7 +497,7 @@ extension InboxInteractor {
         }
         
         var messagesIDList = ""
-        
+    
         for message in messageIds {
             messagesIDList = messagesIDList + message.description + ","
         }
@@ -513,7 +513,9 @@ extension InboxInteractor {
                                   read: false,
                                   updateFolder: true,
                                   updateStarred: false,
-                                  updateRead: false)
+                                  updateRead: false,
+                                  allfolder: lastSelectedMessage.folder ?? "" ,
+                                  allSelected: allSelected)
         { [weak self] (result) in
             guard let weakSelf = self else {
                 return
@@ -542,7 +544,7 @@ extension InboxInteractor {
     
     func markMessagesAsArchived(forMessageIds messageIds: [Int],
                                 lastSelectedMessage: EmailMessage,
-                                withUndo: String) {
+                                withUndo: String, allSelected:Bool) {
         guard let folder = withUndo.isEmpty == false ?
             MessagesFoldersName.archive.rawValue :
             lastSelectedMessage.folder else {
@@ -560,7 +562,6 @@ extension InboxInteractor {
         }
         
         messagesIDList.remove(at: messagesIDList.index(before: messagesIDList.endIndex))
-        
         Loader.start()
 
         apiService.updateMessages(messageID: "",
@@ -570,7 +571,9 @@ extension InboxInteractor {
                                   read: isRead,
                                   updateFolder: true,
                                   updateStarred: false,
-                                  updateRead: false)
+                                  updateRead: false,
+                                  allfolder: lastSelectedMessage.folder ?? "" ,
+                                  allSelected: allSelected)
         { [weak self] (result) in
             guard let weakSelf = self else {
                 return
@@ -650,7 +653,8 @@ extension InboxInteractor {
     
     func moveMessagesToInbox(messageIds: [Int],
                              lastSelectedMessage: EmailMessage,
-                             withUndo: String) {
+                             withUndo: String, allSelected
+                             :Bool) {
         guard let folder = withUndo.isEmpty == false ?
             MessagesFoldersName.inbox.rawValue :
             lastSelectedMessage.folder else {
@@ -678,7 +682,9 @@ extension InboxInteractor {
                                   read: isRead,
                                   updateFolder: true,
                                   updateStarred: false,
-                                  updateRead: false)
+                                  updateRead: false,
+                                  allfolder: lastSelectedMessage.folder ?? "" ,
+                                  allSelected: allSelected)
         { [weak self] (result) in
             guard let weakSelf = self else {
                 return

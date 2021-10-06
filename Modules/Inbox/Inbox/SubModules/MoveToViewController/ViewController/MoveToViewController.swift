@@ -16,6 +16,8 @@ class MoveToViewController: UIViewController {
     var delegate: MoveToViewControllerDelegate?
     
     var user = UserMyself()
+    var allMailsSelected = false
+    var lastAppliedActionMessage: EmailMessage?
 
     // MARK: IBOutlets
     @IBOutlet var applyButton: UIBarButtonItem!

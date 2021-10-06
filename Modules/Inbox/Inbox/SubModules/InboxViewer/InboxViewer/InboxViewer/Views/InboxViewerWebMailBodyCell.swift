@@ -200,10 +200,48 @@ public final class InboxViewerWebMailBodyCell: UITableViewCell, Cellable {
             self.activityIndicatorView.startAnimating()
             
             let content = model.content.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "\r", with: "")
-
             if model.content.contains("color:") {
-                self.webView?.loadHTMLString(content, baseURL: nil)
-            } else {
+                if  model.content.contains("color:black") {
+                    if model.content.contains("background-color:black") {
+                        let newContent = self.traitCollection.userInterfaceStyle == .dark ? model.content.replacingOccurrences(of: ";color:black", with: ";color:white") : model.content.replacingOccurrences(of: ";color:black", with: ";color:white")
+                        self.webView?.loadHTMLString("<font color= \(self.traitCollection.userInterfaceStyle == .dark ? "\'white\'" : "\'black\'")\">" + newContent + "</div>", baseURL: nil)
+                       // self.webView?.loadHTMLString(newContent, baseURL: nil)
+                    }
+                    else {
+                        let newContent = self.traitCollection.userInterfaceStyle == .dark ? model.content.replacingOccurrences(of: "color:black", with: "color:white") : model.content
+                        self.webView?.loadHTMLString("<font color= \(self.traitCollection.userInterfaceStyle == .dark ? "\'white\'" : "\'black\'")\">" + newContent + "</div>", baseURL: nil)
+                       // self.webView?.loadHTMLString(newContent, baseURL: nil)
+                    }
+                   
+                }
+                else  if model.content.contains("color:white") {
+                    let newContent = self.traitCollection.userInterfaceStyle == .dark ? model.content : model.content.replacingOccurrences(of: "color:white", with: "color:black")
+                    self.webView?.loadHTMLString("<font color= \(self.traitCollection.userInterfaceStyle == .dark ? "\'white\'" : "\'black\'")\">" + newContent + "</div>", baseURL: nil)
+                  //  self.webView?.loadHTMLString(newContent, baseURL: nil)
+                }
+                else {
+                    self.webView?.loadHTMLString("<font color= \(self.traitCollection.userInterfaceStyle == .dark ? "\'white\'" : "\'black\'")\">" + content + "</div>", baseURL: nil)
+                   // self.webView?.loadHTMLString(content, baseURL: nil)
+                }
+                
+            }
+             else if model.content.contains("color=") {
+                 if model.content.contains("color=\"#000000\"") {
+                    let newContent = self.traitCollection.userInterfaceStyle == .dark ? model.content.replacingOccurrences(of: "color=\"#000000\"", with: "color=\"#ffffff\"") : model.content
+                     self.webView?.loadHTMLString("<font color= \(self.traitCollection.userInterfaceStyle == .dark ? "\'white\'" : "\'black\'")\">" + newContent + "</div>", baseURL: nil)
+                   // self.webView?.loadHTMLString(newContent, baseURL: nil)
+                }
+                else  if model.content.contains("color=\"#ffffff\"") {
+                    let newContent = self.traitCollection.userInterfaceStyle == .dark ? model.content : model.content.replacingOccurrences(of: "color=\"#ffffff\"", with: "color=\"#000000\"")
+                    self.webView?.loadHTMLString("<font color= \(self.traitCollection.userInterfaceStyle == .dark ? "\'white\'" : "\'black\'")\">" + newContent + "</div>", baseURL: nil)
+                   // self.webView?.loadHTMLString(newContent, baseURL: nil)
+                }
+                else {
+                    self.webView?.loadHTMLString("<font color= \(self.traitCollection.userInterfaceStyle == .dark ? "\'white\'" : "\'black\'")\">" + content + "</div>", baseURL: nil)
+                   // self.webView?.loadHTMLString(content, baseURL: nil)
+                }
+            }
+            else {
                 self.webView?.loadHTMLString("<font color= \(self.traitCollection.userInterfaceStyle == .dark ? "\'white\'" : "\'black\'")\">" + content + "</div>", baseURL: nil)
             }
         }

@@ -10,7 +10,7 @@ final class InboxPresenter {
     private (set) weak var viewController: InboxViewController?
     private var timer: Timer?
     private var counter = 0
-    
+    private var isALLSelected = false
     // MARK: - Constructor
     init(interactor: InboxInteractor?,
          viewController: InboxViewController) {
@@ -72,7 +72,8 @@ final class InboxPresenter {
     func updateRightNavigationItems(basedOn selectionMode: Bool) {
         if selectionMode {
             let cancelItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onTapCancel))
-            viewController?.navigationItem.rightBarButtonItems = [cancelItem]
+            let allItem = UIBarButtonItem(title: "All", style: .plain, target: self, action: #selector(onTapAll))
+            viewController?.navigationItem.rightBarButtonItems = [cancelItem, allItem]
         } else {
             let searchItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(onTapSearch))
             let editItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(enableSelectionMode))
@@ -161,6 +162,18 @@ final class InboxPresenter {
         viewController?.dataSource?.update(lastAppliedActionMessage: nil)
         viewController?.dataSource?.removeSelection()
     }
+    @objc
+    func onTapAll() {
+        if (self.isALLSelected == false) {
+            self.isALLSelected = true
+            self.viewController?.dataSource?.selectAll()
+        }
+        else {
+            self.isALLSelected = false
+            self.viewController?.dataSource?.deSelectAll()
+        }
+        self.viewController?.tableView.reloadData()
+    }
     
     @objc
     private func onTapMenu() {
@@ -178,7 +191,9 @@ final class InboxPresenter {
         viewController?
             .dataSource?
             .removeSelection()
-        
+        self.isALLSelected = false
+        self.viewController?.dataSource?.allMailsSelected = false
+
         // Update Navigation Bar buttons
         updateLeftNavigationItem(basedOn: viewController?.dataSource?.selectionMode ?? false)
         
