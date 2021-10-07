@@ -240,6 +240,7 @@ extension ComposeController {
             }
             
             cell.indexRef = indexPath
+            cell.user = self.viewModel.user
             cell.configure(with: vm)
         }
         

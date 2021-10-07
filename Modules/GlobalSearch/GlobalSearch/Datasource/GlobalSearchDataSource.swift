@@ -126,9 +126,12 @@ extension GlobalSearchDataSource: UITableViewDelegate {
 private extension GlobalSearchDataSource {
     func makeDataSource() -> SearchDataSource {
         guard let tableView = self.tableView else {
-            return UITableViewDiffableDataSource()
+            let tempTableView = UITableView()
+            // return UITableViewDiffableDataSource()
+            return UITableViewDiffableDataSource(tableView: tempTableView , cellProvider: { tempTableView,indexPath ,itemIdentifier  in
+                return UITableViewCell()
+            })
         }
-        
         return UITableViewDiffableDataSource(
             tableView: tableView,
             cellProvider: { [weak self] (tableView, indexPath, message) in

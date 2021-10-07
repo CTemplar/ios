@@ -4,6 +4,7 @@ import Utility
 import Networking
 import SwipeCellKit
 import PGPFramework
+
 enum InboxFilter: CaseIterable {
     case starred
     case unread
@@ -34,12 +35,13 @@ final class InboxDatasource: NSObject {
     private var mailboxList: [Mailbox] = []
     
     var selectedMessageIds: [Int] = []
-    
+    var totalCount: Int = 0
+    var allMailsSelected = false
     var selectionMode: Bool {
         return tableView?.isEditing == true
     }
     
-    private (set) var lastAppliedActionMessage: EmailMessage?
+     var lastAppliedActionMessage: EmailMessage?
     
     private (set) var lastSelectedAction: Menu.Action?
     
@@ -61,7 +63,13 @@ final class InboxDatasource: NSObject {
     }
     
     var selectedMessagesCount: Int {
-        return selectedMessageIds.count
+        if (self.allMailsSelected == true) {
+            return totalCount
+        }
+        else {
+            return selectedMessageIds.count
+        }
+        
     }
     
     var filterEnabled: Bool {
@@ -280,7 +288,7 @@ final class InboxDatasource: NSObject {
                 .interactor?
                 .toggleReadStatus(forMessageIds: selectedMessageIds,
                                   asRead: (lastMessage.read ?? false),
-                                  withUndo: ""
+                                  withUndo: "",allSelected: self.allMailsSelected, lastSelectedMessage: lastMessage
             )
         case .moveToArchive:
             parentViewController?
@@ -288,7 +296,7 @@ final class InboxDatasource: NSObject {
                 .interactor?
                 .markMessagesAsArchived(forMessageIds: selectedMessageIds,
                                         lastSelectedMessage: lastMessage,
-                                        withUndo: ""
+                                        withUndo: "", allSelected: self.allMailsSelected
             )
         case .moveToTrash:
             parentViewController?
@@ -296,7 +304,7 @@ final class InboxDatasource: NSObject {
                 .interactor?
                 .markMessagesAsTrash(forMessageIds: selectedMessageIds,
                                      lastSelectedMessage: lastMessage,
-                                     withUndo: ""
+                                     withUndo: "", allSelected: self.allMailsSelected
             )
         case .markAsStarred,
              .moveToInbox,
@@ -350,7 +358,6 @@ final class InboxDatasource: NSObject {
             self.messages.append(message)
         }
         self.originalMessages = self.messages
-        
         parentViewController?.presenter?.updateNoMessagePrompt()
     }
     
@@ -399,9 +406,67 @@ final class InboxDatasource: NSObject {
         self.messageId = messageId
     }
     
+    func selectAll() {
+        self.allMailsSelected = false
+        selectedMessageIds.removeAll()
+        for (rowIndex, message) in messages.enumerated() {
+          selectedMessageIds.append(message.messsageID!)
+          lastAppliedActionMessage = message
+        }
+        
+        parentViewController?
+            .presenter?
+            .updateNavigationBarTitle(basedOnMessageCount: selectedMessagesCount,
+                                      selectionMode: selectionMode,
+                                      currentFolder: SharedInboxState.shared.selectedMenu ?? Menu.inbox
+        )
+        self.tableView?.reloadData()
+        self.addAlertForConfirmation()
+    }
+    
+    func addAlertForConfirmation() {
+        let message = "All " + String(selectedMessageIds.count) + " conversations on this page are selected. Select all " + String(totalCount) + " conversations in Inbox"
+        let params = AlertKitParams(
+            title: "",
+            message: message,
+            cancelButton: Strings.Button.noActionTitle.localized,
+            destructiveButtons: [Strings.Button.yesActionTitle.localized]
+        )
+        
+        parentViewController?.showAlert(with: params, onCompletion: { [weak self] (index) in
+            switch index {
+            case 0:
+                DPrint("Cancel Delete")
+                self?.allMailsSelected = false
+            default:
+                DPrint("Delete")
+                DispatchQueue.main.async {
+                    self?.allMailsSelected = true
+                    self?.parentViewController?
+                        .presenter?
+                        .updateNavigationBarTitle(basedOnMessageCount: self?.selectedMessagesCount ?? 0, selectionMode: self?.selectionMode ?? false, currentFolder: SharedInboxState.shared.selectedMenu ?? Menu.inbox)
+                }
+            }
+        })
+    }
+    
+    func deSelectAll() {
+        self.allMailsSelected = false
+        selectedMessageIds.removeAll()
+        parentViewController?
+            .presenter?
+            .updateNavigationBarTitle(basedOnMessageCount: selectedMessagesCount,
+                                      selectionMode: selectionMode,
+                                      currentFolder: SharedInboxState.shared.selectedMenu ?? Menu.inbox)
+        self.tableView?.reloadData()
+    }
     // MARK: - More Actions
     func toggleReadStatusOfSelectedMessage(_ readStatus: Bool, for messageIds: [Int]) {
         guard !messageIds.isEmpty else {
+            return
+        }
+        guard let lastSelectedMessage = lastAppliedActionMessage else {
+            DPrint("'lastAppliedActionMessage' is nil")
             return
         }
         
@@ -413,7 +478,7 @@ final class InboxDatasource: NSObject {
             .interactor?
             .toggleReadStatus(forMessageIds: messageIds,
                               asRead: readStatus,
-                              withUndo: undoMessage
+                              withUndo: undoMessage, allSelected: self.allMailsSelected, lastSelectedMessage: lastSelectedMessage
         )
     }
     
@@ -432,7 +497,7 @@ final class InboxDatasource: NSObject {
                     .interactor?
                     .markMessagesAsTrash(forMessageIds: selectedMessageIds,
                                          lastSelectedMessage: lastSelectedMessage,
-                                         withUndo: Strings.Inbox.UndoAction.undoMoveToTrash.localized
+                                         withUndo: Strings.Inbox.UndoAction.undoMoveToTrash.localized, allSelected: self.allMailsSelected
                 )
             }
         } else {
@@ -465,7 +530,8 @@ final class InboxDatasource: NSObject {
                 .interactor?
                 .markMessagesAsArchived(forMessageIds: selectedMessageIds,
                                         lastSelectedMessage: lastSelectedMessage,
-                                        withUndo: Strings.Inbox.UndoAction.undoMoveToArchive.localized
+                                        withUndo: Strings.Inbox.UndoAction.undoMoveToArchive.localized,
+                                        allSelected: self.allMailsSelected
             )
         } else {
             DPrint("Messages are not selected")
@@ -484,7 +550,7 @@ final class InboxDatasource: NSObject {
                 .interactor?
                 .moveMessagesToInbox(messageIds: selectedMessageIds,
                                      lastSelectedMessage: lastSelectedMessage,
-                                     withUndo: Strings.Inbox.UndoAction.undoMoveToInbox.localized
+                                     withUndo: Strings.Inbox.UndoAction.undoMoveToInbox.localized, allSelected: self.allMailsSelected
             )
         } else {
             DPrint("Messages are not selected")
@@ -562,6 +628,12 @@ extension InboxDatasource: UITableViewDelegate, UITableViewDataSource {
             }
             
         }
+        if selectionMode == true {
+            let message = messages[indexPath.row]
+            if let selectedMessageId = message.messsageID, selectedMessageIds.contains(selectedMessageId) {
+                tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -573,6 +645,7 @@ extension InboxDatasource: UITableViewDelegate, UITableViewDataSource {
         if selectionMode {
             if let index = selectedMessageIds.firstIndex(where: {$0 == message.messsageID}) {
                 DPrint("deselected")
+                self.allMailsSelected = false
                 selectedMessageIds.remove(at: index)
             }
             

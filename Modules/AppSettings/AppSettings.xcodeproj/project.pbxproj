@@ -73,6 +73,13 @@
 		95930C8B265191CB00AC7048 /* AliasKeysVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95930C8A265191CB00AC7048 /* AliasKeysVC.swift */; };
 		959FA1F6265A77C3009937D3 /* AliasKeyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959FA1F5265A77C3009937D3 /* AliasKeyInteractor.swift */; };
 		959FA1FD265ABA5D009937D3 /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 959FA1FC265ABA5D009937D3 /* Filter.storyboard */; };
+		95C5CB0B26E63FAC001B40A7 /* Composer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95C5CB0A26E63FAC001B40A7 /* Composer.storyboard */; };
+		95C5CB0D26E64015001B40A7 /* ComposeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C5CB0C26E64015001B40A7 /* ComposeVC.swift */; };
+		95C5CB4926EF34F4001B40A7 /* ComposerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C5CB4826EF34F4001B40A7 /* ComposerPresenter.swift */; };
+		95C5CB4B26EF350C001B40A7 /* ComposerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C5CB4A26EF350C001B40A7 /* ComposerInteractor.swift */; };
+		95C5CB4E26EF3575001B40A7 /* ComposerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C5CB4C26EF3575001B40A7 /* ComposerCell.swift */; };
+		95C5CB4F26EF3575001B40A7 /* ComposerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C5CB4D26EF3575001B40A7 /* ComposerCell.xib */; };
+		95C5CB5126EF6ACD001B40A7 /* ComposerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C5CB5026EF6ACD001B40A7 /* ComposerModel.swift */; };
 		95EE9CB926334B44006FFA20 /* AliasCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EE9CB726334B44006FFA20 /* AliasCell.swift */; };
 		95EE9CBA26334B44006FFA20 /* AliasCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95EE9CB826334B44006FFA20 /* AliasCell.xib */; };
 		C0E0629D75FD8DF8CC6DC07F /* Pods_AppSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF5B97E24BE3B896EE7FC03A /* Pods_AppSettings.framework */; };
@@ -206,6 +213,13 @@
 		95930C8A265191CB00AC7048 /* AliasKeysVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliasKeysVC.swift; sourceTree = "<group>"; };
 		959FA1F5265A77C3009937D3 /* AliasKeyInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliasKeyInteractor.swift; sourceTree = "<group>"; };
 		959FA1FC265ABA5D009937D3 /* Filter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Filter.storyboard; sourceTree = "<group>"; };
+		95C5CB0A26E63FAC001B40A7 /* Composer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Composer.storyboard; sourceTree = "<group>"; };
+		95C5CB0C26E64015001B40A7 /* ComposeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeVC.swift; sourceTree = "<group>"; };
+		95C5CB4826EF34F4001B40A7 /* ComposerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerPresenter.swift; sourceTree = "<group>"; };
+		95C5CB4A26EF350C001B40A7 /* ComposerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerInteractor.swift; sourceTree = "<group>"; };
+		95C5CB4C26EF3575001B40A7 /* ComposerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerCell.swift; sourceTree = "<group>"; };
+		95C5CB4D26EF3575001B40A7 /* ComposerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComposerCell.xib; sourceTree = "<group>"; };
+		95C5CB5026EF6ACD001B40A7 /* ComposerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerModel.swift; sourceTree = "<group>"; };
 		95EE9CB726334B44006FFA20 /* AliasCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliasCell.swift; sourceTree = "<group>"; };
 		95EE9CB826334B44006FFA20 /* AliasCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AliasCell.xib; sourceTree = "<group>"; };
 		D426CA8D2691921500961323 /* plans.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = plans.json; sourceTree = "<group>"; };
@@ -575,6 +589,7 @@
 		443DD42124CEE31C00771AE5 /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
+				95C5CB0426E63F05001B40A7 /* Compose */,
 				959FA1F7265AB9ED009937D3 /* Filter */,
 				952802F42631A72500B92E12 /* Alias */,
 				441778AC24D32CBD000F56B9 /* PGPKeys */,
@@ -726,6 +741,60 @@
 				9577846E2663D8FC00749FDD /* AddFilterInteractor.swift */,
 			);
 			path = "Viper-Structure";
+			sourceTree = "<group>";
+		};
+		95C5CB0426E63F05001B40A7 /* Compose */ = {
+			isa = PBXGroup;
+			children = (
+				95C5CB0526E63F18001B40A7 /* Model */,
+				95C5CB0826E63F3F001B40A7 /* View */,
+				95C5CB0626E63F23001B40A7 /* Viper-Structure */,
+				95C5CB0726E63F35001B40A7 /* Controller */,
+				95C5CB0926E63F4B001B40A7 /* Storyboard */,
+			);
+			path = Compose;
+			sourceTree = "<group>";
+		};
+		95C5CB0526E63F18001B40A7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				95C5CB5026EF6ACD001B40A7 /* ComposerModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		95C5CB0626E63F23001B40A7 /* Viper-Structure */ = {
+			isa = PBXGroup;
+			children = (
+				95C5CB4826EF34F4001B40A7 /* ComposerPresenter.swift */,
+				95C5CB4A26EF350C001B40A7 /* ComposerInteractor.swift */,
+			);
+			path = "Viper-Structure";
+			sourceTree = "<group>";
+		};
+		95C5CB0726E63F35001B40A7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				95C5CB0C26E64015001B40A7 /* ComposeVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		95C5CB0826E63F3F001B40A7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				95C5CB4C26EF3575001B40A7 /* ComposerCell.swift */,
+				95C5CB4D26EF3575001B40A7 /* ComposerCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		95C5CB0926E63F4B001B40A7 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				95C5CB0A26E63FAC001B40A7 /* Composer.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 		AD1A285138DE848D5142392D /* Pods */ = {
@@ -937,6 +1006,7 @@
 				957784542663A68500749FDD /* FilterSwitchCell.xib in Resources */,
 				443926C124D0572D00112A09 /* ContactTableViewCell.xib in Resources */,
 				9577846B2663D0D000749FDD /* FilterCell.xib in Resources */,
+				95C5CB4F26EF3575001B40A7 /* ComposerCell.xib in Resources */,
 				4417771624D2B322000F56B9 /* Signature.storyboard in Resources */,
 				957784582663A6D300749FDD /* FilterTextfieldCell.xib in Resources */,
 				D4921E032690AFCC0009879B /* HeaderCell.xib in Resources */,
@@ -944,6 +1014,7 @@
 				D4921E0B2690AFCD0009879B /* PlanCell.xib in Resources */,
 				952802F82631A79300B92E12 /* Alias.storyboard in Resources */,
 				443926C624D0648600112A09 /* SelectLanguage.storyboard in Resources */,
+				95C5CB0B26E63FAC001B40A7 /* Composer.storyboard in Resources */,
 				D426CA8E2691921500961323 /* plans.json in Resources */,
 				443DD3F324CDCB3900771AE5 /* AppSettings.storyboard in Resources */,
 			);
@@ -1003,6 +1074,7 @@
 				D4921E142690B1630009879B /* SubscribeNavigation.swift in Sources */,
 				9577846D2663D8E700749FDD /* AddFilterPresenter.swift in Sources */,
 				9577846A2663D0D000749FDD /* FilterCell.swift in Sources */,
+				95C5CB4B26EF350C001B40A7 /* ComposerInteractor.swift in Sources */,
 				4417771A24D2B489000F56B9 /* SignatureViewController.swift in Sources */,
 				4461776C2507977E0088F138 /* AppSettingsSwitchCell.swift in Sources */,
 				4461776E2509059A0088F138 /* AppSettingsSwitchModel.swift in Sources */,
@@ -1011,6 +1083,7 @@
 				443DD41824CEBD2900771AE5 /* AppSettingsRouter.swift in Sources */,
 				443926C224D0572D00112A09 /* ContactTableViewCell.swift in Sources */,
 				D43C630A269B671E00EDA4E4 /* LoadingButton.swift in Sources */,
+				95C5CB4E26EF3575001B40A7 /* ComposerCell.swift in Sources */,
 				D426CB912691B3AC00961323 /* Defaults.swift in Sources */,
 				D426CB882691B3AC00961323 /* DefaultsBridges.swift in Sources */,
 				9577846F2663D8FC00749FDD /* AddFilterInteractor.swift in Sources */,
@@ -1021,6 +1094,7 @@
 				D426CB8D2691B3AC00961323 /* DefaultsObserver.swift in Sources */,
 				D426CB712691B39D00961323 /* OS.swift in Sources */,
 				95930C8B265191CB00AC7048 /* AliasKeysVC.swift in Sources */,
+				95C5CB5126EF6ACD001B40A7 /* ComposerModel.swift in Sources */,
 				95EE9CB926334B44006FFA20 /* AliasCell.swift in Sources */,
 				D43C6312269B681800EDA4E4 /* SubscribeConfigurator.swift in Sources */,
 				443926BB24D056C300112A09 /* WhiteBlackListsPresenter.swift in Sources */,
@@ -1062,6 +1136,8 @@
 				D426CB692691B39D00961323 /* InAppProductQueryRequest.swift in Sources */,
 				D4921E042690AFCC0009879B /* SubscriptionListController.swift in Sources */,
 				443926B924D056C300112A09 /* WhiteBlackListsInteractor.swift in Sources */,
+				95C5CB0D26E64015001B40A7 /* ComposeVC.swift in Sources */,
+				95C5CB4926EF34F4001B40A7 /* ComposerPresenter.swift in Sources */,
 				D426CB872691B3AC00961323 /* DefaultsKeys.swift in Sources */,
 				443926DA24D13B6500112A09 /* EncryptionDatasource.swift in Sources */,
 				D426CB8C2691B3AC00961323 /* Defaults+Observing.swift in Sources */,

@@ -31,7 +31,7 @@ public extension UIStoryboard {
         case setPassword = "SetPassword"
         case scheduler = "Scheduler"
         case filter = "Filter"
-        
+        case composer = "Composer"
         
       public  static var inboxPassword:Storyboard { .inboxViewer}
       public  static var addNewKey:Storyboard { .key}
@@ -121,6 +121,8 @@ public extension UIStoryboard.Storyboard {
             return (bundlename: "Compose.SchedulerViewController", storyboardId: "SchedulerViewController")
         case .filter:
             return (bundlename: "Filter.FilterVC", storyboardId: "FilterVC")
+        case .composer:
+            return (bundlename: "Compose.ComposeVC", storyboardId: "ComposeVC")
         case .subscribe:
             return (bundlename: "AppSettings.SubscriptionListController", storyboardId: "SubscriptionListController")
         }

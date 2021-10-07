@@ -143,7 +143,7 @@ public class RestAPIService {
         }
     }
     
-    func updateMessages(token: String, messageID: String, messagesIDIn: String, folder: String, starred: Bool, read: Bool, updateFolder: Bool, updateStarred: Bool, updateRead: Bool, mailboxId: String?, completionHandler: @escaping (APIResult<Any>) -> Void) {
+    func updateMessages(token: String, messageID: String, messagesIDIn: String, folder: String, starred: Bool, read: Bool, updateFolder: Bool, updateStarred: Bool, updateRead: Bool, mailboxId: String?, allSelected:Bool = false, allfolder: String = "", completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let headers: HTTPHeaders = [
             "Authorization": "JWT " + token,
@@ -169,8 +169,14 @@ public class RestAPIService {
         }
         
         let parameters: Parameters = configureParameters as! Parameters
-        
-        let url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messageID + messagesIDIn
+        var url = ""
+        if (allSelected == true) {
+            url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + "?folder=" + allfolder
+        }
+        else {
+            url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + messageID + messagesIDIn
+
+        }
         
         DPrint("updateMessages parameters:", parameters)
         DPrint("updateMessages url:", url)
@@ -859,6 +865,44 @@ public class RestAPIService {
         }
     }
     
+    
+    //MARK:- Composer
+    
+    // MARK: - Keys
+    func saveComposer(composer: Composer , id: Int,token: String, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "JWT " + token,
+            "Accept": "application/json"
+        ]
+        let parameters: Parameters = [
+            JSONKeysForComposer.color.rawValue: composer.color ?? "",
+            JSONKeysForComposer.backgroundColor.rawValue: composer.backgroundColor ?? "",
+            JSONKeysForComposer.size.rawValue: composer.size ?? "",
+            JSONKeysForComposer.font.rawValue: composer.font ?? ""
+        ]
+        /*
+         "conditions": [{
+                 "parameter": "subject",
+                 "condition": "contains",
+                 "filter_text": "New"
+             }]
+         */
+        let url = EndPoint.baseUrl.rawValue + EndPoint.settings.rawValue + String(id) + "/"
+        
+        DPrint("filterList url:", url, parameters)
+        
+        AF.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: AFDataResponse<Any>) in
+            DPrint("FilterList responce:", response)
+            switch(response.result) {
+            case .success(let value):
+                completionHandler(APIResult.success(value))
+            case .failure(let error):
+                completionHandler(APIResult.failure(error))
+            }
+        }
+    }
+    
     // MARK: - Folders
     
     func customFoldersList(token: String, limit: Int, offset: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
@@ -1323,6 +1367,7 @@ public class RestAPIService {
             JSONKey.encrypted.rawValue: encrypted,
             JSONKey.fileType.rawValue: mimeType,
             JSONKey.folderName.rawValue:fileName
+            
         ]
         
         DPrint("createAttachment parameters:", parameters)

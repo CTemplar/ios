@@ -47,6 +47,7 @@
 		950D12002623351D008D2423 /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D11FF2623351D008D2423 /* MimeType.swift */; };
 		957784672663C12C00749FDD /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957784662663C12C00749FDD /* Filter.swift */; };
 		9596F60D26199D1400D64163 /* PGPFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9596F60C26199D1400D64163 /* PGPFramework.framework */; };
+		95C5CB5326F0AB82001B40A7 /* Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C5CB5226F0AB82001B40A7 /* Composer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +94,7 @@
 		950D11FF2623351D008D2423 /* MimeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeType.swift; sourceTree = "<group>"; };
 		957784662663C12C00749FDD /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		9596F60C26199D1400D64163 /* PGPFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PGPFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		95C5CB5226F0AB82001B40A7 /* Composer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Composer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 				444BD32B249361B8001D0C5F /* FolderList.swift */,
 				444D65BD24A7397300690B3E /* UnreadMessageCounter.swift */,
 				957784662663C12C00749FDD /* Filter.swift */,
+				95C5CB5226F0AB82001B40A7 /* Composer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				957784672663C12C00749FDD /* Filter.swift in Sources */,
 				444BD30D249235F4001D0C5F /* RestAPIService.swift in Sources */,
 				444BD31824923970001D0C5F /* Settings.swift in Sources */,
+				95C5CB5326F0AB82001B40A7 /* Composer.swift in Sources */,
 				444BD310249237AC001D0C5F /* UserMyself.swift in Sources */,
 				444BD32A24935FFD001D0C5F /* Mailboxes.swift in Sources */,
 				444BD39724948A1B001D0C5F /* RouterAuth.swift in Sources */,

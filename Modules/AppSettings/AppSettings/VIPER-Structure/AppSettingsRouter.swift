@@ -46,9 +46,16 @@ final class AppSettingsRouter {
         let filterList: FilterVC = UIStoryboard(storyboard: .filter,
                                                                          bundle: Bundle(for: FilterVC.self)
         ).instantiateViewController()
+        
         parentController?.show(filterList, sender: parentController)
     }
-    
+    func onTapComposer() {
+        let composerVC: ComposeVC = UIStoryboard(storyboard: .composer,
+                                                                         bundle: Bundle(for: ComposeVC.self)
+        ).instantiateViewController()
+        composerVC.user = self.parentController?.datasource?.user ?? UserMyself()
+        parentController?.show(composerVC, sender: parentController)
+    }
     func onTapLanguage() {
         let languageSelector: SelectLanguageViewController = UIStoryboard(storyboard: .language,
                                                                           bundle: Bundle(for: SelectLanguageViewController.self)

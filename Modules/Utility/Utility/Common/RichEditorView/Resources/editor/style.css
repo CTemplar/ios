@@ -78,5 +78,6 @@ div {
     overflow: auto;
     display: block;
     color: #666666;
+    font-family: 'Lato-Bold';
     font-size: 12pt;
 }

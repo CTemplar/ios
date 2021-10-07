@@ -230,6 +230,8 @@ public class APIService: HashingService {
                                updateStarred: Bool,
                                updateRead: Bool,
                                mailboxId: String? = nil,
+                               allfolder: String = "",
+                               allSelected: Bool = false,
                                completionHandler: @escaping (APIResult<Any>) -> Void) {
         
         let messageIDParameter = messageID.isEmpty == false ? "\(messageID)/" : ""
@@ -239,7 +241,7 @@ public class APIService: HashingService {
         checkTokenExpiration() { [weak self] (complete) in
             if complete {
                 if let token = self?.getToken() {
-                    self?.restAPIService.updateMessages(token: token, messageID: messageIDParameter, messagesIDIn: messagesIDInParameter, folder: folder, starred: starred, read: read, updateFolder: updateFolder, updateStarred: updateStarred, updateRead: updateRead, mailboxId: mailboxId) { (result) in
+                    self?.restAPIService.updateMessages(token: token, messageID: messageIDParameter, messagesIDIn: messagesIDInParameter, folder: folder, starred: starred, read: read, updateFolder: updateFolder, updateStarred: updateStarred, updateRead: updateRead, mailboxId: mailboxId, allSelected: allSelected, allfolder: allfolder) { (result) in
                         switch(result) {
                         case .success(let value):
                             DPrint("updateMessages success:", value)
@@ -642,7 +644,35 @@ public class APIService: HashingService {
         }
     }
     
-    
+    public func addComposer(model: Composer , id: Int, completionHandler: @escaping (APIResult<Any>) -> Void) {
+        checkTokenExpiration() { [weak self] (complete) in
+            if complete {
+                if let token = self?.getToken() {
+                    self?.restAPIService.saveComposer(composer: model, id: id, token: token) { (result) in
+                        switch(result) {
+                        case .success(let value):
+                            if let response = value as? Dictionary<String, Any> {
+                                if let message = self?.parseServerResponse(response:response) {
+                                    let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: message])
+                                    completionHandler(APIResult.failure(error))
+                                } else {
+                                    let composer = Settings(dictionary: response)
+                                    completionHandler(APIResult.success(composer))
+                                }
+                            } else {
+                                let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: "Responce have unknown format"])
+                                completionHandler(APIResult.failure(error))
+                            }
+                            
+                        case .failure(let error):
+                            let error = NSError(domain:"", code:0, userInfo:[NSLocalizedDescriptionKey: error.localizedDescription])
+                            completionHandler(APIResult.failure(error))
+                        }
+                    }
+                }
+            }
+        }
+    }
     public func createNewKey(model: NewKeyModel ,completionHandler: @escaping (APIResult<Any>) -> Void) {
         checkTokenExpiration() { [weak self] (complete) in
             if complete {
@@ -1009,7 +1039,11 @@ public class APIService: HashingService {
         checkTokenExpiration() { [weak self] (complete) in
             if complete {
                 if let token = self?.getToken() {
-
+                    DispatchQueue.main.async {
+                        if !silent {
+                            Loader.start()
+                        }
+                    }
                     DispatchQueue.global(qos: .background).async {
                         self?.restAPIService.userContacts(token: token, fetchAll: fetchAll, offset: offset) { (result) in
                                 switch(result) {

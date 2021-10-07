@@ -156,6 +156,12 @@ public enum JSONKeysForFilter: String {
     case read = "mark_as_read"
     case starred = "mark_as_starred"
 }
+public enum JSONKeysForComposer: String {
+    case color = "default_color"
+    case backgroundColor = "default_background"
+    case size = "default_size"
+    case font = "plain_text_font"
+}
 
 
 

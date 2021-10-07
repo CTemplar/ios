@@ -108,7 +108,7 @@ public enum Menu: String, MenuConfigurable {
     enum Preferences: String, CaseIterable {
         case contacts = "contacts"
         case settings = "settings"
-   //     case subscriptions = "subscriptions"
+        case subscriptions = "subscriptions"
         case help = "help"
         case FAQ = "FAQ"
         case logout = "logout"
@@ -125,9 +125,9 @@ public enum Menu: String, MenuConfigurable {
                 return #imageLiteral(resourceName: "darkFAQ")
             case .logout:
                 return #imageLiteral(resourceName: "darkLogout")
-//            case .subscriptions:
-//                guard let img = UIImage(systemName: "hand.tap") else { return UIImage(named: "subscribe")! }
-//                return img
+            case .subscriptions:
+                guard let img = UIImage(systemName: "hand.tap") else { return UIImage(named: "subscribe")! }
+                return img
             }
         }
         
@@ -143,8 +143,8 @@ public enum Menu: String, MenuConfigurable {
                 return Strings.Menu.FAQ.localized
             case .logout:
                 return Strings.Menu.logout.localized
-//            case .subscriptions:
-//                return Strings.Menu.subscriptions.localized.capitalized
+            case .subscriptions:
+                return Strings.Menu.subscriptions.localized.capitalized
             }
         }
     }

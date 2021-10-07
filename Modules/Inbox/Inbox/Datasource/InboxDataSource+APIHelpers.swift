@@ -16,7 +16,9 @@ extension InboxDatasource {
         if offset == 0 {
            reset()
         }
-                
+        if (totalCount >= 0) {
+            self.totalCount = totalCount
+        }
         // Update/Insert new message
         update(messages: messages)
         
