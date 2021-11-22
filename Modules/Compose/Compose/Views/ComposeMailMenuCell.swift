@@ -185,12 +185,38 @@ public final class ComposeMailMenuCell: UITableViewCell, Cellable {
         setupObservers()
     }
     
-    func setButtonState(isEnable:Bool) {
+    
+    func setButtonState(isEnable:Bool, mails: [String], isSelected:Bool = false) {
+        self.trashButton.backgroundColor = .clear
         if (isEnable == false) {
             self.deadManTimerButton.isEnabled = false
             self.mailEncryptionButton.isEnabled = false
             self.trashButton.isEnabled = false
             self.timerButton.isEnabled = false
+        }
+        else {
+            if (mails.count > 0) {
+                var containMail = false
+                for mail in mails {
+                    if (mail.contains("ctemplar.com")) {
+                        containMail = true
+                        break
+                    }
+                }
+                if (containMail == true) {
+                    self.trashButton.isEnabled = true
+                }
+                else {
+                    self.trashButton.isEnabled = false
+                }
+            }
+            else {
+                self.trashButton.isEnabled = false
+
+            }
+            if (isSelected == true) {
+                self.trashButton.backgroundColor = .systemOrange
+            }
         }
         
     }

@@ -9,8 +9,9 @@ public class AttachmentCell: UITableViewCell, Cellable {
     private var viewModel: MailAttachmentCellModel!
     public var onTapAttachment: ((String, Bool, String) -> Void)?
     public var onDeleteAttachment: ((String) -> Void)?
+    public var onDownloadAllAttachment: (([MailAttachment]) -> Void)?
     private var bindables = Set<AnyCancellable>()
-
+    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
         collectionView.register(AttachmentCollectionCell.self, forCellWithReuseIdentifier: AttachmentCollectionCell.className)
@@ -19,6 +20,14 @@ public class AttachmentCell: UITableViewCell, Cellable {
         collectionView.dataSource = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
+    }()
+    
+    private lazy var downloadBtn: UIButton = {
+        let downloadBtn = UIButton()
+        downloadBtn.setTitle("DOWNLOAD ALL", for: .normal)
+        downloadBtn.backgroundColor = UIColor(red: 31.0/255.0, green: 49.0/255.0, blue: 75.0/255.0, alpha: 1.0)
+        downloadBtn.addTarget(self, action: #selector(onAllDownload(from:)), for: .touchUpInside)
+        return downloadBtn
     }()
     
     // MARK: - Constructor
@@ -52,9 +61,18 @@ public class AttachmentCell: UITableViewCell, Cellable {
         addSubview(collectionView)
         collectionView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
-                .inset(UIEdgeInsets(top: 0.0, left: 8.0, bottom: 0.0, right: 0.0)
+                .inset(UIEdgeInsets(top: 0.0, left: 8.0, bottom: 40.0, right: 0.0)
             )
         }
+        
+        addSubview(downloadBtn)
+        downloadBtn.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+                .inset(UIEdgeInsets(top: 80, left: UIScreen.main.bounds.width - 180, bottom: 0.0, right: 20.0)
+            )
+        }
+        
+        
     }
     
     private func collectionViewLayout() -> UICollectionViewLayout {
@@ -87,6 +105,12 @@ public class AttachmentCell: UITableViewCell, Cellable {
     private func onDeleteAttachment(from sender: UIButton) {
         let model = models[sender.tag]
         onDeleteAttachment?(model.contentURL)
+    }
+    // MARK: - Actions
+    @objc
+    private func onAllDownload(from sender: UIButton) {
+        print("all Download Called")
+        onDownloadAllAttachment?(models)
     }
 }
 

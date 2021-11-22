@@ -43,9 +43,35 @@ public class FormatterService {
     }
     
     public func validateFolderNameFormat(enteredName: String) -> Bool {
-        let nameFormat = "[A-Z0-9a-z._%+-@ ]{4,64}"//allow whitespaces
-        let namePredicate = NSPredicate(format:"SELF MATCHES %@", nameFormat)
-        return namePredicate.evaluate(with: enteredName)
+//        let nameFormat = "[A-Z0-9a-z._%+-@]{4,64}"//allow whitespaces
+//         let namePredicate = NSPredicate(format:"SELF MATCHES %@", nameFormat)
+//         print(namePredicate.evaluate(with: enteredName))
+//        
+//        if(enteredName.contains(".")) {
+//            return false
+//        }
+//        if(enteredName.contains("_")) {
+//            return false
+//        }
+//        if(enteredName.contains("%")) {
+//            return false
+//        }
+//        if(enteredName.contains("+")) {
+//            return false
+//        }
+//        if(enteredName.contains("-")) {
+//            return false
+//        }
+//        if(enteredName.contains("@")) {
+//            return false
+//        }
+        
+        if(enteredName.count < 4) {
+            return false
+        }
+        
+       // let namePredicate = NSPredicate(format:"SELF MATCHES %@", nameFormat)
+        return true
     }
     
     public func validateNameLench(enteredName: String) -> Bool {

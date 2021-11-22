@@ -7,6 +7,8 @@ final class InboxViewerInteractor {
     // MARK: Properties
     private let apiService = NetworkManager.shared.apiService
     private (set) weak var inboxViewerController: InboxViewerController?
+    private let pgpService = UtilityManager.shared.pgpService
+
     
     // MARK: - Setup
     func setup(inboxViewerController: InboxViewerController?) {
@@ -85,6 +87,106 @@ final class InboxViewerInteractor {
                 }
             }
         }
+    }
+    
+    func loadAllAttachFile(url: String, encrypted: Bool, newUrl:String) {
+       // Loader.start()
+        let fileUrl = FileManager.getFileUrlDocuments(withURLString:url)
+        apiService.loadAttachFile(url: url) { [weak self] (result) in
+            DispatchQueue.main.async {
+                Loader.stop()
+                switch(result) {
+                case .success(let value):
+                    if let savedFileUrl = value as? URL {
+                        self?.inboxViewerController?.dataSource?.onDownloadedUrlOfAttachment?(self?.showPreviewScreen(url: savedFileUrl, encrypted: encrypted, newUrl: newUrl) ?? "")
+                    }
+                    else if FileManager.checkIsFileExist(url: fileUrl) == true {
+                        self?.inboxViewerController?.dataSource?.onDownloadedUrlOfAttachment?(self?.showPreviewScreen(url: fileUrl, encrypted: encrypted, newUrl: newUrl) ?? "")
+                    }
+                    else {
+                        self?.inboxViewerController?.dataSource?.onDownloadedUrlOfAttachment?("")
+                    }
+                case .failure(let error):
+                    self?.inboxViewerController?.dataSource?.onDownloadedUrlOfAttachment?("")
+
+                }
+            }
+        }
+    }
+    
+    
+    func showPreviewScreen(url: URL, encrypted: Bool, newUrl: String)-> String {
+        if encrypted {
+            guard let data = try? Data(contentsOf: url) else {
+                DPrint("Attachment content data error!")
+                return ""
+            }
+                        
+            var urlName = url.lastPathComponent
+            if var tempUrl = url as? URL , tempUrl.pathExtension == "__" {
+                tempUrl.deletePathExtension()
+                if let extentionURL =  URL(string: newUrl) {
+                    tempUrl.appendPathExtension(extentionURL.pathExtension)
+                    urlName = tempUrl.lastPathComponent
+                }
+            }
+            if let tempUrl = self.decryptAttachment(data: data, name: urlName) {
+                return tempUrl.absoluteString
+            } else {
+                DPrint("Attachment decrypted content data error!")
+                return ""
+            }
+        } else {
+            let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+            let documentsDirectory = paths[0]
+            let docURL = URL(string: documentsDirectory)!
+            let dataPath = docURL.appendingPathComponent("DowloadedFiles")
+            
+            do {
+                try FileManager.default.moveItem(atPath: url.path, toPath: dataPath.path)
+                return dataPath.absoluteString
+            } catch {
+                print(error.localizedDescription)
+                return ""
+            }
+        }
+    }
+    
+    private func decryptAttachment(data: Data, name: String) -> URL? {
+        let decryptedAttachment = pgpService.decryptImageAttachment(encryptedData: data)
+        
+        DPrint("decryptedAttachment:", decryptedAttachment as Any)
+        
+        guard let attachment = decryptedAttachment else {
+            return nil
+        }
+        
+        
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        let docURL = URL(string: documentsDirectory)!
+        var dataPath = docURL.appendingPathComponent("DowloadedFiles")
+        if !FileManager.default.fileExists(atPath: dataPath.path) {
+            do {
+                try FileManager.default.createDirectory(atPath: dataPath.path, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        let docURL1 = URL(fileURLWithPath: documentsDirectory)
+        dataPath = docURL1.appendingPathComponent("DowloadedFiles")
+      //  let tempFileUrl =
+       dataPath = dataPath.appendingPathComponent(name)
+       // let tempFileUrl = GeneralConstant.getApplicationSupportDirectoryDirectory().appendingPathComponent(name)
+        
+        do {
+            try attachment.write(to: dataPath)
+        }  catch  {
+            print(error.localizedDescription)
+            DPrint("save decryptedAttachment Error")
+        }
+        
+        return dataPath
     }
     
     func markMessageAsStarred(message: EmailMessage, starred: Bool,

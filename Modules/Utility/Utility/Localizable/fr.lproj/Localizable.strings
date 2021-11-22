@@ -243,6 +243,7 @@
 "delayedDelivery"   = "Programmer l\'envoi";
 
 "selfDestructTimerText" = "Cet email sera automatiquement supprimé de la boîte email du destinataire à la date programmée.";
+"selfDestructMessageText" = "L'autodestruction est réservée aux destinataires templiers. Veuillez ajouter uniquement les destinataires templiers pour la fonction d'autodestruction.";
 "deadManTimerText"      = "Si vous ne vous connectez pas à votre compte avant le délai paramétré, l\'email sera automatiquement envoyé.";
 "delayedDeliveryText"   = "L\'email sera automatiquement envoyé à l\'heure programmée.";
 

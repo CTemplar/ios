@@ -241,6 +241,7 @@
 "delayedDelivery"   = "Verzögerte Lieferung";
 
 "selfDestructTimerText" = "Diese E-Mail wird nach folgendem Zeitraum automatisch vom Empfängerkonto gelöscht";
+"selfDestructMessageText" = "Selbstvernichtung ist nur für ctemplar-Empfänger gedacht. Bitte fügen Sie nur ctemplar-Empfänger für die Selbstzerstörungsfunktion hinzu.";
 "deadManTimerText"      = "Wenn Sie sich für eine vordefinierte Länge nicht in Ihr Konto einloggen, wird die E-Mail nach folgendem Zeitfenster automatisch versandt";
 "delayedDeliveryText"   = "Die E-Mail wird automatisch zum festgelegten Zeitpunkt versandt";
 

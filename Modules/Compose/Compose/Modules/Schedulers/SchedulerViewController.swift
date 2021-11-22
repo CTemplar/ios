@@ -115,7 +115,7 @@ class SchedulerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         switch mode {
         case .selfDestructTimer:
             navigationBar.topItem?.title = Strings.Scheduler.selfDestructTimer.localized
-            textLabel.text = Strings.Scheduler.selfDestructTimerText.localized
+            textLabel.text = Strings.Scheduler.selfDestructTimerText.localized + "\n" + Strings.Scheduler.selfDestructMessageText.localized
         case .deadManTimer:
             navigationBar.topItem?.title = Strings.Scheduler.deadManTimer.localized
             textLabel.text = Strings.Scheduler.deadManTimerText.localized

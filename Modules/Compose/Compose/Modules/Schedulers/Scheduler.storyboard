@@ -45,7 +45,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email will be send automatically at the set time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="taU-8K-Coy">
                                 <rect key="frame" x="23.666666666666657" y="104" width="328" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="nBB-FF-9Cu"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="nBB-FF-9Cu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                 <color key="textColor" name="encryptSubtitleColor"/>

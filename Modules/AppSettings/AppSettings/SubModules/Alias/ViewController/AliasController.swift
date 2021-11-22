@@ -74,6 +74,7 @@ class AliasController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    
     // MARK: - UI
     private func initialUISetup() {
         addBtn.setTitle(Strings.Button.addButton.localized, for: .normal)
@@ -122,6 +123,9 @@ class AliasController: UIViewController {
             userNamePlaceholderLabel.isHidden = true
         }
     }
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        self.tableView.reloadData()
+    }
 }
 
 // MARK: - UItextField Delegate
@@ -141,17 +145,24 @@ extension AliasController: UITextFieldDelegate {
             }
             
             toggleUsernamePlaceholder(true)
-            
-            // Replace previous task with a new one
-            let task = DispatchWorkItem { [weak self] in
-                self?.loader.isHidden = false
-                self?.loader.startAnimating()
-                self?.presenter?.interactor?.checkUser(userName: updatedText)
+            if (updatedText.count > 3) {
+                let task = DispatchWorkItem { [weak self] in
+                    self?.loader.isHidden = false
+                    self?.loader.startAnimating()
+                    self?.presenter?.interactor?.checkUser(userName: updatedText)
+                }
+                self.searchTask = task
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75, execute: task)
             }
-            self.searchTask = task
+            else {
+                userExistanceImageView.image = nil
+                userExistanceLabel.text = ""
+                self.presenter?.changeButtonState(button: addBtn, disabled: true)
+            }
+            // Replace previous task with a new one
             
             // Execute task in 0.75 seconds (if not cancelled !)
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75, execute: task)
+           
         }
         return true
     }

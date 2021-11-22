@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
         "state": {
           "branch": null,
-          "revision": "becd9a729a37bdbef5bc39dc3c702b99f9e3d046",
-          "version": "5.2.2"
+          "revision": "d120af1e8638c7da36c8481fd61a66c0c08dc4fc",
+          "version": "5.4.4"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/BadhanGanesh/BJOTPViewController.git",
         "state": {
           "branch": null,
-          "revision": "a2abe9ab08042e72d0bda6c5f607700d45748285",
-          "version": "2.4.2"
+          "revision": "345f6cba5e2a1e5cafc3a644370a79245276f84e",
+          "version": "2.5.0"
         }
       },
       {
@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/hayashi311/Color-Picker-for-iOS.git",
         "state": {
           "branch": null,
-          "revision": "a2f4419367e5e06187f317a649f3ef7b9c5e9d0a",
-          "version": "3.0.1"
+          "revision": "3a760156bc0771f16a32bb84215b305dec13df6a",
+          "version": "3.0.2"
         }
       },
       {
@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/hackiftekhar/IQKeyboardManager.git",
         "state": {
           "branch": null,
-          "revision": "b0f0a127cca6bb39378447baa2afff74123abd09",
-          "version": "6.5.5"
+          "revision": "4dc6bc7d1c9747bd0c261c8c055903f9fdef91f7",
+          "version": "6.5.6"
         }
       },
       {
@@ -87,8 +87,8 @@
         "repositoryURL": "https://github.com/ashleymills/Reachability.swift.git",
         "state": {
           "branch": null,
-          "revision": "98e968e7b6c1318fb61df23e347bc319761e8acb",
-          "version": "5.0.0"
+          "revision": "c01bbdf2d633cf049ae1ed1a68a2020a8bda32e2",
+          "version": "5.1.0"
         }
       },
       {
@@ -96,8 +96,8 @@
         "repositoryURL": "https://github.com/kukushi/SideMenu.git",
         "state": {
           "branch": null,
-          "revision": "17a661eb76d3385a76688acf842a24f641f913fd",
-          "version": "2.0.5"
+          "revision": "c168c143a1acb690ebb992406d9a03ce8791f47c",
+          "version": "2.0.9"
         }
       },
       {

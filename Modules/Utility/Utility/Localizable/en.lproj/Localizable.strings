@@ -246,6 +246,7 @@
 "delayedDelivery"   = "Delayed delivery";
 
 "selfDestructTimerText" = "This email deletes itself from the receiver's account after";
+"selfDestructMessageText" = "Self destruction is only for ctemplar recipients , Please add only ctemplar recipients for self destruction feature.";
 "deadManTimerText"      = "If you do not log into your account after the set time email will be sent after ";
 "delayedDeliveryText"   = "Email will be send automatically at the set time";
 

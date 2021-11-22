@@ -203,6 +203,7 @@
 "deadManTimer"      = "Temporizador do Homem Morto";
 "delayedDelivery"   = "Entrega Atrasada";
 "selfDestructTimerText" = "Este email irá posteriormente apagar-se automaticamente da conta de quem o recebe";
+"selfDestructMessageText" = "A autodestruição é apenas para destinatários ctemplares. Adicione apenas destinatários ctemplares para o recurso de autodestruição.";
 "deadManTimerText"      = "Se não entrar na sua conta depois do tempo designado, o email será enviado depois";
 "delayedDeliveryText"   = "O Email será automaticamente enviado à hora designada";
 "setPassword" = "Designar Palavra-passe";

@@ -26,9 +26,13 @@ final class InboxViewerDatasource: NSObject {
     private (set) var lastSelectedAction: Menu.Action?
     
     private var user: UserMyself
+    private var modelsDownloadCounts: Int = 0
+    private var modelCounts: Int = 0
+    private var modelsDownloadedURls = [NSURL]()
     
     private var isPasswordVCAdded = false
-    
+    public var onDownloadedUrlOfAttachment: ((String) -> Void)?
+
     // we set a variable to hold the contentOffSet before scroll view scrolls
     var lastContentOffset: CGFloat = 0
     private var encryptionPassword:String?
@@ -675,7 +679,7 @@ extension InboxViewerDatasource: UITableViewDataSource, UITableViewDelegate {
         case .mailBody, .subject:
             return UITableView.automaticDimension
         case .attachment:
-             return 80.0
+             return 120.0
         }
     }
     
@@ -772,7 +776,7 @@ extension InboxViewerDatasource: UITableViewDataSource, UITableViewDelegate {
         // Attachment Handler
         cell.onTapAttachment = { [weak self] (contentURLString, encrypted, newUrl) in
            
-                let url = FileManager.getFileUrlDocuments(withURLString: contentURLString)
+                let url = FileManager.getFileUrlLibraryDocuments(withURLString: contentURLString)
                 
                 if FileManager.checkIsFileExist(url: url) == true {
                     self?.inboxViewerController?
@@ -784,6 +788,63 @@ extension InboxViewerDatasource: UITableViewDataSource, UITableViewDelegate {
                         .interactor?
                         .loadAttachFile(url: contentURLString, encrypted: encrypted, newUrl: newUrl)
                 }
+        }
+        
+        cell.onDownloadAllAttachment = { [weak self] (models)  in
+            self?.modelsDownloadCounts = 0
+            self?.modelCounts = models.count
+            self?.modelsDownloadedURls = [NSURL]()
+            Loader.start()
+            for model in models {
+                var isDownloadedCalled = false
+                if var url = URL(string: model.contentURL) {
+                    if url.pathExtension == "__" {
+                        if let attachmentType = model.attachmentType.rawValue as? String{
+                            url.deletePathExtension()
+                            url.appendPathExtension(attachmentType)
+                            isDownloadedCalled = true
+                          //  onDownloadAllAttachment?(model.contentURL, model.encrypted, url.absoluteString)
+                            let url = FileManager.getFileUrlDocuments(withURLString: model.contentURL)
+                            self?.inboxViewerController?
+                                .presenter?
+                                .interactor?
+                                .loadAllAttachFile(url: model.contentURL, encrypted: model.encrypted, newUrl: url.absoluteString)
+                            return
+                        }
+                    }
+                }
+                if (isDownloadedCalled == false) {
+                    let url = FileManager.getFileUrlDocuments(withURLString: model.contentURL)
+                    self?.inboxViewerController?
+                    .presenter?
+                    .interactor?
+                    .loadAllAttachFile(url: model.contentURL, encrypted: model.encrypted, newUrl:  url.absoluteString)
+                }
+            }
+            self?.onDownloadedUrlOfAttachment = { [weak self] (urlString)  in
+//                if (urlString != "") {
+//                    let url = NSURL(fileURLWithPath: urlString)
+//                    self?.modelsDownloadedURls.append(url)
+//                }
+                self?.modelsDownloadCounts = (self?.modelsDownloadCounts ?? 0) + 1
+                if (self?.modelsDownloadCounts == self?.modelCounts && self?.modelsDownloadCounts != 0) {
+                    Loader.stop()
+                    self?.inboxViewerController?.view.makeToast("Download successfully under Files — ctemplar folder.",
+                        duration: 4,
+                        position: .top
+                    )
+//                    Toast.show(message: "Download successfully under Files — ctemplar folder.", controller: self?.inboxViewerController)
+//                    let activityViewController = UIActivityViewController(activityItems: self?.modelsDownloadedURls ?? [], applicationActivities: nil)
+//
+//                    DispatchQueue.main.async {
+//                        self?.inboxViewerController?.present(activityViewController, animated: true, completion: nil)
+//                    }
+
+                   // print(self?.modelsDownloadCounts)
+                }
+                print(urlString)
+            }
+           
         }
         return cell
     }

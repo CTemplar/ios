@@ -17,6 +17,11 @@ public extension FileManager {
         return url
     }
     
+    static func getFileUrlLibraryDocuments(withURLString: String) -> URL {
+        let path = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).first! + "/" + (withURLString as NSString).lastPathComponent
+        let url = URL(fileURLWithPath: path)
+        return url
+    }
     static func checkIsFileExist(url: URL) -> Bool {
         let filePath = url.path
         let fileManager = FileManager.default

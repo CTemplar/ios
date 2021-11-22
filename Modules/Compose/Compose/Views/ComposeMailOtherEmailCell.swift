@@ -201,6 +201,8 @@ extension ComposeMailOtherEmailCell: KSTokenViewDelegate {
     
     private func updateTableViewLayout() {
         self.tableView?.beginUpdates()
+        self.tableView?.reloadRows(at: [IndexPath(row: 0, section: 2)], with: .none)
         self.tableView?.endUpdates()
+        //self.tableView?.reloadData()
     }
 }

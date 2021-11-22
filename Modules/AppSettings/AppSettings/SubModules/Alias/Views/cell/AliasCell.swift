@@ -23,14 +23,13 @@ class AliasCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    
+   
     func configure(model: Mailbox) {
-      
+        self.emailLbl.textColor = UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black
+        self.statusBtn.setTitleColor(UITraitCollection.current.userInterfaceStyle == .dark ? .white : .black, for: .normal)
+
         self.emailLbl.text = model.email
-        self.statusBtn.setTitleColor(.black, for: .normal)
         self.statusBtn.isUserInteractionEnabled = true
-        self.emailLbl.textColor = .black
         if (model.isDefault == true) {
             self.statusBtn.setTitle("", for: .normal)
             self.statusBtn.setTitleColor(.clear, for: .normal)

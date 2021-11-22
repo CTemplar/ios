@@ -203,6 +203,7 @@
 "deadManTimer"      = "Dead Man定时器";
 "delayedDelivery"   = "延迟递送";
 "selfDestructTimerText" = "该邮件将在送达收件人账户指定时间后自动删除，时间是";
+"selfDestructMessageText" = "自毁仅适用于 ctemplar 收件人，请仅添加 ctemplar 收件人以进行自毁功能。";
 "deadManTimerText"      = "如果您在设定的时间后没有登录您的账户，邮件将会在指定时间后发送，时间是";
 "delayedDeliveryText"   = "邮件将在设定的时间自动发送";
 "setPassword" = "设定密码";

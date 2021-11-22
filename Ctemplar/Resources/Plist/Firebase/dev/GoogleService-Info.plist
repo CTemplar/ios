@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>234624445456-je86t1ibang9gu1l9peaiuc2h7r1irir.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.234624445456-je86t1ibang9gu1l9peaiuc2h7r1irir</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>234624445456-33v45m5o7bqhf64jgrpijm12hdb5nv4s.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBcYFwTp6fmKZRG3KqUB6CSK30j0s2pt_8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>234624445456</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ctemplar.corp.iosapp.dev</string>
+	<key>PROJECT_ID</key>
+	<string>ctemplar-42</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ctemplar-42.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:234624445456:ios:1a9fe3bc719a4e71f6ae95</string>
+</dict>
+</plist>
