@@ -1,13 +1,13 @@
 # CTemplar (for iOS)
 
 ## Build Requirements
-+ Xcode 10
-+ iOS 11.0 SDK or later
++ Xcode 11
++ iOS 13 SDK or later
 + Key-chain sharing
 + CocoaPods
 
 ## Runtime Requirements
-+ iOS 10.0 or later
++ iOS 13 or later
 
 ## About Project
 
