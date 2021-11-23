@@ -433,6 +433,7 @@ public enum Strings {
         case deadManTimer
         case delayedDelivery
         case selfDestructTimerText
+        case selfDestructMessageText
         case deadManTimerText
         case delayedDeliveryText
         case setPassword

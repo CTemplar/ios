@@ -172,6 +172,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
         showForceUpdateAlert()
+      //  self.refreshToken()
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -444,5 +445,15 @@ private extension AppDelegate {
             }
         }
         fatalError("Not able to find any key window")
+    }
+    
+    func refreshToken() {
+        Loader.start()
+        NetworkManager.shared.apiService.refreshToken() { (complete) in
+            Loader.stop()
+            if complete {
+                return
+            }
+        }
     }
 }

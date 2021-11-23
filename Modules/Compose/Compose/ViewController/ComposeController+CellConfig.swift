@@ -110,7 +110,11 @@ extension ComposeController {
         }
         
         cell.configure(with: vm)
-        cell.setButtonState(isEnable: viewModel.user.isPrime ?? false)
+        if (self.checkTheDestructionEmailIsValid() == false) {
+            self.viewModel.updateDestructDayToClear()
+
+        }
+        cell.setButtonState(isEnable: viewModel.user.isPrime ?? false, mails: self.viewModel.toCellVM?.mailIds ?? [], isSelected: self.viewModel.email.destructDay != nil ? true : false)
         cell.onTapAttachment = { [weak self] (sender, isAlreadySelected) in
             self?.view.endEditing(true)
             self?.onTapAttachment(sender, onCompletion: { (url) in
@@ -158,6 +162,20 @@ extension ComposeController {
                 })
             }
         }
+    }
+    
+    private func checkTheDestructionEmailIsValid() -> Bool {
+        if (self.viewModel.toCellVM?.mailIds.count ?? 0 > 0) {
+            var containMail = false
+            for mail in self.viewModel.toCellVM?.mailIds ?? [] {
+                if (mail.contains("ctemplar.com")) {
+                    containMail = true
+                    break
+                }
+            }
+           return containMail
+        }
+        return false
     }
     
     private func onTapSchedulerMenu(with mode: SchedulerMode, menu: ComposeMailMenu, alreadySelected: Bool) {

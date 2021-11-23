@@ -211,6 +211,7 @@
 "deadManTimer"      = "Czasomierz truposza";
 "delayedDelivery"   = "Opóźnione dostarczenie";
 "selfDestructTimerText" = "Wiadomość sama się usunie ze skrzynki odbiorcy za";
+"selfDestructMessageText" = "Samozniszczenie jest tylko dla odbiorców ctemplar . Proszę dodać tylko odbiorców ctemplar dla funkcji samozniszczenia.";
 "deadManTimerText"      = "Jeśli po ustawieniu czasomierzu, nie zalogujesz się na konto, wiadomość zostanie wysłana za";
 "delayedDeliveryText"   = "Wiadomość zostanie wysłana o określonym czasie";
 "setPassword" = "Ustaw hasło";

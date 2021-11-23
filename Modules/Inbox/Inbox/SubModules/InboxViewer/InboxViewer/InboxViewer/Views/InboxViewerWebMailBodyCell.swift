@@ -219,6 +219,15 @@ public final class InboxViewerWebMailBodyCell: UITableViewCell, Cellable {
                     self.webView?.loadHTMLString("<font color= \(self.traitCollection.userInterfaceStyle == .dark ? "\'white\'" : "\'black\'")\">" + newContent + "</div>", baseURL: nil)
                   //  self.webView?.loadHTMLString(newContent, baseURL: nil)
                 }
+                else if model.content.contains("color=\"#000000\"") {
+                   let newContent = self.traitCollection.userInterfaceStyle == .dark ? model.content.replacingOccurrences(of: "color=\"#000000\"", with: "color=\"#ffffff\"") : model.content
+                    self.webView?.loadHTMLString("<font color= \(self.traitCollection.userInterfaceStyle == .dark ? "\'white\'" : "\'black\'")\">" + newContent + "</div>", baseURL: nil)
+                  // self.webView?.loadHTMLString(newContent, baseURL: nil)
+               }
+               else if model.content.contains("color=\"#ffffff\"") {
+                    let newContent = self.traitCollection.userInterfaceStyle == .dark ? model.content : model.content.replacingOccurrences(of: "color=\"#ffffff\"", with: "color=\"#000000\"")
+                    self.webView?.loadHTMLString("<font color= \(self.traitCollection.userInterfaceStyle == .dark ? "\'white\'" : "\'black\'")\">" + newContent + "</div>", baseURL: nil)
+                }
                 else {
                     self.webView?.loadHTMLString("<font color= \(self.traitCollection.userInterfaceStyle == .dark ? "\'white\'" : "\'black\'")\">" + content + "</div>", baseURL: nil)
                    // self.webView?.loadHTMLString(content, baseURL: nil)

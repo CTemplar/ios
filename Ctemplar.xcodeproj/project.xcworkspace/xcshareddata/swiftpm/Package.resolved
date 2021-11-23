@@ -29,6 +29,15 @@
         }
       },
       {
+        "package": "Colorful",
+        "repositoryURL": "https://github.com/hayashi311/Color-Picker-for-iOS.git",
+        "state": {
+          "branch": null,
+          "revision": "3a760156bc0771f16a32bb84215b305dec13df6a",
+          "version": "3.0.2"
+        }
+      },
+      {
         "package": "CryptoHelperKit",
         "repositoryURL": "https://github.com/sohamb1390/CryptoHelperPackage.git",
         "state": {
@@ -74,6 +83,15 @@
         }
       },
       {
+        "package": "Reachability",
+        "repositoryURL": "https://github.com/ashleymills/Reachability.swift.git",
+        "state": {
+          "branch": null,
+          "revision": "c01bbdf2d633cf049ae1ed1a68a2020a8bda32e2",
+          "version": "5.1.0"
+        }
+      },
+      {
         "package": "SideMenu",
         "repositoryURL": "https://github.com/kukushi/SideMenu.git",
         "state": {
@@ -83,12 +101,39 @@
         }
       },
       {
+        "package": "SnapKit",
+        "repositoryURL": "https://github.com/SnapKit/SnapKit.git",
+        "state": {
+          "branch": null,
+          "revision": "d458564516e5676af9c70b4f4b2a9178294f1bc6",
+          "version": "5.0.1"
+        }
+      },
+      {
+        "package": "SnapshotTesting",
+        "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing.git",
+        "state": {
+          "branch": null,
+          "revision": "f8a9c997c3c1dab4e216a8ec9014e23144cbab37",
+          "version": "1.9.0"
+        }
+      },
+      {
         "package": "SwiftEntryKit",
         "repositoryURL": "https://github.com/huri000/SwiftEntryKit.git",
         "state": {
           "branch": null,
           "revision": "796981500de29ee72f72ef8e9c46eaed2fe6364e",
           "version": "1.2.3"
+        }
+      },
+      {
+        "package": "SwipeCellKit",
+        "repositoryURL": "https://github.com/SwipeCellKit/SwipeCellKit.git",
+        "state": {
+          "branch": null,
+          "revision": "7219cad3098637176ace311510d11467dbfb9bb0",
+          "version": "2.7.1"
         }
       }
     ]

@@ -212,6 +212,7 @@
 "deadManTimer"      = "Cronometrul omului mort";
 "delayedDelivery"   = "Livrare amânată";
 "selfDestructTimerText" = "Mesajul se va șterge în mod automat din cutia poștală a destinatarului";
+"selfDestructMessageText" = "Autodistrugerea este numai pentru destinatarii ctemplar . Vă rugăm să adăugați numai destinatari ctemplar pentru funcția de autodistrugere.";
 "deadManTimerText"      = "După setarea cronometrului, cât timp nu vă conectați la cont, mesajul va fi trimis după";
 "delayedDeliveryText"   = "Mesajul va fi trimis la ora stabilită";
 "setPassword" = "Setează o parolă";

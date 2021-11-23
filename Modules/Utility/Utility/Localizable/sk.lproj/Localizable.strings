@@ -241,6 +241,8 @@
 "delayedDelivery"   = "Oneskorené prijímanie správ";
 
 "selfDestructTimerText" = "Tento e-mail sa potom z účtu príjemcov odstráni";
+"selfDestructMessageText" = "Vlastné zničenie je len pre príjemcov ctemplárov, pridajte len príjemcov z kmeňov pre funkciu sebazničenia.";
+
 "deadManTimerText"      = "Ak sa neprihlásite do svojho účtu po uplynutí nastaveného času, bude Vám zaslaný e-mail ";
 "delayedDeliveryText"   = "E-mail bude odoslaný automaticky v nastavenom čase";
 

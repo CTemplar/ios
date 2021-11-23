@@ -99,6 +99,7 @@ public class RestAPIService {
 
         var url = EndPoint.baseUrl.rawValue + EndPoint.messages.rawValue + limitParams + folder + messagesIDIn + timeParameter + filter
         url = url.replacingOccurrences(of: " ", with: "%20")
+        url = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         DPrint("messagesList url:", url)
         
         AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) /*.validate()*/ .responseJSON { (response: AFDataResponse<Any>) in
@@ -1344,7 +1345,7 @@ public class RestAPIService {
  
         DPrint("load Attach file at url:", url)
         
-        let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory)
+        let destination = DownloadRequest.suggestedDownloadDestination(for: .libraryDirectory)
         
         AF.download(url, to: destination).downloadProgress(queue: DispatchQueue.global(qos: .utility)) { (progress) in
             DPrint("Progress: \(progress.fractionCompleted)")

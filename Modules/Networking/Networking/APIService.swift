@@ -54,7 +54,7 @@ public class APIService: HashingService {
     }
     
     // MARK: - Refresh Token
-    func refreshToken(completion: @escaping (Bool) -> () ) {
+public func refreshToken(completion: @escaping (Bool) -> () ) {
         let storedToken = keychainService.getToken()
         DispatchQueue.global(qos: .userInitiated).async {
             self.restAPIService.refreshToken(token: storedToken) { [weak self] (result) in

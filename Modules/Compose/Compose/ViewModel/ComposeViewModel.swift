@@ -272,6 +272,9 @@ final class ComposeViewModel: Modelable {
         }
     }
     
+    func updateDestructDayToClear() {
+        email.update(destructDay: nil)
+    }
     func decryptContactData(encryptedData: String, contact: Contact)  {
         guard let decryptedContent = self.decrypt(content: encryptedData) else {
             DPrint("Nothing")

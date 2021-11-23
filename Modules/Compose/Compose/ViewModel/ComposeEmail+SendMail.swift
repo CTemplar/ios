@@ -14,6 +14,9 @@ extension ComposeViewModel {
 //        messageContent = messageContent.replacingOccurrences(of: "<br><br>", with: "")
        /// messageContent = messageContent.replacingOccurrences(of: "<p>\\", with: "")
         messageContent = messageContent.replacingOccurrences(of: "\n", with: "<br>")
+       // messageContent = messageContent.replacingOccurrences(of: "#000000", with: "#ffffff")
+
+        
         
         if !messageContent.contains("BEGIN PGP") {
             messageContent = encryptMessage(publicKeys: publicKeys, message: messageContent)

@@ -120,33 +120,39 @@ public struct GeneralConstant {
     public static let numberOfCustomFoldersShowing = 3
     public static let customFoldersLimitForNonPremium = 5
     
+    
     public enum DocumentsExtension: String, CaseIterable {
-        case doc = "doc"
-        case pdf = "pdf"
-        case png = "png"
-        case jpg = "jpg"
-        case jpeg = "jpeg"
-        case xlsx = "xlsx"
-        case csv  = "csv"
-        case ods  =  "ods"
-        
-        public var color: UIColor {
-            switch self {
-            case .doc:
-                return k_docColor
-            case .pdf:
-                return k_pdfColor
-            case .png:
-                return k_pngColor
-            case .jpg, .jpeg:
-                return k_jpgColor
-            case .xlsx, .csv,.ods:
-            return k_jpgColor
-            
-            }
-        }
-    }
+           case docx = "docx"
+           case pdf = "pdf"
+           case png = "png"
+           case jpg = "jpg"
+           case jpeg = "jpeg"
+           case xlsx = "xlsx"
+           case csv  = "csv"
+           case ods  =  "ods"
+           case rtf  =  "rtf"
 
+           
+           public var color: UIColor {
+               switch self {
+               case .docx:
+                   return k_docColor
+               case .pdf:
+                   return k_pdfColor
+               case .png:
+                   return k_pngColor
+               case .jpg, .jpeg:
+                   return k_jpgColor
+               case .xlsx, .csv,.ods:
+               return k_jpgColor
+               case .rtf:
+                   return k_otherColor
+               
+               }
+           }
+       }
+    
+    
     public enum Language: Int, CaseIterable {
         case english = 0
         case russian

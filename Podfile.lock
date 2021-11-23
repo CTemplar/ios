@@ -76,9 +76,9 @@ PODS:
   - nanopb/encode (2.30908.0)
   - ObjectivePGP (0.17.0)
   - PromisesObjC (2.0.0)
-  - Sentry (6.0.12):
-    - Sentry/Core (= 6.0.12)
-  - Sentry/Core (6.0.12)
+  - Sentry (7.5.2):
+    - Sentry/Core (= 7.5.2)
+  - Sentry/Core (7.5.2)
 
 DEPENDENCIES:
   - Crashlytics
@@ -89,7 +89,7 @@ DEPENDENCIES:
   - iOSSnapshotTestCase
   - MaterialComponents/ActivityIndicator
   - ObjectivePGP
-  - Sentry (from `https://github.com/getsentry/sentry-cocoa.git`, tag `6.0.12`)
+  - Sentry (from `https://github.com/getsentry/sentry-cocoa.git`, tag `7.5.2`)
 
 SPEC REPOS:
   trunk:
@@ -116,12 +116,12 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Sentry:
     :git: https://github.com/getsentry/sentry-cocoa.git
-    :tag: 6.0.12
+    :tag: 7.5.2
 
 CHECKOUT OPTIONS:
   Sentry:
     :git: https://github.com/getsentry/sentry-cocoa.git
-    :tag: 6.0.12
+    :tag: 7.5.2
 
 SPEC CHECKSUMS:
   Crashlytics: 9220f5bc89e7a618df411b4f639389dbfb0e03d2
@@ -143,8 +143,8 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   ObjectivePGP: 82492902c036714b4a23ab0474b72d1ddf7ea7bd
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
-  Sentry: 8ffcfe3416e0a58b90bb1ae319e8e8a13022a03e
+  Sentry: 95788d2baa9cc904151c9ac41101c67d9f25e09e
 
-PODFILE CHECKSUM: b4b35c96778ac605a04505e06e7bffb232d2ede7
+PODFILE CHECKSUM: 9333104d9f04491183f68da23a7311249a3ffade
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2
