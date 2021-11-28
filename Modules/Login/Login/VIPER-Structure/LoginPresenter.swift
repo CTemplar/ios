@@ -101,7 +101,7 @@ final class LoginPresenter {
         oneTimePasswordVC.modalPresentationStyle = .formSheet
         
         // Button title. Optional. Default is "AUTHENTICATE".
-        oneTimePasswordVC.authenticateButtonTitle = Strings.Login.TwoFactorAuth.twoFAButtonTitle.localized
+      //  oneTimePasswordVC.authenticateButtonTitle = Strings.Login.TwoFactorAuth.twoFAButtonTitle.localized
         
         // Secondary Header Title. Default is Nil
         oneTimePasswordVC.secondaryHeaderTitle = Strings.Login.TwoFactorAuth.twoFASecondaryTitle.localized
@@ -113,7 +113,7 @@ final class LoginPresenter {
         oneTimePasswordVC.currentTextFieldColor = AppStyle.Colors.loaderColor.color
 
         // Button color. Optional. This takes precedence over the accent color.
-        oneTimePasswordVC.authenticateButtonColor = AppStyle.Colors.loaderColor.color
+    //oneTimePasswordVC.authenticateButtonColor = AppStyle.Colors.loaderColor.color
         
         loginViewController?.present(oneTimePasswordVC, animated: true, completion: nil)
     }
